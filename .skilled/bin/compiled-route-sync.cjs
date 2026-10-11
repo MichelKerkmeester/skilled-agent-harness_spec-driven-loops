@@ -21,7 +21,8 @@
 //               `.opencode/specs` while every hub still resolves (the move
 //               simulation: if the serving graph never touches the spec tree,
 //               relocating the spec tree cannot affect it)
-//   --check     print the traced closure without writing anything
+//   --check     print the traced closure and fail when a served copy is
+//               missing or differs from its authored file; writes nothing
 
 const fs = require('fs');
 const path = require('path');
@@ -998,7 +999,7 @@ function verify({ runtimeRoot = RUNTIME_ROOT } = {}) {
   return verifyRoot(runtimeRoot);
 }
 
-function check({ sourceRoot = IMPL_ROOT } = {}) {
+function check({ sourceRoot = IMPL_ROOT, runtimeRoot = RUNTIME_ROOT } = {}) {
   const authoredResolver = path.join(sourceRoot, CURRENT_LAYOUT.resolver);
   if (!fs.existsSync(authoredResolver)) {
     throw new Error(`authored resolver missing at ${authoredResolver}`);
@@ -1015,9 +1016,22 @@ function check({ sourceRoot = IMPL_ROOT } = {}) {
   if (closureFiles.length === 0) {
     throw new Error('authored closure is empty');
   }
+  // Serving reads the promoted copies, so an authored file edited after the last
+  // build is not live. Compare every traced file with its served copy byte for byte.
+  const drifted = [];
+  for (const abs of closureFiles) {
+    const rel = path.relative(sourceRoot, abs);
+    const servedPath = path.join(runtimeRoot, rel);
+    if (!fs.existsSync(servedPath)) drifted.push(`${rel} is missing from the serving root`);
+    else if (!fs.readFileSync(servedPath).equals(fs.readFileSync(abs))) drifted.push(`${rel} differs from its authored file`);
+  }
   process.stdout.write(`${closureFiles.length} closure files under authored root\n`);
   for (const abs of closureFiles) process.stdout.write(`  ${path.relative(sourceRoot, abs)}\n`);
   process.stdout.write(`all ${HUBS.length} hubs resolve\n`);
+  if (drifted.length > 0) {
+    throw new Error(`${drifted.length} served file(s) out of sync; rebuild with compiled-route-sync.cjs, or copy a re-minted activation manifest back to its authored path:\n  ${drifted.join('\n  ')}`);
+  }
+  process.stdout.write(`all ${closureFiles.length} served copies match their authored files\n`);
 }
 
 const USAGE = `Usage: compiled-route-sync.cjs [--verify|--check|--finalize <path>|--revert <path>|--help]
@@ -1027,7 +1041,9 @@ Modes:
                             promoted mirror; leaves a rollback sibling in place
   --verify                  trace the PROMOTED closure and assert no path reads
                             under .opencode/specs while every hub still resolves
-  --check                   print the traced closure without writing anything
+  --check                   print the traced closure and fail when a served
+                            copy is missing or differs from its authored file;
+                            writes nothing
   --finalize <rollback>     reconcile concurrent external manifests from the
                             retained rollback into the serving root, then remove
                             the rollback. Run only after post-publish gates pass

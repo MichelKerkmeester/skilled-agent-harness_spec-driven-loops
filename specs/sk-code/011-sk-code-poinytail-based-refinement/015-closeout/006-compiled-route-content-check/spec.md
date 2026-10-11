@@ -1,11 +1,11 @@
 ---
 title: "Feature Specification: Phase 6: compiled-route-content-check"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "Make compiled-route-sync.cjs --check compare every traced authored file with its served copy and fail on a missing or different one."
 trigger_phrases:
   - "compiled route content check"
   - "phase 6 compiled route content check"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 6: compiled-route-content-check
@@ -19,15 +19,15 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-10-11 |
-| **Branch** | `scaffold/006-compiled-route-content-check` |
+| **Branch** | `worktrees/098-post-092-integration` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 6 of 9 |
 | **Predecessor** | 005-stdin-late-write-coverage |
 | **Successor** | 007-review-reducer-missing-config |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | Every criterion in goal.md passes and strict validation passes |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -35,15 +35,15 @@ contextType: "general"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 6** of the Closeout phases specification.
+This is **Phase 6** of the epic closeout phase parent. It closes item 5 of the closeout list, compiled-route-sync.cjs --check passing while a served copy differs from its authored file.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: Only the files in the table below change.
 
 **Dependencies**:
-- [To be defined during planning]
+- None beyond the files named below.
 
 **Deliverables**:
-- [To be defined during planning]
+- Make compiled-route-sync.cjs --check compare every traced authored file with its served copy and fail on a missing or different one.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -55,10 +55,10 @@ This is **Phase 6** of the Closeout phases specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+`compiled-route-sync.cjs --check` traced the authored closure and listed its files, but never opened the served copies under .skilled/bin/lib/compiled-routing. An authored file edited after the last build, or a served file edited by hand, passed the check while serving ran different code.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+`--check` exits 1 and names each file whose served copy is missing or differs, and exits 0 only when all traced files match.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -67,19 +67,21 @@ This is **Phase 6** of the Closeout phases specification.
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- check() in .skilled/bin/compiled-route-sync.cjs and its usage text
+- A test in .skilled/bin/tests/compiled-route-manifest.test.cjs
+- The --check line of .skilled/bin/README.md
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- The build, verify, finalize and revert modes
+- Files the serving root holds that the trace does not reach, such as fence state and the closure manifest
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.skilled/bin/compiled-route-sync.cjs` | Modify | Byte comparison in check() |
+| `.skilled/bin/tests/compiled-route-manifest.test.cjs` | Modify | Missing and different served copy |
+| `.skilled/bin/README.md` | Modify | --check description |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -91,13 +93,15 @@ This is **Phase 6** of the Closeout phases specification.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | A different served copy fails --check | Test asserts the throw names the file |
+| REQ-002 | A missing served copy fails --check | Test asserts the throw |
+| REQ-003 | Today's tree passes | --check prints all 55 served copies match |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-090 | Strict validation of this phase passes | validate.sh --strict prints RESULT: PASSED |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -105,8 +109,8 @@ This is **Phase 6** of the Closeout phases specification.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: Every completion criterion in goal.md passes when the orchestrator reruns it.
+- **SC-002**: The phase lands as one conventional commit in the worktree.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -116,8 +120,7 @@ This is **Phase 6** of the Closeout phases specification.
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | A change reaches a caller the phase did not name | Med | The gates named in goal.md are rerun from the final state |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -125,10 +128,7 @@ This is **Phase 6** of the Closeout phases specification.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None.
 <!-- /ANCHOR:questions -->
 
 ---
-
-

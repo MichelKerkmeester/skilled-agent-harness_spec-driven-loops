@@ -15,7 +15,10 @@
       "phase 6 compiled route content check",
       "compiled route content check plan",
       "compiled route content check tasks",
-      "compiled route content check goal",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "compiled route content check implementation summary"
     ],
     "key_topics": [
@@ -26,20 +29,23 @@
       "phase",
       "plan",
       "tasks",
+      "packet",
       "goal",
-      "implementation",
-      "summary",
-      "broken",
-      "missing"
+      "durable",
+      "directive",
+      "completion"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/bin/compiled-route-sync.cjs",
+      ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+      ".skilled/bin/README.md"
     ],
     "entities": [
       {
@@ -70,6 +76,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-manifest.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/bin/README.md",
         "source": "derived"
       },
       {
@@ -121,7 +145,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,14 +163,8 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow One",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -167,29 +191,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "`compiled-route-sync.cjs --check` traced the authored closure and listed its files, but never opened the served copies under .skilled/bin/lib/compiled-routing",
     "created_at": "2026-10-11T04:49:35Z",
-    "last_save_at": "2026-10-11T04:49:41.059Z",
+    "last_save_at": "2026-10-11T05:30:37.781Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b55edadf4791adde23bc496e8d20e80f31f29a074b453ea8f3ee5067e04dff9",
+    "source_fingerprint": "sha256:6279f7bfd98f0a8a2b03c49712e36cb0ac5b0e67519dc1178be7802d0b34184c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a21cd91cc23e9ebfab4b77c822cd45c16ccf7557c44393a253e9ca454a435151",
-      "plan.md": "b7ab0f0f94d6c5f34850c7cf44f19ba1de27a074a764581c6135eee3786148dc",
-      "tasks.md": "48f53f554492c79e55b79f3b9788752d0b9fc8d723f0a26ee1d60602e51262e9",
-      "implementation-summary.md": "a0f37f8ac69370488eee1b83825ff64ae5e158808b111ac723ceee72571bddc4"
+      "spec.md": "3a788bcec9d21257099cd14d0efdb46d9fc965a88915d3f99a7c337845f0c171",
+      "plan.md": "9fcf92de408b27a787c0c558efd78bfa25e199edefe113b63a279d272e7feabb",
+      "tasks.md": "989ae72f9a459c2b64a2ca79df2e7fe7dd76cba057d2eaac06b85f01a8b00d34",
+      "implementation-summary.md": "00c059452f1260b39ba371174af4c5931b4e4d91a4bd3967a177269c21ebae98"
     },
     "last_active_at": null
   }

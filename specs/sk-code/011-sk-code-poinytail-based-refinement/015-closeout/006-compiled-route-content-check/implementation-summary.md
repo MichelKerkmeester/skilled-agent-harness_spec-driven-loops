@@ -1,24 +1,24 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "compiled-route-sync.cjs --check now fails when a served copy of a traced authored file is missing or differs from it."
 trigger_phrases:
   - "compiled route content check implementation summary"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-compiled-route-content-check"
-    last_updated_at: "2026-10-11T04:49:36Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/015-closeout/006-compiled-route-content-check"
+    last_updated_at: "2026-10-11T12:00:00Z"
+    last_updated_by: "closeout-orchestrator"
+    recent_action: "Closed the phase with every goal criterion passing"
+    next_safe_action: "Start the next phase"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-006-compiled-route-content-check"
+      session_id: "summary-015-006-compiled-route-content-check"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,18 +45,19 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+compiled-route-sync.cjs --check now fails when a served copy of a traced authored file is missing or differs from it.
 
 ### Phase 6: compiled-route-content-check
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+check() takes a runtimeRoot option that defaults to the real serving root. After tracing, it reads each closure file and the file at the same relative path under the serving root, which is where build() copies it. A missing copy or any byte difference is collected, and after the closure listing the function throws one error naming every such file and the two ways to repair it: rebuild, or copy a re-minted activation manifest back to its authored path. A clean tree ends with `all N served copies match their authored files`. The test builds a fresh serving root in a sandbox, passes check, appends a line to the served resolver and expects the `differs` error, then deletes it and expects the `missing` error.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.skilled/bin/compiled-route-sync.cjs` | Modify | check() compares bytes |
+| `.skilled/bin/tests/compiled-route-manifest.test.cjs` | Modify | One test |
+| `.skilled/bin/README.md` | Modify | One line |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -64,7 +65,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+Test first: it failed with `Missing expected exception` against the old check(), then passed with the fix.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -74,7 +75,7 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Compare manifests as well as code | Today all 55 match, so including the seven manifests costs nothing and catches an authored copy left behind after a re-mint |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -84,7 +85,9 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `node --test --test-name-pattern='check fails when a served file' .skilled/bin/tests/compiled-route-manifest.test.cjs` | fail 1 before (Missing expected exception), pass 1 after |
+| `node .skilled/bin/compiled-route-sync.cjs --check` | all 55 served copies match their authored files, exit 0 |
+| admission, front-door, manifest and surface-hint test files | 29, 1, 43 and 6 pass, 0 fail |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -92,9 +95,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. None.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

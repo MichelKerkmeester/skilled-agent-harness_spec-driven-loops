@@ -211,7 +211,7 @@ bash -n .skilled/bin/worktree-session.sh
 # Compiled routing
 node .skilled/bin/compiled-route-guard.cjs                     # every hub fresh, runtime matches source
 node .skilled/bin/compiled-route-status.cjs --all              # per-hub serving authority and cause code
-node .skilled/bin/compiled-route-sync.cjs --check              # authored closure resolves every hub
+node .skilled/bin/compiled-route-sync.cjs --check              # authored closure resolves every hub and matches its served copies
 node .skilled/bin/compiled-route-sync.cjs --verify             # promoted closure resolves with no spec reads
 node .skilled/bin/check-no-spec-imports.cjs                    # nothing here imports from the spec tree
 node .skilled/bin/tests/compiled-route-manifest.test.cjs       # publication lifecycle suite

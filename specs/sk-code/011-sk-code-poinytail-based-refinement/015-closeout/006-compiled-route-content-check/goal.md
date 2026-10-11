@@ -2,29 +2,32 @@
 title: "Goal: Phase 6: compiled-route-content-check"
 description: "The durable directive this packet executes against and the criteria that decide when it is done."
 trigger_phrases:
-  - "compiled route content check goal"
+  - "packet goal"
+  - "durable directive"
+  - "completion criteria"
+  - "goal binding"
 importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-compiled-route-content-check"
-    last_updated_at: "2026-10-11T04:49:36Z"
-    last_updated_by: "scaffold"
+    packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/015-closeout/006-compiled-route-content-check"
+    last_updated_at: "2026-10-11T12:00:00Z"
+    last_updated_by: "closeout-orchestrator"
     recent_action: "Authored the durable directive"
     next_safe_action: "Execute against the completion criteria"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "goal-015-006-compiled-route-content-check"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 # Goal: Phase 6: compiled-route-content-check
 
+<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 <!-- GOAL_AUTHORING: .skilled/skills/sk-doc/sk-create-goal/SKILL.md -->
 
@@ -33,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** [One sentence. What this packet is for. Not how, not progress.]
+**Objective:** compiled-route-sync.cjs --check fails whenever a served copy of a traced authored file is missing or differs from it.
 
 ### Decisions
 
@@ -41,19 +44,18 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | [The decision, stated so a reader can tell whether work honors it] |
+| D1 | Activation manifests are compared too: a re-minted served manifest must be copied back to its authored path, and the error says so |
 
 <!-- /ANCHOR:directive -->
 
 ---
 
-
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] [A check whose answer is an exit code, a count, or a named artifact]
-- [ ] [Another]
-- [ ] [Another]
+- [ ] `node .skilled/bin/compiled-route-sync.cjs --check`, run from the repository root, exits 0 and prints `all 55 served copies match their authored files` or the same line with a larger count.
+- [ ] `node --test --test-name-pattern='check fails when a served file' .skilled/bin/tests/compiled-route-manifest.test.cjs`, run from the repository root, prints pass 1 and fail 0.
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/006-compiled-route-content-check --strict`, run from the repository root, prints RESULT: PASSED.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -69,11 +71,12 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| [Item] | [Pending/In Progress/Done] | [Command output, file:line, or artifact] |
+| Phase planned | Done | spec.md, plan.md, tasks.md and this goal written by the orchestrator |
+| Content check | Done | new test failed before the fix; 55 of 55 copies match |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| [What diverged from the directive] | [Why, and what was done instead] |
+| None | The build matched the plan |
 <!-- /ANCHOR:log -->

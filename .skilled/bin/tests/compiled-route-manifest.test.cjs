@@ -515,6 +515,27 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
     }
   });
 
+  test('check fails when a served file is missing or differs from its authored file', () => {
+    const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-sync-check-'));
+    const runtimeRoot = path.join(sandbox, 'compiled-routing');
+    buildFreshRuntime(runtimeRoot);
+    const served = path.join(runtimeRoot, sync.CURRENT_LAYOUT.resolver);
+    const quiet = (fn) => {
+      const write = process.stdout.write;
+      process.stdout.write = () => true;
+      try { return fn(); } finally { process.stdout.write = write; }
+    };
+    try {
+      quiet(() => sync.check({ runtimeRoot }));
+      fs.appendFileSync(served, '\n// drift\n');
+      assert.throws(() => quiet(() => sync.check({ runtimeRoot })), /differs from its authored file/);
+      fs.rmSync(served);
+      assert.throws(() => quiet(() => sync.check({ runtimeRoot })), /missing from the serving root/);
+    } finally {
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  });
+
   test('leaves an existing runtime untouched when the authored source is unavailable', () => {
     const sandbox = fs.mkdtempSync(path.join(os.tmpdir(), 'compiled-route-sync-source-failure-'));
     const runtimeRoot = path.join(sandbox, 'compiled-routing');
