@@ -257,7 +257,10 @@ function hasDispatchEvidence(tokens, commandHasPrintFlag) {
   // command-wide because the embedded signal can sit in a different segment than the flag
   // it belongs to (e.g. `alias d=devin; d -p task`).
   const embeddedExecutor = commandHasPrintFlag && tokens.some((token) => !token.quoted && /(?:=|\/)(?:opencode|claude|codex|devin|cursor-agent|pi)$/.test(token.value));
-  const variableExecutor = tokens.some((token) => token.expanded) && hasPrintFlag;
+  // An expanded token stands in for the executor only in command position: `mkdir -p "$DIR"`
+  // carries a print-shaped flag and a variable but runs mkdir, not a dispatch.
+  const start = commandStart(tokens);
+  const variableExecutor = hasPrintFlag && !start.opaque && Boolean(tokens[start.index]?.expanded);
   const expandedDispatch = tokens.some((token) => token.expanded && hasDispatchText(token.value));
   return (knownExecutor && hasPrintFlag) || embeddedExecutor || variableExecutor || expandedDispatch;
 }
@@ -288,6 +291,10 @@ export function inspectDispatch(command) {
     }
 
     if (direct.length > 0 || candidate) return { kind: 'ambiguous' };
+    // The tokenizer reads `bash -c '<cmd>'` as a bash call with one quoted argument. Classify
+    // the wrapped command instead, the same unwrap resolveSegment applies for the hooks.
+    const shell = command.match(SHELL_WRAPPER);
+    if (shell) return inspectDispatch(shell[2]);
     return { kind: 'none' };
   } catch (_) {
     return { kind: 'none' };
@@ -396,6 +403,8 @@ function resolveSegment(segment, redirectionsStripped = false) {
     // pin one executor. Match the shape list against that segment only: matching the whole
     // command is what made a call that merely quotes a dispatch read as one.
     if (inspected.kind === 'ambiguous') {
+      const wrapped = current.match(SHELL_WRAPPER);
+      if (wrapped) { current = wrapped[2]; continue; }
       // Test the shape against the segment with quoted spans blanked out. A command that
       // BUILDS a payload containing a dispatch (`P='{"command":"opencode run ..."}'`) reads
       // as ambiguous, and matching inside its quotes refused a call that dispatches nothing.

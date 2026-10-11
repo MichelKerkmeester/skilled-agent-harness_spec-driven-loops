@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9418b267408bb9d7ab6eeb7a15e645c4e48bab799a6c054c449339b7b2bfcffc",
+  "manifestHash": "c0932180afb53dc8a069d8679973aa0a3e653772a33b866138ffd761d10b9618",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -12317,6 +12317,18 @@
     ],
     "authored case digest guarantee": [
       "authored case digest guarantee"
+    ],
+    "authored classifier fixture": [
+      "authored classifier fixture"
+    ],
+    "authored classifier fixture implementation summary": [
+      "authored classifier fixture implementation summary"
+    ],
+    "authored classifier fixture plan": [
+      "authored classifier fixture plan"
+    ],
+    "authored classifier fixture tasks": [
+      "authored classifier fixture tasks"
     ],
     "authored continuity snapshot": [
       "authored continuity snapshot"
@@ -71366,6 +71378,9 @@
     "phase 7 spec kit hook deadlines": [
       "phase 7 spec kit hook deadlines"
     ],
+    "phase 8 authored classifier fixture": [
+      "phase 8 authored classifier fixture"
+    ],
     "phase 8 legacy era report": [
       "phase 8 legacy era report"
     ],
@@ -71380,6 +71395,9 @@
     ],
     "phase 9 gate 3 menu series parent": [
       "phase 9 gate 3 menu series parent"
+    ],
+    "phase 9 pi guard classification": [
+      "phase 9 pi guard classification"
     ],
     "phase a readme authoring": [
       "Phase A readme authoring"
@@ -72387,6 +72405,18 @@
     ],
     "pi goal verify nudge census": [
       "pi goal verify nudge census"
+    ],
+    "pi guard classification": [
+      "pi guard classification"
+    ],
+    "pi guard classification implementation summary": [
+      "pi guard classification implementation summary"
+    ],
+    "pi guard classification plan": [
+      "pi guard classification plan"
+    ],
+    "pi guard classification tasks": [
+      "pi guard classification tasks"
     ],
     "pi has no default model": [
       "pi has no default model"

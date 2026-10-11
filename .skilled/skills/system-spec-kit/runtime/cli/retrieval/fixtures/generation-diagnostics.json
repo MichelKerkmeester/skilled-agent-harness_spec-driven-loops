@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 56,
     "missing-frontmatter": 6851,
-    "ok": 13918,
+    "ok": 13928,
     "valid-empty-list": 3509
   },
-  "documentsScanned": 24334,
+  "documentsScanned": 24344,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "9418b267408bb9d7ab6eeb7a15e645c4e48bab799a6c054c449339b7b2bfcffc",
+  "manifestHash": "c0932180afb53dc8a069d8679973aa0a3e653772a33b866138ffd761d10b9618",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36254,
+      "ok": 36264,
       "prose-sentence": 19,
       "single-token": 164,
       "stop-word-only": 1,
@@ -68010,6 +68010,14 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/008-authored-classifier-fixture/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/009-pi-guard-classification/scratch",
       "reason": "excluded directory"
     },
     {

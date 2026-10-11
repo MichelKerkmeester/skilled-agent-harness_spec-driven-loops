@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3e7bedceb9fe9d66e876d0118a61ce01a9f2ce46ec1c677cf6e61a3dccd62745",
+  "corpusHash": "8c51b7267cf02a21bdf75aa3ed187f10388e379042dfd9e37280f9852528edde",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24334,
+  "includedPathCount": 24344,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10596,6 +10596,16 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/review/review-report.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/008-authored-classifier-fixture/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/008-authored-classifier-fixture/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/008-authored-classifier-fixture/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/008-authored-classifier-fixture/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/008-authored-classifier-fixture/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/009-pi-guard-classification/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/009-pi-guard-classification/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/009-pi-guard-classification/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/009-pi-guard-classification/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/009-pi-guard-classification/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/implementation-summary.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/plan.md",
@@ -24365,7 +24375,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "9418b267408bb9d7ab6eeb7a15e645c4e48bab799a6c054c449339b7b2bfcffc",
+  "manifestHash": "c0932180afb53dc8a069d8679973aa0a3e653772a33b866138ffd761d10b9618",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26269,6 +26279,14 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/008-authored-classifier-fixture/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/009-pi-guard-classification/scratch",
       "reason": "excluded directory"
     },
     {
