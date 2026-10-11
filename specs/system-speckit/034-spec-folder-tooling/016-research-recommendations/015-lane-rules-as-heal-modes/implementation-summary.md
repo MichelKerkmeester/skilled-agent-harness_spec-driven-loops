@@ -187,15 +187,15 @@ The tree5 gate logs are the evidence for the test, check, typecheck, hooks, doct
 <!-- ANCHOR:limitations -->
 ## Known Limitations and Open Items
 
-1. **T022 is open, an operator item.** No corpus-scale `upgrade-legacy --apply` run was made. The evidence log records the full-corpus apply in a throwaway clone as skipped, with the operator not objecting, and as a follow-up. That command refuses a tree without git, and the scratch corpus copy has no git repository. The one-packet version is `all-modes-sequence`, and the corpus-scale second run is AC-019.
+1. **T022 is closed.** The throwaway clone corpus run is recorded in `../../021-follow-up-defect-fixes/scratch/evidence/lane-17-t022-corpus.txt`. Apply 1 moved passing packets from 4,282 of 4,335 to 4,335 of 4,335. Apply 2 planned 0 changes, changed 0 files and recorded the same 133 findings.
 2. **CHK-FIX-004 is closed (P0) by the 015-T1 table.** It covers the delimiter, joined-spelling, outside-root, no-op and fallback placements. It is not exhaustive beyond those rows.
 3. **CHK-FIX-006 is closed (P1) by the 015-T2 case, strengthened by 015-T3.** The lane code (`heal-spec-docs.cjs`) reads no environment variable. Its only process-wide read is `process.cwd()`, at `laneRepoRoot` (line 949), when a document is outside git.
-4. **CHK-FIX-007 is open (P1).** The build is not committed. The SHA is pinned after the combined commit.
-5. **Plan pre-deployment item open.** "Derivability checks are validated on phase 13 fixtures" is not checked. The tests build their fixtures inline, and this closeout did not locate phase 13 fixtures to compare against.
+4. **CHK-FIX-007 is closed (P1).** Evidence is pinned to 124e11c883. Commit 014e573449 later changed `heal-lane-modes.vitest.ts` and `heal-spec-docs.cjs`.
+5. **Plan pre-deployment item closed.** "Derivability checks are validated on phase 13 fixtures" was not checked at this closeout, because the tests build their fixtures inline and no phase 13 fixtures were located then. Resolved on 2026-10-10: the phase 13 packet copy and four anchor-contract fixtures returned no changes, actions or refusals in dry-run lane mode, and the plan box is checked. Evidence: ../../021-follow-up-defect-fixes/scratch/evidence/lane-20-016-residual-boxes.txt.
 6. **Disagreeing markers are not pinned.** `level-from-spec` refuses spec.md markers that disagree, and the README documents it, but no case covers it.
 7. **Archived packets.** `upgrade-legacy` never runs lane modes on archived packets. The archived continuity text is reached only by a `--folder` run on an archived path. Archived status comes from the packet's current location, the same rule `repair-derived` follows.
 8. **Boundary with anchor-repair-mode (phase 011).** `upgrade-legacy` runs the anchor repair before the lane modes, and anchor-wrap refuses repeated heading text and ids that are already present. Numbering and un-nesting stay in phase 011.
 9. **Same class outside this phase.** `healDoc` in `heal-spec-docs.cjs:698` writes a hard-coded `\n` into the trigger-phrase fill at `:717`. It is the class of 015-F3, in code this phase does not change, so it is a follow-up.
 10. **Corpus check scope.** The AC-019 two-pass run covers the 2,200 live packets that the lane walk reaches. Archived and scratch packets are outside the walk by design, and the scratch copy holds only `.md` files.
-11. **Verification status.** The Status field reads Complete because every acceptance row is Met. After the third pass the only open checklist row is CHK-FIX-007 (P1), and the only open task is T022. The orchestrator decides whether the packet closes, given items 1, 4 and 5.
+11. **Verification status.** The Status field reads Complete because every acceptance row is Met. T022, CHK-FIX-007 and REQ-004 per-folder validation are now supported by evidence. Every plan, task and goal box is checked. The orchestrator decides whether the packet closes.
 <!-- /ANCHOR:limitations -->

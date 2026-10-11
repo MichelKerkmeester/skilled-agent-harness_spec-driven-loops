@@ -35,7 +35,7 @@ Add a fixture test that archives a real packet with full metadata, restores it, 
 
 ### Definition of Ready
 - [x] Phase 15 re-derive implementation is verified (archive.sh:181-191 calls repair-derived; the round-trip case passes)
-- [ ] Research recommendations section 7.4 archive policy is understood (not re-read at closeout)
+- [x] Research recommendations section 7.4 archive policy is understood (re-read on 2026-10-10 at the follow-up closeout). Mapping: current-location semantics and strict validation map to REQ-001 and REQ-003. The archive-restore fixture maps to REQ-002. Tool and documentation alignment maps to REQ-003 and REQ-004. The derived-fields-only limit maps to spec.md section 3 Out of Scope.
 - [x] All four tool code paths are identified (tasks.md T001-T009)
 
 ### Definition of Done

@@ -37,7 +37,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 011-anchor-repair-mode |
-| **Status** | Complete. All eight acceptance criteria are Met. Task T011 stays open. The changes are in the working tree and not yet committed. |
+| **Status** | Complete. All eight acceptance criteria are Met. Task T011 was closed on 2026-10-10 by the operator ruling. The evidence is pinned to commit 124e11c883. |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -137,7 +137,7 @@ The whole-tree gate in `gates/tree5/` ran after the Opus alignment fixes. Its `d
 
 Caveat for the root-test row: it ran from 10:31 to 11:15, across the commit at 10:37, so its runtime steps may not match one tree. The cli-test and focused runs finished before the commit.
 
-Gate rows that cite tree4 now cite tree5 as well. `T011` stays open, and so do CHK-031 and CHK-FIX-004 to CHK-FIX-007. The `validate.sh --strict` and `check-goal.cjs` runs on this folder were repeated after these edits, and their logs are in `gates/closeout3-011/`.
+Gate rows that cite tree4 now cite tree5 as well. The 2026-10-10 closeout closed T011, CHK-031 and CHK-FIX-004 to CHK-FIX-006. CHK-FIX-007 is pinned to 124e11c883. Evidence files: lane-12-anchor-repair-boxes.txt, lane-1-healer.txt, lane-14-removed-flags.txt, lane-18-hostile-rerun.txt and lane-11-016-audit.txt under ../../021-follow-up-defect-fixes/scratch/evidence/. The earlier validate.sh --strict and check-goal.cjs runs on this folder are recorded in gates/closeout3-011/.
 
 ### Producer and consumer inventory (closeout, 2026-10-09)
 
@@ -171,6 +171,27 @@ Method: ripgrep over `.skilled/` for anchor marker writers and readers, excludin
 **Policies and docs:** the ANCHORS_VALID entry in `runtime/cli/lib/validator-registry.json` (line 100), the rule text in `references/validation/validation-rules.md` (line 58) and `references/validation/path-scoped-rules.md` (line 82). This phase did not change those three. The spec/README.md rows at lines 113-114 and 224 describe this phase and were checked against the code.
 
 **Tests:** heal-anchor-repair.vitest.ts, anchor-repair-sample.vitest.ts (reads the committed fixture set), the three anchor cases in upgrade-legacy.vitest.ts, and the allowance at workflow-invariance.vitest.ts line 93.
+
+### Test matrix (2026-10-10)
+
+The axes come from plan.md, Affected surfaces and Required inventories:
+
+- Defect class: glued template pairs, fenced duplicates, nested questions layouts
+- Mode: apply versus dry run
+- Outcome: success versus collision versus ambiguous
+
+The counts are the test runner's verbose output for each file on the working tree of 2026-10-10. The earlier record counted 20 cases in heal-anchor-repair.vitest.ts, before the two rows added on this date, and 39 in upgrade-legacy.vitest.ts, which now holds 59.
+
+| Test file | Tests in file | Anchor-repair tests | What the anchor-repair tests cover |
+|-----------|---------------|---------------------|-------------------------------------|
+| `heal-anchor-repair.vitest.ts` | 22, all passed | 22 | 11 `it` tests and an 11-row adversarial table. They cover glued pairs, fenced duplicates, nested questions, suffix collisions, ambiguity, the flat decoy, wrapped headings and a rename failure. |
+| `anchor-repair-sample.vitest.ts` | 1, passed | 1 | The frozen sample of 60 documents, 50 repairable and 10 refused, in dry run and apply. |
+| `upgrade-legacy.vitest.ts` | 59, 58 passed and 1 failed | 3, all passed | The archived questions un-nesting, the archived document mode under a restrictive umask and the nested questions repair on apply and dry run. |
+| `heal-symlink-containment.vitest.ts` | 39, all passed | 7, all passed | The `--anchor-repair` runs against a linked or dangling spec.md, a linked or dangling `--folder`, an aliased or relative folder and a folder no root reaches. |
+
+The two rows added to heal-anchor-repair.vitest.ts on 2026-10-10 are the outside-root row, which runs `--anchor-repair` in the dry run and the apply run on a packet outside the named specs root and expects exit 2 with the packet unchanged, and the fallback row, which renames a glued duplicate pair that does not overlap its neighbor, where the removal rule does not apply. Both pass.
+
+The one failing case in the four-file run is `writes nothing for a passing packet that links inside itself, and keeps its baseline` in upgrade-legacy.vitest.ts. It fails on the `repair-derived` step with exit 2 and reproduces when run alone. It is not an anchor-repair case, and its cause is not established in this pass.
 
 <!-- /ANCHOR:how-delivered -->
 
@@ -250,16 +271,22 @@ The second closeout pass (2026-10-09) classed each finding that touches this pha
 ## Known Limitations
 
 1. **Task T011 is open.** The corpus apply un-nested the 50 source packets. `validate.sh --strict` passes 49 of them and fails one, a scratch backup at `specs/system-speckit/028-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/004-dark-flag-graduation/001-multihop-tail-appends`. That packet's graph-metadata.json and description.json are unchanged from HEAD, and their metadata names a non-scratch folder with a missing source fingerprint docset. Its spec.md changed only marker lines, and its ANCHORS_VALID check passes. The fix sits outside this phase, so an operator decision is needed. Second pass (2026-10-09): the failing rules name only the metadata fields and the folder path, and both metadata files equal HEAD, so the drift predates this build. That is inferred from the history and the messages, since no run at HEAD was made. Evidence: gates/closeout2-011/t011-scratch-validate.out.
+   Resolved: The operator ruled the identity backup out of scope and left it untouched. T011 is closed on that ruling. Evidence: [lane-12-anchor-repair-boxes.txt](../../021-follow-up-defect-fixes/scratch/evidence/lane-12-anchor-repair-boxes.txt).
 2. **Two rules have no test.** An unclosed code fence extends to the end of the file in the code, and no test covers that. The case where the old and new questions anchors both exist, which the code reports as ambiguous, has no test either. Second pass (2026-10-09): both cases now have rows in the adversarial table, and both pass in gates/closeout2-011/focused-verbose-3.out.
 3. **Wrapper-hybrid documents need a hand fix.** The tool refuses the layouts where the OPEN QUESTIONS heading already sits inside another wrapper. Those documents were fixed by hand, and the tool still refuses them.
 4. **Not committed.** The changes are in the working tree. Under parent decision D6 they ship in one combined commit with phases 003, 009, 012 and 015. The commit SHA is needed to close the fix-completeness row that pins evidence to a fix SHA.
+   Resolved: The fix is pinned to commit 124e11c883. Evidence: ../../021-follow-up-defect-fixes/scratch/evidence/lane-11-016-audit.txt.
 5. **Ordering with phase 013.** The corpus un-nesting must land before or with the change that makes nesting an error. A probe on a committed, pre-un-nesting spec.md (007-orchestrator-inline-authority) gave three "is opened inside" errors, which the new check reports.
 6. **Checklist items left open.** In tasks.md these stay open: CHK-011 (console output not audited), CHK-013 (project pattern review), CHK-022 (the edge cases in limitation 2), CHK-031 (input validation), CHK-041 (comment adequacy) and the seven CHK-FIX rows, which need finding classes, consumer inventories and a fix SHA.
 Second pass (2026-10-09): CHK-011, CHK-013, CHK-022, CHK-041 and CHK-FIX-001 to CHK-FIX-003 are now closed. The open list is CHK-031, CHK-FIX-004, CHK-FIX-005, CHK-FIX-006 and CHK-FIX-007.
+   Resolved: CHK-031 and CHK-FIX-004 to CHK-FIX-006 are now closed. CHK-FIX-007 is pinned to 124e11c883. Evidence files: lane-1-healer.txt, lane-12-anchor-repair-boxes.txt, lane-14-removed-flags.txt, lane-18-hostile-rerun.txt and lane-11-016-audit.txt under ../../021-follow-up-defect-fixes/scratch/evidence/
 7. **Argument handling (CHK-031).** `heal-spec-docs.cjs --anchor-repair --folder` with no value throws a TypeError and exits 1. An unknown flag is ignored, so `--bogus` runs the dry run over the whole `specs` tree. A `--folder` that does not exist exits 0 and prints `documents=0`. upgrade-legacy's parser rejects these cases with exit 2. The healer's default mode parses its arguments the same way at HEAD (heal-spec-docs.cjs lines 296-298 at HEAD), so the convention predates this phase.
+   Resolved: An unknown healer argument or a missing --folder or --roots value exits 2 in every mode. Evidence: ../../021-follow-up-defect-fixes/scratch/evidence/lane-1-healer.txt, LANE 1 ADDENDUM 2 and ../../021-follow-up-defect-fixes/scratch/evidence/lane-14-removed-flags.txt.
 8. **Symlinked spec.md (outside-root, CHK-FIX-004).** A probe in a scratch folder outside the repository used a packet whose spec.md is a symlink to a file outside the packet. `--anchor-repair --folder <packet> --apply` replaced the link with a regular file holding the repaired text, and the link target kept its unrepaired content. The healer's `writeFileAtomic` does this. Closeout 3 later deleted upgrade-legacy's separate writer, which renamed the same way and was not probed. Both upgrade-legacy paths now call the healer's `writeFileAtomic`, the writer the probe exercised. No test covers this case, and closeout made no code change.
+   Resolved: The anchor-repair apply test leaves a symlinked spec.md and its outside target untouched. Evidence: ../../021-follow-up-defect-fixes/scratch/evidence/lane-12-anchor-repair-boxes.txt.
 9. **SC-003 wording.** spec.md SC-003 says that applying the repair to 50 documents "leaves all documents valid after repair". The result is 49 of 50, and the failing one is the T011 scratch backup. The acceptance rows do not include SC-003, so Status Complete stands under the acceptance rule. The operator should read SC-003 against T011.
 10. **Concurrent runs.** Two focused runs in this worktree failed seven upgrade-legacy cases with exit 3 while another session's test run was active. A later run passed. The cause was not captured. Parallel test or build runs in one worktree can make the validator refuse to run.
 11. **Same missing test name in other packets.** The 015 packet and the 033/037 packet also cite `heal-spec-docs.vitest`. Those packets are outside this phase and were not edited.
 
+12. **Goal criterion 3 stays open.** goal.md asks that applying the repair to 50 randomly selected nested documents leaves every document valid. The frozen sample in tests/fixtures/anchor-repair-sample (seed 20261008, 60 documents drawn from commit 02cc1fb948) holds 50 repairable and 10 refused documents. The sample test confirms anchor integrity for each repaired copy. The 10 wrapper-hybrid documents are refused by design and were fixed by hand (limitation 3), and no strict validation runs per document, so the criterion is not met as written. Evidence: ../../021-follow-up-defect-fixes/scratch/evidence/lane-20-016-residual-boxes.txt.
 <!-- /ANCHOR:limitations -->

@@ -59,9 +59,9 @@ contextType: "implementation"
 
 - [x] T012 Test path map collision checker with fixture paths, add cases to `.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts` or `.skilled/commands/doctor/scripts/tests/*.test.cjs`. Cases are in `doctor-update-compat.test.cjs` (`collisions stop the move and list both paths with their reasons`).
 - [x] T013 Test /doctor:update check calls era report and shows results (manual or bash test). The contract test pins the two check commands and the fixture tests run them. The rendered Layout line is a presentation template and was not run live.
-- [ ] T014 Test compatibility action workflow: preview, approval, move, upgrade on fixture v3 repo. Preview, move and upgrade are run by the integration test. The approval prompts are not exercised by any test and need a manual run. Closeout 2 (2026-10-09): stays open, because the approval step needs the manual run named here.
+- [x] T014 Test compatibility action workflow: preview, approval, move, upgrade on fixture v3 repo. The 2026-10-10 manual run used a sandbox v3 checkout, not a real repository. The operator approved both prompts and the run reached STATUS=UPGRADED. Evidence: ../../021-follow-up-defect-fixes/scratch/evidence/lane-16-009-compat-run.txt.
 - [x] T015 Test edge cases: dirty tree rejection, interrupted move recovery, failed packet handling. Dirty root and dirty-after-approval refusals, three interrupted-run tests and the failed-packet parse test pass. The release lock refusal and a failed move step are not tested. Closeout 2 (2026-10-09): the failed move step is now pinned by `a move step that cannot complete stops the run and reports the failed step` (`gates/closeout2-009/compat-unit.log`, 21 of 21, rc 0). The release lock refusal is still not tested.
-- [ ] T016 Full integration test: fixture v3 repo through check → preview → approve → apply → validation passes. The integration test passes through preview, move, upgrade and validation. The approve step is not run by the suite. Closeout 2 (2026-10-09): stays open, because the approve step is part of the manual run.
+- [x] T016 Full integration test: fixture v3 repo through check → preview → approve → apply → validation passes. The 2026-10-10 manual run completed the check, preview, move and upgrade on a sandbox v3 checkout, not a real repository. The operator approved both prompts. validate RESULT: PASSED. Evidence: ../../021-follow-up-defect-fixes/scratch/evidence/lane-16-009-compat-run.txt.
 - [x] T017 Update spec.md, plan.md for closure (this folder). Closeout 2 (2026-10-09): done. spec.md, plan.md, acceptance-criteria.md, tasks.md and implementation-summary.md were brought to the built state.
 <!-- /ANCHOR:phase-3 -->
 
@@ -70,9 +70,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked [x]
 - [x] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] Manual verification passed on a sandbox v3 checkout, not a real repository. Both approval prompts were approved. The run ended STATUS=UPGRADED and validate RESULT: PASSED. Evidence: ../../021-follow-up-defect-fixes/scratch/evidence/lane-16-009-compat-run.txt.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -125,9 +125,9 @@ contextType: "implementation"
 ## Testing Checklist
 
 - [x] CHK-020 [P0] All acceptance criteria met (see acceptance-criteria.md, AC-007 depends on the tree3 gate). Closeout 2 (2026-10-09): every row is Met. AC-007 is Met on `gates/closeout2-009/root-test-bound-raised.log` (rc 0), and its sub-steps are listed in that row. Closeout 3: AC-007 is also re-cited to `gates/tree5/root-test.log`, which ends with rc 0. Closeout 4 (2026-10-09): that log is the AC-007 evidence, and it ran on the final code (see that row).
-- [ ] CHK-021 [P0] Manual testing complete (not done: no operator-run `/doctor:update compat` session on a real v3 repository. The fixture and CLI runs are recorded in acceptance-criteria.md)
+- [x] CHK-021 [P0] Manual testing complete. The operator-run /doctor:update compat session used a sandbox v3 checkout, not a real repository. Both approval prompts were approved and the run ended STATUS=UPGRADED. Evidence: ../../021-follow-up-defect-fixes/scratch/evidence/lane-16-009-compat-run.txt.
 - [x] CHK-022 [P1] Edge cases tested (classic v3, partial, v4, dirty spec root, tree dirtied after approval, interrupted classic, interrupted before the legacy link, interrupted partial, collisions of three kinds. Not pinned by a test: the release lock refusal, a failed move step, an upgrade that fails after the move) Closeout 2 (2026-10-09): the failed move step is now pinned, so the gaps left are the release lock refusal and an upgrade that fails after the move.
-- [ ] CHK-023 [P1] Error scenarios validated (not complete: the lock refusal, a failed move step and the manifest refusal have no test. The dirty root, collisions and interrupted runs are covered) Closeout 2 (2026-10-09): the failed move step is now covered by its own case. The lock refusal and the manifest refusal have no executable path in this test harness, so they stay open until a test can reach them.
+- [x] CHK-023 [P1] Error scenarios validated. The dirty root, collisions and interrupted runs were covered from the start. Closeout 2 (2026-10-09): the failed move step is covered by the test "a move step that cannot complete stops the run and reports the failed step" in .skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs. Recheck (2026-10-10): the manifest refusal is covered by the case `dirty-tree-unwritable-manifest` in upgrade-legacy.vitest.ts, which expects exit 2 and the text "could not write reversibility manifest". Closeout 2026-10-10: upgrade-legacy refuses with exit 2 while .skilled/release/.apply.lock exists. Mutant M5-c, with the lock check removed, failed the three lock-held cases while its control passed. Evidence: ../../021-follow-up-defect-fixes/scratch/evidence/lane-5-upgrade-legacy.txt, section 2 and Mutant M5-c.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -138,10 +138,10 @@ contextType: "implementation"
 - [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. (review round 1: F1 algorithmic, the recovery-aware skip rules, F2 instance-only, the dry-run wording in update.md, F3 instance-only, era_report removed from the action preflight, F4 instance-only, the dirty re-check missing from phase 4 only. Final Opus review F5 instance-only, the rollback block missing the legacy root undo and the parent directories.)
 - [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. (`grep -n dirty_check_command` on the action YAML finds the check in phase 2 and phase 4 only, and phase 4 now has it, the other mutating step, the upgrade, is guarded by upgrade-legacy's own dirty handling, covered by 010.)
 - [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests. (`planLayoutMove` has one caller, the `--layout-map` branch, and the tests, the router and the contract test name map point to the new `doctor-update-compat-action.yaml`, update.md and the doctor tests README list the new suites.)
-- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. (open: the rollback fix derives parent directories from logged `mv` argv, and no adversarial table test was added for it. The layout code builds paths from fixed roots and has no user path input.) Closeout 2 (2026-10-09), not applicable: the rollback is operator guidance text in the action YAML and the presentation, not code, so no adversarial table test is owed for it. The first-pass note above stays as the record of why it was open.
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. (resolved: the rollback fix derives parent directories from logged `mv` argv, and no adversarial table test was added for it. The layout code builds paths from fixed roots and has no user path input.) Closeout 2 (2026-10-09), not applicable: the rollback is operator guidance text in the action YAML and the presentation, not code, so no adversarial table test is owed for it. The first-pass note above stays as the record of why it was open.
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. (no test matrix: the axes are the layout states v3, partial, v4 and none, plus the dirty, interrupted and collision cases, each listed in acceptance-criteria.md)
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. (the integration suite strips `GIT_DIR`, `GIT_WORK_TREE` and `SPECKIT_*` variables and points `GIT_CONFIG_GLOBAL` at an empty file, `planLayoutMove` reads no environment variable)
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. (open: the work is not committed yet. It ships as the combined commit for the shared `upgrade-legacy.mjs` file, per parent D6)
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. (was open: the work is not committed yet. It ships as the combined commit for the shared `upgrade-legacy.mjs` file, per parent D6. Closed 2026-10-10: pinned to 124e11c883, the commit that added the compat action YAML (173 lines), the doctor compat tests and the layout functions planLayoutMove, compareLayoutTrees, partialLayoutMove and layoutRootCollision in upgrade-legacy.mjs. Commit 02bd0a105b later changed the action YAML and the compat test file)
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -180,11 +180,11 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 11/12 |
-| P1 Items | 13 | 11/13 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-10-09
+**Verification Date**: 2026-10-10. Manual compat and lock-refusal evidence is recorded in ../../021-follow-up-defect-fixes/scratch/evidence/lane-16-009-compat-run.txt and ../../021-follow-up-defect-fixes/scratch/evidence/lane-5-upgrade-legacy.txt.
 <!-- /ANCHOR:summary -->
 
 ---

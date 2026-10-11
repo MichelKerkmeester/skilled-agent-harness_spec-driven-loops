@@ -180,7 +180,7 @@ heal-spec-docs.cjs (five new modes)
 ### Pre-deployment Checklist
 - [x] Phase 13 lane briefs document all five rules and their evidence
 - [x] Phase 14 research verified the rules independently
-- [ ] Derivability checks are validated on phase 13 fixtures
+- [x] Derivability checks are validated on phase 13 fixtures. Evidence: the phase 13 packet copy and four named anchor-contract fixtures returned no changes, actions or refusals in dry-run lane mode.
 
 ### Rollback Procedure
 1. `git revert` the code commit

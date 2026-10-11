@@ -62,7 +62,7 @@ Frozen choices. Changing one is an amendment.
 - [x] Each mode's refusal is recorded in the baseline file (upgrade-baseline.json) so a reviewer knows the transformation was not attempted (verifies D2)
 - [x] `heal-lane-modes.vitest.ts` has 5+ test cases per mode: positive (transformation applied), negative (refusal recorded), and idempotence (second run changes nothing); minimum count: 15 passing tests across all five modes
 - [x] Integration test in `upgrade-legacy.vitest.ts::all-modes-sequence` shows all five modes run in order without contradictions on a corpus fixture
-- [ ] Per-folder validation after apply confirms safety: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <packet> --strict` returns RESULT: PASSED after each mode run (verifies REQ-004)
+- [x] Per-folder validation after apply confirms safety: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <packet> --strict` returns RESULT: PASSED after each mode run (verifies REQ-004)
 - [x] `.skilled/skills/system-spec-kit/runtime/cli/spec/README.md` documents all five modes, each mode's exact derivability rule, and when each refuses
 - [x] Existing test suite (`npm test` in system-spec-kit) passes with zero new failures; no regression in prior heal modes or upgrade-legacy behavior
 <!-- /ANCHOR:completion -->

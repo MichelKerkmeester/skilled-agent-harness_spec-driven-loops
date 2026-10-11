@@ -137,7 +137,7 @@ contextType: "implementation"
 - [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. (not applicable: the change adds a test case and a comment, and no security, path, parser or redaction fix)
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. (not applicable: no matrix; one fixture packet)
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. (not applicable: the case reads and sets no environment variable and no process-wide state; the scripts it spawns inherit the environment as the earlier cases do). Closeout 2: grep finds no process.env or chdir in archive-track.vitest.ts, so the reason holds for the cases the test round added
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. (Open: nothing is committed. The change sits uncommitted in a shared worktree and is to be pinned at the lane A combined commit. Closeout 2: git status still lists archive-track.vitest.ts and heal-spec-docs.cjs as uncommitted, and the ship commit closes this)
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. (Open: nothing is committed. The change sits uncommitted in a shared worktree and is to be pinned at the lane A combined commit. Closeout 2: git status still lists archive-track.vitest.ts and heal-spec-docs.cjs as uncommitted, and the ship commit closes this. Closed 2026-10-10: pinned to 124e11c883, the commit that added the round-trip describe at archive-track.vitest.ts:312 and the SKIP_DIRS comment at heal-spec-docs.cjs:63-66, both as they stand in that commit. Commit 014e573449 later changed both files, so the lines at HEAD can differ)
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -177,10 +177,10 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 23 | 23/23 |
-| P1 Items | 16 | 15/16 |
+| P1 Items | 16 | 16/16 |
 | P2 Items | 1 | 1/1 |
 
-Open: CHK-FIX-007 only, which the ship commit closes. CHK-022 and CHK-023 were ticked in closeout 2, and CHK-022 keeps one named gap (the two track-packet parent cases). T012, CHK-010 and CHK-020 closed on 2026-10-09 on the tree3 gate and are re-cited to tree4 in closeout 2.
+CHK-FIX-007 closed on 2026-10-10, pinned to 124e11c883, so no checklist box is open. CHK-022 and CHK-023 were ticked in closeout 2, and CHK-022 keeps one named gap (the two track-packet parent cases). T012, CHK-010 and CHK-020 closed on 2026-10-09 on the tree3 gate and are re-cited to tree4 in closeout 2.
 
 **Verification Date**: 2026-10-09
 <!-- /ANCHOR:summary -->
