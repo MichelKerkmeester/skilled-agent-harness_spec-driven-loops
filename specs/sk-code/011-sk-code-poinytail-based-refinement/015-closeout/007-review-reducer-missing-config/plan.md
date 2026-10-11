@@ -1,10 +1,10 @@
 ---
 title: "Implementation Plan: Phase 7: review-reducer-missing-config"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Let the review reducer read a review folder that has a state log but no config file, so all 505 review folders under specs reduce."
 trigger_phrases:
   - "review reducer missing config plan"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Phase 7: review-reducer-missing-config
@@ -20,13 +20,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Files named in spec.md section 3 |
+| **Framework** | The repository's own generators, hooks and validators |
+| **Storage** | None |
+| **Testing** | The checks in goal.md, rerun by the orchestrator |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Fix the reducer, not the data: the folders are finished history owned by other packets. A missing config joins the warnings the reducer already keeps for corrupt state-log lines, so the lenient and strict paths both follow the rule they follow today.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -35,14 +35,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All goal.md criteria pass on the orchestrator's rerun
+- [x] Every new test failed once before its change
+- [x] Strict validation passes
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -51,16 +51,14 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+In-place change to existing files; no new layer.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Orchestrator**: plans, makes each change, reruns every check and commits.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+One change, then the rerun of its check, then the next change or the phase close.
 <!-- /ANCHOR:architecture -->
-
 
 ---
 
@@ -75,7 +73,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-N/A — record any testing beyond the verification tasks in `tasks.md` here.
+The goal.md criteria are the tests. A new test is run once against the unchanged code first and must fail there.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -83,7 +81,7 @@ N/A — record any testing beyond the verification tasks in `tasks.md` here.
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-N/A — record dependencies beyond the components named in the architecture here.
+None beyond the files named in spec.md.
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -91,8 +89,7 @@ N/A — record dependencies beyond the components named in the architecture here
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-N/A — record rollback steps beyond reverting the scoped change here.
+Revert this phase's commit. No other phase depends on its files.
 <!-- /ANCHOR:rollback -->
 
 ---
-

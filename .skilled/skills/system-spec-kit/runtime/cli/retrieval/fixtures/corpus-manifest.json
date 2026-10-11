@@ -1,5 +1,5 @@
 {
-  "corpusHash": "4855bd6fec8f1cad371f543d962ad58b996f30d0653f15adf5f8011261a9d02c",
+  "corpusHash": "aa66d1d5d73ef6465cbe51a87366eb007977d059c33650117839433ea74e3050",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24720,
+  "includedPathCount": 24721,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7523,6 +7523,7 @@
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.5.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.6.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.7.0.md",
+    ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.8.0.md",
     ".skilled/skills/system-deep-loop/runtime/database/README.md",
     ".skilled/skills/system-deep-loop/runtime/feature-catalog/council/adjudicator-verdict-scoring.md",
     ".skilled/skills/system-deep-loop/runtime/feature-catalog/council/cost-guards.md",
@@ -24751,7 +24752,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "3ed8caf3627559523a12a18cc8700a113ad6ab32036f172cc666b92e1d943a92",
+  "manifestHash": "704dcf005263ea745fbc944d2e52eb128a2498d7137333cb754fcfb6ccb2b541",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

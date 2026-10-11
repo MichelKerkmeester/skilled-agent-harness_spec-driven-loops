@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3ed8caf3627559523a12a18cc8700a113ad6ab32036f172cc666b92e1d943a92",
+  "manifestHash": "704dcf005263ea745fbc944d2e52eb128a2498d7137333cb754fcfb6ccb2b541",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -32859,6 +32859,9 @@
     "deep loop runtime 1 9 7 0": [
       "deep-loop-runtime 1.9.7.0"
     ],
+    "deep loop runtime 1 9 8 0": [
+      "deep-loop-runtime 1.9.8.0"
+    ],
     "deep loop runtime alignment": [
       "deep loop runtime alignment"
     ],
@@ -32957,6 +32960,9 @@
     ],
     "deep loop runtime v1 9 7 0": [
       "deep-loop-runtime v1.9.7.0"
+    ],
+    "deep loop runtime v1 9 8 0": [
+      "deep-loop-runtime v1.9.8.0"
     ],
     "deep loop safe now gated split": [
       "deep-loop safe-now gated split"
@@ -83697,6 +83703,9 @@
     "review first implement second": [
       "review first implement second"
     ],
+    "review folder without config": [
+      "review folder without config"
+    ],
     "review folders under spec tree root": [
       "review folders under spec-tree root"
     ],
@@ -83871,9 +83880,6 @@
     ],
     "review reducer missing config": [
       "review reducer missing config"
-    ],
-    "review reducer missing config goal": [
-      "review reducer missing config goal"
     ],
     "review reducer missing config implementation summary": [
       "review reducer missing config implementation summary"

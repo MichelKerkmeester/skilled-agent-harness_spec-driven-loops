@@ -2,29 +2,32 @@
 title: "Goal: Phase 7: review-reducer-missing-config"
 description: "The durable directive this packet executes against and the criteria that decide when it is done."
 trigger_phrases:
-  - "review reducer missing config goal"
+  - "packet goal"
+  - "durable directive"
+  - "completion criteria"
+  - "goal binding"
 importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "scaffold/007-review-reducer-missing-config"
-    last_updated_at: "2026-10-11T04:49:37Z"
-    last_updated_by: "scaffold"
+    packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/015-closeout/007-review-reducer-missing-config"
+    last_updated_at: "2026-10-11T12:00:00Z"
+    last_updated_by: "closeout-orchestrator"
     recent_action: "Authored the durable directive"
     next_safe_action: "Execute against the completion criteria"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "goal-015-007-review-reducer-missing-config"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 # Goal: Phase 7: review-reducer-missing-config
 
+<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 <!-- GOAL_AUTHORING: .skilled/skills/sk-doc/sk-create-goal/SKILL.md -->
 
@@ -33,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** [One sentence. What this packet is for. Not how, not progress.]
+**Objective:** Every review folder under specs reduces without error in lenient mode, and a strict reduction of one with no config file names that file.
 
 ### Decisions
 
@@ -41,19 +44,19 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | [The decision, stated so a reader can tell whether work honors it] |
+| D1 | Fix the reducer, leave the finished review folders as they are |
+| D2 | A missing config follows the existing corrupt-line rule: warn when lenient, throw STATE_CORRUPTION when strict |
 
 <!-- /ANCHOR:directive -->
 
 ---
 
-
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] [A check whose answer is an exit code, a count, or a named artifact]
-- [ ] [Another]
-- [ ] [Another]
+- [ ] `node specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/007-review-reducer-missing-config/scratch/reduce-probe.cjs`, run from the repository root, prints `errors=0`.
+- [ ] `npx --prefix .skilled/skills/system-deep-loop/runtime vitest run --root .skilled/skills/system-deep-loop/runtime tests/unit/deep-review-state-reducer.vitest.ts`, run from the repository root, exits 0 with every test passed.
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/007-review-reducer-missing-config --strict`, run from the repository root, prints RESULT: PASSED.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -69,11 +72,12 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| [Item] | [Pending/In Progress/Done] | [Command output, file:line, or artifact] |
+| Phase planned | Done | spec.md, plan.md, tasks.md and this goal written by the orchestrator |
+| Reducer fix | Done | probe errors 43 to 0; new test failed with ENOENT before the fix |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| [What diverged from the directive] | [Why, and what was done instead] |
+| None | The build matched the plan |
 <!-- /ANCHOR:log -->

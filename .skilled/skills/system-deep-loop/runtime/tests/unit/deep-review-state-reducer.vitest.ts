@@ -110,6 +110,37 @@ describe('reduceReviewState — degrades gracefully on warning-class problems', 
     expect(readFileSync(dashboardPath, 'utf8')).toContain('Iteration: 1 of 5');
   });
 
+  // Older and per-lineage review folders hold a state log but no config file. A missing
+  // config is a warning like a corrupt line: lenient reduction proceeds on defaults, and
+  // strict reduction still fails loudly, naming the file instead of a bare ENOENT.
+  it('reduces a review folder with no config file on defaults, and names the file when strict', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    const iteration = JSON.stringify({
+      type: 'iteration',
+      iteration: 1,
+      run: 1,
+      status: 'complete',
+      focus: 'dim-a',
+      newFindingsRatio: 0.5,
+      findingsSummary: { P0: 0, P1: 0, P2: 0 },
+    });
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${iteration}\n`);
+
+    const lenient = reduceReviewState(specFolder, { write: false, lenient: true, artifactDir: reviewDir });
+    expect(lenient.hasCorruption).toBe(true);
+    expect(JSON.stringify(lenient.corruptionWarnings)).toContain('deep-review-config.json');
+    expect(lenient.dashboard).toContain('Iteration: 1');
+
+    let thrown: (Error & { code?: string }) | null = null;
+    try {
+      reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    } catch (error) {
+      thrown = error as Error & { code?: string };
+    }
+    expect(thrown?.code).toBe('STATE_CORRUPTION');
+    expect(thrown?.message).toContain('deep-review-config.json');
+  });
+
   it('keeps two distinct findings that share a findingId but have different content instead of silently dropping one', () => {
     const { specFolder, reviewDir } = makeReviewDir();
     writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({ maxIterations: 5, reviewTarget: 'id-collision-proof' }));

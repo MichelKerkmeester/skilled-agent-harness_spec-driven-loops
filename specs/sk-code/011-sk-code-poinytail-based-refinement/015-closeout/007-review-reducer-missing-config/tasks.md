@@ -4,7 +4,7 @@ description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "review reducer missing config tasks"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Phase 7: review-reducer-missing-config
@@ -31,9 +31,7 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Probe all review folders and group the errors by cause
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -41,10 +39,9 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T002 Write the test and confirm it fails with ENOENT
+- [x] T003 Treat a missing config as a warning (reduce-state.cjs)
+- [x] T004 Write the runtime changelog
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -52,9 +49,8 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T005 Rerun the probe and the runtime unit suite
+- [x] T006 Validate and commit
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -62,9 +58,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every goal.md criterion passes on the orchestrator's rerun
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,6 +73,3 @@ contextType: "general"
 <!-- /ANCHOR:cross-refs -->
 
 ---
-
-
-

@@ -588,7 +588,7 @@ function deriveDashboardStatus(config, records, terminalStop) {
 function createCorruptionError(stateLogPath, corruptionWarnings) {
   const preview = corruptionWarnings
     .slice(0, 3)
-    .map((warning) => `  - line ${warning.line}: ${warning.error}`)
+    .map((warning) => (warning.file ? `  - ${warning.file}: ${warning.error}` : `  - line ${warning.line}: ${warning.error}`))
     .join('\n');
   const error = new Error(
     `[deep-review] parseJsonl detected ${corruptionWarnings.length} corrupt line(s) in ${stateLogPath}:\n${preview}\n`
@@ -2209,8 +2209,18 @@ function reduceReviewState(specFolder, options = {}) {
   const iterationDir = path.join(reviewDir, 'iterations');
   const deltaDir = path.join(reviewDir, 'deltas');
 
-  const config = readJson(configPath);
-  const { records: allRecords, corruptionWarnings } = parseJsonlDetailed(readUtf8(stateLogPath));
+  // Older and per-lineage review folders keep a state log without a config file. Treat
+  // the missing file like a corrupt line: reduce on defaults, and let the strict path
+  // below fail loudly with the file named rather than a bare ENOENT.
+  const configWarnings = [];
+  let config = {};
+  if (fs.existsSync(configPath)) {
+    config = readJson(configPath);
+  } else {
+    configWarnings.push({ file: 'deep-review-config.json', error: 'config file is missing; reduced on default settings' });
+  }
+  const { records: allRecords, corruptionWarnings: logWarnings } = parseJsonlDetailed(readUtf8(stateLogPath));
+  const corruptionWarnings = configWarnings.concat(logWarnings);
   // Allowlist: only iteration + event types bear completion semantics. Progress
   // records (type:'progress') are additive liveness signals — they reset the
   // no-progress watchdog but MUST NOT count as iterations or completion events.
