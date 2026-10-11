@@ -117,6 +117,9 @@ and findings belong here.
 | Phase 004 | Done | 7cd3e8e5db; Pi lint suite 35, then 1 failed with the new test, then 36 of 36 |
 | Phase 005 | Done | 54f9d041fd and 4a8a4065b6; README Node.js 20.19+ |
 | Phase 006 | Done | 54b4547bff; hook stdin suite 39 to 40 of 40; system-spec-kit 2.7.2.1 |
+| Phase 007 | Done | Remediation deep review recorded one P1 and two P2 in range plus two older items |
+| Phase 008 | Done | 2218c53a81; authored fixture cmp exit 0; authored canaries GOLD_MISMATCH to 0 failures |
+| Phase 009 | Done | 4656a7c863; inspector and Pi suites 111 to 117; rule-checks 20 of 20; shell -c wrappers direct; mkdir -p with a variable is none |
 
 ### Deviations and findings
 

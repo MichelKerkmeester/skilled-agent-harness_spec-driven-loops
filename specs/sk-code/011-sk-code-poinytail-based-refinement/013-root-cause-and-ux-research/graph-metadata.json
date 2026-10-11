@@ -49,7 +49,7 @@
       "durable"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -146,12 +146,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -171,6 +165,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -220,7 +220,7 @@
     ],
     "causal_summary": "The epic shipped, but its build hit repeated process errors: a helper's `String.replace` read a dollar-apostrophe sequence as a replacement pattern, the spec validator parsed link-shaped task text, a wildcard `rm` deleted scratch helpers, generated artifacts drifted and needed re-mints, and two branches minted the same changelog version",
     "created_at": "2026-10-10T18:39:09Z",
-    "last_save_at": "2026-10-10T23:56:53.467Z",
+    "last_save_at": "2026-10-11T00:12:07.673Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -231,10 +231,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:88607d433719b6348c39195c1f7a50927e64602535de1948a59757075d863e7e",
+    "source_fingerprint": "sha256:9828dd7307d65c963a0357ab64faf6387aa49bad4196537b95c24320607cd04a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e9799954b01c779e31c41cba327488ba0b48bea27ef5d7c251c34b7d51465094",
+      "spec.md": "ae2583e816a5da1a4e602b506773f8e27047e780432d59c4fc397dc925f4b9c6",
       "plan.md": "66c318ed55d572878a28916935f5d1cba03d0125908378def3d22ce053f84c8c",
       "tasks.md": "f6bf715ca407a611a7dec9eebcb7bd9bb48ed8721107b9e43bf8eea3308c0318",
       "implementation-summary.md": "5429da9520bcf590c34a86c9584de29e0f26943f2254f76ec33803cac40204a4",
