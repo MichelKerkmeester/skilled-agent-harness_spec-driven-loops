@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 6642,
-    "ok": 14044,
+    "ok": 14050,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 24233,
+  "documentsScanned": 24239,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "c639e01e452ea107fa423411f26dd46713eeaf55277e7840afe2f5f1cce13b10",
+  "manifestHash": "9eb4f6e5773f6ba7db6c524103d1ea4ed08c66fafe977c22791691c6b8617bc9",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36074,
+      "ok": 36087,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -66854,6 +66854,10 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/006-ci-truth-checks/scratch",
       "reason": "excluded directory"
     },
     {

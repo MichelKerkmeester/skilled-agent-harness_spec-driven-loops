@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c639e01e452ea107fa423411f26dd46713eeaf55277e7840afe2f5f1cce13b10",
+  "manifestHash": "9eb4f6e5773f6ba7db6c524103d1ea4ed08c66fafe977c22791691c6b8617bc9",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -15381,6 +15381,9 @@
     "catalog validator ignored paths": [
       "catalog validator ignored paths"
     ],
+    "catalog validator in ci": [
+      "catalog validator in ci"
+    ],
     "category quantity comparison": [
       "category quantity comparison"
     ],
@@ -17595,6 +17598,21 @@
     "ci trigger index job hardening": [
       "ci trigger index job hardening"
     ],
+    "ci truth checks": [
+      "ci truth checks"
+    ],
+    "ci truth checks goal": [
+      "ci truth checks goal"
+    ],
+    "ci truth checks implementation summary": [
+      "ci truth checks implementation summary"
+    ],
+    "ci truth checks plan": [
+      "ci truth checks plan"
+    ],
+    "ci truth checks tasks": [
+      "ci truth checks tasks"
+    ],
     "ci visual regression pipeline": [
       "ci visual regression pipeline"
     ],
@@ -17673,6 +17691,9 @@
     "citation drift detection tasks": [
       "citation drift detection tasks"
     ],
+    "citation drift gate": [
+      "citation drift gate"
+    ],
     "citation drift improvements": [
       "citation drift improvements"
     ],
@@ -17732,6 +17753,9 @@
     ],
     "citation drift verification": [
       "citation drift verification"
+    ],
+    "citation gate blocks new broken citations": [
+      "citation gate blocks new broken citations"
     ],
     "citation grounding floor": [
       "citation grounding floor"
@@ -43025,6 +43049,9 @@
     "feature catalog vacuum into front proxy sk git": [
       "feature catalog vacuum into front proxy sk-git"
     ],
+    "feature catalog validator in ci": [
+      "feature catalog validator in ci"
+    ],
     "feature catalog verification": [
       "feature catalog verification"
     ],
@@ -64518,6 +64545,9 @@
     "never run test files wired or deleted": [
       "never-run test files wired or deleted"
     ],
+    "new broken citation blocks": [
+      "new broken citation blocks"
+    ],
     "new chart forms": [
       "new chart forms"
     ],
@@ -70782,6 +70812,9 @@
     ],
     "phase 5 stdin late write coverage": [
       "phase 5 stdin late write coverage"
+    ],
+    "phase 6 ci truth checks": [
+      "phase 6 ci truth checks"
     ],
     "phase 6 closeout deep review": [
       "phase 6 closeout deep review"
@@ -91329,6 +91362,9 @@
     "sk doc 2 3 3 0": [
       "sk-doc 2.3.3.0"
     ],
+    "sk doc 2 3 4 0": [
+      "sk-doc 2.3.4.0"
+    ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
     ],
@@ -91619,6 +91655,9 @@
     ],
     "sk doc v2 3 3 0": [
       "sk-doc v2.3.3.0"
+    ],
+    "sk doc v2 3 4 0": [
+      "sk-doc v2.3.4.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"

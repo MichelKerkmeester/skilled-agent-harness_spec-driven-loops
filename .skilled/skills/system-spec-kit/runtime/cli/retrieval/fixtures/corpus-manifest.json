@@ -1,5 +1,5 @@
 {
-  "corpusHash": "7ef5657554dd27dd94d5c8f42be686fc315e8540cf6a4fe66fd7770df3f22917",
+  "corpusHash": "5307c3144a3efdd7f1acf9613965a64e1cacf889c8a44cad6660dbcd97d6c7e0",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24233,
+  "includedPathCount": 24239,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6064,6 +6064,7 @@
     ".skilled/skills/sk-doc/changelog/v2.3.1.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.2.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.3.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.3.4.0.md",
     ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/changelog-entry-frontmatter-check.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-census-across-doc-families.md",
@@ -10827,6 +10828,11 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/plan.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/006-ci-truth-checks/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/006-ci-truth-checks/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/006-ci-truth-checks/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/006-ci-truth-checks/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/006-ci-truth-checks/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md",
@@ -24264,7 +24270,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "c639e01e452ea107fa423411f26dd46713eeaf55277e7840afe2f5f1cce13b10",
+  "manifestHash": "9eb4f6e5773f6ba7db6c524103d1ea4ed08c66fafe977c22791691c6b8617bc9",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26392,6 +26398,10 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/006-ci-truth-checks/scratch",
       "reason": "excluded directory"
     },
     {
