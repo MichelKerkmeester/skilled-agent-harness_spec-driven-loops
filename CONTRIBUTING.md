@@ -22,7 +22,7 @@ Welcome! We're excited that you're interested in contributing to Skilled. This d
 
 | Requirement | Version |
 |-------------|---------|
-| **Node.js** | 18+ |
+| **Node.js** | 24.x for a full install. Code Mode's MCP server needs `>=24.0.0 <25.0.0`, the spec-kit runtime CLI needs 22.12+ and the advisor runtime needs 20.19+ or 22.12+, so Node 24 is the one line every part accepts |
 | **Git** | Latest |
 | **Editor** | OpenCode-compatible (VS Code, Cursor, etc.) |
 
