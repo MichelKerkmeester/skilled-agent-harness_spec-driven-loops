@@ -266,4 +266,56 @@ The summary quotes $' and $& as a shell would, and {{FOLLOW_UP_LIST}} stays text
     expect(frontmatter.description).toBe(data.description);
     expect(markdown).toContain("The summary quotes $' and $& as a shell would, and {{FOLLOW_UP_LIST}} stays text.");
   });
+
+  it.each([12, 13])('keeps every Files Changed row when the summary lists %i files', (fileCount) => {
+    const rootSpec = makeTempProjectRoot();
+    const fileNames = Array.from({ length: fileCount }, (_unused, index) => `file-${String(index + 1).padStart(2, '0')}.ts`);
+    const tableRows = fileNames.map((fileName, index) => `| scripts/generator/${fileName} | Created | Generated change ${index + 1} |`);
+    writeFile(path.join(rootSpec, 'spec.md'), '# Feature Specification: Files Table Coverage');
+    writeFile(path.join(rootSpec, 'implementation-summary.md'), `# Implementation Summary
+
+## What Was Built
+
+The packet touches several generator files in one pass.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+${tableRows.join('\n')}
+
+## Verification
+
+| Check | Result |
+|-------|--------|
+| vitest | PASS |
+`);
+
+    const data = buildNestedChangelogData(rootSpec, { mode: 'auto', outputPath: null });
+    const markdown = generateNestedChangelogMarkdown(data);
+
+    expect(data.filesChanged).toHaveLength(fileCount);
+    for (const fileName of fileNames) {
+      expect(markdown).toContain(`scripts/generator/${fileName}`);
+    }
+  });
+
+  it('removes an inline HTML comment, including one that spans a line break', () => {
+    const rootSpec = makeTempProjectRoot();
+    writeFile(path.join(rootSpec, 'spec.md'), '# Feature Specification: Comment Stripping');
+    writeFile(path.join(rootSpec, 'implementation-summary.md'), `# Implementation Summary
+
+## What Was Built
+
+The generator keeps <!-- single line internal note --> every sentence intact, and <!-- internal note that
+continues here --> the rest of this paragraph still reads as one sentence.
+`);
+
+    const data = buildNestedChangelogData(rootSpec, { mode: 'auto', outputPath: null });
+    const markdown = generateNestedChangelogMarkdown(data);
+
+    expect(markdown).not.toContain('internal note');
+    expect(markdown).not.toContain('continues here');
+    expect(markdown).toContain('The generator keeps every sentence intact, and the rest of this paragraph still reads as one sentence.');
+  });
 });
