@@ -15,7 +15,10 @@
       "phase 8 advisor residuals and surface hint",
       "advisor residuals and surface hint plan",
       "advisor residuals and surface hint tasks",
-      "advisor residuals and surface hint goal",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "advisor residuals and surface hint implementation summary"
     ],
     "key_topics": [
@@ -26,20 +29,22 @@
       "phase",
       "plan",
       "tasks",
+      "packet",
       "goal",
-      "implementation",
-      "summary",
-      "broken",
-      "missing"
+      "durable",
+      "directive",
+      "completion"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/plugins/system-skill-advisor.js",
+      ".skilled/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts"
     ],
     "entities": [
       {
@@ -73,6 +78,18 @@
         "source": "derived"
       },
       {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-plugin.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -103,7 +120,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -121,7 +138,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,14 +156,8 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow One",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -173,23 +190,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The sk-code advisor batteries stop at 15 of 17 (native) and 14 of 17 (CLI): P4 and P15 miss on both, P7 on the CLI",
     "created_at": "2026-10-11T04:49:37Z",
-    "last_save_at": "2026-10-11T04:49:41.410Z",
+    "last_save_at": "2026-10-11T05:53:45.561Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +204,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e55f85c549f0c2682152c8f43d670ea1c8766df379cf04208eddb7ae8beb9f53",
+    "source_fingerprint": "sha256:4f922f3dde7335ea9c2f4af13f6c10a952857cce14838025cec50ec9b62ab269",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b81f1023f9601f2c7fc41b0511a8994050104a951163331348542169364e5ec3",
-      "plan.md": "982cd378fd323694a06e013f7d423fd7efd8febce5123225b1a07f156669c811",
-      "tasks.md": "83e07b49a1b3df2c2bc35c225f3e84ead88101cd6757318e77881d66d6654c5f",
-      "implementation-summary.md": "46c593b61c71657d3bdbc0482193e5de9c14c2e3a6cf3e1dee2d84b9bb383acb"
+      "spec.md": "0544d91f219bfb31573dedf3aa78d8f721c7a424a81adcc7793cf390a91fc04c",
+      "plan.md": "daf665655eb3582cd4f9cfae4c55c239946baa7eeb484c1644281701251da4f2",
+      "tasks.md": "8a57242ef639e64ea7b041bc95bf5ab09a3ba9e73e407a0e748f0d4f927f766d",
+      "implementation-summary.md": "ed68efaf52997770e8a70a64658e663bbb0203dea4722dcdd70bec3b12b7d79d"
     },
     "last_active_at": null
   }

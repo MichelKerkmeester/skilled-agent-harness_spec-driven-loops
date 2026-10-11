@@ -106,7 +106,7 @@ End every open item in one of two states: fixed, with a check that ran, or close
 | 5 | 005-stdin-late-write-coverage/ | Drive every short-deadline hook entry with a late write and record the residual risk | Complete |
 | 6 | 006-compiled-route-content-check/ | Make `compiled-route-sync.cjs --check` fail on a served copy that differs from its authored file | Complete |
 | 7 | 007-review-reducer-missing-config/ | Reduce the 43 review folders that have no config file | Complete |
-| 8 | 008-advisor-residuals-and-surface-hint/ | Investigate the battery misses and wire the surface hint where a caller can know it | Pending |
+| 8 | 008-advisor-residuals-and-surface-hint/ | Investigate the battery misses and wire the surface hint where a caller can know it | Complete |
 | 9 | 009-open-items-ledger/ | Fix or close every other open item, with the reason recorded | Pending |
 
 ### Phase Transition Rules

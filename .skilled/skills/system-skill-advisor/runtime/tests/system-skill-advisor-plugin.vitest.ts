@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { EventEmitter } from 'node:events';
-import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -655,6 +655,29 @@ describe('system-skill-advisor OpenCode plugin', () => {
     const clampedPrompt = cliPromptAt(0);
     expect(Buffer.byteLength(clampedPrompt, 'utf8')).toBeLessThanOrEqual(DEFAULT_MAX_PROMPT_BYTES);
     expect(clampedPrompt.length).toBeLessThan(prompt.length);
+  });
+
+  // The plugin knows the session's workspace, so it passes the surface its root markers
+  // name. The front door uses the hint only to order surfaces the prompt matched.
+  it.each([
+    ['an Obsidian plugin', (dir: string) => writeFileSync(join(dir, 'manifest.json'), '{"id":"x","minAppVersion":"1.4.0"}'), 'OBSIDIAN'],
+    ['a Webflow project', (dir: string) => mkdirSync(join(dir, 'src', '2_javascript'), { recursive: true }), 'WEBFLOW'],
+    ['a Cloudflare-deployed Webflow project', (dir: string) => writeFileSync(join(dir, 'wrangler.toml'), 'name = "x"\n'), 'WEBFLOW'],
+    ['a folder inside the hub', (dir: string) => mkdirSync(join(dir, '.skilled', 'skills'), { recursive: true }), 'OPENCODE'],
+    ['a workspace with no surface markers', (_dir: string) => undefined, undefined],
+  ])('passes the surface hint for %s', async (_name, seed, expected) => {
+    const workspace = mkdtempSync(join(tmpdir(), 'advisor-surface-'));
+    try {
+      seed(workspace);
+      const hubFolder = join(workspace, '.skilled', 'skills');
+      const hooks = await makePlugin({ cacheTTLMs: 5000 }, expected === 'OPENCODE' ? hubFolder : workspace);
+      await runPrompt(hooks, { sessionID: 's-surface', prompt: 'implement feature X' });
+      const child = mockedBridge.spawn.mock.results[0]?.value as { stdin: { end: ReturnType<typeof vi.fn> } };
+      const request = JSON.parse(child.stdin.end.mock.calls[0][0] as string) as { options: { surfaceHint?: string } };
+      expect(request.options.surfaceHint).toBe(expected);
+    } finally {
+      rmSync(workspace, { recursive: true, force: true });
+    }
   });
 
   it('keeps the prompt out of the CLI argv', async () => {

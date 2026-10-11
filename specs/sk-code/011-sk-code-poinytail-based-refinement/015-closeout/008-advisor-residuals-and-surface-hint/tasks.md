@@ -4,7 +4,7 @@ description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "advisor residuals and surface hint tasks"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Phase 8: advisor-residuals-and-surface-hint
@@ -31,9 +31,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Score P4, P7 and P15 with --show-rejections and the CLI, and read the winning rules
+- [x] T002 List the advisor callers and what each renders
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -41,10 +40,9 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T003 Write the plugin surface tests and confirm they fail
+- [x] T004 Add detectWorkspaceSurface and pass surfaceHint (.opencode/plugins/system-skill-advisor.js)
+- [x] T005 Bump system-skill-advisor to 0.15.1.0
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -52,9 +50,8 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T006 Run the advisor suite and both batteries
+- [x] T007 Validate and commit
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -62,9 +59,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every goal.md criterion passes on the orchestrator's rerun
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,6 +74,3 @@ contextType: "general"
 <!-- /ANCHOR:cross-refs -->
 
 ---
-
-
-

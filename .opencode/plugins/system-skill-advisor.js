@@ -13,7 +13,7 @@
 
 import { createHash } from 'node:crypto';
 import { spawn } from 'node:child_process';
-import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, realpathSync, statSync } from 'node:fs';
 import { resolve as resolvePath } from 'node:path';
 import { readFile } from 'node:fs/promises';
 import { homedir } from 'node:os';
@@ -674,7 +674,30 @@ function advisorCliArgs() {
 // character beside the request's fixed part. The prompt keeps at most
 // ADVISOR_PROMPT_MAX_CHARS characters and is clamped by its escaped size, because JSON
 // writes a quote or newline as two bytes and a control character as six.
-function advisorCliRequest({ prompt, options }) {
+// The sk-code surface a session works in, read from its workspace the way the hub's
+// stack-detection reference orders it: OPENCODE > OBSIDIAN > WEBFLOW. Only cheap root
+// markers are read, since this runs before every uncached advisor call; a workspace
+// they do not name sends no hint and the compiled tie-break order applies.
+const workspaceSurfaceCache = new Map();
+function detectWorkspaceSurface(projectDir) {
+  if (typeof projectDir !== 'string' || projectDir.length === 0) return null;
+  if (workspaceSurfaceCache.has(projectDir)) return workspaceSurfaceCache.get(projectDir);
+  let surface = null;
+  try {
+    const real = realpathSync(projectDir);
+    const manifestPath = join(real, 'manifest.json');
+    if (real.split(/[\\/]/).includes('.skilled')) surface = 'OPENCODE';
+    else if ((existsSync(manifestPath) && /"minAppVersion"/.test(readFileSync(manifestPath, 'utf8')))
+      || existsSync(join(real, 'esbuild.config.mjs'))) surface = 'OBSIDIAN';
+    else if (existsSync(join(real, 'src', '2_javascript')) || existsSync(join(real, 'wrangler.toml'))) surface = 'WEBFLOW';
+  } catch {
+    surface = null;
+  }
+  workspaceSurfaceCache.set(projectDir, surface);
+  return surface;
+}
+
+function advisorCliRequest({ prompt, options, surfaceHint = null }) {
   const requestOptions = {
     // Three recommendations keep the two-target ambiguity line available without
     // asking the advisor for a longer list than the brief can use.
@@ -683,6 +706,7 @@ function advisorCliRequest({ prompt, options }) {
     includeAbstainReasons: true,
     confidenceThreshold: options.thresholdConfidence,
     uncertaintyThreshold: DEFAULT_THRESHOLD_UNCERTAINTY,
+    ...(surfaceHint ? { surfaceHint } : {}),
   };
   const request = (text) => JSON.stringify({ prompt: text, options: requestOptions });
   let remaining = options.maxPromptBytes - Buffer.byteLength(request(''), 'utf8');
@@ -966,7 +990,7 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
         resolve(response);
       };
 
-      const request = advisorCliRequest({ prompt, options });
+      const request = advisorCliRequest({ prompt, options, surfaceHint: detectWorkspaceSurface(projectDir) });
       if (request === null) {
         finish({ brief: null, status: 'fail_open', error: 'PROMPT_BUDGET', metadata: {} });
         return;

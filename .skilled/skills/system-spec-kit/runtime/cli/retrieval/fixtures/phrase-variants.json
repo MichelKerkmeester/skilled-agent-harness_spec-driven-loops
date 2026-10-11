@@ -1,5 +1,5 @@
 {
-  "manifestHash": "704dcf005263ea745fbc944d2e52eb128a2498d7137333cb754fcfb6ccb2b541",
+  "manifestHash": "d9e896de3eacc8a3a2b273acd23a7880628242ccead6d9cf32cea7fedd7e385b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9094,9 +9094,6 @@
     ],
     "advisor residuals and surface hint": [
       "advisor residuals and surface hint"
-    ],
-    "advisor residuals and surface hint goal": [
-      "advisor residuals and surface hint goal"
     ],
     "advisor residuals and surface hint implementation summary": [
       "advisor residuals and surface hint implementation summary"
@@ -68170,6 +68167,9 @@
     "opencode plugin no stdout stderr rule": [
       "opencode plugin no stdout stderr rule"
     ],
+    "opencode plugin surface hint": [
+      "opencode plugin surface hint"
+    ],
     "opencode plugin symlinks": [
       "opencode plugin symlinks"
     ],
@@ -102183,6 +102183,9 @@
     "system skill advisor 0 15 0 0": [
       "system-skill-advisor 0.15.0.0"
     ],
+    "system skill advisor 0 15 1 0": [
+      "system-skill-advisor 0.15.1.0"
+    ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
     ],
@@ -102329,6 +102332,9 @@
     ],
     "system skill advisor v0 15 0 0": [
       "system-skill-advisor v0.15.0.0"
+    ],
+    "system skill advisor v0 15 1 0": [
+      "system-skill-advisor v0.15.1.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
