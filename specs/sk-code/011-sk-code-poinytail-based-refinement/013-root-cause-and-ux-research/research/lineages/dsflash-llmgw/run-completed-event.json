@@ -1,0 +1,8 @@
+{
+  "note": "NOT APPENDED. deep_research.run_completed is a reserved event in the deep-research ledger schema (no writer emits it; closure is reducer inference from flat rows), matching the r3-dsflash-llmgw precedent. The terminal record for this lineage is deep_research.synthesis_complete (stopReason maxIterationsReached) in deep-research-state.jsonl.",
+  "reserved": true,
+  "draftData": {
+    "terminalStatus": "completed",
+    "counts": { "iterations": 10, "findings": 53 }
+  }
+}

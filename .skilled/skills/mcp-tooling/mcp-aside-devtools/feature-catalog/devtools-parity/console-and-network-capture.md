@@ -12,8 +12,6 @@ version: 1.0.0.0
 
 # Console and Network Capture (DevTools parity)
 
-<!-- sk-doc-template: skill_asset_feature-catalog -->
-
 ## 1. OVERVIEW
 
 Chrome DevTools' Console list and Network panel map onto Playwright event listeners in the repl. Earlier research flagged console/network capture as UNKNOWN because Aside exposes no dedicated `console`/`network` tool. The discovery fixture ([`../../references/discovery-fixture-2026-07-16.json`](../../references/discovery-fixture-2026-07-16.json)) **resolves the pattern**: `page` is a real Playwright `Page`, so `page.on('console', …)`, `page.on('request', …)`, `page.on('response', …)`, and `page.on('requestfinished', …)` are the API-grounded capture paths. What remains open is a live-executed result-shape fixture — running these needs a bound, authorized session, so the matching playbook scenario is SKIP-valid until then (superseding the fail-closed framing of ASD-012/ASD-013 with a documented pattern).

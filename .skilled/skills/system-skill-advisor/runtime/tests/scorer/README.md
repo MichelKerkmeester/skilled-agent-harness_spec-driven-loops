@@ -9,8 +9,6 @@ trigger_phrases:
 
 # Skill Advisor Scorer Tests: Native Ranking Coverage
 
-<!-- sk-doc-template: skill_readme -->
-
 ---
 
 ## 1. OVERVIEW

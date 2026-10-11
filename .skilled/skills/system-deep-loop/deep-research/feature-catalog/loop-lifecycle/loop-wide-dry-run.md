@@ -1,6 +1,6 @@
 ---
 title: "Loop-wide dry-run"
-description: "Adds `--dry-run` preflight behavior that performs safe reads and halts at mutation boundaries."
+description: "Previews confirm-mode work while halting before mutation boundaries."
 trigger_phrases:
   - "loop-wide dry-run"
   - "--dry-run deep research"
@@ -11,8 +11,6 @@ version: 1.14.0.13
 ---
 
 # Loop-wide dry-run
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

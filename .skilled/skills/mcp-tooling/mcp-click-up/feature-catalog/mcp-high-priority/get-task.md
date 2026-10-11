@@ -17,8 +17,6 @@ Read one task by ID, including custom IDs such as `DEV-1234`.
 
 > **Live name (2026-10-08).** Call it as `clickup_official.clickup_official_clickup_get_task` in Code Mode. The parameter table comes from the server's own schema, captured when the hosted server registered 61 tools on that date.
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -52,7 +50,7 @@ The default response is a compact summary, and large sections appear only as cou
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-task-crud/get-task.md` | Manual | Scenario that exercises this tool |
+| `manual-testing-playbook/mcp-task-crud/get-task.md` | Manual playbook | Scenario that exercises this tool |
 
 ---
 

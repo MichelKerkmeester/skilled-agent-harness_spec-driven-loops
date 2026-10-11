@@ -12,8 +12,6 @@ version: 0.8.0.15
 
 # Lane Contribution Attribution
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Make the fusion score auditable by exposing each lane's contribution per recommendation, without leaking prompt text or evidence snippets.

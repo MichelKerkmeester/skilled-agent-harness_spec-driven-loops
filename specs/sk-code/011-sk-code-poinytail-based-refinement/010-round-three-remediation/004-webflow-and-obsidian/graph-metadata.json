@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The five copy-paste templates under `sk-code-webflow/assets/templates/` cite `references/webflow/...` in nine places, and that folder does not exist, so the dead pointers travel into every project that copies a template",
     "created_at": "2026-10-10T10:07:20Z",
-    "last_save_at": "2026-10-10T11:49:39.412Z",
+    "last_save_at": "2026-10-11T05:17:08.998Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:956aab780b9b70b025b455c81db56d1a4e189f7f101aed2500420a000a1f0648",
+    "source_fingerprint": "sha256:a0889a00d7dfc4f5fa9ab72c98c04f9b6116834a1e7fbca92e2a27e1d2714574",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3d5ae5a87e4d6fbff4624456d1f94d591c8f39bd6b01ce4dd726b445f30f84f2",

@@ -1,6 +1,6 @@
 ---
 title: "Capability and fidelity reporting"
-description: "Reports supported formats, their fidelity tiers, and the detected PDF extractor so limited results are never presented as complete."
+description: "Reports which formats are supported, at what fidelity tier, and which optional PDF extractor is present, so limited-fidelity results are never presented as complete."
 trigger_phrases:
   - "Capability and fidelity reporting"
   - "supported formats and fidelity tiers"
@@ -10,8 +10,6 @@ version: 1.1.0.3
 ---
 
 # Capability and fidelity reporting (capabilities)
-
-<!-- sk-doc-template: skill_asset_feature-catalog -->
 
 ## 1. OVERVIEW
 

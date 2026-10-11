@@ -1,0 +1,97 @@
+{
+  "sessionId": "fanout-dsflash-llmgw-1791670467637-7ccw83",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "I1-P1-001",
+      "severity": "P1",
+      "dimension": "correctness",
+      "title": "Staged deletions never select a skill, so the gate skips the change class that most often stales derived files",
+      "file": ".skilled/scripts/git-hooks/pre-commit:323",
+      "findingClass": "missing-verification",
+      "status": "active"
+    },
+    {
+      "id": "I1-P2-001",
+      "severity": "P2",
+      "dimension": "maintainability",
+      "title": "node unavailable disables the gate with no notice, unlike sibling gates that warn",
+      "file": ".skilled/scripts/git-hooks/pre-commit:315",
+      "findingClass": "observability",
+      "status": "active"
+    },
+    {
+      "id": "I1-P2-002",
+      "severity": "P2",
+      "dimension": "maintainability",
+      "title": "A missing creator tool is skipped silently, against the hook fail-closed convention for missing tooling",
+      "file": ".skilled/scripts/git-hooks/pre-commit:339",
+      "findingClass": "fail-open",
+      "status": "active"
+    },
+    {
+      "id": "I2-P2-001",
+      "severity": "P2",
+      "dimension": "correctness",
+      "title": "Confirm mode gained the upstream collision check without the remedy auto mode has",
+      "file": ".skilled/commands/create/assets/create-changelog-confirm.yaml:501",
+      "findingClass": "incomplete-mirrored-behavior",
+      "status": "active"
+    },
+    {
+      "id": "I3-P2-001",
+      "severity": "P2",
+      "dimension": "correctness",
+      "title": "Path-token and doc-target mention rules exist only in TypeScript; the Python fallback still lifts skills from paths",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4296",
+      "findingClass": "incomplete-mirrored-behavior",
+      "status": "active"
+    },
+    {
+      "id": "I3-P2-002",
+      "severity": "P2",
+      "dimension": "traceability",
+      "title": "engines.node >=20.19.0 is wider than the build toolchain range ^20.19.0 || >=22.12.0",
+      "file": ".skilled/skills/system-skill-advisor/runtime/package.json:6",
+      "findingClass": "metadata-accuracy",
+      "status": "active"
+    },
+    {
+      "id": "I4-P2-001",
+      "severity": "P2",
+      "dimension": "correctness",
+      "title": "Missing-path exemption consults the machine git exclude stack, so catalog validation is not reproducible across machines",
+      "file": ".skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py:435",
+      "findingClass": "nondeterministic-exemption",
+      "status": "active"
+    },
+    {
+      "id": "I4-P2-002",
+      "severity": "P2",
+      "dimension": "traceability",
+      "title": "--strict does not gate a compiled-vs-disk family mismatch, though the CI step name promises compiled json matches graph-metadata",
+      "file": ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs:252",
+      "findingClass": "ungated-drift-class",
+      "status": "active"
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 7
+  },
+  "openFindingsCount": 8,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.0,
+  "stopReason": "maxIterationsReached",
+  "verdict": "CONDITIONAL"
+}

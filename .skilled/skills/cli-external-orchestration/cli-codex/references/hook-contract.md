@@ -13,8 +13,6 @@ version: 1.9.0.24
 
 # Codex CLI Hook Contract
 
-<!-- sk-doc-template: skill_reference -->
-
 ---
 
 ## 1. OVERVIEW

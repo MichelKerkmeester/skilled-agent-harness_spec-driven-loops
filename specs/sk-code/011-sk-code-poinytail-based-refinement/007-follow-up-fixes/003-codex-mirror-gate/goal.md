@@ -58,7 +58,7 @@ Frozen choices. Changing one is an amendment.
 
 - [ ] `node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs .codex/agents/code.toml; echo "exit=$?"` prints a line containing `1 agent(s) checked`, then `exit=0`. Covers REQ-001.
 - [ ] `(cd .skilled/skills/system-deep-loop/deep-improvement/scripts && ../../../system-spec-kit/node_modules/.bin/vitest run shared/tests/check-agent-mirror-sync.vitest.ts); echo "exit=$?"` prints `Tests  6 passed (6)`, then `exit=0`. The six cases include the three Codex cases, one of which proves that a Codex mirror with no canonical blocks. Covers REQ-002 and REQ-006.
-- [ ] `grep -n 'claude|codex)/agents' .skilled/hooks/git/pre-commit .skilled/scripts/git-hooks/pre-commit; echo "exit=$?"` prints two lines, one at line 87 and one at line 170, then `exit=0`. Covers REQ-003.
+- [ ] `grep -n 'claude|codex)/agents' .skilled/hooks/git/pre-commit .skilled/scripts/git-hooks/pre-commit; echo "exit=$?"` prints two lines, one at line 87 and one at line 177, then `exit=0`. Covers REQ-003.
 - [ ] `node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all; echo "exit=$?"` prints `12 agent(s) checked`, then `exit=0`. Covers REQ-004.
 - [ ] `bash -n .skilled/hooks/git/pre-commit && bash -n .skilled/scripts/git-hooks/pre-commit; echo "exit=$?"` prints only `exit=0`. Covers REQ-005.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/003-codex-mirror-gate --strict` prints `RESULT: PASSED`.
@@ -90,4 +90,5 @@ and findings belong here.
 |------|------|
 | The global hook path runs the main checkout's copy of the second hook | Found at planning. `core.hooksPath` links `pre-commit` to `Public/.skilled/scripts/git-hooks/pre-commit` in the main checkout, which still has the old filter. Commits made in this worktree keep the old filter until the change reaches that checkout. Not fixed in this phase. |
 | `.pi/agents/` has the same gap | Found at planning and measured with the checker. Recorded in plan.md, not fixed (D3). |
+| Criterion 3 amended 2026-10-11 | Phase 014-skill-authoring-ux-research/004-commit-hook-checks added the skill authoring gate above the mirror loop, moving it from line 170 to 177 |
 <!-- /ANCHOR:log -->

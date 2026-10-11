@@ -12,8 +12,6 @@ version: 1.7.0.10
 
 # runtime status CLI recovery payload and readiness
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify runtime status CLI returns readiness + counts + schema version + signals + namespace-scoped recovery payload, with no false-safe empty success.
@@ -55,7 +53,6 @@ The user-visible contract is concrete: Verify runtime status CLI returns readine
 
 ## 4. SOURCE METADATA
 - Group: Council Graph Integration
-- Feature ID: DAC-024
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/council-graph-integration/council-graph-status-recovery-payload-and-readiness.md`
 - Playbook scenario: `manual-testing-playbook/council-graph-integration/council-graph-status-recovery-payload-and-readiness.md`

@@ -1,6 +1,6 @@
 ---
 title: "Strategy tracking"
-description: "Keeps the strategy file, findings registry, and dashboard aligned with the latest deep-research iteration data."
+description: "Keeps the persistent research brain and the synchronized reducer surfaces aligned."
 trigger_phrases:
   - "strategy tracking"
   - "deep-research-strategy.md"
@@ -11,8 +11,6 @@ version: 1.14.0.10
 ---
 
 # Strategy tracking
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

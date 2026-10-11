@@ -1,6 +1,6 @@
 ---
-title: "Spec-Folder Detection and Description Metadata"
-description: "Spec-folder detection, alignment validation, memory-directory setup, and description-metadata generation for the session-capturing and save workflow."
+title: "Spec-folder detection and description metadata"
+description: "Spec-folder detection, alignment validation, directory setup and description-metadata generation for the save workflow."
 trigger_phrases:
   - "spec-folder detection and description metadata"
   - "folder-detector"
@@ -11,8 +11,6 @@ version: 1.6.0.7
 ---
 
 # Spec-Folder Detection and Description Metadata
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 
@@ -27,7 +25,7 @@ This audited slice combines interactive and deterministic folder selection, cont
 The shipped behavior in this slice currently works as follows:
 
 1. `folder-detector.ts` resolves spec folders through a ranked priority chain rather than a single heuristic. It first honors an explicit CLI argument, then a structured-data `SPEC_FOLDER` value, then git-status evidence, current-working-directory inference, session-activity signals, and finally a full auto-detect ranking across available spec folders. The session-learning DB lookup that once sat in this chain (a SQLite `session_learning` table read) was retired along with the memory database; the ranking and candidate-scoring helpers it shared with auto-detect remain and are covered by the test suite's regression cases.
-2. Explicit paths are constrained to approved roots under `specs/` or `.opencode/specs/`, support nested parent/child references, and can recover from multi-segment or basename-only inputs via child-folder search. When an explicit folder is found, alignment is still checked so the workflow can warn about mismatches without overriding the caller's direct selection.
+2. Explicit paths are constrained to approved roots under `specs/` or the legacy `specs` root under `.opencode`, support nested parent/child references, and can recover from multi-segment or basename-only inputs via child-folder search. When an explicit folder is found, alignment is still checked so the workflow can warn about mismatches without overriding the caller's direct selection.
 3. Candidate quality scoring downgrades archive, test-fixture, and scratch-like folders before ranking. Auto-detect ranking then layers multiple signals in order: folder quality, git-status count, session-activity boost, effective depth, recently active child count, numeric ID-vector ordering, modification time, and canonical path tiebreakers.
 4. Git-status ranking counts changed files that fall under candidate spec paths, while session-activity ranking uses a structured signal builder that combines matching tool-call paths, git-changed files, and transcript mentions. Both signals are treated as confidence-checked hints rather than unconditional selectors.
 5. `alignment-validator.ts` extracts conversation topics from recent requests and early observations, expands that with observation keywords from titles, narratives, and filenames, and then computes word-boundary alignment scores against spec-folder path segments instead of using weaker substring matching.

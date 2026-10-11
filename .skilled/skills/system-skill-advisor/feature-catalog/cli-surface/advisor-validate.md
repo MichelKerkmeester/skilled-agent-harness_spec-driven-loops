@@ -11,8 +11,6 @@ version: 0.8.0.15
 
 # advisor_validate Command
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Drive release-readiness decisions from real measurements. Consolidate corpus, holdout, parity, safety and latency slices behind one command call, while also exposing the threshold contract and prompt-safe telemetry summaries operators need to interpret the run.

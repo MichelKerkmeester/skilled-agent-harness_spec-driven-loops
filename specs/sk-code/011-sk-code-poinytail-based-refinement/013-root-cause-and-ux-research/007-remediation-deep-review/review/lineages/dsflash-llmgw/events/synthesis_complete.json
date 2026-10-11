@@ -1,0 +1,1 @@
+{"stem":"deep_review.synthesis_complete","scope":{"runId":"dsflash-llmgw","sessionId":"dsflash-llmgw"},"data":{"mode":"review","totalIterations":5,"activeP0":0,"activeP1":3,"activeP2":1,"dimensionCoverage":1,"verdict":"CONDITIONAL","releaseReadinessState":"converged","stopReason":"maxIterationsReached"}}

@@ -105,6 +105,7 @@ Releases live in `changelog/` with one file per release, named `v[version].md`. 
 
 | Release | Entry |
 |---|---|
+| v0.8.1.0 | [`changelog/v0.8.1.0.md`](./changelog/v0.8.1.0.md) |
 | v0.8.0.0 | [`changelog/v0.8.0.0.md`](./changelog/v0.8.0.0.md) |
 | v0.7.0.0 | [`changelog/v0.7.0.0.md`](./changelog/v0.7.0.0.md) |
 | v0.6.0.0 | [`changelog/v0.6.0.0.md`](./changelog/v0.6.0.0.md) |

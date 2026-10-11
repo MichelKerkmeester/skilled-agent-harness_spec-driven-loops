@@ -1,6 +1,6 @@
 ---
 title: "Compiled Routing And Legacy Fallback"
-description: "How system-deep-loop resolves the compiled per-hub router contract ahead of its own registry-driven routing, and the explicit `SPECKIT_COMPILED_ROUTING=0` kill-switch that falls back to legacy."
+description: "A default-on, flag-gated, additive directive in `system-deep-loop`'s `SKILL.md` asks the compiled per-hub router contract to resolve the mode before falling through to the deep-loop mode classification above."
 trigger_phrases:
   - "compiled routing and legacy fallback"
   - "SPECKIT_COMPILED_ROUTING"
@@ -10,8 +10,6 @@ version: 1.0.0.0
 ---
 
 # Compiled Routing And Legacy Fallback (compiled-route.cjs)
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

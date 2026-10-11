@@ -1,6 +1,6 @@
 ---
 title: "Fan-out write-failure salvage"
-description: "Post-subprocess salvage: recovers missing or empty iteration .md files from captured subprocess stdout (opencode --format json text parts or raw fallback), appending a salvaged_from_stdout event or writing a failed-marker placeholder."
+description: "Post-subprocess salvage that recovers missing or empty iteration `.md` files from captured subprocess stdout (opencode `--format json` text parts or raw fallback)."
 trigger_phrases:
   - "fan-out write-failure salvage"
   - "fanout-salvage.cjs"
@@ -11,8 +11,6 @@ version: 1.4.0.3
 ---
 
 # Fan-out write-failure salvage
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ---
 
@@ -62,7 +60,6 @@ Fully shipped in `fanout-salvage.cjs`. Pure CJS (no TSX bootstrap), exports only
 ## 4. SOURCE METADATA
 
 - Group: Fan-Out
-- Feature ID: F026
 - Catalog source: `feature-catalog/fanout/fanout-salvage.md`
 - Primary source files: `scripts/fanout-salvage.cjs`
 Related references:

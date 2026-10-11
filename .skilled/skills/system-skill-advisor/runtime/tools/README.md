@@ -9,8 +9,6 @@ trigger_phrases:
 
 # Skill Advisor Tools: Command Descriptors
 
-<!-- sk-doc-template: skill_readme -->
-
 ---
 
 ## 1. OVERVIEW

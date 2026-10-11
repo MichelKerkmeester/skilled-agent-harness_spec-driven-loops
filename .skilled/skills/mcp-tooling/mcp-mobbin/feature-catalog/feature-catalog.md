@@ -98,10 +98,10 @@ Each capability area maps to exactly one per-feature file in its intent folder.
 
 | Section | Area | Tools involved | Per-feature file |
 |---|---|---|---|
-| 2 | Apps | 1 (`search_screens`) | `apps/apps.md` |
-| 3 | Screens | 1 (`search_screens`) | `screens/screens.md` |
-| 4 | Flows | 2 (`search_flows`, `search_screens`) | `flows/flows.md` |
-| 5 | Elements | 1 (`search_screens`) | `elements/elements.md` |
+| 2 | Apps | 1 (`search_screens`) | [`apps/apps.md`](apps/apps.md) |
+| 3 | Screens | 1 (`search_screens`) | [`screens/screens.md`](screens/screens.md) |
+| 4 | Flows | 2 (`search_flows`, `search_screens`) | [`flows/flows.md`](flows/flows.md) |
+| 5 | Elements | 1 (`search_screens`) | [`elements/elements.md`](elements/elements.md) |
 | **Total** | **4 intent areas** | **3 live tools** (`search_sections` noted in the areas table pending a dedicated leaf) | **4 per-feature files** |
 
 > The live-listed surface (2026-07-16 fixture) is exactly `search_screens`, `search_flows`, and `search_sections` — all read-only. There are still no `search_apps`, `search_elements`, detail, or image-download tools, and none may be invented. Keep the per-feature files in sync as the provider surface evolves, treat any live drift from the fixture three-tool baseline as a fail-closed escalation, and refuse any mutation-capable tool that discovery ever returns.

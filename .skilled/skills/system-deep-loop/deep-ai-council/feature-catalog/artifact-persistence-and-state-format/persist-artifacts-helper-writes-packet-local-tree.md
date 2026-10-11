@@ -12,8 +12,6 @@ version: 1.7.0.9
 
 # Persist-artifacts helper writes packet-local tree
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify helper-created artifact layout.
@@ -53,7 +51,6 @@ The user-visible contract is concrete: Verify helper-created artifact layout. Th
 
 ## 4. SOURCE METADATA
 - Group: Artifact Persistence And State Format
-- Feature ID: DAC-005
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/artifact-persistence-and-state-format/persist-artifacts-helper-writes-packet-local-tree.md`
 - Playbook scenario: `manual-testing-playbook/artifact-persistence-and-state-format/persist-artifacts-helper-writes-packet-local-tree.md`

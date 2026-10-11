@@ -19,8 +19,6 @@ expected_leaf_resources: []
 Prompt: Manual validation that age decay is applied only to the derived lane, not to author, lexical, graph_causal or semantic_shadow lanes.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

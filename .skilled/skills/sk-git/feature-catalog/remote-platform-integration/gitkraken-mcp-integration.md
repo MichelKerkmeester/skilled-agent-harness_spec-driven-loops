@@ -1,6 +1,6 @@
 ---
 title: "GitKraken MCP integration"
-description: "Cross-platform (GitHub/GitLab/Azure DevOps/Bitbucket/Jira) access to GitLens AI workflows and issue/PR management via Code Mode, reserved for operations with no local git equivalent."
+description: "Cross-platform (GitHub/GitLab/Azure DevOps/Bitbucket/Jira) access to GitLens AI workflows plus issue and PR management via Code Mode, reserved for operations with no local git equivalent."
 trigger_phrases:
   - "gitkraken mcp integration"
   - "gitlens launchpad"
@@ -10,8 +10,6 @@ version: 1.0.0.0
 ---
 
 # GitKraken MCP integration (gitkraken.gitkraken_*)
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 
@@ -49,7 +47,7 @@ Cross-provider PR review triage (`gitlens_launchpad`), AI-organized commit compo
 
 | File | Type | Role |
 |---|---|---|
-| — | — | No automated test or manual playbook scenario covers this integration yet |
+| `.skilled/skills/sk-git/references/gitkraken-mcp-integration.md` | Reference | No automated test or manual playbook scenario covers this integration yet |
 
 ---
 

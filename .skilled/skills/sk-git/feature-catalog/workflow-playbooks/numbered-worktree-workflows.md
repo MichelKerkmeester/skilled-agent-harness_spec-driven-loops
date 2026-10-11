@@ -1,6 +1,6 @@
 ---
 title: "Numbered worktree workflows"
-description: "The end-to-end workflow an AI follows to gather inputs, verify safety, create a numbered worktree (or dedicated branch), and report status."
+description: "The end-to-end workflow an AI follows to gather inputs, verify safety, create a numbered worktree (or dedicated branch), and report status, covering fast-merge, long-running, dedicated-branch and detached-experiment lifecycle strategies."
 trigger_phrases:
   - "numbered worktree workflows"
   - "create a git worktree"
@@ -10,8 +10,6 @@ version: 1.1.0.0
 ---
 
 # Numbered worktree workflows
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

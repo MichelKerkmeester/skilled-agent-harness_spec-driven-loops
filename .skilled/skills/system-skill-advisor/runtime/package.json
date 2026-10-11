@@ -3,6 +3,9 @@
   "private": true,
   "type": "module",
   "main": "./dist/runtime/advisor-server.js",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
   "scripts": {
     "clean": "rm -rf dist",
     "build": "npm --prefix ../../system-spec-kit/shared run build && ../../system-spec-kit/node_modules/.bin/tsc -p tsconfig.build.json",

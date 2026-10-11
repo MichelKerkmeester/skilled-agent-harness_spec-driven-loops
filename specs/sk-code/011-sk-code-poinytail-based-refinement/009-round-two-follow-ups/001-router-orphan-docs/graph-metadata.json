@@ -43,8 +43,6 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs",
-      ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs",
       ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
       ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
       ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
@@ -57,7 +55,9 @@
       ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/holdout/accessibility-independent.md",
       ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/ceiling-load-all.md",
       ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
-      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json"
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json",
+      ".skilled/skills/sk-code/leaf-manifest.json",
+      ".hermes/skills/sk-code-obsidian/SKILL.md"
     ],
     "entities": [
       {
@@ -88,18 +88,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "verify_router_sync.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "verify_router_sync.test.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs",
         "source": "derived"
       },
       {
@@ -163,6 +151,12 @@
         "source": "derived"
       },
       {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -203,11 +197,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verifyroutersync.cjs --checks 1b` lists nine docs that no router names, so leg 1b is held back by an `OPTINLEGS` set and the drift-guard umbrella runs `--checks 1a,2,3,4` without it",
     "created_at": "2026-10-10T08:16:18Z",
-    "last_save_at": "2026-10-10T09:24:10.479Z",
+    "last_save_at": "2026-10-11T05:17:04.045Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:37e06427f3db603fd7b0ebbaebb4192c46b2f3c1fba388cdfbcc9180c7d62a54",
+    "source_fingerprint": "sha256:b8a0aea9e76b6b7b45d1e9a2a157f3213d8b12afdb6333be21e3a10c2cf68bf5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0b9799cd76f3501d156ee9455ddff4acc800d1eca82caba418cb76c9cb02e5b7",

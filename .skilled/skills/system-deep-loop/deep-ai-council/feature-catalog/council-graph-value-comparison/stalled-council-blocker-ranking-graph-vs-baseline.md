@@ -12,8 +12,6 @@ version: 1.7.0.10
 
 # Stalled-council blocker ranking: graph vs baseline
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Demonstrate the graph produces a prioritized blocker list; the baseline produces an unranked dump.
@@ -55,7 +53,6 @@ The user-visible contract is concrete: Demonstrate the graph produces a prioriti
 
 ## 4. SOURCE METADATA
 - Group: Council Graph Value Comparison
-- Feature ID: DAC-030
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/council-graph-value-comparison/stalled-council-blocker-ranking-graph-vs-baseline.md`
 - Playbook scenario: `manual-testing-playbook/council-graph-value-comparison/stalled-council-blocker-ranking-graph-vs-baseline.md`

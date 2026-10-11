@@ -45,8 +45,6 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs",
-      ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs",
       ".skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md",
       ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md",
       ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
@@ -59,7 +57,9 @@
       "scratch/plan-neg-test.txt",
       "scratch/plan-pos-test.txt",
       ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
-      ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+      ".skilled/skills/sk-code/leaf-manifest.json",
+      ".skilled/skills/sk-code/SKILL.md"
     ],
     "entities": [
       {
@@ -90,18 +90,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "verify_doc_claims.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "verify_doc_claims.test.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs",
         "source": "derived"
       },
       {
@@ -183,6 +171,12 @@
         "source": "derived"
       },
       {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -205,11 +199,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Round three shipped `verifydocclaims.cjs` with five recorded gaps, and all five still reproduce",
     "created_at": "2026-10-10T14:44:45Z",
-    "last_save_at": "2026-10-10T16:50:17.687Z",
+    "last_save_at": "2026-10-11T05:17:08.680Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4315f5e76b1c727fc4ddab8191bb1ede33bf9003d57d5555217c59c038bb46d0",
+    "source_fingerprint": "sha256:9524db212ae5e67137b4f081f28219a4c803fc14d014153c99d05a7a37c3ff3a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "80087dc4a18fa3fed0e03f3b772aecea6dd8affce1a2c507477aa6b3e1a595cb",
       "plan.md": "2f48a600e335cfa46b6538463d9dd1bac682afbfb9f532767f13c67627ef2e5b",
       "tasks.md": "37e0bfd273d07380f8492ddd64479b002a23d28299cc41b25bcf8f8a04a8b53c",
-      "implementation-summary.md": "2c8cb211580a40a10717e9c1a6a1489dfa836941124f42389639f8b2d2de6b05"
+      "implementation-summary.md": "0844944c634f23fe698bb1545ff9b5b5191078310e1e9034f2408244c49e9ff3"
     },
     "last_active_at": null
   }

@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # JSON-RPC runtime (python/runtime.py)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Local Moondream-backed NDJSON JSON-RPC service that powers every sk-vision tool on both hosts.

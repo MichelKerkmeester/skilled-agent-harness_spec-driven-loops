@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Build and independently verify phases 002 to 011 and research round three so sk-code, its agents, checkers and rules carry the Ponytail 5 research's changes and follow-ups.
+**Objective:** Build and verify phases 002-011 and round three so sk-code carries the research's changes and follow-ups.
 
 ### Decisions
 
@@ -44,13 +44,13 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Builders: cli-codex 002-006, haiku 007-008, Sonnet 5.5 009; 010-011: Opus 5.5 medium plans, DeepSeek V4.1 Flash max builds, Sonnet 5.5 high verifies |
-| D2 | An executor's report is a claim; the orchestrator reruns each goal's criteria |
-| D3 | Work and check in one sk-git worktree, never raw git; edit only its packet copy |
-| D4 | Commit in folder order: 002 to 006, then the children of 007 to 011 |
-| D5 | Done means its goal criteria pass, its summary is filled and strict validation passes |
-| D6 | One conventional commit per phase, child or research round; never push |
-| D7 | Three failed repairs on a phase stop the run; report command and output |
+| D1 | Build: codex 002-006, haiku 007-008, sonnet 009; 010-011 Opus plan, DeepSeek build, sonnet verify |
+| D2 | A report is a claim; rerun the criteria |
+| D3 | Work and check in one sk-git worktree, never raw git; edit only packet copy |
+| D4 | Commit: 002-006, then 007-011 children |
+| D5 | Done: criteria and strict pass, summary filled |
+| D6 | One conventional commit per phase or round; no push |
+| D7 | Three failed repairs halt; report command and output |
 
 <!-- /ANCHOR:directive -->
 
@@ -75,6 +75,10 @@ phase and binds as if written here.
 | 009-round-two-follow-ups | `009-round-two-follow-ups/goal.md` |
 | 010-round-three-remediation | `010-round-three-remediation/goal.md` |
 | 011-round-four-remediation | `011-round-four-remediation/goal.md` |
+| 012-post-merge-deep-review | `012-post-merge-deep-review/goal.md` |
+| 013-root-cause-and-ux-research | `013-root-cause-and-ux-research/goal.md` |
+| 014-skill-authoring-ux-research | `014-skill-authoring-ux-research/goal.md` |
+| 015-closeout | `015-closeout/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -88,9 +92,9 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 12 times and `RESULT: FAILED` 0 times
-- [ ] `grep -lr --include=implementation-summary.md 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement | grep -vc /001-ponytail` prints 35
-- [ ] `git rev-list --count main..HEAD` prints 37, `git log --format='%(trailers:key=Spec,valueonly)' main..HEAD` prints 37 `Spec:` values, `git status --short` prints nothing, and `git ls-remote --heads origin "$(git branch --show-current)"` prints nothing
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 16 times and `RESULT: FAILED` 0 times
+- [ ] `grep -lr --include=implementation-summary.md 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement | grep -vc /001-ponytail` prints 78
+- [ ] `git log --format='%(trailers:key=Spec,valueonly)' HEAD | grep -c '^sk-code/011-sk-code-poinytail-based-refinement'` prints 80 or more, and `git status --short` prints nothing
 - [ ] `node .skilled/bin/compiled-route-guard.cjs` exits 0 listing sk-code `fresh`, and `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "code review my obsidian plugin"` prints `"action":"route"` and no `servingAuthority` key
 - [ ] `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` and `bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh` both exit 0, and `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` exits 0
 - [ ] `node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all` and `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` both exit 0
@@ -126,6 +130,7 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
+| Durable slice cut, 2026-10-10 | The 014 binding row took the slice to 4,064 characters. The objective and decision cells were shortened to 3,798 so the two sibling rows still fit; every decision, binding row and criterion is kept |
 | No acceptance-criteria.md in any child | Every child is Level 1; each child goal takes its criteria from its spec's REQ and SC rows and its tasks' verification commands |
 | Criterion 3 amended 2026-10-09 | sk-git's commit contract bars phase identifiers in subjects, so the phase is checked through each commit's `Spec:` trailer instead of its subject |
 | Criterion 1 count corrected to 8 | `--recursive` validates one level: the parent and its seven direct children. 007's own goal covers its five children (6 PASSED) |
@@ -134,5 +139,9 @@ and findings belong here.
 | 009 and round three added 2026-10-10 | The operator chose child 009 for the five round-two follow-ups, built by Sonnet 5.5, and a third 001 research round run beside it; criteria 1 to 3 counts, the objective, D1 and D4 amended |
 | 010 added 2026-10-10 | The operator chose child 010 to fix every round-three finding and the five 009 follow-ups; criteria 1 to 3 counts, the objective, D1 and D4 amended |
 | 011 added 2026-10-10 | The operator chose round four for the eleven items round three left open, then added child 008 for a session-aware tie-break; criteria 2 and 3 counts, the objective, D1, D3 and D4 amended |
+| 012 added 2026-10-10 | The operator chose child 012, a ten-iteration post-merge deep review on DeepSeek V4.1 Flash; criteria 1 and 2 counts amended, and decisions D2, D3, D5, D6 and D7 shortened to keep the durable slice under 4,000 characters. Criterion 3 counts `main..HEAD` on the epic branch and no longer applies once the epic is on main |
+| 012 fix phases added 2026-10-10 | The operator chose to fix 012's confirmed P2s 1 to 10 in five 012 children; criterion 2 count amended from 36 to 41. Criterion 1 stays 13, because the recursive run counts direct children. Criterion 3 is left for the master orchestrator |
+| Integration 2026-10-11 | 012, 013 and 014 were built on separate branches and merged on one integration branch. Binding rows 013 and 014 added; criterion 1 amended to 15 (the parent and 14 direct children) and criterion 2 to 69. Criterion 3 counted `main..HEAD`, which is empty once the epic is on main, so it now counts the epic's `Spec:` trailers reachable from HEAD (80 before integration) and keeps the clean-tree check; the unpushed-branch check is dropped because it cannot hold on main |
+| Closeout added 2026-10-11 | Child 015 closes every item the epic left open, fixed with proof or closed with a written reason; criterion 1 amended to 16 (the parent and 15 direct children) and criterion 2 to 78 (nine closeout summaries) |
 | Handed off, not built here | D2 Codex mirror gap (deep-improvement and git hooks) and D4 stdin deadline (hooks); recorded in the parent spec |
 <!-- /ANCHOR:log -->

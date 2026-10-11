@@ -1,6 +1,6 @@
 ---
 title: "Multi-format extraction"
-description: "Extracts comparable text from text, Markdown, HTML, DOCX, and text-layer PDF, each tagged with an explicit fidelity tier."
+description: "Extracts comparable text from plain text, Markdown, HTML, DOCX, and text-layer PDF, each with an explicit fidelity tier so a comparison is never trusted beyond what the extractor can see."
 trigger_phrases:
   - "Multi-format extraction"
   - "extract comparable text from documents"
@@ -10,8 +10,6 @@ version: 1.1.0.3
 ---
 
 # Multi-format extraction
-
-<!-- sk-doc-template: skill_asset_feature-catalog -->
 
 ## 1. OVERVIEW
 

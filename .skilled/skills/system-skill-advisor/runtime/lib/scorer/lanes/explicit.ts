@@ -6,7 +6,7 @@
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 import type { AdvisorProjection, LaneMatch } from '../types.js';
-import { matchesPhraseBoundary, phraseSpecificity, skillNameVariants, tokenize } from '../text.js';
+import { phraseSpecificity, skillNameVariants, tokenize } from '../text.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. TYPE DEFINITIONS
@@ -42,7 +42,6 @@ const TOKEN_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   devtools: [['mcp-tooling', 1]],
   docs: [['sk-doc', 0.8]],
   documentation: [['sk-doc', 0.85]],
-  findings: [['sk-code', 0.85]],
   frontend: [['sk-code', 0.7]],
   git: [['sk-git', 1]],
   github: [['sk-git', 0.95]],
@@ -247,6 +246,52 @@ function push(
   scores.set(skillId, current);
 }
 
+const WORD_CHAR = /\w/;
+const WHITESPACE_CHAR = /\s/;
+// `changelog` alone names sk-doc's changelog mode; only its file forms count as
+// a doc-file target. The `(?!\w)` bound keeps `readme` from matching `readmes`;
+// a `changelog/` path is followed by a file name, so it carries no bound.
+const DOC_FILE_SUFFIX = /^\s*(?:(?:skill\.md|router\.md|readme(?:\.md)?|changelog\.md)(?!\w)|changelog\/)/;
+
+// A skill name or author phrase inside a path or beside a doc filename names a location, not a request to use the skill.
+function hasPlainMention(text: string, phrase: string): boolean {
+  const normalized = phrase.trim().toLowerCase();
+  if (!normalized) return false;
+  const skipPathRule = normalized.includes('/');
+  let index = text.indexOf(normalized);
+  while (index !== -1) {
+    const before = text[index - 1] ?? '';
+    const after = text[index + normalized.length] ?? '';
+    const bounded = (before === '' || !WORD_CHAR.test(before)) && (after === '' || !WORD_CHAR.test(after));
+    if (bounded && !DOC_FILE_SUFFIX.test(text.slice(index + normalized.length))) {
+      if (skipPathRule) return true;
+      let tokenStart = index;
+      while (tokenStart > 0 && !WHITESPACE_CHAR.test(text[tokenStart - 1] ?? '')) tokenStart -= 1;
+      let tokenEnd = index + normalized.length;
+      while (tokenEnd < text.length && !WHITESPACE_CHAR.test(text[tokenEnd] ?? '')) tokenEnd += 1;
+      const token = text.slice(tokenStart, tokenEnd);
+      if (token.indexOf('/', 1) === -1) return true;
+    }
+    index = text.indexOf(normalized, index + 1);
+  }
+  return false;
+}
+
+function targetsOwnDocFile(text: string, skillId: string): boolean {
+  if (!WRITE_VERBS.test(text)) return false;
+  for (const variant of skillNameVariants(skillId)) {
+    let index = text.indexOf(variant);
+    while (index !== -1) {
+      const before = text[index - 1] ?? '';
+      if ((before === '' || !WORD_CHAR.test(before)) && DOC_FILE_SUFFIX.test(text.slice(index + variant.length))) {
+        return true;
+      }
+      index = text.indexOf(variant, index + 1);
+    }
+  }
+  return false;
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 5. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
@@ -272,7 +317,7 @@ export function scoreExplicitLane(
     }
   }
 
-  if (WRITE_VERBS.test(lower) && /\b(readme|docs|documentation|playbook|taxonomy|markdown|feature_catalog)\b/.test(lower)) {
+  if (WRITE_VERBS.test(lower) && /\b(readme|docs|documentation|playbook|taxonomy|markdown|feature_catalog|skill\.md|router\.md)\b/.test(lower)) {
     push(scores, 'sk-doc', 0.7, 'write-doc-surface');
   }
   if (WRITE_VERBS.test(lower) && /\b(classifier|helper|fixture|json|jsonl|vitest|typescript|python|script|skill_advisor\.py|mcp\.json|commonjs)\b/.test(lower)) {
@@ -317,13 +362,16 @@ export function scoreExplicitLane(
   for (const skill of projection.skills) {
     const skillId: unknown = skill.id;
     if (typeof skillId !== 'string' || skillId.trim().length === 0) continue;
+    // A write verb aimed at a skill's own doc file makes it the edit location, not the tool doing the work.
+    const docTarget = targetsOwnDocFile(lower, skillId);
     for (const variant of skillNameVariants(skillId)) {
-      if (matchesPhraseBoundary(lower, variant)) {
+      if (hasPlainMention(lower, variant)) {
         push(scores, skillId, 1, `explicit:${variant}`);
       }
     }
+    if (docTarget) continue;
     for (const phrase of [...skill.intentSignals, ...skill.keywords]) {
-      if (matchesPhraseBoundary(lower, phrase)) {
+      if (hasPlainMention(lower, phrase)) {
         push(
           scores,
           skillId,

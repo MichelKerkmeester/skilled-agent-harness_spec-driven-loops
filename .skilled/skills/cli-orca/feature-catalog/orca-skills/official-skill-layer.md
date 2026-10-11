@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # The official Orca skill layer (discovery stubs)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Explains and loads the eight official Orca skills as discovery stubs that defer their flags to the running binary.

@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # refero_get_style
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Full style-reference retrieval for UUIDs shortlisted by [`refero_search_styles`](search-styles.md). READ-ONLY. Canonical callable: `refero.refero_refero_get_style({ style_id | style_ids, response_format? })` (doubled prefix; confirm via `tool_info` first).

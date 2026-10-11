@@ -19,8 +19,6 @@ expected_leaf_resources: []
 Prompt: Manual validation that --force-native requires the native advisor and fails when unavailable and that --force-local bypasses delegation and uses Python scoring.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

@@ -1,0 +1,40 @@
+{
+  "type": "iteration",
+  "iteration": 7,
+  "run": 7,
+  "runId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+  "sessionId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+  "lineageId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.82,
+  "status": "complete",
+  "focus": "External-user lens first half: setup and install, generated artifacts and regeneration discovery, half-applied recovery",
+  "findingsCount": 5,
+  "noveltyJustification": "Five new findings: the minimal verified setup path, the three-way Node floor disagreement, the silent git-hooks trust gate, the uneven generated-artifact discoverability, and the designed half-applied recovery surface.",
+  "keyQuestions": [
+    "Q9: What breaks or confuses an external user who clones or installs this framework: setup, generated artifacts, version numbering, hook timing, routing surprises, error messages and recovery from a half-applied state?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "A guided installer wrapping the three setup commands and the trust step - idempotent copy-pasteable commands already exist and a wrapper adds a failure surface with no caller"
+  ],
+  "toolsUsed": ["read", "bash", "rg", "grep"],
+  "sourcesQueried": [
+    "README.md:154",
+    "README.md:160",
+    "README.md:197",
+    "README.md:1254",
+    "README.md:1283",
+    ".skilled/skills/system-spec-kit/package.json:11",
+    ".skilled/package-lock.json:200",
+    ".skilled/scripts/git-hooks/pre-commit:44",
+    ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md:58",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/005-router-sync-guard/tasks.md:71"
+  ],
+  "edgeCase": "partial-success",
+  "timestamp": "2026-10-10T19:04:04Z",
+  "durationMs": null
+}

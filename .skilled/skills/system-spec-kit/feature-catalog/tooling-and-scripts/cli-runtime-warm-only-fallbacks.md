@@ -1,6 +1,6 @@
 ---
 title: "CLI hook fallbacks and plugin bridges"
-description: "Runtime integrations for the 028 CLI program: the Claude prompt hook gates casual prompts first, the CLI it calls owns daemon startup with a bounded cold start and a degraded local answer and the hook fails open without blocking the prompt, and the OpenCode plugins route over CLI/IPC with zero in-process DB imports."
+description: "The Claude prompt hook gates casual prompts first, the CLI it calls owns daemon startup with a bounded cold start and a degraded local answer and the hook fails open without blocking the prompt."
 trigger_phrases:
   - "warm-only hook fallback"
   - "cli fallback hooks"
@@ -10,8 +10,6 @@ version: 1.6.0.1
 ---
 
 # CLI hook fallbacks and plugin bridges
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 
@@ -35,7 +33,7 @@ The Claude `user-prompt-submit.ts` advisor hook uses the skill-advisor helper an
 
 ### Allowlists and guidance
 
-`.opencode/settings.json` allowlists the CLI invocations for OpenCode (the Claude allowlist lives in local-only settings by decision), and `AGENTS.md` carries the transport-down fallback and maintenance-tool policy guidance.
+The Claude allowlist lives in local-only settings by decision, and `AGENTS.md` carries the transport-down fallback and maintenance-tool policy guidance.
 
 ---
 
@@ -48,7 +46,6 @@ The Claude `user-prompt-submit.ts` advisor hook uses the skill-advisor helper an
 | `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper | Shared skill-advisor CLI fallback |
 | `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Hook adapter | Claude advisor hook with CLI fallback |
 | `.skilled/plugins/system-skill-advisor.js` | OpenCode plugin | Advisor plugin with CLI fallback routing |
-| `.opencode/settings.json` | Runtime config | OpenCode allowlist for CLI use |
 
 ### Validation And Tests
 

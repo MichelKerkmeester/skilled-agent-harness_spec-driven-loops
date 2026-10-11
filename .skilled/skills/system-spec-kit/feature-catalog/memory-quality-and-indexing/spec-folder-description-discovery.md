@@ -1,6 +1,6 @@
 ---
 title: "Spec folder description discovery"
-description: "Spec folder description discovery generates the per-folder `description.json` metadata that identifies a packet and feeds the trigger index."
+description: "Generates per-folder `description.json` metadata for every packet."
 trigger_phrases:
   - "spec folder description discovery"
   - "description.json metadata"
@@ -11,8 +11,6 @@ version: 1.6.0.20
 ---
 
 # Spec folder description discovery
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 
@@ -109,7 +107,6 @@ continues to derive a folder-name fallback label from the path when needed.
 | `runtime/tests/folder-discovery-integration.vitest.ts` | Automated test | Mixed-mode aggregation, fresh-vs-stale preference, corrupt/missing fallback, cache staleness, regeneration behavior, and performance checks |
 | `runtime/tests/slug-utils-boundary.vitest.ts` | Automated test | Slug derivation and collision boundaries |
 | `runtime/tests/workflow-memory-tracking.vitest.ts` | Automated test | Load-mutate-save cycle for `memorySequence` increment and `memoryNameHistory` ring buffer |
-| `runtime/tests/slug-utils-boundary.vitest.ts` | Numeric coercion and boundary cases for `Number(existing.memorySequence) \|\| 0` |
 
 ---
 

@@ -12,8 +12,6 @@ version: 1.0.0.4
 
 # Export guidance
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Manual, diagram-only export of a generated diagram HTML file to a portable `.svg` and/or `.png` beside it, following `references/import-export/export.md`.

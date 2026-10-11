@@ -21,8 +21,6 @@ expected_leaf_resources:
 Prompt: Manual validation that advisor_recommend returns prompt-safe native recommendations for an existing skill.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

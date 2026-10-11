@@ -12,8 +12,6 @@ version: 1.0.0.1
 
 # Inspect (figma-ds-cli find / get / inspect / node tree)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Reads the live Figma document without changing it. These are the safe default and the input to design work and to any later gated verb: a caller inspects structure first, then decides whether a mutating verb is warranted.

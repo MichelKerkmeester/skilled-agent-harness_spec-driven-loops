@@ -11,8 +11,6 @@ version: 2.2.0.1
 
 # Leaf Route Replay (leaf-route-replay.cjs)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Replays each parent hub's stage-two keyword block against the committed gold with zero model calls and judges keep, drop or stop against the prose arm.

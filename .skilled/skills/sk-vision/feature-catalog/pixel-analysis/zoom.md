@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Region zoom (sk_vision_zoom)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 LANCZOS upscale a region or whole image and optionally re-analyze it with the model.

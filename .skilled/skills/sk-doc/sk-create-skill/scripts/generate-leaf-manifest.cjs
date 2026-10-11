@@ -542,11 +542,35 @@ function runCheck(skillDir) {
     process.stdout.write(`leaf-manifest.json OK (${contract.digestManifestBytes(fresh)})\n`);
     return 0;
   }
+  // A digest pair alone cannot tell an author which leaf moved, so the two
+  // manifests are diffed on their (workflowMode, leaf) identities and every
+  // added and removed entry is named. A committed manifest too malformed to
+  // parse still gets the digest pair rather than a second failure.
+  let drift = '';
+  try {
+    const leafKeys = (bytes) => {
+      const manifest = JSON.parse(bytes.toString('utf8'));
+      const keys = new Set();
+      for (const mode of (manifest && Array.isArray(manifest.modes) ? manifest.modes : [])) {
+        for (const leaf of (mode && Array.isArray(mode.leaves) ? mode.leaves : [])) {
+          keys.add(`${mode.workflowMode}:${leaf}`);
+        }
+      }
+      return keys;
+    };
+    const committedKeys = leafKeys(committed);
+    const freshKeys = leafKeys(fresh);
+    for (const key of [...freshKeys].filter((k) => !committedKeys.has(k)).sort()) drift += `  added:   ${key}\n`;
+    for (const key of [...committedKeys].filter((k) => !freshKeys.has(k)).sort()) drift += `  removed: ${key}\n`;
+  } catch {
+    drift = '';
+  }
   process.stderr.write(
     `generate-leaf-manifest: leaf-manifest.json is stale under ${skillDir}\n`
     + `  committed: ${contract.digestManifestBytes(committed)}\n`
     + `  fresh:     ${contract.digestManifestBytes(fresh)}\n`
-    + 'Re-run with --write to regenerate.\n',
+    + drift
+    + `Fix: node ${__filename} --write ${skillDir}\n`,
   );
   return 1;
 }

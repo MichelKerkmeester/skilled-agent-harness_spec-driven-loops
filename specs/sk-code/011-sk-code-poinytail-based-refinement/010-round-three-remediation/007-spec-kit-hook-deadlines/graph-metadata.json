@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Fifteen stdin readers under `.skilled/skills/system-spec-kit/runtime/hooks/` loop `for await (const chunk of process.stdin)` or call `readFileSync(0)` with no deadline, and the eight spec-gate adapters reach the same unbounded loop through `lib/hook-adapter-shared.mjs`",
     "created_at": "2026-10-10T10:07:23Z",
-    "last_save_at": "2026-10-10T18:02:14.105Z",
+    "last_save_at": "2026-10-11T05:17:08.345Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ca09c43e49389b0b556bc91294d8591e1f136bfc15d49d03642565e189d8c0b1",
+    "source_fingerprint": "sha256:486b3cd63047a131e60366b178e8561103e71a510bcbb6e080947e541b49f45d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7b342a9fd2531884b39d8d973e8130c3aba7215f16fd910309840fbb7c86c3ac",

@@ -174,6 +174,8 @@ node --test hooks/lib/hook-stdin-deadline.test.mjs
 
 Expected result: every listed Vitest file passes, and each `node --test` spec-gate suite passes. Cursor and Devin carry their own spec-gate suites; see their READMEs.
 
+**Residual risk of the 500 ms short-host deadline.** Seven entries run under a host that kills them after 3 seconds: the Claude and Codex `spec-gate-classify.mjs`, Claude `compact-inject`, `session-prime` and `user-prompt-submit`, and Codex `session-start` and `user-prompt-submit`. Each stops reading stdin 500 ms after it starts. A host that closes stdin after writing is unaffected, because the read ends at end of stream. A host that writes the payload more than 500 ms after start and leaves stdin open loses that turn's payload: the entry takes its empty-payload path, so the classifier records no gate state, the prime and compact hooks inject nothing and the prompt hooks return no advisor brief. The entry still exits 0 and fails open, so the turn is never blocked. `hooks/lib/hook-stdin-deadline.test.mjs` proves both sides for all seven entries: a payload written at once is acted on, and the same payload written at 800 ms is dropped. The 500 ms value lives in `shared-stdin.ts`, `lib/hook-adapter-shared.mjs` and `claude/user-prompt-submit.ts`, which cannot import it, and the same test fails if the three differ.
+
 ---
 
 ## 9. RELATED

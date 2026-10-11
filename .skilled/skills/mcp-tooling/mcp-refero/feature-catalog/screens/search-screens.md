@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # refero_search_screens
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Literal semantic search over real shipped app screens — the entry point of the screens layer and the home of app/company and element research (through query terms plus the `site` and `ui_elements` facets; no `search_apps`/`search_elements` tools exist). READ-ONLY. Canonical callable: `refero.refero_refero_search_screens({ query, platform, page?, response_format? })` (doubled prefix; confirm via `tool_info` first).

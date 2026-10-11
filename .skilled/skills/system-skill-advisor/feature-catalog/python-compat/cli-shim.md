@@ -11,8 +11,6 @@ version: 0.8.0.13
 
 # Python CLI Shim (skill_advisor.py)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Keep pre-Phase-027 Python consumers working while moving routing to the native advisor. The shim probes the native daemon first, translates native output into the legacy JSON-array shape and falls back to the local Python scorer when native routing is unavailable or explicitly bypassed.

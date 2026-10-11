@@ -2,7 +2,7 @@
 name: sk-design
 description: "Design parent hub. Routes one design identity to the mode that owns the decision, starting with sk-design-fundamentals."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 2.0.0.0
+version: 2.0.1.0
 metadata:
   author: OpenCode
   family: sk-design
@@ -181,7 +181,7 @@ their owning mode.
 
 ---
 
-## 4. RESOURCES
+## 4. REFERENCES
 
 | Resource | Purpose |
 |----------|---------|
@@ -198,13 +198,23 @@ their owning mode.
 
 ## 5. RULES
 
-1. Read the registry before assuming a mode exists.
-2. Load what the mode's own router resolves, not the whole tree.
-3. A mode already in context is not re-read.
-4. This hub authors nothing itself. If you are editing here rather than in a mode, something is wrong.
-5. Vocabulary that must move the advisor goes in `graph-metadata.json` `intent_signals`. Keywords in
-   `description.json` are documentation; they are not what gets scored.
-6. Take the mode from the compiled front door,
-   `node .skilled/bin/compiled-route.cjs --hub sk-design --prompt "<task>"`, as the section 2
-   callout says. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing in
-   section 2 instead.
+### ALWAYS
+
+- Read the registry before assuming a mode exists.
+- Load what the mode's own router resolves, not the whole tree.
+- Vocabulary that must move the advisor goes in `graph-metadata.json` `intent_signals`. Keywords in
+  `description.json` are documentation, not what gets scored.
+- Take the mode from the compiled front door,
+  `node .skilled/bin/compiled-route.cjs --hub sk-design --prompt "<task>"`, as the section 2
+  callout says. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing in
+  section 2 instead.
+
+### NEVER
+
+- Never re-read a mode already in context.
+- Never author content in this hub. Edits belong in a mode.
+
+### ESCALATE IF
+
+- A request cannot be mapped to one registered mode.
+- Registry modes, router signal keys or leaf manifest entries disagree.

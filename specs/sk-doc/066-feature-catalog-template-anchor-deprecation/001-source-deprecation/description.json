@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-doc/066-feature-catalog-template-anchor-deprecation/001-source-deprecation",
+  "description": "Phase 1: source-deprecation",
+  "keywords": [
+    "phase",
+    "source-deprecation"
+  ],
+  "lastUpdated": "2026-10-10T18:42:47.385Z",
+  "specId": "001",
+  "folderSlug": "source-deprecation",
+  "parentChain": [
+    "sk-doc",
+    "066-feature-catalog-template-anchor-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

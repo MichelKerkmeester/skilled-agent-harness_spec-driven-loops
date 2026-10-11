@@ -12,8 +12,6 @@ version: 1.7.0.11
 
 # Council graph MCP surface retired
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify council graph operations consume no MCP tool slots anywhere and remain available through `runtime/ --loop-type council`.
@@ -57,7 +55,6 @@ The user-visible contract is concrete: council graph behavior remains available,
 ## 4. SOURCE METADATA
 
 - Group: Council Graph Integration
-- Feature ID: DAC-026
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/council-graph-integration/council-graph-tools-registered-separately-from-deep-loop.md`
 - Playbook scenario: `manual-testing-playbook/council-graph-integration/council-graph-tools-registered-separately-from-deep-loop.md`

@@ -58,8 +58,8 @@ Frozen choices. Changing one is an amendment.
 
 - [ ] `rg -n "for await \(const chunk of process\.stdin\)|readFileSync\(0" .skilled/skills/system-spec-kit/runtime/hooks --glob '!**/dist/**' --glob '!**/node_modules/**'` prints nothing and exits 1.
 - [ ] `cd .skilled/skills/system-spec-kit/runtime && node --check hooks/lib/hook-adapter-shared.mjs && node --check hooks/claude/completion-evidence-stop.cjs && node --check hooks/codex/completion-evidence-stop.cjs && node --check hooks/devin/completion-evidence-stop.cjs && node --check hooks/devin/post-compaction.cjs && node --check hooks/cursor/post-tool-use.mjs && node --check hooks/cursor/spec-gate-prebind.mjs && node --check hooks/cursor/completion-evidence-response.mjs && node --check hooks/devin/permission-request-policy.mjs && npm run typecheck && ../node_modules/.bin/eslint hooks/shared-stdin.ts hooks/claude/shared.ts hooks/codex/shared.ts hooks/cursor/shared.ts hooks/devin/shared.ts hooks/claude/directive-lifecycle-boundary.ts hooks/claude/compact-inject.ts && npm run build && node cli/lib/dist-freshness.cjs check-all` prints `All watched dist outputs are fresh.` and exits 0.
-- [ ] `node --test .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs` prints `ℹ tests 37`, `ℹ pass 37` and `ℹ fail 0` and exits 0.
-- [ ] `cd .skilled/skills/system-spec-kit/runtime && npx --no-install vitest run tests/hook-*.vitest.ts tests/hooks-*.vitest.ts tests/user-prompt-submit-shim.vitest.ts tests/directive-lifecycle-*.vitest.ts tests/edge-cases.vitest.ts tests/completion-evidence-sentinel.vitest.ts && node --test tests/hooks/*.test.mjs` prints `Tests  290 passed (290)`, `ℹ pass 181` and `ℹ fail 0` and exits 0.
+- [ ] `node --test .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs` prints `ℹ tests 40`, `ℹ pass 40` and `ℹ fail 0` and exits 0.
+- [ ] `cd .skilled/skills/system-spec-kit/runtime && npx --no-install vitest run tests/hook-*.vitest.ts tests/hooks-*.vitest.ts tests/user-prompt-submit-shim.vitest.ts tests/directive-lifecycle-*.vitest.ts tests/edge-cases.vitest.ts tests/completion-evidence-sentinel.vitest.ts && node --test tests/hooks/*.test.mjs` prints `Tests  290 passed (290)`, `ℹ pass 186` and `ℹ fail 0` and exits 0.
 - [ ] `rg -n "(from |import\(|require\()'[^']*hook-adapter-shared\.cjs'" .skilled/skills/system-spec-kit/runtime/hooks` prints nothing and exits 1.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/007-spec-kit-hook-deadlines --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
@@ -94,4 +94,6 @@ Verifier read the routing headers of `.skilled/skills/sk-code/SKILL.md`, `.skill
 | Item | Note |
 |------|------|
 | `claude/user-prompt-submit.ts` | A sixteenth unbounded reader (`readSync(0)` at lines 81-95) that the brief's search does not match. Left for a follow-up, as `plan.md` section 6 explains |
+| Criterion 3 amended 2026-10-11 | Later phases added cases to the same suite, so the exact count went stale. The criterion now names the current count, or a floor where the suite keeps growing. Phases 011 and 013 added three cases |
+| Criterion 4 amended 2026-10-11 | Later phases added cases to the same suite, so the exact count went stale. The criterion now names the current count, or a floor where the suite keeps growing |
 <!-- /ANCHOR:log -->

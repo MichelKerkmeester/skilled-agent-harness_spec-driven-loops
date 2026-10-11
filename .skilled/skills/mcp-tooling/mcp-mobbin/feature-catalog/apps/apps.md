@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Apps (app-intent queries over search_screens)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Carries app- and category-level research: how a named app, company, or product category handles a design problem, compared across real shipped screens. There is **no `search_apps` tool** — app research is a query intent over the single documented `search_screens` tool, compared through the `app_name` and `platform` fields of the returned metadata and the visible patterns in the inline images.

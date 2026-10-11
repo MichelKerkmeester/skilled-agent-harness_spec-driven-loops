@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Styles (refero_search_styles / refero_get_style)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Carries visual direction: typography, color and token roles, layout, spacing, surfaces and elevation, components, imagery, and do/don't rules from real shipped web pages. Styles are the official **first stop for any visual task** in the styles -> screens -> flows funnel.

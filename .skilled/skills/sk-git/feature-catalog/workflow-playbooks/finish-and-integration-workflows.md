@@ -1,6 +1,6 @@
 ---
 title: "Finish and integration workflows"
-description: "Structured completion flow that gates on passing tests, presents four integration choices, and executes the chosen path safely, including release-notes H1 handling."
+description: "The structured completion flow that gates on passing tests, then presents exactly four integration choices, merge locally, push and open a PR, keep as-is, or discard, and executes the chosen path safely."
 trigger_phrases:
   - "finish and integration workflows"
   - "four integration options"
@@ -10,8 +10,6 @@ version: 1.0.0.0
 ---
 
 # Finish and integration workflows
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

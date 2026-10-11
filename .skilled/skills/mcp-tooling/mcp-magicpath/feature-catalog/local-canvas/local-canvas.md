@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Local & Canvas (list_installed / selection)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Carries the project directory and the web canvas. `list_installed` lists MagicPath components already present in the current project directory. `selection` reads the components and images currently selected on the MagicPath web canvas, plus the projects the user has open. `selection` returns empty collections when nothing is selected or no canvas is open, so it is safe to call speculatively.

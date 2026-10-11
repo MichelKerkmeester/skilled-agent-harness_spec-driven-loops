@@ -1,6 +1,6 @@
 ---
 title: "Launch-wrapper session isolation"
-description: "Operator-opted-in launch wrapper that gives every top-level AI session its own worktree, branch, and isolated MCP databases."
+description: "An operator-opted-in launch wrapper places every top-level AI session in its own worktree, its own branch, and its own isolated MCP databases, so concurrent multi-runtime sessions never share a working tree or contend on a single-writer database lease."
 trigger_phrases:
   - "launch-wrapper session isolation"
   - "worktree-session.sh"
@@ -11,8 +11,6 @@ version: 1.0.0.0
 ---
 
 # Launch-wrapper session isolation (worktree-session.sh)
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

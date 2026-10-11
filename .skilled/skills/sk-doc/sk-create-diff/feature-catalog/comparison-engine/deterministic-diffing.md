@@ -1,6 +1,6 @@
 ---
 title: "Deterministic diffing"
-description: "Deterministic line-level diff with inline word-level highlighting and a move heuristic over canonicalized input."
+description: "Produces a deterministic line-level diff with inline word-level highlighting and a cheap move heuristic, after canonicalizing both sides (Unicode NFC, newline, trailing-whitespace normalization)."
 trigger_phrases:
   - "Deterministic diffing"
   - "line-level document diff"
@@ -10,8 +10,6 @@ version: 1.1.0.3
 ---
 
 # Deterministic diffing
-
-<!-- sk-doc-template: skill_asset_feature-catalog -->
 
 ## 1. OVERVIEW
 

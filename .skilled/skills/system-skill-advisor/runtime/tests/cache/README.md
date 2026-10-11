@@ -9,8 +9,6 @@ trigger_phrases:
 
 # Skill Advisor Cache Tests: Listener Coverage
 
-<!-- sk-doc-template: skill_readme -->
-
 ---
 
 ## 1. OVERVIEW

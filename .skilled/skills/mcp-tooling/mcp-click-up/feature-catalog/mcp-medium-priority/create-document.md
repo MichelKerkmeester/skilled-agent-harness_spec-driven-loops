@@ -17,8 +17,6 @@ Create a ClickUp document in a space, folder, list, everything view or workspace
 
 > **Live name (2026-10-08).** Call it as `clickup_official.clickup_official_clickup_create_document` in Code Mode. The parameter table comes from the server's own schema, captured when the hosted server registered 61 tools on that date.
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -53,7 +51,7 @@ All four of `name`, `parent`, `visibility` and `create_page` are required. `pare
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-documents/create-document.md` | Manual | Scenario that exercises this tool |
+| `manual-testing-playbook/mcp-documents/create-document.md` | Manual playbook | Scenario that exercises this tool |
 
 ---
 

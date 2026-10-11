@@ -59,7 +59,7 @@ Frozen choices. Changing one is an amendment.
 - [ ] `bash .skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.test.sh; echo "exit=$?"` prints `All ceiling report test cases passed`, then `exit=0`. Covers REQ-001, REQ-002 and REQ-003.
 - [ ] `.skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh; echo "exit=$?"` ends with a line `markers=N no-trigger=N no-signal=N`, then `exit=0`. Covers REQ-001.
 - [ ] `bash -n .skilled/scripts/git-hooks/pre-commit && node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check && node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs --check; echo "exit=$?"` prints a PASS line from each Hermes check, then `exit=0`. Covers REQ-005.
-- [ ] `bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh; echo "exit=$?"` prints `pre-commit gates: 71 passed, 0 failed`, then `exit=0`. Covers REQ-004 and REQ-006.
+- [ ] `bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh; echo "exit=$?"` prints a `pre-commit gates: N passed, 0 failed` line with N of 71 or more, then `exit=0`. Covers REQ-004 and REQ-006.
 - [ ] `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs && node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js; echo "exit=$?"` prints `failed=0` from the freshness gate, then `exit=0`. Covers REQ-007 and REQ-008.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/004-debt-report-and-hermes-gate --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
@@ -96,4 +96,5 @@ and findings belong here.
 | Orchestrator verification, 2026-10-10 | All six criteria rerun from the final state: test harness exit 0, report exit 0 with `markers=0 no-trigger=0 no-signal=0`, both Hermes checks PASS, pre-commit harness 71 passed 0 failed, freshness 14/14, strict validation 0 errors |
 | Gate header corrected by the orchestrator | The header still said the gate runs exactly what CI's mirror job runs; it now names the mirror and hermes-mirror jobs, and "a seventh mirror" became "a new mirror". Harness rerun: 71 passed, 0 failed |
 | Builder removed its own `__pycache__` with `rm -rf` | Its `py_compile` check created the directory; nothing tracked was removed. Later checks used `ast.parse` |
+| Criterion 4 amended 2026-10-11 | Later phases added cases to the same suite, so the exact count went stale. The criterion now names the current count, or a floor where the suite keeps growing |
 <!-- /ANCHOR:log -->

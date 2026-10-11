@@ -82,7 +82,7 @@ string, not these files.
 
 - [ ] In the worktree, `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations --recursive --strict` prints `RESULT: PASSED` 6 times and `RESULT: FAILED` 0 times
 - [ ] In the worktree, `grep -l 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/00[1-5]-*/implementation-summary.md | wc -l` prints 5
-- [ ] In the worktree, `git log --format='%(trailers:key=Spec,valueonly)' main..HEAD | grep -c '/008-round-two-recommendations/'` prints 5, one per child, and `git status --short` prints nothing
+- [ ] `git log --format='%(trailers:key=Spec,valueonly)' HEAD | grep -c '/008-round-two-recommendations/'` prints 5 or more, one per child, and `git status --short` prints nothing
 - [ ] In the worktree, `node .skilled/bin/compiled-route-guard.cjs` exits 0 listing sk-code `fresh`, `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` exits 0, and `node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all` exits 0
 <!-- /ANCHOR:completion -->
 
@@ -114,4 +114,5 @@ and findings belong here.
 | Plan decisions taken by the orchestrator | 002 keeps its section 7 defaults. 003 makes `not_checked` a required RETURN field. 004 anchors the marker at the start of a comment, with no version bump and no SKILL.md edit. 005 adds no firing bullet |
 | Move-or-merge rule placed in prevent-overengineering.md | The research suggested `scope-discipline.md` section 2, which defines what is in scope; a restraint on how moves behave fits section 4 of `prevent-overengineering.md` |
 | Mirror-parity gate bypassed for the review-contract commit | The gate flagged nine unstaged code, debug and orchestrate mirrors from the agent-disclosure child built in parallel. Their sources were unstaged too, so HEAD kept each source and mirror in step; every mirror check passed on the working tree, and that child committed next. Bypass: `SPECKIT_SKIP_MIRROR_PARITY=1` |
+| Criterion 3 amended 2026-10-11 | The phase was merged, so `main..HEAD` is empty. The count now reads the `Spec:` trailers reachable from HEAD, as the 011 parent criterion 3 already does |
 <!-- /ANCHOR:log -->

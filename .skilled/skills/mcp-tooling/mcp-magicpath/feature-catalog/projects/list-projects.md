@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # list_projects
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Project inventory across the personal workspace and teams. READ-ONLY. Canonical callable: `magicpath.list_projects({ team?, limit? })` (confirm via `tool_info` first).

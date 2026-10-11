@@ -11,8 +11,6 @@ version: 0.3.0.0
 
 # Pi classifier transport integration (jev-transport.mjs)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Answers Jev choice and noul questions through Pi when its preflight passes and through the jev CLI otherwise, with the environment or a per-call option forcing either route.

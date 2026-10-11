@@ -19,7 +19,8 @@
     "sk-doc/062-doc-validation-off-switches",
     "sk-doc/063-security-policy-alignment",
     "sk-doc/064-description-budget",
-    "sk-doc/065-changelog-section-spacing"
+    "sk-doc/065-changelog-section-spacing",
+    "sk-doc/066-feature-catalog-template-anchor-deprecation"
   ],
   "manual": {
     "depends_on": [],

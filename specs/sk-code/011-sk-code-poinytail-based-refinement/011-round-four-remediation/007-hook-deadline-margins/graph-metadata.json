@@ -207,7 +207,7 @@
     ],
     "causal_summary": "`runtime/hooks/claude/user-prompt-submit.ts` reads stdin with a `readSync(0, ...)` loop, so a host that keeps stdin open holds it until the host kills it",
     "created_at": "2026-10-10T14:44:47Z",
-    "last_save_at": "2026-10-10T16:50:23.048Z",
+    "last_save_at": "2026-10-11T05:17:08.819Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8b789dd3b1e0b69e2eec3131d14a7f80cc03a0023c8a89ad0510b61952e2737a",
+    "source_fingerprint": "sha256:c206cf7e88ac8d5d8b0260c9f0077e8f1bc30a5f84dcf28a371af4710d11bcad",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "52c69001816398bd07651e91ee85c315cd0728e73fcbcb6d79a96887745605eb",

@@ -9,8 +9,6 @@ trigger_phrases:
 
 # Freshness Library: Advisor Cache And Trust State
 
-<!-- sk-doc-template: skill_readme -->
-
 ---
 
 ## 1. OVERVIEW

@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/002-parent-goal-budget",
+  "description": "Phase 2: parent-goal-budget",
+  "keywords": [
+    "phase",
+    "parent-goal-budget"
+  ],
+  "lastUpdated": "2026-10-10T19:22:04.064Z",
+  "specId": "002",
+  "folderSlug": "parent-goal-budget",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "014-skill-authoring-ux-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -81,7 +81,7 @@ string, not these files.
 
 - [ ] In the worktree, `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes --recursive --strict` prints `RESULT: PASSED` 6 times and `RESULT: FAILED` 0 times
 - [ ] In the worktree, `grep -l 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/00[1-5]-*/implementation-summary.md | wc -l` prints 5
-- [ ] In the worktree, `git log --format='%(trailers:key=Spec,valueonly)' main..HEAD | grep -c '/007-follow-up-fixes/'` prints 5, one per child, and `git status --short` prints nothing
+- [ ] `git log --format='%(trailers:key=Spec,valueonly)' HEAD | grep -c '/007-follow-up-fixes/'` prints 5 or more, one per child, and `git status --short` prints nothing
 - [ ] In the worktree, `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` exits 0, and `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs` prints `failed=0`
 <!-- /ANCHOR:completion -->
 
@@ -111,4 +111,5 @@ and findings belong here.
 | D3 triggered by 005 | Check 1b fails on nine unrouted docs (three shared workflow docs, six sk-code-obsidian references); the operator chose to wire 1a, 2, 3 and 4 now and fix 1b later |
 | Builders may edit goal.md's LOG section | The first build brief barred goal.md entirely while tasks wrote evidence there; corrected for every builder |
 | Live pre-commit hook runs from the main checkout | The Codex filter change takes effect on commits only after this branch reaches main |
+| Criterion 3 amended 2026-10-11 | The phase was merged, so `main..HEAD` is empty. The count now reads the `Spec:` trailers reachable from HEAD, as the 011 parent criterion 3 already does |
 <!-- /ANCHOR:log -->

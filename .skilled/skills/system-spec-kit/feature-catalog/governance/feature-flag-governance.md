@@ -1,6 +1,6 @@
 ---
 title: "Feature flag governance"
-description: "Feature flag governance defines operational targets for keeping the active flag surface small with explicit sunset windows and periodic audits, and owns the SPECKIT_COMPILED_ROUTING tri-state gate."
+description: "Operational targets for keeping the active flag surface small with explicit sunset windows and periodic audits, plus the `SPECKIT_COMPILED_ROUTING` tri-state gate."
 trigger_phrases:
   - "feature flag governance"
   - "manage feature flags"
@@ -11,8 +11,6 @@ version: 2.0.0.0
 ---
 
 # Feature flag governance
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

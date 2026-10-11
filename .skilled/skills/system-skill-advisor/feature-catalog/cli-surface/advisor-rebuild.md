@@ -11,8 +11,6 @@ version: 0.8.0.11
 
 # advisor_rebuild Command
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Give operators an explicit repair path for stale, absent or unavailable advisor state without hiding rebuild side effects inside `advisor_status`.
@@ -41,15 +39,15 @@ The command manifest and dispatcher register `advisor_rebuild` alongside `adviso
 | `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-rebuild.ts:103-115` | Handler | Serializes the rebuild output and exports the snake_case compatibility alias |
 | `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:89-94` | Handler contract | Documents that status is diagnostic-only and points repair callers to `advisor_rebuild` |
 | `.skilled/skills/system-skill-advisor/runtime/tools/advisor-rebuild.ts:8-17` | Tool descriptor | Declares the command and `force` option |
-| `.skilled/skills/system-spec-kit/runtime/tools/index.ts:56-72` | Dispatcher | Registers `advisor_rebuild` in the advisor command set |
-| `.skilled/skills/system-spec-kit/runtime/tool-schemas.ts:954-962` | Server registry | Includes `advisor_rebuild` in `TOOL_DEFINITIONS` |
+| `.skilled/skills/system-skill-advisor/runtime/tools/index.ts:56-70` | Dispatcher | Registers `advisor_rebuild` in the advisor command set |
+| `.skilled/skills/system-skill-advisor/runtime/tools/index.ts:37-43` | Server registry | Includes `advisor_rebuild` in `TOOL_DEFINITIONS` |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/system-spec-kit/runtime/tests/advisor-rebuild.vitest.ts` | Vitest | Covers skip, forced rebuild, stale rebuild and output schema behavior |
-| `.skilled/skills/system-spec-kit/runtime/tests/tool-input-schema.vitest.ts` | Vitest | Validates strict input schemas for registered commands |
+| `.skilled/skills/system-skill-advisor/runtime/tests/advisor-rebuild.vitest.ts` | Vitest | Covers skip, forced rebuild, stale rebuild and output schema behavior |
+| `.skilled/skills/system-skill-advisor/runtime/tests/schemas/advisor-tool-schemas.vitest.ts` | Vitest | Validates strict input schemas for registered commands |
 
 ---
 
@@ -57,8 +55,8 @@ The command manifest and dispatcher register `advisor_rebuild` alongside `adviso
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/system-spec-kit/runtime/tests/advisor-rebuild.vitest.ts` | Automated test | Validation reference |
-| `.skilled/skills/system-spec-kit/runtime/tests/tool-input-schema.vitest.ts` | Automated test | Validation reference |
+| `.skilled/skills/system-skill-advisor/runtime/tests/advisor-rebuild.vitest.ts` | Automated test | Validation reference |
+| `.skilled/skills/system-skill-advisor/runtime/tests/schemas/advisor-tool-schemas.vitest.ts` | Automated test | Validation reference |
 
 ---
 

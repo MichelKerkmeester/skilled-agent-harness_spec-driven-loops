@@ -1,6 +1,6 @@
 ---
 title: "Memory save"
-description: "Preserves the completed review packet for future recovery without making it part of the verdict path."
+description: "Preserves the completed review context for future recovery."
 trigger_phrases:
   - "memory save"
   - "save review context"
@@ -11,8 +11,6 @@ version: 1.11.0.6
 ---
 
 # Memory save
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 
@@ -44,7 +42,7 @@ If the save step fails, the current `review/` packet remains the ground truth. T
 
 | File | Type | Role |
 |---|---|---|
-| `manual-testing-playbook/synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md` | Manual scenario | Verifies post-synthesis continuity save behavior and guardrails. |
+| `manual-testing-playbook/synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md` | Manual playbook | Verifies post-synthesis continuity save behavior and guardrails. |
 | `manual-testing-playbook/manual-testing-playbook.md` | Manual playbook | Acts as the top-level validation package for the save-and-guardrails category. |
 
 ---

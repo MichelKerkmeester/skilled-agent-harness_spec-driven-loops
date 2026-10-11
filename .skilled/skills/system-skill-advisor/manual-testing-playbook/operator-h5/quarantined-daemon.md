@@ -20,8 +20,6 @@ expected_leaf_resources:
 Prompt: H5 operator playbook for malformed SKILL.md quarantine detection, repair and revert.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

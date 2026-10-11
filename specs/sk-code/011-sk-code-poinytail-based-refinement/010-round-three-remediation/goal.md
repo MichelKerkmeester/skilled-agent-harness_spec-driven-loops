@@ -84,7 +84,7 @@ string, not these files.
 
 - [ ] In the worktree, `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation --recursive --strict` prints `RESULT: PASSED` 8 times and `RESULT: FAILED` 0 times
 - [ ] In the worktree, `grep -l 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/00[1-7]-*/implementation-summary.md | wc -l` prints 7
-- [ ] In the worktree, `git log --format='%(trailers:key=Spec,valueonly)' main..HEAD | grep -c '/010-round-three-remediation/'` prints 7, one per child, and `git status --short` prints nothing
+- [ ] `git log --format='%(trailers:key=Spec,valueonly)' HEAD | grep -c '/010-round-three-remediation/'` prints 7 or more, one per child, and `git status --short` prints nothing
 - [ ] In the worktree, `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` exits 0 with the documentation claim checker among its guards, and `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js`, `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check` and `node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all` each exit 0
 <!-- /ANCHOR:completion -->
 
@@ -121,4 +121,5 @@ and findings belong here.
 | Orchestrator steps | sk-code and cli-external-orchestration re-mints with archive copies, leaf manifest, Hermes (9 copies), deep-review contract recompile (it also cleared an older agent-digest drift), sk-doc README fixtures, trigger index |
 | Not built | f-iter011-002 item (e), AGENTS.md-level canary pins (002 D8: routine AGENTS.md edits would trip it); the sixteenth stdin reader claude/user-prompt-submit.ts (007 plan section 6); about 59 old underscore link labels in Webflow references and the Webflow playbook root overview section (004 known limitations); the implementation-phrasing order for Obsidian plus Webflow prompts (005 recorded) |
 | Scratch hygiene | Base-commit source copies in 006 scratch/probe (12 MB, with node_modules symlinks), 006 scratch/before and 007 scratch/before were moved out of the packet before commit; 007 REQ-007 records how to rebuild them |
+| Criterion 3 amended 2026-10-11 | The phase was merged, so `main..HEAD` is empty. The count now reads the `Spec:` trailers reachable from HEAD, as the 011 parent criterion 3 already does |
 <!-- /ANCHOR:log -->

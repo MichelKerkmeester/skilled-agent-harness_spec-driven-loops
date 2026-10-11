@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Hermes Hard-Rule Preflight Checks (dispatch-rule-checks)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Seven Hermes-specific checks evaluate a composed command before it is spawned, covering binary availability, approval scope, rule injection, toolsets, worktrees, MCP configuration and hooks.

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/066-feature-catalog-template-anchor-deprecation/002-retroactive-removal",
+  "spec_folder": "sk-doc/066-feature-catalog-template-anchor-deprecation/002-retroactive-removal",
+  "parent_id": "sk-doc/066-feature-catalog-template-anchor-deprecation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "retroactive removal",
+      "phase 2 retroactive removal",
+      "feature catalog template comment sweep",
+      "retroactive removal plan",
+      "retroactive removal tasks",
+      "retroactive removal acceptance criteria",
+      "retroactive removal goal",
+      "retroactive removal implementation summary"
+    ],
+    "key_topics": [
+      "retroactive",
+      "removal",
+      "phase",
+      "feature",
+      "catalog",
+      "template",
+      "comment",
+      "sweep",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/remove_template_anchor.py",
+      "scratch/remove-template-anchor-report.json",
+      ".skilled/skills/cli-classifier/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "remove_template_anchor.py",
+        "kind": "file",
+        "path": "scratch/remove_template_anchor.py",
+        "source": "derived"
+      },
+      {
+        "name": "remove-template-anchor-report.json",
+        "kind": "config",
+        "path": "scratch/remove-template-anchor-report.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Take",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Census",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Regenerate Hermes",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A census before the sweep found 548 feature catalog files holding the comment: 529 with `skillassetfeaturecatalog` and 19 in `mcp-aside-devtools` with the hyphenated `skillassetfeature-catalog`",
+    "created_at": "2026-10-10T18:42:47Z",
+    "last_save_at": "2026-10-11T05:17:08.858Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5299d5f5f273cc2351c21b513b25d9700a845c7b7a0dd8364f54d397062adc6c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "925d3d886403c8d5154c12979ae4157570dcbe31018ef9b9b02b9060e66caba6",
+      "plan.md": "699bbc4ac49cbcebd7855a95cdd808ce515fdb800053a89d2a2c6c32daa050bc",
+      "tasks.md": "a5261130ca448b982fad04d76ab41d6481804510484e6db9b830b9ce52c6b9f1",
+      "implementation-summary.md": "616dc36b6a1aeb4400bf9120b9495cd33f9ba70f9ddc11fde67b20f0aaa0fa52"
+    },
+    "last_active_at": null
+  }
+}

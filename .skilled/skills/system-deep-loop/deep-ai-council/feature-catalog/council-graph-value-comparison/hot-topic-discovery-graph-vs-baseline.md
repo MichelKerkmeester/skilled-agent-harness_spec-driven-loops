@@ -12,8 +12,6 @@ version: 1.7.0.10
 
 # Hot-topic discovery: graph vs baseline
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Demonstrate hot_nodes mode surfaces high-degree contested topics; baseline requires manual cross-reference tallying.
@@ -55,7 +53,6 @@ The user-visible contract is concrete: Demonstrate hot_nodes mode surfaces high-
 
 ## 4. SOURCE METADATA
 - Group: Council Graph Value Comparison
-- Feature ID: DAC-031
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/council-graph-value-comparison/hot-topic-discovery-graph-vs-baseline.md`
 - Playbook scenario: `manual-testing-playbook/council-graph-value-comparison/hot-topic-discovery-graph-vs-baseline.md`

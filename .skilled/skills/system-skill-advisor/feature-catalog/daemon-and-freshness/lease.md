@@ -11,8 +11,6 @@ version: 0.8.0.13
 
 # Workspace Single-Writer Lease
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Prevent duplicate daemon writers from corrupting the advisor graph by ensuring exactly one daemon holds the workspace lease, with automatic reclaim when the prior owner dies.

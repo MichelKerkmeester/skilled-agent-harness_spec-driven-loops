@@ -11,8 +11,6 @@ version: 0.8.0.14
 
 # Daemon Lifecycle and Health Reporting
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Give operators a predictable daemon lifecycle: graceful boot, graceful SIGTERM shutdown and always-available health reporting exposed through `advisor_status`.

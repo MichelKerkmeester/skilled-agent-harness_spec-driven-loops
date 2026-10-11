@@ -208,7 +208,7 @@
     ],
     "causal_summary": "A review finding needs no reproducing case, so a reader cannot tell a proven defect from a worry",
     "created_at": "2026-10-10T06:56:29Z",
-    "last_save_at": "2026-10-10T07:55:51.887Z",
+    "last_save_at": "2026-10-11T05:17:04.069Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,7 +218,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bd241d55c8a2063e825d872b69aa1580a3725c42e0b113feef431edd51e0127b",
+    "source_fingerprint": "sha256:d519f7f9e3d97d484c8d00db0a3b74c318a1bfd965ac999fa591fd8b6746c25c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c719ee64ad53e3b6d5b0788ac6862b477d8e31e1d3b2fd119296e47ee5bf0a0d",

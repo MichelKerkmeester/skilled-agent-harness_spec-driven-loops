@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Toolset Selection And Web-Search Policy (hermesToolsetsFor)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The `-t` toolset list is a leaf's real boundary: `delegation` and `memory` are never included, a read-only lineage narrows to search and todo, and the `web` toolset follows the lineage's web-search policy.

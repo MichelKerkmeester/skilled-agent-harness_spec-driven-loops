@@ -9,8 +9,6 @@ trigger_phrases:
 
 # Daemon Library: Advisor Watcher Lifecycle
 
-<!-- sk-doc-template: skill_readme -->
-
 ---
 
 ## 1. OVERVIEW

@@ -22,8 +22,6 @@ expected_leaf_resources:
 Prompt: Manual validation that includeAttribution: true returns per-lane contribution metadata and a prompt-safe why_recommended string without leaking prompt content.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

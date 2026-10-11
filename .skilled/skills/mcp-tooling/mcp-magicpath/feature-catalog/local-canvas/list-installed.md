@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # list_installed
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Local directory scan for installed components. READ-ONLY. Canonical callable: `magicpath.list_installed({ path? })` (confirm via `tool_info` first).

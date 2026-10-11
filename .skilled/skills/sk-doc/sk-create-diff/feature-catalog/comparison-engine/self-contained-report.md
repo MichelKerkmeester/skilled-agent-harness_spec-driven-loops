@@ -1,6 +1,6 @@
 ---
 title: "Self-contained report"
-description: "Renders the diff as one self-contained, zero-JavaScript, CSP-locked, accessible HTML file in unified or side-by-side view."
+description: "Renders the diff as a single self-contained HTML file, inlined CSS, zero JavaScript, a restrictive Content-Security-Policy, escaped source content, and accessibility affordances, in unified or side-by-side views."
 trigger_phrases:
   - "Self-contained report"
   - "single-file HTML diff report"
@@ -10,8 +10,6 @@ version: 1.1.0.4
 ---
 
 # Self-contained report
-
-<!-- sk-doc-template: skill_asset_feature-catalog -->
 
 ## 1. OVERVIEW
 

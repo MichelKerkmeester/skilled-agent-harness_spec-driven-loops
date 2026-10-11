@@ -11,8 +11,6 @@ version: 0.8.0.14
 
 # Deterministic Derived Extraction
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Automatically generate routing-ready derived entries for every skill without hand-written routing metadata. Extraction stays deterministic so identical sources always produce identical derived output.

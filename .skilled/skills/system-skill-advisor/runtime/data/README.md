@@ -8,8 +8,6 @@ trigger_phrases:
 
 # Skill Advisor Data: Static Runtime Inputs
 
-<!-- sk-doc-template: skill_readme -->
-
 ---
 
 ## 1. OVERVIEW

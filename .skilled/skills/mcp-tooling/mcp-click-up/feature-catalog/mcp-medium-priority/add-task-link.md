@@ -16,8 +16,6 @@ Link two tasks with no ordering or blocking.
 
 > **Live name (2026-10-08).** Call it as `clickup_official.clickup_official_clickup_add_task_link` in Code Mode. The parameter table comes from the server's own schema, captured when the hosted server registered 61 tools on that date.
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -50,7 +48,7 @@ For a blocking relationship, use `clickup_add_task_dependency`.
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | No dedicated scenario. Confirm the call with `tool_info()` before first use |
+| `manual-testing-playbook/` | Manual playbook | No dedicated scenario. Confirm the call with `tool_info()` before first use |
 
 ---
 

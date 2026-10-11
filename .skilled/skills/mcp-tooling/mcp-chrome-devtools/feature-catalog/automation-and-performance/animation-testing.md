@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # Animation Testing
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -39,7 +37,7 @@ Thresholds are configurable in the script (`MAX_LAYOUT_COUNT`, `MAX_RECALC_COUNT
 
 | File | Type | Role |
 |------|------|------|
-| `examples/README.md` §3.2, §5 | Manual | Usage, thresholds, exit codes, customization |
+| `examples/README.md` §3.2, §5 | Manual playbook | Usage, thresholds, exit codes, customization |
 
 ---
 

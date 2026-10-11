@@ -257,7 +257,10 @@ function hasDispatchEvidence(tokens, commandHasPrintFlag) {
   // command-wide because the embedded signal can sit in a different segment than the flag
   // it belongs to (e.g. `alias d=devin; d -p task`).
   const embeddedExecutor = commandHasPrintFlag && tokens.some((token) => !token.quoted && /(?:=|\/)(?:opencode|claude|codex|devin|cursor-agent|pi)$/.test(token.value));
-  const variableExecutor = tokens.some((token) => token.expanded) && hasPrintFlag;
+  // An expanded token stands in for the executor only in command position: `mkdir -p "$DIR"`
+  // carries a print-shaped flag and a variable but runs mkdir, not a dispatch.
+  const start = commandStart(tokens);
+  const variableExecutor = hasPrintFlag && !start.opaque && Boolean(tokens[start.index]?.expanded);
   const expandedDispatch = tokens.some((token) => token.expanded && hasDispatchText(token.value));
   return (knownExecutor && hasPrintFlag) || embeddedExecutor || variableExecutor || expandedDispatch;
 }
@@ -288,6 +291,10 @@ export function inspectDispatch(command) {
     }
 
     if (direct.length > 0 || candidate) return { kind: 'ambiguous' };
+    // The tokenizer reads `bash -c '<cmd>'` as a bash call with one quoted argument. Classify
+    // the wrapped command instead, the same unwrap resolveSegment applies for the hooks.
+    const payload = shellPayload(command);
+    if (payload !== null) return inspectDispatch(payload);
     return { kind: 'none' };
   } catch (_) {
     return { kind: 'none' };
@@ -307,7 +314,22 @@ export function matchDispatchShape(command) {
 // A shell wrapper hides a real dispatch inside a quoted argument, where the tokenizer
 // correctly refuses to read it as an executor. Only these four wrappers are unwrapped,
 // and only their `-c` payload, so ordinary quoted text stays text.
-const SHELL_WRAPPER = /(?:^|[\s;&|])(?:\/[^\s;&|]*\/)?(?:bash|sh|zsh|dash)\s+(?:-[a-z]*c|--command)\s+(['"])([\s\S]*?)\1/;
+// A double-quoted payload runs to its closing quote, past any escaped quote inside it,
+// and is unescaped the way the shell would before it is inspected.
+const SHELL_WRAPPER = /(?:^|[\s;&|])(?:\/[^\s;&|]*\/)?(?:bash|sh|zsh|dash)\s+(?:-[a-z]*c|--command)\s+(?:'([^']*)'|"((?:\\[\s\S]|[^"\\])*)")/;
+
+/**
+ * Return the command a shell wrapper runs, or null when the text has no wrapper.
+ * @param {string} command - text that may hold a `bash -c '<cmd>'` style wrapper.
+ * @returns {string | null} the unwrapped payload.
+ */
+function shellPayload(command) {
+  const match = command.match(SHELL_WRAPPER);
+  if (!match) return null;
+  if (match[1] !== undefined) return match[1];
+  // Inside double quotes the shell drops a backslash only before $ ` " \ and a newline.
+  return match[2].replace(/\\\n/g, '').replace(/\\([$`"\\])/g, '$1');
+}
 
 // An exec wrapper runs the real command in its own process, so the tokenizer reads the
 // wrapper as the executor and stops. These are the wrappers this repo actually dispatches
@@ -396,6 +418,8 @@ function resolveSegment(segment, redirectionsStripped = false) {
     // pin one executor. Match the shape list against that segment only: matching the whole
     // command is what made a call that merely quotes a dispatch read as one.
     if (inspected.kind === 'ambiguous') {
+      const wrapped = shellPayload(current);
+      if (wrapped !== null) { current = wrapped; continue; }
       // Test the shape against the segment with quoted spans blanked out. A command that
       // BUILDS a payload containing a dispatch (`P='{"command":"opencode run ..."}'`) reads
       // as ambiguous, and matching inside its quotes refused a call that dispatches nothing.
@@ -406,8 +430,8 @@ function resolveSegment(segment, redirectionsStripped = false) {
         .replace(/"(?:\\.|[^"\\])*"/g, '""');
       return DISPATCH_SHAPES.find((d) => d.test.test(unquoted))?.skill || null;
     }
-    const shell = current.match(SHELL_WRAPPER);
-    if (shell) { current = shell[2]; continue; }
+    const shell = shellPayload(current);
+    if (shell !== null) { current = shell; continue; }
     const exec = EXEC_WRAPPERS.reduce((found, re) => found || current.match(re), null);
     if (exec) { current = exec[1]; continue; }
     // Nothing matched. A redirect to a quoted variable (`> "$OUT"`, what every capture in

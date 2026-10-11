@@ -205,14 +205,14 @@
     ],
     "causal_summary": "Building phases 002 to 006 surfaced five gaps that were out of scope at the time",
     "created_at": "2026-10-10T05:26:19Z",
-    "last_save_at": "2026-10-10T06:35:56.745Z",
+    "last_save_at": "2026-10-11T05:17:04.077Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:6a18ccc8604701f7e5806afa1020182dcb8ff2d61bc02839fb8357e114fbe7f0",
+    "source_fingerprint": "sha256:b0aa56ff25077be5d0f1f66822dfb343a45d621f920b5ecc7c52ded7ed37e552",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ae8506b9c72a874b31a617a77edf4a41f340f0f8f74fbd5eeae0d4ebeb6d5aed"

@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Install (setup and diagnostics for the aside binary)
 
-<!-- sk-doc-template: skill_asset_feature-catalog -->
-
 ## 1. OVERVIEW
 
 Carries setup and health: getting the `aside` binary onto a macOS host, verifying it with fixtures, and diagnosing the whole surface read-only. Distribution is an official curl bootstrap installer — not npm, not a GitHub package — supporting macOS (Darwin) arm64/x64 only, placing the shim at `~/.local/bin/aside` by default.

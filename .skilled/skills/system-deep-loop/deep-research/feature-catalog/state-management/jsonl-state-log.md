@@ -1,6 +1,6 @@
 ---
 title: "JSONL state log"
-description: "Provides the append-only deep-research ledger for config, iteration, and event records."
+description: "Acts as the append-only ledger for config, iteration, and lifecycle events."
 trigger_phrases:
   - "jsonl state log"
   - "deep-research-state.jsonl"
@@ -11,8 +11,6 @@ version: 1.14.0.11
 ---
 
 # JSONL state log
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

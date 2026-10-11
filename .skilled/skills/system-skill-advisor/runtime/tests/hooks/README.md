@@ -8,8 +8,6 @@ trigger_phrases:
 
 # Skill Advisor Hook Tests
 
-<!-- sk-doc-template: skill_readme -->
-
 > Regression coverage for settings-driven skill advisor hook invocation shape.
 
 ---

@@ -16,8 +16,6 @@ List a task's comments, with a reply count per comment.
 
 > **Live name (2026-10-08).** Call it as `clickup_official.clickup_official_clickup_get_task_comments` in Code Mode. The parameter table comes from the server's own schema, captured when the hosted server registered 61 tools on that date.
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -51,7 +49,7 @@ Fetch replies with `clickup_get_threaded_comments` when `reply_count` is above z
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-task-crud/task-comments.md` | Manual | Scenario that exercises this tool |
+| `manual-testing-playbook/mcp-task-crud/task-comments.md` | Manual playbook | Scenario that exercises this tool |
 
 ---
 

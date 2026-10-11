@@ -167,7 +167,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 | Pre-command only | `git-context.mjs` reads only state that exists before the command runs. Where a question can only be answered afterwards, there is deliberately no accessor. |
 | Cost | Nothing runs until a check asks for it; unrelated commands exit at the shape gate before a single git process is spawned. Each git call is bounded to 1.5s. |
 | Output | The shared hook writes one `additionalContext` JSON to stdout. OpenCode buffers and injects via `experimental.chat.system.transform`. Pi appends to `tool_result` content. No adapter writes to the TUI prompt line. |
-| Imports | Adapters import the shared `dispatch-rule-checks.mjs` (`readHardRules`/`evaluate`), `git-context.mjs`, `git-rule-checks.mjs`, and `hook-flags`. Nothing outside the repo. |
+| Imports | Adapters import the shared `dispatch-rule-checks.mjs` (`readHardRules`/`evaluate`), `git-context.mjs`, `git-rule-checks.mjs`, `hook-adapter-shared.cjs` (`readStdin`, 3000 ms stdin deadline), and `hook-flags`. Nothing outside the repo. |
 
 ---
 
@@ -178,9 +178,10 @@ Run from the repository root.
 ```bash
 node --test .skilled/skills/sk-git/scripts/lib/git-rule-checks.test.mjs
 node --test .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.test.mjs
+node --test .skilled/hooks/shared/hook-stdin-deadline.test.mjs
 ```
 
-Expected result: all tests pass (the 17 checks and the shared hook's parsing/suppression/surface logic).
+Expected result: all tests pass (the 17 checks, the shared hook's parsing/suppression/surface logic and the shared suite proving both hooks exit on their own when stdin stays open).
 
 ```bash
 node --test .opencode/plugins/tests/sk-git-message-gate.test.cjs

@@ -21,8 +21,6 @@ expected_leaf_resources:
 Prompt: Manual validation for the /goal-opencode command, opencode_goal tools, passive injection, supervisor lifecycle and default-off continuation gates.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Repo-Guards Project Plugin (repo-guards)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The `repo-guards` project plugin bridges this repository's existing guard cores into a Hermes session through the plugin hook surface, shelling out to each core and failing open.

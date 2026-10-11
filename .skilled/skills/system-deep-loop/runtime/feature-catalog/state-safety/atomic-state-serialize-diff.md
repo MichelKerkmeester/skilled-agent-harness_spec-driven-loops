@@ -11,8 +11,6 @@ version: 1.4.0.15
 
 # Atomic-state serialize-diff
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -43,7 +41,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/atomic-state.vitest.ts` | Test | Primary regression coverage for Atomic-state serialize-diff. |
+| `tests/unit/atomic-state.vitest.ts` | Automated test | Primary regression coverage for Atomic-state serialize-diff. |
 
 ---
 
@@ -51,9 +49,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: State safety
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F028
 - Feature file path: `state-safety/atomic-state-serialize-diff.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//001-atomic-state-serialize-diff`
 - Primary sources: `lib/deep-loop/atomic-state.ts`, `tests/unit/atomic-state.vitest.ts`
 Related references:
 - [state safety](../../feature-catalog/state-safety) — State safety category

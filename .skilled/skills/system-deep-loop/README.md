@@ -6,7 +6,7 @@ trigger_phrases:
   - "deep loop workflows"
   - "deep research review council"
   - "deep-loop hub routing"
-version: 1.4.3.0
+version: 1.6.0.0
 ---
 
 # system-deep-loop

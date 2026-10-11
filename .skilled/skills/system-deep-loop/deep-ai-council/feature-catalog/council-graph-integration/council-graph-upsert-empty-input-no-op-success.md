@@ -12,8 +12,6 @@ version: 1.7.0.10
 
 # runtime upsert CLI empty input no-op success
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify runtime upsert CLI returns explicit no-op success on empty input.
@@ -54,7 +52,6 @@ The user-visible contract is concrete: Verify runtime upsert CLI returns explici
 
 ## 4. SOURCE METADATA
 - Group: Council Graph Integration
-- Feature ID: DAC-020
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/council-graph-integration/council-graph-upsert-empty-input-no-op-success.md`
 - Playbook scenario: `manual-testing-playbook/council-graph-integration/council-graph-upsert-empty-input-no-op-success.md`

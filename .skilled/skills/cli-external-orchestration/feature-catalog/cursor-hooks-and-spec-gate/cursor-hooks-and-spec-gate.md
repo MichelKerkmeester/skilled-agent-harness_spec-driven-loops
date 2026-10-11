@@ -1,6 +1,6 @@
 ---
 title: "Cursor CLI Hooks And Spec-Gate Integration"
-description: "Current-state reference for cli-cursor's shared Cursor hook surface and Gate-3 adapters, including confirmed, registered-but-unconfirmed, and advisory paths."
+description: "`cli-cursor`'s hook/spec-gate adapter layer maps Cursor lifecycle and tool events to session priming, mutation policy, post-tool checks, dispatch guards, compaction support, and MCP routing advice."
 trigger_phrases:
   - "Cursor CLI Hooks And Spec-Gate Integration"
   - "cli-cursor hook adapters"
@@ -10,8 +10,6 @@ version: 1.4.0.11
 ---
 
 # Cursor CLI Hooks And Spec-Gate Integration (cli-cursor)
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

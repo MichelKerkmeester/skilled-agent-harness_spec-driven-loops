@@ -1,6 +1,6 @@
 ---
 title: "Debug-delegation scaffold generator"
-description: "scaffold-debug-delegation.sh generates a structured debug-delegation.md from a failure trail, versions filenames on collision, and never auto-dispatches @debug so the operator keeps explicit control of escalation."
+description: "`scaffold-debug-delegation.sh` generates a structured `debug-delegation.md` from a failure trail, versions filenames on collision, and never auto-dispatches `@debug`."
 trigger_phrases:
   - "debug-delegation scaffold generator"
   - "scaffold-debug-delegation.sh"
@@ -11,8 +11,6 @@ version: 1.6.0.8
 ---
 
 # Debug-delegation scaffold generator
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ---
 

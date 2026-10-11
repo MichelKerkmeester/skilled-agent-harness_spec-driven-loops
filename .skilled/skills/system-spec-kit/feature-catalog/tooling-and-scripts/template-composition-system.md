@@ -1,6 +1,6 @@
 ---
-title: "Template Composition System"
-description: "Level contract and inline rendering pipeline that generates Spec Kit packet documents from the current template source."
+title: "Template composition system"
+description: "Level contract and inline rendering pipeline that generates packet documents from the current template source."
 trigger_phrases:
   - "template composition system"
   - "create.sh"
@@ -11,8 +11,6 @@ version: 1.6.0.9
 ---
 
 # Template Composition System
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

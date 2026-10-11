@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Object detection (sk_vision_detect)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Locate objects or UI elements in an image and return labeled normalized bounding boxes.

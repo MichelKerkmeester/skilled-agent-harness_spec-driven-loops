@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Components (search_components / inspect_component / list_components)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Carries component lookup. `search_components` searches component names across every accessible project, personal and team, and is the first call when looking for a component by name. `inspect_component` reads a component's source, dependencies, and imports without installing anything and without a package manifest, so it is the safe way to read a component and the only way to read one into a non-React project. `list_components` enumerates the components inside one project, cursor-paginated by `after`.

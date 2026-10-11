@@ -12,8 +12,6 @@ version: 1.0.0.0
 
 # Cookies and Web Storage (DevTools parity)
 
-<!-- sk-doc-template: skill_asset_feature-catalog -->
-
 ## 1. OVERVIEW
 
 Chrome DevTools' Application panel (Cookies, Local Storage, Session Storage) maps onto the Playwright browser-context API plus `page.evaluate`. The discovery fixture ([`../../references/discovery-fixture-2026-07-16.json`](../../references/discovery-fixture-2026-07-16.json)) confirms `page` is a real Playwright `Page`, so `page.context().cookies()` and `page.context().addCookies()` (the `bdg network getCookies` / `Network.setCookie` analog) and storage reads via `evaluate` are reachable.

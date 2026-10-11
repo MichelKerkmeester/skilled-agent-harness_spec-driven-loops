@@ -1,6 +1,6 @@
 ---
-title: "CLI Dispatch Authorization And Inspection"
-description: "How the shared dispatch inspector classifies a shell command as direct/ambiguous/none — including quote-safe executor normalization — and how the Pi preflight gate turns that classification into an allow/deny authorization decision."
+title: "Shared Dispatch Inspector And Pi Authorization Gate"
+description: "One runtime-neutral inspector classifies a Bash command as `direct`, `ambiguous`, or `none`, and the Pi preflight gate turns that classification into an allow/deny authorization decision. The inspector is shared across the Claude, Codex, Devin, and Pi dispatch hooks and feeds both the observational audit trail and the Pi gate. It recognizes all seven executors plus the `cli-jev` judgment shapes, including the print-flagless `cli-hermes` forms."
 trigger_phrases:
   - "cli dispatch authorization"
   - "dispatch inspector classification"
@@ -11,8 +11,6 @@ version: 1.4.0.1
 
 # CLI Dispatch Authorization And Inspection (cli-external-orchestration)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The dispatch hooks share one runtime-neutral inspector that decides whether a Bash command is an external-CLI dispatch, and — under Pi — whether that dispatch is authorized. The inspector (`inspectDispatch` in `.skilled/hooks/dispatch/lib/dispatch-audit.mjs`) tokenizes a bounded command without evaluating it and returns exactly one classification:
@@ -20,6 +18,8 @@ The dispatch hooks share one runtime-neutral inspector that decides whether a Ba
 - `direct` — exactly one proven command-position executor (e.g. `devin -p x`, `codex exec -p x`, `opencode run x`).
 - `ambiguous` — an executor-shaped candidate that cannot be pinned to a single direct executor: variable (`$CLI -p x`), alias, command substitution, unknown wrapper, variable-prompt, or two dispatch segments.
 - `none` — no dispatch evidence.
+
+A shell `-c` wrapper (`bash -c`, `sh -c`, `zsh -c` or `dash -c`) is not an unknown wrapper: the inspector classifies the quoted command it runs, so `bash -c 'devin -p task'` is `direct cli-devin`. A variable counts as an executor only in command position, so `mkdir -p "$DIR"` and `node -p "$EXPR"` are `none`.
 
 The same classification feeds two consumers: the observational audit trail (`matchDispatchShape` / `recordDispatch`, which records only `direct` dispatches) and the Pi authorization gate (`shouldDenyPiDispatch`). Because the inspector is a shared library, its classification governs all four inspector runtimes — Claude, Codex, Devin, and Pi.
 

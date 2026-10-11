@@ -1,6 +1,6 @@
 ---
 title: "Orphan sweep stop-hook activation"
-description: "The Stop hook's session-cleanup script no-ops when CLAUDE_SESSION_PID is absent because guessing from PPID is refused as a cross-session-kill risk. When enabled, its no-session-pid branch delegates to the orphan-only MCP sweeper, which reaps only ownerless reparented daemons and so can never touch a live session. Default off, with dry-run and live modes."
+description: "The Stop hook's session-cleanup script no-ops without `CLAUDE_SESSION_PID`, because guessing from PPID is refused as a cross-session-kill risk."
 trigger_phrases:
   - "orphan sweep stop-hook activation"
   - "session-cleanup no session pid branch"
@@ -11,8 +11,6 @@ version: 1.6.0.2
 ---
 
 # Orphan sweep stop-hook activation
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

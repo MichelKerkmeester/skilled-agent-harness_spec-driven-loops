@@ -13,8 +13,6 @@ version: 1.0.0.6
 
 # Cluster and classify (cluster.ts / types.ts)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Transforms the raw color data from `tokens.json` into a stability-gated token set ready for DESIGN.md composition. Colors are clustered in the OKLCH color space into named roles (brand, semantic, surface, border, text, interactive). Each token then receives an L1 through L4 stability classification that governs whether and where it appears in the final document. This is the gating stage between raw extraction and publication: colors without a classification cannot reach DESIGN.md.

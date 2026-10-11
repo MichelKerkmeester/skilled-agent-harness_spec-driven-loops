@@ -12,8 +12,6 @@ version: 1.4.0.4
 
 # Atomic state
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -44,7 +42,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/atomic-state.vitest.ts` | Test | Primary regression coverage for Atomic state. |
+| `tests/unit/atomic-state.vitest.ts` | Automated test | Primary regression coverage for Atomic state. |
 
 ---
 
@@ -52,7 +50,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: State safety
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F006
 - Feature file path: `state-safety/atomic-state.md`
 - Primary sources: `lib/deep-loop/atomic-state.ts`, `tests/unit/atomic-state.vitest.ts`
 Related references:

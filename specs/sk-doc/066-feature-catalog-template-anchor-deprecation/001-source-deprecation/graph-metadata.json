@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/066-feature-catalog-template-anchor-deprecation/001-source-deprecation",
+  "spec_folder": "sk-doc/066-feature-catalog-template-anchor-deprecation/001-source-deprecation",
+  "parent_id": "sk-doc/066-feature-catalog-template-anchor-deprecation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "source deprecation",
+      "phase 1 source deprecation",
+      "feature catalog template marker source",
+      "sk-doc-template comment removal",
+      "source deprecation plan",
+      "source deprecation tasks",
+      "source deprecation acceptance criteria",
+      "source deprecation goal",
+      "source deprecation implementation summary"
+    ],
+    "key_topics": [
+      "source",
+      "deprecation",
+      "phase",
+      "feature",
+      "catalog",
+      "template",
+      "marker",
+      "sk-doc-template",
+      "comment",
+      "removal",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md",
+      ".skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md",
+      ".skilled/skills/sk-doc/sk-create-feature-catalog/references/examples.md",
+      ".skilled/skills/sk-doc/sk-create-feature-catalog/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-feature-catalog/changelog/v1.0.2.0.md",
+      ".hermes/skills/sk-create-feature-catalog/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog-snippet-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "examples.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-feature-catalog/references/examples.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-feature-catalog/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.2.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-feature-catalog/changelog/v1.0.2.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Delete",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Authors",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The feature catalog scaffolds stamp a template-name HTML comment under the H1 of every new catalog document, `<!-- sk-doc-template: skillassetfeaturecatalog -->`",
+    "created_at": "2026-10-10T18:42:46Z",
+    "last_save_at": "2026-10-11T05:17:08.984Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:79a45c84890557e9f98fbc19a19b8abdc5011c023eab103961d602681e522761",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5f64caa081b725e72bc1f05bd90bade1dc5959cccae063e88b84dbd77eabf152",
+      "plan.md": "ba0c4fa694c4acaacd098312924a81258b74f4c5c5d9471f19c1e384cae586d8",
+      "tasks.md": "6a059f624c7306c1b60df3290e128d900c1681f75539f84df8d118405c6ad371",
+      "implementation-summary.md": "5e2dc75fc7d1be3526e2190e99936930f823dff98158f41b04cd67947f48320f"
+    },
+    "last_active_at": null
+  }
+}

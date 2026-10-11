@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # Session Cleanup (MCP)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -38,8 +36,8 @@ SKILL.md §3 "MCP Session Cleanup" makes the finally-block mandatory; §3 "Invoc
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-parallel-instances/close-and-select-page.md` | Manual | close_page behavior (BDG-016) |
-| `manual-testing-playbook/recovery-and-failure/cleanup-leak.md` | Manual | Leak detection counterpart (BDG-022) |
+| `manual-testing-playbook/mcp-parallel-instances/close-and-select-page.md` | Manual playbook | close_page behavior (BDG-016) |
+| `manual-testing-playbook/recovery-and-failure/cleanup-leak.md` | Manual playbook | Leak detection counterpart (BDG-022) |
 
 ---
 

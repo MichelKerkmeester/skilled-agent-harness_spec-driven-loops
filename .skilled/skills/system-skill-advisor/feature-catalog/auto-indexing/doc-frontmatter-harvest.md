@@ -11,8 +11,6 @@ version: 0.8.0.1
 
 # Doc-Frontmatter Trigger Harvest
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Make the detailed frontmatter on skill reference/asset docs (`title`, `description`, `trigger_phrases`, `importance_tier`, `contextType`) a real routing signal: doc-specific prompts surface the owning skill AND point at the exact doc to open, without letting doc volume buy routing weight.

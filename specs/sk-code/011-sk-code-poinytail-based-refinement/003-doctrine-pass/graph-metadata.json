@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Ponytail 5 asks whether a helper, component, service or pattern already exists in the codebase before reaching for the standard library",
     "created_at": "2026-10-09T16:00:48Z",
-    "last_save_at": "2026-10-09T19:51:35.327Z",
+    "last_save_at": "2026-10-11T05:17:04.033Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8c8051fd8dde9b84c56b7627460b1af7ed03e62820a2c52cc326212fe2d02823",
+    "source_fingerprint": "sha256:6544667e43caf2997aa2a9d312f549f3a9adc1a8ae1c9d4125568504c823f4a2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b9ffe22f473c463169bc2600d6ecee5d619162792690a43ba0fbe5a2e657f5e2",

@@ -1,6 +1,6 @@
 ---
 title: "JSON Output Flag"
-description: "--json — per-command flag (not global) on list, show, statuses, and teams. Required for agent workflows on those commands."
+description: "--json: per-command flag (not global) on add, list, show, statuses, and teams. Required for agent workflows on those commands."
 trigger_phrases:
   - "json output flag"
   - "--json"
@@ -12,19 +12,17 @@ version: 1.0.0.3
 
 # JSON Output Flag
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
 
-`--json` is a per-command option, not a global flag — it exists on exactly four commands: `cupt list --json`, `cupt show <id> --json`, `cupt statuses <id> --json`, and `cupt teams --json`. It is NOT available on `notes`, `attach list`, `summary`, `context`, or `cupt time status`. JSON output is stable and parseable where supported.
+`--json` is a per-command option, not a global flag — it exists on five commands: `cupt add --json` (prints the created task), `cupt list --json`, `cupt show <id> --json`, `cupt statuses <id> --json`, and `cupt teams --json`. The `notes`, `attach list`, `summary`, `context` and `cupt time status` commands do not accept it. JSON output is stable and parseable where supported.
 
 ---
 
 ## 2. HOW IT WORKS
 
-Use `--json` in agent code on the four commands that support it. Never parse human-readable cupt output — it is not a stable format and may change between versions. Empty list result is `[]` (valid JSON array).
+Use `--json` in agent code on the five commands that support it. Never parse human-readable cupt output — it is not a stable format and may change between versions. Empty list result is `[]` (valid JSON array).
 
 ---
 
@@ -40,7 +38,7 @@ Use `--json` in agent code on the four commands that support it. Never parse hum
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | Per-scenario playbook files for this feature |
+| `manual-testing-playbook/` | Manual playbook | Per-scenario playbook files for this feature |
 
 ---
 

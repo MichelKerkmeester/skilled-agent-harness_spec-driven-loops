@@ -1,6 +1,6 @@
 ---
 title: "Canonical-first spec-root resolution"
-description: "Canonical-first spec-root resolution gives unqualified packet names a stable canonical winner, preserves explicit paths, retains legacy-only read fallback, and blocks unsafe duplicate-root writes."
+description: "Gives unqualified packet names a stable canonical winner, preserves explicit paths, retains a legacy-only read fallback, and blocks unsafe duplicate-root writes."
 trigger_phrases:
   - canonical-first spec-root resolution
   - canonical spec folder resolver
@@ -12,11 +12,9 @@ version: 1.0.0.0
 
 # Canonical-first spec-root resolution
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
-Canonical-first spec-root resolution gives unqualified packet names a stable canonical winner under `.opencode/specs`, preserves explicit paths, retains a legacy-only read fallback, and blocks writes when two physical roots contain divergent copies of the same packet.
+Canonical-first spec-root resolution gives unqualified packet names a stable canonical winner under `specs/`, preserves explicit paths, retains a legacy-only read fallback, and blocks writes when two physical roots contain divergent copies of the same packet.
 
 The implementation is present on this implementation branch. Its real-data migration and compatibility-alias retirement have not been claimed or recorded as completed in production: those rollout steps remain deployment-gated by the data-before-writers migration sequence, the clean compatibility window, and the alias-retirement runbook.
 
@@ -26,7 +24,7 @@ The implementation is present on this implementation branch. Its real-data migra
 
 ### Canonical Selection And Compatibility
 
-`resolveSpecFolderCanonical()` preserves absolute paths and paths explicitly qualified with `specs/` or `.opencode/specs/`. For an unqualified packet identity, it checks the canonical packet first, falls back to a unique existing legacy packet for reads, and otherwise returns the canonical destination for a new packet. The shared config helper follows the same canonical-before-legacy order while `getAllExistingSpecsDirs()` can still enumerate both distinct roots.
+`resolveSpecFolderCanonical()` preserves absolute paths and paths explicitly qualified with `specs/` or the legacy `specs` root under `.opencode`. For an unqualified packet identity, it checks the canonical packet first, falls back to a unique existing legacy packet for reads, and otherwise returns the canonical destination for a new packet. The shared config helper follows the same canonical-before-legacy order while `getAllExistingSpecsDirs()` can still enumerate both distinct roots.
 
 ### Collision And Write Safety
 
@@ -47,7 +45,7 @@ The implementation branch therefore contains the resolver, guards, migration pri
 ### 1) Canonical-first resolution and explicit-path preservation
 
 - `.skilled/skills/system-spec-kit/runtime/cli/core/spec-root-canonical-resolver.ts:12-18` recognizes explicit root-qualified inputs.
-- `.skilled/skills/system-spec-kit/runtime/cli/core/spec-root-canonical-resolver.ts:43-72` preserves absolute and qualified paths, checks `.opencode/specs` first, falls back to an existing legacy-only packet, and otherwise returns the canonical candidate.
+- `.skilled/skills/system-spec-kit/runtime/cli/core/spec-root-canonical-resolver.ts:43-72` preserves absolute and qualified paths, checks `specs` first, falls back to an existing legacy-only packet, and otherwise returns the canonical candidate.
 - `.skilled/skills/system-spec-kit/runtime/cli/core/config.ts:321-360` orders canonical before legacy for active-root selection while enumerating and realpath-deduplicating both existing roots.
 
 ### 2) Fail-closed collision and writer guards
@@ -67,7 +65,7 @@ The implementation branch therefore contains the resolver, guards, migration pri
 ### 4) Integrated writers and validation matrix
 
 - `.skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts:27-28` imports the canonical resolver and write guard; `.skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts:913-917` resolves the requested packet and applies the guard before writing.
-- `.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:811-815` selects `.opencode/specs` as the creation root before applying an optional track.
+- `.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:811-815` selects `specs/` as the creation root before applying an optional track.
 - `.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts:14` imports the canonical resolver; `.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts:925` uses it for the configured packet argument.
 - `.skilled/skills/system-spec-kit/runtime/cli/core/spec-root-fixtures.ts:46-123` defines the R1-R10 root-state contract.
 - `.skilled/skills/system-spec-kit/runtime/cli/tests/spec-root-canonical-resolver.vitest.ts:35-79` covers canonical-first bare names, new canonical targets, legacy-only fallback, explicit paths, and traversal rejection.
@@ -75,8 +73,8 @@ The implementation branch therefore contains the resolver, guards, migration pri
 
 ### 5) Deployment-gated status
 
-- `.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/research.md:17-25` defines the canonical-first contract and the data-before-writers deployment order.
-- `.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/research.md:138-147` gates reader rollout on 28 clean days and alias removal on complete no-alias proof.
+- `specs/system-speckit/029-spec-root-resolution-hardening/research/research.md:17-25` defines the canonical-first contract and the data-before-writers deployment order.
+- `specs/system-speckit/029-spec-root-resolution-hardening/research/research.md:138-147` gates reader rollout on 28 clean days and alias removal on complete no-alias proof.
 
 ### Implementation
 

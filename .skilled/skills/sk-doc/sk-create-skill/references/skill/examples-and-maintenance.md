@@ -176,7 +176,10 @@ pdf-editor/
 - Minor (1.0.0.0 → 1.1.0.0): New features, new bundled resources
 - Patch (1.0.0.0 → 1.0.1.0): Bug fixes, typo corrections
 
-**Update frontmatter version field**:
+**Bump the release version**:
+
+Bump with `/create:changelog`, which writes the changelog entry and sets the new version in every carrier the skill root already has: SKILL.md, and for a hub ROUTER.md, description.json, hub-router.json and mode-registry.json. README.md keeps its own document version. For a hub, `node .skilled/commands/doctor/scripts/parent-skill-check.cjs <hub-root>` then confirms every copy matches.
+
 ```yaml
 ---
 name: markdown-optimizer

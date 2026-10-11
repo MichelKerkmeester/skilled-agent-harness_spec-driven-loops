@@ -12,8 +12,6 @@ version: 1.7.0.10
 
 # Mid-run interruption recovery: graph vs baseline
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Demonstrate runtime status CLI returns structured recovery context where the baseline requires manual JSONL parsing.
@@ -56,7 +54,6 @@ The user-visible contract is concrete: Demonstrate runtime status CLI returns st
 
 ## 4. SOURCE METADATA
 - Group: Council Graph Value Comparison
-- Feature ID: DAC-032
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/council-graph-value-comparison/mid-run-interruption-recovery-graph-vs-baseline.md`
 - Playbook scenario: `manual-testing-playbook/council-graph-value-comparison/mid-run-interruption-recovery-graph-vs-baseline.md`

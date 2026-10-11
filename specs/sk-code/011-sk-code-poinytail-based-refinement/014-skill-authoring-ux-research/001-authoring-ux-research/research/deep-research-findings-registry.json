@@ -1,0 +1,208 @@
+{
+  "mergedFrom": [
+    "t3-dsflash-llmgw"
+  ],
+  "lineageExecutors": {
+    "t3-dsflash-llmgw": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    }
+  },
+  "openQuestions": [],
+  "resolvedQuestions": [],
+  "keyFindings": [
+    {
+      "id": "sf-x-001",
+      "title": "Cross-class pattern: a derivable value is stored and its re-mint is triggered off the author's surface; attach existing checks to surfaces the author already touches.",
+      "text": "Ten verified instances across the five classes; the lexical split (author vocabularies vs consumed vocabularies) compounds it.",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/scripts/git-hooks/pre-commit:352-549",
+        ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs:7-17"
+      ],
+      "_lineages": [
+        "t3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "sf-e1-001",
+      "title": "E1 root cause: stored projections with out-of-loop mint triggers; three prevention states (commit-prevented, check-unwired, post-merge-healed).",
+      "text": "leaf-manifest is excluded from the pre-commit auto-mint trigger (references/assets not in ROUTE_PATHS); the router intent-signal check has no routine caller and fails today (cli-classifier, 23 missing); the trigger index is healed only by CI after push; the compiled graph and SQLite are operator-gated reindexes.",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/scripts/git-hooks/pre-commit:439-449",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs:1-25",
+        ".github/workflows/trigger-index-rebuild.yml:1-10"
+      ],
+      "_lineages": [
+        "t3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "sf-e1-002",
+      "title": "E1 smallest fix: extend the existing pre-commit staged-hub dispatch to the leaf corpus and wire the existing checks into the routing-drift CI job.",
+      "text": "One trigger edit beats a new file; a generic derived-artifact registry is unearned until a sixth family appears.",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/scripts/git-hooks/pre-commit:352-549",
+        ".github/workflows/routing-registry-drift.yml:196"
+      ],
+      "_lineages": [
+        "t3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "sf-e2-001",
+      "title": "E2 root cause: hand-allocated version stored six times; the changelog command allocates from one checkout and writes one file; parity is doctor-time with a warn carve-out.",
+      "text": "SKILL.md is authority; four routing artifacts and README follow; the changelog filename carries the same value; guidance names one field; README drift warns on the four hubs that have it (sk-doc 2.2.0.77 vs 2.3.0.0 live).",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1783-1891",
+        ".skilled/commands/create/assets/create-changelog-auto.yaml:486-512"
+      ],
+      "_lineages": [
+        "t3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "sf-e2-002",
+      "title": "E2 smallest fix: empty the README warn set after repair, then extend /create:changelog to allocate against the shared ref and write all carriers in one command.",
+      "text": "A registry/lock abstraction and a standalone bump script both fail at the cheaper move.",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1804-1821",
+        ".skilled/commands/create/assets/create-changelog-auto.yaml:636-652"
+      ],
+      "_lineages": [
+        "t3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "sf-e3-003",
+      "title": "E3 measured failure: battery 13/17 positives and 2/5 negatives, unchanged across the tie-break change; PASS requires >=14/17 and 0/5.",
+      "text": "The fix order: values first (intent signals for the expected winners), then wire the existing checks and source description.json in the carry generator; a third linter fails the cheaper move.",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/008-session-aware-tie-break/implementation-summary.md:121",
+        ".skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md:55-61"
+      ],
+      "_lineages": [
+        "t3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "sf-e3-001",
+      "title": "E3 root cause part one: split vocabularies — description.json has no advisor consumer; only graph-metadata intent_signals (1.0) and derived paths (0.35) score; no counter-signal lane exists.",
+      "text": "The file-path pull is a bounded keyword lane (key_files/source_docs at 0.35), not an ownership rule; the battery's proposed negative_keywords lane has zero occurrences; ties fall to routerPolicy.tieBreak and generic words.",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py:1009-1016",
+        ".skilled/skills/system-skill-advisor/runtime/lib/derived/trust-lanes.ts:40-51"
+      ],
+      "_lineages": [
+        "t3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "sf-e3-002",
+      "title": "E3 root cause part two: two operator-gated reindexes sit between an author edit and the served scorer; the freshness panel is report-only and the compiled graph is stale today.",
+      "text": "Compiled skill-graph.json generated 2026-10-02 against a newest source stamp of 2026-10-04; the panel always exits 0 by design and has no CI/hook caller.",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs:7-17"
+      ],
+      "_lineages": [
+        "t3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "sf-e4-001",
+      "title": "E4 root cause: the front door accepts --surface-hint and the hub docs demand callers pass it, but advisor_recommend's closed option schema and spawn argv never carry it.",
+      "text": "Zero occurrences of the flag in the handler and tool descriptor; both needed compat idioms (source capability probe; unknown-option retry) already exist in the caller chain.",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:360-377",
+        ".skilled/skills/system-skill-advisor/runtime/tools/advisor-recommend.ts:11-25"
+      ],
+      "_lineages": [
+        "t3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "sf-e4-002",
+      "title": "E4 smallest fix: add surfaceHint to the options schema and thread it into the spawn argv, reusing the existing retry; source the value from the existing stack-detection rules.",
+      "text": "Proof is an advisor-level argv assertion plus a hinted end-to-end order check; the battery cannot prove it.",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1497-1510",
+        ".skilled/skills/sk-code/SKILL.md:63"
+      ],
+      "_lineages": [
+        "t3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "sf-e5-001",
+      "title": "E5 root cause: the rule families live on a third check plane (per-hub doctor plus skill-local umbrella) with no edit-loop trigger; severity carve-outs keep 13c advise-only.",
+      "text": "parent-skill-check runs only in doctor and CI; the umbrella has no workflow or hook caller; one hub's checker measures ~2s, cheap enough for a scoped commit-time call.",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/commands/doctor/assets/doctor-parent-skill.yaml:5",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:1-33"
+      ],
+      "_lineages": [
+        "t3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "sf-e5-002",
+      "title": "E5 smallest fix: empty the warn lists after repair, then extend the pre-commit staged-hub dispatch with the scoped checker and the umbrella; CI wiring second.",
+      "text": "The orphan-doc history shows the cost: nine docs and a tenth passed every gate while a leg was held back.",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/scripts/git-hooks/pre-commit:439-549",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/001-router-orphan-docs/implementation-summary.md:52"
+      ],
+      "_lineages": [
+        "t3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "sf-x-002",
+      "title": "External-audience map: shipped fixes are generators/validators/messages/bump command; toolchain-only fixes are hook/CI wiring, warn values and the advisor hint.",
+      "text": "validate_skill_package.py already carries parent-skill-check for hubs; standalone roots lack one leaf-freshness check entry.",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py:247-288"
+      ],
+      "_lineages": [
+        "t3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "sf-x-003",
+      "title": "Live defects at synthesis time (left untouched, research-only phase): intent-signal carry FAILED for cli-classifier (23 missing); compiled skill graph STALE (2026-10-02 vs 2026-10-04); trigger index stale by 5 docs (this packet).",
+      "text": "All three have named repair commands and proofs recorded in the root-cause sections.",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs"
+      ],
+      "_lineages": [
+        "t3-dsflash-llmgw"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 0,
+    "keyFindings": 14,
+    "sourceFindings": 14,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.35,
+    "coverageBySources": {}
+  }
+}

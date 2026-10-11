@@ -1,6 +1,6 @@
 ---
 title: "Ideas backlog lifecycle"
-description: "Separates one-off idea observations from reducer-promoted backlog candidates and durable rejection state."
+description: "Promotes recurring ideas through reducer-owned threshold and ranking rules."
 trigger_phrases:
   - "ideas backlog lifecycle"
   - "idea_observed"
@@ -11,8 +11,6 @@ version: 1.14.0.13
 ---
 
 # Ideas backlog lifecycle
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

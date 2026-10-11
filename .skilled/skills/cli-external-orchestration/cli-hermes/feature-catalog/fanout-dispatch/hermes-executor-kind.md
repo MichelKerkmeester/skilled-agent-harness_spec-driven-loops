@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Hermes Executor Kind And Lineage Command (buildHermesLineageCommand)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 `cli-hermes` is a first-class `ExecutorKind`, and `buildHermesLineageCommand` emits the one auditable headless shape a fan-out lineage runs: `hermes chat -Q --oneshot` with the prompt delivered on stdin.

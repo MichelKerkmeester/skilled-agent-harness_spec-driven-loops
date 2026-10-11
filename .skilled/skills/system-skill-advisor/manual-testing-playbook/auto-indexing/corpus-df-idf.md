@@ -19,8 +19,6 @@ expected_leaf_resources: []
 Prompt: Manual validation that DF/IDF corpus statistics in lib/df-idf.ts are computed only over the active corpus, are debounced and exclude archived or future skills.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

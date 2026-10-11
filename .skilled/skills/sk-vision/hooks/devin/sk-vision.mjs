@@ -28,6 +28,7 @@ import { existsSync } from 'node:fs';
 
 const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../../../../hooks/shared/hook-flags.cjs');
+const { readStdin } = require('../../../../hooks/shared/hook-adapter-shared.cjs');
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const EVIDENCE_ENTRY = resolve(HERE, '../../vision-runtime/dist/prompt-evidence.js');
@@ -39,12 +40,6 @@ const EVIDENCE_ENTRY = resolve(HERE, '../../vision-runtime/dist/prompt-evidence.
 function emit(payload) {
   process.stdout.write(JSON.stringify(payload));
   process.exit(0);
-}
-
-async function readStdin() {
-  const chunks = [];
-  for await (const chunk of process.stdin) chunks.push(chunk);
-  return Buffer.concat(chunks).toString('utf8');
 }
 
 /**

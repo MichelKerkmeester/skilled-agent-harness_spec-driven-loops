@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Flows (flow-intent queries over search_screens)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Carries multi-step journey research: onboarding progressions, recovery paths, checkout journeys, and other flows as they ship in real apps. **Live discovery on 2026-07-16 supersedes the research baseline** (`../../references/discovery-fixture-2026-07-16.json`): a dedicated **`search_flows` tool exists** — registry name `mobbin.mobbin.search_flows`, TS callable `mobbin.mobbin_search_flows(...)` — returning flow objects with `name`, `actions[]`, `screen_count`, and ordered per-screen previews (`screens[].position`). `search_screens` remains available for screens-level journey queries.

@@ -1,6 +1,6 @@
 ---
 title: "JSON-primary deprecation posture"
-description: "Routine saves prefer --json or --stdin structured input, while positional JSON file input remains supported on the same structured path; operator guidance documents JSON-first save workflows without claiming positional input was removed."
+description: "Routine saves prefer `--json` or `--stdin` structured input, while positional JSON file input remains supported on the same structured path."
 trigger_phrases:
   - json-primary deprecation posture
   - json-first save workflow
@@ -11,8 +11,6 @@ version: 1.6.0.15
 ---
 
 # JSON-primary deprecation posture
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

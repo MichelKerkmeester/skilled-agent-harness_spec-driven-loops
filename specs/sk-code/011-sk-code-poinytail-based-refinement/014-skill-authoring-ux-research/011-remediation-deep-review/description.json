@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/011-remediation-deep-review",
+  "description": "Each remediation phase was built by a cli-pi builder and checked by the same orchestrator that wrote its brief",
+  "keywords": [
+    "remediation",
+    "phase",
+    "cli-pi",
+    "builder",
+    "checked",
+    "same",
+    "orchestrator",
+    "wrote",
+    "brief"
+  ],
+  "lastUpdated": "2026-10-10T22:13:04.711Z",
+  "specId": "011",
+  "folderSlug": "remediation-deep-review",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "014-skill-authoring-ux-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

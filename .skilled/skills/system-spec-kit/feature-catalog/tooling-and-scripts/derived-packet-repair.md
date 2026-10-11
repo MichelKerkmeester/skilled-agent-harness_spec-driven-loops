@@ -11,8 +11,6 @@ version: 1.6.0.1
 
 # Derived packet repair
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Packet validation failures divide into two kinds, and only one is a machine's

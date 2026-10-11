@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-doc/066-feature-catalog-template-anchor-deprecation/009-review-remediation",
+  "description": "Phase 9: review-remediation",
+  "keywords": [
+    "phase",
+    "review-remediation"
+  ],
+  "lastUpdated": "2026-10-10T23:55:39.582Z",
+  "specId": "009",
+  "folderSlug": "review-remediation",
+  "parentChain": [
+    "sk-doc",
+    "066-feature-catalog-template-anchor-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,0 +1,39 @@
+{
+  "type": "iteration",
+  "iteration": 8,
+  "run": 8,
+  "runId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+  "sessionId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+  "lineageId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.8,
+  "status": "complete",
+  "focus": "External-user lens second half: version minting, silent hook payload loss, routing surprises, error messages including a live pi dispatch refusal",
+  "findingsCount": 5,
+  "noveltyJustification": "Five new findings: the absent version-uniqueness check at mint time, the silent late-payload loss with no user-side signal, the bimodal error-message quality with the pi ambiguous denial as the outlier observed live, routing surprises documented where users are not looking, and the designed ledger-based runtime recovery.",
+  "keyQuestions": [
+    "Q9: What breaks or confuses an external user who clones or installs this framework: setup, generated artifacts, version numbering, hook timing, routing surprises, error messages and recovery from a half-applied state?"
+  ],
+  "answeredQuestions": [
+    "Q9: What breaks or confuses an external user who clones or installs this framework: setup, generated artifacts, version numbering, hook timing, routing surprises, error messages and recovery from a half-applied state?"
+  ],
+  "ruledOut": [
+    "A per-hook telemetry counter for dropped payloads - needs a measured host latency and test first and adds failure surface to fail-open hooks",
+    "Rewording every guard message into a shared template - the exemplary messages differ by context and a template would flatten the gateway reasons"
+  ],
+  "toolsUsed": ["read", "bash", "rg", "grep"],
+  "sourcesQueried": [
+    ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts",
+    ".skilled/skills/system-spec-kit/changelog/v2.7.2.0.md:18",
+    ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:249",
+    ".skilled/skills/system-spec-kit/runtime/hooks/README.md:88",
+    "README.md:604",
+    "live: TMPDIR env-prefixed node --test command denied by pi dispatch guard"
+  ],
+  "edgeCase": "partial-success",
+  "timestamp": "2026-10-10T19:05:08Z",
+  "durationMs": null
+}

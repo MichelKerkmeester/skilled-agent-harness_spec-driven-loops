@@ -12,8 +12,6 @@ version: 2.3.0.2
 
 # Citation Drift Census Across Doc Families (cite-drift-scan.mjs --corpus)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Extends the citation drift scan to the spec docs as well as the skill docs, with per-family counts, moved citations resolved through a git-derived redirect table and file-name-only matches kept out of the in-range count.

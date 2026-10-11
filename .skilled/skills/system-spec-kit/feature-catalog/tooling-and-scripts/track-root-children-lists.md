@@ -1,6 +1,6 @@
 ---
 title: "Track-root children lists"
-description: "Keeps each track root's children_ids equal to the packets the track holds: a writer sets the list from disk, create.sh --track lists a new packet, and a pre-push gate blocks a commit whose list disagrees."
+description: "Keeps each track root's `children_ids` equal to the packets the track holds, and blocks a push whose list disagrees."
 trigger_phrases:
   - "track root children_ids"
   - "refresh-track-roots"
@@ -10,8 +10,6 @@ version: 2.0.0.0
 ---
 
 # Track-root children lists
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

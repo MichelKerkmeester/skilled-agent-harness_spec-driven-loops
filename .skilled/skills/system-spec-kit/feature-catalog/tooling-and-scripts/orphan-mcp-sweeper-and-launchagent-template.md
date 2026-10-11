@@ -1,6 +1,6 @@
 ---
-title: "Orphan MCP Sweeper and LaunchAgent Template"
-description: "Dry-run-first operator runbook and scripts for stale MCP helper cleanup, temporary dispatch artifact cleanup, Claude session cleanup, and later launchd rollout."
+title: "Orphan MCP sweeper and LaunchAgent template"
+description: "Dry-run-first operator runbook and scripts for stale MCP helper cleanup, temporary dispatch artifact cleanup and session cleanup."
 trigger_phrases:
   - "orphan mcp sweeper and launchagent template"
   - "orphan-mcp-sweeper.sh"
@@ -11,8 +11,6 @@ version: 1.6.0.9
 ---
 
 # Orphan MCP Sweeper and LaunchAgent Template
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

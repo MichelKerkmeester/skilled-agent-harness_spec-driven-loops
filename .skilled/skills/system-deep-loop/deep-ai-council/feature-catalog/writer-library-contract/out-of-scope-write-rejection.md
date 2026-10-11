@@ -12,8 +12,6 @@ version: 1.7.0.9
 
 # OUT_OF_SCOPE_WRITE rejection
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify writes outside ai-council/** are rejected with OUT_OF_SCOPE_WRITE before filesystem touch.
@@ -53,7 +51,6 @@ The user-visible contract is concrete: Verify writes outside ai-council/** are r
 
 ## 4. SOURCE METADATA
 - Group: Writer Library Contract
-- Feature ID: DAC-017
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/writer-library-contract/out-of-scope-write-rejection.md`
 - Playbook scenario: `manual-testing-playbook/writer-library-contract/out-of-scope-write-rejection.md`

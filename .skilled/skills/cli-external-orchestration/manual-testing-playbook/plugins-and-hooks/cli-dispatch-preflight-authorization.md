@@ -17,15 +17,13 @@ version: 1.4.0.1
 
 # CLI Dispatch Preflight Authorization
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW
 
 The dispatch preflight authorization surface decides, before a Bash tool call runs, whether a command is an external-CLI dispatch and — under Pi — whether that dispatch is authorized. It is built on one shared, runtime-neutral inspector consumed by every dispatch hook:
 
-- Shared inspector: `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` (`inspectDispatch` / `matchDispatchShape`). `inspectDispatch` tokenizes a bounded shell command without evaluating it and returns one of three classifications: `direct` (exactly one proven command-position executor), `ambiguous` (an executor-shaped candidate that cannot be pinned to a single direct executor — variable/alias/substitution/wrapper/multi-segment forms), or `none` (no dispatch evidence).
+- Shared inspector: `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` (`inspectDispatch` / `matchDispatchShape`). `inspectDispatch` tokenizes a bounded shell command without evaluating it and returns one of three classifications: `direct` (exactly one proven command-position executor), `ambiguous` (an executor-shaped candidate that cannot be pinned to a single direct executor — variable/alias/substitution/unknown-wrapper/multi-segment forms), or `none` (no dispatch evidence). A shell `-c` wrapper (`bash`, `sh`, `zsh`, `dash`) is unwrapped and classified by the command it runs, and a variable counts as an executor only in command position, so `mkdir -p "$DIR"` is `none`.
 - Pi authorization gate: `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts` (`shouldDenyPiDispatch`, wired via the `tool_call` handler). It maps the inspector's `kind` to an allow/deny decision: `none` → no-op (not a dispatch), `ambiguous` → deny (the command does not prove one direct executor), `direct` → deny unless the user's own request names the matching executor (or a `/deep:* --executor=cli-X` override).
 - Cross-runtime consumers: the same shared inspector feeds the Claude, Codex, and Devin dispatch hooks (`dispatch-preflight-lint.mjs` and `dispatch-audit-posttooluse.mjs` under each runtime folder) and the observational audit trail (`matchDispatchShape`, which records only `direct` dispatches). A classification change in the shared inspector therefore changes behavior for all four inspector runtimes at once.
 

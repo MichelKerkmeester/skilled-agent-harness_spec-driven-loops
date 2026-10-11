@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/005-claim-corrections",
+  "description": "Phase 5: claim-corrections",
+  "keywords": [
+    "phase",
+    "claim-corrections"
+  ],
+  "lastUpdated": "2026-10-10T20:17:54.952Z",
+  "specId": "005",
+  "folderSlug": "claim-corrections",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "012-post-merge-deep-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

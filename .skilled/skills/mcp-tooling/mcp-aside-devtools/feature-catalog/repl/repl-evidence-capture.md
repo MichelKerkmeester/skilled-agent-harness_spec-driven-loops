@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Repl (deterministic evidence lane over aside repl)
 
-<!-- sk-doc-template: skill_asset_feature-catalog -->
-
 ## 1. OVERVIEW
 
 Carries deterministic, evidence-friendly browser steps: open this tab, snapshot it, screenshot it, save the PDF. `aside repl "<JavaScript>"` keeps a persistent JavaScript context with Playwright APIs while its process is alive — the right lane when the steps ARE the deliverable and a nondeterministic agent would waste tokens or blur the proof.

@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # whoami
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The authenticated-user lookup. READ-ONLY. Canonical callable: `magicpath.whoami({})` (confirm via `tool_info` first).

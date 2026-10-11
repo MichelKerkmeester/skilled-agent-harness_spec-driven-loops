@@ -1,6 +1,6 @@
 ---
 title: "Registry-Driven Deep-Loop Mode Classification"
-description: "How the system-deep-loop hub classifies a request into one of three workflowMode packets via a three-tier discriminator, without holding any per-mode logic itself."
+description: "`mode-registry.json` is the single source of truth for the hub's three `workflowMode` packets, each carrying a `workflowMode`/`runtimeLoopType`/`backendKind` three-tier discriminator."
 trigger_phrases:
   - "registry-driven deep-loop mode classification"
   - "system-deep-loop three-tier discriminator"
@@ -10,8 +10,6 @@ version: 1.0.0.0
 ---
 
 # Registry-Driven Deep-Loop Mode Classification (system-deep-loop)
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

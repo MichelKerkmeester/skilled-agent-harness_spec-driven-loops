@@ -21,8 +21,6 @@ expected_leaf_resources:
 Prompt: Manual validation that advisor_validate returns the full prompt-safe native contract: measured slices, threshold semantics, telemetry diagnostics and recorded outcome totals.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

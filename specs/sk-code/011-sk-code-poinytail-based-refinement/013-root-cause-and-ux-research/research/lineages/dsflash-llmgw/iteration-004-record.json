@@ -1,0 +1,41 @@
+{
+  "type": "iteration",
+  "iteration": 4,
+  "run": 4,
+  "runId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+  "sessionId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+  "lineageId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.85,
+  "status": "complete",
+  "focus": "The advisor cluster: probe battery 13/17 with 2/5 false positives, the path-owner pull, and the never-passed --surface-hint",
+  "findingsCount": 5,
+  "noveltyJustification": "Five new findings: the recorded aggregate and its exact failing probes, the hub-owned-token mechanism behind both negatives and lost positives, the handler call site that omits --surface-hint with the engine fallback it causes, the complete-but-unadopted hint capability, and the scoping decision that leaves the battery unowned.",
+  "keyQuestions": [
+    "Q6: Why does the advisor battery score 13 of 17 with false positives where a file path in the prompt pulls routing, and why does the advisor never pass --surface-hint?"
+  ],
+  "answeredQuestions": [
+    "Q6: Why does the advisor battery score 13 of 17 with false positives where a file path in the prompt pulls routing, and why does the advisor never pass --surface-hint?"
+  ],
+  "ruledOut": [
+    "An intent-beats-artifact scoring mode or path-stripping preprocessor - paths are legitimate targets when they are the work item, and the signal list plus the hint already cover the gap",
+    "Re-running the battery in this lineage - the advisor is daemon-backed and can write runtime state outside the write boundary; the phase-002 tsv already records the run"
+  ],
+  "toolsUsed": ["read", "bash", "rg", "grep", "python3"],
+  "sourcesQueried": [
+    ".skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md:60",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/002-surface-contract-alignment/scratch/after-sa001.tsv",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/002-surface-contract-alignment/implementation-summary.md:111",
+    ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:372",
+    ".skilled/bin/compiled-route.cjs:36",
+    ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:99",
+    ".skilled/skills/sk-code/SKILL.md:74",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/008-session-aware-tie-break/goal.md:95"
+  ],
+  "edgeCase": "partial-success",
+  "timestamp": "2026-10-10T18:58:49Z",
+  "durationMs": null
+}

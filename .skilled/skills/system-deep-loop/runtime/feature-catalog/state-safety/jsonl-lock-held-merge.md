@@ -11,8 +11,6 @@ version: 1.4.0.15
 
 # JSONL lock-held merge
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -44,7 +42,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/jsonl-repair.vitest.ts` | Test | Primary regression coverage for JSONL lock-held merge. |
+| `tests/unit/jsonl-repair.vitest.ts` | Automated test | Primary regression coverage for JSONL lock-held merge. |
 
 ---
 
@@ -52,9 +50,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: State safety
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F033
 - Feature file path: `state-safety/jsonl-lock-held-merge.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//006-jsonl-lock-held-merge`
 - Primary sources: `lib/deep-loop/jsonl-repair.ts`, `scripts/fanout-salvage.cjs`, `tests/unit/jsonl-repair.vitest.ts`
 Related references:
 - [state safety](../../feature-catalog/state-safety) — State safety category

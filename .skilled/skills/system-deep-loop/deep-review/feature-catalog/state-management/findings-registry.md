@@ -12,8 +12,6 @@ version: 1.11.0.7
 
 # Findings registry
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Holds the reducer-owned view of active, resolved, repeated, and blocked findings.
@@ -45,9 +43,9 @@ The reducer contract is fail-closed by default. Malformed JSONL or missing machi
 
 | File | Type | Role |
 |---|---|---|
-| `manual-testing-playbook/convergence-and-recovery/blocked-stop-reducer-surfacing.md` | Manual scenario | Verifies blocked-stop history reaches reducer-owned state. |
-| `manual-testing-playbook/convergence-and-recovery/fail-closed-reducer.md` | Manual scenario | Exercises fail-closed reducer behavior. |
-| `manual-testing-playbook/synthesis-save-and-guardrails/finding-deduplication-and-registry.md` | Manual scenario | Verifies registry alignment with synthesis-time deduplication. |
+| `manual-testing-playbook/convergence-and-recovery/blocked-stop-reducer-surfacing.md` | Manual playbook | Verifies blocked-stop history reaches reducer-owned state. |
+| `manual-testing-playbook/convergence-and-recovery/fail-closed-reducer.md` | Manual playbook | Exercises fail-closed reducer behavior. |
+| `manual-testing-playbook/synthesis-save-and-guardrails/finding-deduplication-and-registry.md` | Manual playbook | Verifies registry alignment with synthesis-time deduplication. |
 
 ---
 

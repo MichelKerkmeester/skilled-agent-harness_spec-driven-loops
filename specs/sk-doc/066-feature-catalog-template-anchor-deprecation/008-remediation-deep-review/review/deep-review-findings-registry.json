@@ -1,0 +1,1400 @@
+{
+  "sessionId": "r4-t4-review-2026-10-10T21-18Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "Nine older changelog entries in the sweep-touched system-deep-loop/runtime unit lack a version key",
+      "file": ".skilled/skills/system-deep-loop/runtime/changelog/v1.0.0.0.md",
+      "line": 1,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "Write-capable scratch scripts enumerate the working tree instead of tracked files (latent re-run scope drift)",
+      "file": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/003-feature-catalog-findings/scratch/remove_packet_history_lines.py",
+      "line": 59,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Parent goal decision D5 is unqualified and conflicts with the hub version bumps phase 002 executed",
+      "file": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/goal.md",
+      "line": 51,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "Completion criterion names sk-create-feature-catalog 1.0.2.0; HEAD ships 1.0.4.0",
+      "file": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/goal.md",
+      "line": 87,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-003",
+      "severity": "P2",
+      "title": "Phase 3 receipts say 19 changelog entries; commit ccf25fdd56 adds 20",
+      "file": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/003-feature-catalog-findings/implementation-summary.md",
+      "line": 61,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Phase 3's six-hub handoff names no target versions; sk-doc's pending target is stated nowhere in phases 003-007",
+      "file": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/003-feature-catalog-findings/implementation-summary.md",
+      "line": 105,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 6
+  },
+  "openFindingsCount": 6,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "claim_count_mismatch",
+      "decision_scope_conflict",
+      "handoff_record_consistency",
+      "stale_completion_criterion",
+      "version_key_coverage",
+      "write_confinement"
+    ],
+    "ruledOut": [
+      "broken_reference",
+      "changelog_version_hygiene",
+      "claim_count_mismatch",
+      "command_injection",
+      "content_loss",
+      "decision_conformance",
+      "derived_artifact_drift",
+      "doc_code_drift",
+      "fail_open",
+      "leftover_template_marker",
+      "marker_residue",
+      "overengineering",
+      "path_traversal",
+      "script_logic",
+      "stale_cross_reference",
+      "symlink_escape",
+      "taxonomy_mapping_wrong_target",
+      "untrusted_content",
+      "version_bump_coverage",
+      "version_hygiene",
+      "version_key_coverage",
+      "version_metadata_drift"
+    ],
+    "deferred": [],
+    "blocked": [
+      "environment_blocked_rerun"
+    ],
+    "byBugClass": {
+      "version_key_coverage": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          4
+        ]
+      },
+      "content_loss": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "broken_reference": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "version_metadata_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          4
+        ]
+      },
+      "claim_count_mismatch": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          3
+        ]
+      },
+      "script_logic": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "write_confinement": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "command_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "path_traversal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "symlink_escape": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "fail_open": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "untrusted_content": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "decision_scope_conflict": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "stale_completion_criterion": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "marker_residue": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "version_bump_coverage": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "decision_conformance": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "environment_blocked_rerun": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          3,
+          4
+        ]
+      },
+      "handoff_record_consistency": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "changelog_version_hygiene": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "derived_artifact_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "overengineering": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "doc_code_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "taxonomy_mapping_wrong_target": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "stale_cross_reference": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "version_hygiene": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "leftover_template_marker": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 3,
+      "id": "SL-307",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/goal.md:88",
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/goal.md:90"
+      ],
+      "bugClass": "environment_blocked_rerun",
+      "disposition": "blocked",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [],
+      "reason": "iteration constraints forbid repo-wide tooling; receipts remain unverified this pass"
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/.../002-retroactive-removal/scratch/remove_template_anchor.py",
+        ".skilled/skills/**/feature-catalog/**"
+      ],
+      "bugClass": "content_loss",
+      "disposition": "ruled_out",
+      "rationale": "Per-file numstat and removed-line audit show exactly the marker and one adjacent blank per file.",
+      "evidenceRefs": [
+        "remove_template_anchor.py:81-91",
+        "git:45cb464be8",
+        "git:45cb464be8"
+      ],
+      "reason": "mechanically verified with zero exceptions"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/.../004-leftover-template-comments/scratch/remove_leftover_template_comments.py"
+      ],
+      "bugClass": "content_loss",
+      "disposition": "ruled_out",
+      "rationale": "All non-marker deletions are documented version bumps or the two uppercased headings; no unaccounted loss.",
+      "evidenceRefs": [
+        "remove_leftover_template_comments.py:57-71",
+        "git:99c133fd5a"
+      ],
+      "reason": "diff decomposed line-by-line"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        ".skilled/skills/sk-code/leaf-manifest.json"
+      ],
+      "bugClass": "broken_reference",
+      "disposition": "ruled_out",
+      "rationale": "No live reference uses the old names; all consumers and require targets resolve.",
+      "evidenceRefs": [
+        "git:HEAD",
+        "run-all-drift-guards.sh:30",
+        "leaf-manifest.json:55",
+        "verify-router-sync.cjs:9"
+      ],
+      "reason": "repo-wide grep plus direct reads"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "version bumps across the 8 commits"
+      ],
+      "bugClass": "version_metadata_drift",
+      "disposition": "ruled_out",
+      "rationale": "Tree-level parity holds for every changelog-owning unit.",
+      "evidenceRefs": [
+        "git:HEAD tree"
+      ],
+      "reason": "exhaustive scan, zero exceptions"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        "all 8 commits"
+      ],
+      "bugClass": "claim_count_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Every headline count matches the diff mechanically.",
+      "evidenceRefs": [
+        "git:main..HEAD",
+        "git:ccf25fdd56",
+        "git:99c133fd5a",
+        "git:ccf25fdd56"
+      ],
+      "reason": "exact counts verified"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        "the 8 bulk scripts"
+      ],
+      "bugClass": "script_logic",
+      "disposition": "ruled_out",
+      "rationale": "No logic defect found on direct read plus sampled outputs.",
+      "evidenceRefs": [
+        "sync_leaf_frontmatter.py:111-139",
+        "normalize_validation_types.py:93-135",
+        "add_changelog_version_keys.py:118-157",
+        "git:45cb464be8",
+        "git:ccf25fdd56"
+      ],
+      "reason": "read and sample verified"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-001",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/router-replay-lib.cjs",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "no shell interpretation surface exists in the shipped assets or runner",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs:68",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs:53",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:30"
+      ],
+      "reason": "list-argv spawn and fully quoted shell"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/router-replay-lib.cjs",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "no attacker-controlled path reaches a read of content outside the hub; guard is report-only",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:74",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:114",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/router-replay-lib.cjs:194"
+      ],
+      "reason": "hub-gated resolution plus read-only behavior"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py"
+      ],
+      "bugClass": "fail_open",
+      "disposition": "ruled_out",
+      "rationale": "the change hardens enforcement; the remaining 15 findings decompose into 3 expected env-gap fails and 12 warns on the still-listed packages",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py:63",
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py:791"
+      ],
+      "reason": "fail-closed semantics verified"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        "git diff main..HEAD -- '*.md'"
+      ],
+      "bugClass": "untrusted_content",
+      "disposition": "ruled_out",
+      "rationale": "no directive-like or concealment content entered the doc population",
+      "evidenceRefs": [],
+      "reason": "two independent scans clean"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-304",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled",
+        ".hermes"
+      ],
+      "bugClass": "marker_residue",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/goal.md:85"
+      ],
+      "reason": "scope-limited grep clean at HEAD; residual occurrences are out-of-scope history"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-305",
+      "dimension": "traceability",
+      "targetRefs": [
+        "git:45cb464be8",
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/002-retroactive-removal/spec.md"
+      ],
+      "bugClass": "version_bump_coverage",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/002-retroactive-removal/implementation-summary.md:60",
+        ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.6.0.md:1"
+      ],
+      "reason": "27/27 owner paths carry a new entry; the no-SKILL.md runtime case is covered by its changelog carrier"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-306",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/goal.md",
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/003-feature-catalog-findings",
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/006-skill-package-doc-findings"
+      ],
+      "bugClass": "decision_conformance",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/003-feature-catalog-findings/implementation-summary.md:104",
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/006-skill-package-doc-findings/implementation-summary.md:103"
+      ],
+      "reason": "all four decisions corroborated by artifacts or prior full reads"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-001",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/**/changelog/v*.md"
+      ],
+      "bugClass": "changelog_version_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/003-feature-catalog-findings/implementation-summary.md:105",
+        ".skilled/skills/cli-classifier/changelog/v0.8.1.0.md:1"
+      ],
+      "reason": "Every sampled entry is one patch above the previous latest with a matching key and no duplicates."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/002-retroactive-removal/scratch/remove-template-anchor-report.json"
+      ],
+      "bugClass": "version_key_coverage",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-001.md:1"
+      ],
+      "reason": "No in-scope residual beyond R1-P2-001; the 3 head -c 600 suspects were false positives (keys present)."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/lib/compiled-routing/013-live-activation/activation/*/manifest.json",
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        ".hermes/skills/**"
+      ],
+      "bugClass": "derived_artifact_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-classifier/manifest.json:1",
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json:1"
+      ],
+      "reason": "No drift found; receipts record trigger index --check and compiled-route-guard PASS."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-005",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/**/scratch/*.py"
+      ],
+      "bugClass": "overengineering",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/005-changelog-version-keys/scratch/add_changelog_version_keys.py:1"
+      ],
+      "reason": "Proportionate one-shot scripts in scratch folders; corroborates the iteration-1 overengineering clearance."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-006",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/**/SKILL.md"
+      ],
+      "bugClass": "version_metadata_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/SKILL.md:5"
+      ],
+      "reason": "Every unit's SKILL.md version equals its newest changelog entry."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/divergent-convergence-mode.md",
+        ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/resource-map-emission.md",
+        ".skilled/skills/sk-git/feature-catalog/feature-catalog.md"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "three per-kind samples match root rows exactly and the new root row claims are backed by the workflow YAML",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/divergent-convergence-mode.md:2",
+        ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md:414",
+        ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/github-mcp-integration.md:3",
+        ".skilled/skills/sk-git/feature-catalog/feature-catalog.md:209",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:2119"
+      ],
+      "reason": "sampled edits verified against root catalog and code"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/assets/template-rules.json",
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/003-feature-catalog-findings/scratch/normalize_validation_types.py"
+      ],
+      "bugClass": "taxonomy_mapping_wrong_target",
+      "disposition": "ruled_out",
+      "rationale": "mapping targets are canonical; residual off-labels are Layer-column values outside the checked table type",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/assets/template-rules.json:650",
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py:1222"
+      ],
+      "reason": "taxonomy and table scope verified"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/feature-catalog.md",
+        ".skilled/skills/sk-git/feature-catalog/feature-catalog.md"
+      ],
+      "bugClass": "broken_reference",
+      "disposition": "ruled_out",
+      "rationale": "every sampled link target exists",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md:19",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/feature-catalog.md:107",
+        ".skilled/skills/sk-git/references/gitkraken-mcp-integration.md"
+      ],
+      "reason": "targets resolve"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        ".skilled/skills/sk-code/sk-code-opencode/changelog",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md"
+      ],
+      "bugClass": "stale_cross_reference",
+      "disposition": "ruled_out",
+      "rationale": "all live consumers use kebab-case; remaining hits are historical prose",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.0.0.md:21",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:30"
+      ],
+      "reason": "no live consumer broken"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/changelog",
+        ".skilled/skills/sk-vision/SKILL.md",
+        ".skilled/skills/sk-git/SKILL.md"
+      ],
+      "bugClass": "version_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "no gaps or duplicates; SKILL.md versions match newest entries",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/changelog/v1.0.4.0.md",
+        ".skilled/skills/sk-vision/SKILL.md:5",
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/changelog/v1.0.3.0.md"
+      ],
+      "reason": "version continuity verified"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md",
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md",
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/references/examples.md"
+      ],
+      "bugClass": "leftover_template_marker",
+      "disposition": "ruled_out",
+      "rationale": "zero marker references remain in the mode or catalogs",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md:191",
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md:173"
+      ],
+      "reason": "population check empty"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/.../002-retroactive-removal/scratch/remove_template_anchor.py",
+        ".skilled/skills/**/feature-catalog/**"
+      ],
+      "bugClass": "content_loss",
+      "disposition": "ruled_out",
+      "rationale": "Per-file numstat and removed-line audit show exactly the marker and one adjacent blank per file.",
+      "evidenceRefs": [
+        "remove_template_anchor.py:81-91",
+        "git:45cb464be8",
+        "git:45cb464be8"
+      ],
+      "proof": "mechanically verified with zero exceptions"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/.../004-leftover-template-comments/scratch/remove_leftover_template_comments.py"
+      ],
+      "bugClass": "content_loss",
+      "disposition": "ruled_out",
+      "rationale": "All non-marker deletions are documented version bumps or the two uppercased headings; no unaccounted loss.",
+      "evidenceRefs": [
+        "remove_leftover_template_comments.py:57-71",
+        "git:99c133fd5a"
+      ],
+      "proof": "diff decomposed line-by-line"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        ".skilled/skills/sk-code/leaf-manifest.json"
+      ],
+      "bugClass": "broken_reference",
+      "disposition": "ruled_out",
+      "rationale": "No live reference uses the old names; all consumers and require targets resolve.",
+      "evidenceRefs": [
+        "git:HEAD",
+        "run-all-drift-guards.sh:30",
+        "leaf-manifest.json:55",
+        "verify-router-sync.cjs:9"
+      ],
+      "proof": "repo-wide grep plus direct reads"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "version bumps across the 8 commits"
+      ],
+      "bugClass": "version_metadata_drift",
+      "disposition": "ruled_out",
+      "rationale": "Tree-level parity holds for every changelog-owning unit.",
+      "evidenceRefs": [
+        "git:HEAD tree"
+      ],
+      "proof": "exhaustive scan, zero exceptions"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        "all 8 commits"
+      ],
+      "bugClass": "claim_count_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Every headline count matches the diff mechanically.",
+      "evidenceRefs": [
+        "git:main..HEAD",
+        "git:ccf25fdd56",
+        "git:99c133fd5a",
+        "git:ccf25fdd56"
+      ],
+      "proof": "exact counts verified"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        "the 8 bulk scripts"
+      ],
+      "bugClass": "script_logic",
+      "disposition": "ruled_out",
+      "rationale": "No logic defect found on direct read plus sampled outputs.",
+      "evidenceRefs": [
+        "sync_leaf_frontmatter.py:111-139",
+        "normalize_validation_types.py:93-135",
+        "add_changelog_version_keys.py:118-157",
+        "git:45cb464be8",
+        "git:ccf25fdd56"
+      ],
+      "proof": "read and sample verified"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-001",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/router-replay-lib.cjs",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "no shell interpretation surface exists in the shipped assets or runner",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs:68",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs:53",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:30"
+      ],
+      "proof": "list-argv spawn and fully quoted shell"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/router-replay-lib.cjs",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "no attacker-controlled path reaches a read of content outside the hub; guard is report-only",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:74",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:114",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/router-replay-lib.cjs:194"
+      ],
+      "proof": "hub-gated resolution plus read-only behavior"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py"
+      ],
+      "bugClass": "fail_open",
+      "disposition": "ruled_out",
+      "rationale": "the change hardens enforcement; the remaining 15 findings decompose into 3 expected env-gap fails and 12 warns on the still-listed packages",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py:63",
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py:791"
+      ],
+      "proof": "fail-closed semantics verified"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        "git diff main..HEAD -- '*.md'"
+      ],
+      "bugClass": "untrusted_content",
+      "disposition": "ruled_out",
+      "rationale": "no directive-like or concealment content entered the doc population",
+      "evidenceRefs": [],
+      "proof": "two independent scans clean"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-304",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled",
+        ".hermes"
+      ],
+      "bugClass": "marker_residue",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/goal.md:85"
+      ],
+      "proof": "scope-limited grep clean at HEAD; residual occurrences are out-of-scope history"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-305",
+      "dimension": "traceability",
+      "targetRefs": [
+        "git:45cb464be8",
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/002-retroactive-removal/spec.md"
+      ],
+      "bugClass": "version_bump_coverage",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/002-retroactive-removal/implementation-summary.md:60",
+        ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.6.0.md:1"
+      ],
+      "proof": "27/27 owner paths carry a new entry; the no-SKILL.md runtime case is covered by its changelog carrier"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-306",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/goal.md",
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/003-feature-catalog-findings",
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/006-skill-package-doc-findings"
+      ],
+      "bugClass": "decision_conformance",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/003-feature-catalog-findings/implementation-summary.md:104",
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/006-skill-package-doc-findings/implementation-summary.md:103"
+      ],
+      "proof": "all four decisions corroborated by artifacts or prior full reads"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-001",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/**/changelog/v*.md"
+      ],
+      "bugClass": "changelog_version_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/003-feature-catalog-findings/implementation-summary.md:105",
+        ".skilled/skills/cli-classifier/changelog/v0.8.1.0.md:1"
+      ],
+      "proof": "Every sampled entry is one patch above the previous latest with a matching key and no duplicates."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/002-retroactive-removal/scratch/remove-template-anchor-report.json"
+      ],
+      "bugClass": "version_key_coverage",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-001.md:1"
+      ],
+      "proof": "No in-scope residual beyond R1-P2-001; the 3 head -c 600 suspects were false positives (keys present)."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/lib/compiled-routing/013-live-activation/activation/*/manifest.json",
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        ".hermes/skills/**"
+      ],
+      "bugClass": "derived_artifact_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-classifier/manifest.json:1",
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json:1"
+      ],
+      "proof": "No drift found; receipts record trigger index --check and compiled-route-guard PASS."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-005",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/**/scratch/*.py"
+      ],
+      "bugClass": "overengineering",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/005-changelog-version-keys/scratch/add_changelog_version_keys.py:1"
+      ],
+      "proof": "Proportionate one-shot scripts in scratch folders; corroborates the iteration-1 overengineering clearance."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-006",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/**/SKILL.md"
+      ],
+      "bugClass": "version_metadata_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/SKILL.md:5"
+      ],
+      "proof": "Every unit's SKILL.md version equals its newest changelog entry."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/divergent-convergence-mode.md",
+        ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/resource-map-emission.md",
+        ".skilled/skills/sk-git/feature-catalog/feature-catalog.md"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "three per-kind samples match root rows exactly and the new root row claims are backed by the workflow YAML",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/divergent-convergence-mode.md:2",
+        ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md:414",
+        ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/github-mcp-integration.md:3",
+        ".skilled/skills/sk-git/feature-catalog/feature-catalog.md:209",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:2119"
+      ],
+      "proof": "sampled edits verified against root catalog and code"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/assets/template-rules.json",
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/003-feature-catalog-findings/scratch/normalize_validation_types.py"
+      ],
+      "bugClass": "taxonomy_mapping_wrong_target",
+      "disposition": "ruled_out",
+      "rationale": "mapping targets are canonical; residual off-labels are Layer-column values outside the checked table type",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/assets/template-rules.json:650",
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py:1222"
+      ],
+      "proof": "taxonomy and table scope verified"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/feature-catalog.md",
+        ".skilled/skills/sk-git/feature-catalog/feature-catalog.md"
+      ],
+      "bugClass": "broken_reference",
+      "disposition": "ruled_out",
+      "rationale": "every sampled link target exists",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md:19",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/feature-catalog.md:107",
+        ".skilled/skills/sk-git/references/gitkraken-mcp-integration.md"
+      ],
+      "proof": "targets resolve"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        ".skilled/skills/sk-code/sk-code-opencode/changelog",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md"
+      ],
+      "bugClass": "stale_cross_reference",
+      "disposition": "ruled_out",
+      "rationale": "all live consumers use kebab-case; remaining hits are historical prose",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.0.0.md:21",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:30"
+      ],
+      "proof": "no live consumer broken"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/changelog",
+        ".skilled/skills/sk-vision/SKILL.md",
+        ".skilled/skills/sk-git/SKILL.md"
+      ],
+      "bugClass": "version_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "no gaps or duplicates; SKILL.md versions match newest entries",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/changelog/v1.0.4.0.md",
+        ".skilled/skills/sk-vision/SKILL.md:5",
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/changelog/v1.0.3.0.md"
+      ],
+      "proof": "version continuity verified"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md",
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md",
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/references/examples.md"
+      ],
+      "bugClass": "leftover_template_marker",
+      "disposition": "ruled_out",
+      "rationale": "zero marker references remain in the mode or catalogs",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md:191",
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md:173"
+      ],
+      "proof": "population check empty"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "doc_code_drift",
+      "taxonomy_mapping_wrong_target",
+      "broken_reference",
+      "stale_cross_reference",
+      "version_hygiene",
+      "leftover_template_marker"
+    ],
+    "covered": [],
+    "ruledOut": [
+      "doc_code_drift",
+      "taxonomy_mapping_wrong_target",
+      "broken_reference",
+      "stale_cross_reference",
+      "version_hygiene",
+      "leftover_template_marker"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

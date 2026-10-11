@@ -16,8 +16,6 @@ Remove a tag from a task. The tag stays defined in the space.
 
 > **Live name (2026-10-08).** Call it as `clickup_official.clickup_official_clickup_remove_tag_from_task` in Code Mode. The parameter table comes from the server's own schema, captured when the hosted server registered 61 tools on that date.
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -50,7 +48,7 @@ Only the task's association is removed. `cupt tag remove <id> <name>` does the s
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | No dedicated scenario. Confirm the call with `tool_info()` before first use |
+| `manual-testing-playbook/` | Manual playbook | No dedicated scenario. Confirm the call with `tool_info()` before first use |
 
 ---
 

@@ -249,7 +249,7 @@ export default function dispatchPreflightLint(pi: ExtensionAPI): void {
         if (inspection.kind !== "direct") {
           return {
             block: true,
-            reason: "Pi dispatch denied: the command does not prove one direct executor.",
+            reason: "Pi dispatch denied: the command does not prove one direct executor. Call one executor by its literal name, such as `pi -p` or `codex exec`, not through a variable or alias, and name that executor in the user request.",
           };
         }
         return {

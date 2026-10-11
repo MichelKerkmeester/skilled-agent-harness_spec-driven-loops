@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Run-Budget Margin And Reasoning Pin
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The lineage's `--run-budget` sits one fixed margin under the caller's timeout, `--max-turns` bounds a runaway tool loop, and the reasoning level is pinned per model and checked against Hermes's own level set.

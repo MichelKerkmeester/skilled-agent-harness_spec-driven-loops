@@ -11,8 +11,6 @@ version: 2.2.0.0
 
 # Changelog Entry Frontmatter Check (validate_document.py)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Blocks a changelog entry that lacks the search metadata a spec document carries, so every entry stays findable by component and version.

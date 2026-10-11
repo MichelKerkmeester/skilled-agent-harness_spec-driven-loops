@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Flows (refero_search_flows / refero_get_flow)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Carries multi-step journeys: step count, entry and exit states, decision points, and recovery paths from real shipped apps, for both `web` and `ios` platforms. Flows answer journey-logic questions, not visual-style questions.

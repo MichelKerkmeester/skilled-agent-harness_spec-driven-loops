@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # refero_get_similar_screens
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Comparable-screen retrieval, run only AFTER one screen has proven materially relevant — never as a first-pass search substitute. READ-ONLY. Canonical callable: `refero.refero_refero_get_similar_screens({ screen_id, limit?, response_format? })` (doubled prefix; confirm via `tool_info` first).

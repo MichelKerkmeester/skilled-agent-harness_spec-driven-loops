@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # list_components
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Project contents enumeration. READ-ONLY. Canonical callable: `magicpath.list_components({ project_id, limit?, after? })` (confirm via `tool_info` first).

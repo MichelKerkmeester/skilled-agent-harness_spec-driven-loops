@@ -58,8 +58,8 @@ Frozen choices. Changing one is an amendment.
 
 - [ ] `python3 -I specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/002-review-mode/scratch/detect-probe.py` prints exactly `generic-node-src: UNKNOWN`, `dependency-bump: UNKNOWN`, `obsidian-prompt: OBSIDIAN`, `hub-file: OPENCODE`, `webflow-path: WEBFLOW` and `obsidian-manifest: OBSIDIAN`, in that order, and exits 0.
 - [ ] `node .skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js .skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/heading-shape-valid.md` prints `OK: findings are numbered once and each carries a Case line` and exits 0, and the same command on `heading-shape-restart.md` prints `FAIL: finding numbers restart or skip: expected 2, found 1` and exits 1.
-- [ ] `bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh` exits 0, prints 68 lines that start with `PASS`, and ends with `All rule-canary test cases passed`.
-- [ ] `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` prints `OK: all rule invariants present (6 exact-string file(s) + 2 Iron Law file(s) + 21 delivery-prefix anchor(s) + 2 example output(s)).` and exits 0.
+- [ ] `bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh` exits 0, prints 70 or more lines that start with `PASS`, and ends with `All rule-canary test cases passed`.
+- [ ] `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` prints `OK: all rule invariants present (7 exact-string file(s) + 2 Iron Law file(s) + 21 delivery-prefix anchor(s) + 2 example output(s)).` and exits 0.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/002-review-mode --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
@@ -91,5 +91,7 @@ and findings belong here.
 | PENDING-SIBLING | None. The `mode-registry.json:50` cache path is child 001's unit T167 |
 | Deliberate exclusion | f-iter011-002 item (e), pinning AGENTS.md-level floors in the canary, stays out (plan D8): it would fail the canary on routine AGENTS.md edits |
 | Before state | `scratch/*-before.txt` baselines were never captured by the builder; the HEAD tree (`git archive HEAD`) stood in: canary 5 exact-string files, harness 54 PASS, probe six old tokens, findings checker vacuous pass, two-space `Not checked:` rejected |
+| Criterion 3 amended 2026-10-11 | Later phases added cases to the same suite, so the exact count went stale. The criterion now names the current count, or a floor where the suite keeps growing |
+| Criterion 4 amended 2026-10-11 | Phase 011 added one more exact-string file to the canary, so the OK line counts 7 |
 <!-- /ANCHOR:log -->
 

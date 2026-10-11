@@ -9,8 +9,6 @@ trigger_phrases:
 
 # Derived Library: Skill Metadata Extraction
 
-<!-- sk-doc-template: skill_readme -->
-
 ---
 
 ## 1. OVERVIEW

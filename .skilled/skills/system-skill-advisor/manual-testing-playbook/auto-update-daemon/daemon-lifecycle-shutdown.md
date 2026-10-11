@@ -21,8 +21,6 @@ expected_leaf_resources:
 Prompt: Manual validation that daemon boot, health reporting and SIGTERM shutdown behave as documented in lib/daemon/lifecycle.ts.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

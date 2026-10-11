@@ -16,8 +16,6 @@ expected_leaf_resources: []
 
 # Completion Evidence Sentinel
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

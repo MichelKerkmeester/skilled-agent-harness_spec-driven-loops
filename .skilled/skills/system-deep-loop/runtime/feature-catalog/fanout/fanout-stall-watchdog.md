@@ -11,8 +11,6 @@ version: 1.4.0.15
 
 # Fan-out stall watchdog
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -43,7 +41,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/fanout-pool.vitest.ts` | Test | Primary regression coverage for Fan-out stall watchdog. |
+| `tests/unit/fanout-pool.vitest.ts` | Automated test | Primary regression coverage for Fan-out stall watchdog. |
 
 ---
 
@@ -51,9 +49,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Fan-out
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F044
 - Feature file path: `fanout/fanout-stall-watchdog.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//017-fanout-stall-watchdog`
 - Primary sources: `scripts/fanout-pool.cjs`, `tests/unit/fanout-pool.vitest.ts`
 Related references:
 - [fanout](../fanout/) — Fan-out category

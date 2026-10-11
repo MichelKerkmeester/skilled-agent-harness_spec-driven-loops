@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The agent-mirror gate recognizes three roots: `.opencode/agents/`, `.skilled/agents/` and `.claude/agents/`",
     "created_at": "2026-10-10T05:26:27Z",
-    "last_save_at": "2026-10-10T05:58:41.969Z",
+    "last_save_at": "2026-10-11T05:17:04.041Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +216,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5afd4e240c8fb7c3342fc2acc9701cf750f5cff631a74dcdcb67f906e8c85e17",
+    "source_fingerprint": "sha256:14274f0afb84f2296eea9062083eecf1ae608307333dc02506abc0a16db5c39f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b4308f8c4850e4eff8ced38bc727ce3aa79559ddb20c4af9a7fb295a53a7d40f",

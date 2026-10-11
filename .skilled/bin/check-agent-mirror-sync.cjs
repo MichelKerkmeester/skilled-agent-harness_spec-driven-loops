@@ -3,12 +3,13 @@
 // ║ check-agent-mirror-sync — block agent edits that desync runtime mirrors  ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 //
-// Every agent is authored once under .opencode/agents/<name>.md and mirrored to
-// .claude/agents/<name>.md so each runtime ships the same behavior. Editing one
-// copy without the other makes the runtimes silently disagree. This gate takes
-// the changed agent files (or --all) and fails when any agent's mirror drifts
-// from its .opencode canonical body, so the divergence is caught at commit /
-// PR time instead of in production routing.
+// Every agent is authored once under .opencode/agents/<name>.md, mirrored to
+// .claude/agents/<name>.md and, where present, .codex/agents/<name>.toml so
+// each runtime ships the same behavior. Editing one copy without the others
+// makes the runtimes silently disagree. This gate takes the changed agent
+// files (or --all) and fails when any agent's mirror drifts from its .opencode
+// canonical body, so the divergence is caught at commit / PR time instead of
+// in production routing.
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────

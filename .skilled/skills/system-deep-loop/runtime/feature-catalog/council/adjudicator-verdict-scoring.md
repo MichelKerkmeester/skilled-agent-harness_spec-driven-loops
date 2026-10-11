@@ -12,8 +12,6 @@ version: 1.4.0.4
 
 # Adjudicator verdict scoring
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -44,7 +42,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/council/adjudicator-verdict-scoring.vitest.ts` | Test | Primary regression coverage for Adjudicator verdict scoring. |
+| `tests/council/adjudicator-verdict-scoring.vitest.ts` | Automated test | Primary regression coverage for Adjudicator verdict scoring. |
 
 ---
 
@@ -52,7 +50,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Council
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F020
 - Feature file path: `council/adjudicator-verdict-scoring.md`
 - Primary sources: `lib/council/adjudicator-verdict-scoring.cjs`, `tests/council/adjudicator-verdict-scoring.vitest.ts`
 Related references:

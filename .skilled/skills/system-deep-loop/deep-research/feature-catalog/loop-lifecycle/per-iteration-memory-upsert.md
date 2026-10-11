@@ -1,6 +1,6 @@
 ---
 title: "Per-iteration lineage context refresh"
-description: "Refreshes the next prompt's context line from the lineage-local state the reducer just rewrote."
+description: "Refreshes the next prompt's context line from lineage-local state."
 trigger_phrases:
   - "per-iteration lineage context refresh"
   - "step_refresh_lineage_context"
@@ -11,8 +11,6 @@ version: 1.14.0.14
 ---
 
 # Per-iteration lineage context refresh
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

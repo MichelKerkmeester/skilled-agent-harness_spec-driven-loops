@@ -16,8 +16,6 @@ Read the full content of chosen document pages.
 
 > **Live name (2026-10-08).** Call it as `clickup_official.clickup_official_clickup_get_document_pages` in Code Mode. The parameter table comes from the server's own schema, captured when the hosted server registered 61 tools on that date.
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -51,7 +49,7 @@ Pass `document_id` and `page_ids`, and set `content_format: "text/md"` for markd
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-documents/read-document-pages.md` | Manual | Scenario that exercises this tool |
+| `manual-testing-playbook/mcp-documents/read-document-pages.md` | Manual playbook | Scenario that exercises this tool |
 
 ---
 

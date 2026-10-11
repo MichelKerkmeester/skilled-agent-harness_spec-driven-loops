@@ -1,6 +1,6 @@
 ---
 title: "Cross-runtime directive-lifecycle dedup"
-description: "Lifecycle-scoped advisor policy delivery with transcript high-water tracking, trusted host-boundary invalidation, hardened durable state, confirmed identities, and evidence-class-aware runtime verification."
+description: "Lifecycle-scoped advisor policy delivery with transcript high-water tracking, trusted host-boundary invalidation and hardened durable state."
 trigger_phrases:
   - "directive lifecycle dedup"
   - "directive dedup"
@@ -11,8 +11,6 @@ version: 1.7.0.3
 ---
 
 # Cross-runtime directive-lifecycle dedup
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

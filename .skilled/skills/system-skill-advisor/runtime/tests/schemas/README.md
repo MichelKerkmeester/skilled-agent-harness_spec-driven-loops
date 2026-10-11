@@ -8,8 +8,6 @@ trigger_phrases:
 
 # Skill Advisor Schema Tests
 
-<!-- sk-doc-template: skill_readme -->
-
 ---
 
 ## 1. OVERVIEW

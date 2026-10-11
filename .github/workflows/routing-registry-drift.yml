@@ -31,6 +31,8 @@ on:
       - '.skilled/skills/system-skill-advisor/runtime/**'
       - '.opencode/commands/doctor/scripts/parent-skill-check.cjs'
       - '.skilled/commands/doctor/scripts/parent-skill-check.cjs'
+      - '.opencode/commands/doctor/scripts/skill-graph-freshness.cjs'
+      - '.skilled/commands/doctor/scripts/skill-graph-freshness.cjs'
       - '.opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/**'
       - '.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/**'
       - '.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/**'
@@ -75,6 +77,8 @@ on:
       - '.skilled/skills/system-skill-advisor/runtime/**'
       - '.opencode/commands/doctor/scripts/parent-skill-check.cjs'
       - '.skilled/commands/doctor/scripts/parent-skill-check.cjs'
+      - '.opencode/commands/doctor/scripts/skill-graph-freshness.cjs'
+      - '.skilled/commands/doctor/scripts/skill-graph-freshness.cjs'
       - '.opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/**'
       - '.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/**'
       - '.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/**'
@@ -206,6 +210,20 @@ jobs:
         run: |
           set -euo pipefail
           python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py --validate-only
+      - name: Router intent-signal carry - ROUTER.md vocabulary reaches graph-metadata
+        # A hub's ROUTER.md intent vocabulary must be carried into its
+        # graph-metadata.json intent_signals, the field the advisor scores; a
+        # missing carry is otherwise silent, so the check exits 1 and names it.
+        run: |
+          set -euo pipefail
+          node .opencode/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --check
+      - name: Compiled skill graph freshness - compiled json matches graph-metadata
+        # The compiled skill-graph.json fell days behind its sources with nothing
+        # failing. Strict mode exits 1 on a stale, ghost or missing compiled
+        # entry and names the regenerate command.
+        run: |
+          set -euo pipefail
+          node .opencode/commands/doctor/scripts/skill-graph-freshness.cjs --strict
 
   golden-prompt-gate:
     name: Gate-2 golden prompts — real scorer top-1/top-3 + joined compiled mode

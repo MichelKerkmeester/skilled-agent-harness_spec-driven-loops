@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Annotation overlay (sk_vision_annotate)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Draw bounding boxes and points onto an image and save an annotated copy.

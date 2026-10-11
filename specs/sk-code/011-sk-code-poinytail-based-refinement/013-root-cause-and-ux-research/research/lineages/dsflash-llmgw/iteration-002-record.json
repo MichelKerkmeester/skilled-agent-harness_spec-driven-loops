@@ -1,0 +1,47 @@
+{
+  "type": "iteration",
+  "iteration": 2,
+  "run": 2,
+  "runId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+  "sessionId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+  "lineageId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.85,
+  "status": "complete",
+  "focus": "Process errors (c) to (e) and the generated-artifact drift family (f), plus the changelog version collision (g)",
+  "findingsCount": 6,
+  "noveltyJustification": "Six new findings: the scratch namespace-collision mechanism behind (c), the committed regenerations behind (d), the unverifiable-process-step mechanism behind (e), the designed source/generated split behind (f), the retrieval-fixtures family, and the branch-local version mint behind (g).",
+  "keyQuestions": [
+    "Q2: What mechanisms produced process errors (b) to (e): the validator parsing link-shaped task text, the reviewer wildcard rm, the committed regenerated scratch tree and the claims made before verification?",
+    "Q3: Why did the generated artifacts — the trigger index, the Hermes agent copies, the compiled-route manifests and the leaf manifests — drift and need orchestrator re-mints?",
+    "Q4: Why did a changelog version collision occur at merge when main and the branch both minted system-spec-kit v2.7.1.0?"
+  ],
+  "answeredQuestions": [
+    "Q2: What mechanisms produced process errors (b) to (e): the validator parsing link-shaped task text, the reviewer wildcard rm, the committed regenerated scratch tree and the claims made before verification?",
+    "Q3: Why did the generated artifacts — the trigger index, the Hermes agent copies, the compiled-route manifests and the leaf manifests — drift and need orchestrator re-mints?",
+    "Q4: Why did a changelog version collision occur at merge when main and the branch both minted system-spec-kit v2.7.1.0?"
+  ],
+  "ruledOut": [
+    "A version-reservation service or lock on changelog numbers - the collision is rare, both sides can read origin/main, and a reservation layer adds a dependency with no caller today",
+    "A scratch-lifecycle manager for packets - the convention exists; the missing piece is naming, not machinery"
+  ],
+  "toolsUsed": ["read", "bash", "rg", "grep", "git log", "git show"],
+  "sourcesQueried": [
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/goal.md:50",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/001-review-canary-pins/goal.md:91",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/goal.md:113",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/004-webflow-checker-fix/implementation-summary.md:71",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/003-quality-mode/implementation-summary.md:76",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/001-review-canary-pins/implementation-summary.md:123",
+    ".skilled/skills/system-spec-kit/changelog/v2.7.2.0.md:18",
+    "git:144b1d339e",
+    "git:ceb8ff216c",
+    "git:5b7fd10983"
+  ],
+  "edgeCase": "partial-success",
+  "timestamp": "2026-10-10T18:52:35Z",
+  "durationMs": null
+}

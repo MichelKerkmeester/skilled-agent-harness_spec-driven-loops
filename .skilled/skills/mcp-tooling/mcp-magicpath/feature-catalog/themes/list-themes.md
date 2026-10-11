@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # list_themes
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Design-system inventory. READ-ONLY. Canonical callable: `magicpath.list_themes({ team? })` (confirm via `tool_info` first).

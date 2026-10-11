@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Executor Audit Identity And Environment Scoping
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The audit layer gives `cli-hermes` its binary name, its self-presence session variable, its state-directory and home overrides, and the environment prefixes a dispatched child may inherit.

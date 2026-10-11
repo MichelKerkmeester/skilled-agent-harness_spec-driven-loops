@@ -12,8 +12,6 @@ version: 1.4.0.3
 
 # Fan-out cross-lineage merge
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -81,7 +79,6 @@ codes: 0=ok, 3=input validation error.
 ## 4. SOURCE METADATA
 
 - Group: Fan-Out
-- Feature ID: F027
 - Catalog source: `feature-catalog/fanout/fanout-merge.md`
 - Primary source files: `scripts/fanout-merge.cjs`
 Related references:

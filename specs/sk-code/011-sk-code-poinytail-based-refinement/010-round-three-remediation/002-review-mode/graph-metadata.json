@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The review mode's `detectsurfaceevidence` (`sk-code-review/SKILL.md:220-230`) returns Webflow for any changed path containing `package.json` or `src/`, while the shared contract says generic Node stays UNKNOWN, and it has no Obsidian branch, so an Obsidian plugin review gets `sk-code:unknown`",
     "created_at": "2026-10-10T10:07:18Z",
-    "last_save_at": "2026-10-10T11:49:36.092Z",
+    "last_save_at": "2026-10-11T05:17:04.049Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c466d5df75c66730f0e7fccfd0c99d84047914ac848be6c6b02b5ffb397173ef",
+    "source_fingerprint": "sha256:74c8a180ecaf576704eb1738c919c0afae7fb9eb5d4c15001a12f0aa1025f4c0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a5b4ddb3afbc35ab7daac699ee13364a6b202ec99f6096b3aa897fe7ff22442e",

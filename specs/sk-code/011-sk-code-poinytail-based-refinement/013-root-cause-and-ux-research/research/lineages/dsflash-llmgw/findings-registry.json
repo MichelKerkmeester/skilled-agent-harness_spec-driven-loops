@@ -1,0 +1,142 @@
+{
+  "generatedBy": "dsflash-llmgw lineage synthesis",
+  "generatedAt": "2026-10-10T19:09:00Z",
+  "sessionId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+  "iterations": 10,
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "q1-replace",
+      "text": "What mechanism produced process error (a), where a helper's String.replace read a dollar-apostrophe sequence as a replacement pattern and pasted a tasks.md tail twice?",
+      "status": "resolved",
+      "resolvedAtIteration": 1,
+      "evidence": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening/goal.md:93",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening/tasks.md:79",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts:569"
+      ]
+    },
+    {
+      "id": "q2-process-errors",
+      "text": "What mechanisms produced process errors (b) to (e): the validator parsing link-shaped task text, the reviewer wildcard rm, the committed regenerated scratch tree and the claims made before verification?",
+      "status": "resolved",
+      "resolvedAtIteration": 2,
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs:95",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/004-webflow-checker-fix/implementation-summary.md:71",
+        "git:ceb8ff216c",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/spec.md:87"
+      ]
+    },
+    {
+      "id": "q3-generated-drift",
+      "text": "Why did the generated artifacts — the trigger index, the Hermes agent copies, the compiled-route manifests and the leaf manifests — drift and need orchestrator re-mints?",
+      "status": "resolved",
+      "resolvedAtIteration": 2,
+      "evidence": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/goal.md:50",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/001-review-canary-pins/goal.md:91",
+        "git:144b1d339e"
+      ]
+    },
+    {
+      "id": "q4-version-collision",
+      "text": "Why did a changelog version collision occur at merge when main and the branch both minted system-spec-kit v2.7.1.0?",
+      "status": "resolved",
+      "resolvedAtIteration": 2,
+      "evidence": [
+        ".skilled/skills/system-spec-kit/changelog/v2.7.2.0.md:18",
+        "git:144b1d339e"
+      ]
+    },
+    {
+      "id": "q5-test-canaries",
+      "text": "What are the root causes of the open test and canary issues: the jev-transport-single canary deferral, the compiled-route-admission LIVE_CORPUS_SIZE 80 pin against 86 scenarios, and the manifest test failures?",
+      "status": "resolved",
+      "resolvedAtIteration": 3,
+      "evidence": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/004-cli-external-orchestration/fixtures/canary-cases.v1.json:201",
+        ".skilled/bin/tests/compiled-route-admission.test.cjs:32",
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs:162",
+        "command: in-memory evaluateRoute -> defer vs expected route",
+        "command: node --test compiled-route-admission -> tests 29 pass 28 fail 1"
+      ]
+    },
+    {
+      "id": "q6-advisor",
+      "text": "Why does the advisor battery score 13 of 17 with false positives where a file path in the prompt pulls routing, and why does the advisor never pass --surface-hint?",
+      "status": "resolved",
+      "resolvedAtIteration": 4,
+      "evidence": [
+        ".skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md:60",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/002-surface-contract-alignment/scratch/after-sa001.tsv",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:372"
+      ]
+    },
+    {
+      "id": "q7-blockers-deadline",
+      "text": "Why does .skilled/skills/sk-code/SKILL.md carry 36 HVR hard blockers, and what does the 500 ms hook stdin deadline against a 3 s hook budget risk?",
+      "status": "resolved",
+      "resolvedAtIteration": 5,
+      "evidence": [
+        "command: hvr_scan.py -> 27 semicolons + 9 em dashes = 36 hard blockers",
+        ".skilled/skills/system-spec-kit/runtime/hooks/shared-stdin.ts:23",
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:225"
+      ]
+    },
+    {
+      "id": "q8-reducer",
+      "text": "What did the reducer change that lowered open findings in 146 review folders, and what is the mechanism?",
+      "status": "resolved",
+      "resolvedAtIteration": 6,
+      "evidence": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/reducer-yield-after-review.txt:147",
+        ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1002"
+      ]
+    },
+    {
+      "id": "q9-external-user",
+      "text": "What breaks or confuses an external user who clones or installs this framework: setup, generated artifacts, version numbering, hook timing, routing surprises, error messages and recovery from a half-applied state?",
+      "status": "resolved",
+      "resolvedAtIterations": [7, 8],
+      "evidence": [
+        "README.md:154,160,197,1254,1283",
+        ".skilled/scripts/git-hooks/pre-commit:44",
+        ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:249",
+        ".skilled/skills/system-spec-kit/runtime/hooks/README.md:88"
+      ]
+    },
+    {
+      "id": "q10-phases",
+      "text": "Which smallest fixes survive the prevent-overengineering rule and how do they rank as implementation phases by external-user impact against cost?",
+      "status": "resolved",
+      "resolvedAtIteration": 10,
+      "evidence": [
+        ".skilled/repo-rules/prevent-overengineering.md:1",
+        "research.md section 8 (eight phases, one file and one proving command each)"
+      ]
+    }
+  ],
+  "keyFindings": [
+    { "id": "kf-01", "severity": "P1", "label": "Advisor multi-surface ties serve a fixed order because --surface-hint is never passed at the handler's subprocess call", "iterations": [4], "sources": [".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:372"] },
+    { "id": "kf-02", "severity": "P1", "label": "Manifest suite pins 'all 6 hubs' at seven sites while the tree serves seven hubs, accounting for the recorded 16 failures", "iterations": [3], "sources": [".skilled/bin/tests/compiled-route-manifest.test.cjs:162"] },
+    { "id": "kf-03", "severity": "P1", "label": "Admission suite pins LIVE_CORPUS_SIZE 80 against 86 live gold scenarios (run: 28 pass, 1 fail)", "iterations": [3], "sources": [".skilled/bin/tests/compiled-route-admission.test.cjs:32"] },
+    { "id": "kf-04", "severity": "P1", "label": "jev-transport-single is a stale case in the hub the transport axis left; its successor jev-choice-single lives in the cli-classifier fixture", "iterations": [3], "sources": [".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/004-cli-external-orchestration/fixtures/canary-cases.v1.json:201"] },
+    { "id": "kf-05", "severity": "P1", "label": "Pi dispatch guard's ambiguous branch refuses with a message that names neither cause nor acceptable shape", "iterations": [8, 10], "sources": [".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:249"] },
+    { "id": "kf-06", "severity": "P1", "label": "Git hooks silently disable in any clone that does not share the installer's git common dir and is not trusted", "iterations": [7], "sources": [".skilled/scripts/git-hooks/pre-commit:44"] },
+    { "id": "kf-07", "severity": "P1", "label": "Short-deadline hooks drop payloads written after 500 ms and nothing user-side records the loss; no late-write test exists", "iterations": [5, 8], "sources": [".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:225"] },
+    { "id": "kf-08", "severity": "P1", "label": "The tasks.md tail duplication was JS replacement-pattern expansion of $'; the changelog generator's replacer-function fix is the canonical pattern", "iterations": [1], "sources": ["specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening/goal.md:93"] },
+    { "id": "kf-09", "severity": "P1", "label": "Changelog version mint has no uniqueness or upstream check; branches fork the view and collide at merge", "iterations": [2, 8], "sources": [".skilled/skills/system-spec-kit/changelog/v2.7.2.0.md:18"] },
+    { "id": "kf-10", "severity": "P1", "label": "Advisor battery fails both aggregates (13/17, 2/5): hub-owned tokens outrank intent tokens", "iterations": [4], "sources": ["specs/sk-code/011-sk-code-poinytail-based-refinement/002-surface-contract-alignment/scratch/after-sa001.tsv"] },
+    { "id": "kf-11", "severity": "P1", "label": "Generated-artifact drift is a designed builder/orchestrator split; five artifact families, one more than the brief names (retrieval fixtures)", "iterations": [2], "sources": ["specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/goal.md:50", "git:144b1d339e"] },
+    { "id": "kf-12", "severity": "P1", "label": "Reducer dedup lowered open counts in 146 of 499 folders (raised=0); the first draft over-dropped 15 findings in 3 folders and the review restored them", "iterations": [6], "sources": ["specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/reducer-yield-after-review.txt:147"] },
+    { "id": "kf-13", "severity": "P2", "label": "36 HVR hard blockers in sk-code/SKILL.md are 27 semicolons and 9 em dashes", "iterations": [5], "sources": ["command: hvr_scan.py"] },
+    { "id": "kf-14", "severity": "P2", "label": "Node floor disagreement: README 20.11+ vs package engines >=20.11.0 vs lockfile ^20.19.0 || >=22.12.0", "iterations": [7], "sources": [".skilled/skills/system-spec-kit/package.json:11"] },
+    { "id": "kf-15", "severity": "P2", "label": "43 of 499 review folders error during reduction even in lenient mode; no named case recorded", "iterations": [6], "sources": ["specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/reducer-yield-after-review.txt:147"] }
+  ],
+  "unknowns": [
+    { "id": "unk-01", "label": "The validator run behind process error (b)", "settleWith": "the failing run's stderr or the pre-repair tasks.md copy" },
+    { "id": "unk-02", "label": "The run records behind the reviewer wildcard rm (c)", "settleWith": "the session transcript or shell history that produced the deletion" },
+    { "id": "unk-03", "label": "The commit that first introduced a regenerated scratch tree (d)", "settleWith": "the introducing commit and its message" }
+  ]
+}

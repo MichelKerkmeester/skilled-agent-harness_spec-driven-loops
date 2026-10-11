@@ -11,8 +11,6 @@ version: 0.8.0.12
 
 # Generation-Tagged Snapshot Publication
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Make reindex transitions observable and atomic. Every snapshot is tagged with a monotonically increasing generation so readers can tell when routing state has advanced and cache layers can invalidate in lockstep.

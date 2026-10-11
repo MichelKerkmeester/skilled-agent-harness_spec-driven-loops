@@ -1,0 +1,1356 @@
+{
+  "sessionId": "rvw-012-006-remediation-20261010T211804Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "Dead spec citation remains in the sk-code-webflow performance reference",
+      "file": ".skilled/skills/sk-code/sk-code-webflow/references/performance/webflow-constraints.md",
+      "line": 168,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Provenance clause misnames the packet that added the first six doc-claims tests",
+      "file": "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/005-claim-corrections/implementation-summary.md",
+      "line": 88,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 2
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "changelog_mismatch",
+      "claimed_but_missing",
+      "comment_id_leak",
+      "count_mismatch",
+      "exit_code_drift",
+      "fail_open_semantics",
+      "injection",
+      "io_deadline",
+      "late_write",
+      "manifest_staleness",
+      "mirror_drift",
+      "provenance_mismatch",
+      "resource_leak",
+      "stale_index",
+      "stale_reference",
+      "unbounded_input",
+      "version_drift",
+      "warning_false_negative"
+    ],
+    "ruledOut": [
+      "changelog_mismatch",
+      "claimed_but_missing",
+      "comment_id_leak",
+      "count_mismatch",
+      "exit_code_drift",
+      "fail_open_semantics",
+      "injection",
+      "io_deadline",
+      "late_write",
+      "manifest_staleness",
+      "mirror_drift",
+      "overengineering",
+      "race_condition",
+      "regression",
+      "resource_leak",
+      "stale_index",
+      "stale_reference",
+      "test_false_pass",
+      "unbounded_input",
+      "version_drift",
+      "warning_false_negative"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "io_deadline": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "resource_leak": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "fail_open_semantics": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "race_condition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "test_false_pass": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "warning_false_negative": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "exit_code_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "count_mismatch": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          3
+        ]
+      },
+      "stale_reference": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          3
+        ]
+      },
+      "claimed_but_missing": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "provenance_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "version_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "changelog_mismatch": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "comment_id_leak": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "mirror_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "stale_index": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "manifest_staleness": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "injection": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "unbounded_input": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "late_write": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "overengineering": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "regression": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs"
+      ],
+      "bugClass": "io_deadline",
+      "disposition": "ruled_out",
+      "rationale": "deadline observed end-to-end",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:20",
+        ".skilled/skills/sk-git/scripts/hooks/stdin-deadline.test.mjs:47"
+      ],
+      "reason": "measured 3030 ms self-exit on open stdin"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+        ".skilled/skills/sk-vision/hooks/devin/sk-vision.mjs"
+      ],
+      "bugClass": "io_deadline",
+      "disposition": "ruled_out",
+      "rationale": "same shared default in all three",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs:388",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:84",
+        ".skilled/skills/sk-vision/hooks/devin/sk-vision.mjs:63"
+      ],
+      "reason": "uniform 3000 ms via shared helper"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs"
+      ],
+      "bugClass": "resource_leak",
+      "disposition": "ruled_out",
+      "rationale": "timer cleared on EOF; no linger",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:39",
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:47"
+      ],
+      "reason": "3 ms EOF resolution measured"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/stdin-deadline.test.mjs",
+        ".skilled/skills/sk-vision/hooks/devin/sk-vision-devin.test.mjs"
+      ],
+      "bugClass": "test_false_pass",
+      "disposition": "ruled_out",
+      "rationale": "tests fail against the pre-fix hooks",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/stdin-deadline.test.mjs:47"
+      ],
+      "reason": "pre-fix replay reproduced the recorded failures"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+        ".skilled/skills/sk-vision/hooks/devin/sk-vision.mjs"
+      ],
+      "bugClass": "fail_open_semantics",
+      "disposition": "ruled_out",
+      "rationale": "no observable behavior change on normal input",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs:388",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:84"
+      ],
+      "reason": "equivalence plus regression suite green"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs"
+      ],
+      "bugClass": "warning_false_negative",
+      "disposition": "ruled_out",
+      "rationale": "warning fires exactly at the cap on the polling fixture and is absent pre-fix",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs:441",
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs:42"
+      ],
+      "reason": "both fixture families plus pre-fix replay measured"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh"
+      ],
+      "bugClass": "exit_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "exit codes measured identical on both fixture families and preserved on the forced-failure path",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs:466",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:80"
+      ],
+      "reason": "pre-fix replay plus forced-failure probe"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh"
+      ],
+      "bugClass": "count_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "independent counting reproduces the printed per-guard and total counts",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:44"
+      ],
+      "reason": "counts match exactly"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-010",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md"
+      ],
+      "bugClass": "claimed_but_missing",
+      "disposition": "ruled_out",
+      "rationale": "all carriers agree and the Hermes copies are in sync",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/SKILL.md:5",
+        ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md:5"
+      ],
+      "reason": "six carriers, changelog and Hermes copy verified consistent"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-012",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/004-debt-report-and-hermes-gate/implementation-summary.md"
+      ],
+      "bugClass": "count_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "exact rerun matches",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/004-debt-report-and-hermes-gate/implementation-summary.md:115"
+      ],
+      "reason": "report and corrected row agree"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening/implementation-summary.md"
+      ],
+      "bugClass": "count_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "count and attribution arithmetic both reproduce",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening/implementation-summary.md:61"
+      ],
+      "reason": "grep count 12 = 6+6 per the two commits"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-014",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs",
+        ".skilled/skills/sk-doc/scripts/frontmatter-version.mjs"
+      ],
+      "bugClass": "claimed_but_missing",
+      "disposition": "ruled_out",
+      "rationale": "every cited path resolves",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/manual-testing-playbook/tooling-and-hooks/check-dist-staleness-hook.md:11"
+      ],
+      "reason": "7/7 cited paths exist"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-015",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/manual-testing-playbook",
+        ".hermes/skills/sk-code"
+      ],
+      "bugClass": "stale_reference",
+      "disposition": "ruled_out",
+      "rationale": "class sweep clean",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:52"
+      ],
+      "reason": "no stale framing remains"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-016",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md"
+      ],
+      "bugClass": "count_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "exact criterion command reproduces 41",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md:93"
+      ],
+      "reason": "41 reproduced and the 36->41 diff verified"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-I4-001",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/SKILL.md:5",
+        ".skilled/skills/sk-code/ROUTER.md:12",
+        ".skilled/skills/sk-code/description.json:4",
+        ".skilled/skills/sk-code/hub-router.json:3",
+        ".skilled/skills/sk-code/mode-registry.json:3"
+      ],
+      "bugClass": "version_drift",
+      "disposition": "ruled_out",
+      "rationale": "every hub-root carrier, the changelog and the Hermes copy read 2.2.8.0",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/SKILL.md:5"
+      ],
+      "reason": "carrier lines read green"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-I4-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-git/SKILL.md:6",
+        ".skilled/skills/sk-vision/SKILL.md:5",
+        ".skilled/skills/sk-code/sk-code-webflow/SKILL.md:5",
+        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md:5",
+        ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md:5"
+      ],
+      "bugClass": "version_drift",
+      "disposition": "ruled_out",
+      "rationale": "each release carrier moved with its changelog and mirror",
+      "evidenceRefs": [
+        ".hermes/skills/sk-git/SKILL.md:6"
+      ],
+      "reason": "carrier lines read green"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-I4-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-git/changelog/v1.8.1.0.md:10",
+        ".skilled/skills/sk-code/changelog/v2.2.8.0.md:10",
+        ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.19.2.0.md:10"
+      ],
+      "bugClass": "changelog_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "all six validate and their described artifacts exist at the quoted lines",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/changelog/v1.8.1.0.md:10",
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs:442"
+      ],
+      "reason": "validation plus diff spot checks green"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-I4-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs:6"
+      ],
+      "bugClass": "comment_id_leak",
+      "disposition": "ruled_out",
+      "rationale": "no added code comment carries an ephemeral id",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs:40"
+      ],
+      "reason": "added-line scan matched nothing"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-I4-005",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".hermes/skills/sk-code/SKILL.md:5"
+      ],
+      "bugClass": "mirror_drift",
+      "disposition": "ruled_out",
+      "rationale": "the checker reports all copies in sync",
+      "evidenceRefs": [
+        ".hermes/skills/sk-code/SKILL.md:5"
+      ],
+      "reason": "check exit 0 with affirmative count"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-I4-006",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json:1"
+      ],
+      "bugClass": "manifest_staleness",
+      "disposition": "ruled_out",
+      "rationale": "the live manifest moved and probes fresh; no second live copy exists and no live .json keeps the old hash",
+      "evidenceRefs": [
+        ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json:1",
+        ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json:1"
+      ],
+      "reason": "probe fresh true plus old hash absent"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-I4-007",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json:1"
+      ],
+      "bugClass": "stale_index",
+      "disposition": "ruled_out",
+      "rationale": "no tracked document is stale; the six are this run's untracked artifacts created after d1741a28f7",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json:1",
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json:1"
+      ],
+      "reason": "staleness attributable to post-commit untracked docs"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-I4-008",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-webflow/README.md:8",
+        ".skilled/skills/sk-code/sk-code-opencode/README.md:8",
+        ".skilled/skills/system-deep-loop/deep-improvement/README.md:10"
+      ],
+      "bugClass": "version_drift",
+      "disposition": "ruled_out",
+      "rationale": "README is a derived child doc under the frontmatter-versioning standard, so a mode README does not track the release version",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:79"
+      ],
+      "reason": "standard sect. 4/8 plus corpus convention"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-I5-001",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "no unquoted expansion reaches a command position and no dynamic evaluation exists",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:42",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:44",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:60",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:20"
+      ],
+      "reason": "static read plus syntax check plus live green run"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-I5-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs",
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+        ".skilled/skills/sk-vision/hooks/devin/sk-vision.mjs"
+      ],
+      "bugClass": "unbounded_input",
+      "disposition": "ruled_out",
+      "rationale": "no cap exists but the unbounded reader is the pre-existing corpus-wide helper the hooks adopt; growth is process-local and linear, deadline-bounded, failure is fail-open exit 0. A byte cap is a corpus-wide reader decision, not this commit's defect",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:26",
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:47",
+        ".skilled/skills/sk-vision/hooks/devin/sk-vision.mjs:63",
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:20"
+      ],
+      "reason": "measured oversized probe plus range-scope proof (helper untouched) plus documented fail-open contract"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-I5-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+        ".skilled/skills/sk-vision/hooks/devin/sk-vision.mjs"
+      ],
+      "bugClass": "fail_open_semantics",
+      "disposition": "ruled_out",
+      "rationale": "deadline-cut JSON lands in the documented fail-open path with no crash; already registered as ruled-out semantics in iteration 1 and not re-filed",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs:389",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:85",
+        ".skilled/skills/sk-vision/hooks/devin/sk-vision.mjs:64",
+        ".skilled/skills/sk-vision/hooks/devin/sk-vision.mjs:63"
+      ],
+      "reason": "source read plus probe; consistent with the hook contract"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-I5-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs"
+      ],
+      "bugClass": "late_write",
+      "disposition": "ruled_out",
+      "rationale": "no listener survives the settle and the settled flag makes a double settle unreachable; probe confirms exit 0 before the late write completes",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:23",
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:39",
+        ".skilled/skills/sk-git/scripts/hooks/stdin-deadline.test.mjs:47"
+      ],
+      "reason": "source read plus late-write probe plus open-stdin suite self-exit ~3032 ms"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-I5-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs"
+      ],
+      "bugClass": "overengineering",
+      "disposition": "ruled_out",
+      "rationale": "no new abstraction, option or fallback; added state is minimal and directly required by the two findings",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs:40",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:45",
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:20"
+      ],
+      "reason": "diff read against the rule plus helper-reuse proof"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-I5-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/pi/git-message-gate.test.ts",
+        ".skilled/skills/sk-git/scripts/hooks/stdin-deadline.test.mjs",
+        ".skilled/skills/sk-vision/hooks/devin/sk-vision-devin.test.mjs"
+      ],
+      "bugClass": "regression",
+      "disposition": "ruled_out",
+      "rationale": "the pi failure is a vitest-runner mismatch at module resolution on a file the range does not touch; the sk-vision failure is the documented dist non-defect",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/pi/git-message-gate.test.ts:10",
+        ".skilled/skills/sk-git/scripts/hooks/pi/git-message-gate.test.ts:13",
+        ".skilled/skills/sk-git/scripts/hooks/pi/README.md:16",
+        ".skilled/skills/sk-vision/hooks/devin/sk-vision-devin.test.mjs:130"
+      ],
+      "reason": "runner characterization plus range-scope proof"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs"
+      ],
+      "bugClass": "io_deadline",
+      "disposition": "ruled_out",
+      "rationale": "deadline observed end-to-end",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:20",
+        ".skilled/skills/sk-git/scripts/hooks/stdin-deadline.test.mjs:47"
+      ],
+      "proof": "measured 3030 ms self-exit on open stdin"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+        ".skilled/skills/sk-vision/hooks/devin/sk-vision.mjs"
+      ],
+      "bugClass": "io_deadline",
+      "disposition": "ruled_out",
+      "rationale": "same shared default in all three",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs:388",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:84",
+        ".skilled/skills/sk-vision/hooks/devin/sk-vision.mjs:63"
+      ],
+      "proof": "uniform 3000 ms via shared helper"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs"
+      ],
+      "bugClass": "resource_leak",
+      "disposition": "ruled_out",
+      "rationale": "timer cleared on EOF; no linger",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:39",
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:47"
+      ],
+      "proof": "3 ms EOF resolution measured"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/stdin-deadline.test.mjs",
+        ".skilled/skills/sk-vision/hooks/devin/sk-vision-devin.test.mjs"
+      ],
+      "bugClass": "test_false_pass",
+      "disposition": "ruled_out",
+      "rationale": "tests fail against the pre-fix hooks",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/stdin-deadline.test.mjs:47"
+      ],
+      "proof": "pre-fix replay reproduced the recorded failures"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+        ".skilled/skills/sk-vision/hooks/devin/sk-vision.mjs"
+      ],
+      "bugClass": "fail_open_semantics",
+      "disposition": "ruled_out",
+      "rationale": "no observable behavior change on normal input",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs:388",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:84"
+      ],
+      "proof": "equivalence plus regression suite green"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs"
+      ],
+      "bugClass": "warning_false_negative",
+      "disposition": "ruled_out",
+      "rationale": "warning fires exactly at the cap on the polling fixture and is absent pre-fix",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs:441",
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs:42"
+      ],
+      "proof": "both fixture families plus pre-fix replay measured"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh"
+      ],
+      "bugClass": "exit_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "exit codes measured identical on both fixture families and preserved on the forced-failure path",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs:466",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:80"
+      ],
+      "proof": "pre-fix replay plus forced-failure probe"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh"
+      ],
+      "bugClass": "count_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "independent counting reproduces the printed per-guard and total counts",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:44"
+      ],
+      "proof": "counts match exactly"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-010",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md"
+      ],
+      "bugClass": "claimed_but_missing",
+      "disposition": "ruled_out",
+      "rationale": "all carriers agree and the Hermes copies are in sync",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/SKILL.md:5",
+        ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md:5"
+      ],
+      "proof": "six carriers, changelog and Hermes copy verified consistent"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-012",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/004-debt-report-and-hermes-gate/implementation-summary.md"
+      ],
+      "bugClass": "count_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "exact rerun matches",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/004-debt-report-and-hermes-gate/implementation-summary.md:115"
+      ],
+      "proof": "report and corrected row agree"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening/implementation-summary.md"
+      ],
+      "bugClass": "count_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "count and attribution arithmetic both reproduce",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening/implementation-summary.md:61"
+      ],
+      "proof": "grep count 12 = 6+6 per the two commits"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-014",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs",
+        ".skilled/skills/sk-doc/scripts/frontmatter-version.mjs"
+      ],
+      "bugClass": "claimed_but_missing",
+      "disposition": "ruled_out",
+      "rationale": "every cited path resolves",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/manual-testing-playbook/tooling-and-hooks/check-dist-staleness-hook.md:11"
+      ],
+      "proof": "7/7 cited paths exist"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-015",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/manual-testing-playbook",
+        ".hermes/skills/sk-code"
+      ],
+      "bugClass": "stale_reference",
+      "disposition": "ruled_out",
+      "rationale": "class sweep clean",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:52"
+      ],
+      "proof": "no stale framing remains"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-016",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md"
+      ],
+      "bugClass": "count_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "exact criterion command reproduces 41",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md:93"
+      ],
+      "proof": "41 reproduced and the 36->41 diff verified"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-I4-001",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/SKILL.md:5",
+        ".skilled/skills/sk-code/ROUTER.md:12",
+        ".skilled/skills/sk-code/description.json:4",
+        ".skilled/skills/sk-code/hub-router.json:3",
+        ".skilled/skills/sk-code/mode-registry.json:3"
+      ],
+      "bugClass": "version_drift",
+      "disposition": "ruled_out",
+      "rationale": "every hub-root carrier, the changelog and the Hermes copy read 2.2.8.0",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/SKILL.md:5"
+      ],
+      "proof": "carrier lines read green"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-I4-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-git/SKILL.md:6",
+        ".skilled/skills/sk-vision/SKILL.md:5",
+        ".skilled/skills/sk-code/sk-code-webflow/SKILL.md:5",
+        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md:5",
+        ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md:5"
+      ],
+      "bugClass": "version_drift",
+      "disposition": "ruled_out",
+      "rationale": "each release carrier moved with its changelog and mirror",
+      "evidenceRefs": [
+        ".hermes/skills/sk-git/SKILL.md:6"
+      ],
+      "proof": "carrier lines read green"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-I4-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-git/changelog/v1.8.1.0.md:10",
+        ".skilled/skills/sk-code/changelog/v2.2.8.0.md:10",
+        ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.19.2.0.md:10"
+      ],
+      "bugClass": "changelog_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "all six validate and their described artifacts exist at the quoted lines",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/changelog/v1.8.1.0.md:10",
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs:442"
+      ],
+      "proof": "validation plus diff spot checks green"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-I4-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs:6"
+      ],
+      "bugClass": "comment_id_leak",
+      "disposition": "ruled_out",
+      "rationale": "no added code comment carries an ephemeral id",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs:40"
+      ],
+      "proof": "added-line scan matched nothing"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-I4-005",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".hermes/skills/sk-code/SKILL.md:5"
+      ],
+      "bugClass": "mirror_drift",
+      "disposition": "ruled_out",
+      "rationale": "the checker reports all copies in sync",
+      "evidenceRefs": [
+        ".hermes/skills/sk-code/SKILL.md:5"
+      ],
+      "proof": "check exit 0 with affirmative count"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-I4-006",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json:1"
+      ],
+      "bugClass": "manifest_staleness",
+      "disposition": "ruled_out",
+      "rationale": "the live manifest moved and probes fresh; no second live copy exists and no live .json keeps the old hash",
+      "evidenceRefs": [
+        ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json:1",
+        ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json:1"
+      ],
+      "proof": "probe fresh true plus old hash absent"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-I4-007",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json:1"
+      ],
+      "bugClass": "stale_index",
+      "disposition": "ruled_out",
+      "rationale": "no tracked document is stale; the six are this run's untracked artifacts created after d1741a28f7",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json:1",
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json:1"
+      ],
+      "proof": "staleness attributable to post-commit untracked docs"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-I4-008",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-webflow/README.md:8",
+        ".skilled/skills/sk-code/sk-code-opencode/README.md:8",
+        ".skilled/skills/system-deep-loop/deep-improvement/README.md:10"
+      ],
+      "bugClass": "version_drift",
+      "disposition": "ruled_out",
+      "rationale": "README is a derived child doc under the frontmatter-versioning standard, so a mode README does not track the release version",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:79"
+      ],
+      "proof": "standard sect. 4/8 plus corpus convention"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-I5-001",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "no unquoted expansion reaches a command position and no dynamic evaluation exists",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:42",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:44",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:60",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:20"
+      ],
+      "proof": "static read plus syntax check plus live green run"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-I5-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs",
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+        ".skilled/skills/sk-vision/hooks/devin/sk-vision.mjs"
+      ],
+      "bugClass": "unbounded_input",
+      "disposition": "ruled_out",
+      "rationale": "no cap exists but the unbounded reader is the pre-existing corpus-wide helper the hooks adopt; growth is process-local and linear, deadline-bounded, failure is fail-open exit 0. A byte cap is a corpus-wide reader decision, not this commit's defect",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:26",
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:47",
+        ".skilled/skills/sk-vision/hooks/devin/sk-vision.mjs:63",
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:20"
+      ],
+      "proof": "measured oversized probe plus range-scope proof (helper untouched) plus documented fail-open contract"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-I5-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+        ".skilled/skills/sk-vision/hooks/devin/sk-vision.mjs"
+      ],
+      "bugClass": "fail_open_semantics",
+      "disposition": "ruled_out",
+      "rationale": "deadline-cut JSON lands in the documented fail-open path with no crash; already registered as ruled-out semantics in iteration 1 and not re-filed",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs:389",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:85",
+        ".skilled/skills/sk-vision/hooks/devin/sk-vision.mjs:64",
+        ".skilled/skills/sk-vision/hooks/devin/sk-vision.mjs:63"
+      ],
+      "proof": "source read plus probe; consistent with the hook contract"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-I5-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs"
+      ],
+      "bugClass": "late_write",
+      "disposition": "ruled_out",
+      "rationale": "no listener survives the settle and the settled flag makes a double settle unreachable; probe confirms exit 0 before the late write completes",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:23",
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:39",
+        ".skilled/skills/sk-git/scripts/hooks/stdin-deadline.test.mjs:47"
+      ],
+      "proof": "source read plus late-write probe plus open-stdin suite self-exit ~3032 ms"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-I5-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs"
+      ],
+      "bugClass": "overengineering",
+      "disposition": "ruled_out",
+      "rationale": "no new abstraction, option or fallback; added state is minimal and directly required by the two findings",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs:40",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:45",
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:20"
+      ],
+      "proof": "diff read against the rule plus helper-reuse proof"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-I5-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/pi/git-message-gate.test.ts",
+        ".skilled/skills/sk-git/scripts/hooks/stdin-deadline.test.mjs",
+        ".skilled/skills/sk-vision/hooks/devin/sk-vision-devin.test.mjs"
+      ],
+      "bugClass": "regression",
+      "disposition": "ruled_out",
+      "rationale": "the pi failure is a vitest-runner mismatch at module resolution on a file the range does not touch; the sk-vision failure is the documented dist non-defect",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/scripts/hooks/pi/git-message-gate.test.ts:10",
+        ".skilled/skills/sk-git/scripts/hooks/pi/git-message-gate.test.ts:13",
+        ".skilled/skills/sk-git/scripts/hooks/pi/README.md:16",
+        ".skilled/skills/sk-vision/hooks/devin/sk-vision-devin.test.mjs:130"
+      ],
+      "proof": "runner characterization plus range-scope proof"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "injection",
+      "unbounded_input",
+      "late_write",
+      "fail_open_semantics",
+      "io_deadline"
+    ],
+    "covered": [
+      "injection",
+      "unbounded_input",
+      "late_write",
+      "fail_open_semantics",
+      "io_deadline"
+    ],
+    "ruledOut": [
+      "injection",
+      "unbounded_input",
+      "late_write",
+      "fail_open_semantics",
+      "io_deadline"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

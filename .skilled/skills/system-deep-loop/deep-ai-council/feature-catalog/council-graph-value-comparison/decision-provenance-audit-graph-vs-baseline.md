@@ -12,8 +12,6 @@ version: 1.7.0.10
 
 # Decision provenance audit: graph vs baseline
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Demonstrate measurable audit-quality improvement between no-graph baseline and graph-driven provenance trace for a council decision.
@@ -55,7 +53,6 @@ The user-visible contract is concrete: Demonstrate measurable audit-quality impr
 
 ## 4. SOURCE METADATA
 - Group: Council Graph Value Comparison
-- Feature ID: DAC-028
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/council-graph-value-comparison/decision-provenance-audit-graph-vs-baseline.md`
 - Playbook scenario: `manual-testing-playbook/council-graph-value-comparison/decision-provenance-audit-graph-vs-baseline.md`

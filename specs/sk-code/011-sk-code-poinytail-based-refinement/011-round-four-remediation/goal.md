@@ -86,7 +86,7 @@ string, not these files.
 
 - [ ] In the worktree, `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation --recursive --strict` prints `RESULT: PASSED` 9 times and `RESULT: FAILED` 0 times
 - [ ] In the worktree, `grep -l 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/00[1-8]-*/implementation-summary.md | wc -l` prints 8
-- [ ] In the worktree, `git log --format='%(trailers:key=Spec,valueonly)' main..HEAD | grep -c '/011-round-four-remediation/'` prints 8, one per child, and `git status --short` prints nothing
+- [ ] `git log --format='%(trailers:key=Spec,valueonly)' HEAD | grep -c '/011-round-four-remediation/'` prints 8 or more, one per child, and `git status --short` prints nothing
 - [ ] In the worktree, `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh`, `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js`, `node .skilled/bin/compiled-route-guard.cjs`, `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check` and `node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all` each exit 0
 <!-- /ANCHOR:completion -->
 
@@ -119,4 +119,5 @@ and findings belong here.
 | Child 008 added | Child 003's reviewer showed that generic words (typescript, vitest, json) decide keyword ties, so WF-005 and WF-013 lead with OpenCode. The operator kept OPENCODE > OBSIDIAN > WEBFLOW as the fallback and added 008: the session's current work, detected by the existing path and marker rules, leads a keyword tie |
 | Review findings | Reviewers found defects in 002, 003, 004, 005 and 006. Each became a fix unit, built through the same chain and rechecked. In 006 the fix changed decision D3, so an F### narrative finding yields only to a structured row with its id |
 | Scope | The operator first chose the five items excluded on purpose, then widened round four to all eleven after the orchestrator found six more residuals that still reproduce |
+| Criterion 3 amended 2026-10-11 | The phase was merged, so `main..HEAD` is empty. The count now reads the `Spec:` trailers reachable from HEAD, as the 011 parent criterion 3 already does |
 <!-- /ANCHOR:log -->

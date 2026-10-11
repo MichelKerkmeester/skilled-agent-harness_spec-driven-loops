@@ -19,8 +19,6 @@ expected_leaf_resources: []
 Prompt: Manual validation that skills under z_archive/ and z-future/ are indexed for visibility but are not surfaced as active routing candidates.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

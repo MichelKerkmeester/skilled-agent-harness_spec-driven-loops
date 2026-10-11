@@ -20,8 +20,6 @@ expected_leaf_resources:
 Prompt: H5 operator playbook for corrupted SQLite and rebuild-from-source recovery.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

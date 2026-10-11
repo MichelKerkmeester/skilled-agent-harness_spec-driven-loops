@@ -1,6 +1,6 @@
 ---
 title: "JSONL state log"
-description: "Stores the append-only execution history for the deep-review lineage."
+description: "Stores the append-only execution history for the review lineage."
 trigger_phrases:
   - "jsonl state log"
   - "deep-review-state.jsonl"
@@ -11,8 +11,6 @@ version: 1.11.0.6
 ---
 
 # JSONL state log
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 
@@ -45,10 +43,10 @@ The same file also persists first-class lifecycle events such as `blocked_stop`,
 
 | File | Type | Role |
 |---|---|---|
-| `manual-testing-playbook/iteration-execution-and-state-discipline/review-iteration-writes-findings-jsonl-and-strategy-update.md` | Manual scenario | Verifies per-iteration JSONL append behavior. |
-| `manual-testing-playbook/iteration-execution-and-state-discipline/severity-classification-in-jsonl.md` | Manual scenario | Checks severity-weighted JSONL findings fields. |
-| `manual-testing-playbook/pause-resume-and-fault-tolerance/malformed-jsonl-lines-are-skipped-with-defaults.md` | Manual scenario | Exercises malformed-line handling and state recovery expectations. |
-| `manual-testing-playbook/pause-resume-and-fault-tolerance/jsonl-reconstruction-from-review-iteration-files.md` | Manual scenario | Verifies reconstruction from write-once iteration files. |
+| `manual-testing-playbook/iteration-execution-and-state-discipline/review-iteration-writes-findings-jsonl-and-strategy-update.md` | Manual playbook | Verifies per-iteration JSONL append behavior. |
+| `manual-testing-playbook/iteration-execution-and-state-discipline/severity-classification-in-jsonl.md` | Manual playbook | Checks severity-weighted JSONL findings fields. |
+| `manual-testing-playbook/pause-resume-and-fault-tolerance/malformed-jsonl-lines-are-skipped-with-defaults.md` | Manual playbook | Exercises malformed-line handling and state recovery expectations. |
+| `manual-testing-playbook/pause-resume-and-fault-tolerance/jsonl-reconstruction-from-review-iteration-files.md` | Manual playbook | Verifies reconstruction from write-once iteration files. |
 
 ---
 

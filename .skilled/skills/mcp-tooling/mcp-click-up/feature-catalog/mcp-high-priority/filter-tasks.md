@@ -18,8 +18,6 @@ List tasks that match field filters: tags, lists, folders, spaces, statuses, ass
 
 > **Live name (2026-10-08).** Call it as `clickup_official.clickup_official_clickup_filter_tasks` in Code Mode. The parameter table comes from the server's own schema, captured when the hosted server registered 61 tools on that date.
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -66,7 +64,7 @@ Values inside one filter combine with OR, and different filters combine with AND
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-task-crud/filter-tasks.md` | Manual | Scenario that exercises this tool |
+| `manual-testing-playbook/mcp-task-crud/filter-tasks.md` | Manual playbook | Scenario that exercises this tool |
 
 ---
 

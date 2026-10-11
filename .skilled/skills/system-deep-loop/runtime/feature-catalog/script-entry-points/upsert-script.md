@@ -12,8 +12,6 @@ version: 1.4.0.4
 
 # upsert.cjs
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -44,7 +42,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/integration/upsert-script.vitest.ts` | Test | Primary regression coverage for upsert.cjs. |
+| `tests/integration/upsert-script.vitest.ts` | Automated test | Primary regression coverage for upsert.cjs. |
 | `tests/integration/review-depth-graph.vitest.ts` | Integration | Graph event fixture coverage. |
 
 ---
@@ -53,7 +51,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Script entry points
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F015
 - Feature file path: `script-entry-points/upsert-script.md`
 - Primary sources: `scripts/upsert.cjs`, `tests/integration/upsert-script.vitest.ts`
 Related references:

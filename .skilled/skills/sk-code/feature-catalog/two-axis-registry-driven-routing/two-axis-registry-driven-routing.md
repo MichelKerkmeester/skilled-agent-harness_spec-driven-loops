@@ -1,6 +1,6 @@
 ---
 title: "Two-Axis Registry-Driven Routing"
-description: "How the sk-code hub dispatches a single advisor identity to a WORKFLOW mode plus zero-or-more read-only SURFACE evidence packets via mode-registry.json."
+description: "`mode-registry.json` is the single source of truth for dispatching a resolved WORKFLOW mode plus zero-or-more read-only SURFACE evidence packets, discriminated by `workflowMode`, `packetKind`, and `backendKind`."
 trigger_phrases:
   - "two-axis registry-driven routing"
   - "sk-code workflow and surface axis"
@@ -10,8 +10,6 @@ version: 1.0.0.1
 ---
 
 # Two-Axis Registry-Driven Routing (sk-code)
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

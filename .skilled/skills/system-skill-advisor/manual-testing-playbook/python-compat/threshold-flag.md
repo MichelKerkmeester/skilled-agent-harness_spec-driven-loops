@@ -19,8 +19,6 @@ expected_leaf_resources: []
 Prompt: Manual validation that --threshold adjusts the shim's confidence cutoff for Python-path scoring and affects which skills pass the dual-threshold check.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

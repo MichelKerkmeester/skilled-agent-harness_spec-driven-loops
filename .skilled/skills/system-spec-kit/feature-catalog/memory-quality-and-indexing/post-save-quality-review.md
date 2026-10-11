@@ -1,6 +1,6 @@
 ---
 title: "Post-save quality review"
-description: "After canonical packet continuity is written, a post-save quality review compares saved frontmatter against the original JSON payload and emits machine-readable severity-graded findings before indexing begins."
+description: "After canonical packet continuity is written, compares saved frontmatter against the original JSON payload and emits severity-graded findings."
 trigger_phrases:
   - "post-save quality review"
   - "frontmatter vs JSON payload comparison"
@@ -11,8 +11,6 @@ version: 1.6.0.13
 ---
 
 # Post-save quality review
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

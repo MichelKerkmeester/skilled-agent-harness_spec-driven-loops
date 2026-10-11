@@ -8,8 +8,6 @@ trigger_phrases:
 
 # Shadow Library: Advisor Shadow Sink
 
-<!-- sk-doc-template: skill_readme -->
-
 ---
 
 ## 1. OVERVIEW

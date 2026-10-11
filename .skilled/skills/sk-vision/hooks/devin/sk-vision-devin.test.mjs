@@ -53,6 +53,32 @@ describe("devin sk-vision adapter", () => {
     assert.deepStrictEqual(JSON.parse(stdout), {});
   });
 
+  it("exits on its own when the host never closes stdin", async () => {
+    // The host can hold its end of the pipe open forever, so the adapter has to
+    // bound its own read rather than wait for EOF. The kill timer is a net: a
+    // regression then fails on the exit code instead of stalling the whole run.
+    const started = Date.now();
+    const child = spawn("node", [ADAPTER], {
+      env: { ...process.env },
+      stdio: ["pipe", "pipe", "pipe"],
+    });
+    let stdout = "";
+    child.stdout.on("data", (chunk) => {
+      stdout += chunk;
+    });
+    const guard = setTimeout(() => child.kill("SIGKILL"), 6000);
+    const { code, elapsed } = await new Promise((resolvePromise, reject) => {
+      child.on("error", reject);
+      child.on("close", (code) => {
+        clearTimeout(guard);
+        resolvePromise({ code, elapsed: Date.now() - started });
+      });
+    });
+    assert.strictEqual(code, 0);
+    assert.deepStrictEqual(JSON.parse(stdout), {});
+    assert.ok(elapsed < 4500, `adapter took ${elapsed}ms to exit`);
+  });
+
   it("stays silent when the prompt names no image", async () => {
     const payload = JSON.stringify({
       prompt: "refactor the config loader and run the tests",

@@ -1,0 +1,52 @@
+{
+  "topic": "Skill authoring UX research for sk-create-skill and system-skill-advisor (E1-E5): root causes and smallest authoring-time fixes for maintainers and external skill authors.",
+  "maxIterations": 10,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "convergence",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research",
+  "createdAt": "2026-10-10T18:46:51Z",
+  "status": "complete",
+  "completedAt": "2026-10-10T19:01:00Z",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-t3-dsflash-llmgw-1791657819219-kz5ks9",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "stopPolicy": "convergence",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  }
+}

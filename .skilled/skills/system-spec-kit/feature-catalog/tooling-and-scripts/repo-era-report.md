@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Repository era report (repo-era.mjs)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The era report answers one question before a migration: which spec layout does this checkout use, and how far along is its content. It reads the tree and writes nothing. Its output is a JSON report on stdout. Upgrade-legacy prints a short form of the same report at the end of every dry run.

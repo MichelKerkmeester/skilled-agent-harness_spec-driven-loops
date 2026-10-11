@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # refero_get_flow
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Ordered-step retrieval for flows shortlisted by [`refero_search_flows`](search-flows.md). READ-ONLY. Canonical callable: `refero.refero_refero_get_flow({ flow_id | flow_ids, response_format? })` (doubled prefix; confirm via `tool_info` first).

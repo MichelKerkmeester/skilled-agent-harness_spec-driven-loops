@@ -11,8 +11,6 @@ version: 0.8.0.14
 
 # Anti-Stuffing and Cardinality Caps
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Stop a skill from gaming routing by spamming trigger phrases or crafting adversarial content designed to dominate the derived lane. Caps and density checks keep derived evidence honest.

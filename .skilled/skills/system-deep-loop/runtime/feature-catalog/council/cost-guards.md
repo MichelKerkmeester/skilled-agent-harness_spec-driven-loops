@@ -12,8 +12,6 @@ version: 1.4.0.4
 
 # Cost guards
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -44,7 +42,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/council/cost-guards.vitest.ts` | Test | Primary regression coverage for Cost guards. |
+| `tests/council/cost-guards.vitest.ts` | Automated test | Primary regression coverage for Cost guards. |
 
 ---
 
@@ -52,7 +50,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Council
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F021
 - Feature file path: `council/cost-guards.md`
 - Primary sources: `lib/council/cost-guards.cjs`, `tests/council/cost-guards.vitest.ts`
 Related references:

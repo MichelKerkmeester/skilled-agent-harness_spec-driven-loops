@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The canary router keeps every mode within the ambiguity delta and sorts the kept set by `routerPolicy.tieBreak` (`.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs:264`)",
     "created_at": "2026-10-10T14:44:43Z",
-    "last_save_at": "2026-10-10T16:50:12.155Z",
+    "last_save_at": "2026-10-11T05:17:08.846Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4d34ff536b53215c5543b50d65725e1b88cf9246ad0814a474bf78d3bf116ab9",
+    "source_fingerprint": "sha256:6b2cf8c28f5ad14a5cfcd95bc9c45d92904670ba9a5e53c5901f2a0a48dd4bbc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8f9fb819ec3e0c90073bd36ad079fba253b9ffc1079f33431e08762f64cc7072",

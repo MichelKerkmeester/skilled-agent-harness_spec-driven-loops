@@ -9,8 +9,6 @@ trigger_phrases:
 
 # Lifecycle Library: Advisor Skill State Transitions
 
-<!-- sk-doc-template: skill_readme -->
-
 ---
 
 ## 1. OVERVIEW

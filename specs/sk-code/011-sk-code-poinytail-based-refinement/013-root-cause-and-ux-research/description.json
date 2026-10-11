@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research",
+  "description": "The epic shipped, but its build hit repeated process errors: a helper's `String.replace` read a dollar-apostrophe sequence as a replacement pattern,",
+  "keywords": [
+    "epic",
+    "shipped",
+    "hit",
+    "repeated",
+    "process",
+    "errors",
+    "helper",
+    "string",
+    "replace",
+    "read",
+    "dollar-apostrophe",
+    "sequence",
+    "replacement",
+    "pattern"
+  ],
+  "lastUpdated": "2026-10-10T18:42:35.133Z",
+  "specId": "013",
+  "folderSlug": "root-cause-and-ux-research",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

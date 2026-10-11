@@ -21,8 +21,6 @@ expected_leaf_resources:
 Prompt: Manual validation that the SQLite-backed workspace lease prevents concurrent daemon writes and reclaims stale leases through heartbeat expiry.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

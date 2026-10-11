@@ -207,7 +207,7 @@
     ],
     "causal_summary": "`parseFindingsBlock` in `reduce-state.cjs` (line 258 when read) keeps only trimmed lines that match `^-\\s+\\\\F\\d+\\\\`, but Step 7 of `.skilled/agents/deep-review.md` tells the agent to write `N",
     "created_at": "2026-10-10T10:07:22Z",
-    "last_save_at": "2026-10-10T11:49:42.514Z",
+    "last_save_at": "2026-10-11T05:17:08.996Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3b4048ce1745e01a49710e5a3b4f43a54231301c72e9c00e0695eee4a34bf871",
+    "source_fingerprint": "sha256:214c2e4baf35c3fdfeafe5b7b4246b7ad434ceac56672860598ffbccea8bb05d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d90c17f4628f3cdf98c460920662d88706a3bf2507a774edc8351ec3123fa266",

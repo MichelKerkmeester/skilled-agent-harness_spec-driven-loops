@@ -11,8 +11,6 @@ version: 1.4.0.15
 
 # Convergence score-delta
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -43,8 +41,8 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/integration/convergence-script.vitest.ts` | Test | Primary regression coverage for Convergence score-delta. |
-| `tests/unit/convergence-score-delta.vitest.ts` | Test | Primary regression coverage for Convergence score-delta. |
+| `tests/integration/convergence-script.vitest.ts` | Automated test | Primary regression coverage for Convergence score-delta. |
+| `tests/unit/convergence-score-delta.vitest.ts` | Automated test | Primary regression coverage for Convergence score-delta. |
 
 ---
 
@@ -52,9 +50,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Scoring
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F038
 - Feature file path: `scoring/convergence-score-delta.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//011-convergence-score-delta`
 - Primary sources: `scripts/convergence.cjs`, `tests/integration/convergence-script.vitest.ts`, `tests/unit/convergence-score-delta.vitest.ts`
 Related references:
 - [scoring](../scoring/) — Scoring category

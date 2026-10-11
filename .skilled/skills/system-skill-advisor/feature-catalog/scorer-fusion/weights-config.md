@@ -11,8 +11,6 @@ version: 0.8.0.14
 
 # Lane Weights Configuration
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Keep the canonical lane weights in exactly one place and expose them to callers so routing behavior remains auditable.

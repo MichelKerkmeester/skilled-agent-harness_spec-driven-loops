@@ -13,8 +13,6 @@ version: 1.4.0.3
 
 # Cursor CLI Hook Contract
 
-<!-- sk-doc-template: skill_reference -->
-
 ---
 
 ## 1. OVERVIEW

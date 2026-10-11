@@ -25,7 +25,7 @@ const REPO_ROOT = path.resolve(HOOKS_ROOT, '..', '..');
 
 // The shared reader waits 3000 ms. A hook blocked on an open stdin cannot exit
 // before that, so the lower bound shows the hook reached the read at all; the
-// upper bound is the deadline plus room for start-up with fourteen processes
+// upper bound is the deadline plus room for start-up with seventeen processes
 // running at once; the kill timer only stops a regression from hanging the run.
 const EARLIEST_EXIT_MS = 2900;
 const LATEST_EXIT_MS = 8000;
@@ -48,6 +48,9 @@ const HOOKS = [
   { id: 'mcp-route-guard/cursor', file: 'mcp-route-guard/cursor/mcp-route-guard.mjs', failOpen: ALLOW },
   { id: 'task-dispatch/cursor', file: 'task-dispatch/cursor/task-dispatch-guard.mjs', failOpen: ALLOW },
   { id: 'task-dispatch/claude fable', file: 'task-dispatch/claude/fable-subagent-guard.mjs', failOpen: '' },
+  { id: 'git-preflight/shared', file: 'git-preflight/shared/git-preflight-advisory.mjs', failOpen: '' },
+  { id: 'git-message-gate/shared', file: 'git-message-gate/shared/git-message-gate.mjs', failOpen: '' },
+  { id: 'sk-vision/devin', file: 'sk-vision/devin/sk-vision.mjs', failOpen: '{}' },
 ];
 
 // No kill-switch may leak in: a disabled hook exits at once without reading

@@ -12,8 +12,6 @@ version: 1.0.0.2
 
 # Tokens and variables (figma-ds-cli var / bind / collections)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Manages Figma variables and collections, binds `var:name` references, and visualizes tokens. Reads and binds are read-only or gated; create, bind, set, rename, and visualize change the document; bulk deletes are destructive.

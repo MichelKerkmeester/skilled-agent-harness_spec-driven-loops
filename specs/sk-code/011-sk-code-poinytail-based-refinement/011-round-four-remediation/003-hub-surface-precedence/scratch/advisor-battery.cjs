@@ -1,5 +1,6 @@
 // Read-only replay of the sk-code skill-advisor probe battery (manual-testing-playbook SA-001): 17 positives, 5 negatives.
 // Run from the repository root. Prints one line per probe, then the aggregate line.
+// Requires the native scorer: a non-native row, or a non-zero advisor exit, fails the run with exit 1 instead of scoring.
 'use strict';
 const { execFileSync } = require('node:child_process');
 const ADVISOR = '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py';
@@ -29,23 +30,42 @@ const NEG = [
   'Reorganize the cli-opencode README into Quick Start, Architecture, and Reference sections.',
   'Investigate why the gate-3 classifier mis-categorizes resume prompts and report findings as a research summary.',
 ];
-function top(prompt) {
-  const out = execFileSync('python3', [ADVISOR, prompt, '--threshold', '0.8'], { encoding: 'utf8' });
+function top(probeId, prompt) {
+  let out;
+  try {
+    out = execFileSync('python3', [ADVISOR, prompt, '--threshold', '0.8', '--force-native'],
+      { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+  } catch (error) {
+    const detail = String((error && error.stderr) || (error && error.stdout) || (error && error.message) || 'unknown failure').trim();
+    process.stderr.write(`${probeId} skill_advisor.py failed with exit ${error && error.status}\n${detail}\n`);
+    process.exit(1);
+  }
   const rows = JSON.parse(out);
+  for (const row of rows) {
+    if (row.source !== 'native') {
+      process.stderr.write(`${probeId} non-native row: source=${row.source}\n`);
+      degraded += 1;
+    }
+  }
   return rows.length ? { skill: rows[0].skill, confidence: rows[0].confidence } : { skill: 'none', confidence: 0 };
 }
 let won = 0;
 let fp = 0;
+let degraded = 0;
 POS.forEach((p, i) => {
-  const t = top(p);
+  const t = top(`P${i + 1}`, p);
   const ok = t.skill === 'sk-code' && t.confidence >= 0.8;
   if (ok) won += 1;
   console.log(`P${i + 1} ${ok ? 'WIN' : 'LOSS'} ${t.skill} ${t.confidence}`);
 });
 NEG.forEach((p, i) => {
-  const t = top(p);
+  const t = top(`N${i + 1}`, p);
   const bad = t.skill === 'sk-code';
   if (bad) fp += 1;
   console.log(`N${i + 1} ${bad ? 'FALSE-POSITIVE' : 'OK'} ${t.skill} ${t.confidence}`);
 });
+if (degraded > 0) {
+  process.stderr.write(`degraded run: ${degraded} non-native row(s); refusing to score\n`);
+  process.exit(1);
+}
 console.log(`positives ${won}/${POS.length} negatives-false-positive ${fp}/${NEG.length}`);

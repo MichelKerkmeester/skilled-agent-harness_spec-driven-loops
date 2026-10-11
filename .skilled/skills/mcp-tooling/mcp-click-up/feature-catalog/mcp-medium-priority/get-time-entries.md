@@ -16,8 +16,6 @@ List time entries, filtered by task, dates, assignee or billable flag.
 
 > **Live name (2026-10-08).** Call it as `clickup_official.clickup_official_clickup_get_time_entries` in Code Mode. The parameter table comes from the server's own schema, captured when the hosted server registered 61 tools on that date.
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -53,7 +51,7 @@ Without `assignee`, only the signed-in user's entries come back.
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | No dedicated scenario. Confirm the call with `tool_info()` before first use |
+| `manual-testing-playbook/` | Manual playbook | No dedicated scenario. Confirm the call with `tool_info()` before first use |
 
 ---
 

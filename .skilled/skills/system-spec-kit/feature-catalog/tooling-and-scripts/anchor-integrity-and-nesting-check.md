@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Anchor integrity and nesting check (ANCHORS_VALID)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 ANCHORS_VALID checks the anchor markers in each spec document whose template defines anchors. Retrieval chunks a document by its anchors, so a nested anchor makes retrieval return the wrong region. The rule therefore treats nesting as an error, next to the duplicate, unclosed and unopened findings that the same rule already reports.

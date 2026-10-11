@@ -20,8 +20,6 @@ expected_leaf_resources:
 Prompt: H5 operator playbook for detecting and recovering a degraded native advisor daemon state.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

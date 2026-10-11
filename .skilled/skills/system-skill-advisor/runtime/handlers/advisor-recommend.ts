@@ -361,6 +361,7 @@ function compiledRouteForRecommendation(
   skillId: string,
   prompt: string,
   workspaceRoot: string,
+  surfaceHint?: string,
 ): Record<string, unknown> | undefined {
   if (!COMPILED_ROUTING_HUBS.has(skillId)) return undefined;
   const frontDoor = resolve(workspaceRoot, '.skilled', 'bin', 'compiled-route.cjs');
@@ -369,12 +370,16 @@ function compiledRouteForRecommendation(
     return undefined;
   }
   try {
-    const output = execFileSync(process.execPath, [
+    const args = [
       frontDoor,
       '--hub',
       skillId,
       '--prompt-stdin',
-    ], {
+    ];
+    // A hint the caller already holds is forwarded as its own argv element;
+    // the front door ignores a value that names no known surface.
+    if (surfaceHint) args.push('--surface-hint', surfaceHint);
+    const output = execFileSync(process.execPath, args, {
       cwd: workspaceRoot,
       encoding: 'utf8',
       input: prompt,
@@ -407,6 +412,7 @@ function enrichCompiledRoutes(
   output: AdvisorRecommendOutput,
   prompt: string,
   workspaceRoot: string,
+  surfaceHint?: string,
 ): AdvisorRecommendOutput {
   const mode = parseCompiledRoutingFlagMode(process.env.SPECKIT_COMPILED_ROUTING);
   if (mode === 'invalid') {
@@ -430,6 +436,7 @@ function enrichCompiledRoutes(
         recommendation.skillId,
         prompt,
         workspaceRoot,
+        surfaceHint,
       );
       return compiledRoute ? { ...recommendation, compiledRoute } : recommendation;
     }),
@@ -543,7 +550,7 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
     });
     return input.options?.includeCompiledRoute === false
       ? parsedCachedOutput
-      : enrichCompiledRoutes(parsedCachedOutput, input.prompt, workspaceRoot);
+      : enrichCompiledRoutes(parsedCachedOutput, input.prompt, workspaceRoot, input.options?.surfaceHint);
   }
 
   const topK = input.options?.topK ?? 3;
@@ -612,7 +619,7 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
   });
   return input.options?.includeCompiledRoute === false
     ? parsed
-    : enrichCompiledRoutes(parsed, input.prompt, workspaceRoot);
+    : enrichCompiledRoutes(parsed, input.prompt, workspaceRoot, input.options?.surfaceHint);
 }
 
 // ───────────────────────────────────────────────────────────────────

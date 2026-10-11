@@ -62,7 +62,7 @@ Frozen choices. Changing one is an amendment.
 - [ ] From the repository root, `C="$PWD/.skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs"; T=$(mktemp -d) && mkdir -p "$T/src/2_javascript/z_minified" && for f in .skilled/skills/sk-code/sk-code-webflow/assets/{animation/snippets,integrations,patterns}/*.js; do cp "$f" "$T/src/2_javascript/z_minified/$(basename "$(dirname "$f")")__$(basename "$f")"; done && (cd "$T" && node "$C"); echo "exit=$?"; rm -rf "$T"` prints `Passed:  16/16` and `exit=0`.
 - [ ] `python3 -I .skilled/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_stack_folders.py -v` prints `Ran 2 tests` and `OK`, including a passing `test_orphan_folder_fails`, and exits 0, and `python3 -I .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py` prints `OK: 6 language folder(s) all resolve` and exits 0.
 - [ ] `node --check .skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs` exits 0 with no output, and `grep -n 'catch (e) {}' .skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs` prints nothing and exits 1.
-- [ ] `python3 -I .skilled/skills/sk-doc/scripts/validate_document.py` prints `VALID` and `Total issues: 0` and exits 0 for both `.skilled/skills/sk-code/sk-code-webflow/assets/scripts/README.md` and `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md`; `.skilled/skills/sk-code/sk-code-webflow/assets/scripts/README.md` contains a `runtime-fixture/` row and `Code files | 3`, and `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md` contains a `test_verify_stack_folders.py` row and `Code files | 4`.
+- [ ] `python3 -I .skilled/skills/sk-doc/scripts/validate_document.py` prints `VALID` and `Total issues: 0` and exits 0 for both `.skilled/skills/sk-code/sk-code-webflow/assets/scripts/README.md` and `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md`; `.skilled/skills/sk-code/sk-code-webflow/assets/scripts/README.md` contains a `runtime-fixture/` row and `Code files | 3`, and `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md` contains a `test_verify_stack_folders.py` row and `Code files | 7`.
 - [ ] `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` prints `PASS: stack-folders` and an `Errors:` count of 1 or less, with no ERROR line under `sk-code-webflow/` or `sk-code-opencode/`.
 <!-- /ANCHOR:completion -->
 
@@ -92,4 +92,5 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | `rm -rf` refused by the command runner | T003 and T004 no longer delete their temporary trees; the orchestrator deleted them and ran criterion 3 with its cleanup |
+| Criterion 6 amended 2026-10-11 | The kebab-case rename phase added the router-sync and doc-claims guards and their library to that folder, so it now holds seven code files |
 <!-- /ANCHOR:log -->

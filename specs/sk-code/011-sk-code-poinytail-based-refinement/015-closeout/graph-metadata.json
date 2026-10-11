@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/015-closeout",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/015-closeout",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement",
+  "children_ids": [
+    "sk-code/011-sk-code-poinytail-based-refinement/015-closeout/001-sk-code-hub-voice",
+    "sk-code/011-sk-code-poinytail-based-refinement/015-closeout/002-goal-criteria-refresh",
+    "sk-code/011-sk-code-poinytail-based-refinement/015-closeout/003-sk-git-playbook-changelog",
+    "sk-code/011-sk-code-poinytail-based-refinement/015-closeout/004-dispatch-guard-and-vitest",
+    "sk-code/011-sk-code-poinytail-based-refinement/015-closeout/005-stdin-late-write-coverage",
+    "sk-code/011-sk-code-poinytail-based-refinement/015-closeout/006-compiled-route-content-check",
+    "sk-code/011-sk-code-poinytail-based-refinement/015-closeout/007-review-reducer-missing-config",
+    "sk-code/011-sk-code-poinytail-based-refinement/015-closeout/008-advisor-residuals-and-surface-hint",
+    "sk-code/011-sk-code-poinytail-based-refinement/015-closeout/009-open-items-ledger"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "epic closeout",
+      "sk-code refinement closeout",
+      "leave nothing open",
+      "open items ledger",
+      "closeout goal"
+    ],
+    "key_topics": [
+      "epic",
+      "closeout",
+      "sk-code",
+      "refinement",
+      "leave",
+      "nothing",
+      "open",
+      "items",
+      "ledger",
+      "goal",
+      "phases",
+      "feature-catalog"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/hooks/vitest.config.ts",
+      ".skilled/bin/compiled-route-sync.cjs",
+      "001-sk-code-hub-voice/goal.md",
+      "002-goal-criteria-refresh/goal.md",
+      "003-sk-git-playbook-changelog/goal.md",
+      "004-dispatch-guard-and-vitest/goal.md",
+      "005-stdin-late-write-coverage/goal.md",
+      "006-compiled-route-content-check/goal.md",
+      "007-review-reducer-missing-config/goal.md",
+      "008-advisor-residuals-and-surface-hint/goal.md",
+      "009-open-items-ledger/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. BINDING",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. COMPLETION CRITERIA",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The epic's phases 012 to 014 and the feature-catalog track each closed with items marked deferred, handed off or left to the master orchestrator",
+    "created_at": "2026-10-11T04:49:19Z",
+    "last_save_at": "2026-10-11T06:05:13.526Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:53fadee3e2c101f07cbe27a45917f0d08de8973669b1eb71586933653c9fac93",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ba9783e651aa5b745faa19f980cfe8c906c635a11e1d9a5e8ec5345fced01593"
+    },
+    "last_active_at": null
+  }
+}

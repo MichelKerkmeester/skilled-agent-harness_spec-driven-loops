@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/006-create-skill-guidance",
+  "description": "Phase 6: create-skill-guidance",
+  "keywords": [
+    "phase",
+    "create-skill-guidance"
+  ],
+  "lastUpdated": "2026-10-10T19:22:17.494Z",
+  "specId": "006",
+  "folderSlug": "create-skill-guidance",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "014-skill-authoring-ux-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/015-freshness-strict-content",
+  "description": "Phase 15: freshness-strict-content",
+  "keywords": [
+    "phase",
+    "freshness-strict-content"
+  ],
+  "lastUpdated": "2026-10-10T23:56:41.515Z",
+  "specId": "015",
+  "folderSlug": "freshness-strict-content",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "014-skill-authoring-ux-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -9,8 +9,6 @@ trigger_phrases:
 
 # Skill Advisor Embedder Adapter Shims
 
-<!-- sk-doc-template: code_folder_readme -->
-
 ---
 
 ## 1. OVERVIEW

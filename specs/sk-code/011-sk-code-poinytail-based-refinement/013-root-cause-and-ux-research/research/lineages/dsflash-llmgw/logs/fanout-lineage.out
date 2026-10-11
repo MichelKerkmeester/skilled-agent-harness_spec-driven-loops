@@ -1,0 +1,3 @@
+All artifacts verified: 10 iteration narratives with matching delta and canonical records, gateway-owned state carrying 10 `type=iteration` rows plus the terminal `synthesis_complete` with `stopReason: maxIterationsReached`, synthesis files present and passing the packet-style checks (2 heading matches, 21 VERIFIED/INFERRED marks, every `[SOURCE: path:line]` tag resolving), and no writes outside the lineage write surface.
+
+FANOUT_LINEAGE_COMPLETE:dsflash-llmgw

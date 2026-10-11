@@ -12,8 +12,6 @@ version: 1.4.0.4
 
 # Coverage graph signals
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -44,7 +42,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/integration/convergence-script.vitest.ts` | Test | Primary regression coverage for Coverage graph signals. |
+| `tests/integration/convergence-script.vitest.ts` | Automated test | Primary regression coverage for Coverage graph signals. |
 | `tests/integration/status-script.vitest.ts` | Integration | Status signal coverage. |
 | `tests/integration/review-depth-convergence.vitest.ts` | Integration | Review-depth convergence fixture coverage. |
 
@@ -54,7 +52,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Coverage graph
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F013
 - Feature file path: `coverage-graph/coverage-graph-signals.md`
 - Primary sources: `lib/coverage-graph/coverage-graph-signals.ts`, `tests/integration/convergence-script.vitest.ts`
 Related references:

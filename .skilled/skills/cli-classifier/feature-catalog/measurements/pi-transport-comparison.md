@@ -11,8 +11,6 @@ version: 0.3.0.0
 
 # Pi transport comparison (score-pi-transport.mjs)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Compares Pi's classifier runtime against the jev CLI on the advisor's recorded choice calls, with a zero-call default and live arms behind an explicit switch.

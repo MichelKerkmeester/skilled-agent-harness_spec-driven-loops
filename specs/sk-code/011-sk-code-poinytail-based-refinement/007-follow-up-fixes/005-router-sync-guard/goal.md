@@ -62,9 +62,9 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 
 - [ ] From the repository root, `node --check .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs && node --check .skilled/skills/sk-code/sk-code-opencode/assets/scripts/router_replay_lib.cjs && grep -n vitest .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs .skilled/skills/sk-code/sk-code-opencode/assets/scripts/router_replay_lib.cjs; echo "exit=$?"` prints nothing except `exit=1`. (REQ-001)
-- [ ] From the repository root, `node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs --checks 1a,2,3,4; echo "exit=$?"` prints `PASS check 1a`, `PASS check 2`, `PASS check 3`, `PASS check 4`, `router-sync: 4/4 checks passed` and `exit=0`. (REQ-002)
+- [ ] From the repository root, `node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs --checks 1a,2,3,4; echo "exit=$?"` prints `PASS check 1a`, `PASS check 2`, `PASS check 3`, `PASS check 4`, `router-sync: 4/4 checks passed` and `exit=0`. (REQ-002)
 - [ ] From the repository root, `bash specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/005-router-sync-guard/scratch/prototype/negative-controls.sh; echo "exit=$?"` prints `negative controls: 6/6 behaved as expected` and `exit=0`. (REQ-003)
-- [ ] From the repository root, `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh; echo "exit=$?"` prints `PASS: router-sync`, `Errors: 0`, `run-all-drift-guards: all 3 guards PASSED` and `exit=0`. (REQ-004)
+- [ ] From the repository root, `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh; echo "exit=$?"` prints `PASS: router-sync`, `Errors: 0`, a line starting `run-all-drift-guards: all 4 guards PASSED` and `exit=0`. (REQ-004)
 - [ ] From the repository root, `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check .skilled/skills/sk-code && node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check; echo "exit=$?"` prints `leaf-manifest.json OK`, then `PASS: 70 Hermes skill copies in sync`, and `exit=0`. (REQ-005)
 - [ ] From the repository root, `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/005-router-sync-guard --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
@@ -104,4 +104,6 @@ and findings belong here.
 | Umbrella warnings unchanged | The baseline warning count of 247 holds after wiring. |
 | New guard files are untracked | The alignment-drift scan reads git-tracked files only, so it does not see the new guard files until they are staged. |
 | spec.md status is the orchestrator's | spec.md still reads Status Planned, and the brief keeps spec.md out of this build. The implementation summary reads "Built, awaiting orchestrator status update". The validator does not classify that wording, so its status cross-doc check does not apply. When the orchestrator sets spec.md Status to Complete, rerun `validate.sh --strict` to confirm the two documents agree. A Complete status here fails the cross-doc check until spec.md changes. |
+| Criterion 2 amended 2026-10-11 | The sk-code-opencode scripts were renamed to kebab-case by `sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file |
+| Criterion 4 amended 2026-10-11 | Phase 010 added the doc-claims guard and phase 012 added the warning count, so the summary line reads all 4 guards and a warning count |
 <!-- /ANCHOR:log -->

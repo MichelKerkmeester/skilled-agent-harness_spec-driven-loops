@@ -12,8 +12,6 @@ version: 2.7.0.2
 
 # Source tag resolution (SOURCE_TAGS)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The SOURCE_TAGS rule resolves each path:line citation inside a [SOURCE: ...] tag in a packet's research and review artifacts and warns when the file is gone, has moved, is shorter than the cited line or matches only by file name.

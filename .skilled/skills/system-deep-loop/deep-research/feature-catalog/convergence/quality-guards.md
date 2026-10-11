@@ -1,6 +1,6 @@
 ---
 title: "Quality guards"
-description: "Blocks premature stops until source diversity, focus alignment, and weak-source checks all pass."
+description: "Blocks weak or incomplete STOP decisions even after convergence math votes to stop."
 trigger_phrases:
   - "quality guards"
   - "premature stop prevention"
@@ -11,8 +11,6 @@ version: 1.14.0.8
 ---
 
 # Quality guards
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

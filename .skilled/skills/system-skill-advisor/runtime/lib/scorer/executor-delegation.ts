@@ -82,7 +82,7 @@ const DELEGATION_CUES = /\b(use|delegate to|ask|run|invoke|dispatch|hand off to|
 // The negative guard forces NON-delegation. "opencode {standards|route|…}" and a
 // bare ".skilled/" path are the code hub's own opencode surface, not an
 // executor handoff, so they must never lift an executor.
-const NEGATIVE_GUARD = /\bopencode[-\s]?(standards|route|skill|agent|plugin|command|convention)\b|\.opencode\//;
+const NEGATIVE_GUARD = /\bopencode[-\s]?(standards|route|skill|agent|plugin|command|convention)\b|\.(?:opencode|skilled)\//;
 
 // ───────────────────────────────────────────────────────────────────
 // 3. TYPE DEFINITIONS
