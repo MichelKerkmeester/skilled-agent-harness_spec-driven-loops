@@ -69,7 +69,14 @@
         "contrast",
         "radius",
         "elevation",
-        "hierarchy"
+        "hierarchy",
+        "design fundamentals",
+        "what padding should this have",
+        "spacing scale",
+        "contrast ratio",
+        "colour decision",
+        "color decision",
+        "visual hierarchy"
       ]
     },
     "design-review": {
@@ -93,7 +100,12 @@
         "from a site",
         "css extraction",
         "validate design.md",
-        "style guide"
+        "style guide",
+        "extract design tokens",
+        "measure a surface",
+        "extract css",
+        "design tokens from a site",
+        "style guide from a url"
       ]
     },
     "create-diagram-aliases": {
