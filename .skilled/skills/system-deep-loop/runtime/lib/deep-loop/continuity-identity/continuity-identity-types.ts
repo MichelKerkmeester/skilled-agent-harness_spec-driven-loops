@@ -32,8 +32,6 @@ export const ContinuityModes = {
   RESEARCH: 'research',
   REVIEW: 'review',
   COUNCIL: 'council',
-  IMPROVEMENT: 'improvement',
-  BENCHMARK: 'benchmark',
 } as const;
 
 export type ContinuityMode = typeof ContinuityModes[keyof typeof ContinuityModes];

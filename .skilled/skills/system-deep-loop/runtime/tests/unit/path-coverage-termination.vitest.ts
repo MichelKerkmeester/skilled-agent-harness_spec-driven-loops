@@ -375,10 +375,8 @@ function evaluate(
 describe('mode coverage profile registry', () => {
   it('freezes one complete denominator contract for every supported mode', () => {
     expect(modeCoverageProfiles.list().map((profile) => profile.mode)).toEqual([
-      'benchmark',
       'context',
       'council',
-      'improvement',
       'research',
       'review',
     ]);

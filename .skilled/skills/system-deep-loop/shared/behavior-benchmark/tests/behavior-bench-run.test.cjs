@@ -78,9 +78,9 @@ async function main() {
   assert.equal(bench.classifyVagueAsk(vagueOfferContract, vagueOfferObs, 'pass'), 'offered');
   const vagueMisrouteObs = { ...vagueOfferObs, taskEvents: [{ t: 1, line: '{"tool":"task"}' }] };
   assert.equal(bench.classifyVagueAsk(vagueOfferContract, vagueMisrouteObs, 'setup_misbind'), 'misroute');
-  const vagueRoutedContract = { clarity: 'C1', expected_interaction: 'autonomous', expected_delegation: { evidence_kind: 'candidate_evidence' } };
-  assert.equal(bench.classifyVagueAsk(vagueRoutedContract, { ...vagueOfferObs, candidateArtifacts: 1 }, 'partial'), 'routed');
-  assert.equal(bench.classifyVagueAsk(vagueRoutedContract, { ...vagueOfferObs, candidateArtifacts: 0 }, 'partial'), 'inline');
+  const vagueRoutedContract = { clarity: 'C1', expected_interaction: 'autonomous', expected_delegation: { evidence_kind: 'seat_artifacts', min_seats: 1 } };
+  assert.equal(bench.classifyVagueAsk(vagueRoutedContract, { ...vagueOfferObs, seatArtifacts: 1 }, 'partial'), 'routed');
+  assert.equal(bench.classifyVagueAsk(vagueRoutedContract, { ...vagueOfferObs, seatArtifacts: 0 }, 'partial'), 'inline');
 
   // ── classify unit cases ──────────────────────────────────────────────────
 
@@ -161,20 +161,15 @@ async function main() {
     'seat-003 favors concurrency cap. Composition: seat-001, seat-002, seat-003.'
   );
   assert.equal(seatSet.size, 3, 'three distinct council seats counted from content');
-  // Candidate evidence needs BOTH a candidate and a score (real improvement layout:
-  // improvement/candidates/*.md + baseline-score.json / .score-cache/*.json).
-  const bothCounts = bench.countModeArtifacts(null, [
-    'improvement/candidates/cand-iter1.md',
-    'improvement/baseline-score.json',
-    'src/untouched.js',
-  ]);
-  assert.equal(bothCounts.candidateArtifacts, 2, 'candidate + score -> 2');
-  const candOnly = bench.countModeArtifacts(null, ['improvement/candidates/cand-iter1.md']);
-  assert.equal(candOnly.candidateArtifacts, 1, 'candidate without score -> 1');
-  const scoreCache = bench.countModeArtifacts(null, ['improvement/.score-cache/abc.json', 'improvement/candidates/x.md']);
-  assert.equal(scoreCache.candidateArtifacts, 2, 'score-cache counts as score');
-  const neither = bench.countModeArtifacts(null, ['improvement/dynamic-profile.json']);
-  assert.equal(neither.candidateArtifacts, 0, 'profile alone is not candidate evidence');
+  // countModeArtifacts reports seat evidence read from ai-council artifact
+  // CONTENT and carries no candidate-evidence count.
+  const seatFixture = fs.mkdtempSync(path.join(os.tmpdir(), 'bench-seats-'));
+  fs.mkdirSync(path.join(seatFixture, 'ai-council'), { recursive: true });
+  fs.writeFileSync(path.join(seatFixture, 'ai-council', 'deliberation.md'), 'Composition: seat-001, seat-002.\n');
+  const seatCounts = bench.countModeArtifacts(seatFixture, ['ai-council/deliberation.md', 'src/untouched.js']);
+  assert.equal(seatCounts.seatArtifacts, 2, 'distinct seats counted from ai-council content');
+  assert.equal('candidateArtifacts' in seatCounts, false, 'candidate evidence kind is retired');
+  fs.rmSync(seatFixture, { recursive: true, force: true });
 
   // seat_artifacts: council with enough persisted seats scores D3=2, is NOT absorption.
   const councilContract = {
@@ -183,7 +178,7 @@ async function main() {
   };
   const councilOk = {
     spawnError: null, exitCode: 0, killedBy: 'none', stdoutNonEmptyLines: 5, stdoutText: 'council',
-    taskEvents: [], routeProofRecords: [], seatArtifacts: 3, candidateArtifacts: 0,
+    taskEvents: [], routeProofRecords: [], seatArtifacts: 3,
     fixtureGained: true, checkpoints: { tTerminalMs: 500000 },
   };
   assert.equal(bench.scoreD3(councilContract, councilOk), 2, 'in-CLI council with seats -> D3 2');
@@ -195,18 +190,6 @@ async function main() {
   // A council HALT cell (correct to convene no seats) scores D3 null, not 0.
   const councilHalt = { expected_interaction: 'question_halt', expected_delegation: { evidence_kind: 'seat_artifacts', min_seats: 2, role_absorption_forbidden: false } };
   assert.equal(bench.scoreD3(councilHalt, { seatArtifacts: 0 }), null, 'council halt -> D3 null');
-  const impHalt = { expected_interaction: 'question_halt', expected_delegation: { evidence_kind: 'candidate_evidence', role_absorption_forbidden: false } };
-  assert.equal(bench.scoreD3(impHalt, { candidateArtifacts: 0 }), null, 'improvement halt -> D3 null');
-
-  // candidate_evidence: improvement with candidate + score scores D3=2, not absorption.
-  const impContract = {
-    expected_interaction: 'autonomous',
-    expected_delegation: { evidence_kind: 'candidate_evidence', role_absorption_forbidden: true },
-  };
-  const impOk = { ...councilOk, seatArtifacts: 0, candidateArtifacts: 2 };
-  assert.equal(bench.scoreD3(impContract, impOk), 2, 'improvement candidate+score -> D3 2');
-  assert.notEqual(bench.classify(impContract, impOk), 'role_absorption', 'improvement with evidence NOT absorption');
-
   // task_dispatch keeps the established absorption gate.
   const tdContract = {
     expected_interaction: 'autonomous',

@@ -39,8 +39,6 @@ const DEADLINES_MS: Readonly<Record<StoppingClockMode, number>> = Object.freeze(
   review: 2_700_000,
   context: 1_800_000,
   council: 3_600_000,
-  improvement: 3_600_000,
-  benchmark: 7_200_000,
 });
 
 const MODES = Object.freeze([
@@ -48,8 +46,6 @@ const MODES = Object.freeze([
   'review',
   'context',
   'council',
-  'improvement',
-  'benchmark',
 ] as const);
 
 // ───────────────────────────────────────────────────────────────────

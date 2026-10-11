@@ -115,26 +115,6 @@ export const MODE_COVERAGE_PROFILES: readonly ModeCoverageProfile[] = Object.fre
     region('council-independent-evidence', ['independent-evidence-region'], ['independent-evidence'], 4),
     region('council-dissent', ['dissent-region'], ['refutation'], 5),
   ]),
-  profile('improvement', [
-    { dimensionId: 'candidate', source: 'declared' },
-    { dimensionId: 'evaluator', source: 'declared' },
-    { dimensionId: 'canary', source: 'declared' },
-    { dimensionId: 'unresolved-failure', source: 'declared' },
-  ], [
-    region('improvement-candidate-evaluator', ['candidate', 'evaluator'], ['evaluator-result'], 3),
-    region('improvement-candidate-canary', ['candidate', 'canary'], ['canary-result'], 4),
-    region('improvement-unresolved-failure', ['unresolved-failure'], ['refutation'], 5),
-  ]),
-  profile('benchmark', [
-    { dimensionId: 'candidate', source: 'declared' },
-    { dimensionId: 'evaluator', source: 'declared' },
-    { dimensionId: 'scenario', source: 'declared' },
-    { dimensionId: 'unresolved-failure', source: 'declared' },
-  ], [
-    region('benchmark-candidate-evaluator', ['candidate', 'evaluator'], ['evaluator-result'], 3),
-    region('benchmark-scenario-candidate', ['scenario', 'candidate'], ['scenario-result'], 4),
-    region('benchmark-unresolved-failure', ['unresolved-failure'], ['refutation'], 5),
-  ]),
 ]);
 
 /** Raised when a caller requests or supplies an unregistered denominator contract. */

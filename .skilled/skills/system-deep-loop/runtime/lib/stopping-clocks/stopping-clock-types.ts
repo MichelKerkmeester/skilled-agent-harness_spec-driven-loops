@@ -64,9 +64,7 @@ export type StoppingClockMode =
   | 'research'
   | 'review'
   | 'context'
-  | 'council'
-  | 'improvement'
-  | 'benchmark';
+  | 'council';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. COMMON OBSERVATION CONTRACT

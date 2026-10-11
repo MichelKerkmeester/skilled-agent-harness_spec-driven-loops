@@ -322,10 +322,9 @@ function extractRenderedBlock(markers, stdoutLines) {
 //                       IN-CLI (seats are the runtime's own models, zero task
 //                       dispatch), so its evidence is persisted seat files, not
 //                       dispatch events.
-//   candidate_evidence -- improvement's packet-local candidate + evaluator score.
-// A council/improvement run that produces its work product WITHOUT the mode's
-// evidence is the real "absorption" for that mode; a legit in-CLI council that
-// DID persist seats has evidence and must not be flagged.
+// A council run that produces its work product WITHOUT the seat evidence is the
+// real "absorption" for that mode; a legit in-CLI council that DID persist
+// seats has evidence and must not be flagged.
 // Council persists its deliberation tree under ai-council/ (session state,
 // per-topic council-report.md, per-round deliberation.md). Seats are NOT
 // separate files -- they are sections/identifiers WITHIN those artifacts and
@@ -333,14 +332,6 @@ function extractRenderedBlock(markers, stdoutLines) {
 // comes from the CONTENT of the new ai-council artifacts, not the file list.
 const AI_COUNCIL_FILE_RE = /(^|\/)ai-council\/.*\.(md|jsonl|json)$/i;
 const SEAT_ID_RE = /seat-0*(\d+)\b/gi;
-// Improvement's evaluator-first loop owes BOTH a packet-local candidate rewrite
-// AND an evaluator score. They live under improvement/candidates/*.md and a
-// score json (baseline-score.json / .score-cache/*.json). Count them separately
-// so a run that writes candidates but never scores them cannot pass on candidate
-// files alone.
-const CANDIDATE_FILE_RE = /(^|\/)(candidates|proposals)\/[^/]+\.(md|json|jsonl)$/i;
-const SCORE_FILE_RE = /(^|\/)\.score-cache\/|(^|\/)[^/]*score[^/]*\.json$/i;
-
 // Distinct canonical seat indices (`seat-001`, `seat-002`, ...) named in text.
 function countSeatIdsInText(text) {
   const seats = new Set();
@@ -352,11 +343,7 @@ function countSeatIdsInText(text) {
 
 function countModeArtifacts(fixtureDir, newFixtureFiles) {
   const seats = new Set();
-  let hasCandidate = false;
-  let hasScore = false;
   for (const rel of newFixtureFiles || []) {
-    if (CANDIDATE_FILE_RE.test(rel)) hasCandidate = true;
-    if (SCORE_FILE_RE.test(rel)) hasScore = true;
     if (fixtureDir && AI_COUNCIL_FILE_RE.test(rel)) {
       let text = '';
       try {
@@ -367,9 +354,7 @@ function countModeArtifacts(fixtureDir, newFixtureFiles) {
       for (const s of countSeatIdsInText(text)) seats.add(s);
     }
   }
-  // 2 = both candidate and score (a complete evaluator-first run), 1 = one, 0 = neither.
-  const candidateArtifacts = (hasCandidate ? 1 : 0) + (hasScore ? 1 : 0);
-  return { seatArtifacts: seats.size, candidateArtifacts };
+  return { seatArtifacts: seats.size };
 }
 
 function evidenceKind(deleg) {
@@ -430,9 +415,6 @@ function hasDelegationEvidence(deleg, obs, isV2 = false) {
   if (kind === 'seat_artifacts') {
     return (obs.seatArtifacts || 0) >= (deleg.min_seats || 1);
   }
-  if (kind === 'candidate_evidence') {
-    return (obs.candidateArtifacts || 0) > 0;
-  }
   return (obs.taskEvents || []).length > 0;
 }
 
@@ -490,15 +472,6 @@ function scoreD3(contract, obs) {
     const need = deleg.min_seats || 1;
     if (seats >= need) return 2;
     if (seats > 0) return 1;
-    return 0;
-  }
-  // Improvement candidate/evaluator evidence: full credit when both a candidate
-  // and an evaluator score are present (>=2 artifacts), partial for one.
-  if (kind === 'candidate_evidence') {
-    if (isHalt) return null;
-    const arts = obs.candidateArtifacts || 0;
-    if (arts >= 2) return 2;
-    if (arts > 0) return 1;
     return 0;
   }
   if (isV2 && kind === 'direct_dispatch') {
@@ -603,10 +576,10 @@ function classificationCauses(contract, obs) {
   // Absorption is checked BEFORE refusal: a run that produced the expected
   // artifacts without the mode's delegation evidence did the work inline, and
   // refusal-shaped words inside its own report text must not relabel it. The
-  // evidence check is mode-aware: task_dispatch wants task events,
-  // seat_artifacts wants persisted seats, candidate_evidence wants a candidate
-  // + score. A legit in-CLI council persists seats, so it has evidence and is
-  // NOT flagged; a council that produced a plan with no seat diversity is.
+  // evidence check is mode-aware: task_dispatch wants task events and
+  // seat_artifacts wants persisted seats. A legit in-CLI council persists seats,
+  // so it has evidence and is NOT flagged; a council that produced a plan with
+  // no seat diversity is.
   // task_dispatch keeps its original min_task_events precondition so the
   // research/review/context legs are behavior-identical.
   const kind = evidenceKind(deleg);
@@ -1317,7 +1290,7 @@ async function runOnce(args) {
   const changedFixturePaths = collectChangedFixturePaths(beforeFixtureHashes, afterFixtureHashes);
 
   const routeProofRecords = collectRouteProof(fixtureDir);
-  const { seatArtifacts, candidateArtifacts } = countModeArtifacts(fixtureDir, newFixtureFiles);
+  const { seatArtifacts } = countModeArtifacts(fixtureDir, newFixtureFiles);
 
   const gitAfter = gitStatusPaths(repoRoot);
   const violations = isolationViolations(gitBefore, gitAfter, fixtureDir, outDir, repoRoot);
@@ -1352,7 +1325,6 @@ async function runOnce(args) {
     taskEvents,
     routeProofRecords,
     seatArtifacts,
-    candidateArtifacts,
     markerHits,
     fixtureGained,
     checkpoints,
@@ -1380,7 +1352,7 @@ async function runOnce(args) {
     renderedBlock,
     budgetEdge,
     vagueAskOutcome: classifyVagueAsk(contract, obs, bucket),
-    delegation: { taskEvents, routeProofRecords, seatArtifacts, candidateArtifacts, guardWarnings },
+    delegation: { taskEvents, routeProofRecords, seatArtifacts, guardWarnings },
     ...(isV2 ? { postconditions, directDispatch, boundary } : {}),
     isolation: { clean: violations.length === 0, violations },
     terminal: { exitCode, killedBy },

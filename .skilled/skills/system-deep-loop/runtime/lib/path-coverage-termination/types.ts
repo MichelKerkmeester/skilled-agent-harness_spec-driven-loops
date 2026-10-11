@@ -34,9 +34,7 @@ export type PathCoverageMode =
   | 'research'
   | 'review'
   | 'context'
-  | 'council'
-  | 'improvement'
-  | 'benchmark';
+  | 'council';
 
 export type PathState = 'unvisited' | 'active' | 'addressed' | 'blocked' | 'excluded';
 export type CloseablePathState = Extract<PathState, 'addressed' | 'excluded'>;

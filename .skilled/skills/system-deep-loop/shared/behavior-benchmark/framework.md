@@ -69,7 +69,7 @@ rather than guessing their shape.
 | `schema_version` | int (optional) | Defaults to `1`. Only the exact value `2` opts the scenario into schema v2. |
 | `id` | string | Scenario identifier, e.g. `RVB-001`. Prefixes are fixed per package (see PACKAGE CONVENTIONS). |
 | `title` | string | Short human title. |
-| `mode` | enum | `context` \| `research` \| `review` \| `ai-council` \| `improvement`. |
+| `mode` | enum | `context` \| `research` \| `review` \| `ai-council`. |
 | `entry_surface` | enum | `E1` \| `E2` \| `E3` \| `E4` (see below). |
 | `clarity` | enum | `C1` \| `C2` \| `C3` (see below). |
 | `prompt` | string | The verbatim user-style text fed to the executor. |
@@ -210,8 +210,8 @@ budget_ms = max(3 * claude_baseline_tTerminal, 180000)
 ```
 
 Capped at `900000` ms (15 minutes) for `research` and `review`
-scenarios. `ai-council` and `improvement` scenarios cap at
-`1500000` ms (25 minutes) for their multi-seat and evaluator-loop cost.
+scenarios. `ai-council` scenarios cap at
+`1500000` ms (25 minutes) for their multi-seat cost.
 
 ### Watchdog (no-progress kill)
 
@@ -250,7 +250,6 @@ selects how D3 (delegation) is measured and what counts as `role_absorption`:
 | --- | --- | --- | --- | --- |
 | `task_dispatch` (default) | research, review | Structured `Agent`/`task` tool-call events + route-proof records | task events ≥ `min_task_events` (and route proof matches `leaf_agent` if required) | `role_absorption_forbidden` and `min_task_events > 0` and a work product was produced with ZERO task events |
 | `seat_artifacts` | ai-council | Distinct seat ids (`seat-001`, `seat-002`, …) named in the persisted `ai-council/` artifacts (deliberation, council-report, state JSONL) — seats are sections/identifiers WITHIN the artifacts, not separate files | distinct seats ≥ `min_seats` | `role_absorption_forbidden` and a plan/report was produced naming ZERO seats |
-| `candidate_evidence` | improvement | A packet-local candidate (`improvement/candidates/*.md` or `proposals/`) AND an evaluator score (`*score*.json` / `.score-cache/`), counted separately | BOTH a candidate and a score are present (a complete evaluator-first run) | `role_absorption_forbidden` and a work product was produced with NEITHER a candidate nor a score |
 | `direct_dispatch` (v2) | command and direct-dispatch families | Case-insensitive stdout-line events matching `expected_targets`, checked against `forbidden_targets`; each target is a literal substring or `/regex/[flags]` matcher | expected-target events ≥ `min_task_events` (default `1`) and ZERO forbidden-target events | `role_absorption_forbidden`, fixture work was produced, and expected-target evidence is absent |
 
 The critical property: the **common ai-council case is IN-CLI** — its seats are the active
