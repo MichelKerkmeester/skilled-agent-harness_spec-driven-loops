@@ -19,7 +19,7 @@ trigger_phrases:
   - "repo rule"
   - "frontmatter contract"
   - "document diff"
-version: 2.3.3.0
+version: 2.3.4.0
 ---
 
 # sk-doc
