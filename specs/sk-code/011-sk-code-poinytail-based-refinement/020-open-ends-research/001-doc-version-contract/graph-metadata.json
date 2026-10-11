@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doc version contract",
+      "frontmatter version verify failures",
+      "per-doc version contract",
+      "phase 1 doc version contract",
+      "doc version contract plan",
+      "doc version contract tasks",
+      "doc version contract goal",
+      "doc version contract implementation summary"
+    ],
+    "key_topics": [
+      "doc",
+      "version",
+      "contract",
+      "frontmatter",
+      "verify",
+      "failures",
+      "per-doc",
+      "phase",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+      ".skilled/skills/sk-doc/scripts/frontmatter-version.mjs",
+      ".skilled/repo-rules/prevent-overengineering.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-versioning.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-version.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/frontmatter-version.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "prevent-overengineering.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/prevent-overengineering.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`node .skilled/skills/sk-doc/scripts/frontmatter-version.mjs verify --skill <name>` exits 1 on every skill checked: 340 files flagged in sk-code, 320 in sk-doc and 115 in system-skill-advisor",
+    "created_at": "2026-10-11T15:54:52Z",
+    "last_save_at": "2026-10-11T16:01:38.253Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0cc8ace822370694b6d3eda915dd8afa9175a977d082e52dad0ab8f151212fbe",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1c3b5a06e6a1c043b3cf7f1b4128774da4a4c534255bd76084f0446e81958e0a",
+      "plan.md": "97a4b444188a0cc11aae31dadfae3b2ba98ca416eba75c8c5ab443e72e243441",
+      "tasks.md": "24e1a0d34e670fe354d2f965b9f7d8336a794b583a1eb62a3f9a91ff3fb8b3a8",
+      "implementation-summary.md": "ad1dd3103290e0ecac4aa0afc74bffcc5ffc6a7fd441e7765ffdc54dbb5ddda7"
+    },
+    "last_active_at": null
+  }
+}

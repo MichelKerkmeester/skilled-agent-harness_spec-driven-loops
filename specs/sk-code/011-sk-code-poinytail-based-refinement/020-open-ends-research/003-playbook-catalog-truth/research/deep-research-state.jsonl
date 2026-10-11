@@ -1,0 +1,15 @@
+{"type":"config","topic":"2026-10-11T16:24:27.869Z","maxIterations":10,"generation":1,"timestamp":"2026-10-11T16:24:37.038Z"}
+{"type":"event","event":"spec_check_result","folder_state":"spec-present","normalized_topic":"playbook catalog truth self-check","specPath":"specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/spec.md","lockPath":"specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/.deep-research.lock","timestamp":"2026-10-11T16:25:08.274Z"}
+{"type":"spec_mutation","event":"spec_preinit_context_added","folder_state":"spec-present","anchors_touched":["Open Questions","Research Context"],"diff_summary":"Appended bounded pre-init research context for the normalized topic.","normalized_topic":"playbook catalog truth self-check","specPath":"specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/spec.md","timestamp":"2026-10-11T16:25:10.132Z"}
+{"type":"iteration","iteration":1,"run":1,"status":"insight","newInfoRatio":0.82,"ruledOut":[],"timestamp":"2026-10-11T16:31:56.460Z"}
+{"type":"iteration","iteration":2,"run":2,"status":"insight","newInfoRatio":0.68,"ruledOut":[],"timestamp":"2026-10-11T16:35:26.940Z"}
+{"type":"iteration","iteration":3,"run":3,"status":"insight","newInfoRatio":0.57,"ruledOut":[],"timestamp":"2026-10-11T16:40:08.430Z"}
+{"type":"iteration","iteration":4,"run":4,"status":"insight","newInfoRatio":0.56,"ruledOut":[],"timestamp":"2026-10-11T16:44:14.555Z"}
+{"type":"iteration","iteration":5,"run":5,"status":"insight","newInfoRatio":0.55,"ruledOut":[],"timestamp":"2026-10-11T16:47:56.854Z"}
+{"type":"iteration","iteration":6,"run":6,"status":"insight","newInfoRatio":0.35,"ruledOut":[],"timestamp":"2026-10-11T16:52:39.503Z"}
+{"type":"iteration","iteration":7,"run":7,"status":"insight","newInfoRatio":0.5,"ruledOut":[],"timestamp":"2026-10-11T17:01:36.270Z"}
+{"type":"iteration","iteration":8,"run":8,"status":"insight","newInfoRatio":0.5,"ruledOut":[],"timestamp":"2026-10-11T17:08:15.463Z"}
+{"type":"iteration","iteration":9,"run":9,"status":"insight","newInfoRatio":0.6,"ruledOut":[],"timestamp":"2026-10-11T17:19:12.673Z"}
+{"type":"iteration","iteration":10,"run":10,"status":"insight","newInfoRatio":0.7,"ruledOut":[],"timestamp":"2026-10-11T17:23:49.909Z"}
+{"type":"event","event":"synthesis_complete","stem":"deep_research.synthesis_complete","lineageId":"research","runId":"research","answeredCount":5,"stopReason":"maxIterationsReached","totalIterations":10,"totalQuestions":5,"timestamp":"2026-10-11T17:31:27.063Z"}
+{"type":"spec_mutation","event":"spec_mutation","phase":"post-synthesis","anchors_touched":["Open Questions"],"diff_summary":"Replaced generated deep-research findings fence from research/research.md.","generatedFence":"deep-research/spec-findings","timestamp":"2026-10-11T17:31:41.461Z"}

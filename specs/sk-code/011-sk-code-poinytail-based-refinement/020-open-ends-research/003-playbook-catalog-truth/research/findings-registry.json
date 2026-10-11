@@ -1,0 +1,407 @@
+{
+  "sessionId": "2026-10-11T16:24:27.869Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-where-do-manual-testing-playbook-scenarios-and-feature-catalog-entries-drift-",
+      "inboxId": null,
+      "text": "Q1: Where do manual-testing playbook scenarios and feature catalog entries drift from the code today, and what, if anything, catches that drift?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-q2-what-do-the-sk-create-manual-testing-playbook-and-sk-create-feature-catalog-v",
+      "inboxId": null,
+      "text": "Q2: What do the sk-create-manual-testing-playbook and sk-create-feature-catalog validators check today, and which of those checks touch the code rather than the document shape?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-3-q3-what-is-the-lightest-self-check-the-two-modes-and-their-validators-can-run-so",
+      "inboxId": null,
+      "text": "Q3: What is the lightest self-check the two modes and their validators can run so a scenario's options and expected answers, and a catalog entry's code anchors, are tested against the code?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-4-q4-which-drift-classes-would-that-lightest-check-still-miss-and-what-would-catch",
+      "inboxId": null,
+      "text": "Q4: Which drift classes would that lightest check still miss, and what would catch each one?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-5-q5-which-existing-scripts-validators-or-checks-elsewhere-in-the-repository-could",
+      "inboxId": null,
+      "text": "Q5: Which existing scripts, validators or checks elsewhere in the repository could be extended in place instead of adding a new one?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-q1-where-do-manual-testing-playbook-scenarios-and-feature-catalog-entries-drift-",
+      "inboxId": null,
+      "text": "Q1: Where do manual-testing playbook scenarios and feature catalog entries drift from the code today, and what, if anything, catches that drift?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-q2-what-do-the-sk-create-manual-testing-playbook-and-sk-create-feature-catalog-v",
+      "inboxId": null,
+      "text": "Q2: What do the sk-create-manual-testing-playbook and sk-create-feature-catalog validators check today, and which of those checks touch the code rather than the document shape?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-3-q3-what-is-the-lightest-self-check-the-two-modes-and-their-validators-can-run-so",
+      "inboxId": null,
+      "text": "Q3: What is the lightest self-check the two modes and their validators can run so a scenario's options and expected answers, and a catalog entry's code anchors, are tested against the code?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-4-q4-which-drift-classes-would-that-lightest-check-still-miss-and-what-would-catch",
+      "inboxId": null,
+      "text": "Q4: Which drift classes would that lightest check still miss, and what would catch each one?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-5-q5-which-existing-scripts-validators-or-checks-elsewhere-in-the-repository-could",
+      "inboxId": null,
+      "text": "Q5: Which existing scripts, validators or checks elsewhere in the repository could be extended in place instead of adding a new one?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q4: Which drift classes would that lightest check still miss, and what would catch each one?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: Which existing scripts, validators or checks elsewhere in the repository could be extended in place instead of adding a new one?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3: What is the lightest self-check the two modes and their validators can run so a scenario's options and expected answers, and a catalog entry's code anchors, are tested against the code?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None of the five strategy key questions remain open. Residue for synthesis, not new questions: the implementation-ready spec (check codes, insertion points, fixtures) and an estimate of the prefix-rule false-positive rate over the corpus.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None. The five strategy key questions remain closed, and the residue items carried since iteration 4 are now measured or resolved. What is left is synthesis work, not open questions: assemble the check codes, insertion points and fixtures into the implementation-ready spec, and decide (outside this research) whether to wire the catalog fixture test into CI.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None open. The synthesis residue now has a second live fixture: the wrong-line citation at `code-standards-alignment.md:76` (F1) joins the literal-naming Expected/Evidence truncation case, alongside the `--phase-count` replay, for the implementation-ready spec to use.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None open. The synthesis residue now carries a concrete fixture set: F1's stale-anchor cluster (`schemas:221`↔268, `status:89-94`↔344, `cli:1420-1440`↔1500) with the loose trio (handler/fallback/manifest) as near-miss fixtures; the corrected existence scan with its own `.json`→`.js` truncation as an extractor regression test; and the `.pi` plus archive scoping boundaries to state, not absorb.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None open. Synthesis residue additions for the implementation-ready spec: the playbook-side taxonomy (102 dead inline citations split 30 placeholder/glob, 30 historical provenance, 10 runtime/generated, 10 migrated-named, 22 other) with the \"inline-only\" scope for playbooks since links are already gated; the new live fixture at `spec-folder-literal-naming-create-sh-fallback.md:138`; the backtick-separated `file` line N` extractor case; the `--trace-warnings` false-positive fixture; and the Expected-excerpt vs Evidence-full consequence (assertion extraction, execution keeps the semantic tier).",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Rate denominators to restate in the final packet: all playbook-side rates use 1,465 files / 12,959 inline instances / 3,952 distinct tokens.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "No open questions. Synthesis residue for the implementation-ready spec, updated: corpus scope = exact `manual-testing-playbook` trees under `.skilled/skills`; base-resolution ladder in order repo root -> specs fallback -> skill root -> skill/scripts -> skill/runtime -> skill-subtree basename -> global basename, with trailing-argument and anchor stripping; expected-unresolved families = placeholder/glob, scratch paths, historical provenance, runtime/generated, migrated-named, annotated removals, directory targets, code-fence artifacts; anchor formats = `path:line`, `path:start-end`, inline backticked, prose file-line-N, markdown links resolved per-file; checks = existence (warn), bounds (objective, 0 corpus fires), token-at-line (warn-only, judgment-bound); fixtures = stale trio plus new `tools/index.ts:59` case, spec-folder-mutex 10->22, prose set of 13, guard missing-link target, and the extractor regression set; insertion points = `validate-playbook-package.cjs` for the playbook side and `validate_catalog_package.py` for the catalog side, with the CI wiring decision still the operator's.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "No open questions. Final residue for the implementation-ready spec, updated by this iteration: (a) resolution order = repo root -> `.skilled` prefix -> file-relative -> specs prefix -> skill root -> skill/scripts -> skill/runtime -> top-skill root -> subtree-suffix -> global basename, with `os.path.normpath` applied to every relative token before joining; (b) catalog scope split = 2 of 29 packs carry `path:line` anchors (objective tier), the other 27 need an existence/link tier if covered; (c) fixture set grows by the sk-design missing diagram assets, the council `tool-input-schemas.ts` pair, the sk-git absent basenames (watch-only), and the `../` normpath regression; (d) fresh-sample false-positive estimate is 3.5% (153/4,384) under the corrected ladder, against iteration 9's 13% corpus-wide estimate under its own ladder — both estimates carry their ladder and scope. Rate denominators: corpus-wide figures stay 1,465 files / 12,959 inline instances / 3,952 distinct tokens; this iteration's fresh-sample figures are 663 files / 4,384 tokens and are not comparable to the corpus rates.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-3-7-catalog-wiring-coverage-differs-by-option-a-local-bounds-test-in-the-python-vali",
+      "text": "**Catalog wiring coverage differs by option** — a local bounds test in the Python validator covers only the four-prefix paths the validator already resolves [SOURCE: .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py:593], while a scanner consumer reaches every tracked path [SOURCE: .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:374]; the miss inventory should be stated per wiring option.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-6-commands-outside-fenced-blocks-and-steps-invoking-skills-agents-command-table-ce",
+      "text": "**Commands outside fenced blocks and steps invoking skills/agents** — command-table cells exist today [SOURCE: .skilled/skills/sk-doc/manual-testing-playbook/document-validation/citation-drift-scan.md:50], so extraction scope must include them; `agent:`/skill steps have no option surface, and only their mode names are checkable, against the mode registry [SOURCE: .skilled/skills/system-deep-loop/mode-registry.json:5].",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-expected-text-present-as-tokens-but-the-full-expected-line-wrong-whole-expected-",
+      "text": "**Expected text present as tokens but the full expected line wrong** — whole-expected-line anchoring with dynamic-segment normalization (F2); token presence alone is insufficient.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-flags-of-non-repo-executables-no-in-repo-source-of-truth-attribution-and-skip-is",
+      "text": "**Flags of non-repo executables** — no in-repo source of truth; attribution and skip is the only correct treatment (F1).",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-in-range-content-drift-behind-a-resolvable-anchor-the-claim-token-advisory-f4-no",
+      "text": "**In-range content drift behind a resolvable anchor** — the claim-token advisory (F4); nothing fail-closed.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-semantically-wrong-expectation-while-every-literal-exists-wrong-branch-count-ord",
+      "text": "**Semantically wrong expectation while every literal exists** (wrong branch, count, ordering, exit code) — nothing cheap; it needs execution, and the playbook package ships no runner, so this stays out of reach for any static check.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-valid-flag-name-wrong-value-value-grammar-extraction-where-the-script-enumerates",
+      "text": "**Valid flag name, wrong value** — value-grammar extraction where the script enumerates values; runtime catches the rest at execution (F3).",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-catalog-code-anchors-validate-catalog-package-py-extract-checkable-path-already-",
+      "text": "**Catalog code anchors** → `validate_catalog_package.py`: `_extract_checkable_path` already returns the raw cell with the suffix intact [SOURCE: .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py:561], and line 593 is the only place the suffix is thrown away [SOURCE: .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py:593]. Retaining the parsed range and bounds-checking it is a local change; the full verdict taxonomy is available by resolving through `resolveCitation` [SOURCE: .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:374].",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-4-consumer-template-check-source-tags-helper-mjs-s-classify-already-maps-resolver-",
+      "text": "**Consumer template** → `check-source-tags-helper.mjs`'s `classify()` already maps resolver statuses to warning classes and passes `in_range`/`refused` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs:282]; the scanner is not modified for the lightest check.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-5-ruled-out-editing-cite-drift-scan-mjs-to-host-the-check-its-resolver-and-its-sen",
+      "text": "**Ruled out**: editing `cite-drift-scan.mjs` to host the check. Its resolver and its `sentence`/`claim` fields are already exported [SOURCE: .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:229], so adding logic there buys nothing and widens the blast radius.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-scenario-expected-answers-the-same-file-and-call-site-the-expected-line-check-ne",
+      "text": "**Scenario expected answers** → the same file and call site; the expected-line check needs only the scenario text plus the invoked script it must locate and read.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-scenario-options-validate-playbook-package-cjs-a-new-function-beside-requiredcon",
+      "text": "**Scenario options** → `validate-playbook-package.cjs`, a new function beside `requiredContentChecks()` [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:248], called from `validateScenario()` [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:662], which already walks every scenario file with `repoRoot` in hand. The same validator is already the fleet-wide strict gate in CI [SOURCE: .github/workflows/playbook-operator-contract.yml:61] with a JSON fleet scan [SOURCE: .github/workflows/playbook-operator-contract.yml:69].",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-13-opencode-skills-is-a-symlink-to-skilled-skills-observed-with-ls-la-so-the-path-c",
+      "text": "`.opencode/skills` is a symlink to `../.skilled/skills` (observed with `ls -la`), so the path CI invokes and the path an implementer edits are one tree; a single edit in `.skilled/skills/...` reaches both.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-11-playbook-operator-contract-yml-runs-on-pull-request-push-and-schedule-deliberate",
+      "text": "`playbook-operator-contract.yml` runs on pull request, push and schedule, deliberately not path-filtered (workflow header comment), and enforces the operator-scenario contract by running `validate-playbook-package.cjs --strict` across the fleet [SOURCE: .github/workflows/playbook-operator-contract.yml:61], followed by the JSON fleet scan [SOURCE: .github/workflows/playbook-operator-contract.yml:69]. Extending that validator inherits enforcement on every PR and push for free.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-14-both-host-validators-ship-fixture-based-tests-beside-them-validate-playbook-pack",
+      "text": "Both host validators ship fixture-based tests beside them (`validate-playbook-package.test.cjs` importing `validatePackage`; `test_validator_fixtures.py` importing the validator's individual check functions and copying fixtures), so each new check function has a natural test home without a new harness.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-7-expected-side-normalize-the-materialized-dynamic-values-to-the-same-wildcard-quo",
+      "text": "Expected side: normalize the materialized dynamic values to the same wildcard — quoted values whose content varies (`'phase-1-PROVIDE-DESCRIPTIVE-SLUG'`), digit runs, bracketed numbers (`[123]`), `/tmp/...` paths, timestamps.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-8-match-rule-full-line-template-equality-not-substring-or-token-containment-iterat",
+      "text": "Match rule: full-line template equality, not substring or token containment. Iterations 2–3 showed token presence passes the calibration case, so containment is disqualified.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-12-no-workflow-references-validate-catalog-package-py-or-its-fixture-test-sk-doc-sc",
+      "text": "No workflow references `validate_catalog_package.py` or its fixture test. `sk-doc-script-tests.yml` runs the sk-doc script-test runner [SOURCE: .github/workflows/sk-doc-script-tests.yml:50], [SOURCE: .github/workflows/sk-doc-script-tests.yml:53], whose loop covers only its own directory's `test_*.py`; the catalog-named tests there (`test_feature_catalog_validation.py`, `test_cite_drift_advisory.py`) exercise `validate_document.py`, not the package validator. Extending the catalog validator therefore inherits no CI enforcement — wiring it is a separate decision, and one this research does not make.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-9-prefix-rule-when-the-expected-line-is-a-strict-prefix-of-an-emitted-line-emit-a-",
+      "text": "Prefix rule: when the expected line is a strict prefix of an emitted line, emit a distinct class — `EXPECTED_TRUNCATED` — that fails (or, at minimum, never passes silently). A deliberately abbreviated line may pass only when it carries an explicit ellipsis marker the checker recognizes. This is the whole calibration decision: fail-closed catches F2's case and the doc's own evidence supports the failure.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-6-producer-side-normalize-shell-interpolation-and-format-segments-in-emitted-liter",
+      "text": "Producer side: normalize shell interpolation and format segments in emitted literals to wildcard gaps — `$var`, `${var}`, `$((…))`, `printf` `%0Nd`/`%Nd`/`%s`, `$$`, `$!`, and command substitution. The template of `create.sh:1637` is `[speckit] Warning: Falling back to generic phase name '<DYNAMIC>'. Provide --phase-names with literal slugs describing the concrete work.`",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-10-scope-only-lines-inside-expected-blocks-that-match-an-emitted-fragment-template-",
+      "text": "Scope: only lines inside `### Expected` blocks that match an emitted fragment template; prose summaries and illustrative snippets stay out, which bounds the false-positive surface the strict rule creates.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-7-3-1-known-true-positive-code-standards-alignment-md-76-source-skilled-skills-syste",
+      "text": "**1 known true positive** — `code-standards-alignment.md:76` [SOURCE: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/code-standards-alignment.md:76], iteration 6's live case.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-1-3-clear-stale-anchors-the-cited-line-no-longer-carries-the-claimed-token-and-the",
+      "text": "**3 clear stale anchors** — the cited line no longer carries the claimed token, and the substance sits elsewhere in the same file: `schemas/advisor-tool-schemas.ts:221` cited where `compiledRoute` is declared at line 268 [SOURCE: .skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:268]; `advisor-status.ts:89-94` cited where the diagnostic-only/repair comment is at 344-345 [SOURCE: .skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:344]; `skill-advisor-cli.ts:1420-1440` cited where the `-32602` + `includeCompiledRoute` handling is at 1500-1501 [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1500].",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-2-4-approximate-loose-anchors-right-file-line-range-near-but-not-on-the-claim-advi",
+      "text": "**4 approximate/loose anchors** — right file, line range near but not on the claim: `advisor-recommend.ts:500-510` vs the option gate at 551 [SOURCE: .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:551]; `skill-advisor-cli-fallback.ts:230` vs `includeCompiledRoute: false` at 221 [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:221]; `advisor-tool-schemas.ts:227`, where the file carries no request-option token at all; `skill-advisor-cli-manifest.ts:40` vs the option declaration at 57 [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli-manifest.ts:57].",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-7-1-instance-skilled-commands-create-assets-create-diagram-auto-yaml-absent-while-",
+      "text": "1 instance: `.skilled/commands/create/assets/create-diagram-auto.yaml`, absent, while sibling `create-<mode>-auto.yaml` assets exist for other create modes [SOURCE: .skilled/skills/sk-design/sk-design-diagram/feature-catalog/diagram-generation/type-selection-and-routing.md:47].",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-6-2-instances-skilled-commands-memory-save-md-genuinely-absent-skilled-commands-ha",
+      "text": "2 instances: `.skilled/commands/memory/save.md`, genuinely absent — `.skilled/commands/` has no `memory` directory [SOURCE: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md:44]. This is the only candidate move-drift left in the existence tier.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-4-2-instances-skilled-skills-system-spec-kit-runtime-cli-core-memory-indexer-ts-an",
+      "text": "2 instances: `.skilled/skills/system-spec-kit/runtime/cli/core/memory-indexer.ts`, annotated historical removal — the citing catalog says \"(removed with the memory server)\" [SOURCE: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/core-workflow-infrastructure.md:58], with the retirement note at line 19 [SOURCE: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/core-workflow-infrastructure.md:19].",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-5-3-instances-opencode-plugins-sk-vision-js-a-committed-symlink-to-the-unbuilt-vis",
+      "text": "3 instances: `.opencode/plugins/sk-vision.js`, a committed symlink to the unbuilt `vision-runtime/dist/plugin.js` (dist missing in this worktree); the catalog itself documents it as a symlink to the built runtime plugin [SOURCE: .skilled/skills/sk-vision/feature-catalog/feature-catalog.md:248].",
+      "addedAtIteration": 7,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 11,
+    "keyFindings": 28,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.7,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/107-oe-playbook-catalog-truth/specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

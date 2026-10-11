@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth",
+  "description": "Phase 3: playbook-catalog-truth",
+  "keywords": [
+    "phase",
+    "playbook-catalog-truth"
+  ],
+  "lastUpdated": "2026-10-11T17:33:28.488Z",
+  "specId": "003",
+  "folderSlug": "playbook-catalog-truth",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "020-open-ends-research"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "11-10-26_18-33__ten-iteration-deep-research-on-playbook-and.md"
+  ]
+}

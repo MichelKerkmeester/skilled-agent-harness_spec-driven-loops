@@ -133,6 +133,7 @@ These bind every build phase, 002 to 006.
 | 17 | 017-release-changelog/ | Record the epic's and the catalog anchor track's user-facing changes in the v4.0.0.4 release entry | Complete |
 | 18 | 018-create-sh-unknown-options/ | Make create.sh refuse an unknown option instead of adding it to the title, and fix the docs that passed a flag it never had | Complete |
 | 19 | 019-routing-miss-fixes/ | Fix the three routing misses the closeout left: DOC-331 in the deep-loop router, and P4 and P7 in the advisor | Complete |
+| 20 | 020-open-ends-research/ | Five ten-iteration loops on the epic's open ends: doc versions, fresh-clone onboarding, playbook and catalog truth, routing evaluation and silent CLI input | Pending |
 
 ### Phase Transition Rules
 
@@ -163,6 +164,7 @@ These bind every build phase, 002 to 006.
 | 016-residual-closeout | 017-release-changelog | 016 committed and both tracks on origin/main | `validate.sh --recursive --strict` on the parent |
 | 017-release-changelog | 018-create-sh-unknown-options | 017 committed and on origin/main | `validate.sh --recursive --strict` on the parent |
 | 018-create-sh-unknown-options | 019-routing-miss-fixes | 018 committed and on origin/main | `validate.sh --recursive --strict` on the parent |
+| 019-routing-miss-fixes | 020-open-ends-research | 019 committed and on origin/main; 020 is read-only research | `validate.sh --recursive --strict` on the parent |
 
 ### Handoffs Outside sk-code
 

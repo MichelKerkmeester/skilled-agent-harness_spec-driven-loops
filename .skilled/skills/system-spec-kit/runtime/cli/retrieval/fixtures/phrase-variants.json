@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4f48f64206b94f023ae37e6da69a2215b03bff9918a97750e4d0bcf8b7674946",
+  "manifestHash": "1bd4c3ab0865c48c30dc1308e58336824136869c398d5f931829f5dc96ea7f8f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8527,6 +8527,9 @@
     "advisor cosine lane": [
       "advisor cosine lane"
     ],
+    "advisor cross path parity": [
+      "advisor cross-path parity"
+    ],
     "advisor daemon": [
       "advisor daemon"
     ],
@@ -8718,6 +8721,9 @@
     ],
     "advisor health restore": [
       "advisor health restore"
+    ],
+    "advisor held out evaluation set": [
+      "advisor held-out evaluation set"
     ],
     "advisor hook 4 runtime parity": [
       "advisor hook 4-runtime parity"
@@ -15378,6 +15384,9 @@
     "catalog validator ignored paths": [
       "catalog validator ignored paths"
     ],
+    "catalog validator in ci": [
+      "catalog validator in ci"
+    ],
     "category quantity comparison": [
       "category quantity comparison"
     ],
@@ -17592,6 +17601,21 @@
     "ci trigger index job hardening": [
       "ci trigger index job hardening"
     ],
+    "ci truth checks": [
+      "ci truth checks"
+    ],
+    "ci truth checks goal": [
+      "ci truth checks goal"
+    ],
+    "ci truth checks implementation summary": [
+      "ci truth checks implementation summary"
+    ],
+    "ci truth checks plan": [
+      "ci truth checks plan"
+    ],
+    "ci truth checks tasks": [
+      "ci truth checks tasks"
+    ],
     "ci visual regression pipeline": [
       "ci visual regression pipeline"
     ],
@@ -17670,6 +17694,9 @@
     "citation drift detection tasks": [
       "citation drift detection tasks"
     ],
+    "citation drift gate": [
+      "citation drift gate"
+    ],
     "citation drift improvements": [
       "citation drift improvements"
     ],
@@ -17729,6 +17756,9 @@
     ],
     "citation drift verification": [
       "citation drift verification"
+    ],
+    "citation gate blocks new broken citations": [
+      "citation gate blocks new broken citations"
     ],
     "citation grounding floor": [
       "citation grounding floor"
@@ -19466,6 +19496,9 @@
     ],
     "cli executor two axis dispatch routing": [
       "cli executor two-axis dispatch routing"
+    ],
+    "cli exit code review": [
+      "cli exit code review"
     ],
     "cli exit code taxonomy docs": [
       "cli exit code taxonomy docs"
@@ -36747,6 +36780,21 @@
     "doc validation off switches summary": [
       "doc validation off switches summary"
     ],
+    "doc version contract": [
+      "doc version contract"
+    ],
+    "doc version contract goal": [
+      "doc version contract goal"
+    ],
+    "doc version contract implementation summary": [
+      "doc version contract implementation summary"
+    ],
+    "doc version contract plan": [
+      "doc version contract plan"
+    ],
+    "doc version contract tasks": [
+      "doc version contract tasks"
+    ],
     "docs alignment 023 010": [
       "docs alignment 023/010"
     ],
@@ -41419,6 +41467,9 @@
     "external user experience research": [
       "external user experience research"
     ],
+    "external user first run": [
+      "external user first run"
+    ],
     "external vs mcp search comparison": [
       "external vs MCP search comparison"
     ],
@@ -42818,6 +42869,9 @@
     "feature catalog anchor deprecation review report": [
       "feature catalog anchor deprecation review report"
     ],
+    "feature catalog anchor drift": [
+      "feature catalog anchor drift"
+    ],
     "feature catalog capabilities": [
       "feature catalog capabilities"
     ],
@@ -42968,6 +43022,9 @@
     "feature catalog template marker source": [
       "feature catalog template marker source"
     ],
+    "feature catalog traceability": [
+      "feature catalog traceability"
+    ],
     "feature catalog trio": [
       "feature catalog trio"
     ],
@@ -42997,6 +43054,9 @@
     ],
     "feature catalog vacuum into front proxy sk git": [
       "feature catalog vacuum into front proxy sk-git"
+    ],
+    "feature catalog validator in ci": [
+      "feature catalog validator in ci"
     ],
     "feature catalog verification": [
       "feature catalog verification"
@@ -45173,6 +45233,24 @@
     "fresh clone bootstrap tasks": [
       "fresh clone bootstrap tasks"
     ],
+    "fresh clone onboarding": [
+      "fresh clone onboarding"
+    ],
+    "fresh clone onboarding goal": [
+      "fresh clone onboarding goal"
+    ],
+    "fresh clone onboarding implementation summary": [
+      "fresh clone onboarding implementation summary"
+    ],
+    "fresh clone onboarding plan": [
+      "fresh clone onboarding plan"
+    ],
+    "fresh clone onboarding tasks": [
+      "fresh clone onboarding tasks"
+    ],
+    "fresh clone stumbles": [
+      "fresh clone stumbles"
+    ],
     "fresh completion verdict return": [
       "fresh_completion verdict return"
     ],
@@ -45650,6 +45728,9 @@
     ],
     "frontmatter variant taxonomy": [
       "frontmatter variant taxonomy"
+    ],
+    "frontmatter version verify failures": [
+      "frontmatter version verify failures"
     ],
     "frontmatter versioning mode": [
       "frontmatter versioning mode"
@@ -64470,6 +64551,9 @@
     "never run test files wired or deleted": [
       "never-run test files wired or deleted"
     ],
+    "new broken citation blocks": [
+      "new broken citation blocks"
+    ],
     "new chart forms": [
       "new chart forms"
     ],
@@ -66466,6 +66550,12 @@
     ],
     "open an obsidian plugin action": [
       "open an Obsidian plugin action"
+    ],
+    "open ends research": [
+      "open ends research"
+    ],
+    "open ends research phase parent spec": [
+      "open ends research phase parent spec"
     ],
     "open horizons check": [
       "open horizons check"
@@ -69454,6 +69544,9 @@
     "per doc quality sla tasks": [
       "per doc quality sla tasks"
     ],
+    "per doc version contract": [
+      "per-doc version contract"
+    ],
     "per edge embedding causal graph": [
       "per edge embedding causal graph"
     ],
@@ -70207,6 +70300,9 @@
     "phase 1 compiled route manifest suite": [
       "phase 1 compiled route manifest suite"
     ],
+    "phase 1 doc version contract": [
+      "phase 1 doc version contract"
+    ],
     "phase 1 hook stdin deadlines": [
       "phase 1 hook stdin deadlines"
     ],
@@ -70459,6 +70555,9 @@
     "phase 2 budget check": [
       "phase 2 budget check"
     ],
+    "phase 2 fresh clone onboarding": [
+      "phase 2 fresh clone onboarding"
+    ],
     "phase 2 goal criteria refresh": [
       "phase 2 goal criteria refresh"
     ],
@@ -70603,6 +70702,9 @@
     "phase 3 hub surface precedence": [
       "phase 3 hub surface precedence"
     ],
+    "phase 3 playbook catalog truth": [
+      "phase 3 playbook catalog truth"
+    ],
     "phase 3 quality mode": [
       "phase 3 quality mode"
     ],
@@ -70650,6 +70752,9 @@
     ],
     "phase 4 quality obsidian coverage": [
       "phase 4 quality obsidian coverage"
+    ],
+    "phase 4 routing evaluation": [
+      "phase 4 routing evaluation"
     ],
     "phase 4 trigger index rebuild hardening": [
       "phase 4 trigger index rebuild hardening"
@@ -70705,6 +70810,9 @@
     "phase 5 rule amendments": [
       "phase 5 rule amendments"
     ],
+    "phase 5 silent input sweep": [
+      "phase 5 silent input sweep"
+    ],
     "phase 5 skill packet and registry": [
       "phase 5 skill packet and registry"
     ],
@@ -70713,6 +70821,9 @@
     ],
     "phase 5 stdin late write coverage": [
       "phase 5 stdin late write coverage"
+    ],
+    "phase 6 ci truth checks": [
+      "phase 6 ci truth checks"
     ],
     "phase 6 closeout deep review": [
       "phase 6 closeout deep review"
@@ -72553,6 +72664,27 @@
     "playbook authoring bugs": [
       "playbook-authoring bugs"
     ],
+    "playbook catalog truth": [
+      "playbook catalog truth"
+    ],
+    "playbook catalog truth goal": [
+      "playbook catalog truth goal"
+    ],
+    "playbook catalog truth implementation summary": [
+      "playbook catalog truth implementation summary"
+    ],
+    "playbook catalog truth plan": [
+      "playbook catalog truth plan"
+    ],
+    "playbook catalog truth strategy": [
+      "playbook catalog truth strategy"
+    ],
+    "playbook catalog truth synthesis": [
+      "playbook catalog truth synthesis"
+    ],
+    "playbook catalog truth tasks": [
+      "playbook catalog truth tasks"
+    ],
     "playbook cheapest model": [
       "playbook cheapest model"
     ],
@@ -72582,6 +72714,12 @@
     ],
     "playbook doc sync fixes": [
       "playbook doc sync fixes"
+    ],
+    "playbook drift self check": [
+      "playbook drift self check"
+    ],
+    "playbook drift self check research": [
+      "playbook drift self check research"
     ],
     "playbook fail re verification": [
       "playbook fail re-verification"
@@ -83509,6 +83647,21 @@
     "routing edit verification": [
       "routing edit verification"
     ],
+    "routing evaluation": [
+      "routing evaluation"
+    ],
+    "routing evaluation goal": [
+      "routing evaluation goal"
+    ],
+    "routing evaluation implementation summary": [
+      "routing evaluation implementation summary"
+    ],
+    "routing evaluation plan": [
+      "routing evaluation plan"
+    ],
+    "routing evaluation tasks": [
+      "routing evaluation tasks"
+    ],
     "routing findings status": [
       "routing findings status"
     ],
@@ -88703,6 +88856,21 @@
     "silent hook catch stderr": [
       "silent hook catch stderr"
     ],
+    "silent input sweep": [
+      "silent input sweep"
+    ],
+    "silent input sweep goal": [
+      "silent input sweep goal"
+    ],
+    "silent input sweep implementation summary": [
+      "silent input sweep implementation summary"
+    ],
+    "silent input sweep plan": [
+      "silent input sweep plan"
+    ],
+    "silent input sweep tasks": [
+      "silent input sweep tasks"
+    ],
     "silent mock grader fallback": [
       "silent mock grader fallback"
     ],
@@ -89269,6 +89437,9 @@
     ],
     "sk code ephemeral pointer remediation result": [
       "sk-code ephemeral pointer remediation result"
+    ],
+    "sk code epic open ends": [
+      "sk-code epic open ends"
     ],
     "sk code external reference repoint": [
       "sk-code external reference repoint"
@@ -91215,6 +91386,9 @@
     "sk doc 2 3 3 0": [
       "sk-doc 2.3.3.0"
     ],
+    "sk doc 2 3 4 0": [
+      "sk-doc 2.3.4.0"
+    ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
     ],
@@ -91505,6 +91679,9 @@
     ],
     "sk doc v2 3 3 0": [
       "sk-doc v2.3.3.0"
+    ],
+    "sk doc v2 3 4 0": [
+      "sk-doc v2.3.4.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"
@@ -104764,6 +104941,9 @@
     ],
     "unknown model dimension guard plan": [
       "unknown model dimension guard plan"
+    ],
+    "unknown option accepted silently": [
+      "unknown option accepted silently"
     ],
     "unknown surface fallback": [
       "unknown surface fallback"

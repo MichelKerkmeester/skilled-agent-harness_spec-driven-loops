@@ -1,5 +1,5 @@
 {
-  "corpusHash": "b6acd4dad0abe5293587404961517d96cc8be19ac3faf96f09c7d89daf0cb250",
+  "corpusHash": "ce98ae2b84d85f785e540d22413d99cf5432e528570d9968e050f1de945df564",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24188,
+  "includedPathCount": 24245,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6064,6 +6064,7 @@
     ".skilled/skills/sk-doc/changelog/v2.3.1.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.2.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.3.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.3.4.0.md",
     ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/changelog-entry-frontmatter-check.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-census-across-doc-families.md",
@@ -10784,6 +10785,62 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/019-routing-miss-fixes/plan.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/019-routing-miss-fixes/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/019-routing-miss-fixes/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/deep-research-dashboard.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/deep-research-strategy.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/iterations/iteration-001.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/iterations/iteration-002.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/iterations/iteration-003.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/iterations/iteration-004.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/iterations/iteration-005.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/iterations/iteration-006.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/iterations/iteration-007.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/iterations/iteration-008.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/iterations/iteration-009.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/iterations/iteration-010.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/prompts/iteration-1.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/prompts/iteration-10.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/prompts/iteration-2.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/prompts/iteration-3.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/prompts/iteration-4.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/prompts/iteration-5.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/prompts/iteration-6.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/prompts/iteration-7.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/prompts/iteration-8.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/prompts/iteration-9.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/research.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/research/resource-map.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/004-routing-evaluation/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/004-routing-evaluation/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/004-routing-evaluation/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/004-routing-evaluation/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/004-routing-evaluation/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/006-ci-truth-checks/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/006-ci-truth-checks/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/006-ci-truth-checks/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/006-ci-truth-checks/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/006-ci-truth-checks/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
@@ -24219,7 +24276,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "4f48f64206b94f023ae37e6da69a2215b03bff9918a97750e4d0bcf8b7674946",
+  "manifestHash": "1bd4c3ab0865c48c30dc1308e58336824136869c398d5f931829f5dc96ea7f8f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26331,6 +26388,30 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/019-routing-miss-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/004-routing-evaluation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/006-ci-truth-checks/scratch",
       "reason": "excluded directory"
     },
     {
