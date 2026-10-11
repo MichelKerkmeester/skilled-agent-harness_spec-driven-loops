@@ -1,5 +1,5 @@
 {
-  "manifestHash": "dcb1fa803064a053d3aa4e4ed83a2c165954afe22caf03914c69524f61c108a4",
+  "manifestHash": "7859ac465b092ee8ffde6845a910bd2ea16db8eaf4c2b1984d3249cd36e3f0ec",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -21265,6 +21265,9 @@
     "clickup goals": [
       "clickup goals"
     ],
+    "clickup handover": [
+      "clickup handover"
+    ],
     "clickup hosted route fix": [
       "clickup hosted route fix"
     ],
@@ -21297,6 +21300,9 @@
     ],
     "clickup move task": [
       "clickup_move_task"
+    ],
+    "clickup oauth approval pending": [
+      "clickup oauth approval pending"
     ],
     "clickup official manual": [
       "clickup_official manual"
@@ -28305,6 +28311,9 @@
     ],
     "creation trigger field cleanup": [
       "creation trigger field cleanup"
+    ],
+    "creator app bug and task tickets": [
+      "creator app bug and task tickets"
     ],
     "creator identity": [
       "creator identity"
@@ -56331,6 +56340,18 @@
     "lineage pruning rule plan": [
       "lineage pruning rule plan"
     ],
+    "lineage reducer compliance": [
+      "lineage reducer compliance"
+    ],
+    "lineage reducer compliance implementation summary": [
+      "lineage reducer compliance implementation summary"
+    ],
+    "lineage reducer compliance plan": [
+      "lineage reducer compliance plan"
+    ],
+    "lineage reducer compliance tasks": [
+      "lineage reducer compliance tasks"
+    ],
     "lineage registry merge plan": [
       "lineage registry merge plan"
     ],
@@ -71365,6 +71386,9 @@
     "phase 6 remediation deep review": [
       "phase 6 remediation deep review"
     ],
+    "phase 6 research lineage reducer path": [
+      "phase 6 research lineage reducer path"
+    ],
     "phase 6 runtime libraries and tests": [
       "phase 6 runtime libraries and tests"
     ],
@@ -71385,6 +71409,9 @@
     ],
     "phase 7 hook deadline margins": [
       "phase 7 hook deadline margins"
+    ],
+    "phase 7 lineage reducer compliance": [
+      "phase 7 lineage reducer compliance"
     ],
     "phase 7 remediation deep review": [
       "phase 7 remediation deep review"
@@ -75719,6 +75746,9 @@
     ],
     "push and create a pull request": [
       "push and create a pull request"
+    ],
+    "push tickets to clickup": [
+      "push tickets to clickup"
     ],
     "pushed work not visible in main checkout": [
       "pushed work not visible in main checkout"
@@ -81231,6 +81261,18 @@
     ],
     "research lineage plan": [
       "research lineage plan"
+    ],
+    "research lineage reducer path": [
+      "research lineage reducer path"
+    ],
+    "research lineage reducer path implementation summary": [
+      "research lineage reducer path implementation summary"
+    ],
+    "research lineage reducer path plan": [
+      "research lineage reducer path plan"
+    ],
+    "research lineage reducer path tasks": [
+      "research lineage reducer path tasks"
     ],
     "research lineage task ledger": [
       "research lineage task ledger"

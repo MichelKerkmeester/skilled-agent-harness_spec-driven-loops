@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ec516a0f687cca00eca2bd03cb96b4dc8a1178fc4180f2ca92704e3cc6c1c66a",
+  "corpusHash": "2da535ec1a5385df3710ad372de7b19a21462b1966e9cae1ff6f298c04c74623",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24566,
+  "includedPathCount": 24575,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9890,6 +9890,7 @@
     "specs/mcp-tooling/021-code-mode-fresh-clone-build/plan.md",
     "specs/mcp-tooling/021-code-mode-fresh-clone-build/spec.md",
     "specs/mcp-tooling/021-code-mode-fresh-clone-build/tasks.md",
+    "specs/mcp-tooling/022-clickup-hosted-route-fix/handover.md",
     "specs/mcp-tooling/022-clickup-hosted-route-fix/implementation-summary.md",
     "specs/mcp-tooling/022-clickup-hosted-route-fix/plan.md",
     "specs/mcp-tooling/022-clickup-hosted-route-fix/spec.md",
@@ -14273,6 +14274,14 @@
     "specs/system-deep-loop/038-review-and-cli-lineage/005-cli-lineage-findings-contract/plan.md",
     "specs/system-deep-loop/038-review-and-cli-lineage/005-cli-lineage-findings-contract/spec.md",
     "specs/system-deep-loop/038-review-and-cli-lineage/005-cli-lineage-findings-contract/tasks.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/006-research-lineage-reducer-path/implementation-summary.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/006-research-lineage-reducer-path/plan.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/006-research-lineage-reducer-path/spec.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/006-research-lineage-reducer-path/tasks.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/007-lineage-reducer-compliance/implementation-summary.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/007-lineage-reducer-compliance/plan.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/007-lineage-reducer-compliance/spec.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/007-lineage-reducer-compliance/tasks.md",
     "specs/system-deep-loop/038-review-and-cli-lineage/spec.md",
     "specs/system-deep-loop/038-review-and-cli-lineage/timeline.md",
     "specs/system-deep-loop/039-deprecate-improvement-modes/001-removal-research/001-model-benchmark-inventory/implementation-summary.md",
@@ -24597,7 +24606,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "dcb1fa803064a053d3aa4e4ed83a2c165954afe22caf03914c69524f61c108a4",
+  "manifestHash": "7859ac465b092ee8ffde6845a910bd2ea16db8eaf4c2b1984d3249cd36e3f0ec",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28117,6 +28126,18 @@
     },
     {
       "path": "specs/system-deep-loop/038-review-and-cli-lineage/005-cli-lineage-findings-contract/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/038-review-and-cli-lineage/006-research-lineage-reducer-path/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/038-review-and-cli-lineage/006-research-lineage-reducer-path/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/038-review-and-cli-lineage/007-lineage-reducer-compliance/scratch",
       "reason": "excluded directory"
     },
     {
