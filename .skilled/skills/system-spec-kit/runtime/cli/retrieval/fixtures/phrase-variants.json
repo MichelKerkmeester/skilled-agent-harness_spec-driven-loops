@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9b596776f681a1cad81c9fe309001b4499d998b2d2e6f2259b4595372f7c4771",
+  "manifestHash": "531d6ae00f233a3da759afddb18cabdf92826771fdc42468dc68d085a4cf410d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -51371,11 +51371,11 @@
     "hooks lib": [
       "hooks lib"
     ],
+    "hooks readme plain voice": [
+      "hooks readme plain voice"
+    ],
     "hooks readme voice": [
       "hooks readme voice"
-    ],
-    "hooks readme voice goal": [
-      "hooks readme voice goal"
     ],
     "hooks readme voice implementation summary": [
       "hooks readme voice implementation summary"
@@ -101956,6 +101956,9 @@
     "system spec kit 2 7 8 0": [
       "system-spec-kit 2.7.8.0"
     ],
+    "system spec kit 2 7 9 0": [
+      "system-spec-kit 2.7.9.0"
+    ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
     ],
@@ -102354,6 +102357,9 @@
     ],
     "system spec kit v2 7 8 0": [
       "system-spec-kit v2.7.8.0"
+    ],
+    "system spec kit v2 7 9 0": [
+      "system-spec-kit v2.7.9.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"

@@ -1,10 +1,10 @@
 ---
 title: "Implementation Plan: Phase 2: hooks-readme-voice"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Bring the HVR hard blockers in both hooks READMEs to 0 without changing a technical claim."
 trigger_phrases:
   - "hooks readme voice plan"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Phase 2: hooks-readme-voice
@@ -20,13 +20,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Files named in spec.md section 3 |
+| **Framework** | The repository's own generators, hooks and validators |
+| **Storage** | None |
+| **Testing** | The checks in goal.md, rerun by the orchestrator |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+List each blocker with its line and column, write the replacement sentence for each as literal OLD and NEW text, and hand both lists to DeepSeek as one brief per file. A word diff then shows the change is punctuation and joining words only.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -35,14 +35,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All goal.md criteria pass on the orchestrator's rerun
+- [x] Every DeepSeek diff reviewed by the orchestrator before the commit
+- [x] Strict validation passes
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -51,16 +51,15 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+In-place change to existing files; no new layer.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Orchestrator**: plans, writes each brief, reviews each diff, reruns every check and commits.
+- **Builder**: DeepSeek V4.1 Flash at max effort through cli-pi, one change per brief.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+One brief, then the orchestrator's diff review and the rerun of its check, then the next brief or the phase close.
 <!-- /ANCHOR:architecture -->
-
 
 ---
 
@@ -75,7 +74,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-N/A — record any testing beyond the verification tasks in `tasks.md` here.
+The goal.md criteria are the tests. A new test is run once against the unchanged code first and must fail there.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -83,7 +82,7 @@ N/A — record any testing beyond the verification tasks in `tasks.md` here.
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-N/A — record dependencies beyond the components named in the architecture here.
+None beyond the files named in spec.md.
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -91,8 +90,7 @@ N/A — record dependencies beyond the components named in the architecture here
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-N/A — record rollback steps beyond reverting the scoped change here.
+Revert this phase's commit. No other phase depends on its files.
 <!-- /ANCHOR:rollback -->
 
 ---
-

@@ -145,17 +145,17 @@
     ],
     "causal_summary": "The 015 closeout ended several items CLOSED that an honest fix could reach: 13 skill units failing the strict package check, seven HVR hard blockers in a hooks README, a drifted deep-loop admission scenario, three advisor battery misses, and a hooks vitest config that collects archived spec tests and rewrites a tracked file",
     "created_at": "2026-10-11T10:14:03Z",
-    "last_save_at": "2026-10-11T10:43:53.075Z",
+    "last_save_at": "2026-10-11T10:50:02.389Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:6ebb782438250c118cb2cd3f8bc4972a6f771ea4ba641bfe4752a6540b0e692a",
+    "source_fingerprint": "sha256:217d81bea0173d11880b1aedd9c0a8f4ce1149e50206b4a38d405296a61517da",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ae204100bb62a5b50763eb9f779654cd531e02a794ff1c3a780f824f69fa5b30"
+      "spec.md": "da65f5ff0bd340960a282debd267a2a3fdaa0108eb8ed66164707a803b815e87"
     },
     "last_active_at": null
   }

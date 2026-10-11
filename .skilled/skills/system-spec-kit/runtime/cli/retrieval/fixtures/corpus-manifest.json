@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e6a14c0b974d63480a13085d36097706fb1855cc648fb770a4cea834f8e3ccec",
+  "corpusHash": "df80f0dbe666e638ebefacf81fe9738463f9dc4c6e2f4afe0a6f1772d0bf3b12",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24612,
+  "includedPathCount": 24613,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7946,6 +7946,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.7.6.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.7.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.8.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.7.9.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
@@ -24643,7 +24644,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "9b596776f681a1cad81c9fe309001b4499d998b2d2e6f2259b4595372f7c4771",
+  "manifestHash": "531d6ae00f233a3da759afddb18cabdf92826771fdc42468dc68d085a4cf410d",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

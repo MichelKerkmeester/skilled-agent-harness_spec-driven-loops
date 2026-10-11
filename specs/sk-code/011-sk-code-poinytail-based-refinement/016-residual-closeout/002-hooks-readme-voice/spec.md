@@ -1,11 +1,11 @@
 ---
 title: "Feature Specification: Phase 2: hooks-readme-voice"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "Bring the HVR hard blockers in both hooks READMEs to 0 without changing a technical claim."
 trigger_phrases:
   - "hooks readme voice"
   - "phase 2 hooks readme voice"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 2: hooks-readme-voice
@@ -19,15 +19,15 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-10-11 |
-| **Branch** | `scaffold/002-hooks-readme-voice` |
+| **Branch** | `worktrees/099-residual-closeout` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 2 of 6 |
+| **Phase** | 2 of 7 |
 | **Predecessor** | 001-package-strict |
 | **Successor** | 003-admission-gold |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | Every criterion in goal.md passes and strict validation passes |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -35,15 +35,15 @@ contextType: "general"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 2** of the Residual closeout specification.
+This is **Phase 2** of the residual closeout phase parent. It closes item 2 of the residual list: the HVR hard blockers in the hooks README.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: Only the files in the table below change.
 
 **Dependencies**:
-- [To be defined during planning]
+- None beyond the files named below.
 
 **Deliverables**:
-- [To be defined during planning]
+- Bring the HVR hard blockers in both hooks READMEs to 0 without changing a technical claim.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -55,10 +55,10 @@ This is **Phase 2** of the Residual closeout specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The 015 ledger recorded seven HVR hard blockers in `.skilled/skills/system-spec-kit/runtime/hooks/README.md` and left them, because they predated that phase. The hub README at `.skilled/hooks/README.md`, the other file the operator named, carries fifteen more. Every one is a semicolon join.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Both READMEs scan with 0 hard blockers, and every path, command, count and claim reads as before.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -67,19 +67,21 @@ This is **Phase 2** of the Residual closeout specification.
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- The seven semicolons in the system-spec-kit runtime hooks README
+- The fifteen semicolons in the `.skilled/hooks/` hub README
+- The system-spec-kit release that carries the README change
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Soft deductions and Oxford-comma candidates the scanner reports for review only
+- Semicolons inside code blocks
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.skilled/skills/system-spec-kit/runtime/hooks/README.md` | Modify | Seven rewrites |
+| `.skilled/hooks/README.md` | Modify | Fifteen rewrites |
+| system-spec-kit `SKILL.md`, `changelog/v2.7.9.0.md`, Hermes copy | Modify, Create | Release 2.7.9.0 |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -91,13 +93,14 @@ This is **Phase 2** of the Residual closeout specification.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | No hard blocker remains in either README | hvr_scan.py prints hard blockers 0 for both |
+| REQ-002 | No technical claim changes | A word diff shows only punctuation and joining words |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-090 | Strict validation of this phase passes | validate.sh --strict prints RESULT: PASSED |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -105,8 +108,8 @@ This is **Phase 2** of the Residual closeout specification.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: Every completion criterion in goal.md passes when the orchestrator reruns it.
+- **SC-002**: The phase lands as one conventional commit in the worktree.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -116,8 +119,7 @@ This is **Phase 2** of the Residual closeout specification.
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | A change reaches a caller the phase did not name | Med | The gates named in goal.md are rerun from the final state |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -125,10 +127,7 @@ This is **Phase 2** of the Residual closeout specification.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None.
 <!-- /ANCHOR:questions -->
 
 ---
-
-

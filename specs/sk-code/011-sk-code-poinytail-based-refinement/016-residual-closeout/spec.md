@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout"
     last_updated_at: "2026-10-11T18:00:00Z"
     last_updated_by: "residual-closeout-orchestrator"
-    recent_action: "Closed phase 001"
-    next_safe_action: "Build phase 002"
+    recent_action: "Closed phase 002"
+    next_safe_action: "Build phase 003"
     blockers: []
     key_files: []
     session_dedup:
@@ -96,7 +96,7 @@ Fix each item with proof from a command that ran, or close it only where every h
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-package-strict/ | Make the 13 failing skill units pass the strict package check | Complete |
-| 2 | 002-hooks-readme-voice/ | Bring the hooks README HVR hard blockers to 0 | Pending |
+| 2 | 002-hooks-readme-voice/ | Bring the hooks README HVR hard blockers to 0 | Complete |
 | 3 | 003-admission-gold/ | Settle the drifted DOC-331 deep-loop admission scenario | Pending |
 | 4 | 004-battery-misses/ | Retry battery misses P4, P7 and P15 at their root cause | Pending |
 | 5 | 005-hooks-vitest-scope/ | Restrict the hooks vitest include to the hooks tree | Pending |

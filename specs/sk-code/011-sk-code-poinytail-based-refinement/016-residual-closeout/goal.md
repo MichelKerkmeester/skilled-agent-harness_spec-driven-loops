@@ -99,6 +99,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase 001 | Done | 13 of 13 units pass the strict check |
+| Phase 002 | Done | 0 HVR hard blockers in both hooks READMEs |
 
 ### Deviations and findings
 

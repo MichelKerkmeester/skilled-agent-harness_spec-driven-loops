@@ -20,7 +20,7 @@ trigger_phrases:
 Current state:
 
 - Each runtime folder owns payload translation for that runtime's own envelope shape and nothing else.
-- Policy lives in `lib/`. An adapter reads a payload, calls the core, and formats the answer; it never decides a verdict.
+- Policy lives in `lib/`. An adapter reads a payload, calls the core, and formats the answer. It never decides a verdict.
 - Lifecycle adapters are TypeScript compiled to `dist/hooks/<runtime>/`. Spec-gate adapters are direct-run `.mjs` or `.cjs` with no build step.
 - Every entrypoint fails open: a missing or malformed payload resolves to approve, so a bug here cannot block an unrelated turn.
 
@@ -78,7 +78,7 @@ runtime/hooks/
 | File or directory | Responsibility |
 |---|---|
 | `claude/` | Claude Code lifecycle hooks (session prime, compact inject, session stop, transcript parsing) plus the Gate-3 pair. The other runtimes delegate their lifecycle semantics here. |
-| `codex/`, `cursor/`, `devin/` | Per-runtime adapters that normalize each CLI's payload onto the Claude implementations, plus that runtime's spec-gate pair. Envelope shapes differ: Codex and Devin use `hookSpecificOutput`; Cursor uses `{permission, user_message, agent_message}`. |
+| `codex/`, `cursor/`, `devin/` | Per-runtime adapters that normalize each CLI's payload onto the Claude implementations, plus that runtime's spec-gate pair. Envelope shapes differ: Codex and Devin use `hookSpecificOutput`, and Cursor uses `{permission, user_message, agent_message}`. |
 | `pi/` | Pi extension factories, discovered through relative symlinks at `.pi/extensions/`. Pi resolves their imports against the symlink path, so every import in those files is written for the `.pi/extensions/` base. |
 | `opencode/` | Browsability-only symlink to `.skilled/plugins/system-spec-gate.js`. OpenCode discovers plugins solely from `.opencode/plugins/`, so the real file stays there and nothing loads through this symlink. |
 | `lib/spec-gate/spec-gate-core.mjs` | The Gate-3 policy core. Owns `classifyIntent()` and `evaluateMutation()`, the two orchestration calls every adapter makes (`runClassifyGate()` and `runEnforceGate()`, which build the delivery observation and the warning-log event once), and the persisted once-per-session delivery marker (`shouldDeliverGate3Deferral`, `recordGate3NoticeDelivered`, `bindGate3Answer`, `rearmGate3NoticeDelivery`). An adapter keeps only its payload parsing and its envelope. |
@@ -141,7 +141,7 @@ Main flow:
 | `claude/compact-inject.ts` | Hook script | Precomputes context before compaction and caches it to hook state. |
 | `*/user-prompt-submit.ts` | Hook scripts | Prompt-time advisor delivery for the supported runtimes. |
 | `*/spec-gate-classify.mjs` | Hook scripts | Gate-3 classification on a user turn: opens or resolves the gate and emits nothing (the question is delivered at the first mutation). |
-| `*/spec-gate-enforce.mjs` | Hook scripts | Pre-tool Gate-3 evaluation; deny-capable for write and edit paths, and the first in-gate advise carries the once-per-session mutation notice. |
+| `*/spec-gate-enforce.mjs` | Hook scripts | Pre-tool Gate-3 evaluation. Deny-capable for write and edit paths, and the first in-gate advise carries the once-per-session mutation notice. |
 | `*/completion-evidence-stop.cjs` | Hook scripts | Advisory completion-evidence check at turn end. |
 | `lib/spec-gate/spec-gate-core.mjs` | Module | `classifyIntent()` and `evaluateMutation()` for every runtime, plus the delivery-marker helpers. |
 
@@ -149,20 +149,20 @@ Main flow:
 
 ## 7. REGISTRATION
 
-Which event calls which script, on which runtime, is declared once in `../cli/runtime-mirrors/hook-registry.json`: every hook appears one time with its concern, its script and a binding per runtime (event, matcher, group and slot in that runtime's file, timeout, wrapper fallback). `../cli/runtime-mirrors/sync-hook-registrations.cjs` renders the four JSON registration files from it, each in its own shape: the `hooks` key of `.claude/settings.json` (every other key in that file is left as found), the whole of `.codex/hooks.json`, `.cursor/hooks.json` with its flat per-event arrays, and `.devin/hooks.v1.json` with its top-level event map and anchored matchers. Pi has no JSON registration; the registry names the `.pi/extensions/*.ts` symlink each hook binds through, and the synchronizer verifies each one resolves.
+Which event calls which script, on which runtime, is declared once in `../cli/runtime-mirrors/hook-registry.json`: every hook appears one time with its concern, its script and a binding per runtime (event, matcher, group and slot in that runtime's file, timeout, wrapper fallback). `../cli/runtime-mirrors/sync-hook-registrations.cjs` renders the four JSON registration files from it, each in its own shape: the `hooks` key of `.claude/settings.json` (every other key in that file is left as found), the whole of `.codex/hooks.json`, `.cursor/hooks.json` with its flat per-event arrays, and `.devin/hooks.v1.json` with its top-level event map and anchored matchers. Pi has no JSON registration. The registry names the `.pi/extensions/*.ts` symlink each hook binds through, and the synchronizer verifies each one resolves.
 
 ```bash
 node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check   # drift report, writes nothing
 node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs           # regenerate the four files
 ```
 
-To add, move or retime a hook, edit the registry and regenerate; a hand edit to one of the four files is drift the `--check` reports and CI's mirrors job runs. `hook-registration-sync.vitest.ts` proves the registry reproduces the committed files byte for byte.
+To add, move or retime a hook, edit the registry and regenerate. A hand edit to one of the four files is drift the `--check` reports and CI's mirrors job runs. `hook-registration-sync.vitest.ts` proves the registry reproduces the committed files byte for byte.
 
 ---
 
 ## 8. VALIDATION
 
-Run from `.skilled/skills/system-spec-kit/runtime` unless noted. `npx vitest run hooks` only matches filenames containing the literal substring `hooks` (2 files); the glob set below is what actually exercises this tree's adapters and shared helpers.
+Run from `.skilled/skills/system-spec-kit/runtime` unless noted. `npx vitest run hooks` only matches filenames containing the literal substring `hooks` (2 files). The glob set below is what actually exercises this tree's adapters and shared helpers.
 
 ```bash
 npx vitest run tests/hook-*.vitest.ts tests/hooks-*.vitest.ts tests/user-prompt-submit-shim.vitest.ts tests/directive-lifecycle-*.vitest.ts
@@ -172,7 +172,7 @@ node --test tests/hooks/spec-gate-codex.test.mjs
 node --test hooks/lib/hook-stdin-deadline.test.mjs
 ```
 
-Expected result: every listed Vitest file passes, and each `node --test` spec-gate suite passes. Cursor and Devin carry their own spec-gate suites; see their READMEs.
+Expected result: every listed Vitest file passes, and each `node --test` spec-gate suite passes. Cursor and Devin carry their own spec-gate suites, described in their READMEs.
 
 **Residual risk of the 500 ms short-host deadline.** Seven entries run under a host that kills them after 3 seconds: the Claude and Codex `spec-gate-classify.mjs`, Claude `compact-inject`, `session-prime` and `user-prompt-submit`, and Codex `session-start` and `user-prompt-submit`. Each stops reading stdin 500 ms after it starts. A host that closes stdin after writing is unaffected, because the read ends at end of stream. A host that writes the payload more than 500 ms after start and leaves stdin open loses that turn's payload: the entry takes its empty-payload path, so the classifier records no gate state, the prime and compact hooks inject nothing and the prompt hooks return no advisor brief. The entry still exits 0 and fails open, so the turn is never blocked. `hooks/lib/hook-stdin-deadline.test.mjs` proves both sides for all seven entries: a payload written at once is acted on, and the same payload written at 800 ms is dropped. The 500 ms value lives in `shared-stdin.ts`, `lib/hook-adapter-shared.mjs` and `claude/user-prompt-submit.ts`, which cannot import it, and the same test fails if the three differ.
 
