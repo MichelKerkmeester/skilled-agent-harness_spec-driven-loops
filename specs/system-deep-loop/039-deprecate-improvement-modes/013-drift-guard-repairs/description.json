@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs",
+  "description": "Phase 13: drift-guard-repairs",
+  "keywords": [
+    "phase",
+    "drift-guard-repairs"
+  ],
+  "lastUpdated": "2026-10-11T13:46:18.310Z",
+  "specId": "013",
+  "folderSlug": "drift-guard-repairs",
+  "parentChain": [
+    "system-deep-loop",
+    "039-deprecate-improvement-modes"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "11-10-26_14-46__drift-guard-repairs-built-and-reviewed-the.md"
+  ]
+}

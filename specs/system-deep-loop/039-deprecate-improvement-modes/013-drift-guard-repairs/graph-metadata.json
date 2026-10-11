@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs",
+  "spec_folder": "system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs",
+  "parent_id": "system-deep-loop/039-deprecate-improvement-modes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "routing corpus baseline recapture",
+      "router-sync ignored files",
+      "drift guard repairs",
+      "drift guard repairs plan",
+      "routing corpus proof commands",
+      "drift guard repairs tasks",
+      "router-sync baseline tasks",
+      "drift guard repairs implementation summary"
+    ],
+    "key_topics": [
+      "routing",
+      "corpus",
+      "baseline",
+      "recapture",
+      "router-sync",
+      "ignored",
+      "files",
+      "drift",
+      "guard",
+      "repairs",
+      "plan",
+      "proof"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs",
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs",
+      ".github/workflows/routing-registry-drift.yml",
+      "scripts/capture-top3.mjs",
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
+      "scratch/evidence/lane-01-router-sync-ignored.txt",
+      "scratch/evidence/lane-02-baseline-recapture.txt",
+      "scratch/evidence/decision-ledger.txt",
+      ".pytest_cache/README.md",
+      "specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/scripts/capture-top3.mjs",
+      "scratch/files.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "verify-router-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify-router-sync.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
+        "name": "capture-top3.mjs",
+        "kind": "file",
+        "path": "scripts/capture-top3.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "alignment-verification-automation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
+        "source": "derived"
+      },
+      {
+        "name": "lane-01-router-sync-ignored.txt",
+        "kind": "file",
+        "path": "scratch/evidence/lane-01-router-sync-ignored.txt",
+        "source": "derived"
+      },
+      {
+        "name": "lane-02-baseline-recapture.txt",
+        "kind": "file",
+        "path": "scratch/evidence/lane-02-baseline-recapture.txt",
+        "source": "derived"
+      },
+      {
+        "name": "decision-ledger.txt",
+        "kind": "file",
+        "path": "scratch/evidence/decision-ledger.txt",
+        "source": "derived"
+      },
+      {
+        "name": "files.txt",
+        "kind": "file",
+        "path": "scratch/files.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Starting Measurements The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The drift workflow still checks a corpus hash from before four retired-mode rows were removed, so its pin check stops before scoring",
+    "created_at": "2026-10-11T13:05:52Z",
+    "last_save_at": "2026-10-11T13:46:18.310Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d1c22af3770360715ada784b9fee90c73f08a69ba7c90dd2dd67fec98be9a64b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4845e2e496fa1b510508162086e1106c06b35b9d340635e4cdce351fee1da754",
+      "plan.md": "1ca3e2838287aac5035720f23548e56a02cb6278ed88426f0495def5b2d8b870",
+      "tasks.md": "09aabdc24298441ac05d2bfb8dc8812aeee2f8d19e0f50fbdbb08848effe7acd",
+      "implementation-summary.md": "f2e028e61eaea511e6be8c7a081e3f8f29355260dcf411ec84141a53e47c106d"
+    },
+    "last_active_at": null
+  }
+}

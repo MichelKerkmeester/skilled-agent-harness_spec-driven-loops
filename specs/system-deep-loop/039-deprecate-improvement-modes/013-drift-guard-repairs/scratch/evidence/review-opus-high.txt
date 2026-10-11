@@ -1,0 +1,45 @@
+FRESH REVIEW: drift guard repairs, uncommitted work at 4edbf2c666
+Reviewer: a fresh Claude Opus 5.5 high-effort leaf agent, read-only on the worktree, dispatched 2026-10-11 after lanes g1, g2, g3 and g4 returned. Its scratch output is in the session scratchpad review13/. git status --short showed the same 6 entries before and after its runs.
+
+VERDICT
+No P0. The code fix and the recaptured baseline are correct, and every number was reproduced. One P1 in the spec docs: they cite a file that did not exist yet.
+
+FINDINGS
+P1. The 013 docs cite scratch/evidence/decision-ledger.txt, which did not exist at review time.
+  Where: spec.md lines 46, 64 and 142, plan.md lines 34, 44 and 103.
+  Evidence: scratch/evidence held only lane-01-router-sync-ignored.txt and lane-02-baseline-recapture.txt. Strict validation does not catch it (SPEC_DOC_INTEGRITY passes).
+  Fix: write the ledger into scratch/evidence/decision-ledger.txt.
+P2. scripts/README.md lines 12 and 21 and references/shared/alignment-verification-automation.md line 96 (sk-code-opencode) still say check 1b reports any unrouted reference or asset doc, and line 21 lists the test coverage without the ignored and untracked case. Outside the declared file list.
+P2. scripts/capture-top3.mjs lines 12 and 13 say it writes nothing outside this phase folder. Line 43 creates a temp dir with mkdtempSync under the system temp dir and never removes it, and the script writes nothing inside the phase folder (stdout only). The claim came over from the archived copy. Fix: reword to say it prints to stdout and creates one empty temp DB dir.
+P2. implementation-summary.md is still the scaffold. Its Completed field says 2026-10-11 while spec.md says In Progress. Strict validation of 013: RESULT: FAILED, Errors 2 (GENERATED_METADATA_INTEGRITY and GENERATED_METADATA_DRIFT, covered by the metadata refresh task), Warnings 1 (SPECDOC_SUFFICIENCY_002 on the what-built section).
+P2, informational, no fix needed. The new routing-baseline.json matches the archived top-level schema. discrepancyRecord has a different inner shape (holdoutRowLoss and metricDiffs instead of staleSources and freshCanonical) and captureRegime.env adds SYSTEM_SKILL_ADVISOR_DB_DIR. Nothing reads either. The CI snippet reads only baseline["corpus"].
+
+CHECKS THAT PASSED
+Router-sync fix:
+- node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs: 6 pass, 0 fail, exit 0.
+- bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh: all 4 guards PASSED, 277 non-blocking warnings, router-sync 5 of 5, exit 0.
+- The same test run against git show HEAD: of the guard in a scratch hub: only the new test failed (1 fail, 5 pass) and the guard listed .pytest_cache/README.md as an orphan, so the test fails for the right reason.
+check-ignore edge cases, in scratch hubs against the fixed guard:
+- A tracked file matching an ignore pattern is still reported (check-ignore never reports tracked files).
+- An untracked file in an ignored dir is skipped.
+- A file name with a space and non-ASCII characters is handled by the -z parsing.
+- A hub that is not a repository: git exits 128 and the guard keeps the full list.
+- git missing (PATH=/nonexistent): spawn error and the guard keeps the full list.
+- Invoked through a symlinked skills dir: correct, node resolves __dirname to the real path. The live .opencode/skills path with and without --preserve-symlinks: check 1b PASS, exit 0.
+- Empty input: git exits 1, the list stays empty and the vacuous-walk problem is still raised.
+- Comment hygiene: the new comment carries no ids or paths, and COMMENT_HYGIENE_MARKER passed.
+Workflow and baseline:
+- The workflow diff is exactly 3 changed lines (numstat 3 and 3, lines 67, 113 and 287). A grep of the diff for min-, max-, floor and threshold found nothing (exit 1). git diff --check exit 0.
+- ../../../specs resolves from the runtime dir through the tracked .skilled/specs symlink.
+- Pin check from .opencode/skills/system-skill-advisor/runtime with both DB-dir variables set to an empty scratch dir, SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC=1 and SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1: "corpus matches the pinned baseline hashes", exit 0.
+- The workflow's exact score command, same env: exit 0, accuracy 0.5487, F1 0.9843, TT 104, TF 87, FT 3, FF 1, threshold_failures [], overall_pass true. This equals the baseline.
+- npx vitest run tests/parity/scorer-eval-baseline-ratchet.vitest.ts tests/routing-golden-prompts.vitest.ts, same env: 2 files and 17 tests passed, exit 0.
+- Corpus pins match disk (shasum -a 256 and wc -l): labeled 195 rows 9f30cc, holdout 66 f98680, ambiguity 24 07cd2c.
+- Every metric in routing-baseline.json matches its raw evidence file.
+- Re-running capture-top3.mjs reproduces capture-top3.json byte for byte (exit 0). Re-running capture-scorer-eval-baseline.mjs without --write matches the stdout evidence except the capturedAt line (exit 0). Re-running skill_graph_compiler.py --validate-only: Discovered 14, VALIDATION PASSED, exit 0, and the roster equals the 14 skill dirs with graph-metadata.json.
+- capturedAtSha 4edbf2c666 is a commit (git cat-file -t) and is HEAD.
+- discrepancyRecord is accurate: the archived pin b56a730b is the 70-row holdout at e052417268^. At 1e0ad1d9ba the holdout had 72 rows (sha 88a7f7, matching no pin), so the claim that the archived metrics were taken over a 72-row copy holds. e052417268 removed exactly 4 rows, all expecting sk-deep-agent-improvement. Every previousCapture value matches the archived JSON. The roster gains exactly cli-classifier, cli-orca and sk-vision.
+- Nothing outside specs/ reads the archived baseline. A search including hidden dirs found only cite-drift-redirects.json (an old rename redirect) and an unrelated sk-doc fixture, neither of which reads it.
+- Of the copied capture-top3.mjs, only the two path lines and the added SYSTEM_ env line differ from the archived copy.
+Spec docs: the parent spec.md rows and the graph-metadata.json children entry are consistent with the child.
+Other notes: files under the advisor runtime/database/ changed during the review. A live advisor daemon from another session writes them. They are gitignored and not in the diff.

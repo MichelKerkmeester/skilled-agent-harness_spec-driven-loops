@@ -1,0 +1,1280 @@
+LANE 02 — routing-baseline recapture evidence
+date=2026-10-11T13:12:15Z cwd=repo root
+
+=== [1] corpus pins: wc -l + shasum -a 256 (from runtime dir)
+$ cd .opencode/skills/system-skill-advisor/runtime
++ wc -l scripts/routing-accuracy/labeled-prompts.jsonl scripts/routing-accuracy/holdout-prompts.jsonl scripts/routing-accuracy/ambiguity-prompts.jsonl
+     195 scripts/routing-accuracy/labeled-prompts.jsonl
+      66 scripts/routing-accuracy/holdout-prompts.jsonl
+      24 scripts/routing-accuracy/ambiguity-prompts.jsonl
+     285 total
++ wc_ec=0
++ shasum -a 256 scripts/routing-accuracy/labeled-prompts.jsonl scripts/routing-accuracy/holdout-prompts.jsonl scripts/routing-accuracy/ambiguity-prompts.jsonl
+9f30cc5e5f2d6c4d15e598fe25b922dc371297596295ab79346c881f6a4aa677  scripts/routing-accuracy/labeled-prompts.jsonl
+f9868059ea0b1ba7af76198a2b30e21e75d5be2a82ddf8f2920cc7e541c5cb1f  scripts/routing-accuracy/holdout-prompts.jsonl
+07cd2c76f41070ba74baaa0beb333d07cd6736a473c5ab79921d2ebfb1f8214d  scripts/routing-accuracy/ambiguity-prompts.jsonl
++ sh_ec=0
++ set +x
+exit(wc)=0 exit(shasum)=0
+
+$ git rev-parse --short=10 HEAD
+4edbf2c666
+exit=0
+
+=== [2] compiler validate-only (from repo root)
+$ python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py --validate-only > specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/compiler-validate-only.txt
+Discovered 14 skill graph-metadata.json files
+VALIDATION PASSED: all metadata files are valid
+exit=0
+
+=== [3] scorer-eval baseline capture (no --write), regime env applied
+regime: MK_SKILL_ADVISOR_DB_DIR=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.NB2NYWPdsc SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC=1 SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 VITEST=true
+$ cd .opencode/skills/system-skill-advisor/runtime && node scripts/routing-accuracy/capture-scorer-eval-baseline.mjs > specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/capture-scorer-eval-baseline.stdout.txt
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-10-11",
+  "capturedAtSha": "4edbf2c666",
+  "corpusSha256": "sha256:9f30cc5e5f2d6c4d15e598fe25b922dc371297596295ab79346c881f6a4aa677",
+  "holdoutSha256": "sha256:f9868059ea0b1ba7af76198a2b30e21e75d5be2a82ddf8f2920cc7e541c5cb1f",
+  "ambiguitySha256": "sha256:07cd2c76f41070ba74baaa0beb333d07cd6736a473c5ab79921d2ebfb1f8214d",
+  "env": {
+    "SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC": "1",
+    "SYSTEM_SKILL_ADVISOR_DB_DIR": "<empty-dir>",
+    "projectionSource": "filesystem"
+  },
+  "metrics": {
+    "full_corpus_top1": {
+      "correct": 153,
+      "total": 195,
+      "accuracy": 0.7846
+    },
+    "unknown_count": {
+      "value": 13
+    },
+    "gold_none_false_fire": {
+      "value": 5
+    },
+    "holdout_top1": {
+      "correct": 49,
+      "total": 66,
+      "accuracy": 0.7424
+    },
+    "ambiguity_top1": {
+      "correct": 18,
+      "total": 24,
+      "accuracy": 0.75,
+      "tau": 0.03
+    },
+    "buckets": {
+      "review": {
+        "correct": 25,
+        "total": 31,
+        "accuracy": 0.8065
+      },
+      "memory_save": {
+        "correct": 27,
+        "total": 32,
+        "accuracy": 0.8438
+      },
+      "delegation": {
+        "correct": 9,
+        "total": 9,
+        "accuracy": 1
+      }
+    }
+  }
+}
+
+exit=0
+
+=== [4] score-routing-corpus capture (no thresholds; A's capture command)
+$ cd .opencode/skills/system-skill-advisor/runtime && python3 scripts/routing-accuracy/score-routing-corpus.py --dataset $PWD/scripts/routing-accuracy/labeled-prompts.jsonl --out /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/score-routing-corpus.json > /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/score-routing-corpus.stdout.txt
+--- stdout/file content:
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+{
+  "dataset": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.opencode/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl",
+  "rows": 195,
+  "advisor": {
+    "total": 195,
+    "correct": 107,
+    "accuracy": 0.5487,
+    "missed_skill_fires": 43,
+    "wrong_skill_fires": 40,
+    "false_fires_on_none": 5
+  },
+  "gate3": {
+    "tp": 125,
+    "fp": 2,
+    "fn": 2,
+    "tn": 66,
+    "precision": 0.9843,
+    "recall": 0.9843,
+    "f1": 0.9843,
+    "historical_false_positive_regressions": []
+  },
+  "joint": {
+    "TT": 104,
+    "TF": 87,
+    "FT": 3,
+    "FF": 1
+  },
+  "semantic_enabled": false,
+  "threshold_failures": [],
+  "overall_pass": true
+}
+exit=0
+
+=== [5] top-3 capture script (packet copy, regime env applied)
+$ cd .opencode/skills/system-skill-advisor/runtime && node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/scripts/capture-top3.mjs > /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/capture-top3.json
+--- stdout/file content:
+{
+  "schemaVersion": 1,
+  "metric": "top3",
+  "note": "gold skill_top_1 label present among the top 3 ranked recommendations",
+  "corpusSha256": "sha256:9f30cc5e5f2d6c4d15e598fe25b922dc371297596295ab79346c881f6a4aa677",
+  "holdoutSha256": "sha256:f9868059ea0b1ba7af76198a2b30e21e75d5be2a82ddf8f2920cc7e541c5cb1f",
+  "full_corpus_top3": {
+    "correct": 177,
+    "total": 195,
+    "accuracy": 0.9077
+  },
+  "holdout_top3": {
+    "correct": 50,
+    "total": 66,
+    "accuracy": 0.7576
+  }
+}
+exit=0
+
+=== [5b] independent enumeration of discovered roots (skill_graph_compiler discovery rule: top-level skills/*/graph-metadata.json)
+cli-classifier
+cli-external-orchestration
+cli-orca
+mcp-code-mode
+mcp-tooling
+sk-code
+sk-design
+sk-doc
+sk-git
+sk-prompt
+sk-vision
+system-deep-loop
+system-skill-advisor
+system-spec-kit
+count=      14 exit=0
+
+=== [6] json validity + workflow diff (only the pin path line may change)
+$ python3 -m json.tool specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/routing-baseline.json > /dev/null
+exit=0
+$ git diff -- .github/workflows/routing-registry-drift.yml
+diff --git a/.github/workflows/routing-registry-drift.yml b/.github/workflows/routing-registry-drift.yml
+index a70442ac2f..4c245a85e1 100644
+--- a/.github/workflows/routing-registry-drift.yml
++++ b/.github/workflows/routing-registry-drift.yml
+@@ -284,7 +284,7 @@ jobs:
+           set -euo pipefail
+           python3 - <<'EOF'
+           import hashlib, json, pathlib, sys
+-          baseline = json.load(open("../../../specs/sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/002-baseline-capture/baseline/routing-baseline.json"))
++          baseline = json.load(open("../../../specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/routing-baseline.json"))
+           corpus_dir = pathlib.Path("scripts/routing-accuracy")
+           bad = []
+           for name, meta in baseline["corpus"].items():
+exit=0
+
+=== [7] workflow pin-check snippet vs NEW baseline (from runtime dir)
+$ cd .opencode/skills/system-skill-advisor/runtime && python3 - <<'EOF'  # baseline=../../../specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/routing-baseline.json
+corpus matches the pinned baseline hashes
+exit=0
+
+=== [8] workflow pin-check snippet vs ARCHIVED baseline (negative control)
+$ cd .opencode/skills/system-skill-advisor/runtime && python3 - <<'EOF'  # baseline=../../../specs/sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/002-baseline-capture/baseline/routing-baseline.json
+CORPUS DRIFTED FROM PIN — recapture the baseline before scoring:
+  holdout-prompts.jsonl: pinned b56a730b1ee3edb8… actual f9868059ea0b1ba7…
+exit=2
+
+=== [9] workflow score command with its exact thresholds (from runtime dir)
+$ cd .opencode/skills/system-skill-advisor/runtime && python3 scripts/routing-accuracy/score-routing-corpus.py --dataset $PWD/scripts/routing-accuracy/labeled-prompts.jsonl --min-advisor-accuracy 0.5333 --min-gate3-f1 0.9843 --min-joint-tt 101 --max-joint-ft 3 --max-joint-ff 1 --require-historical-clean
+Skill graph: loaded from SQLite
+{
+  "dataset": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.opencode/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl",
+  "rows": 195,
+  "advisor": {
+    "total": 195,
+    "correct": 113,
+    "accuracy": 0.5795,
+    "missed_skill_fires": 37,
+    "wrong_skill_fires": 40,
+    "false_fires_on_none": 5
+  },
+  "gate3": {
+    "tp": 125,
+    "fp": 2,
+    "fn": 2,
+    "tn": 66,
+    "precision": 0.9843,
+    "recall": 0.9843,
+    "f1": 0.9843,
+    "historical_false_positive_regressions": []
+  },
+  "joint": {
+    "TT": 110,
+    "TF": 81,
+    "FT": 3,
+    "FF": 1
+  },
+  "semantic_enabled": false,
+  "threshold_failures": [],
+  "overall_pass": true
+}
+exit=0
+
+=== [9b] workflow score command re-run in the CI-faithful no-sqlite regime
+NOTE: the run above found a live local skill-graph.sqlite (daemon-owned, gitignored) and scored through it; CI has no such file and scores via the filesystem fallback (workflow comment). This run pins the empty DB dir so the local result matches CI, same as the capture regime.
+$ SYSTEM_SKILL_ADVISOR_DB_DIR=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.CCXWYLrxQf python3 scripts/routing-accuracy/score-routing-corpus.py --dataset $PWD/scripts/routing-accuracy/labeled-prompts.jsonl --min-advisor-accuracy 0.5333 --min-gate3-f1 0.9843 --min-joint-tt 101 --max-joint-ft 3 --max-joint-ff 1 --require-historical-clean
+{
+  "dataset": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.opencode/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl",
+  "rows": 195,
+  "advisor": {
+    "total": 195,
+    "correct": 107,
+    "accuracy": 0.5487,
+    "missed_skill_fires": 43,
+    "wrong_skill_fires": 40,
+    "false_fires_on_none": 5
+  },
+  "gate3": {
+    "tp": 125,
+    "fp": 2,
+    "fn": 2,
+    "tn": 66,
+    "precision": 0.9843,
+    "recall": 0.9843,
+    "f1": 0.9843,
+    "historical_false_positive_regressions": []
+  },
+  "joint": {
+    "TT": 104,
+    "TF": 87,
+    "FT": 3,
+    "FF": 1
+  },
+  "semantic_enabled": false,
+  "threshold_failures": [],
+  "overall_pass": true
+}
+exit=0
+
+=== [10] ratchet suite (workflow command, from runtime dir)
+$ cd .opencode/skills/system-skill-advisor/runtime && npx vitest run tests/parity/scorer-eval-baseline-ratchet.vitest.ts
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-skill-advisor/runtime
+
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  15:14:22
+   Duration  3.97s (transform 180ms, setup 14ms, import 13ms, tests 3.86s, environment 0ms)
+
+exit=0
+
+=== [11] golden-prompt suite (workflow command, from runtime dir)
+$ cd .opencode/skills/system-skill-advisor/runtime && npx vitest run tests/routing-golden-prompts.vitest.ts
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-skill-advisor/runtime
+
+
+ Test Files  1 passed (1)
+      Tests  10 passed (10)
+   Start at  15:14:29
+   Duration  538ms (transform 155ms, setup 17ms, import 272ms, tests 187ms, environment 0ms)
+
+exit=0
+
+=== [12] artifact inventory + scoped git status
+$ ls -la specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/scripts
+specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline:
+total 152
+drwxr-xr-x@  8 michelkerkmeester  staff    256 Oct 11 15:13 .
+drwxr-xr-x@ 11 michelkerkmeester  staff    352 Oct 11 15:11 ..
+-rw-r--r--@  1 michelkerkmeester  staff   1273 Oct 11 15:12 capture-scorer-eval-baseline.stdout.txt
+-rw-r--r--@  1 michelkerkmeester  staff    489 Oct 11 15:12 capture-top3.json
+-rw-r--r--@  1 michelkerkmeester  staff     94 Oct 11 15:12 compiler-validate-only.txt
+-rw-r--r--@  1 michelkerkmeester  staff   6965 Oct 11 15:13 routing-baseline.json
+-rw-r--r--@  1 michelkerkmeester  staff    743 Oct 11 15:12 score-routing-corpus.json
+-rw-r--r--@  1 michelkerkmeester  staff  51443 Oct 11 15:12 score-routing-corpus.stdout.txt
+
+specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/scripts:
+total 16
+drwxr-xr-x@  3 michelkerkmeester  staff    96 Oct 11 15:11 .
+drwxr-xr-x@ 11 michelkerkmeester  staff   352 Oct 11 15:11 ..
+-rw-r--r--@  1 michelkerkmeester  staff  4897 Oct 11 15:12 capture-top3.mjs
+exit=0
+
+$ git status --porcelain
+ M .github/workflows/routing-registry-drift.yml
+ M .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs
+ M specs/system-deep-loop/039-deprecate-improvement-modes/graph-metadata.json
+ M specs/system-deep-loop/039-deprecate-improvement-modes/spec.md
+?? specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/
+exit=0
+
+NOTE: [7]/[8] run the workflow's verbatim pin-check loop; the baseline path is passed as argv so the same snippet can run against the new file and the archived file. [9] is the workflow command as written (found the local daemon sqlite); [9b] pins the empty DB dir to emulate CI's no-sqlite file state. No commit was made.
+NOTE: pre-existing before this lane started: M specs/system-deep-loop/039-deprecate-improvement-modes/graph-metadata.json, M specs/system-deep-loop/039-deprecate-improvement-modes/spec.md (parent packet, untouched by this lane).
+
+=== [4b] score-routing-corpus re-capture: stdout only (stderr excluded)
+NOTE: [4] redirected the script's stderr into the stdout file (regime warnings, one per prompt), unlike the archived capture which kept stdout JSON only. Re-running so the raw evidence file is stdout-only; the --out JSON is regenerated in the same run.
+$ cd .opencode/skills/system-skill-advisor/runtime && python3 scripts/routing-accuracy/score-routing-corpus.py --dataset $PWD/scripts/routing-accuracy/labeled-prompts.jsonl --out specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/score-routing-corpus.json > specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/score-routing-corpus.stdout.txt 2>/dev/null
+exit=0
+stdout file now:       31 lines,      743 bytes
+$ diff <(cat score-routing-corpus.json) <(cat score-routing-corpus.stdout.txt)
+exit=0
+{
+  "dataset": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.opencode/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl",
+  "rows": 195,
+  "advisor": {
+    "total": 195,
+    "correct": 107,
+    "accuracy": 0.5487,
+    "missed_skill_fires": 43,
+    "wrong_skill_fires": 40,
+    "false_fires_on_none": 5
+  },
+  "gate3": {
+    "tp": 125,
+    "fp": 2,
+    "fn": 2,
+    "tn": 66,
+    "precision": 0.9843,
+    "recall": 0.9843,
+    "f1": 0.9843,
+    "historical_false_positive_regressions": []
+  },
+  "joint": {
+    "TT": 104,
+    "TF": 87,
+    "FT": 3,
+    "FF": 1
+  },
+  "semantic_enabled": false,
+  "threshold_failures": [],
+  "overall_pass": true
+}
+
+=== [13] final state: untouched-input check, no-commit check, final git status
+$ stat -f '%Sm %N' on corpus files + scorer-eval-baseline.json + A baseline (must all predate this lane: before 2026-10-11 15:08)
+Oct  6 19:57:53 2026 .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl
+Oct 11 12:48:15 2026 .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl
+Oct  6 19:57:53 2026 .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ambiguity-prompts.jsonl
+Oct 11 12:48:15 2026 .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json
+Oct  6 19:57:56 2026 specs/sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/002-baseline-capture/baseline/routing-baseline.json
+$ git log -1 --oneline
+4edbf2c666 Merge remote-tracking branch 'origin/main' into worktrees/099-residual-closeout
+exit=0
+$ git status --porcelain
+ M .github/workflows/routing-registry-drift.yml
+ M .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs
+ M .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs
+ M specs/system-deep-loop/039-deprecate-improvement-modes/graph-metadata.json
+ M specs/system-deep-loop/039-deprecate-improvement-modes/spec.md
+?? .skilled/skills/system-skill-advisor/runtime/specs/
+?? specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/
+exit=0
+
+LANE 02 SCOPE (mine): .github/workflows/routing-registry-drift.yml (pin path only) + all files under specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/.
+NOT MINE (sibling lane, observed live during this session; mtime after the 15:10 start-of-lane status which was clean of them): .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs (mtime 15:13:31), specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/scratch/files.txt (mtime 15:14:45).
+PRE-EXISTING before 15:10: M parent graph-metadata.json, M parent spec.md.
+
+=== [14] cleanup of [4b] residue: relative --out under the runtime cwd
+NOTE: [4b] passed a relative --out while the script ran with cwd=runtime, so the script's parent.mkdir/write created a mirrored tree under the runtime. Removing the task-created residue.
+$ find .skilled/skills/system-skill-advisor/runtime/specs -type f
+.skilled/skills/system-skill-advisor/runtime/specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/score-routing-corpus.json
+exit=0
+$ diff .skilled/skills/system-skill-advisor/runtime/specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/score-routing-corpus.json specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/score-routing-corpus.json
+diff_exit=0 (0 = byte-identical duplicate)
+$ rm -rf .skilled/skills/system-skill-advisor/runtime/specs
+exit=0
+$ git status --porcelain
+ M .github/workflows/routing-registry-drift.yml
+ M .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs
+ M .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs
+ M specs/system-deep-loop/039-deprecate-improvement-modes/graph-metadata.json
+ M specs/system-deep-loop/039-deprecate-improvement-modes/spec.md
+?? specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/
+exit=0
+
+=== [15] post-cleanup final snapshot
+$ find specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs -type f (excluding scratch)
+specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/capture-scorer-eval-baseline.stdout.txt
+specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/capture-top3.json
+specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/compiler-validate-only.txt
+specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/routing-baseline.json
+specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/score-routing-corpus.json
+specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/score-routing-corpus.stdout.txt
+specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/description.json
+specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/graph-metadata.json
+specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/implementation-summary.md
+specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/plan.md
+specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/scripts/capture-top3.mjs
+specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/spec.md
+specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/tasks.md
+exit=0
+$ git status --porcelain (final)
+ M .github/workflows/routing-registry-drift.yml
+ M .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs
+ M .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs
+ M specs/system-deep-loop/039-deprecate-improvement-modes/graph-metadata.json
+ M specs/system-deep-loop/039-deprecate-improvement-modes/spec.md
+?? specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/
+exit=0
+RESULT: lane-02 baseline recapture + workflow repoint complete; all proofs green (pin-check 0, CI-faithful score 0, ratchet 7/7 exit 0, golden 10/10 exit 0).
+
+=== Trigger filters — drift-guard push/PR paths repointed to the new baseline folder ===
+Edit (.github/workflows/routing-registry-drift.yml lines 67 and 113 only, hash-anchored, 2 lines replaced, no other line touched):
+-      - 'specs/sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/002-baseline-capture/baseline/**'
++      - 'specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/**'
+$ sed -n '66,68p;112,114p' .github/workflows/routing-registry-drift.yml
+      - 'specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/**'
+      - 'specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/**'
+  pull_request:
+      - 'specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/**'
+      - 'specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/**'
+
+exit=0
+$ python3 -c "import yaml,sys; yaml.safe_load(open('.github/workflows/routing-registry-drift.yml')); print('yaml ok')"
+yaml ok
+yaml_exit=0
+$ git diff --stat .github/workflows/routing-registry-drift.yml
+ .github/workflows/routing-registry-drift.yml | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+diffstat_exit=0
+
+Note: 3 changed lines total = this lane's 2 trigger-path lines (67, 113) + the pre-existing lane-02 line-287 baseline-json read (already recorded above at lines 957-958 of this log, not re-touched here). File line count unchanged (309 newline-terminated lines before and after).
+Not committed, per dispatch.
+
+=== Header correction ===
+NOTE: the script header claimed read-only and "writes nothing outside this phase
+folder". A review found both false: the script writes nothing inside the phase
+folder, and its one write is a fresh empty advisor DB dir (mkdtempSync under the
+system temp dir, never removed) that keeps scoring free of any pre-existing
+database. Header corrected to state its read-only inputs, its stdout output, and
+that temp-dir write with its why. No executable line changed.
+
+Old header lines (12-13):
+-// Read-only: imports the already-built scorer from dist, reads the committed
+-// corpus files, writes nothing outside this phase folder.
+New header lines (12-16):
++// Read-only inputs: the already-built scorer and helpers imported from dist,
++// plus the committed corpus files. The JSON result is printed to stdout.
++//
++// Its one write is a fresh empty temp dir, set as the advisor DB dir so the
++// score never picks up a pre-existing database; the dir is left behind.
+
+$ node --check specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/scripts/capture-top3.mjs
+(no output)
+node_check_ec=0
+
+$ cd .opencode/skills/system-skill-advisor/runtime && node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/scripts/capture-top3.mjs > /tmp/capture-top3.recapture.json
+run_ec=0
+--- stdout:
+{
+  "schemaVersion": 1,
+  "metric": "top3",
+  "note": "gold skill_top_1 label present among the top 3 ranked recommendations",
+  "corpusSha256": "sha256:9f30cc5e5f2d6c4d15e598fe25b922dc371297596295ab79346c881f6a4aa677",
+  "holdoutSha256": "sha256:f9868059ea0b1ba7af76198a2b30e21e75d5be2a82ddf8f2920cc7e541c5cb1f",
+  "full_corpus_top3": {
+    "correct": 177,
+    "total": 195,
+    "accuracy": 0.9077
+  },
+  "holdout_top3": {
+    "correct": 50,
+    "total": 66,
+    "accuracy": 0.7576
+  }
+}
+
+$ diff /tmp/capture-top3.recapture.json specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/capture-top3.json
+(no output)
+diff_ec=0
+NOTE: stdout was captured to /tmp/capture-top3.recapture.json instead of redirecting into baseline/capture-top3.json as the recorded [5] command did, so the archived baseline stayed intact as the comparison reference; the stdout==baseline check is the diff above. The temp dir created by this rerun lives under the system temp dir; the baseline file was not modified.

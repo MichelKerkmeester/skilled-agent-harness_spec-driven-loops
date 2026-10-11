@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-10-10 |
 | **Branch** | `main` |
 | **Parent Spec** | None (track root `specs/system-deep-loop/`) |
@@ -115,6 +115,7 @@ Each phase owns an exact file list in its `scratch/files.txt`; this table summar
 | 10 | 010-verification-and-closeout/ | Regenerate derived surfaces, run every gate and prove zero live references | Complete |
 | 11 | 011-pre-existing-gate-failures/ | Fix the gate failures that predate the removal | Complete |
 | 12 | 012-residual-reference-sweep/ | Remove leftovers the name-based search missed | Complete |
+| 13 | 013-drift-guard-repairs/ | Recapture the routing corpus baseline and make router-sync check 1b honor Git ignore rules | In Progress |
 
 ### Phase Transition Rules
 
@@ -137,6 +138,7 @@ Each phase owns an exact file list in its `scratch/files.txt`; this table summar
 | 009-existing-issue-fixes | 010-verification-and-closeout | Both defects fixed with tests | cite-drift and SOURCE_TAGS tests |
 | 010-verification-and-closeout | 011-pre-existing-gate-failures | Baseline gate runs recorded | Phase 010 gate logs |
 | 011-pre-existing-gate-failures | 012-residual-reference-sweep | Gates green, `origin/main` merged | Phase 011 gate logs |
+| 012-residual-reference-sweep | 013-drift-guard-repairs | The child baseline is recaptured, the workflow uses it at the existing floors, and check 1b skips ignored files while reporting non-ignored untracked docs | Run the pinned corpus scoring command at unchanged thresholds, the check 1b regression test for ignored and non-ignored files, and the full routing drift guard |
 <!-- /ANCHOR:phase-map -->
 
 ---
