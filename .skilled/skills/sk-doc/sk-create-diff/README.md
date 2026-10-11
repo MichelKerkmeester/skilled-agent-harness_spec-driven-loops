@@ -4,7 +4,6 @@ description: "Local, Git-free before/after review of an edited document, rendere
 trigger_phrases:
   - "before after document review"
   - "document diff report"
-version: 1.1.0.10
 ---
 
 # create-diff

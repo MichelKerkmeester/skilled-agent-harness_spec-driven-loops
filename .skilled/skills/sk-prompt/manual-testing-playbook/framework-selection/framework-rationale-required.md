@@ -1,7 +1,6 @@
 ---
 title: "SP-021 -- Framework rationale required"
 description: "This scenario validates framework-selection rationale for `SP-021`. It focuses on explaining why the selected framework won over alternatives."
-version: 2.3.0.7
 ---
 
 # SP-021 -- Framework rationale required

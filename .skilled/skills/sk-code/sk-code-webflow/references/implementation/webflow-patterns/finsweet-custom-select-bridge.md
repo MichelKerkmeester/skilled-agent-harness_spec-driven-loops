@@ -8,7 +8,6 @@ trigger_phrases:
   - "webflow finsweet custom"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.14
 ---
 
 # Finsweet Custom Select Bridge Pattern & Related

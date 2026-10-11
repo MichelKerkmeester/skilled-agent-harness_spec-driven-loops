@@ -4,7 +4,6 @@ description: "Turns a finished benchmark run into documentation an operator can 
 trigger_phrases:
   - "benchmark-report.md"
   - "behavior benchmark"
-version: 1.6.0.0
 ---
 
 # create-benchmark

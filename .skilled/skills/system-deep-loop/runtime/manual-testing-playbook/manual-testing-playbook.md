@@ -1,7 +1,6 @@
 ---
 title: "runtime/: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, execution expectations, and per-feature validation files for the runtime/ skill."
-version: 1.4.0.15
 ---
 
 # runtime/: Manual Testing Playbook

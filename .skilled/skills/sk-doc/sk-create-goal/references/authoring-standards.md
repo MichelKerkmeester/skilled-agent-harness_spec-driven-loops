@@ -8,7 +8,6 @@ trigger_phrases:
   - "goal log and voice"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
 ---
 
 # Goal Authoring Standards

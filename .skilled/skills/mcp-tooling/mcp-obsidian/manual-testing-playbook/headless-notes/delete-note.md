@@ -2,7 +2,6 @@
 title: "OBS-007 -- Delete a note"
 description: "This scenario validates destructive notesmd-cli deletion against a disposable note only."
 stage: routing
-version: 0.1.0.0
 ---
 
 # OBS-007 -- Delete a note

@@ -2,7 +2,6 @@
 title: "USR-002 -- Retrieve a user"
 description: "This scenario validates a targeted user read, sourced from list-all-users, through the confirmed notion_retrieve-a-user tool."
 stage: routing
-version: 0.1.0.0
 ---
 
 # USR-002 -- Retrieve a user

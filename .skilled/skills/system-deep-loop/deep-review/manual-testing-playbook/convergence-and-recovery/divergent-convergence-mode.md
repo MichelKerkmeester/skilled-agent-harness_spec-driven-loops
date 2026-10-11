@@ -1,7 +1,6 @@
 ---
 title: "RV-069 -- Divergent convergence mode"
 description: "Verify eligible clean-review pivots preserve synthesis-only verdict derivation, security gates, and target read-only authority."
-version: 1.11.0.1
 ---
 
 # RV-069 -- Divergent convergence mode

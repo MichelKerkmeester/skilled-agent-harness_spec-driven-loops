@@ -7,7 +7,6 @@ trigger_phrases:
   - "apply hunter skeptic referee pattern"
   - "score adjustment role"
   - "council anti-consensus critique"
-version: 1.7.0.9
 ---
 
 # Hunter Skeptic Referee cross-critique

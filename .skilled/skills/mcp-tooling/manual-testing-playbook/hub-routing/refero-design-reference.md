@@ -14,7 +14,6 @@ expected_leaf_resources:
   - workflow_mode: mcp-refero
     leaf_resource_id: references/mcp-wiring.md
 created: 2026-07-16
-version: 1.0.0.0
 ---
 
 # MT-008: Design-reference search routes to mcp-refero

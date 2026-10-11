@@ -7,7 +7,6 @@ description: "This scenario validates the SKILL.md Smart Router's UNKNOWN_FALLBA
 expected_intent: none
 expected_resources: []
 blindToRouterKeywords: false
-version: 1.1.0.0
 ---
 
 # AD-N01: Negative: out of domain

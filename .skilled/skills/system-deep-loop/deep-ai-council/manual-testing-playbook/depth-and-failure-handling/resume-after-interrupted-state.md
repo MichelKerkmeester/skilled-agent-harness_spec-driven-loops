@@ -1,7 +1,6 @@
 ---
 title: "DAC-018 -- Resume after interrupted state"
 description: "This scenario validates resume behavior for `DAC-018`. It focuses on continuing from the last completed JSONL event toward council_complete."
-version: 1.7.0.8
 ---
 
 # DAC-018 -- Resume after interrupted state

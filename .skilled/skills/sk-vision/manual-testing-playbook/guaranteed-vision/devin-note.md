@@ -1,7 +1,6 @@
 ---
 title: "VSN-023 -- Rule-driven vision in Devin"
 description: "This scenario validates that, with the Devin drop-in note supplied as session guidance, a text-only Devin model calls a `sk_vision_*` tool on an attached image unprompted and reports real content."
-version: 1.0.0.0
 ---
 
 # VSN-023 -- Rule-driven vision in Devin

@@ -2,7 +2,6 @@
 title: "RRX-004 -- Card generator sync"
 description: "This scenario validates the card generator sync for `RRX-004`. It focuses on idempotent card generation in a copy, the drift check catching an orphan card, a normal run deleting it, and the corpus checker's card sync check on both the copy and the live repository."
 stage: routing
-version: 1.0.0.0
 ---
 
 # RRX-004 -- Card generator sync

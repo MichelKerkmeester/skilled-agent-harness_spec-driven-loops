@@ -9,7 +9,6 @@ trigger_phrases:
   - "dark mode color ramp"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
 ---
 
 # Building the Color System

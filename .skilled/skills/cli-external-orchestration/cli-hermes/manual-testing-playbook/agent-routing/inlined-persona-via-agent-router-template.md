@@ -1,7 +1,6 @@
 ---
 title: "HERMES-008 -- Inlined persona via the agent-router template"
 description: "Confirm the generated `.hermes/prompts/agent-router.md` template routes a Hermes session to the canonical OpenCode command definition when delivered through `--query-file -` for `HERMES-008`."
-version: 1.0.0.0
 ---
 
 # HERMES-008 -- Inlined persona via the agent-router template

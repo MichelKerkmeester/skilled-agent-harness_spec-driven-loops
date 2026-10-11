@@ -9,7 +9,6 @@ trigger_phrases:
   - "orca accessibility tree clicks"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
 ---
 
 # Official Orca Skill - Computer Use

@@ -1,7 +1,6 @@
 ---
 title: "CS-007: Prefers Reduced Motion Cross-Stack Guidance"
 description: "Verify Webflow plus Motion.dev accessibility prompts cite Motion.dev reduced-motion guidance and Webflow animation accessibility guidance."
-version: 1.5.0.4
 ---
 
 # CS-007: Prefers Reduced Motion Cross-Stack Guidance

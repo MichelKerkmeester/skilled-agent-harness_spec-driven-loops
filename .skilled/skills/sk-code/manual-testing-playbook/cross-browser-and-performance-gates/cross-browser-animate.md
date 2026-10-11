@@ -1,7 +1,6 @@
 ---
 title: "CB-001: Cross-Browser Motion Animate"
 description: "Verify Motion animations render correctly in Chrome, Safari, and Firefox latest stable and record any browser-specific quirks."
-version: 1.5.0.3
 ---
 
 # CB-001: Cross-Browser Motion Animate

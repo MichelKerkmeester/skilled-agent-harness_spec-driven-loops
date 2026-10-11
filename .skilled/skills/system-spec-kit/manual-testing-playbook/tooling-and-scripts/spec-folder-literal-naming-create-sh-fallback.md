@@ -1,7 +1,6 @@
 ---
 title: "PHASE-006 -- Spec-folder literal naming (create.sh fallback)"
 description: "Validate that create.sh emits a PROVIDE-DESCRIPTIVE-SLUG placeholder and a stderr warning for each phase child when --phase-names is omitted, per Packet 012 REQ-003 and REQ-004."
-version: 1.6.0.4
 id: tooling-and-scripts-spec-folder-literal-naming-create-sh-fallback
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -87,9 +86,9 @@ Child folders produced by step 2:
 Stderr log from step 3:
 
 ```
-[speckit] Warning: Falling back to generic phase name 'phase-1-PROVIDE-DESCRIPTIVE-SLUG'. Provide --phase-names with literal slugs.
-[speckit] Warning: Falling back to generic phase name 'phase-2-PROVIDE-DESCRIPTIVE-SLUG'. Provide --phase-names with literal slugs.
-[speckit] Warning: Falling back to generic phase name 'phase-3-PROVIDE-DESCRIPTIVE-SLUG'. Provide --phase-names with literal slugs.
+[speckit] Warning: Falling back to generic phase name 'phase-1-PROVIDE-DESCRIPTIVE-SLUG'. Provide --phase-names with literal slugs describing the concrete work.
+[speckit] Warning: Falling back to generic phase name 'phase-2-PROVIDE-DESCRIPTIVE-SLUG'. Provide --phase-names with literal slugs describing the concrete work.
+[speckit] Warning: Falling back to generic phase name 'phase-3-PROVIDE-DESCRIPTIVE-SLUG'. Provide --phase-names with literal slugs describing the concrete work.
 ```
 
 Exit code from step 1: `0`
@@ -135,10 +134,10 @@ Exit code from step 1: `0`
 
 ### Failure Triage
 
-- If child names are bare `phase-N`: confirm `create.sh` line 1084 contains `PROVIDE-DESCRIPTIVE-SLUG`. Run `grep -n 'PROVIDE-DESCRIPTIVE-SLUG' .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh` and expect at least 2 matches.
+- If child names are bare `phase-N`: confirm `create.sh` lines 1060 and 1636 contain `PROVIDE-DESCRIPTIVE-SLUG`. Run `grep -n 'PROVIDE-DESCRIPTIVE-SLUG' .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh` and expect at least 2 matches.
 - If warning count is 0: confirm stderr is not lost. The `2>/tmp/speckit-stderr-$$.log` redirect must capture stderr; check that no surrounding wrapper script swallows it.
 - If `--phases` is not parsed: run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --help 2>&1 | grep -- '--phases '` and confirm the flag is recognized.
-- If exit code is non-zero: read the fallback path in `create.sh` near line 1084. The `echo ... >&2` warning must not be followed by `exit 1`.
+- If exit code is non-zero: read the fallback path in `create.sh` near line 1637. The `echo ... >&2` warning must not be followed by `exit 1`.
 
 ---
 

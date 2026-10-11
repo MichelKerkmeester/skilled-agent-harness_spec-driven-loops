@@ -5,7 +5,6 @@ trigger_phrases:
   - "List vaults"
   - "notesmd-cli list-vaults"
   - "show registered Obsidian vaults"
-version: 0.1.0.0
 ---
 
 # List vaults (`notesmd-cli list-vaults`)

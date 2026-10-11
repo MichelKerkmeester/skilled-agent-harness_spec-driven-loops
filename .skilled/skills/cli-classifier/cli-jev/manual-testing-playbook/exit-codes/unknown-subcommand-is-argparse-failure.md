@@ -1,7 +1,6 @@
 ---
 title: "JEV-008 -- An unknown subcommand is an argparse failure"
 description: "Confirm an unknown subcommand lists the six valid choices and exits 2, for `JEV-008`."
-version: 0.1.0.1
 ---
 
 # JEV-008 -- An unknown subcommand is an argparse failure

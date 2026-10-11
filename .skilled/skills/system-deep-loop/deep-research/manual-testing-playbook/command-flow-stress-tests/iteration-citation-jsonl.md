@@ -1,7 +1,6 @@
 ---
 title: "CP-050 -- ITERATION_CITATION_JSONL leaf output contract **(SANDBOXED)**"
 description: "Validate that the command-dispatched @deep-research body writes a cited iteration file and exactly one schema-rich JSONL iteration record."
-version: 1.14.0.9
 ---
 
 # CP-050 -- ITERATION_CITATION_JSONL leaf output contract **(SANDBOXED)**
@@ -99,12 +98,12 @@ diff /tmp/cp-050-pre.txt /tmp/cp-050-post.txt > /tmp/cp-050-tripwire.diff; echo 
 
 | File | Anchor |
 |---|---|
-| `.skilled/commands/deep/research.md:157-179` | command dispatches fresh leaf iterations and writes packet artifacts |
+| `.skilled/commands/deep/research.md:157` | command dispatches fresh leaf iterations and writes packet artifacts |
 | `.skilled/agents/deep-research.md:63-75` | single iteration protocol |
 | `.skilled/agents/deep-research.md:177-220` | required iteration file sections |
 | `.skilled/agents/deep-research.md:231-260` | exactly one JSONL record and fields |
 | `.skilled/agents/deep-research.md:275-287` | output verification |
-| `.skilled/skills/system-deep-loop/deep-research/SKILL.md:450-459` | per-iteration quality gate criteria |
+| `.skilled/skills/system-deep-loop/deep-research/SKILL.md:411-413` | per-iteration quality gate criteria |
 | `.skilled/commands/deep/assets/deep-research-auto.yaml:794-817` | post-dispatch schema validation |
 
 ---

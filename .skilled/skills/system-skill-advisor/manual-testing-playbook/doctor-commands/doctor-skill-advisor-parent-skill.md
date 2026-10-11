@@ -1,7 +1,6 @@
 ---
 title: "DOC-366 -- Doctor skill-advisor parent skill"
 description: "Manual scenario validating that /doctor:skill-advisor parent-skill runs the fleet root-metadata gate and the selected hub checker read-only, reports each exit code, and maps them to the documented statuses."
-version: 1.1.0.0
 id: doctor-commands-doctor-skill-advisor-parent-skill
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

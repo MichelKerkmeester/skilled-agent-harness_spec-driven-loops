@@ -5,7 +5,6 @@ trigger_phrases:
   - "port 9222 in use"
   - "EADDRINUSE 9222"
   - "cdp port conflict"
-version: 1.0.0.0
 ---
 
 # Port Conflict

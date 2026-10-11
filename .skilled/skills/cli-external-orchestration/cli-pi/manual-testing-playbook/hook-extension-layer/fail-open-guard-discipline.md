@@ -1,7 +1,6 @@
 ---
 title: "PI-016 -- Fail-open guard discipline"
 description: "This scenario explicitly reconciles the originally-planned \"fail-closed verification\" wording with the implemented fail-open guard behavior and tests the behavior that actually exists for `PI-016`."
-version: 1.5.0.5
 ---
 
 # PI-016 -- Fail-open guard discipline

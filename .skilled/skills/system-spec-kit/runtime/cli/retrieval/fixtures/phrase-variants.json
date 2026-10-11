@@ -1,5 +1,5 @@
 {
-  "manifestHash": "62dab5cf3d7eb81bb31a2825248b902236deb0111aaa38e2b8c363cdc47adf94",
+  "manifestHash": "46de103857be40e5aa4349fc8ce7447e72d72fb494d3db1cb73208a838b8ddf5",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7295,8 +7295,8 @@
     "39 mcp tools sweep": [
       "39 mcp tools sweep"
     ],
-    "4 part version derivation": [
-      "4-part version derivation"
+    "4 part version format": [
+      "4-part version format"
     ],
     "4 stream remediation partition": [
       "4 stream remediation partition"
@@ -8438,6 +8438,9 @@
     ],
     "advisor caller rewire": [
       "advisor caller rewire"
+    ],
+    "advisor catalog anchor fix": [
+      "advisor catalog anchor fix"
     ],
     "advisor changelog closure gate": [
       "advisor changelog closure gate"
@@ -12737,6 +12740,9 @@
     ],
     "backlog gauge shipped pending": [
       "backlog gauge shipped pending"
+    ],
+    "backticked playbook path check": [
+      "backticked playbook path check"
     ],
     "backup file removal audit": [
       "backup file removal audit"
@@ -27910,6 +27916,9 @@
     "create sh fallback tasks": [
       "create.sh fallback tasks"
     ],
+    "create sh fallback warning text": [
+      "create sh fallback warning text"
+    ],
     "create sh level review research": [
       "create sh level review research"
     ],
@@ -32911,6 +32920,9 @@
     "deep research plan root readme": [
       "deep research plan root readme"
     ],
+    "deep research playbook citation fix": [
+      "deep research playbook citation fix"
+    ],
     "deep research policy version validation": [
       "deep research policy version validation"
     ],
@@ -35855,6 +35867,9 @@
     ],
     "diagram catalog": [
       "diagram catalog"
+    ],
+    "diagram command path fix": [
+      "diagram command path fix"
     ],
     "diagram command router": [
       "diagram command router"
@@ -65556,9 +65571,6 @@
     "numerical accuracy validation": [
       "numerical accuracy validation"
     ],
-    "numstat gated edit count": [
-      "numstat gated edit count"
-    ],
     "numstat inflation measurement": [
       "numstat inflation measurement"
     ],
@@ -91044,6 +91056,9 @@
     "sk design 2 0 1 0": [
       "sk-design 2.0.1.0"
     ],
+    "sk design 2 0 2 0": [
+      "sk-design 2.0.2.0"
+    ],
     "sk design advisor identity": [
       "sk-design advisor identity"
     ],
@@ -91431,6 +91446,9 @@
     "sk design v2 0 1 0": [
       "sk-design v2.0.1.0"
     ],
+    "sk design v2 0 2 0": [
+      "sk-design v2.0.2.0"
+    ],
     "sk doc 1 5 0 0": [
       "sk-doc 1.5.0.0"
     ],
@@ -91490,6 +91508,9 @@
     ],
     "sk doc 2 3 4 0": [
       "sk-doc 2.3.4.0"
+    ],
+    "sk doc 2 3 5 0": [
+      "sk-doc 2.3.5.0"
     ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
@@ -91784,6 +91805,9 @@
     ],
     "sk doc v2 3 4 0": [
       "sk-doc v2.3.4.0"
+    ],
+    "sk doc v2 3 5 0": [
+      "sk-doc v2.3.5.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"
@@ -93605,9 +93629,6 @@
     ],
     "skill anatomy": [
       "skill anatomy"
-    ],
-    "skill anchored doc version": [
-      "skill anchored doc version"
     ],
     "skill and repo readmes cleanup plan": [
       "skill-and-repo-readmes cleanup plan"
@@ -100390,6 +100411,9 @@
     "system deep loop 1 6 1 0": [
       "system-deep-loop 1.6.1.0"
     ],
+    "system deep loop 1 6 2 0": [
+      "system-deep-loop 1.6.2.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -100519,6 +100543,9 @@
     "system deep loop v1 6 1 0": [
       "system-deep-loop v1.6.1.0"
     ],
+    "system deep loop v1 6 2 0": [
+      "system-deep-loop v1.6.2.0"
+    ],
     "system deep research bugs": [
       "system deep research bugs"
     ],
@@ -100602,6 +100629,9 @@
     ],
     "system skill advisor 0 15 4 0": [
       "system-skill-advisor 0.15.4.0"
+    ],
+    "system skill advisor 0 15 5 0": [
+      "system-skill-advisor 0.15.5.0"
     ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
@@ -100761,6 +100791,9 @@
     ],
     "system skill advisor v0 15 4 0": [
       "system-skill-advisor v0.15.4.0"
+    ],
+    "system skill advisor v0 15 5 0": [
+      "system-skill-advisor v0.15.5.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -101028,6 +101061,9 @@
     ],
     "system spec kit 2 7 11 0": [
       "system-spec-kit 2.7.11.0"
+    ],
+    "system spec kit 2 7 12 0": [
+      "system-spec-kit 2.7.12.0"
     ],
     "system spec kit 2 7 2 0": [
       "system-spec-kit 2.7.2.0"
@@ -101436,6 +101472,9 @@
     ],
     "system spec kit v2 7 11 0": [
       "system-spec-kit v2.7.11.0"
+    ],
+    "system spec kit v2 7 12 0": [
+      "system-spec-kit v2.7.12.0"
     ],
     "system spec kit v2 7 2 0": [
       "system-spec-kit v2.7.2.0"
@@ -107114,6 +107153,9 @@
     ],
     "version mismatch recovery": [
       "version mismatch recovery"
+    ],
+    "version on skill md only": [
+      "version on skill md only"
     ],
     "version parity test": [
       "version parity test"

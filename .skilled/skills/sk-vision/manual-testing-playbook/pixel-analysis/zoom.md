@@ -1,7 +1,6 @@
 ---
 title: "VSN-010 -- Zooming"
 description: "This scenario validates Zooming for `VSN-010`. It focuses on an upscaled output file at the requested scale."
-version: 1.0.0.0
 ---
 
 # VSN-010 -- Zooming

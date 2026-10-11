@@ -6,7 +6,6 @@ trigger_phrases:
   - "where is the search bar in this screenshot"
   - "sk_vision_point"
   - "locate a click target"
-version: 1.0.0.0
 ---
 
 # Point location (sk_vision_point)

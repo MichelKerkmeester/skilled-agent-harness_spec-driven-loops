@@ -5,7 +5,6 @@ trigger_phrases:
   - "Append block children"
   - "notion_append-block-children"
   - "add content blocks to a Notion page"
-version: 0.1.0.0
 ---
 
 # Append block children (`notion_append-block-children`)

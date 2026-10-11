@@ -9,7 +9,6 @@ trigger_phrases:
   - "point table"
 importance_tier: normal
 contextType: general
-version: 1.1.0.0
 ---
 
 # Human Voice Rules: Publish Supplement

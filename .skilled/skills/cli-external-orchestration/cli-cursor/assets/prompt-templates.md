@@ -9,7 +9,6 @@ trigger_phrases:
   - "cursor plan ask template"
 importance_tier: normal
 contextType: implementation
-version: 1.4.0.10
 ---
 
 # Prompt Templates - Cursor CLI

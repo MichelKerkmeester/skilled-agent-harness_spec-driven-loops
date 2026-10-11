@@ -7,7 +7,6 @@ trigger_phrases:
   - "dry_run_halt"
   - "dry-run mutation boundary"
   - "confirm dry-run preview"
-version: 1.14.0.13
 ---
 
 # Loop-wide dry-run

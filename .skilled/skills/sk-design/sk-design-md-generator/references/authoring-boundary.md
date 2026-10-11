@@ -10,7 +10,6 @@ trigger_phrases:
   - design md provenance
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
 ---
 
 # Authoring Boundary

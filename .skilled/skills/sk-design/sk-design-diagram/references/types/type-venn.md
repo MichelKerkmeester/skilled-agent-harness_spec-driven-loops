@@ -9,7 +9,6 @@ trigger_phrases:
   - "ikigai frame"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.8
 ---
 
 # Venn / Set Overlap

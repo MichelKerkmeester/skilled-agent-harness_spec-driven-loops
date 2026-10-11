@@ -6,7 +6,6 @@ trigger_phrases:
   - "cli-external-orchestration hub-router scoring"
   - "cli-opencode cli-claude-code cli-codex cli-cursor dispatch"
   - "cli-external-orchestration smart routing"
-version: 1.6.0.0
 ---
 
 # CLI Executor Two-Axis Dispatch Routing (cli-external-orchestration)

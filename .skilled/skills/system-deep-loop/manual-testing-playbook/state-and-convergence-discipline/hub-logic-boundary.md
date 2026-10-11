@@ -7,7 +7,6 @@ description: "Verify the parent hub remains routing-only and does not flatten pe
 expected_intent: review
 expected_workflow_mode: review
 expected_leaf_resources: []
-version: "1.2.0.0"
 ---
 
 # SC-004: Hub Logic Boundary

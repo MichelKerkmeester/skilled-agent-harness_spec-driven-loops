@@ -9,7 +9,6 @@ trigger_phrases:
   - "conductor executor agent model"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.22
 ---
 
 # Claude Code Agent Delegation Reference

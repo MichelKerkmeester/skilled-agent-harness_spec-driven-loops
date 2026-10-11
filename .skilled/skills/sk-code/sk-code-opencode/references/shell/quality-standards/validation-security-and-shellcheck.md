@@ -8,7 +8,6 @@ trigger_phrases:
   - "shellcheck integration"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.15
 ---
 
 # Validation, Errors, Output, Security, Review & ShellCheck

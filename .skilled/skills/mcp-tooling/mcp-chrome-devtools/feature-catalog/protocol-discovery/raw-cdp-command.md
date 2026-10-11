@@ -5,7 +5,6 @@ trigger_phrases:
   - "bdg cdp command"
   - "raw cdp method"
   - "execute cdp with parameters"
-version: 1.0.0.0
 ---
 
 # Raw CDP Execution

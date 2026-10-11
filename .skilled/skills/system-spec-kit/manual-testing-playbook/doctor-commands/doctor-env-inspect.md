@@ -1,7 +1,6 @@
 ---
 title: "DOC-354 -- Doctor env inspect"
 description: "Manual scenario validating that /doctor:env list prints the parsed switch inventory and the read-only source state by name only, and that one variable selector shows the documented default and every source where the switch is set."
-version: 1.1.0.0
 id: doctor-commands-doctor-env-inspect
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

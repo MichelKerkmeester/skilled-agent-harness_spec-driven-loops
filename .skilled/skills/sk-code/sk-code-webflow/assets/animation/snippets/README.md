@@ -7,7 +7,6 @@ trigger_phrases:
   - "motion animation snippets"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.6
 ---
 
 # sk code assets motion dev snippets

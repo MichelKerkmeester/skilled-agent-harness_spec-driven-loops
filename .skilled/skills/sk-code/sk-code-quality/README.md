@@ -8,7 +8,6 @@ trigger_phrases:
   - "authoring checklist"
 importance_tier: important
 contextType: implementation
-version: 1.2.0.0
 ---
 
 # sk-code-quality

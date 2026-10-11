@@ -6,7 +6,6 @@ test_file: "tests/stress/cli-adapter/cli-codex.vitest.ts"
 test_name: "keeps the codex default read-only and records explicit workspace-write"
 playbook_path: "cli-external-orchestration/cli-codex/manual-testing-playbook/stress/sandbox-permission.md"
 id: "cli-codex-EC-007"
-version: 1.9.0.5
 ---
 
 # EC-007 -- cli-codex sandbox or permission

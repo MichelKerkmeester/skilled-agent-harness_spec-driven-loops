@@ -5,7 +5,6 @@ trigger_phrases:
   - "magicpath share link tool"
   - "share link magicpath"
   - "magicpath shareable url"
-version: 1.0.0.0
 ---
 
 # share_link

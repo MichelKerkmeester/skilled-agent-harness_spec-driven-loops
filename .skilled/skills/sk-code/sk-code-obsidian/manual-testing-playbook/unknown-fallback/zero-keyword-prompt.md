@@ -8,7 +8,6 @@ expected_intent: UNKNOWN
 expected_resources:
   - references/obsidian-plugin-api.md
   - references/comment-grammar.md
-version: 1.0.0.0
 ---
 
 # OB-012: Zero-keyword prompt fallback

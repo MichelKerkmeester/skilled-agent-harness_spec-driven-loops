@@ -1,7 +1,6 @@
 ---
 title: "GIT-033 -- Keep human, detached, dirty, and marker-ambiguous worktrees"
 description: "This scenario validates report-only keep behavior for `GIT-033`. It focuses on prove the reaper leaves every non-qualifying worktree alone: human task, detached, dirty wrapper, live-marker wrapper, malformed-marker wrapper, and non-wrapper-grammar work/ branches."
-version: 1.1.0.0
 ---
 
 # GIT-033 -- Keep human, detached, dirty, and marker-ambiguous worktrees

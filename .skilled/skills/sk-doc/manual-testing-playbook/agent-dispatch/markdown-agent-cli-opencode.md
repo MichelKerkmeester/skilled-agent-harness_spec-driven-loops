@@ -12,7 +12,6 @@ expected_workflow_mode: sk-create-changelog
 expected_leaf_resources:
   - workflow_mode: sk-create-changelog
     leaf_resource_id: assets/changelog-template.md
-version: 2.1.0.19
 ---
 
 # Output existence + shape

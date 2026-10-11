@@ -1,7 +1,6 @@
 ---
 title: "CP-048 -- RESOURCE_MAP_TOGGLE no-resource-map fidelity **(SANDBOXED)**"
 description: "Validate that --no-resource-map is parsed by the command and honored by config, state, synthesis and artifact emission."
-version: 1.14.0.9
 ---
 
 # CP-048 -- RESOURCE_MAP_TOGGLE no-resource-map fidelity **(SANDBOXED)**

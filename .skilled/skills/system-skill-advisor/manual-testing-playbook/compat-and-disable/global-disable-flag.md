@@ -6,7 +6,6 @@ trigger_phrases:
   - "global disable flag"
   - "global disable"
   - "global"
-version: 0.8.0.13
 id: CP-003
 category: compat_and_disable
 stage: routing

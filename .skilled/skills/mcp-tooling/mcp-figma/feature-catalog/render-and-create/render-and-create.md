@@ -8,7 +8,6 @@ trigger_phrases:
   - "figma variants"
   - "figma eval raw run"
 importance_tier: "important"
-version: 1.0.0.1
 ---
 
 # Render and create (figma-ds-cli render / create / set)

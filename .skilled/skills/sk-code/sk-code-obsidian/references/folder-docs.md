@@ -8,7 +8,6 @@ trigger_phrases:
   - "folder documentation threshold obsidian"
 importance_tier: normal
 contextType: implementation
-version: 0.1.0.0
 ---
 
 # Folder Documentation Thresholds (Target State)

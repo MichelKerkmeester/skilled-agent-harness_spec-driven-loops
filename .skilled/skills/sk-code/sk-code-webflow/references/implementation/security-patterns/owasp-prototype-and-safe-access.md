@@ -8,7 +8,6 @@ trigger_phrases:
   - "webflow owasp coverage"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.3
 ---
 
 # OWASP Coverage, Prototype Pollution, Secure IDs & Safe Access

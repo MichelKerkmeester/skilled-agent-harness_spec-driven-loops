@@ -5,7 +5,6 @@ trigger_phrases:
   - "Retrieve a database"
   - "notion_retrieve-a-database"
   - "list the data sources inside a Notion database"
-version: 0.1.0.0
 ---
 
 # Retrieve a database (`notion_retrieve-a-database`)

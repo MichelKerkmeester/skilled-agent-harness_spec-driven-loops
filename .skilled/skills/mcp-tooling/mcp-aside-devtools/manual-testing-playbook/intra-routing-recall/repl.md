@@ -8,7 +8,6 @@ expected_intent: REPL
 expected_resources:
   - references/aside-cli-reference.md
   - references/session-management.md
-version: 1.1.0.0
 ---
 
 # AD-R02: REPL routing

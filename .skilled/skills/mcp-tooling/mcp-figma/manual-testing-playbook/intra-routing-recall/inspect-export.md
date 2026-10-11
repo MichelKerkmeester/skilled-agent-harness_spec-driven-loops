@@ -8,7 +8,6 @@ expected_intent: INSPECT_EXPORT
 expected_resources:
   - references/figma-cli-reference.md
   - references/tool-surface.md
-version: 1.0.0.1
 ---
 
 # FG-R03: Inspect/export routing

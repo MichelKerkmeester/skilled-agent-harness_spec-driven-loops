@@ -19,7 +19,6 @@ expected_leaf_resources:
     leaf_resource_id: references/README.md
   - workflow_mode: sk-create-command
     leaf_resource_id: assets/command-template.md
-version: 2.1.0.20
 ---
 
 # SD-003: AGENT_COMMAND Intent Detection

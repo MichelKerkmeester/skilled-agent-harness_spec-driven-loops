@@ -11,7 +11,6 @@ expected_resources:
   - references/state/state-outputs.md
   - references/state/state-reducer-registry.md
   - assets/deep-research-strategy.md
-version: 1.1.0.0
 ---
 
 # DR-R05: Deep research state routing

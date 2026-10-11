@@ -7,7 +7,6 @@ trigger_phrases:
   - "machine-readable task list"
   - "json task array"
   - "agent-parseable output"
-version: 1.0.0.3
 ---
 
 # JSON Output

@@ -7,7 +7,6 @@ trigger_phrases:
   - "route guard"
   - "mcp routing advisory"
   - "code mode routing advisory"
-version: 1.0.0.0
 id: mcp-route-guard
 category: plugins_and_hooks
 stage: routing

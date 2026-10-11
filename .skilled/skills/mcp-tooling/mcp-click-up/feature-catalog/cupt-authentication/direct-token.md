@@ -7,7 +7,6 @@ trigger_phrases:
   - "set api token"
   - "personal api token non-interactive"
   - "ci token configuration"
-version: 1.0.0.3
 ---
 
 # Direct API Token

@@ -6,7 +6,6 @@ trigger_phrases:
   - "aside setup"
   - "aside doctor"
   - "aside not found"
-version: 1.0.0.0
 ---
 
 # Install (setup and diagnostics for the aside binary)

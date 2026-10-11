@@ -9,7 +9,6 @@ trigger_phrases:
   - "commit subject length rules"
 importance_tier: normal
 contextType: implementation
-version: 1.3.0.0
 ---
 
 # Commit Message Template - Repository-Specific Contract

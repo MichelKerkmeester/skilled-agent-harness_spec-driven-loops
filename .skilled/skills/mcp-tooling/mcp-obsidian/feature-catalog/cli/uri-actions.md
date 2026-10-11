@@ -5,7 +5,6 @@ trigger_phrases:
   - "Trigger URI actions"
   - "obsidian:// URI action"
   - "open an Obsidian plugin action"
-version: 0.1.0.0
 ---
 
 # Trigger URI actions (`obsidian://`)

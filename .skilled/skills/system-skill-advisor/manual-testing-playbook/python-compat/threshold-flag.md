@@ -6,7 +6,6 @@ trigger_phrases:
   - "threshold flag"
   - "confidence cutoff shim"
   - "dual threshold shim"
-version: 0.8.0.13
 id: PC-003
 category: python_compat
 stage: routing

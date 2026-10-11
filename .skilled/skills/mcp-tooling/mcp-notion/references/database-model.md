@@ -9,7 +9,6 @@ trigger_phrases:
   - "notion query data source"
 importance_tier: "important"
 contextType: "implementation"
-version: 0.1.0.0
 ---
 
 # Notion Database Model Reference

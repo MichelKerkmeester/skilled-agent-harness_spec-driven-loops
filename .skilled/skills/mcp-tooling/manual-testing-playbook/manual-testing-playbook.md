@@ -1,7 +1,6 @@
 ---
 title: "mcp-tooling: Manual Testing Playbook"
 description: "Operator-facing index for mcp-tooling hub-routing validation across ten modes: six workflow bridges, four read-only design transports, eight blind holdouts, and the generic-tool ownership boundaries."
-version: 1.2.0.0
 ---
 
 # mcp-tooling: Manual Testing Playbook

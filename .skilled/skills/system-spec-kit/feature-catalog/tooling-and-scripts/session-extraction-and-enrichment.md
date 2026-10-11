@@ -7,7 +7,6 @@ trigger_phrases:
   - "extract session data"
   - "diagram extractor"
   - "session activity signal"
-version: 1.6.0.8
 ---
 
 # Session Extraction and Enrichment

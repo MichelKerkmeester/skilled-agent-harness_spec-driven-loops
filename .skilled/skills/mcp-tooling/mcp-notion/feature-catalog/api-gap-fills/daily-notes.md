@@ -5,7 +5,6 @@ trigger_phrases:
   - "notion daily notes"
   - "GAP-005"
   - "open today's notion note"
-version: 0.1.0.0
 ---
 
 # Daily Notes (convention -- GAP-005)

@@ -5,7 +5,6 @@ trigger_phrases:
   - "Write a note"
   - "obsidian_write_note"
   - "update a note through Obsidian MCP"
-version: 0.1.0.0
 ---
 
 # Write a note (`obsidian_write_note`)

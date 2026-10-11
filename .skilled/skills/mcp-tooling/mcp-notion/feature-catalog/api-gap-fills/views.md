@@ -5,7 +5,6 @@ trigger_phrases:
   - "notion views api"
   - "GAP-002"
   - "create a saved notion view"
-version: 0.1.0.0
 ---
 
 # Views (direct API -- GAP-002)

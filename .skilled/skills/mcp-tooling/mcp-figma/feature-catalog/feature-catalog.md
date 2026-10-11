@@ -6,7 +6,6 @@ trigger_phrases:
   - "figma-ds-cli"
   - "feature catalog"
 last_updated: "2026-06-14"
-version: 1.0.0.3
 ---
 
 # mcp-figma: Feature Catalog

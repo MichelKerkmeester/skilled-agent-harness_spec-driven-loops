@@ -1,7 +1,6 @@
 ---
 title: "GIT-001 -- Fresh feature isolated worktree"
 description: "This scenario validates Fresh feature isolated worktree for `GIT-001`. It focuses on prove a new feature starts in an isolated worktree created with a branch through `git worktree add -b`."
-version: 1.1.0.2
 ---
 
 # GIT-001 -- Fresh feature isolated worktree

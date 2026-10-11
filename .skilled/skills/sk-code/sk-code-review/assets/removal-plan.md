@@ -8,7 +8,6 @@ trigger_phrases:
   - "removal usage evidence check"
 importance_tier: normal
 contextType: planning
-version: 1.5.0.9
 ---
 
 # Removal and Iteration Plan

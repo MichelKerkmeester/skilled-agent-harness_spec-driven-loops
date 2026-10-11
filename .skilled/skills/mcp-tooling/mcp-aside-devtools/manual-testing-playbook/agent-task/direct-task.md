@@ -1,7 +1,6 @@
 ---
 title: "ASD-004 -- Direct natural-language task"
 description: "This scenario validates the agent-task lane for `ASD-004`. It focuses on running a read-only natural-language task and judging the user-visible outcome, with pauses treated as human gates."
-version: 1.0.0.0
 ---
 
 # ASD-004 -- Direct natural-language task

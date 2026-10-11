@@ -8,7 +8,6 @@ trigger_phrases:
   - "devin clear check"
 importance_tier: normal
 contextType: implementation
-version: 1.4.0.4
 ---
 
 # Devin CLI — Prompt Quality Card

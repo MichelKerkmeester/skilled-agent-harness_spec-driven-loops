@@ -8,7 +8,6 @@ trigger_phrases:
   - "goal chat slice"
 importance_tier: normal
 contextType: general
-version: 1.2.0.0
 ---
 
 # sk-create-goal

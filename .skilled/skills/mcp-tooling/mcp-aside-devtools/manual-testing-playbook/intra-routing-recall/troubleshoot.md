@@ -8,7 +8,6 @@ expected_intent: TROUBLESHOOT
 expected_resources:
   - references/troubleshooting.md
   - references/session-management.md
-version: 1.1.0.0
 ---
 
 # AD-R05: Troubleshoot routing

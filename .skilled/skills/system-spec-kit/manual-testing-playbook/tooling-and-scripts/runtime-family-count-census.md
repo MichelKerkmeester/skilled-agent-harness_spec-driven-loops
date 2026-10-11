@@ -1,7 +1,6 @@
 ---
 title: "M-009 -- Runtime Family Count Census"
 description: "This snippet preserves the canonical memory/spec-kit operator workflow for `M-009`."
-version: 1.6.0.16
 id: tooling-and-scripts-runtime-family-count-census
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

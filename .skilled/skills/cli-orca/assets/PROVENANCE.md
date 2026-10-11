@@ -7,7 +7,6 @@ trigger_phrases:
   - "package digest orca skill"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
 ---
 
 # Official Orca Skill Snapshots - Provenance

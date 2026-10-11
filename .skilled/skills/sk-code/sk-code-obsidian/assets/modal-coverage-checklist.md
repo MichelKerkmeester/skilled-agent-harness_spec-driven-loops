@@ -10,7 +10,6 @@ trigger_phrases:
   - "17 modals no scenario"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
 ---
 
 # Modal Screenshot-Coverage Checklist

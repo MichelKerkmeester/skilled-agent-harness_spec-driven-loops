@@ -7,7 +7,6 @@ trigger_phrases:
   - "run capped pool"
   - "concurrency-capped fanout"
   - "orchestration status ledger"
-version: 1.4.0.3
 ---
 
 # Fan-out worker pool

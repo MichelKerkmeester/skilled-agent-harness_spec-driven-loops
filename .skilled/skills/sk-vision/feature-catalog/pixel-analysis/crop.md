@@ -6,7 +6,6 @@ trigger_phrases:
   - "crop this area of the screenshot"
   - "sk_vision_crop"
   - "save a cropped region"
-version: 1.0.0.0
 ---
 
 # Region cropping (sk_vision_crop)

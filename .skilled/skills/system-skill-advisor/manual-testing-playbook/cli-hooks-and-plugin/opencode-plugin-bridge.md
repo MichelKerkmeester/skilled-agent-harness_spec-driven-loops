@@ -6,7 +6,6 @@ trigger_phrases:
   - "opencode plugin bridge"
   - "opencode plugin"
   - "opencode"
-version: 0.8.0.17
 id: CL-005
 category: cli_hooks_and_plugin
 stage: routing

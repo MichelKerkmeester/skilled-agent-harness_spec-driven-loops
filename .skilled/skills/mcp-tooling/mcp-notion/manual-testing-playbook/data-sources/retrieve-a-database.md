@@ -2,7 +2,6 @@
 title: "DS-001 -- Retrieve a database"
 description: "This scenario validates a scratch-database container read through the confirmed notion_retrieve-a-database tool."
 stage: routing
-version: 0.1.0.0
 ---
 
 # DS-001 -- Retrieve a database

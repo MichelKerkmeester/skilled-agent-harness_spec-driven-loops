@@ -1,7 +1,6 @@
 ---
 title: "471 -- Heal spec-docs lane modes"
 description: "This scenario validates the heal-spec-docs lane modes for `471`. It focuses on the anchor-wrap and continuity-placeholder actions that a dry run previews and an apply writes, the refusal for a packet with no SPECKIT_LEVEL marker and the guarantee that a dry run writes nothing."
-version: 1.0.0.0
 id: tooling-and-scripts-heal-spec-docs-lane-modes
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

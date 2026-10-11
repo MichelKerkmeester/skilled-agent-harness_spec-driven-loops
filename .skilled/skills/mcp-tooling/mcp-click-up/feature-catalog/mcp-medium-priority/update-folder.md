@@ -5,7 +5,6 @@ trigger_phrases:
   - "clickup_update_folder"
   - "rename folder"
   - "update folder"
-version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,7 +2,6 @@
 title: "CHT-007 -- It opens with no build step"
 description: "This scenario validates the delivery property for `CHT-007`. It confirms a delivered chart opens from a file:// URL with no install, no package manager and no network, carrying no remote resource and no runtime fetch."
 stage: delivery
-version: 0.23.0.4
 ---
 
 # CHT-007 -- It opens with no build step

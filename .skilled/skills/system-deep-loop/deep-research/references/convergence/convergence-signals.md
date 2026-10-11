@@ -11,7 +11,6 @@ trigger_phrases:
   - "convergence threshold tuning"
 importance_tier: normal
 contextType: implementation
-version: 1.14.0.3
 ---
 
 # Convergence Signals Reference

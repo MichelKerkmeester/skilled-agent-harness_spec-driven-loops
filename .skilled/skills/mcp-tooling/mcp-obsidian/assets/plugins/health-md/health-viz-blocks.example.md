@@ -6,7 +6,6 @@ trigger_phrases:
   - "health-md step-spiral block"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.24.1.0
 ---
 
 # Health.md `health-viz` render blocks (researched-validated examples)

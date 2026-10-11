@@ -6,7 +6,6 @@ trigger_phrases:
   - "derived extraction"
   - "deterministic n-gram"
   - "graph-metadata derived"
-version: 0.8.0.14
 id: AI-001
 category: auto_indexing
 stage: routing

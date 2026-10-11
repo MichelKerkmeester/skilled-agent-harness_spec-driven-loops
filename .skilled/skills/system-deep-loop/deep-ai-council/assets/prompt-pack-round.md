@@ -8,7 +8,6 @@ trigger_phrases:
   - "council seat verdict"
 importance_tier: "normal"
 contextType: "planning"
-version: 1.7.0.3
 ---
 
 # Deep-AI-Council Round Prompt Pack

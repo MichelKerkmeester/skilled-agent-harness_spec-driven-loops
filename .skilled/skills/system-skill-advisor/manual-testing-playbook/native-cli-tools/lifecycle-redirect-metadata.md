@@ -6,7 +6,6 @@ trigger_phrases:
   - "lifecycle redirect metadata"
   - "lifecycle redirect"
   - "lifecycle"
-version: 0.8.0.12
 id: NC-005
 category: native_cli_tools
 stage: routing

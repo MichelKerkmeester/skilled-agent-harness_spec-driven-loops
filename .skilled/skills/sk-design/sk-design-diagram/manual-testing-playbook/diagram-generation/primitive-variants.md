@@ -1,7 +1,6 @@
 ---
 title: "DIA-004 -- Primitive variants"
 description: "This scenario validates the on-demand primitive variants for `DIA-004`. It focuses on annotation callouts, the sketchy displacement filter, the terminal skin, and the monochrome icon library."
-version: 1.0.0.4
 ---
 
 # DIA-004 -- Primitive variants

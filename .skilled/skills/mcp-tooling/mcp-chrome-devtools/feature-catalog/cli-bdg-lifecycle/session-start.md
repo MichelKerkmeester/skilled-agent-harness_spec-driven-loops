@@ -5,7 +5,6 @@ trigger_phrases:
   - "bdg start session"
   - "open url in browser cli"
   - "start browser debugging session"
-version: 1.0.0.0
 ---
 
 # Session Start

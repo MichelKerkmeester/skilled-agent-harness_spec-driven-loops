@@ -5,7 +5,6 @@ trigger_phrases:
   - "Create a note"
   - "notesmd-cli create"
   - "new headless markdown note"
-version: 0.1.0.0
 ---
 
 # Create a note (`notesmd-cli create`)

@@ -1,7 +1,6 @@
 ---
 title: "DLR-034 -- Lifecycle taxonomy guards"
 description: "Manual validation scenario for Lifecycle taxonomy guards in the runtime/ skill."
-version: 1.4.0.15
 ---
 
 # DLR-034 -- Lifecycle taxonomy guards

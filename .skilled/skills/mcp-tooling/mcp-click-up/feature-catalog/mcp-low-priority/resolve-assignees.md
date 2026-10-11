@@ -5,7 +5,6 @@ trigger_phrases:
   - "clickup_resolve_assignees"
   - "resolve assignees"
   - "user id for me"
-version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -6,7 +6,6 @@ trigger_phrases:
   - "loop-lock-heartbeat-hardening"
   - "loop-lock heartbeat hardening runtime"
   - "state safety loop-lock heartbeat hardening"
-version: 1.4.0.15
 ---
 
 # Loop-lock heartbeat hardening

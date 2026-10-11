@@ -14,7 +14,6 @@ expected_resources:
   - references/debugging/debugging-workflows/scroll-interceptor-and-related.md
   - references/debugging/error-recovery.md
   - assets/webflow-debugging-checklist.md
-version: 1.0.0.0
 ---
 
 # WF-003: Debugging routing

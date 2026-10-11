@@ -8,7 +8,6 @@ trigger_phrases:
   - "pull request"
   - "security review"
   - "code-review"
-version: 1.7.1.0
 ---
 
 # sk-code-review mode

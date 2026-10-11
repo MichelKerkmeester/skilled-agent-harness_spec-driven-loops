@@ -9,7 +9,6 @@ trigger_phrases:
   - "magicpath add code image clone"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
 ---
 
 # MagicPath Mutation Boundary

@@ -6,7 +6,6 @@ trigger_phrases:
   - "force-native flag"
   - "force-local flag"
   - "compat force toggles"
-version: 0.8.0.13
 id: PC-002
 category: python_compat
 stage: routing

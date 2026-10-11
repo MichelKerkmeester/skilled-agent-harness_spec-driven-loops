@@ -8,7 +8,6 @@ trigger_phrases:
   - "non blocking browser scheduling"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.3
 ---
 
 # Async Patterns

@@ -8,7 +8,6 @@ trigger_phrases:
   - "gate function completion claims"
 importance_tier: important
 contextType: implementation
-version: 1.5.0.8
 ---
 
 

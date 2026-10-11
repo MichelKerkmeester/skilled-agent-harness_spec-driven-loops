@@ -1,7 +1,6 @@
 ---
 title: "ASD-014 -- Missing binary"
 description: "This scenario validates the CLI_MISSING diagnosis for `ASD-014`. It simulates an absent aside binary via a restricted PATH and verifies the workflow reports install guidance without installing anything."
-version: 1.0.0.0
 ---
 
 # ASD-014 -- Missing binary

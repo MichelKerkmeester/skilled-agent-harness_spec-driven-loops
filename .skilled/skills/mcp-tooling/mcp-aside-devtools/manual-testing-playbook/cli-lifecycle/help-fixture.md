@@ -1,7 +1,6 @@
 ---
 title: "ASD-002 -- Help fixture capture"
 description: "This scenario validates version-pinned command-surface capture for `ASD-002`. It focuses on saving `aside --help` output as a fixture and confirming the four documented subcommands."
-version: 1.0.0.0
 ---
 
 # ASD-002 -- Help fixture capture

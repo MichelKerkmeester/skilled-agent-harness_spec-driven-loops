@@ -9,7 +9,6 @@ expected_resources:
   - references/view-renderer-architecture.md
   - references/data-layer.md
   - references/db-class-naming.md
-version: 1.0.0.0
 ---
 
 # OB-H01: IMPLEMENTATION held out (decontaminated phrasing)

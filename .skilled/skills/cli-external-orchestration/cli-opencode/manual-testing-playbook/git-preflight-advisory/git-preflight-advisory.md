@@ -1,7 +1,6 @@
 ---
 title: "CO-038 -- Git preflight advisory delivery"
 description: "This scenario validates the sk-git preflight advisory delivery under OpenCode for `CO-038`. It focuses on the tool.execute.before plugin surfacing the commit-scope-drops-untracked advisory via the next experimental.chat.system.transform without printing or blocking."
-version: 1.4.0.5
 ---
 
 # CO-038 -- Git preflight advisory delivery

@@ -7,7 +7,6 @@ description: "This scenario validates the negative/out-of-domain control for `MB
 expected_intent: none
 expected_resources: []
 blindToRouterKeywords: false
-version: 1.0.0.1
 ---
 
 # MB-N01: Negative: out of domain

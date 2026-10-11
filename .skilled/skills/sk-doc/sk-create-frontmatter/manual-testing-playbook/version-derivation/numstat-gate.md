@@ -1,7 +1,6 @@
 ---
 title: "FMV-002 -- Numstat gate"
 description: "This scenario validates the numstat gate for `FMV-002`. The build segment counts only commits whose own added-plus-deleted line count for that file is above zero, and the ungated count is reported beside it."
-version: 1.0.0.4
 ---
 
 # FMV-002 -- Numstat gate

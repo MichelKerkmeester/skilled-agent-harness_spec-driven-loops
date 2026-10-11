@@ -7,7 +7,6 @@ trigger_phrases:
   - "acquire loop lock"
   - "stale-lock detection"
   - "heartbeat refresh lock"
-version: 1.4.0.4
 ---
 
 # Loop lock

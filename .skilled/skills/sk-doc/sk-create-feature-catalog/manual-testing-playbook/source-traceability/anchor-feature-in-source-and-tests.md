@@ -1,7 +1,6 @@
 ---
 title: "FCR-003 -- Anchor a feature in source and tests"
 description: "This scenario validates source traceability for FCR-003. Every feature claim has a real implementation row and a validation or test anchor in its per-feature file."
-version: 1.0.0.3
 ---
 
 # FCR-003 -- Anchor a feature in source and tests

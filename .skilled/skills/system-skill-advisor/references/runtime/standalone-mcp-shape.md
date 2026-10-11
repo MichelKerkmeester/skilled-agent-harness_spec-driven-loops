@@ -7,7 +7,6 @@ trigger_phrases:
   - "advisor standalone boundary"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.0.3
 ---
 
 # Standalone Advisor Shape

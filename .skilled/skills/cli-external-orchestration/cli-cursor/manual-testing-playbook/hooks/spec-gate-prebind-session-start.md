@@ -1,7 +1,6 @@
 ---
 title: "CU-020 -- Session-start spec-gate prebind matrix"
 description: "Execute the Cursor prebind process suite across folder, enforcement, child, disabled, malformed, and repeated-start cases."
-version: 1.4.0.3
 ---
 
 # CU-020 -- Session-start spec-gate prebind matrix

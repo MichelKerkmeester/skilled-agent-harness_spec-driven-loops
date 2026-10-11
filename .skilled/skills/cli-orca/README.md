@@ -7,7 +7,6 @@ trigger_phrases:
   - "official orca skills package"
 importance_tier: normal
 contextType: general
-version: 0.1.2.0
 ---
 
 # cli-orca

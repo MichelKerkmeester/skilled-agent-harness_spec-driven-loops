@@ -11,7 +11,6 @@ expected_resources:
   - references/state/state-outputs.md
   - references/state/state-reducer-registry.md
   - assets/deep-review-dashboard.md
-version: 1.1.0.0
 ---
 
 # DV-R04: Deep review report routing

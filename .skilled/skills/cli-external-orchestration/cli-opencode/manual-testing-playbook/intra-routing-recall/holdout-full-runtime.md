@@ -9,7 +9,6 @@ expected_resources:
   - references/cli-reference.md
   - references/integration-patterns.md
 blindToRouterKeywords: true
-version: 1.4.0.6
 ---
 
 # CO-H01: Blind holdout: full autonomous handoff

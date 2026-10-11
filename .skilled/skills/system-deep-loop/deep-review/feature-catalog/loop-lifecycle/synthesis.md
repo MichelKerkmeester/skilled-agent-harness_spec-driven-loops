@@ -7,7 +7,6 @@ trigger_phrases:
   - "final review report"
   - "verdict determination"
   - "nine-section report"
-version: 1.11.0.7
 ---
 
 # Synthesis

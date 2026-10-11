@@ -6,7 +6,6 @@ trigger_phrases:
   - "score-pi-transport"
   - "Pi classifier transport"
   - "jev CLI comparison"
-version: 0.3.0.0
 ---
 
 # Pi transport comparison (score-pi-transport.mjs)

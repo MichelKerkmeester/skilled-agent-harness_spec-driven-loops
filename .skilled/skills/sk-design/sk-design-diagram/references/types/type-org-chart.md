@@ -9,7 +9,6 @@ trigger_phrases:
   - "role routing map"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.8
 ---
 
 # Org Chart / Responsibility Map

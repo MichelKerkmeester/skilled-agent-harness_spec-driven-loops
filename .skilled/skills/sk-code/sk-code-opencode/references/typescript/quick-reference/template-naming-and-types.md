@@ -8,7 +8,6 @@ trigger_phrases:
   - "typescript naming cheat sheet"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.11
 ---
 
 # TypeScript Quick Reference

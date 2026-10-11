@@ -9,7 +9,6 @@ expected_resources:
   - references/cdp-patterns.md
   - references/session-management.md
 blindToRouterKeywords: true
-version: 1.0.0.1
 ---
 
 # CD-H02: Blind holdout: shell-driven

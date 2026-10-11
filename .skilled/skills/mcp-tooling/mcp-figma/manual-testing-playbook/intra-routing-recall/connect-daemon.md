@@ -8,7 +8,6 @@ expected_intent: CONNECT_SETUP_DAEMON
 expected_resources:
   - references/figma-cli-reference.md
   - references/troubleshooting.md
-version: 1.0.0.1
 ---
 
 # FG-R04: Connect/setup daemon routing

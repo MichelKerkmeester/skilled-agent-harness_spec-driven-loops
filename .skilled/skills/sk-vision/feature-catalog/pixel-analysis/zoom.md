@@ -6,7 +6,6 @@ trigger_phrases:
   - "zoom into this part of the image"
   - "sk_vision_zoom"
   - "enlarge small text"
-version: 1.0.0.0
 ---
 
 # Region zoom (sk_vision_zoom)

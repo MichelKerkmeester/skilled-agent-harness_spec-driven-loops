@@ -1,7 +1,6 @@
 ---
 title: "SD-001: WEBFLOW Surface Detection"
 description: "Verify sk-code routes vanilla-JS / animation-library prompts to the WEBFLOW surface and loads the webflow/* reference and asset trees."
-version: 1.5.0.6
 ---
 
 # SD-001: WEBFLOW Surface Detection
@@ -12,7 +11,7 @@ This scenario verifies that sk-code's smart router correctly identifies WEBFLOW 
 
 WEBFLOW is the frontend HTML/CSS/JS surface for Webflow / vanilla-animation projects. When detected, sk-code MUST load `sk-code-webflow/references/*` and `sk-code-webflow/assets/*` and SHOULD NOT load any `sk-code-opencode/references/*` resources.
 
-Detection markers are defined verbatim in `shared/references/stack-detection.md:30-37`.
+Detection markers are defined verbatim in `shared/references/stack-detection.md:29-36`.
 
 ---
 
@@ -58,7 +57,7 @@ Prompt: `Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by Interse
 ### Preconditions
 
 1. `.skilled/skills/sk-code/SKILL.md` is at HEAD-of-main.
-2. `shared/references/stack-detection.md:30-37` contains the WEBFLOW marker block (verify with `head -40 .skilled/skills/sk-code/shared/references/stack-detection.md`).
+2. `shared/references/stack-detection.md:29-36` contains the WEBFLOW marker block (verify with `head -40 .skilled/skills/sk-code/shared/references/stack-detection.md`).
 3. Sandbox: create `/tmp/skc-SD001-sandbox/src/2_javascript/scroll.js` with placeholder content (the AI doesn't need to actually write — we're testing routing).
 4. Skill advisor binary callable: `python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --help` exits 0.
 
@@ -99,7 +98,7 @@ Evidence: `/tmp/skc-SD001-loaded-refs.txt` (AI response, surface-detection log l
 ### Failure Triage
 
 1. If advisor doesn't win sk-code: check `skill-graph.json` `sk-code.signals` array — ensure "webflow", "frontend", "animation" are present.
-2. If surface != WEBFLOW: re-read `shared/references/stack-detection.md:30-37` and verify the markers in the prompt actually match the regex/grep patterns.
+2. If surface != WEBFLOW: re-read `shared/references/stack-detection.md:29-36` and verify the markers in the prompt actually match the regex/grep patterns.
 3. If `sk-code-opencode/references/*` is loaded: the router is mis-classifying. Check whether the CWD shell variable (`PWD`) accidentally contains `/.opencode/` (would trigger OPENCODE) — the marker priority is documented in SKILL.md smart router pseudocode.
 
 ---

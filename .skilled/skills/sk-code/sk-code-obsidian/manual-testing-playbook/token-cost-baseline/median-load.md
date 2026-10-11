@@ -9,7 +9,6 @@ expected_resources:
   - references/folder-docs.md
   - references/comment-grammar.md
   - references/standards/code-standards.md
-version: 1.0.0.0
 ---
 
 # OB-018: Median -- three-resource load

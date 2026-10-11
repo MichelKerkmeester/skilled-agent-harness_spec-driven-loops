@@ -5,7 +5,6 @@ trigger_phrases:
   - "runtime/ feature catalog"
   - "deep-loop runtime inventory"
 importance_tier: "important"
-version: 1.4.0.15
 ---
 
 # runtime/: Feature Catalog

@@ -7,7 +7,6 @@ trigger_phrases:
   - "resolveQuestionConflicts"
   - "key-questions generated projection"
   - "inbox registry conflict"
-version: 1.14.0.13
 ---
 
 # Question conflict ownership

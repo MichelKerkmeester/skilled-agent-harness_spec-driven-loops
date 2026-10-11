@@ -5,7 +5,6 @@ trigger_phrases:
   - "Delete a note via MCP"
   - "obsidian_delete_note"
   - "remove a live Obsidian note"
-version: 0.1.0.0
 ---
 
 # Delete a note via MCP (`obsidian_delete_note`)

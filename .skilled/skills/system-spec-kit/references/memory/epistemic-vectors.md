@@ -8,7 +8,6 @@ trigger_phrases:
   - "uncertainty weighted average"
 importance_tier: normal
 contextType: research
-version: 1.6.0.14
 ---
 
 # Epistemic Vectors Reference - Uncertainty Tracking

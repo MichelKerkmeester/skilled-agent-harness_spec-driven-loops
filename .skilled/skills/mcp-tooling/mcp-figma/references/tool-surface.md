@@ -9,7 +9,6 @@ trigger_phrases:
   - "figma eval raw run rule"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.0.0.3
 ---
 
 # Figma CLI Tool Surface

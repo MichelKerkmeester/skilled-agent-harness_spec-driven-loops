@@ -6,7 +6,6 @@ trigger_phrases:
   - "mass git mv renames"
   - "toolchain on main after merge"
   - "leftover ignored cruft cleanup"
-version: 1.0.0.0
 ---
 
 # Large reorg playbook

@@ -6,7 +6,6 @@ trigger_phrases:
   - "bdg --version"
   - "browser-debugger-cli install"
   - "check bdg installed"
-version: 1.0.0.0
 ---
 
 # Install + Version

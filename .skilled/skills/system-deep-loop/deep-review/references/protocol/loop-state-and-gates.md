@@ -8,7 +8,6 @@ trigger_phrases:
   - "review iteration status enum"
 importance_tier: normal
 contextType: implementation
-version: 1.11.0.3
 ---
 
 # Deep Review State Transitions and Quality Gates

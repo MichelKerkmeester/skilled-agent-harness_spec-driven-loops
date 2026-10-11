@@ -1,7 +1,6 @@
 ---
 title: "FMC-001 -- Author a reference block"
 description: "This scenario validates authoring a frontmatter block for a new reference document in `FMC-001`. It focuses on resolving the document class first, copying the five-field block that class carries, and closing it with `version` as the last key."
-version: 1.0.0.4
 ---
 
 # FMC-001 -- Author a reference block

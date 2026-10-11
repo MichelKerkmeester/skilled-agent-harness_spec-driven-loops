@@ -7,7 +7,6 @@ trigger_phrases:
   - "aside cli"
   - "aside mcp"
   - "browser agent task"
-version: 1.1.2.0
 ---
 
 # mcp-aside-devtools

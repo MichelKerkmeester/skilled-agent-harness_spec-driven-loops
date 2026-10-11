@@ -9,7 +9,6 @@ trigger_phrases:
   - "code review"
   - "second opinion"
   - "cross-validate"
-version: 1.9.0.37
 ---
 
 # cli-codex

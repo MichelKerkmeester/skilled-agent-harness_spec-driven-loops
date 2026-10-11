@@ -2,7 +2,6 @@
 title: "OBS-021 -- theme-activation"
 description: "This scenario validates the Obsidian theme system at the file layer: recreate a community theme package in a throwaway vault, activate it through the cssTheme key, layer a customization snippet with backup discipline, and verify all three layers. Minimal is used as the concrete example theme."
 stage: routing
-version: 0.11.0.0
 ---
 
 # OBS-021 -- theme-activation

@@ -5,7 +5,6 @@ trigger_phrases:
   - "could not find chrome"
   - "chrome path not found"
   - "CHROME_PATH"
-version: 1.0.0.0
 ---
 
 # Missing Browser

@@ -149,8 +149,11 @@ function run() {
   const positive = expectClean('positive');
   const sectionOrder = expectViolation('section-order', (root) => writeScenario(root, readScenario(root).replace('## 2. SCENARIO CONTRACT', '## 9. WRONG ORDER').replace('## 3. TEST EXECUTION', '## 2. SCENARIO CONTRACT').replace('## 9. WRONG ORDER', '## 3. TEST EXECUTION')), 'SECTION_ORDER_MISMATCH');
   expectViolation('section-five', (root) => writeScenario(root, readScenario(root).replace(/\n## 5\. SOURCE METADATA[\s\S]*$/, '\n')), 'SECTION_5_MISSING');
-  expectViolation('frontmatter-version', (root) => writeScenario(root, readScenario(root).replace('version: 1.0.0.0', 'version: 1.0.0')), 'FRONTMATTER_VERSION_INVALID');
+  expectClean('frontmatter-version-absent', (root) => writeScenario(root, readScenario(root).replace(/^version: .*\n/m, '')));
   expectViolation('frontmatter-description', (root) => writeScenario(root, readScenario(root).replace('description: "A clean fixture for the operator-scenario validator."\n', '')), 'FRONTMATTER_DESCRIPTION_MISSING');
+  const backtick = expectClean('backtick-path-report-only', (root) => writeScenario(root, `${readScenario(root)}\nRead \`.skilled/commands/create/diagram.md\` and \`.skilled/skills/sk-doc/SKILL.md:1\`, then \`./clean-scenario.md\` and \`scenarios/clean-scenario.md\`; skip \`<skill>/references/x.md\`, \`/tmp/out.json\` and \`scripts/*.sh\`.\n`));
+  const backtickWarnings = backtick.report.packages.flatMap((pkg) => pkg.warnings).filter((item) => item.code === 'BACKTICK_PATH_UNRESOLVED');
+  assert.deepStrictEqual(backtickWarnings.map((item) => item.message.split(': ').pop()), ['.skilled/commands/create/diagram.md']);
 
   const requiredMutations = [
     ['required-feature-id', (text) => text.replace(/id: FX-001\n/, '').replace(/FX-001/g, 'Scenario'), 'REQUIRED_FEATURE_ID'],
@@ -276,6 +279,15 @@ function runPromptSyncRegressions() {
   console.log('prompt sync regressions: PASS (8 assertions)');
 }
 
+// A fleet report is larger than one pipe buffer, so the text report must arrive whole.
+function runPipedReportRegression() {
+  const fleet = spawnSync(process.execPath, [validatorPath, '--strict'], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
+  assert(fleet.stdout.length > 65536, `fleet report should exceed one pipe buffer; got ${fleet.stdout.length} bytes`);
+  assert(/\nexit=\d+\n$/.test(fleet.stdout), 'piped fleet report must end with its exit line');
+  console.log('piped report regression: PASS (2 assertions)');
+}
+
 run();
 runContractRegressions();
 runPromptSyncRegressions();
+runPipedReportRegression();

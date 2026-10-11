@@ -7,7 +7,6 @@ trigger_phrases:
   - "index skill graph metadata"
   - "sqlite-backed skill graph"
   - "refresh skill relationships"
-version: 0.8.0.10
 ---
 
 # Skill graph scan

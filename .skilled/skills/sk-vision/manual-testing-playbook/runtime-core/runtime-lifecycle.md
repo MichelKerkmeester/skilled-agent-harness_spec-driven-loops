@@ -1,7 +1,6 @@
 ---
 title: "VSN-016 -- Runtime lifecycle"
 description: "This scenario validates Runtime lifecycle for `VSN-016`. It focuses on load, warm status, unload, and released status."
-version: 1.0.0.0
 ---
 
 # VSN-016 -- Runtime lifecycle

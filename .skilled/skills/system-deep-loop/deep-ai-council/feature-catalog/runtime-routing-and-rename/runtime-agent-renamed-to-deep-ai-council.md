@@ -7,7 +7,6 @@ trigger_phrases:
   - "rename council agent"
   - "runtime mirror"
   - "dispatch name council"
-version: 1.7.0.9
 ---
 
 # Runtime agent renamed to deep-ai-council

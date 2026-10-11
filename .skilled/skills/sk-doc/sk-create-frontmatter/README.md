@@ -10,7 +10,6 @@ trigger_phrases:
   - "why was my frontmatter rejected"
 importance_tier: normal
 contextType: general
-version: 1.0.0.8
 ---
 
 # create-frontmatter

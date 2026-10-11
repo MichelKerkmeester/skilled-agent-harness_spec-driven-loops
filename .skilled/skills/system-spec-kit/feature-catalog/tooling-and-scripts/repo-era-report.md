@@ -6,7 +6,6 @@ trigger_phrases:
   - "repo-era.mjs"
   - "v3 v4 layout detection"
   - "spec layout era"
-version: 1.0.0.0
 ---
 
 # Repository era report (repo-era.mjs)

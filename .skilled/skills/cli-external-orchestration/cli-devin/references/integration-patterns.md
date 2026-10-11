@@ -10,7 +10,6 @@ trigger_phrases:
   - "devin cloud handoff integration"
 importance_tier: normal
 contextType: planning
-version: 1.4.0.2
 ---
 
 # Cross-AI Orchestration Patterns: Calling AI + Devin CLI

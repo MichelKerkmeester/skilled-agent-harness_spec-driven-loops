@@ -1,7 +1,6 @@
 ---
 title: "CC-009 -- Sonnet balanced default"
 description: "This scenario validates Sonnet balanced default for `CC-009`. It focuses on confirming Sonnet handles a routine security review with reasonable depth, runtime, and cost."
-version: 1.5.0.13
 ---
 
 # CC-009 -- Sonnet balanced default

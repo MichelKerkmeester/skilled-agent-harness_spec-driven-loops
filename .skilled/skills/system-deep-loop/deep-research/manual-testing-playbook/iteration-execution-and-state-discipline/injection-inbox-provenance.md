@@ -1,7 +1,6 @@
 ---
 title: "DR-056 -- Injection inbox provenance"
 description: "Verify that late-question injections use `research/inbox.jsonl` and preserve question provenance."
-version: 1.14.0.21
 ---
 
 # DR-056 -- Injection inbox provenance

@@ -7,7 +7,6 @@ trigger_phrases:
   - "design build manifest"
 importance_tier: normal
 contextType: general
-version: 1.1.0.0
 ---
 
 # sk-code Handoff Schema

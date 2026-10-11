@@ -1,7 +1,6 @@
 ---
 title: "DOC-376 -- Doctor mcp debug"
 description: "Manual scenario validating that /doctor:mcp debug reports PASS, WARN or FAIL for each check, names every finding and the Hermes note, and writes nothing."
-version: 1.1.0.0
 id: doctor-commands-doctor-mcp-debug
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

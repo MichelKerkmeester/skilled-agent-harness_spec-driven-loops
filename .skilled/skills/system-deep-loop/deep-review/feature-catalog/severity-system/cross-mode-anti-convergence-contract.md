@@ -7,7 +7,6 @@ trigger_phrases:
   - "fail-closed stop policy"
   - "runtime capability stopPolicy"
   - "optimizer invariant group"
-version: 1.11.0.6
 ---
 
 # Cross-Mode Anti-Convergence Contract

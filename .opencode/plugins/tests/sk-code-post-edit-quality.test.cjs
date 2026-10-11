@@ -174,11 +174,24 @@ test('resolveDispatch: a SKILL.md never fires wikilinks even when the env flag i
   assert.equal(entries[0].label, 'frontmatter-versions');
 });
 
-test('resolveDispatch: adversarial -- a doc under a skill\'s references/ dir named spec.md resolves to frontmatter, not placeholders', () => {
-  const entries = router.resolveDispatch('.opencode/skills/sk-doc/references/spec.md', '/tmp/proj');
-  assert.equal(entries.length, 1);
-  assert.equal(entries[0].label, 'frontmatter-versions');
-  assert.deepEqual(entries[0].args, ['--skill', 'sk-doc']);
+test('resolveDispatch: adversarial -- a doc under a skill\'s references/ dir named spec.md resolves to no checker, not placeholders', () => {
+  assert.deepEqual(router.resolveDispatch('.opencode/skills/sk-doc/references/spec.md', '/tmp/proj'), []);
+});
+
+test('resolveDispatch: frontmatter-versions fires only for SKILL.md, never for a child doc', () => {
+  for (const child of [
+    '.skilled/skills/sk-doc/references/guide.md',
+    '.skilled/skills/sk-doc/assets/template.md',
+    '.skilled/skills/sk-doc/feature-catalog/routing/route.md',
+    '.skilled/skills/sk-doc/manual-testing-playbook/routing/route.md',
+    '.skilled/skills/sk-doc/sk-create-skill/references/guide.md',
+  ]) {
+    assert.deepEqual(router.resolveDispatch(child, '/tmp/proj'), [], `${child} must not fire the version gate`);
+  }
+  const packet = router.resolveDispatch('.skilled/skills/sk-doc/sk-create-skill/SKILL.md', '/tmp/proj');
+  assert.equal(packet.length, 1);
+  assert.equal(packet[0].label, 'frontmatter-versions');
+  assert.deepEqual(packet[0].args, ['--skill', 'sk-doc']);
 });
 
 test('resolveDispatch: adversarial -- box-drawing glyphs in a non-flowchart doc do not trigger the flowchart checker', (t) => {
@@ -187,24 +200,20 @@ test('resolveDispatch: adversarial -- box-drawing glyphs in a non-flowchart doc 
     path.join(tmpDir, '.opencode', 'skills', 'sk-doc', 'references', 'architecture.md'),
     '```text\n┌─────┐\n│ box │\n└─────┘\n```\n',
   );
-  const entries = router.resolveDispatch(docPath, tmpDir);
-  assert.equal(entries.length, 1);
-  assert.equal(entries[0].label, 'frontmatter-versions', 'a references/ doc must resolve to frontmatter, never flowchart, regardless of embedded box glyphs');
+  assert.deepEqual(router.resolveDispatch(docPath, tmpDir), [], 'a references/ doc must never resolve to flowchart, regardless of embedded box glyphs');
 });
 
 test('resolveDispatch: adversarial -- a path outside the project root resolves to no match', () => {
   assert.deepEqual(router.resolveDispatch('/etc/passwd', '/tmp/proj'), []);
 });
 
-test('resolveDispatch: README.md only matches frontmatter-versions when a sibling SKILL.md exists', (t) => {
+test('resolveDispatch: README.md never matches frontmatter-versions, even beside a SKILL.md', (t) => {
   const tmpDir = temporaryDirectory(t, 'post-edit-router-readme-');
-  const readmeNoSibling = writeFile(path.join(tmpDir, '.opencode', 'skills', 'sk-doc', 'sub', 'README.md'), '# x\n');
-  assert.deepEqual(router.resolveDispatch(readmeNoSibling, tmpDir), []);
+  const readme = writeFile(path.join(tmpDir, '.opencode', 'skills', 'sk-doc', 'sub', 'README.md'), '# x\n');
+  assert.deepEqual(router.resolveDispatch(readme, tmpDir), []);
 
   writeFile(path.join(tmpDir, '.opencode', 'skills', 'sk-doc', 'sub', 'SKILL.md'), '---\nversion: 1.0.0.0\n---\n');
-  const entries = router.resolveDispatch(readmeNoSibling, tmpDir);
-  assert.equal(entries.length, 1);
-  assert.equal(entries[0].label, 'frontmatter-versions');
+  assert.deepEqual(router.resolveDispatch(readme, tmpDir), []);
 });
 
 test('resolveDispatch: dist/node_modules/.git segments are excluded from comment-hygiene', () => {

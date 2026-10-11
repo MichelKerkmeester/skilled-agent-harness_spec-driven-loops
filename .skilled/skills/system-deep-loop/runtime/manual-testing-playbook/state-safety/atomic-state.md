@@ -1,7 +1,6 @@
 ---
 title: "DLR-006 -- Atomic state"
 description: "Manual validation scenario for Atomic state in the runtime/ skill."
-version: 1.4.0.4
 ---
 
 # DLR-006 -- Atomic state

@@ -9,7 +9,6 @@ trigger_phrases:
   - "cursor grok glm effort suffix"
 importance_tier: normal
 contextType: implementation
-version: 1.4.0.15
 ---
 
 # cli-cursor Providers, Models & Invocation

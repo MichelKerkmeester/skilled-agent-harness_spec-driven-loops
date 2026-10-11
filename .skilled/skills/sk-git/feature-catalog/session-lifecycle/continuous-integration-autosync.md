@@ -6,7 +6,6 @@ trigger_phrases:
   - "always-current live branch"
   - "git-sync.sh"
   - "autosync commits to live branch"
-version: 1.0.0.0
 ---
 
 # Continuous integration autosync (git-sync.sh / post-commit hook)

@@ -10,7 +10,6 @@ trigger_phrases:
   - "toolchain on main after merge"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.4
 ---
 
 # Large Reorg Playbook - Rename/Renumber in a Worktree

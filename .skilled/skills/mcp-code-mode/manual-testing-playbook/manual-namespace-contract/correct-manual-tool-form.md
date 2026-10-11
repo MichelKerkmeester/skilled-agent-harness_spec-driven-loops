@@ -1,7 +1,6 @@
 ---
 title: "CM-005 -- Correct manual.tool form"
 description: "This scenario validates the canonical manual.manual_tool naming form for `CM-005`. It focuses on confirming that calling a tool with the correct `manual.manual_tool` namespace (e.g., `clickup.clickup_get_teams`) succeeds and returns expected data."
-version: 1.0.0.8
 id: CM-005
 category: manual_namespace_contract
 stage: routing

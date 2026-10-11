@@ -1,7 +1,6 @@
 ---
 title: "455 -- validate.sh Dist-Freshness Backstop"
 description: "Manual check that validate.sh's Node orchestrator path fails closed with exit 3 and a rebuild instruction when the compiled spec-validation orchestrator is stale relative to its TypeScript source, and passes cleanly once the dist entry is rebuilt (or its mtime restored)."
-version: 1.0.0.0
 id: tooling-and-scripts-validate-sh-dist-freshness-backstop
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

@@ -8,7 +8,6 @@ trigger_phrases:
   - "tool namespace convention"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.0.6
 ---
 
 # Tool IDs Reference

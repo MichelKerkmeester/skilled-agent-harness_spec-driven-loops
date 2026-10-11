@@ -9,7 +9,6 @@ trigger_phrases:
   - "hermes roster"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
 ---
 
 The single catalog of the provider, the model ids, the reasoning lever and the dispatch shape the cli-hermes mode can reach. Hermes is a multi-provider pass-through with a catalog of some forty providers; this mode deliberately reaches one of them.

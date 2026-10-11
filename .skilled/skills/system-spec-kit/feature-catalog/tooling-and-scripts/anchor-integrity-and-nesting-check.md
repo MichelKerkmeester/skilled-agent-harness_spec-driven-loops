@@ -6,7 +6,6 @@ trigger_phrases:
   - "ANCHORS_VALID"
   - "nested anchor error"
   - "anchor opened inside"
-version: 1.0.0.0
 ---
 
 # Anchor integrity and nesting check (ANCHORS_VALID)

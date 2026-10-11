@@ -1,7 +1,6 @@
 ---
 title: "PROCCARD-001 -- md-generator procedure-card selection proof"
 description: "This scenario validates that md-generator selects the measured-extraction procedure card for extraction, token capture, CSS capture, DESIGN.md, screenshots, and source-system grounding requests."
-version: 1.0.0.0
 ---
 
 # PROCCARD-001 -- md-generator procedure-card selection proof

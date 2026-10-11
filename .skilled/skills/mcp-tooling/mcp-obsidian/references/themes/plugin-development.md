@@ -11,7 +11,6 @@ trigger_phrases:
   - "community-plugins json"
 importance_tier: "normal"
 contextType: "reference"
-version: "1.0.0.0"
 ---
 
 # Obsidian Plugin Development Overview

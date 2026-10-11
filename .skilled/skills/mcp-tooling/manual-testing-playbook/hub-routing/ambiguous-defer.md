@@ -8,7 +8,6 @@ expected_resources: []
 expected_workflow_mode: defer
 expected_leaf_resources: []
 created: 2026-07-10
-version: 1.1.0.0
 ---
 
 # MT-004: Genuinely ambiguous tool request defers rather than silently defaulting

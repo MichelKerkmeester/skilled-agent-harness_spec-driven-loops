@@ -9,7 +9,6 @@ trigger_phrases:
   - "research dead ends section"
 importance_tier: normal
 contextType: general
-version: 1.14.0.9
 ---
 
 # Deep Research Dashboard - Session Overview

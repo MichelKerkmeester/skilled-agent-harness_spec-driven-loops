@@ -1,7 +1,6 @@
 ---
 title: "DLR-032 -- Atomic-state deferred writer"
 description: "Manual validation scenario for Atomic-state deferred writer in the runtime/ skill."
-version: 1.4.0.15
 ---
 
 # DLR-032 -- Atomic-state deferred writer

@@ -8,7 +8,6 @@ trigger_phrases:
   - "council yaml workflow"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.7.0.14
 ---
 
 # AI Council Command Wiring

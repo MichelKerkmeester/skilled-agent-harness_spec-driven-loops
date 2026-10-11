@@ -6,7 +6,6 @@ trigger_phrases:
   - "config.jsonc"
   - "workflow config loader"
   - "script runtime configuration"
-version: 1.6.0.12
 ---
 
 # Runtime Config Contract

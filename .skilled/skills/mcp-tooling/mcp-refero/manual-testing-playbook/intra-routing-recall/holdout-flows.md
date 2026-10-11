@@ -8,7 +8,6 @@ expected_intent: FLOWS
 expected_resources:
   - references/tool-surface.md
 blindToRouterKeywords: true
-version: 1.0.0.1
 ---
 
 # RF-H02: Blind holdout: journey research

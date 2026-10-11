@@ -1,7 +1,6 @@
 ---
 title: "CM-014 -- ClickUp create-read-delete"
 description: "This scenario validates the ClickUp create-then-read-then-delete round trip via Code Mode for `CM-014`. It focuses on confirming the round-trip values match and cleanup succeeds in a single chain."
-version: 1.0.0.7
 id: CM-014
 category: clickup_and_chrome_via_cm
 stage: routing

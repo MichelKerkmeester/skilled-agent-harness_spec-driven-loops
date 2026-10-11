@@ -8,7 +8,6 @@ trigger_phrases:
   - "adb orca"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
 ---
 
 # Official Orca Skill - Orca Emulator (Android)

@@ -7,7 +7,6 @@ trigger_phrases:
   - "aside capabilities"
   - "aside chrome devtools parity"
 last_updated: "2026-07-17"
-version: 1.0.0.0
 ---
 
 # mcp-aside-devtools: Feature Catalog

@@ -8,7 +8,6 @@ expected_intent: SPEC_ANCHORING
 expected_resources:
   - references/protocol/spec-check-protocol.md
   - references/state/state-outputs.md
-version: 1.1.0.0
 ---
 
 # DR-R06: Deep research spec anchoring routing

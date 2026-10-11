@@ -7,7 +7,6 @@ trigger_phrases:
   - "enforce session caps"
   - "seat-output budget"
   - "saturation threshold enforcement"
-version: 1.4.0.4
 ---
 
 # Cost guards

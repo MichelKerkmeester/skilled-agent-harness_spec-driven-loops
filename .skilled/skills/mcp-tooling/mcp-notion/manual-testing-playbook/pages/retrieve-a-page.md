@@ -2,7 +2,6 @@
 title: "PAGE-002 -- Retrieve a page"
 description: "This scenario validates notion_retrieve-a-page by reading properties and metadata from a known scratch page."
 stage: routing
-version: 0.1.0.0
 ---
 
 # PAGE-002 -- Retrieve a page

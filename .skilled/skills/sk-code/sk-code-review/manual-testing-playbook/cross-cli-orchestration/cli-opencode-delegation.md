@@ -1,7 +1,6 @@
 ---
 title: "CR-017 -- cli-opencode delegation"
 description: "This scenario validates cli-opencode delegation for `CR-017`. It focuses on Confirm external OpenCode delegation preserves the exact review scope and returns review-compatible findings."
-version: 1.5.0.4
 ---
 
 # CR-017 -- cli-opencode delegation

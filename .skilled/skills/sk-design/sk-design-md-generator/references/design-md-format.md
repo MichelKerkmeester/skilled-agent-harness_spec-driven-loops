@@ -1,6 +1,5 @@
 ---
 title: DESIGN.md Style Reference Format
-version: 1.0.0.4
 description: "The authoritative Style Reference section specification: named colour tokens, semantic type scale, named components, conditional measured Motion, Surfaces, Elevation, Agent Prompt Guide, Similar Brands, and copy-paste Quick Start — every value verbatim from tokens.json."
 trigger_phrases:
   - design md format specification

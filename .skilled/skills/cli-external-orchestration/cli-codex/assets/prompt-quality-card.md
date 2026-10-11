@@ -8,7 +8,6 @@ trigger_phrases:
   - "codex clear check"
 importance_tier: normal
 contextType: implementation
-version: 1.9.0.20
 ---
 
 # Codex CLI — Prompt Quality Card

@@ -3,7 +3,6 @@ title: "SKD-003 -- Motion band selection"
 description: "This scenario validates Motion band selection for `SKD-003`. It focuses on confirm a duration question is answered from the motion bands with the consistency rule attached."
 stage: routing
 id: "SKD-003"
-version: 1.0.0.0
 ---
 
 # SKD-003 -- Motion band selection

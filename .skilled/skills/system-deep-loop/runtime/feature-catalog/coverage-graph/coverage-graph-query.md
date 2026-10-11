@@ -7,7 +7,6 @@ trigger_phrases:
   - "query coverage gaps"
   - "provenance chain lookup"
   - "hot-node read model"
-version: 1.4.0.4
 ---
 
 # Coverage graph query

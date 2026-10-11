@@ -6,7 +6,6 @@ trigger_phrases:
   - "anti stuffing"
   - "cardinality cap"
   - "repetition density demote"
-version: 0.8.0.15
 id: AI-005
 category: auto_indexing
 stage: routing

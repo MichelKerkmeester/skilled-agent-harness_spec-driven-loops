@@ -8,7 +8,6 @@ trigger_phrases:
   - "devtools quick commands"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.6
 ---
 
 # Debugging/Verification Checklists, Decision Matrix & Related

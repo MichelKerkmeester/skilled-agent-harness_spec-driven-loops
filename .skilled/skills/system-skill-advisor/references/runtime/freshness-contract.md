@@ -8,7 +8,6 @@ trigger_phrases:
   - "daemon contract"
 importance_tier: "important"
 contextType: "implementation"
-version: 0.8.0.9
 ---
 
 # Freshness Contract

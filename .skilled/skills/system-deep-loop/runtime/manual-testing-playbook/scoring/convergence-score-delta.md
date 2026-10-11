@@ -1,7 +1,6 @@
 ---
 title: "DLR-040 -- Convergence score-delta"
 description: "Manual validation scenario for Convergence score-delta in the runtime/ skill."
-version: 1.4.0.15
 ---
 
 # DLR-040 -- Convergence score-delta

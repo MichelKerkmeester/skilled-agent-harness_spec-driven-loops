@@ -7,7 +7,6 @@ trigger_phrases:
   - "optimization workflows index"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.9
 ---
 
 # Doc-Quality References

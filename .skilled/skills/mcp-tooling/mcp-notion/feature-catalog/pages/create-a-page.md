@@ -5,7 +5,6 @@ trigger_phrases:
   - "Create a page"
   - "notion_create-a-page"
   - "create a new Notion page"
-version: 0.1.0.0
 ---
 
 # Create a page (`notion_create-a-page`)

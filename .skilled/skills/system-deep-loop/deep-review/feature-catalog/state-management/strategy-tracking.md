@@ -7,7 +7,6 @@ trigger_phrases:
   - "review working memory"
   - "dimension rotation state"
   - "next focus anchor"
-version: 1.11.0.7
 ---
 
 # Strategy tracking

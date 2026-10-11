@@ -3,7 +3,6 @@ title: "SKD-030 -- Extraction routes to the measuring skill"
 description: "This scenario validates Extraction routes to the measuring skill for `SKD-030`. It focuses on confirm a request to measure a live site routes away from this skill."
 stage: negative
 id: "SKD-030"
-version: 1.0.0.0
 ---
 
 # SKD-030 -- Extraction routes to the measuring skill

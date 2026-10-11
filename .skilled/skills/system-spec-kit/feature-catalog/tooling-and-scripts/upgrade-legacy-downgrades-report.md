@@ -6,7 +6,6 @@ trigger_phrases:
   - "upgrade-legacy downgrades"
   - "upgrade-baseline.json"
   - "grouped detail upgrade-legacy"
-version: 1.0.0.0
 ---
 
 # Upgrade-legacy Downgrades and grouped detail (upgrade-legacy.mjs)

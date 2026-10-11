@@ -9,7 +9,6 @@ trigger_phrases:
   - "why does this feel overwhelming"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
 ---
 
 # UX Laws for Authoring

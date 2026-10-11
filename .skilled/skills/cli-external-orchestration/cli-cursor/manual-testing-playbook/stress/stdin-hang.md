@@ -6,7 +6,6 @@ test_file: "tests/stress/cli-adapter/cli-cursor.vitest.ts"
 test_name: "closes stdin for the headless cli-cursor process"
 playbook_path: "cli-external-orchestration/cli-cursor/manual-testing-playbook/stress/stdin-hang.md"
 id: "cli-cursor-EC-005"
-version: 1.4.0.5
 ---
 
 # EC-005 -- cli-cursor stdin closure

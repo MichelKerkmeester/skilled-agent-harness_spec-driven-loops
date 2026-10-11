@@ -9,7 +9,6 @@ trigger_phrases:
 importance_tier: normal
 contextType: reference
 last_updated: "2026-07-17"
-version: 1.0.0.0
 ---
 
 # Aside Online Research Refresh (2026-07-17)

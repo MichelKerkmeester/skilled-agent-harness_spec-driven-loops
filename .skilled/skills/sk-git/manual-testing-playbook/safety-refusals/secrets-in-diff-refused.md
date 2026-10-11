@@ -1,7 +1,6 @@
 ---
 title: "GIT-009 -- Secrets in diff refused"
 description: "This scenario validates Secrets in diff refused for `GIT-009`. It focuses on verify commits containing secret-like placeholders are refused and remediated safely."
-version: 1.1.0.3
 ---
 
 # GIT-009 -- Secrets in diff refused

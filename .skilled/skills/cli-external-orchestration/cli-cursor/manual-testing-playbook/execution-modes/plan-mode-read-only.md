@@ -1,7 +1,6 @@
 ---
 title: "CU-004 -- Plan mode (read-only)"
 description: "This scenario validates Cursor's read-only --mode plan for `CU-004`. It proves the mode and event stream are read-only without assuming that text output is a separate numbered-plan artifact."
-version: 1.4.0.3
 ---
 
 # CU-004 -- Plan mode (read-only)

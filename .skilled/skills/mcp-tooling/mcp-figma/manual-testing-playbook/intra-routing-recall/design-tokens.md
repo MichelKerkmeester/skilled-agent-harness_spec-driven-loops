@@ -8,7 +8,6 @@ expected_intent: DESIGN_SYSTEM_TOKENS
 expected_resources:
   - references/figma-cli-reference.md
   - references/tool-surface.md
-version: 1.0.0.1
 ---
 
 # FG-R02: Design system tokens routing

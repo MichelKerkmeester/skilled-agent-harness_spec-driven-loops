@@ -7,7 +7,6 @@ trigger_phrases:
   - "tag filter tasks"
   - "server-side tag filter"
   - "filter tasks by label"
-version: 1.0.0.3
 ---
 
 # Filter by Tag

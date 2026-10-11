@@ -1,7 +1,6 @@
 ---
 title: "CU-023 -- Mirrored-agent subagent dispatch"
 description: "Verify a real Cursor subagent dispatch through one mirrored repository agent and confirm the result is derived from its body."
-version: 1.4.0.3
 ---
 
 # CU-023 -- Mirrored-agent subagent dispatch

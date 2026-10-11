@@ -1,7 +1,6 @@
 ---
 title: "ASD-015 -- Dead MCP process (DESTRUCTIVE)"
 description: "This scenario validates dead-child recovery for `ASD-015`. It kills a probe-owned aside mcp process, verifies the failure classification, and confirms a clean respawn with no leaks."
-version: 1.0.0.0
 ---
 
 # ASD-015 -- Dead MCP process (DESTRUCTIVE)

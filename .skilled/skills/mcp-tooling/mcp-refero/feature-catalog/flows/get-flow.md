@@ -5,7 +5,6 @@ trigger_phrases:
   - "refero get flow tool"
   - "get flow refero"
   - "flow detail refero"
-version: 1.0.0.0
 ---
 
 # refero_get_flow

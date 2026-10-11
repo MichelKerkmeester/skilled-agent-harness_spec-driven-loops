@@ -7,7 +7,6 @@ trigger_phrases:
   - "pause review loop"
   - "userPaused event"
   - "graceful loop suspension"
-version: 1.11.0.5
 ---
 
 # Pause sentinel

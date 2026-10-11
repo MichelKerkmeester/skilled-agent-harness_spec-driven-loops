@@ -10,7 +10,6 @@ trigger_phrases:
   - "obsidian vault cli"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.2.0.0
 ---
 
 # Obsidian CLI Reference

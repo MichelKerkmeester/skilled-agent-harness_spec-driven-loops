@@ -6,7 +6,6 @@ trigger_phrases:
   - "draw the detected boxes on this image"
   - "sk_vision_annotate"
   - "save an annotated screenshot"
-version: 1.0.0.0
 ---
 
 # Annotation overlay (sk_vision_annotate)

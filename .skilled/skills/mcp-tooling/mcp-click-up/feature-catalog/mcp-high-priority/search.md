@@ -6,7 +6,6 @@ trigger_phrases:
   - "search clickup"
   - "find doc"
   - "keyword search workspace"
-version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,7 +7,6 @@ trigger_phrases:
   - "validate-message.mjs"
   - "commit message gate"
 importance_tier: "important"
-version: 1.0.0.0
 ---
 
 # Template-driven message contract (validate-message.mjs)

@@ -7,7 +7,6 @@ trigger_phrases:
   - "show task files"
   - "attachment metadata"
   - "list uploaded files"
-version: 1.0.0.3
 ---
 
 # List Attachments

@@ -7,7 +7,6 @@ trigger_phrases:
   - "download attachment"
   - "fetch task file"
   - "retrieve attachment by name"
-version: 1.0.0.3
 ---
 
 # Download File

@@ -1,7 +1,6 @@
 ---
 title: "cli-pi: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, evidence rules, orchestration guidance, and per-scenario validation files for the cli-pi skill."
-version: 1.5.0.12
 ---
 
 # cli-pi: Manual Testing Playbook

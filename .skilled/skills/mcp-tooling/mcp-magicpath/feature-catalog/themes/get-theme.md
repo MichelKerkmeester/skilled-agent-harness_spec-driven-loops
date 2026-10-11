@@ -6,7 +6,6 @@ trigger_phrases:
   - "get theme magicpath"
   - "magicpath css variables"
   - "magicpath styling prompt"
-version: 1.0.0.0
 ---
 
 # get_theme

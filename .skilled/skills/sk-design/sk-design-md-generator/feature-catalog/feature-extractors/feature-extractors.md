@@ -9,7 +9,6 @@ trigger_phrases:
   - "framework detection"
   - "motion token extraction"
 importance_tier: "normal"
-version: 1.0.0.5
 ---
 
 # Feature extractors (six detectors)

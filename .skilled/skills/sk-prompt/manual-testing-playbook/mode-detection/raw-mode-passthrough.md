@@ -1,7 +1,6 @@
 ---
 title: "SP-002 -- $raw mode skips DEPTH entirely"
 description: "This scenario validates `$raw` passthrough for `SP-002`. It focuses on confirming DEPTH runs 0 rounds, CLEAR scoring is skipped, and no transparency report is emitted."
-version: 2.3.0.4
 ---
 
 # SP-002 -- $raw mode skips DEPTH entirely

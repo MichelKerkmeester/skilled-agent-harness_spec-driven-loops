@@ -5,7 +5,6 @@ trigger_phrases:
   - "magicpath list components tool"
   - "list components magicpath"
   - "magicpath project components"
-version: 1.0.0.0
 ---
 
 # list_components

@@ -1,7 +1,6 @@
 ---
 title: "DOC-374 -- Doctor git target menu"
 description: "Manual scenario validating that a missing /doctor:git target shows the startup menu and waits, and that --dry-run renders plans without writing."
-version: 1.0.0.0
 id: doctor-commands-doctor-git-target-menu
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

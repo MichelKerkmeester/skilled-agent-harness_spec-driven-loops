@@ -1,7 +1,6 @@
 ---
 title: "DV-004 -- Smart permission help/runtime mismatch"
 description: "Verify that the installed Devin binary rejects the smart permission value even though help text prints it."
-version: 1.4.0.4
 ---
 
 # DV-004 -- Smart permission help/runtime mismatch

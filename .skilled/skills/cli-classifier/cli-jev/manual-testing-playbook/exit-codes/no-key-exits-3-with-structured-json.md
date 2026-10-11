@@ -1,7 +1,6 @@
 ---
 title: "JEV-004 -- No key exits 3 with structured JSON on stderr"
 description: "Confirm a judgment with no stored key exits 3 with one JSON error object on stderr, for `JEV-004`."
-version: 0.1.0.1
 ---
 
 # JEV-004 -- No key exits 3 with structured JSON on stderr

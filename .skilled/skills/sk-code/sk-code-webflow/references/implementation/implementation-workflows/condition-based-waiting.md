@@ -8,7 +8,6 @@ trigger_phrases:
   - "cache management workflow"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.10
 ---
 
 # Implementation Workflows - Phase 1

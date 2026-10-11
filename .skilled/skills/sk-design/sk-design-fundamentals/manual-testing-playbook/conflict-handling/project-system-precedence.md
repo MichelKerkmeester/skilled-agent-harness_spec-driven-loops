@@ -3,7 +3,6 @@ title: "SKD-020 -- An established project system wins"
 description: "This scenario validates An established project system wins for `SKD-020`. It focuses on confirm the skill defers to a project's own tokens rather than arguing for its defaults."
 stage: routing
 id: "SKD-020"
-version: 1.0.0.0
 ---
 
 # SKD-020 -- An established project system wins

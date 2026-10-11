@@ -7,7 +7,6 @@ trigger_phrases:
   - "deep ai council dashboard"
 importance_tier: "normal"
 contextType: "planning"
-version: 1.7.0.2
 ---
 
 # Deep AI Council Dashboard

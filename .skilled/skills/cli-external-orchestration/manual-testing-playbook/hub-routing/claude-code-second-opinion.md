@@ -14,7 +14,6 @@ expected_leaf_resources:
   - workflow_mode: cli-claude-code
     leaf_resource_id: references/integration-patterns.md
 created: 2026-07-10
-version: 1.4.0.7
 ---
 
 # CE-002: Anthropic-backed second-opinion request routes to cli-claude-code

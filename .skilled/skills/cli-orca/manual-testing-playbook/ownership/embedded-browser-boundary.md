@@ -2,7 +2,6 @@
 title: "ORCA-007 -- Embedded browser stays inside the Orca runtime"
 description: "This scenario validates that the embedded browser is used only for Orca-hosted pages and that an external site is routed to a page-automation tool instead."
 catalog_applicable: true
-version: 1.0.0.0
 ---
 
 # ORCA-007 -- Embedded browser stays inside the Orca runtime

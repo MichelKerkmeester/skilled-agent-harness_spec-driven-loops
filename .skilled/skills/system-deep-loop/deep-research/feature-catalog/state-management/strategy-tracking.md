@@ -7,7 +7,6 @@ trigger_phrases:
   - "track research strategy"
   - "findings registry alignment"
   - "next focus anchor"
-version: 1.14.0.10
 ---
 
 # Strategy tracking

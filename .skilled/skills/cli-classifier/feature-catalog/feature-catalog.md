@@ -7,7 +7,6 @@ trigger_phrases:
   - "injection screen measurement"
   - "feature catalog"
 last_updated: "2026-10-02"
-version: 0.3.0.0
 ---
 
 # cli-classifier: Feature Catalog

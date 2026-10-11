@@ -7,7 +7,6 @@ trigger_phrases:
   - spec folder consolidation
   - token reduction
   - parent-level merge
-version: 1.6.0.15
 ---
 
 # Tree thinning for spec folder consolidation

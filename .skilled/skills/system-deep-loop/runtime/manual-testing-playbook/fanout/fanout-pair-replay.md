@@ -1,7 +1,6 @@
 ---
 title: "DLR-059 -- Fan-out pair replay: census and label gate"
 description: "Validate the fan-out pair replay in score-fanout-pairs.cjs: the zero-call default census and the label-gate stop under 40 labeled pairs."
-version: 1.9.0.0
 ---
 
 # DLR-059 -- Fan-out pair replay: census and label gate

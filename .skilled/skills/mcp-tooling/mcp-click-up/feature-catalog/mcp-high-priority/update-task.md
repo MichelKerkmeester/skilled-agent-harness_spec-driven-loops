@@ -7,7 +7,6 @@ trigger_phrases:
   - "change task status mcp"
   - "set custom field"
   - "reassign task"
-version: 1.1.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

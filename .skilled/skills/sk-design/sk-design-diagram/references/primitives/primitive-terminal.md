@@ -9,7 +9,6 @@ trigger_phrases:
   - "terminal accent one hue"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.7
 ---
 
 # Terminal Window (CLI-chrome variant)

@@ -1,7 +1,6 @@
 ---
 title: "456 -- Canonical-first spec-root resolution"
 description: "This scenario validates canonical-first bare-name resolution, explicit-path preservation, legacy-only read fallback, divergent-duplicate write rejection, and no-alias writes without touching either live spec root."
-version: 1.0.0.0
 ---
 
 # 456 -- Canonical-first spec-root resolution

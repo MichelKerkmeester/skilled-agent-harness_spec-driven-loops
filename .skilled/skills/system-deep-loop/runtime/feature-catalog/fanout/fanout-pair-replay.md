@@ -7,7 +7,6 @@ trigger_phrases:
   - "fan-out pair census"
   - "near-line cross-body pairs"
   - "pair replay label gate"
-version: 1.9.0.0
 ---
 
 # Fan-out pair replay

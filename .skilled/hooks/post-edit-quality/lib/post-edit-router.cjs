@@ -43,15 +43,6 @@ const CHECKER_RELATIVE_PATHS = {
 
 const SOURCE_EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.mjs', '.cjs', '.py', '.sh', '.bash', '.jsonc']);
 const EXCLUDED_DIR_SEGMENTS = new Set(['dist', 'node_modules', '.git']);
-// Mirrors frontmatter-version.mjs's own SCOPE_SUBTREES so the router's match
-// stays aligned with what the checker itself actually validates.
-const SKILL_SCOPE_SUBTREES = new Set(['references', 'assets', 'feature-catalog', 'manual-testing-playbook']);
-const CANONICAL_SKILL_SCOPE_SUBTREES = new Map([
-  ['references', 'references'],
-  ['assets', 'assets'],
-  ['feature-catalog', 'feature-catalog'],
-  ['manual-testing-playbook', 'manual-testing-playbook'],
-]);
 const SPEC_DOC_BASENAMES = new Set(['spec.md', 'plan.md', 'tasks.md', 'checklist.md', 'decision-record.md']);
 const WIKILINKS_ENABLE_ENV = 'SPECKIT_VALIDATE_LINKS';
 
@@ -117,25 +108,15 @@ function isFlowchartCandidate(basename, segments) {
   return segments.includes('sk-design-diagram') && segments.includes('ascii-patterns');
 }
 
-function canonicalSkillScopeSubtree(segment) {
-  return CANONICAL_SKILL_SCOPE_SUBTREES.get(segment) || null;
-}
-
 /**
- * Resolve the versioned-skill-doc scope for frontmatter-versions: true when
- * the file is SKILL.md anywhere under a skill dir, README.md adjacent to a
- * SKILL.md, or any file under one of the in-scope subtrees. Mirrors
- * frontmatter-version.mjs's own classify()/inScope() so the router's match
- * stays aligned with what the checker itself actually validates.
+ * Resolve the versioned-skill-doc scope for frontmatter-versions: true only
+ * for a SKILL.md under a skill dir, because the version is the skill edition
+ * and child docs carry none. Mirrors frontmatter-version.mjs's own
+ * isSkillMd() so the router's match stays aligned with what the
+ * checker itself actually validates.
  */
-function isVersionedSkillDoc(absFilePath, basename, segments) {
-  if (basename === 'SKILL.md') return true;
-  if (basename === 'README.md') {
-    return existsSync(path.join(path.dirname(absFilePath), 'SKILL.md'));
-  }
-  // segments = [skillName, ...rest, basename]; only the middle segments count.
-  const restSegments = segments.slice(1, -1);
-  return restSegments.some((seg) => canonicalSkillScopeSubtree(seg) !== null);
+function isVersionedSkillDoc(basename) {
+  return basename === 'SKILL.md';
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -200,8 +181,7 @@ function resolveDispatch(absFilePath, projectDir, opts = {}) {
     // Row 3: frontmatter-versions -- versioned skill doc, scoped by --skill.
     if (underSkillsRoot) {
       const skillName = segments[2];
-      const skillRelativeSegments = segments.slice(2); // [skillName, ...rest, basename]
-      if (isVersionedSkillDoc(resolvedFile, basename, skillRelativeSegments)) {
+      if (isVersionedSkillDoc(basename)) {
         return [{
           label: 'frontmatter-versions',
           checkerPath: path.join(projectDir, CHECKER_RELATIVE_PATHS.frontmatterVersions),
@@ -432,7 +412,6 @@ module.exports = {
   CHECKER_RELATIVE_PATHS,
   SOURCE_EXTENSIONS,
   EXCLUDED_DIR_SEGMENTS,
-  SKILL_SCOPE_SUBTREES,
   SPEC_DOC_BASENAMES,
   WIKILINKS_ENABLE_ENV,
   DEFAULT_MAX_FINDING_CHARS,
@@ -446,7 +425,6 @@ module.exports = {
   // path/scope helpers (exposed for table-driven testing)
   relativeSegments,
   isFlowchartCandidate,
-  canonicalSkillScopeSubtree,
   isVersionedSkillDoc,
   // policy
   resolveDispatch,

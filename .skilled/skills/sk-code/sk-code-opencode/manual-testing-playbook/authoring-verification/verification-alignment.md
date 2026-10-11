@@ -8,7 +8,6 @@ expected_intent: VERIFICATION
 expected_resources:
   - references/shared/alignment-verification-automation.md
   - assets/scripts/README.md
-version: 1.0.0.0
 ---
 
 # OC-008: Verification alignment routing

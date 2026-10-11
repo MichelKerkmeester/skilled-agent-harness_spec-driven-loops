@@ -8,7 +8,6 @@ expected_intent: WIRING_AUTH
 expected_resources:
   - references/mcp-wiring.md
   - assets/utcp-refero-manual.md
-version: 1.0.0.1
 ---
 
 # RF-R04: Wiring and auth routing

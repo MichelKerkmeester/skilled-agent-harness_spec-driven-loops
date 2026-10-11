@@ -7,7 +7,6 @@ trigger_phrases:
   - ".worktrees directory naming"
   - "numbered worktree branch convention"
   - "git worktree counter max plus one"
-version: 1.6.0.2
 ---
 
 # sk-git numbered worktree convention (wt/{NNNN}-{name})

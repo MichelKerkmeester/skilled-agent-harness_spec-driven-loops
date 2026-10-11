@@ -6,7 +6,6 @@ trigger_phrases:
   - "magicpath list teams"
   - "magicpath members"
   - "magicpath list members"
-version: 1.0.0.0
 ---
 
 # Teams (list_teams / list_members)

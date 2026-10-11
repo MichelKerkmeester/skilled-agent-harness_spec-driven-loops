@@ -5,7 +5,6 @@ trigger_phrases:
   - "clickup_attach_task_file"
   - "attach file to task"
   - "attach url"
-version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

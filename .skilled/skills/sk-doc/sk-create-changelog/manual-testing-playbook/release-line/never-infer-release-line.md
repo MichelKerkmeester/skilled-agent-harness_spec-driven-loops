@@ -1,7 +1,6 @@
 ---
 title: "CHG-009 -- Never infer the release line from a changed path"
 description: "This scenario validates path-segment matching for CHG-009. Changed files under a skill resolve to that skill's folder and never to the skilled release line, even though every path starts with .skilled/."
-version: 1.2.0.0
 ---
 
 # CHG-009 -- Never infer the release line from a changed path

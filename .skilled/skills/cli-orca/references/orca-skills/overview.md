@@ -9,7 +9,6 @@ trigger_phrases:
   - "install official orca skill"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
 ---
 
 # Official Orca Skills - Overview

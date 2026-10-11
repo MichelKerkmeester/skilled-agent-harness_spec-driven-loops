@@ -1,7 +1,6 @@
 ---
 title: "DOC-358 -- Doctor update align"
 description: "Manual scenario validating that /doctor:update align on the shared update fixture reviews the customized Webflow unit and the conflict sk-git unit, records one decision for every presented file inside an ignored run directory, and writes nothing to the checkout."
-version: 1.2.0.0
 id: doctor-commands-doctor-update-align
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

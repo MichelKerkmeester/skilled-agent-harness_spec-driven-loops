@@ -1,7 +1,6 @@
 ---
 title: "CC-007 -- BypassPermissions guard rail (SANDBOXED)"
 description: "This scenario validates BypassPermissions guard rail for `CC-007`. It focuses on confirming the orchestrator policy refuses to construct `--permission-mode bypassPermissions` dispatches without explicit user approval."
-version: 1.5.0.17
 ---
 
 # CC-007 -- BypassPermissions guard rail (SANDBOXED)

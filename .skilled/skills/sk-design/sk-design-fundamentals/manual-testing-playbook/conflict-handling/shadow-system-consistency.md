@@ -3,7 +3,6 @@ title: "SKD-022 -- One shadow system per project"
 description: "This scenario validates One shadow system per project for `SKD-022`. It focuses on confirm a shadow request names which of the three systems the project is on before giving values."
 stage: routing
 id: "SKD-022"
-version: 1.0.0.0
 ---
 
 # SKD-022 -- One shadow system per project

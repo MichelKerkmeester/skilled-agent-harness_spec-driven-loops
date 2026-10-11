@@ -1,7 +1,6 @@
 ---
 title: "GIT-028 -- Orchestrated child execs in place"
 description: "This scenario validates Orchestrated child execs in place for `GIT-028`. It focuses on prove a dispatched child (AI_SESSION_CHILD=1) or a session already inside a linked worktree execs the runtime in place instead of allocating a second nested worktree."
-version: 1.0.0.0
 ---
 
 # GIT-028 -- Orchestrated child execs in place

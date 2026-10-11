@@ -2,7 +2,6 @@
 title: "FAIL-001 -- Missing Token"
 description: "This scenario validates that calling retrieve-bot-user with no Notion token configured fails with a named-credential error, not a generic crash."
 stage: routing
-version: 0.1.0.0
 ---
 
 # FAIL-001 -- Missing Token

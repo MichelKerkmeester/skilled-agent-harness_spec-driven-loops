@@ -7,7 +7,6 @@ trigger_phrases:
   - "set default workspace"
   - "persist workspace id"
   - "team_id default"
-version: 1.0.0.3
 ---
 
 # Workspace Default

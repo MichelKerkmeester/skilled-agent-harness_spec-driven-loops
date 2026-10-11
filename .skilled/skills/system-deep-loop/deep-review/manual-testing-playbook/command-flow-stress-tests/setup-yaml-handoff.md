@@ -1,7 +1,6 @@
 ---
 title: "CP-052 -- Deep-review setup-to-YAML handoff **(SANDBOXED)**"
 description: "Validate that /deep:review resolves setup inputs before loading the auto YAML workflow."
-version: 1.11.0.10
 ---
 
 # CP-052 -- Deep-review setup-to-YAML handoff **(SANDBOXED)**

@@ -1,7 +1,6 @@
 ---
 title: "JEV-011 -- The key is never echoed on the error path"
 description: "Confirm the credential never appears in the output of a failing call, for `JEV-011`."
-version: 0.1.0.1
 ---
 
 # JEV-011 -- The key is never echoed on the error path

@@ -7,7 +7,6 @@ trigger_phrases:
   - "webflow integration assets"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.5
 ---
 
 # sk code assets webflow integrations

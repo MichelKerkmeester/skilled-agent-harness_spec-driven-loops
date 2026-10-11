@@ -11,7 +11,6 @@ expected_resources:
   - assets/security-checklist.md
   - assets/code-quality-checklist.md
   - assets/fix-completeness-checklist.md
-version: 1.0.0.0
 ---
 
 # CR-R04: DRY routing

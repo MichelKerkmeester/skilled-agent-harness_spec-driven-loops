@@ -7,7 +7,6 @@ trigger_phrases:
   - "persist-artifacts parser contract"
 importance_tier: "important"
 contextType: "implementation"
-version: 1.7.0.12
 ---
 
 # AI Council Output Schema

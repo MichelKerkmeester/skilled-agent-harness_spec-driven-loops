@@ -5,7 +5,6 @@ trigger_phrases:
   - "clickup_add_tag_to_task"
   - "add tag mcp"
   - "tag task"
-version: 1.1.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

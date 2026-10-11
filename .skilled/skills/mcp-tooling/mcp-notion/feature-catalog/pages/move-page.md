@@ -5,7 +5,6 @@ trigger_phrases:
   - "Move a page"
   - "notion_move-page"
   - "move a Notion page to a new parent"
-version: 0.1.0.0
 ---
 
 # Move a page (`notion_move-page`)

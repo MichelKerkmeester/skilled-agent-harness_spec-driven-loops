@@ -1,7 +1,6 @@
 ---
 title: "SD-003: UNKNOWN Surface Fallback"
 description: "Verify sk-code asks for runtime/verification disambiguation when the prompt targets an unsupported stack (Go, Swift, React Native, generic Node.js)."
-version: 1.5.0.4
 ---
 
 # SD-003: UNKNOWN Surface Fallback

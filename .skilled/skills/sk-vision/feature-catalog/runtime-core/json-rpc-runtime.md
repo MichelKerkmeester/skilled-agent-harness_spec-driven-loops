@@ -6,7 +6,6 @@ trigger_phrases:
   - "how does the vision runtime work"
   - "python/runtime.py"
   - "vision runtime protocol"
-version: 1.0.0.0
 ---
 
 # JSON-RPC runtime (python/runtime.py)

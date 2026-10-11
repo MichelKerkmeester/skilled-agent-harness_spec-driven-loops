@@ -10,7 +10,6 @@ trigger_phrases:
   - "jq parse error bdg output"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.8
 ---
 
 # Troubleshooting Guide

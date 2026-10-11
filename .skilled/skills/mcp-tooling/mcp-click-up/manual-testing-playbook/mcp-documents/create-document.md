@@ -1,7 +1,6 @@
 ---
 title: "MCP-M015 -- Create Document (CRITICAL PATH)"
 description: "This scenario validates Create Document (CRITICAL PATH) for `MCP-M015`. Objective: Verify `clickup_create_document` creates a document in LIST_ID and returns its ID."
-version: 1.1.0.0
 ---
 
 # MCP-M015 -- Create Document (CRITICAL PATH)

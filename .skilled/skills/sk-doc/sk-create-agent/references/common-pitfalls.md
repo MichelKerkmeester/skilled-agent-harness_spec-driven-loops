@@ -9,7 +9,6 @@ trigger_phrases:
   - "agent common mistakes"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.5
 ---
 
 # Common Agent-Creation Pitfalls

@@ -1,7 +1,6 @@
 ---
 title: "DR-028 -- Focus track labels in dashboard"
 description: "Verify optional focusTrack labels appear in JSONL and dashboard iteration table."
-version: 1.14.0.14
 ---
 
 # DR-028 -- Focus track labels in dashboard

@@ -7,7 +7,6 @@ trigger_phrases:
   - "list spaces"
   - "find list id"
   - "mcp smoke test"
-version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -11,7 +11,6 @@ expected_resources:
   - assets/fixture-authoring-checklist.md
   - assets/screenshot-coverage-checklist.md
   - assets/modal-coverage-checklist.md
-version: 1.0.0.0
 ---
 
 # OB-002: Modal screenshot routing

@@ -10,7 +10,6 @@ trigger_phrases:
   - "notion mcp manual not found"
 importance_tier: "normal"
 contextType: "general"
-version: 0.1.0.0
 ---
 
 # mcp-notion Troubleshooting Guide

@@ -6,7 +6,6 @@ trigger_phrases:
   - "mcp-tooling hub-router scoring"
   - "mode-registry.json ten modes"
   - "mcp-tooling smart routing"
-version: 1.1.0.0
 ---
 
 # Workflow-Vs-Transport Two-Axis Routing (mcp-tooling)

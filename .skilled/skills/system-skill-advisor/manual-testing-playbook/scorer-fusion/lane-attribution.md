@@ -7,7 +7,6 @@ trigger_phrases:
   - "includeAttribution"
   - "laneBreakdown"
   - "why_recommended"
-version: 0.8.0.16
 id: SC-004
 category: scorer_fusion
 stage: routing

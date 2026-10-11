@@ -8,7 +8,6 @@ trigger_phrases:
   - "lane weight sweep"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.0.11
 ---
 
 # Lane Weight Tuning Guide

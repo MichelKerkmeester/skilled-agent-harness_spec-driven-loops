@@ -7,7 +7,6 @@ trigger_phrases:
   - "enhances edge propagation"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.0.6
 ---
 
 # Skill Graph Propagate Enhances Tool

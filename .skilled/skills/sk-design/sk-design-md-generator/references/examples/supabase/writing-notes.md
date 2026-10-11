@@ -7,7 +7,6 @@ trigger_phrases:
   - Supabase extraction caveats
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
 ---
 
 # Writing Notes: Supabase DESIGN.md (v3)

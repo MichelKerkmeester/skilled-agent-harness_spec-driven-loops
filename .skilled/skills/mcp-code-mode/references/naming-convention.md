@@ -9,7 +9,6 @@ trigger_phrases:
   - "namespace dot notation"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.10
 ---
 
 # Tool Naming Convention - Complete Guide

@@ -7,7 +7,6 @@ trigger_phrases:
   - "diagram palette source"
 importance_tier: normal
 contextType: reference
-version: 1.2.0.3
 ---
 
 # Harness Diagram — Style Reference

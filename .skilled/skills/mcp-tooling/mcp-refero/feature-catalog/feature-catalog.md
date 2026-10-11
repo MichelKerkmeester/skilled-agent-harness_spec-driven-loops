@@ -6,7 +6,6 @@ trigger_phrases:
   - "refero feature catalog"
   - "refero capabilities"
 last_updated: "2026-07-16"
-version: 1.0.0.0
 ---
 
 # mcp-refero: Feature Catalog

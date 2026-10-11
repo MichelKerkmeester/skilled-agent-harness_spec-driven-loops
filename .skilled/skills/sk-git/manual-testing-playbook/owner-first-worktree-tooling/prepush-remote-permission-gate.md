@@ -1,7 +1,6 @@
 ---
 title: "GIT-043 -- Pre-push remote-permission gate on creation and update"
 description: "This scenario validates the remote-permission gate for `GIT-043`. It focuses on prove that publishing a branch to origin is an explicit decision: a creation is refused unless the branch is named in the approval, an update needs a blanket approval, and the release lane and allowlist are the only standing exemptions."
-version: 1.0.0.0
 ---
 
 # GIT-043 -- Pre-push remote-permission gate on creation and update

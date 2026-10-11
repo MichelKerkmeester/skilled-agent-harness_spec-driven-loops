@@ -7,7 +7,6 @@ trigger_phrases:
   - Vercel extraction caveats
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
 ---
 
 # Writing Notes: Vercel (v3 Style Reference)

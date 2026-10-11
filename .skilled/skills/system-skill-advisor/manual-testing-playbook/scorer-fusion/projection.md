@@ -6,7 +6,6 @@ trigger_phrases:
   - "scorer projection"
   - "skill_nodes skill_edges"
   - "graph projection"
-version: 0.8.0.16
 id: SC-002
 category: scorer_fusion
 stage: routing

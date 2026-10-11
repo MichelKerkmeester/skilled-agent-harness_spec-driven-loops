@@ -7,7 +7,6 @@ trigger_phrases:
   - "compute convergence signals"
   - "node centrality momentum"
   - "research review graph signals"
-version: 1.4.0.4
 ---
 
 # Coverage graph signals

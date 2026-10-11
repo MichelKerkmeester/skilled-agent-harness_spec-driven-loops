@@ -3,7 +3,6 @@ title: "SKD-012 -- Type scale unit discipline"
 description: "This scenario validates Type scale unit discipline for `SKD-012`. It focuses on confirm an em-based type size is flagged and converted, without breaking the measure exception."
 stage: routing
 id: "SKD-012"
-version: 1.0.0.0
 ---
 
 # SKD-012 -- Type scale unit discipline

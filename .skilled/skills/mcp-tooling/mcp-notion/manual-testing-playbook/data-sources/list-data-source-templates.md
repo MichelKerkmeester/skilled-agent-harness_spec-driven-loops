@@ -2,7 +2,6 @@
 title: "DS-006 -- List data source templates"
 description: "This scenario validates a scratch data-source template listing, including the common empty-result outcome, through the confirmed notion_list-data-source-templates tool."
 stage: routing
-version: 0.1.0.0
 ---
 
 # DS-006 -- List data source templates

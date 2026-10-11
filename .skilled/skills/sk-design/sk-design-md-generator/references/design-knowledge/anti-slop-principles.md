@@ -8,7 +8,6 @@ trigger_phrases:
   - "design slop test"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
 ---
 
 # Anti-Slop Design Principles

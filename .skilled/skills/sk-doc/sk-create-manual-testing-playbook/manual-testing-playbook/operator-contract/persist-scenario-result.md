@@ -1,7 +1,6 @@
 ---
 title: "MTP-005 -- Persist the scenario result"
 description: "Retired: the wrapper this scenario validated went with its benchmark lane. Kept as the contract a replacement must satisfy, not a runnable sequence."
-version: 1.1.0.0
 ---
 
 # MTP-005 -- Persist the scenario result

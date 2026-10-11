@@ -7,7 +7,6 @@ trigger_phrases:
   - "deep-loop mode classification"
   - "system-deep-loop compiled routing"
 last_updated: "2026-07-21"
-version: 1.0.0.0
 ---
 
 # system-deep-loop: Feature Catalog

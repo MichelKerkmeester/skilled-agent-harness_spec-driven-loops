@@ -2,7 +2,6 @@
 title: "USR-003 -- Retrieve your bot user"
 description: "This scenario validates the no-input connectivity and auth preflight through the confirmed notion_retrieve-bot-user tool."
 stage: routing
-version: 0.1.0.0
 ---
 
 # USR-003 -- Retrieve your bot user

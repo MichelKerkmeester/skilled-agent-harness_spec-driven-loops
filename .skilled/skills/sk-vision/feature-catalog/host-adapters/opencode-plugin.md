@@ -6,7 +6,6 @@ trigger_phrases:
   - "how does sk-vision integrate with OpenCode"
   - "sk-vision.js"
   - "opencode vision plugin"
-version: 1.0.0.0
 ---
 
 # OpenCode plugin adapter (sk-vision.js)

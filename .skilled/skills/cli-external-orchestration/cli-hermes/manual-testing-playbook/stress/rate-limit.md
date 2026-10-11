@@ -6,7 +6,6 @@ test_file: "tests/stress/cli-adapter/cli-hermes.vitest.ts"
 test_name: "retains cli-hermes rate-limit diagnostics without retry delay"
 playbook_path: "cli-external-orchestration/cli-hermes/manual-testing-playbook/stress/rate-limit.md"
 id: "cli-hermes-EC-003"
-version: 1.0.0.0
 ---
 
 # EC-003 -- cli-hermes rate limit

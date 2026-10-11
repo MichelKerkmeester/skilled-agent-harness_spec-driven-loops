@@ -7,7 +7,6 @@ trigger_phrases:
   - "mode append gateway"
   - "typed ledger append"
   - "legacy projection refresh"
-version: 1.4.0.4
 ---
 
 # append-mode-event.cjs

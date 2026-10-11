@@ -1,7 +1,6 @@
 ---
 title: "DLR-043 -- Coverage-graph fuzzy merge"
 description: "Manual validation scenario for Coverage-graph fuzzy merge in the runtime/ skill."
-version: 1.4.0.15
 ---
 
 # DLR-043 -- Coverage-graph fuzzy merge

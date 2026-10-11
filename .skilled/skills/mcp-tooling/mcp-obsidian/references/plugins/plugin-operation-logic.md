@@ -10,7 +10,6 @@ trigger_phrases:
   - "file layer over ui principle"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.1.0.0
 ---
 
 # Reference — Plugin operation logic (file-layer model)

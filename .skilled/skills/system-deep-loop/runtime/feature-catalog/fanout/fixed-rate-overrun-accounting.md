@@ -6,7 +6,6 @@ trigger_phrases:
   - "fixed-rate-overrun-accounting"
   - "fixed-rate overrun accounting runtime"
   - "fan-out fixed-rate overrun accounting"
-version: 1.4.0.15
 ---
 
 # Fixed-rate overrun accounting

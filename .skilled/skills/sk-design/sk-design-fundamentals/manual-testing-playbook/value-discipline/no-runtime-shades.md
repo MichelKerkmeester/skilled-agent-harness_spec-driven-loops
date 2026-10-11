@@ -3,7 +3,6 @@ title: "SKD-011 -- Runtime shade generation is refused"
 description: "This scenario validates Runtime shade generation is refused for `SKD-011`. It focuses on confirm a request for a derived hover shade is answered from a defined ramp instead of a runtime function."
 stage: routing
 id: "SKD-011"
-version: 1.0.0.0
 ---
 
 # SKD-011 -- Runtime shade generation is refused

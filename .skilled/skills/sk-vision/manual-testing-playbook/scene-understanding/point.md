@@ -1,7 +1,6 @@
 ---
 title: "VSN-004 -- Pointing"
 description: "This scenario validates Pointing for `VSN-004`. It focuses on normalized coordinates answering a spatial question."
-version: 1.0.0.0
 ---
 
 # VSN-004 -- Pointing

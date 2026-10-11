@@ -7,7 +7,6 @@ trigger_phrases:
   - "contrast motion spacing type thresholds"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
 ---
 
 # Numeric Design Laws

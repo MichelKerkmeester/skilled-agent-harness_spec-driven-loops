@@ -283,11 +283,14 @@ def check_root_catalog_bijection(
 # ───────────────────────────────────────────────────────────────
 
 
-def _iter_file_column_rows(text: str) -> Iterator[Tuple[str, str, str]]:
-    """Yield (file_cell, col2, col3) for every row of a '| File | ... | ... |' table.
+def _iter_file_column_rows(text: str, min_cells: int = 3) -> Iterator[Tuple[str, str, str]]:
+    """Yield (file_cell, col2, col3) for every row of a '| File | ... |' table.
 
     Mirrors validate_document.py's validate_feature_catalog_table row walker so both
     scripts agree on table boundaries (header detection, separator-row skip, cell split).
+    The template table has three columns, so rows shorter than min_cells are skipped by
+    default; the path-existence check passes min_cells=2 so a two-column `| File | Role |`
+    table still has its paths checked. A missing third cell is yielded as ''.
     """
     in_table = False
     for line in text.split('\n'):
@@ -303,9 +306,9 @@ def _iter_file_column_rows(text: str) -> Iterator[Tuple[str, str, str]]:
         if re.match(r'^\|[\s|:\-]+\|$', stripped):
             continue
         cells = [c.strip() for c in stripped.strip('|').split('|')]
-        if len(cells) < 3:
+        if len(cells) < min_cells:
             continue
-        yield cells[0], cells[1], cells[2]
+        yield cells[0], cells[1], cells[2] if len(cells) > 2 else ''
 
 
 def _iter_leaf_files(catalog_dir: Path) -> Iterator[Path]:
@@ -585,7 +588,7 @@ def check_source_file_paths(package_name: str, catalog_dir: Path, repo_root: Pat
     repo_root = repo_root.resolve()
     for leaf in _iter_leaf_files(catalog_dir):
         text = leaf.read_text(encoding='utf-8')
-        for file_cell, _col2, _col3 in _iter_file_column_rows(text):
+        for file_cell, _col2, _col3 in _iter_file_column_rows(text, min_cells=2):
             checkable = _extract_checkable_path(file_cell)
             if checkable is None:
                 continue

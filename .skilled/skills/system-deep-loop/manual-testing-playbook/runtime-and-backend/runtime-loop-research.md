@@ -7,7 +7,6 @@ description: "Verify the research mode resolves to backendKind runtime-loop-type
 expected_intent: research
 expected_workflow_mode: research
 expected_leaf_resources: []
-version: "1.2.0.0"
 ---
 
 # RB-001: Runtime Loop Research Backend

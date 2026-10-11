@@ -19,7 +19,6 @@ expected_resources:
   - references/screenshot-harness.md
   - references/standards/platform-support.md
   - references/standards/code-standards.md
-version: 1.0.0.0
 ---
 
 # OB-019: Ceiling -- full pre-release audit load

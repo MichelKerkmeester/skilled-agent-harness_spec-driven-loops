@@ -16,7 +16,6 @@ expected_leaf_resources:
 blindToRouterKeywords: true
 blindExceptions:
   - "design file"
-version: 1.1.0.0
 ---
 # MT-H02: Blind holdout — design tokens
 Prompt: Pull the button component's colors and spacing values out of our shared design file and hand them to the build.

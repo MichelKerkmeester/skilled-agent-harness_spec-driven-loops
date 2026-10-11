@@ -4,7 +4,6 @@ description: "Delete a comment permanently."
 trigger_phrases:
   - "clickup_delete_comment"
   - "delete comment"
-version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

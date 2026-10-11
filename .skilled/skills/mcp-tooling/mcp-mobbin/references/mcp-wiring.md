@@ -9,7 +9,6 @@ trigger_phrases:
   - "mobbin code mode"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
 ---
 
 # Mobbin MCP Wiring (via Code Mode)

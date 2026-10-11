@@ -7,7 +7,6 @@ trigger_phrases:
   - "reject out-of-scope council write"
   - "OUT_OF_SCOPE_WRITE error"
   - "council write path boundary"
-version: 1.7.0.9
 ---
 
 # OUT_OF_SCOPE_WRITE rejection

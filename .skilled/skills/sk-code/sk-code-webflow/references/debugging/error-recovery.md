@@ -8,7 +8,6 @@ trigger_phrases:
   - "version mismatch recovery"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.5
 ---
 
 

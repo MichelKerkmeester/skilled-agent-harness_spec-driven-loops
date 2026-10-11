@@ -6,7 +6,6 @@ trigger_phrases:
   - "jsonl-lock-held-merge"
   - "jsonl lock-held merge runtime"
   - "state safety jsonl lock-held merge"
-version: 1.4.0.15
 ---
 
 # JSONL lock-held merge

@@ -7,7 +7,6 @@ trigger_phrases:
   - "rust quick reference"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
 ---
 
 # Rustdoc Template & Cargo/Build Quick Reference

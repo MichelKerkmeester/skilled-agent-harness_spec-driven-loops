@@ -7,7 +7,6 @@ trigger_phrases:
   - "design register checklist"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
 ---
 
 # Register Card

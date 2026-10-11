@@ -9,7 +9,6 @@ trigger_phrases:
   - "composite convergence vote"
 importance_tier: important
 contextType: implementation
-version: 1.11.0.22
 ---
 
 # Deep Review Convergence

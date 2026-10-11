@@ -8,7 +8,6 @@ trigger_phrases:
   - "reference creation guidelines"
 importance_tier: normal
 contextType: general
-version: 1.2.0.25
 ---
 
 # Skill Reference File Templates - AI Agent Skills

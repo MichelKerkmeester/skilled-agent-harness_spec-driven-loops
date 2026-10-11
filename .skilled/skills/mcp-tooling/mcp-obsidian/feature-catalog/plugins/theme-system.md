@@ -7,7 +7,6 @@ trigger_phrases:
   - "cssTheme appearance"
   - "css snippet customization"
   - "obsidian theme development"
-version: 0.11.0.0
 ---
 
 # Obsidian theme system file-layer operations

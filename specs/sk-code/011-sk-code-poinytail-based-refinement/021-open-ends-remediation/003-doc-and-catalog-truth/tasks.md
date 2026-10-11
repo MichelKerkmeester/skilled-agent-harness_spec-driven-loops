@@ -31,9 +31,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Measure the baseline: `frontmatter-version.mjs gate` and `verify` and `package_skill.py --check --strict` on all 14 skills, and the sk-doc script tests (scratch measure files)
+- [x] T002 Re-find every PC-R7 drift item in the live tree before editing it
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -41,10 +40,15 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T003 DV-R1, DV-R2, DV-R6: narrow `inScope()` and `classify()`, `VERSIONED_DOC_SUBTREES` and `isVersionedSkillDoc()` to `SKILL.md`, with tests (`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs`, `.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py`, `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs`)
+- [x] T004 DV-R1: remove the `version:` line from every child doc with one deterministic script run, in its own commit (2,845 files in 14 skills)
+- [x] T005 Re-anchor the 15 sk-code playbook citations the line removal shifted (`.skilled/skills/sk-code/manual-testing-playbook/`)
+- [x] T006 DV-R3, DV-R4: rewrite the versioning standard and the template asset (`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md`, `assets/frontmatter-templates.md`)
+- [x] T007 PC-R3: check paths in two-column catalog File tables (`.skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py`)
+- [x] T008 PC-R4, PC-R5: add the `runtime/` and `scripts/` bases and the `--overlap` advisory (`.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs`)
+- [x] T009 PC-R6: report unresolved backticked playbook paths, and keep the whole report when piped (`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs`)
+- [x] T010 PC-R7: correct the live drift in the playbooks and catalogs it names
+- [x] T011 Bump the touched skills once each, with one changelog entry (sk-doc, system-spec-kit, system-skill-advisor, sk-design, system-deep-loop)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -52,9 +56,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T012 Rerun the fleet measures and every regression surface; record before and after in `implementation-summary.md`
+- [x] T013 Run the five-iteration deep review over the phase's commits (`review/`) and fix every confirmed finding
+- [x] T014 Fill the ledger and the Tests table in `implementation-summary.md`, then run `check-goal.cjs` and strict `validate.sh`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -62,9 +66,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,6 +81,3 @@ contextType: "general"
 <!-- /ANCHOR:cross-refs -->
 
 ---
-
-
-

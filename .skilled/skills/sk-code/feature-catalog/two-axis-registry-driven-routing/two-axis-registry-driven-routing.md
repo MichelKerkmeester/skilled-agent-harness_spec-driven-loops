@@ -6,7 +6,6 @@ trigger_phrases:
   - "sk-code workflow and surface axis"
   - "mode-registry.json single source of truth"
   - "sk-code smart routing"
-version: 1.0.0.1
 ---
 
 # Two-Axis Registry-Driven Routing (sk-code)

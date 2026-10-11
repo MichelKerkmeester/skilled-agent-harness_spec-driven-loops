@@ -1,7 +1,6 @@
 ---
 title: "CO-012 -- Variant levels (minimal/low/medium/high)"
 description: "This scenario validates the `--variant` flag levels for `CO-012`. It focuses on confirming the `opencode-go/deepseek-v4-flash` variant range (minimal through the skill-verified `high` default) maps to reasoning effort and produces materially different response depth between extremes."
-version: 1.4.0.20
 ---
 
 # CO-012 -- Variant levels (minimal/low/medium/high)

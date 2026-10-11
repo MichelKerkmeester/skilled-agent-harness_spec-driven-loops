@@ -6,7 +6,6 @@ trigger_phrases:
   - "SPECKIT_SKIP_PHRASE_LINT"
   - "template-phrase-lint.mjs"
   - "template default trigger phrase"
-version: 1.0.0.0
 ---
 
 # Template phrase lint commit gate (template-phrase-lint.mjs)

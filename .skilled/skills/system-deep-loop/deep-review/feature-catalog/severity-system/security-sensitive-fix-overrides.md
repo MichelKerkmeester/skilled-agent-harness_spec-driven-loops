@@ -7,7 +7,6 @@ trigger_phrases:
   - "security rerun tighter thresholds"
   - "requiredFixCompletenessGate"
   - "fix completeness replay"
-version: 1.11.0.5
 ---
 
 # Security-sensitive fix overrides

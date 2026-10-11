@@ -5,7 +5,6 @@ trigger_phrases:
   - "bdg network cookies"
   - "get browser cookies cli"
   - "set cookie cdp"
-version: 1.0.0.0
 ---
 
 # Cookie Management

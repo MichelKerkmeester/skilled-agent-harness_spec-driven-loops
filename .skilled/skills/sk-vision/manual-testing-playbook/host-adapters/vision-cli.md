@@ -1,7 +1,6 @@
 ---
 title: "VSN-029 -- Cursor CLI read"
 description: "This scenario validates that Cursor's `/vision` command runs the built CLI, answers from its output, and honors the documented exit-code contract."
-version: 1.0.0.0
 ---
 
 # VSN-029 -- Cursor CLI read

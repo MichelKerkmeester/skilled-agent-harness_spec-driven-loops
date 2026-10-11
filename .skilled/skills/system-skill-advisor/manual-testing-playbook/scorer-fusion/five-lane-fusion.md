@@ -6,7 +6,6 @@ trigger_phrases:
   - "five lane fusion"
   - "lane weights canonical"
   - "advisor fusion"
-version: 0.8.0.16
 id: SC-001
 category: scorer_fusion
 stage: routing

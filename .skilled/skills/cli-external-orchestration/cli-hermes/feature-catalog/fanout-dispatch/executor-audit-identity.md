@@ -6,7 +6,6 @@ trigger_phrases:
   - "HERMES_SESSION_ID self presence"
   - "SPECKIT_HERMES_STATE_DIR"
   - "hermes dispatch environment prefixes"
-version: 1.0.0.0
 ---
 
 # Executor Audit Identity And Environment Scoping

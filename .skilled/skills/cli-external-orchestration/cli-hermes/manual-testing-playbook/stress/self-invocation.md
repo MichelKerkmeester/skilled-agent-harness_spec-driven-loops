@@ -6,7 +6,6 @@ test_file: "tests/stress/cli-adapter/cli-hermes.vitest.ts"
 test_name: "blocks recursive cli-hermes fan-out before process spawn"
 playbook_path: "cli-external-orchestration/cli-hermes/manual-testing-playbook/stress/self-invocation.md"
 id: "cli-hermes-EC-014"
-version: 1.0.0.0
 ---
 
 # EC-014 -- cli-hermes self invocation

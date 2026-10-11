@@ -7,7 +7,6 @@ trigger_phrases:
   - "new clickup task"
   - "add task to list"
   - "create subtask"
-version: 1.1.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

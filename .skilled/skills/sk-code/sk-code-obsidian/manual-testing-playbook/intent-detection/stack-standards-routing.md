@@ -11,7 +11,6 @@ expected_resources:
   - references/db-class-naming.md
   - references/screenshot-harness.md
   - references/standards/platform-support.md
-version: 1.0.0.0
 ---
 
 # OB-007: Stack standards routing

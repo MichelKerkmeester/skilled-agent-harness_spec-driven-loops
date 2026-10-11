@@ -6,7 +6,6 @@ trigger_phrases:
   - "a7 sanitizer"
   - "sanitizeSkillLabel"
   - "write boundary sanitization"
-version: 0.8.0.14
 id: AI-002
 category: auto_indexing
 stage: routing

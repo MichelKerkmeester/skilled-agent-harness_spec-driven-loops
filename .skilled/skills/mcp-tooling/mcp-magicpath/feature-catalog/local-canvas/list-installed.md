@@ -5,7 +5,6 @@ trigger_phrases:
   - "magicpath list installed tool"
   - "list installed magicpath"
   - "magicpath installed components"
-version: 1.0.0.0
 ---
 
 # list_installed

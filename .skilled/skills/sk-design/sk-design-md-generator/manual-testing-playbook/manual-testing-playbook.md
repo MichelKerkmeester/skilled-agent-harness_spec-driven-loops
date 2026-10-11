@@ -1,7 +1,6 @@
 ---
 title: "md-generator: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-scenario validation for the md-generator skill. Covers live extraction, v3 Style Reference fidelity validation, the cardinal verbatim-value rule, Quick-Start fidelity, dark-mode gating, tool setup, anti-bot escalation, the authoring boundary between measured and non-measured values plus the source-of-truth router card."
-version: 1.0.0.11
 ---
 
 # md-generator: Manual Testing Playbook

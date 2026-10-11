@@ -4,7 +4,6 @@ description: "Stop the running timer and return the finished entry."
 trigger_phrases:
   - "clickup_stop_time_tracking"
   - "stop timer mcp"
-version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -1,7 +1,6 @@
 ---
 title: "STYLES-001 -- Metadata-First Styles Funnel"
 description: "This scenario validates the read-only styles research funnel for `STYLES-001`: semantic search, metadata shortlisting, bounded get_style batches, source-URL citation, and no taste verdict from the transport."
-version: 1.0.0.0
 ---
 
 # STYLES-001 -- Metadata-First Styles Funnel

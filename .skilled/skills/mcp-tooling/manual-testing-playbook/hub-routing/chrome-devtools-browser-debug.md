@@ -14,7 +14,6 @@ expected_leaf_resources:
   - workflow_mode: mcp-chrome-devtools
     leaf_resource_id: references/session-management.md
 created: 2026-07-10
-version: 1.0.0.0
 ---
 
 # MT-001: Browser debugging request routes to mcp-chrome-devtools

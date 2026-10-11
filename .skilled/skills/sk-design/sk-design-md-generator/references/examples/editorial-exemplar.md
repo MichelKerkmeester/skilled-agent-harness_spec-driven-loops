@@ -7,7 +7,6 @@ trigger_phrases:
   - "ecommerce extraction study"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
 ---
 
 # Editorial Extraction Exemplar

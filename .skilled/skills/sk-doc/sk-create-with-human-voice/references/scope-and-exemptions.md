@@ -9,7 +9,6 @@ trigger_phrases:
   - "generated file voice edit"
 importance_tier: important
 contextType: implementation
-version: 1.1.0.4
 ---
 
 # Voice Scope: What HVR Governs And What It Never Touches

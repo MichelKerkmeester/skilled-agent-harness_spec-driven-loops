@@ -1,7 +1,6 @@
 ---
 title: "DR-016 -- Resume after pause sentinel removal"
 description: "Verify that removing the pause sentinel lets the loop resume from read-state rather than re-initializing."
-version: 1.14.0.17
 ---
 
 # DR-016 -- Resume after pause sentinel removal

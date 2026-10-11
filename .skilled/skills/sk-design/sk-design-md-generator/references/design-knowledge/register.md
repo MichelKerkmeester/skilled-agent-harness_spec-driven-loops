@@ -8,7 +8,6 @@ trigger_phrases:
   - "design serves the product"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
 ---
 
 # Brand-vs-Product Operating Register

@@ -1,7 +1,6 @@
 ---
 title: "DOC-361 -- Doctor update record base"
 description: "Manual scenario validating that /doctor:update record-base on the shared update fixture previews every scoped unit, refuses an unchecked offline record until the operator approves --trust-release, asks once before writing .skilled/release/base.json, and records the base in one approved write that the fixture then resets."
-version: 1.1.0.0
 id: doctor-commands-doctor-update-record-base
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

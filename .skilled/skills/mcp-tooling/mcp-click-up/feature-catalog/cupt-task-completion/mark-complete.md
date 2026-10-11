@@ -7,7 +7,6 @@ trigger_phrases:
   - "complete task"
   - "close task status"
   - "mark task as done"
-version: 1.0.0.3
 ---
 
 # Mark Complete

@@ -3,7 +3,6 @@ title: "SKD-031 -- Implementation routes to the code skill"
 description: "This scenario validates Implementation routes to the code skill for `SKD-031`. It focuses on confirm a pure implementation request is not answered as a design question."
 stage: negative
 id: "SKD-031"
-version: 1.0.0.0
 ---
 
 # SKD-031 -- Implementation routes to the code skill

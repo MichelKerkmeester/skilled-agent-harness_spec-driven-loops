@@ -9,7 +9,6 @@ trigger_phrases:
   - "note-database-container root inheritance"
 importance_tier: normal
 contextType: implementation
-version: 0.1.0.0
 ---
 
 # Theme Variables and the Runtime Stand-Ins

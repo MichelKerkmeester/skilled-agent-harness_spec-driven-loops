@@ -10,7 +10,6 @@ trigger_phrases:
   - "baseline check families"
 importance_tier: important
 contextType: implementation
-version: 1.5.0.11
 ---
 
 # Review Core Doctrine

@@ -7,7 +7,6 @@ trigger_phrases:
   - "end time tracking"
   - "log elapsed time"
   - "stop running timer"
-version: 1.0.0.3
 ---
 
 # Stop Timer

@@ -6,7 +6,6 @@ trigger_phrases:
   - "create document"
   - "new clickup doc"
   - "create wiki"
-version: 1.1.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

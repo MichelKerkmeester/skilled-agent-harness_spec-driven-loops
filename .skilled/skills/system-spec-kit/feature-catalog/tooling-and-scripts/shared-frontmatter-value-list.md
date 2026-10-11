@@ -7,7 +7,6 @@ trigger_phrases:
   - "FRONTMATTER_VALUES rule"
   - "contextType value list"
   - "importance_tier value list"
-version: 2.7.0.2
 ---
 
 # Shared frontmatter value list (frontmatter-values.json)

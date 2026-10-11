@@ -176,6 +176,20 @@ def run() -> int:
     check('seeded missing source path names the specific path',
           bool(missing_paths) and missing_paths[0]['path'] == '.skilled/skills/fake-hub-alpha/lib/does-not-exist.ts')
 
+    # ---- Negative: a dead path in a two-column File table, which the template does not use. ----
+    def _two_column_missing_path(tmp: Path):
+        skills = tmp / '.skilled' / 'skills'
+        leaf = skills / 'fake-hub-alpha' / 'feature-catalog' / 'widget-category' / 'widget-a.md'
+        text = leaf.read_text(encoding='utf-8')
+        text += ('\n### Related\n\n| File | Role |\n|------|------|\n'
+                 '| `.skilled/commands/fake/gone.md` | Moved command |\n')
+        leaf.write_text(text, encoding='utf-8')
+        return run_all_checks(skills, tmp, rules)
+    violations = _in_temp_fixture(_two_column_missing_path)
+    two_column = [v for v in violations if v['type'] == 'missing_source_path']
+    check('dead path in a two-column File table is caught',
+          [v['path'] for v in two_column] == ['.skilled/commands/fake/gone.md'])
+
     # ---- Negative: seeded off-taxonomy Type value. ----
     def _off_taxonomy(tmp: Path):
         skills = tmp / '.skilled' / 'skills'

@@ -5,7 +5,6 @@ trigger_phrases:
   - "magicpath search components tool"
   - "search components magicpath"
   - "magicpath find component"
-version: 1.0.0.0
 ---
 
 # search_components

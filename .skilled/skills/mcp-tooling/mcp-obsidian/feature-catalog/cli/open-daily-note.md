@@ -5,7 +5,6 @@ trigger_phrases:
   - "Open today's daily note"
   - "notesmd-cli daily"
   - "open the Obsidian daily note headlessly"
-version: 0.1.0.0
 ---
 
 # Open today's daily note (`notesmd-cli daily`)

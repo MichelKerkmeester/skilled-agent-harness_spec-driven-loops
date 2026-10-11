@@ -8,7 +8,6 @@ trigger_phrases:
   - "description budget scenario input"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
 ---
 
 # Description budget fixtures

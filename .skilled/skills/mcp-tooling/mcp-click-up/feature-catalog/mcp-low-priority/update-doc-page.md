@@ -6,7 +6,6 @@ trigger_phrases:
   - "update doc page"
   - "append to page"
   - "rename page"
-version: 1.1.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -1,7 +1,6 @@
 ---
 title: "MCP-H003 -- Update Task via MCP"
 description: "This scenario validates Update Task via MCP for `MCP-H003`. Objective: Verify `clickup_update_task` changes the test task's status to a valid value."
-version: 1.1.0.0
 ---
 
 # MCP-H003 -- Update Task via MCP

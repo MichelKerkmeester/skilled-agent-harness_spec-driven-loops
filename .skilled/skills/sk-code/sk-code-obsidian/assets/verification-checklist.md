@@ -10,7 +10,6 @@ trigger_phrases:
   - "completion claim obsidian plugin"
 importance_tier: important
 contextType: implementation
-version: 0.1.0.3
 ---
 
 # Verification-Gate Checklist

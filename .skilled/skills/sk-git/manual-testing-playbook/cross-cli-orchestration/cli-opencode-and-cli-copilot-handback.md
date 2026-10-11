@@ -1,7 +1,6 @@
 ---
 title: "GIT-022 -- cli-opencode and cli-copilot handback"
 description: "This scenario validates cli-opencode and cli-copilot handback for `GIT-022`. It focuses on verify OpenCode or Copilot delegation returns a safe handback rather than executing risky git commands directly."
-version: 1.1.0.4
 ---
 
 # GIT-022 -- cli-opencode and cli-copilot handback

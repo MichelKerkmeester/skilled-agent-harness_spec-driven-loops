@@ -12,7 +12,6 @@ trigger_phrases:
   - state matrix validation
 importance_tier: normal
 contextType: general
-version: 1.0.0.6
 ---
 # Design System Documentation Quality Checklist
 

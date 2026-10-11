@@ -4,7 +4,6 @@ description: "Run one enabled operator, as the signed-in user."
 trigger_phrases:
   - "clickup_execute_operator"
   - "execute operator"
-version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

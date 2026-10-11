@@ -9,7 +9,6 @@ trigger_phrases:
   - "benchmark adoption examples"
 importance_tier: normal
 contextType: reference
-version: 1.5.0.18
 ---
 
 # Benchmark Creation Reference Map

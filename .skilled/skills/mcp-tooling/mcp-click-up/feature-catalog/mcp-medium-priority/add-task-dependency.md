@@ -6,7 +6,6 @@ trigger_phrases:
   - "task dependency"
   - "blocked by"
   - "waiting on"
-version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

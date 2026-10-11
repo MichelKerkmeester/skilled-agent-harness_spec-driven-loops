@@ -1,7 +1,6 @@
 ---
 title: "467 -- Upgrade-legacy apply with manifest"
 description: "This scenario validates the upgrade-legacy apply for `467` on a disposable repository with an uncommitted edit inside a failing packet. It focuses on the recorded findings, the reversibility manifest in the git directory and the baseline the apply writes."
-version: 1.0.0.0
 id: tooling-and-scripts-upgrade-legacy-apply-manifest
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

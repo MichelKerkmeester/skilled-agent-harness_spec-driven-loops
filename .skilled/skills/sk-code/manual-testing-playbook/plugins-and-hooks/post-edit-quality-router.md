@@ -7,7 +7,6 @@ trigger_phrases:
   - "post edit quality router"
   - "sk-code-post-edit-quality"
   - "posttooluse quality hook"
-version: 1.0.0.0
 ---
 
 # Post-Edit Quality Router

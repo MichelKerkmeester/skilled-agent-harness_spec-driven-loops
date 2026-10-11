@@ -2,7 +2,6 @@
 title: "GAP-001 -- File Uploads"
 description: "This scenario validates the direct-API file-upload flow (create -> send -> attach) against a scratch Notion page."
 stage: routing
-version: 0.1.0.0
 ---
 
 # GAP-001 -- File Uploads

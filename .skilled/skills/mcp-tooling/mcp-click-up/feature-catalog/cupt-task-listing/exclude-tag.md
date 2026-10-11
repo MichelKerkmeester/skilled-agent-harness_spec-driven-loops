@@ -7,7 +7,6 @@ trigger_phrases:
   - "exclude tag filter"
   - "tag exclusion"
   - "remove tagged tasks from results"
-version: 1.0.0.3
 ---
 
 # Exclude by Tag

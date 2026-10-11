@@ -6,7 +6,6 @@ trigger_phrases:
   - "list stored baselines"
   - "cleanup old snapshots"
   - "status and cleanup"
-version: 1.1.0.4
 ---
 
 # Snapshot state management (status / cleanup)

@@ -9,7 +9,6 @@ trigger_phrases:
   - "text over photos readable"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
 ---
 
 # Depth and Detail Techniques

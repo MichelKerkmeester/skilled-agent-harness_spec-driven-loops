@@ -1,7 +1,6 @@
 ---
 title: "DOC-380 -- Doctor mcp unknown flag"
 description: "Manual scenario validating that /doctor:mcp refuses a flag neither sub-action accepts with the unknown-flag error before any workflow loads, while a flag owned by the other sub-action keeps the cross-sub-action error."
-version: 1.0.0.0
 id: doctor-commands-doctor-mcp-unknown-flag
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

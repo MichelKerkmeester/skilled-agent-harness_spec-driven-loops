@@ -1,7 +1,6 @@
 ---
 title: "DLR-007 -- JSONL repair"
 description: "Manual validation scenario for JSONL repair in the runtime/ skill."
-version: 1.4.0.4
 ---
 
 # DLR-007 -- JSONL repair

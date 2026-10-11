@@ -8,7 +8,6 @@ trigger_phrases:
   - "diagram generation import export"
   - "feature catalog"
 last_updated: "2026-08-12"
-version: 1.0.0.5
 ---
 
 # sk-design-diagram: Feature Catalog
@@ -149,7 +148,7 @@ The `/design:diagram` router — a thin router that loads a presentation contrac
 
 #### Current Reality
 
-The router reads `create-diagram-presentation.txt`, runs Phase 0 verification and setup resolution, binds `create-diagram-auto.yaml` for `:auto` or `create-diagram-confirm.yaml` for `:confirm` (and for an omitted mode), and executes the chosen workflow step by step; user-facing wording lives only in the presentation contract and is never invented by the router.
+The router reads `diagram-presentation.txt`, runs Phase 0 verification and setup resolution, binds `diagram-auto.yaml` for `:auto` or `diagram-confirm.yaml` for `:confirm` (and for an omitted mode), and executes the chosen workflow step by step; user-facing wording lives only in the presentation contract and is never invented by the router.
 
 #### Source Files
 

@@ -1,7 +1,6 @@
 ---
 title: "VSN-009 -- Cropping"
 description: "This scenario validates Cropping for `VSN-009`. It focuses on a cropped output file with reported dimensions."
-version: 1.0.0.0
 ---
 
 # VSN-009 -- Cropping

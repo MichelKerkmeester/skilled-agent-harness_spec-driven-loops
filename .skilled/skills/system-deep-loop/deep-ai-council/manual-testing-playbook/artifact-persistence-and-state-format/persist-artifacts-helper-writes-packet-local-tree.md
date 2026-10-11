@@ -1,7 +1,6 @@
 ---
 title: "DAC-005 -- Persist-artifacts helper writes packet-local tree"
 description: "This scenario validates packet-local artifact persistence for DAC-005."
-version: 1.7.0.7
 ---
 
 # DAC-005 -- Persist-artifacts helper writes packet-local tree

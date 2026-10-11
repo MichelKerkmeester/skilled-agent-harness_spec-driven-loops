@@ -5,7 +5,6 @@ trigger_phrases:
   - "leaked chrome process"
   - "orphaned browser process"
   - "session leak detection"
-version: 1.0.0.0
 ---
 
 # Cleanup Leak Detection

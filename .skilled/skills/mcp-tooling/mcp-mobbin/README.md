@@ -7,7 +7,6 @@ trigger_phrases:
   - "app design research"
   - "screen examples"
   - "ux flow references"
-version: 1.1.3.0
 ---
 
 # mcp-mobbin

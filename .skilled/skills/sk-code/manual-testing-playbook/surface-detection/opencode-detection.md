@@ -1,7 +1,6 @@
 ---
 title: "SD-002: OPENCODE Surface Detection"
 description: "Verify sk-code routes system-code prompts (paths under .skilled/) to the OPENCODE surface and loads the opencode/* reference and asset trees with correct sub-language detection."
-version: 1.5.0.6
 ---
 
 # SD-002: OPENCODE Surface Detection
@@ -12,7 +11,7 @@ This scenario verifies that sk-code's smart router identifies OPENCODE as the ac
 
 When OPENCODE is detected, the router proceeds to language sub-detection (handled separately by LS-* scenarios) and loads the appropriate sub-language reference set.
 
-Detection markers are defined verbatim in `shared/references/stack-detection.md:39-40` and SKILL.md smart router pseudocode lines 62-64.
+Detection markers are defined verbatim in `shared/references/stack-detection.md:38-39` and SKILL.md smart router pseudocode lines 62-64.
 
 ---
 
@@ -92,7 +91,7 @@ Evidence: `/tmp/skc-SD002-loaded-refs.txt` (surface, sub-language, and loaded-re
 ### Failure Triage
 
 1. If advisor doesn't win sk-code: check `skill-graph.json` for sk-code signals "opencode", "system code", "typescript".
-2. If surface != OPENCODE: verify target path detection in `shared/references/stack-detection.md:39-40`. The path `.skilled/...` should match.
+2. If surface != OPENCODE: verify target path detection in `shared/references/stack-detection.md:38-39`. The path `.skilled/...` should match.
 3. If sub-language != TYPESCRIPT: verify `.ts` extension is in the TYPESCRIPT extension list in SKILL.md sub-detection table (lines 78-90).
 4. If `sk-code-webflow/references/*` is loaded: the router has a leak — the WEBFLOW markers (motion.dev, GSAP, etc.) MUST NOT match this prompt. Verify the marker grep patterns are anchored correctly.
 

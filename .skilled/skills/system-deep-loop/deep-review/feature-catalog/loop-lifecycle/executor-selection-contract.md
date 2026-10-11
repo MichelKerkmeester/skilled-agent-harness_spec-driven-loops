@@ -7,7 +7,6 @@ trigger_phrases:
   - "select review executor"
   - "per-kind flag compatibility"
   - "native cli-opencode dispatch"
-version: 1.11.0.6
 ---
 
 # Executor Selection Contract

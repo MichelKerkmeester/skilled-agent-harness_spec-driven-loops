@@ -7,7 +7,6 @@ description: "Verify a fan-out on a shared checkout leaves every out-of-scope fi
 expected_intent: research
 expected_workflow_mode: research
 expected_leaf_resources: []
-version: "1.0.0.0"
 ---
 
 # WC-001: Shared-Checkout Run Preserves a Neighbour's Work

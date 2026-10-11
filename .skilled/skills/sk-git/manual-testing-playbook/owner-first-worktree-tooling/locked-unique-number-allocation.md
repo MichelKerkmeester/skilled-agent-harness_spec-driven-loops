@@ -1,7 +1,6 @@
 ---
 title: "GIT-023 -- Locked unique number allocation"
 description: "This scenario validates Locked unique number allocation for `GIT-023`. It focuses on prove concurrent allocator calls each get a distinct, monotonically increasing 3-digit number seeded from every worktree, ref, and stored high-water mark already in use in the target namespace."
-version: 1.1.0.0
 ---
 
 # GIT-023 -- Locked unique number allocation

@@ -5,7 +5,6 @@ trigger_phrases:
   - "Update page properties"
   - "notion_update-page-properties"
   - "patch a Notion page's properties"
-version: 0.1.0.0
 ---
 
 # Update page properties (`notion_update-page-properties`)

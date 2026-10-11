@@ -9,7 +9,6 @@ trigger_phrases:
   - "hermes dispatch guards"
   - "hermes runtime folder"
 last_updated: "2026-09-14"
-version: 1.0.0.0
 ---
 
 # cli-hermes: Feature Catalog

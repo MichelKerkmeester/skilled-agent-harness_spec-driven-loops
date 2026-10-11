@@ -8,7 +8,6 @@ trigger_phrases:
   - "runtime mirror parity"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.14
 ---
 
 # Agent Authoring Checklist

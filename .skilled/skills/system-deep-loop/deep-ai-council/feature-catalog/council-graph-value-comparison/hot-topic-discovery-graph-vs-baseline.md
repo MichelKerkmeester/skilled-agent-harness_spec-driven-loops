@@ -7,7 +7,6 @@ trigger_phrases:
   - "council hot nodes query"
   - "most contested council topics"
   - "high-degree contested claim discovery"
-version: 1.7.0.10
 ---
 
 # Hot-topic discovery: graph vs baseline

@@ -7,7 +7,6 @@ trigger_phrases:
   - "design skill operator scenarios"
 importance_tier: "important"
 contextType: "general"
-version: 1.0.0.0
 ---
 
 # sk-design Manual Testing Playbook

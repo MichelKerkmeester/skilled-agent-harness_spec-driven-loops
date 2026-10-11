@@ -1,7 +1,6 @@
 ---
 title: "DLR-009 -- Permissions gate"
 description: "Manual validation scenario for Permissions gate in the runtime/ skill."
-version: 1.4.0.4
 ---
 
 # DLR-009 -- Permissions gate

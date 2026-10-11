@@ -13,7 +13,6 @@ expected_resources:
   - references/state/state-reducer-registry.md
   - assets/deep-review-strategy.md
   - references/state/state-jsonl.md
-version: 1.1.0.0
 ---
 
 # DV-R01: Deep review setup routing

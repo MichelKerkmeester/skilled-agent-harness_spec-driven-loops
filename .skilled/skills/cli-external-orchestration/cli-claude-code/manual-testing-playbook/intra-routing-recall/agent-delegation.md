@@ -8,7 +8,6 @@ expected_intent: AGENT_DELEGATION
 expected_resources: 
   - references/agent-delegation.md
   - references/integration-patterns.md
-version: 1.5.0.6
 ---
 
 # CC-R05: Agent delegation routing

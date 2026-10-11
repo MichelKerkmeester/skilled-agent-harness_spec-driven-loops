@@ -5,7 +5,6 @@ trigger_phrases:
   - "clickup_search_reminders"
   - "my reminders"
   - "overdue reminders"
-version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

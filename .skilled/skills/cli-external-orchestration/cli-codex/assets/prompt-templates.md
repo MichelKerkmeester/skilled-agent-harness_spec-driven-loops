@@ -9,7 +9,6 @@ trigger_phrases:
   - "codex review prompt template"
 importance_tier: normal
 contextType: implementation
-version: 1.9.0.31
 ---
 
 # Prompt Templates - Codex CLI

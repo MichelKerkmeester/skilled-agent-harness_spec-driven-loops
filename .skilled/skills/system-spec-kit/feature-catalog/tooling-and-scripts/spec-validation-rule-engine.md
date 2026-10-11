@@ -7,7 +7,6 @@ trigger_phrases:
   - "run validation rules"
   - "rule scripts"
   - "recursive phase validation"
-version: 2.1.0.30
 ---
 
 # Spec Validation Rule Engine

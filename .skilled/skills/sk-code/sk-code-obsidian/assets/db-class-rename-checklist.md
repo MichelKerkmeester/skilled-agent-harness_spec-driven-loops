@@ -10,7 +10,6 @@ trigger_phrases:
   - "verify class rename against fixtures"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
 ---
 
 # .db-* Class-Rename Checklist

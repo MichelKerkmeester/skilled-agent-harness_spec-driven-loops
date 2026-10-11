@@ -8,7 +8,6 @@ trigger_phrases:
   - "scenario execution detail"
 importance_tier: normal
 contextType: general
-version: 1.0.0.22
 ---
 
 # Manual Testing Playbook Snippet Template

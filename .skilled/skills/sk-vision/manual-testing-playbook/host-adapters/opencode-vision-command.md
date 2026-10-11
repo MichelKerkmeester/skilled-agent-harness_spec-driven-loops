@@ -1,7 +1,6 @@
 ---
 title: "VSN-026 -- OpenCode /vision command"
 description: "This scenario validates the OpenCode `/vision` command, default tool silence and runtime teardown."
-version: 1.0.0.0
 ---
 
 # VSN-026 -- OpenCode /vision command

@@ -6,7 +6,6 @@ trigger_phrases:
   - "age haircut derived"
   - "age decay"
   - "lifecycle age"
-version: 0.8.0.14
 id: LC-001
 category: lifecycle_routing
 stage: routing

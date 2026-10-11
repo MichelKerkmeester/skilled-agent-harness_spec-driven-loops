@@ -5,7 +5,6 @@ trigger_phrases:
   - "Search"
   - "notion_search"
   - "search Notion by title"
-version: 0.1.0.0
 ---
 
 # Search (`notion_search`)

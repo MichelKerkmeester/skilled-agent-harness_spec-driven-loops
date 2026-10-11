@@ -7,7 +7,6 @@ trigger_phrases:
   - "sweep stale mcp processes"
   - "claude session cleanup"
   - "launchagent mcp template"
-version: 1.6.0.9
 ---
 
 # Orphan MCP Sweeper and LaunchAgent Template

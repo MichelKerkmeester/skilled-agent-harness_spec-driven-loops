@@ -6,7 +6,6 @@ trigger_phrases:
   - "atomic-state-integrity-helpers"
   - "atomic-state integrity helpers runtime"
   - "state safety atomic-state integrity helpers"
-version: 1.4.0.15
 ---
 
 # Atomic-state integrity helpers

@@ -6,7 +6,6 @@ trigger_phrases:
   - "ambiguity window"
   - "top-2 within 0.05"
   - "ambiguous brief"
-version: 0.8.0.15
 id: SC-003
 category: scorer_fusion
 stage: routing

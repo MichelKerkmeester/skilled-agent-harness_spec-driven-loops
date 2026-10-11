@@ -1,7 +1,6 @@
 ---
 title: "DLR-031 -- Atomic-state integrity helpers"
 description: "Manual validation scenario for Atomic-state integrity helpers in the runtime/ skill."
-version: 1.4.0.15
 ---
 
 # DLR-031 -- Atomic-state integrity helpers

@@ -5,7 +5,6 @@ trigger_phrases:
   - "multi viewport test"
   - "responsive design validation cli"
   - "cross device screenshots"
-version: 1.0.0.0
 ---
 
 # Multi-Viewport Testing

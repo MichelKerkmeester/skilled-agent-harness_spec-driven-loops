@@ -4,7 +4,6 @@ description: "Scaffolds or updates one runtime agent markdown file with runtime-
 trigger_phrases:
   - "create agent"
   - "agent frontmatter"
-version: 1.0.0.13
 ---
 
 # create-agent

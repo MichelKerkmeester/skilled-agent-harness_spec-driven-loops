@@ -5,7 +5,6 @@ trigger_phrases:
   - "Retrieve a block"
   - "notion_retrieve-a-block"
   - "read a single Notion block by ID"
-version: 0.1.0.0
 ---
 
 # Retrieve a block (`notion_retrieve-a-block`)

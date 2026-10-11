@@ -1,7 +1,6 @@
 ---
 title: "DV-022 -- Session-bound Devin goal injection"
 description: "Verify the Devin goal adapter injects a bound packet goal on SessionStart and UserPromptSubmit, carries the resend reminder, never leaks frontmatter, and fails open on bad input."
-version: 1.0.0.0
 ---
 
 # DV-022 -- Session-bound Devin goal injection

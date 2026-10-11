@@ -1,7 +1,6 @@
 ---
 title: "DV-011 -- Mirrored roster agent dispatch"
 description: "Verify a real run_subagent dispatch through one of the repo's mirrored agent profiles."
-version: 1.4.0.3
 ---
 
 # DV-011 -- Mirrored roster agent dispatch

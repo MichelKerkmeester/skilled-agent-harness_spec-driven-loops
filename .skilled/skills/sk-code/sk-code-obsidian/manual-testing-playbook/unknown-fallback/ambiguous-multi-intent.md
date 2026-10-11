@@ -10,7 +10,6 @@ expected_resources:
   - references/stylesheet-ownership.md
   - references/verification.md
   - assets/verification-checklist.md
-version: 1.0.0.0
 ---
 
 # OB-011: Ambiguous multi-intent collision

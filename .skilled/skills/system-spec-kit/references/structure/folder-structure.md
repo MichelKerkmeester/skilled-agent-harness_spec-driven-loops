@@ -8,7 +8,6 @@ trigger_phrases:
   - "scratch folder usage"
 importance_tier: normal
 contextType: general
-version: 1.6.0.26
 ---
 
 # Folder Structure Reference

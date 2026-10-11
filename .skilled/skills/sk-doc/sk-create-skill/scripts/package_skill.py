@@ -121,15 +121,10 @@ REQUIRED_RESOURCE_FRONTMATTER_FIELDS = [
     'contextType',
 ]
 
-# Doc-class subtrees whose .md files must carry a 4-part `version` in frontmatter.
-# Mirrors frontmatter-version.mjs SCOPE_SUBTREES; `changelog` is added per the
-# hardening contract (frontmatter-version.mjs excludes it for its own reasons,
-# but version drift in changelog entries is still worth surfacing).
+# Subtrees whose .md files must carry a 4-part `version` in frontmatter. Only
+# changelog entries qualify: they are the edition record. SKILL.md carries the
+# edition itself and is checked by validate_frontmatter; child docs carry none.
 VERSIONED_DOC_SUBTREES = [
-    'references',
-    'assets',
-    'feature_catalog', 'feature-catalog',
-    'manual_testing_playbook', 'manual-testing-playbook',
     'changelog',
 ]
 

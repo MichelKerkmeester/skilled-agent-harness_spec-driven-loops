@@ -8,7 +8,6 @@ trigger_phrases:
   - "webflow aria basics"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.2
 ---
 
 # Webflow HTML Style Guide

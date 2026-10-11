@@ -1,7 +1,6 @@
 ---
 title: "VSN-002 -- Optical character recognition"
 description: "This scenario validates Optical character recognition for `VSN-002`. It focuses on verbatim transcription of visible text."
-version: 1.0.0.0
 ---
 
 # VSN-002 -- Optical character recognition

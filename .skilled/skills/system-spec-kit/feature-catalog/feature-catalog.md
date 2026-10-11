@@ -8,7 +8,6 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-10-04"
-version: 2.1.0.99
 ---
 
 # Spec Kit: Feature Catalog

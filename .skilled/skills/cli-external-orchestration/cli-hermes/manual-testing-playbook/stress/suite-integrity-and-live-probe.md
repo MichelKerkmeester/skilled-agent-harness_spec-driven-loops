@@ -6,7 +6,6 @@ test_file: "tests/stress/cli-adapter/cli-hermes.vitest.ts"
 test_name: "binds exactly fourteen implemented adapter cells without forbidden overclaims"
 playbook_path: "cli-external-orchestration/cli-hermes/manual-testing-playbook/stress/suite-integrity-and-live-probe.md"
 id: "cli-hermes-EC-015"
-version: 1.0.0.0
 ---
 
 # EC-015 -- cli-hermes suite integrity and the live probe

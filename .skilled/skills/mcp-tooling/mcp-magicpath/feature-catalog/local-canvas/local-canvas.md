@@ -6,7 +6,6 @@ trigger_phrases:
   - "magicpath list installed"
   - "magicpath selection"
   - "magicpath canvas"
-version: 1.0.0.0
 ---
 
 # Local & Canvas (list_installed / selection)

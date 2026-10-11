@@ -1,7 +1,6 @@
 ---
 title: "DAC-010 -- Rollback failed round preserves forensic trail"
 description: "This scenario validates rollback forensic preservation for DAC-010."
-version: 1.7.0.7
 ---
 
 # DAC-010 -- Rollback failed round preserves forensic trail

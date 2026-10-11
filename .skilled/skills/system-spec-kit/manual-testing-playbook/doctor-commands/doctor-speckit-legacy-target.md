@@ -1,7 +1,6 @@
 ---
 title: "DOC-351 -- Doctor speckit legacy target"
 description: "Manual scenario validating that /doctor:speckit deep-loop renders the moved-target notice naming /doctor:deep-loop and stops without loading a workflow."
-version: 1.0.0.0
 id: doctor-commands-doctor-speckit-legacy-target
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

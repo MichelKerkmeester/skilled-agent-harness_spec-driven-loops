@@ -6,7 +6,6 @@ trigger_phrases:
   - "pi prompt advisor extension"
   - "pi advisor extension"
   - "SPECKIT_PI_ADVISOR_DEBUG"
-version: 0.1.0.0
 ---
 
 # Pi Prompt Advisor Extension

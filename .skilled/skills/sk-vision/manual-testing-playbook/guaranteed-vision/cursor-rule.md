@@ -1,7 +1,6 @@
 ---
 title: "VSN-022 -- Rule-driven vision in Cursor"
 description: "This scenario validates that, with the always-on Cursor rule active, a text-only model calls a `sk_vision_*` tool on an attached image unprompted and reports the real content."
-version: 1.0.0.0
 ---
 
 # VSN-022 -- Rule-driven vision in Cursor

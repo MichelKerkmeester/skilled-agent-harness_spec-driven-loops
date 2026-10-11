@@ -9,7 +9,6 @@ trigger_phrases:
   - "pi stdio"
 importance_tier: important
 contextType: implementation
-version: 1.5.0.7
 ---
 
 # Pi MCP and Third-Party Packages

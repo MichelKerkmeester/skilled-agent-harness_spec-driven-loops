@@ -7,7 +7,6 @@ trigger_phrases:
   - "rust quality guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
 ---
 
 # Domain Modeling, Collections & Public API/ABI Contracts

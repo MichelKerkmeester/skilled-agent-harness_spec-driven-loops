@@ -5,7 +5,6 @@ trigger_phrases:
   - "no active session error"
   - "session recovery bdg"
   - "browser crashed restart"
-version: 1.0.0.0
 ---
 
 # Dead Session Recovery

@@ -9,7 +9,6 @@ trigger_phrases:
   - "anti-hallucination design reference"
   - "design md feature catalog"
 last_updated: "2026-06-26"
-version: 1.0.0.9
 ---
 
 # md-generator: Feature Catalog

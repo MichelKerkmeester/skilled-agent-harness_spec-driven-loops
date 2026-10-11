@@ -5,7 +5,6 @@ trigger_phrases:
   - "clickup_list_document_pages"
   - "list doc pages"
   - "document structure"
-version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

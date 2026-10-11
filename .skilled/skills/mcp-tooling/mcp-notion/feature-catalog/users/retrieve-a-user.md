@@ -5,7 +5,6 @@ trigger_phrases:
   - "Retrieve a user"
   - "notion_retrieve-a-user"
   - "look up a Notion user by ID"
-version: 0.1.0.0
 ---
 
 # Retrieve a user (`notion_retrieve-a-user`)

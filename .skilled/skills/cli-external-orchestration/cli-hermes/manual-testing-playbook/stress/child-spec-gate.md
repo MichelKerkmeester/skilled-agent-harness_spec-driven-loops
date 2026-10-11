@@ -6,7 +6,6 @@ test_file: "tests/stress/cli-adapter/cli-hermes.vitest.ts"
 test_name: "passes child gate variables through the full cli-hermes runtime"
 playbook_path: "cli-external-orchestration/cli-hermes/manual-testing-playbook/stress/child-spec-gate.md"
 id: "cli-hermes-EC-006"
-version: 1.0.0.0
 ---
 
 # EC-006 -- cli-hermes child spec gate

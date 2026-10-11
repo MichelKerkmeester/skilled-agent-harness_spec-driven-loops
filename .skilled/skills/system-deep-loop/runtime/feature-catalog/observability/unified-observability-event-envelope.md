@@ -6,7 +6,6 @@ trigger_phrases:
   - "unified-observability-event-envelope"
   - "unified observability event envelope runtime"
   - "observability unified observability event envelope"
-version: 1.4.0.15
 ---
 
 # Unified observability event envelope

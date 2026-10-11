@@ -8,7 +8,6 @@ trigger_phrases:
   - "scoped repair workflow"
 importance_tier: important
 contextType: general
-version: 1.0.0.1
 ---
 
 # Workflow Reference - Debugging

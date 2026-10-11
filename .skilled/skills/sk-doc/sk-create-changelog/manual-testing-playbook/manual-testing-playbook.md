@@ -1,7 +1,6 @@
 ---
 title: "create-changelog: Manual Testing Playbook"
 description: "Operator playbook for the create-changelog workflow across global component entries, packet-local nested entries, version bumps, format selection and release-note preparation."
-version: 1.3.0.6
 ---
 
 # create-changelog: Manual Testing Playbook

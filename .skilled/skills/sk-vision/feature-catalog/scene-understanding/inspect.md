@@ -6,7 +6,6 @@ trigger_phrases:
   - "inspect a screenshot"
   - "sk_vision_inspect"
   - "describe this image"
-version: 1.0.0.0
 ---
 
 # Image inspection (sk_vision_inspect)

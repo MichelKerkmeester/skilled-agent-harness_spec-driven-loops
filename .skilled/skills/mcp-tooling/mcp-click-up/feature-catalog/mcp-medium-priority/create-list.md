@@ -5,7 +5,6 @@ trigger_phrases:
   - "clickup_create_list"
   - "create list"
   - "new list in space"
-version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---
