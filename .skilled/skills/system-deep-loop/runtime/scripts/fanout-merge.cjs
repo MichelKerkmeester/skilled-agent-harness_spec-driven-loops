@@ -684,6 +684,41 @@ function normalizeRegistrySchema(registry, { canonicalKey, aliases, lineage }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// 2c. REDUCER PROVENANCE
+// ─────────────────────────────────────────────────────────────────────────────
+
+// The research reducer stamps this description into the dashboard it writes beside
+// the registry and strategy on every pass. A dashboard that exists without the stamp
+// says the projections were written by hand, so the merge refuses the registry; a
+// lineage with no dashboard leaves provenance unconfirmed and is merged with a
+// warning, because the state-log reconstruction path is the contract for runs that
+// wrote no projections of their own.
+//
+// An unreadable dashboard refuses only its own lineage: the reason travels back to
+// the caller that reports it, so one broken link cannot abort every other lineage's
+// merge the way the shared resolver's throw would.
+const RESEARCH_REDUCER_DASHBOARD = {
+  fileName: 'deep-research-dashboard.md',
+  stamp: 'description: Auto-generated reducer view over the research packet.',
+};
+
+function inspectResearchReducerProvenance(root, label, lineageDir) {
+  const dashboardPath = path.join(lineageDir, RESEARCH_REDUCER_DASHBOARD.fileName);
+  let realFile;
+  try {
+    realFile = resolveOptionalRealFile(root, dashboardPath, `lineage ${label} dashboard`);
+  } catch (error) {
+    return { state: 'refused', reason: error instanceof Error ? error.message : String(error) };
+  }
+  if (!realFile) return { state: 'unverified', reason: null };
+  const content = fs.readFileSync(realFile, 'utf8');
+  return {
+    state: content.includes(RESEARCH_REDUCER_DASHBOARD.stamp) ? 'reducer' : 'hand-written',
+    reason: null,
+  };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // 3. RESEARCH MERGE
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -950,8 +985,13 @@ function activeReviewSeverityCounts(registry) {
 
 /**
  * Build fanout-attribution.md summarizing per-lineage convergence, iters, salvage, model.
+ *
+ * `options.refusedLineages` labels the lineages whose registries the merge refused;
+ * their verdict cell reads REFUSED, so the table cannot present a lineage as merged
+ * when the payload reports it refused.
  */
-function buildAttributionMd(lineageData, loopType) {
+function buildAttributionMd(lineageData, loopType, options = {}) {
+  const refusedLineages = new Set(options.refusedLineages ?? []);
   const lines = [
     `# Fan-Out Attribution`,
     ``,
@@ -974,7 +1014,7 @@ function buildAttributionMd(lineageData, loopType) {
           ? 'CONDITIONAL'
           : 'PASS'
         : 'n/a';
-    lines.push(`| ${label} | ${kind ?? 'unknown'} | ${model ?? 'unknown'} | ${iters} | ${convergenceScore} | ${salvage} | ${verdict} |`);
+    lines.push(`| ${label} | ${kind ?? 'unknown'} | ${model ?? 'unknown'} | ${iters} | ${convergenceScore} | ${salvage} | ${refusedLineages.has(label) ? 'REFUSED' : verdict} |`);
   }
 
   lines.push('');
@@ -1328,6 +1368,14 @@ async function main() {
     if (!registry && compatibilityRegistryName) {
       registry = readJsonFile(artifactRoot, path.join(lineageDir, compatibilityRegistryName), `lineage ${label} compatibility registry`);
     }
+    // Provenance is checked only against an on-disk research registry: the review
+    // path reconstructs missing registries from state for leaf-only lanes, and a
+    // reconstructed registry has no projections of its own to fingerprint.
+    const provenanceInspection = loopType === 'research' && registry
+      ? inspectResearchReducerProvenance(artifactRoot, label, lineageDir)
+      : null;
+    const reducerProvenance = provenanceInspection?.state ?? null;
+    const reducerProvenanceReason = provenanceInspection?.reason ?? null;
     const stateRecords = latestIterationRecords(
       readStateLog(artifactRoot, path.join(lineageDir, stateLogName), `lineage ${label} state log`),
     );
@@ -1402,6 +1450,8 @@ async function main() {
       label,
       lineageDir,
       registry,
+      reducerProvenance,
+      reducerProvenanceReason,
       stateRecords,
       kind: effectiveConfig.kind ?? executorRecord?.kind ?? summaryEntry.kind ?? 'unknown',
       model: effectiveConfig.model ?? executorRecord?.model ?? summaryEntry.model ?? 'unknown',
@@ -1409,7 +1459,37 @@ async function main() {
     };
   });
 
-  const lineagesWithRegistry = lineageData.filter((d) => d.registry !== null);
+  // A lineage whose dashboard shows the reducer never wrote its projections is
+  // refused before the merge reads its registry; one whose provenance cannot be
+  // confirmed is merged but reported, so no lineage is treated as
+  // reducer-validated on silence.
+  const refusedProvenance = new Set();
+  const unverifiedProvenance = [];
+  for (const entry of lineageData) {
+    if (entry.reducerProvenance === 'hand-written' || entry.reducerProvenance === 'refused') {
+      refusedProvenance.add(entry.label);
+      process.stderr.write(`${JSON.stringify({
+        type: 'lineage_reducer_provenance_missing',
+        severity: 'error',
+        lineage: entry.label,
+        message: entry.reducerProvenance === 'refused'
+          ? `lineage ${entry.label} refused: ${entry.reducerProvenanceReason}`
+          : `lineage ${entry.label} refused: ${RESEARCH_REDUCER_DASHBOARD.fileName} lacks the reducer's "${RESEARCH_REDUCER_DASHBOARD.stamp}" stamp, so its registry was hand-written rather than reduced`,
+      })}\n`);
+    } else if (entry.reducerProvenance === 'unverified') {
+      unverifiedProvenance.push(entry.label);
+      process.stderr.write(`${JSON.stringify({
+        type: 'lineage_reducer_provenance_unverified',
+        severity: 'warn',
+        lineage: entry.label,
+        message: `lineage ${entry.label} merged with unverified provenance: no ${RESEARCH_REDUCER_DASHBOARD.fileName} confirms the reducer wrote its registry`,
+      })}\n`);
+    }
+  }
+
+  const lineagesWithRegistry = lineageData.filter(
+    (entry) => entry.registry !== null && !refusedProvenance.has(entry.label),
+  );
 
   let mergedRegistry;
   if (loopType === 'review') {
@@ -1438,13 +1518,15 @@ async function main() {
   // Write attribution markdown atomically (same torn-write guarantee; text, not JSON).
   const attributionPath = path.join(artifactDir, 'fanout-attribution.md');
   assertSafeOutputPath(artifactRoot, attributionPath, 'fan-out attribution');
-  writeTextAtomic(attributionPath, buildAttributionMd(lineageData, loopType));
+  writeTextAtomic(attributionPath, buildAttributionMd(lineageData, loopType, { refusedLineages: refusedProvenance }));
 
   jsonOut({
     status: 'ok',
     loop_type: loopType,
     merged_lineages: lineagesWithRegistry.length,
-    skipped_no_registry: lineageData.length - lineagesWithRegistry.length,
+    skipped_no_registry: lineageData.filter((entry) => entry.registry === null).length,
+    ...(refusedProvenance.size > 0 ? { refused_reducer_provenance: [...refusedProvenance].sort() } : {}),
+    ...(unverifiedProvenance.length > 0 ? { reducer_provenance_warnings: [...unverifiedProvenance].sort() } : {}),
     merged_registry_path: mergedRegistryPath,
     ...(compatibilityRegistryPath ? { compatibility_registry_path: compatibilityRegistryPath } : {}),
     attribution_path: attributionPath,
