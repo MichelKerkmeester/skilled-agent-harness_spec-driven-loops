@@ -185,7 +185,9 @@
         "obsidian vault",
         "notesmd-cli",
         "obsidian mcp",
-        "markdown notes"
+        "markdown notes",
+        "health",
+        "health-md"
       ]
     },
     "note-management": {
@@ -269,7 +271,8 @@
         "notion api",
         "notion page",
         "notion token",
-        "ntn_"
+        "ntn_",
+        "notion search"
       ]
     },
     "notion-data": {
@@ -312,7 +315,8 @@
         "app design research",
         "ux flow references",
         "mobile design patterns",
-        "real app ux patterns"
+        "real app ux patterns",
+        "screen examples"
       ]
     },
     "app-design-research": {
