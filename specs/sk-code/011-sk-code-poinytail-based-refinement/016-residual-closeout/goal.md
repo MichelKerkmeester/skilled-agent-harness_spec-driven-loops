@@ -109,6 +109,7 @@ and findings belong here.
 | Phase 005 | Done | Hooks vitest collects only the hooks tree |
 | Phase 006 | Done | Review: P0 0, P1 0, P2 4, all confirmed |
 | Phase 007 | Done | Every wrapper payload is read |
+| Phase 008 | Done | OPENCODE hint only inside the hub |
 
 ### Deviations and findings
 

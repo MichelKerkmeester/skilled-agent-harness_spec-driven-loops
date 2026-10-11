@@ -31,7 +31,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read the plugin predicate and its test
+- [x] T001 Read the plugin predicate and its test
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -39,8 +39,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Root the predicate at the hub's .skilled directory
-- [ ] T003 Add the non-hub test
+- [x] T002 Root the predicate at the hub's .skilled directory
+- [x] T003 Add the non-hub test
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -48,8 +48,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T004 Run the advisor plugin vitest
-- [ ] T005 Validate and commit
+- [x] T004 Run the advisor plugin vitest
+- [x] T005 Validate and commit
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -57,9 +57,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Every goal.md criterion passes on the orchestrator's rerun
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every goal.md criterion passes on the orchestrator's rerun
 <!-- /ANCHOR:completion -->
 
 ---

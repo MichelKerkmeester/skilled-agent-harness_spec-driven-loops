@@ -29,6 +29,7 @@ const renderPluginFallbackDirective = (
 ).renderPluginFallbackDirective;
 
 const DEFAULT_MAX_PROMPT_BYTES = 64 * 1024;
+const HUB_SKILLS_DIR = resolve(import.meta.dirname, '..', '..', '..');
 const CONTRACT_VECTORS = JSON.parse(readFileSync(resolve(
   import.meta.dirname,
   '../../hooks/lib/directive-lifecycle-vectors.json',
@@ -663,14 +664,18 @@ describe('system-skill-advisor OpenCode plugin', () => {
     ['an Obsidian plugin', (dir: string) => writeFileSync(join(dir, 'manifest.json'), '{"id":"x","minAppVersion":"1.4.0"}'), 'OBSIDIAN'],
     ['a Webflow project', (dir: string) => mkdirSync(join(dir, 'src', '2_javascript'), { recursive: true }), 'WEBFLOW'],
     ['a Cloudflare-deployed Webflow project', (dir: string) => writeFileSync(join(dir, 'wrangler.toml'), 'name = "x"\n'), 'WEBFLOW'],
-    ['a folder inside the hub', (dir: string) => mkdirSync(join(dir, '.skilled', 'skills'), { recursive: true }), 'OPENCODE'],
+    ['a folder inside the hub', (_dir: string) => undefined, 'OPENCODE'],
+    ['a .skilled folder outside the hub', (dir: string) => mkdirSync(join(dir, '.skilled', 'skills'), { recursive: true }), undefined],
     ['a workspace with no surface markers', (_dir: string) => undefined, undefined],
   ])('passes the surface hint for %s', async (_name, seed, expected) => {
     const workspace = mkdtempSync(join(tmpdir(), 'advisor-surface-'));
     try {
       seed(workspace);
-      const hubFolder = join(workspace, '.skilled', 'skills');
-      const hooks = await makePlugin({ cacheTTLMs: 5000 }, expected === 'OPENCODE' ? hubFolder : workspace);
+      const outsideHub = join(workspace, '.skilled', 'skills');
+      const directory = expected === 'OPENCODE'
+        ? HUB_SKILLS_DIR
+        : _name.includes('.skilled') ? outsideHub : workspace;
+      const hooks = await makePlugin({ cacheTTLMs: 5000 }, directory);
       await runPrompt(hooks, { sessionID: 's-surface', prompt: 'implement feature X' });
       const child = mockedBridge.spawn.mock.results[0]?.value as { stdin: { end: ReturnType<typeof vi.fn> } };
       const request = JSON.parse(child.stdin.end.mock.calls[0][0] as string) as { options: { surfaceHint?: string } };

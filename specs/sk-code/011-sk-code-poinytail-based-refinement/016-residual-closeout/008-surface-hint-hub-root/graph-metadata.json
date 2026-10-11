@@ -36,7 +36,7 @@
       "completion"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -89,12 +89,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -114,6 +108,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "`detectWorkspaceSurface` in `.opencode/plugins/system-skill-advisor.js` returns OPENCODE when any path component is `.skilled`",
     "created_at": "2026-10-11T11:28:04Z",
-    "last_save_at": "2026-10-11T11:29:58.341Z",
+    "last_save_at": "2026-10-11T11:53:00.914Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b3871484e50c7299fa451c2267d557d4e042b9a5efe772f688974468ea59121",
+    "source_fingerprint": "sha256:3530b5af8e9eaeeb225a88b3b765155e796a7a6e9df2141e8d44034b5b055f2d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "62fbdf300ab8c2a9dc49ecd12e2bbbfaf5049c5ab7bb339b13a116e194e1ac7e",
-      "plan.md": "99c04e419e8b4a4669fe1c47fdcef6c54c3fa080571a965222f08f9d1c84821d",
-      "tasks.md": "e4d3a7da8ce3f9bbb2eaf59779ee7b3a97feded7f73612878f1795bda7806e24",
-      "implementation-summary.md": "4d15f58c37355d74bc0e4e6627bd55449afa957b4fa4f58ff67606c02992c942"
+      "spec.md": "dab973b7e97377f947c524a42674e4b2f3cf4bd6dfb60c68a05eaecab00432d6",
+      "plan.md": "1232709599d03a2aa8cd22a1d60cfab4529ea59a060ece596a40722b810c42af",
+      "tasks.md": "d3a5b26cc43b0a7b33a27f27d6929f47cbf32d5abab03e4f90527ad4867e20b1",
+      "implementation-summary.md": "f9fbabc57a9224abb233d18048c434441ea8560a73d2b0a80476b5bef9302fb8"
     },
     "last_active_at": null
   }

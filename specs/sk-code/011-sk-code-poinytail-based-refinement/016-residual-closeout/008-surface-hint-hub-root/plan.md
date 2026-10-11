@@ -40,9 +40,9 @@ One DeepSeek brief for the predicate and one for the test.
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All goal.md criteria pass on the orchestrator's rerun
-- [ ] Every DeepSeek diff reviewed by the orchestrator before the commit
-- [ ] Strict validation passes
+- [x] All goal.md criteria pass on the orchestrator's rerun
+- [x] Every DeepSeek diff reviewed by the orchestrator before the commit
+- [x] Strict validation passes
 <!-- /ANCHOR:quality-gates -->
 
 ---

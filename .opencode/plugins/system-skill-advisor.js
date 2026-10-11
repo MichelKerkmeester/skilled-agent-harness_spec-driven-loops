@@ -17,7 +17,7 @@ import { existsSync, readFileSync, readdirSync, realpathSync, statSync } from 'n
 import { resolve as resolvePath } from 'node:path';
 import { readFile } from 'node:fs/promises';
 import { homedir } from 'node:os';
-import { dirname, join } from 'node:path';
+import { dirname, join, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 
@@ -674,6 +674,20 @@ function advisorCliArgs() {
 // character beside the request's fixed part. The prompt keeps at most
 // ADVISOR_PROMPT_MAX_CHARS characters and is clamped by its escaped size, because JSON
 // writes a quote or newline as two bytes and a control character as six.
+// The hub's own `.skilled` directory, resolved once. The plugin loads from `.opencode/plugins`
+// or `.skilled/plugins`, and both sit one level below the repository root.
+let hubSkilledRoot;
+function resolveHubSkilledRoot() {
+  if (hubSkilledRoot === undefined) {
+    try {
+      hubSkilledRoot = realpathSync(join(dirname(fileURLToPath(import.meta.url)), '..', '..', '.skilled'));
+    } catch {
+      hubSkilledRoot = null;
+    }
+  }
+  return hubSkilledRoot;
+}
+
 // The sk-code surface a session works in, read from its workspace the way the hub's
 // stack-detection reference orders it: OPENCODE > OBSIDIAN > WEBFLOW. Only cheap root
 // markers are read, since this runs before every uncached advisor call; a workspace
@@ -686,7 +700,8 @@ function detectWorkspaceSurface(projectDir) {
   try {
     const real = realpathSync(projectDir);
     const manifestPath = join(real, 'manifest.json');
-    if (real.split(/[\\/]/).includes('.skilled')) surface = 'OPENCODE';
+    const hubRoot = resolveHubSkilledRoot();
+    if (hubRoot && (real === hubRoot || real.startsWith(`${hubRoot}${sep}`))) surface = 'OPENCODE';
     else if ((existsSync(manifestPath) && /"minAppVersion"/.test(readFileSync(manifestPath, 'utf8')))
       || existsSync(join(real, 'esbuild.config.mjs'))) surface = 'OBSIDIAN';
     else if (existsSync(join(real, 'src', '2_javascript')) || existsSync(join(real, 'wrangler.toml'))) surface = 'WEBFLOW';
