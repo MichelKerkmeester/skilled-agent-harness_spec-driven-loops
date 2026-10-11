@@ -99,10 +99,12 @@ function writePacket(root: string, plan: string): { packet: string; planFile: st
   return { packet, planFile };
 }
 
-function runLaneCli(packet: string) {
+// The fixture sits outside every repository and the working directory is not
+// under it, so the specs root is named explicitly.
+function runLaneCli(root: string, packet: string) {
   return spawnSync(
     process.execPath,
-    [HEAL_SPEC_DOCS, '--lane-modes', '--folder', packet],
+    [HEAL_SPEC_DOCS, '--lane-modes', '--roots', path.join(root, 'specs'), '--folder', packet],
     { encoding: 'utf8' },
   );
 }
@@ -667,7 +669,7 @@ describe('heal-spec-docs lane modes', () => {
     const { packet } = writePacket(root, PLAN_ORIGINAL);
     const before = manifest(root);
 
-    const dryRun = runLaneCli(packet);
+    const dryRun = runLaneCli(root, packet);
 
     expect(dryRun.status, dryRun.stdout + dryRun.stderr).toBe(0);
     expect(dryRun.stdout).toContain('would apply anchor-wrap');

@@ -71,16 +71,41 @@ function manifest(root: string): string {
   return crypto.createHash('sha256').update(entries.sort().join('\n')).digest('hex');
 }
 
-function runRepair(packet: string, apply = false) {
+// The fixture sits outside every repository and the working directory is not
+// under it, so the specs root is named explicitly.
+function runRepair(root: string, packet: string, apply = false) {
   return spawnSync(
     process.execPath,
-    [HEAL_SPEC_DOCS, '--anchor-repair', '--folder', packet, ...(apply ? ['--apply'] : [])],
+    [HEAL_SPEC_DOCS, '--anchor-repair', '--roots', path.join(root, 'specs'), '--folder', packet, ...(apply ? ['--apply'] : [])],
     { encoding: 'utf8' },
   );
 }
 
 function withoutAnchorLines(text: string): string {
   return text.replace(/^[ \t]*<!--\s*\/?ANCHOR:[a-z0-9-]+\s*-->[ \t]*(?:\r?\n|$)/gm, '');
+}
+
+// A packet outside the specs root that a run names is refused before any document
+// is read, in the dry run and the apply run alike, and its bytes stay in place.
+function expectRefusedOutsideRoot(document: string, name: string): void {
+  const specsRoot = path.join(makeRoot(), 'specs');
+  fs.mkdirSync(specsRoot);
+  const elsewhere = makeRoot();
+  const { packet, file } = writeSpec(elsewhere, document);
+  const before = manifest(elsewhere);
+
+  for (const apply of [false, true]) {
+    const outcome = spawnSync(
+      process.execPath,
+      [HEAL_SPEC_DOCS, '--anchor-repair', '--roots', specsRoot, '--folder', packet, ...(apply ? ['--apply'] : [])],
+      { encoding: 'utf8' },
+    );
+
+    expect(outcome.status, `${name} ${outcome.stdout}${outcome.stderr}`).toBe(2);
+    expect(outcome.stdout, name).toContain(`refused ${packet}: it resolves outside the specs root`);
+    expect(fs.readFileSync(file).equals(Buffer.from(document)), name).toBe(true);
+    expect(manifest(elsewhere), name).toBe(before);
+  }
 }
 
 // The adversarial table pins the parser's grammar boundary and its refusals:
@@ -100,6 +125,8 @@ type AdversarialCase = {
   silent?: boolean;
   /** Replay the case through the file and CLI paths and require byte-identity. */
   byteIdentical?: boolean;
+  /** The packet sits outside the specs root that the run names, so both runs must refuse it and leave its bytes in place. */
+  outsideRoot?: boolean;
 };
 
 const adversarialCases: AdversarialCase[] = [
@@ -376,6 +403,66 @@ const adversarialCases: AdversarialCase[] = [
     refusal: 'questions anchor does not contain exactly one OPEN QUESTIONS heading; left unchanged',
     byteIdentical: true,
   },
+  {
+    // The document repairs in memory, so the refusal alone keeps a packet outside
+    // the named root unchanged.
+    name: 'a packet outside the named specs root is refused and left byte-identical',
+    document: [
+      '# Probe',
+      '',
+      '<!-- ANCHOR:questions -->',
+      '## L2: NON-FUNCTIONAL REQUIREMENTS',
+      'Performance notes.',
+      '',
+      '## 10. OPEN QUESTIONS',
+      '- None open.',
+      '<!-- /ANCHOR:questions -->',
+      '',
+    ].join('\n'),
+    run: repairAnchors,
+    changed: true,
+    action: 'moved questions opener',
+    expected: [
+      '# Probe',
+      '',
+      '## L2: NON-FUNCTIONAL REQUIREMENTS',
+      'Performance notes.',
+      '',
+      '<!-- ANCHOR:questions -->',
+      '## 10. OPEN QUESTIONS',
+      '- None open.',
+      '<!-- /ANCHOR:questions -->',
+      '',
+    ].join('\n'),
+    outsideRoot: true,
+  },
+  {
+    // The glued-overlap rule is the only route to removal. A glued pair that
+    // merely sits beside its neighbor is isolated, so the fallback renames it and
+    // never strips its markers.
+    name: 'fallback: a glued duplicate that does not overlap its neighbor is renamed, not removed',
+    document: [
+      '<!-- ANCHOR:metadata -->',
+      '| Field | Value |',
+      '<!-- /ANCHOR:metadata -->',
+      '<!-- ANCHOR:metadata -->',
+      '| Owner | Probe |',
+      '<!-- /ANCHOR:metadata -->',
+      '',
+    ].join('\n'),
+    run: repairAnchors,
+    changed: true,
+    action: 'renamed isolated duplicate pair metadata to metadata-2',
+    expected: [
+      '<!-- ANCHOR:metadata -->',
+      '| Field | Value |',
+      '<!-- /ANCHOR:metadata -->',
+      '<!-- ANCHOR:metadata-2 -->',
+      '| Owner | Probe |',
+      '<!-- /ANCHOR:metadata-2 -->',
+      '',
+    ].join('\n'),
+  },
 ];
 
 describe('heal-spec-docs anchor repair mode', () => {
@@ -396,7 +483,7 @@ describe('heal-spec-docs anchor repair mode', () => {
     const { packet, file } = writeSpec(root, original);
     const before = manifest(root);
 
-    const dryRun = runRepair(packet);
+    const dryRun = runRepair(root, packet);
 
     expect(dryRun.status, dryRun.stdout + dryRun.stderr).toBe(0);
     expect(dryRun.stdout).toContain('would repair');
@@ -404,7 +491,7 @@ describe('heal-spec-docs anchor repair mode', () => {
     expect(manifest(root)).toBe(before);
     expect(fs.readdirSync(packet)).toEqual(['spec.md']);
 
-    const applied = runRepair(packet, true);
+    const applied = runRepair(root, packet, true);
 
     expect(applied.status, applied.stdout + applied.stderr).toBe(0);
     expect(applied.stdout).toContain('repaired');
@@ -449,13 +536,13 @@ describe('heal-spec-docs anchor repair mode', () => {
     const { packet, file } = writeSpec(root, original);
     const before = manifest(root);
 
-    const dryRun = runRepair(packet);
+    const dryRun = runRepair(root, packet);
 
     expect(dryRun.status, dryRun.stdout + dryRun.stderr).toBe(0);
     expect(dryRun.stdout).toContain('renamed isolated duplicate pair examples to examples-2');
     expect(manifest(root)).toBe(before);
 
-    const applied = runRepair(packet, true);
+    const applied = runRepair(root, packet, true);
     const expected = original.replace(
       '\n<!-- ANCHOR:examples -->\nSecond section.\n<!-- /ANCHOR:examples -->',
       '\n<!-- ANCHOR:examples-2 -->\nSecond section.\n<!-- /ANCHOR:examples-2 -->',
@@ -500,13 +587,13 @@ describe('heal-spec-docs anchor repair mode', () => {
     const { packet, file } = writeSpec(root, original);
     const before = manifest(root);
 
-    const dryRun = runRepair(packet);
+    const dryRun = runRepair(root, packet);
 
     expect(dryRun.status, dryRun.stdout + dryRun.stderr).toBe(0);
     expect(dryRun.stdout).toContain('moved questions opener');
     expect(manifest(root)).toBe(before);
 
-    const applied = runRepair(packet, true);
+    const applied = runRepair(root, packet, true);
 
     expect(applied.status, applied.stdout + applied.stderr).toBe(0);
     expect(fs.readFileSync(file, 'utf8')).toBe(expected);
@@ -545,7 +632,7 @@ describe('heal-spec-docs anchor repair mode', () => {
     const before = manifest(root);
 
     const result = repairAnchors(text);
-    const dryRun = runRepair(packet);
+    const dryRun = runRepair(root, packet);
 
     expect(result.text).toBe(text);
     expect(result.changed).toBe(false);
@@ -556,7 +643,7 @@ describe('heal-spec-docs anchor repair mode', () => {
     expect(manifest(root)).toBe(before);
     expect(fs.readFileSync(file, 'utf8')).toBe(text);
 
-    const applied = runRepair(packet, true);
+    const applied = runRepair(root, packet, true);
 
     expect(applied.status, applied.stdout + applied.stderr).toBe(0);
     expect(applied.stdout).toContain('collision: section');
@@ -685,14 +772,14 @@ describe('heal-spec-docs anchor repair mode', () => {
       expect(result.text, shape.wrapper).toBe(shape.document);
       expect(result.refusals.join('\n'), shape.wrapper).toContain(shape.wrapper);
 
-      const dryRun = runRepair(packet);
+      const dryRun = runRepair(root, packet);
       expect(dryRun.status, dryRun.stdout + dryRun.stderr).toBe(0);
       expect(dryRun.stdout, shape.wrapper).toContain('left unchanged');
       expect(dryRun.stdout, shape.wrapper).toContain(shape.wrapper);
       expect(manifest(root), shape.wrapper).toBe(before);
       expect(fs.readFileSync(file, 'utf8'), shape.wrapper).toBe(shape.document);
 
-      const applied = runRepair(packet, true);
+      const applied = runRepair(root, packet, true);
       expect(applied.status, applied.stdout + applied.stderr).toBe(0);
       expect(applied.stdout, shape.wrapper).toContain('left unchanged');
       expect(fs.readFileSync(file, 'utf8'), shape.wrapper).toBe(shape.document);
@@ -765,6 +852,10 @@ describe('heal-spec-docs anchor repair mode', () => {
       expect(result.actions, adversarial.name).toEqual([]);
       expect(result.refusals, adversarial.name).toEqual([]);
     }
+    if (adversarial.outsideRoot === true) {
+      expectRefusedOutsideRoot(adversarial.document, adversarial.name);
+      return;
+    }
     if (adversarial.byteIdentical !== true) return;
 
     const root = makeRoot();
@@ -777,7 +868,7 @@ describe('heal-spec-docs anchor repair mode', () => {
     expect(fileResult.applied, adversarial.name).toBe(false);
     expect(fs.readFileSync(file).equals(Buffer.from(adversarial.document)), adversarial.name).toBe(true);
 
-    const dryRun = runRepair(packet);
+    const dryRun = runRepair(root, packet);
 
     expect(dryRun.status, dryRun.stdout + dryRun.stderr).toBe(0);
     expect(dryRun.stdout, adversarial.name).not.toContain('would repair');
@@ -790,7 +881,7 @@ describe('heal-spec-docs anchor repair mode', () => {
       expect(dryRun.stdout, adversarial.name).not.toContain('left unchanged');
     }
 
-    const applied = runRepair(packet, true);
+    const applied = runRepair(root, packet, true);
 
     expect(applied.status, applied.stdout + applied.stderr).toBe(0);
     expect(applied.stdout, adversarial.name).toContain(

@@ -189,14 +189,28 @@ function anchorsOf(text) {
   return found;
 }
 
-/** The level a packet records in its spec.md, or null when it records none. */
+/**
+ * The level a packet records in its spec.md, with the refusal that replaces it when
+ * spec.md is a link. A link is refused rather than read, because a read through it
+ * takes the level from a file the packet does not own.
+ *
+ * @param {string} packetDir - Packet folder holding spec.md.
+ * @param {string|null} specText - spec.md content already read, or null to read it here.
+ * @returns {{level: string|null, refusal: string|null}} The level or null when none is recorded, and the refusal when spec.md is a link.
+ */
 function declaredLevel(packetDir, specText) {
   let text = specText;
   if (text === null) {
     const specFile = path.join(packetDir, 'spec.md');
-    if (!fs.existsSync(specFile)) return null;
+    if (isSymbolicLink(specFile)) return { level: null, refusal: LINKED_SPEC_REFUSAL };
+    if (!fs.existsSync(specFile)) return { level: null, refusal: null };
     text = fs.readFileSync(specFile, 'utf8');
   }
+  return { level: levelRecordedIn(text), refusal: null };
+}
+
+/** The level a document's text records in any form the validator reads, or null when it records none. */
+function levelRecordedIn(text) {
   const marker = text.match(LEVEL_MARKER_RE);
   if (marker) return marker[1];
   const row = text.match(LEVEL_TABLE_RE);
@@ -302,7 +316,8 @@ function templateHeadingAnchors(templatePath, level) {
  * extra or missing anchor means the render cannot honestly be claimed.
  */
 function provenMarker(out, name, file) {
-  const level = declaredLevel(path.dirname(file), name === 'spec.md' ? out : null);
+  const { level, refusal } = declaredLevel(path.dirname(file), name === 'spec.md' ? out : null);
+  if (refusal !== null) return { refusal };
   if (level === null) {
     return { refusal: `${name}: no level is recorded in spec.md, so no rendered template can be proven` };
   }
@@ -633,6 +648,15 @@ function writeFileAtomic(file, text) {
 // file outside the packet, and a rename over it replaces the link itself.
 const SYMLINK_REFUSAL = 'symbolic link, not followed';
 
+// A level read that would follow a linked spec.md is refused in the words a linked
+// document gets, so the reader sees the same reason for the same link.
+const LINKED_SPEC_REFUSAL = `spec.md: ${SYMLINK_REFUSAL}`;
+
+// A --folder that no specs root and no repository reaches, while no --roots names
+// one, has no root to judge its links against. The run asks for the root instead
+// of writing through a path it cannot check.
+const UNREACHED_REFUSAL = 'no specs root or repository reaches it, pass --roots <dir> to name one';
+
 /** True when the path itself is a symbolic link, judged without following it. */
 function isSymbolicLink(file) {
   try { return fs.lstatSync(file).isSymbolicLink(); } catch { return false; }
@@ -886,18 +910,17 @@ function rootIdentities(target, rootArg) {
  * ancestors. The anchor and every component below it must not be a link, because a
  * write through one lands in a packet the root does not own. Only the links above
  * the anchor are not judged, so system links such as those under /var and /tmp keep
- * working. Without --roots, the roots are the
- * default roots under the working directory and each repository the path
- * physically passes through; a folder that no root reaches is allowed, because the
- * operator approved that default, which leaves a link on a path that no repository
- * holds unjudged.
+ * working. Without --roots, the roots are the default roots under the working
+ * directory and each repository the path physically passes through. A folder that
+ * no root reaches is refused with UNREACHED_REFUSAL, because no root can judge the
+ * links on its path.
  *
  * With --roots, the anchor is the root's own prefix, and the folder must also
  * resolve inside that root's real path.
  *
  * @param {string} folder - The --folder argument.
  * @param {string|undefined} rootArg - The --roots argument, when one was given.
- * @returns {string|null} The reason in parentheses, or null when the folder is allowed.
+ * @returns {string|null} The reason for the refusal, or null when the folder is allowed.
  */
 function folderRefusal(folder, rootArg) {
   const target = path.resolve(folder);
@@ -911,7 +934,7 @@ function folderRefusal(folder, rootArg) {
     ? roots.has(directoryIdentity(prefix))
     : reachesRoot(realLocation(prefix), roots)));
   if (anchorAt === -1) {
-    return rootArg !== undefined ? 'it resolves outside the specs root' : null;
+    return rootArg !== undefined ? 'it resolves outside the specs root' : UNREACHED_REFUSAL;
   }
 
   const anchor = prefixes[anchorAt];
@@ -953,6 +976,51 @@ function rejectMissingFlagValue(argv) {
   return false;
 }
 
+// The flags the healer reads. An argument outside them names nothing the healer can
+// act on, so the run stops before it reads or writes a document.
+const KNOWN_FLAGS = new Set(['--apply', '--anchor-repair', '--lane-modes', '--folder', '--roots']);
+const VALUE_FLAGS = new Set(['--folder', '--roots']);
+const REMOVED_FLAG_MESSAGES = new Map([
+  ['--mode', 'heal-spec-docs: --mode was removed in v4.0.0.4. Without it, --lane-modes runs all five modes. Drop --mode.'],
+  ['--json', 'heal-spec-docs: --json was removed in v4.0.0.4. Lane modes print "would apply", "applied" and "refused" lines. Drop --json.'],
+]);
+
+function rejectUnknownArgument(argv) {
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+    if (VALUE_FLAGS.has(arg)) {
+      index += 1;
+      continue;
+    }
+    const removedMessage = REMOVED_FLAG_MESSAGES.get(arg);
+    if (removedMessage !== undefined) {
+      console.error(`${removedMessage}\n${USAGE}`);
+      process.exitCode = 2;
+      return true;
+    }
+    if (KNOWN_FLAGS.has(arg)) continue;
+    console.error(`heal-spec-docs: unknown argument: ${arg}\n${USAGE}`);
+    process.exitCode = 2;
+    return true;
+  }
+  return false;
+}
+
+// A --folder or --roots that names nothing on disk is refused before any document is
+// read. A link counts as present, because the link checks name it with their own reason.
+function rejectMissingPath(argv) {
+  for (const [flag, kind] of [['--folder', 'folder'], ['--roots', 'root']]) {
+    const at = argv.indexOf(flag);
+    if (at === -1) continue;
+    const target = path.resolve(argv[at + 1]);
+    if (fs.existsSync(target) || isSymbolicLink(target)) continue;
+    console.error(`heal-spec-docs: no such ${kind}: ${target}`);
+    process.exitCode = 2;
+    return true;
+  }
+  return false;
+}
+
 // A refused --folder is named on stdout, like the other refusals, and writes
 // nothing. The exit status marks the whole run as refused, since no document
 // was reached at all.
@@ -963,7 +1031,16 @@ function refuseFolderArgument(argv) {
   const rootsAt = argv.indexOf('--roots');
   const reason = folderRefusal(folder, rootsAt !== -1 ? argv[rootsAt + 1] : undefined);
   if (reason === null) return false;
-  console.log(`refused ${folder}: ${SYMLINK_REFUSAL} (${reason})`);
+  const target = path.resolve(folder);
+  const filesystemRoot = path.parse(target).root;
+  const hasLinkOnPath = pathPrefixes(target).some((prefix) => (
+    path.dirname(prefix) !== filesystemRoot && isSymbolicLink(prefix)
+  ));
+  if (reason === UNREACHED_REFUSAL || (!hasLinkOnPath && reason.includes('outside the specs root'))) {
+    console.log(`refused ${folder}: ${reason}`);
+  } else {
+    console.log(`refused ${folder}: ${SYMLINK_REFUSAL} (${reason})`);
+  }
   process.exitCode = 2;
   return true;
 }
@@ -1014,7 +1091,8 @@ function anchorWrap(text, file) {
     };
   }
 
-  const level = declaredLevel(path.dirname(file), name === 'spec.md' ? text : null);
+  const { level, refusal } = declaredLevel(path.dirname(file), name === 'spec.md' ? text : null);
+  if (refusal !== null) return { ...unchanged, refusals: [refusal] };
   if (level === null) {
     return { ...unchanged, refusals: [`${name}: no level is recorded in spec.md, so no rendered template can be proven`] };
   }
@@ -1494,9 +1572,12 @@ function levelFromSpec(text, file) {
   if (path.basename(file) === 'spec.md') return unchanged;
   if (declaresAnyLevel(text)) return unchanged;
 
+  const specFile = path.join(path.dirname(file), 'spec.md');
+  if (isSymbolicLink(specFile)) return { ...unchanged, refusals: [LINKED_SPEC_REFUSAL] };
+
   let specText;
   try {
-    specText = fs.readFileSync(path.join(path.dirname(file), 'spec.md'), 'utf8');
+    specText = fs.readFileSync(specFile, 'utf8');
   } catch {
     return { ...unchanged, refusals: ['spec.md is missing or unreadable, so no level can be derived; left unchanged'] };
   }
@@ -1632,6 +1713,8 @@ function runLaneModesCli(argv) {
 function main() {
   const argv = process.argv.slice(2);
   if (rejectMissingFlagValue(argv)) return;
+  if (rejectUnknownArgument(argv)) return;
+  if (rejectMissingPath(argv)) return;
   if (refuseFolderArgument(argv)) return;
   if (argv.includes('--anchor-repair')) {
     runAnchorRepair(argv);

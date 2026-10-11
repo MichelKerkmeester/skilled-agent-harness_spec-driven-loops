@@ -124,6 +124,68 @@ function linkedPacket(root: string, name: string, docName: string, target: strin
   return packet;
 }
 
+// The level the outside spec.md declares. A plan carrying exactly the anchors that
+// level renders is one the healer stamps once it reads that level.
+const LEVEL_THREE_SPEC = [
+  '---',
+  'title: "Level probe"',
+  'description: "Level containment fixture."',
+  '---',
+  '# Level probe',
+  '<!-- SPECKIT_LEVEL: 3 -->',
+  '',
+].join('\n');
+
+function levelThreePlanAnchors(): string[] {
+  const contract = loadTemplateContractForDocument('3', 'plan.md', 'plan.md');
+  if (!contract.supported) throw new Error('Level 3 plan.md contract did not resolve');
+  return [...contract.requiredAnchors, ...(contract.optionalAnchors || [])];
+}
+
+// A filled trigger list keeps the seeder out of the way, so a plan changes in these
+// runs only through the level it would be given.
+function planDocument(anchors: string[]): string {
+  return [
+    '---',
+    'title: "Plan probe"',
+    'description: "Plan containment fixture."',
+    'trigger_phrases:',
+    '  - "plan probe"',
+    '---',
+    '# Plan probe',
+    '',
+    ...anchors.map((anchor) => `<!-- ANCHOR:${anchor} -->`),
+    '',
+  ].join('\n');
+}
+
+interface LinkedLevelFixture {
+  root: string;
+  outside: string;
+  linkedSpec: string;
+  linkedPlan: string;
+  controlPlan: string;
+}
+
+// The linked packet's spec.md points at the outside file. A regular packet beside it
+// carries the same plan, so a change to that control plan proves the run acts, and an
+// unchanged linked plan is the containment result.
+function linkedLevelFixture(plan: string): LinkedLevelFixture {
+  const root = makeRoot();
+  const outside = outsideFile('spec.md', LEVEL_THREE_SPEC);
+  const linked = linkedPacket(root, '001-linked-level', 'spec.md', outside);
+  fs.writeFileSync(path.join(linked, 'plan.md'), plan);
+  const control = writeRegularPacket(root, '002-control-level', LEVEL_THREE_SPEC);
+  fs.writeFileSync(path.join(control, 'plan.md'), plan);
+  return {
+    root,
+    outside,
+    linkedSpec: path.join(linked, 'spec.md'),
+    linkedPlan: path.join(linked, 'plan.md'),
+    controlPlan: path.join(control, 'plan.md'),
+  };
+}
+
 // A packet document that is a symbolic link names a file the packet does not
 // own. Every write mode must refuse it, so the file behind the link keeps its
 // bytes and the link stays a link.
@@ -335,6 +397,39 @@ describe('heal-spec-docs symbolic link containment', () => {
     expect(fs.lstatSync(path.join(packet, 'spec.md')).isSymbolicLink()).toBe(true);
     expect(result.stdout).toContain(`${refusedVerb} ${path.join(packet, 'spec.md')}: symbolic link, not followed`);
   });
+
+  it('a linked spec.md supplies no level to the packet documents beside it', () => {
+    const anchored = linkedLevelFixture(planDocument(levelThreePlanAnchors()));
+    const anchoredPlan = digest(anchored.linkedPlan);
+    const anchoredOutside = digest(anchored.outside);
+    const anchoredControl = digest(anchored.controlPlan);
+
+    const defaults = spawnSync(process.execPath, [HEAL_SPEC_DOCS, '--roots', path.join(anchored.root, 'specs'), '--apply'], {
+      encoding: 'utf8',
+    });
+
+    expect(defaults.status, defaults.stdout + defaults.stderr).toBe(0);
+    expect(digest(anchored.controlPlan)).not.toBe(anchoredControl);
+    expect(digest(anchored.linkedPlan)).toBe(anchoredPlan);
+    expect(digest(anchored.outside)).toBe(anchoredOutside);
+    expect(defaults.stdout).toContain(`refused ${anchored.linkedSpec}: symbolic link, not followed`);
+
+    const lane = linkedLevelFixture(planDocument([]));
+    const lanePlan = digest(lane.linkedPlan);
+    const laneOutside = digest(lane.outside);
+
+    const lanes = spawnSync(process.execPath, [HEAL_SPEC_DOCS, '--lane-modes', '--roots', path.join(lane.root, 'specs'), '--apply'], {
+      encoding: 'utf8',
+    });
+
+    expect(lanes.status, lanes.stdout + lanes.stderr).toBe(0);
+    // The control plan receives the level in the same run, so the unchanged linked
+    // plan is the containment result.
+    expect(fs.readFileSync(lane.controlPlan, 'utf8')).toContain('level: 3');
+    expect(digest(lane.linkedPlan)).toBe(lanePlan);
+    expect(digest(lane.outside)).toBe(laneOutside);
+    expect(lanes.stdout).toContain(`refused level-from-spec ${lane.linkedPlan}: spec.md: symbolic link, not followed`);
+  });
 });
 
 // A named packet folder is refused before any document is read when it is a link,
@@ -496,7 +591,56 @@ describe('heal-spec-docs folder containment', () => {
     expect(result.stdout).toContain(`refused ${folder}: symbolic link, not followed (specs/linked is a link on the path to the folder)`);
   });
 
-  it('--roots run refuses a --folder whose linked parent resolves outside the given roots, and leaves that packet untouched', () => {
+  it('--roots run refuses a plain --folder outside the given roots without blaming a link', () => {
+    const root = makeRoot();
+    const specs = path.join(root, 'specs');
+    fs.mkdirSync(specs);
+    const outside = outsideDirectory();
+    const folder = path.join(outside, '020-plain-packet');
+    fs.mkdirSync(folder);
+    const outsideSpec = path.join(folder, 'spec.md');
+    fs.writeFileSync(outsideSpec, provableSpec());
+    const before = digest(outsideSpec);
+
+    const result = spawnSync(process.execPath, [HEAL_SPEC_DOCS, '--folder', folder, '--roots', specs, '--apply'], {
+      encoding: 'utf8',
+    });
+
+    expect(digest(outsideSpec)).toBe(before);
+    expect(result.status, result.stdout + result.stderr).toBe(2);
+    expect(result.stdout.trim()).toBe(`refused ${folder}: it resolves outside the specs root`);
+  });
+
+  it('--roots run ignores a system symlink above a plain outside folder in the refusal', (ctx) => {
+    const systemLink = ['/tmp', '/var'].find((candidate) => {
+      try { return fs.lstatSync(candidate).isSymbolicLink(); } catch { return false; }
+    });
+    if (!systemLink) {
+      ctx.skip('the platform has no symbolic /tmp or /var path');
+      return;
+    }
+
+    const root = makeRoot();
+    const specs = path.join(root, 'specs');
+    fs.mkdirSync(specs);
+    const outside = fs.mkdtempSync(path.join(systemLink, 'heal-symlink-system-'));
+    roots.push(outside);
+    const folder = path.join(outside, '020-plain-packet');
+    fs.mkdirSync(folder);
+    const outsideSpec = path.join(folder, 'spec.md');
+    fs.writeFileSync(outsideSpec, provableSpec());
+    const before = digest(outsideSpec);
+
+    const result = spawnSync(process.execPath, [HEAL_SPEC_DOCS, '--folder', folder, '--roots', specs, '--apply'], {
+      encoding: 'utf8',
+    });
+
+    expect(digest(outsideSpec)).toBe(before);
+    expect(result.status, result.stdout + result.stderr).toBe(2);
+    expect(result.stdout.trim()).toBe(`refused ${folder}: it resolves outside the specs root`);
+  });
+
+  it('--roots run keeps link wording when a linked parent resolves outside the given roots, and leaves that packet untouched', () => {
     const root = makeRoot();
     const specs = path.join(root, 'specs');
     fs.mkdirSync(specs);
@@ -604,6 +748,32 @@ describe('heal-spec-docs folder containment', () => {
     expect(digest(outsideSpec)).toBe(before);
     expect(result.status, result.stdout + result.stderr).toBe(2);
     expect(result.stdout).toContain(`refused ${folder}: symbolic link, not followed (alias is a link on the path to the folder)`);
+  });
+
+  it.each(modes)('%s --apply refuses a --folder that no root or repository reaches when no --roots is given', (_label, flags, spec) => {
+    const cwd = outsideDirectory();
+    const root = makeRoot();
+    const specs = path.join(root, 'specs');
+    fs.mkdirSync(specs);
+    const outsideTrack = outsideDirectory();
+    const outsidePacket = path.join(outsideTrack, '020-linked-packet');
+    fs.mkdirSync(outsidePacket);
+    const outsideSpec = path.join(outsidePacket, 'spec.md');
+    fs.writeFileSync(outsideSpec, spec());
+    const before = digest(outsideSpec);
+    fs.symlinkSync(outsideTrack, path.join(specs, 'linked'), 'dir');
+    const folder = path.join(specs, 'linked', '020-linked-packet');
+
+    const result = spawnSync(process.execPath, [HEAL_SPEC_DOCS, ...flags, '--folder', folder, '--apply'], {
+      cwd,
+      encoding: 'utf8',
+    });
+
+    expect(digest(outsideSpec)).toBe(before);
+    expect(result.status, result.stdout + result.stderr).toBe(2);
+    expect(result.stdout).toContain(`refused ${folder}: no specs root or repository reaches it`);
+    expect(result.stdout).toContain('pass --roots <dir>');
+    expect(fs.lstatSync(path.join(specs, 'linked')).isSymbolicLink()).toBe(true);
   });
 });
 
