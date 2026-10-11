@@ -35,6 +35,12 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+if [[ -n "$LEFT" && -z "$RIGHT" ]] || [[ -z "$LEFT" && -n "$RIGHT" ]]; then
+  echo "ERROR: --left and --right must be given together" >&2
+  usage >&2
+  exit 64
+fi
+
 resolve_dir() {
   local dir="$1"
   [[ -d "$dir" ]] || { echo "ERROR: directory not found: $dir" >&2; return 1; }

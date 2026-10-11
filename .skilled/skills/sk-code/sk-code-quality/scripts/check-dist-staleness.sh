@@ -173,6 +173,10 @@ def surface_result(payload, repo_root, auto_rebuild=False) -> None:
 
 
 def main() -> None:
+    if len(sys.argv) > 1 and sys.argv[1].startswith("-") and sys.argv[1] != "--all":
+        print(f"check-dist-staleness.sh: unknown option: {sys.argv[1]}", file=sys.stderr)
+        print("usage: check-dist-staleness.sh (--all | <file>)", file=sys.stderr)
+        sys.exit(2)
     if not _hook_enabled("dist-freshness"):
         sys.exit(0)
     if len(sys.argv) < 2:

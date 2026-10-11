@@ -409,6 +409,12 @@ function runWrite(families) {
 
 function main() {
   const args = process.argv.slice(2);
+  const unknown = args.find((arg) => arg !== '--write');
+  if (unknown !== undefined) {
+    console.error(`generate-command-routers.cjs: unknown option: ${unknown}`);
+    console.error('usage: generate-command-routers.cjs [--write]');
+    process.exit(2);
+  }
   const write = args.includes('--write');
   const families = loadContract();
   if (write) {

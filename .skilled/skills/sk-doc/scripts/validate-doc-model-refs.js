@@ -315,6 +315,14 @@ function scanDoc(filePath, canonicalModels, verbose = false) {
 
 function main() {
   const args = process.argv.slice(2);
+  // A misspelled flag must fail loudly instead of silently scanning with defaults.
+  for (const arg of args) {
+    if (arg !== '--verbose' && arg !== '--help') {
+      console.error(`validate-doc-model-refs.js: unknown option: ${arg}`);
+      console.error('usage: validate-doc-model-refs.js [--verbose] [--help]');
+      process.exit(2);
+    }
+  }
   const verbose = args.includes('--verbose');
   const help = args.includes('--help');
 

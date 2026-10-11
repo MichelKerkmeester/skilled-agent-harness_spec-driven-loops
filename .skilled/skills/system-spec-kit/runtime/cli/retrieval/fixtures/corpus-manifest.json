@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f1802db42aa8ac99f45a7d026ababbc97cdd41976f940b999f4fa81b9ab36479",
+  "corpusHash": "696fd4bbb5401bb0149e5507b7179b5015417d001fa3ec62bcde764aa2981cb0",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24415,
+  "includedPathCount": 24423,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -1895,6 +1895,7 @@
     ".skilled/skills/mcp-tooling/changelog/v1.8.0.1.md",
     ".skilled/skills/mcp-tooling/changelog/v1.8.0.2.md",
     ".skilled/skills/mcp-tooling/changelog/v1.8.1.0.md",
+    ".skilled/skills/mcp-tooling/changelog/v1.8.2.0.md",
     ".skilled/skills/mcp-tooling/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/mcp-tooling/feature-catalog/feature-catalog.md",
     ".skilled/skills/mcp-tooling/feature-catalog/workflow-vs-transport-routing/workflow-vs-transport-routing.md",
@@ -2664,6 +2665,7 @@
     ".skilled/skills/sk-code/changelog/v2.2.1.0.md",
     ".skilled/skills/sk-code/changelog/v2.2.10.0.md",
     ".skilled/skills/sk-code/changelog/v2.2.11.0.md",
+    ".skilled/skills/sk-code/changelog/v2.2.12.0.md",
     ".skilled/skills/sk-code/changelog/v2.2.2.0.md",
     ".skilled/skills/sk-code/changelog/v2.2.3.0.md",
     ".skilled/skills/sk-code/changelog/v2.2.4.0.md",
@@ -3105,6 +3107,7 @@
     ".skilled/skills/sk-design/changelog/v2.0.0.0.md",
     ".skilled/skills/sk-design/changelog/v2.0.1.0.md",
     ".skilled/skills/sk-design/changelog/v2.0.2.0.md",
+    ".skilled/skills/sk-design/changelog/v2.0.3.0.md",
     ".skilled/skills/sk-design/manual-testing-playbook/holdout/flowchart-natural.md",
     ".skilled/skills/sk-design/manual-testing-playbook/holdout/ind-flowchart.md",
     ".skilled/skills/sk-design/manual-testing-playbook/manual-testing-playbook.md",
@@ -6067,6 +6070,7 @@
     ".skilled/skills/sk-doc/changelog/v2.3.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.4.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.5.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.3.6.0.md",
     ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/changelog-entry-frontmatter-check.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-census-across-doc-families.md",
@@ -6570,6 +6574,7 @@
     ".skilled/skills/sk-git/changelog/v1.8.2.0.md",
     ".skilled/skills/sk-git/changelog/v1.8.3.0.md",
     ".skilled/skills/sk-git/changelog/v1.8.4.0.md",
+    ".skilled/skills/sk-git/changelog/v1.8.5.0.md",
     ".skilled/skills/sk-git/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/github-mcp-integration.md",
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/gitkraken-mcp-integration.md",
@@ -6880,6 +6885,7 @@
     ".skilled/skills/system-deep-loop/changelog/v1.6.0.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.1.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.2.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v1.6.3.0.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/README.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-dashboard.md",
@@ -7533,6 +7539,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.15.3.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.15.4.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.15.5.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.15.6.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.2.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.4.0.0.md",
@@ -7952,6 +7959,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.7.10.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.11.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.12.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.7.13.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.2.1.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.3.0.md",
@@ -24446,7 +24454,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "46de103857be40e5aa4349fc8ce7447e72d72fb494d3db1cb73208a838b8ddf5",
+  "manifestHash": "94f2300dad1afc313aceda2755c7715ca120e5a7374818faac67f2a46628d79f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26582,6 +26590,10 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/006-ci-truth-checks/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/001-typo-proof-parsers/review/lineages",
       "reason": "excluded directory"
     },
     {

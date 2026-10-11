@@ -47,6 +47,12 @@ function parseArgs(argv) {
       args.mode = argv[i].slice(2);
       args.skillDir = argv[i + 1];
       i += 1;
+    } else if (argv[i].startsWith('-')) {
+      // A misspelled flag must fail loudly rather than fall through to a
+      // default run; positional arguments stay ignored exactly as before.
+      process.stderr.write(`generate-leaf-manifest.cjs: unknown option: ${argv[i]}\n`);
+      process.stderr.write('usage: generate-leaf-manifest.cjs --write|--check <skillDir>\n');
+      process.exit(2);
     }
   }
   return args;

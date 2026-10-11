@@ -139,5 +139,15 @@ async function main() {
 }
 
 if (process.argv[1] !== undefined && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  const usage = 'Usage: template-phrase-lint.mjs\n'
+    + 'Lints the staged Markdown files and takes no other arguments.\n';
+  for (const argument of process.argv.slice(2)) {
+    if (argument === '--help' || argument === '-h') {
+      process.stdout.write(usage);
+      process.exit(0);
+    }
+    process.stderr.write(`${SCRIPT}: unknown option: ${argument}\n${usage}`);
+    process.exit(2);
+  }
   process.exitCode = await main();
 }

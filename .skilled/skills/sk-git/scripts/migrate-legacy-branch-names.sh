@@ -99,21 +99,22 @@ done < <(printf '%s\n' "${ROWS[@]}" | sort -n -k1,1)
 
 next_num=0
 total=0
+collisions=0
 for row in "${SORTED[@]}"; do
   num="${row%% *}"; rest="${row#* }"; branch="${rest%% *}"; dir="${rest##* }"
   next_num=$((next_num + 1))
-  total=$next_num
   nnn="$(printf '%03d' "$next_num")"
   slug="${branch#*/}"
   slug="${slug#${num}-}"
   new_branch="worktrees/$nnn-$slug"
   new_dir=".worktrees/$nnn-$slug"
-  # A name collision (a worktrees/NNN-slug already exists) is never silently
-  # overwritten — the operator resolves it and re-runs.
+  # A name collision is skipped, counted, and makes the run exit 1.
   if [ -e "$MAIN_TOPLEVEL/$new_dir" ] || git -C "$MAIN_TOPLEVEL" show-ref --verify --quiet "refs/heads/$new_branch" 2>/dev/null; then
+    collisions=$((collisions + 1))
     echo "SKIP (collision; resolve and re-run): $branch -> $new_branch" >&2
     continue
   fi
+  total=$((total + 1))
   echo "PLAN: git branch -m $branch $new_branch"
   echo "PLAN: git worktree move $dir $MAIN_TOPLEVEL/$new_dir"
   if [ "$DRY_RUN" = "0" ]; then
@@ -127,4 +128,9 @@ if [ "$DRY_RUN" = "1" ]; then
   echo "migrate-legacy-branch-names: $total legacy pair(s) planned for worktrees/001..$(printf '%03d' "$total") (dry-run; re-run without --dry-run to execute)" >&2
 else
   echo "migrate-legacy-branch-names: $total legacy pair(s) renamed to worktrees/001..$(printf '%03d' "$total")" >&2
+fi
+
+if [ "$collisions" -gt 0 ]; then
+  echo "migrate-legacy-branch-names: $collisions collision(s) skipped; resolve them and re-run" >&2
+  exit 1
 fi

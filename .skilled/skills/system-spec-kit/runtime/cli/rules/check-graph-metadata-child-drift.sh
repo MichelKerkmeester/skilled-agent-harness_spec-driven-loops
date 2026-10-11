@@ -138,11 +138,12 @@ process.exit(9); // drift: children_ids is missing derived on-disk children
 NODE_DRIFT
 ) || drift_rc=$?
 
-    # drift_rc: 0 no drift, 9 drift found, 20 scanner unavailable, 21 unreadable json.
-    # A run that could not determine drift (20/21) must not pass silently under
-    # enforcement: a real gap could hide behind an unavailable dependency, so fail
-    # closed there. Advisory mode stays best-effort and reports clean.
-    if [[ "$drift_rc" -eq 20 || "$drift_rc" -eq 21 ]]; then
+    # drift_rc: 0 no drift, 9 drift found. Any other value means the run could
+    # not determine drift: 20 scanner unavailable, 21 unreadable json, and any
+    # other rc (for example a scanner that throws while running). An undetermined
+    # run must not pass silently under enforcement: a real gap could hide behind
+    # it, so fail closed there. Advisory mode stays best-effort and reports clean.
+    if [[ "$drift_rc" -ne 0 && "$drift_rc" -ne 9 ]]; then
         if [[ "${SPECKIT_CHILD_DRIFT_ENFORCE:-true}" == "true" ]]; then
             RULE_STATUS="warn"
             RULE_MESSAGE="child-drift check could not run (dependency unavailable, rc=$drift_rc); children_ids currency is unverified"

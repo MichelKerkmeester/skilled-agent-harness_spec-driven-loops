@@ -78,7 +78,8 @@ function parseArgs(argv: string[]): Options {
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
     if (arg === '--roots') {
-      const value = argv[index + 1] ?? '';
+      const value: string | undefined = argv[index + 1];
+      if (value === undefined || value.startsWith('--')) throw new Error(`${arg} requires a value`);
       index += 1;
       options.roots.push(...value.split(',').map((entry) => entry.trim()).filter(Boolean));
       continue;
@@ -88,7 +89,9 @@ function parseArgs(argv: string[]): Options {
       continue;
     }
     if (arg === '--baseline') {
-      options.baseline = argv[index + 1] ?? null;
+      const value: string | undefined = argv[index + 1];
+      if (value === undefined || value.startsWith('--')) throw new Error(`${arg} requires a value`);
+      options.baseline = value;
       index += 1;
       continue;
     }
@@ -97,7 +100,8 @@ function parseArgs(argv: string[]): Options {
       continue;
     }
     if (arg === '--format') {
-      const value = argv[index + 1] as Format | undefined;
+      const value: string | undefined = argv[index + 1];
+      if (value === undefined || value.startsWith('--')) throw new Error(`${arg} requires a value`);
       index += 1;
       if (value === 'json' || value === 'text') options.format = value;
       continue;

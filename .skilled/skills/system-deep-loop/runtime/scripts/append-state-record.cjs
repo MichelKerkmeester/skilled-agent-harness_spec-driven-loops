@@ -74,8 +74,17 @@ function iterationRecordRefusal(record) {
 }
 
 function main() {
-  const target = process.argv[2];
+  const args = process.argv.slice(2);
+  const target = args[0];
   if (!target) {
+    process.stderr.write('usage: append-state-record.cjs <state-log-path> (record on stdin)\n');
+    process.exit(2);
+  }
+  // A flag-shaped or surplus token must never become the append target: a typo
+  // would otherwise append the record to an unintended path and lose it.
+  if (target.startsWith('-') || args.length > 1) {
+    const token = target.startsWith('-') ? target : args[1];
+    process.stderr.write(`append-state-record.cjs: unknown option: ${token}\n`);
     process.stderr.write('usage: append-state-record.cjs <state-log-path> (record on stdin)\n');
     process.exit(2);
   }

@@ -31,9 +31,9 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Create the builder worktree from the scaffold commit
+- [x] T002 Reproduce U1 to U4 in throwaway locations under the session scratchpad
+- [x] T003 [P] Search every caller of each flagged script in hooks, workflows and scripts
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -41,10 +41,10 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Write the typo-flag tests per skill and record their failing runs
+- [x] T005 Add the rejecting branch to the 54 class 1 parsers
+- [x] T006 Make the ten class 2 paths exit non-zero
+- [x] T007 Fix U1 to U4 and add the create.sh help line
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -52,9 +52,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T008 Rerun the typo-flag tests and every touched skill suite
+- [x] T009 Run the compiled route, canary, Hermes and trigger index gates
+- [x] T010 Bump each touched skill once with a changelog entry
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -62,9 +62,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

@@ -281,6 +281,27 @@ function readNonNegativeEnvNumber(name, fallback) {
 }
 
 /**
+ * Reject a parsed flag the calling script never reads, so a misspelled option
+ * fails as an input error instead of silently changing what the run does.
+ * Each script passes its own list of known keys, in the camelCase form its
+ * parseArgs produces.
+ *
+ * @param {Object} args - Parsed flags keyed by camelCase name.
+ * @param {string[]} knownKeys - The keys this script reads.
+ * @param {Function} makeInputError - Factory for an INPUT_VALIDATION error.
+ * @throws {Error} With code INPUT_VALIDATION naming the first unknown flag.
+ */
+function assertKnownFlags(args, knownKeys, makeInputError) {
+  const known = new Set(knownKeys);
+  for (const key of Object.keys(args)) {
+    if (!known.has(key)) {
+      const flag = `--${key.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)}`;
+      throw makeInputError(`Unknown option: ${flag}`);
+    }
+  }
+}
+
+/**
  * Test whether a process id is currently alive. `process.kill(pid, 0)` sends
  * no signal but performs the existence/permission check: ESRCH means the pid
  * is gone (stale), EPERM means it exists but is owned by another user (alive),
@@ -551,6 +572,7 @@ function acquireWriterLock(lockPath) {
 
 module.exports = {
   acquireWriterLock,
+  assertKnownFlags,
   classifyExitCode,
   classifyLineageFailure,
   detectPendingQuestion,

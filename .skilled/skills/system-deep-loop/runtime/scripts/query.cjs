@@ -15,6 +15,7 @@ const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 
 const {
+  assertKnownFlags,
   classifyExitCode,
   installSignalHandlers,
   maybeThrowTestFault,
@@ -26,6 +27,20 @@ const {
 // ─────────────────────────────────────────────────────────────────────────────
 
 const TSX_LOADER = require.resolve('tsx');
+
+// Every option this entrypoint reads. parseArgs accepts any --key, so without
+// this list a misspelled flag would be silently ignored and change what runs.
+const QUERY_FLAGS = [
+  'specFolder',
+  'loopType',
+  'sessionId',
+  'queryType',
+  'query',
+  'readOnly',
+  'limit',
+  'nodeId',
+  'maxDepth',
+];
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. TSX BOOTSTRAP
@@ -95,6 +110,7 @@ function jsonOut(payload) {
 
 async function main() {
   const args = parseArgs();
+  assertKnownFlags(args, QUERY_FLAGS, inputError);
   const specFolder = validateNamespaceValue(ensureString(args, 'specFolder'), 'specFolder', inputError);
   const loopType = ensureString(args, 'loopType');
   const sessionId = validateNamespaceValue(ensureString(args, 'sessionId'), 'sessionId', inputError);

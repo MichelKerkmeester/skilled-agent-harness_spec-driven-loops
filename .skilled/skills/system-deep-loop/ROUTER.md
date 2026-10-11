@@ -8,7 +8,7 @@ trigger_phrases:
   - "deep-loop resource map"
 importance_tier: important
 contextType: general
-version: 1.6.2.0
+version: 1.6.3.0
 router_state: active
 skill_pointer: SKILL.md
 ---

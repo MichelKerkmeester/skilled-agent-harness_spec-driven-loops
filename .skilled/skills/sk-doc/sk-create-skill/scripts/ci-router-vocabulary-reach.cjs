@@ -165,6 +165,21 @@ async function reaches(phrase, hub) {
 
 async function main() {
   const args = process.argv.slice(2);
+  // A misspelled flag must fail loudly rather than fall back to a default run.
+  // Only a token in option position is checked: the token after a value-taking
+  // option is its value even when it begins with a dash.
+  const valueOptions = new Set(['--hub', '--limit', '--concurrency']);
+  const knownOptions = new Set(['--json', ...valueOptions]);
+  for (let i = 0; i < args.length; i += 1) {
+    if (valueOptions.has(args[i])) {
+      i += 1;
+      continue;
+    }
+    if (!knownOptions.has(args[i]) && args[i].startsWith('-')) {
+      process.stderr.write(`ci-router-vocabulary-reach.cjs: unknown option: ${args[i]}\n`);
+      process.exit(2);
+    }
+  }
   const only = args.includes('--hub') ? args[args.indexOf('--hub') + 1] : null;
   const limit = args.includes('--limit') ? Number(args[args.indexOf('--limit') + 1]) : Infinity;
   const asJson = args.includes('--json');

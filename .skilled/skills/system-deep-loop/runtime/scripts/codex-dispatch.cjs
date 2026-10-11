@@ -172,6 +172,16 @@ if (require.main === module) {
     if (m && argv[i + 1] !== undefined && !argv[i + 1].startsWith('--')) { opts[m[1]] = argv[i + 1]; i += 1; }
     else if (m) opts[m[1]] = true;
   }
+  // A misspelled flag would otherwise be absorbed into opts and silently ignored
+  // by the dispatch below, which would run with defaults the caller never chose.
+  const takesValue = ['--prompt', '--cwd', '--model', '--effort', '--tier', '--sandbox', '--timeout'];
+  for (let i = 0; i < argv.length; i += 1) {
+    const token = argv[i];
+    if (takesValue.includes(token)) { i += 1; continue; }
+    process.stderr.write(`codex-dispatch.cjs: unknown option: ${token}\n`);
+    process.stderr.write('usage: codex-dispatch.cjs [--prompt <text>] [--cwd <dir>] [--model <id>] [--effort <level>] [--tier <tier>] [--sandbox <mode>] [--timeout <ms>]\n');
+    process.exit(2);
+  }
   const prompt = opts.prompt || fs.readFileSync(0, 'utf8');
   const out = dispatchCodex({
     prompt,

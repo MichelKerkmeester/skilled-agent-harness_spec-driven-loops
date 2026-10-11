@@ -244,13 +244,24 @@ export function renderInlineGates(template: string, level: RenderLevel): string 
 // 5. CLI
 // ───────────────────────────────────────────────────────────────────
 
-function parseCliArgs(args: string[]): { level: RenderLevel; outDir?: string; filePaths: string[] } | null {
+function parseCliArgs(args: string[]): { level: RenderLevel; outDir?: string; filePaths: string[] } | { error: string } | null {
   const levelIndex = args.indexOf('--level');
+  const outDirIndex = args.indexOf('--out-dir');
+  const valueIndexes = new Set<number>();
+  if (levelIndex >= 0) valueIndexes.add(levelIndex + 1);
+  if (outDirIndex >= 0) valueIndexes.add(outDirIndex + 1);
+  // A token that follows --level or --out-dir is that option's value even when it
+  // starts with --, so only tokens in option position can be unknown options.
+  const unknownOption = args.find(
+    (arg, index) => arg.startsWith('--') && arg !== '--level' && arg !== '--out-dir' && !valueIndexes.has(index),
+  );
+  if (unknownOption) {
+    return { error: unknownOption };
+  }
   if (levelIndex === -1 || !args[levelIndex + 1]) {
     return null;
   }
   const level = args[levelIndex + 1] as RenderLevel;
-  const outDirIndex = args.indexOf('--out-dir');
   const outDir = outDirIndex >= 0 ? args[outDirIndex + 1] : undefined;
   if (outDirIndex >= 0 && !outDir) {
     return null;
@@ -273,7 +284,10 @@ async function readStdin(): Promise<string> {
 
 if (isMainModule(import.meta.url)) {
   const parsed = parseCliArgs(process.argv.slice(2));
-  if (!parsed) {
+  if (!parsed || 'error' in parsed) {
+    if (parsed && 'error' in parsed) {
+      console.error(`inline-gate-renderer: unknown option: ${parsed.error}`);
+    }
     console.error('Usage: inline-gate-renderer.ts --level <1|2|3|3+|phase|review|research> [--out-dir DIR file...] [template-file]');
     process.exit(2);
   }

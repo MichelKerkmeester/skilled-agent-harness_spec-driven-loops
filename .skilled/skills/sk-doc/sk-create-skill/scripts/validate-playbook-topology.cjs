@@ -431,6 +431,10 @@ function parseArgs(argv) {
     else if (a === '--skill-dir') { args.skillDir = argv[i + 1]; i += 1; }
     else if (a === '--strict') { args.strict = true; }
     else if (a === '--format') { args.format = argv[i + 1]; i += 1; }
+    else if (a.startsWith('-')) {
+      process.stderr.write(`validate-playbook-topology.cjs: unknown option: ${a}\n`);
+      process.exit(2);
+    }
   }
   return args;
 }

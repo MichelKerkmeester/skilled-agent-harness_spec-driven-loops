@@ -118,6 +118,14 @@ function inspect(hubId) {
 
 function main() {
   const args = process.argv.slice(2);
+  // Unknown arguments must fail loudly; this script reads no positionals, so any
+  // token that is not a known flag is a caller mistake.
+  for (const token of args) {
+    if (token === '--warn-only' || token === '--json') continue;
+    process.stderr.write(`compiled-route-guard.cjs: unknown option: ${token}\n`);
+    process.stderr.write('usage: compiled-route-guard.cjs [--warn-only] [--json]\n');
+    process.exit(2);
+  }
   const warnOnly = args.includes('--warn-only');
   const asJson = args.includes('--json');
 

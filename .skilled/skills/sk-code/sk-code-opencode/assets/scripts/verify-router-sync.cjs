@@ -317,10 +317,21 @@ const LEGS = [
 ];
 
 function parseChecks(argv) {
+  const known = new Set(LEGS.map((l) => l[0]));
+  for (let index = 0; index < argv.length; index += 1) {
+    if (argv[index] === '--checks') {
+      index += 1; // The next token is the id list, validated below.
+      continue;
+    }
+    if (argv[index].startsWith('-')) {
+      console.error(`verify-router-sync.cjs: unknown option: ${argv[index]}`);
+      console.error(`usage: verify-router-sync [--checks ${[...known].join(',')}]`);
+      process.exit(2);
+    }
+  }
   const idx = argv.indexOf('--checks');
   if (idx === -1) return LEGS.map((l) => l[0]);
   const ids = (argv[idx + 1] || '').split(',').filter(Boolean);
-  const known = new Set(LEGS.map((l) => l[0]));
   const unknown = ids.filter((id) => !known.has(id));
   if (ids.length === 0 || unknown.length) {
     console.error(`usage: verify-router-sync [--checks ${[...known].join(',')}] (unknown: ${unknown.join(',') || 'none given'})`);

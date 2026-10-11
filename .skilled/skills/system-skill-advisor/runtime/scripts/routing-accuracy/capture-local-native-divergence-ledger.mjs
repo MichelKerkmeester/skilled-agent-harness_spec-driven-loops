@@ -25,8 +25,23 @@ import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { dirname, join, resolve } from 'node:path';
+import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+// This script must run as a lone copy (its parity test copies only this file),
+// so it keeps its own option check instead of importing the shared helper.
+function rejectUnknownOptions() {
+  const scriptName = basename(fileURLToPath(import.meta.url));
+  const known = new Set(['--write', '--summary']);
+  for (const token of process.argv.slice(2)) {
+    if (known.has(token)) continue;
+    process.stderr.write(`${scriptName}: unknown option: ${token}\n`);
+    process.stderr.write(`usage: ${scriptName} [--write] [--summary]\n`);
+    process.exit(2);
+  }
+}
+
+rejectUnknownOptions();
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS

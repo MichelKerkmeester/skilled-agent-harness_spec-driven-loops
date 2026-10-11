@@ -303,6 +303,10 @@ function parseArgs(argv) {
     else if (a === '--from-manifest') args.fromManifest = argv[++i];
     else if (a === '--classes') args.classes = argv[++i];
     else if (a === '--update') args.update = true;
+    else if (a.startsWith('-') && a !== '--help' && a !== '-h') {
+      console.error(`frontmatter-version.mjs: unknown option: ${a}`);
+      process.exit(64);
+    }
   }
   return args;
 }

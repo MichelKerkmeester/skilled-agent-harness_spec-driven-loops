@@ -28,6 +28,7 @@ import { createHash } from 'node:crypto';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { rejectUnknownOptions } from './reject-unknown-options.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const HARDER_TS = resolve(HERE, '../../tests/scorer/fixtures/harder-intent-prompt-corpus.ts');
@@ -134,5 +135,6 @@ async function main() {
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
+  rejectUnknownOptions(import.meta.url, ['--write']);
   await main();
 }

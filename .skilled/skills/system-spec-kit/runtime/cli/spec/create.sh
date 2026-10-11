@@ -298,6 +298,7 @@ while [[ $i -le $# ]]; do
             echo "  --short-name <name> Provide a custom short name (2-4 words) for the branch"
             echo "  --number N          Specify branch number manually (overrides auto-detection)"
             echo "  --skip-branch       Create spec folder only, don't create git branch"
+            echo "  --path <dir>        Create the spec folder at this exact repo-relative path (implies --skip-branch)"
             echo "  --help, -h          Show this help message"
             echo ""
             echo "Documentation Levels (CORE + ADDENDUM architecture v2.0):"

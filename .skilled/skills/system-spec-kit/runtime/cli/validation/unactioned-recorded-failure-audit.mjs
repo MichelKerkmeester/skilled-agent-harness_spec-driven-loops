@@ -53,7 +53,13 @@ export function findUnactionedFailures(text, { window = 3 } = {}) {
 }
 
 function main(argv) {
-  const files = argv.filter((a) => !a.startsWith('-'));
+  for (const a of argv) {
+    if (a.startsWith('-')) {
+      console.error(`unactioned-recorded-failure-audit: unknown option: ${a}`);
+      process.exit(2);
+    }
+  }
+  const files = argv;
   if (files.length === 0) {
     console.error('usage: unactioned-recorded-failure-audit.mjs <file> [file...]');
     process.exit(2);
@@ -63,8 +69,9 @@ function main(argv) {
     let text = '';
     try {
       text = readFileSync(f, 'utf8');
-    } catch {
-      continue;
+    } catch (error) {
+      console.error(`unactioned-recorded-failure-audit: cannot read ${f}: ${error.message}`);
+      process.exit(2);
     }
     for (const h of findUnactionedFailures(text)) {
       console.log(`${f}:${h.line}: unactioned recorded failure -> ${h.snippet}`);

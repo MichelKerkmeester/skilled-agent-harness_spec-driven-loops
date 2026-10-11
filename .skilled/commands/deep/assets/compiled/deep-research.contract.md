@@ -17,7 +17,7 @@
     },
     {
       "path": ".skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md",
-      "sha256": "c7da6611cf513d7a8f48d4b88a1f7f520f5916be0996a936b6d4233c3f99e3c6",
+      "sha256": "4baced67719594331b77ff1c0b9271983bf438611fa96b7d6ed6d9ae8e4d78c2",
       "section": "full"
     },
     {
@@ -32,12 +32,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/mode-registry.json",
-      "sha256": "1e7d0e6badf2076888c3211bcc4e214e8963b8dacd1970292ceac514fda02ce9",
+      "sha256": "0642f92d490fc596793689e8b296df86aff37cefa94afc0b2937bd803a99bdb2",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "36a1c656f27050b48f796f51d0621898f1d7dc5d6131d6b49cebb82ea9430396",
+      "sha256": "7c36a276366b6c457ea539efe177396d4c7c49bf6466b5f3ca8245a3194c8b6f",
       "section": "full"
     },
     {
@@ -47,22 +47,22 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-      "sha256": "4e4cb01dc78a6fb96ca116e3c975a2f25d24a74578f035ae938ae11b77399c9d",
+      "sha256": "554b9300b5bfcdc1b9f0ce665319be445ff51d0de3e2c9066e5629c0eea662dd",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md",
-      "sha256": "3a48bee059417b3ac5f4b3e06295cfac4b8f5eca6b0a9fd6912c09d93cf3ca6b",
+      "sha256": "6ae81672e3d52a1a6939d95ea27653b81043fd3d07cb559a8ac881d90aba7e6e",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
-      "sha256": "65039d1b5133043feeca3658134aada16c3e039367ac9a5eedd1bd07595bffb6",
+      "sha256": "d96f7b4ea1b9bde5a19ef9996cf241faf8fa9de54cbebdcf3dbfd49bf2052698",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
-      "sha256": "04f3bbd1219f66d1d9bc34e72f559fd7a8fcfa98d374eaa089f6f4d2ef595c49",
+      "sha256": "b9ca2a892783645b2b24a1bbbd2b0f989a1189960fe55e26fab47c2ee8e290e2",
       "section": "full"
     },
     {
@@ -72,7 +72,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md",
-      "sha256": "7eb7c1f01c702e5336da590fe3bb6af174c180f71ce407305eb6cb3df1fb7475",
+      "sha256": "623abf2aca3cded7794558b664414170d9e14fc8426d23cb57bb0c7b17c2772d",
       "section": "full"
     },
     {

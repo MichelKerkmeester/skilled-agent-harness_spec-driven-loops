@@ -1,5 +1,5 @@
 {
-  "manifestHash": "46de103857be40e5aa4349fc8ce7447e72d72fb494d3db1cb73208a838b8ddf5",
+  "manifestHash": "94f2300dad1afc313aceda2755c7715ca120e5a7374818faac67f2a46628d79f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9397,6 +9397,9 @@
     ],
     "advisor unification review pt 01": [
       "advisor unification review pt-01"
+    ],
+    "advisor unknown option": [
+      "advisor unknown option"
     ],
     "advisor utilities": [
       "advisor utilities"
@@ -32354,6 +32357,9 @@
     ],
     "deep loop typecheck errors": [
       "deep loop typecheck errors"
+    ],
+    "deep loop unknown option": [
+      "deep-loop unknown option"
     ],
     "deep loop upcaster implementation tasks": [
       "deep-loop upcaster implementation tasks"
@@ -59322,6 +59328,9 @@
     "mcp tooling 1 8 1 0": [
       "mcp-tooling 1.8.1.0"
     ],
+    "mcp tooling 1 8 2 0": [
+      "mcp-tooling 1.8.2.0"
+    ],
     "mcp tooling benchmark": [
       "mcp-tooling benchmark"
     ],
@@ -59414,6 +59423,9 @@
     ],
     "mcp tooling v1 8 1 0": [
       "mcp-tooling v1.8.1.0"
+    ],
+    "mcp tooling v1 8 2 0": [
+      "mcp-tooling v1.8.2.0"
     ],
     "mcp tools": [
       "mcp tools"
@@ -83238,6 +83250,9 @@
     "root governance alignment": [
       "root governance alignment"
     ],
+    "root metadata check command": [
+      "root metadata check command"
+    ],
     "root name hardcode plan": [
       "root name hardcode plan"
     ],
@@ -89267,6 +89282,9 @@
     "sk code 2 2 11 0": [
       "sk-code 2.2.11.0"
     ],
+    "sk code 2 2 12 0": [
+      "sk-code 2.2.12.0"
+    ],
     "sk code 2 2 2 0": [
       "sk-code 2.2.2.0"
     ],
@@ -90267,6 +90285,9 @@
     "sk code two axis tasks": [
       "sk-code two-axis tasks"
     ],
+    "sk code unknown option": [
+      "sk-code unknown option"
+    ],
     "sk code v1 0 0 0": [
       "sk-code v1.0.0.0"
     ],
@@ -90311,6 +90332,9 @@
     ],
     "sk code v2 2 11 0": [
       "sk-code v2.2.11.0"
+    ],
+    "sk code v2 2 12 0": [
+      "sk-code v2.2.12.0"
     ],
     "sk code v2 2 2 0": [
       "sk-code v2.2.2.0"
@@ -91059,6 +91083,9 @@
     "sk design 2 0 2 0": [
       "sk-design 2.0.2.0"
     ],
+    "sk design 2 0 3 0": [
+      "sk-design 2.0.3.0"
+    ],
     "sk design advisor identity": [
       "sk-design advisor identity"
     ],
@@ -91437,6 +91464,9 @@
     "sk design transform verbs": [
       "sk-design transform verbs"
     ],
+    "sk design unknown option": [
+      "sk-design unknown option"
+    ],
     "sk design v1 0 0 0": [
       "sk-design v1.0.0.0"
     ],
@@ -91448,6 +91478,9 @@
     ],
     "sk design v2 0 2 0": [
       "sk-design v2.0.2.0"
+    ],
+    "sk design v2 0 3 0": [
+      "sk-design v2.0.3.0"
     ],
     "sk doc 1 5 0 0": [
       "sk-doc 1.5.0.0"
@@ -91511,6 +91544,9 @@
     ],
     "sk doc 2 3 5 0": [
       "sk-doc 2.3.5.0"
+    ],
+    "sk doc 2 3 6 0": [
+      "sk-doc 2.3.6.0"
     ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
@@ -91746,6 +91782,9 @@
     "sk doc tooling followups tasks": [
       "sk doc tooling followups tasks"
     ],
+    "sk doc unknown option": [
+      "sk-doc unknown option"
+    ],
     "sk doc v1 5 0 0": [
       "sk-doc v1.5.0.0"
     ],
@@ -91808,6 +91847,9 @@
     ],
     "sk doc v2 3 5 0": [
       "sk-doc v2.3.5.0"
+    ],
+    "sk doc v2 3 6 0": [
+      "sk-doc v2.3.6.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"
@@ -91917,6 +91959,9 @@
     "sk git 1 8 4 0": [
       "sk-git 1.8.4.0"
     ],
+    "sk git 1 8 5 0": [
+      "sk-git 1.8.5.0"
+    ],
     "sk git benchmark": [
       "sk-git benchmark"
     ],
@@ -91988,6 +92033,9 @@
     ],
     "sk git required a commit body only": [
       "sk git required a commit body only"
+    ],
+    "sk git script exit codes": [
+      "sk-git script exit codes"
     ],
     "sk git scripts folder": [
       "sk-git scripts folder"
@@ -92081,6 +92129,9 @@
     ],
     "sk git v1 8 4 0": [
       "sk-git v1.8.4.0"
+    ],
+    "sk git v1 8 5 0": [
+      "sk-git v1.8.5.0"
     ],
     "sk git workflow support": [
       "sk-git workflow support"
@@ -96876,6 +96927,9 @@
     "spec kit troubleshooting guide": [
       "spec kit troubleshooting guide"
     ],
+    "spec kit unknown option": [
+      "spec-kit unknown option"
+    ],
     "spec kit utilities": [
       "spec kit utilities"
     ],
@@ -100414,6 +100468,9 @@
     "system deep loop 1 6 2 0": [
       "system-deep-loop 1.6.2.0"
     ],
+    "system deep loop 1 6 3 0": [
+      "system-deep-loop 1.6.3.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -100546,6 +100603,9 @@
     "system deep loop v1 6 2 0": [
       "system-deep-loop v1.6.2.0"
     ],
+    "system deep loop v1 6 3 0": [
+      "system-deep-loop v1.6.3.0"
+    ],
     "system deep research bugs": [
       "system deep research bugs"
     ],
@@ -100632,6 +100692,9 @@
     ],
     "system skill advisor 0 15 5 0": [
       "system-skill-advisor 0.15.5.0"
+    ],
+    "system skill advisor 0 15 6 0": [
+      "system-skill-advisor 0.15.6.0"
     ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
@@ -100794,6 +100857,9 @@
     ],
     "system skill advisor v0 15 5 0": [
       "system-skill-advisor v0.15.5.0"
+    ],
+    "system skill advisor v0 15 6 0": [
+      "system-skill-advisor v0.15.6.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -101064,6 +101130,9 @@
     ],
     "system spec kit 2 7 12 0": [
       "system-spec-kit 2.7.12.0"
+    ],
+    "system spec kit 2 7 13 0": [
+      "system-spec-kit 2.7.13.0"
     ],
     "system spec kit 2 7 2 0": [
       "system-spec-kit 2.7.2.0"
@@ -101475,6 +101544,9 @@
     ],
     "system spec kit v2 7 12 0": [
       "system-spec-kit v2.7.12.0"
+    ],
+    "system spec kit v2 7 13 0": [
+      "system-spec-kit v2.7.13.0"
     ],
     "system spec kit v2 7 2 0": [
       "system-spec-kit v2.7.2.0"

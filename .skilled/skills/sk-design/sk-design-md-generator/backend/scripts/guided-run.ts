@@ -96,12 +96,18 @@ export function parseGuidedRunArgs(argv: string[]): GuidedRunOptions {
     const arg = args[index];
     if (VALUE_FLAGS.has(arg)) {
       const value = args[index + 1];
-      if (value && !value.startsWith('--')) index += 1;
+      // A value flag's token is that flag's value even when it is flag-shaped,
+      // so it must not be judged as an option name of its own.
+      if (value) index += 1;
       continue;
     }
-    if (BOOLEAN_FLAGS.has(arg) || arg.startsWith('--')) continue;
-    url = arg;
-    break;
+    if (BOOLEAN_FLAGS.has(arg)) continue;
+    if (arg.startsWith('--')) {
+      throw new Error(`Unknown option: ${arg}\n${usage()}`);
+    }
+    // Keep scanning past the URL so a misspelled option after it is rejected
+    // instead of silently changing the run's mode.
+    if (!url) url = arg;
   }
   const output = readValue('--output') ?? '';
   if (!url || !output) {

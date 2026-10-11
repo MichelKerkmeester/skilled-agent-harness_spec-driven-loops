@@ -504,6 +504,14 @@ function loadContractDocument() {
 }
 
 function run(argv = process.argv.slice(2)) {
+  // Only --check is known; any other token must fail here, before the
+  // no-check fallthrough can choose the write path and rewrite the snapshot.
+  const unknown = argv.find((arg) => arg !== '--check');
+  if (unknown !== undefined) {
+    process.stderr.write(`render-contract-snapshot.cjs: unknown option: ${unknown}\n`);
+    process.stderr.write('usage: render-contract-snapshot.cjs [--check]\n');
+    return 2;
+  }
   const checkOnly = argv.includes('--check');
   const doc = loadContractDocument();
   const snapshotArtifact = resolveSnapshotArtifact(doc);

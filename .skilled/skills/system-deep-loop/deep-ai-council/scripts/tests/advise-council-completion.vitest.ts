@@ -129,7 +129,7 @@ describe('deep-ai-council advise-council-completion', () => {
 
   it('main returns usage error for unknown argument', () => {
     const exitCode = main(['/path/to/packet', '--unknown-flag']);
-    expect(exitCode).toBe(0);
+    expect(exitCode).toBe(2);
   });
 
   it('main runs advisory check with valid packet folder', async () => {

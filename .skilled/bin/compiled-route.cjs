@@ -25,6 +25,19 @@ const RESOLVER = resolverPathFor(RUNTIME_ROOT);
 
 function main() {
   const args = process.argv.slice(2);
+  // A misspelled option must fail loudly: silently ignoring it would route with a
+  // hub or prompt the caller never supplied.
+  const takesValue = ['--hub', '--prompt', '--surface-hint'];
+  for (let i = 0; i < args.length; i += 1) {
+    const token = args[i];
+    if (takesValue.includes(token)) { i += 1; continue; }
+    if (token === '--prompt-stdin') continue;
+    if (token.startsWith('-')) {
+      process.stderr.write(`compiled-route.cjs: unknown option: ${token}\n`);
+      process.stderr.write('usage: compiled-route.cjs --hub <hubId> (--prompt <text> | --prompt-stdin) [--surface-hint <SURFACE>]\n');
+      process.exit(2);
+    }
+  }
   const hub = args[args.indexOf('--hub') + 1];
   const promptIdx = args.indexOf('--prompt');
   // A caller routing a user's prompt passes --prompt-stdin and sends the prompt on

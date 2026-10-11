@@ -261,6 +261,17 @@ function main(argv: string[]): void {
     return;
   }
 
+  // A misplaced or misspelled flag must fail loudly: --pretty is the only option
+  // any subcommand reads, so silently dropping another token would let a caller
+  // act on output produced without the option they asked for.
+  const unknownOption = argv.slice(1).find((token) => token !== '--pretty');
+  if (unknownOption !== undefined) {
+    console.error(`process-sweep: unknown option: ${unknownOption}`);
+    showHelp();
+    process.exitCode = 2;
+    return;
+  }
+
   console.log(JSON.stringify(buildCliPayload(command), null, pretty ? 2 : 0));
 }
 

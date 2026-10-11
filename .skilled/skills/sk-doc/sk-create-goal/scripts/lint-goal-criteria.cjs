@@ -572,11 +572,11 @@ function parseLintArguments(argv) {
 
 /**
  * Run one lint pass and print it, as JSON with --json or as text lines
- * otherwise, then every read error to stderr. The lint is advisory, so this always
- * returns 0: a caller acts on the report, not the exit code.
+ * otherwise, then every read error to stderr. The lint is advisory, so a
+ * finding never changes the exit code; a usage error exits 2.
  *
  * @param {string[]} argv - Arguments after the script name.
- * @returns {number} Always 0.
+ * @returns {number} 2 when the arguments are unusable, otherwise 0.
  */
 function main(argv) {
   let options;
@@ -585,7 +585,7 @@ function main(argv) {
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     console.error(TAG + ' ERROR ' + message);
-    return 0;
+    return 2;
   }
 
   const root = options.root || getDefaultWorkspaceRoot();
@@ -625,12 +625,14 @@ module.exports = {
   main
 };
 
-// The lint is advisory: no input, finding or failure changes the exit code.
+// The lint is advisory: no input or finding changes the exit code. A usage
+// error does, so the code comes from main instead of being forced to 0.
 if (require.main === module) {
+  let exitCode = 0;
   try {
-    main(process.argv.slice(2));
+    exitCode = main(process.argv.slice(2));
   } catch (error) {
     console.error(TAG + ' ERROR ' + (error instanceof Error ? error.message : String(error)));
   }
-  process.exitCode = 0;
+  process.exitCode = exitCode;
 }

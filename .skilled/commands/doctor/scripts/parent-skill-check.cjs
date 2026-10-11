@@ -1928,7 +1928,19 @@ function targetError(target) {
 }
 
 function main() {
-  const explicitTarget = process.argv[2];
+  // One positional hub path is the whole interface. A stray extra token or a
+  // flag-shaped argument is a typo, and absorbing it would audit the default
+  // hub while the caller believes they named another.
+  const argv = process.argv.slice(2);
+  const explicitTarget = argv[0];
+  const optionToken = explicitTarget && explicitTarget.startsWith('-')
+    ? explicitTarget
+    : (argv.length > 1 ? argv[1] : null);
+  if (optionToken) {
+    console.error(`parent-skill-check.cjs: unknown option: ${optionToken}`);
+    console.error('usage: parent-skill-check.cjs [<skill-dir>]');
+    return EXIT_CHECKER_ERROR;
+  }
   const argTarget = explicitTarget || DEFAULT_TARGET;
   const target = path.isAbsolute(argTarget) ? argTarget : path.resolve(REPO_ROOT, argTarget);
 

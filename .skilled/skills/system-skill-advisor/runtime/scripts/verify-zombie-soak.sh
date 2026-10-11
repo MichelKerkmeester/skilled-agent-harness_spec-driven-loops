@@ -8,6 +8,7 @@
 #
 # Exit 0 = clean (≤ 1 launcher per server, no excess).
 # Exit 1 = duplicates found (zombie state — investigate).
+# Exit 2 = unknown option.
 #
 # Usage:
 #   bash .skilled/skills/system-skill-advisor/runtime/scripts/verify-zombie-soak.sh
@@ -20,8 +21,19 @@ set -euo pipefail
 
 VERBOSE=0
 case "${1:-}" in
+  "") ;;
   --verbose|-v) VERBOSE=1 ;;
+  *)
+    printf 'verify-zombie-soak.sh: unknown option: %s\n' "$1" >&2
+    printf 'usage: verify-zombie-soak.sh [--verbose|-v]\n' >&2
+    exit 2
+    ;;
 esac
+if [ "$#" -gt 1 ]; then
+  printf 'verify-zombie-soak.sh: unknown option: %s\n' "$2" >&2
+  printf 'usage: verify-zombie-soak.sh [--verbose|-v]\n' >&2
+  exit 2
+fi
 
 ts() { date -u +"%Y-%m-%dT%H:%M:%SZ"; }
 

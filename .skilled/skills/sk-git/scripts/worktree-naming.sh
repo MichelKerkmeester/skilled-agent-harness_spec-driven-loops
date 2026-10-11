@@ -395,6 +395,7 @@ _wn_default_base() {
 # create_named_worktree <slug> [base] — allocate a worktrees/ number, then
 # create branch worktrees/NNN-slug and directory .worktrees/NNN-slug together.
 # Emits "<branch> <dir>" on success.
+# Returns 3 when the worktree was created but provisioning failed.
 create_named_worktree() {
   local slug="" base="" provision=1 arg
   for arg in "$@"; do
@@ -403,7 +404,7 @@ create_named_worktree() {
       *) if [ -z "$slug" ]; then slug="$arg"; elif [ -z "$base" ]; then base="$arg"; fi ;;
     esac
   done
-  local top wtbase nnn branch dir
+  local top wtbase nnn branch dir provision_rc=0
   is_valid_slug "$slug" || { echo "invalid slug: $slug" >&2; return 1; }
   top="$(_wn_toplevel)" || { echo "not in a git repo" >&2; return 1; }
   wtbase="$(_wn_base_dir)" || { echo "cannot resolve worktree base" >&2; return 1; }
@@ -415,9 +416,13 @@ create_named_worktree() {
   git -C "$top" worktree add -b "$branch" "$dir" "$base" >&2 || return 1
   # A worktree nobody can build is not a worktree anybody wanted.
   if [ "$provision" = "1" ]; then
-    provision_worktree "$dir" || echo "worktree created but provisioning failed: $dir" >&2
+    if ! provision_worktree "$dir"; then
+      echo "worktree created but provisioning failed: $dir; run: worktree-naming.sh provision $dir" >&2
+      provision_rc=3
+    fi
   fi
   echo "$branch $dir"
+  return "$provision_rc"
 }
 
 # create_branch <slug> [base] — allocate a branches/ number and create branch
@@ -571,7 +576,7 @@ worktree-naming.sh <command> [args]
   validate-pair   <branch> <dir>
   validate-backup <branch>          Exit 0 when the branch is a backup/* safety ref.
   validate-remote-allowlist <branch>  Check the remote-push-permission allowlist.
-  create          <slug> [base] [--no-provision]
+  create          <slug> [base] [--no-provision]  Returns 3 when the worktree was created but provisioning failed.
                                     Create a worktrees/NNN-slug worktree and install its deps.
   provision       [dir]             Install the dependency trees a worktree needs and build the outputs the list names (idempotent).
   create-branch   <slug> [base]     Create a branches/NNN-slug branch (no worktree).
