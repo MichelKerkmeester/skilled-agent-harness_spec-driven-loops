@@ -13,7 +13,6 @@ expected_resources:
   - references/typescript/quality-standards/tsconfig-and-modules.md
   - references/typescript/quick-reference/template-naming-and-types.md
   - references/typescript/quick-reference/imports-errors-and-tsconfig.md
-version: 1.0.0.0
 ---
 
 # OC-001: TypeScript standards routing

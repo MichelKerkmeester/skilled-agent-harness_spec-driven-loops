@@ -8,7 +8,6 @@ trigger_phrases:
   - "startup wins measurement"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.4
 ---
 
 # Performance Loading Checklist - Deferred Loading Verification

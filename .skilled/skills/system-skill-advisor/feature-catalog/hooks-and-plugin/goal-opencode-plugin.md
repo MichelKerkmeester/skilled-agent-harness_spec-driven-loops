@@ -7,7 +7,6 @@ trigger_phrases:
   - "opencode_goal"
   - "active goal injection"
   - "OPENCODE_GOAL_AUTONOMY"
-version: 0.8.1.0
 ---
 
 # Goal OpenCode Plugin

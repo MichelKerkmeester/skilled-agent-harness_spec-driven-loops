@@ -9,7 +9,6 @@ trigger_phrases:
   - "containment ring hierarchy"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.8
 ---
 
 # Nested Containment

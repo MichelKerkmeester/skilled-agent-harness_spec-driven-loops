@@ -9,7 +9,6 @@ trigger_phrases:
   - "figma var name binding"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.0.0.3
 ---
 
 # Figma CLI Reference

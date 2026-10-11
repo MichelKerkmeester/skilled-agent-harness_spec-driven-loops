@@ -1,7 +1,6 @@
 ---
 title: "DLR-010 -- Bayesian scorer"
 description: "Manual validation scenario for Bayesian scorer in the runtime/ skill."
-version: 1.4.0.5
 ---
 
 # DLR-010 -- Bayesian scorer

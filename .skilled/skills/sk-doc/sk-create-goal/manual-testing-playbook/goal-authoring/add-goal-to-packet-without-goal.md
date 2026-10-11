@@ -2,7 +2,6 @@
 title: "SCG-003 -- Add goal to a packet without one"
 description: "This scenario validates the retrofit operation for `SCG-003`. It focuses on adding a goal file to an existing packet that carries its source documents but no goal and verifying it before handoff."
 stage: routing
-version: 1.0.0.0
 ---
 
 # SCG-003 -- Add goal to a packet without one

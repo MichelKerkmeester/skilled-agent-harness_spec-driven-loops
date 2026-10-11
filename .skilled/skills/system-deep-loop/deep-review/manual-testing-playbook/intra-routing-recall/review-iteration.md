@@ -10,7 +10,6 @@ expected_resources:
   - references/protocol/loop-protocol.md
   - references/convergence/convergence.md
   - references/convergence/convergence-signals.md
-version: 1.1.0.0
 ---
 
 # DV-R02: Deep review iteration routing

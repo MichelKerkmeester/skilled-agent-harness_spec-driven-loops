@@ -1,7 +1,6 @@
 ---
 title: "BDG-017 -- Multi-tab same instance"
 description: "This scenario validates `new_page` for `BDG-017`. It focuses on confirming additional pages can be opened within a single `chrome_devtools_1` instance and switched between via `select_page`."
-version: 1.0.0.6
 ---
 
 # BDG-017 -- Multi-tab same instance

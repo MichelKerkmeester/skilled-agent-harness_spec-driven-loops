@@ -6,7 +6,6 @@ trigger_phrases:
   - "convergence-score-delta"
   - "convergence score-delta runtime"
   - "scoring convergence score-delta"
-version: 1.4.0.15
 ---
 
 # Convergence score-delta

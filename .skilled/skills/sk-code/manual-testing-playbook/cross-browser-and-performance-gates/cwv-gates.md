@@ -1,7 +1,6 @@
 ---
 title: "CB-002: Core Web Vitals Gates"
 description: "Measure LCP, CLS, and INP on a page with Motion animations and verify the configured performance thresholds."
-version: 1.5.0.3
 ---
 
 # CB-002: Core Web Vitals Gates

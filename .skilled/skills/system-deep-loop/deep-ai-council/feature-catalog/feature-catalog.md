@@ -1,7 +1,6 @@
 ---
 title: "deep-ai-council Feature Catalog"
 description: "Canonical capability inventory for the deep-ai-council planning skill: 33 features across 9 categories, each linked to its per-feature file and manual-testing scenario."
-version: 1.7.0.7
 ---
 
 # deep-ai-council Feature Catalog

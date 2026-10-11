@@ -8,7 +8,6 @@ trigger_phrases:
   - "rust typescript interop style"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
 ---
 
 # Rust Style Guide

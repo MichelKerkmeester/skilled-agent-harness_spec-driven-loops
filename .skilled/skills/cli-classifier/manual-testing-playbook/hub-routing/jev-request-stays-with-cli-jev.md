@@ -13,7 +13,6 @@ expected_leaf_resources:
     leaf_resource_id: references/cli-reference.md
   - workflow_mode: cli-jev
     leaf_resource_id: references/integration-patterns.md
-version: 0.4.0.0
 ---
 
 # CC-002 -- A Jev request resolves mode cli-jev

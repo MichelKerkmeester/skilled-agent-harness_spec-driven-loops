@@ -7,7 +7,6 @@ trigger_phrases:
   - "skill graph migration status"
 importance_tier: "normal"
 contextType: "planning"
-version: 0.8.0.7
 ---
 
 # Skill Graph Library Extraction Status

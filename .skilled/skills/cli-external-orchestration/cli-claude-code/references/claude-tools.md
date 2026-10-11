@@ -10,7 +10,6 @@ trigger_phrases:
   - "claude code plan mode read-only"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.14
 ---
 
 # Claude Code CLI Built-in Tools Reference

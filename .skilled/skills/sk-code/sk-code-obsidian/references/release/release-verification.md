@@ -9,7 +9,6 @@ trigger_phrases:
   - "main.js manifest.json styles.css release assets"
 importance_tier: normal
 contextType: implementation
-version: 0.1.0.0
 ---
 
 # Release Verification

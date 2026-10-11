@@ -1,7 +1,6 @@
 ---
 title: "VSN-007 -- Image diffing"
 description: "This scenario validates Image diffing for `VSN-007`. It focuses on a description of visual differences between two images."
-version: 1.0.0.0
 ---
 
 # VSN-007 -- Image diffing

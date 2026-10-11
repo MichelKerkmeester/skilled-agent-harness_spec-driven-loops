@@ -8,7 +8,6 @@ expected_intent: CLI
 expected_resources:
   - references/cdp-patterns.md
   - references/session-management.md
-version: 1.0.0.1
 ---
 
 # CD-R01: CLI routing

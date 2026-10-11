@@ -5,7 +5,6 @@ trigger_phrases:
   - "clickup_get_workspace_members"
   - "workspace members"
   - "list users"
-version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

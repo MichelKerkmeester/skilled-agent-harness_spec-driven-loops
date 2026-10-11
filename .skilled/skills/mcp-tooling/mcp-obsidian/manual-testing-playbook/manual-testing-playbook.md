@@ -1,7 +1,6 @@
 ---
 title: "mcp-obsidian: Manual Testing Playbook"
 description: "Operator-facing scenarios for headless notesmd-cli operations, the official app-backed obsidian CLI, cyanheads MCP round-trips, and file-layer tie-ins for two community plugins and the Obsidian theme system."
-version: 0.2.0.0
 ---
 
 # mcp-obsidian: Manual Testing Playbook

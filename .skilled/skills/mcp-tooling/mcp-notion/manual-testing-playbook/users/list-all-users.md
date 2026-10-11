@@ -2,7 +2,6 @@
 title: "USR-001 -- List all users"
 description: "This scenario validates a read-only paginated user listing through the confirmed notion_list-all-users tool."
 stage: routing
-version: 0.1.0.0
 ---
 
 # USR-001 -- List all users

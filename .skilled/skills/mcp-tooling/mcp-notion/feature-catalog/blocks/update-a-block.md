@@ -5,7 +5,6 @@ trigger_phrases:
   - "Update a block"
   - "notion_update-a-block"
   - "edit a Notion block's content"
-version: 0.1.0.0
 ---
 
 # Update a block (`notion_update-a-block`)

@@ -5,7 +5,6 @@ trigger_phrases:
   - "performance baseline script"
   - "performance regression capture"
   - "bdg performance metrics"
-version: 1.0.0.0
 ---
 
 # Performance Baseline

@@ -7,7 +7,6 @@ trigger_phrases:
   - "render prompt"
   - "template token extraction"
   - "prompt placeholder variables"
-version: 1.4.0.4
 ---
 
 # Prompt pack

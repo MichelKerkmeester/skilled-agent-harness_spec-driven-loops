@@ -1,7 +1,6 @@
 ---
 title: "DRV-024 -- JSONL reconstruction from review iteration files"
 description: "Verify that the JSONL state log can be reconstructed from the review/iterations/ write-once files if the main state file is lost or corrupted."
-version: 1.11.0.14
 ---
 
 # DRV-024 -- JSONL reconstruction from review iteration files

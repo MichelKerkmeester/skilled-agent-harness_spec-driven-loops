@@ -7,7 +7,6 @@ trigger_phrases:
   - "append round state"
   - "lock-guarded jsonl append"
   - "council round persistence"
-version: 1.4.0.4
 ---
 
 # Round-state JSONL

@@ -1,7 +1,6 @@
 ---
 title: "DAC-007 -- Output schema strict required sections fail closed"
 description: "This scenario validates fail-closed output schema handling for DAC-007."
-version: 1.7.0.7
 ---
 
 # DAC-007 -- Output schema strict required sections fail closed

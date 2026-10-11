@@ -5,7 +5,6 @@ trigger_phrases:
   - "clickup_merge_tasks"
   - "merge tasks"
   - "merge duplicates"
-version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

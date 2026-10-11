@@ -1,7 +1,6 @@
 ---
 title: "MCP-H007 -- Task Comments via MCP"
 description: "This scenario validates Task Comments via MCP for `MCP-H007`. Objective: Verify `clickup_create_comment` posts a comment and `clickup_get_task_comments` reads it back."
-version: 1.1.0.0
 ---
 
 # MCP-H007 -- Task Comments via MCP

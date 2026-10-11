@@ -8,7 +8,6 @@ trigger_phrases:
   - "mirror drift manifest"
 importance_tier: normal
 contextType: general
-version: 1.2.0.2
 ---
 
 # Runtime Sync Manifest Template

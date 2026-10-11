@@ -1,7 +1,6 @@
 ---
 title: "PI-021 -- Session-isolated goal hook and native command"
 description: "Validates Pi native session binding, two-session isolation, lifecycle injection, legacy migration, and disabled fallback."
-version: 1.6.0.0
 ---
 
 # PI-021 -- Session-isolated goal hook and native command

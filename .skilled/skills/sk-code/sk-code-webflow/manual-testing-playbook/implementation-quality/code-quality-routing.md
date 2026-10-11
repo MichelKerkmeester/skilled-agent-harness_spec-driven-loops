@@ -8,7 +8,6 @@ expected_intent: CODE_QUALITY
 expected_resources:
   - references/shared/cross-language-rules.md
   - references/shared/enforcement.md
-version: 1.0.0.0
 ---
 
 # WF-002: Code quality routing

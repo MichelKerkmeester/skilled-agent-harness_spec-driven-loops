@@ -1,7 +1,6 @@
 ---
 title: "HERMES-029 -- Vision evidence appended to an image analysis"
 description: "Confirm the sk-vision core runs when a Hermes session analyzes an image and its evidence block is appended to the vision tool's result, for `HERMES-029`."
-version: 1.0.0.0
 ---
 
 # HERMES-029 -- Vision evidence appended to an image analysis

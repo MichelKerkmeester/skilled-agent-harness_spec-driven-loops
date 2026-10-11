@@ -7,7 +7,6 @@ trigger_phrases:
   - "skill graph rebuild"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.0.6
 ---
 
 # Skill Graph Drift Reconciliation

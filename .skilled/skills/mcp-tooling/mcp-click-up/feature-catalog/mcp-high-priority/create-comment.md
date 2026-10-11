@@ -6,7 +6,6 @@ trigger_phrases:
   - "comment on task mcp"
   - "reply to comment"
   - "comment on list"
-version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

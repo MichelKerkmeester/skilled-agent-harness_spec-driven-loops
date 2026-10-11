@@ -9,7 +9,6 @@ trigger_phrases:
   - "research escalation conditions"
 importance_tier: normal
 contextType: implementation
-version: 1.14.0.3
 ---
 
 # Convergence Recovery Reference

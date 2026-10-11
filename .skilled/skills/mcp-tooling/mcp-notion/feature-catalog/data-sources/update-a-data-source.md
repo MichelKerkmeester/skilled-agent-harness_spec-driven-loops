@@ -5,7 +5,6 @@ trigger_phrases:
   - "Update a data source"
   - "notion_update-a-data-source"
   - "add or change a column on a Notion data source"
-version: 0.1.0.0
 ---
 
 # Update a data source (`notion_update-a-data-source`)

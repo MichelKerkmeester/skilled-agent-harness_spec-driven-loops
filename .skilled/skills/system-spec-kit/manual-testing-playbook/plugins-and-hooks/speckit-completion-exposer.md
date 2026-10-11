@@ -7,7 +7,6 @@ trigger_phrases:
   - "spec folder completion state"
   - "checklist completion tool"
   - "plg-002"
-version: 1.0.0.0
 id: plugins-and-hooks-speckit-completion-exposer
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

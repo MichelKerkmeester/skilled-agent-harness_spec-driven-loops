@@ -8,7 +8,6 @@ trigger_phrases:
   - "autofill validation override"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.4
 ---
 
 # Data Attribute Selectors & Form Validation State

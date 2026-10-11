@@ -1,7 +1,6 @@
 ---
 title: "DOC-377 -- Doctor mcp debug fix"
 description: "Manual scenario validating that /doctor:mcp debug --fix repairs a failing check only after explicit approval, changes nothing on a decline, validates the edited file and rechecks the result."
-version: 1.1.0.0
 id: doctor-commands-doctor-mcp-debug-fix
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

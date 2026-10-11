@@ -7,7 +7,6 @@ trigger_phrases:
   - "display configuration"
   - "auth method display"
   - "check cupt defaults"
-version: 1.0.0.3
 ---
 
 # Show Config

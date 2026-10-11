@@ -1,7 +1,6 @@
 ---
 title: "472 -- Repository era report"
 description: "This scenario validates the repository era report for `472`. It focuses on the v4 and v3 layout readings, the frontmatter, template and generated-metadata counts and the guarantee that the report writes nothing."
-version: 1.0.0.0
 id: tooling-and-scripts-repo-era-report
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

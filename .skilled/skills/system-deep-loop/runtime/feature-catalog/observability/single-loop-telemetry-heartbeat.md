@@ -6,7 +6,6 @@ trigger_phrases:
   - "single-loop-telemetry-heartbeat"
   - "single-loop telemetry heartbeat runtime"
   - "observability single-loop telemetry heartbeat"
-version: 1.4.0.15
 ---
 
 # Single-loop telemetry heartbeat

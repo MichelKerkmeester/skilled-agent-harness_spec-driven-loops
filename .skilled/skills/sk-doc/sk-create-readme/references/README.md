@@ -7,7 +7,6 @@ trigger_phrases:
   - "create-readme references"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.7
 ---
 
 # create-readme Reference Map

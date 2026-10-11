@@ -1,7 +1,6 @@
 ---
 title: "review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the review skill."
-version: 1.5.0.11
 ---
 
 # review: Manual Testing Playbook

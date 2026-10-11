@@ -11,7 +11,6 @@ trigger_phrases:
   - "devin tool surface"
 importance_tier: normal
 contextType: implementation
-version: 1.4.0.2
 ---
 
 # Devin CLI Built-in Tools Reference

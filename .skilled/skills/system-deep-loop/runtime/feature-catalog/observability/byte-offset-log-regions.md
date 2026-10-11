@@ -6,7 +6,6 @@ trigger_phrases:
   - "byte-offset-log-regions"
   - "byte-offset log regions runtime"
   - "observability byte-offset log regions"
-version: 1.4.0.15
 ---
 
 # Byte-offset log regions

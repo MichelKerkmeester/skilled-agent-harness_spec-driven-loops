@@ -5,7 +5,6 @@ trigger_phrases:
   - "magicpath list members tool"
   - "list members magicpath"
   - "magicpath team members"
-version: 1.0.0.0
 ---
 
 # list_members

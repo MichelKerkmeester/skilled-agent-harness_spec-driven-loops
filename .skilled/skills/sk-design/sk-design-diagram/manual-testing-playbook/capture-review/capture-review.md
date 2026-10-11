@@ -1,7 +1,6 @@
 ---
 title: "CAP-001 -- Capture review of the rendered corpus"
 description: "This scenario validates the judged capture review for `CAP-001`: the six reads a reader answers from a rendered capture, the skin-pinned and settled capture pairs, the font-substitution label-mask measurement, and the threshold that graduates a read into the corpus checker."
-version: 1.1.0.0
 ---
 
 # CAP-001 -- Capture review of the rendered corpus

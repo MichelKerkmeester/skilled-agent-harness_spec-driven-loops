@@ -8,7 +8,6 @@ trigger_phrases:
   - "registry fingerprint"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.7.0.3
 ---
 
 # Findings Registry

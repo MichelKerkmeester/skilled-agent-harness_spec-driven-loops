@@ -8,7 +8,6 @@ trigger_phrases:
   - "review session tracking"
 importance_tier: normal
 contextType: planning
-version: 1.11.0.13
 ---
 
 # Deep Review Strategy - Session Tracking Template

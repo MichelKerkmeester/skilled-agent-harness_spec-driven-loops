@@ -7,7 +7,6 @@ trigger_phrases:
   - "sub agent verification reference"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.18
 ---
 
 

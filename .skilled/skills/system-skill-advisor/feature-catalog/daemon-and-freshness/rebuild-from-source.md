@@ -6,7 +6,6 @@ trigger_phrases:
   - "corrupt sqlite recovery"
   - "source driven rebuild"
   - "advisor recovery"
-version: 0.8.0.13
 ---
 
 # Rebuild From Source on Corrupt SQLite

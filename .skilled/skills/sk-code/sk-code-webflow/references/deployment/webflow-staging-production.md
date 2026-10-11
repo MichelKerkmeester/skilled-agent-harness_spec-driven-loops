@@ -9,7 +9,6 @@ trigger_phrases:
   - "per environment custom code"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.2
 ---
 
 

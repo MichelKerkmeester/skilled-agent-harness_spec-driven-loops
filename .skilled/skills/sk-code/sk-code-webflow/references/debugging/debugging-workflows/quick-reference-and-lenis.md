@@ -7,7 +7,6 @@ trigger_phrases:
   - "quick reference and lenis reference"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.18
 ---
 
 

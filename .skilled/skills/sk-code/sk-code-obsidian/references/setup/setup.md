@@ -9,7 +9,6 @@ trigger_phrases:
   - "npm install obsidian plugin"
 importance_tier: normal
 contextType: implementation
-version: 0.1.0.0
 ---
 
 # Plugin Setup

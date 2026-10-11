@@ -6,7 +6,6 @@ trigger_phrases:
   - "mcp validate tool"
   - "release gate slices"
   - "corpus holdout parity"
-version: 0.8.0.15
 ---
 
 # advisor_validate Command

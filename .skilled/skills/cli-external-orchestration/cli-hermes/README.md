@@ -7,7 +7,6 @@ trigger_phrases:
   - "delegate to hermes"
   - "nous hermes"
   - "hermes chat"
-version: 1.0.0.0
 ---
 
 # cli-hermes

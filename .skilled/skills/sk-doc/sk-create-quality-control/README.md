@@ -6,7 +6,6 @@ trigger_phrases:
   - "/doc:quality"
   - "score this document"
   - "human voice"
-version: 1.0.0.16
 ---
 
 # create-quality-control

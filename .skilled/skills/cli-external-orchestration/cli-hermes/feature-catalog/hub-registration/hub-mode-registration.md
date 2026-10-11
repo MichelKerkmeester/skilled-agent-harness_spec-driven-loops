@@ -6,7 +6,6 @@ trigger_phrases:
   - "cli-hermes mode registry entry"
   - "hermes hub routing"
   - "cli-hermes workflowMode"
-version: 1.0.0.0
 ---
 
 # Hub Mode Registration (cli-hermes)

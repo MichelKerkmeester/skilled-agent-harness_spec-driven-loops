@@ -10,7 +10,6 @@ expected_resources:
   - references/config/quality-standards.md
   - references/config/quick-reference.md
   - assets/checklists/config-checklist.md
-version: 1.0.0.0
 ---
 
 # OC-004: Config schema routing

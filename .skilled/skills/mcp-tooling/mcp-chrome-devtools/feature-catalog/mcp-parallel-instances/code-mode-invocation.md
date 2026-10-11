@@ -5,7 +5,6 @@ trigger_phrases:
   - "chrome devtools code mode"
   - "call_tool_chain chrome"
   - "mcp tool naming chrome_devtools_1"
-version: 1.0.0.0
 ---
 
 # Code Mode Invocation

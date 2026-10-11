@@ -9,7 +9,6 @@ trigger_phrases:
   - "mobbin rate limit"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
 ---
 
 # Mobbin Tool Surface

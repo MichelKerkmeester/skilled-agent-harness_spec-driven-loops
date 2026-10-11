@@ -7,7 +7,6 @@ trigger_phrases:
   - "sketchy filter"
   - "terminal window skin"
   - "diagram icon library"
-version: 1.0.0.4
 ---
 
 # Primitive variants

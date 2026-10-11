@@ -8,7 +8,6 @@ trigger_phrases:
   - "isolated continuity artifacts"
 importance_tier: normal
 contextType: general
-version: 1.6.0.27
 ---
 
 # Sub-Folder Versioning - Iterative Work Organization Pattern

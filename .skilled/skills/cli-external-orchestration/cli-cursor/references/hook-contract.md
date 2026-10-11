@@ -8,7 +8,6 @@ trigger_phrases:
   - "cursor hook events"
 importance_tier: important
 contextType: implementation
-version: 1.4.0.3
 ---
 
 # Cursor CLI Hook Contract

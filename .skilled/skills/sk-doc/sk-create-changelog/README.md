@@ -4,7 +4,6 @@ description: "Writes a correctly versioned, correctly placed changelog entry fro
 trigger_phrases:
   - "create changelog"
   - "release notes"
-version: 1.3.0.14
 ---
 
 # create-changelog

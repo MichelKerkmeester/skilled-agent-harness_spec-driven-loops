@@ -8,7 +8,6 @@ trigger_phrases:
   - "claude cursor opencode copilot hooks"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.18
 ---
 
 # Runtime Hooks - Entrypoint Authoring, Wiring, and Maintenance

@@ -8,7 +8,6 @@ trigger_phrases:
   - "asset optimization checklist"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.17
 ---
 
 # Performance Optimization Patterns - Phase 1 Integration

@@ -1,7 +1,6 @@
 ---
 title: "M-011 -- Review packet type marker-gated validation"
 description: "Verify the review packet type: the SPECKIT_LEVEL review marker waives plan/tasks/implementation-summary and requires only the lean review record plus review/review-report."
-version: 1.7.0.0
 id: tooling-and-scripts-review-packet-type-marker-gated-validation
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

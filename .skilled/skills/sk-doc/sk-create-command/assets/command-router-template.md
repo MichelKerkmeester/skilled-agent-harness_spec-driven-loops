@@ -9,7 +9,6 @@ trigger_phrases:
   - "owned assets presentation boundary"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.8
 ---
 
 # Command Router Template

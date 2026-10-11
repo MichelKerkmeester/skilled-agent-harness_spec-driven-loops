@@ -1,7 +1,6 @@
 ---
 title: "DLR-048 -- Single-loop telemetry heartbeat"
 description: "Manual validation scenario for Single-loop telemetry heartbeat in the runtime/ skill."
-version: 1.4.0.15
 ---
 
 # DLR-048 -- Single-loop telemetry heartbeat

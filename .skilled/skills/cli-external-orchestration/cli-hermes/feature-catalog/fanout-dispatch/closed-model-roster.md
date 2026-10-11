@@ -6,7 +6,6 @@ trigger_phrases:
   - "HERMES_SUPPORTED_MODELS"
   - "isHermesModelAllowed"
   - "hermes llmgateway provider"
-version: 1.0.0.0
 ---
 
 # Closed Seven-Model Gateway Roster (HERMES_SUPPORTED_MODELS)

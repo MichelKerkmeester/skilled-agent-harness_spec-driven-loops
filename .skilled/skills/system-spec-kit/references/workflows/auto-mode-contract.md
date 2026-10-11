@@ -9,7 +9,6 @@ trigger_phrases:
   - "confirm invariance"
 importance_tier: important
 contextType: implementation
-version: 1.6.0.7
 ---
 
 # Auto Mode Contract Reference

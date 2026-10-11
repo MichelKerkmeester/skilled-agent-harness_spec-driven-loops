@@ -6,7 +6,6 @@ trigger_phrases:
   - "goal opencode plugin"
   - "/goal-opencode command"
   - "opencode_goal"
-version: 0.8.1.0
 id: CL-007
 category: cli_hooks_and_plugin
 stage: routing

@@ -1,7 +1,6 @@
 ---
 title: "HERMES-007 -- Read-only leaf refuses its write tools"
 description: "Confirm a read-only leaf can read and search files while the repo guard refuses every write and execution tool, because Hermes has no read-only file toolset to narrow to for `HERMES-007`."
-version: 1.0.0.0
 ---
 
 # HERMES-007 -- Read-only leaf refuses its write tools

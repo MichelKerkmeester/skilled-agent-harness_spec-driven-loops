@@ -8,7 +8,6 @@ trigger_phrases:
   - "run extraction phase"
   - "tokens.json from url"
 importance_tier: "normal"
-version: 1.0.0.6
 ---
 
 # Extract (extract.ts / crawl.ts)

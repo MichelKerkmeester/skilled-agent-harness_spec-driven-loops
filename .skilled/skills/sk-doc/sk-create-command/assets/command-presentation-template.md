@@ -8,7 +8,6 @@ trigger_phrases:
   - "thin router presentation skeleton"
 importance_tier: normal
 contextType: general
-version: 1.0.0.8
 ---
 
 # Command Presentation Contract Template

@@ -1,7 +1,6 @@
 ---
 title: "MR-004: Animation Regression Baseline"
 description: "Capture visual regression baselines for key Motion-driven UI elements including the nav dropdown and testimonial slider."
-version: 1.5.0.3
 ---
 
 # MR-004: Animation Regression Baseline

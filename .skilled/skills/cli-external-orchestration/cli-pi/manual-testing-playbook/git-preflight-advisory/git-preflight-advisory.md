@@ -1,7 +1,6 @@
 ---
 title: "PI-022 -- Git preflight advisory delivery"
 description: "This scenario validates the sk-git preflight advisory delivery across Pi's paired tool_call and tool_result events for `PI-022`."
-version: 1.5.0.4
 ---
 
 # PI-022 -- Git preflight advisory delivery

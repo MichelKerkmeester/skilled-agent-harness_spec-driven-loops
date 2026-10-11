@@ -1,7 +1,6 @@
 ---
 title: "ASD-013 -- Network capture probe (guarded)"
 description: "This scenario validates the network-capture gap for `ASD-013`. It is a guarded probe for request/response listeners on a bound page; no HAR parity is promised in any outcome."
-version: 1.0.0.0
 ---
 
 # ASD-013 -- Network capture probe (guarded)

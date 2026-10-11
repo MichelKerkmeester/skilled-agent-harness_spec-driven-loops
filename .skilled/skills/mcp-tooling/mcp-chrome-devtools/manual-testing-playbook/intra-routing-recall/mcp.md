@@ -8,7 +8,6 @@ expected_intent: MCP
 expected_resources:
   - references/session-management.md
   - references/cdp-patterns.md
-version: 1.0.0.1
 ---
 
 # CD-R02: MCP routing

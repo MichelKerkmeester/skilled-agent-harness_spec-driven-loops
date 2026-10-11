@@ -6,7 +6,6 @@ trigger_phrases:
   - "lane weights canonical"
   - "fusion scorer"
   - "advisor analytical fusion"
-version: 0.8.0.16
 ---
 
 # Five-Lane Analytical Fusion

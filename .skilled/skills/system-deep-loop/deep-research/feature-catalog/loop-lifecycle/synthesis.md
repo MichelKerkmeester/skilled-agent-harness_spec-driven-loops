@@ -7,7 +7,6 @@ trigger_phrases:
   - "final research document"
   - "eliminated alternatives table"
   - "close loop state"
-version: 1.14.0.11
 ---
 
 # Synthesis

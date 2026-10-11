@@ -1,7 +1,6 @@
 ---
 title: "CM-020 -- Notion search workspace"
 description: "This scenario validates Notion workspace search via Code Mode for `CM-020`. It focuses on confirming `notion_search` returns workspace pages and databases."
-version: 1.0.0.7
 id: CM-020
 category: third_party_via_cm
 stage: routing

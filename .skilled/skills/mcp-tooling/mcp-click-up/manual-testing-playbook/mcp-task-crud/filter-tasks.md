@@ -1,7 +1,6 @@
 ---
 title: "MCP-H005 -- Filter Tasks via MCP"
 description: "This scenario validates Filter Tasks via MCP for `MCP-H005`. Objective: Verify `clickup_filter_tasks` lists the tasks in LIST_ID, including the test task."
-version: 1.1.0.0
 ---
 
 # MCP-H005 -- Filter Tasks via MCP

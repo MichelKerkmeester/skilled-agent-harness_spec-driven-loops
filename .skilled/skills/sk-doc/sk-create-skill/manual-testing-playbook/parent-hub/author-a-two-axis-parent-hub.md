@@ -1,7 +1,6 @@
 ---
 title: "SKL-004 -- Author a two-axis parent hub"
 description: "This scenario validates parent-hub routing metadata for `SKL-004`. It focuses on one modes array, registry parity and workflow-first surface bundles."
-version: 1.2.0.3
 ---
 
 # SKL-004 -- Author a two-axis parent hub

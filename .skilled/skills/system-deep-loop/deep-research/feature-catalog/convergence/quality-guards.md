@@ -7,7 +7,6 @@ trigger_phrases:
   - "legal-stop bundle"
   - "source diversity check"
   - "blocked-stop event"
-version: 1.14.0.8
 ---
 
 # Quality guards

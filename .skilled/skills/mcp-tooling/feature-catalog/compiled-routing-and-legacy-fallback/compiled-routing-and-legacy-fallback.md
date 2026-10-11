@@ -6,7 +6,6 @@ trigger_phrases:
   - "SPECKIT_COMPILED_ROUTING"
   - "compiled route front door"
   - "mcp-tooling compiled routing"
-version: 1.1.0.0
 ---
 
 # Compiled Routing And Legacy Fallback (compiled-route.cjs)

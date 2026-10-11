@@ -8,7 +8,6 @@ trigger_phrases:
   - "snake case function naming"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.18
 ---
 
 # Python Quality Standards

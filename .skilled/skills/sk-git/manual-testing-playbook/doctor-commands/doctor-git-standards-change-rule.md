@@ -1,7 +1,6 @@
 ---
 title: "DOC-372 -- Doctor git standards change rule"
 description: "Manual scenario validating that /doctor:git standards changes or removes one rule and points out the template prose that still describes the old rule."
-version: 1.1.0.0
 id: doctor-commands-doctor-git-standards-change-rule
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

@@ -10,7 +10,6 @@ expected_resources:
 blindToRouterKeywords: true
 blindExceptions:
   - "start to finish"
-version: 1.0.0.1
 ---
 
 # MB-H02: Blind holdout: recovery path evidence

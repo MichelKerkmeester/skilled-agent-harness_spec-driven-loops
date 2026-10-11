@@ -10,7 +10,6 @@ trigger_phrases:
   - "annotated changelog sample"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.8
 ---
 
 # Changelog Worked Examples

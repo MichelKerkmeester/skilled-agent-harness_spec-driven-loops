@@ -7,7 +7,6 @@ trigger_phrases:
   - "step_fanout_spawn"
   - "strongest-restriction verdict"
   - "multi-executor review"
-version: 1.11.0.4
 ---
 
 # Fan-out loop dispatch

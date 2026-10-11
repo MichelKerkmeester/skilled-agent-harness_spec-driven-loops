@@ -7,7 +7,6 @@ trigger_phrases:
   - "enable debug logging"
   - "verbose internal logging"
   - "troubleshoot api errors"
-version: 1.0.0.3
 ---
 
 # Debug Logging Flag

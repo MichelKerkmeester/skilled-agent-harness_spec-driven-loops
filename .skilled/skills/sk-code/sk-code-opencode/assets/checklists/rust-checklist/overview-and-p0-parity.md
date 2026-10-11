@@ -8,7 +8,6 @@ trigger_phrases:
   - "napi wasm rust review"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
 ---
 
 # Rust Code Quality Checklist

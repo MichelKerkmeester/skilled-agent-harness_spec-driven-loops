@@ -1,7 +1,6 @@
 ---
 title: "mcp-notion: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, and execution expectations for the mcp-notion skill: MCP tool round-trips via Code Mode, a direct-API gap call, backend selection, and auth/rate-limit failure -- read-only and scratch-safe, never destructive on a real workspace."
-version: 0.1.0.1
 ---
 
 # mcp-notion: Manual Testing Playbook

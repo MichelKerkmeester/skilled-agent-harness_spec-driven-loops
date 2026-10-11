@@ -7,7 +7,6 @@ trigger_phrases:
   - study Vercel design tokens
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
 ---
 
 # Vercel — Style Reference

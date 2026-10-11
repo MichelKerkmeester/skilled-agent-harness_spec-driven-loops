@@ -7,7 +7,6 @@ trigger_phrases:
   - "append task comment"
   - "post comment to task"
   - "agent handoff message"
-version: 1.0.0.3
 ---
 
 # Add Comment

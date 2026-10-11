@@ -1,7 +1,6 @@
 ---
 title: "CC-012 -- Debug agent fresh-perspective root cause"
 description: "This scenario validates Debug agent fresh-perspective root cause for `CC-012`. It focuses on confirming `--agent debug` accepts a 'what I tried' context block and returns ranked root causes with diagnostic next steps."
-version: 1.5.0.11
 ---
 
 # CC-012 -- Debug agent fresh-perspective root cause

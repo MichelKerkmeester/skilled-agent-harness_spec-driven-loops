@@ -9,7 +9,6 @@ trigger_phrases:
   - "orca embedded browser"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
 ---
 
 # Official Orca Skill - Orca CLI

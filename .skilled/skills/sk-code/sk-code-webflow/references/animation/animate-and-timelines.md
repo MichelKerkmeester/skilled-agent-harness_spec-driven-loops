@@ -9,7 +9,6 @@ trigger_phrases:
   - "javascript animation timeline"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.4
 ---
 
 # Motion.dev Animate and Timelines

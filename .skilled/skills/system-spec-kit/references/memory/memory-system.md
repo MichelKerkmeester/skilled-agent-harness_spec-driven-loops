@@ -9,7 +9,6 @@ trigger_phrases:
   - "indexable content sources"
 importance_tier: normal
 contextType: general
-version: 1.6.0.55
 ---
 
 # Retrieval and Continuity Reference

@@ -2,7 +2,6 @@
 title: "BLK-002 -- Retrieve block children"
 description: "This scenario validates a paginated, read-only child-block listing through the confirmed notion_retrieve-block-children tool against a scratch page."
 stage: routing
-version: 0.1.0.0
 ---
 
 # BLK-002 -- Retrieve block children

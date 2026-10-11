@@ -7,7 +7,6 @@ trigger_phrases:
   - "rust review resources"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
 ---
 
 # P2, Review Evidence, Validation Commands & Resources

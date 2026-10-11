@@ -7,7 +7,6 @@ description: "This scenario validates FLOWS routing for `MB-R03`. It focuses on 
 expected_intent: FLOWS
 expected_resources:
   - references/tool-surface.md
-version: 1.0.0.1
 ---
 
 # MB-R03: Flows routing

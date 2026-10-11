@@ -9,7 +9,6 @@ trigger_phrases:
   - "pi review prompt template"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.6
 ---
 
 # Pi CLI Prompt Templates

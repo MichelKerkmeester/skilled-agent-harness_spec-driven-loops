@@ -1,7 +1,6 @@
 ---
 title: "CR-014 -- Stale architecture fresh pass"
 description: "This scenario validates Stale architecture fresh pass for `CR-014`. It focuses on Confirm stale architecture prose does not override current implementation evidence."
-version: 1.5.0.4
 ---
 
 # CR-014 -- Stale architecture fresh pass

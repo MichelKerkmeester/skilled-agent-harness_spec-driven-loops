@@ -10,7 +10,6 @@ trigger_phrases:
   - "is-phone body class capture"
 importance_tier: normal
 contextType: implementation
-version: 0.1.0.0
 ---
 
 # The Screenshot Fixture Harness

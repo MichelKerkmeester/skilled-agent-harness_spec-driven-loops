@@ -9,7 +9,6 @@ trigger_phrases:
   - "create feature catalog reference index"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.9
 ---
 
 # Create Feature Catalog - References

@@ -1,7 +1,6 @@
 ---
 title: "DLR-042 -- Coverage-graph time decay"
 description: "Manual validation scenario for Coverage-graph time decay in the runtime/ skill."
-version: 1.4.0.15
 ---
 
 # DLR-042 -- Coverage-graph time decay

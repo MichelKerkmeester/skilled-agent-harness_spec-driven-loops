@@ -1,7 +1,6 @@
 ---
 title: "ASD-010 -- Unbound-profile error classification"
 description: "This scenario validates browser-binding failure classification for `ASD-010`. It focuses on reproducing the not-bound-to-a-browser-profile error and classifying it as PROFILE_UNBOUND, not auth."
-version: 1.0.0.0
 ---
 
 # ASD-010 -- Unbound-profile error classification

@@ -1,7 +1,6 @@
 ---
 title: "HERMES-024 -- Post-edit quality advisory on a write result"
 description: "Confirm the repo's post-edit quality core runs after a Hermes write_file and its advisory is appended to the tool result, for `HERMES-024`."
-version: 1.0.0.0
 ---
 
 # HERMES-024 -- Post-edit quality advisory on a write result

@@ -10,7 +10,6 @@ trigger_phrases:
   - "unphotographed surface obsidian plugin"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
 ---
 
 # Screenshot Coverage Checklist

@@ -10,7 +10,6 @@ expected_resources:
   - assets/utcp-figma-manual.md
   - assets/env-template.md
   - references/figma-cli-reference.md
-version: 1.0.0.1
 ---
 
 # FG-R05: MCP context routing

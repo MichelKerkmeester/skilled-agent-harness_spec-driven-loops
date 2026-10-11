@@ -5,7 +5,6 @@ trigger_phrases:
   - "webflow frontend"
   - "webflow implementation"
   - "frontend standards"
-version: 1.1.0.0
 ---
 
 # webflow: Frontend Evidence (sk-code surface)

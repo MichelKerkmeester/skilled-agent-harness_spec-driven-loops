@@ -1,7 +1,6 @@
 ---
 title: "DRV-068 -- Cross-mode anti-convergence contract"
 description: "Verify that deep-review participates in the cross-mode antiConvergence contract with a minimum iteration floor, fail-closed runtime stop policy, and optimizer invariant locks."
-version: 1.11.0.1
 ---
 
 # DRV-068 -- Cross-mode anti-convergence contract

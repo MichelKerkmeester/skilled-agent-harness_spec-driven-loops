@@ -6,7 +6,6 @@ trigger_phrases:
   - "active corpus stats"
   - "idf debounced"
   - "lexical idf"
-version: 0.8.0.13
 ---
 
 # DF/IDF Corpus Stats (Active-Only)

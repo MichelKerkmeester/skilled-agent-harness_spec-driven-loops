@@ -8,7 +8,6 @@ expected_intent: VERIFICATION
 expected_resources:
   - references/verification.md
   - assets/verification-checklist.md
-version: 1.0.0.0
 ---
 
 # OB-H04: VERIFICATION held out (decontaminated phrasing)

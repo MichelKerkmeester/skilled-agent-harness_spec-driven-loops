@@ -9,7 +9,6 @@ trigger_phrases:
   - "orca cli resolution"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
 ---
 
 # Orca Session and Runtime Boundaries

@@ -1,7 +1,6 @@
 ---
 title: "HERMES-017 -- Skills list enumerates the loadable project skills"
 description: "Confirm `hermes skills list` enumerates the generated project skill copies as `local` rows and omits exactly the ones the scanner quarantined, for `HERMES-017`."
-version: 1.0.0.0
 ---
 
 # HERMES-017 -- Skills list enumerates the loadable project skills

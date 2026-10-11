@@ -9,7 +9,6 @@ expected_resources:
   - references/python/style-guide.md
   - references/python/quality-standards.md
   - references/python/quick-reference.md
-version: 1.0.0.0
 ---
 
 # OC-002: Python standards routing

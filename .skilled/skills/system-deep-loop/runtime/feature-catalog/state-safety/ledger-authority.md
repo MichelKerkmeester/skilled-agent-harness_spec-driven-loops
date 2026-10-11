@@ -6,7 +6,6 @@ trigger_phrases:
   - "ledger-authority"
   - "ledger authority runtime"
   - "state safety ledger authority"
-version: 1.4.0.15
 ---
 
 # Ledger authority

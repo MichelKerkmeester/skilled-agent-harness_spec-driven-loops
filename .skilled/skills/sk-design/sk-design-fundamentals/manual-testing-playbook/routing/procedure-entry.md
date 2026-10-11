@@ -3,7 +3,6 @@ title: "SKD-004 -- Build procedure entry from nothing"
 description: "This scenario validates Build procedure entry from nothing for `SKD-004`. It focuses on confirm a from-scratch design request starts from a feature and defers color."
 stage: routing
 id: "SKD-004"
-version: 1.0.0.0
 ---
 
 # SKD-004 -- Build procedure entry from nothing

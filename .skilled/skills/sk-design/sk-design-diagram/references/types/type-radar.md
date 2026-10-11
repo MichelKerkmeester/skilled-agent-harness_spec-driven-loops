@@ -9,7 +9,6 @@ trigger_phrases:
   - "normalized axis scoring"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.9
 ---
 
 # Radar / Spider

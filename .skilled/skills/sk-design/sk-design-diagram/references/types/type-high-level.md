@@ -10,7 +10,6 @@ trigger_phrases:
   - "vertical chevron strip"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.9
 ---
 
 # High-Level

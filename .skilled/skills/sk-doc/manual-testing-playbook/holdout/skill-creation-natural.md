@@ -19,7 +19,6 @@ expected_leaf_resources:
   - workflow_mode: sk-create-skill
     leaf_resource_id: assets/skill/skill-reference-template.md
 stage: holdout
-version: 2.1.0.7
 ---
 
 # SD-H01: SKILL_CREATION Held-Out (decontaminated phrasing)

@@ -12,7 +12,6 @@ trigger_phrases:
   - dark mode omission
 importance_tier: normal
 contextType: general
-version: 1.0.0.4
 ---
 
 # DESIGN.md Anti-Pattern Catalog

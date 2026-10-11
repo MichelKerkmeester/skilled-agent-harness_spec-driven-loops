@@ -14,7 +14,6 @@ expected_leaf_resources:
   - workflow_mode: mcp-obsidian
     leaf_resource_id: references/obsidian-cli-commands.md
 created: 2026-08-02
-version: 1.0.0.0
 ---
 
 # MT-010: Obsidian note-management request routes to mcp-obsidian

@@ -8,7 +8,6 @@ trigger_phrases:
   - "jev exit code checks"
 importance_tier: "important"
 contextType: "implementation"
-version: 0.1.0.2
 ---
 
 # cli-jev: Manual Testing Playbook

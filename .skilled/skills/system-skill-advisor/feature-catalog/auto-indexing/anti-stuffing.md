@@ -6,7 +6,6 @@ trigger_phrases:
   - "cardinality cap derived"
   - "repetition density demote"
   - "adversarial rejection"
-version: 0.8.0.14
 ---
 
 # Anti-Stuffing and Cardinality Caps

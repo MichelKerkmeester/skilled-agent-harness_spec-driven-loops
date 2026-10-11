@@ -7,7 +7,6 @@ trigger_phrases:
   - "run_now_requested"
   - "forced run sentinel"
   - "run_now_accepted"
-version: 1.14.0.13
 ---
 
 # Run-now control

@@ -23,7 +23,6 @@ evidence_manifest_digest: 1a42e542b2e3d2c544b456b7026de69af8f79b57c92b22945e92ae
 evidence_model: router-replay
 evidence_reasoning_effort: n/a
 created: 2026-07-21
-version: 1.0.0.0
 ---
 
 # sk-code surface-bundle route serves compiled and matches legacy

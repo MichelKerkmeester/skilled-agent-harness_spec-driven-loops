@@ -9,7 +9,6 @@ trigger_phrases:
   - "codex agent catalog"
 importance_tier: normal
 contextType: implementation
-version: 1.9.0.19
 ---
 
 # Codex Agent Delegation Reference

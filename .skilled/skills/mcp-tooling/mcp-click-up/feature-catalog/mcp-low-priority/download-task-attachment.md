@@ -4,7 +4,6 @@ description: "Get a short-lived download URL for a task attachment."
 trigger_phrases:
   - "clickup_download_task_attachment"
   - "download task attachment"
-version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,7 +7,6 @@ trigger_phrases:
   - "export diagram to svg"
   - "rasterize diagram"
   - "manual export never automatic"
-version: 1.0.0.4
 ---
 
 # Export guidance

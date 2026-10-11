@@ -7,7 +7,6 @@ trigger_phrases:
   - "diagram lookup"
 importance_tier: important
 contextType: reference
-version: 1.2.0.6
 ---
 
 # Diagram Catalog

@@ -5,7 +5,6 @@ trigger_phrases:
   - "isolated browser instances"
   - "--isolated=true"
   - "cookie isolation cross instance"
-version: 1.0.0.0
 ---
 
 # Context Isolation

@@ -5,7 +5,6 @@ trigger_phrases:
   - "clickup_get_chat_channels"
   - "chat channels"
   - "list channels"
-version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

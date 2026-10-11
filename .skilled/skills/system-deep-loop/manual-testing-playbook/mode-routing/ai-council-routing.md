@@ -17,7 +17,6 @@ expected_leaf_resources:
     leaf_resource_id: references/scoring/scoring-rubric.md
   - workflow_mode: ai-council
     leaf_resource_id: references/structure/output-schema.md
-version: "1.2.0.0"
 ---
 
 # MO-003: AI Council Mode Routing

@@ -7,7 +7,6 @@ trigger_phrases:
   - "aside page.on request"
   - "aside har"
 last_updated: "2026-07-17"
-version: 1.0.0.0
 ---
 
 # Console and Network Capture (DevTools parity)

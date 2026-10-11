@@ -6,7 +6,6 @@ trigger_phrases:
   - "get list"
   - "list statuses"
   - "find list id"
-version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -5,7 +5,6 @@ trigger_phrases:
   - "clickup_find_member_by_name"
   - "find member"
   - "look up user"
-version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

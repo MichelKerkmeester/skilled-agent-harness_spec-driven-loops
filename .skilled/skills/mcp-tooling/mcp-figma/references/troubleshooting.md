@@ -10,7 +10,6 @@ trigger_phrases:
   - "figma code mode variable not found"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.0.0.3
 ---
 
 # Figma CLI Troubleshooting

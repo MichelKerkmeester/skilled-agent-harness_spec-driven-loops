@@ -9,7 +9,6 @@ trigger_phrases:
   - "linear status orca"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
 ---
 
 # Official Orca Skill - Orca Linear

@@ -2,7 +2,6 @@
 title: "FAIL-002 -- Invalid Token"
 description: "This scenario validates that calling retrieve-bot-user with a deliberately wrong Notion token surfaces a 401 unauthorized error, never a silent empty success."
 stage: routing
-version: 0.1.0.0
 ---
 
 # FAIL-002 -- Invalid Token

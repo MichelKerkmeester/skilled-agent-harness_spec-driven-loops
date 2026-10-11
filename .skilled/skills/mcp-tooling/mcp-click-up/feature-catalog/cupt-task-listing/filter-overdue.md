@@ -7,7 +7,6 @@ trigger_phrases:
   - "past-due tasks"
   - "overdue task filter"
   - "backlog debt triage"
-version: 1.0.0.3
 ---
 
 # Filter Overdue

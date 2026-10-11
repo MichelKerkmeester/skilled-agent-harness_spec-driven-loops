@@ -9,7 +9,6 @@ trigger_phrases:
   - "hermes write guard"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
 ---
 
 # Hermes CLI Unique Capabilities

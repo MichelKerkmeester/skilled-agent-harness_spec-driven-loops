@@ -2,7 +2,6 @@
 title: "ORCA-008 -- Official skill layer matches the upstream stubs"
 description: "This scenario validates that the local snapshot layer is byte identical to the upstream stubs and that local documents defer flag detail to the binary guide."
 catalog_applicable: true
-version: 1.0.0.0
 ---
 
 # ORCA-008 -- Official skill layer matches the upstream stubs

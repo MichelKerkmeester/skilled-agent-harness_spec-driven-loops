@@ -2,7 +2,6 @@
 title: "PAGE-001 -- Create a page"
 description: "This scenario validates notion_create-a-page by creating a disposable scratch page under a shared parent and archiving it as cleanup."
 stage: routing
-version: 0.1.0.0
 ---
 
 # PAGE-001 -- Create a page

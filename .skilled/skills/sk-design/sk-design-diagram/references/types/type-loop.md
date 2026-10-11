@@ -9,7 +9,6 @@ trigger_phrases:
   - "shared hub state"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.8
 ---
 
 # Loop

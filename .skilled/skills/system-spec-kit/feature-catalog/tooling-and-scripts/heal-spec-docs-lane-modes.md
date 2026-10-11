@@ -6,7 +6,6 @@ trigger_phrases:
   - "heal-spec-docs --lane-modes"
   - "header-add template source"
   - "level-from-spec"
-version: 1.0.0.0
 ---
 
 # Heal spec docs lane modes (heal-spec-docs.cjs --lane-modes)

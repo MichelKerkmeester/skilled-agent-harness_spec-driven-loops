@@ -16,7 +16,6 @@ expected_leaf_resources:
 blindToRouterKeywords: true
 blindExceptions:
   - "web products"
-version: 1.1.0.0
 ---
 # MT-H05: Blind holdout — shipped-product UI references
 

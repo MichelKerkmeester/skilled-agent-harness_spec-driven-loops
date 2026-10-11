@@ -9,7 +9,6 @@ trigger_phrases:
   - "json syntax validation checklist"
 importance_tier: normal
 contextType: implementation
-version: 2.3.0.3
 ---
 
 # Format Guide -- JSON

@@ -9,7 +9,6 @@ trigger_phrases:
   - "chinese cjk cheat sheet styles.css"
 importance_tier: normal
 contextType: implementation
-version: 0.1.0.0
 ---
 
 # Source Comment Grammar (Target State)

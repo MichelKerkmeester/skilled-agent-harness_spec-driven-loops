@@ -1,7 +1,6 @@
 ---
 title: "CO-033 -- Deep-review command-owned audit loop"
 description: "This scenario validates the deep-review loop for `CO-033`. It focuses on confirming `/deep:review:auto` (never a raw `--agent deep-review` dispatch) drives a single audit iteration against a pre-bound spec packet and persists the real packet-local JSONL/findings-registry state."
-version: 1.4.0.21
 ---
 
 # CO-033 -- Deep-review command-owned audit loop

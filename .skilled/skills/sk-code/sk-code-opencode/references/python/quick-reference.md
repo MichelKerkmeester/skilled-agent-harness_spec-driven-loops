@@ -8,7 +8,6 @@ trigger_phrases:
   - "python docstring format"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.10
 ---
 
 # Python Quick Reference

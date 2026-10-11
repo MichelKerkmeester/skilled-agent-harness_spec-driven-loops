@@ -2,7 +2,6 @@
 title: "GAP-005 -- Daily Notes"
 description: "This scenario validates the query-then-create daily-notes convention resolves idempotently to a single dated page using only existing MCP tools."
 stage: routing
-version: 0.1.0.0
 ---
 
 # GAP-005 -- Daily Notes

@@ -5,7 +5,6 @@ trigger_phrases:
   - "Delete a note"
   - "notesmd-cli delete"
   - "remove a vault note"
-version: 0.1.0.0
 ---
 
 # Delete a note (`notesmd-cli delete`)

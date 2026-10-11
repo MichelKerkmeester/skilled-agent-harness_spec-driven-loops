@@ -1,7 +1,6 @@
 ---
 title: "GIT-007 -- Co-Authored-By footer refused"
 description: "This scenario validates Co-Authored-By footer refused for `GIT-007`. It focuses on verify an attribution footer is left out of a commit and refused when it is forced in."
-version: 2.0.0.0
 ---
 
 # GIT-007 -- Co-Authored-By footer refused

@@ -1,7 +1,6 @@
 ---
 title: "GIT-045 -- Template rules block nonconforming commits"
 description: "This scenario validates Template rules block nonconforming commits for `GIT-045`. It focuses on verify a repository's own rules block decides what the commit-msg gate refuses, with no bypass."
-version: 1.0.0.0
 ---
 
 # GIT-045 -- Template rules block nonconforming commits

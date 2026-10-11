@@ -9,7 +9,6 @@ trigger_phrases:
   - "research parity baseline"
 importance_tier: important
 contextType: implementation
-version: 1.14.0.11
 ---
 
 # Runtime Capability Matrix

@@ -7,7 +7,6 @@ trigger_phrases:
   - parent-child phase folders
   - phase complexity scoring
   - recursive phase validation
-version: 1.6.0.11
 ---
 
 # Phase-System Knowledge Node

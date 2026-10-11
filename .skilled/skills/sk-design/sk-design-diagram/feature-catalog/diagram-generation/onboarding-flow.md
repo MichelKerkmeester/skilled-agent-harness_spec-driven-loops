@@ -7,7 +7,6 @@ trigger_phrases:
   - "onboard style guide"
   - "extract palette from url"
   - "customize diagram skin"
-version: 1.0.0.4
 ---
 
 # Onboarding flow

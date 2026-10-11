@@ -9,7 +9,6 @@ trigger_phrases:
   - "changelog omission rules"
 importance_tier: normal
 contextType: general
-version: 1.1.0.29
 ---
 
 # Changelog & Release Notes Templates - Format Reference

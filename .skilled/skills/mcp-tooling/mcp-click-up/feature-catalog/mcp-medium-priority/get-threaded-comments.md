@@ -5,7 +5,6 @@ trigger_phrases:
   - "clickup_get_threaded_comments"
   - "comment replies"
   - "comment thread"
-version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

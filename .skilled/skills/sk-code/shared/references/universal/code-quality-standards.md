@@ -8,7 +8,6 @@ trigger_phrases:
   - "stack agnostic quality contract"
 importance_tier: important
 contextType: implementation
-version: 1.5.0.10
 ---
 
 # Universal Code Quality Standards

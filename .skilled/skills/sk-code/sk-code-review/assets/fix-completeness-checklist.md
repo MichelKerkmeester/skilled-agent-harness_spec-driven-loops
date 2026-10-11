@@ -9,7 +9,6 @@ trigger_phrases:
   - "instance only opt out"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.3
 ---
 
 # Fix Completeness Checklist

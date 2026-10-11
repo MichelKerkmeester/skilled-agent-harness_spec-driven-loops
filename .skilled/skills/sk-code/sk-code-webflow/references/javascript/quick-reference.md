@@ -10,7 +10,6 @@ trigger_phrases:
   - "webflow guard flag"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.3
 ---
 
 # Webflow JavaScript Quick Reference

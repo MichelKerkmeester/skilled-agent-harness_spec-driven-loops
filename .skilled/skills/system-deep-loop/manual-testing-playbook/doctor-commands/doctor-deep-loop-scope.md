@@ -1,7 +1,6 @@
 ---
 title: "DOC-368 -- Doctor deep-loop scope"
 description: "Manual scenario validating that /doctor:deep-loop --scope selects the research, review, council, both or all graph sources, that an absent flag asks the scope prompt and applies its default of all, and that a value outside the documented set is refused with the argument failure path."
-version: 1.2.0.0
 id: doctor-commands-doctor-deep-loop-scope
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

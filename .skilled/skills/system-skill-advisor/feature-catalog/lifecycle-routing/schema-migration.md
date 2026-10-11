@@ -6,7 +6,6 @@ trigger_phrases:
   - "v1 v2 additive"
   - "additive backfill"
   - "schema rollback"
-version: 0.8.0.14
 ---
 
 # Schema v1 to v2 Additive Backfill

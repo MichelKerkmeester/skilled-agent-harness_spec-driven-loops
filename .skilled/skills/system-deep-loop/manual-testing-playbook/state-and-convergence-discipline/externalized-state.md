@@ -7,7 +7,6 @@ description: "Verify loop state is packet-owned and externalized, not manually s
 expected_intent: review
 expected_workflow_mode: review
 expected_leaf_resources: []
-version: "1.2.0.0"
 ---
 
 # SC-001: Externalized State Discipline

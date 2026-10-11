@@ -1,7 +1,6 @@
 ---
 title: "CC-002 -- Default model selection (Sonnet)"
 description: "This scenario validates Default model selection (Sonnet) for `CC-002`. It focuses on confirming that omitting `--model` and explicit `--model claude-sonnet-5-5` produce equivalent behavior."
-version: 1.5.0.12
 ---
 
 # CC-002 -- Default model selection (Sonnet)

@@ -5,7 +5,6 @@ trigger_phrases:
   - "Update page via Markdown"
   - "notion_update-page-markdown"
   - "edit a Notion page with Markdown"
-version: 0.1.0.0
 ---
 
 # Update page via Markdown (`notion_update-page-markdown`)

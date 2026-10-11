@@ -8,7 +8,6 @@ trigger_phrases:
   - "magicpath env var"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
 ---
 
 # MagicPath Code Mode Manual - verified snippet

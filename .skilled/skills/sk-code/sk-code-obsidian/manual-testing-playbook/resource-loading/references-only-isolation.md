@@ -10,7 +10,6 @@ expected_resources:
   - references/stylesheet-ownership.md
   - references/db-class-naming.md
   - references/screenshot-harness.md
-version: 1.0.0.0
 ---
 
 # OB-008: References-only isolation

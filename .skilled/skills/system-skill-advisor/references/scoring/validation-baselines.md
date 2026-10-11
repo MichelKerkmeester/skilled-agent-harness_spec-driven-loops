@@ -7,7 +7,6 @@ trigger_phrases:
   - "advisor_validate troubleshooting"
 importance_tier: "normal"
 contextType: "research"
-version: 0.8.0.5
 ---
 
 # Validation Baselines + Troubleshooting

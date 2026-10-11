@@ -11,7 +11,6 @@ blindExceptions:
   - "ticket"
   - "close it out"
   - "jot down"
-version: 1.1.0.0
 ---
 
 # CU-H01: Blind holdout — daily task op

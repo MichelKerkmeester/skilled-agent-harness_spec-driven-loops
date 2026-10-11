@@ -8,7 +8,6 @@ trigger_phrases:
   - "retrofit goal template"
 importance_tier: important
 contextType: general
-version: 1.1.0.0
 ---
 
 # Top-Level Goal Template

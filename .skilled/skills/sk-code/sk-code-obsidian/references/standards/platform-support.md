@@ -9,7 +9,6 @@ trigger_phrases:
   - "manifest.json app compatibility"
 importance_tier: normal
 contextType: general
-version: 0.1.0.0
 ---
 
 # Obsidian Platform Support

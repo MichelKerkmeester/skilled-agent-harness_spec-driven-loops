@@ -8,7 +8,6 @@ trigger_phrases:
   - "cdn safe init checklist"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.7
 ---
 
 # Naming/Init Enforcement & Quick Reference

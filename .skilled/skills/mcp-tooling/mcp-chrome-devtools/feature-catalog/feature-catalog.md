@@ -1,7 +1,6 @@
 ---
 title: "mcp-chrome-devtools: Feature Catalog"
 description: "Unified feature inventory for the mcp-chrome-devtools skill — the bdg CLI (primary, 300+ CDP methods across 53 domains) and the Chrome DevTools MCP via Code Mode (fallback, 26 exposed tools, dual isolated instances)."
-version: 1.0.0.0
 ---
 
 # mcp-chrome-devtools: Feature Catalog

@@ -1,7 +1,6 @@
 ---
 title: "CHG-006 -- Prepare release notes without publishing"
 description: "This scenario validates the release-note boundary for CHG-006. Without --release, the run prepares the body and the full-changelog line and runs no tag, push or release command."
-version: 1.3.0.4
 ---
 
 # CHG-006 -- Prepare release notes without publishing

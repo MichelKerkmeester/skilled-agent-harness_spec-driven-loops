@@ -9,7 +9,6 @@ trigger_phrases:
   - "anticipation overshoot arc"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.2
 ---
 
 # Motion.dev Animation Principles

@@ -6,7 +6,6 @@ test_file: "tests/stress/cli-adapter/cli-pi.vitest.ts"
 test_name: "blocks recursive cli-pi fan-out before process spawn"
 playbook_path: "cli-external-orchestration/cli-pi/manual-testing-playbook/stress/self-invocation.md"
 id: "cli-pi-EC-014"
-version: 1.5.0.5
 ---
 
 # EC-014 -- cli-pi self invocation

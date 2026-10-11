@@ -8,7 +8,6 @@ expected_intent: PATTERNS
 expected_resources: 
   - references/integration-patterns.md
   - references/cli-reference.md
-version: 1.5.0.6
 ---
 
 # CC-R07: Patterns routing

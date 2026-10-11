@@ -1,7 +1,6 @@
 ---
 title: "CM-006 -- Wrong-form error"
 description: "This scenario validates the wrong-form error for `CM-006`. It focuses on confirming that calling without the manual prefix returns a deterministic 'tool not found' error referencing the wrong-form name."
-version: 1.0.0.7
 id: CM-006
 category: manual_namespace_contract
 stage: routing

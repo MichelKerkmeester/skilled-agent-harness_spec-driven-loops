@@ -7,7 +7,6 @@ trigger_phrases:
   - "block convergence critical disagreement"
   - "graph convergence safety guarantee"
   - "council stop blocked unresolved critical"
-version: 1.7.0.10
 ---
 
 # Convergence safety under critical disagreement

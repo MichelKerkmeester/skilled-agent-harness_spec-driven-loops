@@ -8,7 +8,6 @@ expected_intent: REVIEW
 expected_resources: 
   - references/integration-patterns.md
   - references/agent-delegation.md
-version: 1.5.0.6
 ---
 
 # CC-R04: Review routing

@@ -7,7 +7,6 @@ trigger_phrases:
   - "derived provenance"
   - "lane source tagging"
   - "source_kind"
-version: 0.8.0.14
 ---
 
 # Provenance Fingerprints and Trust Lanes

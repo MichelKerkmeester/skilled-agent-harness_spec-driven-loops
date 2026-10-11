@@ -16,7 +16,6 @@ expected_resources:
   - assets/animation/install-card.md
   - assets/animation/snippets/principled-reveal.js
   - assets/animation/snippets/README.md
-version: 1.0.0.0
 ---
 
 # WF-008: Motion.dev routing

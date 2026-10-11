@@ -12,7 +12,6 @@ trigger_phrases:
   - "coverage and exclusion policy"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
 ---
 
 # Ripgrep Retrieval Conventions

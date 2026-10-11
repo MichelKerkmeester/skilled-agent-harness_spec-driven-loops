@@ -7,7 +7,6 @@ trigger_phrases:
   - "revoke credentials"
   - "remove stored token"
   - "sign out clickup"
-version: 1.0.0.3
 ---
 
 # Logout

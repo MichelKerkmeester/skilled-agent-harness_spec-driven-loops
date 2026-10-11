@@ -1,7 +1,6 @@
 ---
 title: "284 -- Skill graph query"
 description: "Manual scenario for validating skill_graph_query relationship reads."
-version: 0.8.0.7
 id: NC-008
 category: native_cli_tools
 stage: routing

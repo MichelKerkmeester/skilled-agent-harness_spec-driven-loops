@@ -14,7 +14,6 @@ expected_leaf_resources:
   - workflow_mode: mcp-click-up
     leaf_resource_id: references/mcp-tools.md
 created: 2026-07-10
-version: 1.0.0.0
 ---
 
 # MT-002: ClickUp task request routes to mcp-click-up

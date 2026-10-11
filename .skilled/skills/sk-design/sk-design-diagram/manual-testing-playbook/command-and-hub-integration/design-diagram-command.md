@@ -1,7 +1,6 @@
 ---
 title: "CMD-001 -- create-diagram command"
 description: "This scenario validates the /design:diagram command router for `CMD-001`. It focuses on mode resolution, workflow YAML binding, and the presentation boundary between the router and the presentation contract."
-version: 1.0.0.4
 ---
 
 # CMD-001 -- create-diagram command

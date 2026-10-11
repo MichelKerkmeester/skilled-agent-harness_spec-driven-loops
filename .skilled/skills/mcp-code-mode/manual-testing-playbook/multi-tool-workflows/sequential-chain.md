@@ -1,7 +1,6 @@
 ---
 title: "CM-011 -- Sequential chain"
 description: "This scenario validates a sequential tool chain for `CM-011`. It focuses on confirming that `call_tool_chain` can execute two tools in order with the second consuming the first's output."
-version: 1.0.0.8
 id: CM-011
 category: multi_tool_workflows
 stage: routing

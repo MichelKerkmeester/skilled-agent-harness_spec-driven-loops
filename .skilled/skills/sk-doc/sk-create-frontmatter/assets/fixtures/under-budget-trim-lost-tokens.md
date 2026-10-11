@@ -8,7 +8,6 @@ trigger_phrases:
   - "keep list token loss example"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
 ---
 
 # Under-budget trim fixture

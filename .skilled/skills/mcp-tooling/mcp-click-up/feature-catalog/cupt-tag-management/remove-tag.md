@@ -7,7 +7,6 @@ trigger_phrases:
   - "untag task"
   - "delete tag from task"
   - "strip processing tag"
-version: 1.0.0.3
 ---
 
 # Remove Tag

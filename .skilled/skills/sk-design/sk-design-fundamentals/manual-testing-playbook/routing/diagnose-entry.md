@@ -3,7 +3,6 @@ title: "SKD-001 -- Diagnosis entry on a vague complaint"
 description: "This scenario validates Diagnosis entry on a vague complaint for `SKD-001`. It focuses on confirm a vague visual complaint loads the symptom-to-fix table before any value changes."
 stage: routing
 id: "SKD-001"
-version: 1.0.0.0
 ---
 
 # SKD-001 -- Diagnosis entry on a vague complaint

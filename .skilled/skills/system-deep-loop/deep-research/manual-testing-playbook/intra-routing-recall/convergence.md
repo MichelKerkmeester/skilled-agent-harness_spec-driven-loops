@@ -9,7 +9,6 @@ expected_resources:
   - references/convergence/convergence.md
   - references/convergence/convergence-signals.md
   - references/convergence/convergence-graph.md
-version: 1.1.0.0
 ---
 
 # DR-R03: Deep research convergence routing

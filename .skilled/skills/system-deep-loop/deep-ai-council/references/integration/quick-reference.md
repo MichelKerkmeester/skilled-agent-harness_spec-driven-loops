@@ -8,7 +8,6 @@ trigger_phrases:
   - "council validation"
 importance_tier: "normal"
 contextType: "general"
-version: 1.7.0.4
 ---
 
 # AI Council Quick Reference

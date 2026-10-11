@@ -2,7 +2,6 @@
 name: {{SKILL_NAME}}
 description: TODO one-line description of what this skill does and when to use it (verb + domain noun + trigger phrase)
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.2.0.3
 ---
 
 # {{SKILL_TITLE}}

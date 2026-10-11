@@ -7,7 +7,6 @@ trigger_phrases:
   - "question origin provenance"
   - "late question injection"
   - "legacy-import question source"
-version: 1.14.0.13
 ---
 
 # Injection inbox provenance

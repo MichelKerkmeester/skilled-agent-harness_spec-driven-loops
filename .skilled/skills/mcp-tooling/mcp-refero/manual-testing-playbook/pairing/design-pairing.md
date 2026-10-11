@@ -1,7 +1,6 @@
 ---
 title: "PAIR-001 -- sk-design-md-generator Pairing Enforced"
 description: "This scenario validates the evidence boundary for `PAIR-001`: a design-affecting request pairs with sk-design-md-generator for a measured Style Reference, the transport supplies only requested evidence, and no taste verdict is issued from transport output."
-version: 1.0.0.0
 ---
 
 # PAIR-001 -- sk-design-md-generator Pairing Enforced

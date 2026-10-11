@@ -6,7 +6,6 @@ trigger_phrases:
   - "coverage-graph-fuzzy-merge"
   - "coverage-graph fuzzy merge runtime"
   - "coverage graph coverage-graph fuzzy merge"
-version: 1.4.0.15
 ---
 
 # Coverage-graph fuzzy merge

@@ -10,7 +10,6 @@ trigger_phrases:
   - "notion daily notes"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.1.0.0
 ---
 
 # mcp-notion API Gap Tools Reference

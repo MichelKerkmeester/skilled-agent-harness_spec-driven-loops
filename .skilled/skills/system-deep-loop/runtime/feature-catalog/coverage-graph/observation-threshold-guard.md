@@ -6,7 +6,6 @@ trigger_phrases:
   - "observation-threshold-guard"
   - "observation-threshold guard runtime"
   - "coverage graph observation-threshold guard"
-version: 1.4.0.15
 ---
 
 # Observation-threshold guard

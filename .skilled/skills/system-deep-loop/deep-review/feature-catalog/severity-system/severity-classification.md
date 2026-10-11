@@ -7,7 +7,6 @@ trigger_phrases:
   - "classify finding severity"
   - "newFindingsRatio weight"
   - "blocker required advisory"
-version: 1.11.0.6
 ---
 
 # Severity classification

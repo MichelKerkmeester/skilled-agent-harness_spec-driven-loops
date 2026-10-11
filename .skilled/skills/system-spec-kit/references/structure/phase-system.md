@@ -9,7 +9,6 @@ trigger_phrases:
   - "phase parent structure"
 importance_tier: normal
 contextType: planning
-version: 1.6.0.10
 ---
 
 # Phase System

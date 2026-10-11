@@ -8,7 +8,6 @@ trigger_phrases:
   - "council comparison table"
 importance_tier: "normal"
 contextType: "planning"
-version: 1.7.0.8
 ---
 
 # AI Council Scoring Rubric

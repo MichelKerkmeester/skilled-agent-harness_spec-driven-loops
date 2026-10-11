@@ -8,7 +8,6 @@ trigger_phrases:
   - "skill section guidance"
 importance_tier: normal
 contextType: general
-version: 1.2.0.49
 ---
 
 # SKILL.md File Templates - Creation Guide

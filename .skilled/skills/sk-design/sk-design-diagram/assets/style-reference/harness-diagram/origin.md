@@ -7,7 +7,6 @@ trigger_phrases:
   - "diagram palette origin"
 importance_tier: normal
 contextType: reference
-version: 1.2.0.4
 ---
 
 # Origin of this Style Reference

@@ -6,7 +6,6 @@ trigger_phrases:
   - "refresh-track-roots"
   - "sweep-track-roots"
   - "track-root pre-push gate"
-version: 2.0.0.0
 ---
 
 # Track-root children lists

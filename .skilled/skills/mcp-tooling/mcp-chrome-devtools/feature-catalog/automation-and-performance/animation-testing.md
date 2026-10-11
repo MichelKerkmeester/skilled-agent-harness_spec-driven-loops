@@ -5,7 +5,6 @@ trigger_phrases:
   - "animation performance test"
   - "animation testing script"
   - "layout recalc thresholds"
-version: 1.0.0.0
 ---
 
 # Animation Testing

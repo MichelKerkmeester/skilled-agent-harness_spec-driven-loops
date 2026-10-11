@@ -1,7 +1,6 @@
 ---
 title: "DLR-033 -- Abortable chunked sleep"
 description: "Manual validation scenario for Abortable chunked sleep in the runtime/ skill."
-version: 1.4.0.15
 ---
 
 # DLR-033 -- Abortable chunked sleep

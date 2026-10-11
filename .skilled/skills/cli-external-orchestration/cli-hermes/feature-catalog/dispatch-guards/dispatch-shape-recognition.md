@@ -6,7 +6,6 @@ trigger_phrases:
   - "DISPATCH_SHAPES hermes entry"
   - "HERMES_QUERY_FLAGS"
   - "hermes dispatch audit trail"
-version: 1.0.0.0
 ---
 
 # Hermes Dispatch-Shape Recognition (inspectDispatch)

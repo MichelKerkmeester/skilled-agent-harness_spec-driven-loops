@@ -1,7 +1,6 @@
 ---
 title: "CM-023 -- Timeout escalation"
 description: "This scenario validates the call_tool_chain timeout argument for `CM-023`. It focuses on confirming a chain that exceeds the timeout aborts within the expected window with a deterministic timeout error."
-version: 1.0.0.7
 id: CM-023
 category: recovery_and_config
 stage: routing

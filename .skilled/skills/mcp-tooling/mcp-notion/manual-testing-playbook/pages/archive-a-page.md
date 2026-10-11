@@ -2,7 +2,6 @@
 title: "PAGE-004 -- Archive a page"
 description: "This scenario validates notion_archive-a-page by creating a disposable scratch page and archiving it, confirming the reversible trash state."
 stage: routing
-version: 0.1.0.0
 ---
 
 # PAGE-004 -- Archive a page

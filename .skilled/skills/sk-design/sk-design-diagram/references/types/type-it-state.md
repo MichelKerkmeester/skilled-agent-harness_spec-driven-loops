@@ -9,7 +9,6 @@ trigger_phrases:
   - "pre platform tooling"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.8
 ---
 
 # IT current-state

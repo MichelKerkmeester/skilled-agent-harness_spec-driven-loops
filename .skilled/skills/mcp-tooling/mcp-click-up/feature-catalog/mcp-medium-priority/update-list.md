@@ -5,7 +5,6 @@ trigger_phrases:
   - "clickup_update_list"
   - "rename list"
   - "update list"
-version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

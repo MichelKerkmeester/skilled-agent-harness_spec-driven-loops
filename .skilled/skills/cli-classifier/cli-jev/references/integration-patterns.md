@@ -9,7 +9,6 @@ trigger_phrases:
   - "jev judgment dispatch"
 importance_tier: "important"
 contextType: "implementation"
-version: 0.1.0.2
 ---
 
 # Jev Integration Patterns

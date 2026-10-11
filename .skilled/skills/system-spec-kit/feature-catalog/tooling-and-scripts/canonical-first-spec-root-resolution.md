@@ -7,7 +7,6 @@ trigger_phrases:
   - spec root collision guard
   - legacy spec root fallback
   - spec root migration
-version: 1.0.0.0
 ---
 
 # Canonical-first spec-root resolution

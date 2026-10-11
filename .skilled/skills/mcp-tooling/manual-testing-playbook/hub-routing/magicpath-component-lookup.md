@@ -14,7 +14,6 @@ expected_leaf_resources:
   - workflow_mode: mcp-magicpath
     leaf_resource_id: references/credential-setup.md
 created: 2026-08-29
-version: 1.0.0.0
 ---
 
 # MT-011: MagicPath component lookup routes to mcp-magicpath

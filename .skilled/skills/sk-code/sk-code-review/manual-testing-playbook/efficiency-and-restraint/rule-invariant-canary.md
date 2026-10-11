@@ -1,7 +1,6 @@
 ---
 title: "CR-024 -- Rule-invariant canary"
 description: "This scenario validates the rule-invariant canary for `CR-024`. It focuses on check-rule-copies.js passing when the verdict triplet and cross-doc Iron Law wording agree and failing closed when any copy drifts, and that both documented example outputs end on a Not checked line then the exact status line."
-version: 1.5.0.1
 ---
 
 # CR-024 -- Rule-invariant canary

@@ -1,7 +1,6 @@
 ---
 title: "470 -- Heal spec-docs anchor repair apply"
 description: "This scenario validates the heal-spec-docs anchor repair apply for `470`. It focuses on the two anchor edits the apply writes, the byte-level diff those edits produce and the clean second run that follows."
-version: 1.0.0.0
 id: tooling-and-scripts-heal-spec-docs-anchor-repair-apply
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

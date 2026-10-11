@@ -8,7 +8,6 @@ trigger_phrases:
   - "typescript workspace configuration"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.11
 ---
 
 # tsconfig Baseline & Module Organization

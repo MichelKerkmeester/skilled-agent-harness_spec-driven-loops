@@ -10,7 +10,6 @@ trigger_phrases:
   - "obsidian mcp npx failed"
 importance_tier: "normal"
 contextType: "general"
-version: 0.1.0.0
 ---
 
 # mcp-obsidian Troubleshooting Guide

@@ -1,7 +1,6 @@
 ---
 title: "VSN-003 -- Object detection"
 description: "This scenario validates Object detection for `VSN-003`. It focuses on labeled bounding boxes for detected objects."
-version: 1.0.0.0
 ---
 
 # VSN-003 -- Object detection

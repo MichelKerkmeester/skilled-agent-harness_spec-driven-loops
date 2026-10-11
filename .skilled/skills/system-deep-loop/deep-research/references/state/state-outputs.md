@@ -10,7 +10,6 @@ trigger_phrases:
   - "spec anchoring output"
 importance_tier: normal
 contextType: implementation
-version: 1.14.0.4
 ---
 
 # Deep Research Output Files Reference

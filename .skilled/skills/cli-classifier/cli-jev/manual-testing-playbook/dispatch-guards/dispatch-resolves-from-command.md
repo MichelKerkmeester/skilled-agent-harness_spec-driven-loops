@@ -1,7 +1,6 @@
 ---
 title: "JEV-017 -- A jev dispatch resolves to cli-classifier from the command"
 description: "Confirm the dispatch audit resolves a jev judgment command to the cli-classifier hub's cli-jev packet, for `JEV-017`."
-version: 0.1.0.1
 ---
 
 # JEV-017 -- A jev dispatch resolves to cli-classifier from the command

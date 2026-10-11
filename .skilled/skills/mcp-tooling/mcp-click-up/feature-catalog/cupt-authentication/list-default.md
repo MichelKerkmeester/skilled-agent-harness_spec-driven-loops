@@ -7,7 +7,6 @@ trigger_phrases:
   - "set default list"
   - "persist default list id"
   - "sprint list default"
-version: 1.0.0.3
 ---
 
 # List Default

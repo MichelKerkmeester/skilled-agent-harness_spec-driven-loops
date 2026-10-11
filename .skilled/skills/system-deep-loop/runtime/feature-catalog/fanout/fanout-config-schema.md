@@ -7,7 +7,6 @@ trigger_phrases:
   - "configure fanout executors"
   - "lineage executor schema"
   - "expand lineages label collision"
-version: 1.4.0.3
 ---
 
 # Fan-out config schema

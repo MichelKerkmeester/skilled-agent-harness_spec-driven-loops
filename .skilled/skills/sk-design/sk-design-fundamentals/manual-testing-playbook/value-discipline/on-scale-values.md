@@ -3,7 +3,6 @@ title: "SKD-010 -- Every value comes from a scale"
 description: "This scenario validates Every value comes from a scale for `SKD-010`. It focuses on confirm a spatial or type value is returned from the fixed scale with the scale named."
 stage: routing
 id: "SKD-010"
-version: 1.0.0.0
 ---
 
 # SKD-010 -- Every value comes from a scale

@@ -7,7 +7,6 @@ trigger_phrases:
   - study Stripe design tokens
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
 ---
 
 # Stripe — Style Reference

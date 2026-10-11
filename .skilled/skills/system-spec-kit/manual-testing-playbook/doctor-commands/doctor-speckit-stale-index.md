@@ -1,7 +1,6 @@
 ---
 title: "DOC-350 -- Doctor speckit stale index"
 description: "Manual scenario validating that /doctor:speckit on a stale trigger index reports the index_content_stale signal and names the regeneration command without regenerating it."
-version: 1.2.0.0
 id: doctor-commands-doctor-speckit-stale-index
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

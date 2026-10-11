@@ -7,7 +7,6 @@ trigger_phrases:
   - "reducer-owned findings"
   - "active resolved findings"
   - "fail-closed reducer"
-version: 1.11.0.7
 ---
 
 # Findings registry

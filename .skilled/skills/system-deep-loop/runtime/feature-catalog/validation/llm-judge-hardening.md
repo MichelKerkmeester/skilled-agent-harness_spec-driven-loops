@@ -6,7 +6,6 @@ trigger_phrases:
   - "llm-judge-hardening"
   - "llm-judge hardening runtime"
   - "validation llm-judge hardening"
-version: 1.4.0.15
 ---
 
 # LLM-judge hardening

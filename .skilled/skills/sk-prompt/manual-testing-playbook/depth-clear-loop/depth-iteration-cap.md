@@ -1,7 +1,6 @@
 ---
 title: "SP-011 -- DEPTH iteration cap at one CLEAR retry"
 description: "This scenario validates CLEAR re-score loop capping for `SP-011`. It focuses on delivering the best version with a quality note after one failed retry."
-version: 2.3.0.5
 ---
 
 # SP-011 -- DEPTH iteration cap at one CLEAR retry

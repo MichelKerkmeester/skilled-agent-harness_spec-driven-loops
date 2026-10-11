@@ -7,7 +7,6 @@ trigger_phrases:
   - "detect nested council depth"
   - "NDP compliance dispatch"
   - "depth 0 vs depth 1 council"
-version: 1.7.0.9
 ---
 
 # Depth detection parallel vs sequential

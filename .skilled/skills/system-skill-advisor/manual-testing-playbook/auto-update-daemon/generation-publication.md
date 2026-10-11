@@ -6,7 +6,6 @@ trigger_phrases:
   - "generation counter"
   - "snapshot publication"
   - "reindex commit"
-version: 0.8.0.14
 id: AU-004
 category: auto_update_daemon
 stage: routing

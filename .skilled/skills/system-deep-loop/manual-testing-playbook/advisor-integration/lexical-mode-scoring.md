@@ -7,7 +7,6 @@ description: "Verify research, review, and ai-council are lexically routed modes
 expected_intent: research
 expected_workflow_mode: research
 expected_leaf_resources: []
-version: "1.2.0.0"
 ---
 
 # AI-002: Lexical Mode Scoring

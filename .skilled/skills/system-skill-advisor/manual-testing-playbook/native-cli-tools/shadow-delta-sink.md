@@ -6,7 +6,6 @@ trigger_phrases:
   - "shadow delta sink"
   - "shadow delta opt-in"
   - "advisor shadow recording"
-version: 0.8.0.0
 id: NC-010
 category: native_cli_tools
 stage: routing

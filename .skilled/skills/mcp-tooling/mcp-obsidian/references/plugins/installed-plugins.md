@@ -12,7 +12,6 @@ trigger_phrases:
   - "plugins we support"
 importance_tier: "normal"
 contextType: "implementation"
-version: "0.2.0.0"
 ---
 
 # Installed Obsidian Plugins Roster (`installed-plugins`)

@@ -5,7 +5,6 @@ trigger_phrases:
   - "clickup_get_task_comments"
   - "read task comments"
   - "list comments mcp"
-version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

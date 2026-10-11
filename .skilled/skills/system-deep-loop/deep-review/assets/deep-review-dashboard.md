@@ -8,7 +8,6 @@ trigger_phrases:
   - "review coverage trend"
 importance_tier: normal
 contextType: general
-version: 1.11.0.15
 ---
 
 # Deep Review Dashboard - Session Overview

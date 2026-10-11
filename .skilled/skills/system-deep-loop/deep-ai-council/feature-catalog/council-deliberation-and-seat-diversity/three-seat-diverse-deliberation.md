@@ -7,7 +7,6 @@ trigger_phrases:
   - "deliberate with three seats"
   - "seat lens diversity"
   - "council seat roles"
-version: 1.7.0.9
 ---
 
 # Three-seat diverse deliberation

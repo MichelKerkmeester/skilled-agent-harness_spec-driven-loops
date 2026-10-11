@@ -1,7 +1,6 @@
 ---
 title: "SA-001: Skill Advisor Probe Battery"
 description: "Run a labeled probe set (>=15 positives + >=5 negatives) through the skill advisor and verify sk-code routing accuracy meets threshold."
-version: 1.5.0.9
 ---
 
 # SA-001: Skill Advisor Probe Battery

@@ -1,7 +1,6 @@
 ---
 title: "VSN-021 -- Guaranteed auto-inspect for a text-only model"
 description: "This scenario validates the legacy auto-inspect guarantee when `SK_VISION_AUTOINSPECT=1` is set for a text-only model in OpenCode or Pi."
-version: 1.0.0.0
 ---
 
 # VSN-021 -- Guaranteed auto-inspect for a text-only model

@@ -8,7 +8,6 @@ trigger_phrases:
   - "review report output"
 importance_tier: normal
 contextType: implementation
-version: 1.11.0.4
 ---
 
 # Deep Review State Outputs

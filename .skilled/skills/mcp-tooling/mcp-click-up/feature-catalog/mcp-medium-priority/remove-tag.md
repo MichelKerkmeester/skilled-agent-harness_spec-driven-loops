@@ -5,7 +5,6 @@ trigger_phrases:
   - "clickup_remove_tag_from_task"
   - "remove tag mcp"
   - "untag task"
-version: 1.1.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

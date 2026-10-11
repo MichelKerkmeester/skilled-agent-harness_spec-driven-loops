@@ -10,7 +10,6 @@ trigger_phrases:
   - "obsidian cli unable to find"
 importance_tier: "important"
 contextType: "implementation"
-version: 0.1.0.0
 ---
 
 # Official Obsidian CLI, Agent Usage

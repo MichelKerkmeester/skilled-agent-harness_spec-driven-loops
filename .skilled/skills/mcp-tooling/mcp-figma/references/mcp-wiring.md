@@ -9,7 +9,6 @@ trigger_phrases:
   - "figma get_design_context"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.0.0.3
 ---
 
 # Figma MCP Wiring (optional, via Code Mode)

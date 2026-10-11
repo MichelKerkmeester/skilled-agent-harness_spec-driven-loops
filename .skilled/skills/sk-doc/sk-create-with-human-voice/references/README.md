@@ -7,7 +7,6 @@ trigger_phrases:
   - "hvr workflow references"
 importance_tier: normal
 contextType: general
-version: 1.1.0.4
 ---
 
 # sk-create-with-human-voice References

@@ -7,7 +7,6 @@ trigger_phrases:
   - "review status summary"
   - "provisional verdict display"
   - "operator view"
-version: 1.11.0.7
 ---
 
 # Dashboard

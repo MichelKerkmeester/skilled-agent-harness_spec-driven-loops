@@ -7,7 +7,6 @@ trigger_phrases:
   - import ordering
   - constant naming convention
   - sk-code standards compliance
-version: 1.6.0.24
 ---
 
 # Code standards alignment

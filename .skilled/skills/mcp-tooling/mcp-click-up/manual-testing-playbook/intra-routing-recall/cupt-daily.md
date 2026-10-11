@@ -7,7 +7,6 @@ description: "This scenario validates the SKILL.md Smart Router's CUPT_DAILY int
 expected_intent: CUPT_DAILY
 expected_resources:
   - references/cupt-commands.md
-version: 1.1.0.0
 ---
 
 # CU-R01: CUPT daily routing

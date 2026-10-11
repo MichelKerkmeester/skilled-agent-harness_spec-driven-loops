@@ -1,7 +1,6 @@
 ---
 title: "VSN-005 -- Segmentation"
 description: "This scenario validates Segmentation for `VSN-005`. It focuses on a bbox or mask locating a named object."
-version: 1.0.0.0
 ---
 
 # VSN-005 -- Segmentation

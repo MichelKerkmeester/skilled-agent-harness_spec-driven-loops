@@ -9,7 +9,6 @@ trigger_phrases:
   - "validation prompts remediation"
 importance_tier: important
 contextType: implementation
-version: 1.5.0.2
 ---
 
 # Webflow Code Style Enforcement: Cross-Language Workflow

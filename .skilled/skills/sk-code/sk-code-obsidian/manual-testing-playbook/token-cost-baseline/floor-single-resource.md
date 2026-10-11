@@ -7,7 +7,6 @@ expected_surface: OBSIDIAN
 expected_intent: STACK_STANDARDS
 expected_resources:
   - references/obsidian-plugin-api.md
-version: 1.0.0.0
 ---
 
 # OB-017: Floor -- single-resource load

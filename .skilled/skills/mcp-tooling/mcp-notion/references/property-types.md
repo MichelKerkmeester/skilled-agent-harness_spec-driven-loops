@@ -9,7 +9,6 @@ trigger_phrases:
   - "notion filter sort properties"
 importance_tier: "important"
 contextType: "implementation"
-version: 0.1.0.0
 ---
 
 # Notion Property Types Reference

@@ -8,7 +8,6 @@ trigger_phrases:
   - "when to recommend motion"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.5
 ---
 
 # Motion.dev Quick Start

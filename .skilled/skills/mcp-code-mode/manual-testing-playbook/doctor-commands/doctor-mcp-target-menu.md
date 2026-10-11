@@ -1,7 +1,6 @@
 ---
 title: "DOC-378 -- Doctor mcp target menu"
 description: "Manual scenario validating that /doctor:mcp shows its sub-action menu and waits when the action is missing, and that a cross-sub-action flag is refused before any workflow loads."
-version: 1.1.0.0
 id: doctor-commands-doctor-mcp-target-menu
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

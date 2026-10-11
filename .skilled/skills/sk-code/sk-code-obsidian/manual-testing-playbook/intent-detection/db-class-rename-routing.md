@@ -11,7 +11,6 @@ expected_resources:
   - references/comment-grammar.md
   - assets/db-class-rename-checklist.md
   - assets/fixture-authoring-checklist.md
-version: 1.0.0.0
 ---
 
 # OB-003: DB class rename routing

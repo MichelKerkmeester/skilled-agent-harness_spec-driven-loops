@@ -5,7 +5,6 @@ trigger_phrases:
   - "Retrieve a data source"
   - "notion_retrieve-a-data-source"
   - "read a Notion data source's schema"
-version: 0.1.0.0
 ---
 
 # Retrieve a data source (`notion_retrieve-a-data-source`)

@@ -6,7 +6,6 @@ trigger_phrases:
   - "aside deterministic browser"
   - "aside screenshot evidence"
   - "aside snapshot"
-version: 1.0.0.0
 ---
 
 # Repl (deterministic evidence lane over aside repl)

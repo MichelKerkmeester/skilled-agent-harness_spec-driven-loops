@@ -10,7 +10,6 @@ trigger_phrases:
   - "footer auth lines"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.10
 ---
 
 # DP integration

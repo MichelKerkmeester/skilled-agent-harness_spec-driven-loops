@@ -6,7 +6,6 @@ trigger_phrases:
   - "plugin bridge"
   - "system-skill-advisor plugin"
   - "skill advisor plugin"
-version: 0.8.0.17
 ---
 
 # OpenCode Plugin

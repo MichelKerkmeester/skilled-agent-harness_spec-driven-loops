@@ -11,7 +11,6 @@ blindToRouterKeywords: true
 blindExceptions:
   - "keeps dropping"
   - "work out the cause"
-version: 1.0.0.1
 ---
 
 # CD-H01: Blind holdout: session drop

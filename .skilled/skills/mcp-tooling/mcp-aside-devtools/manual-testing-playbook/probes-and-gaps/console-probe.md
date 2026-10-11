@@ -1,7 +1,6 @@
 ---
 title: "ASD-012 -- Console capture probe (guarded)"
 description: "This scenario validates the console-capture gap for `ASD-012`. It is a guarded probe: either a sentinel round trip succeeds and its shape is recorded, or the failure is captured and console capture stays unsupported."
-version: 1.0.0.0
 ---
 
 # ASD-012 -- Console capture probe (guarded)

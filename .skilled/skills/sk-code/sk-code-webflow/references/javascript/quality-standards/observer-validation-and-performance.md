@@ -8,7 +8,6 @@ trigger_phrases:
   - "intersectionobserver webflow"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.7
 ---
 
 # Observer, Validation, Performance & Animation Patterns

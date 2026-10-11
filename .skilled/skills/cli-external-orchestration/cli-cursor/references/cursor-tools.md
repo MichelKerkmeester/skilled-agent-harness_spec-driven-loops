@@ -9,7 +9,6 @@ trigger_phrases:
   - "cursor unique surfaces"
 importance_tier: normal
 contextType: implementation
-version: 1.4.0.3
 ---
 
 # Cursor CLI Unique Capabilities

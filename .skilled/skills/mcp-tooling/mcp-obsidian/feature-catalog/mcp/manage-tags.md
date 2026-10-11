@@ -5,7 +5,6 @@ trigger_phrases:
   - "Manage note tags"
   - "obsidian_manage_tags"
   - "add or remove an Obsidian note tag"
-version: 0.1.0.0
 ---
 
 # Manage note tags (`obsidian_manage_tags`)

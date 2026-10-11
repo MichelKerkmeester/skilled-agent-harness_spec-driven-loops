@@ -9,7 +9,6 @@ trigger_phrases:
   - "commented no changes status"
 importance_tier: important
 contextType: implementation
-version: 1.5.0.2
 ---
 
 # PR-State Content-Hash Dedup (M-1)

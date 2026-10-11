@@ -23,7 +23,6 @@ expected_resources:
   - references/rust/quick-reference/collections-imports-and-errors.md
   - references/rust/quick-reference/rustdoc-and-cargo.md
   - references/rust/quick-reference/determinism-parity-and-related.md
-version: 1.0.0.0
 ---
 
 # OC-009: Rust standards routing

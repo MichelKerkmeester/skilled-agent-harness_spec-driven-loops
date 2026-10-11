@@ -3,7 +3,6 @@ title: Design Knowledge Layer
 description: Index of the condensed general design-knowledge layer folded into sk-design-md-generator so it reads design intent, not only CSS.
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
 ---
 
 # Design Knowledge Layer

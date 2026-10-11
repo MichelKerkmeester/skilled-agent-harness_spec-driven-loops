@@ -9,7 +9,6 @@ expected_resources:
   - references/mobile-and-touch.md
   - references/view-renderer-architecture.md
   - references/verification.md
-version: 1.0.0.0
 ---
 
 # OB-005: Debugging routing

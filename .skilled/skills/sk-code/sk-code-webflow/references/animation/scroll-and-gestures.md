@@ -8,7 +8,6 @@ trigger_phrases:
   - "motion hover press gestures"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.3
 ---
 
 # Motion.dev Scroll and Gestures

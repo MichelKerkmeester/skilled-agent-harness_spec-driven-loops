@@ -2,7 +2,6 @@
 title: "270 -- Resource map template"
 description: "This scenario validates the resource-map template rollout across the template, discovery, and spec-document classification surfaces."
 audited_post_018: true
-version: 1.6.0.9
 id: context-preservation-resource-map-template
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

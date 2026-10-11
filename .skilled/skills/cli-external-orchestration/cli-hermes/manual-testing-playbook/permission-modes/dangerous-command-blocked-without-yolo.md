@@ -1,7 +1,6 @@
 ---
 title: "HERMES-004 -- Dangerous command blocked without --yolo"
 description: "Confirm that in single-query mode without `--yolo`, a tool call Hermes flags as dangerous is refused with its named blocking message and the target is untouched for `HERMES-004`."
-version: 1.0.0.0
 ---
 
 # HERMES-004 -- Dangerous command blocked without --yolo

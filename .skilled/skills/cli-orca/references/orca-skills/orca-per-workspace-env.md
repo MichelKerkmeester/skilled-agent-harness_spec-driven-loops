@@ -9,7 +9,6 @@ trigger_phrases:
   - "orca recipe setup"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
 ---
 
 # Official Orca Skill - Per-Workspace Environments

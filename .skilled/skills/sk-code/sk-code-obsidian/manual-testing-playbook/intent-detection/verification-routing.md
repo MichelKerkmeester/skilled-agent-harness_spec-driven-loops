@@ -10,7 +10,6 @@ expected_resources:
   - assets/verification-checklist.md
   - references/screenshot-harness.md
   - references/release/release-verification.md
-version: 1.0.0.0
 ---
 
 # OB-006: Verification routing

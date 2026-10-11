@@ -4,7 +4,6 @@ description: "List the files and images embedded in a document page."
 trigger_phrases:
   - "clickup_list_document_page_attachments"
   - "doc page attachments"
-version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

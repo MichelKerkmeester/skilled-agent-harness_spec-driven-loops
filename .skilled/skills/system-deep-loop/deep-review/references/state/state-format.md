@@ -9,7 +9,6 @@ trigger_phrases:
   - "review iteration file structure"
 importance_tier: important
 contextType: implementation
-version: 1.11.0.29
 ---
 
 # Deep Review State Format

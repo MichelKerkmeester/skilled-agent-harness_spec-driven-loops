@@ -1,7 +1,6 @@
 ---
 title: "CM-010 -- validate_config script"
 description: "This scenario validates the validate_config.py preflight script for `CM-010`. It focuses on confirming the script reports missing required env vars and exits non-zero."
-version: 1.0.0.7
 id: CM-010
 category: env_var_prefixing
 stage: routing

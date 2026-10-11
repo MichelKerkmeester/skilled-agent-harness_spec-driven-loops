@@ -1,7 +1,6 @@
 ---
 title: "HERMES-002 -- Query-file verbatim round trip"
 description: "Confirm `--query-file -` delivers the prompt byte-for-byte, with no shell expansion of quotes, `$(...)`, backticks, or `$HOME` for `HERMES-002`."
-version: 1.0.0.0
 ---
 
 # HERMES-002 -- Query-file verbatim round trip

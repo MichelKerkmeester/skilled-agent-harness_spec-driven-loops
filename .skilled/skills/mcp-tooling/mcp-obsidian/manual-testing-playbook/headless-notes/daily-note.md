@@ -2,7 +2,6 @@
 title: "OBS-005 -- Open the daily note"
 description: "This scenario validates the headless notesmd-cli daily-note command without requiring Obsidian to run."
 stage: routing
-version: 0.1.0.0
 ---
 
 # OBS-005 -- Open the daily note

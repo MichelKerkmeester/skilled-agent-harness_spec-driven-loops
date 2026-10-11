@@ -11,7 +11,6 @@ trigger_phrases:
   - "rule lifecycle"
 importance_tier: important
 contextType: reference
-version: 1.1.0.5
 ---
 
 # Integration and Lifecycle: Wiring, Revising and Retiring a Rule

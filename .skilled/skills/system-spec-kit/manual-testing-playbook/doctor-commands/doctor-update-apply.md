@@ -1,7 +1,6 @@
 ---
 title: "DOC-359 -- Doctor update apply"
 description: "Manual scenario validating that /doctor:update apply on the shared update fixture shows its complete plan, asks once before writing, applies only planned and decided parts, and keeps a rollback record before its first target write."
-version: 1.1.0.0
 id: doctor-commands-doctor-update-apply
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

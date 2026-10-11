@@ -8,7 +8,6 @@ expected_resources:
   - assets/code-quality-checklist/overview-header-and-comments.md
   - assets/code-quality-checklist/naming-init-formatting-and-css.md
   - assets/code-quality-checklist/verification-quick-reference-and-related.md
-version: 1.0.0.0
 ---
 
 # CQ-001: Quality Gate Routes To The Checklist

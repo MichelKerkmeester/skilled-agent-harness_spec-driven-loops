@@ -7,7 +7,6 @@ trigger_phrases:
   - "graph_convergence event"
   - "graph-aware legal stop"
   - "edge density answer coverage"
-version: 1.14.0.11
 ---
 
 # Graph convergence

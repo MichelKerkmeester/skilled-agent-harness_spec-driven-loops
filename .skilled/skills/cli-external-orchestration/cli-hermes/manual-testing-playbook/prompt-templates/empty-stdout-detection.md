@@ -1,7 +1,6 @@
 ---
 title: "HERMES-022 -- Empty-stdout detection"
 description: "Confirm a caller-side non-empty-stdout check is required and sufficient to catch the tool-loop failure in which Hermes exits 0 without delivering an answer for `HERMES-022`."
-version: 1.0.0.0
 ---
 
 # HERMES-022 -- Empty-stdout detection

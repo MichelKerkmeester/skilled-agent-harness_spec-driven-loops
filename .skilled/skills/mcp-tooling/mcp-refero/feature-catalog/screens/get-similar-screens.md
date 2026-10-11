@@ -5,7 +5,6 @@ trigger_phrases:
   - "refero similar screens tool"
   - "get similar screens refero"
   - "comparable screens refero"
-version: 1.0.0.0
 ---
 
 # refero_get_similar_screens

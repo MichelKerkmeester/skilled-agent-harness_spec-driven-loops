@@ -5,7 +5,6 @@ trigger_phrases:
   - "bdg har export"
   - "export network trace"
   - "har file analysis"
-version: 1.0.0.0
 ---
 
 # HAR Export

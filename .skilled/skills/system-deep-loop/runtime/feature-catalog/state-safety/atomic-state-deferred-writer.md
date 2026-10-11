@@ -6,7 +6,6 @@ trigger_phrases:
   - "atomic-state-deferred-writer"
   - "atomic-state deferred writer runtime"
   - "state safety atomic-state deferred writer"
-version: 1.4.0.15
 ---
 
 # Atomic-state deferred writer

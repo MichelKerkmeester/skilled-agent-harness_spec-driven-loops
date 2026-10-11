@@ -8,7 +8,6 @@ trigger_phrases:
   - "render in figma"
   - "drive figma from the terminal"
   - "figma mcp"
-version: 1.1.3.0
 ---
 
 # mcp-figma

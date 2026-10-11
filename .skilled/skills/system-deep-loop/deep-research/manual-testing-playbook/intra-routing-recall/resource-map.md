@@ -8,7 +8,6 @@ expected_intent: RESOURCE_MAP
 expected_resources:
   - references/protocol/loop-protocol.md
   - references/state/state-outputs.md
-version: 1.1.0.0
 ---
 
 # DR-R08: Deep research resource map routing

@@ -7,7 +7,6 @@ description: "Verify the backendKind discriminator stays closed to runtime-loop-
 expected_intent: UNKNOWN
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
-version: "1.3.0.0"
 ---
 
 # RB-004: Retired Backend Completeness Check

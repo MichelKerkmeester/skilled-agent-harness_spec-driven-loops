@@ -6,7 +6,6 @@ trigger_phrases:
   - "hermes project plugin hooks"
   - "hermes pre_verify guard"
   - "HERMES_ENABLE_PROJECT_PLUGINS"
-version: 1.0.0.0
 ---
 
 # Repo-Guards Project Plugin (repo-guards)

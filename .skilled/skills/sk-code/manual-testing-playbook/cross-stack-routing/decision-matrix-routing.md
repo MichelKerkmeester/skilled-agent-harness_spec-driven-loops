@@ -1,7 +1,6 @@
 ---
 title: "CS-004: Decision Matrix Routing"
 description: "Verify Motion.dev versus CSS hover-state questions load the motion_dev decision matrix instead of silently choosing a library."
-version: 1.5.0.4
 ---
 
 # CS-004: Decision Matrix Routing

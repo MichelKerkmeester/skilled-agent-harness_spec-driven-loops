@@ -1,7 +1,6 @@
 ---
 title: "MCP-H001 -- Create Task via MCP"
 description: "This scenario validates Create Task via MCP for `MCP-H001`. Objective: Verify `clickup_create_task` creates a task in LIST_ID and returns its ID."
-version: 1.1.0.0
 ---
 
 # MCP-H001 -- Create Task via MCP

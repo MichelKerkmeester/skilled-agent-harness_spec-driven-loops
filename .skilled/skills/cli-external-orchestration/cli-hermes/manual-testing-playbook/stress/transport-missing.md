@@ -6,7 +6,6 @@ test_file: "tests/stress/cli-adapter/cli-hermes.vitest.ts"
 test_name: "fails before cli-hermes execution when its transport is unavailable"
 playbook_path: "cli-external-orchestration/cli-hermes/manual-testing-playbook/stress/transport-missing.md"
 id: "cli-hermes-EC-008"
-version: 1.0.0.0
 ---
 
 # EC-008 -- cli-hermes missing transport

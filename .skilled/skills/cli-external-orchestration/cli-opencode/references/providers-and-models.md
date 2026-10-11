@@ -9,7 +9,6 @@ trigger_phrases:
   - "opencode minimax llmgateway gpt dispatch"
 importance_tier: normal
 contextType: implementation
-version: 1.4.0.32
 ---
 
 # cli-opencode Providers, Models & Invocation

@@ -1,7 +1,6 @@
 ---
 title: "DAC-009 -- Max rounds without convergence emits non-converged"
 description: "This scenario validates non-converged max-round behavior for DAC-009."
-version: 1.7.0.7
 ---
 
 # DAC-009 -- Max rounds without convergence emits non-converged

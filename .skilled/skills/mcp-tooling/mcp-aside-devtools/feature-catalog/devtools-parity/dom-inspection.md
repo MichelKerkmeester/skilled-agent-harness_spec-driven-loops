@@ -7,7 +7,6 @@ trigger_phrases:
   - "aside querySelector"
   - "aside dom inspection"
 last_updated: "2026-07-17"
-version: 1.0.0.0
 ---
 
 # DOM Inspection and JS Evaluation (DevTools parity)

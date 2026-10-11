@@ -6,7 +6,6 @@ trigger_phrases:
   - "watcher scope"
   - "chokidar narrow scope"
   - "auto update daemon watcher"
-version: 0.8.0.14
 id: AU-001
 category: auto_update_daemon
 stage: routing

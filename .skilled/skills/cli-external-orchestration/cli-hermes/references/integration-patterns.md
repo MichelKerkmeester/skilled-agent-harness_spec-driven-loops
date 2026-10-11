@@ -8,7 +8,6 @@ trigger_phrases:
   - "hermes validation handback"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
 ---
 
 # Hermes CLI Integration Patterns

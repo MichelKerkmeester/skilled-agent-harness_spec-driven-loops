@@ -5,7 +5,6 @@ trigger_phrases:
   - "bdg cdp --describe"
   - "describe cdp domain"
   - "cdp method signature"
-version: 1.0.0.0
 ---
 
 # Describe Domain or Method

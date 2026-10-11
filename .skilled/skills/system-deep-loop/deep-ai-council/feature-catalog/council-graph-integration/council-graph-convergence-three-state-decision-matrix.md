@@ -7,7 +7,6 @@ trigger_phrases:
   - "council stop continue escalate decision"
   - "three-state convergence signal"
   - "council orchestrator stop rule"
-version: 1.7.0.10
 ---
 
 # runtime convergence CLI three-state decision matrix

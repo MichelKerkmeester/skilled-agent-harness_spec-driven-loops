@@ -7,7 +7,6 @@ trigger_phrases:
   - "delete local cache"
   - "task cache removal"
   - "force fresh api fetch"
-version: 1.0.0.3
 ---
 
 # Clear Cache

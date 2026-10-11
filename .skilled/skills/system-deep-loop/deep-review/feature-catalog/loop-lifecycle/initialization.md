@@ -7,7 +7,6 @@ trigger_phrases:
   - "review charter setup"
   - "dimension ordering"
   - "fresh review session"
-version: 1.11.0.6
 ---
 
 # Initialization

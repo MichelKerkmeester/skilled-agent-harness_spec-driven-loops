@@ -1,7 +1,6 @@
 ---
 title: "ASD-009 -- tools/list runtime discovery"
 description: "This scenario validates runtime tool discovery for `ASD-009`. It focuses on capturing the tools/list inventory as a fixture and reporting drift from the version-pinned single-repl result."
-version: 1.0.0.0
 ---
 
 # ASD-009 -- tools/list runtime discovery

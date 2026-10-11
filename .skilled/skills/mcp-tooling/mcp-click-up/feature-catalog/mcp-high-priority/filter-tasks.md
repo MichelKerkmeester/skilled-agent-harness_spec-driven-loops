@@ -7,7 +7,6 @@ trigger_phrases:
   - "tasks in list"
   - "tasks by status"
   - "tasks due between"
-version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

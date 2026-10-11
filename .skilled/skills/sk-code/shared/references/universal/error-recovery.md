@@ -8,7 +8,6 @@ trigger_phrases:
   - "retry verbose escalate"
 importance_tier: normal
 contextType: implementation
-version: 2.1.0.7
 ---
 
 # Universal Error Recovery Decision Tree

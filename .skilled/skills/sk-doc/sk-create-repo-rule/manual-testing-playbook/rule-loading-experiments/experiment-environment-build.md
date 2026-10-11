@@ -2,7 +2,6 @@
 title: "RRX-001 -- Experiment environment build"
 description: "This scenario validates the experiment environment build for `RRX-001`. It focuses on building every arm as its own git repository whose only difference from its sibling is the arm's declared edit, with the rule corpus still passing its own checks."
 stage: routing
-version: 1.0.0.0
 ---
 
 # RRX-001 -- Experiment environment build

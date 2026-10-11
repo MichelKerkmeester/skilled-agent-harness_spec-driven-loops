@@ -7,7 +7,6 @@ trigger_phrases:
   - structural validation on first write
   - agent spec authoring contract
   - anchor-to-H2 mapping
-version: 1.6.0.16
 ---
 
 # Template Compliance Contract Enforcement

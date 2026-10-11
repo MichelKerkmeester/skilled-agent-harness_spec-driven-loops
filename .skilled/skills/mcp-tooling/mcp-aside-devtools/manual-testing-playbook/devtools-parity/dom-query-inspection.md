@@ -1,7 +1,6 @@
 ---
 title: "ASD-016 -- DOM query + inspection"
 description: "This scenario validates Chrome-DevTools DOM-panel parity for `ASD-016` through the aside REPL: page.$eval / page.evaluate / snapshot against a bound tab, with the exact repl code and a SKIP-valid path when no bound session exists."
-version: 1.0.0.0
 ---
 
 # ASD-016 -- DOM query + inspection

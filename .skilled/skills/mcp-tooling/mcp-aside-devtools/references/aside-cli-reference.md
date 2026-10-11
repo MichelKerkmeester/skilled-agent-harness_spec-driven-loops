@@ -9,7 +9,6 @@ trigger_phrases:
   - "aside session flag"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
 ---
 
 # Aside CLI Reference

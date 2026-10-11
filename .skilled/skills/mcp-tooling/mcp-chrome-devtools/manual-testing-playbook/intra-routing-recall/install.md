@@ -7,7 +7,6 @@ description: "This scenario validates INSTALL routing for `CD-R03`. It focuses o
 expected_intent: INSTALL
 expected_resources:
   - references/troubleshooting.md
-version: 1.0.0.1
 ---
 
 # CD-R03: Install routing

@@ -6,7 +6,6 @@ trigger_phrases:
   - "native advisor_status transitions"
   - "native advisor_status"
   - "native"
-version: 0.8.0.11
 id: NC-002
 category: native_cli_tools
 stage: routing

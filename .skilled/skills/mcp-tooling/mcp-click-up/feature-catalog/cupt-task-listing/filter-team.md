@@ -7,7 +7,6 @@ trigger_phrases:
   - "team task filter"
   - "user-group filter"
   - "filter tasks by team assignment"
-version: 1.0.0.3
 ---
 
 # Filter by Team

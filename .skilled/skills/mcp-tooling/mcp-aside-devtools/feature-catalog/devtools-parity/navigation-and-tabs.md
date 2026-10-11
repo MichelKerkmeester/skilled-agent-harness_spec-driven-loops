@@ -7,7 +7,6 @@ trigger_phrases:
   - "aside multi tab"
   - "aside attach browser tab"
 last_updated: "2026-07-17"
-version: 1.0.0.0
 ---
 
 # Navigation and Multi-Tab Management (DevTools parity)

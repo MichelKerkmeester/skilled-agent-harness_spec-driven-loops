@@ -1,7 +1,6 @@
 ---
 title: "HERMES-026 -- MCP route guard stays silent for the Code Mode server"
 description: "Confirm the MCP route guard bridge lets a Code Mode server call through untouched, its advisory being reserved for native calls to families Code Mode can route, for `HERMES-026`."
-version: 1.0.0.0
 ---
 
 # HERMES-026 -- MCP route guard stays silent for the Code Mode server

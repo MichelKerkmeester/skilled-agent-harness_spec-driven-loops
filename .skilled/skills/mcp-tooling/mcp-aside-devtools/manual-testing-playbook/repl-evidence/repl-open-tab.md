@@ -1,7 +1,6 @@
 ---
 title: "ASD-006 -- REPL open tab"
 description: "This scenario validates the deterministic REPL lane for `ASD-006`. It focuses on `aside repl` round-tripping an `openTab()` call against a bound browser context."
-version: 1.0.0.0
 ---
 
 # ASD-006 -- REPL open tab

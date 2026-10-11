@@ -5,7 +5,6 @@ trigger_phrases:
   - "clickup_create_reminder"
   - "create reminder"
   - "remind me"
-version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

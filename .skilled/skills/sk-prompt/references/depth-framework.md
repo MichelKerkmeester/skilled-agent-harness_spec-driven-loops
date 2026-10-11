@@ -10,7 +10,6 @@ trigger_phrases:
   - "proof through output metadata"
 importance_tier: important
 contextType: implementation
-version: 2.3.0.6
 ---
 
 # DEPTH Thinking Framework

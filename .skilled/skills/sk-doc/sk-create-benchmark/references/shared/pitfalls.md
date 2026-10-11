@@ -9,7 +9,6 @@ trigger_phrases:
   - "benchmark re-run mistake"
 importance_tier: normal
 contextType: reference
-version: 1.5.0.6
 ---
 
 # Benchmark Folder Common Pitfalls

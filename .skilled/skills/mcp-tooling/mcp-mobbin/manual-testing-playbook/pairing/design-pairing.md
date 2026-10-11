@@ -1,7 +1,6 @@
 ---
 title: "PAIR-001 -- Measured-Reference Pairing Enforced"
 description: "This scenario validates the evidence boundary for `PAIR-001`. It focuses on a design-affecting request pairing sk-design-md-generator for a measured Style Reference, the transport supplying only cited evidence, and no taste, accessibility, or readiness verdict being issued from transport output."
-version: 1.0.0.0
 ---
 
 # PAIR-001 -- Measured-Reference Pairing Enforced

@@ -8,7 +8,6 @@ trigger_phrases:
   - "phase-add child goal"
 importance_tier: important
 contextType: general
-version: 1.1.0.0
 ---
 
 # Phase-Child Goal Template

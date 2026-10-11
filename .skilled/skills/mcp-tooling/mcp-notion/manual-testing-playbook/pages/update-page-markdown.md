@@ -2,7 +2,6 @@
 title: "PAGE-007 -- Update page via Markdown"
 description: "This scenario validates notion_update-page-markdown by creating a scratch page, writing Markdown content, reading it back, then archiving as cleanup."
 stage: routing
-version: 0.1.0.0
 ---
 
 # PAGE-007 -- Update page via Markdown

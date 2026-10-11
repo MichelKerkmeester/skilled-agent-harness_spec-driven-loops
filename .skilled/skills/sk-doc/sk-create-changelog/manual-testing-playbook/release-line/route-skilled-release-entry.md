@@ -1,7 +1,6 @@
 ---
 title: "CHG-008 -- Route a Skilled release entry to the release line"
 description: "This scenario validates release-line routing for CHG-008. Naming the skilled component writes the entry to the release line with a version above every existing entry, generation folders included."
-version: 1.2.0.0
 ---
 
 # CHG-008 -- Route a Skilled release entry to the release line

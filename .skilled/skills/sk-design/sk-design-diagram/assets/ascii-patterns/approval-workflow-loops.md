@@ -7,7 +7,6 @@ trigger_phrases:
   - "multi reviewer escalation flow"
 importance_tier: normal
 contextType: general
-version: 1.2.0.12
 ---
 
 # Approval Workflow with Loops - Multiple Reviewers and Revision Cycles

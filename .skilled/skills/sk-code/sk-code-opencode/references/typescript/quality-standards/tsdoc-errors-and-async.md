@@ -8,7 +8,6 @@ trigger_phrases:
   - "typescript error handling"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.11
 ---
 
 # TSDoc, Typed Error Classes & Async Patterns

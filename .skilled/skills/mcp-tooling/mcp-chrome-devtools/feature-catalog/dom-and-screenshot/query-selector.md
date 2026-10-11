@@ -5,7 +5,6 @@ trigger_phrases:
   - "bdg dom query"
   - "query dom selector"
   - "find element in page"
-version: 1.0.0.0
 ---
 
 # Query Selector

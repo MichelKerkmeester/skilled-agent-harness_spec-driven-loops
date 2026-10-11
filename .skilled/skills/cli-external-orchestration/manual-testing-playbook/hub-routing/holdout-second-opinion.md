@@ -14,7 +14,6 @@ expected_leaf_resources:
   - workflow_mode: cli-claude-code
     leaf_resource_id: references/integration-patterns.md
 blindToRouterKeywords: true
-version: 1.4.0.6
 ---
 # CE-H02: Blind holdout — deep second opinion
 Prompt: Get a second, deeply-reasoned opinion on this architecture decision from a different assistant model.

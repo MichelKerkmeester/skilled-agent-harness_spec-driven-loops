@@ -1,7 +1,6 @@
 ---
 title: "sk-prompt: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the sk-prompt skill."
-version: 2.3.0.9
 ---
 
 # sk-prompt: Manual Testing Playbook

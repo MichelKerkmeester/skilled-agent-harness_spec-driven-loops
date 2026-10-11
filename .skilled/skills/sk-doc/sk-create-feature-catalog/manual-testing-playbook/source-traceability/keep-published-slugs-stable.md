@@ -1,7 +1,6 @@
 ---
 title: "FCR-004 -- Keep published slugs stable"
 description: "This scenario validates slug stability for FCR-004. Category folders and per-feature filenames act as linkable paths and should not be renamed without a deliberate migration."
-version: 1.0.0.3
 ---
 
 # FCR-004 -- Keep published slugs stable

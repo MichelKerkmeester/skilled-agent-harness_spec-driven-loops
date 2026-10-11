@@ -9,7 +9,6 @@ trigger_phrases:
   - "consultant scenario matrix"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.8
 ---
 
 # Quadrant

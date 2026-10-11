@@ -1,7 +1,6 @@
 ---
 title: "CO-030 -- Cross-server dispatch via --attach"
 description: "This scenario validates cross-server dispatch for `CO-030`. It focuses on confirming the documented `--attach <url>` flag combined with `--dir <remote-path>` is documented and reachable; live remote server execution is out-of-scope (operator-environment-dependent)."
-version: 1.4.0.15
 ---
 
 # CO-030 -- Cross-server dispatch via --attach

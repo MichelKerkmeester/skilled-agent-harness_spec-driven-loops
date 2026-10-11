@@ -9,7 +9,6 @@ trigger_phrases:
   - "essential git commands"
 importance_tier: normal
 contextType: general
-version: 1.1.0.12
 ---
 
 # Git Workflows - Quick Reference

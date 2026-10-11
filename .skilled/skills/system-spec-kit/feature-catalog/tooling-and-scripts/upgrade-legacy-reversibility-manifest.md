@@ -6,7 +6,6 @@ trigger_phrases:
   - "upgrade-legacy manifest"
   - "upgrade-legacy.manifest.json"
   - "upgrade-legacy apply refusal"
-version: 1.0.0.0
 ---
 
 # Upgrade-legacy reversibility manifest and refusals (upgrade-legacy.mjs)

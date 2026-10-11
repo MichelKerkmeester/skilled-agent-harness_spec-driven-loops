@@ -6,7 +6,6 @@ trigger_phrases:
   - "HERMES_LEAF_TOOLSETS"
   - "HERMES_READ_ONLY_TOOLSETS"
   - "hermes web search policy"
-version: 1.0.0.0
 ---
 
 # Toolset Selection And Web-Search Policy (hermesToolsetsFor)

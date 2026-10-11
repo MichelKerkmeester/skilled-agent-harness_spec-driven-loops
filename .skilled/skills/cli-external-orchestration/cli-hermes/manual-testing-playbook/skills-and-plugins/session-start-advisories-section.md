@@ -1,7 +1,6 @@
 ---
 title: "HERMES-027 -- Session-start advisories reach the session prompt"
 description: "Confirm the repo's session-start guards (worktree, dist freshness, git hooks, primary reconcile) run at Hermes session start and their warnings reach the session prompt as one bounded section, for `HERMES-027`."
-version: 1.0.0.0
 ---
 
 # HERMES-027 -- Session-start advisories reach the session prompt

@@ -8,7 +8,6 @@ trigger_phrases:
   - "pre-resolve gate for a dispatched worker"
 importance_tier: important
 contextType: implementation
-version: 1.4.1.0
 ---
 
 # Child Dispatch Preamble

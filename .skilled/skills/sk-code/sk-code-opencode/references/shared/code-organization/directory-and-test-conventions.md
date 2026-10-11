@@ -8,7 +8,6 @@ trigger_phrases:
   - "script directory structure"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.13
 ---
 
 # Directory & Test File Conventions

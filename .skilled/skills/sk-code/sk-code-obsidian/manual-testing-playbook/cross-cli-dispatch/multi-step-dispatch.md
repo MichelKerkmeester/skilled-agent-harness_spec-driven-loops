@@ -9,7 +9,6 @@ expected_resources:
   - references/view-renderer-architecture.md
   - references/folder-docs.md
   - references/verification.md
-version: 1.0.0.0
 ---
 
 # OB-016: Multi-step dispatch stability

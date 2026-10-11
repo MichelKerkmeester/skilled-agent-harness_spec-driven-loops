@@ -2,7 +2,6 @@
 title: "GUIDED-014 -- Guided Run Smoke Lane"
 description: "This scenario validates the guided wrapper for `GUIDED-014`. It focuses on confirming the wrapper checks runtime readiness, runs extraction, saves the write prompt, and stops rather than auto-authoring DESIGN.md."
 id: "GUIDED-014"
-version: 1.0.1.0
 expected_intent: RUN_WRAPPER
 expected_resources:
   - references/design-md-format.md

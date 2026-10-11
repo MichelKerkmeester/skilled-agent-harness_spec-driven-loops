@@ -9,7 +9,6 @@ trigger_phrases:
   - "refero tools not resolving"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
 ---
 
 # Refero Troubleshooting

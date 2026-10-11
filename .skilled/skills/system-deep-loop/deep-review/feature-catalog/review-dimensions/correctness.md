@@ -7,7 +7,6 @@ trigger_phrases:
   - "behavior correctness review"
   - "logic errors dimension"
   - "highest-priority review dimension"
-version: 1.11.0.6
 ---
 
 # Correctness

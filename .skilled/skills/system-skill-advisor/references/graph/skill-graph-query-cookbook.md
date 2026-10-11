@@ -7,7 +7,6 @@ trigger_phrases:
   - "advisor graph traversal"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.0.5
 ---
 
 # Skill Graph Query Cookbook

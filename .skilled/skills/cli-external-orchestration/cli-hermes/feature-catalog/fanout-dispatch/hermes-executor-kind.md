@@ -6,7 +6,6 @@ trigger_phrases:
   - "buildHermesLineageCommand"
   - "hermes chat oneshot dispatch shape"
   - "cli-hermes ExecutorKind"
-version: 1.0.0.0
 ---
 
 # Hermes Executor Kind And Lineage Command (buildHermesLineageCommand)

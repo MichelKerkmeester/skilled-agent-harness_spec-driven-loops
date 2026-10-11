@@ -8,7 +8,6 @@ trigger_phrases:
   - "level mapping thresholds"
 importance_tier: normal
 contextType: planning
-version: 1.6.0.15
 ---
 
 # Level Selection Guide - Complexity Scoring Algorithm

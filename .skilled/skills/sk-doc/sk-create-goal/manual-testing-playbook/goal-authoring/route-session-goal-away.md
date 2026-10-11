@@ -2,7 +2,6 @@
 title: "SCG-007 -- Route a session goal away"
 description: "This scenario validates the session-goal route-away for `SCG-007`. It focuses on a set-or-resend session objective request being redirected to the goal hooks with no goal file written and no session state touched."
 stage: negative
-version: 1.0.0.0
 ---
 
 # SCG-007 -- Route a session goal away

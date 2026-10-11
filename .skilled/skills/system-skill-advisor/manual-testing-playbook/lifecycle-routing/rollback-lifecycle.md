@@ -6,7 +6,6 @@ trigger_phrases:
   - "lifecycle rollback"
   - "atomic rollback"
   - "lifecycle revert"
-version: 0.8.0.15
 id: LC-005
 category: lifecycle_routing
 stage: routing

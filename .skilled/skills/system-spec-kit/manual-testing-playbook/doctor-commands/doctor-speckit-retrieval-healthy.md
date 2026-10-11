@@ -1,7 +1,6 @@
 ---
 title: "DOC-349 -- Doctor speckit retrieval healthy"
 description: "Manual scenario validating that /doctor:speckit reports a fresh trigger index, a working lookup and working ripgrep recipes as OK, lists phrase-quality advisories without changing that status, and writes nothing to the repository artifacts."
-version: 1.3.0.0
 id: doctor-commands-doctor-speckit-retrieval-healthy
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

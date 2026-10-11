@@ -6,7 +6,6 @@ trigger_phrases:
   - "make this look better"
   - "spacing and type scale"
   - "design review findings"
-version: 1.0.0.0
 ---
 
 # sk-design

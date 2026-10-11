@@ -6,7 +6,6 @@ test_file: "tests/stress/cli-adapter/cli-pi.vitest.ts"
 test_name: "rejects an over-budget cli-pi lineage before process spawn"
 playbook_path: "cli-external-orchestration/cli-pi/manual-testing-playbook/stress/budget-rejection.md"
 id: "cli-pi-EC-009"
-version: 1.5.0.5
 ---
 
 # EC-009 -- cli-pi budget rejection

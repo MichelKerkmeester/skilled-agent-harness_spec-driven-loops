@@ -5,7 +5,6 @@ trigger_phrases:
   - "list cdp domains"
   - "bdg cdp --list"
   - "what cdp domains exist"
-version: 1.0.0.0
 ---
 
 # List CDP Domains

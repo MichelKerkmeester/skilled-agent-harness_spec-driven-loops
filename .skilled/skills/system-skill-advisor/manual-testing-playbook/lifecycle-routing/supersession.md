@@ -6,7 +6,6 @@ trigger_phrases:
   - "supersession"
   - "redirect_from redirect_to"
   - "asymmetric routing"
-version: 0.8.0.14
 id: LC-002
 category: lifecycle_routing
 stage: routing

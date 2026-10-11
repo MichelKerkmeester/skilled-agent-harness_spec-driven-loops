@@ -1,7 +1,6 @@
 ---
 title: "cli-classifier: Manual Testing Playbook"
 description: "Operator-facing validation for the cli-classifier hub: Jev requests resolve to cli-jev, the current only mode, while out-of-domain requests stay out."
-version: 0.4.0.0
 ---
 
 # cli-classifier: Manual Testing Playbook

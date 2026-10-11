@@ -1,7 +1,6 @@
 ---
 title: "DR-062 -- Per-iteration lineage context refresh"
 description: "Verify that each completed iteration is persisted lineage-locally and refreshed into the next prompt context."
-version: 1.14.0.22
 ---
 
 # DR-062 -- Per-iteration lineage context refresh

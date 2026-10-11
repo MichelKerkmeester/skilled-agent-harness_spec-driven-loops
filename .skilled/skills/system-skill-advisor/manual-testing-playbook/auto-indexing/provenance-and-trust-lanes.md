@@ -6,7 +6,6 @@ trigger_phrases:
   - "provenance fingerprint"
   - "trust lanes"
   - "derived provenance"
-version: 0.8.0.15
 id: AI-003
 category: auto_indexing
 stage: routing

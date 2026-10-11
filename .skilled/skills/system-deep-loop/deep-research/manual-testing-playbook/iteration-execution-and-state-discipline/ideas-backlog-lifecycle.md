@@ -1,7 +1,6 @@
 ---
 title: "DR-059 -- Ideas backlog lifecycle"
 description: "Verify that leaf agents only observe ideas and the reducer owns promotion, ranking, and rejection suppression."
-version: 1.14.0.21
 ---
 
 # DR-059 -- Ideas backlog lifecycle

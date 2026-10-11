@@ -9,7 +9,6 @@ trigger_phrases:
   - "review loop troubleshooting"
 importance_tier: normal
 contextType: general
-version: 1.11.0.16
 ---
 
 # Deep Review Quick Reference

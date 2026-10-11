@@ -10,7 +10,6 @@ expected_resources:
   - references/implementation/third-party-integrations/botpoison-and-finsweet.md
   - references/implementation/third-party-integrations/filepond.md
   - references/implementation/third-party-integrations/best-practices-and-summary.md
-version: 1.0.0.0
 ---
 
 # WF-012: Video routing

@@ -6,7 +6,6 @@ trigger_phrases:
   - "claude code userpromptsubmit hook"
   - "claude code"
   - "claude"
-version: 0.8.0.11
 id: CL-001
 category: cli_hooks_and_plugin
 stage: routing

@@ -2,7 +2,6 @@
 title: "GAP-003 -- Page Property Items"
 description: "This scenario validates recovering a full paginated relation property past the ~25-item MCP truncation via the direct page-property-item endpoint."
 stage: routing
-version: 0.1.0.0
 ---
 
 # GAP-003 -- Page Property Items

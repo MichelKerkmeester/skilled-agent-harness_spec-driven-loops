@@ -6,7 +6,6 @@ trigger_phrases:
   - "atomic rollback lifecycle"
   - "supersession rollback"
   - "lifecycle revert"
-version: 0.8.0.14
 ---
 
 # Atomic Lifecycle Rollback

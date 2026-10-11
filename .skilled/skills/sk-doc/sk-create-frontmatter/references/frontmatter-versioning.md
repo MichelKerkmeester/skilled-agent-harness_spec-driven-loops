@@ -9,7 +9,6 @@ trigger_phrases:
   - "skill anchored doc version"
 importance_tier: important
 contextType: general
-version: 1.0.0.11
 ---
 
 # Frontmatter Versioning Standard

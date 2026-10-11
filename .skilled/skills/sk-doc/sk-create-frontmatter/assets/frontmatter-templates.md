@@ -9,7 +9,6 @@ trigger_phrases:
   - "five field frontmatter block"
 importance_tier: important
 contextType: general
-version: 1.0.0.46
 ---
 
 # YAML Frontmatter Templates - Document Type Reference

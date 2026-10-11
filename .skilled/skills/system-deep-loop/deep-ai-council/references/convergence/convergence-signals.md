@@ -8,7 +8,6 @@ trigger_phrases:
   - "council validator graduation"
 importance_tier: "normal"
 contextType: "planning"
-version: 1.7.0.12
 ---
 
 # AI Council Convergence Signals

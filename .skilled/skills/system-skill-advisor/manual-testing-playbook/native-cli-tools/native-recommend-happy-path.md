@@ -6,7 +6,6 @@ trigger_phrases:
   - "native advisor_recommend happy path"
   - "native advisor_recommend"
   - "native"
-version: 0.8.0.6
 id: NC-001
 category: native_cli_tools
 stage: routing

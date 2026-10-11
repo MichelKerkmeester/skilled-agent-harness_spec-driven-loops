@@ -11,7 +11,6 @@ expected_resources:
   - references/state/state-jsonl.md
   - references/protocol/spec-check-protocol.md
   - references/protocol/context-snapshot.md
-version: 1.1.0.0
 ---
 
 # DR-R01: Deep research loop setup routing

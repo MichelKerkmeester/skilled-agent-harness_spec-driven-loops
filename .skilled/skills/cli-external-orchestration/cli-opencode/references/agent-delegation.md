@@ -9,7 +9,6 @@ trigger_phrases:
   - "opencode multi-agent workflow"
 importance_tier: normal
 contextType: implementation
-version: 1.4.0.29
 ---
 
 # OpenCode CLI - Agent Delegation

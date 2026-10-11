@@ -2,7 +2,6 @@
 title: "SRCH-001 -- Search"
 description: "This scenario validates title-only search behavior - a title match succeeds and a body-only phrase does not - through the confirmed notion_search tool."
 stage: routing
-version: 0.1.0.0
 ---
 
 # SRCH-001 -- Search

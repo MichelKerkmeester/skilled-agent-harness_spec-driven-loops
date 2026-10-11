@@ -1,7 +1,6 @@
 ---
 title: "DR-055 -- Anti-convergence floor"
 description: "Verify that convergence STOP is blocked until the configured minimum iteration floor clears."
-version: 1.14.0.21
 ---
 
 # DR-055 -- Anti-convergence floor
