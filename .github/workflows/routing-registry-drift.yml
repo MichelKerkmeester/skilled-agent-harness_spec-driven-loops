@@ -172,11 +172,13 @@ jobs:
           node .skilled/bin/compiled-route-guard.cjs
       - name: Compiled-serving admission — compiled decisions against playbook routing gold
         # Scores every hub's compiled decisions against the routing gold its playbook
-        # authors, the bar a hub must clear to serve compiled traffic. Warn-only until
-        # the first baseline is triaged: it records engine drift and stale gold against
+        # authors, the bar a hub must clear to serve compiled traffic. system-deep-loop
+        # now passes its whole playbook, so it blocks. The other hubs stay warn-only until
+        # their baseline is triaged: it records engine drift and stale gold against
         # admitted hubs, and a blocking step would fail every unrelated push on them.
         run: |
           set -euo pipefail
+          node .skilled/bin/compiled-route-admission.cjs --hub system-deep-loop
           node .skilled/bin/compiled-route-admission.cjs --all --warn-only
       - name: Parent-skill structural invariants (one identity, registry coverage) — every hub
         # Glob-enrolled: every skill carrying a mode-registry.json is a parent hub and is

@@ -68,6 +68,12 @@ function escapePattern(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+// A clause that reports a finished run names the loop without asking for one ("we just finished a
+// deep-research run"), so its words must not score a mode. The clause needs a completion verb, a
+// determiner and a run-like noun, which leaves "run a deep-research fan-out" and "for a deep research
+// run" scoring as before.
+const FINISHED_RUN_CLAUSE = /\b(?:(?:we|i) )?(?:just |already )?(?:finished|completed|ran) (?:a|an|the|our|my) [a-z-]+(?: [a-z-]+)? (?:run|loop|session)\b\.?/g;
+
 function containsSignal(text, value) {
   const signal = normalize(value);
   if (WORD_BOUNDARY_KEYWORDS.has(signal)) {
@@ -301,7 +307,7 @@ function evaluateCanary(snapshot, input) {
   } else if (hinted) {
     decision = routeSingle(snapshot, hinted);
   } else {
-    scores = scoreModes(snapshot.routingModel, text);
+    scores = scoreModes(snapshot.routingModel, text.replace(FINISHED_RUN_CLAUSE, ' '));
     const order = new Map(snapshot.routingModel.tieBreak.map((mode, index) => [mode, index]));
     scores.sort((left, right) => (
       right.score - left.score || order.get(left.mode) - order.get(right.mode)
