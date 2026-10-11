@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/018-create-sh-unknown-options",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/018-create-sh-unknown-options",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create sh unknown options",
+      "phase 18 create sh unknown options",
+      "create.sh unknown option error",
+      "create sh unknown options plan",
+      "create sh unknown options tasks",
+      "create sh unknown options goal",
+      "create sh unknown options implementation summary"
+    ],
+    "key_topics": [
+      "unknown",
+      "options",
+      "phase",
+      "option",
+      "error",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "argument",
+      "loop"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/create-unknown-options.vitest.ts",
+      ".skilled/skills/system-spec-kit/changelog/v2.7.10.0.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "create-unknown-options.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/create-unknown-options.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "v2.7.10.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/changelog/v2.7.10.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-folder-literal-naming-create-sh-fallback.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Sweep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Arguments",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The argument loop's catch-all branch appended every unrecognized argument to the title words",
+    "created_at": "2026-10-11T14:31:17Z",
+    "last_save_at": "2026-10-11T14:41:58.133Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7dff12bd18ad1cb317da0c77deddc66cdafdfc815c48c8fb3492326628b6da27",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "417af71887ab50592ea815d0c11f8560386f909fb750082644be52f8442f69df",
+      "plan.md": "5d1e2ad27275fe5e9a8fed13dae5714cb689c18911e975821c697cdb5190237f",
+      "tasks.md": "9f0a45124ff767f87a39e0042599ecc4c4e45521511b4f50923f8759713be67e",
+      "implementation-summary.md": "dea8b3865afc363b7d017add2b1b9559e8fc27228a4e6f40ceac95c0351f2794"
+    },
+    "last_active_at": null
+  }
+}

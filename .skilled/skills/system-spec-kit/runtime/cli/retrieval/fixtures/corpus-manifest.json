@@ -1,5 +1,5 @@
 {
-  "corpusHash": "921e6c744f6dbd539b0284b424a0709f0419aeff2a89bf5ee3960fd408801f9a",
+  "corpusHash": "02ea9ff5bd09146f095517f715dd6621427209bcd61b97a912829c2867007cbb",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24176,
+  "includedPathCount": 24182,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7941,6 +7941,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.6.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.7.10.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.2.1.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.3.0.md",
@@ -10772,6 +10773,11 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/017-release-changelog/plan.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/017-release-changelog/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/017-release-changelog/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/018-create-sh-unknown-options/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/018-create-sh-unknown-options/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/018-create-sh-unknown-options/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/018-create-sh-unknown-options/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/018-create-sh-unknown-options/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
@@ -24207,7 +24213,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f012f70c8216da33fb9438305cb31337c3062a0252545bc3314fde50baf1d79b",
+  "manifestHash": "39f343f9c28bbc29ae469b65e4d8e9f18a86c06166ef8cc7a12b6b3bf3211e40",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26311,6 +26317,10 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/017-release-changelog/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/018-create-sh-unknown-options/scratch",
       "reason": "excluded directory"
     },
     {

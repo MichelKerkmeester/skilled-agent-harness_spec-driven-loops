@@ -17,7 +17,7 @@ version: 1.6.0.6
 
 create.sh emits PROVIDE-DESCRIPTIVE-SLUG placeholders and one stderr warning per child when `--phase-names` is omitted, so generic `phase-N` names never reach the spec tree.
 
-This is the script-level half of the literal-naming discipline. When an operator runs `create.sh "task" --phase --phase-count N` without `--phase-names`, every generated child folder ends with the literal token `PROVIDE-DESCRIPTIVE-SLUG` and the script emits one `[speckit] Warning:` line per child to stderr. Exit code stays 0, so the fallback is warn-only and never blocks scaffolding. The placeholder forces the operator or AI agent to rename each child to a literal slug before the folder is treated as final.
+This is the script-level half of the literal-naming discipline. When an operator runs `create.sh "task" --phase --phases N` without `--phase-names`, every generated child folder ends with the literal token `PROVIDE-DESCRIPTIVE-SLUG` and the script emits one `[speckit] Warning:` line per child to stderr. Exit code stays 0, so the fallback is warn-only and never blocks scaffolding. The placeholder forces the operator or AI agent to rename each child to a literal slug before the folder is treated as final.
 
 ---
 

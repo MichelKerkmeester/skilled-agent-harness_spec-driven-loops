@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f012f70c8216da33fb9438305cb31337c3062a0252545bc3314fde50baf1d79b",
+  "manifestHash": "39f343f9c28bbc29ae469b65e4d8e9f18a86c06166ef8cc7a12b6b3bf3211e40",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -27918,6 +27918,27 @@
     ],
     "create sh sibling listing plan": [
       "create.sh sibling listing plan"
+    ],
+    "create sh unknown option": [
+      "create.sh unknown option"
+    ],
+    "create sh unknown option error": [
+      "create.sh unknown option error"
+    ],
+    "create sh unknown options": [
+      "create sh unknown options"
+    ],
+    "create sh unknown options goal": [
+      "create sh unknown options goal"
+    ],
+    "create sh unknown options implementation summary": [
+      "create sh unknown options implementation summary"
+    ],
+    "create sh unknown options plan": [
+      "create sh unknown options plan"
+    ],
+    "create sh unknown options tasks": [
+      "create sh unknown options tasks"
     ],
     "create sh upgrade level sh": [
       "create.sh upgrade-level.sh"
@@ -70387,6 +70408,9 @@
     "phase 18 closure gate": [
       "phase 18 closure gate"
     ],
+    "phase 18 create sh unknown options": [
+      "phase 18 create sh unknown options"
+    ],
     "phase 18 plan": [
       "phase 18 plan"
     ],
@@ -100669,6 +100693,9 @@
     "system spec kit 2 7 1 0": [
       "system-spec-kit 2.7.1.0"
     ],
+    "system spec kit 2 7 10 0": [
+      "system-spec-kit 2.7.10.0"
+    ],
     "system spec kit 2 7 2 0": [
       "system-spec-kit 2.7.2.0"
     ],
@@ -101070,6 +101097,9 @@
     ],
     "system spec kit v2 7 1 0": [
       "system-spec-kit v2.7.1.0"
+    ],
+    "system spec kit v2 7 10 0": [
+      "system-spec-kit v2.7.10.0"
     ],
     "system spec kit v2 7 2 0": [
       "system-spec-kit v2.7.2.0"

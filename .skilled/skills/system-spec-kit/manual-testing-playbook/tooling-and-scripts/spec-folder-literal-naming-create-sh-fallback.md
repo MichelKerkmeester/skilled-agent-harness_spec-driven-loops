@@ -11,15 +11,15 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario validates `create.sh` fallback behavior shipped in Packet 012 REQ-003 and REQ-004. When an operator runs `create.sh` with `--phase --phase-count N` but omits `--phase-names`, each generated child folder name contains the literal token `PROVIDE-DESCRIPTIVE-SLUG` and `create.sh` emits one `[speckit] Warning:` line to stderr per child. The exit code remains 0 (warn-only, not fail-hard). This is the deterministic ground-truth check before any CLI-rotation scenario.
+This scenario validates `create.sh` fallback behavior shipped in Packet 012 REQ-003 and REQ-004. When an operator runs `create.sh` with `--phase --phases N` but omits `--phase-names`, each generated child folder name contains the literal token `PROVIDE-DESCRIPTIVE-SLUG` and `create.sh` emits one `[speckit] Warning:` line to stderr per child. The exit code remains 0 (warn-only, not fail-hard). This is the deterministic ground-truth check before any CLI-rotation scenario.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm `create.sh` emits the placeholder slug and stderr warning for all phase children when `--phase-names` is omitted.
-- Real user request: `Validate create.sh literal-naming fallback by running create.sh "literal-naming smoke" --short-name "literal-naming-smoke" --level 2 --phase --phase-count 3 --path /tmp/speckit-naming-smoke-$$ 2>/tmp/speckit-stderr-$$.log without --phase-names. Report cited pass/fail evidence.`
-- Prompt: `Validate create.sh literal-naming fallback. Run: SMOKE_DIR=/tmp/speckit-naming-smoke-$$; bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh "literal-naming smoke" --short-name "literal-naming-smoke" --level 2 --phase --phase-count 3 --path "$SMOKE_DIR" 2>/tmp/speckit-stderr-$$.log and report whether all 3 children contain -PROVIDE-DESCRIPTIVE-SLUG and stderr contains 3 warning lines.`
+- Real user request: `Validate create.sh literal-naming fallback by running create.sh "literal-naming smoke" --short-name "literal-naming-smoke" --level 2 --phase --phases 3 --path /tmp/speckit-naming-smoke-$$ 2>/tmp/speckit-stderr-$$.log without --phase-names. Report cited pass/fail evidence.`
+- Prompt: `Validate create.sh literal-naming fallback. Run: SMOKE_DIR=/tmp/speckit-naming-smoke-$$; bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh "literal-naming smoke" --short-name "literal-naming-smoke" --level 2 --phase --phases 3 --path "$SMOKE_DIR" 2>/tmp/speckit-stderr-$$.log and report whether all 3 children contain -PROVIDE-DESCRIPTIVE-SLUG and stderr contains 3 warning lines.`
 - Expected execution process: Run the four shell commands in sequence, capture stdout and the stderr log file, compare child folder names and warning line count against the expected signals, and return a pass/fail verdict with cited evidence.
 - Expected signals: 3 child folders ending with `-PROVIDE-DESCRIPTIVE-SLUG`; exactly 3 `[speckit] Warning:` lines on stderr; `create.sh` exit code 0.
 - Desired user-visible outcome: A concise pass/fail verdict listing the 3 child folder names and the 3 stderr warning lines.
@@ -46,7 +46,7 @@ Validate create.sh literal-naming fallback. Run the following commands and repor
      --short-name "literal-naming-smoke" \
      --level 2 \
      --phase \
-     --phase-count 3 \
+     --phases 3 \
      --path "$SMOKE_DIR" \
      2>/tmp/speckit-stderr-$$.log
    echo "exit code: $?"
@@ -137,7 +137,7 @@ Exit code from step 1: `0`
 
 - If child names are bare `phase-N`: confirm `create.sh` line 1084 contains `PROVIDE-DESCRIPTIVE-SLUG`. Run `grep -n 'PROVIDE-DESCRIPTIVE-SLUG' .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh` and expect at least 2 matches.
 - If warning count is 0: confirm stderr is not lost. The `2>/tmp/speckit-stderr-$$.log` redirect must capture stderr; check that no surrounding wrapper script swallows it.
-- If `--phase-count` is not parsed: run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --help 2>&1 | grep phase-count` and confirm the flag is recognized.
+- If `--phases` is not parsed: run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --help 2>&1 | grep -- '--phases '` and confirm the flag is recognized.
 - If exit code is non-zero: read the fallback path in `create.sh` near line 1084. The `echo ... >&2` warning must not be followed by `exit 1`.
 
 ---

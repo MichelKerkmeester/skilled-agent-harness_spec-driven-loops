@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 6620,
-    "ok": 14009,
+    "ok": 14015,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 24176,
+  "documentsScanned": 24182,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "f012f70c8216da33fb9438305cb31337c3062a0252545bc3314fde50baf1d79b",
+  "manifestHash": "39f343f9c28bbc29ae469b65e4d8e9f18a86c06166ef8cc7a12b6b3bf3211e40",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36017,
+      "ok": 36027,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -66698,6 +66698,10 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/017-release-changelog/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/018-create-sh-unknown-options/scratch",
       "reason": "excluded directory"
     },
     {
