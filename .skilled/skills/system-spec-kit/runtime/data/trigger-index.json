@@ -1,5 +1,5 @@
 {
-  "manifestHash": "149954ac23845a708cd58c28cd581d86b96dab1b2a05f1d07c91189ae154f928",
+  "manifestHash": "778da9dfaf87eaff265d7e6c2e59f1c97c744b8ce8c5dd423b3e782a66bd5c91",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -41173,6 +41173,7 @@
       4674,
       4676,
       4681,
+      4686,
       4723,
       5072,
       5078,
@@ -56203,6 +56204,7 @@
       4674,
       4676,
       4681,
+      4686,
       4723,
       5018,
       5072,
@@ -65819,6 +65821,7 @@
       4674,
       4676,
       4681,
+      4686,
       4723,
       5072,
       5078,
@@ -89255,6 +89258,7 @@
       4674,
       4676,
       4681,
+      4686,
       4723,
       5018,
       5072,
@@ -114461,9 +114465,6 @@
     ],
     "sk git playbook changelog": [
       4689
-    ],
-    "sk git playbook changelog goal": [
-      4686
     ],
     "sk git playbook changelog implementation summary": [
       4687

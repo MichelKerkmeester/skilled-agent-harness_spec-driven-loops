@@ -15,7 +15,10 @@
       "phase 3 sk git playbook changelog",
       "sk git playbook changelog plan",
       "sk git playbook changelog tasks",
-      "sk git playbook changelog goal",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "sk git playbook changelog implementation summary"
     ],
     "key_topics": [
@@ -25,21 +28,22 @@
       "phase",
       "plan",
       "tasks",
+      "packet",
       "goal",
-      "implementation",
-      "summary",
-      "broken",
-      "missing",
-      "inefficient"
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/skills/sk-git/changelog/v1.8.4.0.md"
     ],
     "entities": [
       {
@@ -73,6 +77,12 @@
         "source": "derived"
       },
       {
+        "name": "v1.8.4.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/changelog/v1.8.4.0.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -103,7 +113,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement Commit",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -121,7 +131,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Check",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,14 +149,8 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow One",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -179,17 +189,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Commit 410df0acce changed the sk-git playbook scenario doctor-git-hooks-list from thirteen to fourteen gates when the commit hook gained its skill authoring gate, but no sk-git changelog entry names the change",
     "created_at": "2026-10-11T04:49:32Z",
-    "last_save_at": "2026-10-11T04:49:40.566Z",
+    "last_save_at": "2026-10-11T05:18:19.201Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +203,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b45027411cd3a1197da99bb6af8cbce2bd0efead1ae0429084d5ed262c1cb4f5",
+    "source_fingerprint": "sha256:e2466a5b849d50a23df87b1045c9d499b207a1b9cd599bbbd0cc34992abb6a15",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b837c4e521777cce61160024ba941faba34274c6485021c3f53736a0a4fac3f2",
-      "plan.md": "323c75e43d9b7b699401f56b11a9afb3d9cce568e66130ac2057217a3a1f1ae3",
-      "tasks.md": "52af3fd9b64624773fb968aefa5ed45d58c6d00698a37cb49b5c95b4992d8e15",
-      "implementation-summary.md": "f85d4633674fbb379e1aa2da04208fc738f92a52f228d47bf18e65f097c14bfc"
+      "spec.md": "66cd7eacf41b8e0fd5a27b9aa9916c72efa85d7d5515383a5242ea04dcca14f3",
+      "plan.md": "7d91f05969c0e1bfc66577f947f7cb572039b15630c84c1071d51cb72f7164bf",
+      "tasks.md": "965f526242abc5d1c703c6b998275d2910f1dc05a91be77c76eb9939c94e54f1",
+      "implementation-summary.md": "6bcb2fd1eb513ffb1de80c17fd4e36c1d0787ae2e09b86ddc05967beb617da53"
     },
     "last_active_at": null
   }
