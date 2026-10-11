@@ -53,7 +53,7 @@ The sk-create-manual-testing-playbook failure was a checker bug. The RULES patte
 
 | File | Action | Purpose |
 |------|--------|---------|
-| 89 changelog entries in 10 units | Modify | `version` key |
+| 89 changelog entries in 11 units | Modify | `version` key |
 | cli-devin SKILL.md and references/agent-delegation.md | Modify | Probe records moved |
 | cli-opencode SKILL.md | Modify | Rule 15 and subagent block |
 | sk-design-fundamentals, mcp-notion, mcp-obsidian SKILL.md | Modify | Descriptions, one section |

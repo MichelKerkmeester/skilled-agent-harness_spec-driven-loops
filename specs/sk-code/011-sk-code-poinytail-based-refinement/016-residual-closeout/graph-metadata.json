@@ -9,7 +9,11 @@
     "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/003-admission-gold",
     "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/004-battery-misses",
     "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/005-hooks-vitest-scope",
-    "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review"
+    "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review",
+    "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/007-dispatch-wrapper-scan",
+    "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/008-surface-hint-hub-root",
+    "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/009-reducer-config-message",
+    "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/010-final-gate-ledger"
   ],
   "manual": {
     "depends_on": [],
@@ -44,12 +48,18 @@
       "spec.md",
       "goal.md",
       ".skilled/hooks/vitest.config.ts",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".opencode/plugins/system-skill-advisor.js",
       "001-package-strict/goal.md",
       "002-hooks-readme-voice/goal.md",
       "003-admission-gold/goal.md",
       "004-battery-misses/goal.md",
       "005-hooks-vitest-scope/goal.md",
-      "006-closeout-deep-review/goal.md"
+      "006-closeout-deep-review/goal.md",
+      "007-dispatch-wrapper-scan/goal.md",
+      "008-surface-hint-hub-root/goal.md",
+      "009-reducer-config-message/goal.md",
+      "010-final-gate-ledger/goal.md"
     ],
     "entities": [
       {
@@ -68,6 +78,18 @@
         "name": "vitest.config.ts",
         "kind": "code",
         "path": ".skilled/hooks/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-skill-advisor.js",
         "source": "derived"
       },
       {
@@ -145,17 +167,17 @@
     ],
     "causal_summary": "The 015 closeout ended several items CLOSED that an honest fix could reach: 13 skill units failing the strict package check, seven HVR hard blockers in a hooks README, a drifted deep-loop admission scenario, three advisor battery misses, and a hooks vitest config that collects archived spec tests and rewrites a tracked file",
     "created_at": "2026-10-11T10:14:03Z",
-    "last_save_at": "2026-10-11T11:07:26.068Z",
+    "last_save_at": "2026-10-11T11:29:46.818Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:4858b1233dbbb4cff8589922b7022c05cb1bf4817269e246377481512784711a",
+    "source_fingerprint": "sha256:9c50a2ecc5c875ac062e4901c55acf139597fa6e9c0719bf75735c16b97c2ccd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c0f77d86d40c5c10a6697f81df69dfaa4cf1e518e215880199e3e7f129e1f181"
+      "spec.md": "026e6f80b3b6226562af3d0a58f656b1c37346cc6a85fd19caf18ca03a41425b"
     },
     "last_active_at": null
   }

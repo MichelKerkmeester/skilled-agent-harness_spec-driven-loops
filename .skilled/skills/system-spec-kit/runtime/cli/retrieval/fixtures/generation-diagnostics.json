@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 6789,
-    "ok": 14269,
+    "missing-frontmatter": 6790,
+    "ok": 14290,
     "valid-empty-list": 3509
   },
-  "documentsScanned": 24614,
+  "documentsScanned": 24636,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "1be274ff96b4cb28e880b7c8d8e40162a0e27ecfe61c2d0a68fdeb26ce686b15",
+  "manifestHash": "2192cdef006745208435831db2fde497812502b0a4e0463aef4f34f8c57a78a4",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36480,
+      "ok": 36500,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -36794,6 +36794,12 @@
       "reason": "no opening frontmatter delimiter"
     },
     {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review/review/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/sk-communication/001-sk-communication-creation/001-research-strategy/research/deep-research-dashboard.md",
@@ -67746,7 +67752,27 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/007-dispatch-wrapper-scan/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/008-surface-hint-hub-root/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/009-reducer-config-message/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/010-final-gate-ledger/scratch",
       "reason": "excluded directory"
     },
     {

@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Thirteen units failed `packageskill.py --check --strict`",
     "created_at": "2026-10-11T10:14:14Z",
-    "last_save_at": "2026-10-11T10:43:54.530Z",
+    "last_save_at": "2026-10-11T11:29:48.293Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f20d5c306ede93218d3a1e062a36bf8eeca1c8f15d10d4a58286fe05bb5feb1",
+    "source_fingerprint": "sha256:504043e9e72d8b5819a59645b87a11a4d80279d27693f59ab273a55c1cc211bb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6ca0981c93c1f928a7d269fb832ba28cf3990f57b11c8e59f8c297b6a920aeb0",
+      "spec.md": "12e0bc9ce8da274ce87aa3e80557bfaa51fa1dda4cbfd15eaee0a980a8863907",
       "plan.md": "10dba786ae06d2e7dbd990624c76b246ee5c96ee59ed0ccde9f66efa5af6d8ca",
       "tasks.md": "5c7e3d7c400d767b111f2b1fe6db7703c98d37804c220195ec9882d7b5214e59",
-      "implementation-summary.md": "3567df14edf7c3fb488f40d259b3731f726742652896e4dee03de84ed7ff880c"
+      "implementation-summary.md": "aeda6a1b2c097302f00a032db8925f7c204817617c50fd406db7dd0b6f086763"
     },
     "last_active_at": null
   }

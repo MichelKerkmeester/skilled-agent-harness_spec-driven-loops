@@ -1,5 +1,5 @@
 {
-  "corpusHash": "637f0a850ff31f969458880e79cfedd8e74d1ff286fe60a6544a3ec076609ead",
+  "corpusHash": "441aa4b310afe65a005989bb94377b3842b3b7e2e7dc6b84b5702e95d4e54254",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24614,
+  "includedPathCount": 24636,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10738,8 +10738,30 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review/implementation-summary.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review/review/fanout-attribution.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review/review/review-report.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/007-dispatch-wrapper-scan/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/007-dispatch-wrapper-scan/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/007-dispatch-wrapper-scan/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/007-dispatch-wrapper-scan/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/007-dispatch-wrapper-scan/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/008-surface-hint-hub-root/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/008-surface-hint-hub-root/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/008-surface-hint-hub-root/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/008-surface-hint-hub-root/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/008-surface-hint-hub-root/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/009-reducer-config-message/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/009-reducer-config-message/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/009-reducer-config-message/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/009-reducer-config-message/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/009-reducer-config-message/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/010-final-gate-ledger/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/010-final-gate-ledger/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/010-final-gate-ledger/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/010-final-gate-ledger/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/010-final-gate-ledger/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md",
@@ -24645,7 +24667,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "1be274ff96b4cb28e880b7c8d8e40162a0e27ecfe61c2d0a68fdeb26ce686b15",
+  "manifestHash": "2192cdef006745208435831db2fde497812502b0a4e0463aef4f34f8c57a78a4",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26720,7 +26742,27 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/007-dispatch-wrapper-scan/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/008-surface-hint-hub-root/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/009-reducer-config-message/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/010-final-gate-ledger/scratch",
       "reason": "excluded directory"
     },
     {

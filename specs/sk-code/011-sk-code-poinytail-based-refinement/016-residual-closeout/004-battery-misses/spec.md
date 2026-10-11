@@ -24,7 +24,7 @@ contextType: "implementation"
 | **Created** | 2026-10-11 |
 | **Branch** | `worktrees/099-residual-closeout` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 4 of 7 |
+| **Phase** | 4 of 10 |
 | **Predecessor** | 003-admission-gold |
 | **Successor** | 005-hooks-vitest-scope |
 | **Handoff Criteria** | Every criterion in goal.md passes and strict validation passes |

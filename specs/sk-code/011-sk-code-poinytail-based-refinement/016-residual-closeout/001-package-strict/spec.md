@@ -24,7 +24,7 @@ contextType: "implementation"
 | **Created** | 2026-10-11 |
 | **Branch** | `worktrees/099-residual-closeout` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 1 of 7 |
+| **Phase** | 1 of 10 |
 | **Predecessor** | None |
 | **Successor** | 002-hooks-readme-voice |
 | **Handoff Criteria** | Every criterion in goal.md passes and strict validation passes |
@@ -67,7 +67,7 @@ All 13 units pass the strict check, every SKILL.md keeps its routing keywords, a
 ## 3. SCOPE
 
 ### In Scope
-- Version keys in 89 older changelog entries across 10 units
+- Version keys in 89 older changelog entries across 11 units
 - Word trims in three SKILL.md files, moving probe records to a reference where the text has no other home
 - Three descriptions and one asset frontmatter block
 - The RULES-section pattern in package_skill.py and its regression test

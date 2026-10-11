@@ -15,7 +15,10 @@
       "phase 6 closeout deep review",
       "closeout deep review plan",
       "closeout deep review tasks",
-      "closeout deep review goal",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "closeout deep review implementation summary"
     ],
     "key_topics": [
@@ -25,21 +28,22 @@
       "phase",
       "plan",
       "tasks",
+      "packet",
       "goal",
-      "implementation",
-      "summary",
-      "broken",
-      "missing",
-      "inefficient"
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/repo-rules/prevent-overengineering.md"
     ],
     "entities": [
       {
@@ -73,6 +77,12 @@
         "source": "derived"
       },
       {
+        "name": "prevent-overengineering.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/prevent-overengineering.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -103,7 +113,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -121,7 +131,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,14 +149,8 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow One",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -163,6 +173,12 @@
         "source": "derived"
       },
       {
+        "name": "confirmed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
@@ -173,23 +189,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The 015 closeout landed nine commits, 77f14f88d0 to d04df31790, that changed hooks, the compiled-route sync check, the deep-loop reducer, the OpenCode advisor plugin, a scaffold script and several releases",
     "created_at": "2026-10-11T10:14:20Z",
-    "last_save_at": "2026-10-11T10:14:22.634Z",
+    "last_save_at": "2026-10-11T11:29:55.598Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +203,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b16a5f8408fa650d1b077599746d86ccaa9f72db86df3308f5842aa5fb087120",
+    "source_fingerprint": "sha256:14d4ffd1707cdd2a0abc4d4a34470089fd46fa5324f40d6961d0a5d43af1b02d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3eb1916baa05f7cb552f55dec535837b6c3e328802330ed76b9679a5f5d3fff6",
-      "plan.md": "538e059c4a3f86f8ebe442051dcbca57e4db7a29d6dac9fc214fadd3ac733cb6",
-      "tasks.md": "21da1932781a97c3aff50cb155521b54a97a7857c990ef6246c37014d547010c",
-      "implementation-summary.md": "afc12497db21fd3a6dc0d40e25d8255070e04d1df5f12f1ffc920cd4857a3b8b"
+      "spec.md": "dfa29b635716a831c747ebe0439d1efb5cb7f4457e84c86c1122a65e968a4530",
+      "plan.md": "7656ff7ce55374bb8a1d57bef6ed53bf6b1f9d87ffce887a25fae41ea4c4a7ca",
+      "tasks.md": "815c54659ff329030307f39be01354584a4a364c83df616a26020b9c0df9ba00",
+      "implementation-summary.md": "b6f850cc7553535a4c0cdddcc3067879bb4d8b7a017c3f4a68988a8be428ac8d"
     },
     "last_active_at": null
   }

@@ -1,0 +1,18 @@
+The lineage is complete and fully verified. Summary of the run:
+
+**Lineage `dsflash-llmgw`** — deep review of the 015 closeout range (`77f14f88d0^..d04df31790`, nine commits) against packet `006-closeout-deep-review`.
+
+- **Init**: config, strategy, registry, `run_initialized` ledger event (gateway seq 1).
+- **Loop, 5/5 iterations** (all `verify-iteration.cjs` → OK, gateway seq 2–6):
+  1. correctness — reducer missing-config, sync `--check` drift, escaped-quote unwrap, vitest scope, deadline table, surface hint, scaffold aliases; 1 P2
+  2. security — guard fail-open boundary, spawn/stdin safety, deadline fail-open; 1 P2
+  3. traceability — nine phase claims and six releases verified by command, Hermes parity, all derived checkers (`sync` 55/55, drift OK, canaries 0, freshness 14/14, `package_skill --check` PASS); 1 P2
+  4. maintainability — comment hygiene 0 violations (46 lines), restraint ladder held, tests fail-without-fix sound; 1 P2
+  5. closure — all four P2s replayed active; no escalation.
+- **Synthesis**: `review-report.md` (11 sections), reducer refresh (4 open P2, full dimension coverage), `synthesis_closeout` exit 0, `synthesis_complete` event with `stopReason: maxIterationsReached` (gateway seq 7), config `status: complete`.
+- **Verdict**: PASS, `hasAdvisories: true` — P0=0, P1=0, P2=4.
+- **Containment**: every target file byte-identical to the dispatch baseline; all writes stayed under `review/lineages/dsflash-llmgw/`.
+
+The orchestrator's next step: merge the lineage and rerun each kept finding before the phase commit (plus regenerate the target's derived artifacts per R3-P2-001).
+
+FANOUT_LINEAGE_COMPLETE:dsflash-llmgw

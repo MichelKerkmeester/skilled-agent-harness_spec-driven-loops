@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1be274ff96b4cb28e880b7c8d8e40162a0e27ecfe61c2d0a68fdeb26ce686b15",
+  "manifestHash": "2192cdef006745208435831db2fde497812502b0a4e0463aef4f34f8c57a78a4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -21581,14 +21581,14 @@
     "closeout deep review": [
       "closeout deep review"
     ],
-    "closeout deep review goal": [
-      "closeout deep review goal"
-    ],
     "closeout deep review implementation summary": [
       "closeout deep review implementation summary"
     ],
     "closeout deep review plan": [
       "closeout deep review plan"
+    ],
+    "closeout deep review report": [
+      "closeout deep review report"
     ],
     "closeout deep review tasks": [
       "closeout deep review tasks"
@@ -36849,6 +36849,18 @@
     "dispatch validation evidence": [
       "dispatch validation evidence"
     ],
+    "dispatch wrapper scan": [
+      "dispatch wrapper scan"
+    ],
+    "dispatch wrapper scan implementation summary": [
+      "dispatch wrapper scan implementation summary"
+    ],
+    "dispatch wrapper scan plan": [
+      "dispatch wrapper scan plan"
+    ],
+    "dispatch wrapper scan tasks": [
+      "dispatch wrapper scan tasks"
+    ],
     "dispatched child asks the spec folder question": [
       "dispatched child asks the spec folder question"
     ],
@@ -44074,6 +44086,18 @@
     ],
     "filters jsonc": [
       "filters.jsonc"
+    ],
+    "final gate ledger": [
+      "final gate ledger"
+    ],
+    "final gate ledger implementation summary": [
+      "final gate ledger implementation summary"
+    ],
+    "final gate ledger plan": [
+      "final gate ledger plan"
+    ],
+    "final gate ledger tasks": [
+      "final gate ledger tasks"
     ],
     "final gate pass": [
       "final gate pass"
@@ -71023,6 +71047,9 @@
     "phase 1 verification checklist": [
       "phase 1 verification checklist"
     ],
+    "phase 10 final gate ledger": [
+      "phase 10 final gate ledger"
+    ],
     "phase 10 observations": [
       "phase 10 observations"
     ],
@@ -71539,6 +71566,9 @@
     "phase 7 ci rule set comparison": [
       "phase 7 ci rule set comparison"
     ],
+    "phase 7 dispatch wrapper scan": [
+      "phase 7 dispatch wrapper scan"
+    ],
     "phase 7 hook deadline margins": [
       "phase 7 hook deadline margins"
     ],
@@ -71584,6 +71614,9 @@
     "phase 8 session aware tie break": [
       "phase 8 session aware tie break"
     ],
+    "phase 8 surface hint hub root": [
+      "phase 8 surface hint hub root"
+    ],
     "phase 9 advisor vocabulary freshness": [
       "phase 9 advisor vocabulary freshness"
     ],
@@ -71601,6 +71634,9 @@
     ],
     "phase 9 pi guard classification": [
       "phase 9 pi guard classification"
+    ],
+    "phase 9 reducer config message": [
+      "phase 9 reducer config message"
     ],
     "phase 9 review remediation": [
       "phase 9 review remediation"
@@ -77813,6 +77849,18 @@
     ],
     "reduced motion support": [
       "reduced motion support"
+    ],
+    "reducer config message": [
+      "reducer config message"
+    ],
+    "reducer config message implementation summary": [
+      "reducer config message implementation summary"
+    ],
+    "reducer config message plan": [
+      "reducer config message plan"
+    ],
+    "reducer config message tasks": [
+      "reducer config message tasks"
     ],
     "reducer fault tolerance": [
       "reducer fault tolerance"
@@ -100881,6 +100929,18 @@
     ],
     "surface design plan task breakdown": [
       "surface design plan task breakdown"
+    ],
+    "surface hint hub root": [
+      "surface hint hub root"
+    ],
+    "surface hint hub root implementation summary": [
+      "surface hint hub root implementation summary"
+    ],
+    "surface hint hub root plan": [
+      "surface hint hub root plan"
+    ],
+    "surface hint hub root tasks": [
+      "surface hint hub root tasks"
     ],
     "surface implementation standards": [
       "surface implementation standards"

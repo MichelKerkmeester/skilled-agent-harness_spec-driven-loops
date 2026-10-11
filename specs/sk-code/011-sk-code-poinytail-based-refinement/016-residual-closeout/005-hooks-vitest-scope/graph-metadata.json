@@ -194,7 +194,7 @@
     ],
     "causal_summary": "`.skilled/hooks/vitest.config.ts` sets `root` to the repository root so hook imports resolve, and it sets no `include`",
     "created_at": "2026-10-11T10:14:19Z",
-    "last_save_at": "2026-10-11T11:07:27.627Z",
+    "last_save_at": "2026-10-11T11:29:54.131Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e40565f1712b88865eebf31dfcffbe8c0d29fee6102d882351c2bfc2c9895bac",
+    "source_fingerprint": "sha256:faf25dd8995dc3f5228a4932ffac181b3000844e50906c920878eedb707f3227",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9162a8533d47763a7fecde51a75abfefecebd0c8fd77e6964a9e472edad86f55",
+      "spec.md": "1c7bac96605237abc71d444e0bb8c56dcd797278ea4b5c859b3e3313eb5de127",
       "plan.md": "e1d5610eea9c41b068655ad5489235c5ad0220a866d2553f2bd2df9014ff13ba",
       "tasks.md": "a8fce767477d2e934cf858063c151715adcf4223f57ce5e1feb80166002d6b62",
       "implementation-summary.md": "d5a26e92dcdc91cdc51595e908fee4e2b9e95c405cc8734c1de23b0fbe51f077"

@@ -1,11 +1,24 @@
 {
+  "level": "1",
   "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review",
-  "description": "Phase 6: closeout-deep-review",
+  "description": "The 015 closeout landed nine commits, 77f14f88d0 to d04df31790, that changed hooks, the compiled-route sync check, the deep-loop reducer, the OpenCode",
   "keywords": [
-    "phase",
-    "closeout-deep-review"
+    "closeout",
+    "landed",
+    "nine",
+    "commits",
+    "77f14f88d0",
+    "d04df31790",
+    "changed",
+    "hooks",
+    "compiled-route",
+    "sync",
+    "check",
+    "deep-loop",
+    "reducer",
+    "opencode"
   ],
-  "lastUpdated": "2026-10-11T10:14:21.084Z",
+  "lastUpdated": "2026-10-11T11:09:42.095Z",
   "specId": "006",
   "folderSlug": "closeout-deep-review",
   "parentChain": [
@@ -14,6 +27,5 @@
     "016-residual-closeout"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

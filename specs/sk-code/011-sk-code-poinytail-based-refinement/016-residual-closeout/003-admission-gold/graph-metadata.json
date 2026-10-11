@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The system-deep-loop admission check reports one drift: DOC-331 (`doctor-deep-loop-lazy-init.md`) carries gold `UNKNOWN` and the prompt `Initialize the deep-loop graph from current iteration folders",
     "created_at": "2026-10-11T10:14:16Z",
-    "last_save_at": "2026-10-11T10:55:23.741Z",
+    "last_save_at": "2026-10-11T11:29:51.197Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ac73eb54a04a8812c12a0318ddc00487b2c34089271ae53ca15c68bdd0d5f503",
+    "source_fingerprint": "sha256:6fe84981674e03c27a54e6894e2912a39531e1f7e829643ea0b63724ec6fd586",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d20339439f2149ca1a265bdc878cb844d31dc6f087f7e0a8b39da339bff2fc6d",
+      "spec.md": "5b5031cc5d6dfed9db4ff6bc487b68d7693ac0383cb92e027225fc527fd561e6",
       "plan.md": "b501b1c06930b129b485b075b7ee1a72b40e311a8a22688c863a8684080f203d",
       "tasks.md": "39bd44cb00d5bad88cbc57f531c8c7a55ce8ef2b1b950342fa46bba0f07a5a07",
       "implementation-summary.md": "ee35a6998812eaa2152ad9bfd28ede97382dd4619f46c1b16707cf7bba49d673"

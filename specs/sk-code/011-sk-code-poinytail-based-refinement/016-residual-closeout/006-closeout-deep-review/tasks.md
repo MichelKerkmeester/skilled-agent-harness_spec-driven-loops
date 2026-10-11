@@ -4,7 +4,7 @@ description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "closeout deep review tasks"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Phase 6: closeout-deep-review
@@ -31,9 +31,7 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Write the review scope and the file manifest
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -41,10 +39,8 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T002 Run the cli-pi lineage through fanout-run.cjs
+- [x] T003 Merge the lineage and rerun each finding
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -52,9 +48,8 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T004 Write review-report.md with confirmed findings and their fix phases
+- [x] T005 Validate and commit
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -62,9 +57,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every goal.md criterion passes on the orchestrator's rerun
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,6 +72,3 @@ contextType: "general"
 <!-- /ANCHOR:cross-refs -->
 
 ---
-
-
-

@@ -2,29 +2,32 @@
 title: "Goal: Phase 6: closeout-deep-review"
 description: "The durable directive this packet executes against and the criteria that decide when it is done."
 trigger_phrases:
-  - "closeout deep review goal"
+  - "packet goal"
+  - "durable directive"
+  - "completion criteria"
+  - "goal binding"
 importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-closeout-deep-review"
-    last_updated_at: "2026-10-11T10:14:21Z"
-    last_updated_by: "scaffold"
+    packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review"
+    last_updated_at: "2026-10-11T18:00:00Z"
+    last_updated_by: "residual-closeout-orchestrator"
     recent_action: "Authored the durable directive"
     next_safe_action: "Execute against the completion criteria"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "goal-016-006-closeout-deep-review"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 # Goal: Phase 6: closeout-deep-review
 
+<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 <!-- GOAL_AUTHORING: .skilled/skills/sk-doc/sk-create-goal/SKILL.md -->
 
@@ -33,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** [One sentence. What this packet is for. Not how, not progress.]
+**Objective:** The 015 closeout commits get an independent five-iteration DeepSeek review, and every finding it keeps is confirmed by a command.
 
 ### Decisions
 
@@ -41,19 +44,19 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | [The decision, stated so a reader can tell whether work honors it] |
+| D1 | The review runs on DeepSeek V4.1 Flash through cli-pi on DevPass at max effort, with Cline Pass when DevPass is limited |
+| D2 | A finding is a hypothesis until a command confirms it |
 
 <!-- /ANCHOR:directive -->
 
 ---
 
-
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] [A check whose answer is an exit code, a count, or a named artifact]
-- [ ] [Another]
-- [ ] [Another]
+- [ ] `ls specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review/review/review-report.md`, run from the repository root, lists the file.
+- [ ] `cat specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review/review/orchestration-summary.json`, run from the repository root, shows succeeded 1 and failed 0.
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review --strict`, run from the repository root, prints RESULT: PASSED.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -69,11 +72,13 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| [Item] | [Pending/In Progress/Done] | [Command output, file:line, or artifact] |
+| Phase planned | Done | Scope and manifest written |
+| Lineage run | Done | 5 iterations, succeeded 1 |
+| Findings confirmed | Done | 4 of 4 P2 reproduced |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| [What diverged from the directive] | [Why, and what was done instead] |
+| None | The build matched the plan |
 <!-- /ANCHOR:log -->

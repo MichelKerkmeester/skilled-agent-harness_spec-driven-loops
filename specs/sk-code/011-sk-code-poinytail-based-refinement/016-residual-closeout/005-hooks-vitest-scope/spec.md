@@ -24,7 +24,7 @@ contextType: "implementation"
 | **Created** | 2026-10-11 |
 | **Branch** | `worktrees/099-residual-closeout` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 5 of 7 |
+| **Phase** | 5 of 10 |
 | **Predecessor** | 004-battery-misses |
 | **Successor** | 006-closeout-deep-review |
 | **Handoff Criteria** | Every criterion in goal.md passes and strict validation passes |

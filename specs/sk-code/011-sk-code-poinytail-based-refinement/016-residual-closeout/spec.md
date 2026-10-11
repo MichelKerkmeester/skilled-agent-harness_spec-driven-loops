@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout"
     last_updated_at: "2026-10-11T18:00:00Z"
     last_updated_by: "residual-closeout-orchestrator"
-    recent_action: "Closed phase 005"
-    next_safe_action: "Run the phase 006 review"
+    recent_action: "Closed phase 006"
+    next_safe_action: "Fix the dispatch wrapper scan in phase 007"
     blockers: []
     key_files: []
     session_dedup:
@@ -84,6 +84,10 @@ Fix each item with proof from a command that ran, or close it only where every h
 | Owning skills' metadata | Modify | 004-battery-misses | Retry battery misses P4, P7 and P15 at their root cause |
 | `.skilled/hooks/vitest.config.ts` | Modify | 005-hooks-vitest-scope | Restrict the hooks vitest include to the hooks tree |
 | Review packet only | Modify | 006-closeout-deep-review | DeepSeek deep review of the 015 closeout commits |
+| `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` and its test | Modify | 007-dispatch-wrapper-scan | Read every shell wrapper payload, not only the first |
+| `.opencode/plugins/system-skill-advisor.js` and its test | Modify | 008-surface-hint-hub-root | Send OPENCODE only inside the hub's own `.skilled` directory |
+| `reduce-state.cjs` and its test | Modify | 009-reducer-config-message | Name the missing review config in the strict failure headline |
+| Spec docs only, plus whatever the gate turns up | Modify | 010-final-gate-ledger | Run the final gate from the committed state and close the ledger |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -100,7 +104,11 @@ Fix each item with proof from a command that ran, or close it only where every h
 | 3 | 003-admission-gold/ | Settle the drifted DOC-331 deep-loop admission scenario | Complete |
 | 4 | 004-battery-misses/ | Retry battery misses P4, P7 and P15 at their root cause | Complete |
 | 5 | 005-hooks-vitest-scope/ | Restrict the hooks vitest include to the hooks tree | Complete |
-| 6 | 006-closeout-deep-review/ | DeepSeek deep review of the 015 closeout commits | Pending |
+| 6 | 006-closeout-deep-review/ | DeepSeek deep review of the 015 closeout commits | Complete |
+| 7 | 007-dispatch-wrapper-scan/ | Read every shell wrapper payload, not only the first | Pending |
+| 8 | 008-surface-hint-hub-root/ | Send OPENCODE only inside the hub's own `.skilled` directory | Pending |
+| 9 | 009-reducer-config-message/ | Name the missing review config in the strict failure headline | Pending |
+| 10 | 010-final-gate-ledger/ | Run the final gate from the committed state and close the ledger | Pending |
 
 ### Phase Transition Rules
 
@@ -118,6 +126,10 @@ Fix each item with proof from a command that ran, or close it only where every h
 | 003-admission-gold | 004-battery-misses | 003 committed with its goal criteria passing | `validate.sh --strict` on 003 |
 | 004-battery-misses | 005-hooks-vitest-scope | 004 committed with its goal criteria passing | `validate.sh --strict` on 004 |
 | 005-hooks-vitest-scope | 006-closeout-deep-review | 005 committed with its goal criteria passing | `validate.sh --strict` on 005 |
+| 006-closeout-deep-review | 007-dispatch-wrapper-scan | 006 committed with its goal criteria passing | `validate.sh --strict` on 006 |
+| 007-dispatch-wrapper-scan | 008-surface-hint-hub-root | 007 committed with its goal criteria passing | `validate.sh --strict` on 007 |
+| 008-surface-hint-hub-root | 009-reducer-config-message | 008 committed with its goal criteria passing | `validate.sh --strict` on 008 |
+| 009-reducer-config-message | 010-final-gate-ledger | 009 committed with its goal criteria passing | `validate.sh --strict` on 009 |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The 015 ledger recorded seven HVR hard blockers in `.skilled/skills/system-spec-kit/runtime/hooks/README.md` and left them, because they predated that phase",
     "created_at": "2026-10-11T10:14:15Z",
-    "last_save_at": "2026-10-11T10:50:03.906Z",
+    "last_save_at": "2026-10-11T11:29:49.731Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6ba5c78168c30982c651625f695b4122b1fd452b2f0f8b387afa4ecd4d5c2fc3",
+    "source_fingerprint": "sha256:98037732e7bbb1e62cd6dd37f4fb084a699223f91ce0eeb6df27aeecf18a9b5e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2a6aed5adf0b0724b124251e643c8b159099ba537002933c8e1b67211562c927",
+      "spec.md": "2b904e246ab441296ab6809958156a9fb180d934b262ae48e51e38a655961c75",
       "plan.md": "49e6a352ddacc703cdd3fa501727de4d28329c6168ae346b677caa9b6dd922aa",
       "tasks.md": "c99e0a73388f847fdc455280f5ae6142f2e1829c7471f04dfa0aa0ae7438862e",
       "implementation-summary.md": "58a15df28f20cb30998257d3d3cc4eb4e7a1914311005b5144bf22218c87cacb"

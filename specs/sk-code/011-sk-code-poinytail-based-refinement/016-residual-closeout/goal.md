@@ -66,6 +66,10 @@ phase and binds as if written here.
 | 004-battery-misses | `004-battery-misses/goal.md` |
 | 005-hooks-vitest-scope | `005-hooks-vitest-scope/goal.md` |
 | 006-closeout-deep-review | `006-closeout-deep-review/goal.md` |
+| 007-dispatch-wrapper-scan | `007-dispatch-wrapper-scan/goal.md` |
+| 008-surface-hint-hub-root | `008-surface-hint-hub-root/goal.md` |
+| 009-reducer-config-message | `009-reducer-config-message/goal.md` |
+| 010-final-gate-ledger | `010-final-gate-ledger/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -79,8 +83,8 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout --strict --recursive`, run from the repository root, prints RESULT: PASSED for the parent and all 6 children.
-- [ ] `git log --format='%(trailers:key=Spec,valueonly)' HEAD | grep -c '/016-residual-closeout/'`, run from the repository root, prints 6 or more.
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout --strict --recursive`, run from the repository root, prints RESULT: PASSED for the parent and all 10 children.
+- [ ] `git log --format='%(trailers:key=Spec,valueonly)' HEAD | grep -c '/016-residual-closeout/'`, run from the repository root, prints 10 or more.
 - [ ] `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout`, run from the repository root, prints RESULT: PASSED.
 - [ ] `git status --short`, run from the repository root, prints nothing after the last phase commit.
 <!-- /ANCHOR:completion -->
@@ -103,6 +107,7 @@ and findings belong here.
 | Phase 003 | Done | DOC-331 CLOSED: gold right, the only router fix has one caller |
 | Phase 004 | Done | P15 FIXED; P4 and P7 CLOSED with rule and gap |
 | Phase 005 | Done | Hooks vitest collects only the hooks tree |
+| Phase 006 | Done | Review: P0 0, P1 0, P2 4, all confirmed |
 
 ### Deviations and findings
 
