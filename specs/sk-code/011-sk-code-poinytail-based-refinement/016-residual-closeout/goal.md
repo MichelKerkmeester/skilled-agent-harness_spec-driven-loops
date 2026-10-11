@@ -108,6 +108,7 @@ and findings belong here.
 | Phase 004 | Done | P15 FIXED; P4 and P7 CLOSED with rule and gap |
 | Phase 005 | Done | Hooks vitest collects only the hooks tree |
 | Phase 006 | Done | Review: P0 0, P1 0, P2 4, all confirmed |
+| Phase 007 | Done | Every wrapper payload is read |
 
 ### Deviations and findings
 

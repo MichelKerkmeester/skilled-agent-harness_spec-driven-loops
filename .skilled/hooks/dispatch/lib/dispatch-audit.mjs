@@ -292,9 +292,13 @@ export function inspectDispatch(command) {
 
     if (direct.length > 0 || candidate) return { kind: 'ambiguous' };
     // The tokenizer reads `bash -c '<cmd>'` as a bash call with one quoted argument. Classify
-    // the wrapped command instead, the same unwrap resolveSegment applies for the hooks.
-    const payload = shellPayload(command);
-    if (payload !== null) return inspectDispatch(payload);
+    // every wrapped command instead, the same unwrap resolveSegment applies for the hooks, and
+    // combine them the way the segments above combine.
+    const inner = shellPayloads(command).map((payload) => inspectDispatch(payload));
+    if (inner.some((result) => result.kind === 'ambiguous')) return { kind: 'ambiguous' };
+    const wrapped = inner.filter((result) => result.kind === 'direct');
+    if (wrapped.length === 1) return wrapped[0];
+    if (wrapped.length > 1) return { kind: 'ambiguous' };
     return { kind: 'none' };
   } catch (_) {
     return { kind: 'none' };
@@ -329,6 +333,21 @@ function shellPayload(command) {
   if (match[1] !== undefined) return match[1];
   // Inside double quotes the shell drops a backslash only before $ ` " \ and a newline.
   return match[2].replace(/\\\n/g, '').replace(/\\([$`"\\])/g, '$1');
+}
+
+/**
+ * Return the command every shell wrapper in the text runs, in order.
+ * @param {string} command - text that may hold several `bash -c '<cmd>'` style wrappers.
+ * @returns {string[]} the unwrapped payloads, empty when the text has no wrapper.
+ */
+function shellPayloads(command) {
+  const payloads = [];
+  for (const match of command.matchAll(new RegExp(SHELL_WRAPPER.source, 'g'))) {
+    payloads.push(match[1] !== undefined
+      ? match[1]
+      : match[2].replace(/\\\n/g, '').replace(/\\([$`"\\])/g, '$1'));
+  }
+  return payloads;
 }
 
 // An exec wrapper runs the real command in its own process, so the tokenizer reads the

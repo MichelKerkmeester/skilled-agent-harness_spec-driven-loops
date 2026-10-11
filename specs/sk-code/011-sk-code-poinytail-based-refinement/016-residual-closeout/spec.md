@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout"
     last_updated_at: "2026-10-11T18:00:00Z"
     last_updated_by: "residual-closeout-orchestrator"
-    recent_action: "Closed phase 006"
-    next_safe_action: "Fix the dispatch wrapper scan in phase 007"
+    recent_action: "Closed phase 007"
+    next_safe_action: "Fix the surface hint in phase 008"
     blockers: []
     key_files: []
     session_dedup:
@@ -105,7 +105,7 @@ Fix each item with proof from a command that ran, or close it only where every h
 | 4 | 004-battery-misses/ | Retry battery misses P4, P7 and P15 at their root cause | Complete |
 | 5 | 005-hooks-vitest-scope/ | Restrict the hooks vitest include to the hooks tree | Complete |
 | 6 | 006-closeout-deep-review/ | DeepSeek deep review of the 015 closeout commits | Complete |
-| 7 | 007-dispatch-wrapper-scan/ | Read every shell wrapper payload, not only the first | Pending |
+| 7 | 007-dispatch-wrapper-scan/ | Read every shell wrapper payload, not only the first | Complete |
 | 8 | 008-surface-hint-hub-root/ | Send OPENCODE only inside the hub's own `.skilled` directory | Pending |
 | 9 | 009-reducer-config-message/ | Name the missing review config in the strict failure headline | Pending |
 | 10 | 010-final-gate-ledger/ | Run the final gate from the committed state and close the ledger | Pending |

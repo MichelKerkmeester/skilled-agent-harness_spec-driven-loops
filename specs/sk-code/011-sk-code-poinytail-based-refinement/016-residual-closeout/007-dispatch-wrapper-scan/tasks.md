@@ -31,7 +31,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read dispatch-audit.mjs and its tests
+- [x] T001 Read dispatch-audit.mjs and its tests
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -39,8 +39,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Scan every wrapper payload
-- [ ] T003 Add the second-wrapper test
+- [x] T002 Scan every wrapper payload
+- [x] T003 Add the second-wrapper test
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -48,8 +48,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T004 Run hooks vitest
-- [ ] T005 Validate and commit
+- [x] T004 Run hooks vitest
+- [x] T005 Validate and commit
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -57,9 +57,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Every goal.md criterion passes on the orchestrator's rerun
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every goal.md criterion passes on the orchestrator's rerun
 <!-- /ANCHOR:completion -->
 
 ---

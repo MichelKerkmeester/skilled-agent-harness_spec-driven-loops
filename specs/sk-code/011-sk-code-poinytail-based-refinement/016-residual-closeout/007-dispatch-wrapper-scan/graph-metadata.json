@@ -36,14 +36,15 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/hooks/dispatch/lib/dispatch-audit.mjs"
+      ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.test.mjs"
     ],
     "entities": [
       {
@@ -83,13 +84,13 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "dispatch-audit.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.test.mjs",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -114,6 +115,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -183,17 +190,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`inspectDispatch` in `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` unwraps only the first `bash -c` wrapper",
     "created_at": "2026-10-11T11:28:03Z",
-    "last_save_at": "2026-10-11T11:29:56.956Z",
+    "last_save_at": "2026-10-11T11:34:14.553Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +204,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b7b94a2c7a5afd217df8fe04b5e594c15ebbc0e17360e88657dbd04ff0c76811",
+    "source_fingerprint": "sha256:f8f0cf5821347316fef5073fdc2b208af7907e62ceb8f6bd7b973ca59b15f55c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d5f2cd6521cb5b2c41d7d496d704e6a3bb1b5b00153f0a61e1b622da69fd3594",
-      "plan.md": "da627d7548449a5be1172f35b37e8260db6553479003c085c851a4864a9ab145",
-      "tasks.md": "f3d93af0e4c536523d1a0d9519b3aa46446c6cf13efd168535587e0548f77e80",
-      "implementation-summary.md": "9c934d72514cf31de9a3ba5c27fd36cd818c8ab51b6e9839d496b5ac12385ae9"
+      "spec.md": "a1c157b75e725137a182a9541ef71400e8128e6aabfa7ff39868c1f51a215772",
+      "plan.md": "b907a30233c14e48c8f9d8acfc658f1b6d0217f947035303ffbd05a29f05bb74",
+      "tasks.md": "b2b54381027617bf4dc97842ca63b1ec2f8024159d8e3c90f9d5531fdc63b6ed",
+      "implementation-summary.md": "a41c7af11abdb04f78ea6223efe02bffdc259aadbcba17446e681893c39cc8d0"
     },
     "last_active_at": null
   }

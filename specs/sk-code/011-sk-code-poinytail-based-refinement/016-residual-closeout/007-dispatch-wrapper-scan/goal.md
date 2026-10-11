@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-016-007-dispatch-wrapper-scan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -71,6 +71,8 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase planned | Done | Scope written from review-report.md |
+| Fix built | Done | Two DeepSeek dispatches |
+| Tests proven | Done | Fail before, pass after |
 
 ### Deviations and findings
 

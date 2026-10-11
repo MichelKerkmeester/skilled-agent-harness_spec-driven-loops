@@ -104,6 +104,9 @@ describe('inspectDispatch', () => {
     // An expansion inside the payload still fails closed, so `bash -c "$CMD"` never reads as none.
     ['bash -c payload with an expansion', String.raw`bash -c "cd \"$DIR\" && devin -p task </dev/null"`, { kind: 'ambiguous' }],
     ['bash -c payload that only quotes a dispatch', String.raw`bash -c "echo \"devin -p task\""`, { kind: 'none' }],
+    // Every wrapper is read, so a dispatch in a later wrapper is still seen.
+    ['dispatch in the second of two wrappers', String.raw`bash -c 'true' ; bash -c "devin -p task </dev/null"`, { kind: 'direct', executor: 'cli-devin' }],
+    ['dispatches in two wrappers', "bash -c 'devin -p task' ; sh -c 'opencode run task'", { kind: 'ambiguous' }],
     ['two dispatch segments', 'devin -p task && cursor-agent -p task', { kind: 'ambiguous' }],
     ['unsupported redirection without dispatch', 'cat x >> out', { kind: 'none' }],
     ['pipeline without dispatch', 'npm run build 2>&1 | tee log', { kind: 'none' }],
