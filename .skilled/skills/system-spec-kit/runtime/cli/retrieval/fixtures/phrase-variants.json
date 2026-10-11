@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3377ca8dd80f2eee0c2495119ded9c5d87c0f57a5bdc0af69f60ad3d823e61e2",
+  "manifestHash": "c639e01e452ea107fa423411f26dd46713eeaf55277e7840afe2f5f1cce13b10",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -42839,6 +42839,9 @@
     "feature catalog anchor deprecation review report": [
       "feature catalog anchor deprecation review report"
     ],
+    "feature catalog anchor drift": [
+      "feature catalog anchor drift"
+    ],
     "feature catalog capabilities": [
       "feature catalog capabilities"
     ],
@@ -72631,6 +72634,12 @@
     "playbook catalog truth plan": [
       "playbook catalog truth plan"
     ],
+    "playbook catalog truth strategy": [
+      "playbook catalog truth strategy"
+    ],
+    "playbook catalog truth synthesis": [
+      "playbook catalog truth synthesis"
+    ],
     "playbook catalog truth tasks": [
       "playbook catalog truth tasks"
     ],
@@ -72666,6 +72675,9 @@
     ],
     "playbook drift self check": [
       "playbook drift self check"
+    ],
+    "playbook drift self check research": [
+      "playbook drift self check research"
     ],
     "playbook fail re verification": [
       "playbook fail re-verification"
