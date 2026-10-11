@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3bc9af3b3d3c39213c0bfb442e8df0372e97b3fb2157889c9bb9eb36bc4256f9",
+  "corpusHash": "a766ddf3aae4b5efc72b0795b0643f6fcc7688a51353d879ae3cf29d882ca37f",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24671,
+  "includedPathCount": 24719,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2655,6 +2655,7 @@
     ".skilled/skills/sk-code/changelog/v2.1.0.0.md",
     ".skilled/skills/sk-code/changelog/v2.2.0.0.md",
     ".skilled/skills/sk-code/changelog/v2.2.1.0.md",
+    ".skilled/skills/sk-code/changelog/v2.2.10.0.md",
     ".skilled/skills/sk-code/changelog/v2.2.2.0.md",
     ".skilled/skills/sk-code/changelog/v2.2.3.0.md",
     ".skilled/skills/sk-code/changelog/v2.2.4.0.md",
@@ -10871,6 +10872,53 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/016-sk-doc-tooling-followups/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/001-sk-code-hub-voice/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/001-sk-code-hub-voice/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/001-sk-code-hub-voice/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/001-sk-code-hub-voice/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/001-sk-code-hub-voice/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/002-goal-criteria-refresh/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/002-goal-criteria-refresh/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/002-goal-criteria-refresh/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/002-goal-criteria-refresh/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/002-goal-criteria-refresh/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/003-sk-git-playbook-changelog/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/003-sk-git-playbook-changelog/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/003-sk-git-playbook-changelog/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/003-sk-git-playbook-changelog/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/003-sk-git-playbook-changelog/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/004-dispatch-guard-and-vitest/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/004-dispatch-guard-and-vitest/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/004-dispatch-guard-and-vitest/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/004-dispatch-guard-and-vitest/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/004-dispatch-guard-and-vitest/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/005-stdin-late-write-coverage/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/005-stdin-late-write-coverage/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/005-stdin-late-write-coverage/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/005-stdin-late-write-coverage/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/005-stdin-late-write-coverage/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/006-compiled-route-content-check/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/006-compiled-route-content-check/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/006-compiled-route-content-check/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/006-compiled-route-content-check/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/006-compiled-route-content-check/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/007-review-reducer-missing-config/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/007-review-reducer-missing-config/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/007-review-reducer-missing-config/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/007-review-reducer-missing-config/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/007-review-reducer-missing-config/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/008-advisor-residuals-and-surface-hint/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/008-advisor-residuals-and-surface-hint/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/008-advisor-residuals-and-surface-hint/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/008-advisor-residuals-and-surface-hint/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/008-advisor-residuals-and-surface-hint/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/009-open-items-ledger/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/009-open-items-ledger/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/009-open-items-ledger/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/009-open-items-ledger/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/009-open-items-ledger/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/spec.md",
     "specs/sk-communication/001-sk-communication-creation/001-research-strategy/implementation-summary.md",
@@ -24702,7 +24750,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0897d22a5fc3b372695a18b968133fe65c831c3ab64c478044c6d0057ee47099",
+  "manifestHash": "080e0db00a04863f74e867930d655ba2a98bb4eddc6c41d3f78d0dbf3a75f8e0",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26726,6 +26774,46 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/016-sk-doc-tooling-followups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/001-sk-code-hub-voice/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/002-goal-criteria-refresh/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/003-sk-git-playbook-changelog/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/004-dispatch-guard-and-vitest/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/005-stdin-late-write-coverage/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/006-compiled-route-content-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/007-review-reducer-missing-config/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/008-advisor-residuals-and-surface-hint/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/009-open-items-ledger/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/scratch",
       "reason": "excluded directory"
     },
     {

@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 56,
     "missing-frontmatter": 6903,
-    "ok": 14203,
+    "ok": 14251,
     "valid-empty-list": 3509
   },
-  "documentsScanned": 24671,
+  "documentsScanned": 24719,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "0897d22a5fc3b372695a18b968133fe65c831c3ab64c478044c6d0057ee47099",
+  "manifestHash": "080e0db00a04863f74e867930d655ba2a98bb4eddc6c41d3f78d0dbf3a75f8e0",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36649,
+      "ok": 36708,
       "prose-sentence": 19,
       "single-token": 164,
       "stop-word-only": 1,
@@ -68442,6 +68442,46 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/016-sk-doc-tooling-followups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/001-sk-code-hub-voice/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/002-goal-criteria-refresh/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/003-sk-git-playbook-changelog/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/004-dispatch-guard-and-vitest/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/005-stdin-late-write-coverage/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/006-compiled-route-content-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/007-review-reducer-missing-config/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/008-advisor-residuals-and-surface-hint/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/009-open-items-ledger/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/scratch",
       "reason": "excluded directory"
     },
     {

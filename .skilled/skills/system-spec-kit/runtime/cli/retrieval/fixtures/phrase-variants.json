@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0897d22a5fc3b372695a18b968133fe65c831c3ab64c478044c6d0057ee47099",
+  "manifestHash": "080e0db00a04863f74e867930d655ba2a98bb4eddc6c41d3f78d0dbf3a75f8e0",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9091,6 +9091,21 @@
     ],
     "advisor repo rule pointer": [
       "advisor repo rule pointer"
+    ],
+    "advisor residuals and surface hint": [
+      "advisor residuals and surface hint"
+    ],
+    "advisor residuals and surface hint goal": [
+      "advisor residuals and surface hint goal"
+    ],
+    "advisor residuals and surface hint implementation summary": [
+      "advisor residuals and surface hint implementation summary"
+    ],
+    "advisor residuals and surface hint plan": [
+      "advisor residuals and surface hint plan"
+    ],
+    "advisor residuals and surface hint tasks": [
+      "advisor residuals and surface hint tasks"
     ],
     "advisor residue sweep": [
       "advisor residue sweep"
@@ -21671,6 +21686,9 @@
     "closeout drift reconciliation tasks": [
       "closeout drift reconciliation tasks"
     ],
+    "closeout goal": [
+      "closeout goal"
+    ],
     "closeout implementation summary": [
       "closeout implementation summary"
     ],
@@ -25198,6 +25216,21 @@
     ],
     "compiled route cap verification": [
       "compiled route cap verification"
+    ],
+    "compiled route content check": [
+      "compiled route content check"
+    ],
+    "compiled route content check goal": [
+      "compiled route content check goal"
+    ],
+    "compiled route content check implementation summary": [
+      "compiled route content check implementation summary"
+    ],
+    "compiled route content check plan": [
+      "compiled route content check plan"
+    ],
+    "compiled route content check tasks": [
+      "compiled route content check tasks"
     ],
     "compiled route front door": [
       "compiled route front door"
@@ -37044,6 +37077,21 @@
     "dispatch guard": [
       "dispatch guard"
     ],
+    "dispatch guard and vitest": [
+      "dispatch guard and vitest"
+    ],
+    "dispatch guard and vitest goal": [
+      "dispatch guard and vitest goal"
+    ],
+    "dispatch guard and vitest implementation summary": [
+      "dispatch guard and vitest implementation summary"
+    ],
+    "dispatch guard and vitest plan": [
+      "dispatch guard and vitest plan"
+    ],
+    "dispatch guard and vitest tasks": [
+      "dispatch guard and vitest tasks"
+    ],
     "dispatch header envelope changelog": [
       "dispatch header envelope changelog"
     ],
@@ -41186,6 +41234,9 @@
     ],
     "ephemeral ttl decouple": [
       "ephemeral TTL decouple"
+    ],
+    "epic closeout": [
+      "epic closeout"
     ],
     "epic deep review verdict": [
       "epic deep review verdict"
@@ -48295,6 +48346,21 @@
     ],
     "goal criteria lint tasks": [
       "goal criteria lint tasks"
+    ],
+    "goal criteria refresh": [
+      "goal criteria refresh"
+    ],
+    "goal criteria refresh goal": [
+      "goal criteria refresh goal"
+    ],
+    "goal criteria refresh implementation summary": [
+      "goal criteria refresh implementation summary"
+    ],
+    "goal criteria refresh plan": [
+      "goal criteria refresh plan"
+    ],
+    "goal criteria refresh tasks": [
+      "goal criteria refresh tasks"
     ],
     "goal criteria rubric labels": [
       "goal criteria rubric labels"
@@ -56160,6 +56226,9 @@
     ],
     "least risky first sequencing decision": [
       "least risky first sequencing decision"
+    ],
+    "leave nothing open": [
+      "leave nothing open"
     ],
     "ledger authority": [
       "ledger authority"
@@ -67701,6 +67770,21 @@
     "open horizons check": [
       "open horizons check"
     ],
+    "open items ledger": [
+      "open items ledger"
+    ],
+    "open items ledger goal": [
+      "open items ledger goal"
+    ],
+    "open items ledger implementation summary": [
+      "open items ledger implementation summary"
+    ],
+    "open items ledger plan": [
+      "open items ledger plan"
+    ],
+    "open items ledger tasks": [
+      "open items ledger tasks"
+    ],
     "open items research": [
       "open items research"
     ],
@@ -71555,6 +71639,9 @@
     "phase 1 shared and hub docs": [
       "phase 1 shared and hub docs"
     ],
+    "phase 1 sk code hub voice": [
+      "phase 1 sk code hub voice"
+    ],
     "phase 1 source deprecation": [
       "phase 1 source deprecation"
     ],
@@ -71753,6 +71840,9 @@
     "phase 2 budget check": [
       "phase 2 budget check"
     ],
+    "phase 2 goal criteria refresh": [
+      "phase 2 goal criteria refresh"
+    ],
     "phase 2 leaf generator ignores": [
       "phase 2 leaf generator ignores"
     ],
@@ -71885,6 +71975,9 @@
     "phase 3 quality mode": [
       "phase 3 quality mode"
     ],
+    "phase 3 sk git playbook changelog": [
+      "phase 3 sk git playbook changelog"
+    ],
     "phase 3 stale jev canary": [
       "phase 3 stale jev canary"
     ],
@@ -71902,6 +71995,9 @@
     ],
     "phase 4 debt report and hermes gate": [
       "phase 4 debt report and hermes gate"
+    ],
+    "phase 4 dispatch guard and vitest": [
+      "phase 4 dispatch guard and vitest"
     ],
     "phase 4 hook stdin deadline": [
       "phase 4 hook stdin deadline"
@@ -71972,6 +72068,12 @@
     "phase 5 stale audit task list": [
       "phase 5 stale audit task list"
     ],
+    "phase 5 stdin late write coverage": [
+      "phase 5 stdin late write coverage"
+    ],
+    "phase 6 compiled route content check": [
+      "phase 6 compiled route content check"
+    ],
     "phase 6 continuity refactor gates": [
       "phase 6 continuity refactor gates"
     ],
@@ -72029,6 +72131,9 @@
     "phase 7 remediation review fixes": [
       "phase 7 remediation review fixes"
     ],
+    "phase 7 review reducer missing config": [
+      "phase 7 review reducer missing config"
+    ],
     "phase 7 series parent review and hardening research": [
       "phase 7 series parent review and hardening research"
     ],
@@ -72037,6 +72142,9 @@
     ],
     "phase 7 spec kit hook deadlines": [
       "phase 7 spec kit hook deadlines"
+    ],
+    "phase 8 advisor residuals and surface hint": [
+      "phase 8 advisor residuals and surface hint"
     ],
     "phase 8 advisor surface hint": [
       "phase 8 advisor surface hint"
@@ -72064,6 +72172,9 @@
     ],
     "phase 9 gate 3 menu series parent": [
       "phase 9 gate 3 menu series parent"
+    ],
+    "phase 9 open items ledger": [
+      "phase 9 open items ledger"
     ],
     "phase 9 pi guard classification": [
       "phase 9 pi guard classification"
@@ -83767,6 +83878,21 @@
     "review reducer fail closed": [
       "review reducer fail closed"
     ],
+    "review reducer missing config": [
+      "review reducer missing config"
+    ],
+    "review reducer missing config goal": [
+      "review reducer missing config goal"
+    ],
+    "review reducer missing config implementation summary": [
+      "review reducer missing config implementation summary"
+    ],
+    "review reducer missing config plan": [
+      "review reducer missing config plan"
+    ],
+    "review reducer missing config tasks": [
+      "review reducer missing config tasks"
+    ],
     "review reference map": [
       "review reference map"
     ],
@@ -90637,6 +90763,9 @@
     "sk code 2 2 1 0": [
       "sk-code 2.2.1.0"
     ],
+    "sk code 2 2 10 0": [
+      "sk-code 2.2.10.0"
+    ],
     "sk code 2 2 2 0": [
       "sk-code 2.2.2.0"
     ],
@@ -90990,6 +91119,19 @@
     ],
     "sk code hub capabilities": [
       "sk-code hub capabilities"
+    ],
+    "sk code hub voice": [
+      "sk code hub voice",
+      "sk-code hub voice"
+    ],
+    "sk code hub voice implementation summary": [
+      "sk code hub voice implementation summary"
+    ],
+    "sk code hub voice plan": [
+      "sk code hub voice plan"
+    ],
+    "sk code hub voice tasks": [
+      "sk code hub voice tasks"
     ],
     "sk code implementation workflow": [
       "sk-code implementation workflow"
@@ -91390,6 +91532,9 @@
     "sk code reference repoint tasks": [
       "sk-code reference repoint tasks"
     ],
+    "sk code refinement closeout": [
+      "sk-code refinement closeout"
+    ],
     "sk code relocation map": [
       "sk-code relocation map"
     ],
@@ -91653,6 +91798,9 @@
     ],
     "sk code v2 2 1 0": [
       "sk-code v2.2.1.0"
+    ],
+    "sk code v2 2 10 0": [
+      "sk-code v2.2.10.0"
     ],
     "sk code v2 2 2 0": [
       "sk-code v2.2.2.0"
@@ -93330,6 +93478,21 @@
     ],
     "sk git live benchmark": [
       "sk-git live benchmark"
+    ],
+    "sk git playbook changelog": [
+      "sk git playbook changelog"
+    ],
+    "sk git playbook changelog goal": [
+      "sk git playbook changelog goal"
+    ],
+    "sk git playbook changelog implementation summary": [
+      "sk git playbook changelog implementation summary"
+    ],
+    "sk git playbook changelog plan": [
+      "sk git playbook changelog plan"
+    ],
+    "sk git playbook changelog tasks": [
+      "sk git playbook changelog tasks"
     ],
     "sk git reference frontmatter": [
       "sk-git reference frontmatter"
@@ -100232,6 +100395,21 @@
     ],
     "stdin hang adapter regression": [
       "stdin hang adapter regression"
+    ],
+    "stdin late write coverage": [
+      "stdin late write coverage"
+    ],
+    "stdin late write coverage goal": [
+      "stdin late write coverage goal"
+    ],
+    "stdin late write coverage implementation summary": [
+      "stdin late write coverage implementation summary"
+    ],
+    "stdin late write coverage plan": [
+      "stdin late write coverage plan"
+    ],
+    "stdin late write coverage tasks": [
+      "stdin late write coverage tasks"
     ],
     "stdio lifecycle plan": [
       "stdio lifecycle plan"

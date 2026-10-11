@@ -128,6 +128,7 @@ These bind every build phase, 002 to 006.
 | 12 | 012-post-merge-deep-review/ | Ten-iteration deep review of the epic on main after the merge | Complete |
 | 13 | 013-root-cause-and-ux-research/ | Ten-iteration deep research into the root causes of the epic's issues and the external-user experience, plus six fix phases | Complete |
 | 14 | 014-skill-authoring-ux-research/ | Research on how sk-create-skill and system-skill-advisor can make the 092 class of authoring errors near impossible | Complete |
+| 15 | 015-closeout/ | Close every item the epic left open: fixed with proof, or closed with a written reason | In Progress |
 
 ### Phase Transition Rules
 
@@ -153,6 +154,7 @@ These bind every build phase, 002 to 006.
 | 011-round-four-remediation | 012-post-merge-deep-review | 011 committed and merged to main | Orchestrator rerun of the 012 goal criteria |
 | 012-post-merge-deep-review | 013-root-cause-and-ux-research | None; 012, 013 and 014 ran in parallel from main and were merged on one integration branch | `validate.sh --recursive --strict` on the parent |
 | 013-root-cause-and-ux-research | 014-skill-authoring-ux-research | None; see the row above | `validate.sh --recursive --strict` on the parent |
+| 014-skill-authoring-ux-research | 015-closeout | 012 to 014 merged on the integration branch with every gate green | `validate.sh --recursive --strict` on the parent |
 
 ### Handoffs Outside sk-code
 

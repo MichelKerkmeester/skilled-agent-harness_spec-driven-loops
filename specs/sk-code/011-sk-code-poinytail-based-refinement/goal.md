@@ -78,6 +78,7 @@ phase and binds as if written here.
 | 012-post-merge-deep-review | `012-post-merge-deep-review/goal.md` |
 | 013-root-cause-and-ux-research | `013-root-cause-and-ux-research/goal.md` |
 | 014-skill-authoring-ux-research | `014-skill-authoring-ux-research/goal.md` |
+| 015-closeout | `015-closeout/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
