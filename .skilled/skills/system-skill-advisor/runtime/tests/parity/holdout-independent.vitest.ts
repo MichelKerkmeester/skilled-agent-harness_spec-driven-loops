@@ -11,12 +11,13 @@
 //
 // Independence is checked against every surface that scores prompts, not only
 // the training corpus. Each surface declares the holdout source types it may
-// share prompts with, and why. An undeclared overlap fails, a declared overlap
-// that no longer exists fails, and a runtime file that reads a scored corpus
+// share prompts with, through which of its corpora, and why. An undeclared
+// overlap fails, a declared overlap that no longer exists fails, a declaration
+// that no file backs fails, and a runtime file that reads a scored corpus
 // without being declared here fails, so a new shared prompt or a new scoring
 // surface is recorded instead of silently eroding the holdout.
 
-import { existsSync, mkdtempSync, readdirSync, readFileSync, statSync } from 'node:fs';
+import { existsSync, mkdtempSync, readdirSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -47,13 +48,19 @@ interface Baseline {
   readonly metrics: { readonly holdout_top1: { readonly correct: number; readonly total: number } };
 }
 
+interface AllowedOverlap {
+  // The corpora of the surface through which the shared rows arrive.
+  readonly via: readonly CorpusId[];
+  readonly reason: string;
+}
+
 interface ScoringSurface {
   readonly id: string;
   // Runtime-relative files that score this surface's corpora.
   readonly consumers: readonly string[];
   readonly corpora: readonly CorpusId[];
   // Holdout source types this surface may share prompts with, each with its reason.
-  readonly allowedOverlap: Readonly<Partial<Record<SourceType, string>>>;
+  readonly allowedOverlap: Readonly<Partial<Record<SourceType, AllowedOverlap>>>;
 }
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -107,8 +114,14 @@ const SCORING_SURFACES: readonly ScoringSurface[] = [
     ],
     corpora: ['labeled', 'ambiguity', 'delegation'],
     allowedOverlap: {
-      'holdout-delegation': 'its delegation bucket scores the fixture the holdout delegation rows come from',
-      'holdout-harder': 'two delegation cases are also harder-corpus prompts, which the holdout files under holdout-harder',
+      'holdout-delegation': {
+        via: ['delegation'],
+        reason: 'its delegation bucket scores the fixture the holdout delegation rows come from',
+      },
+      'holdout-harder': {
+        via: ['delegation'],
+        reason: 'two delegation cases are also harder-corpus prompts, which the holdout files under holdout-harder',
+      },
     },
   },
   {
@@ -119,7 +132,10 @@ const SCORING_SURFACES: readonly ScoringSurface[] = [
     ],
     corpora: ['labeled', 'harder'],
     allowedOverlap: {
-      'holdout-harder': 'it compares the two scorers on the harder corpus; it tunes nothing',
+      'holdout-harder': {
+        via: ['harder'],
+        reason: 'it compares the two scorers on the harder corpus; it tunes nothing',
+      },
     },
   },
   {
@@ -127,8 +143,14 @@ const SCORING_SURFACES: readonly ScoringSurface[] = [
     consumers: ['tests/scorer/lane-weight-sweep.vitest.ts'],
     corpora: ['intent', 'harder'],
     allowedOverlap: {
-      'holdout-harder': 'it reports lane-weight vectors over the harder corpus; no weight is chosen from it',
-      'holdout-delegation': 'two intent-corpus prompts are also executor-delegation cases',
+      'holdout-harder': {
+        via: ['harder'],
+        reason: 'it reports lane-weight vectors over the harder corpus; no weight is chosen from it',
+      },
+      'holdout-delegation': {
+        via: ['intent'],
+        reason: 'two intent-corpus prompts are also executor-delegation cases',
+      },
     },
   },
   {
@@ -136,7 +158,10 @@ const SCORING_SURFACES: readonly ScoringSurface[] = [
     consumers: ['tests/scorer/bm25-lexical-shadow.vitest.ts'],
     corpora: ['intent'],
     allowedOverlap: {
-      'holdout-delegation': 'two intent-corpus prompts are also executor-delegation cases',
+      'holdout-delegation': {
+        via: ['intent'],
+        reason: 'two intent-corpus prompts are also executor-delegation cases',
+      },
     },
   },
   {
@@ -144,7 +169,10 @@ const SCORING_SURFACES: readonly ScoringSurface[] = [
     consumers: ['tests/routing-golden-prompts.vitest.ts'],
     corpora: ['golden'],
     allowedOverlap: {
-      'holdout-regression': 'golden cases are copied from regression cases, named by sourceCaseId',
+      'holdout-regression': {
+        via: ['golden'],
+        reason: 'golden cases are copied from regression cases, named by sourceCaseId',
+      },
     },
   },
   {
@@ -152,7 +180,10 @@ const SCORING_SURFACES: readonly ScoringSurface[] = [
     consumers: ['tests/prompt-policy-gold-replay.vitest.ts'],
     corpora: ['labeled', 'golden'],
     allowedOverlap: {
-      'holdout-regression': 'golden cases are copied from regression cases, named by sourceCaseId',
+      'holdout-regression': {
+        via: ['golden'],
+        reason: 'golden cases are copied from regression cases, named by sourceCaseId',
+      },
     },
   },
   {
@@ -160,7 +191,10 @@ const SCORING_SURFACES: readonly ScoringSurface[] = [
     consumers: ['stress-test/skill-advisor/python-compat-stress.vitest.ts'],
     corpora: ['regression'],
     allowedOverlap: {
-      'holdout-regression': 'it replays the regression fixture the holdout regression rows come from',
+      'holdout-regression': {
+        via: ['regression'],
+        reason: 'it replays the regression fixture the holdout regression rows come from',
+      },
     },
   },
   {
@@ -168,9 +202,18 @@ const SCORING_SURFACES: readonly ScoringSurface[] = [
     consumers: ['handlers/advisor-validate.ts'],
     corpora: ['labeled', 'regression', 'delegation'],
     allowedOverlap: {
-      'holdout-regression': 'it reports accuracy on the regression fixture; it tunes nothing',
-      'holdout-delegation': 'it reports accuracy on the delegation fixture; it tunes nothing',
-      'holdout-harder': 'two delegation cases are also harder-corpus prompts, which the holdout files under holdout-harder',
+      'holdout-regression': {
+        via: ['regression'],
+        reason: 'it reports accuracy on the regression fixture; it tunes nothing',
+      },
+      'holdout-delegation': {
+        via: ['delegation'],
+        reason: 'it reports accuracy on the delegation fixture; it tunes nothing',
+      },
+      'holdout-harder': {
+        via: ['delegation'],
+        reason: 'two delegation cases are also harder-corpus prompts, which the holdout files under holdout-harder',
+      },
     },
   },
   {
@@ -178,8 +221,14 @@ const SCORING_SURFACES: readonly ScoringSurface[] = [
     consumers: ['tests/scorer/executor-delegation.vitest.ts'],
     corpora: ['delegation'],
     allowedOverlap: {
-      'holdout-delegation': 'it pins the delegation fixture the holdout delegation rows come from',
-      'holdout-harder': 'two delegation cases are also harder-corpus prompts, which the holdout files under holdout-harder',
+      'holdout-delegation': {
+        via: ['delegation'],
+        reason: 'it pins the delegation fixture the holdout delegation rows come from',
+      },
+      'holdout-harder': {
+        via: ['delegation'],
+        reason: 'two delegation cases are also harder-corpus prompts, which the holdout files under holdout-harder',
+      },
     },
   },
 ];
@@ -225,15 +274,21 @@ function loadCorpusFamilies(): Record<CorpusId, Set<string>> {
   };
 }
 
+// Symbolic links are not followed: a linked directory belongs to another skill,
+// and following one could walk outside the runtime or loop.
 function listRuntimeSourceFiles(directory: string): string[] {
   const files: string[] = [];
-  for (const name of readdirSync(directory)) {
-    if (SKIPPED_DIRECTORIES.has(name)) continue;
-    const path = join(directory, name);
-    if (statSync(path).isDirectory()) files.push(...listRuntimeSourceFiles(path));
-    else if (SCANNED_EXTENSIONS.test(name)) files.push(path);
+  for (const entry of readdirSync(directory, { withFileTypes: true })) {
+    if (SKIPPED_DIRECTORIES.has(entry.name)) continue;
+    const path = join(directory, entry.name);
+    if (entry.isDirectory()) files.push(...listRuntimeSourceFiles(path));
+    else if (entry.isFile() && SCANNED_EXTENSIONS.test(entry.name)) files.push(path);
   }
   return files;
+}
+
+function readsCorpus(file: string, corpus: CorpusId): boolean {
+  return CORPUS_REFERENCE[corpus].test(readFileSync(join(RUNTIME_ROOT, file), 'utf8'));
 }
 
 function freezeEvalEnv(): void {
@@ -263,14 +318,19 @@ let CORPUS_FAMILIES: Record<CorpusId, Set<string>>;
 let BASELINE: Baseline;
 let HOLDOUT_CORRECT = 0;
 
-// Holdout rows each surface scores, grouped by source type.
-function surfaceOverlap(surface: ScoringSurface): Map<SourceType, string[]> {
-  const overlap = new Map<SourceType, string[]>();
+// Holdout rows each surface scores, keyed by source type and the corpus that carries them.
+function surfaceOverlap(surface: ScoringSurface): Map<string, { sourceType: SourceType; corpus: CorpusId; ids: string[] }> {
+  const overlap = new Map<string, { sourceType: SourceType; corpus: CorpusId; ids: string[] }>();
   for (const row of HOLDOUT) {
     const family = normalizeFamily(row.prompt);
-    if (!surface.corpora.some((corpus) => CORPUS_FAMILIES[corpus].has(family))) continue;
     const sourceType = row.source_type as SourceType;
-    overlap.set(sourceType, [...(overlap.get(sourceType) ?? []), row.id]);
+    for (const corpus of surface.corpora) {
+      if (!CORPUS_FAMILIES[corpus].has(family)) continue;
+      const key = `${sourceType}|${corpus}`;
+      const entry = overlap.get(key) ?? { sourceType, corpus, ids: [] };
+      entry.ids.push(row.id);
+      overlap.set(key, entry);
+    }
   }
   return overlap;
 }
@@ -306,9 +366,9 @@ describe('independent holdout gate', () => {
   it('shares prompts with a scoring surface only where the overlap is declared', () => {
     const undeclared: string[] = [];
     for (const surface of SCORING_SURFACES) {
-      for (const [sourceType, ids] of surfaceOverlap(surface)) {
-        if (surface.allowedOverlap[sourceType] === undefined) {
-          undeclared.push(`${surface.id} scores ${sourceType} rows: ${ids.join(', ')}`);
+      for (const { sourceType, corpus, ids } of surfaceOverlap(surface).values()) {
+        if (!surface.allowedOverlap[sourceType]?.via.includes(corpus)) {
+          undeclared.push(`${surface.id} scores ${sourceType} rows through ${corpus}: ${ids.join(', ')}`);
         }
       }
     }
@@ -323,11 +383,40 @@ describe('independent holdout gate', () => {
     const stale: string[] = [];
     for (const surface of SCORING_SURFACES) {
       const overlap = surfaceOverlap(surface);
-      for (const sourceType of Object.keys(surface.allowedOverlap) as SourceType[]) {
-        if (!overlap.has(sourceType)) stale.push(`${surface.id} -> ${sourceType}`);
+      for (const [sourceType, allowance] of Object.entries(surface.allowedOverlap) as [SourceType, AllowedOverlap][]) {
+        for (const corpus of allowance.via) {
+          if (!surface.corpora.includes(corpus) || !overlap.has(`${sourceType}|${corpus}`)) {
+            stale.push(`${surface.id} -> ${sourceType} through ${corpus}`);
+          }
+        }
       }
     }
     expect(stale, `Declared overlaps with no shared holdout row (remove them):\n  ${stale.join('\n  ')}`).toEqual([]);
+  });
+
+  it('backs every declaration with a file that reads it', () => {
+    const unbacked: string[] = [];
+    for (const surface of SCORING_SURFACES) {
+      for (const consumer of surface.consumers) {
+        if (!existsSync(join(RUNTIME_ROOT, consumer))) continue;
+        if (!surface.corpora.some((corpus) => readsCorpus(consumer, corpus))) {
+          unbacked.push(`${surface.id}: ${consumer} reads none of ${surface.corpora.join(', ')}`);
+        }
+      }
+      for (const corpus of surface.corpora) {
+        const live = surface.consumers.filter((consumer) => existsSync(join(RUNTIME_ROOT, consumer)));
+        if (!live.some((consumer) => readsCorpus(consumer, corpus))) {
+          unbacked.push(`${surface.id}: no consumer reads ${corpus}`);
+        }
+      }
+    }
+    for (const file of Object.keys(NON_SCORING_REFERENCES)) {
+      const corpora = Object.keys(CORPUS_REFERENCE) as CorpusId[];
+      if (!existsSync(join(RUNTIME_ROOT, file)) || !corpora.some((corpus) => readsCorpus(file, corpus))) {
+        unbacked.push(`non-scoring exemption ${file} no longer names a scored corpus`);
+      }
+    }
+    expect(unbacked, `Declarations no file backs (correct or remove them):\n  ${unbacked.join('\n  ')}`).toEqual([]);
   });
 
   it('declares every runtime file that reads a scored corpus', () => {

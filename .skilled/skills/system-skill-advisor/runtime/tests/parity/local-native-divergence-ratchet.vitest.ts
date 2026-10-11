@@ -39,7 +39,8 @@ const NONE = 'none';
 
 // Default: the Python step is required. This is a CI gate, not the opportunistic
 // CLI-parity skip — a missing interpreter must fail loudly. Set
-// SPECKIT_PARITY_REQUIRE_PYTHON=0 only in a genuinely python-less environment.
+// SPECKIT_PARITY_REQUIRE_PYTHON=0 only in a genuinely python-less environment,
+// where the whole suite is then skipped rather than run against empty state.
 const REQUIRE_PYTHON = process.env.SPECKIT_PARITY_REQUIRE_PYTHON !== '0';
 
 interface CorpusRow {
@@ -73,6 +74,7 @@ interface LedgerEntry {
 
 interface Ledger {
   readonly schemaVersion: number;
+  readonly scoringInstant?: string;
   readonly entries: readonly LedgerEntry[];
 }
 
@@ -216,14 +218,17 @@ function nativeTop(prompt: string): string {
 }
 
 // The derived lane discounts each skill by its age at scoring time, so a
-// ledgered top-1 can flip with the calendar alone. Score at midnight UTC of the
-// newest ledger approval, the day the ledger was last reviewed against live
-// output, so a later day cannot move a decision that no change touched.
+// ledgered top-1 can flip with the calendar alone. Score at the instant the
+// ledger records, the one its capture scored at, so a later day cannot move a
+// decision that no change touched. The instant moves only when the ledger is
+// recaptured, which re-scores every entry at the new instant.
 function ledgerScoringInstant(ledger: Ledger): Date {
-  const newest = ledger.entries.map((entry) => entry.approvedAt).sort().at(-1);
-  const instant = new Date(`${newest}T00:00:00Z`);
-  if (newest === undefined || Number.isNaN(instant.getTime())) {
-    throw new Error(`Cannot pin the scoring clock: the ledger's newest approvedAt is ${String(newest)}.`);
+  const instant = new Date(ledger.scoringInstant ?? Number.NaN);
+  if (typeof ledger.scoringInstant !== 'string' || Number.isNaN(instant.getTime())) {
+    throw new Error(
+      `Cannot pin the scoring clock: the ledger's scoringInstant is ${String(ledger.scoringInstant)}. `
+      + 'Recapture the ledger with capture-local-native-divergence-ledger.mjs --write.',
+    );
   }
   return instant;
 }
@@ -238,8 +243,13 @@ async function indexFreshSkillGraph(): Promise<string> {
   const skillGraphDb = await import('../../lib/skill-graph/skill-graph-db.js');
   closeDb = skillGraphDb.closeDb;
   closeDb();
-  skillGraphDb.indexSkillMetadata(resolve(WORKSPACE_ROOT, '.skilled/skills'));
+  const indexed = skillGraphDb.indexSkillMetadata(resolve(WORKSPACE_ROOT, '.skilled/skills'));
   closeDb();
+  // Fail on a missing graph here: an empty directory would score both sides
+  // without a graph and surface later as unrelated divergences.
+  if (indexed.indexedNodes === 0 || !existsSync(join(dbDir, 'skill-graph.sqlite'))) {
+    throw new Error(`Indexing the skill graph into ${dbDir} produced no graph (${indexed.indexedNodes} nodes).`);
+  }
   scoreAdvisorPrompt = (await import('../../lib/scorer/fusion.js')).scoreAdvisorPrompt;
   return dbDir;
 }
@@ -260,18 +270,17 @@ let SCORING_INSTANT: Date | null = null;
 let FRESH_DB_DIR: string | null = null;
 const PREVIOUS_DB_DIR = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
 
-describe('local-vs-native routing divergence ratchet (eval gate)', () => {
+const SKIP_WITHOUT_PYTHON = !REQUIRE_PYTHON && !pythonReachable();
+
+describe.skipIf(SKIP_WITHOUT_PYTHON)('local-vs-native routing divergence ratchet (eval gate)', () => {
   beforeAll(async () => {
     // Fail loudly when python is unavailable and required, instead of skipping.
     if (!pythonReachable()) {
-      if (REQUIRE_PYTHON) {
-        throw new Error(
-          'python3 is unavailable but the local-vs-native parity ratchet requires it. '
-          + 'This is a CI gate (unlike the CLI-parity skip). Install python3, or set '
-          + 'SPECKIT_PARITY_REQUIRE_PYTHON=0 only in a genuinely python-less environment.',
-        );
-      }
-      return;
+      throw new Error(
+        'python3 is unavailable but the local-vs-native parity ratchet requires it. '
+        + 'This is a CI gate (unlike the CLI-parity skip). Install python3, or set '
+        + 'SPECKIT_PARITY_REQUIRE_PYTHON=0 only in a genuinely python-less environment.',
+      );
     }
     if (!existsSync(SKILL_ADVISOR_PY)) {
       throw new Error(
@@ -339,6 +348,19 @@ describe('local-vs-native routing divergence ratchet (eval gate)', () => {
   it('scores at the pinned ledger instant, not the wall clock', () => {
     expect(SCORING_INSTANT, 'the scoring clock was never pinned').not.toBeNull();
     expect(new Date().toISOString()).toBe(SCORING_INSTANT?.toISOString());
+  });
+
+  // An approval dated after the pin was observed at a later instant than the
+  // one the gate replays, so it is not evidence for this replay.
+  it('pins no earlier than the newest approval', () => {
+    const newest = LEDGER.entries.map((entry) => entry.approvedAt).sort().at(-1) ?? '';
+    expect(SCORING_INSTANT?.toISOString().slice(0, 10) >= newest, `scoringInstant precedes approval ${newest}`).toBe(true);
+  });
+
+  it('scores against the freshly indexed skill graph', () => {
+    expect(FRESH_DB_DIR, 'no temporary skill graph was indexed').not.toBeNull();
+    expect(process.env.SYSTEM_SKILL_ADVISOR_DB_DIR).toBe(FRESH_DB_DIR);
+    expect(existsSync(join(FRESH_DB_DIR ?? '', 'skill-graph.sqlite'))).toBe(true);
   });
 
   it('uses a non-trivial union corpus and a well-formed ledger', () => {
