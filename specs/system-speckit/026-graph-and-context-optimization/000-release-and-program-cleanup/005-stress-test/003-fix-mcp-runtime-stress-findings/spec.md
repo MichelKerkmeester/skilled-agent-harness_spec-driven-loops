@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2
 title: "Feature Specification: MCP Runtime Stress-Test Remediation"
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 description: "Phase parent for the v1.0.1 MCP-runtime stress-test remediation cycle: rubric-driven sweep, deep research, contract fixes across memory_context / memory_search / code_graph_query / memory_causal_stats, plus a daemon-rebuild protocol that gates them."

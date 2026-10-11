@@ -1,0 +1,180 @@
+{
+  "schema": 1,
+  "recordedBy": "upgrade-legacy",
+  "recordedAt": "2026-10-11T17:04:50.235Z",
+  "findings": [
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/checklist.md"
+    },
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/implementation-summary.md"
+    },
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/plan.md"
+    },
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/review-report.md"
+    },
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/spec.md"
+    },
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/tasks.md"
+    },
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "spec.md references missing markdown file: 001-workflow-correctness-audit/checklist.md"
+    },
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "spec.md references missing markdown file: 002-memory-data-integrity-audit/checklist.md"
+    },
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "spec.md references missing markdown file: 003-code-graph-readiness-audit/checklist.md"
+    },
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "spec.md references missing markdown file: 003-code-graph-readiness-audit/implementation-summary.md"
+    },
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "spec.md references missing markdown file: 003-code-graph-readiness-audit/plan.md"
+    },
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "spec.md references missing markdown file: 003-code-graph-readiness-audit/review-report.md"
+    },
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "spec.md references missing markdown file: 003-code-graph-readiness-audit/spec.md"
+    },
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "spec.md references missing markdown file: 003-code-graph-readiness-audit/tasks.md"
+    },
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "spec.md references missing markdown file: 004-cross-runtime-hook-parity-audit/checklist.md"
+    },
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "spec.md references missing markdown file: 005-mcp-tool-schema-governance-audit/checklist.md"
+    },
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "spec.md references missing markdown file: 007-validator-spec-document-integrity-audit/checklist.md"
+    },
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "spec.md references missing markdown file: 008-documentation-truth-audit/checklist.md"
+    },
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "spec.md references missing markdown file: 009-upgrade-safety-operability-audit/checklist.md"
+    }
+  ],
+  "refusals": [
+    {
+      "mode": "link-repoint",
+      "document": "spec.md",
+      "reason": "no file ends with 001-workflow-correctness-audit/checklist.md, so the target cannot be derived"
+    },
+    {
+      "mode": "link-repoint",
+      "document": "spec.md",
+      "reason": "no file ends with 002-memory-data-integrity-audit/checklist.md, so the target cannot be derived"
+    },
+    {
+      "mode": "link-repoint",
+      "document": "spec.md",
+      "reason": "no file ends with 003-code-graph-readiness-audit/checklist.md, so the target cannot be derived"
+    },
+    {
+      "mode": "link-repoint",
+      "document": "spec.md",
+      "reason": "no file ends with 003-code-graph-readiness-audit/implementation-summary.md, so the target cannot be derived"
+    },
+    {
+      "mode": "link-repoint",
+      "document": "spec.md",
+      "reason": "no file ends with 003-code-graph-readiness-audit/plan.md, so the target cannot be derived"
+    },
+    {
+      "mode": "link-repoint",
+      "document": "spec.md",
+      "reason": "no file ends with 003-code-graph-readiness-audit/review-report.md, so the target cannot be derived"
+    },
+    {
+      "mode": "link-repoint",
+      "document": "spec.md",
+      "reason": "no file ends with 003-code-graph-readiness-audit/spec.md, so the target cannot be derived"
+    },
+    {
+      "mode": "link-repoint",
+      "document": "spec.md",
+      "reason": "no file ends with 003-code-graph-readiness-audit/tasks.md, so the target cannot be derived"
+    },
+    {
+      "mode": "link-repoint",
+      "document": "spec.md",
+      "reason": "no file ends with 004-cross-runtime-hook-parity-audit/checklist.md, so the target cannot be derived"
+    },
+    {
+      "mode": "link-repoint",
+      "document": "spec.md",
+      "reason": "no file ends with 005-mcp-tool-schema-governance-audit/checklist.md, so the target cannot be derived"
+    },
+    {
+      "mode": "link-repoint",
+      "document": "spec.md",
+      "reason": "no file ends with 007-validator-spec-document-integrity-audit/checklist.md, so the target cannot be derived"
+    },
+    {
+      "mode": "link-repoint",
+      "document": "spec.md",
+      "reason": "no file ends with 008-documentation-truth-audit/checklist.md, so the target cannot be derived"
+    },
+    {
+      "mode": "link-repoint",
+      "document": "spec.md",
+      "reason": "no file ends with 009-upgrade-safety-operability-audit/checklist.md, so the target cannot be derived"
+    },
+    {
+      "mode": "link-repoint",
+      "document": "spec.md",
+      "reason": "no file ends with 043-deep-loop-workflow-integrity-audit/checklist.md, so the target cannot be derived"
+    },
+    {
+      "mode": "link-repoint",
+      "document": "spec.md",
+      "reason": "no file ends with 043-deep-loop-workflow-integrity-audit/implementation-summary.md, so the target cannot be derived"
+    },
+    {
+      "mode": "link-repoint",
+      "document": "spec.md",
+      "reason": "no file ends with 043-deep-loop-workflow-integrity-audit/plan.md, so the target cannot be derived"
+    },
+    {
+      "mode": "link-repoint",
+      "document": "spec.md",
+      "reason": "no file ends with 043-deep-loop-workflow-integrity-audit/review-report.md, so the target cannot be derived"
+    },
+    {
+      "mode": "link-repoint",
+      "document": "spec.md",
+      "reason": "no file ends with 043-deep-loop-workflow-integrity-audit/spec.md, so the target cannot be derived"
+    },
+    {
+      "mode": "link-repoint",
+      "document": "spec.md",
+      "reason": "no file ends with 043-deep-loop-workflow-integrity-audit/tasks.md, so the target cannot be derived"
+    }
+  ]
+}

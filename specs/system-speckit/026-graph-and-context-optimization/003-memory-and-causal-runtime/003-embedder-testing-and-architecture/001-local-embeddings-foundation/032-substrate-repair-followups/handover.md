@@ -1,6 +1,9 @@
 ---
 title: "032 substrate-repair-followups — Final Handover"
 trigger_phrases: []
+description: "Date: 2026-05-14"
+importance_tier: "normal"
+contextType: "general"
 ---
 # 032 substrate-repair-followups — Final Handover
 

@@ -10,6 +10,7 @@ trigger_phrases:
   - "post-022 substrate stability instrumentation"
 importance_tier: "important"
 status: "in_progress"
+contextType: "general"
 ---
 
 # 032 — Substrate-repair Follow-ups (Phase Parent)

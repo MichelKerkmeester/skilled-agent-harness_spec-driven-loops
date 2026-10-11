@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "migration": {
     "carved_at": "2026-04-27T00:00:00Z",
     "source_phase_parent": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime",
@@ -41,7 +42,7 @@
     "assistants",
     "depend"
   ],
-  "lastUpdated": "2026-08-15T14:41:09.656Z",
+  "lastUpdated": "2026-10-06T17:57:59.106Z",
   "specId": "003",
   "folderSlug": "fix-mcp-runtime-stress-findings",
   "parentChain": [
@@ -51,6 +52,5 @@
     "005-stress-test"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

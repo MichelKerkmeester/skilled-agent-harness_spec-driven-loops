@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "recordedBy": "upgrade-legacy",
+  "recordedAt": "2026-10-11T17:04:50.237Z",
+  "findings": [
+    {
+      "rule": "TEMPLATE_SOURCE",
+      "detail": "decision-record.md"
+    }
+  ]
+}

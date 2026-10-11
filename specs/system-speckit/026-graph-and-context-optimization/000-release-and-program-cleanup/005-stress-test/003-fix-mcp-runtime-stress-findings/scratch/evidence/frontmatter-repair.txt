@@ -1,0 +1,283 @@
+FRONTMATTER REPAIR EVIDENCE
+===========================
+Packet : specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings
+File   : spec.md — frontmatter block only (1 line deleted, body untouched)
+HEAD   : 2d8e35161bf7c08074cff6a3342be2182a1399ca
+Date   : 2026-10-11 (CEST)
+Writer : scoped markdown child dispatch
+
+--------------------------------------------------------------------
+1. ROOT CAUSE
+--------------------------------------------------------------------
+The migration pipeline's frontmatter detector rejects a block when any line
+matches a markdown heading. Source: runtime/cli/lib/frontmatter-migration.ts,
+isLikelyYamlFrontmatter(): /^#{1,6}\s+/ -> return false; reject reason
+"Frontmatter block is not valid YAML-like key/value content".
+
+In the HEAD state the block's first content line was
+
+  # SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2
+
+which matches /^#{1,6}\s+/. The upgrade fill step therefore printed
+"left as is <file>: <reason>" for this file and skipped it
+(upgrade-legacy.mjs:865-868, fed by the detection at frontmatter-migration.ts:1502).
+
+--------------------------------------------------------------------
+2. BEFORE  (tool's own detector, HEAD state)
+--------------------------------------------------------------------
+cmd : node --input-type=module -e "...detectFrontmatter(HEAD spec.md content)..."
+exit: 0
+out :
+{
+  "found": false,
+  "malformed": true,
+  "reason": "Frontmatter block is not valid YAML-like key/value content",
+  "keys": []
+}
+
+BEFORE frontmatter (36 lines, verbatim):
+---
+# SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2
+title: "Feature Specification: MCP Runtime Stress-Test Remediation"
+template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
+description: "Phase parent for the v1.0.1 MCP-runtime stress-test remediation cycle: rubric-driven sweep, deep research, contract fixes across memory_context / memory_search / code_graph_query / memory_causal_stats, plus a daemon-rebuild protocol that gates them."
+trigger_phrases:
+  - "003-fix-mcp-runtime-stress-findings"
+  - "v1.0.1 stress test remediation"
+  - "mcp runtime stress remediation"
+  - "001 search intelligence stress test"
+  - "002 mcp runtime improvement research"
+  - "003 memory context truncation contract"
+  - "004 cocoindex overfetch dedup"
+  - "005 code graph fast fail"
+  - "006 causal graph window metrics"
+  - "007 intent classifier stability"
+  - "008 mcp daemon rebuild protocol"
+  - "009 memory search response policy"
+  - "010 stress test rerun v1.0.2"
+  - "011 post stress followup research"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings"
+    last_updated_at: "2026-04-29T09:35:00Z"
+    last_updated_by: "claude-opus-4-7"
+    recent_action: "Phase H/I/J/K arc landed: v1.0.3 stress test (021), 5-iter deep research (022), live handler envelope test seam (023), harness telemetry export mode (024). 025 (degradedReadiness wiring) + 026 (readiness scaffolding cleanup) + 027 (memory_context structural channel research) dispatched in parallel via cli-codex."
+    next_safe_action: "Verify 025/026/027 background completion at next wakeup; commit + push; v1.0.4 stress cycle is the natural next step after 025+026 land"
+    blockers: []
+    key_files:
+      - "spec.md"
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+
+--------------------------------------------------------------------
+3. EDIT  (the only change; body untouched)
+--------------------------------------------------------------------
+cmd : git diff -- <packet>/spec.md
+exit: 0
+out :
+@@ -1,5 +1,4 @@
+ ---
+-# SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2
+ title: "Feature Specification: MCP Runtime Stress-Test Remediation"
+ template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
+ description: "Phase parent for the v1.0.1 ..."
+1 file changed, 1 deletion(-)
+
+Value retention: the dropped comment duplicated the `template_source` KEY on
+the next line, and the same value remains in the body HTML comment
+`<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->`. Sibling packets 025 and
+029 carry the same key-only frontmatter shape (checked on disk).
+
+AFTER frontmatter (35 lines, verbatim):
+---
+title: "Feature Specification: MCP Runtime Stress-Test Remediation"
+template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
+description: "Phase parent for the v1.0.1 MCP-runtime stress-test remediation cycle: rubric-driven sweep, deep research, contract fixes across memory_context / memory_search / code_graph_query / memory_causal_stats, plus a daemon-rebuild protocol that gates them."
+trigger_phrases:
+  - "003-fix-mcp-runtime-stress-findings"
+  - "v1.0.1 stress test remediation"
+  - "mcp runtime stress remediation"
+  - "001 search intelligence stress test"
+  - "002 mcp runtime improvement research"
+  - "003 memory context truncation contract"
+  - "004 cocoindex overfetch dedup"
+  - "005 code graph fast fail"
+  - "006 causal graph window metrics"
+  - "007 intent classifier stability"
+  - "008 mcp daemon rebuild protocol"
+  - "009 memory search response policy"
+  - "010 stress test rerun v1.0.2"
+  - "011 post stress followup research"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings"
+    last_updated_at: "2026-04-29T09:35:00Z"
+    last_updated_by: "claude-opus-4-7"
+    recent_action: "Phase H/I/J/K arc landed: v1.0.3 stress test (021), 5-iter deep research (022), live handler envelope test seam (023), harness telemetry export mode (024). 025 (degradedReadiness wiring) + 026 (readiness scaffolding cleanup) + 027 (memory_context structural channel research) dispatched in parallel via cli-codex."
+    next_safe_action: "Verify 025/026/027 background completion at next wakeup; commit + push; v1.0.4 stress cycle is the natural next step after 025+026 land"
+    blockers: []
+    key_files:
+      - "spec.md"
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+
+--------------------------------------------------------------------
+4. AFTER  (tool's own detector, final state)
+--------------------------------------------------------------------
+cmd : node --input-type=module -e "...detectFrontmatter(current spec.md content)..."
+exit: 0
+out :
+{
+  "found": true,
+  "malformed": false,
+  "reason": null,
+  "keys": ["title", "template_source", "description", "trigger_phrases",
+           "importance_tier", "contextType", "_memory"]
+}
+Neither the fill step's "left as is" branch nor the migration malformed branch
+can fire for this file anymore.
+
+--------------------------------------------------------------------
+5. UPGRADE DRY RUN
+--------------------------------------------------------------------
+note: no top-level --folder flag exists (parseArgs accepts --roots,
+--include-archive, --apply only; spec/upgrade-legacy.mjs:150-172), so --roots
+was pointed at the packet itself.
+cmd : node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs \
+        --roots <packet>
+exit: 1   (dry run; writes nothing)
+key out :
+  upgrade-legacy: reversibility manifest
+    .git/worktrees/091-consolidate-small-packets/upgrade-legacy.manifest.json has a tree
+    mismatch for <packet>: recorded packet hash
+    8d3a2c094667993c10539bbf0cc06e81a5d645e1db1cc4d5e4203a14b753547b, current packet hash
+    24ddd41f36125e25906ccce6cae2eca6f85dba5c2578de15105243b848ecd40e; recorded HEAD ==
+    current HEAD 2d8e35161bf7c08074cff6a3342be2182a1399ca; dry run continues. Restore the
+    worktree from its beforeImages, or remove the manifest deliberately after deciding
+    recovery is not needed.
+  failing <packet>: GENERATED_METADATA_INTEGRITY
+      - graph-metadata.json: SOURCE_FINGERPRINT_MISMATCH: source_fingerprint does not
+        match a re-derive of the current source docs, the stored derived fields may be stale
+  Downgrades:
+    <packet> | SPEC_DOC_INTEGRITY | error -> warning |
+      HANDOVER-deferred.md references missing markdown file:
+        ./001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md
+    <packet> | SPEC_DOC_INTEGRITY | error -> warning |
+      HANDOVER-deferred.md references missing markdown file:
+        ./005-code-graph-fail-fast-routing/implementation-summary.md
+  inspected=31 active=31 archived=0
+  passing=30/31
+  repo era report: layout v4; frontmatter: present=18810 missing=99
+  --apply would run: fill-frontmatter, anchor-repair, heal-spec-docs, lane-modes,
+    repair-derived, migrate-generated-json (archived packets: questions-anchor
+    un-nesting and repair-derived only), then record the remaining findings in
+    upgrade-baseline.json
+No frontmatter finding appears for the packet in this report; the only failing
+rule is the generated-metadata fingerprint.
+
+--------------------------------------------------------------------
+6. VALIDATE.SH --STRICT
+--------------------------------------------------------------------
+6a. Packet, recursive (auto-enabled: "phase child folders detected")
+cmd : bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <packet> --strict
+exit: 2
+packet block :
+  + FRONTMATTER_VALID: Frontmatter continuity basics present
+  ! FRONTMATTER_MEMORY_BLOCK: 2 issues
+      - SPECDOC_FRONTMATTER_004: spec.md: recent_action reads long or narrative
+      - SPECDOC_FRONTMATTER_004: spec.md: next_safe_action reads long or narrative
+  x GENERATED_METADATA_INTEGRITY: SOURCE_FINGERPRINT_MISMATCH  (the 1 error)
+  ! SPEC_DOC_INTEGRITY: 2 issues (recorded in upgrade-baseline.json)
+  Summary: Errors: 1  Warnings: 3
+  RESULT: FAILED
+remaining 28 validated child folders: RESULT: PASSED each (Errors: 0)
+
+6b. Focused before/after, packet only (--strict --no-recursive)
+  BEFORE (HEAD copy at /tmp/fpcheck/<packet>): Errors: 1  Warnings: 2  -> FAILED
+    error = SPEC_DOC_INTEGRITY (unrecorded outside the worktree);
+    GENERATED_METADATA_INTEGRITY passed; FRONTMATTER_VALID passed
+  AFTER  (worktree): Errors: 1  Warnings: 3  -> FAILED
+  diff between the two runs: only
+    GENERATED_METADATA_INTEGRITY + -> x  (SOURCE_FINGERPRINT_MISMATCH), and
+    SPEC_DOC_INTEGRITY x -> ! (error -> recorded warning)
+  The validator's own FRONTMATTER_VALID passed in BOTH states: the malformed-block
+  rejection lived only in the migration detector. That detector now parses the
+  block, which is the repair target, and it does.
+
+--------------------------------------------------------------------
+7. WHY THE REMAINING ERROR IS THIS EDIT'S OWN CONSEQUENCE
+--------------------------------------------------------------------
+source_fingerprint is a sha256 over the packet's canonical docs, spec.md
+included, with volatile ISO timestamps normalized
+(graph-metadata-parser.ts:729-774, computeSourceFingerprintForFolder:823).
+cmd : node --input-type=module -e "...stored vs HEAD-state derive vs current derive..."
+out :
+  stored fingerprint  : sha256:d7caf5518bc25059257bf707ff598e5da6180ef699c294e54cf8f99d0a234485
+  docset              : 3
+  HEAD-state derive   : sha256:d7caf5518bc25059257bf707ff598e5da6180ef699c294e54cf8f99d0a234485
+  current-state derive: sha256:5d446ba729b386adb68043c8fcdd1cd808a3fa26d7b0548da45186a1a3606432
+=> the digest matched before the repair and diverges only because the repair
+   changed spec.md bytes. Any frontmatter repair necessarily changes this
+   digest; a re-derive is the completion step.
+
+Remedy preview (read-only, writes nothing):
+cmd : node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs \
+        --folder <packet>
+exit: 1
+out :
+  would repair <packet>
+      re-derive graph metadata
+  inspected=1 repairable=1 failed=0
+  Not repairable here — these record work someone did, and only they can write them:
+      1  FRONTMATTER_MEMORY_BLOCK
+      1  GREP_CONVENTION
+  To apply these repairs:
+    node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs \
+      --folder <packet> --apply
+
+--------------------------------------------------------------------
+8. WHAT upgrade-baseline.json STILL NEEDS
+--------------------------------------------------------------------
+The baseline (recordedAt 2026-10-11T17:04:50.237Z; not touched by this task)
+records exactly the two SPEC_DOC_INTEGRITY findings. It never carried a
+frontmatter finding: the upgrade skipped the file through the fill step's
+"left as is" branch, which writes no baseline entry. Nothing frontmatter-related
+is owed to it, and the frontmatter finding is gone from both the upgrade report
+and the detector.
+
+Still needed, in order:
+1. repair-derived --apply for the packet — refreshes derived.source_fingerprint
+   so GENERATED_METADATA_INTEGRITY clears. Writes graph-metadata.json, which is
+   outside this task's write scope; operator-owned.
+2. The two dangling HANDOVER-deferred.md references still do not exist on disk
+   (both confirmed absent), so the baseline keeps downgrading them error ->
+   warning until the refs or the files are fixed. Content decision, not tooling.
+3. Operator decision on the stale reversibility manifest entry for this packet
+   (recorded hash 8d3a2c09..., current 24ddd41f...): restore from beforeImages,
+   or remove the manifest deliberately after deciding recovery is not needed.
+
+Untouched-file proof: graph-metadata.json and description.json carry pre-existing
+18:55 CEST mtimes; upgrade-baseline.json 19:04 CEST; spec.md 19:43 CEST (this edit).
+
+--------------------------------------------------------------------
+9. COMMAND / EXIT LEDGER
+--------------------------------------------------------------------
+detectFrontmatter, HEAD state ............. exit 0 (malformed: true)
+edit spec.md (1 line removed) ............. applied
+detectFrontmatter, final state ............ exit 0 (found: true)
+upgrade-legacy --roots <packet> (dry) ..... exit 1 (30/31 pass; no frontmatter finding)
+validate.sh <packet> --strict ............. exit 2 (Errors 1 / Warnings 3, FAILED;
+                                                   the 1 error is the fingerprint)
+validate.sh HEAD copy --strict ............ exit 2 (Errors 1 / Warnings 2, FAILED;
+                                                   the 1 error was SPEC_DOC_INTEGRITY)
+repair-derived.cjs preview ................ exit 1 (would re-derive; nothing written)
+git diff -- spec.md ....................... exit 0 (1 deletion)
+git archive HEAD <packet> ................. exit 0 (before-image used for forensics)

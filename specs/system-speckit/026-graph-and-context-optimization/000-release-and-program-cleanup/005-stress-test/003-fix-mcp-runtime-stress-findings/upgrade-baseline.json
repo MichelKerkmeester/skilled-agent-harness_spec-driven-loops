@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "recordedBy": "upgrade-legacy",
+  "recordedAt": "2026-10-11T17:04:50.237Z",
+  "findings": [
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "HANDOVER-deferred.md references missing markdown file: ./001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md"
+    },
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "HANDOVER-deferred.md references missing markdown file: ./005-code-graph-fail-fast-routing/implementation-summary.md"
+    }
+  ]
+}

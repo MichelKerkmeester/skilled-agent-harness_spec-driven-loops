@@ -76,7 +76,6 @@
       "HANDOVER-deferred.md",
       "context-index.md",
       "graph-metadata.json",
-      ".opencode/specs/descriptions.json",
       ".opencode/skills/system-spec-kit/SKILL.md"
     ],
     "entities": [
@@ -108,12 +107,6 @@
         "name": "graph-metadata.json",
         "kind": "config",
         "path": "graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "descriptions.json",
-        "kind": "config",
-        "path": ".opencode/specs/descriptions.json",
         "source": "derived"
       },
       {
@@ -197,17 +190,17 @@
     ],
     "causal_summary": "The MCP runtime serves four high-traffic surfaces — `memorycontext`, `memorysearch`, `codegraphquery`, `memorycausalstats` — that AI assistants depend on for retrieval and grounding",
     "created_at": "2026-04-27T00:00:00Z",
-    "last_save_at": "2026-09-06T04:27:54.351Z",
+    "last_save_at": "2026-10-11T19:56:36.834Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:d7caf5518bc25059257bf707ff598e5da6180ef699c294e54cf8f99d0a234485",
+    "source_fingerprint": "sha256:5d446ba729b386adb68043c8fcdd1cd808a3fa26d7b0548da45186a1a3606432",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a8cbe9cbdc9d9a7563de26d26091109e2fe083832ec5d0523a0f694772922a28",
+      "spec.md": "7fffa41416c836a279388f255902e5f3331cac74e9b5cda33ca9e9583d98a1f8",
       "resource-map.md": "330903a9887d488d8dab5ff941f878c3b9dcbe6f14e55c5e316dbb4d3cbd9fe9"
     },
     "last_active_child_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/029-clean-infrastructure-stress-test",

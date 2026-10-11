@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "recordedBy": "upgrade-legacy",
+  "recordedAt": "2026-10-11T17:04:50.236Z",
+  "findings": [
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "spec.md references missing markdown file: 001-sk-code-opencode-standards-audit/checklist.md"
+    },
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "spec.md references missing markdown file: 002-feature-catalog-trio-alignment/checklist.md"
+    },
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "spec.md references missing markdown file: 003-testing-playbook-trio-alignment/checklist.md"
+    },
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "spec.md references missing markdown file: 004-sk-doc-template-alignment/checklist.md"
+    },
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "spec.md references missing markdown file: 005-stress-test-folder-migration/checklist.md"
+    },
+    {
+      "rule": "SPEC_DOC_INTEGRITY",
+      "detail": "spec.md references missing markdown file: 006-readme-cascade-refresh/checklist.md"
+    }
+  ],
+  "refusals": [
+    {
+      "mode": "link-repoint",
+      "document": "spec.md",
+      "reason": "no file ends with 001-sk-code-opencode-standards-audit/checklist.md, so the target cannot be derived"
+    },
+    {
+      "mode": "link-repoint",
+      "document": "spec.md",
+      "reason": "no file ends with 002-feature-catalog-trio-alignment/checklist.md, so the target cannot be derived"
+    },
+    {
+      "mode": "link-repoint",
+      "document": "spec.md",
+      "reason": "no file ends with 003-testing-playbook-trio-alignment/checklist.md, so the target cannot be derived"
+    },
+    {
+      "mode": "link-repoint",
+      "document": "spec.md",
+      "reason": "no file ends with 004-sk-doc-template-alignment/checklist.md, so the target cannot be derived"
+    },
+    {
+      "mode": "link-repoint",
+      "document": "spec.md",
+      "reason": "no file ends with 005-stress-test-folder-migration/checklist.md, so the target cannot be derived"
+    },
+    {
+      "mode": "link-repoint",
+      "document": "spec.md",
+      "reason": "no file ends with 006-readme-cascade-refresh/checklist.md, so the target cannot be derived"
+    }
+  ]
+}

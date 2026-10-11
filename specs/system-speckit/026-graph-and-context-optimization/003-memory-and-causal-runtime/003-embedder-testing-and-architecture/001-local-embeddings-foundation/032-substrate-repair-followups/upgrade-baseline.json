@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "recordedBy": "upgrade-legacy",
+  "recordedAt": "2026-10-11T17:04:50.237Z",
+  "findings": [
+    {
+      "rule": "TEMPLATE_SOURCE",
+      "detail": "handover.md"
+    },
+    {
+      "rule": "TEMPLATE_SOURCE",
+      "detail": "spec.md"
+    }
+  ],
+  "refusals": [
+    {
+      "mode": "anchor-wrap",
+      "document": "spec.md",
+      "reason": "no ANCHOR marker anywhere, so the anchored template is not proven; left unchanged"
+    },
+    {
+      "mode": "header-add",
+      "document": "spec.md",
+      "reason": "spec.md: no level is recorded in spec.md, so no rendered template can be proven"
+    }
+  ]
+}
