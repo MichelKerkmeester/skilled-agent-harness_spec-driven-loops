@@ -10,7 +10,7 @@ trigger_phrases:
   - "figma cli"
   - "magicpath components"
   - "mcp tool bridge"
-version: 1.8.1.0
+version: 1.8.2.0
 ---
 
 # mcp-tooling

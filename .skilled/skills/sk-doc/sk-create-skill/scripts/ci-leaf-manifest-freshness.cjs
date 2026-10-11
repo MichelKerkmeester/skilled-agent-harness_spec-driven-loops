@@ -53,6 +53,12 @@ function parseArgs(argv) {
     if (argv[i] === '--skills-dir') { args.skillsDir = argv[i + 1]; i += 1; }
     else if (argv[i] === '--format') {
       args.format = argv[i + 1];
+      // A trailing --format has no value to inspect; name the flag instead of
+      // interpolating the literal string "undefined".
+      if (args.format === undefined) {
+        process.stderr.write('ci-leaf-manifest-freshness.cjs: --format needs one of: text, json\n');
+        process.exit(2);
+      }
       // Any other value would silently fall back to the text report, so a
       // format typo must fail loudly instead.
       if (args.format !== 'text' && args.format !== 'json') {

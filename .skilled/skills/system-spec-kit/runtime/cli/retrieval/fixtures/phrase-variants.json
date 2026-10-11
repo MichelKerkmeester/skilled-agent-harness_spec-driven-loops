@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6685672cb66f1314ce7df1dd7418f0ce5f677485577921cc0e7ad1038c13dad3",
+  "manifestHash": "ef8cf992c38638542390ebaee8eaffd9ae034e217b1aa2e8ae93b342493c9cfc",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -59307,6 +59307,9 @@
     "mcp tooling 1 8 1 0": [
       "mcp-tooling 1.8.1.0"
     ],
+    "mcp tooling 1 8 2 0": [
+      "mcp-tooling 1.8.2.0"
+    ],
     "mcp tooling benchmark": [
       "mcp-tooling benchmark"
     ],
@@ -59399,6 +59402,9 @@
     ],
     "mcp tooling v1 8 1 0": [
       "mcp-tooling v1.8.1.0"
+    ],
+    "mcp tooling v1 8 2 0": [
+      "mcp-tooling v1.8.2.0"
     ],
     "mcp tools": [
       "mcp tools"
@@ -83219,6 +83225,9 @@
     ],
     "root governance alignment": [
       "root governance alignment"
+    ],
+    "root metadata check command": [
+      "root metadata check command"
     ],
     "root name hardcode plan": [
       "root name hardcode plan"

@@ -1,0 +1,96 @@
+{
+  "sessionId": "fanout-dsflash-llmgw-1791754059549-b7vcvs",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "I1-P2-001",
+      "severity": "P2",
+      "title": "Misspelled flag after the packet path still exits 0 in the council advisory script",
+      "file": ".skilled/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs",
+      "line": 46,
+      "iteration": 1,
+      "status": "active",
+      "dimensions": ["correctness"],
+      "findingClass": "instance-only",
+      "evidence": "node .skilled/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs . --jso -> advisory 'unknown argument: --jso', exit 0",
+      "recommendation": "Route the flag loop's args.unknown through the exit-2 branch and extend the typo-flag test to the flag position."
+    },
+    {
+      "id": "I1-P2-002",
+      "severity": "P2",
+      "title": "Documented catalog command now exits 2 (ci-skill-root-metadata.cjs --skills-dir .skilled/skills --check)",
+      "file": ".skilled/skills/mcp-tooling/feature-catalog/feature-catalog.md",
+      "line": 69,
+      "iteration": 1,
+      "status": "active",
+      "dimensions": ["correctness", "traceability"],
+      "findingClass": "cross-consumer",
+      "evidence": "The catalog command exits 2 with 'unknown option: --check'; the script has no --check mode and its default run is read-only. Disclosed as Known Limitation 1; spec risk mitigation permits fix-or-list.",
+      "recommendation": "Update the catalog line to drop --check in a follow-up; keep the Known Limitations entry until then."
+    },
+    {
+      "id": "I3-P2-003",
+      "severity": "P2",
+      "title": "Known Limitations misnames the rejected option in the catalog regression",
+      "file": "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/001-typo-proof-parsers/implementation-summary.md",
+      "line": 224,
+      "iteration": 3,
+      "status": "active",
+      "dimensions": ["traceability"],
+      "findingClass": "instance-only",
+      "evidence": "--skills-dir is read and works (checked=14 passed=14, exit 0); --check is the rejected token (exit 2). The disclosure says the script never read --skills-dir and exits 2 on it.",
+      "recommendation": "Correct the sentence to name --check and align the How-It-Was-Delivered caller claim."
+    },
+    {
+      "id": "I4-P2-004",
+      "severity": "P2",
+      "title": "Unknown-option error in verify-router-sync.cjs reuses the check-ID usage suffix and contradicts itself",
+      "file": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs",
+      "line": 325,
+      "iteration": 4,
+      "status": "active",
+      "dimensions": ["maintainability"],
+      "findingClass": "instance-only",
+      "evidence": "verify-router-sync.cjs --bogus-xyz prints 'unknown option: --bogus-xyz' then 'usage: ... (unknown: none given)'.",
+      "recommendation": "Print a plain usage line in the unknown-option branch; keep the ID suffix only for --checks value validation."
+    },
+    {
+      "id": "I4-P2-005",
+      "severity": "P2",
+      "title": "A missing --format value is reported as 'unknown --format value: undefined' (two ci scripts)",
+      "file": ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs",
+      "line": 56,
+      "iteration": 4,
+      "status": "active",
+      "dimensions": ["maintainability"],
+      "findingClass": "class-of-bug",
+      "evidence": "ci-leaf-manifest-freshness.cjs --format and ci-skill-root-metadata.cjs --format both print 'unknown --format value: undefined', exit 2.",
+      "recommendation": "Distinguish a missing value (usage error: --format needs one of text, json) from an unknown value."
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 5
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.0,
+  "metrics": {
+    "iterations": 5,
+    "dimensionsCovered": 4,
+    "totalDimensions": 4,
+    "lastNewFindingsRatio": 0.0,
+    "sourceFindings": 5,
+    "reconstructionGaps": 0
+  }
+}

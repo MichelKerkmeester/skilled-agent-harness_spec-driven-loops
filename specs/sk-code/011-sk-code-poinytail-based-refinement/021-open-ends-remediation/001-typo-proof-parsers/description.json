@@ -1,11 +1,16 @@
 {
+  "level": "1",
   "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/001-typo-proof-parsers",
-  "description": "Phase 1: typo-proof-parsers",
+  "description": "54 scripts accept an unknown or misspelled option and carry on",
   "keywords": [
-    "phase",
-    "typo-proof-parsers"
+    "scripts",
+    "accept",
+    "unknown",
+    "misspelled",
+    "option",
+    "carry"
   ],
-  "lastUpdated": "2026-10-11T18:31:50.048Z",
+  "lastUpdated": "2026-10-11T21:26:57.649Z",
   "specId": "001",
   "folderSlug": "typo-proof-parsers",
   "parentChain": [
@@ -14,6 +19,5 @@
     "021-open-ends-remediation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

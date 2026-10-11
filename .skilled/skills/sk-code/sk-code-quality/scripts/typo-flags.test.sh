@@ -105,6 +105,19 @@ run_case "check-rule-copies.js rejects --root without a value" 2 "--root" \
 run_case "verify-router-sync.cjs rejects a misspelled --bogus-xyz flag" 2 "--bogus-xyz" \
   node "$ROUTER_SYNC" --bogus-xyz
 
+# The unknown-option usage line must not leak the parser-internal check-id
+# suffix, which names an unrelated concern instead of the offending flag.
+router_sync_case="verify-router-sync.cjs unknown-option usage line has no check-id suffix"
+set +e
+router_sync_output="$(node "$ROUTER_SYNC" --bogus-xyz 2>&1)"
+set -e
+if [[ "$router_sync_output" == *"(unknown: none given)"* ]]; then
+  printf 'FAIL %s: the usage line still carries the check-id suffix\n%s\n' "$router_sync_case" "$router_sync_output" >&2
+  failures=$((failures + 1))
+else
+  printf 'PASS %s\n' "$router_sync_case"
+fi
+
 if [[ "$failures" -gt 0 ]]; then
   printf '%s typo-flag test case(s) failed\n' "$failures" >&2
   exit 1

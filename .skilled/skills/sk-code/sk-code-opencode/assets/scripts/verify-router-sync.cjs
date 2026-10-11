@@ -325,7 +325,7 @@ function parseChecks(argv) {
     }
     if (argv[index].startsWith('-')) {
       console.error(`verify-router-sync.cjs: unknown option: ${argv[index]}`);
-      console.error(`usage: verify-router-sync [--checks ${[...known].join(',')}] (unknown: none given)`);
+      console.error(`usage: verify-router-sync [--checks ${[...known].join(',')}]`);
       process.exit(2);
     }
   }

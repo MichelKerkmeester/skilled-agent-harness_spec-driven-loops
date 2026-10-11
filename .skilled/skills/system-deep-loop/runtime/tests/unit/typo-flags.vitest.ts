@@ -188,6 +188,13 @@ describe('deep-loop CLI flag rejection', () => {
     expect(combinedOutput(result)).toContain('--bogus-xyz');
   });
 
+  it('advise-council-completion.cjs rejects an unknown flag after the packet path', () => {
+    const result = runScript(join(SKILL, 'deep-ai-council', 'scripts', 'advise-council-completion.cjs'), ['.', '--jso']);
+
+    expect(result.status).toBe(2);
+    expect(combinedOutput(result)).toContain('--jso');
+  });
+
   it('check-documentation-drift.cjs rejects an unknown flag', () => {
     const result = runScript(join(RUNTIME_SCRIPTS, 'check-documentation-drift.cjs'), ['--bogus-xyz']);
 

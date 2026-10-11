@@ -66,7 +66,7 @@ Run the structural and generated-state checks from the repository root:
 
 ```bash
 node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/mcp-tooling
-node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --skills-dir .skilled/skills --check
+node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --skills-dir .skilled/skills
 node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs --skills-dir .skilled/skills --format json
 ```
 

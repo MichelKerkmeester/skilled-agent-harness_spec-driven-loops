@@ -167,3 +167,17 @@ test('generate-leaf-manifest.cjs rejects the unknown --bogus-xyz flag after --ch
   const result = runScript(GENERATE_LEAF_MANIFEST, ['--check', '.skilled/skills/sk-doc', '--bogus-xyz']);
   assertUsageFailure(result, 2, '--bogus-xyz');
 });
+
+// A flag that is present but carries no value must still be named; printing
+// the raw interpolated value would surface the literal string "undefined".
+test('ci-leaf-manifest-freshness.cjs names a missing --format value', () => {
+  const result = runScript(CI_LEAF_MANIFEST_FRESHNESS, ['--format']);
+  assertUsageFailure(result, 2, '--format');
+  assert.ok(!combinedOutput(result).includes('undefined'), `expected the usage line to name --format and not "undefined"\n${combinedOutput(result)}`);
+});
+
+test('ci-skill-root-metadata.cjs names a missing --format value', () => {
+  const result = runScript(CI_SKILL_ROOT_METADATA, ['--format']);
+  assertUsageFailure(result, 2, '--format');
+  assert.ok(!combinedOutput(result).includes('undefined'), `expected the usage line to name --format and not "undefined"\n${combinedOutput(result)}`);
+});

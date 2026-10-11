@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/001-typo-proof-parsers"
     last_updated_at: "2026-10-11T21:30:00Z"
     last_updated_by: "builder"
-    recent_action: "Built all 68 ledger rows, bumped seven skills and ran every suite"
-    next_safe_action: "Run the deep review over the build commit and fix confirmed findings"
+    recent_action: "Fixed the five P2 review findings and reran the gates"
+    next_safe_action: "Integrator merges the branch"
     blockers: []
     key_files:
       - ".skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "build-021-001"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -164,8 +164,10 @@ Each file below was written before the fix and run against the unfixed scripts f
 | `runtime/scripts/lib/cli-guards.cjs` (deep-loop) and `routing-accuracy/reject-unknown-options.mjs` (advisor) | Modified, Created | The two shared helpers above |
 | The ten test files in the Tests table | Created or Modified | Typo-flag and failing-input cases |
 | `sk-doc/sk-create-goal/scripts/tests/lint-goal-criteria.test.cjs` | Modified | Its bad-option case asserted the old exit 0; it now asserts 2 |
-| `SKILL.md`, `README.md`, hub carriers, `.hermes` mirrors and one `changelog/` entry for sk-code, sk-design, sk-doc, sk-git, system-deep-loop, system-skill-advisor and system-spec-kit | Modified, Created | One version bump per touched skill |
-| Four hub activation manifests, served and authored copies | Modified | Re-minted after the hub version bump changed the policy hash |
+| `SKILL.md`, `README.md`, hub carriers, `.hermes` mirrors and one `changelog/` entry for sk-code, sk-design, sk-doc, sk-git, system-deep-loop, system-skill-advisor and system-spec-kit (mcp-tooling follows from the review fix) | Modified, Created | One version bump per touched skill |
+| `mcp-tooling/feature-catalog/feature-catalog.md` and the mcp-tooling version carriers | Modified, Created | Review fix: the root metadata command drops `--check`, with one bump and changelog entry |
+| `deep-ai-council/scripts/tests/advise-council-completion.vitest.ts` | Modified | Its unknown-argument case asserted the old exit 0; it now asserts 2 |
+| Five hub activation manifests, served and authored copies | Modified | Re-minted after the hub version bump changed the policy hash |
 | `system-spec-kit/runtime/data/trigger-index.json` and the retrieval corpus manifest | Modified | Regenerated for the new changelog entries |
 | `.skilled/commands/deep/assets/compiled/` contracts for review, research and ai-council | Modified | Recompiled, since they record a digest of the deep-loop `SKILL.md` and mode registry the bump changed |
 <!-- /ANCHOR:what-built -->
@@ -175,7 +177,7 @@ Each file below was written before the fix and run against the unfixed scripts f
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Every script change and test came from short single-purpose DeepSeek V4.1 Flash dispatches through cli-pi at max effort, each diff read before the next. One file-mode slip was fixed by hand: a dispatch dropped the exec bit on `worktree-naming.test.sh`, and `chmod 755` restored it. Each script's callers in hooks, workflows and other scripts were searched before its change, and every caller found passes only known options.
+Every script change and test came from short single-purpose DeepSeek V4.1 Flash dispatches through cli-pi at max effort, each diff read before the next. One file-mode slip was fixed by hand: a dispatch dropped the exec bit on `worktree-naming.test.sh`, and `chmod 755` restored it. Each script's callers in hooks, workflows and other scripts were searched before its change. Every executable caller passes only known options. One documented command in the mcp-tooling feature catalog passed `--check` to `ci-skill-root-metadata.cjs`, which never had that option; the review fix below drops it from the catalog line.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -218,11 +220,28 @@ Every script change and test came from short single-purpose DeepSeek V4.1 Flash 
 
 ---
 
+<!-- ANCHOR:review -->
+## Deep Review
+
+`/deep:review :auto` ran five iterations over the build commit with one cli-pi lineage on DeepSeek V4.1 Flash at max effort, stop policy max-iterations. Artifacts are in `review/`, and the lineage report is `review/lineages/dsflash-llmgw/review-report.md`. Verdict PASS with advisories: P0 0, P1 0, P2 5. Each finding was reproduced with a command before it was fixed.
+
+| Finding | Confirmed by | Fix |
+|---------|--------------|-----|
+| P2: `advise-council-completion.cjs . --jso` still exited 0 | That command printed `unknown argument: --jso`, exit 0 | An unknown flag in any position now takes the existing exit-2 path; T6 gained a case and the council test that pinned exit 0 now asserts 2 |
+| P2: the mcp-tooling catalog line `ci-skill-root-metadata.cjs --skills-dir .skilled/skills --check` exits 2 | That command printed `unknown option: --check`, exit 2 | The catalog line drops `--check`; mcp-tooling bumped to 1.8.2.0 with one changelog entry |
+| P2: this summary named `--skills-dir` as the rejected option | The script reads `--skills-dir` and rejects `--check` | Corrected in How It Was Delivered; the limitation is closed by the catalog fix |
+| P2: `verify-router-sync.cjs --bogus-xyz` printed `(unknown: none given)` after naming the option | That command's second line | The unknown-option usage line drops the suffix, which stays on the `--checks` value path; T2 gained a check |
+| P2: a bare `--format` printed `unknown --format value: undefined` in two sk-doc CI checks | Both commands, exit 2 | Both now print `--format needs one of: text, json`; T5 gained two cases |
+
+The new test cases were written and run first: T2, T5 and T6 each exited 1 before the fixes and 0 after them.
+<!-- /ANCHOR:review -->
+
+---
+
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **One documented caller now fails.** `mcp-tooling/feature-catalog/feature-catalog.md` shows `ci-skill-root-metadata.cjs --skills-dir .skilled/skills --check`. The script never read `--skills-dir`, and it now exits 2 on it. The line sits in a skill this phase does not otherwise touch, so it is listed rather than edited.
-2. **Suite failures unrelated to this change.** `sk-doc/scripts/tests/test-flowchart-validator.sh` calls `validate-flowchart.sh`, which does not exist at the base commit either, so it exits 127. Four sk-design backend test files need the `playwright` and `culori` packages, which this checkout does not have installed.
+1. **Suite failures unrelated to this change.** `sk-doc/scripts/tests/test-flowchart-validator.sh` calls `validate-flowchart.sh`, which does not exist at the base commit either, so it exits 127. Four sk-design backend test files need the `playwright` and `culori` packages, which this checkout does not have installed.
 <!-- /ANCHOR:limitations -->
 
 ---

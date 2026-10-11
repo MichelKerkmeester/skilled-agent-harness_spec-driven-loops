@@ -1,5 +1,5 @@
 {
-  "corpusHash": "435b1447f9a80fcd22b261038312cf21849a5f655b9f8dfa90ad188b42270431",
+  "corpusHash": "74287cfc4a20b34167c5e65f8e0da43be2f47f3faff14f341bc213a266c03b31",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24370,
+  "includedPathCount": 24371,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -1895,6 +1895,7 @@
     ".skilled/skills/mcp-tooling/changelog/v1.8.0.1.md",
     ".skilled/skills/mcp-tooling/changelog/v1.8.0.2.md",
     ".skilled/skills/mcp-tooling/changelog/v1.8.1.0.md",
+    ".skilled/skills/mcp-tooling/changelog/v1.8.2.0.md",
     ".skilled/skills/mcp-tooling/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/mcp-tooling/feature-catalog/feature-catalog.md",
     ".skilled/skills/mcp-tooling/feature-catalog/workflow-vs-transport-routing/workflow-vs-transport-routing.md",
@@ -24401,7 +24402,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "6685672cb66f1314ce7df1dd7418f0ce5f677485577921cc0e7ad1038c13dad3",
+  "manifestHash": "ef8cf992c38638542390ebaee8eaffd9ae034e217b1aa2e8ae93b342493c9cfc",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26537,6 +26538,10 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/006-ci-truth-checks/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/001-typo-proof-parsers/review/lineages",
       "reason": "excluded directory"
     },
     {
