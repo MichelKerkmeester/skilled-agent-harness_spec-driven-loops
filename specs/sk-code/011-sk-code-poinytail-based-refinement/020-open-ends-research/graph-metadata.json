@@ -8,7 +8,8 @@
     "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding",
     "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth",
     "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/004-routing-evaluation",
-    "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep"
+    "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep",
+    "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/006-ci-truth-checks"
   ],
   "manual": {
     "depends_on": [],
@@ -40,15 +41,17 @@
       "directive"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md",
+      ".github/workflows/sk-doc-script-tests.yml",
       "001-doc-version-contract/goal.md",
       "002-fresh-clone-onboarding/goal.md",
       "003-playbook-catalog-truth/goal.md",
       "004-routing-evaluation/goal.md",
-      "005-silent-input-sweep/goal.md"
+      "005-silent-input-sweep/goal.md",
+      "006-ci-truth-checks/goal.md"
     ],
     "entities": [
       {
@@ -61,6 +64,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc-script-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/sk-doc-script-tests.yml",
         "source": "derived"
       },
       {
@@ -138,17 +147,17 @@
     ],
     "causal_summary": "The refinement epic closed its own ledger, but five questions came out of it that no phase owned",
     "created_at": "2026-10-11T15:54:51Z",
-    "last_save_at": "2026-10-11T16:01:36.695Z",
+    "last_save_at": "2026-10-11T18:02:26.894Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:837834c2e14c9a4aac1fa426ebc77b4f7339d6ab5d47236e6feeaf2c990ffc7f",
+    "source_fingerprint": "sha256:3f6074a51984765c99878595f28e115646585f8c2b8979d70d2f7d0fcea37799",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8e3860ee452f1dd97fee01feffdd24a2a36f3b9da24aca97bdba410e17067483"
+      "spec.md": "54ed4e08b66541722eca78faf133720a451949190814b9f38bcdf7213b88bd5a"
     },
     "last_active_at": null
   }

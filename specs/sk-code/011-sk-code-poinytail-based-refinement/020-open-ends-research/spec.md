@@ -71,7 +71,7 @@ Answer each question with evidence and a ranked list of the smallest fixes, so l
 - One synthesis per child: `research/research.md`, or `review/review-report.md` for 005, with a ranked table that cites path:line.
 
 ### Out of Scope
-- Changing any product file. Each child is read-only, and fixes are later phases.
+- Changing any product file in 001 to 005. Those children are read-only; 006 is the one build child.
 - Probes P4 and P7 and admission scenario DOC-331. A separate fix for them is in flight.
 
 ### Files to Change
@@ -80,6 +80,7 @@ Answer each question with evidence and a ranked list of the smallest fixes, so l
 |-----------|-------------|-------|-------------|
 | `00N-*/research/` | Create | 001 to 004 | Loop state, iterations and synthesis |
 | `005-silent-input-sweep/review/` | Create | 005 | Loop state, iterations and review report |
+| `.github/workflows/sk-doc-script-tests.yml`, `cite-drift-gate.mjs` | Modify, Create | 006 | Catalog and citation CI checks |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -96,6 +97,7 @@ Answer each question with evidence and a ranked list of the smallest fixes, so l
 | 3 | 003-playbook-catalog-truth/ | The lightest self-check for playbook scenarios and catalog entries against the code | Pending |
 | 4 | 004-routing-evaluation/ | A held-out evaluation set and a Python and Node parity check for the advisor | Pending |
 | 5 | 005-silent-input-sweep/ | Deep review of CLI scripts for silently accepted options and false exit 0 | Pending |
+| 6 | 006-ci-truth-checks/ | Build 003's R1 and R2: the catalog validator and a new-citation gate block pull requests in CI | Complete |
 
 ### Phase Transition Rules
 
@@ -112,6 +114,7 @@ Answer each question with evidence and a ranked list of the smallest fixes, so l
 | 002-fresh-clone-onboarding | 003-playbook-catalog-truth | None; see the row above | Each child's goal criteria |
 | 003-playbook-catalog-truth | 004-routing-evaluation | None; see the row above | Each child's goal criteria |
 | 004-routing-evaluation | 005-silent-input-sweep | None; see the row above | Each child's goal criteria |
+| 005-silent-input-sweep | 006-ci-truth-checks | None; 006 builds on 003's synthesis only | 006's goal criteria |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -45,7 +45,7 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | The five children are independent; each runs in its own worktree branched from the scaffold commit |
-| D2 | Read-only: a child writes only under its own folder; fixes are later phases |
+| D2 | 001 to 005 are read-only: each writes only under its own folder. 006 builds the approved R1 and R2 from 003 |
 | D3 | 001 to 004 run /deep:research and 005 runs /deep:review, 10 iterations each; an early convergence stop is not done |
 | D4 | No recommendation fixes probes P4 or P7 or admission scenario DOC-331; that fix is in flight elsewhere |
 
@@ -66,6 +66,7 @@ phase and binds as if written here.
 | 003-playbook-catalog-truth | `003-playbook-catalog-truth/goal.md` |
 | 004-routing-evaluation | `004-routing-evaluation/goal.md` |
 | 005-silent-input-sweep | `005-silent-input-sweep/goal.md` |
+| 006-ci-truth-checks | `006-ci-truth-checks/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -83,7 +84,7 @@ string, not these files.
 - [ ] `ls specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/00[1-4]-*/research/research.md specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/review-report.md | wc -l`, run from the repository root, prints 5.
 - [ ] `cat specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/00[1-4]-*/research/research.md specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/review-report.md | grep -E '^\| [RF][0-9]+ \|' | grep -cvE '[A-Za-z0-9_-]\.[A-Za-z0-9]+:[0-9]+'`, run from the repository root, prints 0, so every recommendation cites a path:line.
 - [ ] `cat specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/00[1-4]-*/research/research.md specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/review-report.md | grep -E '^\| [RF][0-9]+ \|' | grep -cvE '\| (Build nothing|Change a value|Extend in place|Add a function|Add a file|Add an abstraction|Add a dependency) \|'`, run from the repository root, prints 0, so every recommendation names its move from .skilled/repo-rules/prevent-overengineering.md.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research --recursive --strict`, run from the repository root, prints `RESULT: PASSED` 6 times and `RESULT: FAILED` 0 times.
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research --recursive --strict`, run from the repository root, prints `RESULT: PASSED` 7 times and `RESULT: FAILED` 0 times.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -105,6 +106,7 @@ and findings belong here.
 | 003 playbook and catalog truth | Pending | |
 | 004 routing evaluation | Pending | |
 | 005 silent input sweep | Pending | |
+| 006 CI truth checks | Done | Catalog and citation jobs built and verified |
 
 ### Deviations and findings
 
