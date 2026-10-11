@@ -1,5 +1,5 @@
 {
-  "manifestHash": "778da9dfaf87eaff265d7e6c2e59f1c97c744b8ce8c5dd423b3e782a66bd5c91",
+  "manifestHash": "a914630dbab05e5d43a603fa6a25e626da9e027f2a50b396d7eb39954c4721b9",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -41174,6 +41174,7 @@
       4676,
       4681,
       4686,
+      4691,
       4723,
       5072,
       5078,
@@ -53544,9 +53545,6 @@
     "dispatch guard and vitest": [
       4694
     ],
-    "dispatch guard and vitest goal": [
-      4691
-    ],
     "dispatch guard and vitest implementation summary": [
       4692
     ],
@@ -56205,6 +56203,7 @@
       4676,
       4681,
       4686,
+      4691,
       4723,
       5018,
       5072,
@@ -65822,6 +65821,7 @@
       4676,
       4681,
       4686,
+      4691,
       4723,
       5072,
       5078,
@@ -89259,6 +89259,7 @@
       4676,
       4681,
       4686,
+      4691,
       4723,
       5018,
       5072,

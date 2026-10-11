@@ -159,6 +159,16 @@ describe("registered Pi extension boundary", () => {
     expect(result).toBeUndefined();
   });
 
+  // A wrapped payload with escaped quotes is read whole, so a named dispatch is allowed
+  // rather than cut at the first escaped quote and denied as ambiguous.
+  it("allows a named dispatch wrapped in bash -c with escaped quotes", async () => {
+    const { result } = await invokeFactory(
+      "dispatch via cli-devin",
+      String.raw`bash -c "devin -p \"task\" </dev/null"`,
+    );
+    expect(result).toBeUndefined();
+  });
+
   // An authorized executor is still bound by its skill's hard rules: a dispatch
   // without `</dev/null` can hang on inherited stdin, so the rule blocks it.
   it("blocks a permitted dispatch that omits the stdin redirect", async () => {

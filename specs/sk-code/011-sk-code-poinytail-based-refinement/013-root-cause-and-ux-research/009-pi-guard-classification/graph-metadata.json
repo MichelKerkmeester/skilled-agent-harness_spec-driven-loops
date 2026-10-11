@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`inspectDispatch` tokenizes `bash -c 'devin -p task'` as a bash call with one quoted argument and returned none, so the Pi guard let a wrapped dispatch through unauthorized, although `resolveDispatchPacket` already unwrapped the same form for the other runtimes",
     "created_at": "2026-10-10T23:54:52Z",
-    "last_save_at": "2026-10-11T00:09:51.378Z",
+    "last_save_at": "2026-10-11T05:23:20.429Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6d9bc452f3973e1d74359617c5560da9cfcc6441a865364ccc1535ed0bcea5ad",
+    "source_fingerprint": "sha256:0e5139ce93692839e6207b9406bf6f62abfc85aee2f80ca689fb8a56bbaf3aac",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "87d47236ff5bca7c1342e674cf4fe45753af48557324d2ff2224bfe674c5b8ed",
       "plan.md": "469216c74ee00e89158adc07d44ca8abdd4fc81b924a954422f217c6e4260930",
       "tasks.md": "34fa2695592385d4e329b79995a3bda57b8a4963a4001f8567470d3d99ea2b19",
-      "implementation-summary.md": "e9275e7f4648f8ce6233f39386896ce3431dc5467cdf720bf42353934943731a"
+      "implementation-summary.md": "4f14c6069e2b69e370ee3372152181ba20b16a99e67d4e7bdd3450c603ed5a6d"
     },
     "last_active_at": null
   }

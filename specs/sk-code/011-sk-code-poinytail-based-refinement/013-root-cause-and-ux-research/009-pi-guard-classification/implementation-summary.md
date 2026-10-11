@@ -99,7 +99,7 @@ Eight one-change cli-pi builds by DeepSeek V4.1 Flash at max effort on llmgatewa
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Escaped quotes in a payload.** SHELL_WRAPPER stops at the first escaped quote, so such a wrapped dispatch reads ambiguous and Pi denies it.
+1. **Escaped quotes in a payload.** SHELL_WRAPPER stops at the first escaped quote, so such a wrapped dispatch reads ambiguous and Pi denies it. Fixed 2026-10-11 in `015-closeout/004-dispatch-guard-and-vitest`: a double-quoted payload now runs to its closing quote and is unescaped before inspection. A payload holding an expansion such as `$DIR` still reads ambiguous on purpose, so `bash -c "$CMD"` cannot read as none.
 <!-- /ANCHOR:limitations -->
 
 ---

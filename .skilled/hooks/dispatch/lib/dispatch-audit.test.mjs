@@ -98,6 +98,12 @@ describe('inspectDispatch', () => {
     ['bash -c wrapped dispatch', "bash -c 'devin -p task'", { kind: 'direct', executor: 'cli-devin' }],
     ['sh -c wrapped dispatch', "sh -c 'opencode run task'", { kind: 'direct', executor: 'cli-opencode' }],
     ['zsh -c wrapped dispatch', "zsh -c 'codex exec task'", { kind: 'direct', executor: 'cli-codex' }],
+    // A double-quoted payload ends at its closing quote, not at the first escaped one inside it.
+    ['bash -c payload with escaped quotes', String.raw`bash -c "devin -p \"fix the bug\" </dev/null"`, { kind: 'direct', executor: 'cli-devin' }],
+    ['bash -c payload with an escaped quoted path', String.raw`bash -c "cd \"/tmp/my dir\" && devin -p task </dev/null"`, { kind: 'direct', executor: 'cli-devin' }],
+    // An expansion inside the payload still fails closed, so `bash -c "$CMD"` never reads as none.
+    ['bash -c payload with an expansion', String.raw`bash -c "cd \"$DIR\" && devin -p task </dev/null"`, { kind: 'ambiguous' }],
+    ['bash -c payload that only quotes a dispatch', String.raw`bash -c "echo \"devin -p task\""`, { kind: 'none' }],
     ['two dispatch segments', 'devin -p task && cursor-agent -p task', { kind: 'ambiguous' }],
     ['unsupported redirection without dispatch', 'cat x >> out', { kind: 'none' }],
     ['pipeline without dispatch', 'npm run build 2>&1 | tee log', { kind: 'none' }],

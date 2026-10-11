@@ -1,5 +1,5 @@
 {
-  "manifestHash": "778da9dfaf87eaff265d7e6c2e59f1c97c744b8ce8c5dd423b3e782a66bd5c91",
+  "manifestHash": "a914630dbab05e5d43a603fa6a25e626da9e027f2a50b396d7eb39954c4721b9",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -37079,9 +37079,6 @@
     ],
     "dispatch guard and vitest": [
       "dispatch guard and vitest"
-    ],
-    "dispatch guard and vitest goal": [
-      "dispatch guard and vitest goal"
     ],
     "dispatch guard and vitest implementation summary": [
       "dispatch guard and vitest implementation summary"
