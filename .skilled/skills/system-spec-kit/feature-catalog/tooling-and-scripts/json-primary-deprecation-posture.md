@@ -40,7 +40,7 @@ The shipped posture enforces the following behavior:
 | `runtime/cli/loaders/data-loader.ts` | Structured-input routing enforcement |
 | `runtime/cli/types/session-types.ts` | Structured JSON enrichment types |
 | `SKILL.md` | Operator guidance: JSON-primary deprecation posture |
-| `.skilled/commands/memory/save.md` | Save command alignment with the JSON-primary contract |
+| `.skilled/commands/speckit/save.md` | Save command alignment with the JSON-primary contract |
 
 ### FEATURE BREAKDOWN
 

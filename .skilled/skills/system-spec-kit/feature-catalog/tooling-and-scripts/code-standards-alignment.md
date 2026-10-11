@@ -72,7 +72,7 @@ All modified files were reviewed against sk-code OPENCODE route standards. At HE
 - **Rule mapping**
   - `sk-code/references/opencode/typescript/style-guide.md` (TypeScript constants use UPPER_SNAKE)
 - **File-level evidence**
-  - `runtime/handlers/save/spec-folder-mutex.ts:10` defines `const SPEC_FOLDER_LOCKS = ...`.
+  - `runtime/handlers/save/spec-folder-mutex.ts:22` defines `const SPEC_FOLDER_LOCKS = ...`.
   - `rg "\\bspecFolderLocks\\b" runtime/handlers/save runtime/handlers/memory-save.ts` returns no matches.
   - `rg "SPEC_FOLDER_LOCKS" runtime/handlers/save/spec-folder-mutex.ts` returns active uses at lines `10, 14, 19, 23, 24, 29`.
 

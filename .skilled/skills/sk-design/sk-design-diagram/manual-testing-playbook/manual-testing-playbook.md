@@ -298,7 +298,7 @@ Desired user-visible outcome: a `.svg` and a transparent `.png` beside the sourc
 Verify the `/design:diagram` command router: presentation contract loaded, mode resolved to `:auto` or `:confirm`, the bound workflow YAML executed, and the presentation boundary respected.
 
 #### Scenario Contract
-Prompt: `Run the /design:diagram command with argument docs/order-flow.html, description "sequence diagram of our order placement flow", mode :auto. Verify the router loads the presentation contract, binds create-diagram-auto.yaml, and the workflow produces the diagram without interactive questions.`
+Prompt: `Run the /design:diagram command with argument docs/order-flow.html, description "sequence diagram of our order placement flow", mode :auto. Verify the router loads the presentation contract, binds diagram-auto.yaml, and the workflow produces the diagram without interactive questions.`
 
 Workflow behavior lives in the YAML; user-facing wording lives only in the presentation contract.
 
