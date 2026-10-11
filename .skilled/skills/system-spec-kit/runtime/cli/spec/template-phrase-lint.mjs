@@ -14,7 +14,6 @@ import { fileURLToPath } from 'node:url';
 
 import { judgeTriggerPhrase } from '../retrieval/lib/phrase-judge.mjs';
 import { normalizeTriggerText } from '../retrieval/lib/normalize.mjs';
-import { parseFrontmatter } from './template-phrase-census.mjs';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -65,7 +64,7 @@ function readGitBlob(root, revisionPath) {
   }
 }
 
-function triggerPhrases(content) {
+function triggerPhrases(content, parseFrontmatter) {
   if (content === null) return [];
   const frontmatter = parseFrontmatter(content);
   if (!frontmatter.ok || !Array.isArray(frontmatter.data?.trigger_phrases)) return [];
@@ -76,7 +75,7 @@ function triggerPhrases(content) {
 // 4. LINT
 // ───────────────────────────────────────────────────────────────────
 
-function lintStagedPhrases(root) {
+function lintStagedPhrases(root, parseFrontmatter) {
   const changes = stagedMarkdownChanges(root);
   let blocked = 0;
   let warned = 0;
@@ -87,8 +86,8 @@ function lintStagedPhrases(root) {
     if (stagedContent === null) continue;
 
     const oldContent = readGitBlob(root, `HEAD:${oldPath}`);
-    const existing = new Set(triggerPhrases(oldContent).map(normalizeTriggerText));
-    const newPhrases = triggerPhrases(stagedContent);
+    const existing = new Set(triggerPhrases(oldContent, parseFrontmatter).map(normalizeTriggerText));
+    const newPhrases = triggerPhrases(stagedContent, parseFrontmatter);
 
     for (const phrase of newPhrases) {
       if (existing.has(normalizeTriggerText(phrase))) continue;
@@ -113,7 +112,7 @@ function lintStagedPhrases(root) {
   return blocked > 0 ? 1 : 0;
 }
 
-function main() {
+async function main() {
   if (process.env.SPECKIT_SKIP_PHRASE_LINT === '1') {
     process.stdout.write(`${SCRIPT}: skipped by SPECKIT_SKIP_PHRASE_LINT=1\n`);
     return 0;
@@ -128,7 +127,10 @@ function main() {
   }
 
   try {
-    return lintStagedPhrases(path.resolve(root));
+    // Loaded lazily inside this guard: the census module requires js-yaml at load time, and a
+    // clone without node_modules must take the WARNING path below instead of crashing first.
+    const { parseFrontmatter } = await import('./template-phrase-census.mjs');
+    return lintStagedPhrases(path.resolve(root), parseFrontmatter);
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     process.stderr.write(`WARNING [gate:${SCRIPT}]: could not read staged phrases; checks skipped: ${message}\n`);
@@ -137,5 +139,5 @@ function main() {
 }
 
 if (process.argv[1] !== undefined && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  process.exitCode = main();
+  process.exitCode = await main();
 }
