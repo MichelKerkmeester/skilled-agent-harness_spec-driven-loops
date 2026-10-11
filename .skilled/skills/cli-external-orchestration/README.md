@@ -17,7 +17,7 @@ trigger_phrases:
   - "delegate to hermes"
   - "cli dispatch"
   - "cross-ai delegation"
-version: 1.6.0.0
+version: 1.7.3.0
 ---
 
 # cli-external-orchestration
