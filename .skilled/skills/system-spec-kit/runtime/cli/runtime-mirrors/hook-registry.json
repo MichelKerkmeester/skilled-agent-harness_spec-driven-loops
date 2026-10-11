@@ -20,7 +20,7 @@
       "file": ".codex/hooks.json",
       "shape": "codex",
       "projectDirEnv": "CODEX_PROJECT_DIR",
-      "defaultMessage": "mk codex hook could not resolve; re-run the codex hooks installer with --check",
+      "defaultMessage": "mk codex hook could not resolve; build the spec-kit runtime (npm --prefix .skilled/skills/system-spec-kit run build) or restore the missing adapter",
       "eventOrder": [
         "SessionStart",
         "UserPromptSubmit",

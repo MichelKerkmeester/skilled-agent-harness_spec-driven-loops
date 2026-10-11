@@ -4,9 +4,14 @@
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import * as hookFlags from "../../.skilled/hooks/shared/hook-flags.mjs";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import { runClaudeHookAdapter } from "./lib/claude-hook-adapter.ts";
 
 const TIMEOUT_MS = 2_800;
+const SESSION_PRIME_ADAPTER = ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/session-prime.js";
+const UNBUILT_NOTICE =
+  "Session-start context is off because the spec-kit runtime is not built. Run: npm --prefix .skilled/skills/system-spec-kit run build";
 
 function sessionLifecycleHookEnabled(): boolean {
   try {
@@ -39,7 +44,11 @@ export default function sessionStartContext(pi: ExtensionAPI): void {
         { session_id: sessionId, cwd: ctx.cwd, hook_event_name: "SessionStart", source: claudeSourceFor(event.reason) },
         TIMEOUT_MS,
       );
-      if (!context) return;
+      if (!context) {
+        // A missing build is the one cause the user can fix, so name it instead of returning silently.
+        if (!existsSync(join(ctx.cwd, SESSION_PRIME_ADAPTER))) ctx.ui.notify(UNBUILT_NOTICE, "warning");
+        return;
+      }
 
       pi.sendMessage({ customType: "session-start-context", content: context, display: false });
     } catch {

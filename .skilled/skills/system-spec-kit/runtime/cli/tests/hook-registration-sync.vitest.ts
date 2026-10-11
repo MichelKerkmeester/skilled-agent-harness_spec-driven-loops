@@ -57,6 +57,16 @@ describe('sync-hook-registrations.cjs', () => {
     expect(check.stdout).toMatch(/PASS: 4 registration files/u);
   });
 
+  it('points every drift message at the spec-kit runtime build, not at an installer', () => {
+    const registry = JSON.parse(fs.readFileSync(REGISTRY, 'utf8')) as { runtimes: Record<string, { defaultMessage?: string }> };
+    for (const [runtime, config] of Object.entries(registry.runtimes)) {
+      if (config.defaultMessage === undefined) continue;
+      expect(config.defaultMessage, runtime).toMatch(/spec-kit runtime/u);
+      expect(config.defaultMessage, runtime).not.toMatch(/installer/u);
+    }
+    expect(fs.readFileSync(path.join(REPO_ROOT, '.codex', 'hooks.json'), 'utf8')).not.toMatch(/codex hooks installer/u);
+  });
+
   it('reports a hand-edited registration file and restores it in write mode, keeping the other settings keys', () => {
     const settingsPath = path.join(root, '.claude', 'settings.json');
     const clean = fs.readFileSync(settingsPath, 'utf8');
