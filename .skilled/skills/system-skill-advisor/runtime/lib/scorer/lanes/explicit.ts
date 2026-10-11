@@ -127,13 +127,9 @@ export const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>
   ':review:auto': [['system-deep-loop', 1.6], ['sk-code', -0.6]],
   ':review:confirm': [['system-deep-loop', 1.6], ['sk-code', -0.6]],
   // Domain phrase anchors (multi-token, so they lift confidence via the direct
-  // lane without firing on single tokens like "scan"/"profile"/"search"/"cms").
+  // lane without firing on single tokens like "cms").
   'webflow cms': [['mcp-code-mode', 1.5], ['sk-code', -0.5]],
   'cms collection': [['mcp-code-mode', 1.4]],
-  '5d scoring': [['system-deep-loop', 1.5]],
-  '5-dimension agent scoring': [['system-deep-loop', 1.6]],
-  'integration scan': [['system-deep-loop', 1.5]],
-  'dynamic profile': [['system-deep-loop', 1.5]],
   'chrome devtools': [['mcp-tooling', 1]],
   'gitlens launchpad': [['sk-git', 0.85]],
   'staging url': [['mcp-tooling', 0.65]],
