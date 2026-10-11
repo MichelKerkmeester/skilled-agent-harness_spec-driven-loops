@@ -1,6 +1,6 @@
 ---
 title: "Tasks [system-spec-kit/022-hybrid-rag-fusion/003-constitutional-learn-refactor/tasks]"
-description: 'title: "Tasks"'
+description: "Task Format: T### [P?] Description"
 trigger_phrases:
   - "tasks"
   - "003"

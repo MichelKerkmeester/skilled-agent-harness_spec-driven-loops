@@ -205,7 +205,7 @@
     ],
     "causal_summary": "`006-continuity-refactor-gates/` now owns only the six execution gates that remain after the reorganization promoted former follow-on work into sibling top-level phases `007` through `010`",
     "created_at": "2026-04-12T09:02:53.476Z",
-    "last_save_at": "2026-10-07T19:50:34.033Z",
+    "last_save_at": "2026-10-10T20:53:24.782Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "handover.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:37c7a27e53a0deb89472db916233c6836317c5e005600a2005f20c67fd0b5886",
+    "source_fingerprint": "sha256:300f0c17e7d99c81fc2dab6e1c286d6bacfcd0cad5bed9b56f348259647c2349",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "044482bc3474c8ef470111b455e0a2f803e74ce3af49d7d32e99c696366a8089",
@@ -225,7 +225,7 @@
       "tasks.md": "dd72a4fc0861c684d2f2ec869e3298c4207d06889788cccc70fb9b7d92d52c11",
       "implementation-summary.md": "f09dacc35378001bf30a617817687c6683784907413afdc668888e87b798810e",
       "research/research.md": "2c40e98a07d538b790fc6e2abfcab3ca5ee28daf023bc08288fa81ae8b5a2046",
-      "handover.md": "db9b4f765629abe428948cf4a1e114a65de96fff89eaeca87b296ec371547336",
+      "handover.md": "bb1cadd5f6aca7c1424cae04170e38a0ae14c4aac43df49c3dcf2de80a11db69",
       "resource-map.md": "00bd3ba0a96015ffaed487160ec55602b232ed1976b78689e5558f3f069313ba"
     },
     "last_active_child_id": null,

@@ -1,6 +1,6 @@
 ---
 title: "Implementation [system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/012-auto-detection-fixes/plan]"
-description: 'title: "Implementation Plan: Auto-Detection Fixes"'
+description: "This document records the current verified state for this scope. Use [spec.md](spec.md) and [plan.md](plan.md) to trace requirements and implementation evidence."
 trigger_phrases:
   - "implementation"
   - "plan"

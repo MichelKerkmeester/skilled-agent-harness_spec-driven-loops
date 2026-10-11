@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The final audit phase identified a small set of deprecated-feature decisions that sat between documentation cleanup and runtime release readiness",
     "created_at": "2026-04-12T09:02:50.257Z",
-    "last_save_at": "2026-10-07T19:24:33.882Z",
+    "last_save_at": "2026-10-10T20:53:36.758Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7c1d2e5b4ea577ab8c2b9ec88cab768e90ffc982abd78005be0b3785e8aac2de",
+    "source_fingerprint": "sha256:46c660a02840d99d66a196431b1d6087168f311c8ae79c54e00f58d752e1aa51",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e9c65c2afa221323f2f2668f2e44af7db1402873346cc993c689c845ffd7c3f1",
-      "plan.md": "1b7c8ed06c2745c2774f7f9e3f3aaf181839504c87412dfe56d4f3641bfe62e5",
-      "tasks.md": "3be3be449afa3a8e0cda8dfcecadba5d983e9f6927db7e238a29d0419140e6fd",
+      "plan.md": "6a7cccf924e6fcc2c32a4f2dc1a0b977a94065ea4cadb0b4e68f9a9b733e27db",
+      "tasks.md": "618e1d0d09056c0536e309de026986e0134be28ae24299734072ac108b337b8b",
       "implementation-summary.md": "cde0e5789218c8abce70406f0e571579df7d0542a0ad9cc9ade135dda2d1f7c6"
     },
     "last_active_child_id": null,

@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Descri [system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/006-description-enrichment/tasks]"
-description: 'title: "Tasks: Description Enrichment [template:level_2/tasks.md]"'
+description: "This document records the current verified state for this scope. Use [spec.md](spec.md) and [plan.md](plan.md) to trace requirements and implementation evidence."
 trigger_phrases:
   - "tasks"
   - "descri"

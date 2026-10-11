@@ -1,6 +1,6 @@
 ---
 title: "Implementation [system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/007-phase-classification/plan]"
-description: 'title: "Implementation Plan: Phase Classification"'
+description: "This document records the current verified state for this scope. Use [spec.md](spec.md) and [plan.md](plan.md) to trace requirements and implementation evidence."
 trigger_phrases:
   - "implementation"
   - "plan"

@@ -119,12 +119,6 @@
         "source": "derived"
       },
       {
-        "name": "Data Fidelity",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -140,6 +134,18 @@
         "name": "Pattern Data",
         "kind": "proper_noun",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Fidelity",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -183,17 +189,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "counts",
-        "kind": "key_phrase",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Normalization is lossy at multiple pipeline boundaries",
     "created_at": "2026-04-12T09:02:50.269Z",
-    "last_save_at": "2026-10-07T19:24:35.413Z",
+    "last_save_at": "2026-10-10T20:53:43.071Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8240bb8edda633ebf6b5a49c9bad8c6295563806ca0bd34098988b8882a8ef8f",
+    "source_fingerprint": "sha256:74f88e5604784ff6e45c4eda73f85ae1b07444488ec9dfbc707ff77a31ae9958",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "381f7cb7eb78785856e6656b3d94ba2c6c25a7c6bb9ab5114c9be279d9f917c6",
-      "plan.md": "2292bc422da0d5e7fe1892926cc005e75f4fffacce12ab2d898b70940c2a8da9",
-      "tasks.md": "b0338d075d52ce6e09589be99b0b58b031292df72ab63240de30bf9aa424dcb4",
+      "plan.md": "b40e4d1332569dacf0ab12f88d81bf0316202e06f4dd40ff8a69b967569cbe08",
+      "tasks.md": "ae629160d0c0615db9e4752757f5295b79f629217dd00a84a8303dcb042f1515",
       "implementation-summary.md": "962e68412d544ccdbd86ae27b8688b688d87a86a3e70ee60f011fd9a77034119"
     },
     "last_active_child_id": null,

@@ -203,7 +203,7 @@
     ],
     "causal_summary": "This packet still preserves important historical audit evidence, but downstream wrapper packets were reading its milestone counts as if they were current release-control truth",
     "created_at": "2026-04-12T09:02:50.241Z",
-    "last_save_at": "2026-10-08T20:05:33.732Z",
+    "last_save_at": "2026-10-10T20:53:34.465Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,15 +214,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:0a3cd3b4f45a43d53af3a2c2465d2fbe7fd4e18351ebd26efb53f4ecb974b189",
+    "source_fingerprint": "sha256:28d7d3d88c7f41864315f4366321a28584df2ca5003f5a06ce1abbdb03166fca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "769f973701e51ca9f12f5afd5d7ea21180839148e650d29430623231eba6dac1",
+      "spec.md": "10a58f8e5bbba3d2cfd82ecb5c9db186184c32c982856a576713d9b82d6c00cf",
       "plan.md": "c2887920f4250a4f9975e031dcd9a6ef54809f853f42cfb636812912df890081",
-      "tasks.md": "73896401ef1c9a1957d1ecd071f7ef1e61251c9cdeeeec8965cc095fe7a5d338",
-      "decision-record.md": "3a99a9e368c1e2d5b7bec2a4f255c447f7c91a58e37efa97895bae702ddde5be",
-      "implementation-summary.md": "0190ff59b28767df7af10561be28e9ebff4a475203e8a3b9b6a2bf397e29e11d",
-      "handover.md": "10239f3560ff5176bdb3ff91eb69902725132dbb6a89879a9bfa786426be6749"
+      "tasks.md": "a830843da9feba557357360e58937316dd51df6a883df87706341c129e212d41",
+      "decision-record.md": "6b1ba83d063dc31a09a5796537720533b7a6c64fd679f9ae7d33395a9adf5a65",
+      "implementation-summary.md": "e92bdc52be4a097eab979810b98490239b43191cee264c9b0865ac9783d1f5eb",
+      "handover.md": "3412eaaeae997bfd800e074b5198036b18e0067cc42a814f9aaa5e5ba1e044d6"
     },
     "last_active_child_id": null,
     "last_active_at": null

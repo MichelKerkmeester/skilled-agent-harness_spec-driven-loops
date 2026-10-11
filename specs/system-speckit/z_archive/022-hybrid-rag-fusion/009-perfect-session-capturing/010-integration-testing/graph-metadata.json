@@ -120,12 +120,6 @@
         "source": "derived"
       },
       {
-        "name": "Integration Testing",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -139,6 +133,12 @@
       },
       {
         "name": "Pattern Temp",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -168,7 +168,19 @@
         "source": "derived"
       },
       {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Integration Testing",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -178,23 +190,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Known Limitations No",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "temp",
-        "kind": "key_phrase",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The runtime gap is now closed: `workflow-e2e.vitest.ts` exercises the real save path with temp-repo isolation, real markdown writes, real `description.json` mutation, and real post-write indexing handoff behavior",
     "created_at": "2026-04-12T09:02:50.272Z",
-    "last_save_at": "2026-10-07T19:24:28.461Z",
+    "last_save_at": "2026-10-10T20:53:56.159Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9991eddd53bfac6efbf295eccf76aeed2b5f6b1e5267edd8c2b16a50bee5a5c5",
+    "source_fingerprint": "sha256:75727acdc930ab61d37c770e71372059749d9a81983e777e7aa4886c0117a3d0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8379f71f60930fe4a0eacc9ab8af7cf3f59445f96eac7b73ed5871783006350f",
-      "plan.md": "4e041bbba962aa6508e820216b6b30747a1f548705cf25e41dd5c6f74552b2e8",
-      "tasks.md": "09f9ab4b2c59b90cde74277b5f9251f6deee95d1d1552724fea05ae91ba4d768",
+      "plan.md": "780dc8ba7d6cad1fb19e47f1373ece79e874f6857af26327fd5fc82d07a39e72",
+      "tasks.md": "d2b26d4f8492647d8ada96a11571c653a9404aa1e367dcc66ec009c6788b93f1",
       "implementation-summary.md": "e0f445642e787b0828e8a3e9f48aff1d5a08ed92e17a94851dd5da1c5f520ea2"
     },
     "last_active_child_id": null,

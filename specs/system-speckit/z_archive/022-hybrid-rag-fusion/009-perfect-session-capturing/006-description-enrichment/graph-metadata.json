@@ -120,12 +120,6 @@
         "source": "derived"
       },
       {
-        "name": "Description Enrichment",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -139,6 +133,12 @@
       },
       {
         "name": "Pattern Validator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -168,7 +168,19 @@
         "source": "derived"
       },
       {
+        "name": "unified",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Description Enrichment",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -178,23 +190,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Known Limitations No",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "tiered",
-        "kind": "key_phrase",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Two different quality gates validate file descriptions at different pipeline stages with partial overlap and divergent coverage",
     "created_at": "2026-04-12T09:02:50.270Z",
-    "last_save_at": "2026-10-07T19:24:28.098Z",
+    "last_save_at": "2026-10-10T20:53:48.151Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7dd9c8211c69f214c82091838b745da83e397f19c6bcd59fd18e4463c5203965",
+    "source_fingerprint": "sha256:ab54930df0070e36fb6ac6de491671689af6df1a3a3c5c09da7e01cef8702427",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b3cfa6060650404e75797350e945128e971f04b95235c798247b2e997d0d124a",
-      "plan.md": "c37063b7b71e709691c7d19781d52b6b07f217c97dae7519bcfec643e07e99f5",
-      "tasks.md": "e8aec4923ce16663471f8cd40b62d2eb6f3d08d993ee17a9f4a7220f2fd4d1f5",
+      "plan.md": "474f8c229321307c55c2d2e6e689aaeedbb0ec1c9472e5ce0d76b5a99c2264f2",
+      "tasks.md": "49fed1a01a36a2881e8429468f5bcc07e6be5b4056424b9d136148d5bdbf63e1",
       "implementation-summary.md": "96073846f552535c139733fb00c75f4888c4da3765cfbced6b70f90353beb08e"
     },
     "last_active_child_id": null,

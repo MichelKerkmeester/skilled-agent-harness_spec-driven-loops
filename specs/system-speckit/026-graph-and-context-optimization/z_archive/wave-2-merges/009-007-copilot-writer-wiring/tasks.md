@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Copil [system-spec-kit/026-graph-and-context-optimization/007-hook-parity/007-copilot-writer-wiring/tasks]"
-description: 'title: "Tasks: Copilot Writer Wiring"'
+description: "tasks document for 009-007-copilot-writer-wiring."
 trigger_phrases:
   - "tasks"
   - "copil"

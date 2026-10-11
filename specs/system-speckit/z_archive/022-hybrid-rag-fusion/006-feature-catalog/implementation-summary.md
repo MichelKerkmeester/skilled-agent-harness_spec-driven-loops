@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Feature [system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/implementation-summary]"
-description: 'title: "Implementation Summary: Feature Catalog Audit & Remediation"'
+description: "Merged Section: 016-feature-catalog-code-references Implementation Summary"
 trigger_phrases:
   - "implementation"
   - "summary"

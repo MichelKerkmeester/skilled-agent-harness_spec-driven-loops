@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: Feature Catalog Audit [system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/decision-record]"
-description: 'title: "Decision Record: Feature Catalog Audit & Remediation"'
+description: "We need to verify ~180 feature snippets against source code AND investigate 55 undocumented gaps. A single agent cannot handle this volume within context limits. We need a parti..."
 trigger_phrases:
   - "decision"
   - "record"

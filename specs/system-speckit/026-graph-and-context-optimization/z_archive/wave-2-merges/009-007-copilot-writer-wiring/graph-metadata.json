@@ -138,13 +138,13 @@
         "source": "derived"
       },
       {
-        "name": "description: 'title:",
+        "name": "description:",
         "kind": "quoted",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "' trigger_phrases:   -",
+        "name": "trigger_phrases:   -",
         "kind": "quoted",
         "path": "tasks.md",
         "source": "derived"
@@ -168,6 +168,12 @@
         "source": "derived"
       },
       {
+        "name": "_memory:   continuity:     packet_pointer:",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "The Copilot",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -184,17 +190,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Restored Shape Packet",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Route Copilot's userPromptSubmitted and sessionStart hooks to the system-spec-kit Copilot writers by replacing the 'bash: true' no-ops in .claude/settings.local.json with the actual writer commands. Bypasses the Superset-wrapper clobber of .github/hooks/superset-notify.json and makes the $HOME/.copilot/copilot-instructions.md Refreshed: timestamp advance per-prompt under Copilot.",
     "created_at": "2026-04-22T16:05:25.902Z",
-    "last_save_at": "2026-10-07T20:39:52.480Z",
+    "last_save_at": "2026-10-10T20:53:28.057Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ade67d833bdcbecc1adc380ff4a27e1a517ac416685f1789c426e2c2c0a42a1b",
+    "source_fingerprint": "sha256:7994e5ce59d12eabc26ed93d9e49a2ce239b286623cdefff163f318c52ae891f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ecc5186eb49e045af3c3051b971c6672492b94ff96433b4820a4f7acfa6ec80d",
       "plan.md": "99743d4f6c47f91af364130ce6cd1cc5061fdc170222e9341f0f89d834981f2b",
-      "tasks.md": "215227630f79a19320fb37de69a9b2db839ff15508435a56c8beb6dbd6fc46b8",
+      "tasks.md": "0fdf935e42f4fab00aba256adadbe496147db8f8c039847ea054b3f2b5a2d7bd",
       "implementation-summary.md": "007c534f21feb7cf9c0ea79418b4b503e6bcadd2098c5e9375175c9fab69ee63"
     },
     "last_active_child_id": null,

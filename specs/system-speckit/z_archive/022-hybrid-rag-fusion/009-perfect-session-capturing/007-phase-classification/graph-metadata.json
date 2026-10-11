@@ -112,12 +112,6 @@
         "source": "derived"
       },
       {
-        "name": "Phase Classification",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -131,6 +125,12 @@
       },
       {
         "name": "Pattern Cluster",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -160,7 +160,19 @@
         "source": "derived"
       },
       {
+        "name": "Flow Pattern",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Classification",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -176,23 +188,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "1. METADATA",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. WHAT WAS BUILT",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Conversation phase handling previously lived in a keyword-precedence ladder that favored early matches over richer context, so ambiguous exchanges like \"grep in debug output\" could resolve to Research instead of Debugging",
     "created_at": "2026-04-12T09:02:50.271Z",
-    "last_save_at": "2026-10-07T19:24:26.273Z",
+    "last_save_at": "2026-10-10T20:53:50.395Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b23b54a0bbefca0b907c507ca230f4bac0be90691e47ea330873c0fc2e8d67fa",
+    "source_fingerprint": "sha256:cdbf9967dcdd6f9a6e7e7fb7994b62b1199f9464cafd640bf1e045d56dea8cd0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bbc22317d8ff067277e0c3e180a422ada23bc8af4c6ea12899cf316b3185aec4",
-      "plan.md": "a4a8cc534b07b2ecc368b37bb0c6fc70fdc6b1f92c1ef4090161c9894cf6faa8",
-      "tasks.md": "0e96db6c7039c95c643c392fdd79f4561c1810424b9a0a6523edac968865bf5e",
+      "plan.md": "1bbebb3525d81b82a54cc5aa0d3da8994629b4ea3d42e38c1170680a03cc0f64",
+      "tasks.md": "c05b22f71b679b06682baacb4935466612fe2c86045830dc462c21707d2c356e",
       "implementation-summary.md": "b665a1a2d3f0d5275f0f8df0b60633382b73acfebd285a0d873478941e468efe"
     },
     "last_active_child_id": null,
