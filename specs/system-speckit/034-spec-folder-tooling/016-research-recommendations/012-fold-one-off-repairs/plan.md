@@ -41,7 +41,7 @@ Fold remaining one-off repair logic (add-fm-fields.mjs logic, not in repo) into 
 ### Definition of Done
 - [x] All acceptance criteria met (AC-001 to AC-004 Met in acceptance-criteria.md)
 - [x] Tests passing (whole-tree gate, see AC-004)
-- [ ] Docs updated (packet docs are updated; the changelog refresh under the parent is open)
+- [x] Docs updated (packet docs are updated and the changelog refresh is closed)
 <!-- /ANCHOR:quality-gates -->
 
 ---

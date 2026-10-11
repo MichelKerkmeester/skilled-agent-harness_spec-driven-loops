@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility"
-    last_updated_at: "2026-10-09T09:17:51Z"
+    last_updated_at: "2026-10-11T21:32:39Z"
     last_updated_by: "orchestrator"
-    recent_action: "Closeout 3: rows and criteria reconciled; AC-007 re-cited to tree5"
-    next_safe_action: "Ship in the combined upgrade-legacy commit, then the operator manual run for CHK-021"
+    recent_action: "Real v3 upgrade runs completed and the post-rerun review fixes are verified"
+    next_safe_action: "Monitor CI once the closeout commits are pushed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "bd2aa56c-623b-43f8-a2ef-69a13c32d626"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---

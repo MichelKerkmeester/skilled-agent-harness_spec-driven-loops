@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Phase 13 used one-off scripts for repairs",
     "created_at": "2026-10-08T04:22:47Z",
-    "last_save_at": "2026-10-11T19:55:45.260Z",
+    "last_save_at": "2026-10-11T21:35:13.656Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8260f23675f8c73a10da0193954736a1af95d733b685778d011d81fba1e617ff",
+    "source_fingerprint": "sha256:57c46c94d327143ba6b2e7e916e8ea345bbd8fae7dceb3c071d046130f7627a4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f7ba6e86e25727ae5ff7eb9285d8cbde788561f24b9b059a8074649a62cb3f43",
-      "plan.md": "43f83efcbb3fff46a231c9a63bf53c9b5fa5c86f82c7d3b924280f8c5bb47535",
+      "plan.md": "5810895beb19bfb405235312f1a37bdb8df66086c3b0ec68145d5e9fc95ee051",
       "tasks.md": "44a5d52ae76c39393081ae4746827c0c3dc3281683ee1ac08613349b590dd272",
-      "implementation-summary.md": "80faff840b18d07e9dfd1302c7ff36726dc67bb5278170d865e1a25c45e131c3"
+      "implementation-summary.md": "f3009877b5917ff27b6b4ff167b2e82951b4d102ad5bb34301efd9dda92b2e80"
     },
     "last_active_at": null
   }

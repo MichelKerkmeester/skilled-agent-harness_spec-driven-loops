@@ -154,7 +154,7 @@ The operator approved the real apply after the clone review. On the worktree the
 
 - The 30 recorded findings (27 SPEC_DOC_INTEGRITY and 3 TEMPLATE_SOURCE) are downgraded to warnings, not repaired. Their link targets no longer exist, so the tool records the refusal instead of inventing a target (F1 in the evidence log). A packet that carries a baseline passes `--strict` with those warnings.
 - The fill-authored frontmatter values are schema-valid but thin. 032-substrate-repair-followups/handover.md gained `description: "Date: 2026-05-14"` from its first body line, plus `importance_tier: normal` and `contextType: general` (F6). They are not authored prose.
-- The changelog refresh under the parent is still open (`plan.md` line 44). No changelog folder exists under the parent, so it stays an operator item.
+- The changelog refresh is closed by `../changelog/changelog-034-016-research-recommendations.md`, which records this phase and the closeout.
 
 ### Test matrix
 
@@ -206,5 +206,5 @@ The line numbers in this table and in the first-pass rows above it are from the 
 - **CHK-FIX-007, evidence pin.** Closed in the fourth pass. The evidence is pinned to `124e11c883`, the combined commit under D6, which is an ancestor of `origin/main`.
 - **Root test.** The root `npm test` in the system-spec-kit folder did not finish in tree4 (exit 124). The CLI test named by AC-004 passed. The root script is outside this phase.
 - **README (CHK-042, P2).** Closed in the fourth pass. `spec/README.md` line 118 describes the grouped section, and commit `46bd3afd0f` added it.
-- **Changelog refresh.** The spec asks for a file under `../changelog/`, and no changelog folder exists under the parent. This is outside the closeout write set.
+- **Changelog refresh.** Closed 2026-10-11. Written as `../changelog/changelog-034-016-research-recommendations.md`, covering this phase's work and the full-tree apply.
 <!-- /ANCHOR:open-items -->
