@@ -194,6 +194,16 @@ workflow:
         - artifact_dir: "Resolved research packet directory for this target"
         - artifact_archive_root: "Resolved local research archive directory for this target"
 
+  step_bind_reducer_artifact_arg:
+    description: "Keep the reducer on the lineage-owned artifact directory during fan-out"
+    branch_on: "config.fanout_lineage_artifact_dir"
+    if_present:
+      bind:
+        reducer_artifact_arg: "--artifact-dir {artifact_dir}"
+    if_absent:
+      bind:
+        reducer_artifact_arg: ""
+
   step_fanout_spawn:
     description: "Spawn fan-out lineages; skip and proceed to phase_init normally when single-executor"
     skip_when: "config.fanout is absent"
@@ -1018,7 +1028,7 @@ workflow:
                     next_focus: "{pivot_result.restoredFocus}"
                     pivot_lineage: "Pivot {pivot_result.pivotId} selected {pivot_result.selectedCandidate.id} from source iteration {current_iteration}."
                     saturated_directions: "{pivot_result.completedEvent.saturatedDirections}"
-                  command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder}"
+                  command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}"
                   log: "Divergent pivot {pivot_result.pivotId} restored focus to {pivot_result.restoredFocus}; continuing iteration {current_iteration}."
                   proceed_to: step_rejected_pattern_cache
                 if_failed:
@@ -1830,7 +1840,7 @@ workflow:
 
       step_reduce_state:
         action: "Run the reducer to synchronize registry, dashboard, and strategy"
-        command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder}"
+        command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}"
         inputs:
           latestJSONLDelta: "Latest JSONL records written since the previous iteration"
           newIterationFile: "{state_paths.iteration_pattern}"

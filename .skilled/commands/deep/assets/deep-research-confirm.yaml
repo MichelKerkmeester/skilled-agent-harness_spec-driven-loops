@@ -205,6 +205,16 @@ workflow:
         - artifact_dir: "Resolved research packet directory for this target"
         - artifact_archive_root: "Resolved local research archive directory for this target"
 
+  step_bind_reducer_artifact_arg:
+    description: "Keep the reducer on the lineage-owned artifact directory during fan-out"
+    branch_on: "config.fanout_lineage_artifact_dir"
+    if_present:
+      bind:
+        reducer_artifact_arg: "--artifact-dir {artifact_dir}"
+    if_absent:
+      bind:
+        reducer_artifact_arg: ""
+
   step_fanout_spawn:
     description: "Spawn fan-out lineages; skip and proceed to phase_init normally when single-executor"
     skip_when: "config.fanout is absent"
@@ -992,7 +1002,7 @@ workflow:
                       next_focus: "{pivot_result.restoredFocus}"
                       pivot_lineage: "Pivot {pivot_result.pivotId} selected {pivot_result.selectedCandidate.id} from source iteration {current_iteration}."
                       saturated_directions: "{pivot_result.completedEvent.saturatedDirections}"
-                    command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder}"
+                    command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}"
                     proceed_to: gate_pre_iteration
                   on_B:
                     message: "No ranked alternative can be selected because the adapter exposes no ranking score or rank contract."
@@ -1025,7 +1035,7 @@ workflow:
                       next_focus: "{operator_selected_candidate.focus}"
                       pivot_lineage: "Pivot {pivot_result.pivotId} used an audited insufficient-endorsement override for {operator_selected_candidate.id}."
                       saturated_directions: "{operator_saturated_directions}"
-                    command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder}"
+                    command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}"
                     proceed_to: gate_pre_iteration
                   on_C:
                     bookkeeping_log: '{"type":"event","event":"manualStop","mode":"research","run":{current_iteration},"stopReason":"manualStop","pivotId":"{pivot_result.pivotId}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
@@ -1334,7 +1344,7 @@ workflow:
         action: "Run the reducer to synchronize registry, dashboard, and strategy"
         dry_run_boundary: "reducer-refresh"
         dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"reducer-refresh","step":"step_reduce_state","run":{current_iteration},"detail":"Reducer refresh would update registry, dashboard, and strategy.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
-        command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder}"
+        command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}"
         inputs:
           latestJSONLDelta: "Latest JSONL records written since the previous iteration"
           newIterationFile: "{state_paths.iteration_pattern}"

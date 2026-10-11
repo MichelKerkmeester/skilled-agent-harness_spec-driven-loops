@@ -2939,6 +2939,7 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
  * @param {string} specFolder - Path to the target spec folder for the research packet
  * @param {Object} [options] - Reducer options
  * @param {boolean} [options.write=true] - Write outputs to disk when true
+ * @param {string} [options.artifactDir] - Explicit research artifact directory override
  * @returns {Object} Paths and content for registry, strategy, and dashboard
  */
 function reduceResearchState(specFolder, options = {}) {
@@ -2950,7 +2951,10 @@ function reduceResearchState(specFolder, options = {}) {
   const emitResourceMapOutput = Boolean(options.emitResourceMap);
   const requireExistingState = Boolean(options.requireExistingState);
   const resolvedSpecFolder = path.resolve(specFolder);
-  const { artifactDir: researchDir } = resolveArtifactRoot(resolvedSpecFolder, 'research');
+  // A fan-out lineage keeps its own state, so its registry must not overwrite the spec-level one.
+  const researchDir = options.artifactDir
+    ? path.resolve(options.artifactDir)
+    : resolveArtifactRoot(resolvedSpecFolder, 'research').artifactDir;
   const configPath = path.join(researchDir, 'deep-research-config.json');
   const stateLogPath = path.join(researchDir, 'deep-research-state.jsonl');
   const strategyPath = path.join(researchDir, 'deep-research-strategy.md');
@@ -3144,12 +3148,20 @@ if (require.main === module) {
   const fanoutResourceMapOnly = args.includes('--fanout-resource-map-only');
   const emitResourceMapOutput = args.includes('--emit-resource-map') || fanoutResourceMapOnly;
   const requireExistingState = args.includes('--require-existing-state');
-  const positional = args.filter((arg) => !arg.startsWith('--'));
+  const artifactDirFlagIndex = args.indexOf('--artifact-dir');
+  const artifactDirValueIndex = artifactDirFlagIndex === -1 ? -1 : artifactDirFlagIndex + 1;
+  const artifactDirValue = artifactDirValueIndex === -1 ? undefined : args[artifactDirValueIndex];
+  if (artifactDirValueIndex !== -1 && (!artifactDirValue || artifactDirValue.startsWith('--'))) {
+    process.stderr.write('[deep-research] --artifact-dir requires a path value\n');
+    process.exit(1);
+  }
+  // The flag's value is a path, so it must not be read back as the spec folder.
+  const positional = args.filter((arg, index) => !arg.startsWith('--') && index !== artifactDirValueIndex);
   const specFolder = positional[0];
 
   if (!specFolder) {
     process.stderr.write(
-      'Usage: node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs <spec-folder> [--lenient] [--emit-resource-map]\n',
+      'Usage: node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs <spec-folder> [--artifact-dir <path>] [--lenient] [--emit-resource-map]\n',
     );
     process.exit(1);
   }
@@ -3161,6 +3173,7 @@ if (require.main === module) {
       emitResourceMap: emitResourceMapOutput,
       fanoutResourceMapOnly,
       requireExistingState,
+      artifactDir: artifactDirValue,
     });
     const iterationsCompleted = fanoutResourceMapOnly ? null : result.registry.metrics.iterationsCompleted;
     process.stdout.write(

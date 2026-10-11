@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { createRequire } from 'node:module';
-import { appendFileSync, mkdirSync, readFileSync, symlinkSync, writeFileSync } from 'node:fs';
+import { appendFileSync, existsSync, mkdirSync, readFileSync, symlinkSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -55,6 +55,7 @@ const {
     lenient?: boolean;
     emitResourceMap?: boolean;
     requireExistingState?: boolean;
+    artifactDir?: string;
   }) => {
     registry: {
       status?: string;
@@ -846,6 +847,41 @@ describe('deep-research reduce-state recovery gate', () => {
     );
     expect(parsed.findings).not.toContain('Ruled-Out Direction');
     expect(parsed.ruledOut).toEqual(['Some ruled-out approach']);
+  });
+
+  it('writes registry outputs into an explicit artifact directory instead of the spec research folder', () => {
+    const specFolder = makeTempSpec();
+    const lineageDir = join(specFolder, 'research', 'lineages', 'alpha');
+    mkdirSync(lineageDir, { recursive: true });
+    writeFileSync(
+      join(lineageDir, 'deep-research-config.json'),
+      `${JSON.stringify({
+        topic: 'Reducer recovery test',
+        createdAt: '2026-06-19T00:00:00.000Z',
+        status: 'initialized',
+        maxIterations: 3,
+        resource_map: { emit: false },
+      }, null, 2)}\n`,
+      'utf8',
+    );
+    writeFileSync(join(lineageDir, 'deep-research-strategy.md'), strategyTemplate(), 'utf8');
+    writeFileSync(
+      join(lineageDir, 'deep-research-state.jsonl'),
+      `${JSON.stringify({
+        type: 'iteration',
+        run: 1,
+        status: 'complete',
+        focus: 'lineage artifact directory',
+        findingsCount: 1,
+        newInfoRatio: 0.4,
+      })}\n`,
+      'utf8',
+    );
+
+    const result = reduceResearchState(specFolder, { write: true, artifactDir: lineageDir });
+
+    expect(result.registryPath.startsWith(lineageDir)).toBe(true);
+    expect(existsSync(join(specFolder, 'research', 'findings-registry.json'))).toBe(false);
   });
 });
 
