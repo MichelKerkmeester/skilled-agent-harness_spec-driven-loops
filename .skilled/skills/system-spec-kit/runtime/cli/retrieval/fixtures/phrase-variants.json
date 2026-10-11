@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a01f592260d6afa2a50006d4a7239116f81263c8efcb5b10c759a613ed947911",
+  "manifestHash": "f84debb90ae5b97b21a390a1c0ed957a56976af309d512c7d56c7043fd76c6d1",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -13061,9 +13061,6 @@
     ],
     "battery misses": [
       "battery misses"
-    ],
-    "battery misses goal": [
-      "battery misses goal"
     ],
     "battery misses implementation summary": [
       "battery misses implementation summary"
@@ -90065,6 +90062,9 @@
     "sk code 2 2 10 0": [
       "sk-code 2.2.10.0"
     ],
+    "sk code 2 2 11 0": [
+      "sk-code 2.2.11.0"
+    ],
     "sk code 2 2 2 0": [
       "sk-code 2.2.2.0"
     ],
@@ -91103,6 +91103,9 @@
     ],
     "sk code v2 2 10 0": [
       "sk-code v2.2.10.0"
+    ],
+    "sk code v2 2 11 0": [
+      "sk-code v2.2.11.0"
     ],
     "sk code v2 2 2 0": [
       "sk-code v2.2.2.0"
@@ -107855,6 +107858,9 @@
     ],
     "verify alignment drift python sh": [
       "verify alignment drift python sh"
+    ],
+    "verify alignment drift routing": [
+      "verify_alignment_drift routing"
     ],
     "verify alignment drift script": [
       "verify alignment drift script"

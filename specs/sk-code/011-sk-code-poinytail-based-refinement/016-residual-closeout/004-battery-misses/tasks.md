@@ -4,7 +4,7 @@ description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "battery misses tasks"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Phase 4: battery-misses
@@ -31,9 +31,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Baseline both batteries per probe
+- [x] T002 Trace each probe's lanes and ranking rules
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -41,10 +40,9 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T003 Add `verify_alignment_drift` to sk-code's intent signals (one DeepSeek brief)
+- [x] T004 Recompile the skill graph and refresh the native projection
+- [x] T005 Release sk-code 2.2.11.0 (one brief) and re-mint its manifest
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -52,9 +50,8 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T006 Rerun both batteries, the regression suite and the advisor vitest
+- [x] T007 Validate and commit
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -62,9 +59,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every goal.md criterion passes on the orchestrator's rerun
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,6 +74,3 @@ contextType: "general"
 <!-- /ANCHOR:cross-refs -->
 
 ---
-
-
-

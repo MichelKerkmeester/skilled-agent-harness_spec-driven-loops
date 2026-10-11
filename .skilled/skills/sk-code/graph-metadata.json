@@ -131,6 +131,7 @@
     "stack trace",
     "console error",
     "alignment drift",
+    "verify_alignment_drift",
     "completion claim",
     "unit test",
     "integration test",

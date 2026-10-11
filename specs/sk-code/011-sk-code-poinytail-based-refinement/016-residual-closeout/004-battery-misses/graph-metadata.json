@@ -15,7 +15,10 @@
       "phase 4 battery misses",
       "battery misses plan",
       "battery misses tasks",
-      "battery misses goal",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "battery misses implementation summary"
     ],
     "key_topics": [
@@ -24,22 +27,24 @@
       "phase",
       "plan",
       "tasks",
+      "packet",
       "goal",
-      "implementation",
-      "summary",
-      "broken",
-      "missing",
-      "inefficient",
-      "sentences"
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/graph-metadata.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json"
     ],
     "entities": [
       {
@@ -73,6 +78,18 @@
         "source": "derived"
       },
       {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -103,7 +120,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -121,7 +138,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Trace",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,14 +156,8 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow One",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -173,23 +190,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The sk-code advisor batteries miss three positive probes",
     "created_at": "2026-10-11T10:14:18Z",
-    "last_save_at": "2026-10-11T10:14:22.255Z",
+    "last_save_at": "2026-10-11T11:04:58.722Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +204,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4bb9453de65d7b380db3aa6a90147950a7b168e8983d55935bd7aca4c33d5dc8",
+    "source_fingerprint": "sha256:aeac88626f4b0e07783c466d386cace5b60258e4c01206ffca2f0e0168b9c5de",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2324ead8218f6339353161f02a7ab006eac8192858e2e1c050152f9a95805628",
-      "plan.md": "5649929c7a981a29e91c78a6b0c4d6f7797dbbb205de330e571ade68848f1cf3",
-      "tasks.md": "12b038e8d3015fb234dac0ba747d0ce8d302cccedf309d85f85b0228485ff9ca",
-      "implementation-summary.md": "b4e6c640eaa5bdb46983bea93f977ebd357113068c23452e38ca26380a7f94ed"
+      "spec.md": "612f2f429625ad9ff98b52e783e0c0294a04e3f7ead9bac5b59c3a7407ed8b19",
+      "plan.md": "df5a1b64e49c246dd55eea1d16b01cb2a0ae5f639d788ccc8a3d48660ae8ce63",
+      "tasks.md": "a90886815cb510fba8fbda58e043ee10985da1731384e41ea522976b4fea4b4b",
+      "implementation-summary.md": "5c24cf75376467ee12e9530b0e6919df2030d9edf2ea310eb23f56cad90f6589"
     },
     "last_active_at": null
   }

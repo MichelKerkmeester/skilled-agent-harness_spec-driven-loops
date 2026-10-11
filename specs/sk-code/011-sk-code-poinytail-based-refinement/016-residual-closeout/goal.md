@@ -101,6 +101,7 @@ and findings belong here.
 | Phase 001 | Done | 13 of 13 units pass the strict check |
 | Phase 002 | Done | 0 HVR hard blockers in both hooks READMEs |
 | Phase 003 | Done | DOC-331 CLOSED: gold right, the only router fix has one caller |
+| Phase 004 | Done | P15 FIXED; P4 and P7 CLOSED with rule and gap |
 
 ### Deviations and findings
 

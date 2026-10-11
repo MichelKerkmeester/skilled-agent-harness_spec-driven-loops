@@ -1,5 +1,5 @@
 {
-  "corpusHash": "d9532a8c6d1f8adac689083a8932f96ef2ece121df5ff713d17aadc9bee0dcd5",
+  "corpusHash": "af8585a91f3d0b369d1cc2a81edda8e89bf52f84ac3c543696e9976c77459684",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24613,
+  "includedPathCount": 24614,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2663,6 +2663,7 @@
     ".skilled/skills/sk-code/changelog/v2.2.0.0.md",
     ".skilled/skills/sk-code/changelog/v2.2.1.0.md",
     ".skilled/skills/sk-code/changelog/v2.2.10.0.md",
+    ".skilled/skills/sk-code/changelog/v2.2.11.0.md",
     ".skilled/skills/sk-code/changelog/v2.2.2.0.md",
     ".skilled/skills/sk-code/changelog/v2.2.3.0.md",
     ".skilled/skills/sk-code/changelog/v2.2.4.0.md",
@@ -24644,7 +24645,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "a01f592260d6afa2a50006d4a7239116f81263c8efcb5b10c759a613ed947911",
+  "manifestHash": "f84debb90ae5b97b21a390a1c0ed957a56976af309d512c7d56c7043fd76c6d1",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
