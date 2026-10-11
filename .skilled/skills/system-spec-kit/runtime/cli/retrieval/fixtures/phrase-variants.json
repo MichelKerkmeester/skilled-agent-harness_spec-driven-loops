@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a914630dbab05e5d43a603fa6a25e626da9e027f2a50b396d7eb39954c4721b9",
+  "manifestHash": "73913da17f2f956e739c948767e7559c2e6b97425d9d3f69b14ccf52039f7d05",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -90055,6 +90055,9 @@
     "short circuit vector search": [
       "short-circuit vector search"
     ],
+    "short host late write": [
+      "short-host late write"
+    ],
     "short host stdin deadline": [
       "short host stdin deadline"
     ],
@@ -100390,9 +100393,6 @@
     "stdin late write coverage": [
       "stdin late write coverage"
     ],
-    "stdin late write coverage goal": [
-      "stdin late write coverage goal"
-    ],
     "stdin late write coverage implementation summary": [
       "stdin late write coverage implementation summary"
     ],
@@ -102609,6 +102609,9 @@
     "system spec kit 2 7 7 0": [
       "system-spec-kit 2.7.7.0"
     ],
+    "system spec kit 2 7 8 0": [
+      "system-spec-kit 2.7.8.0"
+    ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
     ],
@@ -103004,6 +103007,9 @@
     ],
     "system spec kit v2 7 7 0": [
       "system-spec-kit v2.7.7.0"
+    ],
+    "system spec kit v2 7 8 0": [
+      "system-spec-kit v2.7.8.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"

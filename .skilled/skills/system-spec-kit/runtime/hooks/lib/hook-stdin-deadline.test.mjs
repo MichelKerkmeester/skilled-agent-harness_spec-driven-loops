@@ -7,11 +7,11 @@
 // prompt-submit shim, its own inlined reader, so with stdin left open and never
 // written it gives up at the deadline and takes the same exit it takes on an
 // empty payload. The payload tests pin the parse path of entries that no other
-// suite spawns with a real payload, the byte cap of the compiled reader, and
-// the payload a short-deadline entry still receives when its host writes it but
-// never closes stdin. It also pins that a short-deadline entry drops a payload
-// written after its deadline. The compiled entries run from dist, so build the
-// runtime before running this file.
+// suite spawns with a real payload, the byte cap of the compiled reader, and,
+// for every short-deadline entry, that a payload its host writes but never
+// closes is still acted on, while the same payload written after the deadline
+// is dropped. The compiled entries run from dist, so build the runtime before
+// running this file.
 // ───────────────────────────────────────────────────────────────────
 
 import assert from 'node:assert/strict';
@@ -225,59 +225,109 @@ test('the compiled reader still drops a payload past its byte cap without waitin
   assert.ok(codex.elapsedMs < DEADLINE_FLOOR_MS, `the capped read took ${codex.elapsedMs} ms`);
 });
 
-test('the short-deadline entries still act on a payload their host writes but never closes', async (t) => {
-  const workspace = tempDir(t, 'short-host-payload-');
-  const target = path.join(workspace, 'advisor-stub.cjs');
+// One row per short-deadline entry: the payload its host would send and the sign that
+// the entry acted on it. The same rows drive the early-write and the late-write test,
+// so a payload written in time is acted on and the identical payload written after the
+// deadline is not, for every entry. The prompt entries forward to a stub advisor, and
+// the classifiers act on a workspace whose gate state shows whether they read anything.
+function shortHostPayloads(workspace, stub, sessionId) {
+  const prompt = 'please edit the file src/app.js and fix the bug';
+  const gateState = (name) => {
+    const dir = path.join(workspace, '.skilled', 'skills', '.state', 'spec-gate');
+    return fs.existsSync(dir) && fs.readdirSync(dir).some((file) => file.startsWith(Buffer.from(`${sessionId}-${name}`).toString('hex')));
+  };
+  return [
+    {
+      file: 'hooks/claude/spec-gate-classify.mjs',
+      input: { session_id: `${sessionId}-claude-classify`, prompt, cwd: workspace, hook_event_name: 'UserPromptSubmit' },
+      received: () => gateState('claude-classify'),
+    },
+    {
+      file: 'hooks/codex/spec-gate-classify.mjs',
+      input: { session_id: `${sessionId}-codex-classify`, prompt, cwd: workspace, hook_event_name: 'UserPromptSubmit' },
+      received: () => gateState('codex-classify'),
+    },
+    {
+      file: 'dist/hooks/claude/compact-inject.js',
+      input: { session_id: `${sessionId}-compact`, trigger: 'manual' },
+      received: (result) => /PreCompact triggered for session/.test(result.stderr),
+    },
+    {
+      file: 'dist/hooks/claude/session-prime.js',
+      input: { session_id: `${sessionId}-prime`, source: 'startup' },
+      received: (result) => /## Session Context/.test(result.stdout),
+    },
+    {
+      file: 'dist/hooks/claude/user-prompt-submit.js',
+      input: { prompt: 'stdin-deadline prompt' },
+      env: { SPECKIT_USER_PROMPT_TARGET: stub },
+      received: (result) => /stub received stdin-deadline prompt/.test(result.stdout),
+    },
+    {
+      file: 'dist/hooks/codex/session-start.js',
+      input: { hook_event_name: 'SessionStart', session_id: `${sessionId}-codex`, cwd: REPO_ROOT, source: 'startup' },
+      received: (result) => /"hookEventName":"SessionStart"/.test(result.stdout),
+    },
+    {
+      file: 'dist/hooks/codex/user-prompt-submit.js',
+      input: { hook_event_name: 'UserPromptSubmit', session_id: `${sessionId}-codex-prompt`, cwd: REPO_ROOT, prompt: 'stdin-deadline prompt' },
+      env: { SPECKIT_USER_PROMPT_TARGET: stub },
+      received: (result) => /stub received stdin-deadline prompt/.test(result.stdout),
+    },
+  ];
+}
+
+function shortHostFixture(t, prefix, label) {
+  const workspace = tempDir(t, prefix);
+  const stub = path.join(workspace, 'advisor-stub.cjs');
   fs.writeFileSync(
-    target,
-    "let text = ''; process.stdin.on('data', (chunk) => { text += chunk; }).on('end', () => { process.stdout.write(JSON.stringify({ received: JSON.parse(text) })); });\n",
+    stub,
+    "let text = ''; process.stdin.on('data', (chunk) => { text += chunk; }).on('end', () => { process.stdout.write(JSON.stringify({ hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: 'stub received ' + JSON.parse(text).prompt } })); });\n",
   );
-  const sessionId = `stdin-deadline-${process.pid}-open`;
-  const [shim, prime, compact, codex] = await Promise.all([
-    runHook('dist/hooks/claude/user-prompt-submit.js', {
-      input: JSON.stringify({ prompt: 'stdin-deadline prompt' }),
-      holdOpen: true,
-      env: { SPECKIT_USER_PROMPT_TARGET: target },
-    }),
-    runHook('dist/hooks/claude/session-prime.js', {
-      input: JSON.stringify({ session_id: `${sessionId}-prime`, source: 'startup' }),
-      holdOpen: true,
-    }),
-    runHook('dist/hooks/claude/compact-inject.js', {
-      input: JSON.stringify({ session_id: `${sessionId}-compact`, trigger: 'manual' }),
-      holdOpen: true,
-    }),
-    runHook('dist/hooks/codex/session-start.js', {
-      input: JSON.stringify({ hook_event_name: 'SessionStart', session_id: `${sessionId}-codex`, cwd: REPO_ROOT, source: 'startup' }),
-      holdOpen: true,
-    }),
-  ]);
-  for (const [name, result] of Object.entries({ shim, prime, compact, codex })) {
-    assert.equal(result.signal, null, `${name} must exit on its own, not be killed`);
-    assert.equal(result.code, 0, `${name}: ${result.stderr}`);
-    assert.ok(result.elapsedMs < SHORT_HOST_LATEST_EXIT_MS, `${name} exited after ${result.elapsedMs} ms`);
-  }
-  assert.deepEqual(JSON.parse(shim.stdout), { received: { prompt: 'stdin-deadline prompt' } });
-  assert.match(prime.stdout, /## Session Context/);
-  assert.match(compact.stderr, /PreCompact triggered for session/);
-  assert.equal(JSON.parse(codex.stdout).hookSpecificOutput.hookEventName, 'SessionStart');
+  return shortHostPayloads(workspace, stub, `stdin-deadline-${process.pid}-${label}`);
+}
+
+// The Claude prompt shim cannot import the shared constant, so its copy is checked here.
+test('the three copies of the short-host deadline agree', () => {
+  const read = (rel) => fs.readFileSync(path.join(RUNTIME_ROOT, rel), 'utf8');
+  const values = [
+    read('hooks/shared-stdin.ts').match(/SHORT_HOST_STDIN_TIMEOUT_MS = (\d+)/)?.[1],
+    read('hooks/lib/hook-adapter-shared.mjs').match(/SHORT_HOST_STDIN_TIMEOUT_MS = (\d+)/)?.[1],
+    read('hooks/claude/user-prompt-submit.ts').match(/STDIN_DEADLINE_MS = (\d+)/)?.[1],
+  ];
+  assert.deepEqual(values, ['500', '500', '500']);
 });
 
-test('a short-deadline entry drops a payload its host writes after the deadline', async (t) => {
-  const workspace = tempDir(t, 'short-host-late-');
-  const target = path.join(workspace, 'advisor-stub.cjs');
-  fs.writeFileSync(
-    target,
-    "let text = ''; process.stdin.on('data', (chunk) => { text += chunk; }).on('end', () => { process.stdout.write(JSON.stringify({ received: JSON.parse(text) })); });\n",
-  );
-  const result = await runHook('dist/hooks/claude/user-prompt-submit.js', {
-    input: JSON.stringify({ prompt: 'late prompt' }),
-    holdOpen: true,
-    writeDelayMs: 800,
-    env: { SPECKIT_USER_PROMPT_TARGET: target },
-  });
-  assert.equal(result.signal, null, 'the hook must exit on its own, not be killed');
-  assert.equal(result.code, 0, result.stderr);
-  assert.ok(result.elapsedMs < SHORT_HOST_LATEST_EXIT_MS, `exited after ${result.elapsedMs} ms`);
-  assert.equal(result.stdout, '{}', 'a payload written after the 500 ms deadline is dropped and the shim answers {}');
+test('every short-deadline entry has a payload row', (t) => {
+  const rows = shortHostFixture(t, 'short-host-rows-', 'rows').map((row) => row.file).sort();
+  const shortHost = HOOKS.filter((hook) => hook.floor === SHORT_HOST_FLOOR_MS && !hook.args).map((hook) => hook.file).sort();
+  assert.deepEqual(rows, shortHost);
+});
+
+test('every short-deadline entry still acts on a payload its host writes but never closes', async (t) => {
+  const rows = shortHostFixture(t, 'short-host-payload-', 'open');
+  const results = await Promise.all(rows.map((row) => runHook(row.file, { input: JSON.stringify(row.input), holdOpen: true, env: row.env })));
+  for (const [index, row] of rows.entries()) {
+    await t.test(row.file, () => {
+      const result = results[index];
+      assert.equal(result.signal, null, 'the hook must exit on its own, not be killed');
+      assert.equal(result.code, 0, result.stderr);
+      assert.ok(result.elapsedMs < SHORT_HOST_LATEST_EXIT_MS, `exited after ${result.elapsedMs} ms`);
+      assert.ok(row.received(result), `the payload written in time was not acted on: ${result.stdout} ${result.stderr}`);
+    });
+  }
+});
+
+test('every short-deadline entry drops a payload its host writes after the deadline', async (t) => {
+  const rows = shortHostFixture(t, 'short-host-late-', 'late');
+  const results = await Promise.all(rows.map((row) => runHook(row.file, { input: JSON.stringify(row.input), holdOpen: true, writeDelayMs: 800, env: row.env })));
+  for (const [index, row] of rows.entries()) {
+    await t.test(row.file, () => {
+      const result = results[index];
+      assert.equal(result.signal, null, 'the hook must exit on its own, not be killed');
+      assert.equal(result.code, 0, result.stderr);
+      assert.ok(result.elapsedMs < SHORT_HOST_LATEST_EXIT_MS, `exited after ${result.elapsedMs} ms`);
+      assert.ok(!row.received(result), `a payload written after the 500 ms deadline was acted on: ${result.stdout}`);
+    });
+  }
 });

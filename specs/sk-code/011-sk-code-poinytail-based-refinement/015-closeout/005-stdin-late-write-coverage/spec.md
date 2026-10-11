@@ -1,11 +1,11 @@
 ---
 title: "Feature Specification: Phase 5: stdin-late-write-coverage"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "Drive all seven short-deadline hook entries with a payload written in time and the same payload written late, and record in the hooks README what a late write costs."
 trigger_phrases:
   - "stdin late write coverage"
   - "phase 5 stdin late write coverage"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 5: stdin-late-write-coverage
@@ -19,15 +19,15 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-10-11 |
-| **Branch** | `scaffold/005-stdin-late-write-coverage` |
+| **Branch** | `worktrees/098-post-092-integration` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 5 of 9 |
 | **Predecessor** | 004-dispatch-guard-and-vitest |
 | **Successor** | 006-compiled-route-content-check |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | Every criterion in goal.md passes and strict validation passes |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -35,15 +35,15 @@ contextType: "general"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 5** of the Closeout phases specification.
+This is **Phase 5** of the epic closeout phase parent. It closes items 7 and 12 of the closeout list, the late-write test that covered one short-deadline entry and the 500 ms residual risk.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: Only the files in the table below change.
 
 **Dependencies**:
-- [To be defined during planning]
+- None beyond the files named below.
 
 **Deliverables**:
-- [To be defined during planning]
+- Drive all seven short-deadline hook entries with a payload written in time and the same payload written late, and record in the hooks README what a late write costs.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -55,10 +55,10 @@ This is **Phase 5** of the Closeout phases specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+hook-stdin-deadline.test.mjs held seven entries to the 500 ms short-host deadline but tested a late write against only the Claude prompt shim, and the early-write test against four. The hooks README named the deadline without saying what a host that writes late loses.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Each short-deadline entry is proven to act on a payload written at once and to drop the same payload written past its deadline, and the README states the residual risk precisely.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -67,19 +67,23 @@ This is **Phase 5** of the Closeout phases specification.
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- The early-write and late-write tests in hook-stdin-deadline.test.mjs
+- A parity check over the three copies of the 500 ms value
+- One paragraph in runtime/hooks/README.md
+- The system-spec-kit bump for the closeout
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Changing the 500 ms deadline
+- The seven HVR hard blockers already in the hooks README, which predate this phase
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs` | Modify | Table-driven short-host rows, parity check |
+| `.skilled/skills/system-spec-kit/runtime/hooks/README.md` | Modify | Residual-risk paragraph |
+| `.skilled/skills/system-spec-kit/SKILL.md and changelog/v2.7.8.0.md` | Modify, Create | Version 2.7.8.0 |
+| `.hermes/skills/system-spec-kit/SKILL.md` | Modify | Regenerated |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -91,13 +95,14 @@ This is **Phase 5** of the Closeout phases specification.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Every short-deadline entry is covered both ways | A rows test asserts the table matches every SHORT_HOST entry |
+| REQ-002 | The late test discriminates | With the late write moved to 100 ms all seven late rows fail |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-090 | Strict validation of this phase passes | validate.sh --strict prints RESULT: PASSED |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -105,8 +110,8 @@ This is **Phase 5** of the Closeout phases specification.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: Every completion criterion in goal.md passes when the orchestrator reruns it.
+- **SC-002**: The phase lands as one conventional commit in the worktree.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -116,8 +121,7 @@ This is **Phase 5** of the Closeout phases specification.
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | A change reaches a caller the phase did not name | Med | The gates named in goal.md are rerun from the final state |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -125,10 +129,7 @@ This is **Phase 5** of the Closeout phases specification.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None.
 <!-- /ANCHOR:questions -->
 
 ---
-
-

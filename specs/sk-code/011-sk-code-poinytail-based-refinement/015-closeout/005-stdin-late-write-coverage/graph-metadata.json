@@ -15,7 +15,10 @@
       "phase 5 stdin late write coverage",
       "stdin late write coverage plan",
       "stdin late write coverage tasks",
-      "stdin late write coverage goal",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "stdin late write coverage implementation summary"
     ],
     "key_topics": [
@@ -26,20 +29,24 @@
       "phase",
       "plan",
       "tasks",
+      "packet",
       "goal",
-      "implementation",
-      "summary",
-      "broken",
-      "missing"
+      "durable",
+      "directive",
+      "completion"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "runtime/hooks/README.md",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/hooks/README.md",
+      ".hermes/skills/system-spec-kit/SKILL.md"
     ],
     "entities": [
       {
@@ -70,6 +77,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-stdin-deadline.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
@@ -121,7 +146,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Probe",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,14 +164,8 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow One",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -163,33 +188,15 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "no",
+        "kind": "key_phrase",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "hook-stdin-deadline.test.mjs held seven entries to the 500 ms short-host deadline but tested a late write against only the Claude prompt shim, and the early-write test against four",
     "created_at": "2026-10-11T04:49:34Z",
-    "last_save_at": "2026-10-11T04:49:40.880Z",
+    "last_save_at": "2026-10-11T05:27:52.692Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +206,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:309ada70f705de4ed71aabed8be20c9796a03c6c0b41875196fcf6141698cf31",
+    "source_fingerprint": "sha256:cd4a7d710b69999ce8c51e681eea8a291e78c7f1c27823c37af5d6eb2586d9a2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "78227e5bb7aacddd90ae73d9dc72b0a254955d32b6a059b78889ba679ef7313b",
-      "plan.md": "0c7b857ad94bff04bac75ae1604c4766d45e46bdf3e2cd12cc7c05ff14c2ec1a",
-      "tasks.md": "fd12a409597ac8229239f454ecff1acb709bf9ce28266e4229feaca7551004df",
-      "implementation-summary.md": "2725aeb01cf581faab5cbcade31012558b884e0de1f8f107b21394eca5040989"
+      "spec.md": "4a3bab4657a76146a2ee3700d7c484dfa9ffc045d88c4514d113565019f5ba38",
+      "plan.md": "28ca112bed5adff463bdd98f299732810826f8e437cb2e7f5121caec84f6569b",
+      "tasks.md": "f1e2291fa4bc68b6f31aec71a3e8d098c4adcfc0260e86d43e73f0adafcda654",
+      "implementation-summary.md": "3ca4812fc13e0d262e016116ae983f7e3be05da7dd8f6ebdb5f13615e1e9afc4"
     },
     "last_active_at": null
   }
