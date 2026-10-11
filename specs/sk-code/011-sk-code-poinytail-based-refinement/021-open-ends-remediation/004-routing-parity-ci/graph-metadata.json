@@ -200,7 +200,7 @@
     ],
     "causal_summary": "No workflow runs the divergence ratchet, so a new unledgered divergence between the Python and native scorers never fails a push",
     "created_at": "2026-10-11T18:31:52Z",
-    "last_save_at": "2026-10-11T20:33:42.141Z",
+    "last_save_at": "2026-10-11T22:40:55.087Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4cc8dd7c0f99bee6ac65fb739a1e3a7163eacce21dd3414ead6814e634983e7f",
+    "source_fingerprint": "sha256:eb2cd89356396cb96e84ca3fb1df24eb4884f285d8bf287e86e61b91648cc0bf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c726ec5a81e142ae81beada556843167acd9eee61b93b57e7eadb0ee74b19026",

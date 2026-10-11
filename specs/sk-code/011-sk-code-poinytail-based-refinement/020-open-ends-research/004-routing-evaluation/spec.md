@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-11 |
 | **Branch** | `worktrees/104-open-ends-scaffold` |
 | **Parent Spec** | ../spec.md |

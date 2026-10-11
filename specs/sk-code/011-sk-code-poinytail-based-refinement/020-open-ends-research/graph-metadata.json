@@ -41,7 +41,7 @@
       "directive"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -147,17 +147,17 @@
     ],
     "causal_summary": "The refinement epic closed its own ledger, but five questions came out of it that no phase owned",
     "created_at": "2026-10-11T15:54:51Z",
-    "last_save_at": "2026-10-11T18:02:26.894Z",
+    "last_save_at": "2026-10-11T22:38:07.936Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:3f6074a51984765c99878595f28e115646585f8c2b8979d70d2f7d0fcea37799",
+    "source_fingerprint": "sha256:51f4a58652e566b0a3710a6ed6aa992fa5a2c0c6a79472fa79129e917a24f12e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "54ed4e08b66541722eca78faf133720a451949190814b9f38bcdf7213b88bd5a"
+      "spec.md": "5303f4c8236574800ea11453cb2eb6db1229f60315c991c11fc8da7f046dc938"
     },
     "last_active_at": null
   }

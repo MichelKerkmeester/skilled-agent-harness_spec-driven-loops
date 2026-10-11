@@ -35,7 +35,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The advisor batteries are 17 prompts plus 5 negatives",
     "created_at": "2026-10-11T15:54:55Z",
-    "last_save_at": "2026-10-11T17:39:34.437Z",
+    "last_save_at": "2026-10-11T22:37:13.327Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:1d5f70a44cd6a47ee4be26a5138e6f88d13d6d9ec9fbadc8fd2f2c0648c3490f",
+    "source_fingerprint": "sha256:70b49f044689e84abb0152f19518e41509717f7616f76e32c72c83217f846e9d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4de36f669bac57383876f5aee772d202a4d66a27d6bdd0aee6c96289b3522527",
+      "spec.md": "9d2d5bf6a84abf313689e15d80d9f1570a3351ec8c89b8ecfbfecf83081a0e5c",
       "plan.md": "906da6e8c8d9474942bdd71caf77b08e0646e7150014b845a8d5f8a742445c68",
       "tasks.md": "1ee1c9c19e2656d907862756ff6e1da87199f51657f07f2881e287e5c5ff31c8",
       "implementation-summary.md": "03670584328fce6655703f4a340e360bdd302ad8d9c4b0b9aa9806ea7f419ee1",

@@ -204,7 +204,7 @@
     ],
     "causal_summary": "54 scripts accept an unknown or misspelled option and carry on",
     "created_at": "2026-10-11T18:31:49Z",
-    "last_save_at": "2026-10-11T21:53:03.844Z",
+    "last_save_at": "2026-10-11T22:40:55.089Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ef5308fb6e6688fa4e70748b43b413b7325c3b9e4139cee6f8cec909e126f44a",
+    "source_fingerprint": "sha256:6d24b1415a2feae9812a60e575f2ca6179d31b218bb10d31e2751a97fff71cc2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ac501499c08709dc0e0607230f3dd95580340703b44ea44253e9eac1ceda5e77",

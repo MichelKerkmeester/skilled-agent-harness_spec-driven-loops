@@ -133,7 +133,7 @@ These bind every build phase, 002 to 006.
 | 17 | 017-release-changelog/ | Record the epic's and the catalog anchor track's user-facing changes in the v4.0.0.4 release entry | Complete |
 | 18 | 018-create-sh-unknown-options/ | Make create.sh refuse an unknown option instead of adding it to the title, and fix the docs that passed a flag it never had | Complete |
 | 19 | 019-routing-miss-fixes/ | Fix the three routing misses the closeout left: DOC-331 in the deep-loop router, and P4 and P7 in the advisor | Complete |
-| 20 | 020-open-ends-research/ | Five ten-iteration loops on the epic's open ends: doc versions, fresh-clone onboarding, playbook and catalog truth, routing evaluation and silent CLI input | Pending |
+| 20 | 020-open-ends-research/ | Five ten-iteration loops on the epic's open ends: doc versions, fresh-clone onboarding, playbook and catalog truth, routing evaluation and silent CLI input | Complete |
 | 21 | 021-open-ends-remediation/ | Build every recommendation the open ends research kept: typo-proof parsers, onboarding fixes, doc and catalog truth, and routing parity in CI | Complete |
 
 ### Phase Transition Rules

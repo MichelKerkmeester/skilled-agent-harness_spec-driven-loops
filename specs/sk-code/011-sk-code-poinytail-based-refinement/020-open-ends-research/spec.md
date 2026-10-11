@@ -10,17 +10,17 @@ contextType: "research"
 _memory:
   continuity:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research"
-    last_updated_at: "2026-10-11T16:00:00Z"
-    last_updated_by: "scaffold"
-    recent_action: "Scaffolded the parent and its five research and review children"
-    next_safe_action: "Run each child's loop in its own worktree branched from the scaffold commit"
+    last_updated_at: "2026-10-12T10:00:00Z"
+    last_updated_by: "rem-integration"
+    recent_action: "All five loops synthesized; 021-open-ends-remediation built every kept recommendation"
+    next_safe_action: "None; the research is closed and its recommendations shipped through 021"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +37,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-11 |
 | **Branch** | `worktrees/104-open-ends-scaffold` |
 | **Parent Spec** | `../spec.md` |
@@ -92,11 +92,11 @@ Answer each question with evidence and a ranked list of the smallest fixes, so l
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-doc-version-contract/ | Why doc-version verify fails on every skill, and the smallest contract or none | Pending |
-| 2 | 002-fresh-clone-onboarding/ | Every stumble from fresh clone to first routed request and spec packet, ranked by user impact | Pending |
-| 3 | 003-playbook-catalog-truth/ | The lightest self-check for playbook scenarios and catalog entries against the code | Pending |
-| 4 | 004-routing-evaluation/ | A held-out evaluation set and a Python and Node parity check for the advisor | Pending |
-| 5 | 005-silent-input-sweep/ | Deep review of CLI scripts for silently accepted options and false exit 0 | Pending |
+| 1 | 001-doc-version-contract/ | Why doc-version verify fails on every skill, and the smallest contract or none | Complete |
+| 2 | 002-fresh-clone-onboarding/ | Every stumble from fresh clone to first routed request and spec packet, ranked by user impact | Complete |
+| 3 | 003-playbook-catalog-truth/ | The lightest self-check for playbook scenarios and catalog entries against the code | Complete |
+| 4 | 004-routing-evaluation/ | A held-out evaluation set and a Python and Node parity check for the advisor | Complete |
+| 5 | 005-silent-input-sweep/ | Deep review of CLI scripts for silently accepted options and false exit 0 | Complete |
 | 6 | 006-ci-truth-checks/ | Build 003's R1 and R2: the catalog validator and a new-citation gate block pull requests in CI | Complete |
 
 ### Phase Transition Rules
