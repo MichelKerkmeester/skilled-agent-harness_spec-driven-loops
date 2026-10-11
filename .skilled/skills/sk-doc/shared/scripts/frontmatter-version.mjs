@@ -21,15 +21,13 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { execFileSync, execFile } from 'node:child_process';
-import { promisify } from 'node:util';
+import { execFileSync } from 'node:child_process';
 import process from 'node:process';
 // One shared fence parser for every skill: leading-fence position, closing-fence
 // and CRLF rules stay identical across readers of the same documents.
 import { parseFrontmatter as parseFencedFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter.js';
 import { exitIfValidationOff } from './validation-switch.cjs';
 
-const execFileP = promisify(execFile);
 const GIT_CONCURRENCY = 16;
 
 /** Run fn over items with a bounded concurrency pool, preserving order. */
@@ -48,7 +46,6 @@ async function mapPool(items, limit, fn) {
 }
 
 const VERSION_RE = /^\d+\.\d+\.\d+\.\d+$/;
-const W_CAP = 99;
 const EXCLUDED_DIRS = new Set(['changelog', 'scratch', 'node_modules', '.git', 'dist']);
 // Catalog and playbook root names the explicit-target guard recognizes, so an
 // unsupported root such as feature_catalog_v2 is refused by name.
@@ -58,44 +55,6 @@ const SCOPE_SUBTREES = ['references', 'assets', 'feature-catalog', 'manual-testi
 
 function repoRoot() {
   return execFileSync('git', ['rev-parse', '--show-toplevel'], { encoding: 'utf8' }).trim();
-}
-
-/**
- * Count commits whose own added+deleted line count for this file is > 0.
- * Traces the path with --follow but gates every commit on per-file numstat,
- * which discards the historical rename + bulk-sweep inflation (3-5x).
- */
-async function realEditCount(absFile, root) {
-  let out;
-  try {
-    const res = await execFileP(
-      'git',
-      ['log', '--follow', '--numstat', '--format=%H', '--', absFile],
-      { cwd: root, encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 },
-    );
-    out = res.stdout;
-  } catch {
-    return 0; // untracked / no history
-  }
-  let count = 0;
-  let curHasEdit = false;
-  let sawCommit = false;
-  for (const line of out.split('\n')) {
-    if (/^[0-9a-f]{40}$/.test(line)) {
-      if (sawCommit && curHasEdit) count += 1;
-      sawCommit = true;
-      curHasEdit = false;
-      continue;
-    }
-    const m = line.match(/^(\d+|-)\t(\d+|-)\t/);
-    if (m) {
-      const added = m[1] === '-' ? 0 : parseInt(m[1], 10);
-      const deleted = m[2] === '-' ? 0 : parseInt(m[2], 10);
-      if (added + deleted > 0) curHasEdit = true;
-    }
-  }
-  if (sawCommit && curHasEdit) count += 1; // flush last commit
-  return count;
 }
 
 // ─── version helpers ────────────────────────────────────────────
@@ -123,7 +82,7 @@ function tupleStr(t) {
 // ─── frontmatter parsing ────────────────────────────────────────
 
 /**
- * Returns { hasFrontmatter, eol, lines, openIdx, closeIdx, versionLineIdx, versionValue }.
+ * Returns { hasFrontmatter, eol, lines, closeIdx, versionLineIdx, versionValue }.
  * lines excludes the trailing-newline split artifact handling (caller rejoins with eol).
  */
 function parseFrontmatter(content) {
@@ -140,7 +99,7 @@ function parseFrontmatter(content) {
     const m = lines[i].match(/^version:\s*(.+?)\s*$/);
     if (m) { versionLineIdx = i; versionValue = m[1].replace(/^["']|["']$/g, ''); break; }
   }
-  return { hasFrontmatter: true, eol, lines, openIdx: 0, closeIdx, versionLineIdx, versionValue };
+  return { hasFrontmatter: true, eol, lines, closeIdx, versionLineIdx, versionValue };
 }
 
 // ─── skill anchor resolution (cached per skill dir) ─────────────
@@ -193,15 +152,14 @@ function resolveAnchor(skillDir) {
 
 // ─── file classification + scope discovery ─────────────────────
 
-function classify(absFile, skillsRoot) {
-  // Only SKILL.md carries a version: it is the skill edition, and child docs carry none.
-  return path.basename(absFile) === 'SKILL.md' ? 'skill-md' : null;
+/** Only SKILL.md carries a version: it is the skill edition, at a skill root or a
+ *  mode-packet root. Child docs (references, assets, catalogs, playbooks, READMEs) carry none. */
+function isSkillMd(absFile) {
+  return path.basename(absFile) === 'SKILL.md';
 }
 
-/** An in-scope markdown file is a SKILL.md, at a skill root or a mode-packet root.
- *  Child docs (references, assets, catalogs, playbooks, READMEs) carry no version. */
-function inScope(absFile, skillsRoot) {
-  return path.basename(absFile) === 'SKILL.md';
+function classify(absFile) {
+  return isSkillMd(absFile) ? 'skill-md' : null;
 }
 
 function assertExplicitTargets(targets, skillsRoot) {
@@ -216,7 +174,7 @@ function assertExplicitTargets(targets, skillsRoot) {
         && !SCOPE_SUBTREES.includes(segment);
     });
     if (unsupported) throw new Error(`unsupported catalog/playbook root: ${unsupported}`);
-    if (!inScope(target, skillsRoot) || classify(target, skillsRoot) === null) {
+    if (!isSkillMd(target)) {
       throw new Error(`explicit frontmatter target is outside the versioned document scope: ${target}`);
     }
   }
@@ -241,7 +199,7 @@ function discoverInScope(skillsRoot, onlySkill) {
     .map((e) => path.join(skillsRoot, e.name));
   const all = [];
   for (const s of skills) walkAllMd(s, all);
-  return [...new Set(all.filter((f) => inScope(f, skillsRoot)))].sort();
+  return [...new Set(all.filter(isSkillMd))].sort();
 }
 
 // ─── compute one file ───────────────────────────────────────────
@@ -249,24 +207,15 @@ function discoverInScope(skillsRoot, onlySkill) {
 async function computeForFile(absFile, skillsRoot, root) {
   const skillDir = findSkillDir(absFile, skillsRoot);
   const skill = skillDir ? path.relative(skillsRoot, skillDir) : 'UNKNOWN';
-  const fileClass = classify(absFile, skillsRoot);
+  const fileClass = classify(absFile);
   const { anchor, source } = skillDir ? resolveAnchor(skillDir) : { anchor: [1, 0, 0, 0], source: 'default' };
-  const base = path.basename(absFile);
-  let derived;
-  let realEdits = '';
-  if (base === 'SKILL.md') {
-    derived = anchor;
-  } else {
-    realEdits = await realEditCount(absFile, root);
-    derived = [anchor[0], anchor[1], 0, Math.min(realEdits, W_CAP)];
-  }
+  const derived = anchor;
   return {
     path: path.relative(root, absFile),
     fileClass,
     skill,
     anchor: tupleStr(anchor),
     anchorSource: source,
-    realEditCount: realEdits,
     derivedVersion: tupleStr(derived),
     derivedTuple: derived,
     absFile,
@@ -320,7 +269,7 @@ function verifyVersion(absFile, derivedStr) {
 // ─── manifest emit ──────────────────────────────────────────────
 
 function emitManifest(rows, outBase) {
-  const cols = ['path', 'fileClass', 'skill', 'anchor', 'anchorSource', 'realEditCount', 'derivedVersion', 'action'];
+  const cols = ['path', 'fileClass', 'skill', 'anchor', 'anchorSource', 'derivedVersion', 'action'];
   const csv = [cols.join(',')]
     .concat(rows.map((r) => cols.map((c) => csvCell(r[c])).join(',')))
     .join('\n');
@@ -379,7 +328,7 @@ async function main() {
     const targets = args.fromManifest
       ? JSON.parse(fs.readFileSync(args.fromManifest, 'utf8')).map((m) => (path.isAbsolute(m.path) ? m.path : path.join(root, m.path)))
       : discoverInScope(skillsRoot, args.skill);
-    let grows = targets.map((f) => ({ path: path.relative(root, f), absFile: f, fileClass: classify(f, skillsRoot) }));
+    let grows = targets.map((f) => ({ path: path.relative(root, f), absFile: f, fileClass: classify(f) }));
     if (args.classes) { const set = new Set(args.classes.split(',')); grows = grows.filter((r) => set.has(r.fileClass)); }
     let bad = 0;
     for (const r of grows) {

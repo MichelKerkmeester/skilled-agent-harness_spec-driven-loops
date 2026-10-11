@@ -78,6 +78,9 @@ ok(rows.every((r) => r.fileClass === 'skill-md'), 'every discovered row is class
 ok(byName(rows, 'fixt-skill/SKILL.md').derivedVersion === '2.3.0.0', 'SKILL.md anchor = max(2.1.0, changelog 2.3.0.0) = 2.3.0.0');
 ok(byName(rows, 'fixt-skill/SKILL.md').anchorSource === 'max(fm,changelog)', 'anchorSource records max');
 ok(byName(rows, 'fixt-mode/SKILL.md').derivedVersion === '1.4.0.0', 'mode-packet SKILL.md resolves its own anchor');
+ok(rows.every((r) => !('realEditCount' in r)), 'manifest rows carry no per-doc build count');
+const csvHeader = fs.readFileSync(path.join(tmp, 'man.csv'), 'utf8').split('\n')[0];
+ok(!csvHeader.split(',').includes('realEditCount'), `manifest CSV has no realEditCount column (got ${csvHeader})`);
 
 // ─── 2. apply reconciles SKILL.md and writes no child doc ───────
 run('apply');
