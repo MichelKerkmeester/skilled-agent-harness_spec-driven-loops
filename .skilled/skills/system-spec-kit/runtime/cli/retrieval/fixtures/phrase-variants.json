@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e2bd981566fec464a46d22fbdbbd9e4d0f5fabf0471243dce80e47b3fed39df7",
+  "manifestHash": "5e06c81802ea7040de7540ab1e388ecbeec7ff8a271662a5f0723a3e32194601",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8414,6 +8414,9 @@
     ],
     "advisor baseline": [
       "advisor baseline"
+    ],
+    "advisor battery p4 p7": [
+      "advisor battery p4 p7"
     ],
     "advisor behavior table": [
       "advisor behavior table"
@@ -36563,6 +36566,9 @@
     ],
     "do not cite results": [
       "do_not_cite_results"
+    ],
+    "doc 331 finished run clause": [
+      "doc-331 finished run clause"
     ],
     "doc alignment paths": [
       "doc alignment paths"
@@ -70435,6 +70441,9 @@
     "phase 19 plan": [
       "phase 19 plan"
     ],
+    "phase 19 routing miss fixes": [
+      "phase 19 routing miss fixes"
+    ],
     "phase 19 status": [
       "phase 19 status"
     ],
@@ -83541,6 +83550,21 @@
     ],
     "routing match terms sanitized": [
       "routing match-terms sanitized"
+    ],
+    "routing miss fixes": [
+      "routing miss fixes"
+    ],
+    "routing miss fixes goal": [
+      "routing miss fixes goal"
+    ],
+    "routing miss fixes implementation summary": [
+      "routing miss fixes implementation summary"
+    ],
+    "routing miss fixes plan": [
+      "routing miss fixes plan"
+    ],
+    "routing miss fixes tasks": [
+      "routing miss fixes tasks"
     ],
     "routing ownership table": [
       "routing ownership table"
@@ -100279,6 +100303,9 @@
     "system skill advisor 0 15 2 0": [
       "system-skill-advisor 0.15.2.0"
     ],
+    "system skill advisor 0 15 3 0": [
+      "system-skill-advisor 0.15.3.0"
+    ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
     ],
@@ -100431,6 +100458,9 @@
     ],
     "system skill advisor v0 15 2 0": [
       "system-skill-advisor v0.15.2.0"
+    ],
+    "system skill advisor v0 15 3 0": [
+      "system-skill-advisor v0.15.3.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -108601,6 +108631,9 @@
     ],
     "write a screenshot scenario fixture": [
       "write a screenshot scenario fixture"
+    ],
+    "write a test about deep review": [
+      "write a test about deep review"
     ],
     "write back spokes": [
       "write back spokes"

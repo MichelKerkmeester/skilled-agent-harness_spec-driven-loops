@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 6620,
-    "ok": 14015,
+    "ok": 14021,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 24182,
+  "documentsScanned": 24188,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "e2bd981566fec464a46d22fbdbbd9e4d0f5fabf0471243dce80e47b3fed39df7",
+  "manifestHash": "5e06c81802ea7040de7540ab1e388ecbeec7ff8a271662a5f0723a3e32194601",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36027,
+      "ok": 36038,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -66702,6 +66702,10 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/018-create-sh-unknown-options/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/019-routing-miss-fixes/scratch",
       "reason": "excluded directory"
     },
     {
