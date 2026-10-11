@@ -443,6 +443,8 @@ Changelogs, benchmark reports, parser fixtures and the cite-drift redirect table
 **We chose**: Leave history files as they are, and rebuild every generated surface with its generator in phase 010.
 
 **How it works**: Benchmark READMEs keep their archive-status lines but stop describing the modes as live. Phase 010 runs each generator and diffs the result.
+
+**Amended 2026-10-11**: The operator ruled that retired modes keep no changelog. The deep-improvement changelog, moved to `.skilled/changelog/system-deep-loop/deep-improvement/` in phase 005, is deleted when `origin/main` is merged in. Other history files stay as decided above.
 <!-- /ANCHOR:adr-005-decision -->
 
 ---

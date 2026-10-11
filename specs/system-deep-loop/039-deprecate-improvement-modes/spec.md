@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-10-11T03:40:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "All ten phases complete in worktree 097; every gate matches or beats baseline; recursive strict validation passed"
-    next_safe_action: "Operator: review the worktree diff, then decide on commit and merge"
+    next_safe_action: "Operator: review the branch, then push to main"
     blockers: []
     key_files:
       - ".skilled/skills/system-deep-loop/mode-registry.json"
@@ -114,6 +114,7 @@ Each phase owns an exact file list in its `scratch/files.txt`; this table summar
 | 9 | 009-existing-issue-fixes/ | Fix the `+` citation pattern bug and the stale Cline fan-out doc note | Complete |
 | 10 | 010-verification-and-closeout/ | Regenerate derived surfaces, run every gate and prove zero live references | Complete |
 | 11 | 011-pre-existing-gate-failures/ | Fix the gate failures that predate the removal | Complete |
+| 12 | 012-residual-reference-sweep/ | Remove leftovers the name-based search missed | Complete |
 
 ### Phase Transition Rules
 
@@ -135,6 +136,7 @@ Each phase owns an exact file list in its `scratch/files.txt`; this table summar
 | 008-docs-and-readmes | 010-verification-and-closeout | No live doc names a removed mode | Repo-wide search |
 | 009-existing-issue-fixes | 010-verification-and-closeout | Both defects fixed with tests | cite-drift and SOURCE_TAGS tests |
 | 010-verification-and-closeout | 011-pre-existing-gate-failures | Baseline gate runs recorded | Phase 010 gate logs |
+| 011-pre-existing-gate-failures | 012-residual-reference-sweep | Gates green, `origin/main` merged | Phase 011 gate logs |
 <!-- /ANCHOR:phase-map -->
 
 ---

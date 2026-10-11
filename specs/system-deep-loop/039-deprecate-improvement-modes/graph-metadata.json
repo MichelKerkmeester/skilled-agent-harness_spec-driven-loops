@@ -22,7 +22,8 @@
     "system-deep-loop/039-deprecate-improvement-modes/008-docs-and-readmes",
     "system-deep-loop/039-deprecate-improvement-modes/009-existing-issue-fixes",
     "system-deep-loop/039-deprecate-improvement-modes/010-verification-and-closeout",
-    "system-deep-loop/039-deprecate-improvement-modes/011-pre-existing-gate-failures"
+    "system-deep-loop/039-deprecate-improvement-modes/011-pre-existing-gate-failures",
+    "system-deep-loop/039-deprecate-improvement-modes/012-residual-reference-sweep"
   ],
   "manual": {
     "depends_on": [],
@@ -109,16 +110,16 @@
     ],
     "causal_summary": "`system-deep-loop` registers five modes",
     "created_at": "2026-10-10T18:23:47Z",
-    "last_save_at": "2026-10-11T06:22:17.201Z",
+    "last_save_at": "2026-10-11T08:38:11.555Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:845dcbc5098da265e9f21379e6f0df348eb5619113335b9d2bba7bd05b89a797",
+    "source_fingerprint": "sha256:967fc86fd87dc539503f9cb7875bb7644980b7a9b3091d806fa344bd2309c042",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3ad63228cecf539f8e70a584fb12d2275371043fe36bbe0b16a8fc1063ab4f3d"
+      "spec.md": "179c1f4a20f0b6b835af3930a95a1980fc6a4b095d1c615a171b17428ce49528"
     },
     "last_active_at": null
   }

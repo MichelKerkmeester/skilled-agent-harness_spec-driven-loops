@@ -97,7 +97,7 @@ The orchestrator ran each generator after checking its output against the commit
 | Deleted packet suite | 5 timeouts | Packet gone |
 | All other 26 gates | 0 | 0 |
 | Trigger index `--check` | - | fresh, no obsolete paths |
-| Zero-reference search | - | Only declared history classes and exceptions |
+| Zero-reference search | - | Only declared history classes and exceptions for the mode and command names searched; wording such as "improvement lanes" and the agent-improvement phrase vocabulary was not searched, and phase 012 removes what it missed |
 | Whole-program diff | - | 636 files, every one owned by a phase |
 <!-- /ANCHOR:verification -->
 

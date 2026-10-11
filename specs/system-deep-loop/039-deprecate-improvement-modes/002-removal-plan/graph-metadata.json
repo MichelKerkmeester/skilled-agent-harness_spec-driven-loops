@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The two inventories overlap on shared surfaces such as the `deep-improvement` packet, the hub registry and the advisor maps, and some removals must land together or a gate breaks between phases",
     "created_at": "2026-10-10T18:23:48Z",
-    "last_save_at": "2026-10-10T19:48:53.069Z",
+    "last_save_at": "2026-10-11T08:38:13.750Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:922142deb8d6e07b1c35472352915b68b51dce951c30416e026adc7d10400008",
+    "source_fingerprint": "sha256:9953013612204550a63e73835979e6fc32d66e7aa00c6c2d4237d0cfc497e5d9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "10e13508e8bed9b2d9cf75eeed0564f3ec49f7b7cd392ec3c40a75278d423cc4",
       "plan.md": "d5e1dfad5af051695055ecf615bb2cadbb61d702aa288678c702fee8e62fd473",
       "tasks.md": "e70d917899deabd8322fe5872d3712154c62c4d5078e542e6a23cf5799239e2d",
-      "decision-record.md": "db0c50a3b3f71f1e5cb60656f58a9e88da3013de34449b62a6d69d8ae1444e42",
+      "decision-record.md": "08a1115bef229a56792b55ebfa6955fc16b5be1c69b0481f713b59039fe4db6e",
       "implementation-summary.md": "655d03e58e555d76d4573ce11a7e41bb98f28ecfe37ca0562631cd35df8a53cd"
     },
     "last_active_at": null

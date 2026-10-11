@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-deep-loop/039-deprecate-improvement-modes/012-residual-reference-sweep",
+  "description": "Phase 12: residual-reference-sweep",
+  "keywords": [
+    "phase",
+    "residual-reference-sweep"
+  ],
+  "lastUpdated": "2026-10-11T07:17:19.513Z",
+  "specId": "012",
+  "folderSlug": "residual-reference-sweep",
+  "parentChain": [
+    "system-deep-loop",
+    "039-deprecate-improvement-modes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
