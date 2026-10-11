@@ -185,7 +185,7 @@ opencode run \
 - **Primary, directly `--agent`-dispatchable**: `orchestrate` (shown above), `plan` (OpenCode built-in).
 - **Subagents, routed via `--agent orchestrate`'s Task-dispatch (never direct)**: `context`, `markdown`, `review`, `debug`.
 - **`ai-council`**: command-only (`/deep:ai-council`) or `--agent orchestrate` Task-dispatch, never direct `--agent ai-council` (`mode: subagent`).
-- **Command-owned loop executors (never direct `--agent`)**: `deep-research` (via `/deep:research`), `deep-review` (via `/deep:review`), `deep-improvement` (via `/deep:agent-improvement`), `prompt-improver` (via `/prompt`'s deep-path escalation).
+- **Command-owned loop executors (never direct `--agent`)**: `deep-research` (via `/deep:research`), `deep-review` (via `/deep:review`), `prompt-improver` (via `/prompt`'s deep-path escalation).
 
 ---
 

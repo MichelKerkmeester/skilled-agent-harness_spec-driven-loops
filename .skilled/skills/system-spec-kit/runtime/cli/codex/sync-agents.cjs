@@ -34,7 +34,6 @@ const HISTORICAL_SETTINGS = Object.freeze({
   // point of dispatching it at all, so it does not inherit the default.
   context: { sandboxMode: 'read-only', model: 'gpt-5.5', modelReasoningEffort: 'low' },
   debug: { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
-  'deep-improvement': { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
   'deep-research': { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
   'deep-review': { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
   design: { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },

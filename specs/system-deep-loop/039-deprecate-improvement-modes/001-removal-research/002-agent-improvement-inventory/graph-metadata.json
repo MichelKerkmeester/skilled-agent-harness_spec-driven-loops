@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/039-deprecate-improvement-modes/001-removal-research/002-agent-improvement-inventory",
+  "spec_folder": "system-deep-loop/039-deprecate-improvement-modes/001-removal-research/002-agent-improvement-inventory",
+  "parent_id": "system-deep-loop/039-deprecate-improvement-modes/001-removal-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agent improvement inventory",
+      "phase 2 agent improvement inventory",
+      "agent-improvement removal research",
+      "agent improvement inventory plan",
+      "agent improvement inventory tasks",
+      "agent improvement inventory implementation summary"
+    ],
+    "key_topics": [
+      "agent",
+      "improvement",
+      "inventory",
+      "phase",
+      "agent-improvement",
+      "removal",
+      "research",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "mode"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/resource-map.md",
+      "research/findings-registry.json",
+      ".claude/SYNC.md",
+      ".skilled/commands/deep/agent-improvement.md",
+      ".skilled/commands/README.txt",
+      ".skilled/agents/deep-improvement.md",
+      ".skilled/agents/README.txt",
+      ".claude/agents/deep-improvement.md",
+      ".claude/agents/README.txt",
+      ".codex/agents/deep-improvement.toml",
+      ".pi/agents/deep-improvement.md",
+      ".cursor/agents/deep-improvement.md",
+      ".devin/agents/deep-improvement/AGENT.md",
+      ".hermes/skills/agent-deep-improvement/SKILL.md",
+      ".skilled/hooks/git/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".claude/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-improvement.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/agent-improvement.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement.md",
+        "kind": "doc",
+        "path": ".skilled/agents/deep-improvement.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-improvement.toml",
+        "source": "derived"
+      },
+      {
+        "name": "AGENT.md",
+        "kind": "doc",
+        "path": ".devin/agents/deep-improvement/AGENT.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/agent-deep-improvement/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/git/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Externalized",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `agent-improvement` mode of `system-deep-loop` is registered in the hub's mode registry, exposed as the `/deep:agent-improvement` command, dispatched to the `deep-improvement` agent and run by the shared `deep-improvement` packet's loop host",
+    "created_at": "2026-10-10T18:24:03Z",
+    "last_save_at": "2026-10-10T19:09:34.054Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:54e58c13fc05b35cdae18a96fe237ed31a0e5ec53888ef94cbf4c7a2aba75814",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "724e45a14218e87e0466a16b510fa72a024d80aa004cd4679353cef41656421d",
+      "plan.md": "cee608210ef647759b62155dd1cbfcfb6b7002df3ef8e8699cda751c9db53525",
+      "tasks.md": "e50973ca4ab3d081c939b8bb3e7323dba46286dcea39991f564f7368fc864b10",
+      "implementation-summary.md": "2b8fe4ee9fe226ced8633704ccf2d891d0a3a8f11192d51b5eed3dd5ad21e90e",
+      "research/research.md": "750993c9dc900d672f9745741c4353f9025a25b946de20bcce80540ee9ef996a"
+    },
+    "last_active_at": null
+  }
+}

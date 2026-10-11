@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/039-deprecate-improvement-modes/001-removal-research/001-model-benchmark-inventory",
+  "description": "The `model-benchmark` mode of `system-deep-loop` is registered in the hub's mode registry, exposed as the `/deep:model-benchmark` command, and runs",
+  "keywords": [
+    "model-benchmark",
+    "mode",
+    "system-deep-loop",
+    "registered",
+    "hub",
+    "registry",
+    "exposed",
+    "deep",
+    "command",
+    "runs"
+  ],
+  "lastUpdated": "2026-10-10T18:34:41.764Z",
+  "specId": "001",
+  "folderSlug": "model-benchmark-inventory",
+  "parentChain": [
+    "system-deep-loop",
+    "039-deprecate-improvement-modes",
+    "001-removal-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -65,15 +65,8 @@ export {
 export {
   adaptCouncilVerdict,
   adaptDeepReviewVerdict,
-  adaptImprovementVerdict,
-  adaptModelBenchmarkVerdict,
-  adaptSkillBenchmarkVerdict,
   createCouncilAdjudicationRequest,
   createDeepReviewAdjudicationRequest,
-  createImprovementAdjudicationRequest,
-  createModelBenchmarkAdjudicationRequest,
-  createSkillBenchmarkAdjudicationRequest,
-  joinModelBenchmarkCost,
 } from './mode-adapters.js';
 export { BlindedAdjudicationService } from './service.js';
 export {
@@ -130,7 +123,6 @@ export type {
   TypedAdjudicationEvent,
 } from './replay.js';
 export type {
-  ModelBenchmarkCostJoin,
   ModeRequestInput,
 } from './mode-adapters.js';
 export type {

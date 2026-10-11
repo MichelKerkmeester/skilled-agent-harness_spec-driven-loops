@@ -1,0 +1,80 @@
+{
+  "topic": "Inventory every reference to the agent-improvement deep-loop mode (workflowMode agent-improvement, command /deep:agent-improvement, assets deep-agent-improvement-*.yaml and deep-agent-improvement-presentation.txt, the deep-improvement agent, the deep-improvement packet and its loop host, and the legacy advisor id deep-improvement whose default mode is agent-improvement) across this whole repository outside specs/, so its full deletion can be planned. Start from .skilled/skills/system-deep-loop/mode-registry.json, hub-router.json, ROUTER.md, SKILL.md, command-metadata.json, leaf-manifest.json, leaf-scopes.json, graph-metadata.json, .skilled/commands/deep/, .skilled/agents/, .skilled/skills/system-deep-loop/deep-improvement/ and runtime/, .skilled/skills/system-skill-advisor/ (projection maps, alias groups, alias-fold and default-mode projection, routing-registry drift guard), .skilled/skills/sk-doc/, .skilled/skills/cli-external-orchestration/, and the runtime directories .claude .opencode .codex .cursor .pi .devin .hermes (agents, commands, prompts, Hermes agent-* skill mirrors, and whether each is a symlink, a generated copy or a hand-written file). Also check hooks, task-dispatch, bin/, scripts/git-hooks, env examples, CROSS-CLI.md, agent and command index files, READMEs, changelogs and the root README.md, and record whether anything outside this repository consumes the mode or the agent. Name every caller of deep-improvement packet scripts or runtime libraries from outside the two improvement modes. For every reference give [SOURCE: path:line] and classify it as DELETE (exists only for this mode or the packet), EDIT (shared file, remove the mention), SHARED-WITH-MODEL-BENCHMARK (also used by the model-benchmark mode, which a sibling run inventories), or KEEP-AS-HISTORY (changelog or archive). List indirect wiring separately: registry projections, alias folds, compiled contracts, drift guards, generated mirrors, tests and fixtures. Finish with the tests, validators and doctor checks that cover the touched surfaces. This run is read-only outside its own research directory: do not edit, move, delete or stage any repository file; no git commit, push, checkout, reset or stash; no installs.",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-deep-loop/039-deprecate-improvement-modes/001-removal-research/002-agent-improvement-inventory",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-10-10T18:39:24Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "llmgateway/deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "danger-full-access",
+    "permissionMode": "acceptEdits"
+  },
+  "fanout_lineage_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-deep-loop/039-deprecate-improvement-modes/001-removal-research/002-agent-improvement-inventory/research/lineages/deepseek",
+  "lineage": {
+    "sessionId": "fanout-deepseek-1791657289869-1teen6",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": ".deep-research-pause",
+  "archiveRoot": "research_archive",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

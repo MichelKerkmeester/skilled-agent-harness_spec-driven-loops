@@ -77,7 +77,7 @@ Calling AI (CONDUCTOR — RESULT HANDBACK)
 
 ### Invocation pattern
 
-`--agent <slug>` is valid at the top level ONLY for the primary agent `orchestrate` (and `plan`, an OpenCode built-in) — never for `general` (rejected, omit `--agent` instead) and never for a subagent slug (`context`, `markdown`, `review`, `debug`, `ai-council`) or a command-owned loop executor (`deep-research`, `deep-review`, `deep-improvement`, `prompt-improver`), all of which route through `--agent orchestrate`'s Task-dispatch or their owning `/deep:*` command (§3-4 below). When `--agent orchestrate` IS used, the flag loads the agent definition from `.opencode/agents/orchestrate.md` (project-local) or the user-level fallback. The dispatch shape pins model, variant, format, and working directory alongside the agent slug:
+`--agent <slug>` is valid at the top level ONLY for the primary agent `orchestrate` (and `plan`, an OpenCode built-in) — never for `general` (rejected, omit `--agent` instead) and never for a subagent slug (`context`, `markdown`, `review`, `debug`, `ai-council`) or a command-owned loop executor (`deep-research`, `deep-review`, `prompt-improver`), all of which route through `--agent orchestrate`'s Task-dispatch or their owning `/deep:*` command (§3-4 below). When `--agent orchestrate` IS used, the flag loads the agent definition from `.opencode/agents/orchestrate.md` (project-local) or the user-level fallback. The dispatch shape pins model, variant, format, and working directory alongside the agent slug:
 
 ```bash
 opencode run \
@@ -131,7 +131,6 @@ The repo ships these agents under `.skilled/agents/`. Three dispatch classes app
 | `ai-council` | Command-only (`/deep:ai-council`) or `--agent orchestrate` Task-dispatch; never direct `--agent ai-council` | Multi-strategy planning architect | Complex planning that benefits from comparing multiple solution strategies. Scoped-write: writes ONLY packet-local `ai-council/**` artifacts |
 | `deep-research` | Command-owned by `/deep:research`; never direct `--agent deep-research` | Iterative research loop executor | Single research-cycle dispatches. State externalized to packet-local JSONL + strategy.md |
 | `deep-review` | Command-owned by `/deep:review`; never direct `--agent deep-review` | Iterative code review loop executor | Single review-cycle dispatches. P0/P1/P2 findings, severity-weighted convergence |
-| `deep-improvement` | Command-owned by `/deep:agent-improvement`; never direct `--agent deep-improvement` | Proposal-only mutator for bounded agent improvement | Agent evaluation via the `/deep:agent-improvement` command loop |
 | `prompt-improver` | Command-owned by `/prompt`; never direct `--agent prompt-improver` | Dispatch-ready prompt package generation | Deep-path prompt escalation per the cli-* prompt-quality-card Tier 3 trigger |
 
 ---
@@ -228,7 +227,6 @@ Pick the agent that matches the task type. Default to omitting `--agent` (the `g
 | Iterative research loop | `deep-research` | **Command-only.** Dispatch via `/deep:research` (or `/deep:research:auto`). Direct `opencode run --agent deep-research` is forbidden; the parent command owns iteration state, JSONL, and convergence. |
 | Iterative code review loop | `deep-review` | **Command-only.** Dispatch via `/deep:review` (or `/deep:review:auto`). Direct `opencode run --agent deep-review` is forbidden; the parent command owns iteration state and severity-weighted convergence. |
 | Multi-strategy planning | `ai-council` | **Command-only.** Dispatch via `/deep:ai-council` for a full session, or `opencode run --agent orchestrate --variant high --format json --dir /repo "Dispatch @ai-council: plan the authentication redesign — compare three strategies. Spec folder: <pre-bound packet>."` and let orchestrate's routing Task-dispatch `@ai-council`, scoped-write to that packet's `ai-council/**`. Direct `opencode run --agent ai-council` is forbidden as of `mode: subagent`. |
-| Agent improvement | `deep-improvement` | **Command-only.** Dispatch via `/deep:agent-improvement`. Direct `opencode run --agent deep-improvement` is forbidden; the parent command owns evaluation, candidates, and promotion. |
 | Default / unspecified | (none — omit `--agent`) | `opencode run --variant high --format json --dir /repo "<prompt>"` — never pass `--agent general`, it is rejected at the top level |
 
 ---

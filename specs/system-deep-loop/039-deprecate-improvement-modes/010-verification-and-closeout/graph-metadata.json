@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/039-deprecate-improvement-modes/010-verification-and-closeout",
+  "spec_folder": "system-deep-loop/039-deprecate-improvement-modes/010-verification-and-closeout",
+  "parent_id": "system-deep-loop/039-deprecate-improvement-modes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "verification and closeout",
+      "phase 10 verification and closeout",
+      "verification and closeout plan",
+      "verification and closeout tasks",
+      "verification and closeout acceptance criteria",
+      "verification and closeout implementation summary"
+    ],
+    "key_topics": [
+      "verification",
+      "closeout",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "removal",
+      "wide",
+      "pass"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "runtime/data/trigger-index.json",
+      "scratch/exceptions.md",
+      "scratch/files.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "exceptions.md",
+        "kind": "doc",
+        "path": "scratch/exceptions.md",
+        "source": "derived"
+      },
+      {
+        "name": "files.txt",
+        "kind": "file",
+        "path": "scratch/files.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Regenerate Hermes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Source",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A removal this wide can pass each phase's gate and still leave a stale generated copy or a broken route that only a whole-repo check sees",
+    "created_at": "2026-10-10T18:23:55Z",
+    "last_save_at": "2026-10-11T06:22:18.807Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8216bd54ef1b0a5a5f0fb1ba5744612fee19acd88ebadf5fe9e77ea405a07194",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "eaeae60687f9810550cb8a60dc2aff2525ec01ba12f322088ba52694e2a24368",
+      "plan.md": "ac6ac3fa87bf5167f8e0a6f97548eb1884b581d9693a5628abe4e5d2f4ca44a2",
+      "tasks.md": "b067d3da93a7880982360892b26fd8192dd69de1ba9fa06efb0321a89dd4ceb6",
+      "implementation-summary.md": "866c950e742219425b43c657b5b713e8698ef121239709ebb1a48767ba047678"
+    },
+    "last_active_at": null
+  }
+}

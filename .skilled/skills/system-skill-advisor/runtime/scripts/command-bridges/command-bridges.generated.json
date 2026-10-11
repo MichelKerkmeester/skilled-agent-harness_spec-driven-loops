@@ -2,11 +2,11 @@
   "schemaVersion": 2,
   "generatedBy": "scripts/command-bridges/derive-command-bridges.cjs",
   "counts": {
-    "commandMetadata": 21,
+    "commandMetadata": 19,
     "allowList": 8,
-    "generated": 29,
-    "typescriptActive": 6,
-    "pythonActive": 16
+    "generated": 27,
+    "typescriptActive": 5,
+    "pythonActive": 15
   },
   "entries": [
     {
@@ -301,29 +301,6 @@
       }
     },
     {
-      "id": "command-deep-agent-improvement",
-      "command": "/deep:agent-improvement",
-      "skillId": "system-deep-loop",
-      "ownerMode": "agent-improvement",
-      "source": ".skilled/skills/system-deep-loop/command-metadata.json",
-      "runtime": {
-        "typescript": {
-          "enabled": false
-        },
-        "python": {
-          "enabled": true,
-          "inventoryId": "command-deep-agent-improvement",
-          "order": 8,
-          "id": "command-deep-agent-improvement",
-          "description": "Evaluate and improve any agent across 5 dimensions using /deep:agent-improvement.",
-          "slashMarkers": [
-            "/deep:agent-improvement",
-            "deep:agent-improvement"
-          ]
-        }
-      }
-    },
-    {
       "id": "command-deep-ai-council",
       "command": "/deep:ai-council",
       "skillId": "system-deep-loop",
@@ -332,46 +309,6 @@
       "runtime": {
         "typescript": {
           "enabled": false
-        },
-        "python": {
-          "enabled": false
-        }
-      }
-    },
-    {
-      "id": "command-deep-model-benchmark",
-      "command": "/deep:model-benchmark",
-      "skillId": "system-deep-loop",
-      "ownerMode": "model-benchmark",
-      "source": ".skilled/skills/system-deep-loop/command-metadata.json",
-      "runtime": {
-        "typescript": {
-          "enabled": true,
-          "inventoryId": "command-deep-model-benchmark",
-          "order": 5,
-          "id": "deep-model-benchmark",
-          "name": "deep-model-benchmark",
-          "description": "Deep command bridge for /deep:model-benchmark model and prompt-framework benchmarking.",
-          "keywords": [
-            "/deep:model-benchmark",
-            "benchmark a model",
-            "benchmark a prompt framework",
-            "optimize a model",
-            "model benchmark loop"
-          ],
-          "domains": [
-            "deep",
-            "benchmark",
-            "model",
-            "command"
-          ],
-          "intentSignals": [
-            "/deep:model-benchmark",
-            "benchmark a model",
-            "benchmark a prompt framework",
-            "optimize a model",
-            "model benchmark loop"
-          ]
         },
         "python": {
           "enabled": false

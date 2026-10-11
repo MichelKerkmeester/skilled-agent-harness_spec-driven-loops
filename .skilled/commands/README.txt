@@ -42,7 +42,7 @@ Commands are organized into six groups plus root-level utilities:
 | Group | Path | Commands | Purpose |
 |-------|------|----------|---------|
 | **create** | `commands/create/` | 13 | Scaffold OpenCode components, documentation packages, changelogs, charts, diagrams, diffs and repo rules |
-| **deep** | `commands/deep/` | 5 | Deep research, review, AI council and improvement loops |
+| **deep** | `commands/deep/` | 3 | Deep research, review and AI council loops |
 | **doctor** | `commands/doctor/` | 8 | Spec-kit retrieval, skill advisor, deep-loop, runtime-mirror, git hook and standards, MCP, release-update and environment-switch diagnostics |
 | **design** | `commands/design/` | 3 | Style Reference extraction, standalone charts and diagrams |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
@@ -95,9 +95,7 @@ command/
 │   ├── with-human-voice.md   # Apply or score prose against the Human Voice Rules
 │   └── assets/               # YAML workflow and presentation contracts
 ├── deep/                     # Deep-loop commands
-│   ├── agent-improvement.md  # Evaluator-first agent improvement loop
 │   ├── ai-council.md         # Multi-seat AI council planning
-│   ├── model-benchmark.md    # Model/prompt-framework benchmark loop
 │   ├── research.md           # Iterative deep research workflow
 │   ├── review.md             # Iterative code review workflow
 │   └── assets/               # YAML workflow definitions
@@ -177,8 +175,6 @@ Run long-form, stateful deep-loop workflows. Each command supports `:auto` and `
 | Command | Invocation | Purpose |
 |---------|------------|---------|
 | AI Council | `/deep:ai-council <question> [:auto\|:confirm]` | Multi-seat planning and convergence checks |
-| Agent Improvement | `/deep:agent-improvement <agent_path> [:auto\|:confirm]` | Evaluate and improve agents across 5 integration-aware dimensions |
-| Model Benchmark | `/deep:model-benchmark [profile] [:auto\|:confirm]` | Benchmark and optimize a model or prompt framework against fixtures |
 | Research Loop | `/deep:research <topic> [:auto\|:confirm]` | Iterative technical investigation with convergence |
 | Review Loop | `/deep:review <target> [:auto\|:confirm]` | Iterative code review with severity-weighted findings |
 
@@ -242,7 +238,6 @@ Structured workflows for the spec folder development lifecycle, plus packet cont
 /create:feature-catalog system-spec-kit create :confirm
 /create:manual-testing-playbook system-spec-kit update :auto
 /create:skill my-new-skill full-create :auto
-/deep:agent-improvement .skilled/agents/review.md :confirm
 /prompt:improve $improve "Build a clearer CLI handoff prompt" :auto
 /speckit:save specs/007-feature
 /speckit:plan "Add user authentication" :auto
@@ -343,7 +338,6 @@ A: Run `/speckit:resume`. This is the canonical recovery surface for packet work
 |----------|---------|
 | [AGENTS.md](../../AGENTS.md) | Framework defining gates, protocols, agent routing |
 | [Create Commands](create/README.txt) | Detailed index for all `/create:*` commands |
-| [Deep Agent Improvement Command](deep/agent-improvement.md) | Agent improvement loop command |
 | [Prompt Command](prompt/improve.md) | Canonical prompt improvement command |
 | [sk-doc SKILL.md](../skills/sk-doc/SKILL.md) | Documentation standards and component creation |
 | [system-spec-kit SKILL.md](../skills/system-spec-kit/SKILL.md) | Spec folder workflow and packet continuity |

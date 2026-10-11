@@ -1,0 +1,12 @@
+specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop/fixtures/canary-cases.v1.json
+specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop/lib/canary-router.cjs
+specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs
+specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/fixtures/canary-cases.v1.json
+specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/harness/build-artifacts.cjs
+.github/scripts/tests/broken-move-drill.sh
+.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py
+.skilled/skills/system-deep-loop/graph-metadata.json
+.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json
+.skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-lint.mjs
+.skilled/skills/system-spec-kit/runtime/tests/template-phrase-lint-fail-open.vitest.ts
+.skilled/scripts/git-hooks/tests/install-git-hooks-worktree-harness.sh

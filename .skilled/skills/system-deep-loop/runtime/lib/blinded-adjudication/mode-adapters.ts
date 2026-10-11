@@ -11,7 +11,7 @@ import {
   AdjudicationErrorCodes,
   REQUIRED_COUNTERFACTUALS_BY_DECISION_KIND,
 } from './contracts.js';
-import { requireDigest, validateAdjudicationRequest } from './validation.js';
+import { validateAdjudicationRequest } from './validation.js';
 
 import type {
   AdjudicationDecisionKind,
@@ -82,39 +82,6 @@ export function createCouncilAdjudicationRequest(
   );
 }
 
-/** Bind improvement candidates to generator-blind and style-controlled scoring. */
-export function createImprovementAdjudicationRequest(
-  input: ModeRequestInput,
-): AdjudicationRequest {
-  return buildRequest(
-    AdjudicationDecisionKinds.DEEP_IMPROVEMENT,
-    input,
-    REQUIRED_COUNTERFACTUALS_BY_DECISION_KIND[AdjudicationDecisionKinds.DEEP_IMPROVEMENT],
-  );
-}
-
-/** Bind model outputs to quality-first provider-blind pairwise scoring. */
-export function createModelBenchmarkAdjudicationRequest(
-  input: ModeRequestInput,
-): AdjudicationRequest {
-  return buildRequest(
-    AdjudicationDecisionKinds.MODEL_BENCHMARK,
-    input,
-    REQUIRED_COUNTERFACTUALS_BY_DECISION_KIND[AdjudicationDecisionKinds.MODEL_BENCHMARK],
-  );
-}
-
-/** Bind treatment/control outputs to executor- and treatment-blind scoring. */
-export function createSkillBenchmarkAdjudicationRequest(
-  input: ModeRequestInput,
-): AdjudicationRequest {
-  return buildRequest(
-    AdjudicationDecisionKinds.SKILL_BENCHMARK,
-    input,
-    REQUIRED_COUNTERFACTUALS_BY_DECISION_KIND[AdjudicationDecisionKinds.SKILL_BENCHMARK],
-  );
-}
-
 // ───────────────────────────────────────────────────────────────────
 // 2. VERDICT ADAPTERS
 // ───────────────────────────────────────────────────────────────────
@@ -154,55 +121,4 @@ export function adaptDeepReviewVerdict(verdict: AdjudicationVerdict): ModeAdjudi
 
 export function adaptCouncilVerdict(verdict: AdjudicationVerdict): ModeAdjudicationInput {
   return adaptVerdict(AdjudicationDecisionKinds.DEEP_AI_COUNCIL, verdict);
-}
-
-export function adaptImprovementVerdict(verdict: AdjudicationVerdict): ModeAdjudicationInput {
-  return adaptVerdict(AdjudicationDecisionKinds.DEEP_IMPROVEMENT, verdict);
-}
-
-export function adaptModelBenchmarkVerdict(verdict: AdjudicationVerdict): ModeAdjudicationInput {
-  return adaptVerdict(AdjudicationDecisionKinds.MODEL_BENCHMARK, verdict);
-}
-
-export function adaptSkillBenchmarkVerdict(verdict: AdjudicationVerdict): ModeAdjudicationInput {
-  return adaptVerdict(AdjudicationDecisionKinds.SKILL_BENCHMARK, verdict);
-}
-
-// ───────────────────────────────────────────────────────────────────
-// 3. POST-BLIND COST JOIN
-// ───────────────────────────────────────────────────────────────────
-
-export interface ModelBenchmarkCostJoin {
-  readonly blindQuality: ModeAdjudicationInput;
-  readonly costByCandidateDigest: Readonly<Record<string, number>>;
-  readonly costJoinedAfterBlindQuality: true;
-}
-
-/** Attach cost only after a model-benchmark quality verdict already exists. */
-export function joinModelBenchmarkCost(
-  quality: ModeAdjudicationInput,
-  costByCandidateDigest: Readonly<Record<string, number>>,
-): ModelBenchmarkCostJoin {
-  if (quality.consumer !== AdjudicationDecisionKinds.MODEL_BENCHMARK) {
-    throw new AdjudicationError(
-      AdjudicationErrorCodes.INVALID_INPUT,
-      'Cost can be joined only to model-benchmark blind quality evidence',
-    );
-  }
-  const costs: Record<string, number> = Object.create(null);
-  for (const [candidateDigest, cost] of Object.entries(costByCandidateDigest)) {
-    requireDigest(candidateDigest, '$.costByCandidateDigest');
-    if (!Number.isFinite(cost) || cost < 0) {
-      throw new AdjudicationError(
-        AdjudicationErrorCodes.INVALID_INPUT,
-        'Candidate cost must be a finite non-negative number',
-      );
-    }
-    costs[candidateDigest] = cost;
-  }
-  return Object.freeze({
-    blindQuality: quality,
-    costByCandidateDigest: Object.freeze(costs),
-    costJoinedAfterBlindQuality: true,
-  });
 }

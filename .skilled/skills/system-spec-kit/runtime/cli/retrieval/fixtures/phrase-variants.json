@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2c221fb6808d48a4906ae219c06a182cfec669352a1a7153815ba39d86ae8485",
+  "manifestHash": "9caf3ae910bc53d82a3b6a08117990503ca44fc2a9cf4630269af9dee0396ea6",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7346,15 +7346,6 @@
     "5 confirmed defects 10 files": [
       "5 confirmed defects 10 files"
     ],
-    "5 dimension evaluation": [
-      "5-dimension evaluation"
-    ],
-    "5 dimension scorer": [
-      "5-dimension scorer"
-    ],
-    "5 dimension scoring": [
-      "5-dimension scoring"
-    ],
     "5 dimension scoring rubric": [
       "5 dimension scoring rubric"
     ],
@@ -7384,12 +7375,6 @@
     ],
     "54 tool count readme": [
       "54-tool count readme"
-    ],
-    "5dim scorer grader selection": [
-      "5dim scorer grader selection"
-    ],
-    "5dim scoring": [
-      "5dim scoring"
     ],
     "6 digit lowercase hex": [
       "6-digit lowercase hex"
@@ -7435,9 +7420,6 @@
     ],
     "98 cell matrix results": [
       "98-cell matrix results"
-    ],
-    "a b promotion evidence": [
-      "A/B promotion evidence"
     ],
     "a canonical feature catalog": [
       "A Canonical Feature Catalog"
@@ -7679,9 +7661,6 @@
     "acb scenario contract": [
       "ACB scenario contract"
     ],
-    "accept ship promotion": [
-      "accept ship promotion"
-    ],
     "acceptance closure in checker": [
       "acceptance closure in checker"
     ],
@@ -7750,9 +7729,6 @@
     ],
     "accepted grok synthesis": [
       "accepted GROK synthesis"
-    ],
-    "accepted vs shipped": [
-      "accepted vs shipped"
     ],
     "access permission matrix": [
       "access permission matrix"
@@ -7828,9 +7804,6 @@
     ],
     "active decisions schema design": [
       "active decisions schema design"
-    ],
-    "active deep improvement lanes": [
-      "active deep-improvement lanes"
     ],
     "active embedder": [
       "active embedder"
@@ -8030,9 +8003,6 @@
     "add content blocks to a notion page": [
       "add content blocks to a Notion page"
     ],
-    "add deep improvement target": [
-      "add deep-improvement target"
-    ],
     "add devin executor kind": [
       "add devin executor kind"
     ],
@@ -8170,9 +8140,6 @@
     ],
     "adjudicate finding claim": [
       "adjudicate finding claim"
-    ],
-    "adjudication iter false positive filter": [
-      "adjudication-iter false-positive filter"
     ],
     "adjudication sets finding severity": [
       "adjudication sets finding severity"
@@ -9560,12 +9527,6 @@
     "agent decision rule": [
       "agent decision rule"
     ],
-    "agent declaration parity": [
-      "agent declaration parity"
-    ],
-    "agent definition drift": [
-      "agent definition drift"
-    ],
     "agent definition mirror cleanup phase": [
       "agent definition mirror cleanup phase"
     ],
@@ -9617,17 +9578,11 @@
     "agent frontmatter scaffold": [
       "agent frontmatter scaffold"
     ],
-    "agent frontmatter translation": [
-      "agent frontmatter translation"
-    ],
     "agent handoff group": [
       "agent handoff group"
     ],
     "agent handoff message": [
       "agent handoff message"
-    ],
-    "agent improvement": [
-      "agent-improvement"
     ],
     "agent improvement 50 stem registry": [
       "agent improvement 50 stem registry"
@@ -9643,9 +9598,6 @@
     ],
     "agent improvement artifact binding": [
       "agent improvement artifact binding"
-    ],
-    "agent improvement authoring guide": [
-      "agent improvement authoring guide"
     ],
     "agent improvement authority rollback switch": [
       "agent improvement authority rollback switch"
@@ -9674,14 +9626,8 @@
     "agent improvement changelog": [
       "agent improvement changelog"
     ],
-    "agent improvement command": [
-      "agent improvement command"
-    ],
     "agent improvement common fold extension": [
       "agent improvement common fold extension"
-    ],
-    "agent improvement config": [
-      "agent-improvement config"
     ],
     "agent improvement continuity projection": [
       "agent improvement continuity projection"
@@ -9698,9 +9644,6 @@
     "agent improvement idempotent re entry tasks": [
       "agent improvement idempotent re-entry tasks"
     ],
-    "agent improvement lane scripts": [
-      "agent-improvement lane scripts"
-    ],
     "agent improvement ledger migration": [
       "agent-improvement ledger migration"
     ],
@@ -9710,17 +9653,8 @@
     "agent improvement ledger resume plan": [
       "agent improvement ledger resume plan"
     ],
-    "agent improvement ledger schema": [
-      "agent-improvement-ledger-schema"
-    ],
     "agent improvement legacy upcaster": [
       "agent improvement legacy upcaster"
-    ],
-    "agent improvement loop": [
-      "agent improvement loop"
-    ],
-    "agent improvement md": [
-      "agent-improvement.md"
     ],
     "agent improvement migration": [
       "agent improvement migration"
@@ -9758,9 +9692,6 @@
     "agent improvement phase 014 readiness": [
       "agent improvement phase 014 readiness"
     ],
-    "agent improvement profilecatalog": [
-      "agent improvement profileCatalog"
-    ],
     "agent improvement projection plan": [
       "agent improvement projection plan"
     ],
@@ -9775,9 +9706,6 @@
     ],
     "agent improvement reducer implementation": [
       "agent improvement reducer implementation"
-    ],
-    "agent improvement reducers": [
-      "agent-improvement-reducers"
     ],
     "agent improvement reducers and projections": [
       "agent improvement reducers and projections"
@@ -9833,9 +9761,6 @@
     "agent improvement sealed artifact implementation": [
       "agent improvement sealed artifact implementation"
     ],
-    "agent improvement sealed artifacts": [
-      "agent-improvement-sealed-artifacts"
-    ],
     "agent improvement sealed artifacts changelog": [
       "agent improvement sealed artifacts changelog"
     ],
@@ -9851,9 +9776,6 @@
     "agent improvement sealing": [
       "agent improvement sealing"
     ],
-    "agent improvement setup docs": [
-      "agent-improvement setup docs"
-    ],
     "agent improvement shadow parity": [
       "Agent Improvement shadow parity"
     ],
@@ -9868,9 +9790,6 @@
     ],
     "agent improvement shadow parity tasks": [
       "Agent Improvement shadow parity tasks"
-    ],
-    "agent improvement tests": [
-      "agent-improvement tests"
     ],
     "agent improvement typed ledger implementation": [
       "agent improvement typed ledger implementation"
@@ -9892,9 +9811,6 @@
     ],
     "agent improver": [
       "agent improver"
-    ],
-    "agent integration surfaces": [
-      "agent integration surfaces"
     ],
     "agent io contract": [
       "agent io contract",
@@ -9951,12 +9867,6 @@
     "agent mirror alignment": [
       "agent mirror alignment"
     ],
-    "agent mirror crosswalk": [
-      "agent mirror crosswalk"
-    ],
-    "agent mirror drift": [
-      "agent mirror drift"
-    ],
     "agent mirror parity": [
       "agent mirror parity"
     ],
@@ -10002,9 +9912,6 @@
     "agent preflight verification": [
       "agent preflight verification"
     ],
-    "agent profile generation": [
-      "agent profile generation"
-    ],
     "agent prompt guide section": [
       "agent prompt guide section"
     ],
@@ -10022,9 +9929,6 @@
     ],
     "agent readme conformance": [
       "agent readme conformance"
-    ],
-    "agent rename improve agent to deep improvement": [
-      "Agent Rename: @improve-agent to @deep-improvement"
     ],
     "agent routing documentation": [
       "agent routing documentation"
@@ -10509,9 +10413,6 @@
     "all ai sessions on the same branch": [
       "all ai sessions on the same branch"
     ],
-    "all caps reference headings": [
-      "all-caps reference headings"
-    ],
     "all dimensions clean pivot": [
       "all_dimensions_clean pivot"
     ],
@@ -10559,9 +10460,6 @@
     ],
     "allocator stale lock": [
       "allocator stale lock"
-    ],
-    "allow hurt fixtures": [
-      "allow-hurt-fixtures"
     ],
     "allowed socket root canonicalize": [
       "allowed socket root canonicalize"
@@ -11124,12 +11022,6 @@
     "apply path enable decision": [
       "apply path enable decision"
     ],
-    "apply promotion gate": [
-      "apply promotion gate"
-    ],
-    "apply scoring rubric": [
-      "apply scoring rubric"
-    ],
     "apply style reference to chart": [
       "apply style reference to chart"
     ],
@@ -11585,9 +11477,6 @@
     ],
     "archive sh track": [
       "archive.sh track"
-    ],
-    "archived backup restore": [
-      "archived backup restore"
     ],
     "archived opt in": [
       "archived opt-in"
@@ -12227,9 +12116,6 @@
     ],
     "audit findings remediation": [
       "audit findings remediation"
-    ],
-    "audit journal protocol": [
-      "audit journal protocol"
     ],
     "audit logic invariants": [
       "audit logic invariants"
@@ -12918,9 +12804,6 @@
     "baseline snapshot and compare": [
       "Baseline snapshot and compare"
     ],
-    "baseline state recording": [
-      "baseline state recording"
-    ],
     "baseline surface precedence": [
       "baseline surface precedence"
     ],
@@ -13320,9 +13203,6 @@
     "benchmark creation reference": [
       "benchmark creation reference"
     ],
-    "benchmark delta promotion gate": [
-      "benchmark delta promotion gate"
-    ],
     "benchmark driver parser": [
       "benchmark driver parser"
     ],
@@ -13334,9 +13214,6 @@
     ],
     "benchmark first procedural pending": [
       "benchmark first procedural pending"
-    ],
-    "benchmark fixtures": [
-      "benchmark fixtures"
     ],
     "benchmark folder creation joins sk doc": [
       "Benchmark Folder Creation Joins sk-doc"
@@ -13356,24 +13233,6 @@
     "benchmark format to sk doc": [
       "benchmark format to sk-doc"
     ],
-    "benchmark output layout": [
-      "benchmark output layout"
-    ],
-    "benchmark output routing": [
-      "benchmark output routing"
-    ],
-    "benchmark profile": [
-      "benchmark profile"
-    ],
-    "benchmark profile scaffold": [
-      "benchmark profile scaffold"
-    ],
-    "benchmark profile shape": [
-      "benchmark profile shape"
-    ],
-    "benchmark profiles": [
-      "benchmark profiles"
-    ],
     "benchmark promotion errors": [
       "benchmark promotion errors"
     ],
@@ -13382,9 +13241,6 @@
     ],
     "benchmark re run mistake": [
       "benchmark re-run mistake"
-    ],
-    "benchmark repeatability": [
-      "benchmark repeatability"
     ],
     "benchmark report automation": [
       "benchmark report automation"
@@ -13412,12 +13268,6 @@
     ],
     "benchmark report worked example": [
       "benchmark report worked example"
-    ],
-    "benchmark runner command": [
-      "benchmark runner command"
-    ],
-    "benchmark runner inputs": [
-      "benchmark runner inputs"
     ],
     "benchmark the default off features": [
       "benchmark the default-off features"
@@ -13980,9 +13830,6 @@
     "bounded additive rescue": [
       "bounded additive rescue"
     ],
-    "bounded agent improvement": [
-      "bounded agent improvement"
-    ],
     "bounded cache timer registry shutdown hooks": [
       "bounded cache timer registry shutdown hooks"
     ],
@@ -14093,9 +13940,6 @@
     ],
     "breadcrumb suppression fix": [
       "breadcrumb suppression fix"
-    ],
-    "breadth and synthesis iters": [
-      "breadth and synthesis iters"
     ],
     "breaking change footer": [
       "breaking change footer"
@@ -14313,9 +14157,6 @@
     "build obsidian theme": [
       "build obsidian theme"
     ],
-    "build scoring profile": [
-      "build scoring profile"
-    ],
     "build the colour system": [
       "build the colour system"
     ],
@@ -14393,9 +14234,6 @@
     ],
     "bump rule count 39": [
       "bump rule count 39"
-    ],
-    "bundle gate": [
-      "bundle gate"
     ],
     "bundle gate strictness": [
       "bundle-gate strictness"
@@ -14606,9 +14444,6 @@
     ],
     "cache backed task listing": [
       "cache-backed task listing"
-    ],
-    "cache cjs": [
-      "cache.cjs"
     ],
     "cache expiry": [
       "cache expiry"
@@ -14865,9 +14700,6 @@
     "candidate filter stale snapshot": [
       "candidate filter stale snapshot"
     ],
-    "candidate generation": [
-      "candidate generation"
-    ],
     "candidate loss": [
       "candidate loss"
     ],
@@ -14876,18 +14708,6 @@
     ],
     "candidate pair gating": [
       "candidate-pair gating"
-    ],
-    "candidate proposal doc authoring": [
-      "candidate proposal doc authoring"
-    ],
-    "candidate proposal format": [
-      "candidate proposal format"
-    ],
-    "candidate score benchmark reduce promote": [
-      "candidate score benchmark reduce promote"
-    ],
-    "candidate scoring rubric": [
-      "candidate scoring rubric"
     ],
     "candidate verdicts": [
       "candidate verdicts"
@@ -15025,9 +14845,6 @@
     "canonical placeholder tasks": [
       "canonical placeholder tasks"
     ],
-    "canonical promotion policy": [
-      "canonical promotion policy"
-    ],
     "canonical prompt quality tables": [
       "canonical prompt-quality tables"
     ],
@@ -15081,9 +14898,6 @@
     ],
     "canonical state files": [
       "canonical state files"
-    ],
-    "canonical stop reasons": [
-      "canonical stop reasons"
     ],
     "canonical structural contract": [
       "canonical structural contract"
@@ -15142,14 +14956,8 @@
     "capability and privacy gating": [
       "capability-and-privacy-gating"
     ],
-    "capability discrimination layer": [
-      "capability-discrimination layer"
-    ],
     "capability evidence unblock": [
       "capability-evidence-unblock"
-    ],
-    "capability fixture scaffold": [
-      "capability fixture scaffold"
     ],
     "capability flags": [
       "capability flags"
@@ -17069,9 +16877,6 @@
     "check markdown links roots": [
       "check-markdown-links roots"
     ],
-    "check mirror parity": [
-      "check mirror parity"
-    ],
     "check native modules": [
       "check-native-modules"
     ],
@@ -18143,9 +17948,6 @@
     ],
     "classifier verified fixture": [
       "classifier verified fixture"
-    ],
-    "classify canonical derived candidate target": [
-      "classify canonical derived candidate target"
     ],
     "classify finding severity": [
       "classify finding severity"
@@ -23447,12 +23249,6 @@
     "code style enforcement gate": [
       "code style enforcement gate"
     ],
-    "code task oracle fixture scaffold": [
-      "code task oracle fixture scaffold"
-    ],
-    "code task scorer": [
-      "code-task-scorer"
-    ],
     "code tuned reranker investigation": [
       "code-tuned reranker investigation"
     ],
@@ -24179,9 +23975,6 @@
     ],
     "command description budget": [
       "command description budget"
-    ],
-    "command dispatch": [
-      "command dispatch"
     ],
     "command doc alignment": [
       "command doc alignment"
@@ -26709,9 +26502,6 @@
     "convergence detection": [
       "convergence detection"
     ],
-    "convergence eligibility": [
-      "convergence eligibility"
-    ],
     "convergence gates": [
       "convergence gates"
     ],
@@ -27156,9 +26946,6 @@
     ],
     "correctness floor tasks": [
       "correctness floor tasks"
-    ],
-    "correctness gate": [
-      "correctness gate"
     ],
     "correctness traceability flag verdict": [
       "correctness traceability flag verdict"
@@ -27721,6 +27508,9 @@
     "create benchmark behavior family": [
       "create-benchmark behavior family"
     ],
+    "create benchmark family removal": [
+      "create-benchmark family removal"
+    ],
     "create changelog": [
       "create changelog"
     ],
@@ -28204,9 +27994,6 @@
     "credential health check": [
       "credential health check"
     ],
-    "criteria exec hardening gate": [
-      "criteria exec hardening gate"
-    ],
     "criterion count preserved": [
       "criterion count preserved"
     ],
@@ -28375,9 +28162,6 @@
     ],
     "cross hub vocabulary tasks": [
       "cross hub vocabulary tasks"
-    ],
-    "cross lane scripts": [
-      "cross-lane scripts"
     ],
     "cross language file organization": [
       "cross language file organization"
@@ -29216,9 +29000,6 @@
     "cutover certificate rollback window": [
       "cutover certificate rollback window"
     ],
-    "cwd check": [
-      "cwd check"
-    ],
     "cwv accessibility smart routing": [
       "CWV accessibility smart routing"
     ],
@@ -29258,9 +29039,6 @@
     "d2a d2b extraction": [
       "D2a D2b extraction"
     ],
-    "d4 grader": [
-      "D4 grader"
-    ],
     "d4 grader default on": [
       "d4 grader default-on"
     ],
@@ -29281,9 +29059,6 @@
     ],
     "d4 r grader dim id mismatch": [
       "d4-r grader dim_id mismatch"
-    ],
-    "d4 r task outcome grading": [
-      "d4-r task-outcome grading"
     ],
     "d7 supersession command names": [
       "D7 supersession command names"
@@ -30410,9 +30185,6 @@
     "dedicated stress folder migration": [
       "dedicated stress folder migration"
     ],
-    "dedup bypass": [
-      "dedup bypass"
-    ],
     "deem access log": [
       "deem access log"
     ],
@@ -30673,9 +30445,6 @@
     ],
     "deep": [
       "deep"
-    ],
-    "deep agent allow criteria exec": [
-      "DEEP_AGENT_ALLOW_CRITERIA_EXEC"
     ],
     "deep ai council": [
       "deep ai council",
@@ -31413,116 +31182,11 @@
     "deep dive remediation program": [
       "deep dive remediation program"
     ],
-    "deep improvement": [
-      "deep-improvement"
-    ],
-    "deep improvement 1 0 0 0": [
-      "deep-improvement 1.0.0.0"
-    ],
-    "deep improvement 1 0 1 0": [
-      "deep-improvement 1.0.1.0"
-    ],
-    "deep improvement 1 1 0 0": [
-      "deep-improvement 1.1.0.0"
-    ],
-    "deep improvement 1 10 0 0": [
-      "deep-improvement 1.10.0.0"
-    ],
-    "deep improvement 1 11 0 0": [
-      "deep-improvement 1.11.0.0"
-    ],
-    "deep improvement 1 11 1 0": [
-      "deep-improvement 1.11.1.0"
-    ],
-    "deep improvement 1 12 0 0": [
-      "deep-improvement 1.12.0.0"
-    ],
-    "deep improvement 1 13 0 0": [
-      "deep-improvement 1.13.0.0"
-    ],
-    "deep improvement 1 14 0 0": [
-      "deep-improvement 1.14.0.0"
-    ],
-    "deep improvement 1 15 0 0": [
-      "deep-improvement 1.15.0.0"
-    ],
-    "deep improvement 1 16 0 0": [
-      "deep-improvement 1.16.0.0"
-    ],
-    "deep improvement 1 17 0 0": [
-      "deep-improvement 1.17.0.0"
-    ],
-    "deep improvement 1 17 0 1": [
-      "deep-improvement 1.17.0.1"
-    ],
-    "deep improvement 1 17 1 0": [
-      "deep-improvement 1.17.1.0"
-    ],
-    "deep improvement 1 17 2 0": [
-      "deep-improvement 1.17.2.0"
-    ],
-    "deep improvement 1 18 0 0": [
-      "deep-improvement 1.18.0.0"
-    ],
-    "deep improvement 1 19 0 0": [
-      "deep-improvement 1.19.0.0"
-    ],
-    "deep improvement 1 19 1 0": [
-      "deep-improvement 1.19.1.0"
-    ],
-    "deep improvement 1 2 0 0": [
-      "deep-improvement 1.2.0.0"
-    ],
-    "deep improvement 1 2 1 0": [
-      "deep-improvement 1.2.1.0"
-    ],
-    "deep improvement 1 2 2 0": [
-      "deep-improvement 1.2.2.0"
-    ],
-    "deep improvement 1 3 0 0": [
-      "deep-improvement 1.3.0.0"
-    ],
-    "deep improvement 1 4 0 0": [
-      "deep-improvement 1.4.0.0"
-    ],
-    "deep improvement 1 5 0 0": [
-      "deep-improvement 1.5.0.0"
-    ],
-    "deep improvement 1 6 0 0": [
-      "deep-improvement 1.6.0.0"
-    ],
-    "deep improvement 1 7 0 0": [
-      "deep-improvement 1.7.0.0"
-    ],
-    "deep improvement 1 8 0 0": [
-      "deep-improvement 1.8.0.0"
-    ],
-    "deep improvement 1 9 0 0": [
-      "deep-improvement 1.9.0.0"
-    ],
     "deep improvement append only ledger": [
       "deep improvement append-only ledger"
     ],
     "deep improvement authority rollback switch": [
       "deep improvement authority rollback switch"
-    ],
-    "deep improvement baseline": [
-      "deep-improvement baseline"
-    ],
-    "deep improvement behavior benchmark": [
-      "deep-improvement behavior benchmark"
-    ],
-    "deep improvement benchmark": [
-      "deep-improvement benchmark"
-    ],
-    "deep improvement benchmark artifacts": [
-      "deep-improvement benchmark artifacts"
-    ],
-    "deep improvement benchmark index": [
-      "deep-improvement benchmark index"
-    ],
-    "deep improvement benchmark reports": [
-      "deep-improvement benchmark reports"
     ],
     "deep improvement certificates and receipts": [
       "deep improvement certificates and receipts"
@@ -31551,9 +31215,6 @@
     "deep improvement common evidence source map": [
       "deep improvement common evidence source map"
     ],
-    "deep improvement common ledger schema": [
-      "deep-improvement-common-ledger-schema"
-    ],
     "deep improvement common legacy upcaster": [
       "deep improvement common legacy upcaster"
     ],
@@ -31568,9 +31229,6 @@
     ],
     "deep improvement common reducer implementation": [
       "deep improvement common reducer implementation"
-    ],
-    "deep improvement common reducers": [
-      "deep-improvement-common-reducers"
     ],
     "deep improvement common reducers and projections changelog": [
       "deep improvement common reducers and projections changelog"
@@ -31604,9 +31262,6 @@
     ],
     "deep improvement common sealed artifact implementation": [
       "deep improvement common sealed artifact implementation"
-    ],
-    "deep improvement common sealed artifacts": [
-      "deep-improvement-common-sealed-artifacts"
     ],
     "deep improvement common sealed artifacts changelog": [
       "deep improvement common sealed artifacts changelog"
@@ -31662,9 +31317,6 @@
     "deep improvement deterministic replay": [
       "deep improvement deterministic replay"
     ],
-    "deep improvement documentation locations": [
-      "deep-improvement documentation locations"
-    ],
     "deep improvement envelope upcaster plan": [
       "deep improvement envelope upcaster plan"
     ],
@@ -31674,17 +31326,8 @@
     "deep improvement event vocabulary": [
       "deep improvement event vocabulary"
     ],
-    "deep improvement feature catalog": [
-      "deep-improvement feature catalog"
-    ],
     "deep improvement ledger parity": [
       "deep improvement ledger parity"
-    ],
-    "deep improvement loop protocol": [
-      "deep-improvement loop protocol"
-    ],
-    "deep improvement md": [
-      "deep-improvement.md"
     ],
     "deep improvement migration certificate plan": [
       "deep improvement migration certificate plan"
@@ -31698,17 +31341,11 @@
     "deep improvement phase 014 readiness certificate": [
       "deep improvement phase 014 readiness certificate"
     ],
-    "deep improvement policy charter": [
-      "deep-improvement policy charter"
-    ],
     "deep improvement projection tasks": [
       "deep improvement projection tasks"
     ],
     "deep improvement projections plan": [
       "deep improvement projections plan"
-    ],
-    "deep improvement quick reference": [
-      "deep-improvement quick reference"
     ],
     "deep improvement reducers and projections": [
       "deep improvement reducers and projections"
@@ -31718,9 +31355,6 @@
     ],
     "deep improvement reducers tasks": [
       "deep improvement reducers tasks"
-    ],
-    "deep improvement reference folders": [
-      "deep-improvement reference folders"
     ],
     "deep improvement resume adapter": [
       "deep improvement resume adapter"
@@ -31733,9 +31367,6 @@
     ],
     "deep improvement reviewer scorer": [
       "deep-improvement reviewer scorer"
-    ],
-    "deep improvement scripts": [
-      "deep-improvement scripts"
     ],
     "deep improvement sealed artifact contract": [
       "deep improvement sealed artifact contract"
@@ -31758,9 +31389,6 @@
     "deep improvement shared projection contract": [
       "deep improvement shared projection contract"
     ],
-    "deep improvement tests": [
-      "deep-improvement tests"
-    ],
     "deep improvement typed event ledger": [
       "deep improvement typed event ledger"
     ],
@@ -31772,93 +31400,6 @@
     ],
     "deep improvement upcaster tasks": [
       "deep improvement upcaster tasks"
-    ],
-    "deep improvement v1 0 0 0": [
-      "deep-improvement v1.0.0.0"
-    ],
-    "deep improvement v1 0 1 0": [
-      "deep-improvement v1.0.1.0"
-    ],
-    "deep improvement v1 1 0 0": [
-      "deep-improvement v1.1.0.0"
-    ],
-    "deep improvement v1 10 0 0": [
-      "deep-improvement v1.10.0.0"
-    ],
-    "deep improvement v1 11 0 0": [
-      "deep-improvement v1.11.0.0"
-    ],
-    "deep improvement v1 11 1 0": [
-      "deep-improvement v1.11.1.0"
-    ],
-    "deep improvement v1 12 0 0": [
-      "deep-improvement v1.12.0.0"
-    ],
-    "deep improvement v1 13 0 0": [
-      "deep-improvement v1.13.0.0"
-    ],
-    "deep improvement v1 14 0 0": [
-      "deep-improvement v1.14.0.0"
-    ],
-    "deep improvement v1 15 0 0": [
-      "deep-improvement v1.15.0.0"
-    ],
-    "deep improvement v1 16 0 0": [
-      "deep-improvement v1.16.0.0"
-    ],
-    "deep improvement v1 17 0 0": [
-      "deep-improvement v1.17.0.0"
-    ],
-    "deep improvement v1 17 0 1": [
-      "deep-improvement v1.17.0.1"
-    ],
-    "deep improvement v1 17 1 0": [
-      "deep-improvement v1.17.1.0"
-    ],
-    "deep improvement v1 17 2 0": [
-      "deep-improvement v1.17.2.0"
-    ],
-    "deep improvement v1 18 0 0": [
-      "deep-improvement v1.18.0.0"
-    ],
-    "deep improvement v1 19 0 0": [
-      "deep-improvement v1.19.0.0"
-    ],
-    "deep improvement v1 19 1 0": [
-      "deep-improvement v1.19.1.0"
-    ],
-    "deep improvement v1 2 0 0": [
-      "deep-improvement v1.2.0.0"
-    ],
-    "deep improvement v1 2 1 0": [
-      "deep-improvement v1.2.1.0"
-    ],
-    "deep improvement v1 2 2 0": [
-      "deep-improvement v1.2.2.0"
-    ],
-    "deep improvement v1 3 0 0": [
-      "deep-improvement v1.3.0.0"
-    ],
-    "deep improvement v1 4 0 0": [
-      "deep-improvement v1.4.0.0"
-    ],
-    "deep improvement v1 5 0 0": [
-      "deep-improvement v1.5.0.0"
-    ],
-    "deep improvement v1 6 0 0": [
-      "deep-improvement v1.6.0.0"
-    ],
-    "deep improvement v1 7 0 0": [
-      "deep-improvement v1.7.0.0"
-    ],
-    "deep improvement v1 8 0 0": [
-      "deep-improvement v1.8.0.0"
-    ],
-    "deep improvement v1 9 0 0": [
-      "deep-improvement v1.9.0.0"
-    ],
-    "deep improvement version marker": [
-      "Deep-Improvement Version Marker"
     ],
     "deep loop 003 cutover certificate build": [
       "deep-loop 003 cutover certificate build"
@@ -33413,8 +32954,8 @@
     "deep research retained count boundary": [
       "Deep Research retained count boundary"
     ],
-    "deep research review council improvement": [
-      "deep research review council improvement"
+    "deep research review council": [
+      "deep research review council"
     ],
     "deep research review state hygiene": [
       "deep research review state hygiene",
@@ -34584,9 +34125,6 @@
     "default invocation block": [
       "default invocation block"
     ],
-    "default json benchmark": [
-      "default.json benchmark"
-    ],
     "default min results": [
       "default min results"
     ],
@@ -35670,9 +35208,6 @@
     "detect changes preflight handler": [
       "detect_changes preflight handler"
     ],
-    "detect improvement plateau": [
-      "detect improvement plateau"
-    ],
     "detect nested council depth": [
       "detect nested council depth"
     ],
@@ -35717,9 +35252,6 @@
     ],
     "deterministic arg resolution header memory search": [
       "deterministic arg resolution header memory search"
-    ],
-    "deterministic checks": [
-      "deterministic checks"
     ],
     "deterministic council replay": [
       "deterministic council replay"
@@ -35798,9 +35330,6 @@
     ],
     "deterministic scenario matrix": [
       "deterministic scenario matrix"
-    ],
-    "deterministic scoring": [
-      "deterministic scoring"
     ],
     "dev advanced patterns": [
       "dev advanced patterns"
@@ -36396,15 +35925,6 @@
     "dimension scoring signals": [
       "dimension scoring signals"
     ],
-    "dimension weight tuning": [
-      "dimension weight tuning"
-    ],
-    "dimension weights": [
-      "dimension weights"
-    ],
-    "dimensional progress": [
-      "dimensional progress"
-    ],
     "dimensioncoveragegate": [
       "dimensionCoverageGate"
     ],
@@ -36621,9 +36141,6 @@
     "discard failed experiment branch": [
       "discard failed experiment branch"
     ],
-    "discover agent surfaces": [
-      "discover agent surfaces"
-    ],
     "discover team names": [
       "discover team names"
     ],
@@ -36638,9 +36155,6 @@
     ],
     "dispatch audit trail": [
       "dispatch audit trail"
-    ],
-    "dispatch candidate scoring": [
-      "dispatch candidate scoring"
     ],
     "dispatch context authorization prefix": [
       "DISPATCH-CONTEXT authorization prefix"
@@ -36668,9 +36182,6 @@
     ],
     "dispatch enforcement ci guard tasks": [
       "dispatch enforcement ci guard tasks"
-    ],
-    "dispatch envelope test": [
-      "dispatch envelope test"
     ],
     "dispatch evidence plan": [
       "dispatch evidence plan"
@@ -36722,15 +36233,6 @@
     ],
     "dispatch matrix authoring": [
       "dispatch matrix authoring"
-    ],
-    "dispatch model": [
-      "dispatch-model"
-    ],
-    "dispatch model cjs": [
-      "dispatch-model.cjs"
-    ],
-    "dispatch model dispatcher": [
-      "dispatch-model dispatcher"
     ],
     "dispatch name council": [
       "dispatch name council"
@@ -36851,9 +36353,6 @@
     ],
     "disprove p0 finding": [
       "disprove P0 finding"
-    ],
-    "dispute resolver": [
-      "dispute resolver"
     ],
     "dissolve code implement code debug code verify": [
       "dissolve code-implement code-debug code-verify"
@@ -39158,9 +38657,6 @@
     "durable write boundaries implementation": [
       "durable write boundaries implementation"
     ],
-    "dynamic 5d scoring mode": [
-      "dynamic-5d scoring mode"
-    ],
     "dynamic db class construction site": [
       "dynamic db class construction site"
     ],
@@ -39175,15 +38671,6 @@
     ],
     "dynamic load hook pattern": [
       "dynamic load hook pattern"
-    ],
-    "dynamic profile catalog": [
-      "dynamic profile catalog"
-    ],
-    "dynamic profiling": [
-      "dynamic profiling"
-    ],
-    "dynamic profiling auditability": [
-      "dynamic profiling auditability"
     ],
     "e lineage fix": [
       "E_LINEAGE fix",
@@ -40254,9 +39741,6 @@
     "emulate a light source css": [
       "emulate a light source css"
     ],
-    "enable 5dim scorer": [
-      "enable 5dim scorer"
-    ],
     "enable debug logging": [
       "enable debug logging"
     ],
@@ -40680,9 +40164,6 @@
     "env flag no version number": [
       "env flag no version number"
     ],
-    "env hardening gates": [
-      "env hardening gates"
-    ],
     "env knob docs tasks": [
       "env knob docs tasks"
     ],
@@ -40986,14 +40467,8 @@
     "evaluation and release gate": [
       "evaluation-and-release-gate"
     ],
-    "evaluation dimensions": [
-      "evaluation dimensions"
-    ],
     "evaluation observability handover": [
       "evaluation observability handover"
-    ],
-    "evaluation stack": [
-      "evaluation stack"
     ],
     "evaluator canary promotion events": [
       "evaluator canary promotion events"
@@ -41003,12 +40478,6 @@
     ],
     "evaluator capsule epoch integrity": [
       "evaluator capsule epoch integrity"
-    ],
-    "evaluator contract": [
-      "evaluator contract"
-    ],
-    "evaluator first agent improvement": [
-      "evaluator-first agent improvement"
     ],
     "event dir binding guard": [
       "event dir binding guard"
@@ -41078,9 +40547,6 @@
     ],
     "evergreen audit": [
       "evergreen audit"
-    ],
-    "evergreen citation rule": [
-      "evergreen citation rule"
     ],
     "evergreen doc cleanup 013": [
       "evergreen doc cleanup 013"
@@ -41159,9 +40625,6 @@
     ],
     "evidence boundary landing tasks": [
       "evidence boundary landing tasks"
-    ],
-    "evidence capture": [
-      "evidence capture"
     ],
     "evidence cited redesign": [
       "evidence cited redesign"
@@ -41556,9 +41019,6 @@
     ],
     "executor cli is not a skill route": [
       "executor cli is not a skill route"
-    ],
-    "executor cli routing": [
-      "executor cli routing"
     ],
     "executor config": [
       "executor config"
@@ -44378,9 +43838,6 @@
     "five dimension council scoring": [
       "five-dimension council scoring"
     ],
-    "five dimension rubric": [
-      "five-dimension rubric"
-    ],
     "five dimension scoring rubric application": [
       "five-dimension scoring rubric application"
     ],
@@ -44446,9 +43903,6 @@
     ],
     "five results rendered as one fix": [
       "five results rendered as one fix"
-    ],
-    "five scoring dimensions": [
-      "five scoring dimensions"
     ],
     "five sonnet agents disjoint folders": [
       "five sonnet agents disjoint folders"
@@ -44774,17 +44228,11 @@
     "fixture resolution": [
       "fixture resolution"
     ],
-    "fixture runner output": [
-      "fixture runner output"
-    ],
     "fixture slug benchmark": [
       "{{FIXTURE_SLUG}} benchmark"
     ],
     "fixture validate sh": [
       "fixture-validate.sh"
-    ],
-    "fixturedeltas helped hurt": [
-      "fixtureDeltas helped hurt"
     ],
     "fk existence check": [
       "fk existence check"
@@ -45542,9 +44990,6 @@
     "four phases closed with items recorded rather": [
       "four phases closed with items recorded rather"
     ],
-    "four reducer issues fixed": [
-      "four reducer issues fixed"
-    ],
     "four timestamp causal lineage window": [
       "four timestamp causal lineage window"
     ],
@@ -45580,10 +45025,6 @@
     ],
     "framework": [
       "framework"
-    ],
-    "framework bakeoff profile": [
-      "framework bakeoff profile",
-      "framework-bakeoff profile"
     ],
     "framework capability layer": [
       "framework capability layer"
@@ -46907,9 +46348,6 @@
     "general cleanup omnibus": [
       "general cleanup omnibus"
     ],
-    "generate candidate": [
-      "generate candidate"
-    ],
     "generate command routers clean": [
       "generate-command-routers clean"
     ],
@@ -46954,12 +46392,6 @@
     ],
     "generate literal phase names": [
       "generate literal phase names"
-    ],
-    "generate profile": [
-      "generate-profile"
-    ],
-    "generate profile cjs": [
-      "generate-profile.cjs"
     ],
     "generate review fix cycle": [
       "generate review fix cycle"
@@ -48608,9 +48040,6 @@
     "gold battery verifier code graph": [
       "gold battery verifier code graph"
     ],
-    "gold set calibration": [
-      "gold set calibration"
-    ],
     "golden prompt suite green": [
       "golden prompt suite green"
     ],
@@ -48878,23 +48307,11 @@
     "graceful unknown model dimensions": [
       "graceful unknown model dimensions"
     ],
-    "grader cache": [
-      "grader cache"
-    ],
-    "grader harness": [
-      "grader harness"
-    ],
-    "grader selection": [
-      "grader selection"
-    ],
     "grader startup check plan": [
       "grader startup check plan"
     ],
     "grader startup check tasks": [
       "grader startup check tasks"
-    ],
-    "grader system prompts": [
-      "grader system prompts"
     ],
     "graduate flag to default on": [
       "graduate flag to default on"
@@ -49543,18 +48960,6 @@
     "guarded errexit adoption": [
       "guarded errexit adoption"
     ],
-    "guarded promotion": [
-      "guarded promotion"
-    ],
-    "guarded promotion and stop decisions": [
-      "guarded promotion and stop decisions"
-    ],
-    "guarded promotion evidence gates": [
-      "guarded promotion evidence gates"
-    ],
-    "guarded promotion gate": [
-      "guarded promotion gate"
-    ],
     "guarded reference loading": [
       "guarded reference loading"
     ],
@@ -49653,9 +49058,6 @@
     ],
     "hallucination grader": [
       "hallucination grader"
-    ],
-    "hallucination grader agreement": [
-      "hallucination grader agreement"
     ],
     "hallucination grader goal": [
       "hallucination grader goal"
@@ -50236,12 +49638,6 @@
     ],
     "held divergence four to one": [
       "held divergence four to one"
-    ],
-    "held out and gold sets": [
-      "held-out and gold sets"
-    ],
-    "held out non regression": [
-      "held-out non-regression"
     ],
     "help printer criterion": [
       "help printer criterion"
@@ -51393,12 +50789,6 @@
     "how to author a chart template": [
       "how to author a chart template"
     ],
-    "how to author a model benchmark fixture": [
-      "how to author a model-benchmark fixture"
-    ],
-    "how to author lane a inputs": [
-      "how to author lane A inputs"
-    ],
     "how to phrase a jev question": [
       "how to phrase a jev question"
     ],
@@ -52149,12 +51539,6 @@
     "image metadata sk vision metadata": [
       "Image metadata (sk_vision_metadata)"
     ],
-    "imb baseline": [
-      "IMB baseline"
-    ],
-    "imb scenario contract": [
-      "IMB scenario contract"
-    ],
     "immutable lineage config": [
       "immutable lineage config"
     ],
@@ -52377,29 +51761,8 @@
     "improvement artifacts rule": [
       "IMPROVEMENT_ARTIFACTS rule"
     ],
-    "improvement charter": [
-      "improvement charter"
-    ],
-    "improvement charter and strategy scaffold": [
-      "improvement charter and strategy scaffold"
-    ],
-    "improvement config fields": [
-      "improvement config fields"
-    ],
-    "improvement config json": [
-      "improvement-config.json"
-    ],
-    "improvement config reference": [
-      "improvement config reference"
-    ],
     "improvement config rule": [
       "improvement config rule"
-    ],
-    "improvement dashboard": [
-      "improvement dashboard"
-    ],
-    "improvement executor behavior scenarios": [
-      "improvement executor behavior scenarios"
     ],
     "improvement folder structure doc": [
       "improvement folder structure doc"
@@ -52407,20 +51770,14 @@
     "improvement loop retries once": [
       "improvement loop retries once"
     ],
+    "improvement modes removed": [
+      "improvement modes removed"
+    ],
     "improvement promotion authority": [
       "improvement promotion authority"
     ],
     "improvement promotion authority implementation": [
       "improvement promotion authority implementation"
-    ],
-    "improvement runtime layout": [
-      "improvement runtime layout"
-    ],
-    "improvement strategy template": [
-      "improvement strategy template"
-    ],
-    "improvement workflow lifecycle": [
-      "improvement workflow lifecycle"
     ],
     "in context plain english": [
       "in-context plain english"
@@ -52677,9 +52034,6 @@
     "information density": [
       "information density"
     ],
-    "infra failure vs weak candidate": [
-      "infra failure vs weak candidate"
-    ],
     "infra fix plan memory db graph churn": [
       "infra fix plan memory db graph churn"
     ],
@@ -52736,9 +52090,6 @@
     ],
     "initialize coverage graph": [
       "initialize coverage graph"
-    ],
-    "initialize deep improvement run": [
-      "initialize deep-improvement run"
     ],
     "inject a rule at prompt time": [
       "inject a rule at prompt time"
@@ -53099,15 +52450,6 @@
     ],
     "integration research remediation": [
       "integration research remediation"
-    ],
-    "integration scan report": [
-      "integration scan report"
-    ],
-    "integration scanning": [
-      "integration scanning"
-    ],
-    "integration surface scan": [
-      "integration surface scan"
     ],
     "integration topology diagram": [
       "integration topology diagram"
@@ -54279,12 +53621,6 @@
     "job queue governance json test fix": [
       "job-queue governance_json test fix"
     ],
-    "journal emission protocol": [
-      "journal emission protocol"
-    ],
-    "journal events": [
-      "journal events"
-    ],
     "journal mode force wal regression": [
       "journal_mode force wal regression"
     ],
@@ -54462,9 +53798,6 @@
     "keep off flag roadmap verdict": [
       "keep off flag roadmap verdict"
     ],
-    "keep or discard rule": [
-      "keep or discard rule"
-    ],
     "keep rules as docs": [
       "keep rules as docs"
     ],
@@ -54476,9 +53809,6 @@
     ],
     "keep sk git as a single skill": [
       "keep sk-git as a single skill"
-    ],
-    "keep vs reject candidate": [
-      "keep vs reject candidate"
     ],
     "key files watcher": [
       "key_files watcher"
@@ -54636,9 +53966,6 @@
     "labeled prompts corpus": [
       "labeled prompts corpus"
     ],
-    "labeled regex miss outputs": [
-      "labeled regex-miss outputs"
-    ],
     "labeled set gap threshold harness": [
       "labeled set gap threshold harness"
     ],
@@ -54738,14 +54065,8 @@
     "lane 008 tasks": [
       "lane 008 tasks"
     ],
-    "lane a agent improvement scripts": [
-      "lane a agent-improvement scripts"
-    ],
     "lane a authoring guide completes six family coverage": [
       "Lane A Authoring Guide Completes Six-Family Coverage"
-    ],
-    "lane a vitest": [
-      "Lane A Vitest"
     ],
     "lane ablation": [
       "lane ablation"
@@ -54755,12 +54076,6 @@
     ],
     "lane attribution documentation update": [
       "lane attribution documentation update"
-    ],
-    "lane b model benchmark run labels": [
-      "Lane B model-benchmark run labels"
-    ],
-    "lane b profile json scaffold": [
-      "Lane B profile json scaffold"
     ],
     "lane c d3 proxy fix": [
       "Lane-C D3 proxy fix"
@@ -54809,9 +54124,6 @@
     ],
     "lane lists shadow pipeline plumbing": [
       "lane lists shadow pipeline plumbing"
-    ],
-    "lane local tests": [
-      "lane-local tests"
     ],
     "lane merge rule": [
       "lane merge rule"
@@ -56012,12 +55324,6 @@
       "legal stop gate bundle",
       "legal-stop gate bundle"
     ],
-    "legal stop gate bundles": [
-      "legal-stop gate bundles"
-    ],
-    "legal stop gate keys check": [
-      "legal-stop gate keys check"
-    ],
     "legal stop gate model": [
       "legal-stop gate model"
     ],
@@ -56712,9 +56018,6 @@
     "live owner skip": [
       "live owner skip"
     ],
-    "live playbook benchmark mode": [
-      "live playbook benchmark mode"
-    ],
     "live provider verification": [
       "live provider verification"
     ],
@@ -57348,12 +56651,6 @@
     "loop harness layer system deep loop": [
       "loop harness layer system-deep-loop"
     ],
-    "loop host cjs": [
-      "loop-host.cjs"
-    ],
-    "loop host router": [
-      "loop-host router"
-    ],
     "loop like repeated dispatch detection": [
       "loop-like repeated dispatch detection"
     ],
@@ -57383,9 +56680,6 @@
     ],
     "loop lock ts pid ttl heartbeat": [
       "loop-lock.ts pid ttl heartbeat"
-    ],
-    "loop stop condition": [
-      "loop stop condition"
     ],
     "loop termination cause event": [
       "loop termination cause event"
@@ -57464,9 +56758,6 @@
     ],
     "machine friendly cli json": [
       "machine friendly cli json"
-    ],
-    "machine owned status fields": [
-      "machine-owned status fields"
     ],
     "machine readable task list": [
       "machine-readable task list"
@@ -59785,9 +59076,6 @@
     "measure and declare tasks": [
       "measure and declare tasks"
     ],
-    "measure d4 grader against labels": [
-      "measure d4 grader against labels"
-    ],
     "measure event frequency from the log": [
       "measure event frequency from the log"
     ],
@@ -59811,9 +59099,6 @@
     ],
     "measure packet shapes": [
       "measure packet shapes"
-    ],
-    "measure reviewer verdict fallback": [
-      "measure reviewer verdict fallback"
     ],
     "measure the track claim": [
       "measure the track claim"
@@ -62716,9 +62001,6 @@
     "mimo profile and prompt guidance": [
       "MiMo Profile and Prompt Guidance"
     ],
-    "mimo profiles llm gateway": [
-      "mimo profiles llm gateway"
-    ],
     "mimo swe 2 max fan out": [
       "mimo swe-2 max fan-out"
     ],
@@ -62827,14 +62109,8 @@
     "mirror dedup tasks": [
       "mirror dedup tasks"
     ],
-    "mirror drift detection": [
-      "mirror drift detection"
-    ],
     "mirror drift manifest": [
       "mirror drift manifest"
-    ],
-    "mirror drift policy": [
-      "mirror drift policy"
     ],
     "mirror gate shipped": [
       "mirror gate shipped"
@@ -62859,9 +62135,6 @@
     ],
     "mirror regeneration": [
       "mirror regeneration"
-    ],
-    "mirror signal matching": [
-      "mirror signal matching"
     ],
     "mirror sync verification": [
       "mirror sync verification"
@@ -62973,9 +62246,6 @@
     ],
     "mixed epoch promotion rejection": [
       "mixed epoch promotion rejection"
-    ],
-    "mixed executor methodology": [
-      "mixed-executor methodology"
     ],
     "mixed vector guard": [
       "mixed vector guard"
@@ -63526,9 +62796,6 @@
     "mode authority record": [
       "mode authority record"
     ],
-    "mode aware promotion path": [
-      "mode-aware promotion path"
-    ],
     "mode cli jev over cli usage": [
       "mode cli-jev over cli-usage"
     ],
@@ -63583,9 +62850,6 @@
     "mode event gateway": [
       "mode event gateway"
     ],
-    "mode flag resolution": [
-      "--mode flag resolution"
-    ],
     "mode gate contract binding": [
       "mode gate contract binding"
     ],
@@ -63615,9 +62879,6 @@
     ],
     "mode projection contracts tasks": [
       "mode projection contracts tasks"
-    ],
-    "mode records and hardening gates": [
-      "mode records and hardening gates"
     ],
     "mode registry json entry": [
       "mode-registry.json entry"
@@ -63667,17 +62928,8 @@
     "mode state write path": [
       "mode state write path"
     ],
-    "mode switch": [
-      "mode switch"
-    ],
     "mode write set conflict graph": [
       "mode write-set conflict graph"
-    ],
-    "model agnostic dispatch": [
-      "model-agnostic dispatch"
-    ],
-    "model benchmark": [
-      "model-benchmark"
     ],
     "model benchmark 67 stem registry": [
       "model benchmark 67 stem registry"
@@ -63706,9 +62958,6 @@
     "model benchmark changelog": [
       "model benchmark changelog"
     ],
-    "model benchmark code task fixture template": [
-      "model benchmark code task fixture template"
-    ],
     "model benchmark cursor devin pi dispatch": [
       "model-benchmark cursor devin pi dispatch"
     ],
@@ -63718,14 +62967,8 @@
     "model benchmark cursor devin pi tasks": [
       "model-benchmark cursor devin pi tasks"
     ],
-    "model benchmark data": [
-      "model benchmark data"
-    ],
     "model benchmark effect recovery": [
       "model benchmark effect recovery"
-    ],
-    "model benchmark entry point": [
-      "model-benchmark entry point"
     ],
     "model benchmark event ledger": [
       "model-benchmark event ledger"
@@ -63745,20 +62988,11 @@
     "model benchmark fail closed fold": [
       "model benchmark fail closed fold"
     ],
-    "model benchmark fixture guide": [
-      "model benchmark fixture guide"
-    ],
     "model benchmark idempotent re entry plan": [
       "model benchmark idempotent re-entry plan"
     ],
-    "model benchmark lane scripts": [
-      "model-benchmark lane scripts"
-    ],
     "model benchmark ledger migration": [
       "model-benchmark ledger migration"
-    ],
-    "model benchmark ledger schema": [
-      "model-benchmark-ledger-schema"
     ],
     "model benchmark legacy projection diff": [
       "model benchmark legacy projection diff"
@@ -63781,12 +63015,6 @@
     "model benchmark migration gate tasks": [
       "model benchmark migration gate tasks"
     ],
-    "model benchmark mode": [
-      "model-benchmark mode"
-    ],
-    "model benchmark mode config": [
-      "model-benchmark mode config"
-    ],
     "model benchmark mode gate": [
       "model benchmark mode gate"
     ],
@@ -63802,17 +63030,11 @@
     "model benchmark parity receipt": [
       "model benchmark parity receipt"
     ],
-    "model benchmark pattern fixture template": [
-      "model benchmark pattern fixture template"
-    ],
     "model benchmark phase 009 tasks": [
       "model benchmark phase 009 tasks"
     ],
     "model benchmark phase 014 readiness certificate": [
       "model benchmark phase 014 readiness certificate"
-    ],
-    "model benchmark profile template": [
-      "model benchmark profile template"
     ],
     "model benchmark projection fold": [
       "model benchmark projection fold"
@@ -63831,9 +63053,6 @@
     ],
     "model benchmark reducer completeness decision": [
       "model benchmark reducer completeness decision"
-    ],
-    "model benchmark reducers": [
-      "model-benchmark-reducers"
     ],
     "model benchmark reducers and projections": [
       "model benchmark reducers and projections"
@@ -63889,12 +63108,6 @@
     "model benchmark rollback switch tasks": [
       "model benchmark rollback switch tasks"
     ],
-    "model benchmark routing": [
-      "model-benchmark routing"
-    ],
-    "model benchmark scorers": [
-      "model benchmark scorers"
-    ],
     "model benchmark scoring evidence binding": [
       "model benchmark scoring evidence binding"
     ],
@@ -63924,12 +63137,6 @@
     ],
     "model benchmark scoring prerequisite": [
       "model benchmark scoring prerequisite"
-    ],
-    "model benchmark scripts": [
-      "model benchmark scripts"
-    ],
-    "model benchmark sealed artifacts": [
-      "model-benchmark-sealed-artifacts"
     ],
     "model benchmark sealed artifacts changelog": [
       "model benchmark sealed artifacts changelog"
@@ -63970,9 +63177,6 @@
     "model benchmark target": [
       "model benchmark target"
     ],
-    "model benchmark tests": [
-      "model-benchmark tests"
-    ],
     "model benchmark typed ledger implementation": [
       "model benchmark typed ledger implementation"
     ],
@@ -63999,9 +63203,6 @@
     ],
     "model dispatch matrix": [
       "model dispatch matrix"
-    ],
-    "model dispatcher": [
-      "model dispatcher"
     ],
     "model facing representation": [
       "model-facing representation"
@@ -64080,12 +63281,6 @@
     ],
     "model tool efficiency numbers": [
       "model tool efficiency numbers"
-    ],
-    "model vs model profile": [
-      "model-vs-model profile"
-    ],
-    "model vs model profile template": [
-      "model-vs-model profile template"
     ],
     "model writer off list rate": [
       "model writer off-list rate"
@@ -64402,9 +63597,6 @@
     "multi format extraction": [
       "Multi-format extraction"
     ],
-    "multi iter evaluation sweep": [
-      "multi-iter evaluation sweep"
-    ],
     "multi model run artifact sealing": [
       "multi-model run artifact sealing"
     ],
@@ -64507,9 +63699,6 @@
     "mutation class enum discipline": [
       "mutation_class enum discipline"
     ],
-    "mutation coverage graph": [
-      "mutation coverage graph"
-    ],
     "mutation hook entity density": [
       "mutation hook entity density"
     ],
@@ -64530,9 +63719,6 @@
     ],
     "mutation proof": [
       "mutation proof"
-    ],
-    "mutation representation format": [
-      "mutation representation format"
     ],
     "mutation suite": [
       "mutation suite"
@@ -65044,9 +64230,6 @@
     "new list in space": [
       "new list in space"
     ],
-    "new only lifecycle": [
-      "new only lifecycle"
-    ],
     "new repo rule": [
       "new repo rule"
     ],
@@ -65217,9 +64400,6 @@
     ],
     "no fabrication proof": [
       "no fabrication proof"
-    ],
-    "no go conditions": [
-      "no-go conditions"
     ],
     "no go list": [
       "no-go list"
@@ -66696,12 +65876,6 @@
     "offline flag for cupt": [
       "offline flag for cupt"
     ],
-    "offline hallucination grader measurement": [
-      "offline hallucination grader measurement"
-    ],
-    "offline hallucination grader test": [
-      "offline hallucination grader test"
-    ],
     "offline listing": [
       "offline listing"
     ],
@@ -66719,9 +65893,6 @@
     ],
     "offline review verifier plan": [
       "offline review verifier plan"
-    ],
-    "offline reviewer verdict fallback test": [
-      "offline reviewer verdict fallback test"
     ],
     "offline task query": [
       "offline task query"
@@ -66906,9 +66077,6 @@
     "on write quality phase parent": [
       "on-write quality phase parent"
     ],
-    "onboard new target": [
-      "onboard new target"
-    ],
     "onboard style guide": [
       "onboard style guide"
     ],
@@ -66917,9 +66085,6 @@
     ],
     "onboarding flow": [
       "Onboarding flow"
-    ],
-    "onboarding kit gauntlet tooling": [
-      "onboarding-kit gauntlet tooling"
     ],
     "once per compaction rule hook": [
       "once per compaction rule hook"
@@ -67744,9 +66909,6 @@
     "operator label gate": [
       "operator label gate"
     ],
-    "operator owned strategy fields": [
-      "operator-owned strategy fields"
-    ],
     "operator pair labels": [
       "operator pair labels"
     ],
@@ -67917,9 +67079,6 @@
     ],
     "ops helpers": [
       "ops helpers"
-    ],
-    "opt in 5 dimension scorer": [
-      "opt-in 5-dimension scorer"
     ],
     "opt in collector posture": [
       "opt-in collector posture"
@@ -68620,9 +67779,6 @@
     "outcome emitter task": [
       "outcome emitter task"
     ],
-    "outcomescoredelta": [
-      "outcomeScoreDelta"
-    ],
     "outlier identification": [
       "outlier identification"
     ],
@@ -69044,9 +68200,6 @@
     "packaging gate tasks": [
       "packaging gate tasks"
     ],
-    "packaging parity after promotion": [
-      "packaging parity after promotion"
-    ],
     "packaging release handover": [
       "packaging release handover"
     ],
@@ -69229,12 +68382,6 @@
     ],
     "packet local artifact layout": [
       "packet-local artifact layout"
-    ],
-    "packet local candidate": [
-      "packet-local candidate"
-    ],
-    "packet local candidate proposals": [
-      "packet-local candidate proposals"
     ],
     "packet local changelog": [
       "packet-local changelog"
@@ -69947,9 +69094,6 @@
     "paths with spaces": [
       "paths with spaces"
     ],
-    "pattern evidence contract fixture": [
-      "pattern evidence contract fixture"
-    ],
     "patterns evaluation deep dives": [
       "patterns-evaluation deep dives"
     ],
@@ -70096,9 +69240,6 @@
     ],
     "per concern hook kill switch": [
       "per-concern hook kill-switch"
-    ],
-    "per dimension trajectory": [
-      "per-dimension trajectory"
     ],
     "per doc quality sla": [
       "per doc quality sla"
@@ -70459,9 +69600,6 @@
     ],
     "phantom fix verification research": [
       "phantom fix verification research"
-    ],
-    "phantom gap convention": [
-      "phantom gap convention"
     ],
     "phantom rule scripts removed from docs": [
       "phantom rule scripts removed from docs"
@@ -72063,9 +71201,6 @@
     "pi dedup reset after compaction": [
       "pi dedup reset after compaction"
     ],
-    "pi default assertion roster": [
-      "pi default assertion roster"
-    ],
     "pi default transport": [
       "pi default transport"
     ],
@@ -72989,15 +72124,6 @@
     "planted tag recall": [
       "planted tag recall"
     ],
-    "plateau detection": [
-      "plateau detection"
-    ],
-    "plateau stop reason": [
-      "plateau stop reason"
-    ],
-    "plateau window configurable": [
-      "plateau window configurable"
-    ],
     "platform access audit": [
       "platform access audit"
     ],
@@ -73861,9 +72987,6 @@
     "post program status drift": [
       "post-program status drift"
     ],
-    "post promotion verification": [
-      "post-promotion verification"
-    ],
     "post release alignment 028": [
       "post-release alignment 028"
     ],
@@ -74678,9 +73801,6 @@
     "prod path vs legacy enrichfusedresults": [
       "prod path vs legacy enrichFusedResults"
     ],
-    "produce repeatable scores": [
-      "produce repeatable scores"
-    ],
     "producer boundary": [
       "producer boundary"
     ],
@@ -74744,9 +73864,6 @@
     "profile cluster tasks": [
       "profile cluster tasks"
     ],
-    "profile command execution gate": [
-      "profile-command execution gate"
-    ],
     "profile database cluster removed": [
       "profile database cluster removed"
     ],
@@ -74756,17 +73873,8 @@
     "profile keyed embedding cache plan": [
       "profile keyed embedding cache plan"
     ],
-    "profile selection audit log": [
-      "profile-selection audit log"
-    ],
-    "profile selection rationale": [
-      "profile selection rationale"
-    ],
     "profile ts fallback fix": [
       "profile.ts fallback fix"
-    ],
-    "profiling log retention": [
-      "profiling log retention"
     ],
     "program cleanup audits": [
       "program cleanup audits"
@@ -74885,9 +73993,6 @@
     "projectmessage orchestration": [
       "projectMessage orchestration"
     ],
-    "promote candidate cjs": [
-      "promote-candidate.cjs"
-    ],
     "promote qwen default reranker": [
       "promote qwen default reranker"
     ],
@@ -74909,41 +74014,17 @@
     "promotion acceptance receipt binding": [
       "promotion acceptance receipt binding"
     ],
-    "promotion blocked branch preserved": [
-      "promotion_blocked_branch_preserved"
-    ],
     "promotion clause removal": [
       "promotion clause removal"
     ],
     "promotion clause removed": [
       "promotion clause removed"
     ],
-    "promotion contract": [
-      "promotion contract"
-    ],
     "promotion demotion hysteresis": [
       "promotion demotion hysteresis"
     ],
-    "promotion eligibility": [
-      "promotion eligibility"
-    ],
-    "promotion gates": [
-      "promotion gates"
-    ],
-    "promotion prerequisite checks": [
-      "promotion prerequisite checks"
-    ],
-    "promotion prerequisites": [
-      "promotion prerequisites"
-    ],
-    "promotion rollback steps": [
-      "promotion rollback steps"
-    ],
     "promotion routing identity lock": [
       "promotion routing identity lock"
-    ],
-    "promotion rules": [
-      "promotion rules"
     ],
     "prompt advisor rework plan": [
       "prompt-advisor rework plan"
@@ -75269,12 +74350,6 @@
     ],
     "propagate enhances": [
       "propagate enhances"
-    ],
-    "proposal metadata fields": [
-      "proposal metadata fields"
-    ],
-    "proposal only subagent": [
-      "proposal-only subagent"
     ],
     "proposed qualifier removal": [
       "(proposed) qualifier removal"
@@ -77398,12 +76473,6 @@
     "recursion guard macos": [
       "recursion guard macos"
     ],
-    "recursive agent charter": [
-      "recursive agent charter"
-    ],
-    "recursive agent strategy": [
-      "recursive agent strategy"
-    ],
     "recursive council": [
       "recursive council"
     ],
@@ -77506,9 +76575,6 @@
     "reduce spec kit doc templates": [
       "reduce spec-kit doc templates"
     ],
-    "reduce state cjs": [
-      "reduce-state.cjs"
-    ],
     "reduced motion compliance": [
       "reduced motion compliance"
     ],
@@ -77550,12 +76616,6 @@
     ],
     "reducer records terminal stop metadata": [
       "reducer records terminal stop metadata"
-    ],
-    "reducer refresh": [
-      "reducer refresh"
-    ],
-    "reducer schema mismatches": [
-      "reducer schema mismatches"
     ],
     "reelection default on": [
       "reelection default on"
@@ -77644,9 +76704,6 @@
     ],
     "reference template alignment": [
       "reference template alignment"
-    ],
-    "reference topic folders": [
-      "reference topic folders"
     ],
     "references block beyond adrs": [
       "references block beyond adrs"
@@ -79654,9 +78711,6 @@
     "remove voyage cohere reranker": [
       "remove voyage cohere reranker"
     ],
-    "removed deep improvement lane": [
-      "removed deep-improvement lane"
-    ],
     "removed process derived root source": [
       "removed process-derived root source"
     ],
@@ -80254,12 +79308,6 @@
     ],
     "repo study 5 tasks": [
       "repo study 5 tasks"
-    ],
-    "repo surface inventory": [
-      "repo surface inventory"
-    ],
-    "repo wide agent mirror sync gate": [
-      "Repo-Wide Agent-Mirror-Sync Gate"
     ],
     "repo wide comment hygiene done": [
       "repo-wide comment hygiene done"
@@ -81696,9 +80744,6 @@
     "restore by count verification": [
       "restore by count verification"
     ],
-    "restore canonical target": [
-      "restore canonical target"
-    ],
     "restore crash window fix plan": [
       "restore crash window fix plan"
     ],
@@ -81882,9 +80927,6 @@
     "resume parity non vacuity": [
       "resume parity non-vacuity"
     ],
-    "resume restart fork": [
-      "resume restart fork"
-    ],
     "resume terminal proof work": [
       "resume terminal proof work"
     ],
@@ -82025,9 +81067,6 @@
     ],
     "retired benchmark handling": [
       "retired benchmark handling"
-    ],
-    "retired benchmark lane entry": [
-      "Retired benchmark-lane entry"
     ],
     "retired capability still documented": [
       "retired capability still documented"
@@ -83143,12 +82182,6 @@
     "reviewer prompt benchmark substrate": [
       "reviewer prompt benchmark substrate"
     ],
-    "reviewer prompt fixture authoring": [
-      "reviewer-prompt fixture authoring"
-    ],
-    "reviewer prompt fixture template": [
-      "reviewer-prompt fixture template"
-    ],
     "reviewer read budget": [
       "reviewer read-budget"
     ],
@@ -83416,12 +82449,6 @@
     "roll back council round": [
       "roll back council round"
     ],
-    "rollback": [
-      "rollback"
-    ],
-    "rollback candidate cjs": [
-      "rollback-candidate.cjs"
-    ],
     "rollback candidate hash hardening": [
       "rollback candidate hash hardening"
     ],
@@ -83472,9 +82499,6 @@
     ],
     "rollback policy completion receipt": [
       "rollback policy completion receipt"
-    ],
-    "rollback runbook": [
-      "rollback runbook"
     ],
     "rollback runbook delete": [
       "rollback runbook delete"
@@ -83794,9 +82818,6 @@
     "route guard": [
       "route guard"
     ],
-    "route improvement command": [
-      "route improvement command"
-    ],
     "route line bounding implementation": [
       "route line bounding implementation"
     ],
@@ -83805,9 +82826,6 @@
     ],
     "route line bounding tasks": [
       "route line bounding tasks"
-    ],
-    "route model prompt": [
-      "route model prompt"
     ],
     "route native advisor brief": [
       "route native Advisor brief"
@@ -83970,9 +82988,6 @@
     ],
     "router read recount": [
       "router read recount"
-    ],
-    "router replay benchmark": [
-      "router replay benchmark"
     ],
     "router replay rename plan": [
       "router-replay rename plan"
@@ -84494,17 +83509,8 @@
     "run 2026 05 14b post 032 evidence": [
       "run-2026-05-14b-post-032 evidence"
     ],
-    "run a fixture benchmark": [
-      "run a fixture benchmark"
-    ],
     "run all manual testing playbooks": [
       "run all manual testing playbooks"
-    ],
-    "run benchmark": [
-      "run-benchmark"
-    ],
-    "run benchmark cjs": [
-      "run-benchmark.cjs"
     ],
     "run benchmarks": [
       "run benchmarks"
@@ -85049,9 +84055,6 @@
     "runtime mirror checks": [
       "runtime mirror checks"
     ],
-    "runtime mirror drift": [
-      "runtime mirror drift"
-    ],
     "runtime mirror drift design commands": [
       "runtime mirror drift design commands"
     ],
@@ -85069,9 +84072,6 @@
     ],
     "runtime mirror rollout": [
       "runtime mirror rollout"
-    ],
-    "runtime mirror sync": [
-      "runtime mirror sync"
     ],
     "runtime mirrors": [
       "runtime mirrors"
@@ -85117,9 +84117,6 @@
     ],
     "runtime package rename tasks": [
       "runtime package rename tasks"
-    ],
-    "runtime packet setup": [
-      "runtime packet setup"
     ],
     "runtime playbook fail cleanup": [
       "runtime playbook fail cleanup"
@@ -85523,9 +84520,6 @@
     "sample cli opencode model": [
       "sample cli-opencode model"
     ],
-    "sandbox baseline comparison": [
-      "sandbox baseline comparison"
-    ],
     "sandbox clean flag": [
       "sandbox clean flag"
     ],
@@ -85862,9 +84856,6 @@
     "scan folder docs green screenshots verify": [
       "scan-folder-docs green screenshots verify"
     ],
-    "scan integration cjs": [
-      "scan-integration.cjs"
-    ],
     "scan lease heartbeat fix": [
       "scan lease heartbeat fix"
     ],
@@ -86192,15 +85183,6 @@
     "score alignment suggestion status": [
       "score-alignment-suggestion status"
     ],
-    "score candidate": [
-      "score-candidate"
-    ],
-    "score candidate cjs": [
-      "score-candidate.cjs"
-    ],
-    "score candidate test": [
-      "score-candidate test"
-    ],
     "score clarify default": [
       "score-clarify-default"
     ],
@@ -86255,9 +85237,6 @@
     "score d4 agreement": [
       "score-d4-agreement"
     ],
-    "score d4 agreement cjs": [
-      "score-d4-agreement.cjs"
-    ],
     "score d4 agreement completion criteria": [
       "score-d4-agreement completion criteria"
     ],
@@ -86284,9 +85263,6 @@
     ],
     "score debug next check tasks": [
       "score-debug-next-check tasks"
-    ],
-    "score delta benchmark gates": [
-      "score-delta benchmark gates"
     ],
     "score executor reliability": [
       "score executor reliability"
@@ -86359,12 +85335,6 @@
     ],
     "score levels": [
       "score levels"
-    ],
-    "score model variant": [
-      "score-model-variant"
-    ],
-    "score model variant cjs": [
-      "score-model-variant.cjs"
     ],
     "score pi transport": [
       "score-pi-transport"
@@ -86474,9 +85444,6 @@
     "score verdict fallback": [
       "score-verdict-fallback"
     ],
-    "score verdict fallback cjs": [
-      "score-verdict-fallback.cjs"
-    ],
     "score verdict fallback completion criteria": [
       "score-verdict-fallback completion criteria"
     ],
@@ -86495,9 +85462,6 @@
     "scored on nothing before": [
       "scored on nothing before"
     ],
-    "scorer 5dim flag": [
-      "--scorer 5dim flag"
-    ],
     "scorer ablation": [
       "scorer ablation"
     ],
@@ -86512,9 +85476,6 @@
     ],
     "scorer baseline restore": [
       "scorer baseline restore"
-    ],
-    "scorer cache": [
-      "scorer cache"
     ],
     "scorer calibration": [
       "scorer calibration"
@@ -86561,17 +85522,11 @@
     "scorer routing abstention tuning": [
       "scorer routing abstention tuning"
     ],
-    "scorer security controls": [
-      "scorer security controls"
-    ],
     "scorer weight change": [
       "scorer weight change"
     ],
     "scoring convergence score delta": [
       "scoring convergence score-delta"
-    ],
-    "scoring dispatch": [
-      "scoring dispatch"
     ],
     "scoring hardening": [
       "scoring hardening"
@@ -86583,7 +85538,6 @@
       "scoring matrix replay plan"
     ],
     "scoring rubric": [
-      "scoring rubric",
       "scoring_rubric"
     ],
     "scoring rubric cross critique": [
@@ -86774,9 +85728,6 @@
     ],
     "scripts ownership tasks": [
       "scripts ownership tasks"
-    ],
-    "scripts vitest suite": [
-      "scripts vitest suite"
     ],
     "scripts workspace resolution": [
       "scripts workspace resolution"
@@ -87233,9 +86184,6 @@
     ],
     "section 2 reshape checklist": [
       "section 2 reshape checklist"
-    ],
-    "section 6 heading fix": [
-      "Section 6 Heading Fix"
     ],
     "section and folder checks": [
       "section and folder checks"
@@ -87921,9 +86869,6 @@
     "session notes tasks": [
       "session-notes tasks"
     ],
-    "session outcome enum": [
-      "session outcome enum"
-    ],
     "session packet binding": [
       "session packet binding"
     ],
@@ -88482,9 +87427,6 @@
     "shared dead half census": [
       "shared dead half census"
     ],
-    "shared deep improvement scripts": [
-      "shared deep-improvement scripts"
-    ],
     "shared deep loop mode closures": [
       "shared deep-loop mode closures"
     ],
@@ -88745,9 +87687,6 @@
     ],
     "shared layer drift": [
       "shared layer drift"
-    ],
-    "shared lib": [
-      "shared lib"
     ],
     "shared library modules": [
       "shared library modules"
@@ -89416,9 +88355,6 @@
     "signal theater decision": [
       "signal theater decision"
     ],
-    "signature based dedup": [
-      "signature-based dedup"
-    ],
     "sigterm daemon": [
       "sigterm daemon"
     ],
@@ -89694,9 +88630,6 @@
     ],
     "size preset viewbox": [
       "size preset viewbox"
-    ],
-    "sk agent improver deep improvement rename": [
-      "sk-agent-improver deep-improvement rename"
     ],
     "sk code 1 0 0 0": [
       "sk-code 1.0.0.0"
@@ -90910,6 +89843,9 @@
     "sk create benchmark 1 5 0 0": [
       "sk-create-benchmark 1.5.0.0"
     ],
+    "sk create benchmark 1 6 0 0": [
+      "sk-create-benchmark 1.6.0.0"
+    ],
     "sk create benchmark playbook": [
       "sk-create-benchmark playbook"
     ],
@@ -90930,6 +89866,9 @@
     ],
     "sk create benchmark v1 5 0 0": [
       "sk-create-benchmark v1.5.0.0"
+    ],
+    "sk create benchmark v1 6 0 0": [
+      "sk-create-benchmark v1.6.0.0"
     ],
     "sk create changelog 1 0 0 0": [
       "sk-create-changelog 1.0.0.0"
@@ -92517,9 +91456,6 @@
     ],
     "sk prompt models": [
       "sk-prompt-models"
-    ],
-    "sk prompt models benchmarks hub": [
-      "sk-prompt-models benchmarks hub"
     ],
     "sk prompt models fold in": [
       "sk-prompt-models fold-in"
@@ -94709,9 +93645,6 @@
     "skill removal tasks": [
       "skill removal tasks"
     ],
-    "skill rename to deep improvement": [
-      "Skill Rename to deep-improvement"
-    ],
     "skill resource layout": [
       "skill resource layout"
     ],
@@ -95291,9 +94224,6 @@
     ],
     "slash command authoring": [
       "slash command authoring"
-    ],
-    "slash command entrypoint": [
-      "slash command entrypoint"
     ],
     "slash command mistakes": [
       "slash command mistakes"
@@ -98625,9 +97555,6 @@
     "stamp migration tasks": [
       "stamp migration tasks"
     ],
-    "stamp mode field": [
-      "stamp mode field"
-    ],
     "stamp only migration": [
       "stamp only migration"
     ],
@@ -99202,12 +98129,6 @@
     "stop reason max iterations": [
       "stop reason max iterations"
     ],
-    "stop reason taxonomy": [
-      "stop reason taxonomy"
-    ],
-    "stop rule thresholds": [
-      "stop rule thresholds"
-    ],
     "stop running timer": [
       "stop running timer"
     ],
@@ -99428,9 +98349,6 @@
     "stress test expansion alignment": [
       "stress test expansion alignment"
     ],
-    "stress test failure paths": [
-      "stress test failure paths"
-    ],
     "stress test feature catalog": [
       "stress test feature catalog"
     ],
@@ -99555,9 +98473,6 @@
     ],
     "strict validation checklist": [
       "strict validation checklist"
-    ],
-    "strict validation comparison separates models": [
-      "strict-validation comparison separates models"
     ],
     "strict validation failure rate": [
       "strict validation failure rate"
@@ -100157,9 +99072,6 @@
     "surface design plan task breakdown": [
       "surface design plan task breakdown"
     ],
-    "surface discovery": [
-      "surface discovery"
-    ],
     "surface implementation standards": [
       "surface implementation standards"
     ],
@@ -100295,17 +99207,8 @@
     "sweep fleet marker": [
       "sweep fleet marker"
     ],
-    "sweep framework primitives": [
-      "sweep framework primitives"
-    ],
-    "sweep isolation test": [
-      "sweep-isolation test"
-    ],
     "sweep live zero trigger index": [
       "sweep live zero trigger index"
-    ],
-    "sweep reporter": [
-      "sweep-reporter"
     ],
     "sweep rrf sh sweep rrf py": [
       "sweep-rrf.sh sweep-rrf.py"
@@ -100322,9 +99225,6 @@
     "sweep verification checklist": [
       "sweep verification checklist"
     ],
-    "sweep vitest suite": [
-      "sweep vitest suite"
-    ],
     "swimlane architecture diagram": [
       "swimlane architecture diagram"
     ],
@@ -100336,9 +99236,6 @@
     ],
     "swiper carousel configuration": [
       "swiper carousel configuration"
-    ],
-    "switch benchmark mode": [
-      "switch benchmark mode"
     ],
     "symbol bm25 add idempotency": [
       "symbol bm25 add idempotency"
@@ -100598,6 +99495,9 @@
     "system deep loop 1 5 3 0": [
       "system-deep-loop 1.5.3.0"
     ],
+    "system deep loop 1 6 0 0": [
+      "system-deep-loop 1.6.0.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -100712,14 +99612,14 @@
     "system deep loop v1 5 3 0": [
       "system-deep-loop v1.5.3.0"
     ],
+    "system deep loop v1 6 0 0": [
+      "system-deep-loop v1.6.0.0"
+    ],
     "system deep research bugs": [
       "system deep research bugs"
     ],
     "system dist freshness guard": [
       "system-dist-freshness-guard"
-    ],
-    "system grader": [
-      "system-grader"
     ],
     "system hardening adr": [
       "system hardening adr"
@@ -100741,9 +99641,6 @@
     ],
     "system rerank sidecar skill": [
       "system-rerank-sidecar skill"
-    ],
-    "system skeptic": [
-      "system-skeptic"
     ],
     "system skill advisor": [
       "system skill advisor"
@@ -101594,9 +100491,6 @@
     "t cns 01": [
       "t-cns-01"
     ],
-    "t tier code fixture json": [
-      "t-tier code fixture json"
-    ],
     "t w1 cgc 03": [
       "t-w1-cgc-03"
     ],
@@ -101711,18 +100605,6 @@
     ],
     "target authority preamble": [
       "target authority preamble"
-    ],
-    "target manifest": [
-      "target manifest"
-    ],
-    "target manifest guardrails": [
-      "target manifest guardrails"
-    ],
-    "target profiles empty": [
-      "target profiles empty"
-    ],
-    "target specific profile": [
-      "target-specific profile"
     ],
     "target state reconciliation": [
       "target state reconciliation"
@@ -103081,9 +101963,6 @@
     "three fixed two are a decision": [
       "three fixed two are a decision"
     ],
-    "three fixture tiers": [
-      "three fixture tiers"
-    ],
     "three goal research iterations": [
       "three goal research iterations"
     ],
@@ -103246,14 +102125,8 @@
     "tier precedence deterministic": [
       "tier precedence deterministic"
     ],
-    "tiered code task oracle fixture": [
-      "tiered code-task oracle fixture"
-    ],
     "tiered error recovery": [
       "tiered error recovery"
-    ],
-    "tiered fixture template": [
-      "tiered fixture template"
     ],
     "tiered recall budget compaction ladder": [
       "tiered recall budget compaction ladder"
@@ -103739,9 +102612,6 @@
     "track c supersession": [
       "Track C supersession"
     ],
-    "track dimension trends": [
-      "track dimension trends"
-    ],
     "track directory exemption": [
       "track directory exemption"
     ],
@@ -103855,9 +102725,6 @@
     ],
     "tracks are not packets": [
       "tracks are not packets"
-    ],
-    "trade off stability verdicts": [
-      "trade-off stability verdicts"
     ],
     "traincontextsize embedding guard": [
       "trainContextSize embedding guard"
@@ -104685,9 +103552,6 @@
     "two lanes alignment": [
       "two lanes alignment"
     ],
-    "two lanes for deep improvement": [
-      "Two Lanes for Deep Improvement"
-    ],
     "two launcher stale lease race": [
       "two launcher stale lease race"
     ],
@@ -104750,9 +103614,6 @@
     ],
     "two phase active pointer swap": [
       "two-phase active pointer swap"
-    ],
-    "two phase promotion": [
-      "two-phase promotion"
     ],
     "two pi extension lockfiles pin brace expansion 5": [
       "two pi extension lockfiles pin brace expansion 5"
@@ -104858,9 +103719,6 @@
     ],
     "typed error classes": [
       "typed error classes"
-    ],
-    "typed errors promotion gates mirror sync": [
-      "typed errors promotion gates mirror sync"
     ],
     "typed event ledger projections": [
       "typed event ledger projections"
@@ -105110,9 +103968,6 @@
     ],
     "undo last commit": [
       "undo last commit"
-    ],
-    "undo promotion": [
-      "undo promotion"
     ],
     "undocumented feature flags": [
       "undocumented feature flags"
@@ -108755,9 +107610,6 @@
     ],
     "workflow asset rewrite tasks": [
       "workflow asset rewrite tasks"
-    ],
-    "workflow asset routing": [
-      "workflow asset routing"
     ],
     "workflow assets acceptance criteria": [
       "workflow assets acceptance criteria"

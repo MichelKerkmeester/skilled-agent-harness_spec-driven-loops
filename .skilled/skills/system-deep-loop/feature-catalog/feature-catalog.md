@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # system-deep-loop: Feature Catalog
 
-This catalog inventories the live `system-deep-loop` hub surface. The hub classifies a request into one of five `workflowMode` packets (`research`, `review`, `ai-council`, `agent-improvement`, `model-benchmark`) through a three-tier discriminator, holding no per-mode logic itself. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven classification without changing what it resolves to.
+This catalog inventories the live `system-deep-loop` hub surface. The hub classifies a request into one of three `workflowMode` packets (`research`, `review`, `ai-council`) through a three-tier discriminator, holding no per-mode logic itself. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven classification without changing what it resolves to.
 
 ---
 
@@ -28,11 +28,11 @@ Use this catalog as the current-state inventory for the `system-deep-loop` hub. 
 
 #### Description
 
-`mode-registry.json` is the single source of truth for the hub's five `workflowMode` packets, each carrying a `workflowMode`/`runtimeLoopType`/`backendKind` three-tier discriminator.
+`mode-registry.json` is the single source of truth for the hub's three `workflowMode` packets, each carrying a `workflowMode`/`runtimeLoopType`/`backendKind` three-tier discriminator.
 
 #### Current Reality
 
-`runtimeLoopType` is the graph-backed convergence key consumed by `runtime/scripts/convergence.cjs`, explicitly `null` for the two improvement lanes (`agent-improvement`, `model-benchmark`) rather than inferred; `backendKind` splits `runtime-loop-type` (research/review/ai-council) from `improvement-host` (the two improvement lanes). A second-layer surface router at the root `ROUTER.md` supports router-replay benchmarking without re-deciding the mode.
+`runtimeLoopType` is the graph-backed convergence key consumed by `runtime/scripts/convergence.cjs`; `backendKind` is `runtime-loop-type` (research/review/ai-council). A second-layer surface router at the root `ROUTER.md` supports router-replay benchmarking without re-deciding the mode.
 
 #### Source Files
 

@@ -34,7 +34,7 @@ This checklist makes agents safe to dispatch and keeps the two live runtime mirr
 
 - [ ] Read the mirrored `code` agent examples at `.skilled/agents/code.md` and `.claude/agents/code.md`.
 - [ ] Read `sk-doc` source rules at `.skilled/skills/sk-doc/sk-create-agent/references/README.md`.
-- [ ] Read the mirror checker at `.skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs`; it treats `.skilled/agents/` as canonical and `.claude/agents/` as the runtime mirror.
+- [ ] Read the mirror checker at `.skilled/bin/check-agent-mirror-sync.cjs`; it treats `.skilled/agents/` as canonical and `.claude/agents/` as the runtime mirror.
 - [ ] Decide whether the agent is LEAF-only or an orchestrator before granting task/delegation authority.
 - [ ] Confirm the dispatch contract: who may invoke the agent, what inputs it expects, and what outputs it returns.
 - [ ] Set runtime permissions to the least authority that supports the role: OpenCode agent frontmatter uses `permission:`, while Claude mirrors use `tools:`.
@@ -62,7 +62,7 @@ This checklist makes agents safe to dispatch and keeps the two live runtime mirr
 - [ ] grep verification for OpenCode frontmatter shape: `rg -n "^(name|description|mode|permission):" .skilled/agents/code.md`.
 - [ ] grep verification for Claude frontmatter shape: `rg -n "^(name|description|tools):" .claude/agents/code.md`.
 - [ ] grep verification that agent frontmatter is not using the command/skill field: `rg -n "^allowed-tools:" .skilled/agents .claude/agents` should return no agent matches.
-- [ ] Mirror parity check: run `node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all` after editing agent mirrors.
+- [ ] Mirror parity check: run `node .skilled/bin/check-agent-mirror-sync.cjs --all` after editing agent mirrors.
 - [ ] Verify dispatch references in commands or orchestrators point to the new agent name.
 
 ---
@@ -70,7 +70,7 @@ This checklist makes agents safe to dispatch and keeps the two live runtime mirr
 ## 5. RELATED RESOURCES
 
 - `.skilled/skills/sk-doc/sk-create-agent/references/README.md` (source-of-truth for agent content rules)
-- Mirror checker: `.skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs`
+- Mirror checker: `.skilled/bin/check-agent-mirror-sync.cjs`
 - Mirrored example: `.skilled/agents/code.md` and `.claude/agents/code.md`
 - Runtime directories: `.skilled/agents/` and `.claude/agents/`
 - Verification recipes: `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/universal-checklist.md`

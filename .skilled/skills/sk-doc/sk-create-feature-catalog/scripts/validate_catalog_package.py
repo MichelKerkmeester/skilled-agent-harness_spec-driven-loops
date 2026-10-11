@@ -79,7 +79,6 @@ WARN_PACKAGE_IDS = frozenset({
     'sk-prompt',
     'system-deep-loop',
     'system-deep-loop/deep-ai-council',
-    'system-deep-loop/deep-improvement',
     'system-deep-loop/deep-research',
     'system-deep-loop/deep-review',
     'system-deep-loop/runtime',

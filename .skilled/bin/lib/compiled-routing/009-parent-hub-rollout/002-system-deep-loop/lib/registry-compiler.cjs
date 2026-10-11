@@ -28,10 +28,6 @@ const {
 // ─────────────────────────────────────────────────────────────────────────────
 
 const DEEP_LOOP_ROLE = 'actor';
-const IMPROVEMENT_MODES = Object.freeze([
-  'agent-improvement',
-  'model-benchmark',
-]);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -179,17 +175,6 @@ function assertNoCollapse(rows, registry) {
   if (rows.length !== registryModes.length
     || registryModes.some((mode) => !rowByMode.has(mode))) {
     fail('REGISTRY_MODE_COLLAPSE', 'compiled rows must preserve every authored public mode');
-  }
-
-  const improvementRows = IMPROVEMENT_MODES.map((mode) => rowByMode.get(mode));
-  if (improvementRows.some((row) => !row)
-    || new Set(improvementRows.map((row) => row.workflowMode)).size !== IMPROVEMENT_MODES.length
-    || new Set(improvementRows.map((row) => canonicalize(row.identityTuple))).size !== IMPROVEMENT_MODES.length
-    || improvementRows.some((row) => row.packetRef !== 'deep-improvement')
-    || new Set(improvementRows.map((row) => row.routingClass)).size !== 2
-    || improvementRows[0].routingClass !== 'alias-fold'
-    || improvementRows.slice(1).some((row) => row.routingClass !== 'command-bridge')) {
-    fail('SHARED_PACKET_COLLAPSE', 'deep-improvement public lanes collapsed or lost alias class');
   }
 
   const review = rowByMode.get('review');
@@ -689,7 +674,6 @@ function artifactBytes(value) {
 
 module.exports = {
   DEEP_LOOP_ROLE,
-  IMPROVEMENT_MODES,
   artifactBytes,
   assertInjective,
   assertNoCollapse,

@@ -65,11 +65,6 @@ export const GRAPH_CONTRACT_SOURCE_PATHS = [
 ] as const;
 
 const SEQUENCING_SOURCE = GRAPH_CONTRACT_SOURCE_PATHS[2];
-const REQUIRED_DEPENDENCIES = new Map<string, readonly string[]>([
-  ['005-agent-improvement', ['004-deep-improvement-common']],
-  ['006-model-benchmark', ['004-deep-improvement-common']],
-  ['007-skill-benchmark', ['004-deep-improvement-common']],
-]);
 const RESEARCH_NODE_ID = '001-deep-research';
 const COUNCIL_NODE_ID = '003-deep-ai-council';
 
@@ -337,7 +332,6 @@ function canonicalizeNode(
     ));
   }
 
-  const requiredDependencies = REQUIRED_DEPENDENCIES.get(declaration.id) ?? [];
   return {
     node: {
       id: declaration.id,
@@ -349,10 +343,7 @@ function canonicalizeNode(
         issues.push(...result.issues);
         return result.resource;
       }).sort(compareCanonicalResources),
-      migration_dependencies: uniqueSorted([
-        ...declaration.migrationDependencies,
-        ...requiredDependencies,
-      ]),
+      migration_dependencies: uniqueSorted(declaration.migrationDependencies),
       contract_refs: uniqueSorted(declaration.contractRefs.map(normalizeSourcePath)),
       source_refs: uniqueSorted(declaration.sourceRefs.map(normalizeSourcePath)),
       source_digest: sourceDigestForNode(declaration, sources),
@@ -666,21 +657,17 @@ function applyHardOrderEdges(
         ));
         continue;
       }
-      const isRequired = dependency === '004-deep-improvement-common'
-        && REQUIRED_DEPENDENCIES.has(node.id);
       addEdge(edges, {
         from: dependency,
         to: node.id,
         edgeType: 'hard-order',
-        edgeOrigin: isRequired ? 'required-constraint' : 'declared',
+        edgeOrigin: 'declared',
         resources: [`dependency:${dependency}`],
         serialization: 'predecessor',
-        reason: isRequired
-          ? 'The common improvement migration must complete before its variant.'
-          : 'The node declares a migration predecessor.',
+        reason: 'The node declares a migration predecessor.',
         evidence: [{
           source_path: SEQUENCING_SOURCE,
-          basis: isRequired ? 'required-constraint' : 'contract-declaration',
+          basis: 'contract-declaration',
           detail: `${dependency} precedes ${node.id}.`,
         }],
       });

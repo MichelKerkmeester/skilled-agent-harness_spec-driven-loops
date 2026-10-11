@@ -494,42 +494,6 @@ describe('append-mode-event CLI subprocess execution', () => {
     expect(String(result.json.reason)).not.toContain('RECORD_MALFORMED');
   });
 
-  it('routes deep-improvement-common past the adapter and authority-order gates', () => {
-    // The authority order is the canonical spelling; a private CLI alias that
-    // disagrees with it makes a real fleet mode unreachable. This test proves
-    // the mode clears both the adapter switch and the frozen-order check, so
-    // it is never rejected as 'Unsupported mode' or as outside the authority
-    // order.
-    const runDir = createTempDir('improvement-common-routable');
-    const authorityRoot = createTempDir('improvement-common-root');
-    const eventJsonPath = join(runDir, 'event.json');
-    writeFileSync(eventJsonPath, JSON.stringify(sampleRunInitializedEvent()), 'utf8');
-
-    const result = runCli([
-      '--mode',
-      'deep-improvement-common',
-      '--run-directory',
-      runDir,
-      '--event-json',
-      eventJsonPath,
-    ], { DEEP_LOOP_AUTHORITY_ROOT: authorityRoot });
-
-    // Routable means the mode is refused by NEITHER the adapter switch NOR the
-    // frozen-order check. Where it is refused after those two gates is a
-    // property of that mode's own ledger schema, not of routing, so this test
-    // deliberately does not pin it. Asserting a present, non-empty reason first
-    // is what gives the two absence checks their force: a missing reason would
-    // otherwise satisfy both by containing nothing at all.
-    expect(result.exitCode).toBe(1);
-    expect(result.json.phase).toBe('runtime');
-    expect(typeof result.json.reason).toBe('string');
-    expect(String(result.json.reason).length).toBeGreaterThan(0);
-    // Must not be rejected as an unsupported mode by the adapter switch.
-    expect(String(result.json.reason)).not.toContain('Unsupported mode');
-    // Must not be rejected as outside the frozen authority order.
-    expect(String(result.json.reason)).not.toContain('not in the frozen authority order');
-  });
-
   it('routes every mode in the frozen authority order through the CLI', () => {
     // The frozen authority order is the canonical mode vocabulary, so every
     // mode it names must be reachable through the canonical write path. A mode

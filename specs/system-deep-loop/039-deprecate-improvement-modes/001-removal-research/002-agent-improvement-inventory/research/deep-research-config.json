@@ -1,0 +1,28 @@
+{
+  "researchTopic": "Inventory every reference to the agent-improvement deep-loop mode (workflowMode agent-improvement, command /deep:agent-improvement, assets deep-agent-improvement-*.yaml and deep-agent-improvement-presentation.txt, the deep-improvement agent, the deep-improvement packet and its loop host, and the legacy advisor id deep-improvement whose default mode is agent-improvement) across this whole repository outside specs/, so its full deletion can be planned. Start from .skilled/skills/system-deep-loop/mode-registry.json, hub-router.json, ROUTER.md, SKILL.md, command-metadata.json, leaf-manifest.json, leaf-scopes.json, graph-metadata.json, .skilled/commands/deep/, .skilled/agents/, .skilled/skills/system-deep-loop/deep-improvement/ and runtime/, .skilled/skills/system-skill-advisor/ (projection maps, alias groups, alias-fold and default-mode projection, routing-registry drift guard), .skilled/skills/sk-doc/, .skilled/skills/cli-external-orchestration/, and the runtime directories .claude .opencode .codex .cursor .pi .devin .hermes (agents, commands, prompts, Hermes agent-* skill mirrors, and whether each is a symlink, a generated copy or a hand-written file). Also check hooks, task-dispatch, bin/, scripts/git-hooks, env examples, CROSS-CLI.md, agent and command index files, READMEs, changelogs and the root README.md, and record whether anything outside this repository consumes the mode or the agent. Name every caller of deep-improvement packet scripts or runtime libraries from outside the two improvement modes. For every reference give [SOURCE: path:line] and classify it as DELETE (exists only for this mode or the packet), EDIT (shared file, remove the mention), SHARED-WITH-MODEL-BENCHMARK (also used by the model-benchmark mode, which a sibling run inventories), or KEEP-AS-HISTORY (changelog or archive). List indirect wiring separately: registry projections, alias folds, compiled contracts, drift guards, generated mirrors, tests and fixtures. Finish with the tests, validators and doctor checks that cover the touched surfaces. This run is read-only outside its own research directory: do not edit, move, delete or stage any repository file; no git commit, push, checkout, reset or stash; no installs.",
+  "specFolder": "specs/system-deep-loop/039-deprecate-improvement-modes/001-removal-research/002-agent-improvement-inventory",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "executionMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-opencode",
+        "model": "llmgateway/deepseek-v4.1-flash",
+        "reasoningEffort": "max",
+        "label": "deepseek",
+        "count": 1,
+        "iterations": 10
+      }
+    ],
+    "concurrency": 1
+  }
+}

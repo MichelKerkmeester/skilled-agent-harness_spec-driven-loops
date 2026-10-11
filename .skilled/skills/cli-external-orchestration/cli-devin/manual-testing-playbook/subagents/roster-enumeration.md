@@ -32,7 +32,7 @@ An LLM-generated list is nondeterministic and cannot prove mirror parity. Filesy
 - Real user request: `Verify every mirrored Devin agent profile on disk, then run one read-only review-profile check.`
 - Prompt: `Use the review subagent to inspect the current diff for correctness and repository-convention issues. Read only, cite file paths, and do not modify files.`
 - Expected execution process: Deterministically list `.devin/agents/*/AGENT.md`, derive names from paths, confirm every entry is a symlink with resolvable targets, then run one print-mode dispatch naming `review` under canonical `auto` mode.
-- Expected signals: The filesystem roster contains exactly ai-council, code, context, debug, deep-improvement, deep-research, deep-review, design, markdown, orchestrate, prompt-improver, and review. The bounded dispatch uses the `review` profile and returns read-only findings or an explicit no-findings result.
+- Expected signals: The filesystem roster contains exactly ai-council, code, context, debug, deep-research, deep-review, design, markdown, orchestrate, prompt-improver, and review. The bounded dispatch uses the `review` profile and returns read-only findings or an explicit no-findings result.
 - Desired user-visible outcome: Deterministic full-roster filesystem parity plus evidence that one named mirrored profile is dispatchable.
 - Pass/fail: PASS when the symlink roster matches exactly, every target resolves, and the named `review` dispatch completes read-only; FAIL on roster drift, a broken target, an unavailable named profile, or mutation; SKIP when Devin authentication or CLI availability prevents the dispatch after filesystem parity is recorded.
 
@@ -71,7 +71,7 @@ For roster drift, compare the missing or extra path with the canonical agent sou
 
 | Feature ID | Feature Name | Scenario Name/Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DV-012 | Agent roster enumeration | Prove filesystem parity and dispatch one named profile | `Use the review subagent to inspect the current diff for correctness and repository-convention issues. Read only, cite file paths, and do not modify files.` | List and validate `.devin/agents/*/AGENT.md`; dispatch `review` once with `--permission-mode auto`. | Exact 13-name symlink roster; resolvable targets; read-only `review` response. | Sorted paths, target check, exit status, and transcript. | PASS on exact parity and usable named dispatch; FAIL on drift, broken target, missing profile, or mutation; SKIP only for a specific unavailable auth or CLI runtime. | Check the filesystem mirror first, then inspect the single-profile transcript. |
+| DV-012 | Agent roster enumeration | Prove filesystem parity and dispatch one named profile | `Use the review subagent to inspect the current diff for correctness and repository-convention issues. Read only, cite file paths, and do not modify files.` | List and validate `.devin/agents/*/AGENT.md`; dispatch `review` once with `--permission-mode auto`. | Exact 11-name symlink roster; resolvable targets; read-only `review` response. | Sorted paths, target check, exit status, and transcript. | PASS on exact parity and usable named dispatch; FAIL on drift, broken target, missing profile, or mutation; SKIP only for a specific unavailable auth or CLI runtime. | Check the filesystem mirror first, then inspect the single-profile transcript. |
 
 ---
 

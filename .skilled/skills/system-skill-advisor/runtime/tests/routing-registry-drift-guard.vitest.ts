@@ -189,9 +189,9 @@ describe('routing-registry-drift-guard', () => {
     expect(new Set(py.DEEP_ROUTING_SKILLS)).toEqual(new Set(Object.keys(py.DEEP_ROUTING_MODE_BY_KEY)));
   });
 
-  it('exactly one mode is flagged advisorDefaultMode, and it is agent-improvement', () => {
+  it('no mode is flagged advisorDefaultMode', () => {
     const defaults = registry.modes.filter((m) => m.advisorRouting.advisorDefaultMode === true);
-    expect(defaults.map((m) => m.workflowMode)).toEqual(['agent-improvement']);
+    expect(defaults.map((m) => m.workflowMode)).toEqual([]);
   });
 
   it('legacyAdvisorId keys exist on both TS and Python alias surfaces', () => {

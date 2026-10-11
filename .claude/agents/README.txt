@@ -8,7 +8,7 @@ symlinked to by the .cursor and .devin trees.
 Sibling runtime: .skilled/agents/ (.md)
 Inventory rule: if an agent file is not present in this directory, it is not a live runtime surface here.
 
-Translation contract: .skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md
+Translation contract: .skilled/bin/agent-mirror-crosswalk.md
   How every frontmatter declaration lands in each runtime tree, which differences are sanctioned,
   and what stands in for a declaration a runtime cannot carry.
 Model and effort: no agent file here pins a model except context, markdown and Explore.
@@ -24,7 +24,6 @@ Agents:
   code:             application-code implementation via sk-code, write-capable LEAF dispatched only by orchestrate
   context:          retrieval-first context agent with canonical continuity recovery, read-only
   debug:            user-invoked fresh-perspective debugger, 5-phase root-cause method, never auto-dispatched
-  deep-improvement: proposal-only mutator for bounded agent improvement, evaluator-first
   deep-research:    autonomous deep-research iterations with externalized state
   deep-review:      deep-review iteration agent, one dimension per pass with P0/P1/P2 findings
   design:           design specialist across two skills: decides UI values via sk-design, measures a live surface into a Style Reference via sk-design-md-generator, LEAF

@@ -1,11 +1,10 @@
 ---
 title: "create-benchmark"
-description: "Turns a finished benchmark run into documentation an operator can find, then scaffolds the input artifacts a benchmark lane needs before it runs, across three families and a guide-only fourth lane, never running or scoring a benchmark itself."
+description: "Turns a finished benchmark run into documentation an operator can find, then scaffolds the input artifacts a benchmark lane needs before it runs, across two families, never running or scoring a benchmark itself."
 trigger_phrases:
   - "benchmark-report.md"
   - "behavior benchmark"
-  - "model-benchmark"
-version: 1.5.0.22
+version: 1.6.0.0
 ---
 
 # create-benchmark
@@ -18,10 +17,10 @@ version: 1.5.0.22
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Authoring benchmark documentation and input artifacts across three families, plus a guide-only fourth lane |
-| **Invoke with** | `/create:benchmark`, "benchmark-report.md", "behavior benchmark", "model-benchmark" |
+| **Use it for** | Authoring benchmark documentation and input artifacts across two families |
+| **Invoke with** | `/create:benchmark`, "benchmark-report.md", "behavior benchmark" |
 | **Works on** | Completed benchmark runs and bake-offs, plus the input fixtures a benchmark lane needs before it runs |
-| **Produces** | Ten-section benchmark reports, package indexes, machine-contract scenario files, JSON fixtures and run profiles. Never a rubric, scorer or runner |
+| **Produces** | Ten-section benchmark reports, package indexes, machine-contract scenario files. Never a rubric, scorer or runner |
 
 ---
 
@@ -29,11 +28,11 @@ version: 1.5.0.22
 
 ### Why This Skill Exists
 
-A benchmark finishes inside a spec packet. The result lives three folders deep in an `evidence/` directory, so the next person who touches the MCP code cannot find why a default exists without remembering which packet ran the benchmark. A second gap opens before a benchmark runs at all. Deep-loop modes and Lane B/C runs need stable input fixtures and an index. Hand-rolling those inputs invites exactly the kind of scoring logic that should stay lane-owned. Five distinct benchmark families each have their own package shape. Conflating them breaks the thing the next run depends on.
+A benchmark finishes inside a spec packet. The result lives three folders deep in an `evidence/` directory, so the next person who touches the MCP code cannot find why a default exists without remembering which packet ran the benchmark. A second gap opens before a benchmark runs at all. Deep-loop modes need stable input fixtures and an index. Hand-rolling those inputs invites exactly the kind of scoring logic that should stay lane-owned. Two distinct benchmark families each have their own package shape. Conflating them breaks the thing the next run depends on.
 
 ### What It Does
 
-`create-benchmark` authors documentation and input artifacts for three benchmark families, plus a guide-only fourth lane. MCP promotion writes a `benchmark-report.md` and a `source.md` that move a shipped spec packet's results into a skill's `mcp-server/benchmarks/` tree. Behavior benchmarks get a `behavior-benchmark/` package of scenario contracts for a deep-loop mode. Model-benchmarks get Lane B fixtures and run profiles. The skill never runs a benchmark and never writes a scorer or rubric. Those stay lane-owned in deep-improvement. Start with the `/create:benchmark` command. The family router in `SKILL.md` section 2 decides which family shape applies. It is the required first stop before authoring anything.
+`create-benchmark` authors documentation and input artifacts for two benchmark families. MCP promotion writes a `benchmark-report.md` and a `source.md` that move a shipped spec packet's results into a skill's `mcp-server/benchmarks/` tree. Behavior benchmarks get a `behavior-benchmark/` package of scenario contracts for a deep-loop mode. The skill never runs a benchmark and never writes a scorer or rubric. Those stay lane-owned. Start with the `/create:benchmark` command. The family router in `SKILL.md` section 2 decides which family shape applies. It is the required first stop before authoring anything.
 
 ### The Family Capability Layer
 
@@ -41,8 +40,6 @@ A benchmark finishes inside a spec packet. The result lives three folders deep i
 |---|---|---|
 | **MCP promotion** (`shared`) | retrieval, quality, runtime or throughput of a shipped MCP stack | a `benchmark-report.md` and a `source.md` inside `<skill>/mcp-server/benchmarks/benchmark-<date>/` |
 | **Behavior** (`behavior_benchmark`) | executor-model behavior at a deep-loop mode's invocation surface | a `behavior-benchmark/` package of scenario contracts at `<mode>/behavior-benchmark/` |
-| **Model-benchmark** (`model_benchmark`, Lane B) | what a model or prompt framework produces against a held-out oracle | Lane B fixtures and run profiles at `system-deep-loop/deep-improvement/assets/model-benchmark/` |
-| **Agent-improvement** (`agent_improvement`, Lane A) | an agent's quality across five dimensions | the Lane A guide only, authored in-lane in deep-improvement, never as a family artifact from this skill |
 
 ---
 
@@ -55,7 +52,7 @@ A benchmark finishes inside a spec packet. The result lives three folders deep i
 ```text
 Measurable MCP surface + shipped spec packet with accepted ADRs + stable fixture?
   YES -> MCP promotion (SKILL.md section 3-8)
-  NO  -> check behavior / skill / model families (SKILL.md section 2 table)
+  NO  -> check behavior families (SKILL.md section 2 table)
 ```
 
 The block is the family router in miniature. MCP promotion is the flagship command-driven family.
@@ -75,7 +72,7 @@ Expected: zero blocking issues once the ten required sections are filled in.
 
 The flagship family, MCP promotion, runs a fixed sequence. Confirm the promotion gate first: an accepted decision, a stable headline, a stable fixture and replay commands. Classify the task as a re-run or a retirement when the headline repeats, otherwise as a first-time promotion. Confirm the target skill actually has `mcp-server/`. Create or update the benchmarks index. Choose the `benchmark-YYYY-MM-DD/` folder using the execution date. Copy the source artifacts starting with the aggregate CSV. Write `benchmark-report.md` from the fixed ten-section structure. Write `source.md` as a lean wayfinding pointer back to the spec packet. Update the README index row. Validate.
 
-Behavior, skill and model benchmarks follow the same authoring-not-running shape. Each family has its own package layout documented in its own `SKILL.md` section (9 through 11) and its own guide under `references/`.
+Behavior benchmarks follow the same authoring-not-running shape. The family's package layout is documented in its own `SKILL.md` section (9) and its own guide under `references/`.
 
 ### Key Concept: Authoring Never Crosses Into Scoring
 
@@ -87,7 +84,7 @@ Every family stops at the same boundary. It writes down what a benchmark measure
 
 ### When To Use This Skill
 
-Reach for this packet when a benchmark already ran and shipped inside a spec packet with an accepted decision record, when a deep-loop mode needs a behavior-benchmark package, when a hub needs its `benchmark/README.md` index established or updated. Reach for it too when Lane B needs new fixtures or a run profile.
+Reach for this packet when a benchmark already ran and shipped inside a spec packet with an accepted decision record, when a deep-loop mode needs a behavior-benchmark package, when a hub needs its `benchmark/README.md` index established or updated.
 
 Skip it when the benchmark is still in-flight, is a single unreplayable data point or the real ask is a release note (`create-changelog`) or an audit of benchmark markdown that already exists (`create-quality-control`).
 
@@ -97,7 +94,6 @@ Skip it when the benchmark is still in-flight, is a single unreplayable data poi
 |---|---|
 | `create-changelog` | Owns a benchmark headline as a release-note row. `create-benchmark` owns the full promotion folder |
 | `create-quality-control` | Owns auditing or scoring benchmark markdown that already exists, without authoring a new family artifact |
-| `system-deep-loop` (deep-improvement lane) | Owns the D1-D5 scoring contract, the evaluator and every runner this packet's outputs feed |
 
 ---
 
@@ -119,11 +115,11 @@ A: A raw CSV gives a reader a bare number with no methodology and no replay path
 
 **Q: Why separate families instead of one generic "benchmark" template?**
 
-A: The three families measure genuinely different things: retrieval quality, executor-model behavior and model output each answer a different question. Conflating their package shapes breaks the lane that consumes each one.
+A: The two families measure genuinely different things: retrieval quality and executor-model behavior each answer a different question. Conflating their package shapes breaks the lane that consumes each one.
 
 **Q: Can this packet run a benchmark for me?**
 
-A: No. It authors documentation and input artifacts only. Execution and scoring stay in the owning lane, deep-improvement.
+A: No. It authors documentation and input artifacts only. Execution and scoring stay in the owning lane.
 
 **Q: What if a re-run confirms the same headline as before?**
 
@@ -136,7 +132,7 @@ A: Update the existing `benchmark-report.md` with a `Re-run YYYY-MM-DD` note ins
 | Check | How to run it |
 |---|---|
 | MCP promotion report | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <path>/benchmark-report.md --type readme` reports zero blocking issues |
-| Behavior, skill, and model package markdown | Same validator against each authored `.md`. JSON fixtures and lane-configs must additionally parse as valid JSON |
+| Behavior package markdown | Same validator against each authored `.md` |
 | Filename or folder naming | `python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <artifact-path-or-slug>` before any new artifact path ships |
 
 ---
@@ -148,6 +144,5 @@ A: Update the existing `benchmark-report.md` with a `Re-run YYYY-MM-DD` note ins
 | [`SKILL.md`](./SKILL.md) | Authoritative workflow contract, family router and every family section |
 | [`references/shared/README.md`](./references/shared/README.md) | Overflow route-map: case studies, the report worked example and common pitfalls |
 | [`references/behavior-benchmark/behavior-benchmark-guide.md`](./references/behavior-benchmark/behavior-benchmark-guide.md) | End-to-end guide for authoring a `behavior-benchmark` package |
-| [`references/model-benchmark/model-benchmark-fixture-guide.md`](./references/model-benchmark/model-benchmark-fixture-guide.md) | Fixture-family taxonomy, profile shape and the Lane B scoring boundary |
 | [`assets/shared/benchmark-report-template.md`](./assets/shared/benchmark-report-template.md) | Template for the ten-section `benchmark-report.md` |
 | [`assets/shared/source-template.md`](./assets/shared/source-template.md) | Template for the `source.md` wayfinding file |

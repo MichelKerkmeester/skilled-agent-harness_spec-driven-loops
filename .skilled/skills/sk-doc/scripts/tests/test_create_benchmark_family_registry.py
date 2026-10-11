@@ -13,7 +13,7 @@ import re
 from pathlib import Path
 
 
-GUIDE_ONLY_FAMILIES = frozenset({"agent_improvement"})
+GUIDE_ONLY_FAMILIES = frozenset()
 RESOURCE_KEY_ALIASES = {"mcp_promotion": "shared"}
 LANE_OWNED_TEMPLATE_PATTERN = re.compile(
     r"(?:^|[_-])(runner|rubric|scorer|adapter|reducer)(?:[_-]|$)",

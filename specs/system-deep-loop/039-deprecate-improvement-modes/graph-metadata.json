@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/039-deprecate-improvement-modes",
+  "spec_folder": "system-deep-loop/039-deprecate-improvement-modes",
+  "parent_id": null,
+  "children_ids": [
+    "system-deep-loop/039-deprecate-improvement-modes/001-removal-research",
+    "system-deep-loop/039-deprecate-improvement-modes/002-removal-plan",
+    "system-deep-loop/039-deprecate-improvement-modes/003-commands-and-runtime-mirrors",
+    "system-deep-loop/039-deprecate-improvement-modes/004-skill-packet-and-registry",
+    "system-deep-loop/039-deprecate-improvement-modes/005-advisor-and-cross-skill-wiring",
+    "system-deep-loop/039-deprecate-improvement-modes/006-docs-and-readmes",
+    "system-deep-loop/039-deprecate-improvement-modes/007-verification-and-closeout",
+    "system-deep-loop/039-deprecate-improvement-modes/008-agent-mirror-checker-relocation",
+    "system-deep-loop/039-deprecate-improvement-modes/009-runtime-libraries-and-tests",
+    "system-deep-loop/039-deprecate-improvement-modes/010-existing-issue-fixes",
+    "system-deep-loop/039-deprecate-improvement-modes/003-agent-mirror-checker-relocation",
+    "system-deep-loop/039-deprecate-improvement-modes/004-commands-and-runtime-mirrors",
+    "system-deep-loop/039-deprecate-improvement-modes/005-skill-packet-and-registry",
+    "system-deep-loop/039-deprecate-improvement-modes/006-runtime-libraries-and-tests",
+    "system-deep-loop/039-deprecate-improvement-modes/007-advisor-and-cross-skill-wiring",
+    "system-deep-loop/039-deprecate-improvement-modes/008-docs-and-readmes",
+    "system-deep-loop/039-deprecate-improvement-modes/009-existing-issue-fixes",
+    "system-deep-loop/039-deprecate-improvement-modes/010-verification-and-closeout",
+    "system-deep-loop/039-deprecate-improvement-modes/011-pre-existing-gate-failures"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deprecate improvement modes phase parent spec",
+      "remove agent-improvement mode",
+      "remove model-benchmark mode",
+      "delete deep-improvement packet"
+    ],
+    "key_topics": [
+      "deprecate",
+      "improvement",
+      "modes",
+      "phase",
+      "parent",
+      "spec",
+      "remove",
+      "agent-improvement",
+      "mode",
+      "model-benchmark",
+      "delete",
+      "deep-improvement"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      ".skilled/skills/system-deep-loop/mode-registry.json",
+      "002-removal-plan/decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-deep-loop/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Remove",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`system-deep-loop` registers five modes",
+    "created_at": "2026-10-10T18:23:47Z",
+    "last_save_at": "2026-10-11T06:22:17.201Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:845dcbc5098da265e9f21379e6f0df348eb5619113335b9d2bba7bd05b89a797",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3ad63228cecf539f8e70a584fb12d2275371043fe36bbe0b16a8fc1063ab4f3d"
+    },
+    "last_active_at": null
+  }
+}

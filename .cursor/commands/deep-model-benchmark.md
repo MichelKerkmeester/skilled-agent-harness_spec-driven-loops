@@ -1,1 +1,0 @@
-../../.skilled/commands/deep/model-benchmark.md

@@ -124,8 +124,8 @@ describe('command-bridges drift guard', () => {
 
     expect(typescriptInventoryIds).toEqual(inventoryIds);
     expect(typescriptActive).toEqual(handAuthored);
-    expect(generated.entries.filter((entry) => entry.runtime?.typescript.enabled)).toHaveLength(6);
-    expect(generated.entries.filter((entry) => entry.runtime?.python.enabled)).toHaveLength(16);
+    expect(generated.entries.filter((entry) => entry.runtime?.typescript.enabled)).toHaveLength(5);
+    expect(generated.entries.filter((entry) => entry.runtime?.python.enabled)).toHaveLength(15);
     // Derived, not literal. This was a hardcoded total and went stale twice: once
     // when a hub deprecation removed commands, once when new ones were added. The
     // export may alias either the active subset or the whole inventory, so accept

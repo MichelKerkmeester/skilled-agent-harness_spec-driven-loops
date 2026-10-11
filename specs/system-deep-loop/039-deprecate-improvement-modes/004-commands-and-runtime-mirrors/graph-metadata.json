@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/039-deprecate-improvement-modes/004-commands-and-runtime-mirrors",
+  "spec_folder": "system-deep-loop/039-deprecate-improvement-modes/004-commands-and-runtime-mirrors",
+  "parent_id": "system-deep-loop/039-deprecate-improvement-modes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "commands and runtime mirrors",
+      "phase 4 commands and runtime mirrors",
+      "commands and runtime mirrors plan",
+      "commands and runtime mirrors tasks",
+      "commands and runtime mirrors acceptance criteria",
+      "commands and runtime mirrors implementation summary"
+    ],
+    "key_topics": [
+      "commands",
+      "runtime",
+      "mirrors",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "reaches",
+      "two"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/commands/README.txt",
+      ".skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs",
+      ".skilled/agents/deep-improvement.md",
+      "scratch/files.txt",
+      "scratch/brief-wu1.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement.md",
+        "kind": "doc",
+        "path": ".skilled/agents/deep-improvement.md",
+        "source": "derived"
+      },
+      {
+        "name": "files.txt",
+        "kind": "file",
+        "path": "scratch/files.txt",
+        "source": "derived"
+      },
+      {
+        "name": "brief-wu1.md",
+        "kind": "doc",
+        "path": "scratch/brief-wu1.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Each",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Commands",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Source",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Each runtime reaches the two commands and the agent through its own copy: generated prompts in `.codex`, `.pi` and `.hermes`, a translated agent in `.claude`, a TOML agent in `.codex`, a hand copy in `.pi`",
+    "created_at": "2026-10-10T18:23:50Z",
+    "last_save_at": "2026-10-10T21:07:19.448Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b109b0662eac3704fb3f9881ddf258fb801ece2534d1628d597ff6324803882a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4018e30c95163aff18d4313d8a8697594b36f2066d9a2b461a65e8e7c6f3474a",
+      "plan.md": "7153fd881a81ea70116c755adccd1769c16de85a2adbf70640d0862b3d1f30bb",
+      "tasks.md": "3edf4c502e35787d49bd19cb449db3712621169f20ef719ba627d1072c9cb816",
+      "implementation-summary.md": "ad30cc7365b7aa8eb9420a01f86c82be36e19bc52d6dec1cb9ce1097c135e597"
+    },
+    "last_active_at": null
+  }
+}

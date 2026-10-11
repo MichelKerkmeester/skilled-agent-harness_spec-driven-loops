@@ -5,15 +5,15 @@
   "description": "Declarative mode registry: the single source of truth for the three-tier discriminator (workflowMode/runtimeLoopType/backendKind) PLUS the advisorRouting projection. The advisor keeps its hardcoded projection maps (Python DEEP_ROUTING_MODE_BY_KEY, TypeScript DEEP_MODE_BY_CANONICAL) in sync with this registry via a CI drift-guard test (maps == registry projection); the advisor does NOT read this file at runtime, which avoids cross-skill import coupling on the advisor hot path.",
   "discriminator": {
     "workflowMode": "Public command/advisor/mode key. Stable identity used in commands, advisor aliases, and this registry. Carried by every mode.",
-    "runtimeLoopType": "The graph-backed convergence loop key consumed by runtime/scripts/convergence.cjs. Validated against exactly research|review|council. Explicit null for improvement-host modes; NEVER inferred from workflowMode.",
-    "backendKind": "Which backend actually runs the mode: runtime-loop-type (runtime/ convergence) or improvement-host (deep-improvement/scripts/shared/loop-host.cjs --mode)."
+    "runtimeLoopType": "The graph-backed convergence loop key consumed by runtime/scripts/convergence.cjs. Validated against exactly research|review|council. NEVER inferred from workflowMode.",
+    "backendKind": "Which backend actually runs the mode: runtime-loop-type (runtime/ convergence)."
   },
   "advisorRoutingContract": {
     "routingClass": "How the advisor finds the mode. 'lexical' = weighted-regex scoring in skill_advisor.py AND present in both projection maps. 'alias-fold' = TS DEEP_MODE_BY_CANONICAL only (alias projection, not lexically scored). 'metadata' = resolved by skill membership; no advisor map entry. 'command-bridge' = routed by its /deep:* command, not an advisor map entry.",
     "legacyAdvisorId": "The legacy deep-* skill id the projection maps key on (present for lexical + alias-fold modes only).",
-    "advisorDefaultMode": "Marks the default mode a multi-mode legacy id folds to (deep-improvement -> agent-improvement). Never inferred from array order.",
+    "advisorDefaultMode": "Marks the default mode a multi-mode legacy id folds to. Never inferred from array order.",
     "legacyAliases": "The TypeScript scorer alias set (aliases.ts SKILL_ALIAS_GROUPS[legacyAdvisorId]) the merged-identity layer keys on; the drift-guard asserts these match it order-insensitive. The Python deep-router uses its own alias set + regex patterns by design (same keys, different values), so the guard only cross-checks that each legacyAdvisorId key also exists in the Python SKILL_ALIAS_GROUPS.",
-    "packetSkillName": "The packet's SKILL.md name. Most packets use folder == packetSkillName == deep-<mode> (e.g. deep-ai-council). Exception: the two improvement lanes (agent/model) multiplex onto one shared packet 'deep-improvement', so several workflowModes map to that single folder/packetSkillName. The legacy public key 'ai-council' is preserved only on the command/agent surfaces, not on the packet folder/name.",
+    "packetSkillName": "The packet's SKILL.md name. Most packets use folder == packetSkillName == deep-<mode> (e.g. deep-ai-council). The legacy public key 'ai-council' is preserved only on the command/agent surfaces, not on the packet folder/name.",
     "driftGuard": ".skilled/skills/system-skill-advisor/runtime/tests/routing-registry-drift-guard.vitest.ts"
   },
   "extensions": {
@@ -98,55 +98,6 @@
         "routingClass": "lexical",
         "legacyAdvisorId": "deep-ai-council",
         "legacyAliases": ["@deep-ai-council", "deep-ai-council", "deep ai council", "ai council", "planning council", "council deliberation", "multi-ai-council"]
-      }
-    },
-    {
-      "workflowMode": "agent-improvement",
-      "runtimeLoopType": null,
-      "backendKind": "improvement-host",
-      "packetKind": "workflow",
-      "grandfatheredFolderMismatch": false,
-      "toolSurface": {
-        "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob", "Task"],
-        "forbidden": [],
-        "mutatesWorkspace": true,
-        "bashAllowlist": []
-      },
-      "packet": "deep-improvement",
-      "packetSkillName": "deep-improvement",
-      "loopHostMode": "agent-improvement",
-      "command": "/deep:agent-improvement",
-      "agent": "deep-improvement",
-      "artifactRoot": "improvement/",
-      "aliases": ["improve agent", "evaluate agent", "agent scoring", "score agent candidate", "promote or rollback agent change", "agent-improvement"],
-      "advisorRouting": {
-        "routingClass": "alias-fold",
-        "legacyAdvisorId": "deep-improvement",
-        "advisorDefaultMode": true,
-        "legacyAliases": ["command-spec-kit-deep-agent-improvement", "/deep:agent-improvement", "deep-agent-improvement", "sk-deep-agent-improvement"]
-      }
-    },
-    {
-      "workflowMode": "model-benchmark",
-      "runtimeLoopType": null,
-      "backendKind": "improvement-host",
-      "packetKind": "workflow",
-      "grandfatheredFolderMismatch": false,
-      "toolSurface": {
-        "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob", "Task"],
-        "forbidden": [],
-        "mutatesWorkspace": true,
-        "bashAllowlist": []
-      },
-      "packet": "deep-improvement",
-      "packetSkillName": "deep-improvement",
-      "loopHostMode": "model-benchmark",
-      "command": "/deep:model-benchmark",
-      "agent": "deep-improvement",
-      "artifactRoot": "improvement/",
-      "aliases": ["model benchmark", "benchmark a model", "prompt framework benchmark", "benchmark-harness"],
-      "advisorRouting": {
-        "routingClass": "command-bridge"
       }
     }
   ]

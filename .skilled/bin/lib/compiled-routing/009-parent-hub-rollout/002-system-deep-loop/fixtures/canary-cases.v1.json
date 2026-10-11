@@ -60,43 +60,6 @@
       }
     },
     {
-      "id": "single-agent-improvement",
-      "prompt": "improve agent",
-      "expectedAction": "route",
-      "expectedSelectionKind": "single",
-      "expectedModes": [
-        "agent-improvement"
-      ],
-      "gold": {
-        "expectedIntents": [
-          "agent-improvement"
-        ],
-        "expectedResources": [
-          "deep-improvement/references/agent-improvement/candidate-proposal-format.md",
-          "deep-improvement/references/agent-improvement/score-dimensions.md",
-          "deep-improvement/references/shared/promotion-gate-contract.md"
-        ]
-      }
-    },
-    {
-      "id": "single-model-benchmark",
-      "prompt": "/deep:model-benchmark",
-      "expectedAction": "route",
-      "expectedSelectionKind": "single",
-      "expectedModes": [
-        "model-benchmark"
-      ],
-      "gold": {
-        "expectedIntents": [
-          "model-benchmark"
-        ],
-        "expectedResources": [
-          "deep-improvement/references/model-benchmark/evaluator-contract.md",
-          "deep-improvement/references/model-benchmark/lane-b-mechanics.md"
-        ]
-      }
-    },
-    {
       "id": "one-turn-clarify",
       "prompt": "deep review of this research loop",
       "expectedAction": "clarify",
@@ -176,10 +139,6 @@
     }
   ],
   "noCollapseFixtures": {
-    "sharedPacketModes": [
-      "agent-improvement",
-      "model-benchmark"
-    ],
     "sharedRuntimeModes": [
       "review",
       "alignment"

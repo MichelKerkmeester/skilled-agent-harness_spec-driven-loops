@@ -24,7 +24,6 @@ describe('008 search fusion and reranker remediation docs', () => {
 
     expect(spec).toContain('sk-deep-research/feature-catalog/` -- root catalog + 14 feature entries across 4 categories');
     expect(spec).toContain('sk-deep-review/feature-catalog/` -- root catalog + 19 feature entries across 4 categories');
-    expect(spec).toContain('deep-agent-improvement/feature-catalog/` -- root catalog + 13 feature entries across 3 categories');
   });
 
   // REASON: vitest-recovery-followup requires missing fixture, daemon, auth, or offline-unavailable toolchain

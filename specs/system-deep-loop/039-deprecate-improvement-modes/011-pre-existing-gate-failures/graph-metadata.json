@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/039-deprecate-improvement-modes/011-pre-existing-gate-failures",
+  "spec_folder": "system-deep-loop/039-deprecate-improvement-modes/011-pre-existing-gate-failures",
+  "parent_id": "system-deep-loop/039-deprecate-improvement-modes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pre existing gate failures",
+      "phase 11 pre existing gate failures",
+      "pre existing gate failures plan",
+      "pre existing gate failures tasks",
+      "pre existing gate failures acceptance criteria",
+      "pre existing gate failures implementation summary"
+    ],
+    "key_topics": [
+      "pre",
+      "existing",
+      "gate",
+      "failures",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "compiled-route"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+      ".skilled/skills/system-deep-loop/graph-metadata.json",
+      ".github/scripts/tests/broken-move-drill.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-lint.mjs",
+      ".skilled/scripts/git-hooks/tests/install-git-hooks-worktree-harness.sh",
+      "scratch/files.txt",
+      "scratch/brief-wu2.md",
+      "scratch/brief-wu3.md",
+      "scratch/brief-wu4.md",
+      "scratch/brief-wu5.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-deep-loop/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "broken-move-drill.sh",
+        "kind": "script",
+        "path": ".github/scripts/tests/broken-move-drill.sh",
+        "source": "derived"
+      },
+      {
+        "name": "template-phrase-lint.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-lint.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "install-git-hooks-worktree-harness.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/install-git-hooks-worktree-harness.sh",
+        "source": "derived"
+      },
+      {
+        "name": "files.txt",
+        "kind": "file",
+        "path": "scratch/files.txt",
+        "source": "derived"
+      },
+      {
+        "name": "brief-wu2.md",
+        "kind": "doc",
+        "path": "scratch/brief-wu2.md",
+        "source": "derived"
+      },
+      {
+        "name": "brief-wu3.md",
+        "kind": "doc",
+        "path": "scratch/brief-wu3.md",
+        "source": "derived"
+      },
+      {
+        "name": "brief-wu4.md",
+        "kind": "doc",
+        "path": "scratch/brief-wu4.md",
+        "source": "derived"
+      },
+      {
+        "name": "brief-wu5.md",
+        "kind": "doc",
+        "path": "scratch/brief-wu5.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Five",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The compiled-route sync builds its runtime closure from the authored program under `specs/sk-doc/zarchive/019-skill-routing-refactor/015-router-unification-program/`",
+    "created_at": "2026-10-11T04:57:15Z",
+    "last_save_at": "2026-10-11T06:22:14.957Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:90d86e9e23cabd956704e186d8e08d8ea7710d919cfc8417d6f6f5be74e2def5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "16bf5ffaabde74f2ec0dc4b3f7553cf795430f483bd6f96e8a75ac88c974c228",
+      "plan.md": "3648fe1abc41f3bdeecda8be7b886d4af60733ee381d19608678bfc80c6323d5",
+      "tasks.md": "2418d8f54991a69c1db831cd7cb16832354e965d44075566dae80f53c5ba27c8",
+      "implementation-summary.md": "2930267228426c6b3d04fb144f4947b666e0ba3bf343debef8b8f04c1163a793"
+    },
+    "last_active_at": null
+  }
+}

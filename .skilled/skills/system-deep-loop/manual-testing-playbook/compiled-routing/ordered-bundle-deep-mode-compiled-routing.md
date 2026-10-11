@@ -33,7 +33,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-Serving-authority focus: system-deep-loop resolves a **deep-mode ordering** — an iterative-investigation prompt selects `research` (packet `deep-research`) and its ordered protocol/state/convergence leaves, distinct from review, ai-council, or an improvement lane. This scenario proves the compiled engine serves that deep-mode decision (`servingAuthority: compiled`) and matches the legacy routing decision. Distinct rationale versus the other ordered-bundle hubs: this ordering is a **deep-loop workflow-mode selection** whose leaves are a protocol/state/convergence spine, not a transport pairing.
+Serving-authority focus: system-deep-loop resolves a **deep-mode ordering** — an iterative-investigation prompt selects `research` (packet `deep-research`) and its ordered protocol/state/convergence leaves, distinct from review or ai-council. This scenario proves the compiled engine serves that deep-mode decision (`servingAuthority: compiled`) and matches the legacy routing decision. Distinct rationale versus the other ordered-bundle hubs: this ordering is a **deep-loop workflow-mode selection** whose leaves are a protocol/state/convergence spine, not a transport pairing.
 
 ---
 

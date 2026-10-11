@@ -104,7 +104,7 @@ emits leaf paths, and this router never re-decides the mode.
   / version notes loads. Fired by "changelog / release notes / what shipped /
   since the last version" requests.
 - **benchmark leaves** — the benchmark shared README, worked example, and report
-  template a request to author a behavior / model benchmark
+  template a request to author a behavior benchmark
   loads. Fired by "create a benchmark / benchmark suite / behavior benchmark"
   requests.
 - **diff leaves** — the diff README, workflow, and worked example a request to
@@ -165,7 +165,7 @@ INTENT_SIGNALS = {
     "FEATURE_CATALOG": {"weight": 4, "keywords": ["feature catalog", "feature inventory", "catalog of features", "features overview", "capabilities"]},
     "README_CREATION": {"weight": 4, "keywords": ["create a readme", "readme for", "a readme", "front-page overview", "project overview", "getting started doc", "intro doc", "overview doc", "landing doc"]},
     "CHANGELOG": {"weight": 4, "keywords": ["changelog", "release notes", "version notes", "release summary", "what shipped", "since the last version"]},
-    "BENCHMARK": {"weight": 4, "keywords": ["create a benchmark", "author a benchmark", "benchmark suite", "benchmark authoring", "behavior benchmark", "model benchmark"]},
+    "BENCHMARK": {"weight": 4, "keywords": ["create a benchmark", "author a benchmark", "benchmark suite", "benchmark authoring", "behavior benchmark"]},
     "DIFF": {"weight": 4, "keywords": ["document diff", "doc diff", "diff document", "before and after diff", "before/after diff", "visual document diff"]},
     "REPO_RULE": {"weight": 4, "keywords": ["repo rule", "repo-rules", "repo rules", "project rule", "repo rule file", "REPO RULES.md", "trigger table", "rule router", "retire a rule", "retire a repo rule", "revise a rule", "revise a repo rule", "add a repo rule", "always-loaded rule", "rule that binds"]},
     "FRONTMATTER": {"weight": 4, "keywords": ["yaml frontmatter", "frontmatter block", "frontmatter template", "frontmatter field", "frontmatter fields", "trigger_phrases", "trigger phrases", "importance_tier", "contextType", "description budget", "4-part version", "X.Y.Z.W", "frontmatter versioning", "frontmatter version", "version field", "frontmatter validation", "missing frontmatter", "frontmatter contract", "yaml header", "goes at the top of the file", "version number at the top", "importance tier", "versioning pass", "stopped showing up in suggestions", "validator says my file is missing", "description too long", "edit count", "field the validator wants"]},
@@ -286,14 +286,9 @@ RESOURCE_MAP = {
         "sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-baseline-template.md",
         "sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md",
         "sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-scenario-template.md",
-        "sk-create-benchmark/assets/model-benchmark/model-benchmark-code-task-fixture-template.md",
-        "sk-create-benchmark/assets/model-benchmark/model-benchmark-pattern-fixture-template.md",
-        "sk-create-benchmark/assets/model-benchmark/model-benchmark-profile-template.md",
         "sk-create-benchmark/assets/shared/benchmark-report-template.md",
         "sk-create-benchmark/assets/shared/source-template.md",
-        "sk-create-benchmark/references/agent-improvement/agent-improvement-authoring-guide.md",
         "sk-create-benchmark/references/behavior-benchmark/behavior-benchmark-guide.md",
-        "sk-create-benchmark/references/model-benchmark/model-benchmark-fixture-guide.md",
         "sk-create-benchmark/references/shared/README.md",
         "sk-create-benchmark/references/shared/case-studies.md",
         "sk-create-benchmark/references/shared/pitfalls.md",

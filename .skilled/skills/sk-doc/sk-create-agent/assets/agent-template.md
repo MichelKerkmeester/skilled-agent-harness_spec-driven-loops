@@ -746,7 +746,6 @@ Verify every path exists before shipping. A resource list full of dead paths is 
 | `@debug` | `debug.md` | LEAF debugging subagent | 5-phase root-cause workflow, prompted opt-in after repeated failures, scoped debug artifacts |
 | `@deep-research` | `deep-research.md` | LEAF research subagent | Single research iteration, externalized state, convergence-driven command orchestration |
 | `@deep-review` | `deep-review.md` | LEAF review subagent | Single review iteration, BINDING emission, canonical REFUSE, scoped review packet writes |
-| `@deep-improvement` | `deep-improvement.md` | LEAF proposal mutator | Bounded candidate generation, evaluator-first promotion discipline |
 | `@prompt-improver` | `prompt-improver.md` | LEAF read-only prompt specialist | Framework selection, CLEAR validation, dispatch-ready prompt packages |
 | `@ai-council` | `ai-council.md` | LEAF planning subagent, `mode: subagent` | Depth-aware dispatch, diverse strategy lenses, planning-only no-write boundary |
 | `@markdown` | `markdown.md` | LEAF write-capable documentation executor | Template-first `/create:*`, spec-doc, and scoped markdown authoring |

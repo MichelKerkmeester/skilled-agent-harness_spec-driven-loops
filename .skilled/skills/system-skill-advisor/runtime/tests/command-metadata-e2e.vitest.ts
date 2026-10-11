@@ -67,10 +67,8 @@ describe('command metadata dense e2e', () => {
 
     // A census of every command declared across .skilled/skills/*/command-metadata.json,
     // not a target: retiring or adding a command moves it, so recount the declarations
-    // and update this number rather than relaxing it. Dropped from 21 when the
-    // skill-benchmark lane was retired and took its command declaration with it,
-    // and returned to 21 when sk-doc declared /create:goal.
-    expect(metadataCount).toBe(21);
+    // and update this number rather than relaxing it.
+    expect(metadataCount).toBe(19);
   });
 
   it('resolves every hub and standalone leaf alias diskPath', () => {

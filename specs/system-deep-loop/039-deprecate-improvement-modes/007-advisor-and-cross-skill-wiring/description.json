@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-deep-loop/039-deprecate-improvement-modes/007-advisor-and-cross-skill-wiring",
+  "description": "Phase 5: advisor-and-cross-skill-wiring",
+  "keywords": [
+    "phase",
+    "advisor-and-cross-skill-wiring"
+  ],
+  "lastUpdated": "2026-10-10T18:23:53.545Z",
+  "specId": "005",
+  "folderSlug": "advisor-and-cross-skill-wiring",
+  "parentChain": [
+    "system-deep-loop",
+    "039-deprecate-improvement-modes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

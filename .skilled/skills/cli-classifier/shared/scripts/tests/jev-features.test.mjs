@@ -59,12 +59,10 @@ test('unset_switches_leave_every_feature_enabled', () => {
   }
 });
 
-test('registry_holds_exactly_the_four_proven_features', () => {
+test('registry_holds_exactly_the_two_proven_features', () => {
   assert.deepEqual(Object.keys(F.FEATURES).sort(), [
     'cite-drift',
-    'hallucination-grader',
     'injection-screen',
-    'verdict-fallback',
   ]);
 });
 
@@ -108,9 +106,7 @@ test('one_feature_switch_disables_only_that_feature', () => {
     enabled: false,
     reason: 'off: JEV_FEATURE_INJECTION_SCREEN',
   });
-  for (const name of ['cite-drift', 'verdict-fallback', 'hallucination-grader']) {
-    assert.equal(F.featureSwitch(name, env, {}).enabled, true, name);
-  }
+  assert.equal(F.featureSwitch('cite-drift', env, {}).enabled, true);
 });
 
 test('an_alias_disables_its_feature_only', () => {
@@ -119,7 +115,7 @@ test('an_alias_disables_its_feature_only', () => {
     enabled: false,
     reason: 'off: SKDOC_CITE_DRIFT_CHECK',
   });
-  assert.equal(F.featureSwitch('verdict-fallback', env, {}).enabled, true);
+  assert.equal(F.featureSwitch('injection-screen', env, {}).enabled, true);
 });
 
 test('config_disables_when_env_is_unset_and_env_overrides_config', () => {
@@ -141,16 +137,16 @@ test('config_disables_when_env_is_unset_and_env_overrides_config', () => {
 test('config_file_is_read_when_config_is_omitted', () => {
   const root = tempDir('flags');
   const flagsPath = path.join(root, 'hook-flags.env');
-  fs.writeFileSync(flagsPath, 'JEV_FEATURE_VERDICT_FALLBACK=0\n');
+  fs.writeFileSync(flagsPath, 'JEV_FEATURE_INJECTION_SCREEN=0\n');
   const savedPath = process.env.HOOK_FLAGS_CONFIG;
   process.env.HOOK_FLAGS_CONFIG = flagsPath;
   try {
-    assert.deepEqual(F.featureSwitch('verdict-fallback', {}), {
+    assert.deepEqual(F.featureSwitch('injection-screen', {}), {
       enabled: false,
-      reason: 'off: JEV_FEATURE_VERDICT_FALLBACK',
+      reason: 'off: JEV_FEATURE_INJECTION_SCREEN',
     });
     assert.equal(F.featureSwitch('cite-drift', {}).enabled, true);
-    assert.equal(F.featureSwitch('verdict-fallback', { JEV_FEATURE_VERDICT_FALLBACK: '1' }).enabled, true);
+    assert.equal(F.featureSwitch('injection-screen', { JEV_FEATURE_INJECTION_SCREEN: '1' }).enabled, true);
   } finally {
     if (savedPath === undefined) delete process.env.HOOK_FLAGS_CONFIG;
     else process.env.HOOK_FLAGS_CONFIG = savedPath;
@@ -206,9 +202,9 @@ test('jevReady_fails_when_the_stub_auth_exits_nonzero', () => {
 test('featureReady_returns_disabled_without_spawning', () => {
   const root = tempDir('off');
   const { bin, log } = stubJev(root, 0);
-  assert.deepEqual(F.featureReady('verdict-fallback', { PATH: bin, JEV_FEATURES: '0' }, { config: {} }), {
+  assert.deepEqual(F.featureReady('injection-screen', { PATH: bin, JEV_FEATURES: '0' }, { config: {} }), {
     ready: false,
-    name: 'verdict-fallback',
+    name: 'injection-screen',
     reason: 'off: JEV_FEATURES',
   });
   assert.equal(loggedCalls(log), '');

@@ -158,7 +158,6 @@ The following consumers were surfaced by a deep-research audit and were absent f
 | 2 | `deep-ai-council` orchestration | `.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-{session,topic}.cjs` | 8 require() calls across all 5 `lib/council/*.cjs` modules |
 | 3 | `/doctor:deep-loop` route manifest | `.skilled/commands/doctor/_routes.yaml:58-74` | Deep-loop entry has 3 `script_invocations` and 4 `trigger_phrases`. All three calls use `--read-only` |
 | 6 | Legacy MCP server READMEs | `.skilled/skills/system-spec-kit/runtime/lib/deep-loop/README.md:25-68` + `.../handlers/coverage-graph/README.md` | Original-location stubs documenting the runtime move |
-| 7 | Doctor + deep-improvement | `.skilled/commands/doctor/assets/doctor-deep-loop.yaml` + `.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/README.md:26` | Cross-references to deep-loop runtime from doctor command assets and the deep-improvement script-lib documentation |
 
 ### Note: cross-package test discovery
 

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/039-deprecate-improvement-modes/007-advisor-and-cross-skill-wiring",
+  "spec_folder": "system-deep-loop/039-deprecate-improvement-modes/007-advisor-and-cross-skill-wiring",
+  "parent_id": "system-deep-loop/039-deprecate-improvement-modes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor and cross skill wiring",
+      "phase 7 advisor and cross skill wiring",
+      "advisor and cross skill wiring plan",
+      "advisor and cross skill wiring tasks",
+      "advisor and cross skill wiring acceptance criteria",
+      "advisor and cross skill wiring implementation summary"
+    ],
+    "key_topics": [
+      "advisor",
+      "cross",
+      "skill",
+      "wiring",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "keeps"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "rules/check-improvement-artifacts.sh",
+      "scratch/files.txt",
+      "scratch/brief-wu1.md",
+      "scratch/brief-wu2.md",
+      "scratch/brief-wu3.md",
+      "scratch/brief-wu4.md",
+      "scratch/brief-wu5.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-improvement-artifacts.sh",
+        "kind": "script",
+        "path": "rules/check-improvement-artifacts.sh",
+        "source": "derived"
+      },
+      {
+        "name": "files.txt",
+        "kind": "file",
+        "path": "scratch/files.txt",
+        "source": "derived"
+      },
+      {
+        "name": "brief-wu1.md",
+        "kind": "doc",
+        "path": "scratch/brief-wu1.md",
+        "source": "derived"
+      },
+      {
+        "name": "brief-wu2.md",
+        "kind": "doc",
+        "path": "scratch/brief-wu2.md",
+        "source": "derived"
+      },
+      {
+        "name": "brief-wu3.md",
+        "kind": "doc",
+        "path": "scratch/brief-wu3.md",
+        "source": "derived"
+      },
+      {
+        "name": "brief-wu4.md",
+        "kind": "doc",
+        "path": "scratch/brief-wu4.md",
+        "source": "derived"
+      },
+      {
+        "name": "brief-wu5.md",
+        "kind": "doc",
+        "path": "scratch/brief-wu5.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Five",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Source",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor keeps hardcoded projection maps that its drift guard compares with the hub registry, and asserts that `agent-improvement` is the only default-fold mode",
+    "created_at": "2026-10-10T18:23:52Z",
+    "last_save_at": "2026-10-11T00:31:16.572Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cd956936672a73d329938e4f002e0327232d769304991a10ddca0d270079c441",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f99e12645622b8563edfd0e10195117d1a466940edd0eb142a04575e7d1f5ac7",
+      "plan.md": "3fb4aa5b4b03797b0710dce719878de7aa19d873663e81f313c129a691cab371",
+      "tasks.md": "a2cae80236505d1a4e0a99cdab33731f4201d40e90908321b13f0f4d1a3f7364",
+      "implementation-summary.md": "ad9abdc7622478e7bd1587e394c5f0f1e86bf83e5d57db85150380570a3e7402"
+    },
+    "last_active_at": null
+  }
+}

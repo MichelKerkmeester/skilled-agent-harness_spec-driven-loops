@@ -54,7 +54,7 @@ The exception matters. `.claude/agents/` holds **real files**, not symlinks, bec
 
 ```bash
 # 1. Verify the agent fork is still aligned with .skilled (this is the pre-commit gate)
-node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all
+node .skilled/bin/check-agent-mirror-sync.cjs --all
 
 # 2. Refresh every symlink tree this repo owns (includes .claude/hooks)
 node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs
@@ -97,7 +97,7 @@ The body is identical to the OpenCode twin except for the self-referential `**Pa
 
 | Check | Command | Exit |
 |---|---|---|
-| Agent fork alignment | `node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all` | 0 ok / non-zero blocks commit |
+| Agent fork alignment | `node .skilled/bin/check-agent-mirror-sync.cjs --all` | 0 ok / non-zero blocks commit |
 | Symlink trees incl. `hooks/` | `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` | 0 ok / 1 drift |
 | Roster coverage, all runtimes | `node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs` | 0 ok / 1 drift / 2 canonical missing |
 | Everything at once | `/doctor runtime-mirrors` | read-only |

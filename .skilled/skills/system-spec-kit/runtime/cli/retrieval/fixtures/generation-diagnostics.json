@@ -1,11 +1,11 @@
 {
   "counts": {
-    "duplicate-phrase": 56,
-    "missing-frontmatter": 6847,
-    "ok": 13875,
+    "duplicate-phrase": 47,
+    "missing-frontmatter": 6728,
+    "ok": 13778,
     "valid-empty-list": 3509
   },
-  "documentsScanned": 24287,
+  "documentsScanned": 24062,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "2c221fb6808d48a4906ae219c06a182cfec669352a1a7153815ba39d86ae8485",
+  "manifestHash": "9caf3ae910bc53d82a3b6a08117990503ca44fc2a9cf4630269af9dee0396ea6",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -36,7 +36,7 @@
       "generic-workflow-word": 77,
       "numeric-only": 40,
       "prose-sentence": 10,
-      "single-token": 369,
+      "single-token": 366,
       "stop-word-only": 9,
       "template-default": 22
     },
@@ -45,9 +45,9 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36205,
+      "ok": 35825,
       "prose-sentence": 19,
-      "single-token": 164,
+      "single-token": 162,
       "stop-word-only": 1,
       "template-default": 19
     }
@@ -28704,18 +28704,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/benchmark-families/match-lane-b-fixture.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/evidence-and-boundaries/prepare-lane-a-inputs.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/family-routing/leave-in-flight-benchmark.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -31093,684 +31081,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-001-auto-run-specified.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-002-bare-command-halt.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-003-vague-natural-ask.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-004-concise-natural-ask.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-005-orchestrate-handoff.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-006-common-parent-lane-selection.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-007-model-benchmark-bare-command-halt.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--live-mode-b--live/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--live-mode-b--live/failed-runs.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--live-mode-b--live/findings-and-recommendations.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--live-mode-b--live/skill-benchmark-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--live-mode-b--live/source.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--router-mode-a--router/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--router-mode-a--router/failed-runs.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--router-mode-a--router/findings-and-recommendations.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--router-mode-a--router/skill-benchmark-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--router-mode-a--router/source.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/README.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/active-critic-overfit.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/benchmark-completed-boundary.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/improvement-gate-delta.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/legal-stop-gate-bundle.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/proposal-only-boundary.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/skill-load-not-protocol.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/benchmark-integration/with-integration.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/benchmark-integration/without-integration.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/end-to-end-loop/any-agent.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/end-to-end-loop/candidate-lineage.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/end-to-end-loop/full-pipeline.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/end-to-end-loop/mutation-coverage-graph-tracking.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/end-to-end-loop/trade-off-detection.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/end-to-end-loop/two-phase-promotion-and-rollback.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/five-d-scorer/dimension-details.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/five-d-scorer/dynamic-arbitrary.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/five-d-scorer/missing-candidate.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/five-d-scorer/unknown-grader-and-d4-census.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/integration-scanner/json-output-file.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/integration-scanner/scan-diverse-agent.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/integration-scanner/scan-known-agent.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/integration-scanner/scan-missing-agent.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/intra-routing-recall/evaluation-policy.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/intra-routing-recall/full-setup.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/intra-routing-recall/integration-scan.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/intra-routing-recall/loop-execution.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/intra-routing-recall/model-benchmark.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/intra-routing-recall/promotion-operations.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/intra-routing-recall/quick-reference.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/intra-routing-recall/target-onboarding.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/model-benchmark-mode/criteria-exec-gate.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/model-benchmark-mode/default-pattern-scorer.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/model-benchmark-mode/mode-switch-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/model-benchmark-mode/optin-5dim-scorer.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/model-benchmark-mode/reviewer-prompt-regression-fixtures.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/model-benchmark-mode/score-delta-benchmark-gates.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/model-benchmark-mode/unknown-fallback.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/model-benchmark-mode/verdict-fallback-census.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/profile-generator/file-output.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/profile-generator/inline-rules-fallback.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/profile-generator/output-checks.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/profile-generator/rules-extraction.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/reducer-dimensions/no-dimensions.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/reducer-dimensions/plateau-detection.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/reducer-dimensions/with-dimensions.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/runtime-truth/audit-journal-emission.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/runtime-truth/benchmark-stability.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/runtime-truth/dimension-trajectory.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/runtime-truth/insufficient-sample.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/runtime-truth/journal-wiring.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/runtime-truth/legal-stop-gates.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/runtime-truth/parallel-candidates-opt-in.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/runtime-truth/replay-consumer.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/runtime-truth/resume-continuation.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/runtime-truth/stop-reason-taxonomy.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/MODES.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/SWEEP.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/0115576e1e7be786962398431c973dd9.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/22c1faa7c45013e9fdfb6ce5ecf929d1.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/362330146b11be4e9ed0d522cc7b7a9f.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/42840a5b34cdd91b3e2ff2d77184541e.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/4b7b4bbc6313c5e1c67711655e612a98.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/4d1138ca8c23389ecdf84767e8691348.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/5036729e69ce24c3ba32d9bf748e6152.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/5cecfb73a67e5b6522e5992e8a1958d4.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/5fe47aad8aacf44314f494ab0add2dec.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/720c3c2f773829e2d75f3c4cf1c9cc36.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/75692e98524c987bc724bd15f1268854.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/7fb218c8d070aa9e92bbda2b3bba94de.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/8429f8a8a9d13c87e2176d57a49648c5.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/8c2c8a1fd00f3af9daaef290f1be57ba.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/8e6d3962a346cf59796d3df172c3901b.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/8f1323b05b3fd805dc519983d68b2e9d.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/9a38a58ebffba2c0a5e87918261d9afb.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/9c562e7eb6d90a65972bc75282b09770.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/9f00e055438f4fb69c5a0bf926d25952.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/a59863e9ad0f70d9bf39a3b3e7d3ec2b.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/aac68b3316e3489dd0c4e9b5e367ddd5.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/c0470150d6f7383f350f17216a2fbb3a.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/cbbeff1caf82bd3a1e002bbd22377b43.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/d0bc23dd3d54f9d0feef1727c1313afe.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/dbd80958bc81ecc2c9c947d3db67f510.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/df404b41b693fd90b7d2b2fb64d46d78.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/e5706bc35dabb7584b4563c9d5b2bd42.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/ea2a6323ff8b607dea081c14ae4fd24b.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/f2f2dd71f2533dd8cb3665d0857b8a02.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/f4b6ea7a34706c73189ac821c6ec177d.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/fc10907e5828f4c8b642f4557d6c0675.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/fc53734e22ef097b18e31f94d61a003d.out.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/prompts/system-grader-task-outcome.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/prompts/system-grader.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/prompts/system-skeptic.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -32630,12 +31940,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/system-deep-loop/manual-testing-playbook/advisor-integration/command-bridge-guard.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/system-deep-loop/manual-testing-playbook/advisor-integration/lexical-mode-scoring.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -32690,18 +31994,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/system-deep-loop/manual-testing-playbook/improvement-lane-routing/agent-improvement.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/manual-testing-playbook/improvement-lane-routing/model-benchmark.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -32733,12 +32025,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-deep-loop/manual-testing-playbook/runtime-and-backend/external-adapter.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/manual-testing-playbook/runtime-and-backend/improvement-host.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -32964,27 +32250,6 @@
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
-      "category": "duplicate-phrase",
-      "line": 6,
-      "path": ".skilled/skills/system-deep-loop/runtime/lib/agent-improvement-ledger-schema/README.md",
-      "rawKey": "trigger_phrases",
-      "reason": "duplicate normalized phrase \"agent improvement ledger schema\""
-    },
-    {
-      "category": "duplicate-phrase",
-      "line": 6,
-      "path": ".skilled/skills/system-deep-loop/runtime/lib/agent-improvement-reducers/README.md",
-      "rawKey": "trigger_phrases",
-      "reason": "duplicate normalized phrase \"agent improvement reducers\""
-    },
-    {
-      "category": "duplicate-phrase",
-      "line": 6,
-      "path": ".skilled/skills/system-deep-loop/runtime/lib/agent-improvement-sealed-artifacts/README.md",
-      "rawKey": "trigger_phrases",
-      "reason": "duplicate normalized phrase \"agent improvement sealed artifacts\""
-    },
-    {
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-deep-loop/runtime/lib/authority-root/README.md",
@@ -33064,27 +32329,6 @@
       "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-sealed-artifacts/README.md",
       "rawKey": "trigger_phrases",
       "reason": "duplicate normalized phrase \"deep ai council sealed artifacts\""
-    },
-    {
-      "category": "duplicate-phrase",
-      "line": 6,
-      "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-improvement-common-ledger-schema/README.md",
-      "rawKey": "trigger_phrases",
-      "reason": "duplicate normalized phrase \"deep improvement common ledger schema\""
-    },
-    {
-      "category": "duplicate-phrase",
-      "line": 6,
-      "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-improvement-common-reducers/README.md",
-      "rawKey": "trigger_phrases",
-      "reason": "duplicate normalized phrase \"deep improvement common reducers\""
-    },
-    {
-      "category": "duplicate-phrase",
-      "line": 6,
-      "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-improvement-common-sealed-artifacts/README.md",
-      "rawKey": "trigger_phrases",
-      "reason": "duplicate normalized phrase \"deep improvement common sealed artifacts\""
     },
     {
       "category": "missing-frontmatter",
@@ -33175,27 +32419,6 @@
       "line": 2,
       "path": ".skilled/skills/system-deep-loop/runtime/lib/mode-contracts/README.md",
       "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "duplicate-phrase",
-      "line": 6,
-      "path": ".skilled/skills/system-deep-loop/runtime/lib/model-benchmark-ledger-schema/README.md",
-      "rawKey": "trigger_phrases",
-      "reason": "duplicate normalized phrase \"model benchmark ledger schema\""
-    },
-    {
-      "category": "duplicate-phrase",
-      "line": 6,
-      "path": ".skilled/skills/system-deep-loop/runtime/lib/model-benchmark-reducers/README.md",
-      "rawKey": "trigger_phrases",
-      "reason": "duplicate normalized phrase \"model benchmark reducers\""
-    },
-    {
-      "category": "duplicate-phrase",
-      "line": 6,
-      "path": ".skilled/skills/system-deep-loop/runtime/lib/model-benchmark-sealed-artifacts/README.md",
-      "rawKey": "trigger_phrases",
-      "reason": "duplicate normalized phrase \"model benchmark sealed artifacts\""
     },
     {
       "category": "missing-frontmatter",
@@ -66679,18 +65902,6 @@
     {
       "path": ".skilled/skills/sk-git/scripts/hooks/opencode/sk-git-preflight-advisory.js",
       "reason": "symlink not followed"
-    },
-    {
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/tests/fixtures",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/test-fixtures",
-      "reason": "excluded directory"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/scripts/tests/fixtures",

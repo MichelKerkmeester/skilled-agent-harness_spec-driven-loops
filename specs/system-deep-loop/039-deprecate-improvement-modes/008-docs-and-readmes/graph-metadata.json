@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/039-deprecate-improvement-modes/008-docs-and-readmes",
+  "spec_folder": "system-deep-loop/039-deprecate-improvement-modes/008-docs-and-readmes",
+  "parent_id": "system-deep-loop/039-deprecate-improvement-modes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "docs and readmes",
+      "phase 8 docs and readmes",
+      "docs and readmes plan",
+      "docs and readmes tasks",
+      "docs and readmes acceptance criteria",
+      "docs and readmes implementation summary"
+    ],
+    "key_topics": [
+      "docs",
+      "readmes",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "readers",
+      "models",
+      "follow"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/hooks/hook-flags.env.example",
+      ".skilled/skills/system-deep-loop/SKILL.md",
+      "scratch/files.txt",
+      "scratch/brief-wu1.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.env.example",
+        "kind": "file",
+        "path": ".skilled/hooks/hook-flags.env.example",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "files.txt",
+        "kind": "file",
+        "path": "scratch/files.txt",
+        "source": "derived"
+      },
+      {
+        "name": "brief-wu1.md",
+        "kind": "doc",
+        "path": "scratch/brief-wu1.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Readers",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Source",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Readers and models follow the root README and BARTER.md to commands that will no longer exist",
+    "created_at": "2026-10-10T18:23:53Z",
+    "last_save_at": "2026-10-11T00:43:26.989Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b66a4caed482565a67b7f04f47602055896789f42dc155d2b445540985559224",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "846c1f0d3a3b9110d18b05411b73075621cb8a4ae5c43a83cc1be9e6360f0248",
+      "plan.md": "8548661d1435fb4b2d27c94af838918f50ab70c3308f16857d0f7cb2ff9c5e0a",
+      "tasks.md": "fc65d71553fead32993080e82d7311f7f59fb1fa4315cca63e22182f3b687210",
+      "implementation-summary.md": "1da11ae7e600d8adab867f682c7e61542e3c6efc654f90b0082eef4497ca0ad7"
+    },
+    "last_active_at": null
+  }
+}

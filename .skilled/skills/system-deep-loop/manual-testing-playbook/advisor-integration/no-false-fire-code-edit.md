@@ -20,7 +20,7 @@ This scenario verifies that the deep-loop hub does not capture ordinary implemen
 
 ## 2. SCENARIO CONTRACT
 
-**Realistic user request**: A maintainer asks for a targeted code change with no iterative research, review, council, benchmark, or improvement-loop intent.
+**Realistic user request**: A maintainer asks for a targeted code change with no iterative research, review, or council intent.
 
 **Exact prompt**:
 ```
@@ -38,7 +38,7 @@ Update the TypeScript helper that formats CLI output so it trims trailing blank 
 **Why this route is expected**:
 - Hub source: system-deep-loop is for active deep-loop workflows, not single quick read/edit work.
 - Hub source: When NOT to Use includes `A single quick read/edit (no loop) - use the relevant code or doc skill directly.`
-- Registry evidence: every deep-loop mode requires a matching `workflowMode` such as `research`, `review`, `ai-council`, `agent-improvement`, or `model-benchmark`; the prompt does not express any of those controls.
+- Registry evidence: every deep-loop mode requires a matching `workflowMode` such as `research`, `review`, or `ai-council`; the prompt does not express any of those controls.
 
 **Desired user-visible outcome**: The advisor or orchestrator routes the prompt to `sk-code` and does not load or invoke the deep-loop hub.
 
@@ -86,7 +86,7 @@ Update the TypeScript helper that formats CLI output so it trims trailing blank 
 
 ### Failure Triage
 
-1. If deep-loop fires, check whether the prompt accidentally contains `deep`, `loop`, `research`, `review`, `council`, `benchmark`, or `improvement` trigger language.
+1. If deep-loop fires, check whether the prompt accidentally contains `deep`, `loop`, `research`, `review`, or `council` trigger language.
 2. If `sk-code` does not win, inspect the advisor output for the competing top skill before changing any routing assets.
 3. If the orchestrator starts a loop, re-read the hub's When NOT to Use rule for single quick read/edit work.
 

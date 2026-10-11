@@ -130,8 +130,8 @@ run_plain "$CLONE/.opencode/hooks/git/pre-commit"; RC=$?
 expect "the legacy helper blocks on a missing comment checker" 1 "$RC" present "comment hygiene checker is missing"
 unstage_all; restore_input
 
-break_input skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs
-check_names "a missing agent mirror checker" ".opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs resolves nowhere"
+break_input bin/check-agent-mirror-sync.cjs
+check_names "a missing agent mirror checker" ".opencode/bin/check-agent-mirror-sync.cjs resolves nowhere"
 stage .skilled/agents/ai-council.md
 run_pre_commit "$H/pre-commit" "$SKIP_ALL"; RC=$?
 expect "pre-commit blocks on a missing agent mirror checker" 1 "$RC" present "BLOCKED [gate:agent-mirror-sync]"

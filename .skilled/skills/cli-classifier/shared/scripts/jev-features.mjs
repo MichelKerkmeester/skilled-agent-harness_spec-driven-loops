@@ -44,14 +44,6 @@ export const FEATURES = Object.freeze({
     env: 'JEV_FEATURE_INJECTION_SCREEN',
     aliases: Object.freeze([]),
   }),
-  'verdict-fallback': Object.freeze({
-    env: 'JEV_FEATURE_VERDICT_FALLBACK',
-    aliases: Object.freeze([]),
-  }),
-  'hallucination-grader': Object.freeze({
-    env: 'JEV_FEATURE_HALLUCINATION_GRADER',
-    aliases: Object.freeze([]),
-  }),
 });
 
 const DEFAULT_TIMEOUT_MS = 10000;

@@ -29,19 +29,15 @@ import {
   JudgmentOutcomes,
   REQUIRED_COUNTERFACTUALS_BY_DECISION_KIND,
   adaptCouncilVerdict,
-  adaptModelBenchmarkVerdict,
+  adaptDeepReviewVerdict,
   adjudicationPairId,
   createAdjudicationEventPayload,
   createAdjudicationEventRegistry,
   createCouncilAdjudicationRequest,
   createDeepReviewAdjudicationRequest,
-  createImprovementAdjudicationRequest,
-  createModelBenchmarkAdjudicationRequest,
-  createSkillBenchmarkAdjudicationRequest,
   deriveAdjudicationReplayFingerprint,
   digestCandidateContent,
   evaluateCounterfactual,
-  joinModelBenchmarkCost,
   measureEffectiveIndependence,
   readAdjudicationEvents,
   reduceAdjudication,
@@ -1099,7 +1095,7 @@ describe('independence, adapters, and dark authority', () => {
     expect(reduction.reasons).toContain('insufficient-effective-independence');
   });
 
-  it('keeps all five request adapters typed and preserves verdict status without re-reduction', async () => {
+  it('keeps both request adapters typed and preserves verdict status without re-reduction', async () => {
     const harness = await acceptedHarness('adapters');
     const verdict = await stableVerdict(harness);
     const common = {
@@ -1115,15 +1111,9 @@ describe('independence, adapters, and dark authority', () => {
     expect([
       createDeepReviewAdjudicationRequest(common).decisionKind,
       createCouncilAdjudicationRequest(common).decisionKind,
-      createImprovementAdjudicationRequest(common).decisionKind,
-      createModelBenchmarkAdjudicationRequest(common).decisionKind,
-      createSkillBenchmarkAdjudicationRequest(common).decisionKind,
     ]).toEqual([
       'deep-review',
       'deep-ai-council',
-      'deep-improvement',
-      'model-benchmark',
-      'skill-benchmark',
     ]);
     const council = adaptCouncilVerdict(verdict);
     expect(council).toMatchObject({
@@ -1133,18 +1123,7 @@ describe('independence, adapters, and dark authority', () => {
       legacyAuthority: 'canonical',
     });
     expect(council.pairwiseGraph).toEqual(verdict.pairwiseGraph);
-    expect(() => adaptModelBenchmarkVerdict(verdict)).toThrow();
-  });
-
-  it('joins model cost only after blind quality scoring', () => {
-    const fakeVerdict = verdictFixture(AdjudicationDecisionKinds.MODEL_BENCHMARK);
-    const quality = adaptModelBenchmarkVerdict(fakeVerdict);
-    const joined = joinModelBenchmarkCost(quality, {
-      [fakeVerdict.pairwiseGraph[0].candidateDigests[0]]: 1.2,
-      [fakeVerdict.pairwiseGraph[0].candidateDigests[1]]: 0.7,
-    });
-    expect(joined.costJoinedAfterBlindQuality).toBe(true);
-    expect(joined.blindQuality).toBe(quality);
+    expect(() => adaptDeepReviewVerdict(verdict)).toThrow();
   });
 
   it('returns the exact legacy result after recording a non-authoritative shadow comparison', async () => {
@@ -1353,33 +1332,4 @@ function completePairEvidence(
       evidenceId: `counterfactual-${suffix}`,
     },
   };
-}
-
-function verdictFixture(decisionKind: AdjudicationVerdict['decisionKind']): AdjudicationVerdict {
-  const first = digest('candidate-first');
-  const second = digest('candidate-second');
-  const independence = measureEffectiveIndependence(1, [judge('fixture-judge')]);
-  return Object.freeze({
-    adjudicationId: 'adjudication-fixture',
-    decisionKind,
-    status: AdjudicationStatuses.STABLE,
-    preferredCandidateDigest: first,
-    reductionEvidenceId: 'reduction-fixture',
-    verdictEvidenceId: 'verdict-fixture',
-    rawScoreEvidenceIds: ['raw-fixture'],
-    counterfactualEvidenceIds: ['counterfactual-fixture'],
-    minorityEvidenceIds: ['minority-fixture'],
-    pairwiseGraph: [{
-      pairId: 'pair-fixture',
-      candidateDigests: [first, second],
-      winnerCandidateDigest: first,
-    }],
-    tiePairIds: [],
-    cycles: [],
-    vetoEvidenceIds: [],
-    independence,
-    replayFingerprint: digest('replay-fixture'),
-    legacyAuthority: 'canonical',
-    serviceAuthority: 'shadow-only',
-  });
 }

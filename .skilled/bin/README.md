@@ -164,6 +164,7 @@ Main flow:
 | `node .skilled/bin/compiled-route-sync.cjs [--check] [--verify] [--finalize <path>] [--revert <path>]` | CLI | Trace the authored closure, publish it atomically, and finalize or revert the retained rollback. |
 | `node .skilled/bin/compiled-route-manifest.cjs <command>` | CLI | Mint, refresh or inspect a hub activation manifest through the library in `lib/`. |
 | `node .skilled/bin/check-no-spec-imports.cjs` | CLI | Prove no file here reaches into the spec tree at runtime. |
+| `node .skilled/bin/check-agent-mirror-sync.cjs [--all]` | CLI | Blocks agent edits that desync the runtime mirrors. Run by both pre-commit hooks and the agent-mirror-sync CI workflow. |
 | `node .skilled/bin/install-codex-hooks.mjs` | CLI | Remove copies of the repo's Codex hooks, and orphaned repo entries, from user-global `~/.codex/hooks.json`; Codex already runs the project's own `.codex/hooks.json`, so a copy would run each hook twice. Backs up to `.bak-<ts>` first, preserves Superset and other third-party entries, and never rewrites a clean file. `--check` exits 1 while a copy or orphan remains. |
 
 ### Daemon-backed CLI shims

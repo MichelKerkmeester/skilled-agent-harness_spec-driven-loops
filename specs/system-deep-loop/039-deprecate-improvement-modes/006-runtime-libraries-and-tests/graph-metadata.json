@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/039-deprecate-improvement-modes/006-runtime-libraries-and-tests",
+  "spec_folder": "system-deep-loop/039-deprecate-improvement-modes/006-runtime-libraries-and-tests",
+  "parent_id": "system-deep-loop/039-deprecate-improvement-modes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "runtime libraries and tests",
+      "phase 6 runtime libraries and tests",
+      "runtime libraries and tests plan",
+      "runtime libraries and tests tasks",
+      "runtime libraries and tests acceptance criteria",
+      "runtime libraries and tests implementation summary"
+    ],
+    "key_topics": [
+      "runtime",
+      "libraries",
+      "tests",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "nine",
+      "exist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "scratch/files.txt",
+      "scratch/brief-wu1.md",
+      "scratch/brief-wu2.md",
+      "scratch/brief-wu3.md",
+      "scratch/brief-wu4.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "files.txt",
+        "kind": "file",
+        "path": "scratch/files.txt",
+        "source": "derived"
+      },
+      {
+        "name": "brief-wu1.md",
+        "kind": "doc",
+        "path": "scratch/brief-wu1.md",
+        "source": "derived"
+      },
+      {
+        "name": "brief-wu2.md",
+        "kind": "doc",
+        "path": "scratch/brief-wu2.md",
+        "source": "derived"
+      },
+      {
+        "name": "brief-wu3.md",
+        "kind": "doc",
+        "path": "scratch/brief-wu3.md",
+        "source": "derived"
+      },
+      {
+        "name": "brief-wu4.md",
+        "kind": "doc",
+        "path": "scratch/brief-wu4.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Nine",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Source",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Nine runtime libraries exist only for the improvement lanes, and the append gateway, `AUTHORITYFLIPMODEORDER`, the write-set census, blinded adjudication and legacy projections all list the two modes",
+    "created_at": "2026-10-10T19:17:44Z",
+    "last_save_at": "2026-10-10T22:38:20.535Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dd44baa0fc60b038db577c7a8a58d5ad778c5eb858692b52449ed2196d96fd39",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "72c958608f86858a59be68f3e1282780b8aa1f16cf8e5cd48ee630f5e118885a",
+      "plan.md": "661ce851e86aac52ad4fb764ba6a1615df26dbf0d3b346fcc016ebb851f6860a",
+      "tasks.md": "d142cefd05a018a3e2a25e421ad48fa36cace9a1870659aae83cce63cc8d2674",
+      "implementation-summary.md": "283ab6cd105a1983926639e2c055406ce7975d45f0e7f33449e35842b17c0977"
+    },
+    "last_active_at": null
+  }
+}

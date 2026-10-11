@@ -1,9 +1,0 @@
-{
-  "intentionally_unrouted": [
-    {"path": "assets/model-benchmark/README.md", "reason": "Lane B data-directory catalog; scripts consume the data directly, not via task intent."},
-    {"path": "assets/model-benchmark/benchmark-profiles/README.md", "reason": "Profile inventory catalog documenting canonical JSON configs; discovery, not live-execution guidance."},
-    {"path": "assets/model-benchmark/benchmark-fixtures/README.md", "reason": "Fixture taxonomy/inventory catalog for benchmark data; discovery aid, not a task intent."},
-    {"path": "assets/agent-improvement/README.md", "reason": "Lane A data/config directory catalog; ownership-boundary index, not task-time material."},
-    {"path": "assets/agent-improvement/target-profiles/README.md", "reason": "Path-consistency placeholder for dynamic-only profiles; intentional empty-directory index."}
-  ]
-}

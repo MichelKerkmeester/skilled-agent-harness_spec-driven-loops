@@ -1,0 +1,4 @@
+- .skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json: historical rename chains over old .opencode paths; a redirect map keeps old paths by design
+- .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/shadow-diff.md: frozen shadow-phase record (counts already stale before this work); decide in 010
+- .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json: frozen acceptance evidence with no runtime reader; retrieval README says regeneration never refreshes it
+- decision: shadow-diff.md kept as history, same rule as frozen evidence

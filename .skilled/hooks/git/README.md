@@ -135,4 +135,4 @@ Expected result: the hook exits 0 immediately, regardless of staged content.
 - [`../../scripts/git-hooks/pre-commit`](../../scripts/git-hooks/pre-commit): the primary pre-commit hook, which carries its own comment-hygiene gate rather than calling this folder's hook.
 - [`../../skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh`](../../skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh): the comment-hygiene checker.
 - [`../../skills/sk-code/shared/references/universal/code-style-guide.md`](../../skills/sk-code/shared/references/universal/code-style-guide.md): the comment-hygiene standard (§4).
-- [`../../skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs`](../../skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs): the agent mirror-sync checker.
+- [`../../bin/check-agent-mirror-sync.cjs`](../../bin/check-agent-mirror-sync.cjs): the agent mirror-sync checker.

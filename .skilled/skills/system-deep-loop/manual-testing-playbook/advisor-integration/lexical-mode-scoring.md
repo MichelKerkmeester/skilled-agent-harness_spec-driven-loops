@@ -73,7 +73,6 @@ deep-ai-council: run a planning council and converge on a recommendation.
 | 1 | Each prompt has lexical evidence through its `legacyAdvisorId`. |
 | 2 | Hub selects `research`, `review`, and `ai-council` respectively. |
 | 3 | Responses name the expected commands and agents. |
-| 4 | None of the three prompts routes through `deep-improvement`. |
 
 ### Evidence
 
@@ -83,7 +82,7 @@ deep-ai-council: run a planning council and converge on a recommendation.
 ### Pass/Fail Criteria
 
 - **PASS**: all three lexical prompts resolve to the expected modes and route fields, whether or not the response also narrates the lexical-scoring mechanism.
-- **FAIL**: any prompt resolves to an improvement lane or the wrong lexical mode.
+- **FAIL**: any prompt resolves to the wrong lexical mode.
 
 ### Failure Triage
 

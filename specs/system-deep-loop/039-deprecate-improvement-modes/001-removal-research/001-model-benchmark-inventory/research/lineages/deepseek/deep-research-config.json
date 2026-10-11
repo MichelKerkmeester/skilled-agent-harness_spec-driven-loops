@@ -1,0 +1,84 @@
+{
+  "topic": "Inventory every reference to the model-benchmark deep-loop mode (workflowMode model-benchmark, command /deep:model-benchmark, assets deep-model-benchmark-*.yaml and deep-model-benchmark-presentation.txt, loopHostMode model-benchmark in the shared deep-improvement packet) across this whole repository outside specs/, so its full deletion can be planned.",
+  "maxIterations": 10,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/system-deep-loop/039-deprecate-improvement-modes/001-removal-research/001-model-benchmark-inventory",
+  "createdAt": "2026-10-10T18:39:43Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "fanout_lineage_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-deep-loop/039-deprecate-improvement-modes/001-removal-research/001-model-benchmark-inventory/research/lineages/deepseek",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "llmgateway/deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "danger-full-access",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-1791657286793-xs8psf",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null,
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": ".deep-research-pause",
+  "archiveRoot": "_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

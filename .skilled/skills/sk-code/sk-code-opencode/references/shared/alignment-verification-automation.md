@@ -70,8 +70,8 @@ records. These remain manual review gates:
 
 ### Router-sync guard
 
-The `sk-code-router-sync.vitest.ts` suite was deleted with the skill-benchmark
-lane. `verify_router_sync.cjs` restores its four checks. The suite checked four things:
+The `sk-code-router-sync.vitest.ts` suite was deleted.
+`verify_router_sync.cjs` restores its four checks. The suite checked four things:
 
 1. Every path in the machine-readable router exists on disk, every routable
    reference or asset doc is routed, and every full path the prose maps name

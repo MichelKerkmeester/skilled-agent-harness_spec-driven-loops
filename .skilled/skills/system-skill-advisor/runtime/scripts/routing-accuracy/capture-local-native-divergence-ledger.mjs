@@ -127,7 +127,7 @@ function migrationReason(row, previous) {
   if (values.includes('mcp-chrome-devtools') || values.includes('mcp-tooling')) {
     return 'current-state capture after the MCP tooling hub reconciliation; browser and connector labels use the current hub identity';
   }
-  if (values.includes('deep-improvement') || values.includes('system-deep-loop') || values.includes('deep-research') || values.includes('deep-review')) {
+  if (values.includes('system-deep-loop') || values.includes('deep-research') || values.includes('deep-review')) {
     return 'current-state capture after the deep-loop skill consolidation; legacy mode aliases remain represented by the current hub';
   }
   return 'current-state capture after the merged skill inventory and command-bridge reconciliation';

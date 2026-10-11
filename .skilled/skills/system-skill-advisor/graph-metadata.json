@@ -49,7 +49,7 @@
       {
         "target": "system-deep-loop",
         "weight": 0.7,
-        "context": "routes autonomous research requests; routes autonomous review requests; routes agent improvement requests; routes deep-ai-council delegation requests"
+        "context": "routes autonomous research requests; routes autonomous review requests; routes deep-ai-council delegation requests"
       }
     ],
     "siblings": [],

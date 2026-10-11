@@ -13,17 +13,11 @@ export const BASE_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Ob
     'create:manual-testing-playbook',
   ],
   'memory:save': ['command-memory-save', '/speckit:save', 'memory:save'],
-  'deep-model-benchmark': [
-    'command-spec-kit-deep-model-benchmark',
-    '/deep:model-benchmark',
-    'deep-model-benchmark',
-    'sk-deep-model-benchmark',
-  ],
 });
 
 // BEGIN GENERATED DEEP ROUTING PROJECTION
 /** Hash of the generated deep-loop routing projection embedded below. */
-export const DEEP_ROUTING_PROJECTION_HASH = 'sha256:3247c68909c8f2510ca34af7ce0e02d2a91654f175b583469b225dca6cd6a6a3';
+export const DEEP_ROUTING_PROJECTION_HASH = 'sha256:fcec7a8c9c11fb7db486bcf721ff90bf2c7af64d18b91f015a52cb70026bb945';
 
 const GENERATED_DEEP_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Object.freeze({
   'deep-ai-council': [
@@ -34,12 +28,6 @@ const GENERATED_DEEP_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> =
     'planning council',
     'council deliberation',
     'multi-ai-council',
-  ],
-  'deep-improvement': [
-    'command-spec-kit-deep-agent-improvement',
-    '/deep:agent-improvement',
-    'deep-agent-improvement',
-    'sk-deep-agent-improvement',
   ],
   'deep-research': [
     'command-spec-kit-deep-research',
@@ -59,7 +47,6 @@ const GENERATED_DEEP_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> =
 
 export const DEEP_MODE_BY_CANONICAL: Readonly<Record<string, string>> = Object.freeze({
   'deep-ai-council': 'ai-council',
-  'deep-improvement': 'agent-improvement',
   'deep-research': 'research',
   'deep-review': 'review',
 });
@@ -99,7 +86,7 @@ export function skillInAliasSet(actual: string, expected: readonly string[]): bo
 // ───────────────────────────────────────────────────────────────────
 //
 // The active legacy deep-loop modes (deep-research, deep-review,
-// deep-ai-council, deep-improvement) are folded into one public skill,
+// deep-ai-council) are folded into one public skill,
 // system-deep-loop, discriminated by workflowMode (see
 // system-deep-loop/mode-registry.json). canonicalSkillId above is
 // deliberately UNCHANGED: an alias still resolves to its mode-level legacy id

@@ -1,0 +1,1 @@
+FATAL WARN: lineage deepseek runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.

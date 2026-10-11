@@ -51,7 +51,7 @@
       "workflowMode": "[mode-b]",
       "packetKind": "workflow",
       "runtimeLoopType": null,
-      "backendKind": "improvement-host",
+      "backendKind": "template-scaffold",
       "toolSurface": {
         "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob", "Task"],
         "forbidden": [],

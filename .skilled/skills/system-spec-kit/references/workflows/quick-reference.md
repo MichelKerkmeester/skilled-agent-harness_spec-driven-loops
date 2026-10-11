@@ -115,7 +115,6 @@ If the runtime does not surface command menus clearly, use this compact command 
 - `/deep:research` - run iterative research before planning
 - `/deep:review` - run iterative review and finding synthesis
 - `/deep:ai-council` - run multi-seat planning deliberation
-- `/deep:agent-improvement` - run bounded evaluator-first agent improvement
 
 **Memory commands**
 - `/speckit:save` - write the current session context into the packet's continuity documents

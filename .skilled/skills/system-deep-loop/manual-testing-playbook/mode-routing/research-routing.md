@@ -24,7 +24,7 @@ version: "1.2.0.0"
 
 ## 1. OVERVIEW
 
-This scenario verifies that an outward web-plus-code investigation request resolves to `workflowMode: research` and does not route to review, ai-council, or an improvement lane.
+This scenario verifies that an outward web-plus-code investigation request resolves to `workflowMode: research` and does not route to review or ai-council.
 
 ---
 
@@ -80,7 +80,7 @@ Use deep research to investigate why our advisor sometimes routes iterative inve
 | 1 | Advisor top skill is `system-deep-loop` or the transcript shows the legacy research identity folding into the hub. |
 | 2 | Hub selects `workflowMode: research`. |
 | 3 | Response names `/deep:research`, agent `deep-research`, backend `runtime-loop-type`, and artifact root `research/`. |
-| 4 | No improvement-host or external-adapter backend is named. |
+| 4 | No external-adapter backend is named. |
 
 ### Pass/Fail Criteria
 

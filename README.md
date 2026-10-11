@@ -20,7 +20,7 @@ Built for Claude Code, Codex, Opencode, Pi Agent, Devin, Cursor and Hermes CLI
 - **Spec Kit Framework** - structured plans, task tracking, validation gates and handover docs
 - **Spec Memory & Search** - session context saved into each spec folder and recovered through instant keyword search, surviving resets and compactions
 - **Skill Advisor Daemon** - dynamic prompt-time skill suggestions using 5-lane fusion and a live skill graph
-- **Autonomous Deep Loops** - research, review and improvement loops that run unattended and stop only when their own evidence says done
+- **Autonomous Deep Loops** - research and review loops that run unattended and stop only when their own evidence says done
 - **12 Specialized Agents** - focused roles for implementation, review, research, docs, git and more
 - **14 On-Demand Skills** - deep capabilities for code, design, docs and multi-CLI dispatch
 
@@ -47,7 +47,7 @@ Your architecture, decisions and session history are written into the spec folde
 
 ### 🔄 Deep Loop
 
-Research, review and improvement loops run unattended and stop only when their own evidence says done.
+Research and review loops run unattended and stop only when their own evidence says done.
 
 - Progress lives on disk, so a loop survives crashes, new sessions and long runs
 - One shared runtime under every loop, so you learn the workflow once
@@ -551,9 +551,8 @@ The Deep Loop system runs autonomous, iterative agent workflows.
 
 - Each loop dispatches a fresh-context worker against externalized state
 - It keeps going until a convergence check, not the agent's own claim, decides a stop is safe
-- Four loop families (research, review, AI council and improvement) live as nested mode packets inside one parent skill, `system-deep-loop`
-- All consume one shared runtime, `runtime/`, for state, scoring and fan-out. Research, review and AI council also share its loop contract, while the improvement lanes drive their own loop host
-- The improvement family carries two co-equal lanes (agent improvement and model benchmark), giving five `/deep:*` loop commands in total
+- Three loop families (research, review and AI council) live as nested mode packets inside one parent skill, `system-deep-loop`
+- All consume one shared runtime, `runtime/`, for state, scoring and fan-out. Research, review and AI council also share its loop contract
 
 #### How It Works
 
@@ -590,7 +589,7 @@ A loop decides for itself when the work is finished, instead of trusting an agen
 
 One engine under every loop, so they all work the same way and you learn the workflow once.
 
-- **Consistent across loops:** research, review and council dispatch, track and stop the same way, and the improvement lanes reuse the same state and scoring primitives
+- **Consistent across loops:** research, review and council dispatch, track and stop the same way
 - **Pause and resume anytime:** progress is saved outside the chat, so a loop survives crashes, new sessions and long runs
 - **Trustworthy stops:** a loop ends only when the work has converged and passed its quality checks, never because an agent says it is done
 - **Hands-off or step-by-step:** run fully autonomous with `:auto` or pause at each step with `:confirm`, and start fresh, resume or restart at will
@@ -644,16 +643,6 @@ Brings several AI viewpoints together to plan hard decisions. `@ai-council` runs
 - **A plan you can trust:** the seats converge on a recommendation with the evidence behind it
 - **Safe to run:** planning only, so it never touches your implementation files
 - **Saved for later:** the plan and its reasoning persist as `ai-council/**` files in the packet
-
-#### Agent Improvement & Benchmarking
-
-Two co-equal lanes in the `system-deep-loop` improvement mode. Lane A reviews and upgrades any of your agents: `/deep:agent-improvement` runs `@deep-improvement`. Lane B benchmarks a model or prompt framework: `/deep:model-benchmark`.
-
-- **Objective scoring:** rates an agent across five dimensions with fixed, repeatable checks, not another AI's opinion
-- **Sees the whole footprint:** finds every place the agent lives (definition, mirrors, commands, workflows, skills) before changing anything
-- **Never breaks the original:** changes go to a sandbox copy and are promoted only after they pass scoring, benchmarks and your approval, with rollback if they don't
-- **Knows when to stop:** ends once the scores stop improving
-- **Benchmarks too (Lane B):** models and prompt frameworks against fixtures with pattern, 5-dimension or reviewer scoring, deterministic or graded
 
 For details, see the [Deep Loop Runtime README](.skilled/skills/system-deep-loop/runtime/README.md), or the [system-deep-loop README](.skilled/skills/system-deep-loop/README.md), which documents each mode.
 
@@ -818,7 +807,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 One skill powers the autonomous loops described in [Deep Loop](#6--deep-loop), in two layers:
 
 - **`runtime/`** - the shared MCP-free execution layer every active loop consumes
-- **`system-deep-loop`** - the parent skill routing to active nested modes (`deep-research`, `deep-review`, `ai-council`, `deep-improvement`)
+- **`system-deep-loop`** - the parent skill routing to active nested modes (`deep-research`, `deep-review`, `ai-council`)
 
 Use `@context` separately for one-shot retrieval. This parent-nested-skill pattern is the reusable standard behind `/create:skill-parent`.
 
@@ -862,12 +851,10 @@ Describe the job and it hands the dispatch to the right one.
 When a decision needs a number rather than prose, this hub asks a classifier for one: the hosted Jev service (mode `cli-jev`). It returns a probability, a choice between options, a score position or a batch of keyed answers, and changes nothing else. Yes-or-no and choice questions go to Pi's native classifier first and fall back to the `jev` CLI. Scores and batches go straight to the CLI, and every answer records which route gave it.
 
 - **A value you can act on.** Structured JSON or a bare number, never a paragraph
-- **Four features run on their own once a key is stored.** Each won a measured comparison against the best rule without a model, and each asks the exact question it was measured with:
+- **Two features run on their own once a key is stored.** Each won a measured comparison against the best rule without a model, and each asks the exact question it was measured with:
   - Citation drift advisory in `validate_document.py`: flags a `file:line` citation whose code no longer shows the claim (35 of 40 right against 13)
   - Injection screen on fetched web text (Claude Code, Devin, OpenCode, Pi, Hermes): one advisory line when a page section reads as instructions aimed at an AI agent (84 of 90 right against 68)
-  - Reviewer verdict fallback in the model benchmark: reads a verdict the parser misses (24 of 24 against 8)
-  - Hallucination grader for the benchmark's D4 dimension: asks only about outputs the deterministic check flags (55 of 56 against 47)
-- **Off with one line.** `JEV_FEATURES=0` stops all four, and `JEV_FEATURE_<NAME>=0` stops one. Without a stored key nothing calls Jev. `JEV_PROVIDER` picks the provider whose key counts and `JEV_TRANSPORT=jev` keeps every call on the CLI. See `.env.example` section 17
+- **Off with one line.** `JEV_FEATURES=0` stops both, and `JEV_FEATURE_<NAME>=0` stops one. Without a stored key nothing calls Jev. `JEV_PROVIDER` picks the provider whose key counts and `JEV_TRANSPORT=jev` keeps every call on the CLI. See `.env.example` section 17
 - **Pairs with the workflow skills.** The judgment stays read-only, so hand the follow-up edit to a workflow skill
 
 &nbsp;
@@ -999,10 +986,6 @@ One advisor identity routing to nine modes through `mode-registry.json`: five wo
 **Deep Review** - audits one review pass, read-only on code
 
 - Produces `file:line` findings. The `/deep:review` command owns the loop. See [Deep Loop](#6--deep-loop)
-
-**Deep Improvement** - proposes one agent improvement, safely
-
-- Writes a single candidate to packet-local runtime and never scores or promotes it. The `/deep:agent-improvement` command handles that. See [Deep Loop](#6--deep-loop)
 
 ---
 
@@ -1222,7 +1205,7 @@ The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which ru
 &nbsp;
 #### DEEP
 
-The active autonomous loop families (the improvement family carries two lanes). See [Deep Loop](#6--deep-loop) for how they run. Use `@context` for one-shot retrieval before planning.
+The active autonomous loop families. See [Deep Loop](#6--deep-loop) for how they run. Use `@context` for one-shot retrieval before planning.
 
 **`/deep:ai-council`** - plan hard decisions with several models
 
@@ -1235,14 +1218,6 @@ The active autonomous loop families (the improvement family carries two lanes). 
 **`/deep:review`** - audit code until it is clean
 
 - Iterative code audit until convergence, ending in a PASS/CONDITIONAL/FAIL verdict. Modes: `:auto`, `:confirm`
-
-**`/deep:agent-improvement`** - improve your own agents
-
-- Evaluates and improves any agent, with guarded promotion and rollback. Modes: `:auto`, `:confirm`
-
-**`/deep:model-benchmark`** - benchmark models and frameworks
-
-- Benchmarks a model or prompt framework against fixtures. Modes: `:auto`, `:confirm`
 
 &nbsp;
 #### DOCTOR
@@ -1429,7 +1404,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 
 **`system-deep-loop`** - ✅ codebase-agnostic
 
-- Parent hub for the unified deep-loop skill (research, review, ai-council and improvement modes, including agent improvement and model benchmarking) over nested `runtime/` infrastructure. Works for any topic / target
+- Parent hub for the unified deep-loop skill (research, review and ai-council modes) over nested `runtime/` infrastructure. Works for any topic / target
 
 **`sk-prompt`** - ✅ codebase-agnostic
 

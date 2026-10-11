@@ -136,6 +136,17 @@ const CENSUS_ROOT = resolve(
   '../../../../../specs/system-deep-loop/036-deep-loop-innovation',
   '001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census',
 );
+// The census is a frozen research record, so it still lists the surfaces of the
+// retired improvement and benchmark lanes. Naming them here keeps every census
+// row accounted for: owned by the manifest or deliberately retired.
+const RETIRED_CENSUS_SURFACE_IDS: readonly string[] = [
+  'improvement-config-manifests',
+  'improvement-derived-state',
+  'improvement-ledgers',
+  'model-benchmark-hub-output',
+  'model-grader-cache',
+  'skill-benchmark-output',
+];
 const temporaryRoots: string[] = [];
 
 // ───────────────────────────────────────────────────────────────────
@@ -438,11 +449,12 @@ describe('legacy projection census and byte contracts', () => {
     const manifestIds = LEGACY_PROJECTION_MANIFEST.map((row) => row.surfaceId).sort();
     const censusRows = new Map(census.rows.map((row) => [row.id, row]));
 
-    expect(censusIds).toEqual(manifestIds);
-    expect(LEGACY_PROJECTION_MANIFEST).toHaveLength(25);
-    expect(LEGACY_PROJECTION_MANIFEST.filter((row) => row.disposition === 'project')).toHaveLength(19);
+    expect(censusIds).toEqual([...manifestIds, ...RETIRED_CENSUS_SURFACE_IDS].sort());
+    expect(manifestIds.filter((id) => RETIRED_CENSUS_SURFACE_IDS.includes(id))).toEqual([]);
+    expect(LEGACY_PROJECTION_MANIFEST).toHaveLength(19);
+    expect(LEGACY_PROJECTION_MANIFEST.filter((row) => row.disposition === 'project')).toHaveLength(16);
     expect(LEGACY_PROJECTION_MANIFEST.filter((row) => row.disposition === 'retain-legacy-input'))
-      .toHaveLength(6);
+      .toHaveLength(3);
     expect(LEGACY_PROJECTION_MANIFEST_DIGEST).toMatch(/^[a-f0-9]{64}$/u);
     for (const entry of LEGACY_PROJECTION_MANIFEST) {
       const censusRow = censusRows.get(entry.surfaceId);

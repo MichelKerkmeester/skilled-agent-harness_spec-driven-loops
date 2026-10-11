@@ -40,7 +40,7 @@ That is the whole reason this skill exists. It gives you a review you can releas
 
 `deep-review` runs an autonomous multi-iteration review loop through `/deep:review:auto`. Each iteration dispatches a fresh `@deep-review` LEAF agent that reads accumulated state from disk, audits one review dimension, writes findings to an iteration file and appends a JSONL delta record. A reducer rewrites the strategy and the dashboard after each pass. The findings registry tracks every discovery. The loop stops when a composite convergence signal clears and nine legal-stop gates pass, then produces a release-readiness verdict. PASS routes to changelog creation. FAIL and CONDITIONAL route to remediation planning.
 
-It does not investigate outward knowledge (`deep-research`), perform one-shot codebase lookup (`@context`), compare competing plans (`deep-ai-council`) or run evaluator-first improvement lanes (`deep-improvement`). A single-pass review is `sk-code`'s code-review mode. The active deep-loop families share the `runtime/` for executors, state handling and coverage graphs.
+It does not investigate outward knowledge (`deep-research`), perform one-shot codebase lookup (`@context`) or compare competing plans (`deep-ai-council`). A single-pass review is `sk-code`'s code-review mode. The active deep-loop families share the `runtime/` for executors, state handling and coverage graphs.
 
 ### The Dimension Coverage
 
@@ -173,7 +173,6 @@ Skip it for the lighter cases:
 |---|---|
 | `deep-research` | Investigates outward knowledge with web access. `deep-review` audits inward code with no web access |
 | `deep-ai-council` | Compares competing plans with structured disagreement. Run it before implementation, then `deep-review` after |
-| `deep-improvement` | Runs evaluator-first improvement across two lanes: agent improvement and model benchmark |
 
 `sk-code`'s code-review mode handles a single-pass review with no convergence gating. `deep-review` is the multi-iteration loop. `system-spec-kit` owns the spec folder, its validation, its memory continuity and its resume protocol.
 

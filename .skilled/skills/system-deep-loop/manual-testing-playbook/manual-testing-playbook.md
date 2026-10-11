@@ -22,7 +22,6 @@ This playbook package adopts the typed per-scenario split-document pattern. The 
 Canonical package artifacts:
 - `manual-testing-playbook.md`
 - `mode-routing/`
-- `improvement-lane-routing/`
 - `advisor-integration/`
 - `runtime-and-backend/`
 - `state-and-convergence-discipline/`
@@ -36,8 +35,7 @@ This playbook validates the `system-deep-loop` parent-skill hub through the oper
 Coverage note: the playbook covers the hub's registry-driven routing at version `2.0.0.0`. It exercises:
 - Dominant-intent routing for the lexical modes: `research`, `review`, and `ai-council`.
 - Explicit mode-hint override routing, such as `research: <request>`.
-- The two improvement lanes that share the `deep-improvement` packet: `agent-improvement` and `model-benchmark`.
-- Advisor integration: the single advisor identity `system-deep-loop`, lexical scoring, alias-fold default behavior, command-bridge behavior, and no false fire on ordinary code-edit prompts.
+- Advisor integration: the single advisor identity `system-deep-loop`, lexical scoring, and no false fire on ordinary code-edit prompts.
 - The three-tier discriminator: `workflowMode`, `runtimeLoopType`, and `backendKind`.
 - State and convergence discipline: externalized state, artifact-root writes, convergence stop behavior, and hub logic boundaries.
 
@@ -64,11 +62,11 @@ Coverage note: the playbook covers the hub's registry-driven routing at version 
 1. Working directory is the repository root.
 2. The hub skill is present at `.skilled/skills/system-deep-loop/`.
 3. `.skilled/skills/system-deep-loop/SKILL.md` states that `mode-registry.json` is the single source of truth and that the hub holds no per-mode convergence, state, or synthesis logic.
-4. `.skilled/skills/system-deep-loop/mode-registry.json` contains exactly 5 active modes in its `modes` array.
+4. `.skilled/skills/system-deep-loop/mode-registry.json` contains exactly 3 active modes in its `modes` array.
 5. The skill advisor at `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` is callable when advisor scenarios are executed.
 6. The orchestrator runtime can invoke `Skill(system-deep-loop)` and can run `/deep:*` command prompts, or the operator can capture equivalent dry-run routing transcripts.
 7. Operator evidence is written under `/tmp/dlw-<SCENARIO-ID>/` and never into project source paths unless a scenario explicitly states the mode's real artifact-root contract.
-8. Multi-scenario waves cap at 5 parallel advisor probes. Command-bridge and state-discipline checks that may create artifacts run serially.
+8. Multi-scenario waves cap at 5 parallel advisor probes. State-discipline checks that may create artifacts run serially.
 
 ---
 
@@ -132,8 +130,8 @@ For each executed scenario, check:
 
 Release is READY only when:
 1. No feature verdict is FAIL.
-2. All critical scenarios are PASS: MO-001, MO-002, MO-003, IL-001, IL-002, AI-001, AI-004, RB-001, RB-003, SC-001, SC-002, SC-004.
-3. Coverage is 100% of playbook scenarios: 18 / 18.
+2. All critical scenarios are PASS: MO-001, MO-002, MO-003, AI-001, AI-004, RB-001, SC-001, SC-002, SC-004.
+3. Coverage is 100% of playbook scenarios: 14 / 14.
 4. No unresolved blocking triage item remains.
 
 ### Root-vs-Feature Rule
@@ -153,20 +151,12 @@ Keep global verdict logic and routing-architecture explanations in this root pla
 | `MO-003` | AI Council Routing | Multi-seat planning deliberation resolves to `ai-council` | [mode-routing/ai-council-routing.md](mode-routing/ai-council-routing.md) | Yes |
 | `MO-004` | Mode-Hint Override | Explicit `research:` hint overrides ambiguous wording | [mode-routing/mode-hint-override.md](mode-routing/mode-hint-override.md) | No |
 
-### Improvement Lane Routing (`IL-001..IL-002`)
-
-| Feature ID | Feature Name | Scenario Name / Objective | Per-Feature File | Critical Path |
-|---|---|---|---|---|
-| `IL-001` | Agent Improvement | Alias-fold default routes agent evaluation to `agent-improvement` | [improvement-lane-routing/agent-improvement.md](improvement-lane-routing/agent-improvement.md) | Yes |
-| `IL-002` | Model Benchmark | `/deep:model-benchmark` command routes to `model-benchmark` | [improvement-lane-routing/model-benchmark.md](improvement-lane-routing/model-benchmark.md) | Yes |
-
 ### Advisor Integration (`AI-001..AI-004`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Per-Feature File | Critical Path |
 |---|---|---|---|---|
 | `AI-001` | Single Advisor Identity | Positive deep-loop controls surface `system-deep-loop` as the hub identity | [advisor-integration/single-advisor-identity.md](advisor-integration/single-advisor-identity.md) | Yes |
 | `AI-002` | Lexical Mode Scoring | Lexical modes are scored through their `legacyAdvisorId` entries | [advisor-integration/lexical-mode-scoring.md](advisor-integration/lexical-mode-scoring.md) | No |
-| `AI-003` | Command-Bridge Guard | Command-bridge modes do not fire from bare advisor aliases | [advisor-integration/command-bridge-guard.md](advisor-integration/command-bridge-guard.md) | No |
 | `AI-004` | No False Fire | Plain code-edit prompt routes to `sk-code`, not deep-loop | [advisor-integration/no-false-fire-code-edit.md](advisor-integration/no-false-fire-code-edit.md) | Yes |
 
 ### Write Containment (`WC-001`)
@@ -181,7 +171,6 @@ Keep global verdict logic and routing-architecture explanations in this root pla
 |---|---|---|---|---|
 | `RB-001` | Runtime Loop Research | `research` resolves to `runtime-loop-type` and `runtimeLoopType: research` | [runtime-and-backend/runtime-loop-research.md](runtime-and-backend/runtime-loop-research.md) | Yes |
 | `RB-002` | Runtime Loop Council | `ai-council` resolves to `runtime-loop-type` and `runtimeLoopType: council` | [runtime-and-backend/runtime-loop-council.md](runtime-and-backend/runtime-loop-council.md) | No |
-| `RB-003` | Improvement Host | `agent-improvement` resolves to `improvement-host` and null runtime loop type | [runtime-and-backend/improvement-host.md](runtime-and-backend/improvement-host.md) | Yes |
 | `RB-004` | Retired Backend | Retired runtime-and-backend scenario; no active mode uses this backend (negative marker) | [runtime-and-backend/external-adapter.md](runtime-and-backend/external-adapter.md) | No |
 
 ### State and Convergence Discipline (`SC-001..SC-004`)
@@ -209,7 +198,7 @@ Keep global verdict logic and routing-architecture explanations in this root pla
 Automated drift guards may exist for advisor projection maps, but this playbook is the manual validation surface for operator-observed routing behavior. Do not treat an automated guard as a substitute for the scenario transcripts unless the feature file explicitly allows the automated output as supporting evidence.
 
 Tests NOT covered by automation here:
-- End-to-end advisor prompt behavior for the 18 manual scenarios.
+- End-to-end advisor prompt behavior for the 14 manual scenarios.
 - Operator-visible command routing transcript quality.
 - Runtime response shape proving the hub stayed routing-only.
 - Artifact-root and state-discipline evidence from live iteration dry-runs.
@@ -229,12 +218,11 @@ that supplies the observed leaf addresses lives at
 `ROUTER.md`.
 
 - **Mode Routing** (`mode-routing/`): `MO-001` research, `MO-002` review, `MO-003` ai-council, `MO-004` mode-hint override.
-- **Improvement Lane Routing** (`improvement-lane-routing/`): `IL-001` agent-improvement (typed), `IL-002` model-benchmark.
-- **Advisor Integration** (`advisor-integration/`): `AI-001` single advisor identity, `AI-002` lexical mode scoring, `AI-003` command-bridge guard, `AI-004` no false fire on code edit.
-- **Runtime and Backend** (`runtime-and-backend/`): `RB-001` runtime-loop research, `RB-002` runtime-loop council, `RB-003` improvement host, `RB-004` retired backend.
+- **Advisor Integration** (`advisor-integration/`): `AI-001` single advisor identity, `AI-002` lexical mode scoring, `AI-004` no false fire on code edit.
+- **Runtime and Backend** (`runtime-and-backend/`): `RB-001` runtime-loop research, `RB-002` runtime-loop council, `RB-004` retired backend.
 - **State and Convergence Discipline** (`state-and-convergence-discipline/`): `SC-001` externalized state, `SC-002` artifact-root writes, `SC-003` convergence stop, `SC-004` hub logic boundary.
 - **Doctor Commands** (`doctor-commands/`): `DOC-331` lazy init, `DOC-332` empty graph with no source, `DOC-333` convergence, `DOC-368` scope selection. These are operator scenarios for `/doctor:deep-loop` with no typed leaf gold, and their DOC- numbers are shared with the doctor scenarios in other playbooks.
 
-**Total scenarios**: 18
-**Typed leaf-resource gold**: `MO-001`, `MO-002`, `MO-003`, `IL-001` (the four distinct-packet modes). The two improvement lanes multiplex onto one `deep-improvement` packet, so only the first-declared lane (`agent-improvement`, `IL-001`) resolves to a distinct observed workflow mode; `IL-002` carries empty typed gold by design (shared-packet fan-out).
-**Categories**: 5
+**Total scenarios**: 14
+**Typed leaf-resource gold**: `MO-001`, `MO-002`, `MO-003` (the three distinct-packet modes).
+**Categories**: 4

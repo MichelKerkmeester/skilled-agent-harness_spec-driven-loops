@@ -55,10 +55,6 @@
 {"id":"P1-AUDIT-001","prompt":"audit skill advisor recommendations and speed","skill_top_1":"sk-code","source_type":"holdout-regression","origin_fixture":"scripts/fixtures/skill-advisor-regression-cases.jsonl"}
 {"id":"P1-GRAPH-002","prompt":"review opencode typescript module","skill_top_1":"sk-code","source_type":"holdout-regression","origin_fixture":"scripts/fixtures/skill-advisor-regression-cases.jsonl"}
 {"id":"P1-PHRASE-001","prompt":"code audit","skill_top_1":"sk-code","source_type":"holdout-regression","origin_fixture":"scripts/fixtures/skill-advisor-regression-cases.jsonl"}
-{"id":"P1-PHRASE-002","prompt":"5d scoring","skill_top_1":"sk-deep-agent-improvement","source_type":"holdout-regression","origin_fixture":"scripts/fixtures/skill-advisor-regression-cases.jsonl"}
-{"id":"P1-PHRASE-003","prompt":"5-dimension agent scoring","skill_top_1":"sk-deep-agent-improvement","source_type":"holdout-regression","origin_fixture":"scripts/fixtures/skill-advisor-regression-cases.jsonl"}
-{"id":"P1-PHRASE-004","prompt":"integration scan","skill_top_1":"sk-deep-agent-improvement","source_type":"holdout-regression","origin_fixture":"scripts/fixtures/skill-advisor-regression-cases.jsonl"}
-{"id":"P1-PHRASE-005","prompt":"dynamic profile","skill_top_1":"sk-deep-agent-improvement","source_type":"holdout-regression","origin_fixture":"scripts/fixtures/skill-advisor-regression-cases.jsonl"}
 {"id":"P1-PHRASE-008","prompt":"browser verification checklist","skill_top_1":"sk-code","source_type":"holdout-regression","origin_fixture":"scripts/fixtures/skill-advisor-regression-cases.jsonl"}
 {"id":"P2-BREADTH-GUARD-001","prompt":"build TypeScript route handler for auth","skill_top_1":"sk-code","source_type":"holdout-regression","origin_fixture":"scripts/fixtures/skill-advisor-regression-cases.jsonl"}
 {"id":"P2-BREADTH-GUARD-002","prompt":"fix full-stack auth service test failure","skill_top_1":"sk-code","source_type":"holdout-regression","origin_fixture":"scripts/fixtures/skill-advisor-regression-cases.jsonl"}

@@ -45,7 +45,7 @@ The shared core applies two checks to a resolved deep-loop target:
 | Check | Evidence | Default result | Opt-in rejection |
 |---|---|---|---|
 | Deep Route mode match | Compares a declared `mode=<value>` in the prompt with the target agent's `workflowMode` values in [`mode-registry.json`](../../system-deep-loop/mode-registry.json). | Writes a warning when the declared mode does not belong to the target agent. | `SYSTEM_DEEP_LOOP_GUARD_REJECT=1` rejects the mismatch. |
-| Repeated loop-executor handoff | Counts non-command-driven dispatches to `deep-research`, `deep-review` or `deep-improvement` for the same session and target. A bounded `Iteration: N of M` or `Review Iteration: N of M` marker identifies command-driven work. | Allows the first handoff. It writes warnings from the second non-command-driven handoff onward. | `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1` rejects the third and later non-command-driven handoffs. |
+| Repeated loop-executor handoff | Counts non-command-driven dispatches to `deep-research` or `deep-review` for the same session and target. A bounded `Iteration: N of M` or `Review Iteration: N of M` marker identifies command-driven work. | Allows the first handoff. It writes warnings from the second non-command-driven handoff onward. | `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1` rejects the third and later non-command-driven handoffs. |
 
 The core resolves an agent from `target_agent=@<name>` or `Agent: @<name>` in the prompt before it falls back to a non-generic `subagent_type`. This supports dispatchers that use `subagent_type="general"` while naming the real agent in the prompt.
 
@@ -57,13 +57,13 @@ The guard fails open on missing registry data, unreadable state and unexpected a
 
 ## 4. RELATED SKILL WORKFLOW
 
-[`system-deep-loop`](../../system-deep-loop/SKILL.md) routes deep research, deep review, AI council and improvement workflows to their registered mode packets. The research, review and council modes use the shared runtime's graph-backed convergence backend. Improvement modes use their registered improvement host or external adapter. Each mode packet owns its own iteration, state and artifact contract.
+[`system-deep-loop`](../../system-deep-loop/SKILL.md) routes deep research, deep review and AI council workflows to their registered mode packets. The research, review and council modes use the shared runtime's graph-backed convergence backend. Each mode packet owns its own iteration, state and artifact contract.
 
-The dispatch guard protects the handoff into those workflows. The parent `/deep:*` commands own iteration state and convergence for `deep-research`, `deep-review` and `deep-improvement`. Their iteration prompts carry a bounded iteration marker, so those dispatches remain command-driven and do not increase the non-command-driven count. A caller outside that command path may make one bounded handoff. Repeated handoffs produce an auditable warning and can be rejected when the operator enables rejection.
+The dispatch guard protects the handoff into those workflows. The parent `/deep:*` commands own iteration state and convergence for `deep-research` and `deep-review`. Their iteration prompts carry a bounded iteration marker, so those dispatches remain command-driven and do not increase the non-command-driven count. A caller outside that command path may make one bounded handoff. Repeated handoffs produce an auditable warning and can be rejected when the operator enables rejection.
 
 The mode check connects dispatch metadata to the same [`mode-registry.json`](../../system-deep-loop/mode-registry.json) that maps workflow modes to agents and mode packets. This catches a prompt that declares one registered mode while targeting an agent assigned to another mode. It does not evaluate whether a route-matched prompt performs semantically correct work after dispatch.
 
-This state is separate from a mode packet's research, review, council or improvement artifacts. It records guard decisions around `Task` transport. It does not store convergence results, skill routing decisions, Gate answers or MCP data.
+This state is separate from a mode packet's research, review or council artifacts. It records guard decisions around `Task` transport. It does not store convergence results, skill routing decisions, Gate answers or MCP data.
 
 ---
 

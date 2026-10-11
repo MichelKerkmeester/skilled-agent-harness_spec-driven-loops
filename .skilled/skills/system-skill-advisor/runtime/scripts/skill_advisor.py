@@ -291,12 +291,6 @@ SKILL_ALIAS_GROUPS = {
         "deep-review",
         "sk-deep-review",
     },
-    "deep-improvement": {
-        "command-spec-kit-deep-agent-improvement",
-        "/deep:agent-improvement",
-        "deep-agent-improvement",
-        "sk-deep-agent-improvement",
-    },
     "deep-ai-council": {
         "deep-ai-council",
         "deep council",
@@ -310,7 +304,7 @@ SKILL_ALIAS_TO_CANONICAL = {
     for alias in {canonical, *aliases}
 }
 # BEGIN GENERATED DEEP ROUTING PROJECTION HASH
-DEEP_ROUTING_PROJECTION_HASH = "sha256:3247c68909c8f2510ca34af7ce0e02d2a91654f175b583469b225dca6cd6a6a3"
+DEEP_ROUTING_PROJECTION_HASH = "sha256:fcec7a8c9c11fb7db486bcf721ff90bf2c7af64d18b91f015a52cb70026bb945"
 # END GENERATED DEEP ROUTING PROJECTION HASH
 STRICT_TOPOLOGY_HEADERS = (
     ("DEPENDENCY CYCLE ERRORS", "dependency cycles"),
@@ -2027,11 +2021,8 @@ PHRASE_INTENT_BOOSTERS = {
     "iterative research": [("deep-research", 2.5)],
     "multi-round research": [("deep-research", 2.0)],
     "overnight research": [("deep-research", 2.0)],
-    # --- Agent improvement loop ---
-    "agent improvement": [("system-deep-loop", 2.8)],
     "recursive agent": [("system-deep-loop", 2.8)],
     "improvement loop": [("system-deep-loop", 2.8)],
-    "agent improvement loop": [("system-deep-loop", 3.2)],
     "proposal-only improvement": [("system-deep-loop", 2.6)],
     "proposal only improvement": [("system-deep-loop", 2.6)],
     "proposal only": [("system-deep-loop", 1.4)],
@@ -2040,10 +2031,6 @@ PHRASE_INTENT_BOOSTERS = {
     "candidate scoring": [("system-deep-loop", 2.3)],
     "promotion gate": [("system-deep-loop", 2.0)],
     "handover target": [("system-deep-loop", 2.0)],
-    "deep-agent-improvement": [("system-deep-loop", 3.2)],
-    "/deep-agent-improvement": [("system-deep-loop", 3.2)],
-    "sk-agent-improvement-loop": [("system-deep-loop", 3.0)],
-    "/sk-agent-improvement-loop": [("system-deep-loop", 3.0)],
     # A bare domain phrase is usually the ONLY evidence one of these anchors
     # ever gets, so the anchor has to clear the routing floor on its own:
     # confidence is 0.50 + score * 0.15 and Gate 2 routes at 0.80, i.e. a lone
@@ -2065,7 +2052,6 @@ PHRASE_INTENT_BOOSTERS = {
     "evaluate agent quality": [("system-deep-loop", 2.8)],
     "score agent dimensions": [("system-deep-loop", 2.8)],
     "agent integration surface": [("system-deep-loop", 2.6)],
-    "/deep:agent-improvement": [("system-deep-loop", 3.2)],
     "/prompt": [("sk-prompt", 3.2)],
     "improve agent": [("system-deep-loop", 2.8)],
     "score agent": [("system-deep-loop", 2.6)],
@@ -2228,10 +2214,6 @@ HAND_AUTHORED_COMMAND_BRIDGES = {
         "slash_markers": ["/memory:save", "memory:save"],
         "owning_skill": "system-spec-kit",
     },
-    "command-deep-agent-improvement": {
-        "description": "Evaluate and improve any agent across 5 dimensions using /deep:agent-improvement.",
-        "slash_markers": ["/deep:agent-improvement", "deep:agent-improvement"],
-    },
     "command-prompt-improver": {
         "description": "Create or improve AI prompts using /prompt.",
         # Only the literal slash invocation is an explicit-command signal. The
@@ -2360,15 +2342,6 @@ GENERATED_COMMAND_BRIDGES = {
         "command": "/memory:save",
         "skill_id": "system-spec-kit",
         "owner_mode": "system-spec-kit",
-        "routing_enabled": True,
-    },
-    "command-deep-agent-improvement": {
-        "description": "Evaluate and improve any agent across 5 dimensions using /deep:agent-improvement.",
-        "slash_markers": ["/deep:agent-improvement", "deep:agent-improvement"],
-        "inventory_id": "command-deep-agent-improvement",
-        "command": "/deep:agent-improvement",
-        "skill_id": "system-deep-loop",
-        "owner_mode": "agent-improvement",
         "routing_enabled": True,
     },
     "command-prompt-improver": {
@@ -2505,15 +2478,6 @@ GENERATED_COMMAND_BRIDGES = {
         "command": "/deep:ai-council",
         "skill_id": "system-deep-loop",
         "owner_mode": "ai-council",
-        "routing_enabled": False,
-    },
-    "command-deep-model-benchmark": {
-        "description": "",
-        "slash_markers": ["/deep:model-benchmark"],
-        "inventory_id": "command-deep-model-benchmark",
-        "command": "/deep:model-benchmark",
-        "skill_id": "system-deep-loop",
-        "owner_mode": "model-benchmark",
         "routing_enabled": False,
     },
     "command-design-chart": {

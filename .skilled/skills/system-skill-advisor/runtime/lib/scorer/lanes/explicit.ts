@@ -119,8 +119,6 @@ export const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>
   '/speckit:save': [['memory:save', 1.6], ['command-memory-save', 1], ['system-spec-kit', 0.45]],
   '/deep:research': [['system-deep-loop', 1.6], ['command-spec-kit', 0.45]],
   '/deep:review': [['system-deep-loop', 1.6], ['command-spec-kit', 0.45]],
-  '/deep:model-benchmark': [['deep-model-benchmark', 1.6], ['command-spec-kit', 0.45]],
-  '/deep:agent-improvement': [['system-deep-loop', 1.6], ['command-spec-kit', 0.45]],
   '/speckit:resume': [['system-spec-kit', 0.9], ['command-spec-kit', 0.75]],
   'auto review release readiness': [['system-deep-loop', 1]],
   // Colon-command syntax (":review:auto") is a deep-review LOOP invocation,
@@ -137,24 +135,6 @@ export const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>
   '5-dimension agent scoring': [['system-deep-loop', 1.6]],
   'integration scan': [['system-deep-loop', 1.5]],
   'dynamic profile': [['system-deep-loop', 1.5]],
-  // Lane B (model-benchmark) command anchors. These benchmark or optimize a
-  // model / prompt framework against fixtures, routed by the
-  // /deep:model-benchmark command (canonical deep-model-benchmark).
-  // Lane B runs as a MODE of the agent-improvement skill, now folded into
-  // system-deep-loop. The projection exposes that merged node, so the
-  // disambiguation penalty must target system-deep-loop to actually lower the
-  // ranked Lane A candidate; an alias-shaped target is not a projection node and
-  // its penalty would be inert. The bounded penalty keeps benchmark phrasing
-  // from out-ranking deep-model-benchmark.
-  'benchmark a model': [['deep-model-benchmark', 1.6], ['system-deep-loop', -0.6]],
-  'benchmark a prompt framework': [['deep-model-benchmark', 1.6], ['system-deep-loop', -0.6]],
-  'benchmark a prompt': [['deep-model-benchmark', 1.4], ['system-deep-loop', -0.4]],
-  'optimize a model': [['deep-model-benchmark', 1.5], ['system-deep-loop', -0.6]],
-  'optimize a prompt framework': [['deep-model-benchmark', 1.5], ['system-deep-loop', -0.6]],
-  'model benchmark loop': [['deep-model-benchmark', 1.6], ['system-deep-loop', -0.4]],
-  'model benchmark': [['deep-model-benchmark', 1.4], ['system-deep-loop', -0.4]],
-  'benchmark fixtures': [['deep-model-benchmark', 1.3]],
-  'prompt framework benchmark': [['deep-model-benchmark', 1.5], ['system-deep-loop', -0.4]],
   'chrome devtools': [['mcp-tooling', 1]],
   'gitlens launchpad': [['sk-git', 0.85]],
   'staging url': [['mcp-tooling', 0.65]],

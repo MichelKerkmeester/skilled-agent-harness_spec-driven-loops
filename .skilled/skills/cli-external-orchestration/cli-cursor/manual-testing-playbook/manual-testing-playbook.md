@@ -602,7 +602,7 @@ Desired user-visible outcome: An auditable trail showing the prompt-quality disc
 
 ### Agent and command parity scenarios
 
-- CU-022: [13-agent roster enumeration](agents-skills-rules/agent-roster-enumeration.md)
+- CU-022: [11-agent roster enumeration](agents-skills-rules/agent-roster-enumeration.md)
 - CU-023: [Mirrored-agent subagent dispatch](agents-skills-rules/mirrored-agent-dispatch.md)
 - CU-024: [Runtime-derived command roster and invocation](agents-skills-rules/command-roster-invocation.md)
 - CU-025: [Agent mirror symlink integrity](agents-skills-rules/agent-mirror-integrity.md)

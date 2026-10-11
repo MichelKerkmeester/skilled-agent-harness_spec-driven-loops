@@ -12,10 +12,6 @@ export const PHASE_013_WORKSTREAMS = [
   '001-deep-research',
   '002-deep-review',
   '003-deep-ai-council',
-  '004-deep-improvement-common',
-  '005-agent-improvement',
-  '006-model-benchmark',
-  '007-skill-benchmark',
 ] as const;
 
 // ───────────────────────────────────────────────────────────────────

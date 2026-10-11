@@ -266,7 +266,7 @@ quality_standards:
     - "The routing-registry drift guard must pass after projection emission"
   packet_requirements:
     - "RECOMMENDED DEFAULT for a net-new single-mode workflow packet: folder == packetSkillName == [hub-prefix]-<mode> (soft guidance, not a hard gate); surface packets use a bare-noun folder"
-    - "ALLOWED: many modes mapping to one packet folder (canonical: 4 improvement modes -> deep-improvement)"
+    - "ALLOWED: many modes mapping to one packet folder"
     - "ALLOWED: grandfathered packets where folder != packetSkillName (rare; record the rationale in the packet's decision record)"
     - each packet has its own SKILL.md
     - "each mode's packet folder is a direct child of the hub (no absolute or ../ paths)"
@@ -302,7 +302,7 @@ gate_logic:
       fail_action: "Run fix-and-revalidate loop"
   soft:
     S1_packet_naming:
-      description: "DEFAULT for a net-new single-mode workflow packet: folder == packetSkillName == [hub-prefix]-<mode> (surfaces use a bare-noun folder). NOT a hard gate. Many-modes-to-one-packet and grandfathered folder!=packetSkillName names are valid (canonical: 4 modes -> deep-improvement)."
+      description: "DEFAULT for a net-new single-mode workflow packet: folder == packetSkillName == [hub-prefix]-<mode> (surfaces use a bare-noun folder). NOT a hard gate. Many-modes-to-one-packet and grandfathered folder!=packetSkillName names are valid."
       fail_action: "Proceed with a logged assumption when grandfathering an existing packet or mapping several modes to one packet"
 
 workflow_overview:
@@ -387,7 +387,7 @@ workflow:
     purpose: Resolve the mode list and per-packet plan
     activities:
       - "For a net-new single-mode workflow packet, default packetSkillName = \"[hub-prefix]-[mode]\" and a packet folder of the same name (recommended, not enforced); plan any --surfaces as bare-noun surface packets"
-      - "Allow several modes to share one packet folder (canonical: 4 improvement modes -> deep-improvement); allow a grandfathered packet whose folder != packetSkillName (rare; record the rationale via grandfatheredFolderMismatch)"
+      - "Allow several modes to share one packet folder; allow a grandfathered packet whose folder != packetSkillName (rare; record the rationale via grandfatheredFolderMismatch)"
       - "Set each mode's top-level packet field to its packet sub-directory and plan the two-axis discriminator (workflowMode + packetKind + backendKind; runtimeLoopType only for runtime-loop workflow modes) plus toolSurface and grandfatheredFolderMismatch"
       - Plan the advisorRouting block per mode (routingClass, legacyAdvisorId for lexical/alias-fold, advisorDefaultMode, legacyAliases, packetSkillName)
       - Preserve existing packet names, registry keys, and routing blocks when update mode

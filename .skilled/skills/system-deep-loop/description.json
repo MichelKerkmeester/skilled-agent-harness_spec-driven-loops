@@ -1,6 +1,6 @@
 {
   "name": "system-deep-loop",
-  "description": "Unified deep-loop parent hub: the single advisor-routable home for active deep-loop personas, routing to five modes across four workflow families over a nested runtime/ infrastructure layer (formerly the separate deep-loop-runtime skill, merged 2026-07-08). research (outward web+code iterative investigation \u2192 research/ artifacts), review (iterative review loop \u2192 P0/P1/P2 findings + verdict), ai-council (multi-seat planning deliberation \u2192 ai-council/ artifacts), and two improvement lanes on the deep-improvement packet (agent-improvement, model-benchmark). The hub holds no per-mode convergence, state, or synthesis logic; each mode keeps its own contract in its packet and is reachable via its /deep:* command and native agent.",
+  "description": "Unified deep-loop parent hub: the single advisor-routable home for active deep-loop personas, routing to three modes across three workflow families over a nested runtime/ infrastructure layer (formerly the separate deep-loop-runtime skill, merged 2026-07-08). research (outward web+code iterative investigation \u2192 research/ artifacts), review (iterative review loop \u2192 P0/P1/P2 findings + verdict), ai-council (multi-seat planning deliberation \u2192 ai-council/ artifacts). The hub holds no per-mode convergence, state, or synthesis logic; each mode keeps its own contract in its packet and is reachable via its /deep:* command and native agent.",
   "version": "1.5.3.0",
   "importance_tier": "high",
   "keywords": [
@@ -10,7 +10,6 @@
     "deep-research",
     "deep-review",
     "deep-ai-council",
-    "deep-improvement",
     "autoresearch",
     "iterative-research",
     "research-convergence",
@@ -21,9 +20,6 @@
     "ai-council",
     "council-deliberation",
     "multi-seat-planning",
-    "agent-improvement",
-    "model-benchmark",
-    "benchmark-harness",
     "convergence-detection",
     "externalized-state",
     "coverage-graph",
@@ -31,8 +27,7 @@
     "workflowmode",
     "runtimeloop-type",
     "backendkind",
-    "runtime-loop",
-    "improvement-host"
+    "runtime-loop"
   ],
   "lastUpdated": "2026-09-15T00:00:00Z"
 }

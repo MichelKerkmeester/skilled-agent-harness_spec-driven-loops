@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/039-deprecate-improvement-modes/003-agent-mirror-checker-relocation",
+  "spec_folder": "system-deep-loop/039-deprecate-improvement-modes/003-agent-mirror-checker-relocation",
+  "parent_id": "system-deep-loop/039-deprecate-improvement-modes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agent mirror checker relocation",
+      "phase 3 agent mirror checker relocation",
+      "agent mirror checker relocation plan",
+      "agent mirror checker relocation tasks",
+      "agent mirror checker relocation acceptance criteria",
+      "agent mirror checker relocation implementation summary"
+    ],
+    "key_topics": [
+      "agent",
+      "mirror",
+      "checker",
+      "relocation",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "check-agent-mirror-sync"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/leaf-manifest.json",
+      "scratch/brief-wu1.md",
+      ".opencode/package.json",
+      "scratch/moves.txt",
+      "scratch/files.txt",
+      ".skilled/bin/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-deep-loop/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "brief-wu1.md",
+        "kind": "doc",
+        "path": "scratch/brief-wu1.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "moves.txt",
+        "kind": "file",
+        "path": "scratch/moves.txt",
+        "source": "derived"
+      },
+      {
+        "name": "files.txt",
+        "kind": "file",
+        "path": "scratch/files.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/bin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Relocate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`check-agent-mirror-sync.cjs` sits in `deep-improvement/scripts/`, yet both pre-commit hooks, the `agent-mirror-sync.yml` workflow, the broken-move CI drill and three docs call it by that path",
+    "created_at": "2026-10-10T19:17:41Z",
+    "last_save_at": "2026-10-11T02:07:42.471Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:629a97860d9638840370d036934d899cd81d7e3e3265f57031685225dd15b286",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "38baf7abe7d6095ea183045ded80c2979ea367c13aafeaa8ade040783007bfa0",
+      "plan.md": "a320a020d4a9cce412846e61ba2ca5a89e16eef5156eba933fc13ffb192c86ad",
+      "tasks.md": "049a07e4d404e8472e1e6f49b751c6c26b0295309ba6928634f42aa820a4cc84",
+      "implementation-summary.md": "9bf62dececb3fa166010671032da82d06e650f76e556f167d99a18adc7d4f128"
+    },
+    "last_active_at": null
+  }
+}

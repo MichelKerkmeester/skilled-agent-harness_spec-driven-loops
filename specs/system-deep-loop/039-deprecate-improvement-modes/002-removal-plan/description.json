@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-deep-loop/039-deprecate-improvement-modes/002-removal-plan",
+  "description": "Phase 2: removal-plan",
+  "keywords": [
+    "phase",
+    "removal-plan"
+  ],
+  "lastUpdated": "2026-10-10T18:23:49.746Z",
+  "specId": "002",
+  "folderSlug": "removal-plan",
+  "parentChain": [
+    "system-deep-loop",
+    "039-deprecate-improvement-modes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,0 +1,2596 @@
+{
+  "sessionId": "fanout-deepseek-1791657286793-xs8psf",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-which-deep-loop-hub-registries-and-metadata-files-reference-the-model-benchmark-",
+      "inboxId": null,
+      "text": "Which deep-loop hub registries and metadata files reference the model-benchmark mode, and how is each reference classified (DELETE vs EDIT)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-which-skilled-commands-deep-surfaces-and-deep-improvement-packet-files-implement",
+      "inboxId": null,
+      "text": "Which .skilled/commands/deep surfaces and deep-improvement packet files implement the model-benchmark mode?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-3-how-is-model-benchmark-wired-into-system-skill-advisor-and-sk-doc-surfaces-proje",
+      "inboxId": null,
+      "text": "How is model-benchmark wired into system-skill-advisor and sk-doc surfaces (projections, aliases, drift guards, sk-create-benchmark)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-4-which-runtime-mirrors-claude-opencode-codex-cursor-pi-devin-hermes-and-repo-leve",
+      "inboxId": null,
+      "text": "Which runtime mirrors (.claude .opencode .codex .cursor .pi .devin .hermes) and repo-level surfaces (hooks, bin/, scripts, READMEs, changelogs, env examples) reference the mode, and is each a symlink, a generated copy, or a hand-written file?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8,
+      "resolved": true
+    },
+    {
+      "id": "question-5-which-indirect-wiring-compiled-contracts-generated-mirrors-drift-guards-tests-fi",
+      "inboxId": null,
+      "text": "Which indirect wiring (compiled contracts, generated mirrors, drift guards, tests, fixtures, validators, doctor checks) covers the mode's surfaces, and does anything outside the repository consume the mode?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-deep-loop-hub-registries-and-metadata-files-reference-the-model-benchmark-",
+      "inboxId": null,
+      "text": "Which deep-loop hub registries and metadata files reference the model-benchmark mode, and how is each reference classified (DELETE vs EDIT)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-which-skilled-commands-deep-surfaces-and-deep-improvement-packet-files-implement",
+      "inboxId": null,
+      "text": "Which .skilled/commands/deep surfaces and deep-improvement packet files implement the model-benchmark mode?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-3-how-is-model-benchmark-wired-into-system-skill-advisor-and-sk-doc-surfaces-proje",
+      "inboxId": null,
+      "text": "How is model-benchmark wired into system-skill-advisor and sk-doc surfaces (projections, aliases, drift guards, sk-create-benchmark)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-4-which-runtime-mirrors-claude-opencode-codex-cursor-pi-devin-hermes-and-repo-leve",
+      "inboxId": null,
+      "text": "Which runtime mirrors (.claude .opencode .codex .cursor .pi .devin .hermes) and repo-level surfaces (hooks, bin/, scripts, READMEs, changelogs, env examples) reference the mode, and is each a symlink, a generated copy, or a hand-written file?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8
+    },
+    {
+      "id": "question-5-which-indirect-wiring-compiled-contracts-generated-mirrors-drift-guards-tests-fi",
+      "inboxId": null,
+      "text": "Which indirect wiring (compiled contracts, generated mirrors, drift guards, tests, fixtures, validators, doctor checks) covers the mode's surfaces, and does anything outside the repository consume the mode?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-10-architecture-md-names-the-lanes-in-the-packet-tree-comment-agent-improvement-and",
+      "text": "`ARCHITECTURE.md` names the lanes in the packet tree comment (\"Agent-improvement and model-benchmark lanes\") and lists `model-benchmark-*` among per-mode ledgers. **EDIT** both sites [SOURCE: .skilled/skills/system-deep-loop/ARCHITECTURE.md:71,115]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-deep-loop/mode-registry.json",
+        ".skilled/skills/system-deep-loop/hub-router.json",
+        ".skilled/skills/system-deep-loop/ROUTER.md",
+        ".skilled/skills/system-deep-loop/SKILL.md",
+        ".skilled/skills/system-deep-loop/command-metadata.json",
+        ".skilled/skills/system-deep-loop/leaf-manifest.json",
+        ".skilled/skills/system-deep-loop/leaf-scopes.json",
+        ".skilled/skills/system-deep-loop/graph-metadata.json",
+        ".skilled/skills/system-deep-loop/description.json",
+        ".skilled/skills/system-deep-loop/ARCHITECTURE.md"
+      ]
+    },
+    {
+      "id": "finding-1-5-command-metadata-json-holds-a-dedicated-deep-model-benchmark-command-entry-owner",
+      "text": "`command-metadata.json` holds a dedicated `/deep:model-benchmark` command entry (\"ownerMode\": \"model-benchmark\", argument hint, owned signals, choreography loading hub SKILL.md + deep-improvement SKILL.md + `deep-model-benchmark-presentation.txt`). **DELETE** the whole entry; **EDIT** the sibling pointer at lines 176-178 inside the agent-improvement entry's `discriminator.preferSiblingWhen` [SOURCE: .skilled/skills/system-deep-loop/command-metadata.json:176-178,182-225]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-deep-loop/mode-registry.json",
+        ".skilled/skills/system-deep-loop/hub-router.json",
+        ".skilled/skills/system-deep-loop/ROUTER.md",
+        ".skilled/skills/system-deep-loop/SKILL.md",
+        ".skilled/skills/system-deep-loop/command-metadata.json",
+        ".skilled/skills/system-deep-loop/leaf-manifest.json",
+        ".skilled/skills/system-deep-loop/leaf-scopes.json",
+        ".skilled/skills/system-deep-loop/graph-metadata.json",
+        ".skilled/skills/system-deep-loop/description.json",
+        ".skilled/skills/system-deep-loop/ARCHITECTURE.md"
+      ]
+    },
+    {
+      "id": "finding-1-9-description-json-lists-model-benchmark-and-benchmark-harness-in-its-keyword-arra",
+      "text": "`description.json` lists \"model-benchmark\" and \"benchmark-harness\" in its keyword array, and the description string names the two improvement lanes. **EDIT** the keyword array and reword the description [SOURCE: .skilled/skills/system-deep-loop/description.json:3,25-26]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-deep-loop/mode-registry.json",
+        ".skilled/skills/system-deep-loop/hub-router.json",
+        ".skilled/skills/system-deep-loop/ROUTER.md",
+        ".skilled/skills/system-deep-loop/SKILL.md",
+        ".skilled/skills/system-deep-loop/command-metadata.json",
+        ".skilled/skills/system-deep-loop/leaf-manifest.json",
+        ".skilled/skills/system-deep-loop/leaf-scopes.json",
+        ".skilled/skills/system-deep-loop/graph-metadata.json",
+        ".skilled/skills/system-deep-loop/description.json",
+        ".skilled/skills/system-deep-loop/ARCHITECTURE.md"
+      ]
+    },
+    {
+      "id": "finding-1-8-graph-metadata-json-lists-model-benchmark-under-keywords-and-model-benchmark-und",
+      "text": "`graph-metadata.json` lists \"model benchmark\" under keywords and \"model-benchmark\" under `key_topics`. **EDIT** both arrays [SOURCE: .skilled/skills/system-deep-loop/graph-metadata.json:112,125]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-deep-loop/mode-registry.json",
+        ".skilled/skills/system-deep-loop/hub-router.json",
+        ".skilled/skills/system-deep-loop/ROUTER.md",
+        ".skilled/skills/system-deep-loop/SKILL.md",
+        ".skilled/skills/system-deep-loop/command-metadata.json",
+        ".skilled/skills/system-deep-loop/leaf-manifest.json",
+        ".skilled/skills/system-deep-loop/leaf-scopes.json",
+        ".skilled/skills/system-deep-loop/graph-metadata.json",
+        ".skilled/skills/system-deep-loop/description.json",
+        ".skilled/skills/system-deep-loop/ARCHITECTURE.md"
+      ]
+    },
+    {
+      "id": "finding-1-2-hub-router-json-lists-model-benchmark-in-the-stage-1-tiebreak-order-defines-a-mo",
+      "text": "`hub-router.json` lists \"model-benchmark\" in the stage-1 `tieBreak` order, defines a `model-benchmark` intent (weight 4, classes `model-benchmark-aliases`, resource `deep-improvement/SKILL.md`), and a `model-benchmark-aliases` keyword class keyed on \"/deep:model-benchmark\". **DELETE** the intent + class blocks, **EDIT** the tieBreak array [SOURCE: .skilled/skills/system-deep-loop/hub-router.json:7,41-45,60-62]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-deep-loop/mode-registry.json",
+        ".skilled/skills/system-deep-loop/hub-router.json",
+        ".skilled/skills/system-deep-loop/ROUTER.md",
+        ".skilled/skills/system-deep-loop/SKILL.md",
+        ".skilled/skills/system-deep-loop/command-metadata.json",
+        ".skilled/skills/system-deep-loop/leaf-manifest.json",
+        ".skilled/skills/system-deep-loop/leaf-scopes.json",
+        ".skilled/skills/system-deep-loop/graph-metadata.json",
+        ".skilled/skills/system-deep-loop/description.json",
+        ".skilled/skills/system-deep-loop/ARCHITECTURE.md"
+      ]
+    },
+    {
+      "id": "finding-1-6-leaf-manifest-json-has-a-dedicated-mode-entry-leaves-assets-model-benchmark-refe",
+      "text": "`leaf-manifest.json` has a dedicated mode entry (leaves: `assets/model-benchmark/**`, `references/model-benchmark/**`, and the shared `references/shared/*` set; packet \"deep-improvement\"; workflowMode \"model-benchmark\"). **DELETE** the entry [SOURCE: .skilled/skills/system-deep-loop/leaf-manifest.json:58-110]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-deep-loop/mode-registry.json",
+        ".skilled/skills/system-deep-loop/hub-router.json",
+        ".skilled/skills/system-deep-loop/ROUTER.md",
+        ".skilled/skills/system-deep-loop/SKILL.md",
+        ".skilled/skills/system-deep-loop/command-metadata.json",
+        ".skilled/skills/system-deep-loop/leaf-manifest.json",
+        ".skilled/skills/system-deep-loop/leaf-scopes.json",
+        ".skilled/skills/system-deep-loop/graph-metadata.json",
+        ".skilled/skills/system-deep-loop/description.json",
+        ".skilled/skills/system-deep-loop/ARCHITECTURE.md"
+      ]
+    },
+    {
+      "id": "finding-1-7-leaf-scopes-json-has-a-dedicated-entry-mapping-workflowmode-model-benchmark-to-s",
+      "text": "`leaf-scopes.json` has a dedicated entry mapping workflowMode \"model-benchmark\" to scopes `assets/model-benchmark`, `references/model-benchmark`, `references/shared`. **DELETE** the entry [SOURCE: .skilled/skills/system-deep-loop/leaf-scopes.json:10-17]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-deep-loop/mode-registry.json",
+        ".skilled/skills/system-deep-loop/hub-router.json",
+        ".skilled/skills/system-deep-loop/ROUTER.md",
+        ".skilled/skills/system-deep-loop/SKILL.md",
+        ".skilled/skills/system-deep-loop/command-metadata.json",
+        ".skilled/skills/system-deep-loop/leaf-manifest.json",
+        ".skilled/skills/system-deep-loop/leaf-scopes.json",
+        ".skilled/skills/system-deep-loop/graph-metadata.json",
+        ".skilled/skills/system-deep-loop/description.json",
+        ".skilled/skills/system-deep-loop/ARCHITECTURE.md"
+      ]
+    },
+    {
+      "id": "finding-1-1-mode-registry-json-defines-the-full-model-benchmark-mode-as-its-own-object-workf",
+      "text": "`mode-registry.json` defines the full model-benchmark mode as its own object: `workflowMode` \"model-benchmark\", `runtimeLoopType` null, `backendKind` \"improvement-host\", `loopHostMode` \"model-benchmark\", `command` \"/deep:model-benchmark\", `agent` \"deep-improvement\", `artifactRoot` \"improvement/\", aliases and `advisorRouting.routingClass` \"command-bridge\". **DELETE** the block [SOURCE: .skilled/skills/system-deep-loop/mode-registry.json:129-151]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-deep-loop/mode-registry.json",
+        ".skilled/skills/system-deep-loop/hub-router.json",
+        ".skilled/skills/system-deep-loop/ROUTER.md",
+        ".skilled/skills/system-deep-loop/SKILL.md",
+        ".skilled/skills/system-deep-loop/command-metadata.json",
+        ".skilled/skills/system-deep-loop/leaf-manifest.json",
+        ".skilled/skills/system-deep-loop/leaf-scopes.json",
+        ".skilled/skills/system-deep-loop/graph-metadata.json",
+        ".skilled/skills/system-deep-loop/description.json",
+        ".skilled/skills/system-deep-loop/ARCHITECTURE.md"
+      ]
+    },
+    {
+      "id": "finding-1-3-router-md-carries-the-mode-in-three-places-the-model-benchmark-leaves-intent-mod",
+      "text": "`ROUTER.md` carries the mode in three places: the \"model-benchmark leaves\" intent-model prose, the `MODEL_BENCHMARK` entry in `INTENT_SIGNALS`, and the `MODEL_BENCHMARK` entry in `RESOURCE_MAP` pointing at `deep-improvement/references/model-benchmark/evaluator-contract.md` and `lane-b-mechanics.md` (both files exist). **EDIT** all three [SOURCE: .skilled/skills/system-deep-loop/ROUTER.md:46-50,76,100-103]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-deep-loop/mode-registry.json",
+        ".skilled/skills/system-deep-loop/hub-router.json",
+        ".skilled/skills/system-deep-loop/ROUTER.md",
+        ".skilled/skills/system-deep-loop/SKILL.md",
+        ".skilled/skills/system-deep-loop/command-metadata.json",
+        ".skilled/skills/system-deep-loop/leaf-manifest.json",
+        ".skilled/skills/system-deep-loop/leaf-scopes.json",
+        ".skilled/skills/system-deep-loop/graph-metadata.json",
+        ".skilled/skills/system-deep-loop/description.json",
+        ".skilled/skills/system-deep-loop/ARCHITECTURE.md"
+      ]
+    },
+    {
+      "id": "finding-1-4-skill-md-references-the-mode-in-the-keywords-comment-the-mode-table-improvement-",
+      "text": "`SKILL.md` references the mode in the keywords comment, the mode table (\"improvement (2 lanes)\"), the Stage-2 leaf-intent paragraph, the three-tier `workflowMode` discriminator list, the UNKNOWN_FALLBACK_CHECKLIST, and the Improvement-lane summary. **EDIT** all six mention sites [SOURCE: .skilled/skills/system-deep-loop/SKILL.md:8,29,49,60,67,163]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-deep-loop/mode-registry.json",
+        ".skilled/skills/system-deep-loop/hub-router.json",
+        ".skilled/skills/system-deep-loop/ROUTER.md",
+        ".skilled/skills/system-deep-loop/SKILL.md",
+        ".skilled/skills/system-deep-loop/command-metadata.json",
+        ".skilled/skills/system-deep-loop/leaf-manifest.json",
+        ".skilled/skills/system-deep-loop/leaf-scopes.json",
+        ".skilled/skills/system-deep-loop/graph-metadata.json",
+        ".skilled/skills/system-deep-loop/description.json",
+        ".skilled/skills/system-deep-loop/ARCHITECTURE.md"
+      ]
+    },
+    {
+      "id": "finding-1-12-scope-note-the-workflow-s-late-init-spec-md-mutation-and-post-synthesis-write-ba",
+      "text": "Scope note: the workflow's late-INIT `spec.md` mutation and post-synthesis write-back live in the spec folder, outside this lineage's write surface; they are skipped this run and recorded under SCOPE VIOLATIONS [SOURCE: specs/system-deep-loop/039-deprecate-improvement-modes/001-removal-research/001-model-benchmark-inventory/research/lineages/deepseek/deep-research-config.json:8]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-deep-loop/mode-registry.json",
+        ".skilled/skills/system-deep-loop/hub-router.json",
+        ".skilled/skills/system-deep-loop/ROUTER.md",
+        ".skilled/skills/system-deep-loop/SKILL.md",
+        ".skilled/skills/system-deep-loop/command-metadata.json",
+        ".skilled/skills/system-deep-loop/leaf-manifest.json",
+        ".skilled/skills/system-deep-loop/leaf-scopes.json",
+        ".skilled/skills/system-deep-loop/graph-metadata.json",
+        ".skilled/skills/system-deep-loop/description.json",
+        ".skilled/skills/system-deep-loop/ARCHITECTURE.md"
+      ]
+    },
+    {
+      "id": "finding-1-11-the-hub-root-router-registry-surfaces-form-one-coherent-deletion-cluster-mode-re",
+      "text": "The hub-root router/registry surfaces form one coherent deletion cluster: mode-registry block, hub-router intent+class, ROUTER.md signal+map, leaf-manifest entry, leaf-scopes entry, command-metadata entry. The remaining hub-root mentions are shared-file edits, never deletions [INFERENCE: based on findings 1-10]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-deep-loop/mode-registry.json",
+        ".skilled/skills/system-deep-loop/hub-router.json",
+        ".skilled/skills/system-deep-loop/ROUTER.md",
+        ".skilled/skills/system-deep-loop/SKILL.md",
+        ".skilled/skills/system-deep-loop/command-metadata.json",
+        ".skilled/skills/system-deep-loop/leaf-manifest.json",
+        ".skilled/skills/system-deep-loop/leaf-scopes.json",
+        ".skilled/skills/system-deep-loop/graph-metadata.json",
+        ".skilled/skills/system-deep-loop/description.json",
+        ".skilled/skills/system-deep-loop/ARCHITECTURE.md"
+      ]
+    },
+    {
+      "id": "finding-2-8-skilled-commands-deep-agent-improvement-md-hands-off-to-lane-b-at-four-sites-lan",
+      "text": "`.skilled/commands/deep/agent-improvement.md` hands off to Lane B at four sites (lane resolution, routing step 4, step 5 note, final related-commands note). **EDIT** these four sites; the Lane A file itself survives [SOURCE: .skilled/commands/deep/agent-improvement.md:66,85-86,103,123]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/commands/deep/model-benchmark.md",
+        ".skilled/commands/deep/assets/deep-model-benchmark-auto.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-presentation.txt",
+        ".skilled/commands/deep/agent-improvement.md",
+        ".skilled/commands/deep/assets/deep-agent-improvement-auto.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-presentation.txt",
+        ".skilled/commands/deep/assets/compiled/README.md",
+        ".skilled/commands/deep/assets/legacy/README.md",
+        ".skilled/commands/README.txt"
+      ]
+    },
+    {
+      "id": "finding-2-2-skilled-commands-deep-assets-deep-model-benchmark-auto-yaml-246-lines-is-the-aut",
+      "text": "`.skilled/commands/deep/assets/deep-model-benchmark-auto.yaml` (246 lines) is the autonomous Lane B workflow (role \"Model Benchmark Specialist\", outputs under `deep-improvement/benchmark/model-benchmark/{run_label}`). **DELETE** the whole file [SOURCE: .skilled/commands/deep/assets/deep-model-benchmark-auto.yaml:4-5,187]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/commands/deep/model-benchmark.md",
+        ".skilled/commands/deep/assets/deep-model-benchmark-auto.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-presentation.txt",
+        ".skilled/commands/deep/agent-improvement.md",
+        ".skilled/commands/deep/assets/deep-agent-improvement-auto.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-presentation.txt",
+        ".skilled/commands/deep/assets/compiled/README.md",
+        ".skilled/commands/deep/assets/legacy/README.md",
+        ".skilled/commands/README.txt"
+      ]
+    },
+    {
+      "id": "finding-2-3-skilled-commands-deep-assets-deep-model-benchmark-confirm-yaml-276-lines-is-the-",
+      "text": "`.skilled/commands/deep/assets/deep-model-benchmark-confirm.yaml` (276 lines) is the interactive Lane B workflow with guarded promotion via `promote-candidate.cjs`. **DELETE** the whole file [SOURCE: .skilled/commands/deep/assets/deep-model-benchmark-confirm.yaml:4-5,255]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/commands/deep/model-benchmark.md",
+        ".skilled/commands/deep/assets/deep-model-benchmark-auto.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-presentation.txt",
+        ".skilled/commands/deep/agent-improvement.md",
+        ".skilled/commands/deep/assets/deep-agent-improvement-auto.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-presentation.txt",
+        ".skilled/commands/deep/assets/compiled/README.md",
+        ".skilled/commands/deep/assets/legacy/README.md",
+        ".skilled/commands/README.txt"
+      ]
+    },
+    {
+      "id": "finding-2-4-skilled-commands-deep-assets-deep-model-benchmark-presentation-txt-489-lines-is-",
+      "text": "`.skilled/commands/deep/assets/deep-model-benchmark-presentation.txt` (489 lines) is the Lane B presentation contract (setup questions, dashboards, next steps). **DELETE** the whole file [SOURCE: .skilled/commands/deep/assets/deep-model-benchmark-presentation.txt:1-489]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/commands/deep/model-benchmark.md",
+        ".skilled/commands/deep/assets/deep-model-benchmark-auto.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-presentation.txt",
+        ".skilled/commands/deep/agent-improvement.md",
+        ".skilled/commands/deep/assets/deep-agent-improvement-auto.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-presentation.txt",
+        ".skilled/commands/deep/assets/compiled/README.md",
+        ".skilled/commands/deep/assets/legacy/README.md",
+        ".skilled/commands/README.txt"
+      ]
+    },
+    {
+      "id": "finding-2-1-skilled-commands-deep-model-benchmark-md-145-lines-is-the-dedicated-command-rout",
+      "text": "`.skilled/commands/deep/model-benchmark.md` (145 lines) is the dedicated command router: frontmatter, setup gate, `lane = model-benchmark` fixed, owned-asset table, YAML loading rules. **DELETE** the whole file [SOURCE: .skilled/commands/deep/model-benchmark.md:1-145]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/commands/deep/model-benchmark.md",
+        ".skilled/commands/deep/assets/deep-model-benchmark-auto.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-presentation.txt",
+        ".skilled/commands/deep/agent-improvement.md",
+        ".skilled/commands/deep/assets/deep-agent-improvement-auto.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-presentation.txt",
+        ".skilled/commands/deep/assets/compiled/README.md",
+        ".skilled/commands/deep/assets/legacy/README.md",
+        ".skilled/commands/README.txt"
+      ]
+    },
+    {
+      "id": "finding-2-13-skilled-commands-readme-txt-lists-the-command-in-the-tree-model-benchmark-md-and",
+      "text": "`.skilled/commands/README.txt` lists the command in the tree (`model-benchmark.md`) and in the command table with usage. **EDIT** both lines [SOURCE: .skilled/commands/README.txt:100,181]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/commands/deep/model-benchmark.md",
+        ".skilled/commands/deep/assets/deep-model-benchmark-auto.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-presentation.txt",
+        ".skilled/commands/deep/agent-improvement.md",
+        ".skilled/commands/deep/assets/deep-agent-improvement-auto.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-presentation.txt",
+        ".skilled/commands/deep/assets/compiled/README.md",
+        ".skilled/commands/deep/assets/legacy/README.md",
+        ".skilled/commands/README.txt"
+      ]
+    },
+    {
+      "id": "finding-2-10-assets-compiled-readme-md-23-and-assets-legacy-readme-md-23-both-state-that-deep",
+      "text": "`assets/compiled/README.md:23` and `assets/legacy/README.md:23` both state that `deep/model-benchmark` is a fallback-only, not compiler-managed entry. **EDIT** both sentences to keep only `deep/agent-improvement`; the compiled/ and legacy/ trees themselves contain no model-benchmark bodies (confirmed: only ai-council/research/review files exist there) [SOURCE: .skilled/commands/deep/assets/compiled/README.md:23]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/commands/deep/model-benchmark.md",
+        ".skilled/commands/deep/assets/deep-model-benchmark-auto.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-presentation.txt",
+        ".skilled/commands/deep/agent-improvement.md",
+        ".skilled/commands/deep/assets/deep-agent-improvement-auto.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-presentation.txt",
+        ".skilled/commands/deep/assets/compiled/README.md",
+        ".skilled/commands/deep/assets/legacy/README.md",
+        ".skilled/commands/README.txt"
+      ]
+    },
+    {
+      "id": "finding-2-9-assets-deep-agent-improvement-presentation-txt-carries-the-deep-lane-b-block-lan",
+      "text": "`assets/deep-agent-improvement-presentation.txt` carries the deep Lane B block: lane markers, conflict handling, auto-route diagram, handoff parse, and the entire \"Model-Benchmark Mode (Lane B)\" section through the command map row. **EDIT** the block (lines 35-501 region), removing Lane B text while keeping the Lane A statements [SOURCE: .skilled/commands/deep/assets/deep-agent-improvement-presentation.txt:35,50,74-94,151-155,473-486,491]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/commands/deep/model-benchmark.md",
+        ".skilled/commands/deep/assets/deep-model-benchmark-auto.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-presentation.txt",
+        ".skilled/commands/deep/agent-improvement.md",
+        ".skilled/commands/deep/assets/deep-agent-improvement-auto.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-presentation.txt",
+        ".skilled/commands/deep/assets/compiled/README.md",
+        ".skilled/commands/deep/assets/legacy/README.md",
+        ".skilled/commands/README.txt"
+      ]
+    },
+    {
+      "id": "finding-2-5-both-lane-b-yamls-record-state-through-the-append-gateway-with-mode-model-benchm",
+      "text": "Both Lane B YAMLs record state through the append gateway with `--mode model-benchmark`; deleting them removes the last command-surface caller of that gateway mode, but the gateway/ledger mode registration and its schema packages must be inventoried separately. **DELETE with dependency** (indirect wiring runs in iteration 9) [SOURCE: .skilled/commands/deep/assets/deep-model-benchmark-auto.yaml:117]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/commands/deep/model-benchmark.md",
+        ".skilled/commands/deep/assets/deep-model-benchmark-auto.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-presentation.txt",
+        ".skilled/commands/deep/agent-improvement.md",
+        ".skilled/commands/deep/assets/deep-agent-improvement-auto.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-presentation.txt",
+        ".skilled/commands/deep/assets/compiled/README.md",
+        ".skilled/commands/deep/assets/legacy/README.md",
+        ".skilled/commands/README.txt"
+      ]
+    },
+    {
+      "id": "finding-2-12-filename-drift-the-agent-improvement-presentation-references-deep-model-benchmar",
+      "text": "Filename drift: the agent-improvement presentation references `deep_model-benchmark_{auto,confirm}.yaml` with underscores while the real assets are `deep-model-benchmark-*.yaml`. Any edit must not propagate the wrong name; recorded here as a latent bug in the deleting change [SOURCE: .skilled/commands/deep/assets/deep-agent-improvement-presentation.txt:92,154]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/commands/deep/model-benchmark.md",
+        ".skilled/commands/deep/assets/deep-model-benchmark-auto.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-presentation.txt",
+        ".skilled/commands/deep/agent-improvement.md",
+        ".skilled/commands/deep/assets/deep-agent-improvement-auto.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-presentation.txt",
+        ".skilled/commands/deep/assets/compiled/README.md",
+        ".skilled/commands/deep/assets/legacy/README.md",
+        ".skilled/commands/README.txt"
+      ]
+    },
+    {
+      "id": "finding-2-6-lane-b-yaml-steps-invoke-shared-packet-scripts-scripts-shared-loop-host-cjs-mode",
+      "text": "Lane B YAML steps invoke shared packet scripts: `scripts/shared/loop-host.cjs --mode=model-benchmark`, `scripts/model-benchmark/lib/reviewer-scorer.cjs`, `scripts/shared/promote-candidate.cjs`, `scripts/shared/improvement-journal.cjs`, `scripts/shared/reduce-state.cjs`. The shared/ scripts are also the Lane A engine: **SHARED-WITH-AGENT-IMPROVEMENT**; the `scripts/model-benchmark/**` executables are Lane B-only and are inventoried in iteration 3 [SOURCE: .skilled/commands/deep/assets/deep-model-benchmark-confirm.yaml:228,238,255,262]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/commands/deep/model-benchmark.md",
+        ".skilled/commands/deep/assets/deep-model-benchmark-auto.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-presentation.txt",
+        ".skilled/commands/deep/agent-improvement.md",
+        ".skilled/commands/deep/assets/deep-agent-improvement-auto.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-presentation.txt",
+        ".skilled/commands/deep/assets/compiled/README.md",
+        ".skilled/commands/deep/assets/legacy/README.md",
+        ".skilled/commands/README.txt"
+      ]
+    },
+    {
+      "id": "finding-2-11-the-lane-a-yamls-themselves-consume-the-model-benchmark-asset-assets-model-bench",
+      "text": "The Lane A YAMLs themselves consume the model-benchmark asset `assets/model-benchmark/benchmark-profiles/default.json` and script `scripts/model-benchmark/run-benchmark.cjs` for their packet-local fixture step. Both are **SHARED-WITH-AGENT-IMPROVEMENT** and must not be deleted with the Lane B-only files [SOURCE: .skilled/commands/deep/assets/deep-agent-improvement-auto.yaml:258,265]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/commands/deep/model-benchmark.md",
+        ".skilled/commands/deep/assets/deep-model-benchmark-auto.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-presentation.txt",
+        ".skilled/commands/deep/agent-improvement.md",
+        ".skilled/commands/deep/assets/deep-agent-improvement-auto.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-presentation.txt",
+        ".skilled/commands/deep/assets/compiled/README.md",
+        ".skilled/commands/deep/assets/legacy/README.md",
+        ".skilled/commands/README.txt"
+      ]
+    },
+    {
+      "id": "finding-2-7-the-lane-b-run-contract-writes-spec-folder-improvement-model-benchmark-config-js",
+      "text": "The Lane B run contract writes `{spec_folder}/improvement/model-benchmark-config.json` (spec-local) and outputs into `.skilled/skills/system-deep-loop/deep-improvement/benchmark/model-benchmark/{run_label}`. Neither is a static repo artifact; deletion planning only needs to confirm no committed outputs directory exists [SOURCE: .skilled/commands/deep/assets/deep-model-benchmark-presentation.txt:19]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/commands/deep/model-benchmark.md",
+        ".skilled/commands/deep/assets/deep-model-benchmark-auto.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-model-benchmark-presentation.txt",
+        ".skilled/commands/deep/agent-improvement.md",
+        ".skilled/commands/deep/assets/deep-agent-improvement-auto.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-confirm.yaml",
+        ".skilled/commands/deep/assets/deep-agent-improvement-presentation.txt",
+        ".skilled/commands/deep/assets/compiled/README.md",
+        ".skilled/commands/deep/assets/legacy/README.md",
+        ".skilled/commands/README.txt"
+      ]
+    },
+    {
+      "id": "finding-3-4-assets-model-benchmark-benchmark-profiles-default-json-is-consumed-by-the-lane-a",
+      "text": "`assets/model-benchmark/benchmark-profiles/default.json` is consumed by the Lane A YAML fixture step (profiles `fixture-baseline`, `fixture-improved`, `fixture-edge`) — **SHARED-WITH-AGENT-IMPROVEMENT**; the other nine profiles (`capability-m3-vs-mimo[-v2|-v3]`, `framework-bakeoff`, `glm-5.2-frameworks`, `kimi-k2.7-discriminating`, `kimi-k2.7-frameworks`, `model-vs-model`, `reviewer-regression`) are Lane B-only — **DELETE**. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json:6]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/routing-allowlist.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/benchmark/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/shared/rollout/command-injection-rollout.json",
+        ".skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
+      ]
+    },
+    {
+      "id": "finding-3-3-assets-model-benchmark-readme-md-benchmark-profiles-readme-md-benchmark-fixtures",
+      "text": "`assets/model-benchmark/README.md`, `benchmark-profiles/README.md`, `benchmark-fixtures/README.md` are Lane B data catalogs (each explicitly exempted in `routing-allowlist.json`). **DELETE** all three READMEs. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/routing-allowlist.json:3-5]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/routing-allowlist.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/benchmark/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/shared/rollout/command-injection-rollout.json",
+        ".skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
+      ]
+    },
+    {
+      "id": "finding-3-11-feature-catalog-feature-catalog-md-keeps-the-mode-in-its-description-lane-table-",
+      "text": "`feature-catalog/feature-catalog.md` keeps the mode in its description, lane table, feature count row, and the whole \"5. MODEL-BENCHMARK MODE\" section (lines 294-392) — **EDIT**; the six `feature-catalog/model-benchmark-mode/*.md` pages — **DELETE**; `evaluation-loop/promotion-gates.md:49` and `scoring-dispatch.md:42,53` reference Lane B files — **EDIT**. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md:294-392]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/routing-allowlist.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/benchmark/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/shared/rollout/command-injection-rollout.json",
+        ".skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
+      ]
+    },
+    {
+      "id": "finding-3-12-manual-testing-playbook-manual-testing-playbook-md-keeps-the-mode-in-its-descrip",
+      "text": "`manual-testing-playbook/manual-testing-playbook.md` keeps the mode in its description, package listing, category map, closure list, and section 15 with MB-038..MB-049 scenarios (lines 713-800 region) — **EDIT**; the eight `model-benchmark-mode/*.md` feature files — **DELETE**; the shared `benchmark-integration/` pages stay (they exercise the surviving Lane A benchmark runner) — no edit needed beyond any Lane B-only wording; `five-d-scorer/unknown-grader-and-d4-census.md` and the `intra-routing-recall/*` pages that name model-benchmark — **EDIT** (drop Lane B recall rows). [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md:42,713-715]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/routing-allowlist.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/benchmark/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/shared/rollout/command-injection-rollout.json",
+        ".skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
+      ]
+    },
+    {
+      "id": "finding-3-2-references-model-benchmark-holds-exactly-four-lane-b-only-files-benchmark-operat",
+      "text": "`references/model-benchmark/` holds exactly four Lane B-only files: `benchmark-operator-guide.md`, `evaluator-contract.md`, `lane-b-mechanics.md`, `mixed-executor-methodology.md`. **DELETE** the directory. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/SKILL.md:314-316]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/routing-allowlist.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/benchmark/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/shared/rollout/command-injection-rollout.json",
+        ".skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
+      ]
+    },
+    {
+      "id": "finding-3-13-routing-allowlist-json-3-5-three-lane-b-entries-edit-readme-md-lines-9-24-25-38-",
+      "text": "`routing-allowlist.json:3-5` (three Lane B entries) — **EDIT**; `README.md` lines 9, 24-25, 38, 105-108 — **EDIT**; the `benchmark/README.md` exists to document the Lane B output tree while `benchmark/reports/**` hold historical skill-benchmark reports that mention the mode only in info rows — README **EDIT**, reports **KEEP-AS-HISTORY**. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/benchmark/README.md:20]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/routing-allowlist.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/benchmark/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/shared/rollout/command-injection-rollout.json",
+        ".skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
+      ]
+    },
+    {
+      "id": "finding-3-6-scripts-model-benchmark-run-benchmark-cjs-is-invoked-by-the-lane-a-yamls-directl",
+      "text": "`scripts/model-benchmark/run-benchmark.cjs` is invoked by the Lane A YAMLs directly — **SHARED-WITH-AGENT-IMPROVEMENT**; its pattern path must be verified self-contained before deletion, because its 5dim branch requires `./scorer/score-model-variant.cjs` (Lane B-only). Its shared imports — `scripts/lib/profile-resolve.cjs`, `scripts/shared/model-family.cjs`, `scripts/shared/extract-deliverable.cjs`, `scripts/shared/materialize-benchmark-fixtures.cjs` — are all SHARED and survive. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:17-24,684]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/routing-allowlist.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/benchmark/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/shared/rollout/command-injection-rollout.json",
+        ".skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
+      ]
+    },
+    {
+      "id": "finding-3-8-scripts-shared-loop-host-cjs-is-the-mode-switch-seam-valid-modes-line-42-lane-mo",
+      "text": "`scripts/shared/loop-host.cjs` is the mode-switch seam: `VALID_MODES` (line 42), `LANE_MODEL_BENCHMARK` (59-62), `planInvocation` mode branch (101-102, 137-140). **EDIT** — remove the model-benchmark arm; keep the agent-improvement default. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs:42,59-62,137-140]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/routing-allowlist.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/benchmark/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/shared/rollout/command-injection-rollout.json",
+        ".skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
+      ]
+    },
+    {
+      "id": "finding-3-9-scripts-shared-promote-candidate-cjs-has-a-lane-b-promotion-path-benchmark-repor",
+      "text": "`scripts/shared/promote-candidate.cjs` has a Lane B promotion path (`--benchmark-report`, lines 666-667, 1017-1019) and `scripts/shared/reduce-state.cjs` has mode buckets and a Lane B plateau branch (640-641, 755-757, 794-799, 984+). **EDIT** both — remove the model-benchmark arms; keep Lane A behavior byte-identical. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs:794-799]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/routing-allowlist.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/benchmark/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/shared/rollout/command-injection-rollout.json",
+        ".skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
+      ]
+    },
+    {
+      "id": "finding-3-10-scripts-vitest-config-mjs-5-describes-the-lane-layout-in-a-comment-edit-the-shar",
+      "text": "`scripts/vitest.config.mjs:5` describes the lane layout in a comment; `. . .` — **EDIT**. The shared test suite files referencing mode=model-benchmark (`loop-host.vitest.ts`, `reduce-state-mode-mix.vitest.ts`, `promote-candidate-mirror-sync.vitest.ts`, `rollback-candidate-hash-guard.vitest.ts`, `materialize-fixture-id.vitest.ts`, `promote-candidate-benchmark.vitest.ts`, `tests/fixtures/README.md`, `tests/fixtures/low-sample-benchmark/**`, `tests/README.md`) — **EDIT** to drop mode-B arms while keeping Lane A fixtures. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/vitest.config.mjs:5]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/routing-allowlist.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/benchmark/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/shared/rollout/command-injection-rollout.json",
+        ".skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
+      ]
+    },
+    {
+      "id": "finding-3-1-skill-md-carries-the-lane-b-surface-at-lines-13-34-36-41-42-50-51-74-107-113-118",
+      "text": "`SKILL.md` carries the Lane B surface at lines 13, 34-36, 41-42, 50-51, 74, 107, 113-118, 123-124, 195-196, 217-226 (§4 \"LANE B: MODEL-BENCHMARK\", a whole section), 245, 260, 305, 314, 316. **EDIT** — remove the section and lane-B rows; keep every Lane A statement. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/SKILL.md:217-226]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/routing-allowlist.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/benchmark/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/shared/rollout/command-injection-rollout.json",
+        ".skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
+      ]
+    },
+    {
+      "id": "finding-3-14-cross-hub-shared-surfaces-skilled-skills-system-deep-loop-shared-behavior-benchm",
+      "text": "Cross-hub shared surfaces: `.skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md:36` lists `/deep:model-benchmark` in its command table — **EDIT**; `.skilled/skills/system-deep-loop/shared/rollout/command-injection-rollout.json:7` pins `\"deep/model-benchmark\": \"fallback\"` — **EDIT** (remove the key); `behavior-benchmark/scenarios/IMB-007-model-benchmark-bare-command-halt.md` — **DELETE**. [SOURCE: .skilled/skills/system-deep-loop/shared/rollout/command-injection-rollout.json:7]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/routing-allowlist.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/benchmark/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/shared/rollout/command-injection-rollout.json",
+        ".skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
+      ]
+    },
+    {
+      "id": "finding-3-5-fixture-split-mirrors-the-profile-split-fixture-baseline-json-fixture-improved-j",
+      "text": "Fixture split mirrors the profile split: `fixture-baseline.json`, `fixture-improved.json`, `fixture-edge.json` are the default profile's fixtures — SHARED; the tiered/oracle packs (`hard-*`, `harder-*`, `t1-*`, `t3-*`, `t4-*`, `validate-*`, `reviewer-*`) and `reviewer-schema.md` are Lane B-only — **DELETE**. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/README.md:23-29]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/routing-allowlist.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/benchmark/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/shared/rollout/command-injection-rollout.json",
+        ".skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
+      ]
+    },
+    {
+      "id": "finding-3-7-lane-b-only-executables-and-docs-dispatch-model-cjs-sweep-benchmark-cjs-lib-revi",
+      "text": "Lane B-only executables and docs: `dispatch-model.cjs`, `sweep-benchmark.cjs`, `lib/reviewer-scorer.cjs`, `lib/score-verdict-fallback.cjs`, `scorer/**` (`score-model-variant.cjs`, `score-d4-agreement.cjs`, `grader/**`, `deterministic/`), `MODES.md`, `SWEEP.md`, `README.md`, and the 16 `tests/**` vitest files. **DELETE** the set. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/SKILL.md:221-222]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/routing-allowlist.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/benchmark/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json",
+        ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/README.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/shared/rollout/command-injection-rollout.json",
+        ".skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
+      ]
+    },
+    {
+      "id": "finding-4-1-aliases-ts-manual-alias-group-deep-model-benchmark-aliases-command-spec-kit-deep",
+      "text": "`aliases.ts` manual alias group `'deep-model-benchmark'` (aliases: `command-spec-kit-deep-model-benchmark`, `/deep:model-benchmark`, `deep-model-benchmark`, `sk-deep-model-benchmark`). **DELETE** the group [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts:16-21]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/shadow-diff.md",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json"
+      ]
+    },
+    {
+      "id": "finding-4-5-command-bridges-generated-json-contains-the-full-generated-bridge-record-id-comm",
+      "text": "`command-bridges.generated.json` contains the full generated bridge record (`id` `command-deep-model-benchmark`, `/deep:model-benchmark`, `ownerMode` model-benchmark, `source` command-metadata.json). **DELETE via regeneration** after the command-metadata edit from iteration 1 [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:341-374]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/shadow-diff.md",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json"
+      ]
+    },
+    {
+      "id": "finding-4-3-explicit-ts-carries-the-lane-b-phrase-boost-block-the-command-anchor-plus-nine-b",
+      "text": "`explicit.ts` carries the Lane B phrase-boost block: the command anchor plus nine benchmark/optimize phrase rows with disambiguation penalties targeting `system-deep-loop`. **DELETE** lines 122 and 140-157 [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:149-157]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/shadow-diff.md",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json"
+      ]
+    },
+    {
+      "id": "finding-4-4-projection-ts-holds-the-bridge-twice-a-hand-maintained-entry-in-the-pre-generate",
+      "text": "`projection.ts` holds the bridge twice: a hand-maintained entry in the pre-generated list and the generated-block entry inside `GENERATED_COMMAND_BRIDGES` (block spans the `BEGIN GENERATED COMMAND BRIDGES` fence). **DELETE** the manual entry; regenerate for the generated entry [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:152-165,256-270]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/shadow-diff.md",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json"
+      ]
+    },
+    {
+      "id": "finding-4-6-scoring-compatibility-json-mirrors-the-same-record-delete-via-regeneration-sourc",
+      "text": "`scoring-compatibility.json` mirrors the same record. **DELETE via regeneration** [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json:122-146]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/shadow-diff.md",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json"
+      ]
+    },
+    {
+      "id": "finding-4-8-shadow-diff-md-reports-the-live-ts-only-ids-count-4-lists-deep-model-benchmark-a",
+      "text": "`shadow-diff.md` reports the live-TS-only IDs (count 4 lists `deep-model-benchmark`) and asserts its ID shape. **EDIT** — after regeneration the count becomes 3 and the ID-shape row drops [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/shadow-diff.md:21,33]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/shadow-diff.md",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json"
+      ]
+    },
+    {
+      "id": "finding-4-7-skill-advisor-py-keeps-a-legacy-bridge-entry-with-routing-enabled-false-delete-t",
+      "text": "`skill_advisor.py` keeps a legacy bridge entry with `routing_enabled: False`. **DELETE** the entry; the projection-sync machinery (`TS_PROJECTION_START`, generated hash block) stays and is the tool that refreshes the generated artifacts [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:2510-2517]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/shadow-diff.md",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json"
+      ]
+    },
+    {
+      "id": "finding-4-9-skill-graph-json-carries-no-model-benchmark-signal-for-system-deep-loop-its-sing",
+      "text": "`skill-graph.json` carries no model-benchmark signal for `system-deep-loop`; its single `model benchmark` fragment comes from sk-doc's harvested triggers and is resolved by the sk-doc edit + `skill_graph_compiler.py` regen (iteration 5 scope) [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json:1]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/shadow-diff.md",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json"
+      ]
+    },
+    {
+      "id": "finding-4-10-the-routing-accuracy-corpus-and-fixtures-directories-contain-zero-model-benchmar",
+      "text": "The `routing-accuracy/` corpus and `fixtures/` directories contain zero model-benchmark prompts (verified scan), so no advisor-regression fixtures change [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/shadow-diff.md",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json"
+      ]
+    },
+    {
+      "id": "finding-4-2-the-generated-deep-routing-alias-projection-below-the-marker-in-aliases-ts-does-",
+      "text": "The generated deep-routing alias projection below the marker in `aliases.ts` does **not** contain the benchmark group (verified by a full-file match scan), so removing the manual group leaves `DEEP_ROUTING_PROJECTION_HASH` untouched. No regen needed here [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts:24-27]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/shadow-diff.md",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json"
+      ]
+    },
+    {
+      "id": "finding-5-9-skilled-commands-create-assets-create-benchmark-presentation-txt-86-offers-model",
+      "text": "`.skilled/commands/create/assets/create-benchmark-presentation.txt:86` offers `model_benchmark` as family option C. **EDIT** the option list [SOURCE: .skilled/commands/create/assets/create-benchmark-presentation.txt:86]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-benchmark/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/README.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/references/shared/README.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/SKILL.md",
+        ".skilled/skills/sk-doc/ROUTER.md",
+        ".skilled/skills/sk-doc/hub-router.json",
+        ".skilled/skills/sk-doc/mode-registry.json",
+        ".skilled/skills/sk-doc/graph-metadata.json",
+        ".skilled/skills/sk-doc/leaf-manifest.json",
+        ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        ".skilled/skills/sk-doc/manual-testing-playbook/token-cost-baseline/max-load.md",
+        ".skilled/commands/create/assets/create-benchmark-presentation.txt",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json"
+      ]
+    },
+    {
+      "id": "finding-5-5-changelog-v1-2-0-0-md-and-changelog-v1-3-0-0-md-mention-the-mode-keep-as-history",
+      "text": "`changelog/v1.2.0.0.md` and `changelog/v1.3.0.0.md` mention the mode. **KEEP-AS-HISTORY** [SOURCE: .skilled/skills/sk-doc/sk-create-benchmark/changelog/v1.3.0.0.md]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-benchmark/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/README.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/references/shared/README.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/SKILL.md",
+        ".skilled/skills/sk-doc/ROUTER.md",
+        ".skilled/skills/sk-doc/hub-router.json",
+        ".skilled/skills/sk-doc/mode-registry.json",
+        ".skilled/skills/sk-doc/graph-metadata.json",
+        ".skilled/skills/sk-doc/leaf-manifest.json",
+        ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        ".skilled/skills/sk-doc/manual-testing-playbook/token-cost-baseline/max-load.md",
+        ".skilled/commands/create/assets/create-benchmark-presentation.txt",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json"
+      ]
+    },
+    {
+      "id": "finding-5-6-manual-testing-playbook-manual-testing-playbook-md-carries-the-family-in-its-des",
+      "text": "`manual-testing-playbook/manual-testing-playbook.md` carries the family in its description, intro, BMR-005 \"Match a Lane B fixture to its scorer\" scenario and evidence section. **EDIT** lines 3, 9, 94-96, 102, 118 [SOURCE: .skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md:94-96]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-benchmark/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/README.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/references/shared/README.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/SKILL.md",
+        ".skilled/skills/sk-doc/ROUTER.md",
+        ".skilled/skills/sk-doc/hub-router.json",
+        ".skilled/skills/sk-doc/mode-registry.json",
+        ".skilled/skills/sk-doc/graph-metadata.json",
+        ".skilled/skills/sk-doc/leaf-manifest.json",
+        ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        ".skilled/skills/sk-doc/manual-testing-playbook/token-cost-baseline/max-load.md",
+        ".skilled/commands/create/assets/create-benchmark-presentation.txt",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json"
+      ]
+    },
+    {
+      "id": "finding-5-3-references-shared-readme-md-lists-the-fixture-guide-the-three-templates-and-the-",
+      "text": "`references/shared/README.md` lists the fixture guide, the three templates, and the family in its coverage table. **EDIT** lines 41, 44, 59-61 [SOURCE: .skilled/skills/sk-doc/sk-create-benchmark/references/shared/README.md:41,59-61]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-benchmark/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/README.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/references/shared/README.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/SKILL.md",
+        ".skilled/skills/sk-doc/ROUTER.md",
+        ".skilled/skills/sk-doc/hub-router.json",
+        ".skilled/skills/sk-doc/mode-registry.json",
+        ".skilled/skills/sk-doc/graph-metadata.json",
+        ".skilled/skills/sk-doc/leaf-manifest.json",
+        ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        ".skilled/skills/sk-doc/manual-testing-playbook/token-cost-baseline/max-load.md",
+        ".skilled/commands/create/assets/create-benchmark-presentation.txt",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json"
+      ]
+    },
+    {
+      "id": "finding-5-8-scripts-tests-code-folder-durable-directory-manifest-json-lists-the-deep-improve",
+      "text": "`scripts/tests/code-folder/durable-directory-manifest.json` lists the deep-improvement model-benchmark assets/scripts dirs and the runtime `model-benchmark-*` schema dirs as durable. **EDIT** lines 532-533, 543-549, 600-602 so the manifest tracks the post-deletion tree [SOURCE: .skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json:532-533,600-602]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-benchmark/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/README.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/references/shared/README.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/SKILL.md",
+        ".skilled/skills/sk-doc/ROUTER.md",
+        ".skilled/skills/sk-doc/hub-router.json",
+        ".skilled/skills/sk-doc/mode-registry.json",
+        ".skilled/skills/sk-doc/graph-metadata.json",
+        ".skilled/skills/sk-doc/leaf-manifest.json",
+        ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        ".skilled/skills/sk-doc/manual-testing-playbook/token-cost-baseline/max-load.md",
+        ".skilled/commands/create/assets/create-benchmark-presentation.txt",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json"
+      ]
+    },
+    {
+      "id": "finding-5-4-sk-create-benchmark-readme-md-carries-the-family-in-its-trigger-list-invoke-row-",
+      "text": "`sk-create-benchmark/README.md` carries the family in its trigger list, invoke row, family description, family table, parity sentence, and reference table. **EDIT** lines 7, 22, 36, 44, 78, 151 [SOURCE: .skilled/skills/sk-doc/sk-create-benchmark/README.md:44]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-benchmark/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/README.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/references/shared/README.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/SKILL.md",
+        ".skilled/skills/sk-doc/ROUTER.md",
+        ".skilled/skills/sk-doc/hub-router.json",
+        ".skilled/skills/sk-doc/mode-registry.json",
+        ".skilled/skills/sk-doc/graph-metadata.json",
+        ".skilled/skills/sk-doc/leaf-manifest.json",
+        ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        ".skilled/skills/sk-doc/manual-testing-playbook/token-cost-baseline/max-load.md",
+        ".skilled/commands/create/assets/create-benchmark-presentation.txt",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json"
+      ]
+    },
+    {
+      "id": "finding-5-1-sk-create-benchmark-skill-md-is-a-four-family-skill-the-model-benchmark-family-a",
+      "text": "`sk-create-benchmark/SKILL.md` is a four-family skill; the model-benchmark family appears at lines 3, 8, 16, 32, 35, 93, 108, 117, 139-146, 227, 472-530 (§10 whole section), 546 (§11), 558-560 (§12). **EDIT** — remove the family; §10 is a section deletion and its lane cross-links (`evaluator-contract.md`, `reviewer-schema.md`) must go with the mode [SOURCE: .skilled/skills/sk-doc/sk-create-benchmark/SKILL.md:472-530]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-benchmark/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/README.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/references/shared/README.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/SKILL.md",
+        ".skilled/skills/sk-doc/ROUTER.md",
+        ".skilled/skills/sk-doc/hub-router.json",
+        ".skilled/skills/sk-doc/mode-registry.json",
+        ".skilled/skills/sk-doc/graph-metadata.json",
+        ".skilled/skills/sk-doc/leaf-manifest.json",
+        ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        ".skilled/skills/sk-doc/manual-testing-playbook/token-cost-baseline/max-load.md",
+        ".skilled/commands/create/assets/create-benchmark-presentation.txt",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json"
+      ]
+    },
+    {
+      "id": "finding-5-11-sk-create-command-assets-command-contract-json-304-lists-deep-model-benchmark-in",
+      "text": "`sk-create-command/assets/command-contract.json:304` lists `/deep:model-benchmark` in the deep-command invocation aliases example. **EDIT** [SOURCE: .skilled/skills/sk-doc/sk-create-command/assets/command-contract.json:304]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-benchmark/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/README.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/references/shared/README.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/SKILL.md",
+        ".skilled/skills/sk-doc/ROUTER.md",
+        ".skilled/skills/sk-doc/hub-router.json",
+        ".skilled/skills/sk-doc/mode-registry.json",
+        ".skilled/skills/sk-doc/graph-metadata.json",
+        ".skilled/skills/sk-doc/leaf-manifest.json",
+        ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        ".skilled/skills/sk-doc/manual-testing-playbook/token-cost-baseline/max-load.md",
+        ".skilled/commands/create/assets/create-benchmark-presentation.txt",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json"
+      ]
+    },
+    {
+      "id": "finding-5-10-sk-doc-manual-testing-playbook-token-cost-baseline-max-load-md-pins-the-family-l",
+      "text": "`sk-doc/manual-testing-playbook/token-cost-baseline/max-load.md` pins the family leaves in its max-load manifest and `workflow_mode: sk-create-benchmark` rows. **EDIT** lines 16-18, 23, 152-156, 166 and regenerate the baseline if it is a measured artifact [SOURCE: .skilled/skills/sk-doc/manual-testing-playbook/token-cost-baseline/max-load.md:16-18]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-benchmark/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/README.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/references/shared/README.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/SKILL.md",
+        ".skilled/skills/sk-doc/ROUTER.md",
+        ".skilled/skills/sk-doc/hub-router.json",
+        ".skilled/skills/sk-doc/mode-registry.json",
+        ".skilled/skills/sk-doc/graph-metadata.json",
+        ".skilled/skills/sk-doc/leaf-manifest.json",
+        ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        ".skilled/skills/sk-doc/manual-testing-playbook/token-cost-baseline/max-load.md",
+        ".skilled/commands/create/assets/create-benchmark-presentation.txt",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json"
+      ]
+    },
+    {
+      "id": "finding-5-2-family-only-files-assets-model-benchmark-model-benchmark-code-task-fixture-templ",
+      "text": "Family-only files: `assets/model-benchmark/model-benchmark-code-task-fixture-template.md`, `model-benchmark-pattern-fixture-template.md`, `model-benchmark-profile-template.md`, `references/model-benchmark/model-benchmark-fixture-guide.md`, `manual-testing-playbook/benchmark-families/match-lane-b-fixture.md`. **DELETE** all five [SOURCE: .skilled/skills/sk-doc/sk-create-benchmark/SKILL.md:139-146]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-benchmark/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/README.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/references/shared/README.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/SKILL.md",
+        ".skilled/skills/sk-doc/ROUTER.md",
+        ".skilled/skills/sk-doc/hub-router.json",
+        ".skilled/skills/sk-doc/mode-registry.json",
+        ".skilled/skills/sk-doc/graph-metadata.json",
+        ".skilled/skills/sk-doc/leaf-manifest.json",
+        ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        ".skilled/skills/sk-doc/manual-testing-playbook/token-cost-baseline/max-load.md",
+        ".skilled/commands/create/assets/create-benchmark-presentation.txt",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json"
+      ]
+    },
+    {
+      "id": "finding-5-12-methodology-correction-sk-doc-shared-scripts-cite-drift-redirects-json-366-match",
+      "text": "Methodology correction: `sk-doc/shared/scripts/cite-drift-redirects.json:366` matched the earlier sweep only because `.` in `model.benchmark` matched the `/` in the unrelated path `sk-prompt-small-model/benchmarks/...`. This is a false positive; iteration 10 re-scans the master list with the strict `model[-_ ]benchmark` pattern to purge any sibling false positives [SOURCE: .skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json:366]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-benchmark/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/README.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/references/shared/README.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/SKILL.md",
+        ".skilled/skills/sk-doc/ROUTER.md",
+        ".skilled/skills/sk-doc/hub-router.json",
+        ".skilled/skills/sk-doc/mode-registry.json",
+        ".skilled/skills/sk-doc/graph-metadata.json",
+        ".skilled/skills/sk-doc/leaf-manifest.json",
+        ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        ".skilled/skills/sk-doc/manual-testing-playbook/token-cost-baseline/max-load.md",
+        ".skilled/commands/create/assets/create-benchmark-presentation.txt",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json"
+      ]
+    },
+    {
+      "id": "finding-5-7-sk-doc-hub-rows-skill-md-33-family-table-row-router-md-107-108-168-prose-intent-",
+      "text": "sk-doc hub rows: `SKILL.md:33` family table row, `ROUTER.md:107-108,168` prose + intent keyword, `ROUTER.md:289-291,296` RESOURCE_MAP leaf paths, `hub-router.json:312` and `mode-registry.json:306` family keyword rows, `graph-metadata.json:222` keyword, `leaf-manifest.json:19-21,26` template/guide leaves. **EDIT** all [SOURCE: .skilled/skills/sk-doc/ROUTER.md:289-296]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-benchmark/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/README.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/references/shared/README.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/SKILL.md",
+        ".skilled/skills/sk-doc/ROUTER.md",
+        ".skilled/skills/sk-doc/hub-router.json",
+        ".skilled/skills/sk-doc/mode-registry.json",
+        ".skilled/skills/sk-doc/graph-metadata.json",
+        ".skilled/skills/sk-doc/leaf-manifest.json",
+        ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        ".skilled/skills/sk-doc/manual-testing-playbook/token-cost-baseline/max-load.md",
+        ".skilled/commands/create/assets/create-benchmark-presentation.txt",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json"
+      ]
+    },
+    {
+      "id": "finding-6-1-skilled-agents-deep-improvement-md-58-carries-the-lane-awareness-line-naming-bot",
+      "text": "`.skilled/agents/deep-improvement.md:58` carries the Lane awareness line naming both lanes. **EDIT** the agent definition (canonical; runtime mirrors regenerate from it) [SOURCE: .skilled/agents/deep-improvement.md:58]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/agents/deep-improvement.md",
+        ".skilled/skills/cli-external-orchestration/benchmark/README.md",
+        ".skilled/skills/cli-external-orchestration/changelog/v1.5.0.0.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/benchmark/README.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.0.0.md",
+        ".skilled/skills/cli-classifier/README.md",
+        ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md",
+        ".skilled/skills/sk-code/benchmark/README.md",
+        ".skilled/skills/sk-prompt/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/skill-benchmark-report.json",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/canary-router.cjs",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/fixtures/canary-cases.v1.json"
+      ]
+    },
+    {
+      "id": "finding-6-8-skilled-bin-lib-compiled-routing-009-parent-hub-rollout-002-system-deep-loop-lib",
+      "text": "`.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs:32-33` lists `model-benchmark` in its compiled mode set. **EDIT** [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs:32-33]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/agents/deep-improvement.md",
+        ".skilled/skills/cli-external-orchestration/benchmark/README.md",
+        ".skilled/skills/cli-external-orchestration/changelog/v1.5.0.0.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/benchmark/README.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.0.0.md",
+        ".skilled/skills/cli-classifier/README.md",
+        ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md",
+        ".skilled/skills/sk-code/benchmark/README.md",
+        ".skilled/skills/sk-prompt/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/skill-benchmark-report.json",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/canary-router.cjs",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/fixtures/canary-cases.v1.json"
+      ]
+    },
+    {
+      "id": "finding-6-4-cli-classifier-feature-catalog-measurements-pi-transport-integration-md-95-96-an",
+      "text": "`cli-classifier/feature-catalog/measurements/pi-transport-integration.md:95-96` and `:114-116` list the two Lane B measurement scripts as Jev-feature callers. **EDIT** the caller rows [SOURCE: .skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md:95-96]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/agents/deep-improvement.md",
+        ".skilled/skills/cli-external-orchestration/benchmark/README.md",
+        ".skilled/skills/cli-external-orchestration/changelog/v1.5.0.0.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/benchmark/README.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.0.0.md",
+        ".skilled/skills/cli-classifier/README.md",
+        ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md",
+        ".skilled/skills/sk-code/benchmark/README.md",
+        ".skilled/skills/sk-prompt/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/skill-benchmark-report.json",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/canary-router.cjs",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/fixtures/canary-cases.v1.json"
+      ]
+    },
+    {
+      "id": "finding-6-3-cli-classifier-readme-md-72-73-documents-the-jev-feature-flags-for-deep-model-be",
+      "text": "`cli-classifier/README.md:72-73` documents the JEV feature flags for `/deep:model-benchmark` reviewer and 5dim runs. **EDIT** — the JEV features themselves stay; only the mode callers disappear [SOURCE: .skilled/skills/cli-classifier/README.md:72-73]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/agents/deep-improvement.md",
+        ".skilled/skills/cli-external-orchestration/benchmark/README.md",
+        ".skilled/skills/cli-external-orchestration/changelog/v1.5.0.0.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/benchmark/README.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.0.0.md",
+        ".skilled/skills/cli-classifier/README.md",
+        ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md",
+        ".skilled/skills/sk-code/benchmark/README.md",
+        ".skilled/skills/sk-prompt/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/skill-benchmark-report.json",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/canary-router.cjs",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/fixtures/canary-cases.v1.json"
+      ]
+    },
+    {
+      "id": "finding-6-5-cli-external-orchestration-changelog-v1-5-0-0-md-12-21-and-cli-hermes-changelog-",
+      "text": "`cli-external-orchestration/changelog/v1.5.0.0.md:12,21` and `cli-hermes/changelog/v1.0.0.0.md:31` describe Hermes joining model-benchmark runs. **KEEP-AS-HISTORY** [SOURCE: .skilled/skills/cli-external-orchestration/changelog/v1.5.0.0.md:21]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/agents/deep-improvement.md",
+        ".skilled/skills/cli-external-orchestration/benchmark/README.md",
+        ".skilled/skills/cli-external-orchestration/changelog/v1.5.0.0.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/benchmark/README.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.0.0.md",
+        ".skilled/skills/cli-classifier/README.md",
+        ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md",
+        ".skilled/skills/sk-code/benchmark/README.md",
+        ".skilled/skills/sk-prompt/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/skill-benchmark-report.json",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/canary-router.cjs",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/fixtures/canary-cases.v1.json"
+      ]
+    },
+    {
+      "id": "finding-6-7-sk-prompt-benchmark-reports-compiled-routing-2026-07-21-verify-luna-high-skill-b",
+      "text": "`sk-prompt/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/skill-benchmark-report.json` measures \"model-benchmark.md + 2 YAML assets\" write-target automation. **KEEP-AS-HISTORY** [SOURCE: .skilled/skills/sk-prompt/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/skill-benchmark-report.json]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/agents/deep-improvement.md",
+        ".skilled/skills/cli-external-orchestration/benchmark/README.md",
+        ".skilled/skills/cli-external-orchestration/changelog/v1.5.0.0.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/benchmark/README.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.0.0.md",
+        ".skilled/skills/cli-classifier/README.md",
+        ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md",
+        ".skilled/skills/sk-code/benchmark/README.md",
+        ".skilled/skills/sk-prompt/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/skill-benchmark-report.json",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/canary-router.cjs",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/fixtures/canary-cases.v1.json"
+      ]
+    },
+    {
+      "id": "finding-6-6-system-deep-loop-benchmark-reports-baseline-skill-benchmark-report-md-and-the-co",
+      "text": "`system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.md` and the `compiled-routing/**` reports name the mode in routing tables. **KEEP-AS-HISTORY** [SOURCE: .skilled/skills/system-deep-loop/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/report.md]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/agents/deep-improvement.md",
+        ".skilled/skills/cli-external-orchestration/benchmark/README.md",
+        ".skilled/skills/cli-external-orchestration/changelog/v1.5.0.0.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/benchmark/README.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.0.0.md",
+        ".skilled/skills/cli-classifier/README.md",
+        ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md",
+        ".skilled/skills/sk-code/benchmark/README.md",
+        ".skilled/skills/sk-prompt/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/skill-benchmark-report.json",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/canary-router.cjs",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/fixtures/canary-cases.v1.json"
+      ]
+    },
+    {
+      "id": "finding-6-10-gap-flag-a-mirrored-compiled-routing-tree-exists-under-opencode-bin-lib-compiled",
+      "text": "Gap flag: a mirrored compiled-routing tree exists under `.opencode/bin/lib/compiled-routing/` with the same stage directories (003..014 + closure manifest), including a `013-live-activation` stage. Whether its system-deep-loop activation artifact carries model-benchmark rows must be verified with a `--no-ignore` scan in iteration 7 (mirrors) because the top-level master sweep may have skipped ignored paths [INFERENCE: based on identical directory listings of both trees]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/agents/deep-improvement.md",
+        ".skilled/skills/cli-external-orchestration/benchmark/README.md",
+        ".skilled/skills/cli-external-orchestration/changelog/v1.5.0.0.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/benchmark/README.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.0.0.md",
+        ".skilled/skills/cli-classifier/README.md",
+        ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md",
+        ".skilled/skills/sk-code/benchmark/README.md",
+        ".skilled/skills/sk-prompt/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/skill-benchmark-report.json",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/canary-router.cjs",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/fixtures/canary-cases.v1.json"
+      ]
+    },
+    {
+      "id": "finding-6-9-same-rollout-packet-canary-router-cjs-19-21-documents-model-benchmark-as-the-can",
+      "text": "Same rollout packet: `canary-router.cjs:19-21` documents model-benchmark as the canonical over-routing example (comment), and `fixtures/canary-cases.v1.json:82-96,180-181` carries the `single-model-benchmark` canary case with expected mode/intents/resources plus a mode list entry. **EDIT** both [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/fixtures/canary-cases.v1.json:82-96]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/agents/deep-improvement.md",
+        ".skilled/skills/cli-external-orchestration/benchmark/README.md",
+        ".skilled/skills/cli-external-orchestration/changelog/v1.5.0.0.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/benchmark/README.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.0.0.md",
+        ".skilled/skills/cli-classifier/README.md",
+        ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md",
+        ".skilled/skills/sk-code/benchmark/README.md",
+        ".skilled/skills/sk-prompt/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/skill-benchmark-report.json",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/canary-router.cjs",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/fixtures/canary-cases.v1.json"
+      ]
+    },
+    {
+      "id": "finding-6-2-three-benchmark-readmes-describe-deep-improvement-as-owning-the-surviving-improv",
+      "text": "Three benchmark READMEs describe `deep-improvement` as owning \"the surviving improvement lanes (agent-improvement, model-benchmark)\": `cli-external-orchestration/benchmark/README.md:46`, `cli-claude-code/benchmark/README.md:44`, `sk-code/benchmark/README.md:116`. **EDIT** all three [SOURCE: .skilled/skills/cli-external-orchestration/benchmark/README.md:46]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/agents/deep-improvement.md",
+        ".skilled/skills/cli-external-orchestration/benchmark/README.md",
+        ".skilled/skills/cli-external-orchestration/changelog/v1.5.0.0.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/benchmark/README.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.0.0.md",
+        ".skilled/skills/cli-classifier/README.md",
+        ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md",
+        ".skilled/skills/sk-code/benchmark/README.md",
+        ".skilled/skills/sk-prompt/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/skill-benchmark-report.json",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/canary-router.cjs",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/fixtures/canary-cases.v1.json"
+      ]
+    },
+    {
+      "id": "finding-7-4-claude-agents-deep-improvement-md-is-a-real-copy-of-the-canonical-agent-definiti",
+      "text": "`.claude/agents/deep-improvement.md` is a real copy of the canonical agent definition (first match line 44). **Regenerate** after the canonical edit from iteration 6 [SOURCE: .claude/agents/deep-improvement.md:44]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".claude/agents/deep-improvement.md",
+        ".claude/commands/deep/model-benchmark.md",
+        ".codex/agents/deep-improvement.toml",
+        ".codex/prompts/deep-model-benchmark.md",
+        ".cursor/agents/deep-improvement.md (symlink)",
+        ".pi/agents/deep-improvement.md",
+        ".pi/prompts/deep-model-benchmark.md",
+        ".devin/agents/deep-improvement/AGENT.md (symlink)",
+        ".hermes/prompts/deep-model-benchmark.md",
+        ".hermes/skills/system-deep-loop/SKILL.md",
+        ".opencode/plugins/system-deep-loop-guard.js",
+        ".opencode/plugins/tests/claude-task-dispatch-guard.test.cjs",
+        ".opencode/plugins/tests/system-deep-loop-guard.test.cjs"
+      ]
+    },
+    {
+      "id": "finding-7-5-claude-commands-deep-model-benchmark-md-is-a-real-copy-of-the-command-router-no-",
+      "text": "`.claude/commands/deep/model-benchmark.md` is a real copy of the command router (no generated header). **DELETE/regenerate** with the source command [SOURCE: .claude/commands/deep/model-benchmark.md]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".claude/agents/deep-improvement.md",
+        ".claude/commands/deep/model-benchmark.md",
+        ".codex/agents/deep-improvement.toml",
+        ".codex/prompts/deep-model-benchmark.md",
+        ".cursor/agents/deep-improvement.md (symlink)",
+        ".pi/agents/deep-improvement.md",
+        ".pi/prompts/deep-model-benchmark.md",
+        ".devin/agents/deep-improvement/AGENT.md (symlink)",
+        ".hermes/prompts/deep-model-benchmark.md",
+        ".hermes/skills/system-deep-loop/SKILL.md",
+        ".opencode/plugins/system-deep-loop-guard.js",
+        ".opencode/plugins/tests/claude-task-dispatch-guard.test.cjs",
+        ".opencode/plugins/tests/system-deep-loop-guard.test.cjs"
+      ]
+    },
+    {
+      "id": "finding-7-6-codex-agents-deep-improvement-toml-is-the-generated-codex-agent-mirror-match-lin",
+      "text": "`.codex/agents/deep-improvement.toml` is the generated Codex agent mirror (match line 48). **Regenerate** [SOURCE: .codex/agents/deep-improvement.toml:48]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".claude/agents/deep-improvement.md",
+        ".claude/commands/deep/model-benchmark.md",
+        ".codex/agents/deep-improvement.toml",
+        ".codex/prompts/deep-model-benchmark.md",
+        ".cursor/agents/deep-improvement.md (symlink)",
+        ".pi/agents/deep-improvement.md",
+        ".pi/prompts/deep-model-benchmark.md",
+        ".devin/agents/deep-improvement/AGENT.md (symlink)",
+        ".hermes/prompts/deep-model-benchmark.md",
+        ".hermes/skills/system-deep-loop/SKILL.md",
+        ".opencode/plugins/system-deep-loop-guard.js",
+        ".opencode/plugins/tests/claude-task-dispatch-guard.test.cjs",
+        ".opencode/plugins/tests/system-deep-loop-guard.test.cjs"
+      ]
+    },
+    {
+      "id": "finding-7-7-codex-prompts-deep-model-benchmark-md-carries-the-generated-header-naming-its-ge",
+      "text": "`.codex/prompts/deep-model-benchmark.md` carries the generated header naming its generator `sync-prompts.cjs` (generator at `.skilled/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs`). **Regenerate/delete** — never hand-edit [SOURCE: .codex/prompts/deep-model-benchmark.md:1]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".claude/agents/deep-improvement.md",
+        ".claude/commands/deep/model-benchmark.md",
+        ".codex/agents/deep-improvement.toml",
+        ".codex/prompts/deep-model-benchmark.md",
+        ".cursor/agents/deep-improvement.md (symlink)",
+        ".pi/agents/deep-improvement.md",
+        ".pi/prompts/deep-model-benchmark.md",
+        ".devin/agents/deep-improvement/AGENT.md (symlink)",
+        ".hermes/prompts/deep-model-benchmark.md",
+        ".hermes/skills/system-deep-loop/SKILL.md",
+        ".opencode/plugins/system-deep-loop-guard.js",
+        ".opencode/plugins/tests/claude-task-dispatch-guard.test.cjs",
+        ".opencode/plugins/tests/system-deep-loop-guard.test.cjs"
+      ]
+    },
+    {
+      "id": "finding-7-12-cursor-commands-contains-no-model-benchmark-reference-full-tree-scan-clean-and-n",
+      "text": "`.cursor/commands/**` contains no model-benchmark reference (full-tree scan clean), and no runtime `SYNC.md` mentions the mode — both confirmed clean [SOURCE: .cursor/commands (no matches)]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".claude/agents/deep-improvement.md",
+        ".claude/commands/deep/model-benchmark.md",
+        ".codex/agents/deep-improvement.toml",
+        ".codex/prompts/deep-model-benchmark.md",
+        ".cursor/agents/deep-improvement.md (symlink)",
+        ".pi/agents/deep-improvement.md",
+        ".pi/prompts/deep-model-benchmark.md",
+        ".devin/agents/deep-improvement/AGENT.md (symlink)",
+        ".hermes/prompts/deep-model-benchmark.md",
+        ".hermes/skills/system-deep-loop/SKILL.md",
+        ".opencode/plugins/system-deep-loop-guard.js",
+        ".opencode/plugins/tests/claude-task-dispatch-guard.test.cjs",
+        ".opencode/plugins/tests/system-deep-loop-guard.test.cjs"
+      ]
+    },
+    {
+      "id": "finding-7-11-devin-agents-deep-improvement-agent-md-is-a-symlink-to-claude-agents-deep-improv",
+      "text": "`.devin/agents/deep-improvement/AGENT.md` is a symlink to `../../../.claude/agents/deep-improvement.md`, and `.devin/skills` symlinks the whole skills tree; `.cursor/agents/deep-improvement.md` symlinks the `.claude` copy. No independent edits — they follow the `.claude`/`.skilled` sources [SOURCE: .devin/agents/deep-improvement/AGENT.md]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".claude/agents/deep-improvement.md",
+        ".claude/commands/deep/model-benchmark.md",
+        ".codex/agents/deep-improvement.toml",
+        ".codex/prompts/deep-model-benchmark.md",
+        ".cursor/agents/deep-improvement.md (symlink)",
+        ".pi/agents/deep-improvement.md",
+        ".pi/prompts/deep-model-benchmark.md",
+        ".devin/agents/deep-improvement/AGENT.md (symlink)",
+        ".hermes/prompts/deep-model-benchmark.md",
+        ".hermes/skills/system-deep-loop/SKILL.md",
+        ".opencode/plugins/system-deep-loop-guard.js",
+        ".opencode/plugins/tests/claude-task-dispatch-guard.test.cjs",
+        ".opencode/plugins/tests/system-deep-loop-guard.test.cjs"
+      ]
+    },
+    {
+      "id": "finding-7-8-hermes-prompts-deep-model-benchmark-md-is-generated-by-sync-prompts-hermes-cjs-g",
+      "text": "`.hermes/prompts/deep-model-benchmark.md` is generated by `sync-prompts-hermes.cjs` (generator at `.skilled/skills/system-spec-kit/runtime/cli/hermes/`). **Regenerate/delete** [SOURCE: .hermes/prompts/deep-model-benchmark.md:1]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".claude/agents/deep-improvement.md",
+        ".claude/commands/deep/model-benchmark.md",
+        ".codex/agents/deep-improvement.toml",
+        ".codex/prompts/deep-model-benchmark.md",
+        ".cursor/agents/deep-improvement.md (symlink)",
+        ".pi/agents/deep-improvement.md",
+        ".pi/prompts/deep-model-benchmark.md",
+        ".devin/agents/deep-improvement/AGENT.md (symlink)",
+        ".hermes/prompts/deep-model-benchmark.md",
+        ".hermes/skills/system-deep-loop/SKILL.md",
+        ".opencode/plugins/system-deep-loop-guard.js",
+        ".opencode/plugins/tests/claude-task-dispatch-guard.test.cjs",
+        ".opencode/plugins/tests/system-deep-loop-guard.test.cjs"
+      ]
+    },
+    {
+      "id": "finding-7-10-hermes-skills-system-deep-loop-deep-improvement-sk-doc-sk-create-benchmark-agent",
+      "text": "`.hermes/skills/{system-deep-loop,deep-improvement,sk-doc,sk-create-benchmark,agent-deep-improvement}/SKILL.md` are generated Markdown-only skill mirrors of the edited sources. **Regenerate** after the hub/packet/sk-doc edits [SOURCE: .hermes/skills/system-deep-loop/SKILL.md:1]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".claude/agents/deep-improvement.md",
+        ".claude/commands/deep/model-benchmark.md",
+        ".codex/agents/deep-improvement.toml",
+        ".codex/prompts/deep-model-benchmark.md",
+        ".cursor/agents/deep-improvement.md (symlink)",
+        ".pi/agents/deep-improvement.md",
+        ".pi/prompts/deep-model-benchmark.md",
+        ".devin/agents/deep-improvement/AGENT.md (symlink)",
+        ".hermes/prompts/deep-model-benchmark.md",
+        ".hermes/skills/system-deep-loop/SKILL.md",
+        ".opencode/plugins/system-deep-loop-guard.js",
+        ".opencode/plugins/tests/claude-task-dispatch-guard.test.cjs",
+        ".opencode/plugins/tests/system-deep-loop-guard.test.cjs"
+      ]
+    },
+    {
+      "id": "finding-7-2-opencode-plugins-system-deep-loop-guard-js-reads-mode-registry-json-for-the-reso",
+      "text": "`.opencode/plugins/system-deep-loop-guard.js` reads `mode-registry.json` for the resolved target agent at runtime (no hardcoded mode list in the plugin source), so the plugin itself needs no edit [SOURCE: .opencode/plugins/system-deep-loop-guard.js:8]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".claude/agents/deep-improvement.md",
+        ".claude/commands/deep/model-benchmark.md",
+        ".codex/agents/deep-improvement.toml",
+        ".codex/prompts/deep-model-benchmark.md",
+        ".cursor/agents/deep-improvement.md (symlink)",
+        ".pi/agents/deep-improvement.md",
+        ".pi/prompts/deep-model-benchmark.md",
+        ".devin/agents/deep-improvement/AGENT.md (symlink)",
+        ".hermes/prompts/deep-model-benchmark.md",
+        ".hermes/skills/system-deep-loop/SKILL.md",
+        ".opencode/plugins/system-deep-loop-guard.js",
+        ".opencode/plugins/tests/claude-task-dispatch-guard.test.cjs",
+        ".opencode/plugins/tests/system-deep-loop-guard.test.cjs"
+      ]
+    },
+    {
+      "id": "finding-7-1-opencode-is-a-symlink-mirror-agents-commands-hooks-bin-skills-scripts-repo-rules",
+      "text": "`.opencode` is a symlink mirror: `agents`, `commands`, `hooks`, `bin`, `skills`, `scripts`, `repo-rules` all point into `.skilled/` — zero duplicate content, so every edit made on the source tree propagates. `.opencode/plugins` is the only real directory [SOURCE: .opencode (symlink listing)]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".claude/agents/deep-improvement.md",
+        ".claude/commands/deep/model-benchmark.md",
+        ".codex/agents/deep-improvement.toml",
+        ".codex/prompts/deep-model-benchmark.md",
+        ".cursor/agents/deep-improvement.md (symlink)",
+        ".pi/agents/deep-improvement.md",
+        ".pi/prompts/deep-model-benchmark.md",
+        ".devin/agents/deep-improvement/AGENT.md (symlink)",
+        ".hermes/prompts/deep-model-benchmark.md",
+        ".hermes/skills/system-deep-loop/SKILL.md",
+        ".opencode/plugins/system-deep-loop-guard.js",
+        ".opencode/plugins/tests/claude-task-dispatch-guard.test.cjs",
+        ".opencode/plugins/tests/system-deep-loop-guard.test.cjs"
+      ]
+    },
+    {
+      "id": "finding-7-9-pi-prompts-deep-model-benchmark-md-and-pi-agents-deep-improvement-md-are-generat",
+      "text": "`.pi/prompts/deep-model-benchmark.md` and `.pi/agents/deep-improvement.md` are generated Pi mirrors (generator `sync-prompts-pi.cjs`). **Regenerate** [SOURCE: .pi/agents/deep-improvement.md]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".claude/agents/deep-improvement.md",
+        ".claude/commands/deep/model-benchmark.md",
+        ".codex/agents/deep-improvement.toml",
+        ".codex/prompts/deep-model-benchmark.md",
+        ".cursor/agents/deep-improvement.md (symlink)",
+        ".pi/agents/deep-improvement.md",
+        ".pi/prompts/deep-model-benchmark.md",
+        ".devin/agents/deep-improvement/AGENT.md (symlink)",
+        ".hermes/prompts/deep-model-benchmark.md",
+        ".hermes/skills/system-deep-loop/SKILL.md",
+        ".opencode/plugins/system-deep-loop-guard.js",
+        ".opencode/plugins/tests/claude-task-dispatch-guard.test.cjs",
+        ".opencode/plugins/tests/system-deep-loop-guard.test.cjs"
+      ]
+    },
+    {
+      "id": "finding-7-13-iteration-6-gap-resolved-opencode-bin-is-a-symlink-to-skilled-bin-so-the-compile",
+      "text": "Iteration-6 gap resolved: `.opencode/bin` is a symlink to `.skilled/bin`, so the compiled-routing tree has one source; there is no second copy to edit. The `010-live-activation` string seen earlier was an outdated path inside a historical benchmark report, not a live tree [SOURCE: .opencode/bin -> ../.skilled/bin]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".claude/agents/deep-improvement.md",
+        ".claude/commands/deep/model-benchmark.md",
+        ".codex/agents/deep-improvement.toml",
+        ".codex/prompts/deep-model-benchmark.md",
+        ".cursor/agents/deep-improvement.md (symlink)",
+        ".pi/agents/deep-improvement.md",
+        ".pi/prompts/deep-model-benchmark.md",
+        ".devin/agents/deep-improvement/AGENT.md (symlink)",
+        ".hermes/prompts/deep-model-benchmark.md",
+        ".hermes/skills/system-deep-loop/SKILL.md",
+        ".opencode/plugins/system-deep-loop-guard.js",
+        ".opencode/plugins/tests/claude-task-dispatch-guard.test.cjs",
+        ".opencode/plugins/tests/system-deep-loop-guard.test.cjs"
+      ]
+    },
+    {
+      "id": "finding-7-14-scope-assumption-recorded-worktrees-and-barter-are-duplicate-checkouts-barter-ho",
+      "text": "Scope assumption recorded: `.worktrees/**` and `barter/**` are duplicate checkouts (barter holds an older copy including `barter/ai-speckit/coder/.skilled/...`); the master sweep excluded them as out-of-scope copies. If the deletion plan must cover those trees, they are regenerated from the main tree, not edited in place [SOURCE: barter/ai-speckit/coder/.skilled/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".claude/agents/deep-improvement.md",
+        ".claude/commands/deep/model-benchmark.md",
+        ".codex/agents/deep-improvement.toml",
+        ".codex/prompts/deep-model-benchmark.md",
+        ".cursor/agents/deep-improvement.md (symlink)",
+        ".pi/agents/deep-improvement.md",
+        ".pi/prompts/deep-model-benchmark.md",
+        ".devin/agents/deep-improvement/AGENT.md (symlink)",
+        ".hermes/prompts/deep-model-benchmark.md",
+        ".hermes/skills/system-deep-loop/SKILL.md",
+        ".opencode/plugins/system-deep-loop-guard.js",
+        ".opencode/plugins/tests/claude-task-dispatch-guard.test.cjs",
+        ".opencode/plugins/tests/system-deep-loop-guard.test.cjs"
+      ]
+    },
+    {
+      "id": "finding-7-3-the-two-guard-tests-hardcode-the-multiplexed-mode-set-opencode-plugins-tests-cla",
+      "text": "The two guard tests hardcode the multiplexed mode set: `.opencode/plugins/tests/claude-task-dispatch-guard.test.cjs:48,168,185` and `system-deep-loop-guard.test.cjs:36,111,125` include `model-benchmark` in fixtures and expected advisory strings. **EDIT** both tests [SOURCE: .opencode/plugins/tests/claude-task-dispatch-guard.test.cjs:48]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".claude/agents/deep-improvement.md",
+        ".claude/commands/deep/model-benchmark.md",
+        ".codex/agents/deep-improvement.toml",
+        ".codex/prompts/deep-model-benchmark.md",
+        ".cursor/agents/deep-improvement.md (symlink)",
+        ".pi/agents/deep-improvement.md",
+        ".pi/prompts/deep-model-benchmark.md",
+        ".devin/agents/deep-improvement/AGENT.md (symlink)",
+        ".hermes/prompts/deep-model-benchmark.md",
+        ".hermes/skills/system-deep-loop/SKILL.md",
+        ".opencode/plugins/system-deep-loop-guard.js",
+        ".opencode/plugins/tests/claude-task-dispatch-guard.test.cjs",
+        ".opencode/plugins/tests/system-deep-loop-guard.test.cjs"
+      ]
+    },
+    {
+      "id": "finding-8-2-env-example-451-452-documents-the-same-two-jev-features-with-benchmark-wording-e",
+      "text": "`.env.example:451-452` documents the same two JEV features with benchmark wording. **EDIT** both comment lines [SOURCE: .env.example:451-452]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/hooks/hook-flags.env.example",
+        ".env.example",
+        "README.md",
+        ".skilled/changelog/skilled/v3+/v3.5.0.0.md",
+        ".skilled/changelog/skilled/v4.0.0.0.md",
+        ".skilled/changelog/skilled/v4.0.0.3.md",
+        ".skilled/skills/system-deep-loop/changelog/v1.5.0.0.md",
+        ".skilled/skills/system-deep-loop/changelog/v1.5.1.0.md",
+        ".skilled/skills/system-deep-loop/deep-ai-council/README.md",
+        ".skilled/skills/system-deep-loop/deep-review/README.md",
+        ".skilled/scripts/git-hooks/pre-commit"
+      ]
+    },
+    {
+      "id": "finding-8-1-skilled-hooks-hook-flags-env-example-54-55-documents-jev-feature-flags-in-terms-",
+      "text": "`.skilled/hooks/hook-flags.env.example:54-55` documents JEV feature flags in terms of model-benchmark usage (reviewer verdict fallback, D4 hallucination grader). **EDIT** both comments [SOURCE: .skilled/hooks/hook-flags.env.example:55]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/hooks/hook-flags.env.example",
+        ".env.example",
+        "README.md",
+        ".skilled/changelog/skilled/v3+/v3.5.0.0.md",
+        ".skilled/changelog/skilled/v4.0.0.0.md",
+        ".skilled/changelog/skilled/v4.0.0.3.md",
+        ".skilled/skills/system-deep-loop/changelog/v1.5.0.0.md",
+        ".skilled/skills/system-deep-loop/changelog/v1.5.1.0.md",
+        ".skilled/skills/system-deep-loop/deep-ai-council/README.md",
+        ".skilled/skills/system-deep-loop/deep-review/README.md",
+        ".skilled/scripts/git-hooks/pre-commit"
+      ]
+    },
+    {
+      "id": "finding-8-5-skilled-skills-system-deep-loop-deep-ai-council-readme-md-134-describes-deep-imp",
+      "text": "`.skilled/skills/system-deep-loop/deep-ai-council/README.md:134` describes `deep-improvement` as running both command lanes. **EDIT** [SOURCE: .skilled/skills/system-deep-loop/deep-ai-council/README.md:134]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/hooks/hook-flags.env.example",
+        ".env.example",
+        "README.md",
+        ".skilled/changelog/skilled/v3+/v3.5.0.0.md",
+        ".skilled/changelog/skilled/v4.0.0.0.md",
+        ".skilled/changelog/skilled/v4.0.0.3.md",
+        ".skilled/skills/system-deep-loop/changelog/v1.5.0.0.md",
+        ".skilled/skills/system-deep-loop/changelog/v1.5.1.0.md",
+        ".skilled/skills/system-deep-loop/deep-ai-council/README.md",
+        ".skilled/skills/system-deep-loop/deep-review/README.md",
+        ".skilled/scripts/git-hooks/pre-commit"
+      ]
+    },
+    {
+      "id": "finding-8-6-skilled-skills-system-deep-loop-deep-review-readme-md-176-describes-the-two-lane",
+      "text": "`.skilled/skills/system-deep-loop/deep-review/README.md:176` describes the two lanes. **EDIT** [SOURCE: .skilled/skills/system-deep-loop/deep-review/README.md:176]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/hooks/hook-flags.env.example",
+        ".env.example",
+        "README.md",
+        ".skilled/changelog/skilled/v3+/v3.5.0.0.md",
+        ".skilled/changelog/skilled/v4.0.0.0.md",
+        ".skilled/changelog/skilled/v4.0.0.3.md",
+        ".skilled/skills/system-deep-loop/changelog/v1.5.0.0.md",
+        ".skilled/skills/system-deep-loop/changelog/v1.5.1.0.md",
+        ".skilled/skills/system-deep-loop/deep-ai-council/README.md",
+        ".skilled/skills/system-deep-loop/deep-review/README.md",
+        ".skilled/scripts/git-hooks/pre-commit"
+      ]
+    },
+    {
+      "id": "finding-8-7-all-seven-runtime-hook-configuration-sets-and-skilled-scripts-git-hooks-contain-",
+      "text": "All seven runtime hook configuration sets and `.skilled/scripts/git-hooks/**` contain no model-benchmark reference (verified sweep) — nothing to change there [SOURCE: .skilled/scripts/git-hooks/pre-commit]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/hooks/hook-flags.env.example",
+        ".env.example",
+        "README.md",
+        ".skilled/changelog/skilled/v3+/v3.5.0.0.md",
+        ".skilled/changelog/skilled/v4.0.0.0.md",
+        ".skilled/changelog/skilled/v4.0.0.3.md",
+        ".skilled/skills/system-deep-loop/changelog/v1.5.0.0.md",
+        ".skilled/skills/system-deep-loop/changelog/v1.5.1.0.md",
+        ".skilled/skills/system-deep-loop/deep-ai-council/README.md",
+        ".skilled/skills/system-deep-loop/deep-review/README.md",
+        ".skilled/scripts/git-hooks/pre-commit"
+      ]
+    },
+    {
+      "id": "finding-8-4-every-changelog-mention-is-historical-skilled-changelog-skilled-v3-v3-5-0-0-md-3",
+      "text": "Every changelog mention is historical: `.skilled/changelog/skilled/v3+/v3.5.0.0.md:37,129-131`, `v4.0.0.3.md:244,255,353`, `v4.0.0.0.md:111`, `.skilled/skills/system-deep-loop/changelog/v1.5.0.0.md:36`, `v1.5.1.0.md:20`, and the deep-improvement changelogs v1.9.0.0 through v1.19.1.0. **KEEP-AS-HISTORY** (no edits) [SOURCE: .skilled/changelog/skilled/v3+/v3.5.0.0.md:131]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/hooks/hook-flags.env.example",
+        ".env.example",
+        "README.md",
+        ".skilled/changelog/skilled/v3+/v3.5.0.0.md",
+        ".skilled/changelog/skilled/v4.0.0.0.md",
+        ".skilled/changelog/skilled/v4.0.0.3.md",
+        ".skilled/skills/system-deep-loop/changelog/v1.5.0.0.md",
+        ".skilled/skills/system-deep-loop/changelog/v1.5.1.0.md",
+        ".skilled/skills/system-deep-loop/deep-ai-council/README.md",
+        ".skilled/skills/system-deep-loop/deep-review/README.md",
+        ".skilled/scripts/git-hooks/pre-commit"
+      ]
+    },
+    {
+      "id": "finding-8-8-external-consumption-no-publish-manifest-root-skilled-opencode-system-deep-loop-",
+      "text": "External consumption: no publish manifest (root, `.skilled`, `.opencode`, `system-deep-loop` package.json) references the mode, and its identifiers are internal routing keys (command, workflowMode, loopHostMode). Nothing outside the repository consumes it; the only copies are the in-repo mirror trees already classified [INFERENCE: based on the publish-manifest probe plus the repo-wide master sweep]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/hooks/hook-flags.env.example",
+        ".env.example",
+        "README.md",
+        ".skilled/changelog/skilled/v3+/v3.5.0.0.md",
+        ".skilled/changelog/skilled/v4.0.0.0.md",
+        ".skilled/changelog/skilled/v4.0.0.3.md",
+        ".skilled/skills/system-deep-loop/changelog/v1.5.0.0.md",
+        ".skilled/skills/system-deep-loop/changelog/v1.5.1.0.md",
+        ".skilled/skills/system-deep-loop/deep-ai-council/README.md",
+        ".skilled/skills/system-deep-loop/deep-review/README.md",
+        ".skilled/scripts/git-hooks/pre-commit"
+      ]
+    },
+    {
+      "id": "finding-8-3-root-readme-md-references-the-mode-at-lines-555-556-loop-family-description-649-",
+      "text": "Root `README.md` references the mode at lines 555-556 (loop family description), 649-651 (Lane A/Lane B paragraph), 867-869 (JEV feature bullet), 1242-1243 (command bullet `/deep:model-benchmark`), and 1431-1433 (skills table row). **EDIT** all five sites [SOURCE: README.md:650]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/hooks/hook-flags.env.example",
+        ".env.example",
+        "README.md",
+        ".skilled/changelog/skilled/v3+/v3.5.0.0.md",
+        ".skilled/changelog/skilled/v4.0.0.0.md",
+        ".skilled/changelog/skilled/v4.0.0.3.md",
+        ".skilled/skills/system-deep-loop/changelog/v1.5.0.0.md",
+        ".skilled/skills/system-deep-loop/changelog/v1.5.1.0.md",
+        ".skilled/skills/system-deep-loop/deep-ai-council/README.md",
+        ".skilled/skills/system-deep-loop/deep-review/README.md",
+        ".skilled/scripts/git-hooks/pre-commit"
+      ]
+    },
+    {
+      "id": "finding-9-1-skilled-skills-system-deep-loop-runtime-scripts-append-mode-event-cjs-97-normali",
+      "text": "`.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:97` normalizes the mode name and `:143-146` dynamically imports the model-benchmark ledger schema for that mode. **EDIT** — remove the mode branch [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:143-146]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+        ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/types.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/{types,shipped-census}.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/blinded-adjudication/{contracts,mode-adapters,event-registry}.ts",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-authority-cli.vitest.ts",
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+        ".skilled/skills/system-spec-kit/runtime/tests/continuity-freshness.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample/"
+      ]
+    },
+    {
+      "id": "finding-9-5-blinded-adjudication-contracts-ts-17-58-mode-adapters-ts-100-104-163-165-181-190",
+      "text": "`blinded-adjudication/contracts.ts:17,58`, `mode-adapters.ts:100-104,163-165,181-190`, and `event-registry.ts:123` define the MODEL_BENCHMARK decision kind, its required counterfactuals, adapters, and registry row. **EDIT** — remove the kind and adapters [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/blinded-adjudication/mode-adapters.ts:163-165]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+        ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/types.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/{types,shipped-census}.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/blinded-adjudication/{contracts,mode-adapters,event-registry}.ts",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-authority-cli.vitest.ts",
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+        ".skilled/skills/system-spec-kit/runtime/tests/continuity-freshness.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample/"
+      ]
+    },
+    {
+      "id": "finding-9-2-legacy-projections-legacy-projection-manifest-ts-declares-three-mode-surfaces-im",
+      "text": "`legacy-projections/legacy-projection-manifest.ts` declares three mode surfaces: improvement-config manifests (mixed path including `model-benchmark-config.json`, `:147-148`), `model-benchmark-hub-output` (`:170-172`), and `model-grader-cache` (`:186-189`). **EDIT** all three [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts:170-172]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+        ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/types.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/{types,shipped-census}.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/blinded-adjudication/{contracts,mode-adapters,event-registry}.ts",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-authority-cli.vitest.ts",
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+        ".skilled/skills/system-spec-kit/runtime/tests/continuity-freshness.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample/"
+      ]
+    },
+    {
+      "id": "finding-9-3-per-mode-authority-flip-types-ts-26-135-lists-model-benchmark-in-the-authority-m",
+      "text": "`per-mode-authority-flip/types.ts:26,135` lists `model-benchmark` in the authority-mode union and mode array. **EDIT** [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/types.ts:135]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+        ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/types.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/{types,shipped-census}.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/blinded-adjudication/{contracts,mode-adapters,event-registry}.ts",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-authority-cli.vitest.ts",
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+        ".skilled/skills/system-spec-kit/runtime/tests/continuity-freshness.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample/"
+      ]
+    },
+    {
+      "id": "finding-9-9-system-spec-kit-references-structure-folder-structure-md-239-243-documents-the-i",
+      "text": "`system-spec-kit/references/structure/folder-structure.md:239,243` documents the improvement folder and its writers as `/deep:agent-improvement` and `/deep:model-benchmark`. **EDIT** [SOURCE: .skilled/skills/system-spec-kit/references/structure/folder-structure.md:239]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+        ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/types.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/{types,shipped-census}.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/blinded-adjudication/{contracts,mode-adapters,event-registry}.ts",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-authority-cli.vitest.ts",
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+        ".skilled/skills/system-spec-kit/runtime/tests/continuity-freshness.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample/"
+      ]
+    },
+    {
+      "id": "finding-9-10-system-spec-kit-runtime-env-reference-md-439-440-documents-the-two-jev-features-",
+      "text": "`system-spec-kit/runtime/ENV-REFERENCE.md:439-440` documents the two JEV features in model-benchmark terms. **EDIT** the descriptions, keep the variables [SOURCE: .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:439-440]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+        ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/types.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/{types,shipped-census}.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/blinded-adjudication/{contracts,mode-adapters,event-registry}.ts",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-authority-cli.vitest.ts",
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+        ".skilled/skills/system-spec-kit/runtime/tests/continuity-freshness.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample/"
+      ]
+    },
+    {
+      "id": "finding-9-12-system-spec-kit-runtime-tests-continuity-freshness-vitest-ts-21-pins-reviewer-st",
+      "text": "`system-spec-kit/runtime/tests/continuity-freshness.vitest.ts:21` pins `reviewer-stale-verdict.json` from the deleted fixture set. **EDIT** — replace or drop the reference [SOURCE: .skilled/skills/system-spec-kit/runtime/tests/continuity-freshness.vitest.ts:21]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+        ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/types.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/{types,shipped-census}.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/blinded-adjudication/{contracts,mode-adapters,event-registry}.ts",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-authority-cli.vitest.ts",
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+        ".skilled/skills/system-spec-kit/runtime/tests/continuity-freshness.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample/"
+      ]
+    },
+    {
+      "id": "finding-9-4-write-set-conflict-graph-types-ts-17-declares-stage-006-model-benchmark-shipped-",
+      "text": "`write-set-conflict-graph/types.ts:17` declares stage `006-model-benchmark`; `shipped-census.ts:118-121` binds the model runner/cache paths and `:471-500` declares the full 006 resource set (runner, cache, outputs). **EDIT** — remove the 006 declaration and its bindings [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/shipped-census.ts:471-500]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+        ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/types.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/{types,shipped-census}.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/blinded-adjudication/{contracts,mode-adapters,event-registry}.ts",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-authority-cli.vitest.ts",
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+        ".skilled/skills/system-spec-kit/runtime/tests/continuity-freshness.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample/"
+      ]
+    },
+    {
+      "id": "finding-9-14-compiled-routing-recheck-a-no-ignore-sweep-across-all-stages-003-014-confirms-th",
+      "text": "Compiled-routing recheck: a `--no-ignore` sweep across all stages (003-014) confirms the mode is anchored only in `009-parent-hub-rollout/002-system-deep-loop` (registry compiler + canary fixtures, iteration 6 set). No other stage references it [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs:32-33]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+        ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/types.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/{types,shipped-census}.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/blinded-adjudication/{contracts,mode-adapters,event-registry}.ts",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-authority-cli.vitest.ts",
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+        ".skilled/skills/system-spec-kit/runtime/tests/continuity-freshness.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample/"
+      ]
+    },
+    {
+      "id": "finding-9-11-retrieval-fixtures-carry-the-mode-phrase-variants-json-rows-at-35757-51396-52044",
+      "text": "Retrieval fixtures carry the mode: `phrase-variants.json` rows at 35757, 51396, 52044, 54759, 63679-63683 and more; `semantic-probes.json:1134` probes `mixed-executor-methodology.md`; `generation-diagnostics.json` lists dozens of now-deleted paths (playbook pages, scorer cache, MODES/SWEEP). **EDIT/regenerate** all three; `corpus-manifest.json` also matched the master sweep and its exact lines are re-captured in iteration 10 [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json:63679-63683]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+        ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/types.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/{types,shipped-census}.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/blinded-adjudication/{contracts,mode-adapters,event-registry}.ts",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-authority-cli.vitest.ts",
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+        ".skilled/skills/system-spec-kit/runtime/tests/continuity-freshness.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample/"
+      ]
+    },
+    {
+      "id": "finding-9-8-runtime-unit-tests-model-benchmark-ledger-schema-vitest-ts-model-benchmark-reduc",
+      "text": "Runtime unit tests: `model-benchmark-ledger-schema.vitest.ts`, `model-benchmark-reducers.vitest.ts`, `model-benchmark-sealed-artifacts.vitest.ts` are mode-exclusive — **DELETE**; `verify-authority-cli.vitest.ts:37,169,173`, `host-driven-improvement.vitest.ts:46`, plus `agent-improvement-reducers`, `blinded-adjudication`, `deep-improvement-common-ledger-schema`, `fanout-merge`, `write-set-conflict-graph` vitests carry mode arms or fixtures — **EDIT**; `tests/unit/README.md:92-94` rows — **EDIT** [SOURCE: .skilled/skills/system-deep-loop/runtime/tests/unit/verify-authority-cli.vitest.ts:37]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+        ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/types.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/{types,shipped-census}.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/blinded-adjudication/{contracts,mode-adapters,event-registry}.ts",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-authority-cli.vitest.ts",
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+        ".skilled/skills/system-spec-kit/runtime/tests/continuity-freshness.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample/"
+      ]
+    },
+    {
+      "id": "finding-9-7-the-deep-improvement-common-packages-ledger-schema-reducers-sealed-artifacts-are",
+      "text": "The `deep-improvement-common-*` packages (ledger schema, reducers, sealed artifacts) are shared with agent-improvement; they carry mode lists/rows. **EDIT** — remove the model-benchmark rows, keep Lane A [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-improvement-common-ledger-schema/deep-improvement-common-ledger-schema.ts]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+        ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/types.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/{types,shipped-census}.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/blinded-adjudication/{contracts,mode-adapters,event-registry}.ts",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-authority-cli.vitest.ts",
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+        ".skilled/skills/system-spec-kit/runtime/tests/continuity-freshness.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample/"
+      ]
+    },
+    {
+      "id": "finding-9-13-the-three-anchor-repair-sample-md-spec-fixtures-contain-historical-model-benchma",
+      "text": "The three `anchor-repair-sample/*.md` spec fixtures contain historical model-benchmark references (finding tables, file tables from 036-era specs). They are parser-test inputs. **KEEP-AS-HISTORY** — do not edit; changing them would change the anchor-repair test corpus [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample/specs_system-deep-loop_036-deep-loop-innovation_006-runtime-docs-and-integrity-hardening_007-improvement-promotion-authority_spec.md:136]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+        ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/types.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/{types,shipped-census}.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/blinded-adjudication/{contracts,mode-adapters,event-registry}.ts",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-authority-cli.vitest.ts",
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+        ".skilled/skills/system-spec-kit/runtime/tests/continuity-freshness.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample/"
+      ]
+    },
+    {
+      "id": "finding-9-6-three-runtime-packages-are-mode-exclusive-runtime-lib-model-benchmark-ledger-sch",
+      "text": "Three runtime packages are mode-exclusive: `runtime/lib/model-benchmark-ledger-schema` (4 files), `model-benchmark-reducers` (5 files), `model-benchmark-sealed-artifacts` (5 files). **DELETE** the packages [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/model-benchmark-ledger-schema/index.ts]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+        ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/types.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/{types,shipped-census}.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/blinded-adjudication/{contracts,mode-adapters,event-registry}.ts",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-authority-cli.vitest.ts",
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+        ".skilled/skills/system-spec-kit/runtime/tests/continuity-freshness.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample/"
+      ]
+    },
+    {
+      "id": "finding-10-8-skilled-bin-tests-sandboxes-holds-123-transient-test-artifact-files-stale-compil",
+      "text": "`.skilled/bin/tests/.sandboxes/**` holds 123 transient test-artifact files (stale compiled-routing sandbox copies of the 009 fixtures). **Generated temp** — clean or let the owning test regenerate; never hand-edit [SOURCE: .skilled/bin/tests/.sandboxes/]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/commands/doctor/assets/doctor-deep-loop.yaml",
+        ".skilled/skills/system-deep-loop/runtime/scripts/check-projection-coverage.cjs",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/advisor-integration/command-bridge-guard.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/improvement-lane-routing/model-benchmark.md",
+        ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/deep-loop-mode-classification.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+        "BARTER.md",
+        ".skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/scorer/explicit.js",
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json"
+      ]
+    },
+    {
+      "id": "finding-10-6-barter-md-497-repository-root-hand-written-barter-framework-doc-lists-deep-model",
+      "text": "`BARTER.md:497` (repository root, hand-written Barter framework doc) lists `/deep:model-benchmark` among deep commands. This file was missed by the first master sweep and caught by the gap sweep — evidence that the sweep, not a single pass, is what guarantees coverage. **EDIT** [SOURCE: BARTER.md:497]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/commands/doctor/assets/doctor-deep-loop.yaml",
+        ".skilled/skills/system-deep-loop/runtime/scripts/check-projection-coverage.cjs",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/advisor-integration/command-bridge-guard.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/improvement-lane-routing/model-benchmark.md",
+        ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/deep-loop-mode-classification.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+        "BARTER.md",
+        ".skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/scorer/explicit.js",
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json"
+      ]
+    },
+    {
+      "id": "finding-10-5-corpus-manifest-json-lines-6125-6127-6144-6915-6916-6925-6977-list-the-sk-create",
+      "text": "`corpus-manifest.json` lines 6125-6127, 6144, 6915-6916, 6925, 6977+ list the sk-create-benchmark family files and deep-improvement model-benchmark paths. **EDIT** (regenerate the manifest) [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json:6125-6127]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/commands/doctor/assets/doctor-deep-loop.yaml",
+        ".skilled/skills/system-deep-loop/runtime/scripts/check-projection-coverage.cjs",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/advisor-integration/command-bridge-guard.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/improvement-lane-routing/model-benchmark.md",
+        ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/deep-loop-mode-classification.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+        "BARTER.md",
+        ".skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/scorer/explicit.js",
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json"
+      ]
+    },
+    {
+      "id": "finding-10-2-among-all-runtime-scripts-cjs-only-append-mode-event-cjs-carries-the-mode-iterat",
+      "text": "Among all runtime `scripts/*.cjs`, only `append-mode-event.cjs` carries the mode (iteration 9 edit). The validators `check-contract-drift.cjs`, `check-documentation-drift.cjs`, `check-ledger-stem-producers.cjs`, `check-projection-coverage.cjs`, `check-protocol-append-sites.cjs`, `verify-authority.cjs`, and `compile-command-contracts.cjs` are generic and registry-driven. **No edit**; all of them must pass post-deletion as gates [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/check-projection-coverage.cjs]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/commands/doctor/assets/doctor-deep-loop.yaml",
+        ".skilled/skills/system-deep-loop/runtime/scripts/check-projection-coverage.cjs",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/advisor-integration/command-bridge-guard.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/improvement-lane-routing/model-benchmark.md",
+        ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/deep-loop-mode-classification.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+        "BARTER.md",
+        ".skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/scorer/explicit.js",
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json"
+      ]
+    },
+    {
+      "id": "finding-10-7-compiled-advisor-dist-skilled-skills-system-skill-advisor-runtime-dist-runtime-l",
+      "text": "Compiled advisor dist: `.skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/scorer/{aliases,explicit,projection}.js` are gitignored compiled copies of the iteration-4 TS sources. **REBUILD** after the TS edits (`npm run build`); never hand-edit compiled output [SOURCE: .skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/scorer/explicit.js]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/commands/doctor/assets/doctor-deep-loop.yaml",
+        ".skilled/skills/system-deep-loop/runtime/scripts/check-projection-coverage.cjs",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/advisor-integration/command-bridge-guard.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/improvement-lane-routing/model-benchmark.md",
+        ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/deep-loop-mode-classification.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+        "BARTER.md",
+        ".skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/scorer/explicit.js",
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json"
+      ]
+    },
+    {
+      "id": "finding-10-1-doctor-commands-carry-no-model-benchmark-reference-sweep-of-skilled-commands-doc",
+      "text": "Doctor commands carry no model-benchmark reference (sweep of `.skilled/commands/doctor/**` clean); `doctor-deep-loop.yaml` validates loops generically. **No edit** — but doctor runs after the deletion are part of the verification plan [SOURCE: .skilled/commands/doctor/assets/doctor-deep-loop.yaml]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/commands/doctor/assets/doctor-deep-loop.yaml",
+        ".skilled/skills/system-deep-loop/runtime/scripts/check-projection-coverage.cjs",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/advisor-integration/command-bridge-guard.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/improvement-lane-routing/model-benchmark.md",
+        ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/deep-loop-mode-classification.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+        "BARTER.md",
+        ".skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/scorer/explicit.js",
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json"
+      ]
+    },
+    {
+      "id": "finding-10-4-hub-feature-catalog-feature-catalog-md-15-35-edit-deep-loop-mode-classification-",
+      "text": "Hub feature-catalog: `feature-catalog.md:15,35` — **EDIT**; `deep-loop-mode-classification/deep-loop-mode-classification.md:28` — **EDIT** [SOURCE: .skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/deep-loop-mode-classification.md:28]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/commands/doctor/assets/doctor-deep-loop.yaml",
+        ".skilled/skills/system-deep-loop/runtime/scripts/check-projection-coverage.cjs",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/advisor-integration/command-bridge-guard.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/improvement-lane-routing/model-benchmark.md",
+        ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/deep-loop-mode-classification.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+        "BARTER.md",
+        ".skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/scorer/explicit.js",
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json"
+      ]
+    },
+    {
+      "id": "finding-10-3-hub-playbook-manual-testing-playbook-md-39-160-161-232-lane-list-il-002-row-cate",
+      "text": "Hub playbook: `manual-testing-playbook.md:39,160-161,232` (lane list, IL-002 row, category map) — **EDIT**; `improvement-lane-routing/model-benchmark.md` (IL-002 scenario) — **DELETE**; `advisor-integration/command-bridge-guard.md:17-78` (Lane B command-bridge scenario) — **EDIT**; `advisor-integration/no-false-fire-code-edit.md:41` (mode list) — **EDIT** [SOURCE: .skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md:161]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/commands/doctor/assets/doctor-deep-loop.yaml",
+        ".skilled/skills/system-deep-loop/runtime/scripts/check-projection-coverage.cjs",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/advisor-integration/command-bridge-guard.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/improvement-lane-routing/model-benchmark.md",
+        ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/deep-loop-mode-classification.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+        "BARTER.md",
+        ".skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/scorer/explicit.js",
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json"
+      ]
+    },
+    {
+      "id": "finding-10-10-scope-statement-consolidated-specs-opencode-specs-worktrees-barter-and-the-linea",
+      "text": "Scope statement (consolidated): `specs/**`, `.opencode/specs/**`, `.worktrees/**`, `barter/**`, and the lineage-local `containment/**` are out of scope as spec trees, duplicate checkouts, or this run's own artifacts. Within scope, the inventory is complete across all five key questions [INFERENCE: based on the A/B reconciliation in finding 9 plus completion of KQ1-KQ5]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/commands/doctor/assets/doctor-deep-loop.yaml",
+        ".skilled/skills/system-deep-loop/runtime/scripts/check-projection-coverage.cjs",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/advisor-integration/command-bridge-guard.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/improvement-lane-routing/model-benchmark.md",
+        ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/deep-loop-mode-classification.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+        "BARTER.md",
+        ".skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/scorer/explicit.js",
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json"
+      ]
+    },
+    {
+      "id": "finding-10-9-strict-re-scan-reconciliation-a-default-visible-282-files-b-no-ignore-hidden-420",
+      "text": "Strict re-scan reconciliation: A (default-visible) = 282 files, B (`--no-ignore --hidden`) = 420; A-only empty; every B-only residual falls into five classified classes: gitignored runtime mirrors (11 files, iteration 7), advisor compiled dist (3 files, finding 7), test sandboxes (123 files, finding 8), `BARTER.md` (finding 6), and nothing else. The `cite-drift-redirects.json` thread resolved: its genuine strict-pattern matches at `:1788-1789, 3786-3787, 3804-3805` are `.opencode/specs/**` spec-folder redirect entries — **KEEP-AS-HISTORY** as spec-tree history, not operational mode references [SOURCE: .skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json:1788-1789]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/commands/doctor/assets/doctor-deep-loop.yaml",
+        ".skilled/skills/system-deep-loop/runtime/scripts/check-projection-coverage.cjs",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/advisor-integration/command-bridge-guard.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/improvement-lane-routing/model-benchmark.md",
+        ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/deep-loop-mode-classification.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+        "BARTER.md",
+        ".skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/scorer/explicit.js",
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-8eeb50f0ee63",
+      "text": "Assuming `routing-allowlist.json` exists at hub root: it does not; only the deep-improvement packet has one (iteration 3 scope).",
+      "contentHash": "8eeb50f0ee63",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-0610e00b521b",
+      "text": "None yet. The master sweep file list is now the authoritative work partition.",
+      "contentHash": "0610e00b521b",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-c5034839fe35",
+      "text": "Searching only `model-benchmark` as an exact string: misses \"model benchmark\" prose and `benchmark-harness` alias; used the `model[-_ ]?benchmark` alternation instead (recovered both).",
+      "contentHash": "c5034839fe35",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-b87dc1379704",
+      "text": "`assets/compiled/manifest.jsonl` and `assets/legacy/` bodies: confirmed no model-benchmark pairs exist; only the README sentences mention it.",
+      "contentHash": "b87dc1379704",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-40517eaf1c34",
+      "text": "Searching for model-benchmark inside `research.md`, `review.md`, `ai-council.md`: no matches; the three sibling command files do not reference Lane B.",
+      "contentHash": "40517eaf1c34",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-48a97657b7c9",
+      "text": "Treating `run-benchmark.cjs` / `benchmark-profiles/default.json` as Lane B-only: Lane A YAMLs call them directly (finding 11), so they are shared.",
+      "contentHash": "48a97657b7c9",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-a50082b589b0",
+      "text": "Treating all `deep-agent-improvement-*` mentions as DELETE: the Lane A surfaces survive; only their Lane B paragraphs are edits.",
+      "contentHash": "a50082b589b0",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-eca9aba75908",
+      "text": "Classifying `benchmark/reports/**` as mode-owned: they are historical reports about the skill (info rows only) and carry no Lane B run outputs (\"Recorded Lane B runs: none yet\").",
+      "contentHash": "eca9aba75908",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-41a8a3e4d5ca",
+      "text": "Classifying the `benchmark-integration/` playbook pages as Lane B-only: the playbook's own lane map puts that category in the shared set.",
+      "contentHash": "41a8a3e4d5ca",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-018c4a8df01c",
+      "text": "Grepping for a committed `benchmark/model-benchmark/{run_label}` outputs tree: none exists; only the two historical report folders are present.",
+      "contentHash": "018c4a8df01c",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-ecb3f4d53092",
+      "text": "Treating `scripts/model-benchmark/` as one DELETE directory: Lane A consumes `run-benchmark.cjs` from it, so the directory is a carve-out, not a whole-tree delete.",
+      "contentHash": "ecb3f4d53092",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-a8afb9c4123a",
+      "text": "`routing-accuracy/` and `fixtures/` (no matches); `command-bridges/README.md` does not exist.",
+      "contentHash": "a8afb9c4123a",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-2d847caad240",
+      "text": "Regenerating the deep routing alias projection in `aliases.ts`: the generated group set does not include `deep-model-benchmark`; only the manual group needs deletion and the embedded hash stays valid.",
+      "contentHash": "2d847caad240",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-e5a2e20f96a1",
+      "text": "Treating the skill-graph `model benchmark` fragment as a deep-loop routing signal: it belongs to sk-doc's harvested trigger set.",
+      "contentHash": "e5a2e20f96a1",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-89cd896493c2",
+      "text": "`benchmark/reports/compiled-routing/**` under sk-doc: historical benchmark reports, KEEP-AS-HISTORY, no edit needed.",
+      "contentHash": "89cd896493c2",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-04c72018e60f",
+      "text": "Treating `cite-drift-redirects.json` as an in-scope reference: verified false positive from the dot wildcard.",
+      "contentHash": "04c72018e60f",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-5fb0e0a63222",
+      "text": "Treating the whole `sk-create-benchmark` skill as DELETE: it is a four-family skill; only the model-benchmark family is removed and the shared/other families stay.",
+      "contentHash": "5fb0e0a63222",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-b806d0481c37",
+      "text": "`cli-classifier/README.md` beyond the JEV table has no other mode references.",
+      "contentHash": "b806d0481c37",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-8ee3ab4faf5f",
+      "text": "Editing the JEV feature implementations for this deletion: only documentation caller references change.",
+      "contentHash": "8ee3ab4faf5f",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-396b042a43cf",
+      "text": "Treating the sk-prompt/system-deep-loop benchmark reports as editable: they are historical measurements; no edit, KEEP-AS-HISTORY.",
+      "contentHash": "396b042a43cf",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-e9d26aa28cb5",
+      "text": "Covering `.worktrees/**`/`barter/**` in this inventory: duplicate checkouts; recorded as an explicit scope assumption.",
+      "contentHash": "e9d26aa28cb5",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-9295cd9522f5",
+      "text": "Editing `.cursor`, `.devin`, `.opencode` file copies directly: they are symlinks or generated mirrors.",
+      "contentHash": "9295cd9522f5",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-1be223f658ad",
+      "text": "Editing the guard plugin source: it resolves modes from `mode-registry.json` at runtime.",
+      "contentHash": "1be223f658ad",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-31d8900272bd",
+      "text": "Runtime `SYNC.md` files: no mode mentions.",
+      "contentHash": "31d8900272bd",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-c9f458c44fd7",
+      "text": "`.pi/extensions` and runtime hook JSONs: no matches.",
+      "contentHash": "c9f458c44fd7",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-c0760c30e61c",
+      "text": "Claiming external consumers exist: the probe found none; statement recorded as inference with its basis.",
+      "contentHash": "c0760c30e61c",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-1684aeb6d122",
+      "text": "Editing any changelog: all historical mentions are KEEP-AS-HISTORY.",
+      "contentHash": "1684aeb6d122",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-8cb7049aa6ec",
+      "text": "Hunting for hook-level registrations: hooks never reference the mode (verified across all seven runtimes).",
+      "contentHash": "8cb7049aa6ec",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-378f405f3f43",
+      "text": "`mode-contracts` under runtime/lib: no mode string present (per master sweep absence).",
+      "contentHash": "378f405f3f43",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-154928c7e13e",
+      "text": "Any compiled-routing stage outside 009: verified clean with a full-tree `--no-ignore` sweep.",
+      "contentHash": "154928c7e13e",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-6107a903704e",
+      "text": "Editing the anchor-repair spec fixtures: parser-test corpus, historical; edits would invalidate test expectations.",
+      "contentHash": "6107a903704e",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-b29db28879a9",
+      "text": "Regenerating `generation-diagnostics.json` by hand: it is a generated diagnostic dump; regen or bulk edit after deletion.",
+      "contentHash": "b29db28879a9",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-4509987181b7",
+      "text": "`.skilled/commands/doctor/**`: clean; no further surface there.",
+      "contentHash": "4509987181b7",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-6194bf3dbb28",
+      "text": "Doctor or validator edits: no mode references exist in them.",
+      "contentHash": "6194bf3dbb28",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-a23504834fd8",
+      "text": "Escalating `cite-drift-redirects.json`: resolved as spec-tree history.",
+      "contentHash": "a23504834fd8",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-f70c316eaf8b",
+      "text": "Hand-editing compiled dist or sandbox artifacts: both are generated; rebuild/regenerate.",
+      "contentHash": "f70c316eaf8b",
+      "addedAtIteration": 10
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 117,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.85,
+    "coverageBySources": {
+      "other": 120
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-deep-loop/039-deprecate-improvement-modes/001-removal-research/001-model-benchmark-inventory/research/lineages/deepseek/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

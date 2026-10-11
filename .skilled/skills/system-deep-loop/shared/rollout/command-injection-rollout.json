@@ -2,7 +2,5 @@
   "deep/research": "fallback",
   "deep/review": "fallback",
   "deep/ai-council": "fallback",
-  "deep/alignment": "fallback",
-  "deep/agent-improvement": "fallback",
-  "deep/model-benchmark": "fallback"
+  "deep/alignment": "fallback"
 }

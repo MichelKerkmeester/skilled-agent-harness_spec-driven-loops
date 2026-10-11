@@ -83,10 +83,8 @@ Before proceeding, please answer:
 Q0. Benchmark Family (if missing)
 A) mcp_promotion
 B) behavior_benchmark
-C) model_benchmark
-D) agent_improvement
 
-Only A is command-bound. Selecting B-D stops with a branch-not-registered
+Only A is command-bound. Selecting B stops with a branch-not-registered
 message and routes the user to the live create-benchmark skill contract.
 
 Q1. Skill or Owning Mode Name (if missing)

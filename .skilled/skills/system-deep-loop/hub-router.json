@@ -4,7 +4,7 @@
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
-    "tieBreak": ["research", "review", "ai-council", "agent-improvement", "model-benchmark"],
+    "tieBreak": ["research", "review", "ai-council"],
     "outcomes": {
       "single": "one dominant deep-loop intent routes to one mode",
       "orderedBundle": "clearly separate deep-loop intents route to an ordered mode list",
@@ -32,16 +32,6 @@
       "weight": 4,
       "classes": ["ai-council-aliases"],
       "resources": ["deep-ai-council/SKILL.md"]
-    },
-    "agent-improvement": {
-      "weight": 4,
-      "classes": ["agent-improvement-aliases"],
-      "resources": ["deep-improvement/SKILL.md"]
-    },
-    "model-benchmark": {
-      "weight": 4,
-      "classes": ["model-benchmark-aliases"],
-      "resources": ["deep-improvement/SKILL.md"]
     }
   },
   "vocabularyClasses": {
@@ -53,12 +43,6 @@
     },
     "ai-council-aliases": {
       "keywords": ["deep-ai-council", "ai council", "ai council deliberation", "multi-seat planning council", "council convergence", "planning council"]
-    },
-    "agent-improvement-aliases": {
-      "keywords": ["improve agent", "evaluate agent", "agent scoring", "agent candidate", "score agent candidate", "promote or rollback agent change", "agent-improvement", "deep-improvement", "agent improvement"]
-    },
-    "model-benchmark-aliases": {
-      "keywords": ["/deep:model-benchmark"]
     },
     "hub-identity": {
       "keywords": ["system-deep-loop", "deep-loop-workflows", "deep loop workflows", "deep loop workflow"]

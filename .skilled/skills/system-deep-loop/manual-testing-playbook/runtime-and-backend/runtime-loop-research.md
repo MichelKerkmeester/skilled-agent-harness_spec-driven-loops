@@ -68,7 +68,7 @@ For a deep research run, resolve the mode through the registry and state the bac
 |---|---|
 | 1 | Hub selects `workflowMode: research`. |
 | 2 | Response names `backendKind: runtime-loop-type` and `runtimeLoopType: research`. |
-| 3 | Response does not mention `loopHostMode`, `improvement-host`, or `external-adapter`. |
+| 3 | Response does not mention `external-adapter`. |
 
 ### Evidence
 
@@ -83,7 +83,6 @@ For a deep research run, resolve the mode through the registry and state the bac
 
 1. If backend is wrong, compare the response against `backendKind: "runtime-loop-type"`.
 2. If runtime loop type is missing, check `runtimeLoopType: "research"` in the registry.
-3. If improvement-host appears, verify that `research` has no `loopHostMode` field.
 
 ---
 

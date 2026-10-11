@@ -86,7 +86,7 @@ for g in runtime-mirrors/sync-runtime-mirrors runtime-mirrors/sync-hook-registra
 done
 
 # the forked agent pair, which no link protects
-node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs
+node .skilled/bin/check-agent-mirror-sync.cjs
 ```
 
 ---

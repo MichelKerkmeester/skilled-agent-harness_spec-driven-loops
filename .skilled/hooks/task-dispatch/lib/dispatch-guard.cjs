@@ -71,7 +71,7 @@ const MS_PER_DAY = 24 * 60 * 60 * 1000;
 // Generic subagents (context/review/write/debug) and ai-council (also reachable
 // via /deep:ai-council for multi-turn planning) are intentionally excluded from
 // loop-repeat counting.
-const LOOP_EXECUTOR_AGENTS = new Set(['deep-research', 'deep-review', 'deep-improvement']);
+const LOOP_EXECUTOR_AGENTS = new Set(['deep-research', 'deep-review']);
 
 // The parent commands retain a readable iteration line. Anchoring it and
 // checking its bounds prevents incidental prose from gaining command authority.

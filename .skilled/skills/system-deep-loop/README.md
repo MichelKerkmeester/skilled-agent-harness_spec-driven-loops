@@ -4,14 +4,14 @@ description: "The advisor-routable hub for the active deep-loop workflow familie
 trigger_phrases:
   - "system deep loop"
   - "deep loop workflows"
-  - "deep research review council improvement"
+  - "deep research review council"
   - "deep-loop hub routing"
 version: 1.4.3.0
 ---
 
 # system-deep-loop
 
-> One skill that routes to every active deep-loop workflow: research, review, AI Council and improvement.
+> One skill that routes to every active deep-loop workflow: research, review and AI Council.
 
 ---
 
@@ -19,10 +19,10 @@ version: 1.4.3.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Running an iterative deep-loop workflow: autonomous research, code review, multi-seat AI Council planning or evaluator-first improvement. |
+| **Use it for** | Running an iterative deep-loop workflow: autonomous research, code review or multi-seat AI Council planning. |
 | **Invoke with** | `Skill(system-deep-loop)`, the `/deep:*` commands or the deep agents. |
 | **Works on** | A spec packet or a scoped target, with externalized state kept under the packet. |
-| **Produces** | The mode's artifacts (for example research.md, review-report.md, council artifacts or improvement proposals) plus convergence state. |
+| **Produces** | The mode's artifacts (for example research.md, review-report.md or council artifacts) plus convergence state. |
 
 ---
 
@@ -58,9 +58,9 @@ The hub resolves `workflowMode: review` to the `deep-review` packet and runs its
 
 Every mode is described once in `mode-registry.json` by a three-tier discriminator, and no router re-derives that mapping:
 
-- **`workflowMode`** is the public key used by commands, the advisor and the registry, for example `research`, `ai-council` or `agent-improvement`.
-- **`runtimeLoopType`** is the graph-backed convergence key for `runtime/`, one of `research`, `review` or `council` for active modes. It is an explicit `null` only for the three improvement lanes and is never guessed from `workflowMode`.
-- **`backendKind`** is the registry-defined backend kind: `runtime-loop-type` or `improvement-host`. See [`mode-registry.json`](./mode-registry.json); the registry is authoritative for this roster.
+- **`workflowMode`** is the public key used by commands, the advisor and the registry, for example `research` or `ai-council`.
+- **`runtimeLoopType`** is the graph-backed convergence key for `runtime/`, one of `research`, `review` or `council` for active modes. It is never guessed from `workflowMode`.
+- **`backendKind`** is the registry-defined backend kind: `runtime-loop-type`. See [`mode-registry.json`](./mode-registry.json); the registry is authoritative for this roster.
 
 A router reads the registry, loads the mode packet, and selects the backend named by that entry.
 
@@ -79,12 +79,12 @@ The mode packets carry no `graph-metadata.json` of their own, so the advisor dis
 | `SKILL.md` | The routing hub, with no per-mode logic. |
 | `mode-registry.json` | The single source of truth for the three-tier discriminator. |
 | `graph-metadata.json` | The one advisor identity for the whole skill. |
-| `deep-research/`, `deep-review/`, `deep-ai-council/`, `deep-improvement/` | The active mode packets, each with its own `SKILL.md`, references, scripts, assets and governance. |
+| `deep-research/`, `deep-review/`, `deep-ai-council/` | The active mode packets, each with its own `SKILL.md`, references, scripts, assets and governance. |
 | `shared/synthesis/` | Synthesis helpers shared across modes, such as resource-map emission. |
 
 ### Commands and agents
 
-Active `/deep:*` commands and deep agents (`deep-research`, `deep-review`, `deep-improvement` and `ai-council`) dispatch into the matching mode packet. `@context` remains the one-shot retrieval agent.
+Active `/deep:*` commands and deep agents (`deep-research`, `deep-review` and `ai-council`) dispatch into the matching mode packet. `@context` remains the one-shot retrieval agent.
 
 `/doctor:deep-loop [--scope=research|review|council|both|all]` reads a run's coverage graph and convergence through the loop's own scripts.
 
@@ -111,7 +111,7 @@ Active `/deep:*` commands and deep agents (`deep-research`, `deep-review`, `deep
 
 ## 7. ADDING A WORKFLOW MODE
 
-Adding another active mode (a new packet beyond `deep-research`, `deep-review`, `deep-ai-council`, `deep-improvement`) touches every one of these surfaces: miss one and the mode is either unroutable, undiscoverable, or drift-guard-broken:
+Adding another active mode (a new packet beyond `deep-research`, `deep-review`, `deep-ai-council`) touches every one of these surfaces: miss one and the mode is either unroutable, undiscoverable, or drift-guard-broken:
 
 - [ ] **`mode-registry.json`**: add the mode's registry entry: `workflowMode`, `runtimeLoopType` (or explicit `null`), `backendKind`, `packet`, `packetKind`, `toolSurface`, `advisorRouting`, and `aliases`.
 - [ ] **`hub-router.json`**: add a `routerSignals` entry for the new mode's vocabulary classes, and add it to `routerPolicy.tieBreak`.

@@ -22,9 +22,6 @@ The table is the complete direct-file inventory. Test names are the public navig
 
 | File | Coverage |
 |---|---|
-| `agent-improvement-ledger-schema.vitest.ts` | Executable checks for the agent improvement ledger schema runtime contract. |
-| `agent-improvement-reducers.vitest.ts` | Executable checks for the agent improvement reducers runtime contract. |
-| `agent-improvement-sealed-artifacts.vitest.ts` | Executable checks for the agent improvement sealed artifacts runtime contract. |
 | `artifact-root.vitest.ts` | Executable checks for the artifact root runtime contract. |
 | `atomic-state.vitest.ts` | Executable checks for the atomic state runtime contract. |
 | `authorized-ledger.vitest.ts` | Executable checks for the authorized ledger runtime contract. |
@@ -50,9 +47,6 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `deep-ai-council-ledger-schema.vitest.ts` | Executable checks for the deep ai council ledger schema runtime contract. |
 | `deep-ai-council-reducers.vitest.ts` | Executable checks for the deep ai council reducers runtime contract. |
 | `deep-ai-council-sealed-artifacts.vitest.ts` | Executable checks for the deep ai council sealed artifacts runtime contract. |
-| `deep-improvement-common-ledger-schema.vitest.ts` | Executable checks for the deep improvement common ledger schema runtime contract. |
-| `deep-improvement-common-reducers.vitest.ts` | Executable checks for the deep improvement common reducers runtime contract. |
-| `deep-improvement-common-sealed-artifacts.vitest.ts` | Executable checks for the deep improvement common sealed artifacts runtime contract. |
 | `deep-research-convergence-floor.vitest.ts` | Executable checks for the deep research convergence floor runtime contract. |
 | `deep-research-ledger-schema.vitest.ts` | Executable checks for the deep research ledger schema runtime contract. |
 | `deep-research-memory-upsert-yaml.vitest.ts` | Executable checks for the deep research memory upsert yaml runtime contract. |
@@ -79,7 +73,6 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `fanout-run.vitest.ts` | Executable checks for the fanout run runtime contract. |
 | `fanout-salvage.vitest.ts` | Executable checks for the fanout salvage runtime contract. |
 | `health-degeneration-harness.vitest.ts` | Executable checks for the health degeneration harness runtime contract. |
-| `host-driven-improvement.vitest.ts` | Executable checks for the host driven improvement runtime contract. |
 | `jsonl-repair.vitest.ts` | Executable checks for the jsonl repair runtime contract. |
 | `legacy-projections.test.ts` | Executable checks for the legacy projections runtime contract. |
 | `lifecycle-taxonomy-guards.vitest.ts` | Executable checks for the lifecycle taxonomy guards runtime contract. |
@@ -89,9 +82,6 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `locks-and-fencing.vitest.ts` | Executable checks for the locks and fencing runtime contract. |
 | `loop-lock-cli.vitest.ts` | Executable checks for the loop lock cli runtime contract. |
 | `loop-lock.vitest.ts` | Executable checks for the loop lock runtime contract. |
-| `model-benchmark-ledger-schema.vitest.ts` | Executable checks for the model benchmark ledger schema runtime contract. |
-| `model-benchmark-reducers.vitest.ts` | Executable checks for the model benchmark reducers runtime contract. |
-| `model-benchmark-sealed-artifacts.vitest.ts` | Executable checks for the model benchmark sealed artifacts runtime contract. |
 | `next-focus.vitest.ts` | Executable checks for the next focus runtime contract. |
 | `observability-events.vitest.ts` | Executable checks for the observability events runtime contract. |
 | `optimizer-manifest-anti-convergence.vitest.ts` | Executable checks for the optimizer manifest anti convergence runtime contract. |

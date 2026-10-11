@@ -1,6 +1,6 @@
 ---
 title: "create-benchmark: Manual Testing Playbook"
-description: "Operator playbook for the create-benchmark workflow across MCP promotion, behavior, model-benchmark and agent-improvement inputs."
+description: "Operator playbook for the create-benchmark workflow across MCP promotion and behavior inputs."
 version: 1.5.0.3
 ---
 
@@ -15,7 +15,7 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and r
 
 The package covers family routing, benchmark package authoring and evidence boundaries. Scenarios use the shipped `SKILL.md`, README, references and scripts as sources. There is no feature catalog for this mode. Each scenario carries its full execution contract in one category file.
 
-The key negative checks are refusal and boundary checks. A correct run leaves an in-flight benchmark in the spec packet. It leaves scoring, runners and renderer-owned reports in their owning lane. It also keeps model fixtures and profiles as data-only inputs.
+The key negative checks are refusal and boundary checks. A correct run leaves an in-flight benchmark in the spec packet. It leaves scoring, runners and renderer-owned reports in their owning lane.
 
 ---
 
@@ -83,7 +83,7 @@ Verify that an unfinished or unreplayable result is not promoted into a live ski
 
 ---
 
-## 8. BENCHMARK FAMILY PACKAGES (`BMR-003`, `BMR-005`)
+## 8. BENCHMARK FAMILY PACKAGES (`BMR-003`)
 
 ### BMR-003 | Author a behavior benchmark package
 
@@ -91,28 +91,12 @@ Verify the behavior package shape and the boundary between scenario contracts an
 
 > **Scenario:** [BMR-003](benchmark-families/author-behavior-package.md)
 
-### BMR-005 | Match a Lane B fixture to its scorer
-
-Verify that model-benchmark inputs are data-only and that a profile uses a scorer that matches the fixture shape.
-
-> **Scenario:** [BMR-005](benchmark-families/match-lane-b-fixture.md)
-
 ---
 
-## 9. EVIDENCE AND LANE BOUNDARIES (`BMR-007`)
-
-### BMR-007 | Prepare Lane A inputs without scoring
-
-Verify that agent-improvement authoring fills setup inputs and candidates while the deep-improvement lane owns scoring and promotion.
-
-> **Scenario:** [BMR-007](evidence-and-boundaries/prepare-lane-a-inputs.md)
-
----
-
-## 10. AUTOMATED TEST CROSS-REFERENCE
+## 9. AUTOMATED TEST CROSS-REFERENCE
 
 | Check | Coverage | Playbook overlap |
 |---|---|---|
 | `validate_document.py` | Markdown structure for authored benchmark docs | Confirms document shape but not family selection |
 
-This playbook records operator-visible authoring behavior. It does not duplicate the Lane B evaluator or the behavior-benchmark framework.
+This playbook records operator-visible authoring behavior. It does not duplicate the behavior-benchmark framework.

@@ -120,7 +120,6 @@ Active `SKILL.md` path check:
 <repo-root>/.skilled/skills/sk-design/SKILL.md
 <repo-root>/.skilled/skills/system-skill-advisor/SKILL.md
 <repo-root>/.skilled/skills/sk-design/design-foundations/SKILL.md
-<repo-root>/.skilled/skills/system-deep-loop/deep-improvement/SKILL.md
 <repo-root>/.skilled/skills/system-deep-loop/deep-review/SKILL.md
 <repo-root>/.skilled/skills/sk-design/design-audit/SKILL.md
 <repo-root>/.skilled/skills/sk-design/design-motion/SKILL.md

@@ -313,7 +313,7 @@ describe('027/003 native scorer units', () => {
     const projection = createFixtureProjection([
       skill({ id: 'sk-doc', description: 'Documentation and manual testing playbook authoring.' }),
       skill({ id: 'sk-deep-review', description: 'Deep review loop.' }),
-      skill({ id: 'deep-agent-improvement', description: 'Improve agent quality.' }),
+      skill({ id: 'deep-research', description: 'Deep research loop.' }),
       skill({
         id: 'create:manual-testing-playbook',
         kind: 'command',
@@ -341,7 +341,7 @@ describe('027/003 native scorer units', () => {
     const createTesting = top3.find((recommendation) => recommendation.skill === 'create:manual-testing-playbook');
 
     expect(createTesting?.confidence).toBeGreaterThanOrEqual(0.6);
-    expect(top3.some((recommendation) => ['sk-deep-review', 'deep-agent-improvement'].includes(recommendation.skill))).toBe(false);
+    expect(top3.some((recommendation) => ['sk-deep-review', 'deep-research'].includes(recommendation.skill))).toBe(false);
   });
 
   // drift: verified against shipped behavior during Unit H

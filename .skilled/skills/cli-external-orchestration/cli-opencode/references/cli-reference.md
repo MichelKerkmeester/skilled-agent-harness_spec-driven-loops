@@ -291,7 +291,6 @@ Default model `opencode-go/deepseek-v4-flash --variant max` (Go gateway; flash i
 | `deep-research` | Iterative research loop executor |
 | `deep-review` | Iterative code review loop executor |
 | `ai-council` | Multi-strategy planning |
-| `deep-improvement` | Agent improvement proposal mutator |
 
 The cli-opencode skill defers to the calling AI on agent selection — see `references/agent-delegation.md` for the routing matrix and `assets/prompt-templates.md` for canonical invocation shapes.
 

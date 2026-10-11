@@ -87,14 +87,11 @@ only.
 
 ### Callers And Recorded Result
 
-Four callers route their calls through the transport. The three scorers record the answering route as
-`transport` in their call records:
+Two callers route their calls through the transport. The scorer records the answering route as
+`transport` in its call records:
 
 - `.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs` (sk-doc)
 - `.skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs` (cli-classifier)
-- `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs`
-  and `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs`
-  (system-deep-loop deep-improvement)
 
 The predecessor phase's recorded run at
 `specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run.stdout.txt`
@@ -112,8 +109,6 @@ p95_ms=340/387 cost_per_100=0.0022`, and only `choice` was measured in that run.
 | `.skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs` | Script | The switch, the request mapper, the context mapper, the four Pi preflight gates, the backend fallback and the CLI-shaped payload |
 | `.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs` | Caller | Routes its calls through the transport and records the answering route as `transport` |
 | `.skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs` | Caller | Routes its calls through the transport and records the answering route as `transport` |
-| `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs` | Caller | Routes its calls through the transport and records the answering route as `transport` |
-| `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs` | Caller | Routes its calls through the transport and records the answering route as `transport` |
 
 ### Validation And Tests
 

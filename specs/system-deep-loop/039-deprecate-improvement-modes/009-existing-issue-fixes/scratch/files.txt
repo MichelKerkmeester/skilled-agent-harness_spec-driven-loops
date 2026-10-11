@@ -1,0 +1,4 @@
+.skilled/skills/sk-doc/shared/scripts/classifier-cite-drift-scan.mjs
+.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md
+.github/workflows/agent-mirror-sync.yml
+.skilled/skills/system-spec-kit/runtime/cli/tests/check-source-tags.vitest.ts

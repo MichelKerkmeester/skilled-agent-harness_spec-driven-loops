@@ -1,0 +1,13 @@
+.claude/SYNC.md
+.github/scripts/tests/broken-move-drill.sh
+.github/workflows/agent-mirror-sync.yml
+.skilled/CROSS-CLI.md
+.skilled/hooks/git/README.md
+.skilled/hooks/git/pre-commit
+.skilled/scripts/git-hooks/pre-commit
+.skilled/scripts/git-hooks/tests/pre-commit.test.sh
+.skilled/skills/sk-code/sk-code-opencode/assets/checklists/agent-authoring.md
+.skilled/bin/README.md
+.skilled/skills/system-deep-loop/leaf-manifest.json
+.skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json
+specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/system-deep-loop/manifest.json

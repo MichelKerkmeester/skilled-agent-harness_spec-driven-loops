@@ -38,7 +38,7 @@ Long-form investigation inside a conversation degrades as findings pile up in th
 
 `deep-research` runs an autonomous multi-iteration research loop through `/deep:research:auto`. Each iteration dispatches a fresh `@deep-research` LEAF agent that reads the accumulated state from disk, investigates one focus area, writes findings to an iteration file and appends a JSONL record with a new-information ratio. A reducer updates the strategy, registry and dashboard after each pass. The loop stops when the new-information ratio falls below the convergence threshold for long enough, or when all research questions are answered.
 
-It does not perform one-shot codebase lookup (`@context` does that), audit code (`deep-review`) or compare competing plans (`deep-ai-council`). The active family and lane roster is authoritative in [`mode-registry.json`](../mode-registry.json); this packet does not repeat it. The runtime-backed families share `runtime/` for executors, state handling and coverage graphs, while improvement remains host-driven.
+It does not perform one-shot codebase lookup (`@context` does that), audit code (`deep-review`) or compare competing plans (`deep-ai-council`). The active family and lane roster is authoritative in [`mode-registry.json`](../mode-registry.json); this packet does not repeat it. The runtime-backed families share `runtime/` for executors, state handling and coverage graphs.
 
 ---
 
@@ -115,7 +115,6 @@ Skip it for a single-question lookup, where a direct web search or the `@context
 |---|---|
 | `deep-review` | Audits code for bugs, security gaps and quality issues. Run it after implementation. |
 | `deep-ai-council` | Compares competing plans with structured disagreement. Run `deep-research` first when the council needs an evidence base. |
-| `deep-improvement` | Runs evaluator-first improvement across agents, models, skills and packaged AI systems. |
 
 `/speckit:plan` and `/speckit:implement` consume the research report. `system-spec-kit` owns the spec folder, validation and memory continuity. `runtime/` provides the shared executor, state layer and coverage graph.
 

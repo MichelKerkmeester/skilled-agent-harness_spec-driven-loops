@@ -118,33 +118,6 @@
         "create test playbook",
         "testing playbook"
       ]
-    },
-    {
-      "inventoryId": "command-deep-model-benchmark",
-      "order": 5,
-      "id": "deep-model-benchmark",
-      "name": "deep-model-benchmark",
-      "description": "Deep command bridge for /deep:model-benchmark model and prompt-framework benchmarking.",
-      "keywords": [
-        "/deep:model-benchmark",
-        "benchmark a model",
-        "benchmark a prompt framework",
-        "optimize a model",
-        "model benchmark loop"
-      ],
-      "domains": [
-        "deep",
-        "benchmark",
-        "model",
-        "command"
-      ],
-      "intentSignals": [
-        "/deep:model-benchmark",
-        "benchmark a model",
-        "benchmark a prompt framework",
-        "optimize a model",
-        "model benchmark loop"
-      ]
     }
   ],
   "python": [
@@ -236,16 +209,6 @@
         "memory:save"
       ],
       "owningSkill": "system-spec-kit"
-    },
-    {
-      "inventoryId": "command-deep-agent-improvement",
-      "order": 8,
-      "id": "command-deep-agent-improvement",
-      "description": "Evaluate and improve any agent across 5 dimensions using /deep:agent-improvement.",
-      "slashMarkers": [
-        "/deep:agent-improvement",
-        "deep:agent-improvement"
-      ]
     },
     {
       "inventoryId": "command-prompt-improver",

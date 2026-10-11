@@ -55,7 +55,7 @@ run_guard "router-sync      (verify_router_sync.cjs --checks 1a,1b,2,3,4)" \
   node "${ROUTER_SYNC}" --checks 1a,1b,2,3,4
 
 # Router-sync guard (verify_router_sync.cjs): restores the four checks of the router-sync
-# suite that was deleted with the skill-benchmark lane. This run covers every leg: 1a and 1b
+# suite that was deleted. This run covers every leg: 1a and 1b
 # (router paths exist, and every reference or asset doc is routed), 2, 3 and 4. Check 1b
 # allowlists only the shared workflow docs that each surface reaches through a symlink, with
 # the reason beside the list in the guard. Dead paths in check 1 are also covered by the

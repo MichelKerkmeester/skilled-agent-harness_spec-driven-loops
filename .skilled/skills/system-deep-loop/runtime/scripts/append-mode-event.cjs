@@ -93,11 +93,6 @@ function normalizeMode(mode) {
   if (trimmed === 'research' || trimmed === 'deep-research') return 'deep-research';
   if (trimmed === 'review' || trimmed === 'deep-review') return 'deep-review';
   if (trimmed === 'ai-council' || trimmed === 'council' || trimmed === 'deep-ai-council' || trimmed === 'deep-council') return 'deep-ai-council';
-  if (trimmed === 'agent-improvement' || trimmed === 'deep-agent-improvement') return 'agent-improvement';
-  if (trimmed === 'model-benchmark' || trimmed === 'deep-model-benchmark') return 'model-benchmark';
-  // The authority order is the canonical spelling; a private alias that
-  // disagrees with it makes a real fleet mode unreachable.
-  if (trimmed === 'improvement' || trimmed === 'deep-improvement' || trimmed === 'deep-improvement-common') return 'deep-improvement-common';
   return trimmed;
 }
 
@@ -129,33 +124,6 @@ async function resolveModeAdapter(mode) {
         createRegistry: mod.createDeepAiCouncilEventRegistry,
         prepareEvent: mod.prepareDeepAiCouncilEvent,
         isEventStem: mod.isDeepAiCouncilEventStem,
-      };
-    }
-    case 'agent-improvement': {
-      const mod = await import('../lib/agent-improvement-ledger-schema/index.ts');
-      return {
-        normalizedMode: 'agent-improvement',
-        createRegistry: mod.createAgentImprovementEventRegistry,
-        prepareEvent: mod.prepareAgentImprovementEvent,
-        isEventStem: mod.isAgentImprovementEventStem,
-      };
-    }
-    case 'model-benchmark': {
-      const mod = await import('../lib/model-benchmark-ledger-schema/index.ts');
-      return {
-        normalizedMode: 'model-benchmark',
-        createRegistry: mod.createModelBenchmarkEventRegistry,
-        prepareEvent: mod.prepareModelBenchmarkEvent,
-        isEventStem: mod.isModelBenchmarkEventStem,
-      };
-    }
-    case 'deep-improvement-common': {
-      const mod = await import('../lib/deep-improvement-common-ledger-schema/index.ts');
-      return {
-        normalizedMode: 'deep-improvement-common',
-        createRegistry: mod.createDeepImprovementCommonEventRegistry,
-        prepareEvent: mod.prepareDeepImprovementCommonEvent,
-        isEventStem: mod.isDeepImprovementCommonEventStem,
       };
     }
     default:

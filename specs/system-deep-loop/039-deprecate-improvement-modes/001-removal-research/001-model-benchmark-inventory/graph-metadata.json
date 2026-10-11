@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/039-deprecate-improvement-modes/001-removal-research/001-model-benchmark-inventory",
+  "spec_folder": "system-deep-loop/039-deprecate-improvement-modes/001-removal-research/001-model-benchmark-inventory",
+  "parent_id": "system-deep-loop/039-deprecate-improvement-modes/001-removal-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "model benchmark inventory",
+      "phase 1 model benchmark inventory",
+      "model-benchmark removal research",
+      "model benchmark inventory plan",
+      "model benchmark inventory tasks",
+      "model benchmark inventory implementation summary"
+    ],
+    "key_topics": [
+      "model",
+      "benchmark",
+      "inventory",
+      "phase",
+      "model-benchmark",
+      "removal",
+      "research",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "mode"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/resource-map.md",
+      "research/findings-registry.json",
+      "feature-catalog/feature-catalog.md",
+      ".claude/agents/deep-improvement.md",
+      ".claude/commands/deep/model-benchmark.md",
+      ".codex/agents/deep-improvement.toml",
+      ".codex/prompts/deep-model-benchmark.md",
+      ".hermes/prompts/deep-model-benchmark.md",
+      ".pi/agents/deep-improvement.md",
+      ".pi/prompts/deep-model-benchmark.md",
+      ".devin/agents/deep-improvement/AGENT.md",
+      ".cursor/agents/deep-improvement.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement.md",
+        "kind": "doc",
+        "path": ".claude/agents/deep-improvement.md",
+        "source": "derived"
+      },
+      {
+        "name": "model-benchmark.md",
+        "kind": "doc",
+        "path": ".claude/commands/deep/model-benchmark.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-improvement.toml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-model-benchmark.md",
+        "kind": "doc",
+        "path": ".codex/prompts/deep-model-benchmark.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENT.md",
+        "kind": "doc",
+        "path": ".devin/agents/deep-improvement/AGENT.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Externalized",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `model-benchmark` mode of `system-deep-loop` is registered in the hub's mode registry, exposed as the `/deep:model-benchmark` command, and runs through the shared `deep-improvement` packet and its loop host",
+    "created_at": "2026-10-10T18:24:02Z",
+    "last_save_at": "2026-10-10T19:09:34.054Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:3a36551b52d04793842fe3ed0f9a1e8170923bfc2bf57a3c72268182116aa31e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d33b5d856ca251a6de3555768fc1f69c215c4647da098ee941940babb64900db",
+      "plan.md": "b44cf339ccb602c4736ec9ec12423d52b9d9370bb8e71de4c8bb0963838de003",
+      "tasks.md": "b2b075f8c8c6e8eeb25af8807f0ddbf2a01d2c93e993e1f6f9311c298ac4ab7e",
+      "implementation-summary.md": "286831134749cbb63e730849c9f967e5153fb6c479d5f4d4821ffa074cf4bf14",
+      "research/research.md": "e3cd0d61b8ee2b61a71df76b4ca928042a195cff1f1f7dc6ac35fc064e73b516"
+    },
+    "last_active_at": null
+  }
+}

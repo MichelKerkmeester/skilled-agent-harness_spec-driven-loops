@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-deep-loop/039-deprecate-improvement-modes/008-docs-and-readmes",
+  "description": "Phase 6: docs-and-readmes",
+  "keywords": [
+    "phase",
+    "docs-and-readmes"
+  ],
+  "lastUpdated": "2026-10-10T18:23:54.785Z",
+  "specId": "006",
+  "folderSlug": "docs-and-readmes",
+  "parentChain": [
+    "system-deep-loop",
+    "039-deprecate-improvement-modes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

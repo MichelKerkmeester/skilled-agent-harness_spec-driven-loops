@@ -17,8 +17,8 @@
 // bare-word alias collided with an unrelated mode with no word-boundary guard
 // and no compositionRules entry to resolve the resulting "bundle", so it fell
 // back to clarify), and carrying a phrase the legacy vocabulary deliberately
-// omits (over-routing: a command-bridge mode -- model-benchmark -- fired on a
-// bare natural-language registry alias where legacy requires the literal
+// omits (over-routing: a command-bridge mode firing on a bare
+// natural-language registry alias where legacy requires the literal
 // `/deep:*` command). The generic policy
 // (destinations, detectors, selectors, authority graph, hashing) is still
 // compiled and still valid; it just is not consulted for the live routing

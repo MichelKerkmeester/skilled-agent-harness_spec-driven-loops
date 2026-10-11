@@ -357,8 +357,8 @@ stage_new() { # stage_new <path> <content>
 
 # ── 21. a staged .skilled agent reaches the agent mirror checker ──
 setup_gate_fixture
-mkdir -p "$TMP/.opencode/skills/system-deep-loop/deep-improvement/scripts"
-cat > "$TMP/.opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs" <<'CHECKER'
+mkdir -p "$TMP/.opencode/bin"
+cat > "$TMP/.opencode/bin/check-agent-mirror-sync.cjs" <<'CHECKER'
 require('fs').appendFileSync('checker-calls.log', process.argv.slice(2).join('\n') + '\n');
 CHECKER
 stage_new ".skilled/agents/probe.md" "agent"
@@ -536,8 +536,8 @@ plant_comment_checker() {
 # ── 36. a staged .skilled agent reaches the helper's mirror checker ──
 setup_gate_fixture
 plant_comment_checker
-mkdir -p "$TMP/.opencode/skills/system-deep-loop/deep-improvement/scripts"
-cat > "$TMP/.opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs" <<'CHECKER'
+mkdir -p "$TMP/.opencode/bin"
+cat > "$TMP/.opencode/bin/check-agent-mirror-sync.cjs" <<'CHECKER'
 require('fs').appendFileSync('checker-calls.log', process.argv.slice(2).join('\n') + '\n');
 CHECKER
 stage_new ".skilled/agents/probe.md" "agent"
@@ -607,8 +607,8 @@ check "a comment checker failure names its bypass" 1 "$RC" "Bypass: SPECKIT_SKIP
 
 # ── 42. an agent mirror desync names the chain's off switch, and the switch passes ──
 setup_gate_fixture
-mkdir -p "$TMP/.opencode/skills/system-deep-loop/deep-improvement/scripts" "$TMP/.opencode/hooks/shared"
-echo 'process.exit(1);' > "$TMP/.opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs"
+mkdir -p "$TMP/.opencode/bin" "$TMP/.opencode/hooks/shared"
+echo 'process.exit(1);' > "$TMP/.opencode/bin/check-agent-mirror-sync.cjs"
 cp "$REPO_ROOT/.opencode/hooks/shared/hook-flags.sh" "$TMP/.opencode/hooks/shared/hook-flags.sh"
 stage_new ".opencode/agents/probe.md" "agent"
 # A set value answers even at 0, so the caller's own switches cannot decide this case.

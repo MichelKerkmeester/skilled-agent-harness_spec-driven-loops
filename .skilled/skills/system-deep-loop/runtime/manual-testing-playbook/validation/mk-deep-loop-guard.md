@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, execution flow, and 
 
 ## 1. OVERVIEW
 
-Detection-layer OpenCode plugin (`tool.execute.before` hook) with two independent checks: (1) flags/blocks a Task dispatch whose declared Deep Route mode disagrees with `mode-registry.json`'s entry for the resolved target agent; (2) flags/blocks a session-scoped loop-like repeated hand-off from `orchestrate` to a command-owned loop executor (`deep-research`, `deep-review`, `deep-improvement`, `prompt-improver`) that lacks a command-driven iteration marker. Both checks share `resolveTargetIdentity()`, which parses the real target agent from `Deep Route: ... target_agent=@X` / `Agent: @X` prompt text, since real `orchestrate`-issued dispatches always set `subagent_type: "general"`.
+Detection-layer OpenCode plugin (`tool.execute.before` hook) with two independent checks: (1) flags/blocks a Task dispatch whose declared Deep Route mode disagrees with `mode-registry.json`'s entry for the resolved target agent; (2) flags/blocks a session-scoped loop-like repeated hand-off from `orchestrate` to a command-owned loop executor (`deep-research`, `deep-review`, `prompt-improver`) that lacks a command-driven iteration marker. Both checks share `resolveTargetIdentity()`, which parses the real target agent from `Deep Route: ... target_agent=@X` / `Agent: @X` prompt text, since real `orchestrate`-issued dispatches always set `subagent_type: "general"`.
 
 ### Why This Matters
 

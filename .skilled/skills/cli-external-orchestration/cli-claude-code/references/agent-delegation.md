@@ -99,7 +99,6 @@ Each agent is defined in a `.md` file in `.claude/agents/` (the Claude Code runt
 ├── code.md             # Application-code implementation via sk-code
 ├── context.md          # Read-only codebase exploration
 ├── debug.md            # Systematic debugging
-├── deep-improvement.md # Proposal-only agent-improvement candidates (command-owned)
 ├── deep-research.md    # Single-iteration deep research (command-owned)
 ├── deep-review.md      # Single-iteration deep review (command-owned)
 ├── design.md           # Decides UI values via sk-design; measures a surface via sk-design-md-generator
@@ -115,7 +114,7 @@ There is no `handover.md`, `research.md`, `speckit.md`, or `write.md` in the cur
 
 ## 3. CLAUDE CODE AGENT CATALOG
 
-### Agent Roster (12 Agents)
+### Agent Roster (11 Agents)
 
 | Agent | Permission Mode | Purpose | Use When |
 |-------|-----------------|---------|----------|
@@ -129,7 +128,6 @@ There is no `handover.md`, `research.md`, `speckit.md`, or `write.md` in the cur
 | `code` | default | Application-code implementation via `sk-code` | Implementing an approved plan; orchestrator-only dispatch |
 | `design` | default | Decides UI values via `sk-design`; measures a surface via `sk-design-md-generator` | Choosing spacing, type, color, shadow or motion values; diagnosing a UI complaint; reviewing UI for accessibility; or extracting a measured Style Reference from a live source UI |
 | `deep-review` | default | Single-iteration severity-tagged code review | Command-owned by `/deep:review` — never dispatch directly for the iterative loop |
-| `deep-improvement` | default | Proposal-only agent-improvement candidate generation | Command-owned by `/deep:agent-improvement` — never dispatch directly |
 | `prompt-improver` | default | Dispatch-ready prompt package generation | Command-owned by `/prompt`'s deep-path escalation — never dispatch directly |
 
 ---

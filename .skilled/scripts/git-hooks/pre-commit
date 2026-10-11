@@ -162,7 +162,7 @@ fi
 # Agents are authored in .opencode/agents/ and mirrored to .claude.
 # Block a commit that desyncs the mirrors. Only staged agent files are checked.
 # No switch of its own: SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1 turns off the whole chain.
-MIRROR_CHECKER="$SOURCE_ROOT/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs"
+MIRROR_CHECKER="$SOURCE_ROOT/bin/check-agent-mirror-sync.cjs"
 
 STAGED_AGENTS=()
 while IFS= read -r file; do

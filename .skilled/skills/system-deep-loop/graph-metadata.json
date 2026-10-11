@@ -40,7 +40,6 @@
     "research",
     "review-loop",
     "ai-council",
-    "agent-improvement",
     "convergence",
     "coverage-graph",
     "mode-registry",
@@ -51,14 +50,11 @@
     "deep-research",
     "deep-review",
     "deep-ai-council",
-    "deep-improvement",
     "research loop",
     "iterative review loop",
     "deep-review wave",
     "release readiness",
     "ai council deliberation",
-    "agent improvement benchmark",
-    "evaluate agent",
     "deep research",
     "iterative investigation",
     "research summary",
@@ -76,11 +72,7 @@
     "council deliberation",
     "planning council",
     "council convergence",
-    "seat diversity",
-    "improve agent",
-    "score agent",
-    "agent candidate",
-    "promote or roll back the agent"
+    "seat diversity"
   ],
   "derived": {
     "trigger_phrases": [
@@ -103,13 +95,7 @@
       "deep-ai-council",
       "ai council deliberation",
       "multi-seat planning council",
-      "council convergence",
-      "improve agent",
-      "evaluate agent",
-      "score agent candidate",
-      "deep-improvement",
-      "agent-improvement",
-      "model benchmark"
+      "council convergence"
     ],
     "key_topics": [
       "system-deep-loop",
@@ -120,9 +106,6 @@
       "research-mode",
       "review-mode",
       "ai-council-mode",
-      "improvement-mode",
-      "agent-improvement",
-      "model-benchmark",
       "runtime-infrastructure"
     ],
     "key_files": [
@@ -131,7 +114,6 @@
       ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
       ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
       ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md",
-      ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
       ".skilled/skills/system-deep-loop/shared/synthesis/resource-map.cjs",
       ".skilled/skills/system-deep-loop/runtime/README.md"
     ],
@@ -155,7 +137,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "system-deep-loop is the single public skill that merges active deep-loop persona modes (deep-research, deep-review, deep-ai-council, deep-improvement) into one advisor identity with active mode packets, routed by workflowMode through mode-registry.json over a nested runtime/ infrastructure layer (frozen, MCP-free; formerly the separate deep-loop-runtime skill, merged 2026-07-08). @context owns one-shot retrieval while research and review carry bounded context snapshots. Per-mode convergence, state, artifacts, and tool-permission contracts are preserved unflattened; the three-tier discriminator (workflowMode / runtimeLoopType / backendKind)keeps graph-backed modes and improvement-host modes distinct. The prior deep-loop-workflows <-> deep-loop-runtime inter-skill relationship is now intra-skill structure; runtime/ has no graph-metadata.json of its own and is not independently advisor-routable.",
+    "causal_summary": "system-deep-loop is the single public skill that merges active deep-loop persona modes (deep-research, deep-review, deep-ai-council) into one advisor identity with active mode packets, routed by workflowMode through mode-registry.json over a nested runtime/ infrastructure layer (frozen, MCP-free; formerly the separate deep-loop-runtime skill, merged 2026-07-08). @context owns one-shot retrieval while research and review carry bounded context snapshots. Per-mode convergence, state, artifacts, and tool-permission contracts are preserved unflattened; the three-tier discriminator (workflowMode / runtimeLoopType / backendKind)keeps graph-backed modes distinct. The prior deep-loop-workflows <-> deep-loop-runtime inter-skill relationship is now intra-skill structure; runtime/ has no graph-metadata.json of its own and is not independently advisor-routable.",
     "source_docs": [
       "SKILL.md",
       "README.md",
@@ -163,7 +145,6 @@
       "deep-research/SKILL.md",
       "deep-review/SKILL.md",
       "deep-ai-council/SKILL.md",
-      "deep-improvement/SKILL.md",
       "runtime/README.md"
     ],
     "created_at": "2026-06-15T00:00:00Z",

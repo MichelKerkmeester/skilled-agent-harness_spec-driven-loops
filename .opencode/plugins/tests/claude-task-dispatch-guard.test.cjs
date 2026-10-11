@@ -44,9 +44,6 @@ function writeFixtureRegistry(dir) {
         { workflowMode: 'ai-council', agent: 'ai-council' },
         { workflowMode: 'research', agent: 'deep-research' },
         { workflowMode: 'review', agent: 'deep-review' },
-        { workflowMode: 'agent-improvement', agent: 'deep-improvement' },
-        { workflowMode: 'model-benchmark', agent: 'deep-improvement' },
-        { workflowMode: 'skill-benchmark', agent: 'deep-improvement' },
       ],
     }),
   );
@@ -164,25 +161,14 @@ function main() {
   assert.equal(hook.stdout, '', 'mixed-case mode/target must not warn');
   assert.doesNotMatch(readGuardLog(cwd), /mode mismatch/i, 'mixed-case mode/target must not log a mismatch');
 
-  // Every workflow mode registered to a multiplexed agent remains valid.
-  for (const workflowMode of ['agent-improvement', 'model-benchmark', 'skill-benchmark']) {
-    clearGuardLog(cwd);
-    hook = runHook({
-      tool_name: 'Task',
-      tool_input: { subagent_type: 'general', prompt: `Deep Route: mode=${workflowMode}; target_agent=@deep-improvement` },
-      cwd,
-    });
-    assert.equal(hook.stdout, '', `${workflowMode} must remain valid for deep-improvement`);
-  }
-
-  // An unregistered mode for a multiplexed agent lists the sorted permitted set.
+  // An unregistered mode for a registered agent lists the sorted permitted set.
   clearGuardLog(cwd);
   hook = runHook({
     tool_name: 'Task',
-    tool_input: { subagent_type: 'general', prompt: 'Deep Route: mode=nonsense; target_agent=@deep-improvement' },
+    tool_input: { subagent_type: 'general', prompt: 'Deep Route: mode=nonsense; target_agent=@deep-research' },
     cwd,
   });
-  assert.match(contextOf(hook), /registry modes="agent-improvement\|model-benchmark\|skill-benchmark"/, 'mismatch advisory must list the sorted permitted modes');
+  assert.match(contextOf(hook), /registry modes="research"/, 'mismatch advisory must list the sorted permitted modes');
 
   // The Deep Route line wins over unrelated mode tokens elsewhere in the prompt.
   clearGuardLog(cwd);
@@ -375,7 +361,7 @@ function main() {
   fs.rmSync(blockedStateDirPath, { recursive: true, force: true });
   fs.writeFileSync(blockedStateDirPath, 'not a directory');
   hook = runHook(
-    { tool_name: 'Task', session_id: 'claude-failopen', tool_input: { subagent_type: 'general', prompt: 'Agent: @deep-improvement\nmode=agent-improvement go' }, cwd },
+    { tool_name: 'Task', session_id: 'claude-failopen', tool_input: { subagent_type: 'general', prompt: 'Agent: @deep-research\nmode=research go' }, cwd },
     { [REJECT_LOOP_ENV]: '1' },
   );
   assert.equal(decisionOf(hook), null, 'unwritable loop state must not deny in reject-loop mode (fail-open)');

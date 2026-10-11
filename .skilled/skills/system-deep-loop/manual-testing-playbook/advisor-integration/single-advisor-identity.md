@@ -31,22 +31,21 @@ Use deep research to investigate registry drift and write a research summary.
 ```
 Run a deep review and report P0/P1/P2 findings with a verdict.
 Run an AI council deliberation with multiple planning seats and converge on a recommendation.
-Evaluate and score an agent candidate for promotion or rollback.
 ```
 
 **Expected route**:
 - Public advisor identity: `system-deep-loop`
-- Resolved modes: `research`, `review`, `ai-council`, `agent-improvement`
-- Commands: `/deep:research`, `/deep:review`, `/deep:ai-council`, `/deep:agent-improvement`
-- Agents: `deep-research`, `deep-review`, `ai-council`, `deep-improvement`
+- Resolved modes: `research`, `review`, `ai-council`
+- Commands: `/deep:research`, `/deep:review`, `/deep:ai-council`
+- Agents: `deep-research`, `deep-review`, `ai-council`
 
 **Why this route is expected**:
 - Hub source: the hub says `system-deep-loop` is the public, advisor-routable home for active deep-loop personas.
 - Hub source: the advisor routes any deep-loop query to the single identity `system-deep-loop`; the hub then picks the mode.
-- Registry evidence: the four tested modes contain `advisorRouting.routingClass` values `"lexical"`, `"lexical"`, `"lexical"`, and `"alias-fold"` respectively.
-- Registry evidence: the commands and agents are `"/deep:research"` with `"deep-research"`, `"/deep:review"` with `"deep-review"`, `"/deep:ai-council"` with `"ai-council"`, and `"/deep:agent-improvement"` with `"deep-improvement"`.
+- Registry evidence: the three tested modes contain `advisorRouting.routingClass` values `"lexical"`, `"lexical"`, and `"lexical"` respectively.
+- Registry evidence: the commands and agents are `"/deep:research"` with `"deep-research"`, `"/deep:review"` with `"deep-review"`, and `"/deep:ai-council"` with `"ai-council"`.
 
-**Desired user-visible outcome**: The AI reports one public skill identity and four mode-level routes, rather than treating nested mode packets as separate advisor skills.
+**Desired user-visible outcome**: The AI reports one public skill identity and three mode-level routes, rather than treating nested mode packets as separate advisor skills.
 
 ---
 
@@ -55,13 +54,13 @@ Evaluate and score an agent candidate for promotion or rollback.
 ### Preconditions
 
 1. `.skilled/skills/system-deep-loop/SKILL.md` states the single advisor identity rule.
-2. `.skilled/skills/system-deep-loop/mode-registry.json` contains the four tested mode entries.
+2. `.skilled/skills/system-deep-loop/mode-registry.json` contains the three tested mode entries.
 3. Skill advisor is callable.
 
 ### Prompt
 
 - Prompt: `Use deep research to investigate registry drift and write a research summary.`
-- Additional probes: `Run a deep review and report P0/P1/P2 findings with a verdict.`, `Run an AI council deliberation with multiple planning seats and converge on a recommendation.`, and `Evaluate and score an agent candidate for promotion or rollback.`
+- Additional probes: `Run a deep review and report P0/P1/P2 findings with a verdict.` and `Run an AI council deliberation with multiple planning seats and converge on a recommendation.`
 
 ### Exact Command Sequence
 
@@ -82,11 +81,11 @@ Evaluate and score an agent candidate for promotion or rollback.
 ### Evidence
 
 - Advisor probe log: `/tmp/dlw-AI-001/advisor.jsonl`.
-- Route transcript: `/tmp/dlw-AI-001/routes.txt`, showing the resolved mode, command, and agent for each of the four prompts.
+- Route transcript: `/tmp/dlw-AI-001/routes.txt`, showing the resolved mode, command, and agent for each of the three prompts.
 
 ### Pass/Fail Criteria
 
-- **PASS**: one public advisor identity is functionally observed and all four resolved modes match the registry — including when a legacy identity also surfaces, as long as the transcript folds it back to `system-deep-loop`.
+- **PASS**: one public advisor identity is functionally observed and all three resolved modes match the registry — including when a legacy identity also surfaces, as long as the transcript folds it back to `system-deep-loop`.
 - **FAIL**: a child packet is treated as an independent public skill identity, a prompt resolves to multiple modes, or a route contradicts the registry.
 
 ### Failure Triage

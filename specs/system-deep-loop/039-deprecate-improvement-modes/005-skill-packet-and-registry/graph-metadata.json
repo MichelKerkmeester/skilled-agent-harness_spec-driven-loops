@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/039-deprecate-improvement-modes/005-skill-packet-and-registry",
+  "spec_folder": "system-deep-loop/039-deprecate-improvement-modes/005-skill-packet-and-registry",
+  "parent_id": "system-deep-loop/039-deprecate-improvement-modes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill packet and registry",
+      "phase 5 skill packet and registry",
+      "skill packet and registry plan",
+      "skill packet and registry tasks",
+      "skill packet and registry acceptance criteria",
+      "skill packet and registry implementation summary"
+    ],
+    "key_topics": [
+      "skill",
+      "packet",
+      "registry",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "mode-registry",
+      "json"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/leaf-scopes.json",
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs",
+      "scratch/files.txt",
+      "scratch/brief-wu1.md",
+      "scratch/brief-wu2.md",
+      "scratch/brief-wu3.md",
+      "scratch/brief-wu4.md",
+      "scratch/brief-wu5.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-scopes.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-deep-loop/leaf-scopes.json",
+        "source": "derived"
+      },
+      {
+        "name": "registry-compiler.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "files.txt",
+        "kind": "file",
+        "path": "scratch/files.txt",
+        "source": "derived"
+      },
+      {
+        "name": "brief-wu1.md",
+        "kind": "doc",
+        "path": "scratch/brief-wu1.md",
+        "source": "derived"
+      },
+      {
+        "name": "brief-wu2.md",
+        "kind": "doc",
+        "path": "scratch/brief-wu2.md",
+        "source": "derived"
+      },
+      {
+        "name": "brief-wu3.md",
+        "kind": "doc",
+        "path": "scratch/brief-wu3.md",
+        "source": "derived"
+      },
+      {
+        "name": "brief-wu4.md",
+        "kind": "doc",
+        "path": "scratch/brief-wu4.md",
+        "source": "derived"
+      },
+      {
+        "name": "brief-wu5.md",
+        "kind": "doc",
+        "path": "scratch/brief-wu5.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Source",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`mode-registry.json` is the single source the advisor maps, the drift guard, the compiled-routing compiler and both plugin guards read",
+    "created_at": "2026-10-10T18:23:51Z",
+    "last_save_at": "2026-10-10T21:40:39.136Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:94ae1fe3c1b59f0144f401526cc1f6b76417f30f328d37f15b728428ad1860cb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "934cb0f04af021670efd1775dfbf360096b3987e042a0df79427405b9bd03dff",
+      "plan.md": "960c5f292caae21f062527e9b0c14a3b6caa661ae479eaf6cd85103bd0bf6369",
+      "tasks.md": "195490d2f9ee1f44d2c022fc33e04f4e66efc5179172e60d62ec357e05fc2e1c",
+      "implementation-summary.md": "c58e6fa2a5065c6f503c98f3c7d93b9b06903132b5012371835f571e86b5436b"
+    },
+    "last_active_at": null
+  }
+}

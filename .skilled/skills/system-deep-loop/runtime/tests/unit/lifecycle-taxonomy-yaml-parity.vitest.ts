@@ -20,7 +20,7 @@ const taxonomy = nodeRequire(TAXONOMY) as { STOP_REASONS: Record<string, string>
 const ASSETS = resolve(__dirname, '..', '..', '..', '..', '..', 'commands', 'deep', 'assets');
 
 // The runtime-loop modes are the only ones that pin a userPaused-bearing enum in
-// their YAML (the improvement-host modes validate via the journal instead).
+// their YAML.
 const RUNTIME_LOOP_YAMLS = [
   'deep-research-auto.yaml',
   'deep-research-confirm.yaml',

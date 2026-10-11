@@ -32,9 +32,6 @@ function writeFixtureRegistry(dir) {
         { workflowMode: 'ai-council', agent: 'ai-council' },
         { workflowMode: 'research', agent: 'deep-research' },
         { workflowMode: 'review', agent: 'deep-review' },
-        { workflowMode: 'agent-improvement', agent: 'deep-improvement' },
-        { workflowMode: 'model-benchmark', agent: 'deep-improvement' },
-        { workflowMode: 'skill-benchmark', agent: 'deep-improvement' },
       ],
     }),
   );
@@ -107,22 +104,12 @@ async function main() {
   );
   assert.doesNotMatch(readGuardLog(tmpDir), /mode mismatch/i);
 
-  // Every workflow mode registered to a multiplexed agent remains valid.
-  for (const workflowMode of ['agent-improvement', 'model-benchmark', 'skill-benchmark']) {
-    clearGuardLog(tmpDir);
-    await beforeHook(
-      { tool: 'task' },
-      { args: { subagent_type: 'general', prompt: `Deep Route: mode=${workflowMode}; target_agent=@deep-improvement` } },
-    );
-    assert.doesNotMatch(readGuardLog(tmpDir), /mode mismatch/i, `${workflowMode} should remain valid for deep-improvement`);
-  }
-
   clearGuardLog(tmpDir);
   await beforeHook(
     { tool: 'task' },
-    { args: { subagent_type: 'general', prompt: 'Deep Route: mode=nonsense; target_agent=@deep-improvement' } },
+    { args: { subagent_type: 'general', prompt: 'Deep Route: mode=nonsense; target_agent=@deep-research' } },
   );
-  assert.match(readGuardLog(tmpDir), /registry modes="agent-improvement\|model-benchmark\|skill-benchmark"/);
+  assert.match(readGuardLog(tmpDir), /registry modes="research"/);
 
   // The Deep Route line wins over unrelated mode tokens elsewhere in the prompt.
   clearGuardLog(tmpDir);
@@ -341,7 +328,7 @@ async function main() {
   process.env[REJECT_LOOP_ENV] = '1';
   await beforeHook(
     { tool: 'task', sessionID: 'session-loop-failopen' },
-    { args: { subagent_type: 'general', prompt: 'Agent: @deep-improvement\nmode=agent-improvement go' } },
+    { args: { subagent_type: 'general', prompt: 'Agent: @deep-research\nmode=research go' } },
   );
   assert.match(
     fs.readFileSync(degradedGuardLogPath(tmpDir), 'utf8'),

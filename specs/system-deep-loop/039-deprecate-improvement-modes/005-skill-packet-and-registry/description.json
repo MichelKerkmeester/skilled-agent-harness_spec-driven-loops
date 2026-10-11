@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-deep-loop/039-deprecate-improvement-modes/005-skill-packet-and-registry",
+  "description": "Phase 4: skill-packet-and-registry",
+  "keywords": [
+    "phase",
+    "skill-packet-and-registry"
+  ],
+  "lastUpdated": "2026-10-10T18:23:52.245Z",
+  "specId": "004",
+  "folderSlug": "skill-packet-and-registry",
+  "parentChain": [
+    "system-deep-loop",
+    "039-deprecate-improvement-modes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

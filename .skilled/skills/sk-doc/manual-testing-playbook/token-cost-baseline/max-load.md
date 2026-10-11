@@ -13,14 +13,9 @@ expected_resources:
   - sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-baseline-template.md
   - sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md
   - sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-scenario-template.md
-  - sk-create-benchmark/assets/model-benchmark/model-benchmark-code-task-fixture-template.md
-  - sk-create-benchmark/assets/model-benchmark/model-benchmark-pattern-fixture-template.md
-  - sk-create-benchmark/assets/model-benchmark/model-benchmark-profile-template.md
   - sk-create-benchmark/assets/shared/benchmark-report-template.md
   - sk-create-benchmark/assets/shared/source-template.md
-  - sk-create-benchmark/references/agent-improvement/agent-improvement-authoring-guide.md
   - sk-create-benchmark/references/behavior-benchmark/behavior-benchmark-guide.md
-  - sk-create-benchmark/references/model-benchmark/model-benchmark-fixture-guide.md
   - sk-create-benchmark/references/shared/README.md
   - sk-create-benchmark/references/shared/case-studies.md
   - sk-create-benchmark/references/shared/pitfalls.md
@@ -149,21 +144,11 @@ expected_leaf_resources:
   - workflow_mode: sk-create-benchmark
     leaf_resource_id: assets/behavior-benchmark/behavior-benchmark-scenario-template.md
   - workflow_mode: sk-create-benchmark
-    leaf_resource_id: assets/model-benchmark/model-benchmark-code-task-fixture-template.md
-  - workflow_mode: sk-create-benchmark
-    leaf_resource_id: assets/model-benchmark/model-benchmark-pattern-fixture-template.md
-  - workflow_mode: sk-create-benchmark
-    leaf_resource_id: assets/model-benchmark/model-benchmark-profile-template.md
-  - workflow_mode: sk-create-benchmark
     leaf_resource_id: assets/shared/benchmark-report-template.md
   - workflow_mode: sk-create-benchmark
     leaf_resource_id: assets/shared/source-template.md
   - workflow_mode: sk-create-benchmark
-    leaf_resource_id: references/agent-improvement/agent-improvement-authoring-guide.md
-  - workflow_mode: sk-create-benchmark
     leaf_resource_id: references/behavior-benchmark/behavior-benchmark-guide.md
-  - workflow_mode: sk-create-benchmark
-    leaf_resource_id: references/model-benchmark/model-benchmark-fixture-guide.md
   - workflow_mode: sk-create-benchmark
     leaf_resource_id: references/shared/README.md
   - workflow_mode: sk-create-benchmark
@@ -457,7 +442,7 @@ Reference material only. Nothing in this block is a pass condition for SD-015, w
 
 **Ceiling Reference**
 
-The inventory in this scenario's frontmatter is what an explicit full-toolkit request would load if fan-out existed: 124 resources across the 14 authoring modes, expressed as 125 typed (mode, leaf) pairs. It stays the cost reference for that ceiling.
+The inventory in this scenario's frontmatter is what an explicit full-toolkit request would load if fan-out existed: 119 resources across the 14 authoring modes, expressed as 120 typed (mode, leaf) pairs. It stays the cost reference for that ceiling.
 
 **Legacy Replay Path**
 

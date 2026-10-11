@@ -18,12 +18,9 @@ export const AUTHORITY_FLIP_SCHEMA_VERSION = 1;
 export const AUTHORITY_FLIP_EVENT_TYPE = 'deep-loop-authority-flip.ledger.transition-recorded';
 
 export type CutoverCertificateMode =
-  | 'agent-improvement'
   | 'deep-ai-council'
-  | 'deep-improvement-common'
   | 'deep-research'
-  | 'deep-review'
-  | 'model-benchmark';
+  | 'deep-review';
 
 /** Route a selector may hand a mode adapter; there is never more than one canonical route. */
 export type AuthorityRoute = 'legacy' | 'dark';
@@ -130,7 +127,4 @@ export const AUTHORITY_FLIP_MODE_ORDER: readonly CutoverCertificateMode[] = Obje
   'deep-research',
   'deep-review',
   'deep-ai-council',
-  'deep-improvement-common',
-  'agent-improvement',
-  'model-benchmark',
 ]);

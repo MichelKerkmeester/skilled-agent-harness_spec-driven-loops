@@ -178,8 +178,8 @@ describe('write-set conflict graph', () => {
     expect(graph.schedule.graph_state).toBe('fallback');
     expect(graph.schedule.phase_gate_complete).toBe(false);
     expect(graph.schedule.missing_evidence.some((issue) => issue.code === 'UNCLASSIFIED_RESOURCE')).toBe(true);
-    expect(graph.edges.filter((edge) => edge.edge_origin === 'unknown-widening')).toHaveLength(6);
-    expect(affectedPairs).toHaveLength(6);
+    expect(graph.edges.filter((edge) => edge.edge_origin === 'unknown-widening')).toHaveLength(2);
+    expect(affectedPairs).toHaveLength(2);
     expect(affectedPairs.every((pair) => pair.classification === 'must-serialize'
       && pair.failure?.issue_codes.includes('UNCLASSIFIED_RESOURCE'))).toBe(true);
   });
@@ -718,26 +718,6 @@ describe('write-set conflict graph', () => {
       && lane.node_ids.includes('003-deep-ai-council'))).toBe(true);
   });
 
-  it('keeps common-before-variant hard order separate from derived conflicts', () => {
-    const graph = buildGraph();
-    const hardEdges = graph.edges.filter((edge) => edge.edge_type === 'hard-order'
-      && edge.from === '004-deep-improvement-common');
-
-    expect(hardEdges.map((edge) => edge.to)).toEqual([
-      '005-agent-improvement',
-      '006-model-benchmark',
-      '007-skill-benchmark',
-    ]);
-    expect(hardEdges.every((edge) => edge.edge_origin === 'required-constraint')).toBe(true);
-    expect(graph.edges).toContainEqual(expect.objectContaining({
-      from: '004-deep-improvement-common',
-      to: '005-agent-improvement',
-      edge_type: 'write-write',
-      edge_origin: 'derived',
-      resources: ['backend:deep-improvement-score'],
-    }));
-  });
-
   it('refuses stale source digests during construction and graph reuse', () => {
     const freshInput = buildInput();
     const stalePath = freshInput.sourceDigests[0]?.path as string;
@@ -856,7 +836,7 @@ describe('write-set conflict graph', () => {
     const pair = artifact.pair_classifications.find((entry) =>
       entry.left === '001-deep-research' && entry.right === '003-deep-ai-council');
 
-    expect(artifact.pair_classifications).toHaveLength(21);
+    expect(artifact.pair_classifications).toHaveLength(3);
     expect(pair).toEqual(expect.objectContaining({
       classification: 'must-serialize',
       failure: expect.objectContaining({
@@ -915,7 +895,7 @@ describe('write-set conflict graph', () => {
       sourceDigests: input.sourceDigests.slice(1),
     });
 
-    expect(artifact.pair_classifications).toHaveLength(21);
+    expect(artifact.pair_classifications).toHaveLength(3);
     expect(artifact.pair_classifications.every((pair) =>
       pair.classification === 'must-serialize'
       && pair.failure?.code === 'GRAPH_NOT_READY'

@@ -20,7 +20,7 @@ skill_pointer: SKILL.md
 This is system-deep-loop's second-layer (surface) router, first-class at the hub root
 as `ROUTER.md`. The hub selects a
 workflow mode in [`hub-router.json`](hub-router.json) (`research`,
-`review`, `ai-council`, or the two improvement lanes); this doc
+`review`, `ai-council`); this doc
 maps a request's deep-loop intent to the exact packet-local leaf resources that
 mode should load. Every path is packet-qualified (`<packet>/references|assets/…`,
 where `<packet>` is the mode's `mode-registry.json` `packet` field) and converts
@@ -41,13 +41,6 @@ emits leaf paths, and this router never re-decides the mode.
   convergence references a `/deep:review` audit loop loads.
 - **ai-council leaves** — the council loop protocol, scoring rubric, and output
   schema a multi-seat deliberation loads.
-- **agent-improvement leaves** — the agent-candidate proposal format, score
-  dimensions, and shared promotion-gate contract the agent-improvement lane loads.
-- **model-benchmark leaves** — the lane evaluator and scoring references. The two
-  lanes share the `deep-improvement` packet, but each route remains the typed
-  pair `(workflowMode, leafResourceId)`. A shared packet path is storage context,
-  not an identity substitute, so model-benchmark observations retain their own
-  workflow mode.
 
 A bare deep-loop identity term (e.g. "deep loop") names no mode, so it fires no
 intent and falls back to the hub default (disambiguation).
@@ -71,9 +64,7 @@ DEFAULT_RESOURCE = []
 INTENT_SIGNALS = {
     "RESEARCH":          {"weight": 4, "keywords": ["deep research", "iterative investigation", "research loop", "research summary", "investigate why", "autoresearch", "research convergence"]},
     "REVIEW":            {"weight": 4, "keywords": ["deep-review", "deep review of", "before running deep review", "review request", "review loop", "iterative review", "severity findings", "release readiness", "review convergence", "audit the diff"]},
-    "AI_COUNCIL":        {"weight": 4, "keywords": ["ai council", "council deliberation", "multi-seat", "planning council", "council convergence", "seat diversity"]},
-    "AGENT_IMPROVEMENT": {"weight": 4, "keywords": ["improve agent", "evaluate agent", "score agent", "agent candidate", "promote or roll back the agent", "agent-improvement"]},
-    "MODEL_BENCHMARK":   {"weight": 4, "keywords": ["/deep:model-benchmark"]}
+    "AI_COUNCIL":        {"weight": 4, "keywords": ["ai council", "council deliberation", "multi-seat", "planning council", "council convergence", "seat diversity"]}
 }
 
 RESOURCE_MAP = {
@@ -91,16 +82,7 @@ RESOURCE_MAP = {
         "deep-ai-council/references/integration/loop-protocol.md",
         "deep-ai-council/references/scoring/scoring-rubric.md",
         "deep-ai-council/references/structure/output-schema.md"
-    ],
-    "AGENT_IMPROVEMENT": [
-        "deep-improvement/references/agent-improvement/candidate-proposal-format.md",
-        "deep-improvement/references/agent-improvement/score-dimensions.md",
-        "deep-improvement/references/shared/promotion-gate-contract.md"
-    ],
-    "MODEL_BENCHMARK": [
-        "deep-improvement/references/model-benchmark/evaluator-contract.md",
-        "deep-improvement/references/model-benchmark/lane-b-mechanics.md"
-    ],
+    ]
 }
 ```
 
@@ -111,9 +93,5 @@ RESOURCE_MAP = {
 - One dominant intent routes to one mode's leaf set.
 - Two near-tied intents (within the ambiguity delta) route to both leaf sets; the
   union is deduped by canonical pair and capped at the selected-map union limit.
-- The two improvement lanes share the `deep-improvement` packet. Resolve and
-  compare every leaf as `(workflowMode, leafResourceId)`; never infer the mode
-  from the packet prefix or reinterpret a mismatched pair as successful fan-out.
-  A missing or mismatched typed pair is a routing miss and must remain visible.
 - No keyword match is the hub's UNKNOWN fallback: confirm the target deep-loop
   mode before loading anything.

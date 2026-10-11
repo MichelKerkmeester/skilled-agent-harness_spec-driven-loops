@@ -19,7 +19,7 @@ contextType: implementation
 
 This document is the single-source measurement contract for the active
 `behavior_benchmark` packages carried by the deep-loop workflow sub-skills
-(`deep-ai-council`, `deep-improvement`, `deep-research`, `deep-review`).
+(`deep-ai-council`, `deep-research`, `deep-review`).
 Each active package measures what an executor **model** actually does
 when its command surface is triggered with a realistic user prompt. The unit of
 measurement is a single run of one scenario against one executor, scored on a
@@ -33,7 +33,6 @@ efforts, and authors must keep them from colliding:
 | --- | --- |
 | `manual_testing_playbook` | Does the **system** match documented behavior when driven by a competent executor? Human-verifies the workflow itself. |
 | `feature_catalog` | What **exists** in this skill (commands, surfaces, artifacts)? Inventory, not measurement. |
-| `/deep:model-benchmark` | **Model** scoring against static fixtures. Fixed inputs, reproducible targets, no live command surface. |
 | `behavior_benchmark` | **Live executor behavior at the real command surface** under realistic prompting. |
 
 Only behavior_benchmark observes a model running through the genuine dispatch
@@ -331,7 +330,6 @@ fixed layout:
 | Prefix | Package |
 | --- | --- |
 | `ACB` | `deep-ai-council` |
-| `IMB` | `deep-improvement` |
 | `RSB` | `deep-research` |
 | `RVB` | `deep-review` |
 

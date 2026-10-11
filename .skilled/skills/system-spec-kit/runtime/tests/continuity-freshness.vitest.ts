@@ -16,10 +16,6 @@ import { validateContinuityFreshness } from '../cli/validation/continuity-freshn
 const THIS_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(THIS_DIR, '../../../../..');
 const VALIDATE_SCRIPT = path.resolve(THIS_DIR, '../cli/spec/validate.sh');
-const REVIEWER_STALE_VERDICT = path.resolve(
-  REPO_ROOT,
-  '.skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/reviewer-stale-verdict.json',
-);
 const TEMP_DIRS: string[] = [];
 
 function makeTempDir(prefix: string): string {
@@ -175,10 +171,7 @@ describe('completion continuity freshness', () => {
 
   // The rule verifies a claim against implementation-summary.md's own
   // fingerprint, so only an edit to that document can make the packet stale.
-  it('warns on the stale-verdict fixture class when a completion fingerprint is stale', () => {
-    const sourceFixture = JSON.parse(fs.readFileSync(REVIEWER_STALE_VERDICT, 'utf8')) as { id: string };
-    expect(sourceFixture.id).toBe('reviewer-stale-verdict');
-
+  it('warns when a completion fingerprint is stale', () => {
     const root = makeTempDir('speckit-freshness-warn-');
     const folder = createPacket(root);
     fs.appendFileSync(path.join(folder, 'implementation-summary.md'), '\nEdited after green evidence.\n', 'utf8');

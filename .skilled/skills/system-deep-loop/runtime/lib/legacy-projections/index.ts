@@ -19,9 +19,6 @@ export {
   createDeepAiCouncilConfigStateProjectionContract,
 } from './deep-ai-council-config-state-contract.js';
 export {
-  createDeepImprovementLedgersProjectionContract,
-} from './deep-improvement-ledgers-contract.js';
-export {
   createDeepReviewDeltasProjectionContract,
 } from './deep-review-deltas-contract.js';
 export {
@@ -72,10 +69,6 @@ export type {
   CouncilStateProjectionState,
   CouncilSessionStateProjectionState,
 } from './deep-ai-council-config-state-contract.js';
-export type {
-  CreateDeepImprovementLedgersProjectionContractOptions,
-  DeepImprovementLedgersProjectionState,
-} from './deep-improvement-ledgers-contract.js';
 export type {
   CreateDeepReviewDeltasProjectionContractOptions,
   DeepReviewDeltasProjectionState,

@@ -1,6 +1,6 @@
 ---
 title: "CU-022 -- Cursor agent roster enumeration"
-description: "Verify Cursor can enumerate and dispatch all 13 mirrored repository agents discovered through file convention."
+description: "Verify Cursor can enumerate and dispatch all 11 mirrored repository agents discovered through file convention."
 version: 1.4.0.5
 ---
 
@@ -10,7 +10,7 @@ This document captures the realistic user-testing contract, execution flow, sour
 
 ## 1. OVERVIEW
 
-Enumerate `.cursor/agents/*.md` and ask a real `cursor-agent -p` dispatch to report the same 13 mirrored profiles.
+Enumerate `.cursor/agents/*.md` and ask a real `cursor-agent -p` dispatch to report the same 11 mirrored profiles.
 
 ### Why This Matters
 
@@ -20,12 +20,12 @@ Cursor agent discovery is convention-based, not a flag shown in `--help`. A comp
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Confirm all 13 repository agents are visible to Cursor.
+- Objective: Confirm all 11 repository agents are visible to Cursor.
 - Real user request: `List every repository agent Cursor can dispatch and report the count.`
 - Prompt: `Enumerate every repository agent profile available to this Cursor session. Report the exact names and count. Do not edit files.`
 - Expected execution process: Count and list the local `.cursor/agents/*.md` files, then dispatch `cursor-agent -p` with the explicit model and approval/sandbox flags; compare the output.
-- Expected signals: `ai-council`, `code`, `context`, `debug`, `deep-improvement`, `deep-research`, `deep-review`, `design`, `markdown`, `orchestrate`, `prompt-improver`, and `review` all appear exactly once.
-- Desired user-visible outcome: A 13-agent roster with no duplicates or silent omissions.
+- Expected signals: `ai-council`, `code`, `context`, `debug`, `deep-research`, `deep-review`, `design`, `markdown`, `orchestrate`, `prompt-improver`, and `review` all appear exactly once.
+- Desired user-visible outcome: An 11-agent roster with no duplicates or silent omissions.
 - Pass/fail: PASS when filesystem and live dispatch agree; FAIL on any missing/duplicate name; SKIP only with a named Cursor availability/auth blocker.
 
 ---
@@ -43,15 +43,15 @@ Prompt: `Enumerate every repository agent profile available to this Cursor sessi
 
 ### Expected
 
-Step 1 lists exactly the 13 names in the description. Step 2's dispatch enumerates the same 13 names with no duplicate and no omission.
+Step 1 lists exactly the 11 names in the description. Step 2's dispatch enumerates the same 11 names with no duplicate and no omission.
 
 ### Evidence
 
-Compare step 2's output text with the 13-name filesystem roster from step 1, and record Cursor auth evidence from `cursor-agent about`.
+Compare step 2's output text with the 11-name filesystem roster from step 1, and record Cursor auth evidence from `cursor-agent about`.
 
 ### Pass / Fail
 
-- **Pass**: filesystem and live dispatch report the same 13 names with no duplicate or omission.
+- **Pass**: filesystem and live dispatch report the same 11 names with no duplicate or omission.
 - **Fail**: any name is missing or duplicated in either source, or the two sources disagree.
 - **Skip**: only with a named Cursor availability or authentication blocker on the step 2 dispatch; the filesystem enumeration in step 1 is hermetic and does not SKIP.
 

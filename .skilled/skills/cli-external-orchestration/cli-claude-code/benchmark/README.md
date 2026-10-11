@@ -41,4 +41,4 @@ The first entry in this tree is **not** a Lane C harness run. It is a hand-autho
 | [`cli-claude-code`](../SKILL.md) | The skill under measurement |
 | [`goal-hook.md`](../manual-testing-playbook/goal-hook/goal-hook.md) | The `CC-029` scenario this run's entry derives from |
 | [`hooks/goal/README.md`](../../../../hooks/goal/README.md) | The per-runtime goal routing contract (§3): Claude Code native `/goal`, cross-runtime delivery for Devin/Cursor/Pi |
-| [`deep-improvement`](../../../system-deep-loop/deep-improvement/SKILL.md) | Owns the surviving improvement lanes (agent-improvement, model-benchmark) |
+| `deep-improvement` | Owns the surviving improvement lanes (agent-improvement, model-benchmark) |

@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/039-deprecate-improvement-modes/001-removal-research/002-agent-improvement-inventory",
+  "description": "The `agent-improvement` mode of `system-deep-loop` is registered in the hub's mode registry, exposed as the `/deep:agent-improvement` command,",
+  "keywords": [
+    "agent-improvement",
+    "mode",
+    "system-deep-loop",
+    "registered",
+    "hub",
+    "registry",
+    "exposed",
+    "deep",
+    "command"
+  ],
+  "lastUpdated": "2026-10-10T18:34:41.765Z",
+  "specId": "002",
+  "folderSlug": "agent-improvement-inventory",
+  "parentChain": [
+    "system-deep-loop",
+    "039-deprecate-improvement-modes",
+    "001-removal-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

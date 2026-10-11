@@ -18,7 +18,6 @@ const LINK_DOCS = [
   HUB_README,
   path.join(SKILL_ROOT, 'deep-research', 'README.md'),
   path.join(SKILL_ROOT, 'deep-ai-council', 'README.md'),
-  path.join(SKILL_ROOT, 'deep-improvement', 'README.md'),
   path.join(SKILL_ROOT, 'runtime', 'README.md'),
   path.join(SKILL_ROOT, 'runtime', 'scripts', 'README.md'),
   path.join(SKILL_ROOT, 'deep-review', 'SKILL.md'),
@@ -44,10 +43,8 @@ function unique(values) {
 
 function registryCounts(registry) {
   const packets = unique(registry.modes.map((mode) => mode.packet));
-  const improvementLanes = registry.modes.filter((mode) => mode.packet === 'deep-improvement');
   return {
     families: packets.length,
-    lanes: improvementLanes.length,
     packets,
   };
 }
@@ -115,8 +112,7 @@ function runChecks(args) {
     if (!fs.existsSync(path.join(SKILL_ROOT, packet))) errors.push(`registry packet missing: ${packet}`);
     if (!read(HUB_README).includes(`${packet}/`)) errors.push(`registry packet absent from hub index: ${packet}`);
   }
-  if (counts.families !== 4) errors.push(`family count mismatch: ${counts.families}`);
-  if (counts.lanes !== 3) errors.push(`lane count mismatch: ${counts.lanes}`);
+  if (counts.families !== 3) errors.push(`family count mismatch: ${counts.families}`);
   if (!args.linksOnly && !args.reportsOnly) {
     for (const [root, prefix] of [[COUNCIL_PLAYBOOK, 'DAC']]) {
       const scenarios = scenarioIndex(root, prefix);
