@@ -1,0 +1,102 @@
+Lane 8 lean parent status (REQ-012) evidence
+
+STATUS: halted before the production parser edit. Approval needed for the fix location (see Deviation).
+
+1. Baseline
+graph-metadata-schema.vitest.ts, root project, before any change: 44 of 44 passed, exit 0.
+Log: scratchpad L8/baseline.txt
+
+2. Red (new cases in tests/graph-metadata-schema.vitest.ts, parser unchanged)
+Four cases added under "graph metadata lean phase parent status".
+Run: 48 tests, 47 passed, 1 failed, exit 1.
+Log: scratchpad L8/red-run.txt
+Failing case: "keeps in_progress for a lean parent when a child has no graph-metadata.json".
+  Expected in_progress, received complete.
+Passing on the unchanged parser:
+  - two complete children over a stored in_progress status derive complete
+  - one child in_progress keeps in_progress
+  - a lean parent with no children keeps the stored in_progress status
+
+3. Typecheck
+npm run typecheck in the runtime, with the new cases in place: exit 0.
+Log: scratchpad L8/typecheck-red.txt
+
+4. Where the gap is
+deriveStatus (graph-metadata-parser.ts, lean branch) takes no children argument, so it cannot apply an every-child rule. It returns the stored status there.
+deriveGraphMetadata always calls derivePhaseParentRollup, which already sets complete when every child is complete. It builds its child list from children that have a loadable graph-metadata.json, so a child without one is dropped before the every() check. That drop is the defect: a parent with two complete children and one child missing its metadata derives complete.
+
+5. Read-only scan of specs/ (no writes)
+Phase parents scanned: 526. Parents with at least one child missing graph-metadata.json: 52, of which 50 are lean and 2 are not lean.
+Log: scratchpad L8/scan-lean-children.json
+
+6. Real 034 parent (read-only derive)
+Stored status in_progress. Child 016-research-recommendations is in_progress and has no implementation-summary.md, and child 021-follow-up-defect-fixes is draft. The derivation is therefore in_progress for a correct reason.
+
+Deviation: the lane row places the fix in deriveStatus around lines 1290 to 1310. The reproduced defect sits in derivePhaseParentRollup around lines 1421 to 1447, and deriveStatus cannot see children without a signature change. The proposed fix is in derivePhaseParentRollup, with the mutants M8-a and M8-b re-aimed at its missing-child and every() branches.
+
+7. Proposed fix, verified in a scratch mirror only
+The change in derivePhaseParentRollup keeps the unfiltered child list. The every() check then requires that every child has loadable metadata. A child without metadata yields in_progress through the existing some() branch when another child is complete.
+Mirror L8-proposed (scratchpad, not the repository): schema suite 48 of 48 passed, exit 0.
+Log: scratchpad L8/proposed-run.txt
+
+8. Read-only flip comparison, repository parser against the proposed parser
+Phase parents compared: 526. Errors: 0. Flips: 2.
+  hooks/022-smart-rule-injection: complete to in_progress
+  sk-design/z_archive/012-sk-design-program/004-hallmark-design-system: complete to in_progress
+Both flipping parents have one child without graph-metadata.json. The two non-lean hits from step 5 do not flip.
+Log: scratchpad L8/flip/flip.json
+No file under specs/ was written by this comparison.
+
+9. Production fix applied after operator approval
+This section supersedes the halted status at the top of the file. Sections 1 to 8 are unchanged.
+
+Change: graph-metadata-parser.ts, derivePhaseParentRollup only. The child list is now built in two steps. childEntries keeps every phase child folder, and children keeps the ones with loadable graph-metadata.json. everyChildLoaded is true only when no child folder was left out, and the complete branch requires it. A parent with no loadable child keeps its derived status, as before.
+
+Build: npm run build in the runtime, exit 0. Log: scratchpad L8/build-after-fix.txt
+Typecheck: npm run typecheck in the runtime, exit 0. Log: scratchpad L8/typecheck-green.txt
+Schema suite after the fix: 48 tests, 48 passed, exit 0. Log: scratchpad L8/green-run.txt
+Schema suite before the fix (section 2): 44 baseline cases green, the four new cases added, 47 of 48 passed with the child-without-metadata case failing.
+
+Mutants, each built in a scratch mirror. The repository was not modified by them.
+  Control L8-control, unmutated: 48 passed, 0 failed, exit 0. Log: scratchpad L8/mut/control-run.txt
+  M8-a, missing-child guard dropped: 47 passed, 1 failed, exit 1. Failing case: keeps in_progress for a lean parent when a child has no graph-metadata.json. Log: scratchpad L8/mut/M8-a-run.txt
+  M8-b, every() changed to some(): 47 passed, 1 failed, exit 1. Failing case: keeps in_progress for a lean parent when one child is still in_progress. Log: scratchpad L8/mut/M8-b-run.txt
+
+Parents that flip from complete to in_progress on their next re-derive, from the read-only comparison in section 8. This step did not re-derive them and did not write their metadata.
+  hooks/022-smart-rule-injection
+  sk-design/z_archive/012-sk-design-program/004-hallmark-design-system
+Both have one child without graph-metadata.json. Their stored graph-metadata.json still reads complete, and it changes only when a later re-derive runs.
+
+Processes: no background process was started in this step, so none was killed.
+
+10. Linked canonical docs during metadata derivation (operator-approved producer fix)
+Sections 1 to 9 are unchanged.
+
+Changes
+  lib/graph/graph-metadata-parser.ts, readDoc: a symbolic link returns status unknown with the error "symbolic link, not followed" and is never read. The check uses lstat through the existing isSymbolicLink helper. A missing doc still reads as missing.
+  lib/graph/generated-metadata-drift.ts, computeSourceDocHashes: a linked doc is skipped like a missing one. The lstat check sits inside the existing try block.
+  lib/search/folder-discovery.ts: not changed. See the finding below.
+
+Red cases, written before the fix and run against the unchanged readers
+  Schema file, "does not derive from a linked spec.md whose content lies outside the packet": 49 tests, 48 passed, 1 failed, exit 1. Received planned, expected unknown. Log: scratchpad L8/link/red-schema.txt
+  Drift file, "skips a spec.md that is a link to content outside the packet, as it skips a missing doc": 15 tests, 14 passed, 1 failed, exit 1. Received a hash map with spec.md, expected an empty map. Log: scratchpad L8/link/red-drift.txt
+
+Counts
+  Before the change: schema file 48 of 48 (scratchpad L8/link/base-schema.txt). Backfill and drift files 29 passed, 1 skipped (scratchpad L8/link/base-cli.txt).
+  After the change: schema file 49 of 49, exit 0 (scratchpad L8/link/green-schema.txt). Backfill and drift files 30 passed, 1 skipped, exit 0 (scratchpad L8/link/green-cli.txt).
+  Build in the runtime: exit 0 (scratchpad L8/link/build.txt). Typecheck: exit 0 (scratchpad L8/link/typecheck.txt).
+
+folder-discovery finding
+  getDescriptionSourceFreshness reads the DESCRIPTION_SOURCE_DOCS loop about line 354 with statSync, so a link's target mtime can feed a description lastUpdated. Its callers are wouldWritePerFolderDescription, generateFolderDescriptions, repairStaleDescriptions, _processSpecFolder, generatePerFolderDescription and savePerFolderDescription.
+  The graph metadata backfill, cli/graph/backfill-graph-metadata.ts, imports only getSpecsBasePaths from folder-discovery. The graph parser imports only extractKeywords and getSpecsBasePaths. Neither body calls the loop, which the static call map confirms.
+  Observed: a probe on the shared helper, built in a scratch mirror, recorded 0 hits from the backfill test file and 0 hits from the drift test file. The folder-discovery test file recorded 25 hits, which shows the probe works (log: scratchpad L8/link/probe-fd-run.txt).
+  Result: the backfill does not reach the loop. folder-discovery is left alone. Other callers outside this lane are cli/spec-folder/generate-description.ts, cli/graph/migrate-generated-json.ts, cli/continuity/backfill-research-metadata.ts and cli/core/workflow.ts. Those can take a link's mtime but never its content. They were not assessed further.
+  Limit: the backfill CLI was not run end to end on a fixture. It refuses roots outside the repository, and a fixture inside the tree would have been written. The finding rests on the static call map and the test-suite probe.
+
+Mutants, each in a scratch mirror only
+  Control L8-control-link, unmutated: schema file 49 of 49, exit 0. Backfill and drift files 30 passed, 1 skipped, exit 0.
+  M8-c, readDoc follows the link again: schema file 48 passed, 1 failed, exit 1. Failing case: does not derive from a linked spec.md whose content lies outside the packet. Backfill and drift files 30 passed, 1 skipped, exit 0. The readDoc case lives in the schema file, so the backfill and drift files do not catch this mutant.
+  M8-d, the hash includes the link again: schema file 49 of 49, exit 0. Backfill and drift files 29 passed, 1 failed, 1 skipped, exit 1. Failing case: skips a spec.md that is a link to content outside the packet, as it skips a missing doc.
+  Logs: scratchpad L8/link/mut/control-schema.txt, control-cli.txt, M8-c-schema.txt, M8-c-cli.txt, M8-d-schema.txt, M8-d-cli.txt
+
+Processes: no background process was started in this step, so none was killed.

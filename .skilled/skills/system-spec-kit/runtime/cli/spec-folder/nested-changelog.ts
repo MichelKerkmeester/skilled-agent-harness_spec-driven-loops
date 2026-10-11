@@ -164,6 +164,7 @@ function stripFrontmatter(markdown: string): string {
 
 function cleanInlineMarkdown(value: string): string {
   return value
+    .replace(/<!--[\s\S]*?-->/g, '')
     .replace(/`([^`]+)`/g, '$1')
     .replace(/\*\*([^*]+)\*\*/g, '$1')
     .replace(/\*([^*]+)\*/g, '$1')
@@ -358,7 +359,7 @@ function extractFilesChanged(implementationSummary: string, specMarkdown: string
     }
   }
 
-  return rows.slice(0, 12);
+  return rows;
 }
 
 function classifyChangeItem(text: string): 'added' | 'changed' | 'fixed' {

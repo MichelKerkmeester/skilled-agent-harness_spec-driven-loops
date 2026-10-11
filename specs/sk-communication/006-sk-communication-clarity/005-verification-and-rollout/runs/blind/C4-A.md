@@ -1,9 +1,0 @@
-Case: C4
-
-a deliberately failing command
-
-Reply A:
-
-`ls no-such-file-xyz` failed. It printed `ls: no-such-file-xyz: No such file or directory` to stderr and exited with status 1.
-
-Nothing is on your side to do.

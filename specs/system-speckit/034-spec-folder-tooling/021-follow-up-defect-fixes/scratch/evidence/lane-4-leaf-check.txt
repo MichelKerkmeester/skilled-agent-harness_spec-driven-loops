@@ -1,0 +1,44 @@
+Lane 4 evidence: generate-leaf-manifest.cjs --check refuses a linked leaf-manifest.json (REQ-005)
+
+Write set (git diff --stat, three files, 45 insertions and 2 deletions)
+  .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs
+    runCheck refuses a symbolic link, live or dangling, before the existence test, with the same
+    "symbolic link, not followed" text that runWrite uses, and throws so the CLI exits 2.
+  .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs
+    Two new cases: testLinkedManifestCheckIsRefused (fresh bytes behind the link) and
+    testDanglingManifestCheckIsRefused. Section 8 header renamed to MANIFEST WRITE AND CHECK.
+  .skilled/skills/sk-doc/sk-create-skill/scripts/README.md
+    The generate-leaf-manifest.cjs row now says --write and --check refuse a linked manifest.
+
+Baseline, unfixed code, node --test over the three test files
+  tests 3, pass 3, fail 0, exit 0
+
+Red, unfixed code
+  Fresh-bytes link: --check printed "leaf-manifest.json OK" and exited 0. Expected exit 2.
+  Dangling link: --check printed "no leaf-manifest.json to check" and exited 2. Expected the
+  symbolic link refusal, so the case reads as a missing manifest.
+  Per-case harness, unfixed generator, new test file: 23 cases, 2 failed, exit 1.
+    FAIL testLinkedManifestCheckIsRefused: leaf-manifest.json OK
+    FAIL testDanglingManifestCheckIsRefused: stderr did not match the symbolic link text
+
+Green, fixed code
+  node --test over the three test files: tests 3, pass 3, fail 0, exit 0.
+  Scopes file run directly: "leaf-manifest scope contract coverage passed", exit 0.
+  Per-case harness: 23 cases, 0 failed, exit 0.
+  node --check on the generator and on the scopes test file: no syntax errors.
+
+Mutant M4-a (copy of the scripts folder outside the repository, runCheck link check removed)
+  Per-case harness: 23 cases, 2 failed, exit 1.
+    FAIL testLinkedManifestCheckIsRefused: leaf-manifest.json OK (fresh bytes read through the link)
+    FAIL testDanglingManifestCheckIsRefused
+
+Hub check, generate-leaf-manifest.cjs --check on every skill under .skilled/skills that has a leaf-manifest.json
+  14 of 14 exit 0 with "leaf-manifest.json OK":
+  cli-classifier, cli-external-orchestration, cli-orca, mcp-code-mode, mcp-tooling, sk-code,
+  sk-design, sk-doc, sk-git, sk-prompt, sk-vision, system-deep-loop, system-skill-advisor,
+  system-spec-kit.
+
+Scratch logs (outside the repository, in the lane 4 scratch folder): lane-4-red.txt (direct red run),
+lane-4-red-dangling.txt (dangling CLI probe), lane-4-unfixed-harness.txt (red, per case),
+lane-4-control-harness.txt (green, per case), lane-4-m4a-harness.txt (mutant), lane-4-green.txt
+(node --test), lane-4-green-scopes-direct.txt, lane-4-neighbors.txt (hub checks).

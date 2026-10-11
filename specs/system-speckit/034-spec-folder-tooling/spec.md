@@ -12,9 +12,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-folder-tooling"
-    last_updated_at: "2026-10-10T09:53:50Z"
+    last_updated_at: "2026-10-11T12:13:52Z"
     last_updated_by: "claude"
-    recent_action: "Completion 100 by the status classifier (20 of 20 children complete). 020 closed on the push bb2006123f with main CI green"
+    recent_action: "Completion 100 by the status classifier, 21 of 21 children complete, 021 closed on 01db8367c3"
     next_safe_action: "Create follow-up phase 034/021 for the items moved out of 020"
     blockers: []
     key_files: []
@@ -130,6 +130,7 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | 18 | 018-epic-docs-alignment/ | Bring the playbooks, feature catalogs, READMEs, doctor docs and release changelogs in line with the epic's tooling | Complete |
 | 19 | 019-epic-follow-up-fixes/ | Close the eleven follow-ups the epic left: the env reference, the compat workflow contract, Gate 3 parity coverage, CLI test isolation and the leaf manifest generator | Complete |
 | 20 | `020-deep-review-remediation/` | Remediate the eleven deep review findings against phases 016 to 019, the open search debt and the Hermes mirror byte diff, and settle the phase 010 status. Eight lanes, each with a red run before its fix | Complete |
+| 21 | `021-follow-up-defect-fixes/` | Fix the pre-existing defects that phase 020 found and moved here: link handling in the healer, backfill, archive, leaf manifest check, upgrade-legacy and repair-derived, the changelog row cut and comment leak, the lean parent status, two test hygiene faults and the launcher child marker with the Hermes rule. Ten code lanes, each with a red run, a green run and a mutant | Complete |
 
 ### Phase Transition Rules
 
@@ -161,6 +162,7 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | `017-heal-cli-and-compat-yaml-simplification` | `018-epic-docs-alignment` | 017 is Complete. Its acceptance rows AC-001 to AC-007 are all Met, and its strict validate prints RESULT: PASSED. 018 names 017 as its predecessor and brings the playbooks, catalogs and READMEs in line with the tooling that 017 and the earlier phases shipped | 017 `acceptance-criteria.md` (seven rows Met), 017 `implementation-summary.md` Verification row (`validate.sh --strict` RESULT: PASSED, Errors: 0, Warnings: 0), 018 `spec.md` Predecessor row |
 | `018-epic-docs-alignment` | `019-epic-follow-up-fixes` | 018 is Complete. Its acceptance rows AC-001 to AC-005 are all Met, and its strict validates print RESULT: PASSED on the packet and on this parent. 018 reached `main` at `f3f8583579`, and 019 starts from that shipped state | 018 `acceptance-criteria.md` (AC-001 to AC-005 Met), 018 `scratch/evidence/validate-packet.txt` and `validate-034.txt` (RESULT: PASSED), 018 `scratch/evidence/push.txt` (`9dbfe3a046..f3f8583579 HEAD -> main`) |
 | `019-epic-follow-up-fixes` | `020-deep-review-remediation` | 019 is Complete. Its acceptance rows AC-001 to AC-015 are all Met, SC-002 included, and its strict validate prints RESULT: PASSED on the packet and on this parent. Main CI is green on its push commit `079e9c34d2`, and 020 starts from that commit | 019 `acceptance-criteria.md` (AC-015 for SC-002), 019 `scratch/evidence/post-push-ci.txt` (14 of 14 checks succeeded on `079e9c34d2`), 020 `scratch/evidence/validate-019-closeout.txt` and `validate-034-closeout.txt` |
+| `020-deep-review-remediation` | `021-follow-up-defect-fixes` | 020 is Complete. Its acceptance rows AC-001 to AC-016 are all Met, and its strict validate prints RESULT: PASSED. It is committed at `7a0f0b4375`, and the operator moved the defects in its Known Limitations items 3, 14 to 16 and 22 to 28, and the healer and backfill findings in its guard evidence, to 021, which starts from that commit | 020 `acceptance-criteria.md` (AC-001 to AC-016 Met), 020 `scratch/evidence/closure-gate-validate-020-last.txt` (RESULT: PASSED), 020 `implementation-summary.md` Known Limitations, 020 `scratch/evidence/closure-guard-final-gA.txt` and `closure-guard-final-gB.txt`, 021 `spec.md` section 4 |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -37,6 +37,7 @@ export {
   extractKeywords,
   slugifyFolderName,
   getRepairMergeSafe,
+  getSpecsBasePaths,
 } from '../lib/search/folder-discovery.js';
 export type { PerFolderDescription, LoadResult } from '../lib/search/folder-discovery.js';
 

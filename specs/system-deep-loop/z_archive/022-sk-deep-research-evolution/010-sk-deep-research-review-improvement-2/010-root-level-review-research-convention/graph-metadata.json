@@ -187,21 +187,21 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "name": "parent-walk",
+        "kind": "key_phrase",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "What Was Built",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "name": "convention",
+        "kind": "key_phrase",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "When running `/speckit:deep-review` or `/speckit:deep-research` on a child phase inside a parent spec tree, both skills create their output folders (`review/`, `research/`) inside the child phase folder",
     "created_at": "2026-04-18T07:39:57.335Z",
-    "last_save_at": "2026-10-07T20:55:19.717Z",
+    "last_save_at": "2026-10-10T20:53:22.758Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +210,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5ae92d1b379d127209142e7802d95ba188c5b3866b7fc35235fa4ab6b6a6d9c0",
+    "source_fingerprint": "sha256:50addfc22169ff59d86188a186aba2410f7a5d4baf90731ec27e26f5f47a09fa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "284d3665f25b8d40e2b1b20bf80927c1238e969622b64aed4599c11dd9019d30",
       "plan.md": "c01764ad792265dc05d3ee459d3b78d1e9c8b38fb0ae312898d927517ecb29ef",
-      "tasks.md": "6c00a969c64058076fc73289300a339981fb758136a1d82fbb633d813823fdb6",
+      "tasks.md": "46b212d80ec3c4b3134bc421d078d59414ff0127793ad5a31add60490bbdf938",
       "implementation-summary.md": "be513a424a9fe7af4918803cd0a215182c4901f2a590e2c517e312587b492104"
     },
     "last_active_child_id": null,

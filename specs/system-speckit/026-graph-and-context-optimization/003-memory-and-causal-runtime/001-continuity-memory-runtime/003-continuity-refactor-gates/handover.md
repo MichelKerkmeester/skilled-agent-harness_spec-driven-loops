@@ -1,6 +1,6 @@
 ---
 title: "...tem-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates/handover]"
-description: 'title: "Phase 018 Autonomous Execution — Live Handover"'
+description: "If you are reading this after a context compaction, this is your current state. Read sections 1–4 first, then act."
 trigger_phrases:
   - "tem"
   - "spec"

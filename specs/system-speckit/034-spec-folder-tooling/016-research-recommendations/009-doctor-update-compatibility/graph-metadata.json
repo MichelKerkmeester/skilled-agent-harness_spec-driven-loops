@@ -39,7 +39,7 @@
       "criteria"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "`upgrade-legacy.mjs` exists and ships tests but no workflow, hook, or command calls it",
     "created_at": "2026-10-08T04:22:45Z",
-    "last_save_at": "2026-10-09T09:26:36.902Z",
+    "last_save_at": "2026-10-10T21:34:16.117Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,12 +220,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:18c835438d4b0678c34a86b4b03c1954cd4b414fa6f9f4883dcdc347fa754152",
+    "source_fingerprint": "sha256:9d5fa34a4269bf1e6bab7181385b6b263b3c3c8d90183a56a70bd2d0886bd159",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e9aaf2568602e28fdd0c54719a08f0ab272863a5f2d717c7a493fa635f8a9936",
       "plan.md": "6fda9cf131722271bf3f4a4a49f6d73fa78eef37adbeef44d8b6daefa4a7d5a7",
-      "tasks.md": "a2fe41379020d54415d2598ab5c1b1380673ce44e0cda36d3e9d1cdb0f465892",
+      "tasks.md": "22818d90429922e61755bba2387a1d41028f393e6097050990c1199187d68fe3",
       "implementation-summary.md": "5b7d7fac64a5ac458a9749e87c0e415188016defb6460e449c45ec8803c5ce42"
     },
     "last_active_at": null

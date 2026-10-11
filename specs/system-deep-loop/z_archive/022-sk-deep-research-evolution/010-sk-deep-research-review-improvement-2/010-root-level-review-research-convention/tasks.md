@@ -1,6 +1,6 @@
 ---
 title: "...killed-agent-orchestration/042-sk-deep-research-review-improvement-2/010-root-level-review-research-convention/tasks]"
-description: 'title: "Tasks: Root-Level Review/Research Folder Convention"'
+description: "tasks document for 010-root-level-review-research-convention."
 trigger_phrases:
   - "root level review research convention"
   - "agent orchestration convention"

@@ -98,6 +98,8 @@ export function computeSourceDocHashes(folderPath: string): Record<string, strin
     const docPath = path.join(folder, relativePath);
     let content: string;
     try {
+      // A linked parent can expose another packet's source, so hash only local targets.
+      if (!isWithinPacketFolder(docPath, folder)) continue;
       content = fs.readFileSync(docPath, 'utf-8');
     } catch {
       continue;
@@ -105,6 +107,21 @@ export function computeSourceDocHashes(folderPath: string): Record<string, strin
     hashes[relativePath.replace(/\\/g, '/')] = crypto.createHash('sha256').update(content).digest('hex');
   }
   return hashes;
+}
+
+function isWithinPacketFolder(filePath: string, packetFolderPath: string): boolean {
+  try {
+    const realPacketFolderPath = fs.realpathSync(packetFolderPath);
+    const realFilePath = fs.realpathSync(filePath);
+    const relativePath = path.relative(realPacketFolderPath, realFilePath);
+    return relativePath === '' || (
+      relativePath !== '..'
+      && !relativePath.startsWith(`..${path.sep}`)
+      && !path.isAbsolute(relativePath)
+    );
+  } catch {
+    return false;
+  }
 }
 
 function readJsonObject(filePath: string): { ok: true; value: Record<string, unknown> } | { ok: false; reason: 'missing' | 'unreadable' | 'unparseable' } {

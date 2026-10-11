@@ -234,6 +234,97 @@ describe('archive.sh with tracks', () => {
   });
 });
 
+describe('archive.sh with a linked argument', () => {
+  it('refuses an argument that is a link, and moves nothing, so no link is left dangling', () => {
+    packet('001-real');
+    fs.symlinkSync('001-real', path.join(specs, '002-alias'));
+    const result = archive(['--force', 'specs/002-alias']);
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stderr).toContain('symbolic link');
+    expect(result.stderr).toContain(path.join(specs, '001-real'));
+    expect(fs.existsSync(path.join(specs, '001-real', 'spec.md'))).toBe(true);
+    expect(fs.lstatSync(path.join(specs, '002-alias')).isSymbolicLink()).toBe(true);
+    expect(fs.existsSync(path.join(specs, 'z_archive'))).toBe(false);
+  });
+
+  it('refuses an argument that reaches its packet through a linked track, before the packet moves', () => {
+    trackRoot('tools', ['tools/001-a']);
+    fs.symlinkSync('tools', path.join(specs, 'tools-alias'));
+    const result = archive(['--force', 'specs/tools-alias/001-a']);
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stderr).toContain('symbolic link');
+    expect(fs.existsSync(path.join(specs, 'tools', '001-a', 'spec.md'))).toBe(true);
+    expect(fs.existsSync(path.join(specs, 'tools', 'z_archive'))).toBe(false);
+    expect(children('tools')).toEqual(['tools/001-a']);
+  });
+
+  it('refuses an absolute alias path through a linked track before archiving', () => {
+    trackRoot('tools', ['tools/001-a']);
+    fs.symlinkSync('tools', path.join(specs, 'tools-alias'));
+    const repoAlias = path.join(repo, 'repo-alias');
+    fs.symlinkSync(repo, repoAlias, 'dir');
+
+    const result = archive(['--force', path.join(repoAlias, 'specs', 'tools-alias', '001-a')]);
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stderr).toContain('symbolic link');
+    expect(result.stderr).toContain(path.join(specs, 'tools', '001-a'));
+    expect(fs.existsSync(path.join(specs, 'tools', '001-a', 'spec.md'))).toBe(true);
+    expect(fs.existsSync(path.join(specs, 'tools', 'z_archive'))).toBe(false);
+    expect(children('tools')).toEqual(['tools/001-a']);
+  });
+
+  it('refuses a restore that reaches an archived packet through a linked track, and moves nothing', () => {
+    trackRoot('tools', ['tools/001-a', 'tools/002-b']);
+    expect(archive(['--force', 'specs/tools/002-b']).status).toBe(0);
+    fs.symlinkSync('tools', path.join(specs, 'tools-alias'));
+    const listBefore = readMetadata('tools');
+    const result = archive(['--restore', 'specs/tools-alias/z_archive/002-b']);
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stderr).toContain('symbolic link');
+    expect(result.stderr).toContain('Restore the real folder instead:');
+    expect(result.stderr).toContain(path.join(specs, 'tools', 'z_archive', '002-b'));
+    expect(fs.existsSync(path.join(specs, 'tools', 'z_archive', '002-b', 'spec.md'))).toBe(true);
+    expect(fs.existsSync(path.join(specs, 'tools', '002-b'))).toBe(false);
+    expect(readMetadata('tools')).toBe(listBefore);
+  });
+
+  it('refuses an absolute alias path through a linked track before restoring', () => {
+    trackRoot('tools', ['tools/001-a', 'tools/002-b']);
+    expect(archive(['--force', 'specs/tools/002-b']).status).toBe(0);
+    fs.symlinkSync('tools', path.join(specs, 'tools-alias'));
+    const repoAlias = path.join(repo, 'repo-alias');
+    fs.symlinkSync(repo, repoAlias, 'dir');
+    const listBefore = readMetadata('tools');
+
+    const result = archive(['--restore', path.join(repoAlias, 'specs', 'tools-alias', 'z_archive', '002-b')]);
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stderr).toContain('symbolic link');
+    expect(result.stderr).toContain(path.join(specs, 'tools', 'z_archive', '002-b'));
+    expect(fs.existsSync(path.join(specs, 'tools', 'z_archive', '002-b', 'spec.md'))).toBe(true);
+    expect(fs.existsSync(path.join(specs, 'tools', '002-b'))).toBe(false);
+    expect(readMetadata('tools')).toBe(listBefore);
+  });
+
+  it('archives a plain absolute path under the physical specs root', () => {
+    trackRoot('tools', ['tools/001-a']);
+
+    const result = archive(['--force', path.join(specs, 'tools', '001-a')]);
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    expect(fs.existsSync(path.join(specs, 'tools', 'z_archive', '001-a', 'spec.md'))).toBe(true);
+    expect(fs.existsSync(path.join(specs, 'tools', '001-a'))).toBe(false);
+    expect(children('tools')).toEqual([]);
+  });
+
+  it('restores an archived packet through its real path', () => {
+    trackRoot('tools', ['tools/001-a', 'tools/002-b']);
+    expect(archive(['--force', 'specs/tools/002-b']).status).toBe(0);
+    const result = archive(['--restore', 'specs/tools/z_archive/002-b']);
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    expect(fs.existsSync(path.join(specs, 'tools', '002-b', 'spec.md'))).toBe(true);
+    expect(children('tools')).toEqual(['tools/001-a', 'tools/002-b']);
+  });
+});
+
 describe('archive.sh with phases', () => {
   it('archives a phase into its parent\'s own z_archive, restores it there and leaves both lists alone', () => {
     trackRoot('tools', ['tools/001-a']);

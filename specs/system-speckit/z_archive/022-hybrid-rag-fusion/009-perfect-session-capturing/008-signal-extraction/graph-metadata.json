@@ -133,12 +133,6 @@
         "source": "derived"
       },
       {
-        "name": "Signal Extraction",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -152,6 +146,12 @@
       },
       {
         "name": "Pattern Adapter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -181,13 +181,13 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "name": "existing",
+        "kind": "key_phrase",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Spec Folder",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The pipeline uses 3 real extraction engines plus 1 wrapper, each with different stopwords, weighting, and placeholder rules:",
     "created_at": "2026-04-12T09:02:50.271Z",
-    "last_save_at": "2026-10-07T19:24:26.156Z",
+    "last_save_at": "2026-10-10T20:53:52.147Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9cb8f29abf3758e678d03ed354fadd0409ec0aa3361a9032913e0c40e0396f6e",
+    "source_fingerprint": "sha256:f487f361bbdda60bd5fc85ec435727abc19cb9a84d3032a3c9fde671e89cf09b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dcf1a2778e31f28081e3b8139a5c5a6bb8a011bfd0ffed920db16e6e58ff3f78",
-      "plan.md": "2596c6e1178d7fb97361974e7b783063a3604b2d410077135df0cabef5356f7e",
-      "tasks.md": "f4da6b62fe0a4e2cfb455c1d9d4bf48038f70172525cb2ff3ce8c83eaab4ad7f",
+      "plan.md": "ca5f68bdd2f7bb1a396d194acf1afd7bd22d01a5d132a334f74b357815d92210",
+      "tasks.md": "ac29cc1ad158a2e9872f8dbe4fc4fb64334687c2fb15fa5ed36dcb75a4b36f7d",
       "implementation-summary.md": "d0c81d9e5e6836a15370d5982d5d3e01473f57270ac257a382c05b59032ba879"
     },
     "last_active_child_id": null,

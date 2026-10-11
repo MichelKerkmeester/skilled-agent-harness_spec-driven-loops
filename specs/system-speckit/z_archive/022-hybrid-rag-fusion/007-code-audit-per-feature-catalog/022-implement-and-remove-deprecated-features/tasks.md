@@ -1,6 +1,6 @@
 ---
 title: "...spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/022-implement-and-remove-deprecated-features/tasks]"
-description: 'title: "Tasks: Implement and Remove Deprecated Features"'
+description: "tasks document for 022-implement-and-remove-deprecated-features."
 trigger_phrases:
   - "spec"
   - "kit"

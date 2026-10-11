@@ -114,12 +114,6 @@
         "source": "derived"
       },
       {
-        "name": "Session Source Validation",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -133,6 +127,12 @@
       },
       {
         "name": "Pattern Native",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -162,7 +162,19 @@
         "source": "derived"
       },
       {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Session Source Validation",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -178,23 +190,11 @@
         "kind": "key_phrase",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "1. METADATA",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. WHAT WAS BUILT",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Transcript selection uses filesystem `mtime` as a proxy for \"current session.\" Any touch on an older transcript makes it outrank the active session",
     "created_at": "2026-04-12T09:02:50.264Z",
-    "last_save_at": "2026-10-07T19:24:34.427Z",
+    "last_save_at": "2026-10-10T20:53:38.253Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0d36fef28383f5fa455c1ad56213bbebab209a6ea303994c0b3b2e78c9584158",
+    "source_fingerprint": "sha256:31b74f764166497a2ab938a38efc1c56a7978d7a3d1286328549ed6854aa580a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "339e024ca6b333784f5fe4c2fad38c65e239f7eae69f0855b6f53c2b8ae36a07",
-      "plan.md": "16f44bd48be019e07681cb6e5b4271c0516cab7a95959f7ea4f920d3c4795fff",
-      "tasks.md": "5fb19f58a6d20d7ec74bb5663b28a34d750250fc4c799dd6680a2e516eb47f09",
+      "plan.md": "dc2f8d60a202293eac25edeaff5197fee1f81c83e47e8074bfb89ae4f1e4a24a",
+      "tasks.md": "83ba6213f70d67c6061379a4f2a3e6f4ec1dd90bb49a70754b5f3518359d0835",
       "implementation-summary.md": "0657563390e518aba3bd08cc6af93e62b0fdc6f771959b15db92276b3591a635"
     },
     "last_active_child_id": null,

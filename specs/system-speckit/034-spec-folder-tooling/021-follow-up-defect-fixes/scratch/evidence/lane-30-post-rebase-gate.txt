@@ -1,0 +1,198 @@
+Lane 30 gate after the rebase (Decision 35 and Decision 36)
+Written by the orchestrator. Gate G8 ran on 01db8367c3, the 15 rebased commits on top of b62e142852, with a clean worktree. The rebase target was origin/main, which another session's fetch had moved from e5dba9dab1 to b62e142852 (seven more commits, the last a bot index rebuild) before the rebase ran. The dry merge-tree was taken against e5dba9dab1, and the rebase met only the conflicts it predicted.
+
+SUMMARY
+  118 steps, 116 rc 0. Two failed steps, neither from this phase:
+  1. j18 eslint-changed-ts rc 1 is a harness artifact. The job built its file list from uncommitted changes. After the commits that list was empty, so eslint linted the whole runtime, dist output included, and reported errors in files this phase never touched. Rerun with the list taken from git diff --name-only origin/main...HEAD (the 15 commits): all six j18 steps rc 0, eslint clean on every changed TypeScript file (session scratchpad j18-fixed/).
+  2. j15 corpus-pin-check rc 2: holdout-prompts.jsonl drifted from the hash pinned in the archived routing baseline. HEAD and origin/main hold the same file (sha256 prefix f9868059ea0b1ba7). It was b56a730b1ee3edb8 at 5d9c970447 and changed in e052417268 on main. The 15 commits touch no file under .skilled/skills/system-skill-advisor. Main's own Routing Registry Drift workflow fails this exact step ("CORPUS DRIFTED FROM PIN") on e5dba9dab1, run 38128035011, before any push from this phase.
+  The deep-loop suite passed in this run (164 files, 2690 passed, 8 skipped). Main removed two deep-loop modes and their tests in e052417268, so the count is lower than G7.
+  sk-doc create-journey-proof.test.cjs passed in this run (rc 0). Main changed the scaffold path since G7 (4ce75d6fe1 aligns registry aliases and router keywords), and Decision 30's failure no longer reproduces.
+  Root scratch/ absent after the gate. git status clean.
+
+GATE REPORT
+FINAL GATE (19 jobs in parallel)
+Base: HEAD 01db8367c397c0bc51878b3ab74ab60618f845a1 plus the uncommitted work of this phase.
+Run folder: session scratchpad final-gates8/ (steps-*.txt, j*.log, j*.exit, j02-loadavg.txt).
+Started: 2026-10-11 12:52:47. Last exit file: 2026-10-11 13:13:14.
+Snapshot before: 0 status lines, 0 hashed files.
+
+== JOB EXITS
+j01-cli-suite exit=0 steps=1 failed_steps=0
+j02-root-project exit=0 steps=1 failed_steps=0
+j03-deep-loop exit=0 steps=1 failed_steps=0
+j04-hooks exit=0 steps=1 failed_steps=0
+j05-doctor exit=0 steps=1 failed_steps=0
+j06-skdoc-cjs exit=0 steps=18 failed_steps=0
+j07-skdoc-ci-runner exit=0 steps=1 failed_steps=0
+j08-speckit-ci exit=0 steps=14 failed_steps=0
+j09-playbook exit=0 steps=8 failed_steps=0
+j10-catalog-links exit=0 steps=21 failed_steps=0
+j11-gate-inputs exit=0 steps=12 failed_steps=0
+j12-message-contract exit=0 steps=4 failed_steps=0
+j13-tree-canary exit=0 steps=2 failed_steps=0
+j14-routing-drift exit=0 steps=14 failed_steps=0
+j15-golden exit=0 steps=4 failed_steps=1
+j16-actionlint-phase exit=0 steps=2 failed_steps=0
+j17-hostile-env exit=0 steps=5 failed_steps=0
+j18-lint exit=0 steps=6 failed_steps=1
+j19-launcher-hermes exit=0 steps=2 failed_steps=0
+
+== TOTALS
+steps: 118  rc 0: 116  rc not 0: 2
+
+== FAILED STEPS
+corpus-pin-check 2
+eslint-changed-ts 1
+
+== EVERY STEP (job, step, rc)
+j01-cli-suite cli-npm-test 0
+j02-root-project root-vitest-project 0
+j03-deep-loop deep-loop-npm-test 0
+j04-hooks hook-tests 0
+j05-doctor doctor-run-all 0
+j06-skdoc-cjs skdoc-cjs:.skilled/skills/sk-doc/sk-create-goal/scripts/tests/check-goal.test.cjs 0
+j06-skdoc-cjs skdoc-cjs:.skilled/skills/sk-doc/sk-create-goal/scripts/tests/lint-goal-criteria.test.cjs 0
+j06-skdoc-cjs skdoc-cjs:.skilled/skills/sk-doc/sk-create-goal/scripts/tests/template-parity.test.cjs 0
+j06-skdoc-cjs skdoc-cjs:.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs 0
+j06-skdoc-cjs skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/advisor-index-handoff-contract.test.cjs 0
+j06-skdoc-cjs skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/ci-leaf-manifest-freshness.test.cjs 0
+j06-skdoc-cjs skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/compiled-routing-lockstep-parity.test.cjs 0
+j06-skdoc-cjs skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/create-journey-proof.test.cjs 0
+j06-skdoc-cjs skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-ignores.test.cjs 0
+j06-skdoc-cjs skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs 0
+j06-skdoc-cjs skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-stale-message.test.cjs 0
+j06-skdoc-cjs skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-resource-contract.test.cjs 0
+j06-skdoc-cjs skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs 0
+j06-skdoc-cjs skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs 0
+j06-skdoc-cjs skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-derived-regenerator.test.cjs 0
+j06-skdoc-cjs skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs 0
+j06-skdoc-cjs skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/validate-compiled-routing-scenarios.test.cjs 0
+j06-skdoc-cjs skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/validate-playbook-topology.test.cjs 0
+j07-skdoc-ci-runner skdoc-ci-runner 0
+j08-speckit-ci speckit-cli-check 0
+j08-speckit-ci speckit-cli-typecheck 0
+j08-speckit-ci speckit-shared-test 0
+j08-speckit-ci speckit-legacy 0
+j08-speckit-ci speckit-validation 0
+j08-speckit-ci mirror-runtime-mirrors 0
+j08-speckit-ci mirror-codex-agents 0
+j08-speckit-ci mirror-codex-prompts 0
+j08-speckit-ci mirror-pi-agents 0
+j08-speckit-ci mirror-pi-prompts 0
+j08-speckit-ci mirror-agent-roster 0
+j08-speckit-ci mirror-command-catalog 0
+j08-speckit-ci mirror-hook-registrations 0
+j08-speckit-ci mirror-gate1-pointers 0
+j09-playbook playbook-gate-inputs 0
+j09-playbook playbook-fleet-strict 0
+j09-playbook playbook-fleet-json 0
+j09-playbook playbook-roots-discovered 0
+j09-playbook playbook-pkg:system-spec-kit 0
+j09-playbook playbook-pkg:sk-git 0
+j09-playbook playbook-pkg:system-deep-loop 0
+j09-playbook playbook-pkg:mcp-code-mode 0
+j10-catalog-links catalog-system-spec-kit-text 0
+j10-catalog-links catalog-system-spec-kit-json 0
+j10-catalog-links catalog-fleet-text 0
+j10-catalog-links leaf-check:.skilled/skills/cli-classifier 0
+j10-catalog-links leaf-check:.skilled/skills/cli-external-orchestration 0
+j10-catalog-links leaf-check:.skilled/skills/cli-orca 0
+j10-catalog-links leaf-check:.skilled/skills/mcp-code-mode 0
+j10-catalog-links leaf-check:.skilled/skills/mcp-tooling 0
+j10-catalog-links leaf-check:.skilled/skills/sk-code 0
+j10-catalog-links leaf-check:.skilled/skills/sk-design 0
+j10-catalog-links leaf-check:.skilled/skills/sk-doc 0
+j10-catalog-links leaf-check:.skilled/skills/sk-git 0
+j10-catalog-links leaf-check:.skilled/skills/sk-prompt 0
+j10-catalog-links leaf-check:.skilled/skills/sk-vision 0
+j10-catalog-links leaf-check:.skilled/skills/system-deep-loop 0
+j10-catalog-links leaf-check:.skilled/skills/system-skill-advisor 0
+j10-catalog-links leaf-check:.skilled/skills/system-spec-kit 0
+j10-catalog-links leaf-freshness-fleet 0
+j10-catalog-links hermes-skills-check 0
+j10-catalog-links hermes-prompts-check 0
+j10-catalog-links markdown-link-integrity 0
+j11-gate-inputs gate-inputs-selftest 0
+j11-gate-inputs gate-inputs-check 0
+j11-gate-inputs hook-suite:.skilled/scripts/git-hooks/tests/autostash-orphan-guard.test.sh 0
+j11-gate-inputs hook-suite:.skilled/scripts/git-hooks/tests/commit-msg.test.sh 0
+j11-gate-inputs hook-suite:.skilled/scripts/git-hooks/tests/gate-config.test.sh 0
+j11-gate-inputs hook-suite:.skilled/scripts/git-hooks/tests/mass-deletion-guard.test.sh 0
+j11-gate-inputs hook-suite:.skilled/scripts/git-hooks/tests/pre-commit.test.sh 0
+j11-gate-inputs hook-suite:.skilled/scripts/git-hooks/tests/pre-push-message-contract.test.sh 0
+j11-gate-inputs hook-suite:.skilled/scripts/git-hooks/tests/pre-push.test.sh 0
+j11-gate-inputs hook-suite:.skilled/scripts/git-hooks/tests/prepare-commit-msg.test.sh 0
+j11-gate-inputs hook-suite:.skilled/scripts/git-hooks/tests/source-root-selection.test.sh 0
+j11-gate-inputs hook-suite:.skilled/bin/tests/check-git-hooks.test.sh 0
+j12-message-contract msg-explain 0
+j12-message-contract msg-unit-tests 0
+j12-message-contract msg-rev-list-vs-origin-main 0
+j12-message-contract msg-branch-informational 0
+j13-tree-canary command-tree-parity 0
+j13-tree-canary rule-canary 0
+j14-routing-drift advisor-drift-parity-vitest 0
+j14-routing-drift compiled-route-guard 0
+j14-routing-drift compiled-route-admission-warn-only 0
+j14-routing-drift parent-skill-check:.skilled/skills/cli-classifier 0
+j14-routing-drift parent-skill-check:.skilled/skills/cli-external-orchestration 0
+j14-routing-drift parent-skill-check:.skilled/skills/mcp-tooling 0
+j14-routing-drift parent-skill-check:.skilled/skills/sk-code 0
+j14-routing-drift parent-skill-check:.skilled/skills/sk-design 0
+j14-routing-drift parent-skill-check:.skilled/skills/sk-doc 0
+j14-routing-drift parent-skill-check:.skilled/skills/system-deep-loop 0
+j14-routing-drift skill-root-metadata-class 0
+j14-routing-drift leaf-manifest-freshness 0
+j14-routing-drift skill-derived-freshness 0
+j14-routing-drift skill-graph-compiler-validate 0
+j15-golden golden-prompts-vitest 0
+j15-golden scorer-ratchet-vitest 0
+j15-golden corpus-pin-check 2
+j15-golden corpus-score 0
+j16-actionlint-phase phase-command-workflows 0
+j16-actionlint-phase actionlint-no-args 0
+j17-hostile-env hostile-cli-vitest 0
+j17-hostile-env hostile-root-vitest 0
+j17-hostile-env hostile-doctor-compat 0
+j17-hostile-env hostile-leaf-scopes 0
+j17-hostile-env hostile-phase-workflows 0
+j18-lint eslint-changed-ts 1
+j18-lint node-check-changed-js 0
+j18-lint shellcheck-archive 0
+j18-lint shellcheck-launcher 0
+j18-lint python-parse-hermes 0
+j18-lint format-tool-probe 0
+j19-launcher-hermes launcher-test 0
+j19-launcher-hermes hermes-repo-guards 0
+
+== VITEST AND NODE TEST COUNTS (lines as printed in each job log)
+j01-cli-suite: Test Files  177 passed | 3 skipped (180)
+j01-cli-suite: Tests  2013 passed | 20 skipped (2033)
+j02-root-project: Test Files  108 passed | 3 skipped (111)
+j02-root-project: Tests  1317 passed | 13 skipped (1330)
+j03-deep-loop: Test Files  164 passed (164)
+j03-deep-loop: Tests  2690 passed | 8 skipped (2698)
+j05-doctor: Test Files  1 passed (1)
+j05-doctor: Tests  18 passed (18)
+j14-routing-drift: Test Files  3 passed (3)
+j14-routing-drift: Tests  21 passed (21)
+j15-golden: Test Files  1 passed (1)
+j15-golden: Tests  10 passed (10)
+j15-golden: Test Files  1 passed (1)
+j15-golden: Tests  7 passed (7)
+j17-hostile-env: Test Files  17 passed (17)
+j17-hostile-env: Tests  445 passed | 2 skipped (447)
+j17-hostile-env: Test Files  4 passed (4)
+j17-hostile-env: Tests  211 passed (211)
+
+== LOAD SAMPLES (1, 5 and 15 minute averages, sampled by j02)
+samples=50 one-minute min=3.44 max=12.13 mean=9.16
+cores: cores 18
+first: 12:52:47 { 3.44 4.00 3.72 }
+last:  13:00:58 { 6.01 7.36 6.04 }
+
+== WORKTREE AFTER THE GATE
+git status unchanged by the gate (0 lines)
+hash check done
+
+== ROOT RESIDUE AFTER THE GATE
+scratch/ absent at the repository root

@@ -18,12 +18,33 @@
     "keep",
     "packets"
   ],
-  "lastUpdated": "2026-10-06T19:00:00.000Z",
+  "lastUpdated": "2026-10-09T14:57:37.408Z",
   "specId": "034",
   "folderSlug": "spec-folder-tooling",
   "parentChain": [
     "system-speckit"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 28,
+  "memoryNameHistory": [
+    "09-10-26_14-03__still-waiting-on-you-to-close-the-goal-resend.md",
+    "09-10-26_14-03__waiting-on-you-to-close-the-goal-resend.md",
+    "09-10-26_14-03__waiting-on-you-resend-scratchpad-goal-016-slice.md",
+    "09-10-26_14-03__waiting-on-you-resend-scratchpad-goal-016-slice.md",
+    "09-10-26_14-03__i-sent-you-a-notification-so-you-ll-see-this-to.md",
+    "09-10-26_14-03__waiting-on-you-resend-scratchpad-goal-016-slice.md",
+    "09-10-26_14-03__waiting-on-you-resend-scratchpad-goal-016-slice.md",
+    "09-10-26_14-03__waiting-on-you-resend-scratchpad-goal-016-slice.md",
+    "09-10-26_14-03__waiting-on-you-resend-scratchpad-goal-016-slice.md",
+    "09-10-26_14-03__waiting-on-you-resend-scratchpad-goal-016-slice.md",
+    "09-10-26_14-03__waiting-on-you-resend-scratchpad-goal-016-slice.md",
+    "09-10-26_14-04__waiting-on-you-resend-scratchpad-goal-016-slice.md",
+    "09-10-26_14-04__waiting-on-you-resend-scratchpad-goal-016-slice.md",
+    "09-10-26_14-04__waiting-on-you-resend-scratchpad-goal-016-slice.md",
+    "09-10-26_14-04__waiting-on-you-resend-scratchpad-goal-016-slice.md",
+    "09-10-26_14-04__waiting-on-you-resend-scratchpad-goal-016-slice.md",
+    "09-10-26_14-04__waiting-on-you-resend-scratchpad-goal-016-slice.md",
+    "09-10-26_14-04__waiting-on-you-resend-scratchpad-goal-016-slice.md",
+    "09-10-26_14-04__waiting-on-you-resend-scratchpad-goal-016-slice.md",
+    "09-10-26_15-57__a-haiku-worker-is-rerunning-the-016-gates-against.md"
+  ]
 }

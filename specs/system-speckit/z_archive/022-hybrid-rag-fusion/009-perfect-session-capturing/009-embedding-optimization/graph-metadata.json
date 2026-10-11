@@ -113,12 +113,6 @@
         "source": "derived"
       },
       {
-        "name": "Embedding Optimization",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -132,6 +126,12 @@
       },
       {
         "name": "Pattern Pipeline",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -161,7 +161,19 @@
         "source": "derived"
       },
       {
+        "name": "Embedding Library Wiring",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Embedding Optimization",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -177,23 +189,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "both",
-        "kind": "key_phrase",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "local",
-        "kind": "key_phrase",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Before this phase, the scripts-side indexer embedded raw markdown via `generateEmbedding(content)`, while the MCP save path normalized content but still treated the document as a flat body",
     "created_at": "2026-04-12T09:02:50.272Z",
-    "last_save_at": "2026-10-07T19:24:31.896Z",
+    "last_save_at": "2026-10-10T20:53:54.175Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a2ae04fd020220fc1075050dbaeaed36b74e884055b5f5c57946476cefeb71b2",
+    "source_fingerprint": "sha256:74030cb27ae7697719bd9f941859425d427e68095be9f789e5dbf10dcf92921d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "711a800847f64b6c71838636ed2e42666721ad6ad2fb1aa143bd01cda12f3f12",
-      "plan.md": "8fc3cbab180190ad79ed7fcbcf6eda49b1b4a972e3fee6a6f9881e8a0c23f1bd",
-      "tasks.md": "1abc9f38f2bc67cf3e6aa53351bd185c746aea19156aa5967b20e578151bcbfa",
+      "plan.md": "498ef228e92c2d03e6c6248079bf1d584c585b6eb1f61a25c095d4ad3ffa9797",
+      "tasks.md": "cea7c8d53b4dc9d7bdf1812d8c46e2c1b828f4875573444bcbd65561973c5ed2",
       "implementation-summary.md": "f6df74d9596f3e16a2ffdba3a5dbc13c4d0c23db11e5c8173ee9b84aed10fd3c"
     },
     "last_active_child_id": null,

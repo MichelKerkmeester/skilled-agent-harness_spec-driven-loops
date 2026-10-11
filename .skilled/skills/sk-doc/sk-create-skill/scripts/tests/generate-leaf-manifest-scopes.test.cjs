@@ -336,7 +336,7 @@ function testLinkedRootInsideSkillStillWalks() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 8. MANIFEST WRITE
+// 8. MANIFEST WRITE AND CHECK
 // ─────────────────────────────────────────────────────────────────────────────
 
 // A manifest that is a link names a file the skill does not own. The write refuses
@@ -378,6 +378,38 @@ function testDanglingManifestWriteIsRefused() {
     () => generator.runWrite(skillDir),
     (error) => /symbolic link, not followed/.test(error.message),
   );
+  assert.equal(fs.existsSync(missing), false);
+  assert.equal(fs.lstatSync(manifest).isSymbolicLink(), true);
+}
+
+// A link whose target already holds a fresh regeneration is refused by the check all the
+// same. Matching bytes would pass a follow-through read, so the refusal is what keeps the
+// check from reading through the link, and the file behind it keeps its bytes.
+function testLinkedManifestCheckIsRefused() {
+  const skillDir = makeSingleModeHub('manifest-link-check');
+  const outsideFile = path.join(makeOutsideTarget('manifest-link-check-target'), 'manifest.json');
+  fs.writeFileSync(outsideFile, generator.buildManifestBytes(skillDir));
+  const before = fs.readFileSync(outsideFile);
+  const manifest = path.join(skillDir, 'leaf-manifest.json');
+  fs.symlinkSync(outsideFile, manifest);
+  const result = childProcess.spawnSync(process.execPath, [GENERATOR, '--check', skillDir], { encoding: 'utf8' });
+  assert.equal(result.status, 2, result.stdout);
+  assert.match(result.stderr, /symbolic link, not followed/);
+  assert.doesNotMatch(result.stdout, /OK/);
+  assert.equal(Buffer.compare(fs.readFileSync(outsideFile), before), 0);
+  assert.equal(fs.lstatSync(manifest).isSymbolicLink(), true);
+}
+
+// A dangling manifest link is refused by the check, not reported as a missing manifest,
+// and the check creates nothing at the path the link names.
+function testDanglingManifestCheckIsRefused() {
+  const skillDir = makeSingleModeHub('manifest-dangling-check');
+  const missing = path.join(makeTmpDir('manifest-dangling-check-target'), 'manifest.json');
+  const manifest = path.join(skillDir, 'leaf-manifest.json');
+  fs.symlinkSync(missing, manifest);
+  const result = childProcess.spawnSync(process.execPath, [GENERATOR, '--check', skillDir], { encoding: 'utf8' });
+  assert.equal(result.status, 2, result.stderr);
+  assert.match(result.stderr, /symbolic link, not followed/);
   assert.equal(fs.existsSync(missing), false);
   assert.equal(fs.lstatSync(manifest).isSymbolicLink(), true);
 }
@@ -464,6 +496,8 @@ try {
   testLinkedManifestWriteIsRefused();
   testLinkedManifestWriteExitsNonZero();
   testDanglingManifestWriteIsRefused();
+  testLinkedManifestCheckIsRefused();
+  testDanglingManifestCheckIsRefused();
   testCheckOnUnchangedSkillIsNoOp();
   testCheckOnStaleManifestFails();
   testManifestSwappedToLinkDuringBuildKeepsOutsideFile();

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The `001` parent packet had become a merged historical archive instead of a usable coordination document",
     "created_at": "2026-04-12T09:02:50.224Z",
-    "last_save_at": "2026-09-10T21:04:41.913Z",
+    "last_save_at": "2026-10-10T20:53:31.046Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,7 +223,7 @@
       "handover.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:eb31179c812b3743f3f2397aa6eccf37aa4e790b3d7037465e5a9da5601837d3",
+    "source_fingerprint": "sha256:bb849ee1910136542711b429516841717faaddcb7bceebf5e0b6bdf7c3f84a7d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fd55c3d354b3a7e28c3066042230411093361f306f9b2edee22e5b6e64846e0f",
@@ -232,7 +232,7 @@
       "decision-record.md": "efec20ce66370e93824f16c8d29142932170cb6d4c8d41570bb49e4297521a46",
       "implementation-summary.md": "ac558ca126deded55d01d55e5d994fd164b20492988016a0dc448cd5c5fc4656",
       "research/research.md": "1a4052949ee765db3503577de3cd4e5065da0aa9e00e0730bed27eca2e1f0dab",
-      "handover.md": "2ea25d370aeb8af2950e44c1c9369bb3d812e7548e8dd80785f2ad19e988fb6d",
+      "handover.md": "dc7414c78f3b254b1fc75ff47668caedc1c071431d95d27f3b4f3c93f67d2cb1",
       "resource-map.md": "051745c72805041e32175ae898cdb23e0701124aae5706830ae3928bbae1eb5e"
     },
     "last_active_child_id": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/004-sprint-3-query-intelligence",

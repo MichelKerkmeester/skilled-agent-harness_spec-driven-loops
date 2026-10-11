@@ -1,0 +1,37 @@
+Lane 21: T046-26 under full CPU load, for REQ-014 and AC-014
+============================================================
+Run by the orchestrator on 2026-10-10. Lane 9 could not start the load step (lane-9-test-hygiene.txt, Red (b)), so this closes it.
+
+Load: 18 busy loops, one per core, each 'perl -e "alarm 150; 1 while 1"', so each loop ends on its own. Their PIDs were captured and stopped after the runs. 0 were left.
+An upgrade-legacy apply run in a throwaway clone was also running, so the machine was loaded beyond the busy loops.
+
+Command, from .skilled/skills/system-spec-kit/runtime in each tree:
+  npx vitest run --config ../vitest.config.ts --project root tests/folder-discovery-integration.vitest.ts -t "T046-26"
+
+Trees:
+  green-worktree: the worktree, final code.
+  green-control: a mirror of the final code with no mutant (scratchpad gA/mirrors/ac014-control).
+  red-mutant: a mirror of the final code with mutant M9-b, a 6 ms busy wait at the top of loadPerFolderDescription (scratchpad gA/mirrors/ac014-M9b, spec L9/m9b.mjs).
+
+Load average samples (1, 5 and 15 minutes):
+  cores 18, busy loops 18
+  load before runs { 27.00 23.53 19.49 }
+  load after green-worktree { 40.65 27.66 21.24 }
+  load after green-control { 42.94 28.59 21.64 }
+  load after red-mutant { 42.14 28.66 21.71 }
+
+Results
+-------
+green-worktree:
+  Tests  1 passed | 42 skipped (43)
+  exit=0
+green-control:
+  Tests  1 passed | 42 skipped (43)
+  exit=0
+red-mutant:
+  × T046-26: loadPerFolderDescription median of repeated calls completes in <5ms 194ms
+  AssertionError: expected 6.69399999999996 to be less than 5
+  Tests  1 failed | 42 skipped (43)
+  exit=1
+
+Verdict: T046-26 passes under full load on the final code and its control, and fails on the 6 ms slowdown (6.69 ms median against the 5 ms limit), so the median check holds under load and still sees a real slowdown.

@@ -113,12 +113,6 @@
         "source": "derived"
       },
       {
-        "name": "Contamination Detection",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -132,6 +126,12 @@
       },
       {
         "name": "Pattern Guard",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -161,7 +161,19 @@
         "source": "derived"
       },
       {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Contamination Detection",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -177,23 +189,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "1. METADATA",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. WHAT WAS BUILT",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Three guard layers exist for contamination detection (lexical scrubber, prompt-quality pipeline, post-render V8/V9), but they run on different payloads and have significant blind spots",
     "created_at": "2026-04-12T09:02:50.268Z",
-    "last_save_at": "2026-10-07T19:24:35.192Z",
+    "last_save_at": "2026-10-10T20:53:41.368Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ba6cedb6153088d23844538403296d06972e920ab47759b7231b7b102198f36a",
+    "source_fingerprint": "sha256:6e8a1ceff38e158ec64ba625471760fc1447bba50d29e306aed7614a44737e27",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a57e8ea3fea8b02239e276fc9427b853bddc8f7bbb440897b351e1beabecd7bf",
-      "plan.md": "d61b9a5dcdde6fd1b9c61bdcfac92e677314aeffec23b93309b340aa98d9421a",
-      "tasks.md": "f18c1375990e692177cd42f6fd483031dcd4af4fef5136d79f4d11182827a21f",
+      "plan.md": "9553e89545d4c446927d89ad23e8c1e7ef1b11fd273aaace68dcbdd7ed00e71a",
+      "tasks.md": "7190ea25a9bba6f0799b5ba77f2bb542c77896371a591b9d81dc7de75cb2ff16",
       "implementation-summary.md": "11e49c69f001bbe5d5f7f019bb143fbb2cd5d8f984245477b1deabaadc7d23d2"
     },
     "last_active_child_id": null,

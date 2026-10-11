@@ -33,6 +33,7 @@ import {
   checkGeneratedMetadataDrift,
   collectChildrenPruneCandidates,
   deriveGraphMetadata,
+  getSpecsBasePaths,
   graphMetadataEqualIgnoringVolatile,
   loadGraphMetadata,
   mergeGraphMetadata,
@@ -176,11 +177,35 @@ function isSymbolicLink(file: string): boolean {
   }
 }
 
+/** Canonical path of an existing directory, or null when the path is not one. */
+function realDirectory(dirPath: string): string | null {
+  try {
+    const real = fs.realpathSync(dirPath);
+    return fs.statSync(real).isDirectory() ? real : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * True when a directory is one of the specs roots its workspace configures.
+ *
+ * Compared on real paths, so a link that resolves to a configured root is accepted
+ * and a link that leads out of one is refused.
+ */
+function isConfiguredSpecsRoot(dirPath: string): boolean {
+  const realDir = realDirectory(dirPath);
+  if (realDir === null) return false;
+  return getSpecsBasePaths(dirPath).some((base) => realDirectory(base) === realDir);
+}
+
 /**
  * Persist a prune report in the stable JSON form operators review.
  *
- * The report name is fixed under the specs root, so a link at the destination is
- * refused rather than followed: a write through it lands wherever the link points.
+ * The report is written only into a configured specs root, so a report cannot land
+ * in an arbitrary directory the caller names. The report name is fixed under the
+ * specs root, so a link at the destination is refused rather than followed: a write
+ * through it lands wherever the link points.
  * The bytes go to an exclusively created, randomly named sibling that is renamed
  * over the destination, so a link planted after the check replaces itself instead
  * of receiving the write.
@@ -191,6 +216,10 @@ export function writePruneReportArtifact(
 ): void {
   if (isSymbolicLink(reportPath)) {
     throw new Error(`prune report destination is a symbolic link, not followed: ${reportPath}`);
+  }
+  const reportDir = path.dirname(reportPath);
+  if (!isConfiguredSpecsRoot(reportDir)) {
+    throw new Error(`prune report directory is not a configured specs root, not written: ${reportDir}`);
   }
   const content = `${JSON.stringify(artifact, null, 2)}\n`;
   const tempPath = path.join(
@@ -302,6 +331,19 @@ function resolveRepoRoot(): string {
     return cwdCandidate;
   }
   return findRepoRoot(moduleDir);
+}
+
+/**
+ * True when a root resolves to a directory inside the repository the run resolves.
+ *
+ * Judged on real paths, so a link inside the repository that leads out of it is refused.
+ */
+function isInsideRepository(root: string): boolean {
+  const realRoot = realDirectory(root);
+  const realRepo = realDirectory(resolveRepoRoot());
+  if (realRoot === null || realRepo === null) return false;
+  const relative = path.relative(realRepo, realRoot);
+  return relative === '' || (relative.split(path.sep)[0] !== '..' && !path.isAbsolute(relative));
 }
 
 function isSpecFolder(dirPath: string): boolean {
@@ -794,10 +836,18 @@ export function runBackfill(options: BackfillOptions): BackfillSummary {
 // ───────────────────────────────────────────────────────────────────
 
 function run(): void {
-  const plan = planBackfill(process.argv.slice(2));
+  const argv = process.argv.slice(2);
+  const plan = planBackfill(argv);
   if (!plan.ok) {
     process.stderr.write(`backfill-graph-metadata: ${plan.error}\n`);
     process.exitCode = 1;
+    return;
+  }
+  // The default root is the specs folder of the repository the run resolves, so only
+  // a root the caller names can point outside it.
+  if (argv.includes('--root') && !isInsideRepository(plan.options.root)) {
+    process.stderr.write(`backfill-graph-metadata: root outside the repository: ${plan.options.root}\n`);
+    process.exitCode = 2;
     return;
   }
   const result = executeBackfill(plan.options);

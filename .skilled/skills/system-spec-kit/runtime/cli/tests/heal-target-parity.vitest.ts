@@ -131,10 +131,11 @@ describe('heal-spec-docs target selection parity', () => {
   });
 
   it('each entrypoint narrows to the one packet named by --folder, with or without --roots', () => {
-    const { specs, packetA } = makeFixture();
+    const { root, specs, packetA } = makeFixture();
 
     for (const entry of ENTRYPOINTS) {
-      const alone = runEntrypoint(entry, ['--folder', packetA]);
+      // The working directory holds the specs root, so the packet is reached without --roots.
+      const alone = runEntrypoint(entry, ['--folder', packetA], root);
       expect(alone.status, `${entry.name} alone: ${alone.stdout}${alone.stderr}`).toBe(0);
       expect(packetsNamed(alone.stdout, entry.line), `${entry.name} alone`).toEqual([packetA]);
 

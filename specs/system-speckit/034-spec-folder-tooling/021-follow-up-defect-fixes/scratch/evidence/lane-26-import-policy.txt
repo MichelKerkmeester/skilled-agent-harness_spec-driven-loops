@@ -1,0 +1,64 @@
+Import policy repair evidence
+
+Change
+- Added getSpecsBasePaths to the folder discovery exports in runtime/api/index.ts.
+- Changed graph/backfill-graph-metadata.ts to import getSpecsBasePaths from @spec-kit/runtime/api and removed its relative folder-discovery import.
+- Did not add an import-policy allowlist entry.
+- No test pins the complete runtime/api/index.ts export list. The runtime test search found path-policy checks, one unrelated negative export guard and scaffold snapshots, but no API export-name list or snapshot.
+
+Baseline
+- Command: npm --prefix .skilled/skills/system-spec-kit/runtime/cli run check
+  Exit: 1. TypeScript lint completed. The first tsx sub-check did not start because tsx could not bind its IPC pipe. Error: listen EPERM at /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tsx-501/63961.pipe.
+- Command: TMPDIR=/private/tmp npm --prefix .skilled/skills/system-spec-kit/runtime/cli run check
+  Exit: 1. The same tsx IPC error occurred at /private/tmp/tsx-501/72482.pipe.
+- Command from runtime/cli: node --import tsx evals/check-no-mcp-lib-imports.ts
+  Exit: 1. The policy script ran and found 1 violation: graph/backfill-graph-metadata.ts:46 imported ../../lib/search/folder-discovery.js.
+- Command from runtime/cli: npx vitest run --config ../../vitest.config.ts --project cli tests/graph-metadata-backfill.vitest.ts
+  Exit: 0. Counts: 1 file passed, 15 tests passed, 1 skipped, 16 total.
+
+Builds
+- Command from runtime: npm run build
+  Exit: 0.
+- Command from runtime/cli: npm run build
+  Exit: 0.
+
+Final checks
+- Command: npm --prefix .skilled/skills/system-spec-kit/runtime/cli run check
+  Exit: 1. TypeScript lint completed. The first tsx sub-check stopped before script startup with listen EPERM at /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tsx-501/3588.pipe. Later sub-checks in the npm script were not reached.
+- Command from runtime/cli: node --import tsx evals/check-no-mcp-lib-imports.ts
+  Exit: 0. Output: Import policy check passed with no prohibited internal imports.
+- Command from runtime/cli: npx vitest run --config ../../vitest.config.ts --project cli tests/graph-metadata-backfill.vitest.ts
+  Exit: 0. Counts: 1 file passed, 15 tests passed, 1 skipped, 16 total.
+- Command from runtime: npx vitest run --config ../vitest.config.ts --project root tests/folder-discovery.vitest.ts tests/folder-discovery-integration.vitest.ts
+  Exit: 0. Counts: 2 files passed, 147 tests passed.
+- Command from runtime/cli: node --input-type=module -e "import { getSpecsBasePaths } from '@spec-kit/runtime/api'; if (typeof getSpecsBasePaths !== 'function') process.exit(1); console.log('runtime API export loaded:', typeof getSpecsBasePaths);"
+  Exit: 0. Output: runtime API export loaded: function.
+- Command: python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh .skilled/skills/system-spec-kit/runtime/api/index.ts .skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts
+  Exit: 0. Counts: 2 source files checked, 0 reported violations.
+- Command: python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit/runtime/api --root .skilled/skills/system-spec-kit/runtime/cli/graph
+  Exit: 0. Counts: 4 files scanned, 0 findings, 0 errors, 0 warnings.
+- Commands: python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh .skilled/skills/system-spec-kit/runtime/api/index.ts and python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh .skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts
+  Exit: 0 for each. The direct freshness payloads report status fresh and stale false for @spec-kit/runtime and @spec-kit/cli.
+- Command: rg -n 'getSpecsBasePaths' .skilled/skills/system-spec-kit/runtime/dist/api/index.js .skilled/skills/system-spec-kit/runtime/cli/dist/graph/backfill-graph-metadata.js
+  Exit: 0. Both built outputs contain the public export and API import.
+- API export-list test search: rg -n 'api/index|API_EXPORT|exportNames|toMatchSnapshot|Object\.keys\((api|runtimeApi|runtimeModule)' .skilled/skills/system-spec-kit/runtime --glob '*.{vitest,test}.ts' --glob '*.{vitest,test}.js'
+  Exit: 0. No test pins the complete API index export list. Matching tests cover other path guards and scaffold snapshots.
+
+Verification status
+- The exact CLI check remains blocked by tsx IPC pipe startup with EPERM, before it can run the import-policy script or later sub-checks.
+- The import-policy script itself passes after the change when run through Node's tsx loader. Builds, requested tests, API import smoke check, comment hygiene, alignment verification and dist freshness checks pass.
+
+ORCHESTRATOR ADDENDUM (2026-10-11)
+The lane's sandbox could not run the full check because tsx could not bind its IPC pipe (listen EPERM).
+The orchestrator reran it outside that sandbox on the same files.
+Command: npm --prefix .skilled/skills/system-spec-kit/runtime/cli run check
+Exit status: 0
+Key lines:
+  violations: 0
+Allowlist expiry check passed: no entries expiring within 30 days and no expired entries found.
+Architecture boundary check passed: shared/ neutrality OK, runtime/scripts/ wrappers OK.
+AST handler cycle check passed: no circular dependencies across 2 handler files.
+AST import policy check passed: no prohibited @spec-kit/runtime/{lib,core,handlers} internal imports found.
+Import policy check passed: no prohibited @spec-kit/runtime/{lib,core,handlers} internal imports found.
+PASS: No lib/ -> api/ import violations found
+Full log: session scratchpad fixL-verify/check.log

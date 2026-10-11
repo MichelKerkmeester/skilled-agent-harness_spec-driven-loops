@@ -1,6 +1,6 @@
 ---
 title: "Implementatio [system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/002-contamination-detection/plan]"
-description: 'title: "Implementation Plan: Contamination Detection"'
+description: "This document records the current verified state for this scope. Use [spec.md](spec.md) and [plan.md](plan.md) to trace requirements and implementation evidence."
 trigger_phrases:
   - "implementatio"
   - "plan"

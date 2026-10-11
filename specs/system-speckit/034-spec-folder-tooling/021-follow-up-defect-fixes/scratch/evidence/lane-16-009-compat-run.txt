@@ -1,0 +1,241 @@
+Lane 16: the manual /doctor:update compat run for 016/009 (T014, T016, CHK-021 and the manual-verification line)
+
+Operator decision: "Run it with you approving". The run used a sandbox v3 checkout, not a real repository.
+Run date: 2026-10-10. Executor: the orchestrating session, following .skilled/commands/doctor/assets/doctor-update-compat-action.yaml phase by phase.
+Sandbox: scratchpad/sandbox009/run1, built by scratchpad/sandbox009/build-sandbox.cjs. The build mirrors the before() hook of doctor-update-compat-integration.test.cjs and also copies .skilled/commands/doctor.
+Source hashes at build time (worktree):
+  upgrade-legacy.mjs  973ef65d414a5178895616464a40c162b9c7bbe48ed9cfeb4f0495ee0d973280
+  repair-derived.cjs  3e78b125d4ddc68d2c71c1ea3d992a4fca5983a459c8ba388d12aa5c392440f7
+  heal-spec-docs.cjs  3dce4531a9661949ac38a72835638b16806a0b60651a19bcc5566f18ebb676d3
+  compat YAML         021d802849ca95d095b6ed965ebf83e975e58b7efc284ff8c5cf14c7e8f35679
+
+Approvals, both asked of the operator through the question tool:
+  Phase 3 move approval: three steps shown (remove-specs-link, move-tree, link-legacy-path). Answer: "Yes, run the move".
+  Phase 6 upgrade approval: the packet specs/legacy-track/001-old-packet failing ANCHORS_VALID, FRONTMATTER_VALID, GREP_CONVENTION and TEMPLATE_SOURCE. Answer: "Yes, run the upgrade".
+
+Outcome: STATUS=UPGRADED. The layout moved from v3 to v4, the post-check map read v4 with no steps, and the upgrade apply exited 0 with passing before=0/1 after=1/1. The move log in the sandbox git dir reads run-started through run-complete. The before-images are in .git/upgrade-legacy.manifest.json. validate.sh --strict on the packet printed RESULT: PASSED with 0 errors and 7 warnings.
+Release gate: both units read status "blocked" (no recorded base), not "update" or "new", so the gate allowed the move. The upstream status was unknown, because the check ran with --offline.
+Rollback routes, from phase 8: reverse the move-log steps from the newest step-done to the oldest, and restore the beforeImages recorded in .git/upgrade-legacy.manifest.json.
+
+Full command transcript, each command with its exit status, follows. The release check JSON is cut to its first 40 lines.
+=== 2026-10-10T18:52:24Z [p1-git] git rev-parse --absolute-git-dir
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/sandbox009/run1/.git
+=== exit=0
+=== 2026-10-10T18:52:24Z [p1-scripts] ls .skilled/commands/doctor/scripts/release-update.cjs .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs
+.skilled/commands/doctor/scripts/release-update.cjs
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs
+=== exit=0
+=== 2026-10-10T18:52:24Z [p1-lock] test -e .skilled/release/.apply.lock && echo LOCK PRESENT || echo no apply lock
+no apply lock
+=== exit=0
+=== 2026-10-10T18:52:24Z [p1-movelog] f=$(git rev-parse --absolute-git-dir)/doctor-update-compat.log.jsonl; test -e "$f" && cat "$f" || echo 'no move log'
+no move log
+=== exit=0
+=== 2026-10-10T18:52:27Z [p1-release-check] node .skilled/commands/doctor/scripts/release-update.cjs check --repo . --json --offline
+{
+  "ok": true,
+  "schemaVersion": 1,
+  "command": "check",
+  "repo": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/sandbox009/run1",
+  "head": "87903ecabaa51979bf7033fae861149435737582",
+  "release": "unknown",
+  "releaseCommit": null,
+  "localLatest": "unknown",
+  "upstream": {
+    "status": "unknown",
+    "latest": "unknown",
+    "error": "offline mode"
+  },
+  "checkout": {
+    "position": "unknown",
+    "aheadBy": null,
+    "behindBy": null,
+    "dirty": false
+  },
+  "status": "unknown",
+  "baseRecording": {
+    "needed": true,
+    "units": [
+      "command:commands/doctor",
+      "skill:system-spec-kit"
+    ],
+    "action": "node .skilled/commands/doctor/scripts/release-update.cjs record-base --release <installed-release>"
+  },
+  "units": [
+    {
+      "key": "command:commands/doctor",
+      "name": "commands/doctor",
+      "prefix": "commands/doctor",
+      "kind": "command",
+      "status": "blocked",
+      "baseSource": "none",
+      "baseRelease": null,
+      "baseTree": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "releaseTree": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+[... 50226 more lines of the release check JSON omitted. The full output is in the session scratchpad at sandbox009/run1-transcript.txt ...]
+=== exit=0
+=== 2026-10-10T18:52:36Z [p2-layout-map] node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map
+{
+  "state": "v3",
+  "moves": [
+    {
+      "from": ".opencode/specs",
+      "to": "specs"
+    }
+  ],
+  "alreadyMoved": [],
+  "collisions": [],
+  "steps": [
+    {
+      "id": "remove-specs-link",
+      "argv": [
+        "rm",
+        "-f",
+        "specs"
+      ]
+    },
+    {
+      "id": "move-tree",
+      "argv": [
+        "git",
+        "mv",
+        ".opencode/specs",
+        "specs"
+      ]
+    },
+    {
+      "id": "link-legacy-path",
+      "argv": [
+        "ln",
+        "-s",
+        "../specs",
+        ".opencode/specs"
+      ]
+    }
+  ]
+}
+=== exit=0
+=== 2026-10-10T18:52:36Z [p2-dirty] git status --porcelain=v1 --untracked-files=all -- specs .opencode/specs
+
+=== exit=0
+=== 2026-10-10T18:53:38Z [p4-dirty] git status --porcelain=v1 --untracked-files=all -- specs .opencode/specs
+
+=== exit=0
+=== 2026-10-10T18:53:38Z [p4-remove-specs-link] rm -f specs
+
+=== exit=0
+=== 2026-10-10T18:53:39Z [p4-move-tree] git mv .opencode/specs specs
+
+=== exit=0
+=== 2026-10-10T18:53:39Z [p4-link-legacy-path] ln -s ../specs .opencode/specs
+
+=== exit=0
+=== 2026-10-10T18:53:39Z [p4-post-check] node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map
+{
+  "state": "v4",
+  "moves": [],
+  "alreadyMoved": [],
+  "collisions": [],
+  "steps": []
+}
+=== exit=0
+=== 2026-10-10T18:53:39Z [p4-movelog] cat $(git rev-parse --absolute-git-dir)/doctor-update-compat.log.jsonl
+{"run": "159a0075-e502-4f0f-b16b-7dfb79f17e9d", "event": "run-started", "step": null, "argv": null, "at": "2026-10-10T18:53:38Z"}
+{"run": "159a0075-e502-4f0f-b16b-7dfb79f17e9d", "event": "step-started", "step": "remove-specs-link", "argv": ["rm", "-f", "specs"], "at": "2026-10-10T18:53:38Z"}
+{"run": "159a0075-e502-4f0f-b16b-7dfb79f17e9d", "event": "step-done", "step": "remove-specs-link", "argv": ["rm", "-f", "specs"], "at": "2026-10-10T18:53:38Z"}
+{"run": "159a0075-e502-4f0f-b16b-7dfb79f17e9d", "event": "step-started", "step": "move-tree", "argv": ["git", "mv", ".opencode/specs", "specs"], "at": "2026-10-10T18:53:39Z"}
+{"run": "159a0075-e502-4f0f-b16b-7dfb79f17e9d", "event": "step-done", "step": "move-tree", "argv": ["git", "mv", ".opencode/specs", "specs"], "at": "2026-10-10T18:53:39Z"}
+{"run": "159a0075-e502-4f0f-b16b-7dfb79f17e9d", "event": "step-started", "step": "link-legacy-path", "argv": ["ln", "-s", "../specs", ".opencode/specs"], "at": "2026-10-10T18:53:39Z"}
+{"run": "159a0075-e502-4f0f-b16b-7dfb79f17e9d", "event": "step-done", "step": "link-legacy-path", "argv": ["ln", "-s", "../specs", ".opencode/specs"], "at": "2026-10-10T18:53:39Z"}
+{"run": "159a0075-e502-4f0f-b16b-7dfb79f17e9d", "event": "move-complete", "step": null, "argv": null, "at": "2026-10-10T18:53:39Z"}
+=== exit=0
+=== 2026-10-10T18:53:56Z [p5-upgrade-preview] node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs
+failing specs/legacy-track/001-old-packet: ANCHORS_VALID, FRONTMATTER_VALID, GREP_CONVENTION, TEMPLATE_SOURCE
+grouped detail:
+### specs/legacy-track/001-old-packet / x ANCHORS_VALID (3)
+    - spec.md: no anchors found
+    - plan.md: no anchors found
+    - tasks.md: no anchors found
+### specs/legacy-track/001-old-packet / x FRONTMATTER_VALID (3)
+    - spec.md: Empty required frontmatter field: importance_tier
+    - spec.md: Empty required frontmatter field: contextType
+    - spec.md: Empty required frontmatter field: trigger_phrases
+### specs/legacy-track/001-old-packet / x GREP_CONVENTION (2)
+    - path=plan.md line=0 category=missing severity=error rawKey=- reason=Document has no frontmatter block, so it carries no retrievable trigger phrases
+    - path=tasks.md line=0 category=missing severity=error rawKey=- reason=Document has no frontmatter block, so it carries no retrievable trigger phrases
+### specs/legacy-track/001-old-packet / x TEMPLATE_SOURCE (3)
+    - spec.md
+    - plan.md
+    - tasks.md
+step heal-spec-docs: ok (1 packets)
+
+Downgrades:
+  specs/legacy-track/001-old-packet | ANCHORS_VALID | error -> warning | plan.md: no anchors found
+  specs/legacy-track/001-old-packet | ANCHORS_VALID | error -> warning | spec.md: no anchors found
+  specs/legacy-track/001-old-packet | ANCHORS_VALID | error -> warning | tasks.md: no anchors found
+  specs/legacy-track/001-old-packet | FRONTMATTER_VALID | error -> warning | plan.md: Empty required frontmatter field: trigger_phrases
+  specs/legacy-track/001-old-packet | FRONTMATTER_VALID | error -> warning | spec.md: Empty required frontmatter field: trigger_phrases
+  specs/legacy-track/001-old-packet | FRONTMATTER_VALID | error -> warning | tasks.md: Empty required frontmatter field: trigger_phrases
+  specs/legacy-track/001-old-packet | TEMPLATE_SOURCE | error -> warning | plan.md
+  specs/legacy-track/001-old-packet | TEMPLATE_SOURCE | error -> warning | spec.md
+  specs/legacy-track/001-old-packet | TEMPLATE_SOURCE | error -> warning | tasks.md
+
+inspected=1 active=1 archived=0
+passing=0/1
+repo era report:
+  layout provenance: source=none; description.json residue count=0
+  layout: v4 (v3=false, v4=true)
+  frontmatter: present=1 missing=2
+
+--apply would run: fill-frontmatter, anchor-repair, heal-spec-docs, lane-modes, repair-derived, migrate-generated-json (archived packets: questions-anchor un-nesting and repair-derived only), then record the remaining findings in upgrade-baseline.json
+=== exit=1
+=== 2026-10-10T19:03:25Z [p7-upgrade-apply] node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --apply
+plan changes=1
+step fill-frontmatter: ok
+step anchor-repair: ok (1 packets, 0 changed)
+step heal-spec-docs: ok (1 packets)
+step lane-modes: ok (1 packets, 5 refusals)
+step repair-derived: ok
+step migrate-generated-json: ok
+recorded specs/legacy-track/001-old-packet (9 findings, 5 refusals)
+
+Downgrades:
+  specs/legacy-track/001-old-packet | ANCHORS_VALID | error -> warning | plan.md: no anchors found
+  specs/legacy-track/001-old-packet | ANCHORS_VALID | error -> warning | spec.md: no anchors found
+  specs/legacy-track/001-old-packet | ANCHORS_VALID | error -> warning | tasks.md: no anchors found
+  specs/legacy-track/001-old-packet | FRONTMATTER_VALID | error -> warning | plan.md: Empty required frontmatter field: trigger_phrases
+  specs/legacy-track/001-old-packet | FRONTMATTER_VALID | error -> warning | spec.md: Empty required frontmatter field: trigger_phrases
+  specs/legacy-track/001-old-packet | FRONTMATTER_VALID | error -> warning | tasks.md: Empty required frontmatter field: trigger_phrases
+  specs/legacy-track/001-old-packet | TEMPLATE_SOURCE | error -> warning | plan.md
+  specs/legacy-track/001-old-packet | TEMPLATE_SOURCE | error -> warning | spec.md
+  specs/legacy-track/001-old-packet | TEMPLATE_SOURCE | error -> warning | tasks.md
+
+inspected=1 active=1 archived=0
+passing before=0/1 after=1/1
+recorded findings by rule:
+  ANCHORS_VALID: 3
+  FRONTMATTER_VALID: 3
+  TEMPLATE_SOURCE: 3
+grouped detail:
+  none
+=== exit=0
+=== 2026-10-10T19:03:25Z [p8-layout] node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map
+{
+  "state": "v4",
+  "moves": [],
+  "alreadyMoved": [],
+  "collisions": [],
+  "steps": []
+}
+=== exit=0
+=== 2026-10-10T19:03:25Z [p8-manifest] ls -la $(git rev-parse --absolute-git-dir)/upgrade-legacy.manifest.json; tail -3 $(git rev-parse --absolute-git-dir)/doctor-update-compat.log.jsonl
+-rw-------@ 1 michelkerkmeester  wheel  2458 Oct 10 21:03 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/sandbox009/run1/.git/upgrade-legacy.manifest.json
+{"run": "159a0075-e502-4f0f-b16b-7dfb79f17e9d", "event": "upgrade-started", "step": null, "argv": null, "at": "2026-10-10T19:03:18Z"}
+{"run": "159a0075-e502-4f0f-b16b-7dfb79f17e9d", "event": "upgrade-done", "step": null, "argv": null, "at": "2026-10-10T19:03:25Z"}
+{"run": "159a0075-e502-4f0f-b16b-7dfb79f17e9d", "event": "run-complete", "step": null, "argv": null, "at": "2026-10-10T19:03:25Z"}
+=== exit=0
+=== 2026-10-10T19:03:27Z [p8-validate] bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/legacy-track/001-old-packet --strict | grep -E '^RESULT|Summary'
+Summary: Errors: 0  Warnings: 7
+RESULT: PASSED
+=== exit=0
+

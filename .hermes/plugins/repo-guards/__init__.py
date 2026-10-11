@@ -74,10 +74,10 @@ ADVISOR_UNCERTAINTY_CEILING = 0.35
 SKILL_LABEL = re.compile(r"^[a-z0-9][a-z0-9._-]{0,63}$")
 TRUTHY_ENV_VALUES = frozenset({"1", "true", "yes", "on"})
 
-# The two switches a fan-out leaf sets together. Either one alone is an interactive session
-# that still wants its briefs, and the spec gate refuses a child session on its own, so the
-# pair is the whole signal this bridge needs.
-ORCHESTRATED_LEAF_ENVS = ("SYSTEM_SPEC_GATE_DISABLED", "AI_SESSION_CHILD")
+# The dispatched-child marker a fan-out leaf sets. It is the signal the gate core reads, so this
+# bridge needs no second switch: the disable switch alone is an interactive session that still
+# wants its briefs and its gate.
+ORCHESTRATED_LEAF_ENV = "AI_SESSION_CHILD"
 
 # The advisor CLI scores every prompt without consulting the concern's kill-switch, unlike the
 # spec-gate adapter that honors its own, so the documented switches are checked here: a session
@@ -569,8 +569,8 @@ def _truthy_env(name: str) -> bool:
 
 
 def _orchestrated_leaf() -> bool:
-    """Whether this session is a dispatched child, which gets no prompt-time briefs."""
-    return all(os.environ.get(name, "").strip() == "1" for name in ORCHESTRATED_LEAF_ENVS)
+    """Whether this session is a dispatched child, which keeps its advisor brief but not the spec gate."""
+    return os.environ.get(ORCHESTRATED_LEAF_ENV, "").strip() == "1"
 
 
 def _advisor_enabled() -> bool:

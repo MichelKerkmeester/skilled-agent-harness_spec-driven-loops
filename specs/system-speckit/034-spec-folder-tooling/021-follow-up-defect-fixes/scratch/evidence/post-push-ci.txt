@@ -1,0 +1,53 @@
+Post-push CI evidence (T069, T070, CHK-FIX-007)
+Written by the orchestrator from git and gh output.
+
+PUSH
+Command: SPECKIT_ALLOW_MASS_DELETION=1 git push origin HEAD:main (Decision 37, authorized for this one push)
+Exit status: 0
+  remote: Bypassed rule violations for refs/heads/main:        
+  remote: - Required status check "Commit messages, branch names and PR description follow the templates" is expected.        
+     b62e142852..01db8367c3  HEAD -> main
+
+Pushed range: b62e142852..01db8367c3, 15 commits:
+  b817ec849d chore(specs): delete the deprecated sk-communication track (0011072)
+  2c7b9c8573 fix(system-spec-kit): refuse escaping links in the healer and archive.sh (0011073)
+  e19c63037e fix(system-spec-kit): judge graph and backfill inputs by their real path (0011074)
+  d75b3cb8cd fix(system-spec-kit): guard upgrade-legacy with the release lock and link checks (0011075)
+  236e3afc4b fix(system-spec-kit): derive a missing frontmatter description from the body (0011076)
+  65454f9592 fix(system-spec-kit): write every nested changelog row and drop comment text (0011077)
+  9b8ad45c2c test(system-spec-kit): keep test workspaces out of the repository root (0011078)
+  b28cebb394 fix(hooks): mark launched sessions apart from dispatched children (0011079)
+  c198b3afba fix(sk-doc): refuse a linked leaf manifest when checking it (0011080)
+  69795f7245 docs(system-spec-kit): add the follow-up fixes to the release notes and catalog (0011038)
+  ba35587e2b docs(specs): repair descriptions the frontmatter fill took from frontmatter (0011081)
+  eb24800f10 docs(specs): repair the sandbox-test description from its body (0011082)
+  41488ce884 docs(specs): close the open 016 child boxes on follow-up evidence (0011083)
+  2d6d1501db docs(specs): record the follow-up defect fixes and their evidence (0011084)
+  01db8367c3 chore(system-spec-kit): rebuild the trigger index (0011064)
+
+CI ON 01db8367c397c0bc51878b3ab74ab60618f845a1 (gh run list --commit, every run completed)
+  38136778128 Advisory Checks: success
+  38136778168 Changed Packet Validation: success
+  38136778153 Command Tree Parity: success
+  38136778167 Dispatch Enforcement Guard: success
+  38136778130 Gate Inputs: success
+  38136778119 Markdown Link Integrity: success
+  38136778200 Message Contract: success
+  38136778120 Playbook Operator Contract: success
+  38136778142 Routing Registry Drift Guard: failure
+  38136778097 Rule Canary Sync: success
+  38136778094 Runtime No-Spec-Import Guard: success
+  38136778177 sk-doc Script Tests: success
+  38136778288 Spec-Kit Check: success
+  38136778096 Trigger Index Rebuild: success
+  Spec-Kit Check jobs:
+    Doctor script test suites: success
+    Runtime mirrors agree with their sources: success
+    Typecheck, import policy and test suites for the spec-kit packages: success
+
+THE ONE FAILURE
+  Routing Registry Drift Guard, run 38136778142, step "Routing-accuracy corpus gate — pinned corpus, baseline floors" printed "CORPUS DRIFTED FROM PIN — recapture the baseline before scoring".
+  Main's Routing Registry Drift runs on 34fe5a546b and e5dba9dab1 both failed before this push. Run 38128035011 on e5dba9dab1 failed at this same step with the same message. The corpus file holdout-prompts.jsonl changed in e052417268 (another session's commit) without a new pin. The 15 pushed commits change no file under .skilled/skills/system-skill-advisor. lane-30-post-rebase-gate.txt section SUMMARY item 2 has the hash comparison.
+
+TRIGGER INDEX
+  Trigger Index Rebuild succeeded and pushed no bot commit: origin/main after the run is 01db8367c3, the pushed commit itself, because the pushed index already matched the tree.

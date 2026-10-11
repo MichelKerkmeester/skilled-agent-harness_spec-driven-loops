@@ -1,6 +1,6 @@
 ---
 title: "Implementation [system-spec-kit/022-hybrid-rag-fusion/003-constitutional-learn-refactor/implementation-summary]"
-description: 'title: "Implementation Summary"'
+description: "The /memory:learn command was rewritten from a generic learning capture tool into a constitutional memory manager with five subcommands (list, edit, remove, budget, and default ..."
 trigger_phrases:
   - "implementation"
   - "003"

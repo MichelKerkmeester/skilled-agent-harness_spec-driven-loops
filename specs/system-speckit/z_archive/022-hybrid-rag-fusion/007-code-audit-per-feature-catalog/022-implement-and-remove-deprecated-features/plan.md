@@ -1,6 +1,6 @@
 ---
 title: "...-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/022-implement-and-remove-deprecated-features/plan]"
-description: 'title: "Plan: Implement and Remove Deprecated Features"'
+description: "This packet now acts as a release-control phase record rather than an active multi-agent implementation plan. The immediate objective is to keep the six deprecated-feature targe..."
 trigger_phrases:
   - "spec"
   - "kit"

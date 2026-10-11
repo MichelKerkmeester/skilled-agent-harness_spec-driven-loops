@@ -1,6 +1,6 @@
 ---
 title: "...-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/001-session-source-validation/tasks]"
-description: 'title: "Tasks: Session Source Validation [template:level_2/tasks.md]"'
+description: "This document records the current verified state for this scope. Use [spec.md](spec.md) and [plan.md](plan.md) to trace requirements and implementation evidence."
 trigger_phrases:
   - "hybrid"
   - "rag"

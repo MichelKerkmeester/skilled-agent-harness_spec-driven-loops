@@ -81,6 +81,8 @@ NOTES:
       for a phase
     - Restore returns a spec to the folder its z_archive/ belongs to
     - A z_archive/ that is a symlink is refused on archive and on restore
+    - An archive or restore argument that passes through a symlink is refused,
+      and the message names the real folder to use instead
     - An archive or restore path with a . or .. segment is refused, since a
       segment can reach a linked z_archive/ that the literal path does not show
     - A track's graph-metadata.json list is refreshed after both moves
@@ -104,6 +106,55 @@ reject_dot_segments() {
             exit 1
             ;;
     esac
+}
+
+# Refused before anything is copied or moved. Resolving follows a link, so the
+# archive would move the real folder and leave the link dangling. Only the
+# components below the specs root are walked: the project path above it is not
+# the packet's to refuse. An argument from outside the specs root is refused
+# only when the argument itself is a link.
+reject_linked_argument() {
+    local argument="$1"
+    local specs_root="$2"
+    local action="$3"
+    local prefix="" segment physical_prefix found_specs_root=false
+    local segments=()
+    # Compare physical prefixes so another spelling of the repository cannot skip the walk.
+    IFS=/ read -r -a segments <<< "$argument"
+    for segment in "${segments[@]}"; do
+        [[ -n "$segment" ]] || continue
+        if [[ -z "$prefix" ]]; then
+            prefix="/$segment"
+        else
+            prefix="$prefix/$segment"
+        fi
+        if [[ "$found_specs_root" == "true" ]]; then
+            if [[ -L "$prefix" ]]; then
+                refuse_linked_argument "$argument" "$prefix" "$action"
+            fi
+        elif physical_prefix="$(resolve_existing_dir "$prefix")" && [[ "$physical_prefix" == "$specs_root" ]]; then
+            found_specs_root=true
+        fi
+    done
+    if [[ "$found_specs_root" != "true" && -L "$argument" ]]; then
+        refuse_linked_argument "$argument" "$argument" "$action"
+    fi
+    return 0
+}
+
+# Names the real folder when the argument resolves, so the caller can archive it.
+refuse_linked_argument() {
+    local argument="$1"
+    local link="$2"
+    local action="$3"
+    local real
+    log_error "Path argument passes through a symbolic link, not followed, and is refused: $argument"
+    if real="$(resolve_existing_dir "$argument")"; then
+        log_error "$action the real folder instead: $real"
+    else
+        log_error "The link $link points to $(readlink "$link"), which does not resolve"
+    fi
+    exit 1
 }
 
 # Resolve an existing directory to a canonical physical path.
@@ -280,6 +331,10 @@ archive_spec() {
         log_info "Allowed root: $specs_root"
         exit 1
     fi
+
+    local logical_argument="$spec_folder"
+    [[ "$logical_argument" == /* ]] || logical_argument="$PROJECT_ROOT/$logical_argument"
+    reject_linked_argument "$logical_argument" "$specs_root" "Archive"
 
     if [[ "/${resolved_spec#"$specs_root"/}/" == */z_archive/* ]]; then
         log_error "Folder is already archived: $resolved_spec"
@@ -476,6 +531,10 @@ restore_spec() {
         log_error "Restore destination resolves outside the specs root $specs_root: $destination"
         exit 1
     fi
+
+    local logical_archived="$archived_folder"
+    [[ "$logical_archived" == /* ]] || logical_archived="$PROJECT_ROOT/$logical_archived"
+    reject_linked_argument "$logical_archived" "$specs_root" "Restore"
 
     if [[ -e "$destination" || -L "$destination" ]]; then
         log_error "Restore target already exists: $destination"

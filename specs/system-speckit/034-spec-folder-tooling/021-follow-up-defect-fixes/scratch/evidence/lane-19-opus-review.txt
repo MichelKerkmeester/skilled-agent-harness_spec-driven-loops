@@ -1,0 +1,103 @@
+Lane 19: fresh Opus review (high effort) of the 021 build
+=========================================================
+Copied unchanged from the review agent's report (session scratchpad review021/report.txt). Its seven P2 findings were fixed by lanes fixA to fixE.
+
+VERDICT: ship after fixes. I found no P0 or P1. There are seven P2 findings. Six are confirmed by a run. The seventh is a doc wording point confirmed by reading. Every decision I traced does what the ledger says at the entry points I checked. All targeted suites pass, and every mutant I ran was killed. That includes the archive linked-argument mutant rerun on the final archive.sh. I edited nothing in $W. git status lists the same 33 files outside specs/ as at the start, and no scratch/ folder appeared at the repository root.
+
+## Intent check (what holds)
+- **Healer arguments (D15, D24):** Unknown argument, missing path and the removed flags all exit 2 in the default, --anchor-repair and --lane-modes modes. The --mode and --json messages match the ledger text exactly. Reproduced by hand: `--mode lanes`, `--json`, `--help`, `--lane-modes --folder nope`, `--anchor-repair --roots nope` and a stray positional each exit 2.
+- **No-roots refusal (D1):** a folder no root or repository reaches prints "no specs root or repository reaches it, pass --roots <dir> to name one" and exits 2 (reproduced).
+- **Linked spec.md level reads (D10, D21):** declaredLevel and levelFromSpec refuse with "spec.md: symbolic link, not followed". The exit stays 0.
+- **Link rules (D23):**
+  - readDoc, computeSourceDocHashes and the re-derive guard follow a file link whose real path stays inside the packet. They refuse or skip one that leaves or dangles, because realpath fails and that counts as outside.
+  - The healer still refuses every link.
+  - Exception: P2-2 below (a linked parent directory).
+- **Apply lock (D19):** the lock check runs before any mode when upgrade-legacy runs directly. No module imports upgrade-legacy.mjs. I grepped doctor-update-apply.yaml, doctor-update-rollback.yaml, doctor-update-record-base.yaml and release-update.cjs: none calls upgrade-legacy or --layout-map. Only check and compat call it, and neither holds the lock.
+- **Launcher (D3, D13):**
+  - `export SYSTEM_SPEC_GATE_ENFORCE=0` now runs only on the AI_SESSION_CHILD=1 path (worktree-session.sh:181).
+  - A launched session exports SKILLED_WORKTREE_SESSION=1 (line 466) and no longer exports AI_SESSION_CHILD.
+  - The SC2088 pattern is fixed.
+- **Hermes (D4):** `_orchestrated_leaf` reads AI_SESSION_CHILD=1 alone. The leaf keeps its advisor brief and skips the spec gate.
+- **Lean-parent rollup (D5):** a child with no loadable metadata blocks complete. A parent with no loadable child returns derivedStatus unchanged. See P2-6 for a gap against the wider REQ-012 wording.
+- **Backfill (D7):** only an explicit --root is checked, against the repository resolved from the working directory. repair-derived starts the backfill with a positional folder, so its re-derive is unaffected. The prune-report rule matches writeGraphMetadataFile's `.opencode`-anchored rule.
+- **Hygiene:** the comments added in code and tests carry no spec paths, packet numbers or REQ, ADR, task or decision ids. The added release-note, README and catalog sentences have no em dashes and no semicolons.
+
+## Findings (all P2)
+
+**P2-1, CONFIRMED. The outside-root refusal still blames a link when a system link sits at the top of the path (D25 is incomplete).**
+- Where: heal-spec-docs.cjs:1034. `hasLinkOnPath` checks every prefix, including /tmp and /var on macOS.
+- Command: `node heal-spec-docs.cjs --folder /tmp/r021-wording.X/out/020-plain --roots /tmp/r021-wording.X/repo/specs` (020-plain is a plain directory).
+  - Output: "refused ...: symbolic link, not followed (it resolves outside the specs root)", exit 2.
+  - The same folder spelled through /private/tmp prints "refused ...: it resolves outside the specs root".
+- Why the tests miss it: they build fixtures under realpath'd tmp directories.
+- Fix: judge only links below the system prefix, the same way folderRefusal ignores links above the anchor. One way is to skip prefixes whose realpath equals the realpath of their own lexical parent plus name.
+- Doc impact: the release-note sentence "A plain folder outside the supplied specs root now gets an outside-root message" (v4.0.0.4.md:190, v2.7.1.0.md:184) is not true for /tmp or /var spellings.
+
+**P2-2, CONFIRMED. A linked parent directory that leaves the packet is followed.**
+- Where: graph-metadata-parser.ts:522, generated-metadata-drift.ts:102 and repair-derived.cjs:283. All three test lstat on the final component only.
+- Command: probe at scratchpad/review021/probe/dirlink.mts, run with the skill's tsx loader.
+  - Setup: a packet whose `research` directory links outside the packet, to a research.md holding the phrase "outside secret phrase".
+  - Result: deriveGraphMetadata returned `trigger_phrases ["inside phrase","outside secret phrase"]`, and computeSourceDocHashes hashed `research/research.md`.
+  - Control: a file link at research/research.md was correctly refused.
+- repair-derived's guard uses the same final-component test, so it would also let the child run. That part is inferred from the code and not run.
+- No live packet under specs/ has such a link (`find specs -type l`).
+- Fix: apply the realpath containment check to every existing input, whether or not its last component is a link.
+
+**P2-3, CONFIRMED. archive.sh skips the below-specs walk for an absolute argument that spells the repository another way.**
+- Where: archive.sh:121 compares the text against "$PROJECT_ROOT/specs". PROJECT_ROOT is the physical path from git.
+- Command: `ln -s $REPO /tmp/r021-archlink`, then `archive.sh --force /tmp/r021-archlink/specs/tools-alias/001-a`, where tools-alias links to tools.
+  - Result: "SUCCESS: Archived", exit 0.
+- No link is left dangling, because a final-component link is still caught by `-L "$argument"`. But D2's rule, "a component below specs is a link", is not enforced for that spelling.
+- Fix: walk the argument's prefixes, find the one whose `pwd -P` equals specs_root, and check `-L` on each component after it.
+
+**P2-4, CONFIRMED. The restore refusal tells the user to archive.**
+- Where: archive.sh:145. `--restore specs/tools-alias/z_archive/002-b` prints "ERROR: Archive the real folder instead: .../specs/tools/z_archive/002-b".
+- Fix: pass the action verb into refuse_linked_argument.
+
+**P2-5, CONFIRMED by reading. The release notes name the wrong file for the upgrade-legacy link refusal.**
+- Where: v4.0.0.4.md:204 and v2.7.1.0.md:198 say "`upgrade-legacy` rejects a linked `upgrade-baseline.json` ... with exit 2".
+- What the code does: this phase added the refusal for the reversibility manifest `<git-dir>/upgrade-legacy.manifest.json` (upgrade-legacy.mjs:468, path from manifestPathFor at :425). The baseline link handling predates this phase and is already described at v4.0.0.4.md:146.
+- Fix: name the reversibility manifest.
+
+**P2-6, CONFIRMED. The rollup lets a stored complete survive a child with no metadata.**
+- Trigger: the only loaded child is neither in_progress nor complete, for example planned.
+- Where: graph-metadata-parser.ts:1461-1468. When neither branch fires, status keeps derivedStatus, which falls back to the stored status.
+- Command: probe at scratchpad/review021/probe/rollup.mts. Child 001 has metadata with status planned, child 002 has none, the stored parent status is complete. Result: complete.
+- The narrower D5 rule ("missing counts as not complete") is no worse here than a planned child, and the planned-child case predates this phase. REQ-012 says more: "derives complete only when ... every child has loadable metadata with status complete".
+- Fix: when not every child is loaded and complete, never return complete. Use in_progress, or the non-complete stored status.
+
+**P2-7, doc wording.**
+- Where: heal-spec-docs-lane-modes.md:38 says the CLI "stops with exit 2 on any other argument" than --folder, --roots and --apply.
+- Problem: `--lane-modes` and `--anchor-repair` are accepted, and the next sentence says so.
+- Fix: say "any argument outside these and the mode flags".
+
+## Test commands run (all from the final worktree state)
+| Command | Result | Exit |
+|---|---|---|
+| cli project: heal-arguments, archive-track, ci-rule-set-comparison, generated-metadata-drift, graph-metadata-backfill, heal-anchor-repair, heal-lane-modes, heal-symlink-containment, heal-target-parity, nested-changelog, repair-derived, upgrade-legacy, heal-provenance, anchor-repair-sample | 14 files, 345 passed, 1 skipped (346) | 0 |
+| root project: folder-discovery-integration, graph-metadata-schema | 2 files, 93 of 93 passed | 0 |
+| `bash .skilled/bin/tests/worktree-session.test.sh` | PASS=54 FAIL=0 | 0 |
+| Hermes unittest discover | Ran 52, OK | 0 |
+| `node --test generate-leaf-manifest-scopes.test.cjs` | 1 of 1 passed (one aggregate test running all cases, the two new --check cases included) | 0 |
+| `shellcheck -S warning archive.sh worktree-session.sh` | no output | 0 |
+
+## Mutants (scratch mirrors via mkmirror.mjs, or scratch copies, never the repository)
+| Mutant | Run | Result | Exit |
+|---|---|---|---|
+| archive, reject_linked_argument returns at once (the requested rerun on the final archive.sh) | archive-track | 3 failed, 48 passed: both archive refusal cases and the restore refusal case | 1 |
+| archive, restore call removed | archive-track | 1 failed (restore refusal), 50 passed | 1 |
+| archive, archive call removed | archive-track | 2 failed, 49 passed | 1 |
+| rollup, everyChildLoaded forced true | graph-metadata-schema | 1 failed ("keeps in_progress ... no graph-metadata.json"), 49 passed | 1 |
+| readDoc outside-link guard disabled | graph-metadata-schema | 1 failed (outside linked spec.md), 49 passed | 1 |
+| removed-flag map bypassed | heal-arguments | 7 failed, 12 passed | 1 |
+| apply-lock check disabled | upgrade-legacy -t "release apply lock" | 3 failed, 1 passed, 55 skipped | 1 |
+| Hermes, old two-variable rule restored (scratch copy, .skilled linked) | unittest | baseline in the copy had 5 failures from the copy environment. The mutant added test_the_dispatched_child_marker_alone_marks_a_leaf as a 6th failure | n/a |
+| launcher, ENFORCE export moved back into exec_in_place (scratch copy) | worktree-session test | PASS=51 FAIL=3 (descendant keeps enforce, linked worktree keeps enforce, dry run claims no enforce) | n/a |
+
+## Not checked
+- I did not run the full CLI suite, the full root project, the doctor and hooks suites or the final 19-job gate. I ran only the changed test files.
+- I did not identify which cli test was skipped. It is probably one of the environment-conditional skips in heal-symlink-containment (a case-insensitive check, or skipIf a repository sits above tmpdir).
+- No live Hermes session and no real launcher session. Tests and a code read only.
+- No real release apply holding the lock. The "no lock-holding step calls upgrade-legacy" claim rests on grep of the YAML files and release-update.cjs.
+- I did not verify the T046-26 load evidence (D8) or the two parent flips named in D5.
+- Temporary output: I removed my mirrors and the /tmp fixture. Probe scripts and logs remain under scratchpad/review021.

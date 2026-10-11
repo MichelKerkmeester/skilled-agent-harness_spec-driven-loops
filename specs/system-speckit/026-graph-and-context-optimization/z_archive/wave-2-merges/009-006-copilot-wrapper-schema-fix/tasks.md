@@ -1,6 +1,6 @@
 ---
 title: "Task [system-spec-kit/026-graph-and-context-optimization/007-hook-parity/006-copilot-wrapper-schema-fix/tasks]"
-description: 'title: "Task Breakdown: Copilot Wrapper Schema Fix"'
+description: "tasks document for 009-006-copilot-wrapper-schema-fix."
 trigger_phrases:
   - "task"
   - "tasks"

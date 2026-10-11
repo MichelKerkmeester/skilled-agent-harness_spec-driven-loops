@@ -1,0 +1,28 @@
+Lane 7: nested changelog generator (REQ-010, REQ-011)
+
+Line numbers in the current tree, re-read before the edit
+- The 12-row cut: runtime/cli/spec-folder/nested-changelog.ts, extractFilesChanged, line 361 (plan said the same)
+- The inline markup cleaner: runtime/cli/spec-folder/nested-changelog.ts, cleanInlineMarkdown, line 165 (plan said the same)
+
+Write set
+- runtime/cli/spec-folder/nested-changelog.ts
+  - cleanInlineMarkdown: first step removes HTML comments, including a comment that spans a line break
+  - extractFilesChanged: the rows.slice(0, 12) cut is removed, and every row is returned
+- runtime/cli/tests/nested-changelog.vitest.ts
+  - new case: keeps every Files Changed row when the summary lists 12 or 13 files (it.each over 12 and 13)
+  - new case: removes an inline HTML comment, including one that spans a line break
+
+Results (test file: runtime/cli/tests/nested-changelog.vitest.ts, run with vitest, project cli)
+- Baseline, before any edit: 7 passed, 0 failed, exit 0
+- Red, new cases on the unfixed source: 8 passed, 2 failed, exit 1
+  - 13-file case: expected length 13, got 12
+  - inline comment case: the text "internal note" reaches the output
+- Build: npm run build in runtime/cli, exit 0
+- Green, fixed source: 10 passed, 0 failed, exit 0
+- Control, unmutated scratch mirror (L7-control): 10 passed, 0 failed, exit 0
+- Mutant M7-a, rows.slice(0, 12) restored (L7-M7-a): 9 passed, 1 failed, exit 1. The failing case is the 13-file case.
+- Mutant M7-b, comment strip removed from cleanInlineMarkdown (L7-M7-b): 9 passed, 1 failed, exit 1. The failing case is the inline comment case.
+
+Diff
+- git diff --stat on the two write-set files: 2 files changed, 54 insertions(+), 1 deletion(-)
+- The build writes runtime/cli/dist, which is git-ignored, so no tracked file changed through the build.

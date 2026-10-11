@@ -1,0 +1,81 @@
+Lane 11: audit of the open boxes in 016 children 003, 009, 011 and 015
+======================================================================
+Copied unchanged from the audit lane's report (session scratchpad 016-audit/report.txt, written 2026-10-10 20:11).
+It records the state when the audit ran. Later lanes ticked more boxes: lane 12, lane 16 and the hostile rerun in lane-18-hostile-rerun.txt.
+
+016 audit lane: four tasks.md files edited, uncommitted. Four boxes ticked (CHK-FIX-007 in each child, all class A). Every other open box is recorded open with its class. All four children now FAIL validate --strict on two generated-metadata rules, so I stopped per step 4 and ran no re-derive. Before my edits, all four passed.
+
+VERDICT
+- Ticked: CHK-FIX-007 in 003, 009, 011 and 015.
+- Open, not ticked: 22 boxes in total, plus the "All tasks marked" and "Manual verification" lines.
+- Validation: RESULT: FAILED on all four after my edits. Baseline before edits was RESULT: PASSED on all four.
+- Operator or orchestrator next: see the last section.
+
+BRIEF CONTRADICTION (please confirm)
+- The brief says the work sits in 4669db6522..bb2006123f. It does not. 124e11c883 ("feat(system-spec-kit): fold the anchor repair, lane rules and layout move into the upgrade", 2026-10-09) is an ancestor of 4669db6522, so it lies outside the range. Git confirms 124e11c883 contains every file cited below, so I cited it. The commit range in the brief is wrong for this work.
+
+003-archive-path-follow-ups (one open box at baseline)
+- CHK-FIX-007 (A, ticked). Evidence: 124e11c883 added the round-trip describe at archive-track.vitest.ts:312 and the SKIP_DIRS comment at heal-spec-docs.cjs:63-66, with SKIP_DIRS at line 66. Commit 014e573449 later changed both files.
+- Summary: P1 is now 16/16, and the sentence that said CHK-FIX-007 was open is replaced.
+
+009-doctor-update-compatibility
+- CHK-FIX-007 (A, ticked). Evidence: 124e11c883 added the compat action YAML (173 lines), the doctor compat tests, and planLayoutMove, compareLayoutTrees, partialLayoutMove and layoutRootCollision in upgrade-legacy.mjs. Commit 02bd0a105b later changed the action YAML and the compat test.
+- T014 (C). Quote: "The approval prompts are not exercised by any test and need a manual run." The approvals are YAML steps an agent runs ("Ask once for an explicit yes").
+- T016 (C). Quote: "The approve step is not run by the suite."
+- "All tasks marked [x]" (C, derived from T014 and T016). Quote: "- [ ] All tasks marked `[x]`".
+- "Manual verification passed" (C). Quote from CHK-021: "not done: no operator-run `/doctor:update compat` session on a real v3 repository."
+- CHK-021 (C). Same quote.
+- CHK-023 (C). Quote: "The lock refusal and the manifest refusal have no executable path in this test harness, so they stay open until a test can reach them." I appended a recheck. The manifest refusal now has a test, the case 'dirty-tree-unwritable-manifest' in upgrade-legacy.vitest.ts, which expects exit 2 and "could not write reversibility manifest". The lock refusal stays open. release-update.cjs checks the apply lock in its apply, record-base and rollback commands. The compat action calls release-update only through its check command, which does not read the lock, so the compat lock refusal is an instruction to the agent. Deciding whether compat needs a code-level lock check is a decision.
+- Summary: P1 is now 12/13.
+
+011-anchor-repair-mode
+- CHK-FIX-007 (A, ticked). Evidence: 124e11c883 added runAnchorRepair, repairDuplicateAnchors, unnestQuestionsAnchors, fencedLines and writeFileAtomic in heal-spec-docs.cjs, the un-nesting in upgrade-legacy.mjs, and heal-anchor-repair.vitest.ts with anchor-repair-sample.vitest.ts and its fixtures. Later 014e573449 changed heal-spec-docs.cjs and upgrade-legacy.mjs.
+- T011 (C). Quote: "The failure is outside this phase and needs an operator decision." The failing packet is named in the box. I did not re-run it.
+- "All tasks marked [x]" (C, derived). Its note now names CHK-FIX-004 to CHK-FIX-006, since CHK-FIX-007 closed.
+- CHK-031 (C). Quote: "Left open for an operator decision: add argument checks, or accept the healer's convention." I appended a recheck. The no-value TypeError is fixed by rejectMissingFlagValue (added in 014e573449). The unknown-flag and missing-folder claims were not re-run.
+- CHK-FIX-004 (B). Work: add an outside-root row and a row for the fallback case the box names to adversarialCases in heal-anchor-repair.vitest.ts, then run that file and cite its pass count. The table has nine rows (delimiter, joined-input, no-op and refusal), and none is outside-root or fallback. I appended the recheck. Outside-root cases exist in heal-symlink-containment.vitest.ts from 014e573449, which another lane has modified uncommitted, so cite the committed SHA.
+- CHK-FIX-005 (B). Work: write the matrix section into implementation-summary.md, listing the axes from plan.md and the row counts the box gives (20, one sample over 60 documents, and three upgrade-legacy anchor cases). I did not recount these.
+- CHK-FIX-006 (B). Work: run the four anchor-repair test files under a hostile variant (unwritable TMPDIR, a cwd outside the repository, a restrictive umask) and record the pass counts in implementation-summary.md. The 014e573449 commit message claims a hostile run, but I did not verify it and did not cite it.
+- Summary: P1 is now 11/13. The narrative line now says CHK-FIX-007 is pinned to 124e11c883.
+
+015-lane-rules-as-heal-modes
+- CHK-FIX-007 (A, ticked). Evidence: 124e11c883 added anchorWrap, linkRepoint, continuityPlaceholders, levelFromSpec and headerAdd in heal-spec-docs.cjs, and heal-lane-modes.vitest.ts. Commit 014e573449 later changed heal-lane-modes.vitest.ts and heal-spec-docs.cjs.
+- T022 (C). Quote: "**Open, operator item.** Not run at corpus scale."
+- "All tasks marked [x]" (C, derived). Quote: "(T022 is open, see above)".
+- Summary: P1 is now 13/13.
+
+Other notes
+- The "[ ]" at line 21 of each file is the notation legend, not a box.
+- 009 CHK-FIX-004 is ticked [x], but its text still reads "open:". It is outside the brief, so I left it alone.
+- No test was run and no test count is cited in any tick.
+
+VALIDATE RESULTS (validate.sh --strict)
+- Baseline before edits: RESULT: PASSED for 003 (line 53), 009 (line 54), 011 (line 54) and 015 (line 54).
+- After edits: RESULT: FAILED on 003 (line 55), 009 (line 56), 011 (line 56) and 015 (line 56). Each shows "Summary: Errors: 2  Warnings: 0".
+- The two errors, the same on all four:
+  - GENERATED_METADATA_INTEGRITY: graph-metadata.json SOURCE_FINGERPRINT_MISMATCH.
+  - GENERATED_METADATA_DRIFT: the stored description differs from the fresh one.
+- The description drift is not caused by my text. The fresh wording sits in spec.md and graph-metadata.json, not tasks.md. Another lane has uncommitted edits to repair-derived.cjs, graph-metadata-backfill.ts, graph-metadata-parser.ts and archive.sh, all newer than my baseline run. The derivation may have changed under me.
+- The fingerprint mismatch most likely comes from my tasks.md edits, since those are the only changes in these four folders. That is inferred, not confirmed.
+- The AC_COVERAGE and citation lines are advisory. They were already in the baseline and are not errors.
+- The validator's suggested fix is repair-derived. I did not run it, as the brief requires. I left my edits in place rather than revert them.
+
+STATE AND NEXT STEPS
+- Edited, uncommitted: the four tasks.md files. No commit, no git add, no stash, no spec.md change, no PID killed. Scratch output is in the session scratchpad under 016-audit.
+- Orchestrator: after the rollup lane settles, run the one re-derive, then re-run validate --strict on the four children and confirm RESULT: PASSED.
+- Operator decisions: whether the 009 compat path gets a code-level lock check, the 011 T011 failing packet, the 011 argument checks, and the 009 approval run and the 015 corpus apply.
+- Loaded for this work: evidence-and-proof.md, communication.md, communication-prose.md, communication-decisions.md, communication-handoff.md, and the system-spec-kit skill.
+Validate RESULT lines (validate.sh --strict), as captured by the audit lane
+--------------------------------------------------------------------------
+baseline 003-archive-path-follow-ups: RESULT: PASSED
+baseline 009-doctor-update-compatibility: RESULT: PASSED
+baseline 011-anchor-repair-mode: RESULT: PASSED
+baseline 015-lane-rules-as-heal-modes: RESULT: PASSED
+after 003-archive-path-follow-ups: RESULT: FAILED
+after 009-doctor-update-compatibility: RESULT: FAILED
+after 011-anchor-repair-mode: RESULT: FAILED
+after 015-lane-rules-as-heal-modes: RESULT: FAILED
+final 003-archive-path-follow-ups: RESULT: FAILED
+final 009-doctor-update-compatibility: RESULT: FAILED
+final 011-anchor-repair-mode: RESULT: FAILED
+final 015-lane-rules-as-heal-modes: RESULT: FAILED

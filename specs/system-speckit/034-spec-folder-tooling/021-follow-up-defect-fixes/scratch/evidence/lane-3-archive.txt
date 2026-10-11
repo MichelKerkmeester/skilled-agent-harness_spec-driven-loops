@@ -1,0 +1,111 @@
+LANE 3 EVIDENCE: ARCHIVE ALIAS (REQ-004)
+
+Operator decision 2: refuse an archive argument that passes through a symbolic link, before any copy and before the completeness check. The message names the real folder.
+
+Files changed
+- .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh (new reject_linked_argument and refuse_linked_argument, one call in archive_spec after the specs-root containment check, one NOTES line in the help text)
+- .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts (new describe block "archive.sh with a linked argument" with two cases)
+- git diff --stat on the two files: 2 files changed, 72 insertions(+)
+
+Baseline (before any edit)
+- archive-track.vitest.ts: 47 passed, 0 failed, vitest exit 0. Log: scratchpad L3/ baseline-archive-track.txt
+
+Red (unfixed archive.sh, new cases only)
+- vitest -t "linked argument": 2 failed, 47 skipped, exit 1.
+- Alias case: exit 0 where 1 was expected, and specs/001-real was archived to specs/z_archive/001-real.
+- Manual reproduction in a scratch repository: archive.sh --force specs/002-alias printed SUCCESS and exit=0. Afterwards specs/002-alias still existed as a link to 001-real, and 001-real no longer existed, so the link dangled.
+- Log: scratchpad L3/ red-archive-track.txt and red-manual-alias.txt
+
+Green (fixed archive.sh)
+- archive-track.vitest.ts: 49 passed, 0 failed, vitest exit 0. Log: scratchpad L3/ green-archive-track.txt
+- Manual, scratch repositories, exit status and stderr read:
+  - specs/002-alias (link to 001-real): exit 1, stderr names specs/002-alias and the real folder specs/001-real, 001-real intact, no z_archive created.
+  - specs/tools-alias/001-a (linked track): exit 1, stderr names the real folder specs/tools/001-a. The vitest case checks that spec.md stays in place, that no z_archive is created and that the track list is unchanged.
+  - Absolute path to the alias with the physical spelling: exit 1, same message.
+  - Outside link pointing into specs: exit 1, real folder intact.
+  - Control, plain track packet: exit 0, archived.
+  - Control, plain root packet: exit 0, archived.
+- Existing case kept unchanged: "refuses to archive a folder reached through a link that points outside specs" still expects "Refusing to archive outside specs root". The containment check runs before the new check, so the new check only sees links that resolve inside specs.
+
+Static checks
+- shellcheck -S warning on archive.sh: exit 0, no output, before and after the edit.
+- bash -n on archive.sh: exit 0.
+- Bash on this machine is 3.2.57 (arm64 macOS). No bash 5.2 binary was found, so the 5.2 check is not run.
+
+Mutant proof (mirrors built with the gA mkmirror.mjs, prefix L3-)
+- Control L3-control, no mutation: archive-track.vitest.ts 49 passed, 0 failed, exit 0. Log: scratchpad L3/ L3-control-archive-track.txt
+- Mutant M3-a: the reject_linked_argument call in archive_spec is replaced by "true". Result: 2 failed, 47 passed, exit 1. Both new cases fail. The alias case shows exit 0 and specs/001-real archived. Log: scratchpad L3/ L3-M3-a-archive-track.txt. Mutant spec: scratchpad L3/ mutant-M3-a.mjs
+
+Restore (observed, not changed)
+- archive.sh --restore takes an archived folder argument. A link component below the specs root is not refused. With specs/tools-alias pointing to tools, "--restore specs/tools-alias/z_archive/002-b" exited 0 and moved the packet to specs/tools/002-b.
+- The existing guard refuses a linked z_archive itself (specs/z_alias): "Archive directory is a symbolic link, not followed, and is refused".
+- Restore is outside the lane 3 write set and was not changed. Operator decision needed on whether restore takes the same refusal.
+
+Unexpected
+- An absolute argument whose spelling differs in case from the repository path (on this case-insensitive filesystem) was refused by the existing outside-specs-root check. This is fail-closed and was not changed.
+- The fixture does not ship repair-derived.cjs, so the fixture runs print the existing "were not re-derived" warning. The warning does not affect exit status or the assertions.
+
+RESTORE REFUSAL (operator approved, appended later)
+
+The operator approved the same linked-argument refusal for --restore. The earlier section "Restore (observed, not changed)" is kept as recorded. This section supersedes it.
+
+Change
+- restore_spec in archive.sh calls reject_linked_argument on the restore argument. The call sits after the home containment check and before the destination existence check and the move, so a refused restore moves nothing.
+- The call reuses reject_linked_argument and refuse_linked_argument from the archive refusal. No second copy was written.
+- refuse_linked_argument now reads "Path argument" instead of "Archive argument", because it serves both actions. The NOTES help line now covers archive and restore.
+
+Files changed in this section
+- .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh (restore call, message wording, help line)
+- .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts (two cases added to "archive.sh with a linked argument": a restore through a linked track is refused and moves nothing, and a restore through the real path still works)
+- Lane 3 total: git diff --stat on the two files reports 2 files changed, 99 insertions(+). archive.sh 51 lines, archive-track.vitest.ts 48 lines.
+
+Test counts
+- Before the change, first run: 45 passed, 4 failed, vitest exit 1. All four failures were in "archive.sh round trip with the real tools" (the archive, validate, restore case, the two nested re-derive cases and the "could not complete" case). Those cases run the real repair-derived.cjs and the graph writer. The worktree had other lanes editing repair-derived.cjs and backfill-graph-metadata.ts at that time. This is not isolated, and the restore change did not touch those paths. Log: scratchpad L3/before-restore-change-archive-track.txt
+- After the change: archive-track.vitest.ts 51 passed, 0 failed, vitest exit 0. The four round trip cases passed on this run. Log: scratchpad L3/after-restore-change-archive-track.txt
+- Earlier sections recorded a 49 of 49 green run. The 49 included the two alias cases. The two restore cases bring the file to 51.
+
+Static checks
+- shellcheck -S warning on archive.sh: exit 0, no output.
+- bash -n on archive.sh: exit 0.
+
+Mutant M3-b (scratch mirror only, never in the repository)
+- The mutant replaces the restore reject_linked_argument call with "true". The mirror was built with the gA mkmirror.mjs. The tool header was read first, and the gA copy was used.
+- Control L3-control2, no mutation: archive-track.vitest.ts 51 passed, 0 failed, vitest exit 0. Log: scratchpad L3/L3-control2-archive-track.txt
+- Mutant M3-b: 1 failed, 50 passed, vitest exit code 1. The failing case is the restore red case. Restore exited 0 and moved specs/tools/z_archive/002-b to specs/tools/002-b, where the case expects exit 1 and no move. Log: scratchpad L3/L3-M3-b-archive-track.txt. Mutant spec: scratchpad L3/mutant-M3-b.mjs
+- The red run for the restore case is this mutant run. The restore case was written together with the restore call, so it was not run against the unfixed repository. The mutant reproduces the unfixed restore behavior in the mirror.
+- The archive mutant M3-a was not rerun on this code. Its recorded result above was taken before this change.
+
+Process
+- No commits, no staging, no stash. No background processes were started, so no PIDs were captured or killed.
+- Scratch fixture folders from the earlier manual checks were removed. Mirrors L3-control2 and L3-M3-b remain under the gA mirrors folder with the other mirrors.
+
+Review fix P2-3 and P2-4
+========================
+
+Changes
+- `archive.sh` now walks absolute path prefixes until one resolves with `pwd -P` to the physical specs root, then refuses each linked component below that root.
+- `reject_linked_argument` receives the action name. A linked restore now says `Restore the real folder instead`.
+- `archive-track.vitest.ts` covers absolute linked paths for archive and restore, checks the restore wording, and keeps a plain absolute-path archive control.
+
+Baseline before these tests and fixes
+- From `.skilled/skills/system-spec-kit/runtime/cli`, `npx vitest run --config ../../vitest.config.ts --project cli tests/archive-track.vitest.ts` completed with 49 passed and 2 failed out of 51, exit 1, duration 390.73s.
+- The two failures timed out at 120 seconds in `re-derives a packet nested in the moved one from its own path` and `re-derives an archived phase with no parent, then its parent packet again on restore`.
+- The first baseline invocation returned after 30 seconds with only Vitest startup output and no captured final status. The completed baseline above came from a second invocation. `ps -Ao pid,etime,command | rg 'vitest|archive-track|node|npm'` returned `operation not permitted`, exit 1, so whether the first invocation overlapped is unknown.
+
+Red before the production fix
+- From `.skilled/skills/system-spec-kit/runtime/cli`, `npx vitest run --config ../../vitest.config.ts --project cli tests/archive-track.vitest.ts -t 'linked track|absolute alias|plain absolute'` reported 3 failed, 3 passed and 48 skipped out of 54, exit 1.
+- The absolute-alias archive and restore cases both got exit 0 and moved the packet through the linked track. The existing linked-track restore refusal exited 1 but printed `Archive the real folder instead`.
+
+Green after the production fix
+- The same focused Vitest command reported 6 passed and 48 skipped out of 54, exit 0. This includes the plain absolute-path control and the restore-specific wording assertion.
+- Full file command: `npx vitest run --config ../../vitest.config.ts --project cli tests/archive-track.vitest.ts`. Result: 54 passed, exit 0, duration 78.13s.
+- `shellcheck -S warning .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh`: exit 0, no output.
+- `bash -n .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh`: exit 0, no output.
+- OpenCode alignment check: `python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit/runtime/cli`: exit 0, 552 files scanned, 0 findings, 0 errors, 0 warnings and 0 violations.
+
+Scratch-mirror mutant proof
+- Control build: `node /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/mkmirror.mjs archive-p23p24-control-20261010 -`: exit 0. In that mirror's `.skilled/skills/system-spec-kit/runtime/cli`, the focused Vitest command reported 6 passed and 48 skipped out of 54, exit 0.
+- Prefix-walk mutant build: `node /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/mkmirror.mjs archive-p23p24-prefix-20261010 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/archive-p23p24-prefix-20261010.mjs`: exit 0. The focused Vitest command in that mirror reported 4 failed, 2 passed and 48 skipped out of 54, exit 1. The linked-track archive and restore cases and both absolute-alias cases failed.
+- Hardcoded-action mutant build: `node /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/mkmirror.mjs archive-p23p24-action-20261010 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/archive-p23p24-action-20261010.mjs`: exit 0. The focused Vitest command in that mirror reported 1 failed, 5 passed and 48 skipped out of 54, exit 1. The restore wording assertion failed because the mutant printed `Archive`.
+
+The strict packet validation remains with the orchestrator, which will re-derive the generated metadata. No generated metadata was changed.

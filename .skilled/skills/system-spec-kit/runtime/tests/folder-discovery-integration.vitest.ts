@@ -870,7 +870,7 @@ describe('CHK-028: Per-folder description.json read performance', () => {
   beforeEach(() => { td = createTempWorkspace(); });
   afterEach(() => { cleanup(td); });
 
-  it('T046-26: loadPerFolderDescription completes in <5ms', () => {
+  it('T046-26: loadPerFolderDescription median of repeated calls completes in <5ms', () => {
     const folderDir = createSpecFolder(td, '001-perf', '# Perf Test');
     const perFolder: PerFolderDescription = {
       specFolder: '001-perf',
@@ -885,12 +885,25 @@ describe('CHK-028: Per-folder description.json read performance', () => {
     };
     savePerFolderDescription(perFolder, folderDir);
 
-    const start = performance.now();
-    const result = loadPerFolderDescription(folderDir);
-    const elapsed = performance.now() - start;
+    // Warm-up calls keep one-time setup cost out of the samples. The sample count is
+    // odd, so the median is a single measured call. One slow call on a loaded host
+    // does not move the median, while a slowdown on every call still does.
+    const WARM_UP_CALLS = 3;
+    const SAMPLE_CALLS = 9;
+    for (let call = 0; call < WARM_UP_CALLS; call++) {
+      loadPerFolderDescription(folderDir);
+    }
 
-    expect(result).not.toBeNull();
-    expect(elapsed).toBeLessThan(5);
+    const elapsed: number[] = [];
+    for (let call = 0; call < SAMPLE_CALLS; call++) {
+      const start = performance.now();
+      const result = loadPerFolderDescription(folderDir);
+      elapsed.push(performance.now() - start);
+      expect(result).not.toBeNull();
+    }
+
+    elapsed.sort((a, b) => a - b);
+    expect(elapsed[Math.floor(SAMPLE_CALLS / 2)]).toBeLessThan(5);
   });
 });
 

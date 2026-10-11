@@ -1,0 +1,42 @@
+Lane 18: hostile-environment rerun for 016/011 CHK-FIX-006, on the final healer and upgrade code
+================================================================================================
+Run by the orchestrator on 2026-10-10 after lane dbg1 closed. Commands, from .skilled/skills/system-spec-kit/runtime/cli:
+
+Plain non-default TMPDIR:
+  TMPDIR="<scratchpad>/verify-tmpdir/plain-tmp" npx vitest run --config ../../vitest.config.ts --project cli tests/upgrade-legacy.vitest.ts
+Hostile environment:
+  umask 077; TMPDIR="<scratchpad>/verify-tmpdir/hostile tmp dïr" LANG=C LC_ALL=C TZ=Pacific/Kiritimati npx vitest run --config ../../vitest.config.ts --project cli tests/upgrade-legacy.vitest.ts tests/heal-anchor-repair.vitest.ts tests/anchor-repair-sample.vitest.ts tests/heal-symlink-containment.vitest.ts
+
+The TMPDIR path holds a space and a non-ASCII letter. The exit line was appended by the command itself.
+
+Plain run output
+----------------
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+
+ Test Files  1 passed (1)
+      Tests  59 passed (59)
+   Start at  20:30:08
+   Duration  294.14s (transform 79ms, setup 14ms, import 105ms, tests 293.93s, environment 0ms)
+
+exit=0
+
+Hostile run output
+------------------
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+
+ Test Files  4 passed (4)
+      Tests  122 passed (122)
+   Start at  08:35:03
+   Duration  555.56s (transform 145ms, setup 27ms, import 239ms, tests 554.89s, environment 0ms)
+
+exit=0

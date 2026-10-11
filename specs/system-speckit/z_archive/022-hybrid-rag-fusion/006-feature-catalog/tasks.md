@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Feature Catalog Audit & Remediation [system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/tasks]"
-description: 'title: "Tasks: Feature Catalog Audit & Remediation"'
+description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"
   - "feature"

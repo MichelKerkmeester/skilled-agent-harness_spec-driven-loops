@@ -1,0 +1,154 @@
+Lane 12 of phase 021: evidence for CHK-FIX-004, CHK-FIX-005, CHK-FIX-006 and T011 in 016/011-anchor-repair-mode
+Date: 2026-10-10
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets
+Packet: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode
+Scratch for temporary output: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/L12
+
+Files edited in this lane (uncommitted, nothing staged, no stash, no commit):
+- .skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts (two adversarial rows, one optional case field, one helper)
+- specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/tasks.md (CHK-FIX-004, CHK-FIX-005 and T011 ticked. CHK-FIX-006 evidence appended, left open)
+- specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/implementation-summary.md (new "Test matrix (2026-10-10)" subsection under How It Was Verified)
+- this file
+
+Commands run from .skilled/skills/system-spec-kit/runtime/cli unless noted:
+  npx vitest run --config ../../vitest.config.ts --project cli tests/<file>
+
+=====================================================================
+BOX 1. CHK-FIX-004 (adversarial rows)
+=====================================================================
+
+Rows added to adversarialCases in heal-anchor-repair.vitest.ts (11 rows now, was 9):
+
+1. outside-root: "a packet outside the named specs root is refused and left byte-identical"
+   Runs repairAnchors on a repairable document, then runs --anchor-repair with --roots set to a specs root that does not hold the packet, in the dry run and the apply run. Expects exit 2, stdout containing "refused <packet>" and "it resolves outside the specs root", the packet bytes unchanged and the manifest of the packet's root unchanged.
+   Implementation: new optional case field outsideRoot and a helper expectRefusedOutsideRoot. The field is the only change to the table shape.
+
+2. fallback: "fallback: a glued duplicate that does not overlap its neighbor is renamed, not removed"
+   Meaning chosen: the removal rule (glued AND overlapping) is the preferred repair. When a glued duplicate does not overlap its neighbor, the repair falls back to the isolated rename in repairDuplicateAnchors. The row expects action "renamed isolated duplicate pair metadata to metadata-2" and the marker names changed, with no marker removed.
+   Alternatives not chosen, with reasons:
+   - The default-roots fallback in folderRefusal (no --roots given, UNREACHED_REFUSAL). That path needs a CLI run without --roots, and the table is text-level, so it would need a second new mechanism.
+   - The "falls back to live" wording in heal-lane-modes.vitest.ts (015 precedent). That is an archive-placement rule, not an anchor-repair path.
+
+Results:
+- Baseline before the edit: exit 0, Test Files 1 passed, Tests 20 passed (20). Output in scratch baseline-heal-anchor-repair.out.
+- After the edit: exit 0, Tests 22 passed (22), 0 failed. Output in scratch box1-run1.out.
+- After the test rename from "neighbour" to "neighbor": exit 0, Tests 22 passed (22). Verbose output in scratch box1-final-verbose.out, both new rows listed as passed.
+- heal-spec-docs.cjs was not changed, and no healer failure needed a fix.
+
+Observed healer behavior, recorded and not changed (owner: lane 1):
+- An outside-root folder is refused with exit 2 and this line on stdout:
+  refused <packet>: symbolic link, not followed (it resolves outside the specs root)
+  The folder is not a link. The prefix comes from refuseFolderArgument in heal-spec-docs.cjs, which uses the link wording for every reason except UNREACHED_REFUSAL. The test pins the exit code and the reason text, not the prefix.
+- Known Limitation 8 in implementation-summary.md says no test covers a symlinked spec.md. heal-symlink-containment.vitest.ts has "--anchor-repair --apply leaves a symlinked spec.md and its outside target untouched", which passed in the four-file run (scratch box2-verbose-4files.out). That limitation text is stale at HEAD and was not edited, since it is outside the test-matrix section.
+
+=====================================================================
+BOX 2. CHK-FIX-005 (axes and row counts)
+=====================================================================
+
+Axes, from plan.md Affected surfaces (Required inventories): defect class (glued template pairs, fenced duplicates, nested questions layouts), apply versus dry run and outcome (success, collision, ambiguous).
+
+Row counts from the runner's verbose output:
+- heal-anchor-repair.vitest.ts: 22 of 22 passed (11 it tests, one of them a two-case it.each, plus an 11-row adversarial table).
+- anchor-repair-sample.vitest.ts: 1 of 1 passed.
+- upgrade-legacy.vitest.ts: 59 tests in the file. The anchor cases, selected with -t "anchor|nest|umask", are 3 of 3 passed. The three are "un-nests only the questions anchor in an archived packet and leaves every prose line as written", "keeps an archived document mode under a restrictive umask" and "repairs a nested questions anchor on apply and shows it on the dry run".
+- heal-symlink-containment.vitest.ts: 39 tests in the file. The anchor-repair cases, selected with -t "anchor-repair", are 7 of 7 passed.
+
+The count of upgrade-legacy.vitest.ts moved during this lane. The four-file run at the first verbose pass counted 55 tests (54 passed, 1 failed). Later runs counted 59 tests. The cause was not checked. The brief says other lanes edit files in parallel. The matrix section uses 59, from the runs made after the move.
+
+Packet record that these counts replace: implementation-summary.md, closeout 2 and 3 notes, which counted 20 heal-anchor-repair cases, 1 sample test and 3 upgrade-legacy anchor cases.
+
+=====================================================================
+BOX 3. CHK-FIX-006 (hostile environment variant, run last)
+=====================================================================
+
+Anchor-repair test files, found by grep over tests/*.ts for anchor-repair, repairAnchor, unnestQuestions, runAnchorRepair, "un-nest" and "questions anchor":
+1. heal-anchor-repair.vitest.ts
+2. anchor-repair-sample.vitest.ts
+3. upgrade-legacy.vitest.ts (3 anchor cases of 59)
+4. heal-symlink-containment.vitest.ts (7 anchor-repair cases of 39)
+5. heal-arguments.vitest.ts (one --anchor-repair row in its table)
+6. heal-target-parity.vitest.ts (the anchor-repair entry point parity test)
+7. workflow-invariance.vitest.ts (the anchor-repair sample allowance and part of the packet's focused command)
+
+Variant, applied in a subshell so the umask does not leak:
+- umask 077
+- TMPDIR = /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/L12/hostile tmp üdir (a new directory, with a space and a non-ASCII letter)
+- LANG=C, LC_ALL=C, TZ=Pacific/Kiritimati
+
+Hashes recorded at the moment of the hostile run (shasum -a 256). The same hashes were recorded at the control run and the supplemental run, so the module state did not change between runs:
+- spec/heal-spec-docs.cjs  2ca91b963e007e6173128cc59751d519880cc27cd0e16ea648e4974631a9eb25
+- spec/upgrade-legacy.mjs  973ef65d414a5178895616464a40c162b9c7bbe48ed9cfeb4f0495ee0d973280
+
+Hostile run, the four main files (--project cli, files as listed in item 1 to 4 above):
+- Exit status 1.
+- Test Files 1 failed, 3 passed (4). Tests 27 failed, 94 passed (121).
+- heal-anchor-repair.vitest.ts: 22 of 22 passed.
+- anchor-repair-sample.vitest.ts: 1 of 1 passed.
+- heal-symlink-containment.vitest.ts: 39 of 39 passed.
+- upgrade-legacy.vitest.ts: 32 passed, 27 failed, out of 59.
+- The 27 failures are AssertionErrors. They include all three upgrade-legacy anchor cases, the link-containment case "writes nothing for a passing packet that links inside itself, and keeps its baseline", the case "refuses a reversibility manifest that is a link, and reuses no baseline from its target" and 22 cases that are not anchor cases.
+- Output: scratch hostile-run.out.
+
+Control, the same four files in the default environment on the same module hashes:
+- Exit status 1.
+- Test Files 1 failed, 3 passed (4). Tests 1 failed, 120 passed (121).
+- upgrade-legacy.vitest.ts: 58 passed, 1 failed. The one failure is "writes nothing for a passing packet that links inside itself, and keeps its baseline". It fails at the repair-derived step with exit 2, and it fails when run alone too (scratch box2-rerun-linkcontainment.out).
+- Output: scratch control-run.out.
+- The default environment therefore already has one red row in this file. The hostile run adds 26 more failures, and the link-containment case is not one of them.
+
+Supplemental run, heal-arguments.vitest.ts, heal-target-parity.vitest.ts and workflow-invariance.vitest.ts:
+- Under the hostile variant: exit 0, 3 of 3 files, 18 of 18 tests passed. Output scratch hostile-supp-run.out.
+- In the default environment: exit 0, 18 of 18 tests passed. Output scratch control-supp-run.out.
+
+Diagnosis of the upgrade-legacy failures (the three anchor cases, -t "anchor|nest|umask", one factor at a time, this is not the hostile run):
+- umask 077 alone: exit 0, 3 passed.
+- LANG=C, LC_ALL=C, TZ=Pacific/Kiritimati alone: exit 0, 3 passed.
+- TMPDIR set to a directory with a space only: exit 1, 3 failed.
+- TMPDIR set to a directory with a non-ASCII letter only: exit 1, 3 failed.
+- TMPDIR set to a plain ASCII directory with no space: exit 1, 3 failed.
+- TMPDIR left at the default macOS location: exit 0, 3 passed.
+- Conclusion: the trigger is a TMPDIR outside the default location. The space and the non-ASCII letter are not the trigger, since a plain ASCII path also fails.
+- Mechanism not established. The failing step is repair-derived, which exits 2 and prints its usage line. runStep in upgrade-legacy.mjs keeps only the last line of stderr, which is that usage line, so the specific message is lost. repair-derived.cjs has three candidate messages on that path (lines 657 to 667): "run this from the repository root", "refusing a target outside the packet tree" and "no such path". None was confirmed.
+
+CHK-FIX-006 status: left open, not ticked. The variant ran and its result is red. The item was not closed because the record would read as a clean pass. Decision for the operator. Either accept the TMPDIR finding as a known limitation and close the item with it named. Or have lanes 5 and 6 fix the non-default TMPDIR path and rerun this variant.
+
+=====================================================================
+BOX 4. T011 (50th packet, out of scope)
+=====================================================================
+
+Ticked [x] on the operator's ruling in the lane brief: the 50th packet is an identity backup in the scratch folder of phase 028, its metadata keeps the original non-scratch path on purpose, and it is out of scope and stays untouched.
+
+Existing record cited: implementation-summary.md, How It Was Verified, row "50 source packets": 49 PASSED and 1 FAILED, the failure being the scratch backup. The T011 entry in tasks.md names the backup path and the failing rules from the second pass.
+
+Nothing was run against the backup in this lane. The only validation run in this lane was on the packet folder itself (see the validation section below).
+
+Lines left alone, per the brief: CHK-031 and the "All tasks marked [x]" line in Completion Criteria, which still says T011 stays open. The doc lane should update that line.
+
+=====================================================================
+VALIDATION (run last, after all edits, on the packet folder only)
+=====================================================================
+
+Command: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <packet folder> --strict
+Exit status: 2
+Summary line: Summary: Errors: 2  Warnings: 0
+RESULT line: RESULT: FAILED
+
+Error lines, both of the two expected generated-metadata rules:
+- x GENERATED_METADATA_INTEGRITY: Generated metadata integrity found 1 violation(s) (enforced)
+    - graph-metadata.json: SOURCE_FINGERPRINT_MISMATCH: source_fingerprint does not match a re-derive of the current source docs, the stored derived fields may be stale
+- x GENERATED_METADATA_DRIFT: Generated metadata drift found 1 drifted field(s) (enforced)
+    - description: stored 'Phase 11: anchor-repair-mode' drifted from fresh 'Phase 13's one-off script `fix-dup-anchors.mjs` handled duplicate anchor pairs (two anchor copies in one document, paired by literal position)'
+
+No other error. The one advisory line, not an error, is AC_COVERAGE: "0/8 ACs have evidence" with malformed evidence citations for AC-001 to AC-008. AC_CLOSURE reports 8/8 criteria met. The validator printed a repair-derived preview command. That command was not run. This lane ran no repair-derived step, no backfill and no re-derive.
+
+Full output: scratch validate-011.out. Final rerun after the last tasks.md edit: exit 2, Summary Errors 2, RESULT: FAILED, the same two rules (scratch validate-011-final.out).
+
+=====================================================================
+OPEN ITEMS FOR THE PARENT
+=====================================================================
+
+1. CHK-FIX-006 is open. The hostile variant is red in upgrade-legacy.vitest.ts. See Box 3 for the counts and the TMPDIR finding.
+2. upgrade-legacy.vitest.ts "writes nothing for a passing packet that links inside itself, and keeps its baseline" fails on the current tree in the default environment too (repair-derived exit 2). Not anchor-specific. Not attributed to any lane.
+3. The healer's outside-root refusal line names a symbolic link for a plain folder (lane 1 owns heal-spec-docs.cjs).
+4. The validate errors are the two generated-metadata rules, expected from the earlier edit. A re-derive is needed at the end. This lane edited tasks.md and implementation-summary.md, which are packet source docs, so the re-derive may need to cover them too.
+5. Completion Criteria line and Verification Summary in tasks.md and implementation-summary.md still describe T011 and CHK-FIX-004 to CHK-FIX-006 as open. The doc lane owns those lines.

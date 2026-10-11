@@ -15,9 +15,11 @@
 #
 # <runtime> is the CLI to exec (claude, codex, opencode, ...).
 #
-# Child detection (either signal => exec in place, no new worktree):
+# Child detection (any signal => exec in place, no new worktree):
 #   1. AI_SESSION_CHILD=1 in the environment (set at dispatch sites for orchestrated children).
-#   2. Structural backstop: the process is already inside a linked git worktree
+#   2. SKILLED_WORKTREE_SESSION=1 in the environment (exported to every session this launcher
+#      starts, so a descendant that changes directory before calling the launcher does not nest).
+#   3. Structural backstop: the process is already inside a linked git worktree
 #      (git --git-dir differs from --git-common-dir).
 # On an unknown/ambiguous signal we default to top-level (isolate) — the safe failure mode.
 #
@@ -156,14 +158,12 @@ exec_in_place() {
   local reason="$1"
   shift
   log "child/already-isolated session ($reason) — exec'ing in place, no new worktree"
-  # A dispatched child has no user turn to answer the spec-gate's Gate-3
-  # question, so an enforce env inherited from the parent shell must never
-  # reach it -- neutralize it here as a belt-and-suspenders backstop even
-  # though the core's own evaluateMutation() already narrows deny to
-  # non-child sessions via AI_SESSION_CHILD.
-  export SYSTEM_SPEC_GATE_ENFORCE=0
   if [ "$DRY_RUN" = "1" ]; then
-    echo "DRY_RUN: would exec in place: $RUNTIME_EXEC $* (SYSTEM_SPEC_GATE_ENFORCE=0)"
+    enforce_note=""
+    if [ -n "${SYSTEM_SPEC_GATE_ENFORCE:-}" ]; then
+      enforce_note=" (SYSTEM_SPEC_GATE_ENFORCE=$SYSTEM_SPEC_GATE_ENFORCE)"
+    fi
+    echo "DRY_RUN: would exec in place: $RUNTIME_EXEC $*$enforce_note"
     exit 0
   fi
   exec "$RUNTIME_EXEC" "$@"
@@ -175,7 +175,14 @@ exec_in_place() {
 
 # --- Child detection -------------------------------------------------------
 if [ "${AI_SESSION_CHILD:-}" = "1" ]; then
+  # A dispatched child has no user turn to answer the Gate 3 question, so an enforce setting
+  # inherited from the parent shell must not reach it. Launched and in-worktree sessions are
+  # interactive and keep the operator's setting.
+  export SYSTEM_SPEC_GATE_ENFORCE=0
   exec_in_place "AI_SESSION_CHILD=1" "$@"
+fi
+if [ "${SKILLED_WORKTREE_SESSION:-}" = "1" ]; then
+  exec_in_place "SKILLED_WORKTREE_SESSION=1" "$@"
 fi
 
 GIT_DIR="$(git rev-parse --git-dir 2>/dev/null || true)"
@@ -213,7 +220,7 @@ WT_BASE_DIR="${SPECKIT_WORKTREE_BASE:-$(git -C "$MAIN_ROOT" config --get speckit
 [ -n "$WT_BASE_DIR" ] || WT_BASE_DIR=".worktrees"
 case "$WT_BASE_DIR" in
   "~")   WT_BASE_DIR="$HOME" ;;
-  "~/"*) WT_BASE_DIR="$HOME/${WT_BASE_DIR#\~/}" ;;
+  \~/*) WT_BASE_DIR="$HOME/${WT_BASE_DIR#\~/}" ;;
 esac
 case "$WT_BASE_DIR" in
   /*) : ;;
@@ -454,8 +461,9 @@ if [ "$SOCK_PATH_LEN" -ge 104 ]; then
   log "WARNING: socket path length $SOCK_PATH_LEN may exceed the platform limit (~104); the daemon could fail to listen"
 fi
 
-# Mark descendants of THIS session as children so they do not re-nest.
-export AI_SESSION_CHILD=1
+# Mark descendants of THIS session so they do not re-nest. The marker is launcher-only:
+# the spec gate reads AI_SESSION_CHILD as a dispatched child, so this session must not set it.
+export SKILLED_WORKTREE_SESSION=1
 
 # Wire continuous-integration autosync: the post-commit hook publishes this
 # session's commits to the live branch so the operator's IDE stays current. Opt

@@ -119,12 +119,6 @@
         "source": "derived"
       },
       {
-        "name": "Quality Scorer Unification",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -138,6 +132,12 @@
       },
       {
         "name": "Pattern Pipeline",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -167,7 +167,19 @@
         "source": "derived"
       },
       {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Scorer Unification",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -177,23 +189,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Known Limitations No",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "deprecation",
-        "kind": "key_phrase",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The pipeline runs three quality checks with a split contract: stored/indexed quality uses the 0.0-1.0 scale, but workflow gating uses 0-100",
     "created_at": "2026-04-12T09:02:50.267Z",
-    "last_save_at": "2026-10-07T19:24:35.492Z",
+    "last_save_at": "2026-10-10T20:53:39.777Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de1478e81d7a6c3bfb1cba4faa131abcef357efbcbd2524c7cd1baee2255d29c",
+    "source_fingerprint": "sha256:0d3a660b9c3b30d567a92d4792f711f7c06984f029ca4e049fc5ac7462c89687",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b06c52f5bbd076befe352923190af2e36bf022757f885dcf217d1fe8c709a8af",
-      "plan.md": "529f5a3c1a93a4a593b55df3046b6c989e7054662cd8e28e16d505cdac07a92f",
-      "tasks.md": "a854b8fb5c8220ec8150edd2bebf4e14f66a38efd3e0eba14ecc33f8dff1fe0a",
+      "plan.md": "b245a48119bdb5e68591b0531c20f81dff9f6b7e227d87e169b702b026bd7cb7",
+      "tasks.md": "a24b0cc8f4db76a2b89f57005c2cc2f360f6661c5755bbd195ba41d04f3eb676",
       "implementation-summary.md": "ee0c7777d66c66d4eb604c174186bbd5c062050eb20cd4843b63381f784b3029"
     },
     "last_active_child_id": null,

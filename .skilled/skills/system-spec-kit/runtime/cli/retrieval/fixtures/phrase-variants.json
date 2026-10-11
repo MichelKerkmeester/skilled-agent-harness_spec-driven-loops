@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8c2c85045da6d23bf36059bf0407d16c5cef4ddeceddf7877b18636a429da605",
+  "manifestHash": "22f5bc520ce586523ea3f13afb0b7b6dd9ca691a3bf751d8660ddd9e19fc88b9",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7352,9 +7352,6 @@
     "5 dimension scoring rubric": [
       "5 dimension scoring rubric"
     ],
-    "5 iteration research loop": [
-      "5 iteration research loop"
-    ],
     "5 runtime hook review": [
       "5-runtime hook review"
     ],
@@ -7733,9 +7730,6 @@
     "accepted design handoff": [
       "accepted design handoff"
     ],
-    "accepted grok synthesis": [
-      "accepted GROK synthesis"
-    ],
     "access permission matrix": [
       "access permission matrix"
     ],
@@ -7786,9 +7780,6 @@
     ],
     "activation matrix rollback plan": [
       "activation matrix rollback plan"
-    ],
-    "activation seam gate and adjustable advisor denylist": [
-      "activation seam gate and adjustable advisor denylist"
     ],
     "active corpus stats": [
       "active corpus stats"
@@ -8078,20 +8069,11 @@
     "additive migration": [
       "additive migration"
     ],
-    "additive template": [
-      "additive template"
-    ],
     "additive validator change plan": [
       "additive validator change plan"
     ],
     "additive validator change proof": [
       "additive validator change proof"
-    ],
-    "adhd output shaping": [
-      "adhd output shaping"
-    ],
-    "adhd shaping research": [
-      "adhd shaping research"
     ],
     "adherence iteration ledger": [
       "adherence iteration ledger"
@@ -8122,24 +8104,6 @@
     ],
     "adjacent alignment tasks": [
       "adjacent-alignment tasks"
-    ],
-    "adjacent span coalescing": [
-      "adjacent-span-coalescing"
-    ],
-    "adjacent surface plan": [
-      "adjacent surface plan"
-    ],
-    "adjacent surface rules": [
-      "adjacent surface rules"
-    ],
-    "adjacent surface rules acceptance criteria": [
-      "adjacent surface rules acceptance criteria"
-    ],
-    "adjacent surface rules implementation summary": [
-      "adjacent surface rules implementation summary"
-    ],
-    "adjacent surface tasks": [
-      "adjacent surface tasks"
     ],
     "adjacent upcaster verification": [
       "adjacent upcaster verification"
@@ -8212,9 +8176,6 @@
     ],
     "adopter customized sk code": [
       "adopter customized sk-code"
-    ],
-    "adoption decisions": [
-      "adoption decisions"
     ],
     "adoption inventory": [
       "adoption inventory"
@@ -8340,17 +8301,11 @@
     "adr numeric prefix false positive": [
       "ADR numeric prefix false positive"
     ],
-    "adr per contradiction": [
-      "adr per contradiction"
-    ],
     "adr prefix registry": [
       "ADR prefix registry"
     ],
     "adr req dr packet label cleanup": [
       "ADR REQ DR packet label cleanup"
-    ],
-    "adr tasks": [
-      "adr tasks"
     ],
     "adr utilization review": [
       "adr utilization review"
@@ -9121,12 +9076,6 @@
     ],
     "advisor rollback": [
       "advisor rollback"
-    ],
-    "advisor route exclusion": [
-      "advisor route exclusion"
-    ],
-    "advisor route exclusion test": [
-      "advisor route exclusion test"
     ],
     "advisor routes council prompts to skill": [
       "advisor routes council prompts to skill"
@@ -10167,9 +10116,6 @@
     "agents md cleanup tasks": [
       "agents-md cleanup tasks"
     ],
-    "agents md communication": [
-      "agents md communication"
-    ],
     "agents md delivery prefix": [
       "agents md delivery prefix"
     ],
@@ -10584,15 +10530,6 @@
     "all tasks": [
       "all tasks"
     ],
-    "allocation approach": [
-      "allocation approach"
-    ],
-    "allocation table": [
-      "allocation table"
-    ],
-    "allocation tasks": [
-      "allocation tasks"
-    ],
     "allocator hermetic test": [
       "allocator hermetic test"
     ],
@@ -10665,9 +10602,6 @@
     ],
     "amendment brief": [
       "amendment brief"
-    ],
-    "an audit of the code this program added": [
-      "an audit of the code this program added"
     ],
     "an author s own residue sweep searches": [
       "an author s own residue sweep searches"
@@ -11487,9 +11421,6 @@
     "architecture coverage transition contract": [
       "architecture coverage transition contract"
     ],
-    "architecture decision": [
-      "architecture decision"
-    ],
     "architecture decision gate": [
       "architecture decision gate"
     ],
@@ -11684,9 +11615,6 @@
     ],
     "artifact routing gate": [
       "artifact routing gate"
-    ],
-    "artifact verification": [
-      "artifact verification"
     ],
     "artifact walker": [
       "artifact walker"
@@ -12017,9 +11945,6 @@
     ],
     "assets color removed": [
       "assets/color removed"
-    ],
-    "assign by governed unit": [
-      "assign by governed unit"
     ],
     "assigned task listing": [
       "assigned task listing"
@@ -12585,9 +12510,6 @@
     "automatic handoff note": [
       "automatic handoff note"
     ],
-    "automatic projection activation": [
-      "automatic projection activation"
-    ],
     "automatic spec session selection": [
       "automatic spec-session selection"
     ],
@@ -12867,9 +12789,6 @@
     "base manifest recording": [
       "base manifest recording"
     ],
-    "base plus supplement": [
-      "base plus supplement"
-    ],
     "base recording": [
       "base recording"
     ],
@@ -12890,9 +12809,6 @@
     ],
     "baseline and decisions tasks": [
       "baseline and decisions tasks"
-    ],
-    "baseline and delta": [
-      "baseline and delta"
     ],
     "baseline and instrumentation acceptance criteria": [
       "baseline and instrumentation acceptance criteria"
@@ -13664,9 +13580,6 @@
     ],
     "blind label drafts": [
       "blind label drafts"
-    ],
-    "blind scoring": [
-      "blind scoring"
     ],
     "blinded adjudication implementation plan": [
       "blinded adjudication implementation plan"
@@ -14457,9 +14370,6 @@
     "byte budget": [
       "byte budget"
     ],
-    "byte exact passthrough": [
-      "byte-exact passthrough"
-    ],
     "byte for byte determinism parity": [
       "byte for byte determinism parity"
     ],
@@ -14871,9 +14781,6 @@
     "candidate pair gating": [
       "candidate-pair gating"
     ],
-    "candidate verdicts": [
-      "candidate verdicts"
-    ],
     "candidate verification": [
       "candidate verification"
     ],
@@ -15112,15 +15019,6 @@
     "capability and fidelity reporting": [
       "Capability and fidelity reporting"
     ],
-    "capability and privacy gate implementation": [
-      "capability and privacy gate implementation"
-    ],
-    "capability and privacy gating": [
-      "capability-and-privacy-gating"
-    ],
-    "capability evidence unblock": [
-      "capability-evidence-unblock"
-    ],
     "capability flags": [
       "capability flags"
     ],
@@ -15210,9 +15108,6 @@
     ],
     "capture never copies capture": [
       "capture never copies capture"
-    ],
-    "capture normalize project render": [
-      "capture normalize project render"
     ],
     "capture page screenshot cli": [
       "capture page screenshot cli"
@@ -16919,18 +16814,6 @@
     "chat label confirmation": [
       "chat label confirmation"
     ],
-    "chat message display validation": [
-      "chat.message display validation"
-    ],
-    "chat message hook projection": [
-      "chat.message hook projection"
-    ],
-    "chat message hook projection plan": [
-      "chat.message hook projection plan"
-    ],
-    "chat message hook seam and message id snapshot": [
-      "chat.message hook seam and message-id snapshot"
-    ],
     "chat slice handoff": [
       "chat slice handoff"
     ],
@@ -17871,9 +17754,6 @@
     "citation spot check research": [
       "citation spot check research"
     ],
-    "citation verification": [
-      "citation verification"
-    ],
     "citation verification checklist": [
       "citation verification checklist"
     ],
@@ -17939,9 +17819,6 @@
     ],
     "claim adjudication packets for new findings": [
       "claim-adjudication packets for new findings"
-    ],
-    "claim based omission floor": [
-      "claim based omission floor"
     ],
     "claim checker anchors": [
       "claim checker anchors"
@@ -18062,18 +17939,6 @@
     ],
     "clarify suggested default": [
       "clarify suggested default"
-    ],
-    "clarity program decisions": [
-      "clarity program decisions"
-    ],
-    "clarity program resume": [
-      "clarity program resume"
-    ],
-    "clarity research": [
-      "clarity research"
-    ],
-    "clarity rules": [
-      "clarity rules"
     ],
     "class floor keep rule": [
       "class floor keep rule"
@@ -18264,9 +18129,6 @@
     "claude code goal nesting": [
       "claude code goal nesting"
     ],
-    "claude code headless projection": [
-      "claude code headless projection"
-    ],
     "claude code json schema output": [
       "claude code json schema output"
     ],
@@ -18335,9 +18197,6 @@
     ],
     "claude code vs opencode comparison": [
       "claude code vs opencode comparison"
-    ],
-    "claude code wrapper": [
-      "claude-code-wrapper"
     ],
     "claude codex copilot opencode hook parity": [
       "claude codex copilot opencode hook parity"
@@ -18414,12 +18273,6 @@
     "claude opus sonnet haiku dispatch": [
       "claude opus sonnet haiku dispatch"
     ],
-    "claude output projection wrapper": [
-      "Claude output projection wrapper"
-    ],
-    "claude p output projection": [
-      "claude -p output projection"
-    ],
     "claude posttooluse sh": [
       "claude posttooluse sh"
     ],
@@ -18434,9 +18287,6 @@
     ],
     "claude session pid not set": [
       "CLAUDE_SESSION_PID not set"
-    ],
-    "claude style patch": [
-      "claude style patch"
     ],
     "claude user prompt submit": [
       "claude user-prompt-submit"
@@ -18467,12 +18317,6 @@
     ],
     "claudest research findings": [
       "claudest research findings"
-    ],
-    "claudish reverse engineering": [
-      "claudish reverse engineering"
-    ],
-    "claudish to english across clis": [
-      "claudish to english across CLIs"
     ],
     "clean clone ci simulation": [
       "clean clone ci simulation"
@@ -19178,12 +19022,6 @@
     ],
     "cli command aliases snake kebab camel": [
       "cli command aliases snake kebab camel"
-    ],
-    "cli communication projection documentation": [
-      "cli communication projection documentation"
-    ],
-    "cli communication projection relocation": [
-      "cli communication projection relocation"
     ],
     "cli contract drift summary": [
       "cli contract drift summary"
@@ -20643,18 +20481,6 @@
     "cli orchestrator drift": [
       "cli orchestrator drift"
     ],
-    "cli output wrapper": [
-      "cli output wrapper"
-    ],
-    "cli output wrapper cursor": [
-      "CLI-output wrapper cursor"
-    ],
-    "cli output wrapper framework": [
-      "cli-output-wrapper-framework"
-    ],
-    "cli output wrapper seam": [
-      "CLI output wrapper seam"
-    ],
     "cli package removal list reproduction": [
       "cli package removal list reproduction"
     ],
@@ -20944,9 +20770,6 @@
     "cli process containment summary": [
       "CLI process containment summary"
     ],
-    "cli process group kill": [
-      "cli process group kill"
-    ],
     "cli process memory leak adr": [
       "CLI process memory leak ADR"
     ],
@@ -20968,9 +20791,6 @@
     "cli prompt templates": [
       "cli prompt templates"
     ],
-    "cli provider family": [
-      "cli provider family"
-    ],
     "cli provider model support matrix": [
       "cli provider model support matrix"
     ],
@@ -20988,9 +20808,6 @@
     ],
     "cli residue removal tasks": [
       "cli residue removal tasks"
-    ],
-    "cli roster": [
-      "cli roster"
     ],
     "cli runtime confirmed findings": [
       "cli runtime confirmed findings"
@@ -21126,9 +20943,6 @@
     ],
     "cli transition doc cleanup tasks": [
       "cli transition doc cleanup tasks"
-    ],
-    "cli transport": [
-      "cli transport"
     ],
     "cli unknown command suggestion": [
       "cli unknown command suggestion"
@@ -21322,6 +21136,9 @@
     "clickup goals": [
       "clickup goals"
     ],
+    "clickup handover": [
+      "clickup handover"
+    ],
     "clickup hosted route fix": [
       "clickup hosted route fix"
     ],
@@ -21354,6 +21171,9 @@
     ],
     "clickup move task": [
       "clickup_move_task"
+    ],
+    "clickup oauth approval pending": [
+      "clickup oauth approval pending"
     ],
     "clickup official manual": [
       "clickup_official manual"
@@ -21428,9 +21248,6 @@
     "clickup webhooks": [
       "clickup webhooks"
     ],
-    "client owned presentation": [
-      "client-owned presentation"
-    ],
     "client reconnect plan": [
       "client reconnect plan"
     ],
@@ -21466,9 +21283,6 @@
     ],
     "close all deferred findings": [
       "close all deferred findings"
-    ],
-    "close all six deep review findings": [
-      "close all six deep review findings"
     ],
     "close browser pages finally": [
       "close browser pages finally"
@@ -22203,12 +22017,6 @@
     ],
     "code": [
       "code"
-    ],
-    "code and doc conformance": [
-      "code-and-doc-conformance"
-    ],
-    "code and documentation conformance": [
-      "code and documentation conformance"
     ],
     "code aware chunker stage b": [
       "code-aware chunker stage b"
@@ -23564,15 +23372,6 @@
     "code standards alignment": [
       "code standards alignment"
     ],
-    "code standards alignment implementation summary": [
-      "code standards alignment implementation summary"
-    ],
-    "code standards alignment plan": [
-      "code standards alignment plan"
-    ],
-    "code standards alignment tasks": [
-      "code standards alignment tasks"
-    ],
     "code standards research outcome": [
       "code standards research outcome"
     ],
@@ -23738,9 +23537,6 @@
     "codex cli flags": [
       "codex cli flags"
     ],
-    "codex cli wrapper": [
-      "codex cli wrapper"
-    ],
     "codex code generation template": [
       "codex code generation template"
     ],
@@ -23800,9 +23596,6 @@
     ],
     "codex exec command reference": [
       "codex exec command reference"
-    ],
-    "codex exec json stream": [
-      "codex exec json stream"
     ],
     "codex exec matcher": [
       "codex exec matcher"
@@ -23882,9 +23675,6 @@
     "codex image input": [
       "codex image input"
     ],
-    "codex json stream envelope": [
-      "codex json stream envelope"
-    ],
     "codex lineage 401": [
       "codex lineage 401"
     ],
@@ -23926,9 +23716,6 @@
     ],
     "codex orchestration patterns": [
       "codex orchestration patterns"
-    ],
-    "codex output projection": [
-      "codex output projection"
     ],
     "codex payload probe plan": [
       "codex payload probe plan"
@@ -24035,9 +23822,6 @@
     "codex web search flag": [
       "codex web search flag"
     ],
-    "codex wrapper": [
-      "codex-wrapper"
-    ],
     "codex write containment": [
       "codex write containment"
     ],
@@ -24112,18 +23896,6 @@
     ],
     "collision rejection plan": [
       "collision rejection plan"
-    ],
-    "colon rule": [
-      "colon rule"
-    ],
-    "colon rule adoption": [
-      "colon rule adoption"
-    ],
-    "colon rule conflict": [
-      "colon rule conflict"
-    ],
-    "colon rule rejected": [
-      "colon rule rejected"
     ],
     "color analysis sk vision colors": [
       "Color analysis (sk_vision_colors)"
@@ -24369,15 +24141,6 @@
     "command mirror sync": [
       "command mirror sync"
     ],
-    "command namespace rename implementation summary": [
-      "command namespace rename implementation summary"
-    ],
-    "command namespace rename plan": [
-      "command namespace rename plan"
-    ],
-    "command namespace rename tasks": [
-      "command namespace rename tasks"
-    ],
     "command parity chart diagram": [
       "command parity chart diagram"
     ],
@@ -24603,9 +24366,6 @@
     "comment only diff filter": [
       "comment-only diff filter"
     ],
-    "comment present state": [
-      "comment present state"
-    ],
     "comment reconstruction": [
       "comment reconstruction"
     ],
@@ -24770,116 +24530,20 @@
     "commonjs export pattern": [
       "commonjs export pattern"
     ],
-    "communication behavior benchmark": [
-      "communication behavior benchmark"
-    ],
-    "communication candidate map": [
-      "communication candidate map"
-    ],
-    "communication clarity goal": [
-      "communication clarity goal"
-    ],
     "communication clause ledger": [
       "communication clause ledger"
-    ],
-    "communication documentation review": [
-      "communication documentation review"
-    ],
-    "communication package architecture": [
-      "communication package architecture"
-    ],
-    "communication projection activation complete": [
-      "communication projection activation complete"
-    ],
-    "communication projection architecture": [
-      "communication projection architecture"
-    ],
-    "communication projection default off": [
-      "communication projection default off"
     ],
     "communication projection dist missing": [
       "communication projection dist missing"
     ],
-    "communication projection findings": [
-      "communication projection findings"
-    ],
-    "communication projection improvement research": [
-      "communication projection improvement research"
-    ],
-    "communication projection package activation": [
-      "communication projection package activation"
-    ],
-    "communication projection packaging": [
-      "communication projection packaging"
-    ],
-    "communication projection plugin removal": [
-      "communication projection plugin removal"
-    ],
-    "communication projection prepare script": [
-      "communication projection prepare script"
-    ],
-    "communication projection runtime": [
-      "communication projection runtime"
-    ],
-    "communication prose guidance": [
-      "communication prose guidance"
-    ],
-    "communication prose tasks": [
-      "communication prose tasks"
-    ],
     "communication quality": [
       "communication quality"
-    ],
-    "communication repo rule": [
-      "communication repo rule"
-    ],
-    "communication research lineage": [
-      "communication research lineage"
-    ],
-    "communication rewrite research status": [
-      "communication rewrite research status"
-    ],
-    "communication rule closure gate": [
-      "communication rule closure gate"
-    ],
-    "communication rule implementation plan": [
-      "communication rule implementation plan"
-    ],
-    "communication rule iteration": [
-      "communication rule iteration"
-    ],
-    "communication rule naming": [
-      "communication rule naming"
-    ],
-    "communication rule naming implementation summary": [
-      "communication rule naming implementation summary"
-    ],
-    "communication rule naming plan": [
-      "communication rule naming plan"
-    ],
-    "communication rule naming tasks": [
-      "communication rule naming tasks"
-    ],
-    "communication rule upgrade": [
-      "communication rule upgrade"
-    ],
-    "communication rule upgrade implementation summary": [
-      "communication rule upgrade implementation summary"
-    ],
-    "communication rule upgrade tasks": [
-      "communication rule upgrade tasks"
     ],
     "communication rules consolidation": [
       "communication rules consolidation"
     ],
     "communication rules review synthesis": [
       "communication rules review synthesis"
-    ],
-    "communication skill removal": [
-      "communication skill removal"
-    ],
-    "communication source classification": [
-      "communication source classification"
     ],
     "communication split": [
       "communication split"
@@ -25066,9 +24730,6 @@
     ],
     "compat suite verification": [
       "compat suite verification"
-    ],
-    "compatibility doctor pre projection gate": [
-      "compatibility doctor pre-projection gate"
     ],
     "compatibility shadow and rollback bridge": [
       "compatibility shadow and rollback bridge"
@@ -25643,9 +25304,6 @@
     "concise changelog entries": [
       "concise changelog entries"
     ],
-    "concise not compressed": [
-      "concise not compressed"
-    ],
     "concurrency capped fanout": [
       "concurrency-capped fanout"
     ],
@@ -25831,9 +25489,6 @@
     ],
     "confirm mode stop hint implementation summary": [
       "confirm mode stop hint implementation summary"
-    ],
-    "confirm the target file": [
-      "confirm the target file"
     ],
     "confirm variant parity": [
       "confirm variant parity"
@@ -26123,9 +25778,6 @@
     "consumer audit tasks": [
       "consumer audit tasks"
     ],
-    "consumer enumeration": [
-      "consumer enumeration"
-    ],
     "consumer inventory rename": [
       "consumer inventory rename"
     ],
@@ -26134,9 +25786,6 @@
     ],
     "consumer project skilled links": [
       "consumer project skilled links"
-    ],
-    "consumer repointing": [
-      "consumer repointing"
     ],
     "consumer rewire": [
       "consumer rewire"
@@ -26808,20 +26457,11 @@
     "contract versus enforcement drift": [
       "contract versus enforcement drift"
     ],
-    "contracts and fixtures": [
-      "contracts-and-fixtures"
-    ],
     "contradiction and supersession events": [
       "contradiction and supersession events"
     ],
     "contradiction detection": [
       "contradiction detection"
-    ],
-    "contradiction page": [
-      "contradiction page"
-    ],
-    "contradiction scan": [
-      "contradiction scan"
     ],
     "contradiction supersession implementation": [
       "contradiction supersession implementation"
@@ -26846,9 +26486,6 @@
     ],
     "contributing clone url": [
       "contributing clone url"
-    ],
-    "control knobs fail closed": [
-      "control knobs fail-closed"
     ],
     "convention audit tasks": [
       "convention audit tasks"
@@ -27121,9 +26758,6 @@
     "copilot writer wiring": [
       "copilot writer wiring"
     ],
-    "copy editing instruction": [
-      "copy editing instruction"
-    ],
     "copy paste alignment examples": [
       "copy paste alignment examples"
     ],
@@ -27147,12 +26781,6 @@
     ],
     "core modules": [
       "core modules"
-    ],
-    "core normalization and assembly": [
-      "core-normalization-and-assembly"
-    ],
-    "core normalization handover": [
-      "core normalization handover"
     ],
     "core template canonical markers": [
       "core template canonical markers"
@@ -27639,12 +27267,6 @@
     ],
     "counterfactual adjudication service plan": [
       "counterfactual adjudication service plan"
-    ],
-    "counterweight cross reference": [
-      "counterweight cross-reference"
-    ],
-    "counterweight rule": [
-      "counterweight rule"
     ],
     "coupling cohesion review prompts": [
       "coupling cohesion review prompts"
@@ -28378,6 +28000,9 @@
     "creation trigger field cleanup": [
       "creation trigger field cleanup"
     ],
+    "creator app bug and task tickets": [
+      "creator app bug and task tickets"
+    ],
     "creator identity": [
       "creator identity"
     ],
@@ -28657,9 +28282,6 @@
     ],
     "cross runtime agent consistency": [
       "cross-runtime agent consistency"
-    ],
-    "cross runtime command mirror": [
-      "cross-runtime command mirror"
     ],
     "cross runtime coverage plan": [
       "cross-runtime coverage plan"
@@ -29078,9 +28700,6 @@
     "current spec nested path extraction": [
       "current spec nested path extraction"
     ],
-    "current state": [
-      "current state"
-    ],
     "current state discipline rule": [
       "current-state discipline rule"
     ],
@@ -29104,9 +28723,6 @@
     ],
     "cursor agent delegation": [
       "cursor agent delegation"
-    ],
-    "cursor agent stdout projection": [
-      "cursor-agent stdout projection"
     ],
     "cursor agent templates": [
       "cursor agent templates"
@@ -29243,9 +28859,6 @@
     "cursor orchestration patterns": [
       "cursor orchestration patterns"
     ],
-    "cursor output wrapper": [
-      "cursor output wrapper"
-    ],
     "cursor plan ask template": [
       "cursor plan ask template"
     ],
@@ -29287,9 +28900,6 @@
     ],
     "cursor reconcile test exemption tasks": [
       "cursor reconcile test exemption tasks"
-    ],
-    "cursor runtime adapter seam": [
-      "cursor runtime adapter seam"
     ],
     "cursor scope tenant leak": [
       "cursor scope tenant leak"
@@ -29345,9 +28955,6 @@
     "cursor worktree": [
       "cursor worktree"
     ],
-    "cursor wrapper": [
-      "cursor-wrapper"
-    ],
     "custom embed validation": [
       "custom embed validation"
     ],
@@ -29365,12 +28972,6 @@
     ],
     "customize obsidian theme": [
       "customize obsidian theme"
-    ],
-    "cut and reorder lane": [
-      "cut and reorder lane"
-    ],
-    "cut and reorder pass": [
-      "cut and reorder pass"
     ],
     "cut out the logo from this image": [
       "cut out the logo from this image"
@@ -30125,9 +29726,6 @@
     "datasource vault read write": [
       "datasource vault read write"
     ],
-    "dated support matrix release gate": [
-      "dated support matrix release gate"
-    ],
     "db class grammar": [
       "db class grammar"
     ],
@@ -30331,21 +29929,6 @@
     ],
     "decision and design tasks": [
       "decision and design tasks"
-    ],
-    "decision and handoff plan": [
-      "decision and handoff plan"
-    ],
-    "decision and handoff rules": [
-      "decision and handoff rules"
-    ],
-    "decision and handoff rules acceptance criteria": [
-      "decision and handoff rules acceptance criteria"
-    ],
-    "decision and handoff rules implementation summary": [
-      "decision and handoff rules implementation summary"
-    ],
-    "decision and handoff tasks": [
-      "decision and handoff tasks"
     ],
     "decision audit jsonl capture": [
       "decision audit JSONL capture"
@@ -32973,9 +32556,6 @@
     "deep research 10 iterations": [
       "deep research 10 iterations"
     ],
-    "deep research 7 and 3": [
-      "deep research 7 and 3"
-    ],
     "deep research acceptance criteria": [
       "deep research acceptance criteria"
     ],
@@ -33047,9 +32627,6 @@
     ],
     "deep research charters": [
       "deep research charters"
-    ],
-    "deep research communication improvements": [
-      "deep-research communication improvements"
     ],
     "deep research complete evidence authentication audit": [
       "Deep Research complete evidence authentication audit"
@@ -33219,9 +32796,6 @@
     ],
     "deep research loop codesight": [
       "deep-research loop codesight"
-    ],
-    "deep research loop design": [
-      "deep-research loop design"
     ],
     "deep research loop graphify": [
       "deep-research loop graphify"
@@ -34608,9 +34182,6 @@
     "default min results": [
       "default min results"
     ],
-    "default off and advisor exclusion": [
-      "default-off-and-advisor-exclusion"
-    ],
     "default off byte identity tail append": [
       "default off byte identity tail append"
     ],
@@ -34625,9 +34196,6 @@
     ],
     "default palette changes half the stock colours": [
       "default palette changes half the stock colours"
-    ],
-    "default provider transport": [
-      "default provider transport"
     ],
     "default reads local copy": [
       "default reads local copy"
@@ -34980,9 +34548,6 @@
     "delta finding records merge": [
       "delta finding records merge"
     ],
-    "delta report task": [
-      "delta report task"
-    ],
     "deltabyrelation dominantrelation": [
       "deltaByRelation dominantRelation"
     ],
@@ -35114,21 +34679,6 @@
     ],
     "deprecate skill benchmark tasks": [
       "deprecate skill benchmark tasks"
-    ],
-    "deprecate visual explanation lane": [
-      "deprecate visual explanation lane"
-    ],
-    "deprecate visual explanation lane acceptance criteria": [
-      "deprecate visual explanation lane acceptance criteria"
-    ],
-    "deprecate visual explanation lane implementation summary": [
-      "deprecate visual explanation lane implementation summary"
-    ],
-    "deprecate visual explanation lane plan": [
-      "deprecate visual explanation lane plan"
-    ],
-    "deprecate visual explanation lane tasks": [
-      "deprecate visual explanation lane tasks"
     ],
     "deprecated bulk delete outcome": [
       "deprecated bulk delete outcome"
@@ -35330,9 +34880,6 @@
     ],
     "derived status enum boundary": [
       "derived status enum boundary"
-    ],
-    "derived surface regeneration": [
-      "derived surface regeneration"
     ],
     "derived sync": [
       "derived sync"
@@ -35883,9 +35430,6 @@
     "devin cli flags": [
       "devin cli flags"
     ],
-    "devin cli output wrapper": [
-      "devin cli output wrapper"
-    ],
     "devin cloud handoff": [
       "devin cloud handoff"
     ],
@@ -36069,15 +35613,6 @@
     "devin p command reference": [
       "devin -p command reference"
     ],
-    "devin p print projection": [
-      "devin -p print projection"
-    ],
-    "devin p print projection plan": [
-      "devin -p print projection plan"
-    ],
-    "devin p print projection tasks": [
-      "devin -p print projection tasks"
-    ],
     "devin p templates": [
       "devin -p templates"
     ],
@@ -36095,9 +35630,6 @@
     ],
     "devin permission modes": [
       "devin permission modes"
-    ],
-    "devin projectmessage routing": [
-      "devin projectMessage routing"
     ],
     "devin prompt framework selection": [
       "devin prompt framework selection"
@@ -36134,15 +35666,6 @@
     ],
     "devin run subagent": [
       "devin run_subagent"
-    ],
-    "devin runtime adapter wiring": [
-      "devin runtime adapter wiring"
-    ],
-    "devin runtime adapter wiring plan": [
-      "devin runtime adapter wiring plan"
-    ],
-    "devin runtime adapter wiring tasks": [
-      "devin runtime adapter wiring tasks"
     ],
     "devin sandbox ignores permission mode": [
       "devin sandbox ignores permission-mode"
@@ -36203,9 +35726,6 @@
     ],
     "devin workspace trust gate": [
       "devin workspace-trust gate"
-    ],
-    "devin wrapper": [
-      "devin-wrapper"
     ],
     "devin write tool spec gate": [
       "devin write tool spec gate"
@@ -37374,9 +36894,6 @@
     "doctor baseline verification": [
       "doctor baseline verification"
     ],
-    "doctor binding gate and fail closed original selection": [
-      "doctor binding gate and fail-closed original selection"
-    ],
     "doctor bootstrap symlink fix": [
       "doctor bootstrap symlink fix"
     ],
@@ -38471,9 +37988,6 @@
     "documentation code alignment": [
       "documentation-code alignment"
     ],
-    "documentation conformance": [
-      "documentation conformance"
-    ],
     "documentation coverage audit": [
       "documentation coverage audit"
     ],
@@ -39062,9 +38576,6 @@
     "duplicate anchor repair": [
       "duplicate anchor repair"
     ],
-    "duplicate assignment check": [
-      "duplicate assignment check"
-    ],
     "duplicate content collapse": [
       "duplicate content collapse"
     ],
@@ -39097,9 +38608,6 @@
     ],
     "duplicated status enum drift": [
       "duplicated status enum drift"
-    ],
-    "duplication scan": [
-      "duplication scan"
     ],
     "durability invariant over throughput": [
       "durability invariant over throughput"
@@ -39410,9 +38918,6 @@
     ],
     "edit lines trailing newline fixed": [
       "edit_lines trailing newline fixed"
-    ],
-    "edit not append": [
-      "edit not append"
     ],
     "edit note yaml metadata": [
       "edit note YAML metadata"
@@ -40332,15 +39837,6 @@
     "enablement driver tasks": [
       "enablement driver tasks"
     ],
-    "enablement gate and advisor exclusion plan": [
-      "enablement gate and advisor exclusion plan"
-    ],
-    "enablement gate and advisor exclusion tasks": [
-      "enablement gate and advisor exclusion tasks"
-    ],
-    "enablement local json localprovider": [
-      "enablement.local.json localProvider"
-    ],
     "enablement receipt": [
       "enablement receipt"
     ],
@@ -40382,15 +39878,6 @@
     ],
     "enforcerelationwindowcap": [
       "enforceRelationWindowCap"
-    ],
-    "engine choice projection": [
-      "engine choice projection"
-    ],
-    "engine item criteria": [
-      "engine item criteria"
-    ],
-    "engine item tasks": [
-      "engine item tasks"
     ],
     "engine named in output": [
       "engine named in output"
@@ -41010,15 +40497,6 @@
     "evaluate tool permissions": [
       "evaluate tool permissions"
     ],
-    "evaluation and observability": [
-      "evaluation-and-observability"
-    ],
-    "evaluation and release gate": [
-      "evaluation-and-release-gate"
-    ],
-    "evaluation observability handover": [
-      "evaluation observability handover"
-    ],
     "evaluator canary promotion events": [
       "evaluator canary promotion events"
     ],
@@ -41245,18 +40723,6 @@
       "evidence marker lint",
       "evidence-marker lint"
     ],
-    "evidence rule seam links": [
-      "evidence rule seam links"
-    ],
-    "evidence rule seam links implementation summary": [
-      "evidence rule seam links implementation summary"
-    ],
-    "evidence rule seam links plan": [
-      "evidence rule seam links plan"
-    ],
-    "evidence rule seam links tasks": [
-      "evidence rule seam links tasks"
-    ],
     "evidence rule successor": [
       "evidence rule successor"
     ],
@@ -41425,17 +40891,11 @@
     "excluded for memory z archive": [
       "EXCLUDED_FOR_MEMORY z_archive"
     ],
-    "exclusion count": [
-      "exclusion count"
-    ],
     "exclusion record parity": [
       "exclusion record parity"
     ],
     "exclusion record tasks": [
       "exclusion record tasks"
-    ],
-    "exclusion retirement": [
-      "exclusion retirement"
     ],
     "execfilesync migration": [
       "execfilesync migration"
@@ -41749,12 +41209,6 @@
     "expected workflow mode omitted": [
       "expected workflow mode omitted"
     ],
-    "explain visually command modality depth": [
-      "explain visually command modality depth"
-    ],
-    "explain visually command shipped": [
-      "explain-visually command shipped"
-    ],
     "explicit any ledger closure": [
       "explicit-any ledger closure"
     ],
@@ -41866,9 +41320,6 @@
     "extension integration suite tasks": [
       "extension-integration-suite tasks"
     ],
-    "external agent projection provider": [
-      "external agent projection provider"
-    ],
     "external authorization authenticity": [
       "external authorization authenticity"
     ],
@@ -41881,38 +41332,8 @@
     "external cli delegation tasks": [
       "external cli delegation tasks"
     ],
-    "external cli entrypoint": [
-      "external-cli entrypoint"
-    ],
     "external cli manual testing playbook": [
       "external CLI manual testing playbook"
-    ],
-    "external cli model default": [
-      "external cli model default"
-    ],
-    "external cli provider": [
-      "external-cli provider"
-    ],
-    "external cli provider implementation summary": [
-      "external cli provider implementation summary"
-    ],
-    "external cli provider plan": [
-      "external cli provider plan"
-    ],
-    "external cli provider tasks": [
-      "external cli provider tasks"
-    ],
-    "external cli runtime wiring": [
-      "external-cli runtime wiring"
-    ],
-    "external cli runtime wiring implementation summary": [
-      "external cli runtime wiring implementation summary"
-    ],
-    "external cli runtime wiring plan": [
-      "external cli runtime wiring plan"
-    ],
-    "external cli runtime wiring tasks": [
-      "external cli runtime wiring tasks"
     ],
     "external library integration": [
       "external library integration"
@@ -42827,9 +42248,6 @@
     "fan out default deepseek": [
       "fan-out default deepseek"
     ],
-    "fan out executors": [
-      "fan-out executors"
-    ],
     "fan out fan in durable orchestration": [
       "fan-out fan-in durable orchestration"
     ],
@@ -43720,12 +43138,6 @@
     "fidelity proof artifact": [
       "fidelity proof artifact"
     ],
-    "fidelity render handover": [
-      "fidelity render handover"
-    ],
-    "fidelity validator quality check": [
-      "fidelity validator quality check"
-    ],
     "field ids": [
       "field ids"
     ],
@@ -44423,9 +43835,6 @@
     "first changelog version": [
       "first changelog version"
     ],
-    "first line contract": [
-      "first line contract"
-    ],
     "first release": [
       "First Release"
     ],
@@ -44836,9 +44245,6 @@
     ],
     "fixture exemption validator": [
       "fixture exemption validator"
-    ],
-    "fixture first contract package": [
-      "fixture-first contract package"
     ],
     "fixture freshness audit rerank sidecar": [
       "fixture freshness audit rerank sidecar"
@@ -45259,6 +44665,21 @@
     ],
     "follow up deep review tasks": [
       "follow-up deep review tasks"
+    ],
+    "follow up defect fixes": [
+      "follow up defect fixes"
+    ],
+    "follow up defect fixes acceptance criteria": [
+      "follow up defect fixes acceptance criteria"
+    ],
+    "follow up defect fixes implementation summary": [
+      "follow up defect fixes implementation summary"
+    ],
+    "follow up defect fixes plan": [
+      "follow up defect fixes plan"
+    ],
+    "follow up defect fixes tasks": [
+      "follow up defect fixes tasks"
     ],
     "follow up fixes plan": [
       "follow-up fixes plan"
@@ -46856,9 +46277,6 @@
     ],
     "gate readiness verification checklist": [
       "gate readiness verification checklist"
-    ],
-    "gate release with deterministic safety plus blind human non inferiority": [
-      "gate release with deterministic safety plus blind human non-inferiority"
     ],
     "gate repair implementation summary": [
       "gate repair implementation summary"
@@ -49773,9 +49191,6 @@
     "hand fixture vs real renderer": [
       "hand fixture vs real renderer"
     ],
-    "hand maintained exclusion": [
-      "hand maintained exclusion"
-    ],
     "hand rolled env flag parsing": [
       "hand-rolled env flag parsing"
     ],
@@ -50127,12 +49542,6 @@
     ],
     "headless obsidian cli": [
       "headless obsidian cli"
-    ],
-    "headless stream print capture": [
-      "headless stream print capture"
-    ],
-    "headless stream print capture plan": [
-      "headless stream print capture plan"
     ],
     "heal cli and compat yaml simplification": [
       "heal cli and compat yaml simplification"
@@ -51365,9 +50774,6 @@
     "hook test sandbox fix": [
       "hook test sandbox fix"
     ],
-    "hook to projection integration contract": [
-      "hook to projection integration contract"
-    ],
     "hook trust block": [
       "hook trust block"
     ],
@@ -51778,9 +51184,6 @@
     ],
     "human voice rules": [
       "human voice rules"
-    ],
-    "human voice rules authority": [
-      "human voice rules authority"
     ],
     "human voice rules workflow": [
       "human voice rules workflow"
@@ -52307,9 +51710,6 @@
     "implement non deepseek fixes": [
       "implement non-deepseek fixes"
     ],
-    "implement remaining phases": [
-      "implement remaining phases"
-    ],
     "implement the 178 deep loop recs": [
       "implement the 178 deep-loop recs"
     ],
@@ -52322,14 +51722,8 @@
     "implementation": [
       "implementation"
     ],
-    "implementation phase": [
-      "implementation phase"
-    ],
     "implementation plan": [
       "implementation plan"
-    ],
-    "implementation status": [
-      "implementation status"
     ],
     "implementation summary": [
       "implementation summary"
@@ -52469,15 +51863,6 @@
     "improve prompt": [
       "improve prompt"
     ],
-    "improved communication": [
-      "improved communication"
-    ],
-    "improved communication current state": [
-      "improved communication current state"
-    ],
-    "improved communication phase 002": [
-      "improved communication phase 002"
-    ],
     "improvement artifact family": [
       "improvement artifact family"
     ],
@@ -52510,9 +51895,6 @@
     ],
     "improvement promotion authority implementation": [
       "improvement promotion authority implementation"
-    ],
-    "in context plain english": [
-      "in-context plain english"
     ],
     "in flight classification verification receipts": [
       "in-flight classification verification receipts"
@@ -53170,9 +52552,6 @@
     ],
     "integration lifecycle contract": [
       "integration lifecycle contract"
-    ],
-    "integration pattern and fail open seam contract": [
-      "integration pattern and fail-open seam contract"
     ],
     "integration performance optimization": [
       "integration performance optimization"
@@ -56424,9 +55803,6 @@
     "lineage delta resource map": [
       "lineage delta resource map"
     ],
-    "lineage dispatch tasks": [
-      "lineage dispatch tasks"
-    ],
     "lineage exclusion closure gate": [
       "lineage exclusion closure gate"
     ],
@@ -56465,6 +55841,18 @@
     ],
     "lineage pruning rule plan": [
       "lineage pruning rule plan"
+    ],
+    "lineage reducer compliance": [
+      "lineage reducer compliance"
+    ],
+    "lineage reducer compliance implementation summary": [
+      "lineage reducer compliance implementation summary"
+    ],
+    "lineage reducer compliance plan": [
+      "lineage reducer compliance plan"
+    ],
+    "lineage reducer compliance tasks": [
+      "lineage reducer compliance tasks"
     ],
     "lineage registry merge plan": [
       "lineage registry merge plan"
@@ -56804,9 +56192,6 @@
     "live reelection validation tasks": [
       "live reelection validation tasks"
     ],
-    "live reference verification": [
-      "live reference verification"
-    ],
     "live review iteration format": [
       "live review iteration format"
     ],
@@ -57050,15 +56435,6 @@
     "llms txt templates": [
       "llms txt templates"
     ],
-    "lm studio enablement example": [
-      "LM Studio enablement example"
-    ],
-    "lm studio endpoint normalization": [
-      "LM Studio endpoint normalization"
-    ],
-    "lm studio projection setup": [
-      "LM Studio projection setup"
-    ],
     "load collected data": [
       "load collected data"
     ],
@@ -57173,18 +56549,6 @@
     "local http embeddings server": [
       "local HTTP embeddings server"
     ],
-    "local llm auto used": [
-      "local LLM auto-used"
-    ],
-    "local llm easy config": [
-      "local-llm-easy-config"
-    ],
-    "local llm easy config build": [
-      "local LLM easy config build"
-    ],
-    "local llm easy configuration": [
-      "local LLM easy configuration"
-    ],
     "local llm feature test suite completion": [
       "local-llm feature test suite completion"
     ],
@@ -57224,32 +56588,14 @@
     "local llm query intelligence validation plan": [
       "local llm query intelligence validation plan"
     ],
-    "local llm research completion": [
-      "local LLM research completion"
-    ],
     "local llm test suite": [
       "local-llm test suite"
     ],
     "local llm vitest groups": [
       "local llm vitest groups"
     ],
-    "local mode static text projection": [
-      "local mode static text projection"
-    ],
     "local owner artifact rollback": [
       "local owner artifact rollback"
-    ],
-    "local projection design": [
-      "local projection design"
-    ],
-    "local provider loader": [
-      "local-provider-loader"
-    ],
-    "local provider loader implementation": [
-      "local provider loader implementation"
-    ],
-    "local reject only judge": [
-      "local reject-only judge"
     ],
     "local rest api": [
       "local rest api"
@@ -57268,18 +56614,6 @@
     ],
     "local vision skill": [
       "local vision skill"
-    ],
-    "localprovider easy config complete": [
-      "localProvider easy config complete"
-    ],
-    "localprovider easy config loader": [
-      "localProvider easy config loader"
-    ],
-    "localprovider loader design": [
-      "localProvider loader design"
-    ],
-    "localprovider loader tasks": [
-      "localProvider loader tasks"
     ],
     "locate a click target": [
       "locate a click target"
@@ -59969,9 +59303,6 @@
     ],
     "md generator tests": [
       "md-generator tests"
-    ],
-    "meaning judge wiring": [
-      "meaning-judge-wiring"
     ],
     "measure and declare acceptance criteria": [
       "measure and declare acceptance criteria"
@@ -63045,9 +62376,6 @@
     "mirror regeneration": [
       "mirror regeneration"
     ],
-    "mirror sync verification": [
-      "mirror sync verification"
-    ],
     "mirror sync verify ordering": [
       "mirror sync verify ordering"
     ],
@@ -63257,18 +62585,6 @@
     ],
     "mk code index tool count fix": [
       "mk_code_index tool count fix"
-    ],
-    "mk communication projection decisions": [
-      "mk-communication-projection decisions"
-    ],
-    "mk communication projection plugin": [
-      "mk-communication-projection plugin"
-    ],
-    "mk communication projection plugin plan": [
-      "mk-communication-projection plugin plan"
-    ],
-    "mk communication projection plugin tasks": [
-      "mk-communication-projection plugin tasks"
     ],
     "mk dist freshness guard plan": [
       "mk-dist-freshness-guard plan"
@@ -63668,9 +62984,6 @@
     ],
     "modal dialog screenshot escalation": [
       "modal dialog screenshot escalation"
-    ],
-    "modality and depth dials sk communication": [
-      "modality and depth dials sk-communication"
     ],
     "mode": [
       "mode"
@@ -64127,9 +63440,6 @@
     ],
     "model dispatch matrix": [
       "model dispatch matrix"
-    ],
-    "model facing representation": [
-      "model-facing representation"
     ],
     "model guidance": [
       "model guidance"
@@ -64842,9 +64152,6 @@
     "native modules probe path": [
       "native modules probe path"
     ],
-    "native output transform runtime": [
-      "native output-transform runtime"
-    ],
     "native recommend": [
       "native recommend"
     ],
@@ -65154,9 +64461,6 @@
     "new list in space": [
       "new list in space"
     ],
-    "new repo rule": [
-      "new repo rule"
-    ],
     "new sk doc mode packet": [
       "new sk-doc mode packet"
     ],
@@ -65283,9 +64587,6 @@
     "no api call mode": [
       "no api call mode"
     ],
-    "no archaeology in comments": [
-      "no archaeology in comments"
-    ],
     "no bridge socket worktree divergence": [
       "no-bridge-socket worktree divergence"
     ],
@@ -65315,9 +64616,6 @@
     ],
     "no drift no debt": [
       "no drift no debt"
-    ],
-    "no early convergence": [
-      "no early convergence"
     ],
     "no fabrication goal binding": [
       "no fabrication goal binding"
@@ -65349,12 +64647,6 @@
     ],
     "no non ollama active embedder resolver": [
       "no non-Ollama active embedder resolver"
-    ],
-    "no op projection outcome": [
-      "no-op projection outcome"
-    ],
-    "no op rejection": [
-      "no-op-rejection"
     ],
     "no op upsert branch": [
       "no-op upsert branch"
@@ -65587,15 +64879,6 @@
     "non hook equivalence": [
       "non-hook equivalence"
     ],
-    "non inferiority consult and rollout gate plan": [
-      "non-inferiority consult and rollout gate plan"
-    ],
-    "non inferiority consult and rollout gate tasks": [
-      "non-inferiority consult and rollout gate tasks"
-    ],
-    "non inferiority rollout gate": [
-      "non-inferiority rollout gate"
-    ],
     "non native executor identity first": [
       "non-native executor identity first"
     ],
@@ -65613,9 +64896,6 @@
     ],
     "non streaming executor fanout": [
       "non-streaming executor fanout"
-    ],
-    "non work register": [
-      "non-work register"
     ],
     "normal file still writes": [
       "normal file still writes"
@@ -66971,9 +66251,6 @@
     "ollama merge closure gate": [
       "ollama merge closure gate"
     ],
-    "ollama projection endpoint": [
-      "Ollama projection endpoint"
-    ],
     "ollama routing task list": [
       "ollama routing task list"
     ],
@@ -67052,15 +66329,6 @@
     "one goal limit and one command": [
       "one goal limit and one command"
     ],
-    "one home for the standard": [
-      "one home for the standard"
-    ],
-    "one home for the wording standard": [
-      "one home for the wording standard"
-    ],
-    "one instruction per mark": [
-      "one instruction per mark"
-    ],
     "one line pitch": [
       "one-line pitch"
     ],
@@ -67082,9 +66350,6 @@
     "one mode hub rule tasks": [
       "one-mode hub rule tasks"
     ],
-    "one owning document": [
-      "one owning document"
-    ],
     "one page carrying every chart form twice once": [
       "one page carrying every chart form twice once"
     ],
@@ -67100,17 +66365,11 @@
     "one score one scale one name similarity": [
       "one score one scale one name similarity"
     ],
-    "one shot communication projection": [
-      "one-shot communication projection"
-    ],
     "one shot embedding retry": [
       "one-shot embedding retry"
     ],
     "one shot embedding retry script": [
       "one-shot embedding retry script"
-    ],
-    "one shot projection command": [
-      "one-shot projection command"
     ],
     "one to one script path proof": [
       "one to one script path proof"
@@ -67488,9 +66747,6 @@
     "opencode multi agent workflow": [
       "opencode multi-agent workflow"
     ],
-    "opencode native plugin": [
-      "opencode-native-plugin"
-    ],
     "opencode parallel detached session": [
       "opencode parallel detached session"
     ],
@@ -67580,9 +66836,6 @@
     ],
     "opencode plugin transport diagnostic": [
       "opencode plugin transport diagnostic"
-    ],
-    "opencode projection plugin": [
-      "opencode projection plugin"
     ],
     "opencode prompt quality card": [
       "opencode prompt quality card"
@@ -67839,9 +67092,6 @@
     "operator delegated labels": [
       "operator-delegated labels"
     ],
-    "operator enablement guide": [
-      "operator enablement guide"
-    ],
     "operator fix deep review findings for doctor update orchestrator changelog": [
       "operator fix deep review findings for doctor update orchestrator changelog"
     ],
@@ -67862,9 +67112,6 @@
     ],
     "operator review of the shadcn visual upgrade numeric": [
       "operator review of the shadcn visual upgrade numeric"
-    ],
-    "operator rollout plan": [
-      "operator rollout plan"
     ],
     "operator run outside sandbox": [
       "operator-run-outside-sandbox"
@@ -68442,9 +67689,6 @@
     "organization policy deep loop": [
       "organization policy deep loop"
     ],
-    "original only fail closed gate": [
-      "original-only fail-closed gate"
-    ],
     "orphan census zero": [
       "orphan census zero"
     ],
@@ -68645,9 +67889,6 @@
     ],
     "orphaned project daemon not reaped": [
       "orphaned project daemon not reaped"
-    ],
-    "orphaned subprocess teardown": [
-      "orphaned subprocess teardown"
     ],
     "orphaned timer check": [
       "orphaned timer check"
@@ -68889,17 +68130,8 @@
     "ownership hierarchy": [
       "ownership hierarchy"
     ],
-    "owning gate run": [
-      "owning gate run"
-    ],
     "owning mode for frontmatter": [
       "owning mode for frontmatter"
-    ],
-    "owning skill gate": [
-      "owning skill gate"
-    ],
-    "owning surface map": [
-      "owning surface map"
     ],
     "ox alpha routes": [
       "ox alpha routes"
@@ -69091,29 +68323,11 @@
     "package baseline gates tasks": [
       "package-baseline-gates tasks"
     ],
-    "package conformance evidence": [
-      "package conformance evidence"
-    ],
     "package digest orca skill": [
       "package digest orca skill"
     ],
-    "package documentation conformance": [
-      "package documentation conformance"
-    ],
-    "package into skill": [
-      "package-into-skill"
-    ],
     "package json dependency repair": [
       "package.json dependency repair"
-    ],
-    "package relocation evidence": [
-      "package relocation evidence"
-    ],
-    "package relocation plan": [
-      "package relocation plan"
-    ],
-    "package relocation tasks": [
-      "package relocation tasks"
     ],
     "package root markers": [
       "package root markers"
@@ -69139,12 +68353,6 @@
     "package topology readme": [
       "package topology readme"
     ],
-    "packaging and activation fixes": [
-      "packaging-and-activation-fixes"
-    ],
-    "packaging and release hardening": [
-      "packaging-and-release-hardening"
-    ],
     "packaging gate closure": [
       "packaging gate closure"
     ],
@@ -69153,9 +68361,6 @@
     ],
     "packaging gate tasks": [
       "packaging gate tasks"
-    ],
-    "packaging release handover": [
-      "packaging release handover"
     ],
     "packed bm25": [
       "packed bm25"
@@ -69487,9 +68692,6 @@
     "parallel work streams": [
       "parallel work streams"
     ],
-    "parameterized wrapper entrypoint and incremental capture": [
-      "parameterized wrapper entrypoint and incremental capture"
-    ],
     "parametric process layout": [
       "parametric process layout"
     ],
@@ -69645,9 +68847,6 @@
     ],
     "parent packet template leftovers": [
       "parent packet template leftovers"
-    ],
-    "parent release decision": [
-      "parent release decision"
     ],
     "parent rollup summary": [
       "parent rollup summary"
@@ -70231,9 +69430,6 @@
     "per edge embedding substrate tasks": [
       "per edge embedding substrate tasks"
     ],
-    "per engine cli command table": [
-      "per-engine cli command table"
-    ],
     "per entry git mv tasks": [
       "per entry git mv tasks"
     ],
@@ -70368,9 +69564,6 @@
     ],
     "per runtime pre write hook": [
       "per runtime pre write hook"
-    ],
-    "per runtime setup docs": [
-      "per-runtime setup docs"
     ],
     "per runtime symlink map": [
       "per runtime symlink map"
@@ -70627,9 +69820,6 @@
     "phase 003 changelog": [
       "phase 003 changelog"
     ],
-    "phase 003 handover": [
-      "phase 003 handover"
-    ],
     "phase 003 implementation summary": [
       "phase 003 implementation summary"
     ],
@@ -70651,9 +69841,6 @@
     "phase 004 changelog": [
       "phase 004 changelog"
     ],
-    "phase 004 handover": [
-      "phase 004 handover"
-    ],
     "phase 004 implementation summary": [
       "phase 004 implementation summary"
     ],
@@ -70672,9 +69859,6 @@
     "phase 005 goal budget": [
       "phase 005 goal budget"
     ],
-    "phase 005 handover": [
-      "phase 005 handover"
-    ],
     "phase 005 implementation summary": [
       "phase 005 implementation summary"
     ],
@@ -70683,9 +69867,6 @@
     ],
     "phase 006 council remediation": [
       "phase 006 council remediation"
-    ],
-    "phase 006 handover": [
-      "phase 006 handover"
     ],
     "phase 006 implementation plan": [
       "phase 006 implementation plan"
@@ -70699,9 +69880,6 @@
     "phase 007 changelog": [
       "phase 007 changelog"
     ],
-    "phase 007 handover": [
-      "phase 007 handover"
-    ],
     "phase 007 owner lease gap": [
       "phase 007 owner-lease gap"
     ],
@@ -70710,9 +69888,6 @@
     ],
     "phase 008 changelog": [
       "phase 008 changelog"
-    ],
-    "phase 008 handover": [
-      "phase 008 handover"
     ],
     "phase 008 rollout": [
       "phase 008 rollout"
@@ -70969,12 +70144,6 @@
     "phase 020 code audit": [
       "phase 020 code audit"
     ],
-    "phase 030 grounded research": [
-      "Phase 030 grounded research"
-    ],
-    "phase 031 research completion": [
-      "Phase 031 research completion"
-    ],
     "phase 052": [
       "phase 052"
     ],
@@ -70995,9 +70164,6 @@
     ],
     "phase 053 tasks": [
       "phase 053 tasks"
-    ],
-    "phase 1 acceptance criteria": [
-      "phase 1 acceptance criteria"
     ],
     "phase 1 compiled route manifest suite": [
       "phase 1 compiled route manifest suite"
@@ -71043,9 +70209,6 @@
     ],
     "phase 1 spec template anchor nesting": [
       "phase 1 spec template anchor nesting"
-    ],
-    "phase 1 verification checklist": [
-      "phase 1 verification checklist"
     ],
     "phase 10 final gate ledger": [
       "phase 10 final gate ledger"
@@ -71239,9 +70402,6 @@
     "phase 19 tasks": [
       "phase 19 tasks"
     ],
-    "phase 2 acceptance criteria": [
-      "phase 2 acceptance criteria"
-    ],
     "phase 2 admission corpus pin": [
       "phase 2 admission corpus pin"
     ],
@@ -71290,9 +70450,6 @@
     "phase 2 surface contract alignment": [
       "phase 2 surface contract alignment"
     ],
-    "phase 2 verification checklist": [
-      "phase 2 verification checklist"
-    ],
     "phase 2 webflow labels and playbook": [
       "phase 2 webflow labels and playbook"
     ],
@@ -71325,6 +70482,9 @@
     ],
     "phase 21 closure gate": [
       "phase 21 closure gate"
+    ],
+    "phase 21 follow up defect fixes": [
+      "phase 21 follow up defect fixes"
     ],
     "phase 21 implementation summary": [
       "phase 21 implementation summary"
@@ -71548,6 +70708,9 @@
     "phase 6 remediation deep review": [
       "phase 6 remediation deep review"
     ],
+    "phase 6 research lineage reducer path": [
+      "phase 6 research lineage reducer path"
+    ],
     "phase 6 runtime libraries and tests": [
       "phase 6 runtime libraries and tests"
     ],
@@ -71571,6 +70734,9 @@
     ],
     "phase 7 hook deadline margins": [
       "phase 7 hook deadline margins"
+    ],
+    "phase 7 lineage reducer compliance": [
+      "phase 7 lineage reducer compliance"
     ],
     "phase 7 remediation deep review": [
       "phase 7 remediation deep review"
@@ -72038,9 +71204,6 @@
     ],
     "phase path grammar": [
       "phase path grammar"
-    ],
-    "phase planning": [
-      "phase planning"
     ],
     "phase scaffold graph metadata": [
       "phase scaffold graph metadata"
@@ -72762,15 +71925,6 @@
     "pi openrouter roster": [
       "pi openrouter roster"
     ],
-    "pi output projection": [
-      "pi output projection"
-    ],
-    "pi output projection plan": [
-      "pi output projection plan"
-    ],
-    "pi output projection tasks": [
-      "pi output projection tasks"
-    ],
     "pi paid retry loop guard": [
       "pi paid retry loop guard"
     ],
@@ -72779,12 +71933,6 @@
     ],
     "pi print mode": [
       "pi print mode"
-    ],
-    "pi print mode wrapper": [
-      "pi print mode wrapper"
-    ],
-    "pi print mode wrapper plan": [
-      "pi print mode wrapper plan"
     ],
     "pi print template": [
       "pi print template"
@@ -72857,9 +72005,6 @@
     ],
     "pi runner stdin checks": [
       "pi runner stdin checks"
-    ],
-    "pi runtime adapter projection": [
-      "Pi runtime adapter projection"
     ],
     "pi runtime binding plan": [
       "pi runtime binding plan"
@@ -73093,9 +72238,6 @@
     "pi workflow mode": [
       "pi workflow mode"
     ],
-    "pi wrapper": [
-      "pi-wrapper"
-    ],
     "pid file single writer lease": [
       "pid-file single-writer lease"
     ],
@@ -73209,21 +72351,6 @@
     ],
     "plain cross digest closure boundary": [
       "plain cross-digest closure boundary"
-    ],
-    "plain language re render checks": [
-      "plain-language re-render checks"
-    ],
-    "plain language re render rule": [
-      "plain-language re-render rule"
-    ],
-    "plain language reply instruction": [
-      "plain-language reply instruction"
-    ],
-    "plain language reply rule verification": [
-      "plain-language reply rule verification"
-    ],
-    "plain language reply rules": [
-      "plain-language reply rules"
     ],
     "plain language routing aliases": [
       "plain-language routing aliases"
@@ -73942,27 +73069,6 @@
     "portability repair tasks": [
       "portability repair tasks"
     ],
-    "portable cli communication": [
-      "portable CLI communication"
-    ],
-    "portable cli projection": [
-      "portable cli projection"
-    ],
-    "portable cli projection handover": [
-      "portable cli projection handover"
-    ],
-    "portable cli research plan": [
-      "portable CLI research plan"
-    ],
-    "portable cli research summary": [
-      "portable CLI research summary"
-    ],
-    "portable cli research tasks": [
-      "portable CLI research tasks"
-    ],
-    "portable communication research": [
-      "portable communication research"
-    ],
     "portable guard cores": [
       "portable guard cores"
     ],
@@ -74398,9 +73504,6 @@
     "pre dispatch budget cap": [
       "pre-dispatch budget cap"
     ],
-    "pre drafting reader model": [
-      "pre-drafting reader model"
-    ],
     "pre existing advisor failures": [
       "pre-existing advisor failures"
     ],
@@ -74505,9 +73608,6 @@
     ],
     "pre platform tooling": [
       "pre platform tooling"
-    ],
-    "pre projection gate complete": [
-      "pre-projection gate complete"
     ],
     "pre push naming gate residue": [
       "pre-push naming gate residue"
@@ -74863,9 +73963,6 @@
     "priority timing patterns": [
       "priority timing patterns"
     ],
-    "privacy fact freshness gate": [
-      "privacy-fact freshness gate"
-    ],
     "private procedure card structure": [
       "private procedure card structure"
     ],
@@ -75196,9 +74293,6 @@
     "project readme template": [
       "project readme template"
     ],
-    "projection activation gate": [
-      "projection activation gate"
-    ],
     "projection contract build": [
       "projection contract build"
     ],
@@ -75208,35 +74302,17 @@
     "projection contract decisions": [
       "projection contract decisions"
     ],
-    "projection engine logic": [
-      "projection engine logic"
-    ],
     "projection generation rebuild summary": [
       "projection generation rebuild summary"
     ],
     "projection layer": [
       "projection layer"
     ],
-    "projection operator ux": [
-      "projection operator UX"
-    ],
-    "projection quality": [
-      "projection quality"
-    ],
     "projection refresh vs gateway receipt decision": [
       "projection refresh vs gateway receipt decision"
     ],
-    "projection rollout runbook": [
-      "projection rollout runbook"
-    ],
-    "projection runtime core": [
-      "projection-runtime-core"
-    ],
     "projection surface contracts": [
       "projection surface contracts"
-    ],
-    "projectmessage orchestration": [
-      "projectMessage orchestration"
     ],
     "promote qwen default reranker": [
       "promote qwen default reranker"
@@ -75554,9 +74630,6 @@
     "prompt time rule injection tasks": [
       "prompt-time rule injection tasks"
     ],
-    "prompt token contract": [
-      "prompt-token-contract"
-    ],
     "prompt unsynced": [
       "PROMPT_UNSYNCED"
     ],
@@ -75607,15 +74680,6 @@
     ],
     "prose wall rewrite": [
       "prose wall rewrite"
-    ],
-    "protected marker inflation": [
-      "protected marker inflation"
-    ],
-    "protected spans fidelity and render": [
-      "protected spans, fidelity, and render"
-    ],
-    "protected spans fidelity render": [
-      "protected-spans-fidelity-render"
     ],
     "protection finsweet attributes": [
       "protection finsweet attributes"
@@ -75734,9 +74798,6 @@
     "provider adapter redesign plan": [
       "provider adapter redesign plan"
     ],
-    "provider adapters and privacy": [
-      "provider-adapters-and-privacy"
-    ],
     "provider coverage matrix": [
       "provider coverage matrix"
     ],
@@ -75758,23 +74819,14 @@
     "provider fallback cascade correctness": [
       "provider fallback cascade correctness"
     ],
-    "provider instruction reply base": [
-      "provider instruction reply base"
-    ],
     "provider map flip": [
       "provider map flip"
-    ],
-    "provider privacy handover": [
-      "provider privacy handover"
     ],
     "provider singleton invalidation": [
       "provider singleton invalidation"
     ],
     "provider surface separation": [
       "provider surface separation"
-    ],
-    "provider transport default": [
-      "provider transport default"
     ],
     "providers and models catalog": [
       "providers and models catalog",
@@ -75852,9 +74904,6 @@
     "publication quality gate": [
       "publication quality gate"
     ],
-    "publish language search": [
-      "publish language search"
-    ],
     "publish manifest provenance": [
       "publish manifest provenance"
     ],
@@ -75911,6 +74960,9 @@
     ],
     "push and create a pull request": [
       "push and create a pull request"
+    ],
+    "push tickets to clickup": [
+      "push tickets to clickup"
     ],
     "pushed work not visible in main checkout": [
       "pushed work not visible in main checkout"
@@ -76031,9 +75083,6 @@
     ],
     "qualified keyword vocabulary": [
       "qualified keyword vocabulary"
-    ],
-    "qualifier against the tiers": [
-      "qualifier against the tiers"
     ],
     "qualify allowed tools mcp names": [
       "qualify allowed-tools mcp names"
@@ -76827,9 +75876,6 @@
     "reader normalization tasks": [
       "reader normalization tasks"
     ],
-    "reader profile split": [
-      "reader profile split"
-    ],
     "reader repoint checklist": [
       "reader repoint checklist"
     ],
@@ -76847,9 +75893,6 @@
     ],
     "reader table tasks": [
       "reader table tasks"
-    ],
-    "reader triage before drafting": [
-      "reader triage before drafting"
     ],
     "readiness action full scan selective reindex": [
       "readiness action full_scan selective_reindex"
@@ -77571,9 +76614,6 @@
     "reconcile codex hooks": [
       "reconcile codex hooks"
     ],
-    "reconcile disagreement": [
-      "reconcile disagreement"
-    ],
     "reconcile extension documentation acceptance criteria": [
       "reconcile extension documentation acceptance criteria"
     ],
@@ -77780,9 +76820,6 @@
     ],
     "recursive validation phase link rules": [
       "recursive validation phase-link rules"
-    ],
-    "recursive validation task": [
-      "recursive validation task"
     ],
     "recursive validation tasks": [
       "recursive validation tasks"
@@ -78641,18 +77678,6 @@
     "reject incomplete council report": [
       "reject incomplete council report"
     ],
-    "reject only consult and dated rollout gate": [
-      "reject-only consult and dated rollout gate"
-    ],
-    "reject only evaluation consult": [
-      "reject-only evaluation consult"
-    ],
-    "reject only evaluation consult complete": [
-      "reject-only evaluation consult complete"
-    ],
-    "reject only meaning gate": [
-      "reject-only meaning gate"
-    ],
     "reject out of scope council write": [
       "reject out-of-scope council write"
     ],
@@ -78670,9 +77695,6 @@
     ],
     "rejectedpatternindex": [
       "rejectedPatternIndex"
-    ],
-    "rejection list": [
-      "rejection list"
     ],
     "rejects unsafe packet pointer shapes": [
       "rejects unsafe packet_pointer shapes"
@@ -79468,9 +78490,6 @@
     ],
     "release engine changes": [
       "release engine changes"
-    ],
-    "release gate complete": [
-      "release gate complete"
     ],
     "release gate slices": [
       "release gate slices"
@@ -80398,21 +79417,6 @@
     "reply harness label gate": [
       "reply harness label gate"
     ],
-    "reply harness rerun": [
-      "reply harness rerun"
-    ],
-    "reply rule delegation repair": [
-      "reply rule delegation repair"
-    ],
-    "reply rule delegation repair implementation summary": [
-      "reply rule delegation repair implementation summary"
-    ],
-    "reply rule delegation repair plan": [
-      "reply rule delegation repair plan"
-    ],
-    "reply rule delegation repair tasks": [
-      "reply rule delegation repair tasks"
-    ],
     "reply rule gate decision": [
       "reply rule gate decision"
     ],
@@ -80425,29 +79429,8 @@
     "reply rule miss rate": [
       "reply rule miss rate"
     ],
-    "reply scoring harness": [
-      "reply scoring harness"
-    ],
-    "reply shape plan": [
-      "reply shape plan"
-    ],
-    "reply shape rules": [
-      "reply shape rules"
-    ],
-    "reply shape rules acceptance criteria": [
-      "reply shape rules acceptance criteria"
-    ],
-    "reply shape rules implementation summary": [
-      "reply shape rules implementation summary"
-    ],
-    "reply shape tasks": [
-      "reply shape tasks"
-    ],
     "reply to comment": [
       "reply to comment"
-    ],
-    "reply versus publish line": [
-      "reply versus publish line"
     ],
     "repo agnostic": [
       "repo agnostic"
@@ -80512,9 +79495,6 @@
     "repo rule advisor verdict": [
       "repo rule advisor verdict"
     ],
-    "repo rule communication change": [
-      "repo rule communication change"
-    ],
     "repo rule compliance baseline": [
       "repo rule compliance baseline"
     ],
@@ -80575,9 +79555,6 @@
     "repo rules md scaffold": [
       "REPO RULES.md scaffold"
     ],
-    "repo rules plan": [
-      "repo rules plan"
-    ],
     "repo rules relocation reconciliation": [
       "repo-rules relocation reconciliation"
     ],
@@ -80598,9 +79575,6 @@
     ],
     "repo rules symlink farm": [
       "repo rules symlink farm"
-    ],
-    "repo rules tasks": [
-      "repo rules tasks"
     ],
     "repo rules trigger index": [
       "repo rules trigger index"
@@ -81247,12 +80221,6 @@
     "research codebase pointers": [
       "research codebase pointers"
     ],
-    "research communication context acceptance criteria": [
-      "research communication context acceptance criteria"
-    ],
-    "research communication context implementation summary": [
-      "research communication context implementation summary"
-    ],
     "research complete code fix deferred embedder": [
       "research complete code fix deferred embedder"
     ],
@@ -81267,15 +80235,6 @@
     ],
     "research context snapshot": [
       "research context snapshot"
-    ],
-    "research contracts implementation summary": [
-      "research contracts implementation summary"
-    ],
-    "research contracts plan": [
-      "research contracts plan"
-    ],
-    "research contracts tasks": [
-      "research contracts tasks"
     ],
     "research convergence decision order": [
       "research convergence decision order"
@@ -81439,6 +80398,18 @@
     "research lineage plan": [
       "research lineage plan"
     ],
+    "research lineage reducer path": [
+      "research lineage reducer path"
+    ],
+    "research lineage reducer path implementation summary": [
+      "research lineage reducer path implementation summary"
+    ],
+    "research lineage reducer path plan": [
+      "research lineage reducer path plan"
+    ],
+    "research lineage reducer path tasks": [
+      "research lineage reducer path tasks"
+    ],
     "research lineage task ledger": [
       "research lineage task ledger"
     ],
@@ -81453,9 +80424,6 @@
     ],
     "research loop cheat sheet": [
       "research loop cheat sheet"
-    ],
-    "research loop execution": [
-      "research loop execution"
     ],
     "research loop initialization": [
       "research loop initialization"
@@ -81516,9 +80484,6 @@
     ],
     "research pivot council": [
       "research pivot council"
-    ],
-    "research plan": [
-      "research plan"
     ],
     "research plan tasks": [
       "research plan tasks"
@@ -82103,9 +81068,6 @@
     "restart loop fix shipped": [
       "restart loop fix shipped"
     ],
-    "restatement cadence": [
-      "restatement cadence"
-    ],
     "restore by count verification": [
       "restore by count verification"
     ],
@@ -82255,9 +81217,6 @@
     ],
     "resume containment work": [
       "resume containment work"
-    ],
-    "resume contracts and fixtures": [
-      "resume contracts and fixtures"
     ],
     "resume directive lifecycle phase 018": [
       "resume directive lifecycle phase 018"
@@ -83655,68 +82614,14 @@
     "rewrite batch verification": [
       "rewrite batch verification"
     ],
-    "rewrite command namespace": [
-      "rewrite command namespace"
-    ],
-    "rewrite command removal": [
-      "rewrite command removal"
-    ],
-    "rewrite command removal checks": [
-      "rewrite command removal checks"
-    ],
-    "rewrite command removal tasks": [
-      "rewrite command removal tasks"
-    ],
-    "rewrite explain visually depth modality": [
-      "rewrite explain-visually depth modality"
-    ],
     "rewrite main skilled v4 0 0 0": [
       "rewrite main skilled v4 0 0 0"
-    ],
-    "rewrite pass declaration": [
-      "rewrite pass declaration"
     ],
     "rewrite references same commit": [
       "rewrite references same commit"
     ],
-    "rewrite response": [
-      "rewrite-response"
-    ],
-    "rewrite response by external agent": [
-      "rewrite-response-by-external-agent"
-    ],
-    "rewrite response by external agent implementation summary": [
-      "rewrite response by external agent implementation summary"
-    ],
-    "rewrite response by external agent plan": [
-      "rewrite response by external agent plan"
-    ],
-    "rewrite response by external agent tasks": [
-      "rewrite response by external agent tasks"
-    ],
-    "rewrite response command": [
-      "rewrite response command"
-    ],
-    "rewrite response command rename": [
-      "rewrite response command rename"
-    ],
-    "rewrite response contract": [
-      "rewrite response contract"
-    ],
-    "rewrite response implementation summary": [
-      "rewrite response implementation summary"
-    ],
-    "rewrite response plan": [
-      "rewrite response plan"
-    ],
-    "rewrite response tasks": [
-      "rewrite response tasks"
-    ],
     "rewrite skill changelogs": [
       "rewrite skill changelogs"
-    ],
-    "rewrite subfolder commands": [
-      "rewrite subfolder commands"
     ],
     "rg fallback handler parity": [
       "rg fallback handler parity"
@@ -83955,9 +82860,6 @@
     "rollout policy description repair modules": [
       "rollout-policy description repair modules"
     ],
-    "rollout readiness evidence": [
-      "rollout readiness evidence"
-    ],
     "rollout verification approach": [
       "rollout verification approach"
     ],
@@ -84011,21 +82913,6 @@
     ],
     "root count vitest add": [
       "root count vitest add"
-    ],
-    "root doc and repo rules acceptance criteria": [
-      "root doc and repo rules acceptance criteria"
-    ],
-    "root doc and repo rules implementation summary": [
-      "root doc and repo rules implementation summary"
-    ],
-    "root doc clause": [
-      "root doc clause"
-    ],
-    "root doc clause tasks": [
-      "root doc clause tasks"
-    ],
-    "root doc cut": [
-      "root doc cut"
     ],
     "root doc staleness": [
       "root doc staleness"
@@ -84451,9 +83338,6 @@
     "router triad summary": [
       "router triad summary"
     ],
-    "router trigger row": [
-      "router trigger row"
-    ],
     "router vocabulary classes": [
       "router vocabulary classes"
     ],
@@ -84471,9 +83355,6 @@
     ],
     "router vocabulary repair tasks": [
       "router vocabulary repair tasks"
-    ],
-    "router walk": [
-      "router walk"
     ],
     "routes yaml": [
       "_routes.yaml"
@@ -84757,9 +83638,6 @@
     "rule concision rewrites tasks": [
       "rule concision rewrites tasks"
     ],
-    "rule contradiction resolution": [
-      "rule contradiction resolution"
-    ],
     "rule corpus consumer census": [
       "rule corpus consumer census"
     ],
@@ -84807,9 +83685,6 @@
     ],
     "rule delivery trace": [
       "rule delivery trace"
-    ],
-    "rule file example and repair": [
-      "rule file example and repair"
     ],
     "rule header split": [
       "rule header split"
@@ -84864,9 +83739,6 @@
     ],
     "rule token load measurement": [
       "rule token load measurement"
-    ],
-    "rule upgrade verification": [
-      "rule upgrade verification"
     ],
     "rule version provenance": [
       "rule_version provenance"
@@ -85090,12 +83962,6 @@
     "runtime adapter goal tasks": [
       "runtime adapter goal tasks"
     ],
-    "runtime adapters and clients": [
-      "runtime-adapters-and-clients"
-    ],
-    "runtime adapters handover": [
-      "runtime adapters handover"
-    ],
     "runtime agent directory": [
       "runtime agent directory"
     ],
@@ -85224,18 +84090,6 @@
     ],
     "runtime config parity tasks": [
       "runtime config parity tasks"
-    ],
-    "runtime contract remediation": [
-      "runtime contract remediation"
-    ],
-    "runtime contract remediation implementation summary": [
-      "runtime contract remediation implementation summary"
-    ],
-    "runtime contract remediation plan": [
-      "runtime contract remediation plan"
-    ],
-    "runtime contract remediation tasks": [
-      "runtime contract remediation tasks"
     ],
     "runtime convergence cli three state decision matrix": [
       "runtime convergence cli three-state decision matrix"
@@ -85477,14 +84331,8 @@
     "runtime mirror": [
       "runtime mirror"
     ],
-    "runtime mirror acceptance": [
-      "runtime mirror acceptance"
-    ],
     "runtime mirror and mcp config": [
       "runtime mirror and mcp config"
-    ],
-    "runtime mirror checks": [
-      "runtime mirror checks"
     ],
     "runtime mirror drift design commands": [
       "runtime mirror drift design commands"
@@ -85500,9 +84348,6 @@
     ],
     "runtime mirror path convention reconciliation": [
       "runtime mirror path convention reconciliation"
-    ],
-    "runtime mirror rollout": [
-      "runtime mirror rollout"
     ],
     "runtime mirrors": [
       "runtime mirrors"
@@ -85695,18 +84540,6 @@
     ],
     "runtime vitest tmpdir": [
       "runtime vitest tmpdir"
-    ],
-    "runtime wiring feasibility": [
-      "runtime wiring feasibility"
-    ],
-    "runtime wiring feasibility and contract": [
-      "runtime-wiring-feasibility-and-contract"
-    ],
-    "runtime wiring feasibility validated": [
-      "runtime wiring feasibility validated"
-    ],
-    "runtime wrapper projection": [
-      "runtime wrapper projection"
     ],
     "rust adapter boundary review": [
       "rust adapter boundary review"
@@ -87820,9 +86653,6 @@
     "self recommendation guard cut": [
       "self-recommendation guard cut"
     ],
-    "self rewrite command": [
-      "self-rewrite command"
-    ],
     "semantic": [
       "semantic"
     ],
@@ -87967,9 +86797,6 @@
     "send chat message": [
       "send chat message"
     ],
-    "send the standard as the instruction": [
-      "send the standard as the instruction"
-    ],
     "sendsessionaffinityheaders opencode": [
       "sendSessionAffinityHeaders opencode"
     ],
@@ -87984,12 +86811,6 @@
     ],
     "sent goal carries only its directive": [
       "sent goal carries only its directive"
-    ],
-    "sentence level communication guidance": [
-      "sentence-level communication guidance"
-    ],
-    "sentence relation rule": [
-      "sentence relation rule"
     ],
     "sentence transformers cross encoder skill": [
       "sentence-transformers cross-encoder skill"
@@ -89125,9 +87946,6 @@
     "shared library modules": [
       "shared library modules"
     ],
-    "shared loader and fail closed local provider config": [
-      "shared loader and fail-closed local provider config"
-    ],
     "shared memory spaces": [
       "shared memory spaces"
     ],
@@ -89172,9 +87990,6 @@
     ],
     "shared opt in helper migration": [
       "shared opt-in helper migration"
-    ],
-    "shared output wrapper seam": [
-      "shared output wrapper seam"
     ],
     "shared ownership fixture removal": [
       "shared ownership fixture removal"
@@ -89425,30 +88240,6 @@
     ],
     "short registry reconstruction plan": [
       "short registry reconstruction plan"
-    ],
-    "shorten decision rule name": [
-      "shorten decision rule name"
-    ],
-    "shorten decision rule name implementation summary": [
-      "shorten decision rule name implementation summary"
-    ],
-    "shorten decision rule name plan": [
-      "shorten decision rule name plan"
-    ],
-    "shorten decision rule name tasks": [
-      "shorten decision rule name tasks"
-    ],
-    "shorten handoff rule name": [
-      "shorten handoff rule name"
-    ],
-    "shorten handoff rule name implementation summary": [
-      "shorten handoff rule name implementation summary"
-    ],
-    "shorten handoff rule name plan": [
-      "shorten handoff rule name plan"
-    ],
-    "shorten handoff rule name tasks": [
-      "shorten handoff rule name tasks"
     ],
     "shorter repo rules": [
       "shorter repo rules"
@@ -90014,9 +88805,6 @@
     "six ci surfaces": [
       "six ci surfaces"
     ],
-    "six cli rewrite layer": [
-      "six CLI rewrite layer"
-    ],
     "six completion docs fingerprint": [
       "six completion docs fingerprint"
     ],
@@ -90061,9 +88849,6 @@
     ],
     "size cap retained generation": [
       "size cap retained generation"
-    ],
-    "size check": [
-      "size check"
     ],
     "size preset viewbox": [
       "size preset viewbox"
@@ -91227,9 +90012,6 @@
     "sk code workflow subskill research plan": [
       "sk-code workflow subskill research plan"
     ],
-    "sk communication assessment": [
-      "sk-communication assessment"
-    ],
     "sk communication changelog retrofit": [
       "sk-communication changelog retrofit"
     ],
@@ -91244,81 +90026,6 @@
     ],
     "sk communication changelog rewrite tasks": [
       "sk-communication changelog rewrite tasks"
-    ],
-    "sk communication clarity": [
-      "sk-communication clarity"
-    ],
-    "sk communication clarity research": [
-      "sk-communication clarity research"
-    ],
-    "sk communication creation capability and privacy gating changelog": [
-      "sk communication creation capability and privacy gating changelog"
-    ],
-    "sk communication creation claude code wrapper changelog": [
-      "sk communication creation claude code wrapper changelog"
-    ],
-    "sk communication creation cli output wrapper framework changelog": [
-      "sk communication creation cli output wrapper framework changelog"
-    ],
-    "sk communication creation codex wrapper changelog": [
-      "sk communication creation codex wrapper changelog"
-    ],
-    "sk communication creation core normalization and assembly changelog": [
-      "sk communication creation core normalization and assembly changelog"
-    ],
-    "sk communication creation cursor wrapper changelog": [
-      "sk communication creation cursor wrapper changelog"
-    ],
-    "sk communication creation devin wrapper changelog": [
-      "sk communication creation devin wrapper changelog"
-    ],
-    "sk communication creation evaluation and release gate changelog": [
-      "sk communication creation evaluation and release gate changelog"
-    ],
-    "sk communication creation opencode native plugin changelog": [
-      "sk communication creation opencode native plugin changelog"
-    ],
-    "sk communication creation pi wrapper changelog": [
-      "sk communication creation pi wrapper changelog"
-    ],
-    "sk communication creation projection runtime core changelog": [
-      "sk communication creation projection runtime core changelog"
-    ],
-    "sk communication creation protected spans fidelity render changelog": [
-      "sk communication creation protected spans fidelity render changelog"
-    ],
-    "sk communication creation runtime wiring feasibility and contract changelog": [
-      "sk communication creation runtime wiring feasibility and contract changelog"
-    ],
-    "sk communication creation wiring docs and operator rollout changelog": [
-      "sk communication creation wiring docs and operator rollout changelog"
-    ],
-    "sk communication improvements": [
-      "sk-communication improvements"
-    ],
-    "sk communication removal": [
-      "sk-communication removal"
-    ],
-    "sk communication research": [
-      "sk-communication research"
-    ],
-    "sk communication routing exclusion": [
-      "sk-communication routing exclusion"
-    ],
-    "sk communication skill note": [
-      "sk-communication skill note"
-    ],
-    "sk communication trigger": [
-      "sk-communication trigger"
-    ],
-    "sk communication trigger commands": [
-      "sk-communication trigger commands"
-    ],
-    "sk communication upgrade": [
-      "sk-communication upgrade"
-    ],
-    "sk communication upgrade implementation summary": [
-      "sk communication upgrade implementation summary"
     ],
     "sk create agent 1 0 0 0": [
       "sk-create-agent 1.0.0.0"
@@ -94527,21 +93234,6 @@
     "skill anchored doc version": [
       "skill anchored doc version"
     ],
-    "skill and command removal": [
-      "skill and command removal"
-    ],
-    "skill and command removal implementation summary": [
-      "skill and command removal implementation summary"
-    ],
-    "skill and mirrors implementation summary": [
-      "skill and mirrors implementation summary"
-    ],
-    "skill and mirrors plan": [
-      "skill and mirrors plan"
-    ],
-    "skill and mirrors tasks": [
-      "skill and mirrors tasks"
-    ],
     "skill and repo readmes cleanup plan": [
       "skill-and-repo-readmes cleanup plan"
     ],
@@ -95455,15 +94147,6 @@
     "skill references assets and skillmd cleanup tasks": [
       "skill-references-assets-and-skillmd cleanup tasks"
     ],
-    "skill removal approach": [
-      "skill removal approach"
-    ],
-    "skill removal closure gate": [
-      "skill removal closure gate"
-    ],
-    "skill removal tasks": [
-      "skill removal tasks"
-    ],
     "skill resource layout": [
       "skill resource layout"
     ],
@@ -95545,12 +94228,6 @@
     ],
     "skill update triggers": [
       "skill update triggers"
-    ],
-    "skill upgrade plan": [
-      "skill upgrade plan"
-    ],
-    "skill upgrade tasks": [
-      "skill upgrade tasks"
     ],
     "skill validation path": [
       "skill validation path"
@@ -96528,18 +95205,6 @@
     "spawn fanout lineages": [
       "spawn fanout lineages"
     ],
-    "spawn process group hardening": [
-      "spawn process group hardening"
-    ],
-    "spawn process group hardening implementation summary": [
-      "spawn process group hardening implementation summary"
-    ],
-    "spawn process group hardening plan": [
-      "spawn process group hardening plan"
-    ],
-    "spawn process group hardening tasks": [
-      "spawn process group hardening tasks"
-    ],
     "spawn three regression test": [
       "spawn-three regression test"
     ],
@@ -97005,6 +95670,12 @@
     ],
     "spec folder tooling epic follow up fixes changelog": [
       "spec folder tooling epic follow up fixes changelog"
+    ],
+    "spec folder tooling follow up defect fixes changelog": [
+      "spec folder tooling follow up defect fixes changelog"
+    ],
+    "spec folder tooling follow up defects": [
+      "spec folder tooling follow up defects"
     ],
     "spec folder tooling heal cli and compat yaml simplification changelog": [
       "spec folder tooling heal cli and compat yaml simplification changelog"
@@ -98962,9 +97633,6 @@
     "stacked bars tooltip transfer": [
       "stacked-bars tooltip transfer"
     ],
-    "stacked compression": [
-      "stacked compression"
-    ],
     "stacked filters": [
       "stacked filters"
     ],
@@ -99482,12 +98150,6 @@
     "standard component definitions": [
       "standard component definitions"
     ],
-    "standard restructure plan": [
-      "standard restructure plan"
-    ],
-    "standard restructure tasks": [
-      "standard restructure tasks"
-    ],
     "standards alignment audit": [
       "standards alignment audit"
     ],
@@ -99503,26 +98165,11 @@
     "start end oval": [
       "start end oval"
     ],
-    "start evaluation and observability": [
-      "start evaluation and observability"
-    ],
     "start new session killpg": [
       "start_new_session killpg"
     ],
-    "start packaging and release hardening": [
-      "start packaging and release hardening"
-    ],
-    "start protected spans fidelity render": [
-      "start protected spans fidelity render"
-    ],
-    "start provider adapters privacy": [
-      "start provider adapters privacy"
-    ],
     "start running timer": [
       "start running timer"
-    ],
-    "start runtime adapters clients": [
-      "start runtime adapters clients"
     ],
     "start sh reaper allowlist": [
       "start.sh reaper allowlist"
@@ -99646,9 +98293,6 @@
     ],
     "state relocation tasks": [
       "state relocation tasks"
-    ],
-    "state restatement cadence": [
-      "state restatement cadence"
     ],
     "state safety atomic state deferred writer": [
       "state safety atomic-state deferred writer"
@@ -100064,9 +98708,6 @@
     ],
     "stream fold gauges tasks": [
       "stream-fold gauges tasks"
-    ],
-    "stream json adapter": [
-      "stream-json adapter"
     ],
     "stress and skillmd audit": [
       "stress and skillmd audit"
@@ -100485,9 +99126,6 @@
     ],
     "style guide tokens": [
       "style guide tokens"
-    ],
-    "style patch research": [
-      "style patch research"
     ],
     "style reference bundle": [
       "style reference bundle"
@@ -101209,12 +99847,6 @@
     "synthesis": [
       "synthesis"
     ],
-    "synthesis and decisions acceptance criteria": [
-      "synthesis and decisions acceptance criteria"
-    ],
-    "synthesis and decisions implementation summary": [
-      "synthesis and decisions implementation summary"
-    ],
     "synthesis artifact staging": [
       "synthesis artifact staging"
     ],
@@ -101245,9 +99877,6 @@
     "synthesis incomplete fan out merge": [
       "synthesis_incomplete fan-out merge"
     ],
-    "synthesis plan": [
-      "synthesis plan"
-    ],
     "synthesis presentation acceptance criteria": [
       "synthesis presentation acceptance criteria"
     ],
@@ -101262,9 +99891,6 @@
     ],
     "synthesis presentation tasks": [
       "synthesis presentation tasks"
-    ],
-    "synthesis tasks": [
-      "synthesis tasks"
     ],
     "synthetic replay corpus changelog": [
       "synthetic replay corpus changelog"
@@ -102580,9 +101206,6 @@
     "tail signal or noise": [
       "tail signal or noise"
     ],
-    "tangent suppression": [
-      "tangent suppression"
-    ],
     "tanstack mini shai hulud audit": [
       "TanStack Mini Shai-Hulud audit",
       "tanstack mini shai-hulud audit"
@@ -102791,9 +101414,6 @@
     ],
     "template addendum derivation": [
       "template addendum derivation"
-    ],
-    "template additive change": [
-      "template additive change"
     ],
     "template alignment 031 036": [
       "template alignment 031-036"
@@ -103329,9 +101949,6 @@
     "ten agent specialization": [
       "ten agent specialization"
     ],
-    "ten candidates": [
-      "ten candidates"
-    ],
     "ten iteration deep research comparing how system spec": [
       "ten iteration deep research comparing how system spec"
     ],
@@ -103656,9 +102273,6 @@
     "the create skill workflow debuts": [
       "The create-skill Workflow Debuts"
     ],
-    "the decision rule carried the last long name": [
-      "the decision rule carried the last long name"
-    ],
     "the deep loop cli pi executor maps deepseek": [
       "the deep loop cli pi executor maps deepseek"
     ],
@@ -103716,9 +102330,6 @@
     "the grader is measured against a fed baseline": [
       "the grader is measured against a fed baseline"
     ],
-    "the handoff rule s filename was the longest": [
-      "the handoff rule s filename was the longest"
-    ],
     "the hub answers from its new home": [
       "the hub answers from its new home"
     ],
@@ -103742,9 +102353,6 @@
     ],
     "the migration promised to re run the mode": [
       "the migration promised to re run the mode"
-    ],
-    "the most referenced rule in the corpus pointed": [
-      "the most referenced rule in the corpus pointed"
     ],
     "the mutation suite covered twelve of the forty": [
       "the mutation suite covered twelve of the forty"
@@ -103796,9 +102404,6 @@
     ],
     "the repaint in v2 1 0 0 landed": [
       "the repaint in v2 1 0 0 landed"
-    ],
-    "the reply rule opened by stating one idea": [
-      "the reply rule opened by stating one idea"
     ],
     "the rules check reads the rules section": [
       "the rules check reads the rules section"
@@ -104198,9 +102803,6 @@
     ],
     "token aware chunking": [
       "token-aware chunking"
-    ],
-    "token aware prompt profile": [
-      "token-aware prompt profile"
     ],
     "token aware truncation": [
       "token-aware truncation"
@@ -104782,9 +103384,6 @@
     "transform dedup tasks": [
       "transform dedup tasks"
     ],
-    "transform layer": [
-      "transform layer"
-    ],
     "transform verbs bundle rules": [
       "transform verbs bundle rules"
     ],
@@ -105025,12 +103624,6 @@
     ],
     "trigger cache mtime caching": [
       "trigger cache mtime caching"
-    ],
-    "trigger command contracts": [
-      "trigger command contracts"
-    ],
-    "trigger command mirrors": [
-      "trigger command mirrors"
     ],
     "trigger coverage check": [
       "trigger coverage check"
@@ -105449,15 +104042,6 @@
     "turn close out": [
       "turn close-out"
     ],
-    "turn end mutation probe tasks": [
-      "turn_end mutation probe tasks"
-    ],
-    "turn end mutation validation": [
-      "turn_end mutation validation"
-    ],
-    "turn end mutation validation plan": [
-      "turn_end mutation validation plan"
-    ],
     "turn without a suggestion": [
       "turn without a suggestion"
     ],
@@ -105571,9 +104155,6 @@
     ],
     "two new benchmark families and normalized skill md sections": [
       "Two New Benchmark Families and Normalized SKILL.md Sections"
-    ],
-    "two of the four rules that fire": [
-      "two of the four rules that fire"
     ],
     "two of the three fixes in the packet": [
       "two of the three fixes in the packet"
@@ -105932,9 +104513,6 @@
     "uncertainty weighted average": [
       "uncertainty weighted average"
     ],
-    "unchanged echo acceptance": [
-      "unchanged echo acceptance"
-    ],
     "unchanged re save churn fix": [
       "unchanged re-save churn fix"
     ],
@@ -105949,9 +104527,6 @@
     ],
     "unclean shutdown sigkill loop fix plan": [
       "unclean shutdown sigkill loop fix plan"
-    ],
-    "unconfirmed cause qualifier": [
-      "unconfirmed cause qualifier"
     ],
     "under preserve an out of scope untracked path": [
       "under preserve an out of scope untracked path"
@@ -106477,15 +105052,6 @@
     ],
     "urgency glyph deuteranope": [
       "urgency glyph deuteranope"
-    ],
-    "use a generation keyed state machine with explicit ordering domains": [
-      "use a generation-keyed state machine with explicit ordering domains"
-    ],
-    "use deterministic first validation with a reject only model judge": [
-      "use deterministic-first validation with a reject-only model judge"
-    ],
-    "use model scoped adapters behind a privacy first router": [
-      "use model-scoped adapters behind a privacy-first router"
     ],
     "use strict checklist": [
       "use strict checklist"
@@ -107484,9 +106050,6 @@
     "validator template debt tasks": [
       "validator template debt tasks"
     ],
-    "validator unconditional markers": [
-      "validator unconditional markers"
-    ],
     "validity funnel log": [
       "validity funnel log"
     ],
@@ -107702,12 +106265,6 @@
     ],
     "verbatim value rule": [
       "verbatim value rule"
-    ],
-    "verbless fragment": [
-      "verbless fragment"
-    ],
-    "verbless fragment ban": [
-      "verbless fragment ban"
     ],
     "verbose internal logging": [
       "verbose internal logging"
@@ -108216,30 +106773,6 @@
     "visual direction reference": [
       "visual direction reference"
     ],
-    "visual explanation lane complete": [
-      "visual explanation lane complete"
-    ],
-    "visual explanation lane plan": [
-      "visual explanation lane plan"
-    ],
-    "visual explanation lane sk communication": [
-      "visual explanation lane sk-communication"
-    ],
-    "visual explanation lane tasks": [
-      "visual explanation lane tasks"
-    ],
-    "visual explanation output medium": [
-      "visual explanation output medium"
-    ],
-    "visual explanation output medium implementation summary": [
-      "visual explanation output medium implementation summary"
-    ],
-    "visual explanation output medium plan": [
-      "visual explanation output medium plan"
-    ],
-    "visual explanation output medium tasks": [
-      "visual explanation output medium tasks"
-    ],
     "visual polish": [
       "visual polish"
     ],
@@ -108419,9 +106952,6 @@
     ],
     "voice category flag verdict": [
       "voice category flag verdict"
-    ],
-    "voice half delegation": [
-      "voice half delegation"
     ],
     "voice mode scenario categories": [
       "voice mode scenario categories"
@@ -109574,12 +108104,6 @@
     "wire the bitemporal writer": [
       "wire the bitemporal writer"
     ],
-    "wired projection rollback": [
-      "wired projection rollback"
-    ],
-    "wiring docs and operator rollout": [
-      "wiring-docs-and-operator-rollout"
-    ],
     "with goal flag": [
       "with goal flag"
     ],
@@ -109606,18 +108130,6 @@
     ],
     "word mcp only where retired": [
       "word mcp only where retired"
-    ],
-    "wording standard restructure": [
-      "wording standard restructure"
-    ],
-    "wording standard restructure acceptance criteria": [
-      "wording standard restructure acceptance criteria"
-    ],
-    "wording standard restructure implementation summary": [
-      "wording standard restructure implementation summary"
-    ],
-    "wording standard routing": [
-      "wording standard routing"
     ],
     "worked changelog entry": [
       "worked changelog entry"
@@ -110006,21 +108518,6 @@
     "wrapper breakout probe": [
       "wrapper breakout probe"
     ],
-    "wrapper framework": [
-      "wrapper framework"
-    ],
-    "wrapper framework decisions": [
-      "wrapper framework decisions"
-    ],
-    "wrapper framework plan": [
-      "wrapper framework plan"
-    ],
-    "wrapper framework projection": [
-      "wrapper framework projection"
-    ],
-    "wrapper framework tasks": [
-      "wrapper framework tasks"
-    ],
     "wrapper writes iteration artifacts": [
       "wrapper writes iteration artifacts"
     ],
@@ -110032,9 +108529,6 @@
     ],
     "write a screenshot scenario fixture": [
       "write a screenshot scenario fixture"
-    ],
-    "write authority binding": [
-      "write authority binding"
     ],
     "write back spokes": [
       "write back spokes"

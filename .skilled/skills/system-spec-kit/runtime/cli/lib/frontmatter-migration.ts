@@ -1065,7 +1065,14 @@ function inferDescription(
     return existingDescription;
   }
 
-  const sentence = extractFirstMeaningfulSentence(content);
+  let descriptionSource = content;
+  let frontmatter = detectFrontmatter(descriptionSource);
+  // Some migrated documents retain another frontmatter block before the body.
+  while (frontmatter.found) {
+    descriptionSource = descriptionSource.slice(frontmatter.end);
+    frontmatter = detectFrontmatter(descriptionSource);
+  }
+  const sentence = extractFirstMeaningfulSentence(descriptionSource);
   if (sentence) {
     return sentence.length > 180 ? `${sentence.slice(0, 177)}...` : sentence;
   }

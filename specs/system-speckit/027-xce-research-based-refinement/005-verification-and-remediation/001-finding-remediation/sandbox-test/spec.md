@@ -1,6 +1,6 @@
 ---
 title: "Sandbox Mutation Test Doc"
-description: 'title: "Sandbox Mutation Test Doc"'
+description: "This is a temporary sandbox document for mutation testing validation."
 trigger_phrases:
   - "sandbox mutation test"
   - "mutation validation test doc"

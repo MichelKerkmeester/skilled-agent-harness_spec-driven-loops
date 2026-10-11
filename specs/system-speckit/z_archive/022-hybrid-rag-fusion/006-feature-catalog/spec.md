@@ -1,6 +1,6 @@
 ---
 title: "Feature Catalog Comprehensive Audit & Remediation [system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/spec]"
-description: 'title: "Feature Catalog Comprehensive Audit & Remediation"'
+description: "This wrapper packet preserves the historical 2026-03-08 through 2026-03-26 audit trail, but it must no longer be read as the live denominator source on its own."
 trigger_phrases:
   - "feature"
   - "catalog"

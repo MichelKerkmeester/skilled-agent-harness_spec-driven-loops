@@ -1,0 +1,69 @@
+LANE 20 EVIDENCE
+
+BOX 1
+Commands:
+- rg --files specs/system-speckit/034-spec-folder-tooling -g 'research.md'
+- rg -n -i -C 2 '^#{1,5} .*7\.4|section 7\.4|7\.4|archive policy' specs/system-speckit/034-spec-folder-tooling -g 'research.md'
+- sed -n '125,166p' specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/research.md
+- rg -n -i -C 2 'current-location|re-derive|Out of Scope|REQ-001|REQ-002|REQ-003|REQ-004' specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups/spec.md
+Output summary: The 016 research file has no 7.4 heading. The matching section is in the 014 research file at line 131. It chooses current-location semantics, re-derives moved paths, limits changes to derived fields and aligns archive tools with strict validation. The 003 spec maps these rules to REQ-001 through REQ-004 and the section 3 scope boundary.
+Exit status: 0 for all searches and reads.
+Verdict: TICKED. Current-location semantics and strict validation map to REQ-001 and REQ-003. The archive-restore fixture maps to REQ-002. Tool and documentation alignment maps to REQ-003 and REQ-004. The derived-fields-only limit maps to spec.md section 3 Out of Scope.
+
+BOX 2
+Commands:
+- git log --format='%H %s' -- .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl
+- git show --stat --oneline 3e427227cf744892b6e29be4880fa367f5dfcb16 -- .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl
+- git merge-base --is-ancestor 3e427227cf744892b6e29be4880fa367f5dfcb16 124e11c883
+- git rev-parse 124e11c883
+Output summary: Commit 3e427227cf744892b6e29be4880fa367f5dfcb16 changes the named spec template. The merge-base command printed no output and returned success. Commit 124e11c883 resolves to 124e11c883d4f955fe097f8af6c308f9c33a841c.
+Exit status: 0 for all commands.
+Verdict: TICKED. SH-01 commit 3e427227cf744892b6e29be4880fa367f5dfcb16 is an ancestor of 011 commit 124e11c883d4f955fe097f8af6c308f9c33a841c.
+
+BOX 3
+Commands:
+- shasum -a 256 on the probe spec.md before the dry run
+- node .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs --anchor-repair --roots /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res1/specs --folder /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res1/specs/anchor-repair-probe
+- shasum -a 256 on the probe spec.md after the dry run
+- find on the probe packet before and after the dry run
+Output summary: The dry run reported a glued overlapping duplicate pair, an isolated duplicate pair and a nested questions opener. It ended with documents=1, repairable=1 and findings=3. The SHA-256 before and after was b2b8126342083416e51667f15fa8cf2a1cd2a516cb48de64b168db0ba1277e4a. The only packet file before and after was spec.md.
+Exit status: 0 for the hash, dry-run and file-list commands.
+Verdict: TICKED. All three defect classes were reported and the probe file stayed unchanged.
+
+BOX 4
+Commands:
+- cat .skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample/index.json
+- rg -n 'anchorIntegrityFindings|questions|describe\(|it\(|test\(|seed|drawnFromCommit|repairable|refused|strict|validate' .skilled/skills/system-spec-kit/runtime/cli/tests/anchor-repair-sample.vitest.ts
+- npx vitest run --config ../../vitest.config.ts --project cli tests/anchor-repair-sample.vitest.ts from .skilled/skills/system-spec-kit/runtime/cli
+Output summary: The frozen index has seed 20261008 and 60 documents drawn from commit 02cc1fb94824df6764e0701433df3460b249c09e, with 50 repairable and 10 refused. The test passed 1 file and 1 test. It asserts anchor pairing and questions-section structure for each repairable copy after apply. It does not run strict packet validation on every document. Prior batch evidence reports 49 of 50 source packets passed, with one identity-backup packet failing metadata validation.
+Exit status: 0 for the index read, source search and Vitest run.
+Verdict: LEFT OPEN. The test does not establish strict validity for every packet and the prior full validation record has one metadata failure. See lane-12-anchor-repair-boxes.txt, Box 4.
+
+BOX 5
+Commands:
+- rg -o "copyFixture\('[^']+'\)" .skilled/skills/system-spec-kit/runtime/cli/tests/anchor-contract.vitest.ts
+- node .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs --lane-modes --roots /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res1/specs --folder /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res1/specs/phase13-packet
+- node .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs --lane-modes --roots /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res1/specs --folder /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res1/specs/phase13-fixtures/053-template-compliant-level2
+- node .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs --lane-modes --roots /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res1/specs --folder /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res1/specs/phase13-fixtures/078-anchors-nested-questions
+- node .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs --lane-modes --roots /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res1/specs --folder /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res1/specs/phase13-fixtures/079-anchors-adr-allowance
+- node .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs --lane-modes --roots /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res1/specs --folder /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res1/specs/phase13-fixtures/080-anchors-duplicate-closer
+- `node - <<'NODE'` direct helper check:
+
+```js
+const path = require('node:path')
+const { runLaneModes } = require('./.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs')
+const root = '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res1/specs'
+const packets = [
+  path.join(root, 'phase13-packet'),
+  path.join(root, 'phase13-fixtures/053-template-compliant-level2'),
+  path.join(root, 'phase13-fixtures/078-anchors-nested-questions'),
+  path.join(root, 'phase13-fixtures/079-anchors-adr-allowance'),
+  path.join(root, 'phase13-fixtures/080-anchors-duplicate-closer')
+]
+const results = packets.map(packet => runLaneModes(packet))
+console.log(JSON.stringify(results.map(({ packet, changedFiles, actions, refusals }) => ({ packet, changedFiles, actions, refusals })), null, 2))
+if (results.some(result => result.changedFiles.length || result.actions.length || result.refusals.length)) process.exit(1)
+NODE
+Output summary: The four fixtures are 053-template-compliant-level2, 078-anchors-nested-questions, 079-anchors-adr-allowance and 080-anchors-duplicate-closer. Each CLI dry run exited 0 and printed no action or refusal lines. The helper returned empty changedFiles, actions and refusals arrays for the phase 13 packet and all four fixtures.
+Exit status: 0 for fixture discovery, all five CLI dry runs and the helper check.
+Verdict: TICKED. No lane mode reported an unwarranted refusal on the phase 13 packet or its named fixture copies.

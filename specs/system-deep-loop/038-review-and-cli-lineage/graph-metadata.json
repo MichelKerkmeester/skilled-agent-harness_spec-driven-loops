@@ -8,7 +8,9 @@
     "system-deep-loop/038-review-and-cli-lineage/002-review-state-init-and-dispatch",
     "system-deep-loop/038-review-and-cli-lineage/003-cli-pi-opencode-go-route",
     "system-deep-loop/038-review-and-cli-lineage/004-read-only-and-research-bookkeeping",
-    "system-deep-loop/038-review-and-cli-lineage/005-cli-lineage-findings-contract"
+    "system-deep-loop/038-review-and-cli-lineage/005-cli-lineage-findings-contract",
+    "system-deep-loop/038-review-and-cli-lineage/006-research-lineage-reducer-path",
+    "system-deep-loop/038-review-and-cli-lineage/007-lineage-reducer-compliance"
   ],
   "manual": {
     "depends_on": [],
@@ -88,16 +90,16 @@
     ],
     "causal_summary": "The deep-review and deep-research loops disagreed with their own gateway",
     "created_at": "2026-10-02T00:00:00Z",
-    "last_save_at": "2026-10-06T18:48:42.285Z",
+    "last_save_at": "2026-10-09T16:06:33.896Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:d070e2a804ed073fcf7d26c523b29665cdfc804499c197d66931f412bb3183e6",
+    "source_fingerprint": "sha256:49455d1d5d20d81b2459f04fee745b541984fd747ee9841ae81f9518a0f649c1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d0e808b9075cb176b7df09ecc69ccc7784c5a2c9b1bf6bff70f4c3e47ff5882d"
+      "spec.md": "da2d9c2e3514c15ca6c2be60380a4918beed91d4ec8b67c49ef553cf40ae1e44"
     },
     "last_active_child_id": "system-deep-loop/038-review-and-cli-lineage/005-cli-lineage-findings-contract",
     "last_active_at": "2026-10-06T19:00:00Z"

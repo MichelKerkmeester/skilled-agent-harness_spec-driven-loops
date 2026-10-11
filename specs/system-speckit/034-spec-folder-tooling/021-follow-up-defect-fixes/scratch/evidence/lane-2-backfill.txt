@@ -1,0 +1,67 @@
+Lane 2 evidence: backfill root (REQ-002, REQ-003)
+
+Files changed
+  runtime/cli/graph/backfill-graph-metadata.ts
+  runtime/cli/tests/graph-metadata-backfill.vitest.ts
+  Paths are relative to .skilled/skills/system-spec-kit/
+
+Command used for every test run
+  npx vitest run --config ../../vitest.config.ts --project cli tests/graph-metadata-backfill.vitest.ts
+  run from runtime/cli. Neighbor runs add tests/backfill-prune-report-gate.vitest.ts and tests/scoped-backfill-boundary.vitest.ts.
+
+1. Baseline (starting numbers, before any edit)
+  graph-metadata-backfill.vitest.ts: Test Files 1 passed. Tests 13 passed, 1 skipped (14). Exit 0.
+  Neighbors: 2 files passed. Tests 16 passed (16). Exit 0.
+
+2. Red (unfixed source, two new cases added to the test file)
+  Tests 2 failed, 13 passed, 1 skipped (16). Exit 1.
+  - refuses a root outside the repository and writes no graph metadata under it
+    The CLI ran with --all --root on an .opencode-anchored fixture under the OS temp directory and exited 0.
+    Failed at the status assertion, expected +0 not to be +0.
+  - refuses a report root with no .opencode anchor and writes no report there
+    runBackfill with pruneReport returned without throwing, so the report was written under the unanchored root.
+    Failed with expected the call to throw.
+
+3. Green, first pass after the source fix, before the fixture changes
+  Tests 4 failed, 11 passed, 1 skipped (16). Exit 1.
+  The two new cases passed. Four existing cases failed for one reason each:
+  - Two exit-status cases ran the CLI from the skill directory with a temp --root. That root is now outside the repository the run resolves, so the CLI refuses it.
+  - Two prune-report cases used report roots with no .opencode anchor. The new rule refuses those roots.
+  Test-only adjustments made in response:
+  - runCli runs from the fixture repository, which gets an empty specs folder, so the fixture root lies inside the repository the run resolves. The fixture root itself is unchanged.
+  - The two prune-report cases create an anchored .opencode/specs root and write their report there. Their assertions are unchanged.
+
+4. Green (final)
+  graph-metadata-backfill.vitest.ts: Test Files 1 passed. Tests 15 passed, 1 skipped (16). Exit 0.
+  Neighbors: 2 files passed. Tests 16 passed (16). Exit 0.
+  Delta from baseline: 13 to 15 passed, 1 skipped unchanged, 2 new cases.
+
+5. Control (mirror L2-control, built with mkmirror.mjs and no mutant)
+  Tests 15 passed, 1 skipped (16). Exit 0.
+
+6. Mutants (one mirror each, built with mkmirror.mjs, prefix L2-)
+  M2-a (mirror L2-M2a): the CLI containment condition in run() replaced with if (false), so the root check never runs.
+    Tests 1 failed, 14 passed, 1 skipped (16). Exit 1.
+    Failing case: refuses a root outside the repository and writes no graph metadata under it.
+  M2-b (mirror L2-M2b): the report root condition in writePruneReportArtifact replaced with if (false).
+    Tests 1 failed, 14 passed, 1 skipped (16). Exit 1.
+    Failing case: refuses a report root with no .opencode anchor and writes no report there, expected the call to throw.
+  Each mutant fails only its own case. The suite is vitest, so the validator-backed run-lane.sh was not used.
+
+7. Other checks
+  Typecheck: runtime/cli, npx tsc --noEmit --composite false -p tsconfig.json. Exit 0, no error lines.
+  Membership on the real repository (read-only): getSpecsBasePaths on the repository specs folder returns that folder, so the real specs root passes the prune report rule. No file was written under specs.
+  Consumers of backfill-graph-metadata: none passes --root to the CLI.
+    repair-derived.cjs passes a folder positionally.
+    create.sh passes a folder path positionally.
+    fingerprint-docset-generation.sh passes --spec-folder.
+    upgrade-legacy.mjs imports the module for its list script and does not run the CLI.
+    migrate-generated-json.ts imports functions from the module.
+    archive.sh and heal-spec-docs.cjs mention the file in text or comments only.
+    spec-root-registry.ts holds a reference string only.
+
+8. Diff
+  git diff --stat on the two files: 2 files changed, 101 insertions(+), 7 deletions(-).
+
+9. Decision for the operator (not changed here)
+  resolveRepoRoot() prefers the working directory when it holds a specs folder. The containment check therefore measures against that directory in that case. A run started from a directory outside this repository that has its own specs folder can name that folder's root. Using findRepoRoot on the module location instead would close that case, at the cost of refusing roots under a different working checkout.

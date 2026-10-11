@@ -265,11 +265,16 @@ describe('graph metadata backfill exit status', () => {
   const backfill = path.join(skillRoot, 'runtime', 'cli', 'graph', 'backfill-graph-metadata.ts');
   const tsxLoader = path.join(skillRoot, 'node_modules', 'tsx', 'dist', 'loader.mjs');
 
+  // The CLI takes its repository from the working directory when that directory holds
+  // a specs folder. createSpecTree places the specs root two levels below its fixture
+  // repository, so the run starts in that repository and the root lies inside it.
   function runCli(specsRoot: string) {
+    const fixtureRepo = path.resolve(specsRoot, '..', '..');
+    fs.mkdirSync(path.join(fixtureRepo, 'specs'), { recursive: true });
     return spawnSync(
       process.execPath,
       ['--import', tsxLoader, backfill, '--all', '--dry-run', '--root', specsRoot],
-      { cwd: skillRoot, encoding: 'utf8' },
+      { cwd: fixtureRepo, encoding: 'utf8' },
     );
   }
 
@@ -289,6 +294,22 @@ describe('graph metadata backfill exit status', () => {
     expect(result.status, result.stderr).toBe(1);
     const failed = JSON.parse(result.stdout).failed as Array<{ specFolder: string }>;
     expect(failed.some((item) => item.specFolder.endsWith(path.basename(broken)))).toBe(true);
+  });
+
+  it('refuses a root outside the repository and writes no graph metadata under it', () => {
+    const specsRoot = createSpecTree();
+
+    const result = spawnSync(
+      process.execPath,
+      ['--import', tsxLoader, backfill, '--all', '--root', specsRoot],
+      { cwd: skillRoot, encoding: 'utf8' },
+    );
+
+    expect(result.status, result.stderr).not.toBe(0);
+    expect(result.stderr).toContain('root outside the repository');
+    for (const specFolder of collectSpecFolders(specsRoot)) {
+      expect(fs.existsSync(path.join(specFolder, 'graph-metadata.json'))).toBe(false);
+    }
   });
 });
 
@@ -316,9 +337,11 @@ describe('prune report destination', () => {
   it('refuses a temporary name that already exists and leaves that file untouched', () => {
     const reportRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'prune-report-root-'));
     createdRoots.add(reportRoot);
-    const report = path.join(reportRoot, '.backfill-graph-metadata-prune-report.json');
+    const specsDir = path.join(reportRoot, '.opencode', 'specs');
+    fs.mkdirSync(specsDir, { recursive: true });
+    const report = path.join(specsDir, '.backfill-graph-metadata-prune-report.json');
     const randomBytes = Buffer.alloc(6, 0xab);
-    const taken = path.join(reportRoot, `.${path.basename(report)}.${process.pid}.${randomBytes.toString('hex')}.tmp`);
+    const taken = path.join(specsDir, `.${path.basename(report)}.${process.pid}.${randomBytes.toString('hex')}.tmp`);
     fs.writeFileSync(taken, 'taken\n', 'utf-8');
     const spy = vi.spyOn(crypto, 'randomBytes').mockImplementationOnce(() => randomBytes);
     try {
@@ -335,12 +358,14 @@ describe('prune report destination', () => {
   it('replaces a link planted after the check instead of writing through it', () => {
     const reportRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'prune-report-root-'));
     createdRoots.add(reportRoot);
+    const specsDir = path.join(reportRoot, '.opencode', 'specs');
+    fs.mkdirSync(specsDir, { recursive: true });
     const outsideDir = fs.mkdtempSync(path.join(os.tmpdir(), 'prune-report-outside-'));
     createdRoots.add(outsideDir);
     const outside = path.join(outsideDir, 'victim.json');
     const original = '{"outside":true}\n';
     fs.writeFileSync(outside, original, 'utf-8');
-    const report = path.join(reportRoot, '.backfill-graph-metadata-prune-report.json');
+    const report = path.join(specsDir, '.backfill-graph-metadata-prune-report.json');
     const realLstat = fs.lstatSync;
     const spy = vi.spyOn(fs, 'lstatSync').mockImplementationOnce(((file: fs.PathLike, options?: fs.StatOptions) => {
       try {
@@ -382,6 +407,25 @@ describe('prune report destination', () => {
     expect(summary.pruneReportArtifact?.path).toBe(reportPath);
     const written = JSON.parse(fs.readFileSync(reportPath, 'utf-8'));
     expect(written.contentHash).toBe(summary.pruneReportArtifact?.contentHash);
+    expect(fs.readdirSync(specsRoot).filter((name) => name.endsWith('.tmp'))).toEqual([]);
+  });
+
+  // A report root with no .opencode anchor is not a configured specs root, so the
+  // report is refused before a temporary file is created beside it.
+  it('refuses a report root with no .opencode anchor and writes no report there', () => {
+    const repoRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'prune-report-unanchored-'));
+    createdRoots.add(repoRoot);
+    const specsRoot = path.join(repoRoot, 'specs');
+    writePacket(
+      path.join(specsRoot, 'system-spec-kit', '930-unanchored-root'),
+      'Unanchored Root',
+      'Hold a prune report under a root with no anchor.',
+      'scripts/spec/create.sh',
+    );
+
+    expect(() => runBackfill({ dryRun: false, root: specsRoot, pruneReport: true }))
+      .toThrow('not a configured specs root');
+    expect(fs.existsSync(pruneReportPath(specsRoot))).toBe(false);
     expect(fs.readdirSync(specsRoot).filter((name) => name.endsWith('.tmp'))).toEqual([]);
   });
 });

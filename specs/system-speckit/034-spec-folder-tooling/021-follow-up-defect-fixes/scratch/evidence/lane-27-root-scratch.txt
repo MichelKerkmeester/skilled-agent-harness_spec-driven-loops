@@ -1,0 +1,53 @@
+Root scratch cleanup evidence
+
+Commands below ran from .skilled/skills/system-spec-kit/runtime/cli unless stated otherwise.
+
+RED, unfixed behavior
+
+- Command: npx vitest run --config ../../vitest.config.ts --project cli tests/validation-gate-hardening.vitest.ts
+  Result: 1 test file passed, 7 tests passed, exit 0.
+  Root check: ls -d scratch printed scratch, exit 0. The directory was empty after test cleanup and rmdir scratch returned exit 0.
+- Command: npx vitest run --config ../../vitest.config.ts --project cli tests/strict-pass-freshness.vitest.ts
+  Result: 1 test file passed, 5 tests passed, exit 0.
+  Root check: ls -d scratch printed scratch, exit 0. The directory was empty after test cleanup and rmdir scratch returned exit 0.
+
+FIX
+
+Both test files now record the repository scratch parent in createdParents only if it did not exist before the test creates it. afterEach removes that parent with rmdirSync only when it exists and is empty, then clears the per-test parent list. This preserves pre-existing scratch directories and prevents a previous test's recorded parent from affecting a later test.
+
+GREEN, fixed behavior
+
+- Command: npx vitest run --config ../../vitest.config.ts --project cli tests/validation-gate-hardening.vitest.ts
+  Result: 1 test file passed, 7 tests passed, exit 0.
+  Root check: ls -d scratch reported "No such file or directory", exit 1.
+- Command: npx vitest run --config ../../vitest.config.ts --project cli tests/strict-pass-freshness.vitest.ts
+  Result: 1 test file passed, 5 tests passed, exit 0.
+  Root check: ls -d scratch reported "No such file or directory", exit 1.
+
+CONTROL, pre-existing parent
+
+Created scratch/ and scratch/marker.txt. Both test commands above passed with their normal counts and exit 0: validation gate hardening 7/7 and strict-pass freshness 5/5. After each run, ls -la scratch and find scratch -mindepth 1 -maxdepth 1 -print showed marker.txt as the only entry; cat scratch/marker.txt returned "pre-existing scratch marker". The marker and empty parent were removed with a scoped file deletion and rmdir scratch, both successful.
+
+MUTANTS
+
+- Validation gate hardening: disabled only the afterEach parent-removal block. The test command passed 7/7, exit 0. ls -d scratch printed scratch, exit 0, and find reported no children. rmdir scratch returned exit 0. Restored the cleanup and reran the command: 7/7 passed, exit 0; ls -d scratch reported absence, exit 1.
+- Strict-pass freshness: disabled only the afterEach parent-removal block. The test command passed 5/5, exit 0. ls -d scratch printed scratch, exit 0, and find reported no children. rmdir scratch returned exit 0. Restored the cleanup and reran the command: 5/5 passed, exit 0; ls -d scratch reported absence, exit 1.
+
+One strict-pass restored-run invocation did not launch because its tool working-directory argument repeated the worktree path. The process launcher returned ENOENT before Vitest ran. The command was then run from the correct CLI directory and produced the 5/5, exit 0 result recorded above.
+
+CHECKS
+
+- git diff --check -- .skilled/skills/system-spec-kit/runtime/cli/tests/validation-gate-hardening.vitest.ts .skilled/skills/system-spec-kit/runtime/cli/tests/strict-pass-freshness.vitest.ts
+  Exit 0. Git printed an fsmonitor IPC warning. Repeated with git -c core.fsmonitor=false diff --check and the same two paths: exit 0, no output.
+- bash .skilled/skills/system-spec-kit/runtime/cli/rules/check-comment-hygiene.sh .skilled/skills/system-spec-kit/runtime/cli/tests/validation-gate-hardening.vitest.ts
+  Exit 0, no output.
+- bash .skilled/skills/system-spec-kit/runtime/cli/rules/check-comment-hygiene.sh .skilled/skills/system-spec-kit/runtime/cli/tests/strict-pass-freshness.vitest.ts
+  Exit 0, no output.
+- The sk-code checker is Python despite its .sh suffix. Initial bash invocations for both files exited 2 before checking them. After reading its shebang, python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh with each test file returned exit 0, no output.
+- bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
+  Exit 1. Alignment drift passed with 0 errors and 272 warnings across 22,335 files. Stack folders passed for 6 language folders. Router-sync passed checks 1a, 2, 3 and 4, but check 1b failed because .skilled/skills/sk-code/sk-code-opencode/assets/scripts/.pytest_cache/README.md is an orphan routable asset. Doc claims passed 4/4. ls -la showed the cache directory timestamp as Oct 8, before these Oct 11 runs. This out-of-scope path was not changed.
+
+FINAL STATE
+
+ls -d scratch reported "No such file or directory", exit 1. The source diff is 12 insertions in each requested test file, 24 insertions total. Another lane's existing modification to tests/upgrade-legacy.vitest.ts was left untouched.
+Each Vitest invocation also printed the same Vite native-config compatibility warning in both baseline and fixed-code runs; the recorded test counts and exit statuses were unchanged.

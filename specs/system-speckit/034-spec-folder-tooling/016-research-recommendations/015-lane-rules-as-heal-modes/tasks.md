@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Phase 15: lane-rules-as-heal-modes"
-description: "The task list for Phase 15: lane-rules-as-heal-modes, each task naming its file and the evidence that closed it. The one open task and the open checklist rows are listed in implementation-summary.md."
+description: "The task list for Phase 15: lane-rules-as-heal-modes, with evidence for each task."
 trigger_phrases:
   - "lane rules as heal modes tasks"
 importance_tier: "normal"
@@ -66,7 +66,7 @@ contextType: "general"
 - [x] T019 Integration test: all five modes in sequence under `upgrade-legacy --apply`, then a rerun with identical bytes and an identical baseline (`upgrade-legacy.vitest.ts::all-modes-sequence`). Scope note: the fixture is one packet under a root, not a corpus of failing packets. The corpus-scale second run is recorded under AC-019.
 - [x] T020 Update `.skilled/skills/system-spec-kit/runtime/cli/spec/README.md` to document each new mode, its derivability rule and when it refuses (the "Heal Lane Modes" subsection and the `--lane-modes` CLI row).
 - [x] T021 Verify the existing test suite passes with no new failures (`npm --prefix .skilled/skills/system-spec-kit/runtime/cli test`, exit status in `gates/tree5/cli-test.rc`, and the focused run in `gates/tree5/focused-vitest.log`).
-- [ ] T022 Run upgrade-legacy --apply on a test corpus and verify per-folder validation reports no new findings on the second run. **Open, operator item.** Not run at corpus scale. The evidence log records the full-corpus `--apply` in a throwaway clone as skipped, with the operator not objecting, and as a follow-up. `upgrade-legacy --apply` refuses a tree without git (phase 010), and the scratch corpus copy has no git repository. The one-packet version is `all-modes-sequence`. The corpus-scale second lane-mode run is AC-019.
+- [x] T022 Run upgrade-legacy --apply on a test corpus and verify per-folder validation reports no new findings on the second run. Evidence: `../../021-follow-up-defect-fixes/scratch/evidence/lane-17-t022-corpus.txt`. Apply 1 moved passing packets from 4,282 of 4,335 to 4,335 of 4,335. Apply 2 planned 0 changes, changed 0 files and recorded the same 133 findings.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -74,7 +74,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]` (T022 is open, see above)
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed (the corpus CLI runs in `gates/closeout-015/`, and the tests named above)
 <!-- /ANCHOR:completion -->
@@ -145,7 +145,7 @@ contextType: "general"
 - [x] CHK-FIX-004 [P0] Security, path, parser and redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op and fallback cases. Evidence: the test round's table `continuity-placeholders-archive-placement` (`heal-lane-modes.vitest.ts:922`, eight rows) covers delimiter look-alikes (`z_archived`, `z_archive-notes`, `my_z_archive`), joined and `..` spellings (a doubled separator, and `..` segments into and out of `z_archive`), outside-root (a document below no specs root), the no-op (an ordinary active packet) and the fallback. The outside-root case above the specs root is `continuity-placeholders-archive-status-from-specs-root`. Ran in the tree5 gate (`gates/tree5/focused-vitest.log`).
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed (implementation-summary.md, test matrix).
 - [x] CHK-FIX-006 [P1] Hostile env or global-state variant executed when tests or code read process-wide state. Evidence: `link-repoint-hostile-working-directory` (`heal-lane-modes.vitest.ts:782`) runs the link-repoint mode for a packet outside git from an unrelated directory that holds a markdown near-miss, where it must refuse and leave both trees unchanged, and then from the packet root, where it must repoint to the `z_archive` copy. It restores the working directory after each run. The lane code reads `process.cwd()` when a document is outside git, which is the state this variant covers. A review of the test round (TR-R1 F1) found that the first version could not fail, so 015-T3 changed the fixture until the right root and the wrong root give different outcomes (evidence log, 015-T3). The file passed 42 of 42 after that change (`gates/tests-after-tr/lane.log`), and the tree5 focused run covers the same file (`gates/tree5/focused-vitest.log`, 152 tests, rc 0). The state leak found during the build (015-F4) was fixed and reproduced before the fix.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. **Open.** The build is not committed yet. It ships in the combined commit that parent D6 names, and the SHA is pinned after that commit.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. Closed 2026-10-10: pinned to 124e11c883, the commit that added anchorWrap, linkRepoint, continuityPlaceholders, levelFromSpec and headerAdd in heal-spec-docs.cjs and heal-lane-modes.vitest.ts. Commit 014e573449 later changed heal-lane-modes.vitest.ts and heal-spec-docs.cjs.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -185,8 +185,8 @@ contextType: "general"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 12 | 12/12 |
-| P1 Items | 13 | 12/13 (open: CHK-FIX-007) |
+| P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-10-09
+**Verification Date**: 2026-10-10
 <!-- /ANCHOR:summary -->

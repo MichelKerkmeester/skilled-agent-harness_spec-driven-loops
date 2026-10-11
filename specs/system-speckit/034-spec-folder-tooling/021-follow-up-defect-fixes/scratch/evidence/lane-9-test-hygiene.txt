@@ -1,0 +1,47 @@
+Lane 9 test hygiene, evidence for REQ-013 and REQ-014
+
+Raw logs are in the lane scratch folder, L9/, under the session scratchpad:
+  /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/L9/
+
+Files changed (git diff --stat, not committed)
+  .skilled/skills/system-spec-kit/runtime/cli/tests/ci-rule-set-comparison.vitest.ts     11 insertions
+  .skilled/skills/system-spec-kit/runtime/tests/folder-discovery-integration.vitest.ts   25 lines changed
+
+Baseline, before any edit
+  ci-rule-set-comparison.vitest.ts, cli project: 15 passed, 0 failed, exit 0 (baseline-comparison.log)
+  folder-discovery-integration.vitest.ts, root project: 43 passed, 0 failed, exit 0 (baseline-integration.log)
+
+Red (a), unfixed code
+  The repository root had no scratch/ folder before the run. After one run of the comparison file,
+  an empty scratch/ folder existed at the repository root (lane-9-red-a-listing.txt). The run still
+  reported 15 of 15 passing. The empty folder was removed with rmdir only.
+
+Red (b), unfixed code under CPU load
+  NOT CAPTURED. The planned load (18 busy loops, one per core, stopped by PID within 60 seconds)
+  was refused before it ran by a built-in safety check on the shell command. No load was started,
+  and the command was not retried in another form. The under-load red run and the under-load green
+  run for T046-26 are therefore still open and need an operator-run load step.
+
+Green, after the fixes
+  ci-rule-set-comparison.vitest.ts, cli project: 15 passed, 0 failed, exit 0 (green-comparison.log)
+  repository scratch/ before the run: absent. After the run: absent (lane-9-green-a-listing.txt)
+  folder-discovery-integration.vitest.ts, root project: 43 passed, 0 failed, exit 0 (green-integration.log)
+  The T046-26 test now takes the median of 9 calls after 3 warm-up calls, against the 5 ms limit.
+
+Control, mirror built with the mirror script (L9-control, no mutants)
+  Comparison file: 15 passed, exit 0 (control-comparison.log). scratch/ absent after the run.
+  Pre-existing scratch/ with marker.txt in the mirror: 15 passed, exit 0 (control-comparison-preexisting.log).
+  The scratch/ folder and marker.txt survived the run, and no workspace was left behind.
+  Integration file: 43 passed, exit 0 (control-integration.log).
+
+Mutant M9-a, scratch cleanup removed (L9-M9a)
+  Comparison file: 15 passed, exit 0 (M9a-comparison-rerun.log). The vitest counts do not catch this
+  mutant, as planned. The residue check fails: an empty scratch/ folder remains at the mirror root
+  (M9a-residue.txt).
+  A first attempt at this mutant failed on 12 tests with ENOENT for the workflow file. That was a
+  setup error on my side, because the mirror had no .github copy. The mirror was rebuilt with the copy
+  and rerun, and the rerun is the result above (M9a-comparison.log is the first attempt).
+
+Mutant M9-b, 6 ms busy wait in loadPerFolderDescription (L9-M9b)
+  T046-26: FAILS, exit 1 (M9b-T046-26.log). Reason: "expected 6.186832999999979 to be less than 5".
+  The median of 9 calls under the busy wait is above the limit, so the new check still sees a real slowdown.

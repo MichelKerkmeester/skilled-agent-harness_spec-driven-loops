@@ -298,5 +298,112 @@ expect "mismatched launch still starts the session" test "$F8_RC" -eq 0
 expect "an uncommitted move in main is reported as a source-root mismatch" \
   grep -F "main checkout keeps its source tree under .skilled but the new worktree keeps it under .opencode" "$ROOT/f8.stderr"
 expect "the mismatched worktree plants no links in its .skilled placeholder" test ! -e "$F8_WT/.skilled/skills"
+
+# ── A launched session carries a launcher-only marker, never the dispatched-child marker ──
+# The stub records its environment, then asks the launcher for a dry run from the main checkout,
+# as a descendant that changed directory would. That descendant must exec in place rather than
+# plan a second worktree.
+F9_MAIN="$ROOT/f9"
+F9_BASE="$ROOT/f9-base"
+F9_ENV_RECORD="$ROOT/f9.env"
+F9_NESTED_RECORD="$ROOT/f9.nested"
+mkdir -p "$F9_MAIN" "$F9_BASE"
+make_fixture "$F9_MAIN"
+F9_MAIN="$(cd "$F9_MAIN" && pwd -P)"
+F9_BASE="$(cd "$F9_BASE" && pwd -P)"
+cat > "$BIN_DIR/launchedrt" <<EOF
+#!/usr/bin/env bash
+env > "$F9_ENV_RECORD"
+(cd "$F9_MAIN" && bash "$WRAPPER" --dry-run myrt) > "$F9_NESTED_RECORD" 2>&1 || true
+EOF
+chmod +x "$BIN_DIR/launchedrt"
+set +e
+(
+  cd "$F9_MAIN" || exit 1
+  env -u AI_SESSION_CHILD -u SPECKIT_WORKTREE_SHARED_PATHS \
+    PATH="$BIN_DIR:$PATH" \
+    SPECKIT_WORKTREE_BASE="$F9_BASE" \
+    bash "$WRAPPER" launchedrt
+) >"$ROOT/f9.stdout" 2>"$ROOT/f9.stderr"
+F9_RC=$?
+set -e
+
+expect "launched session starts" test "$F9_RC" -eq 0
+expect_not "launched session does not carry the dispatched-child marker" grep -q '^AI_SESSION_CHILD=' "$F9_ENV_RECORD"
+expect "launched session carries the launcher-only marker" grep -q '^SKILLED_WORKTREE_SESSION=1$' "$F9_ENV_RECORD"
+expect "descendant started from the main checkout execs in place" grep -F "would exec in place: myrt" "$F9_NESTED_RECORD"
+expect_not "descendant started from the main checkout plans no second worktree" grep -F "work/myrt/" "$F9_NESTED_RECORD"
+
+# ── A worktree base written with a leading tilde resolves to the home directory ──
+F10_FIXTURE="$ROOT/f10"
+mkdir -p "$F10_FIXTURE"
+make_fixture "$F10_FIXTURE"
+F10_FIXTURE="$(cd "$F10_FIXTURE" && pwd -P)"
+set +e
+(
+  cd "$F10_FIXTURE" || exit 1
+  env -u AI_SESSION_CHILD -u SKILLED_WORKTREE_SESSION -u SPECKIT_WORKTREE_SHARED_PATHS -u SYSTEM_SPEC_GATE_ENFORCE \
+    PATH="$BIN_DIR:$PATH" \
+    SPECKIT_WORKTREE_BASE='~/f10-base' \
+    bash "$WRAPPER" --dry-run myrt
+) >"$ROOT/f10.stdout" 2>"$ROOT/f10.stderr"
+F10_RC=$?
+set -e
+
+expect "tilde base dry-run succeeds" test "$F10_RC" -eq 0
+expect "tilde base plans its worktree under HOME" grep -F "$FAKE_HOME/f10-base/" "$ROOT/f10.stdout"
+
+# ── The enforce setting each launch path hands to its runtime ──
+# A stub records the enforce value it inherits. Only a dispatched child is neutralized: a launched
+# session and a session already in a linked worktree keep the value the operator set.
+F11_MAIN="$ROOT/f11"
+F11_BASE="$ROOT/f11-base"
+mkdir -p "$F11_MAIN" "$F11_BASE"
+make_fixture "$F11_MAIN"
+F11_MAIN="$(cd "$F11_MAIN" && pwd -P)"
+F11_BASE="$(cd "$F11_BASE" && pwd -P)"
+printf '%s\n' '#!/usr/bin/env bash' 'printf "%s\n" "${SYSTEM_SPEC_GATE_ENFORCE-unset}" > "$ENFORCE_RECORD"' > "$BIN_DIR/enfrt"
+chmod +x "$BIN_DIR/enfrt"
+
+probe_enforce() {
+  local record="$1" cwd="$2"
+  shift 2
+  set +e
+  (
+    cd "$cwd" || exit 1
+    env -u SYSTEM_SPEC_GATE_ENFORCE -u AI_SESSION_CHILD -u SKILLED_WORKTREE_SESSION -u SPECKIT_WORKTREE_SHARED_PATHS \
+      PATH="$BIN_DIR:$PATH" SPECKIT_WORKTREE_BASE="$F11_BASE" ENFORCE_RECORD="$record" \
+      "$@" bash "$WRAPPER" enfrt
+  ) >/dev/null 2>"$record.stderr"
+  set -e
+}
+
+probe_enforce "$ROOT/f11-child.rec" "$F11_MAIN" AI_SESSION_CHILD=1 SYSTEM_SPEC_GATE_ENFORCE=1
+expect "dispatched child sees the enforce setting off" grep -qx 0 "$ROOT/f11-child.rec"
+
+probe_enforce "$ROOT/f11-marker.rec" "$F11_MAIN" SKILLED_WORKTREE_SESSION=1 SYSTEM_SPEC_GATE_ENFORCE=1
+expect "descendant of a launched session keeps the enforce setting" grep -qx 1 "$ROOT/f11-marker.rec"
+
+F11_LINKED="$ROOT/f11-linked"
+git -C "$F11_MAIN" worktree add -q --detach "$F11_LINKED"
+F11_LINKED="$(cd "$F11_LINKED" && pwd -P)"
+probe_enforce "$ROOT/f11-linked.rec" "$F11_LINKED" SYSTEM_SPEC_GATE_ENFORCE=1
+expect "session already in a linked worktree keeps the enforce setting" grep -qx 1 "$ROOT/f11-linked.rec"
+
+probe_enforce "$ROOT/f11-launched.rec" "$F11_MAIN" SYSTEM_SPEC_GATE_ENFORCE=1
+expect "top-level launch keeps the enforce setting" grep -qx 1 "$ROOT/f11-launched.rec"
+
+set +e
+(
+  cd "$F11_MAIN" || exit 1
+  env -u SYSTEM_SPEC_GATE_ENFORCE -u AI_SESSION_CHILD -u SPECKIT_WORKTREE_SHARED_PATHS \
+    PATH="$BIN_DIR:$PATH" SPECKIT_WORKTREE_BASE="$F11_BASE" \
+    SKILLED_WORKTREE_SESSION=1 \
+    bash "$WRAPPER" --dry-run myrt
+) >"$ROOT/f11-dry.stdout" 2>"$ROOT/f11-dry.stderr"
+set -e
+expect "descendant dry run names the exec in place" grep -F "would exec in place: myrt" "$ROOT/f11-dry.stdout"
+expect_not "dry run claims no enforce value when none is set" grep -F "SYSTEM_SPEC_GATE_ENFORCE=0" "$ROOT/f11-dry.stdout"
+
 echo "worktree-session tests: PASS=$PASS FAIL=$FAIL"
 [ "$FAIL" -eq 0 ]

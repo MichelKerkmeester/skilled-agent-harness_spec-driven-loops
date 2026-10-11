@@ -1,6 +1,6 @@
 ---
 title: "006 Core RAG Sprints 0 to 8 [system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/handover]"
-description: 'title: "006 Core RAG Sprints 0 to 8 - Consolidated handover"'
+description: "This file consolidates handover.md from sprint folders 006 through 018."
 trigger_phrases:
   - "006"
   - "core"

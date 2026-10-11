@@ -1,0 +1,118 @@
+Lane 17: 016/015 T022, upgrade-legacy --apply twice on the packets with work to do, in a throwaway clone
+======================================================================================================
+Run by the orchestrator on 2026-10-10 under decisions D17 ("Run in a throwaway clone") and D26 ("First delete the deprecated sk communication spec track compeltely , than do packets with work to do").
+
+Clone
+-----
+Built with the session clone builder (scratchpad t022/build-clone.sh) from worktree HEAD ba56b03412 plus the uncommitted worktree diff, after every code lane had landed (fixA to fixC). Status coverage 1141 of 1141 changed paths, build exit 0.
+In the clone only: the origin remote was removed so nothing could be pushed, and the starting state was committed as a checkpoint (edf8f55e39) so each apply shows as its own diff. Git ran with an empty isolated global config and no hooks.
+
+Dry run (which packets have work to do)
+---------------------------------------
+Command: node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --include-archive
+Result: inspected 4335 (active 2137, archived 2198), passing 4282 of 4335, rc 1 (failing packets found), 816 seconds.
+This run used an earlier clone built before fixB. Apply 1 below, on the final code, planned the same 53 packets, so fixB added no failing packet.
+upgrade-legacy touches only failing packets, so these 53 are the packets with work to do.
+
+Apply 1
+-------
+Command: node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --include-archive --apply
+  plan changes=53
+  step fill-frontmatter: ok
+  step anchor-repair: ok (10 packets, 0 changed)
+  step heal-spec-docs: ok (10 packets)
+  step lane-modes: ok (10 packets, 27 refusals)
+  step repair-derived: ok
+  step migrate-generated-json: ok
+  step anchor-unnest (archived): ok (43 packets, 0 changed)
+  step repair-derived (archived): ok
+  inspected=4335 active=2137 archived=2198
+  passing before=4282/4335 after=4335/4335
+  rc=0 seconds=1468
+Repaired outright, now passing with no recorded finding: 17 packets. Five of them are packets this phase edited (016 children 003, 009, 011 and 015 and 021), whose only failures were generated-metadata drift.
+  specs/cli-external-orchestration/z_archive/019-cli-opencode-minimax-optimization
+  specs/cli-external-orchestration/z_archive/021-cli-gemini-deprecation
+  specs/cli-external-orchestration/z_archive/022-cli-devin-deprecation
+  specs/sk-design/z_archive/009-sk-design-claude-parity
+  specs/sk-doc/z_archive/028-sk-create-diagram
+  specs/system-deep-loop/z_archive/010-deep-context-gathering
+  specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks
+  specs/system-deep-loop/z_archive/028-deprecate-deep-context-integrate-capabilities
+  specs/system-skill-advisor/z_archive/009-playbook-run-and-remediation
+  specs/system-skill-advisor/z_archive/010-skill-advisor-embedder-stack
+  specs/system-skill-advisor/z_archive/011-skill-advisor-cli
+  specs/system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items
+  specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups
+  specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility
+  specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode
+  specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes
+  specs/system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes
+Recorded in a new upgrade-baseline.json, the remaining findings now warnings: 36 packets, 133 findings.
+  specs/cli-external-orchestration/z_archive/023-kimi-k2-7-code-support
+  specs/cli-external-orchestration/z_archive/024-glm-5-2-support
+  specs/sk-design/z_archive/012-sk-design-program/004-hallmark-design-system
+  specs/sk-doc/z_archive/006-sk-doc-agent-template-alignment
+  specs/sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix
+  specs/sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames
+  specs/sk-doc/z_archive/019-skill-routing-refactor
+  specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification
+  specs/sk-doc/z_archive/020-hyphen-naming-convention
+  specs/sk-prompt/z_archive/002-sk-improve-prompt-rename
+  specs/system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode
+  specs/system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode
+  specs/system-deep-loop/z_archive/015-sk-deep-rename
+  specs/system-deep-loop/z_archive/020-skill-readme-standardization
+  specs/system-deep-loop/z_archive/021-multi-ai-council-write-protocol
+  specs/system-deep-loop/z_archive/023-deep-loop-workflows
+  specs/system-deep-loop/z_archive/024-deep-loop-improved
+  specs/system-deep-loop/z_archive/024-deep-loop-improved/008-loop-systems-remediation
+  specs/system-deep-loop/z_archive/025-deep-loop-gpt-reliability/006-reliability-fixes
+  specs/system-deep-loop/z_archive/026-goal-opencode-plugin
+  specs/system-deep-loop/z_archive/029-deep-loop-runtime
+  specs/system-skill-advisor/z_archive/004-skill-graph
+  specs/system-skill-advisor/z_archive/005-skill-advisor-scoring-engine
+  specs/system-skill-advisor/z_archive/006-skill-advisor-routing-engine
+  specs/system-skill-advisor/z_archive/007-skill-advisor-production-hardening
+  specs/system-skill-advisor/z_archive/008-skill-advisor-documentation
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings
+  specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups
+  specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack
+  specs/system-speckit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules
+  specs/system-speckit/z_archive/001-fix-command-dispatch/z_archive/027-memory-plugin-and-refinement
+  specs/system-speckit/z_archive/001-fix-command-dispatch/z_archive/065-anchor-system-implementation
+  specs/system-speckit/z_archive/013-memory-overhaul-and-agent-upgrade-release/001-readme-alignment
+  specs/system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic
+Recorded findings by rule:
+    ANCHORS_VALID: 4
+    FRONTMATTER_MEMORY_BLOCK: 8
+    FRONTMATTER_VALID: 2
+    GRAPH_METADATA_CHILD_IDENTITY: 17
+    GREP_CONVENTION: 39
+    SPEC_DOC_INTEGRITY: 29
+    SPEC_DOC_SUFFICIENCY: 23
+    STATUS_CROSS_DOC_CONSISTENCY: 2
+    TEMPLATE_SOURCE: 9
+
+Files changed by apply 1 (git diff of the clone against the checkpoint): 90 files changed, 1120 insertions(+), 219 deletions(-)
+  36 new upgrade-baseline.json, 33 graph-metadata.json, 18 description.json and 3 markdown files. Nothing outside specs/.
+  The 3 markdown files: two frontmatter fills in the active packet system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups (handover.md and spec.md), and the continuity placeholders in 021 implementation-summary.md.
+  Finding: the handover.md fill wrote description: 'title: "032 substrate-repair-followups — Final Handover"'. The fill derived the description from the document's own frontmatter line. 40 documents in the repository already carried the same defect. The operator chose to fix the code and repair all 40 (D28, lane-22-fill-description.txt).
+
+Apply 2
+-------
+Same command, on the clone after apply 1 (checkpoint 456bee6352).
+  plan changes=0
+  step heal-spec-docs: ok (0 packets)
+  step lane-modes: ok (0 packets, 0 refusals)
+  inspected=4335 active=2137 archived=2198
+  passing before=4335/4335 after=4335/4335
+  rc=0 seconds=1402
+  Files changed by apply 2: 0
+  Recorded downgrades: apply 1 133, apply 2 133, the two sets are identical (diff exit 0).
+
+Verdict
+-------
+T022 holds: the second run planned no change, changed no file, kept 4335 of 4335 packets passing and recorded exactly the findings the first run recorded, so per-folder validation reports no new findings on the second run.
+Raw logs: session scratchpad t022/ (dry-full.log, apply1.log, apply2.log, the status files, apply1-names.txt, apply1-diffstat.txt and the load samples).

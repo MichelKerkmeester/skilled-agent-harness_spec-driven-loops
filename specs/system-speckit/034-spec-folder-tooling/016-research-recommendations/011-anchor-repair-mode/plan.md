@@ -176,9 +176,9 @@ upgrade-legacy.mjs step (depends on mode)
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Phase 1 (SH-01) must ship first so the template fix is available.
-- [ ] Batch testing will clear 50+ documents without regressions.
-- [ ] Dry-run and apply tests must pass.
+- [x] Phase 1 (SH-01) must ship first so the template fix is available. Evidence: template change commit 3e427227cf744892b6e29be4880fa367f5dfcb16 is an ancestor of 011 commit 124e11c883d4f955fe097f8af6c308f9c33a841c.
+- [x] Batch testing will clear 50+ documents without regressions. Evidence: implementation-summary.md, How It Was Verified, records 50 source packets with ANCHORS_VALID passing on all 50. One full validation failure was an identity backup with pre-existing metadata drift. The operator ruled it out of scope and left it untouched in ../../021-follow-up-defect-fixes/scratch/evidence/lane-12-anchor-repair-boxes.txt.
+- [x] Dry-run and apply tests must pass. Evidence: acceptance-criteria.md AC-001, AC-003 and AC-004, plus implementation-summary.md, How It Was Verified. The 60-document dry run left the sandbox byte-identical and the focused apply and atomic-write cases passed.
 
 ### Rollback Procedure
 1. `git revert` the anchor-repair mode and upgrade integration commits.

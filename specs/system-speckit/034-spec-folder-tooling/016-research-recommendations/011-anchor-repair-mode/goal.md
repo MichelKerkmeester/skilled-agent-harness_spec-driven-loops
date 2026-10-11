@@ -60,12 +60,12 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] Dry-run on a document with all three anchor defect types reports findings and writes no files
-- [ ] Collision detection prevents suffix conflicts when numbering ambiguous duplicates
+- [x] Dry-run on a document with all three anchor defect types reports findings and writes no files
+- [x] Collision detection prevents suffix conflicts when numbering ambiguous duplicates
 - [ ] Apply on 50 randomly selected documents from the 549 nested questions layouts leaves all documents valid
-- [ ] The anchor-repair step runs in `upgrade-legacy --apply` and the full upgrade passes
-- [ ] An archived fixture with the nested layout is un-nested by `upgrade-legacy --apply --include-archive`, and a test shows its prose lines are unchanged
-- [ ] The spec-kit test suite passes with no regressions
+- [x] The anchor-repair step runs in `upgrade-legacy --apply` and the full upgrade passes
+- [x] An archived fixture with the nested layout is un-nested by `upgrade-legacy --apply --include-archive`, and a test shows its prose lines are unchanged
+- [x] The spec-kit test suite passes with no regressions
 <!-- /ANCHOR:completion -->
 
 ---

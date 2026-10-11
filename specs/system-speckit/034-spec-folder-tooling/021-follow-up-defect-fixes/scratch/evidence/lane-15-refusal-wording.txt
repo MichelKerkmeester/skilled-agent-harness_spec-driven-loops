@@ -1,0 +1,96 @@
+Healer refusal wording
+======================
+
+Plain folder outside the supplied specs root
+---------------------------------------------
+Old: refused <folder>: symbolic link, not followed (it resolves outside the specs root)
+New: refused <folder>: it resolves outside the specs root
+The plain-folder case asserts the full message and confirms the outside spec stays unchanged.
+
+Outside folder reached through a linked parent
+-----------------------------------------------
+Old: refused <folder>: symbolic link, not followed (it resolves outside the specs root)
+New: refused <folder>: symbolic link, not followed (it resolves outside the specs root)
+The linked-parent case keeps the existing link wording and confirms the outside spec stays unchanged.
+
+Required CLI test command
+-------------------------
+Working directory: .skilled/skills/system-spec-kit/runtime/cli
+Command: npx vitest run --config ../../vitest.config.ts --project cli tests/heal-symlink-containment.vitest.ts tests/heal-anchor-repair.vitest.ts tests/heal-arguments.vitest.ts tests/heal-target-parity.vitest.ts tests/heal-lane-modes.vitest.ts
+Result: exit 0; 5 test files passed; 140 tests passed.
+
+Mutant
+------
+Spec: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/luna-wording/M-old-text.mjs
+Build command: node /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/mkmirror.mjs luna-wording-M /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/luna-wording/M-old-text.mjs
+Build result: exit 0; M-old-text applied; mirror ready.
+Test command from the mutant mirror CLI directory: npx vitest run --config ../../vitest.config.ts --project cli tests/heal-symlink-containment.vitest.ts
+Test result: exit 1; 1 test file failed; 1 test failed and 39 passed. The plain-folder assertion received the old symbolic-link wording.
+
+Unmutated control
+-----------------
+Build command: node /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/mkmirror.mjs luna-wording-control -
+Build result: exit 0; mirror ready.
+Test command from the control mirror CLI directory: npx vitest run --config ../../vitest.config.ts --project cli tests/heal-symlink-containment.vitest.ts
+Test result: exit 0; 1 test file passed; 40 tests passed.
+
+Additional verification
+-----------------------
+Command: bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
+Result: exit 0; both guards passed. Alignment drift reported 247 warnings and 0 errors; stack-folder verification passed for all 6 language folders.
+
+Packet strict validation was not run for this lane. The generated-metadata refresh is reserved for orchestrator closeout.
+Vitest emitted its Vite configLoader/native compatibility warning; it did not change any test result.
+No EPERM or listen errors occurred.
+
+Review fix P2-1 and P2-7
+========================
+
+P2-1 red test
+-------------
+Command from `.skilled/skills/system-spec-kit/runtime/cli`:
+`npx vitest run --config ../../vitest.config.ts --project cli tests/heal-symlink-containment.vitest.ts -t "system symlink above"`
+Result: exit 1; 1 failed and 40 skipped. The plain folder resolved outside the specs root, but the old code printed the symbolic-link wording. The CLI still exited 2 and the outside spec digest stayed unchanged.
+
+Required healer suites before and after
+---------------------------------------
+Command from `.skilled/skills/system-spec-kit/runtime/cli`:
+`npx vitest run --config ../../vitest.config.ts --project cli tests/heal-symlink-containment.vitest.ts tests/heal-anchor-repair.vitest.ts tests/heal-arguments.vitest.ts tests/heal-target-parity.vitest.ts tests/heal-lane-modes.vitest.ts`
+Baseline: exit 0; 5 files passed and 140 tests passed.
+Final: exit 0; 5 files passed and 141 tests passed.
+The full containment file also passed after the fix: exit 0; 1 file and 41 tests passed.
+
+P2-1 mutant and control
+-----------------------
+Control build: `node /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/mkmirror.mjs p2-1-control -`
+Result: exit 0; mirror ready.
+Control test from the mirror CLI directory: `npx vitest run --config ../../vitest.config.ts --project cli tests/heal-symlink-containment.vitest.ts -t "system symlink above"`
+Result: exit 0; 1 passed and 40 skipped.
+
+Mutant build: `node /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/mkmirror.mjs p2-1-mutant /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/p2-1-old-hasLinkOnPath.mjs`
+Result: exit 0; the old `hasLinkOnPath` expression was restored in the mirror.
+Mutant test from the mirror CLI directory: `npx vitest run --config ../../vitest.config.ts --project cli tests/heal-symlink-containment.vitest.ts -t "system symlink above"`
+Result: exit 1; 1 failed and 40 skipped. The new assertion received the old symbolic-link wording.
+
+P2-7 red and green
+------------------
+Check command: `node -e 'const fs = require("node:fs"); const text = fs.readFileSync(".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-lane-modes.md", "utf8"); const stale = "The CLI stops with exit 2 on any other argument."; if (text.includes(stale)) { console.error("FAIL: catalog still claims all other arguments stop with exit 2"); process.exitCode = 1; } else { console.log("PASS: no stale any-other-argument claim"); }'`
+Before edit: exit 1; the stale sentence was present.
+After edit: exit 0; `PASS: no stale any-other-argument claim`.
+Catalog validation: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-lane-modes.md`
+Result: exit 0; valid feature-catalog document with 0 issues.
+
+OpenCode alignment check
+------------------------
+Command: `python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit/runtime/cli`
+Result: exit 0; 552 files scanned, 0 findings, 0 errors, 0 warnings and 0 violations.
+
+Packet validation
+-----------------
+Command: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes --strict`
+Result: `RESULT: FAILED`, exit 2. The two enforced errors are generated metadata fingerprint mismatch and description drift. The AC coverage advisory reports 25 of 26 rows with evidence and malformed citation AC-017. Generated metadata files were left untouched for orchestrator re-derivation.
+
+Environment notes
+-----------------
+Vitest emitted the existing Vite native config-loader warning. It did not change test results. A process listing probe failed with `operation not permitted` and exit 1 because the sandbox blocked `ps`. The completed test commands had no EPERM or listen errors.
+The first baseline invocation returned before exposing an exit status. The baseline was repeated with session polling and the completed result is recorded above.

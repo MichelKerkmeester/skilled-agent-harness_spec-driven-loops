@@ -82,12 +82,12 @@ class RepoGuardsTests(unittest.TestCase):
         self.plugin = _load_plugin()
         self.ctx = FakeContext()
         self.plugin.register(self.ctx)
-        # A run inside a dispatched child would otherwise pre-set the orchestrated-leaf switches
-        # for every test; each prompt-time test opts into them explicitly instead.
-        for name in self.plugin.ORCHESTRATED_LEAF_ENVS:
-            if name in os.environ:
-                self.addCleanup(os.environ.__setitem__, name, os.environ[name])
-                os.environ.pop(name)
+        # A run inside a dispatched child would otherwise pre-set the orchestrated-leaf marker
+        # for every test; each prompt-time test opts into it explicitly instead.
+        name = self.plugin.ORCHESTRATED_LEAF_ENV
+        if name in os.environ:
+            self.addCleanup(os.environ.__setitem__, name, os.environ[name])
+            os.environ.pop(name)
         # A test that reaches the real goal core binds into a throwaway store, never the repo's own.
         state_dir = tempfile.TemporaryDirectory()
         self.addCleanup(state_dir.cleanup)
@@ -287,14 +287,24 @@ class RepoGuardsTests(unittest.TestCase):
         self.assertNotIn(self.plugin.SPEC_GATE_CLASSIFY, gate_scripts)
         self.assertNotIn(self.plugin.SPEC_GATE_ENFORCE, gate_scripts)
 
-        # Either switch alone is still an interactive session, and it gets its briefs and its gate.
-        for switch in ("SYSTEM_SPEC_GATE_DISABLED", "AI_SESSION_CHILD"):
+        # The disable switch alone is still an interactive session, and it gets its briefs and its gate.
+        for switch in ("SYSTEM_SPEC_GATE_DISABLED",):
             with mock.patch.dict(os.environ, {switch: "1"}), \
                  mock.patch.object(self.plugin.subprocess, "run", return_value=mock.Mock(stdout=advisor_stdout([recommendation()]))), \
                  mock.patch.object(self.plugin, "_run_core", return_value={"hookSpecificOutput": {}}) as core:
                 out = self.plugin.pre_llm_call(user_message="anything", session_id="s1")
             self.assertIn("Advisor:", out["context"], switch)
             self.assertGreaterEqual(core.call_count, 1, switch)
+
+    def test_the_dispatched_child_marker_alone_marks_a_leaf(self):
+        with mock.patch.dict(os.environ, {"AI_SESSION_CHILD": "1"}), \
+             mock.patch.object(self.plugin.subprocess, "run",
+                               return_value=mock.Mock(stdout=advisor_stdout([recommendation()]))), \
+             mock.patch.object(self.plugin, "_run_core", return_value={"hookSpecificOutput": {}}) as core:
+            out = self.plugin.pre_llm_call(user_message="create src/app.py", is_first_turn=True, session_id="s1")
+        self.assertIn("Advisor:", out["context"])
+        gate_scripts = [call.args[0] for call in core.call_args_list]
+        self.assertNotIn(self.plugin.SPEC_GATE_CLASSIFY, gate_scripts)
 
     def test_a_failing_prompt_core_yields_no_context(self):
         for failure in (

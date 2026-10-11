@@ -83,7 +83,7 @@ workflow:
     checks:
       - "Confirm the current directory is inside a git repository."
       - "Confirm the two upstream scripts exist: the engine and upgrade_legacy."
-      - "While .skilled/release/.apply.lock exists, refuse with STATUS=BLOCKED and run no command."
+      - "While .skilled/release/.apply.lock exists, refuse with STATUS=BLOCKED and run no command. The layout map, the dry run and --apply enforce the same lock in upgrade-legacy and exit 2 naming the lock file, so the refusal the agent gives and the one the command gives agree."
     commands:
       release_check: "node .skilled/commands/doctor/scripts/release-update.cjs check --repo . --json [--offline]"
     recovery: "Read the move log at move_log.path first. Group its lines by run; when the newest run has no run-complete event, it was interrupted: show its step-done steps as done and the step with step-started but no step-done as interrupted, using the presentation's Interrupted run template. Recompute the layout map and continue with the recomputed steps, which list only the moves still to do. When the recomputed state is v4, .opencode/specs is absent and that interrupted run planned link-legacy-path without step-done, the only remaining step is link-legacy-path, because a finished-looking tree cannot show that the link step is still owed. Every recovery still asks phase_3_move_approval before any step runs."
