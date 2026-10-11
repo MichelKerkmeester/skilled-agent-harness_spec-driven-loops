@@ -1,5 +1,5 @@
 {
-  "manifestHash": "37383163fa3343be9548db9557fa280bb3ce3e08fc9097d714c27267919fdb4e",
+  "manifestHash": "ecd5e9f9f5f8ac79e57694b300f95b0cc273af19c04a3ef84f85b26d4978412f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -70363,6 +70363,9 @@
     "phase 17 plan": [
       "phase 17 plan"
     ],
+    "phase 17 release changelog": [
+      "phase 17 release changelog"
+    ],
     "phase 17 status": [
       "phase 17 status"
     ],
@@ -78280,6 +78283,18 @@
     ],
     "release branch still carried memory": [
       "release branch still carried memory"
+    ],
+    "release changelog": [
+      "release changelog"
+    ],
+    "release changelog implementation summary": [
+      "release changelog implementation summary"
+    ],
+    "release changelog plan": [
+      "release changelog plan"
+    ],
+    "release changelog tasks": [
+      "release changelog tasks"
     ],
     "release changelogs": [
       "release changelogs"
@@ -105460,6 +105475,9 @@
     ],
     "v4 0 0 3 review tasks": [
       "v4.0.0.3 review tasks"
+    ],
+    "v4 0 0 4 refinement epic entries": [
+      "v4.0.0.4 refinement epic entries"
     ],
     "v4 0 0 4 release notes": [
       "v4.0.0.4 release notes"

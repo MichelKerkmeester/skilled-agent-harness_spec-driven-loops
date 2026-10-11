@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/017-release-changelog",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/017-release-changelog",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "release changelog",
+      "phase 17 release changelog",
+      "v4.0.0.4 refinement epic entries",
+      "release changelog plan",
+      "release changelog tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "release changelog implementation summary"
+    ],
+    "key_topics": [
+      "release",
+      "changelog",
+      "phase",
+      "refinement",
+      "epic",
+      "entries",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/changelog/skilled/v4.0.0.4.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.4.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.4.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Other",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview List",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Upgrade Notes",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Other sessions filled the v4.0.0.4 release entry with the spec tooling, deep-loop and security work",
+    "created_at": "2026-10-11T13:36:05Z",
+    "last_save_at": "2026-10-11T13:37:59.323Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:568b4e46126b64eba9cd26144d96c59e5089c21f8dc645289784c71d6a88e999",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ceeea3a41efdc33f3c52ccc669af3eaffdd32b61812f01fd0c23420a1d3230da",
+      "plan.md": "822d35952c70335322b49340ddf5796d357db54d9bfa2077ba0814e923369bf4",
+      "tasks.md": "1054712d04d2dfe6e91bdaf81202500a6288f18d76271df7549d77a44eff5b33",
+      "implementation-summary.md": "721229a2a095385d4a341c6f4896d75cbb39369ef7daf54e5081f32e8ee96609"
+    },
+    "last_active_at": null
+  }
+}

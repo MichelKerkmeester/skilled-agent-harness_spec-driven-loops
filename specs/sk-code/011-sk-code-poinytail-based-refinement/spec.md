@@ -130,6 +130,7 @@ These bind every build phase, 002 to 006.
 | 14 | 014-skill-authoring-ux-research/ | Research on how sk-create-skill and system-skill-advisor can make the 092 class of authoring errors near impossible | Complete |
 | 15 | 015-closeout/ | Close every item the epic left open: fixed with proof, or closed with a written reason | Complete |
 | 16 | 016-residual-closeout/ | Fix what the closeout left: package strict, hooks README voice, admission gold, battery misses, hooks vitest scope, and a DeepSeek review of the closeout with its fixes | Complete |
+| 17 | 017-release-changelog/ | Record the epic's and the catalog anchor track's user-facing changes in the v4.0.0.4 release entry | Complete |
 
 ### Phase Transition Rules
 
@@ -157,6 +158,7 @@ These bind every build phase, 002 to 006.
 | 013-root-cause-and-ux-research | 014-skill-authoring-ux-research | None; see the row above | `validate.sh --recursive --strict` on the parent |
 | 014-skill-authoring-ux-research | 015-closeout | 012 to 014 merged on the integration branch with every gate green | `validate.sh --recursive --strict` on the parent |
 | 015-closeout | 016-residual-closeout | 015 committed with every gate green | `validate.sh --recursive --strict` on the parent |
+| 016-residual-closeout | 017-release-changelog | 016 committed and both tracks on origin/main | `validate.sh --recursive --strict` on the parent |
 
 ### Handoffs Outside sk-code
 

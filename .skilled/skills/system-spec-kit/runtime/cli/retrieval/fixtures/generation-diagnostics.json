@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 6620,
-    "ok": 14000,
+    "ok": 14005,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 24167,
+  "documentsScanned": 24172,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "37383163fa3343be9548db9557fa280bb3ce3e08fc9097d714c27267919fdb4e",
+  "manifestHash": "ecd5e9f9f5f8ac79e57694b300f95b0cc273af19c04a3ef84f85b26d4978412f",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36003,
+      "ok": 36009,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -66694,6 +66694,10 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/017-release-changelog/scratch",
       "reason": "excluded directory"
     },
     {

@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Build and verify phases 002-011 and round three so sk-code carries the research's changes and follow-ups.
+**Objective:** Build and verify every phase so sk-code carries the research's changes.
 
 ### Decisions
 
@@ -80,6 +80,7 @@ phase and binds as if written here.
 | 014-skill-authoring-ux-research | `014-skill-authoring-ux-research/goal.md` |
 | 015-closeout | `015-closeout/goal.md` |
 | 016-residual-closeout | `016-residual-closeout/goal.md` |
+| 017-release-changelog | `017-release-changelog/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -93,8 +94,8 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 17 times and `RESULT: FAILED` 0 times
-- [ ] `grep -lr --include=implementation-summary.md 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement | grep -vc /001-ponytail` prints 88
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 18 times and `RESULT: FAILED` 0 times
+- [ ] `grep -lr --include=implementation-summary.md 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement | grep -vc /001-ponytail` prints 89
 - [ ] `git log --format='%(trailers:key=Spec,valueonly)' HEAD | grep -c '^sk-code/011-sk-code-poinytail-based-refinement'` prints 100 or more, and `git status --short` prints nothing
 - [ ] `node .skilled/bin/compiled-route-guard.cjs` exits 0 listing sk-code `fresh`, and `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "code review my obsidian plugin"` prints `"action":"route"` and no `servingAuthority` key
 - [ ] `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` and `bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh` both exit 0, and `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` exits 0
@@ -145,5 +146,6 @@ and findings belong here.
 | 012 fix phases added 2026-10-10 | The operator chose to fix 012's confirmed P2s 1 to 10 in five 012 children; criterion 2 count amended from 36 to 41. Criterion 1 stays 13, because the recursive run counts direct children. Criterion 3 is left for the master orchestrator |
 | Integration 2026-10-11 | 012, 013 and 014 were built on separate branches and merged on one integration branch. Binding rows 013 and 014 added; criterion 1 amended to 15 (the parent and 14 direct children) and criterion 2 to 69. Criterion 3 counted `main..HEAD`, which is empty once the epic is on main, so it now counts the epic's `Spec:` trailers reachable from HEAD (80 before integration) and keeps the clean-tree check; the unpushed-branch check is dropped because it cannot hold on main |
 | Closeout added 2026-10-11 | Child 015 closes every item the epic left open, fixed with proof or closed with a written reason; criterion 1 amended to 16 (the parent and 15 direct children) and criterion 2 to 78 (nine closeout summaries) |
+| 017 added 2026-10-11 | Child 017 records the epic's user-facing changes in the v4.0.0.4 release entry; criteria 1 and 2 counts amended to 18 and 89, and the objective shortened to keep the durable slice under 4,000 characters |
 | Handed off, not built here | D2 Codex mirror gap (deep-improvement and git hooks) and D4 stdin deadline (hooks); recorded in the parent spec |
 <!-- /ANCHOR:log -->

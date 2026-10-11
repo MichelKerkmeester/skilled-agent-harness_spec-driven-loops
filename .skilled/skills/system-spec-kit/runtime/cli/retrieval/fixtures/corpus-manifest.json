@@ -1,5 +1,5 @@
 {
-  "corpusHash": "4e2b0b627c7c336807b8de0c1f2faf5c054a87ef8e1f36b4fb5cf9aeda7daa76",
+  "corpusHash": "38a304f81cd1d4cb78c21374736c2fe206928459e64a9cec9ee186104aca4fa0",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24167,
+  "includedPathCount": 24172,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10767,6 +10767,11 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/010-final-gate-ledger/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/017-release-changelog/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/017-release-changelog/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/017-release-changelog/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/017-release-changelog/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/017-release-changelog/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
@@ -24198,7 +24203,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "37383163fa3343be9548db9557fa280bb3ce3e08fc9097d714c27267919fdb4e",
+  "manifestHash": "ecd5e9f9f5f8ac79e57694b300f95b0cc273af19c04a3ef84f85b26d4978412f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26298,6 +26303,10 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/017-release-changelog/scratch",
       "reason": "excluded directory"
     },
     {

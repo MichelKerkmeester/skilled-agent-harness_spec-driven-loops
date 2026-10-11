@@ -1,0 +1,107 @@
+---
+title: "Implementation Summary"
+description: "The v4.0.0.4 release entry now carries the user-facing changes of the sk-code refinement epic and the feature catalog anchor track, in two extended sections, five new ones and five upgrade notes."
+trigger_phrases:
+  - "release changelog implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/017-release-changelog"
+    last_updated_at: "2026-10-11T19:00:00Z"
+    last_updated_by: "release-changelog-orchestrator"
+    recent_action: "Closed the phase with every goal criterion passing"
+    next_safe_action: "Operator reviews the worktree branch before it merges"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "summary-017-release-changelog"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 017-release-changelog |
+| **Completed** | 2026-10-11 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A reader of the v4.0.0.4 release entry now learns what the refinement epic and the catalog anchor track changed for them. A third opening paragraph names the story. Commit and Pull Request Checks gained the skill authoring gate and the Codex and Hermes mirror checks, and Deep Loop Modes gained the case line and reducer fixes. Five new sections cover the code skill, the agents and repo rules, the hooks and dispatch guards, skill routing and skill authoring. Upgrade Notes gained the Node floor, the script renames, the retired catalog comment, the changelog version key and the commit check bypass.
+
+Internal work stayed out: the research and review rounds, goal refreshes, version bumps, Hermes copies, canary and test pins and trigger index rebuilds.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.skilled/changelog/skilled/v4.0.0.4.md` | Modify | Release entries |
+| This phase's docs and the parent `spec.md` and `goal.md` | Create/Modify | Phase record |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The inventory came from the bodies of the 92 non-spec commits whose Spec trailer names either track, with each cited path, flag and script name checked against the tree. The earlier release entries predate both tracks, and v4.0.0.4's own leaf manifest item covers dot-named folders, a different fix from the git-ignored one added here.
+
+### Dispatches
+
+| Brief | Route | Result |
+|-------|-------|--------|
+| None | Not applicable | Written by the orchestrator |
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Glance list left at 12 bullets | The template caps it at 12, so the third opening paragraph carries the story |
+| Skill versions not named | No Skilled release entry names them |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| hvr_scan.py before the edit | 0 hard blockers, 97/100 |
+| hvr_scan.py after the edit | 0 hard blockers, 97/100 |
+| validate_document.py | VALID, 0 issues |
+| extract_structure.py | exit 0 |
+| validate.sh parent --recursive --strict | RESULT: PASSED |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. The frontmatter description and trigger phrases still name only the spec repair story, because the template caps the description at 250 characters and the topic phrases at two.
+<!-- /ANCHOR:limitations -->
+
+---
