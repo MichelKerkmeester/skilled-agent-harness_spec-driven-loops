@@ -30,7 +30,7 @@ Add Lenis smooth-scroll to .skilled/skills/sk-doc/scripts/preview-server.js for 
 Prompt: `Add Lenis smooth-scroll to .skilled/skills/sk-doc/scripts/preview-server.js for the local preview index page.`
 
 **Markers present**:
-- WEBFLOW library marker: `Lenis` (matches `shared/references/stack-detection.md:30-37`)
+- WEBFLOW library marker: `Lenis` (matches `shared/references/stack-detection.md:29-36`)
 - OPENCODE path marker: `.skilled/skills/sk-doc/scripts/preview-server.js`
 
 **Expected behavior** (one of two acceptable outcomes):
