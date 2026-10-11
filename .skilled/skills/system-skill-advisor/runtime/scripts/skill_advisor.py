@@ -1820,6 +1820,7 @@ INTENT_BOOSTERS = {
     "network": ("mcp-tooling", 0.8),
     "performance": ("mcp-tooling", 0.5),
     "screenshot": ("mcp-tooling", 2.0),
+    "waterfall": ("mcp-tooling", 1.0),
 
     # ─────────────────────────────────────────────────────────────────
     # WORKFLOWS-DOCUMENTATION: Documentation and diagrams
