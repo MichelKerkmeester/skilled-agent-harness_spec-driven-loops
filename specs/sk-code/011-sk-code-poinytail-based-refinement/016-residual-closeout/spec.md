@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout"
     last_updated_at: "2026-10-11T18:00:00Z"
     last_updated_by: "residual-closeout-orchestrator"
-    recent_action: "Closed phase 008"
-    next_safe_action: "Fix the reducer headline in phase 009"
+    recent_action: "Closed phase 009"
+    next_safe_action: "Run the final gate in phase 010"
     blockers: []
     key_files: []
     session_dedup:
@@ -107,7 +107,7 @@ Fix each item with proof from a command that ran, or close it only where every h
 | 6 | 006-closeout-deep-review/ | DeepSeek deep review of the 015 closeout commits | Complete |
 | 7 | 007-dispatch-wrapper-scan/ | Read every shell wrapper payload, not only the first | Complete |
 | 8 | 008-surface-hint-hub-root/ | Send OPENCODE only inside the hub's own `.skilled` directory | Complete |
-| 9 | 009-reducer-config-message/ | Name the missing review config in the strict failure headline | Pending |
+| 9 | 009-reducer-config-message/ | Name the missing review config in the strict failure headline | Complete |
 | 10 | 010-final-gate-ledger/ | Run the final gate from the committed state and close the ledger | Pending |
 
 ### Phase Transition Rules

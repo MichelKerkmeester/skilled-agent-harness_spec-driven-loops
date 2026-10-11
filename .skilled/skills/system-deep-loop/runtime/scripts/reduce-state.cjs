@@ -590,9 +590,16 @@ function createCorruptionError(stateLogPath, corruptionWarnings) {
     .slice(0, 3)
     .map((warning) => (warning.file ? `  - ${warning.file}: ${warning.error}` : `  - line ${warning.line}: ${warning.error}`))
     .join('\n');
+  // A missing config arrives as a file-level warning, so it is named on its own rather
+  // than counted as a corrupt line of the state log.
+  const lineCount = corruptionWarnings.filter((warning) => !warning.file).length;
+  const files = corruptionWarnings.filter((warning) => warning.file).map((warning) => warning.file);
+  const causes = [];
+  if (lineCount > 0) causes.push(`parseJsonl detected ${lineCount} corrupt line(s) in ${stateLogPath}`);
+  if (files.length > 0) causes.push(`could not read ${files.join(', ')}`);
   const error = new Error(
-    `[deep-review] parseJsonl detected ${corruptionWarnings.length} corrupt line(s) in ${stateLogPath}:\n${preview}\n`
-    + 'Pass --lenient to the reducer CLI (or lenient:true to reduceReviewState) to ignore corruption.',
+    `[deep-review] ${causes.join('; ')}:\n${preview}\n`
+    + 'Pass --lenient to the reducer CLI (or lenient:true to reduceReviewState) to reduce past these warnings.',
   );
   error.code = 'STATE_CORRUPTION';
   error.corruptionWarnings = corruptionWarnings;

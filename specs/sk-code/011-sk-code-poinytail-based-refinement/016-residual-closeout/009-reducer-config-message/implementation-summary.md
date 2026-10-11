@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "PENDING"
+description: "The review reducer's strict failure now reads `could not read deep-review-config.json` for a missing config instead of reporting a corrupt state-log line; system-deep-loop 1.6.1.0."
 trigger_phrases:
   - "reducer config message implementation summary"
 importance_tier: "normal"
@@ -10,15 +10,15 @@ _memory:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/009-reducer-config-message"
     last_updated_at: "2026-10-11T18:00:00Z"
     last_updated_by: "residual-closeout-orchestrator"
-    recent_action: "Building the phase"
-    next_safe_action: "Finish the phase"
+    recent_action: "Closed the phase with every goal criterion passing"
+    next_safe_action: "Start the next phase"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "summary-016-009-reducer-config-message"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,13 +45,15 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-PENDING
+`createCorruptionError` counts corrupt lines and file-level warnings apart. Corrupt lines keep the `parseJsonl detected N corrupt line(s)` headline, a missing config reads `could not read deep-review-config.json`, and a folder with both lists both. The hint now says `--lenient` reduces past these warnings. `error.code` stays STATE_CORRUPTION. The reducer test pins the config headline.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `reduce-state.cjs` | Modify | PENDING |
+| `reduce-state.cjs` | Modify | Headline by warning kind |
+| `deep-review-state-reducer.vitest.ts` | Modify | Two headline assertions |
+| system-deep-loop carriers, changelog v1.6.1.0, Hermes copy, activation manifest and its authored copy, three compiled deep contracts | Modify | Release |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -59,13 +61,14 @@ PENDING
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-PENDING
+A strict reduction of a folder with no config now prints `[deep-review] could not read deep-review-config.json:`, where it printed `parseJsonl detected 1 corrupt line(s)`.
 
 ### Dispatches
 
 | Brief | Route | Result |
 |-------|-------|--------|
-| Build | DevPass | PENDING |
+| Headline wording | DevPass `llmgateway/deepseek-v4.1-flash` at max | Applied as briefed, diff reviewed |
+| Headline assertions | DevPass `llmgateway/deepseek-v4.1-flash` at max | Applied as briefed, diff reviewed |
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -85,7 +88,13 @@ PENDING
 
 | Check | Result |
 |-------|--------|
-| PENDING | PENDING |
+| New assertions on the pre-fix reducer | 1 failed, 13 passed |
+| Scratch probe on the fixed reducer | `could not read deep-review-config.json` |
+| Deep-loop runtime suite | 164 files, 2689 passed, 8 skipped |
+| spec-kit fail-closed reducer test | 3 passed |
+| `check-contract-drift.cjs` after recompiling | OK commands=3 |
+| `parent-skill-check.cjs` on the hub | all hard invariants passed, 0 warnings |
+| `compiled-route-sync.cjs --check` | all 55 served copies match |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -93,6 +102,8 @@ PENDING
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
+1. The version bump changed the hub's SKILL.md and mode registry, so the three deep command contracts were recompiled with `compile-command-contracts.cjs --write`.
+2. The changelog entry was written by the orchestrator, not a dispatch.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -139,6 +139,8 @@ describe('reduceReviewState — degrades gracefully on warning-class problems', 
     }
     expect(thrown?.code).toBe('STATE_CORRUPTION');
     expect(thrown?.message).toContain('deep-review-config.json');
+    expect(thrown?.message).toContain('could not read deep-review-config.json');
+    expect(thrown?.message).not.toContain('corrupt line');
   });
 
   it('keeps two distinct findings that share a findingId but have different content instead of silently dropping one', () => {

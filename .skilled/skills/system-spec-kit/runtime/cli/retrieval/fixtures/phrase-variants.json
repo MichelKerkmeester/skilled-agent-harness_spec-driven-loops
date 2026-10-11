@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1de32e15c8488a1298891f9d6695bdea5178d9c57f23e0076b9963e5d48ae964",
+  "manifestHash": "a4b302f252d18382c81ba13631ac0075f675df1c78f1a18786347abc421ed71e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -77868,6 +77868,9 @@
     "reducer iteration numbering tasks": [
       "reducer iteration numbering tasks"
     ],
+    "reducer missing config message": [
+      "reducer missing config message"
+    ],
     "reducer ordered lists": [
       "reducer ordered lists"
     ],
@@ -101377,6 +101380,9 @@
     "system deep loop 1 6 0 0": [
       "system-deep-loop 1.6.0.0"
     ],
+    "system deep loop 1 6 1 0": [
+      "system-deep-loop 1.6.1.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -101502,6 +101508,9 @@
     ],
     "system deep loop v1 6 0 0": [
       "system-deep-loop v1.6.0.0"
+    ],
+    "system deep loop v1 6 1 0": [
+      "system-deep-loop v1.6.1.0"
     ],
     "system deep research bugs": [
       "system deep research bugs"

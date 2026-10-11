@@ -110,6 +110,7 @@ and findings belong here.
 | Phase 006 | Done | Review: P0 0, P1 0, P2 4, all confirmed |
 | Phase 007 | Done | Every wrapper payload is read |
 | Phase 008 | Done | OPENCODE hint only inside the hub |
+| Phase 009 | Done | Missing config named in the headline |
 
 ### Deviations and findings
 
