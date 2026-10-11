@@ -180,9 +180,9 @@
       "gold": "sk-code",
       "promptHash": "sha256:813c84a24e9260c88c4f1b8f71af17c984b5eed9376b72983aef4d38c919c32c",
       "localTop": "system-deep-loop",
-      "nativeTop": "system-spec-kit",
-      "reason": "reviewed 2026-09-07: local now fires system-deep-loop on 'research summary' where it used to abstain; native reads the packet-local helper as spec-kit work; gold is sk-code and neither side reaches it",
-      "approvedAt": "2026-09-07"
+      "nativeTop": "sk-code",
+      "reason": "reviewed 2026-10-11: native now reads the helper request as code work and reaches the sk-code gold; local still fires system-deep-loop on 'research summary'",
+      "approvedAt": "2026-10-11"
     },
     {
       "id": "rr-iter3-062",
@@ -758,6 +758,17 @@
       "nativeTop": "sk-doc",
       "reason": "both scorers stopped lifting sk-code from the generic word findings; local now abstains and native routes weakly to sk-doc, and neither reached the deep-review gold before or after",
       "approvedAt": "2026-10-10"
+    },
+    {
+      "id": "rr-iter2-006",
+      "corpus": "labeled",
+      "prompt": "Write a Vitest covering `classifyPrompt()` for the `resume deep review` phrase.",
+      "gold": "sk-code",
+      "promptHash": "sha256:8c0213cef060c3879ba3e46e43e5aed41d7ca11caa7dafcf4e5bfc4a50349c8e",
+      "localTop": "system-deep-loop",
+      "nativeTop": "sk-code",
+      "reason": "reviewed 2026-10-11: native now reads a request to write a test about a deep-review phrase as code work and reaches the sk-code gold; local still fires system-deep-loop on the phrase",
+      "approvedAt": "2026-10-11"
     }
   ]
 }

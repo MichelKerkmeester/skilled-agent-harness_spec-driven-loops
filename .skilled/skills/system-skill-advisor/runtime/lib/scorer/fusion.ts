@@ -63,6 +63,10 @@ export const ADVISOR_EXACT_SEMANTIC_RERANK_TOP_K = 10;
 const ADVISOR_EXACT_SEMANTIC_RERANK_WINDOW = 0.05;
 const TASK_INTENT = /\b(add|append|build|change|configure|create|edit|fix|generate|implement|modify|move|patch|refactor|rename|replace|run|start|sweep|update|write)\b/;
 const DEEP_RESEARCH_CYCLE = /\b(automated research cycle|looped investigation|continue iteration|resume iteration|overnight run|overnight research run|packet-local iteration|delta record|canonical jsonl|same lineage)\b/;
+// Writing a test or a helper is code work even when the prompt also names a deep-review phrase or a
+// study artifact: the thing asked for comes before the phrase it is written about, so a "deep review"
+// between the verb and the noun means the loop itself is the subject.
+const AUTHORS_CODE = /\b(?:add|build|create|implement|write)\b(?:(?!deep[- ]review)[^.?!]){0,60}?\b(?:helper|vitest|tests?)\b/;
 const FILE_SAVE_OPERATION = /\bsave\b.{0,48}\b(file|files|document|documents|buffer|tab|workspace)\b|\b(file|files|document|documents|buffer|tab|workspace)\b.{0,48}\bsave\b/;
 const MEMORY_SAVE_CONTEXT_ANCHOR = /\b(memory|context|conversation|session|handover|checkpoint|resume|preserve|remember|capture|store)\b|\/memory:save|memory:save/;
 // Class C breadth/multi-concern abstention gates. A broad greenfield build or a
@@ -563,7 +567,9 @@ function primaryIntentBonus(
   if (/\bsemantic (code )?search\b/.test(promptLower)) {
   }
   if (/\bdeep[- ]review\b/.test(promptLower)) {
-    if (recommendation.skill === 'sk-code') return R.deepReviewSkCodeReviewPenalty;
+    if (recommendation.skill === 'sk-code') {
+      return AUTHORS_CODE.test(promptLower) ? R.deepReviewCodeAuthoringSkCodeBonus : R.deepReviewSkCodeReviewPenalty;
+    }
   }
   if (/\bdeep[- ]research\b/.test(promptLower)) {
     if (recommendation.skill === 'system-spec-kit' || recommendation.skill === 'sk-code') return R.deepResearchOtherSkillsPenalty;
@@ -574,7 +580,7 @@ function primaryIntentBonus(
   if (/\b(compare|audit|review)\b/.test(promptLower) && /\b(classifier|vocabulary|prose|implementation|agents\.md|drift|mismatch)\b/.test(promptLower)) {
     if (recommendation.skill === 'sk-code') return R.compareAuditCodeReviewBonus;
   }
-  if (/\b(corpus ids?|first-100 predictions|continuation prompts|routing study config|confusion matrix|source-mix note|prompt template|packet-local)\b/.test(promptLower)) {
+  if (/\b(corpus ids?|first-100 predictions|continuation prompts|routing study config|confusion matrix|source-mix note|prompt template|packet-local)\b/.test(promptLower) && !AUTHORS_CODE.test(promptLower)) {
     if (recommendation.skill === 'system-spec-kit') return R.corpusStudySpecKitBonus;
     if (recommendation.skill === 'sk-prompt' || recommendation.skill === 'mcp-tooling' || recommendation.skill === 'sk-doc') return R.corpusStudyOtherSkillsPenalty;
   }

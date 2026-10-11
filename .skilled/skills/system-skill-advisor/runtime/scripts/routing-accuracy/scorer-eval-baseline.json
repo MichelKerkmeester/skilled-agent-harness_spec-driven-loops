@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "capturedAt": "2026-10-10",
-  "capturedAtSha": "5d9c970447",
+  "capturedAt": "2026-10-11",
+  "capturedAtSha": "d06ed3689a",
   "corpusSha256": "sha256:9f30cc5e5f2d6c4d15e598fe25b922dc371297596295ab79346c881f6a4aa677",
   "holdoutSha256": "sha256:f9868059ea0b1ba7af76198a2b30e21e75d5be2a82ddf8f2920cc7e541c5cb1f",
   "ambiguitySha256": "sha256:07cd2c76f41070ba74baaa0beb333d07cd6736a473c5ab79921d2ebfb1f8214d",
@@ -12,9 +12,9 @@
   },
   "metrics": {
     "full_corpus_top1": {
-      "correct": 153,
+      "correct": 155,
       "total": 195,
-      "accuracy": 0.7846
+      "accuracy": 0.7949
     },
     "unknown_count": {
       "value": 13
@@ -28,9 +28,9 @@
       "accuracy": 0.7424
     },
     "ambiguity_top1": {
-      "correct": 18,
+      "correct": 19,
       "total": 24,
-      "accuracy": 0.75,
+      "accuracy": 0.7917,
       "tau": 0.03
     },
     "buckets": {

@@ -3239,7 +3239,7 @@ def _apply_deep_skill_routing_layer(
         r":review:(?:auto|confirm)\b|/autoresearch\b|\b(autoresearch|auto review release readiness|deep[- ]research|deep[- ]review|deep[- ]council|ai[- ]council|convergence|findings? stabiliz|architecture decision|deliberat|investigation)\b",
         prompt_lower,
     )
-    if not has_deep_signal:
+    if not has_deep_signal or _native_ranks_code_authoring_above_deep(recommendations, prompt_lower):
         return
 
     payload = deep_skill_routing_payload(prompt, packet_context or {})
@@ -3552,6 +3552,31 @@ DEEP_REVIEW_DISAMBIGUATION_PHRASES = (
 )
 
 DISAMBIGUATION_MARGIN = 0.10
+
+# Parity with the TS scorer's AUTHORS_CODE: a request to write a test or helper is code work
+# even when it names a deep-review phrase, because the thing asked for comes before the phrase.
+AUTHORS_CODE_RE = re.compile(
+    r"\b(?:add|build|create|implement|write)\b(?:(?!deep[- ]review)[^.?!]){0,60}?\b(?:helper|vitest|tests?)\b"
+)
+
+
+def _native_ranks_code_authoring_above_deep(
+    recommendations: List[Dict[str, Any]],
+    prompt_lower: str,
+) -> bool:
+    """True when the native scorer ranked sk-code above system-deep-loop on a code-authoring prompt.
+
+    The native rank carries an intent bonus that confidence does not, so the
+    deep-loop precedence below must follow that rank instead of undoing it.
+    """
+    if not AUTHORS_CODE_RE.search(prompt_lower):
+        return False
+    order = [rec.get("skill") for rec in recommendations if rec.get("source") == "native"]
+    return (
+        "sk-code" in order
+        and MERGED_DEEP_SKILL_ID in order
+        and order.index("sk-code") < order.index(MERGED_DEEP_SKILL_ID)
+    )
 
 # External-tool-chain ("call_tool_chain") vocabulary belongs to mcp-code-mode,
 # not the generic code skill. Used to disambiguate toolchain-shaped prompts.
@@ -4147,7 +4172,10 @@ def _apply_deep_research_disambiguation(
         winner = _deep_winner("deep-review")
         loser = _find("sk-code")
         if winner and loser:
-            _enforce_margin(winner, loser, "deep-review")
+            if _native_ranks_code_authoring_above_deep(recommendations, prompt_lower):
+                _enforce_margin(loser, winner, "code authoring")
+            else:
+                _enforce_margin(winner, loser, "deep-review")
 
 
 def _apply_iteration_loop_tiebreaker(

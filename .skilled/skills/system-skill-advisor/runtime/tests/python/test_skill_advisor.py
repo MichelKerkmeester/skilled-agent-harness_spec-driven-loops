@@ -566,6 +566,39 @@ description: Fixture helper for routing tests
     except Exception as exc:
         fail_test("T243-SA-012: deep-review disambiguation enforces >= 0.10 margin", str(exc))
 
+    # Deep-loop precedence follows the native rank on a code-authoring prompt
+    try:
+        def native_rows(order):
+            return [
+                {"skill": skill, "confidence": confidence, "uncertainty": 0.16, "source": "native", "reason": ""}
+                for skill, confidence in order
+            ]
+
+        def route(prompt, order):
+            rows = native_rows(order)
+            advisor._apply_deep_research_disambiguation(rows, prompt.lower())
+            advisor._apply_deep_skill_routing_layer(rows, prompt)
+            rows.sort(key=lambda row: -row["confidence"])
+            return rows[0]["skill"]
+
+        authoring = "Write a Vitest covering classifyPrompt() for the resume deep review phrase."
+        resume = "Resume the deep-review iteration from the last save point."
+        checks = {
+            "authoring prompt, native ranks sk-code first": route(
+                authoring, [("sk-code", 0.9182), ("system-deep-loop", 0.9248)]) == "sk-code",
+            "authoring prompt, native ranks deep-loop first": route(
+                authoring, [("system-deep-loop", 0.9248), ("sk-code", 0.9182)]) == "system-deep-loop",
+            "resume prompt keeps deep-loop": route(
+                resume, [("system-deep-loop", 0.9459), ("sk-code", 0.8335)]) == "system-deep-loop",
+        }
+        bad = [name for name, passed_check in checks.items() if not passed_check]
+        if not bad:
+            ok("T243-SA-012b: code-authoring prompt that names deep review follows the native rank")
+        else:
+            fail_test("T243-SA-012b: code-authoring prompt that names deep review follows the native rank", "; ".join(bad))
+    except Exception as exc:
+        fail_test("T243-SA-012b: code-authoring prompt that names deep review follows the native rank", str(exc))
+
     # Inventory comparison detects mismatch
     try:
         parity = advisor._compare_inventories(["sk-git", "sk-doc"], {

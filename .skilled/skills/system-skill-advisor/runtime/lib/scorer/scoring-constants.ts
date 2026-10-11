@@ -109,6 +109,8 @@ export interface RoutingCalibration {
   readonly semanticSearchCodeGraphBonus: number;
   // deep-review intent
   readonly deepReviewSkCodeReviewPenalty: number;
+  // a request to write a test or helper that merely names a deep-review phrase
+  readonly deepReviewCodeAuthoringSkCodeBonus: number;
   // deep-research intent (text-only)
   readonly deepResearchOtherSkillsPenalty: number;
   // deep-research-cycle phrase intent
@@ -209,6 +211,7 @@ export const SCORING_CALIBRATION: ScoringCalibration = Object.freeze({
   routing: Object.freeze({
     semanticSearchCodeGraphBonus: 0.5,
     deepReviewSkCodeReviewPenalty: -0.25,
+    deepReviewCodeAuthoringSkCodeBonus: 0.1,
     deepResearchOtherSkillsPenalty: -0.18,
     deepResearchCycleOtherSkillsPenalty: -0.18,
     compareAuditCodeReviewBonus: 0.35,
