@@ -1,5 +1,5 @@
 {
-  "corpusHash": "c196b3ead0ba00152607906f4f0a8192ebc0a9e2b4f2f005a4cdfd5248ab0586",
+  "corpusHash": "82ce669f494c1bee86ec73da7ddd5bbf11cad6a22947c742b913a403ae858556",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24182,
+  "includedPathCount": 24209,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10778,6 +10778,33 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/018-create-sh-unknown-options/plan.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/018-create-sh-unknown-options/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/018-create-sh-unknown-options/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/004-routing-evaluation/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/004-routing-evaluation/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/004-routing-evaluation/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/004-routing-evaluation/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/004-routing-evaluation/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
@@ -24213,7 +24240,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e2bd981566fec464a46d22fbdbbd9e4d0f5fabf0471243dce80e47b3fed39df7",
+  "manifestHash": "3377ca8dd80f2eee0c2495119ded9c5d87c0f57a5bdc0af69f60ad3d823e61e2",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26321,6 +26348,26 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/018-create-sh-unknown-options/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/004-routing-evaluation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/scratch",
       "reason": "excluded directory"
     },
     {

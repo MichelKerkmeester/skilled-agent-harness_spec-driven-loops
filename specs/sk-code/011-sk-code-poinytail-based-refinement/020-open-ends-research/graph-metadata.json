@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement",
+  "children_ids": [
+    "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract",
+    "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding",
+    "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth",
+    "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/004-routing-evaluation",
+    "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "open ends research phase parent spec",
+      "open ends research",
+      "sk-code epic open ends",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "open",
+      "ends",
+      "research",
+      "phase",
+      "parent",
+      "spec",
+      "sk-code",
+      "epic",
+      "packet",
+      "goal",
+      "durable",
+      "directive"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "001-doc-version-contract/goal.md",
+      "002-fresh-clone-onboarding/goal.md",
+      "003-playbook-catalog-truth/goal.md",
+      "004-routing-evaluation/goal.md",
+      "005-silent-input-sweep/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Answer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "ten-iteration",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The refinement epic closed its own ledger, but five questions came out of it that no phase owned",
+    "created_at": "2026-10-11T15:54:51Z",
+    "last_save_at": "2026-10-11T16:01:36.695Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:837834c2e14c9a4aac1fa426ebc77b4f7339d6ab5d47236e6feeaf2c990ffc7f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8e3860ee452f1dd97fee01feffdd24a2a36f3b9da24aca97bdba410e17067483"
+    },
+    "last_active_at": null
+  }
+}

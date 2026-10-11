@@ -21,7 +21,8 @@
     "sk-code/011-sk-code-poinytail-based-refinement/015-closeout",
     "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout",
     "sk-code/011-sk-code-poinytail-based-refinement/017-release-changelog",
-    "sk-code/011-sk-code-poinytail-based-refinement/018-create-sh-unknown-options"
+    "sk-code/011-sk-code-poinytail-based-refinement/018-create-sh-unknown-options",
+    "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research"
   ],
   "manual": {
     "depends_on": [],
@@ -156,13 +157,13 @@
         "source": "derived"
       },
       {
-        "name": "1. DURABLE DIRECTIVE",
-        "kind": "heading",
+        "name": "the",
+        "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Decisions",
+        "name": "1. DURABLE DIRECTIVE",
         "kind": "heading",
         "path": "goal.md",
         "source": "derived"
@@ -170,17 +171,17 @@
     ],
     "causal_summary": "Ponytail is an external coding-agent plugin that teaches restraint: write the least code that meets the requirement, and still ship tests for risky logic",
     "created_at": "2026-10-09T13:20:16Z",
-    "last_save_at": "2026-10-11T14:49:19.299Z",
+    "last_save_at": "2026-10-11T16:03:51.250Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:d4f24251eff6e7c7708f89bd49f4b453ed480014e054ad7bcc3732bd32c666fc",
+    "source_fingerprint": "sha256:66c8c0de3b6d5803070f37b82b8443755c67ba96b574d9435e72f486c10455b0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "47203fee0c79fa9a67a233cf9fdf7f7b018a30dffc115edf9fb467eee95cfc9f"
+      "spec.md": "0b66fec5c2e48522afbb214a2e660edacbcaef4bd63aea0369c56fe62b0b1a45"
     },
     "last_active_at": null
   }

@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/004-routing-evaluation",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/004-routing-evaluation",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "routing evaluation",
+      "advisor held-out evaluation set",
+      "advisor cross-path parity",
+      "phase 4 routing evaluation",
+      "routing evaluation plan",
+      "routing evaluation tasks",
+      "routing evaluation goal",
+      "routing evaluation implementation summary"
+    ],
+    "key_topics": [
+      "routing",
+      "evaluation",
+      "advisor",
+      "held-out",
+      "set",
+      "cross-path",
+      "parity",
+      "phase",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/bin/skill-advisor.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+      ".skilled/repo-rules/prevent-overengineering.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "prevent-overengineering.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/prevent-overengineering.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor batteries are 17 prompts plus 5 negatives",
+    "created_at": "2026-10-11T15:54:55Z",
+    "last_save_at": "2026-10-11T16:01:42.836Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:eac50efb2254dedf6b736010e09665a57a0767d12f7ab3dcd6bf068e07a08096",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8677b86808a89488b7124b44d539e48a78572665639f1e26b3a7e3efc8e7441e",
+      "plan.md": "906da6e8c8d9474942bdd71caf77b08e0646e7150014b845a8d5f8a742445c68",
+      "tasks.md": "b12fd3cf6ddcd37d9a3fcef63946b5c69619909adc6b5c48a2a2cde2a370ae3a",
+      "implementation-summary.md": "cfb64b7bf8099df87e01d64ec328f71e7451f856d88bedb6487b69f1b51eb191"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fresh clone onboarding",
+      "external user first run",
+      "fresh clone stumbles",
+      "phase 2 fresh clone onboarding",
+      "fresh clone onboarding plan",
+      "fresh clone onboarding tasks",
+      "fresh clone onboarding goal",
+      "fresh clone onboarding implementation summary"
+    ],
+    "key_topics": [
+      "fresh",
+      "clone",
+      "onboarding",
+      "external",
+      "user",
+      "first",
+      "run",
+      "stumbles",
+      "phase",
+      "plan",
+      "tasks",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/bin/lib/compiled-route-layout.cjs",
+      ".skilled/repo-rules/prevent-overengineering.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-layout.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-route-layout.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "prevent-overengineering.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/prevent-overengineering.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An external user who clones this framework meets several stumbles before the first routed request and the first spec packet",
+    "created_at": "2026-10-11T15:54:53Z",
+    "last_save_at": "2026-10-11T16:01:39.909Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c049d26382d41d7794aac1c5085191d9ce233506b667f0e5ff6d14c9d69f125d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f576a75dcda8ef186c92c6b5cfdcfdedddd00c2e2dd60565856e258eb8001c51",
+      "plan.md": "c74f9b29005a627ca45909d7bd9e601b4a5987c1dd1da15d9eba94121e19919c",
+      "tasks.md": "a97c1eedc1ba8b39e257a17fe2ce45acb174d5c9a61495d8d9983c0520c9d72a",
+      "implementation-summary.md": "3e2a2250d13d5101506fbca346cc7ff9856406b11a17a8239b1822585c47c190"
+    },
+    "last_active_at": null
+  }
+}

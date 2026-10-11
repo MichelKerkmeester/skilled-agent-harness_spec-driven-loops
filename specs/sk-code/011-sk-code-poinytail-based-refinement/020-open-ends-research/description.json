@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research",
+  "description": "Open ends research",
+  "keywords": [
+    "open",
+    "ends",
+    "research"
+  ],
+  "lastUpdated": "2026-10-11T15:54:51.897Z",
+  "specId": "020",
+  "folderSlug": "open-ends-research",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
