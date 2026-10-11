@@ -93,9 +93,11 @@ The `sk-code-router-sync.vitest.ts` suite was deleted.
 | 4, compiled side | Leg 4 of `verify-router-sync.cjs`, run by the umbrella, and the CI admission step, scoring compiled decisions against playbook routing gold, `--warn-only` |
 | 4, surface router | Leg 4 of `verify-router-sync.cjs`, run by the umbrella |
 
-The umbrella runs every leg. Leg 1b reports a reference or asset doc that no router names.
-The three shared workflow docs are the only exception, because each surface carries a symlink
-to them and no router lists either path.
+The umbrella runs every leg. Leg 1b skips Git-ignored paths and reports any remaining reference
+or asset doc that no router names. If Git is missing or the hub is not a repository, it keeps the
+full walked list.
+The three shared workflow docs are the only allowlisted routable docs, because each surface carries
+a symlink to them and no router lists either path.
 
 ### Severity model
 

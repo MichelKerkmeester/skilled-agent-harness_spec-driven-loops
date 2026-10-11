@@ -46,7 +46,7 @@ function buildHub(t) {
     path.join('..', '..', 'shared', 'references', 'workflow-debug.md'),
     path.join(hub, 'sk-code-demo', 'references', 'workflow-debug.md'),
   );
-  return { hub, guard: path.join(scripts, 'verify-router-sync.cjs') };
+  return { root, hub, guard: path.join(scripts, 'verify-router-sync.cjs') };
 }
 
 function runGuard(guard, args) {
@@ -72,6 +72,20 @@ test('an unrouted doc is still reported, in the shared tier and in a packet', (t
   assert.match(out, /orphan \(routable doc no router names\): shared\/references\/stray\.md/);
   assert.match(out, /orphan \(routable doc no router names\): sk-code-demo\/references\/stray-local\.md/);
   assert.doesNotMatch(out, /workflow-debug/);
+});
+
+test('leg 1b skips ignored markdown but still reports untracked unrouted docs', (t) => {
+  const { root, hub, guard } = buildHub(t);
+  const init = spawnSync('git', ['init', '-q'], { cwd: root, encoding: 'utf8' });
+  assert.equal(init.status, 0, init.stderr);
+  write(path.join(root, '.gitignore'), '.pytest_cache/\n');
+  write(path.join(hub, 'sk-code-demo', 'references', '.pytest_cache', 'README.md'), '# ignored cache\n');
+  write(path.join(hub, 'sk-code-demo', 'references', 'untracked-stray.md'), '# untracked stray\n');
+
+  const { status, out } = runGuard(guard, ['--checks', '1b']);
+  assert.equal(status, 1, out);
+  assert.match(out, /orphan \(routable doc no router names\): sk-code-demo\/references\/untracked-stray\.md/);
+  assert.doesNotMatch(out, /\.pytest_cache\/README\.md/);
 });
 
 test('a run without --checks includes leg 1b', (t) => {

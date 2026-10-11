@@ -6,6 +6,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { spawnSync } = require('node:child_process');
 const lib = require('./router-replay-lib.cjs');
 
 const SKCODE = path.resolve(__dirname, '..', '..', '..');
@@ -152,12 +153,21 @@ function legPaths() {
 // Leg 1b: every reference or asset markdown doc under the hub is routed by the hub, a surface or its own packet router.
 function legOrphans() {
   const problems = [];
-  const docs = [];
+  let docs = [];
   for (const top of hubPacketDirs()) {
     for (const sub of ['references', 'assets']) {
       const base = path.join(SKCODE, top, sub);
       if (fs.existsSync(base)) walkMarkdown(base, docs);
     }
+  }
+  // Ignore rules exclude local cache files from the routed documentation corpus.
+  const ignoreCheck = spawnSync('git', ['-C', SKCODE, 'check-ignore', '--stdin', '-z'], {
+    input: docs.length > 0 ? `${docs.join('\0')}\0` : '',
+    encoding: 'utf8',
+  });
+  if (!ignoreCheck.error && (ignoreCheck.status === 0 || ignoreCheck.status === 1)) {
+    const ignored = new Set((ignoreCheck.stdout || '').split('\0').filter(Boolean));
+    docs = docs.filter((doc) => !ignored.has(doc));
   }
   if (docs.length === 0) problems.push('walk found 0 routable docs, so the check would be vacuous');
   const routed = new Set(machineRouterPaths());
