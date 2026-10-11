@@ -1,11 +1,12 @@
 {
+  "level": "1",
   "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract",
   "description": "Phase 1: doc-version-contract",
   "keywords": [
     "phase",
     "doc-version-contract"
   ],
-  "lastUpdated": "2026-10-11T15:54:52.863Z",
+  "lastUpdated": "2026-10-11T17:40:22.619Z",
   "specId": "001",
   "folderSlug": "doc-version-contract",
   "parentChain": [
@@ -13,7 +14,8 @@
     "011-sk-code-poinytail-based-refinement",
     "020-open-ends-research"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "11-10-26_18-40__deep-research-completed-ten-cli-pi-iterations-on.md"
+  ]
 }

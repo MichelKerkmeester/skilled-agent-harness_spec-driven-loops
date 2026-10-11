@@ -8,17 +8,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract"
-    last_updated_at: "2026-10-11T16:00:00Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-10-11T17:41:15Z"
+    last_updated_by: "deep-research-orchestrator"
+    recent_action: "Ran the ten-iteration research and checked every completion criterion"
+    next_safe_action: "Fix phase: apply R1 to R4 and R6 from research/research.md"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-020-001"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -55,11 +55,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `find specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research -name deep-research-state.jsonl -exec grep -c '"type":"iteration"' {} \;`, run from the repository root, prints at least one line, and every line it prints is 10.
-- [ ] `grep -cE '^\| R[0-9]+ \|' specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/research.md`, run from the repository root, prints 1 or more.
-- [ ] `grep -E '^\| R[0-9]+ \|' specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/research.md | grep -cvE '[A-Za-z0-9_-]\.[A-Za-z0-9]+:[0-9]+'`, run from the repository root, prints 0, so every recommendation row cites a path:line.
-- [ ] `grep -E '^\| R[0-9]+ \|' specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/research.md | grep -cvE '\| (Build nothing|Change a value|Extend in place|Add a function|Add a file|Add an abstraction|Add a dependency) \|'`, run from the repository root, prints 0, so every row names its move from the reversal-cost order in .skilled/repo-rules/prevent-overengineering.md.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract --strict`, run from the repository root, prints RESULT: PASSED.
+- [x] `find specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research -name deep-research-state.jsonl -exec grep -c '"type":"iteration"' {} \;`, run from the repository root, prints at least one line, and every line it prints is 10.
+- [x] `grep -cE '^\| R[0-9]+ \|' specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/research.md`, run from the repository root, prints 1 or more.
+- [x] `grep -E '^\| R[0-9]+ \|' specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/research.md | grep -cvE '[A-Za-z0-9_-]\.[A-Za-z0-9]+:[0-9]+'`, run from the repository root, prints 0, so every recommendation row cites a path:line.
+- [x] `grep -E '^\| R[0-9]+ \|' specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/research.md | grep -cvE '\| (Build nothing|Change a value|Extend in place|Add a function|Add a file|Add an abstraction|Add a dependency) \|'`, run from the repository root, prints 0, so every row names its move from the reversal-cost order in .skilled/repo-rules/prevent-overengineering.md.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract --strict`, run from the repository root, prints RESULT: PASSED.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -76,11 +76,21 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet scaffolded | Done | create.sh phase mode with `--with-goal`; strict validation passed on the scaffold commit |
-| deep-research run | Pending | |
+| deep-research run | Done | 10 iterations, all `cli-pi` on `llmgateway/deepseek-v4.1-flash` at `--thinking max`; every iteration passed `verify-iteration.cjs`, iteration 10 on its single redispatch |
+| Synthesis | Done | `research/research.md` with R1 to R7; all 46 cited path:line references resolved by the orchestrator to the claimed content (REQ-005 spot-check) |
+| Criterion 1 | Pass | prints one line: `10` |
+| Criterion 2 | Pass | prints `7` |
+| Criterion 3 | Pass | prints `0` |
+| Criterion 4 | Pass | prints `0` |
+| Criterion 5 | Pass | strict validation prints `RESULT: PASSED`; see the commit's Verification section |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Executed by hand | The auto YAML has no runner script, so the sub-orchestrator executed its steps in order and ported the `cli-pi` dispatch branch verbatim |
+| Prompt additions | Each rendered prompt gained the child-dispatch preamble and the inlined `deep-research` persona, per `cli-pi` SKILL.md rules 10 and 11 |
+| Skipped telemetry | The single-loop status-ledger heartbeat rows were not written; observability only |
+| Parent metadata | `generate-context.js` rewrote two parent `graph-metadata.json` timestamps; both were restored from HEAD to keep writes inside this packet |
+| Executor claims corrected | Engine duplication (a symlink), 713 vs 710 mismatches, spec counts are file totals, and the gate branch edit iteration 10 priced; see `research/research.md` Section 13 |
 <!-- /ANCHOR:log -->
