@@ -63,7 +63,7 @@ A skill README uses numbered ALL-CAPS H2 sections with `---` dividers between th
 
 `OVERVIEW` is the one required section. Its normalized name must appear as a numbered header so the validator finds it. Every other section is optional. A small utility skill might run four sections (AT A GLANCE, OVERVIEW, QUICK START, RELATED DOCUMENTS). A large orchestrator might run all nine. Match the count to the skill. Never pad to hit a number.
 
-Inside OVERVIEW the `### What It Does` subsection comes first: what the skill is and what the reader gets, modeled on the root README opening with its SUMMARY section and benefit bullets. You may then add up to three optional subsections. A `### Why This Skill Exists` problem narrative, used when the pain needs telling before the mechanism lands. A `### Why It Matters` value beat with two to four outcome bullets stated benefit-first. And the capability section below.
+Inside OVERVIEW the `### What It Does` subsection comes first: what the skill is and what the reader gets, modeled on the root README opening with its SUMMARY section. You may then add up to two optional subsections. A `### Why This Skill Exists` problem narrative, used when the pain needs telling before the mechanism lands. And the capability section below.
 
 ### Capability Section Pattern
 
@@ -180,15 +180,6 @@ version: 1.0.0.0
 ### Why This Skill Exists
 
 [Optional. A short problem narrative, three to six sentences, used when the pain needs telling before the mechanism lands. Put the reader in a concrete failing situation and let them feel it before you name the solution. Delete this subsection when the payoff is obvious from What It Does.]
-
-### Why It Matters
-
-### Why It Matters
-
-[Optional. Two to four outcome bullets, benefit-first, each naming what the reader gets rather than what the skill has. Model: the root README "Why it earns a place" bullets. Drop this subsection when the payoff is already obvious from What It Does.]
-
-- **[Outcome, not feature]:** [the concrete benefit in plain words]
-- **[Outcome, not feature]:** [the concrete benefit in plain words]
 
 ### [The [Domain] Knowledge Layer]
 

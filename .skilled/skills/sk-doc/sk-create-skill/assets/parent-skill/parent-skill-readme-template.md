@@ -73,7 +73,7 @@ Open with a one-line blockquote pitch right after the H1. The pitch states the w
 
 The OVERVIEW starts with a `### What It Does` subsection: what the hub is and what the reader gets, modeled on the root README SUMMARY section, before any feature list. An optional `### Why This Hub Exists` subsection may follow when the pain needs telling: the family of problems, what went wrong before the hub unified them and where the reader is now.
 
-Write the optional Why This Hub Exists as a short narrative, three to six sentences, not a summary. Put the reader in the situation they hit before the hub existed, when the family of problems lived in scattered places and every author invented a different front door. Let them feel that before you name the unifying identity. You may add a 2 to 3 sentence narrative hook after the blockquote, before AT A GLANCE. You may add an optional `### Why It Matters` value beat with outcome bullets inside OVERVIEW. For a hub with a multi-step routing flow, add a small ASCII diagram of request to registry to packet, modeled on the root README connection diagram.
+Write the optional Why This Hub Exists as a short narrative, three to six sentences, not a summary. Put the reader in the situation they hit before the hub existed, when the family of problems lived in scattered places and every author invented a different front door. Let them feel that before you name the unifying identity. You may add a 2 to 3 sentence narrative hook after the blockquote, before AT A GLANCE. For a hub with a multi-step routing flow, add a small ASCII diagram of request to registry to packet, modeled on the root README connection diagram.
 
 Emoji use follows the technical register. Semantic emoji only (✅ ❌ ⚠️ 🔒 🚨) for rules and status markers, and sparingly. Decorative section emoji stay on the repository front-page README, never on a hub README.
 
@@ -145,13 +145,6 @@ version: 1.0.0.0
 ### Why This Hub Exists
 
 [Optional. Two to four sentences, used when the pain needs telling. State the situation a reader is in and what goes wrong without the hub. Name the family and the nested packets. No feature list here.]
-
-### Why It Matters
-
-[Optional. Two to four outcome bullets, benefit-first, each naming what a reader of the whole family gets. Drop this subsection when the payoff is already obvious from What It Does.]
-
-- **[Outcome, not feature]:** [the concrete benefit in plain words]
-- **[Outcome, not feature]:** [the concrete benefit in plain words]
 
 [Optional connection diagram for a multi-step routing flow. Show request to registry to the packet that owns it, modeled on the root README connection diagram.]
 
