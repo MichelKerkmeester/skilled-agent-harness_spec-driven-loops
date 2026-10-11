@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 6790,
-    "ok": 14215,
+    "ok": 14220,
     "valid-empty-list": 3509
   },
-  "documentsScanned": 24561,
+  "documentsScanned": 24566,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "3385d16c9e926990580af6eb2edfefcb790639dce072e6315701c549d9110035",
+  "manifestHash": "29c7ca612cc400f17838c12b09d3a123bfe8bd3f200d4d61e4e2b21e8ece7e48",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36398,
+      "ok": 36404,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -69257,6 +69257,10 @@
     },
     {
       "path": "specs/system-deep-loop/039-deprecate-improvement-modes/011-pre-existing-gate-failures/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/039-deprecate-improvement-modes/012-residual-reference-sweep/scratch",
       "reason": "excluded directory"
     },
     {

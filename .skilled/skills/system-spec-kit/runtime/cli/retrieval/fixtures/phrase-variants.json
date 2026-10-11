@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3385d16c9e926990580af6eb2edfefcb790639dce072e6315701c549d9110035",
+  "manifestHash": "29c7ca612cc400f17838c12b09d3a123bfe8bd3f200d4d61e4e2b21e8ece7e48",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -70927,6 +70927,9 @@
     "phase 12 post merge deep review": [
       "phase 12 post merge deep review"
     ],
+    "phase 12 residual reference sweep": [
+      "phase 12 residual reference sweep"
+    ],
     "phase 12 review findings": [
       "phase 12 review findings"
     ],
@@ -81564,6 +81567,21 @@
     ],
     "residual miss taxonomy": [
       "residual miss taxonomy"
+    ],
+    "residual reference sweep": [
+      "residual reference sweep"
+    ],
+    "residual reference sweep acceptance criteria": [
+      "residual reference sweep acceptance criteria"
+    ],
+    "residual reference sweep implementation summary": [
+      "residual reference sweep implementation summary"
+    ],
+    "residual reference sweep plan": [
+      "residual reference sweep plan"
+    ],
+    "residual reference sweep tasks": [
+      "residual reference sweep tasks"
     ],
     "residual roadmap synthesis": [
       "residual roadmap synthesis"
