@@ -28,7 +28,8 @@
 // Exit codes: 0 = every packet in scope passes, or --layout-map found no collisions,
 //             1 = dry run found failing packets, or --layout-map found collisions,
 //             2 = a rejected argument, a failed step, a packet still failing
-//                 after --apply, or a layout map that could not be produced.
+//                 after --apply, a layout map that could not be produced, or a run
+//                 refused while the release apply lock exists.
 
 // ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -121,6 +122,19 @@ const ARTIFACT_TREES = new Set(['research', 'review', 'context']);
 
 const BASELINE_FILE = 'upgrade-baseline.json';
 const MANIFEST_FILE = 'upgrade-legacy.manifest.json';
+
+// The release apply holds this lock while it writes release files, and a layout move or
+// repair that ran beside it would race those writes. A lock that cannot be inspected also
+// refuses, so an unreadable path never lets a run through.
+const RELEASE_APPLY_LOCK = path.join(REPO, '.skilled', 'release', '.apply.lock');
+function releaseApplyLockPresent() {
+  try {
+    fs.lstatSync(RELEASE_APPLY_LOCK);
+    return true;
+  } catch (err) {
+    return !(err && err.code === 'ENOENT');
+  }
+}
 
 // This mirrors the validator's own never-recorded list: recording one of these
 // in an active packet would only mislead, since the validator never downgrades
@@ -447,8 +461,11 @@ function writeManifestFile(file, manifest, exclusive) {
 }
 
 // Reuse saved baselines only while the recorded HEAD and packet trees still match.
+// A linked manifest is refused before any read, because reading it would take the
+// bytes of a file outside the repository as the baseline.
 function readManifestIfExists(gitState) {
   const file = manifestPathFor(gitState);
+  if (linkAt(file)) throw new Error(`cannot read reversibility manifest ${file}: symbolic link, not followed`);
   if (!fs.existsSync(file)) return { manifest: null, issue: null };
 
   let manifest;
@@ -642,8 +659,15 @@ function printGroupedDetail(packets, reports) {
 // symlink .opencode/specs at specs: walking both spellings would validate
 // every packet twice and count every failure twice. A supplied root is also
 // confined to the repository, checked on the real path so a symlink cannot
-// point the walk out of the tree.
+// point the walk out of the tree. A ".." segment is refused before anything resolves,
+// because a lexical resolution would name a different folder than the link it starts from.
 function resolveRoots(given) {
+  for (const dir of given) {
+    if (dir.split(/[\\/]/u).includes('..')) {
+      process.stderr.write(`${SCRIPT}: --roots refuses a ".." segment: ${dir}\n`);
+      process.exit(2);
+    }
+  }
   const candidates = given.length > 0
     ? given.map((dir) => path.resolve(REPO, dir))
     : [path.join(REPO, 'specs'), path.join(REPO, '.opencode', 'specs')].filter((dir) => fs.existsSync(dir));
@@ -1738,7 +1762,10 @@ function directRun() {
 }
 
 if (directRun()) {
-  if (process.argv.length === 3 && process.argv[2] === '--layout-map') {
+  if (releaseApplyLockPresent()) {
+    process.stderr.write(`${SCRIPT}: refused while the release apply lock exists at ${RELEASE_APPLY_LOCK}\n`);
+    process.exitCode = 2;
+  } else if (process.argv.length === 3 && process.argv[2] === '--layout-map') {
     try {
       const layout = planLayoutMove(REPO);
       process.stdout.write(`${JSON.stringify(layout, null, 2)}\n`);

@@ -362,6 +362,25 @@ describe('upgrade-legacy', () => {
     expect(result.status, result.stdout + result.stderr).toBe(2);
   }, 180_000);
 
+  it('refuses a --roots argument with a ".." segment, before it resolves, and writes nothing', () => {
+    writeLegacyPacket();
+    const outsideDir = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'upgrade-legacy-outside-')));
+    fs.mkdirSync(path.join(outsideDir, 'deep'));
+    fs.symlinkSync(path.join(outsideDir, 'deep'), path.join(sandbox, 'linkOut'), 'dir');
+    const before = manifest();
+
+    try {
+      const result = runUpgrade(['--apply', '--roots', 'linkOut/../specs']);
+      const output = result.stdout + result.stderr;
+      expect(output).toContain('".." segment');
+      expect(result.status, output).toBe(2);
+      expect(manifest()).toBe(before);
+    } finally {
+      fs.rmSync(path.join(sandbox, 'linkOut'), { force: true });
+      fs.rmSync(outsideDir, { recursive: true, force: true });
+    }
+  }, 180_000);
+
   it('fills missing frontmatter keys and keeps an authored title as written', () => {
     clearUpgradeManifest();
     const folder = 'specs/fm-track/001-authored';
@@ -1885,6 +1904,136 @@ describe('upgrade-legacy link containment', () => {
       fs.rmSync(path.join(sandbox, 'specs'), { recursive: true, force: true });
       fs.rmSync(outsideDir, { recursive: true, force: true });
     }
+  }, 180_000);
+
+  it('refuses a reversibility manifest that is a link, and reuses no baseline from its target', () => {
+    prepareDirtyManifest();
+    const file = upgradeManifestPath();
+    const outsideDir = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'upgrade-legacy-outside-')));
+    const outsideManifest = path.join(outsideDir, 'manifest.json');
+    const saved = JSON.parse(fs.readFileSync(file, 'utf8'));
+    saved.recordedBaselineMap = {
+      ...(saved.recordedBaselineMap || {}),
+      [DIRTY_PACKET]: [{ rule: 'OUTSIDE_MANIFEST_FINDING', detail: 'outside manifest detail' }],
+    };
+    const outsideText = `${JSON.stringify(saved, null, 2)}\n`;
+    fs.writeFileSync(outsideManifest, outsideText);
+    fs.rmSync(file);
+    fs.symlinkSync(outsideManifest, file);
+
+    try {
+      const result = runUpgrade(['--roots', 'specs/system-spec-kit']);
+      const output = result.stdout + result.stderr;
+      expect(output).not.toContain('OUTSIDE_MANIFEST_FINDING');
+      expect(output).toContain('symbolic link, not followed');
+      expect(result.status, output).toBe(2);
+      expect(fs.readFileSync(outsideManifest, 'utf8')).toBe(outsideText);
+      expect(fs.lstatSync(file).isSymbolicLink()).toBe(true);
+    } finally {
+      fs.rmSync(file, { force: true });
+      fs.rmSync(outsideDir, { recursive: true, force: true });
+    }
+  }, 180_000);
+
+  it('refuses a dangling reversibility manifest link in dry run and apply', () => {
+    prepareDirtyManifest();
+    const file = upgradeManifestPath();
+    const outsideDir = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'upgrade-legacy-outside-')));
+    const missingManifest = path.join(outsideDir, 'missing-manifest.json');
+    fs.rmSync(file);
+    fs.symlinkSync(missingManifest, file);
+    const beforePackets = manifest('specs/system-spec-kit');
+
+    try {
+      const dryRun = runUpgrade(['--roots', 'specs/system-spec-kit']);
+      expect(dryRun.stderr).toContain('symbolic link, not followed');
+      expect(dryRun.status, dryRun.stdout + dryRun.stderr).toBe(2);
+      expect(fs.lstatSync(file).isSymbolicLink()).toBe(true);
+      expect(fs.existsSync(missingManifest)).toBe(false);
+      expect(manifest('specs/system-spec-kit')).toBe(beforePackets);
+
+      const applied = runUpgrade(['--apply', '--roots', 'specs/system-spec-kit']);
+      expect(applied.stderr).toContain('symbolic link, not followed');
+      expect(applied.status, applied.stdout + applied.stderr).toBe(2);
+      expect(fs.lstatSync(file).isSymbolicLink()).toBe(true);
+      expect(fs.existsSync(missingManifest)).toBe(false);
+      expect(manifest('specs/system-spec-kit')).toBe(beforePackets);
+    } finally {
+      fs.rmSync(file, { force: true });
+      fs.rmSync(outsideDir, { recursive: true, force: true });
+    }
+  }, 180_000);
+});
+
+describe('upgrade-legacy release apply lock', () => {
+  afterEach(resetSandbox);
+
+  function holdReleaseApplyLock(): string {
+    const lock = path.join(sandbox, '.skilled/release/.apply.lock');
+    fs.mkdirSync(path.dirname(lock), { recursive: true });
+    fs.writeFileSync(lock, '{"command":"apply"}\n');
+    return lock;
+  }
+
+  it('refuses --layout-map while the release apply lock exists, and writes nothing', () => {
+    writeLegacyPacket();
+    const lock = holdReleaseApplyLock();
+    const before = manifest();
+
+    try {
+      const result = runUpgrade(['--layout-map']);
+      const output = result.stdout + result.stderr;
+      expect(output).toContain(lock);
+      expect(result.status, output).toBe(2);
+      expect(manifest()).toBe(before);
+    } finally {
+      fs.rmSync(lock, { force: true });
+    }
+  }, 180_000);
+
+  it('refuses the dry run while the release apply lock exists, and writes nothing', () => {
+    writeLegacyPacket();
+    const lock = holdReleaseApplyLock();
+    const before = manifest();
+
+    try {
+      const result = runUpgrade([]);
+      const output = result.stdout + result.stderr;
+      expect(output).toContain(lock);
+      expect(result.status, output).toBe(2);
+      expect(manifest()).toBe(before);
+    } finally {
+      fs.rmSync(lock, { force: true });
+    }
+  }, 180_000);
+
+  it('refuses --apply while the release apply lock exists, and writes no packet or manifest', () => {
+    writeLegacyPacket();
+    const lock = holdReleaseApplyLock();
+    const before = manifest();
+
+    try {
+      const result = runUpgrade(['--apply']);
+      const output = result.stdout + result.stderr;
+      expect(output).toContain(lock);
+      expect(result.status, output).toBe(2);
+      expect(manifest()).toBe(before);
+      expect(fs.existsSync(upgradeManifestPath())).toBe(false);
+    } finally {
+      fs.rmSync(lock, { force: true });
+    }
+  }, 180_000);
+
+  it('runs --layout-map and the dry run normally when no release apply lock exists', () => {
+    writeLegacyPacket();
+
+    const layout = runUpgrade(['--layout-map']);
+    expect(layout.stdout + layout.stderr).not.toContain('.apply.lock');
+    expect(layout.status, layout.stdout + layout.stderr).toBe(0);
+
+    const dryRun = runUpgrade([]);
+    expect(dryRun.stdout + dryRun.stderr).not.toContain('.apply.lock');
+    expect(dryRun.status, dryRun.stdout + dryRun.stderr).toBe(1);
   }, 180_000);
 });
 
