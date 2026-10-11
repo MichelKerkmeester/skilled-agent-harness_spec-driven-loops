@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d9e896de3eacc8a3a2b273acd23a7880628242ccead6d9cf32cea7fedd7e385b",
+  "manifestHash": "19737a437cfe3f0f287fea08948de86b97d00743b9317ed63d22ee8869f2c088",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -31655,6 +31655,9 @@
     ],
     "deep alignment verified sealed reads": [
       "deep alignment verified sealed reads"
+    ],
+    "deep command contracts recompiled": [
+      "deep command contracts recompiled"
     ],
     "deep command presentation separation": [
       "deep command presentation separation"
@@ -67767,9 +67770,6 @@
     "open items ledger": [
       "open items ledger"
     ],
-    "open items ledger goal": [
-      "open items ledger goal"
-    ],
     "open items ledger implementation summary": [
       "open items ledger implementation summary"
     ],
@@ -101985,6 +101985,9 @@
     "system deep loop 1 5 5 0": [
       "system-deep-loop 1.5.5.0"
     ],
+    "system deep loop 1 5 6 0": [
+      "system-deep-loop 1.5.6.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -102104,6 +102107,9 @@
     ],
     "system deep loop v1 5 5 0": [
       "system-deep-loop v1.5.5.0"
+    ],
+    "system deep loop v1 5 6 0": [
+      "system-deep-loop v1.5.6.0"
     ],
     "system deep research bugs": [
       "system deep research bugs"

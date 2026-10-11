@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/015-closeout"
     last_updated_at: "2026-10-11T05:00:00Z"
     last_updated_by: "closeout-orchestrator"
-    recent_action: "Planned nine phases grouped by file ownership"
-    next_safe_action: "Build the phases in order and commit one per phase"
+    recent_action: "Closed all nine phases"
+    next_safe_action: "None; the closeout is complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "co-015-phase-parent"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-11 |
 | **Branch** | `worktrees/098-post-092-integration` |
 | **Parent Spec** | `../spec.md` |
@@ -107,7 +107,7 @@ End every open item in one of two states: fixed, with a check that ran, or close
 | 6 | 006-compiled-route-content-check/ | Make `compiled-route-sync.cjs --check` fail on a served copy that differs from its authored file | Complete |
 | 7 | 007-review-reducer-missing-config/ | Reduce the 43 review folders that have no config file | Complete |
 | 8 | 008-advisor-residuals-and-surface-hint/ | Investigate the battery misses and wire the surface hint where a caller can know it | Complete |
-| 9 | 009-open-items-ledger/ | Fix or close every other open item, with the reason recorded | Pending |
+| 9 | 009-open-items-ledger/ | Fix or close every other open item, with the reason recorded | Complete |
 
 ### Phase Transition Rules
 

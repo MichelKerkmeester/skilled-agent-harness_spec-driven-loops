@@ -4,7 +4,7 @@ description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "open items ledger tasks"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Phase 9: open-items-ledger
@@ -31,9 +31,7 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Collect every Known Limitation and the gate results
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -41,10 +39,9 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T002 Fix the parent scaffold (init_skill.py)
+- [x] T003 Recompile the deep command contracts and release system-deep-loop 1.5.6.0
+- [x] T004 List handed-off work in the unreleased hub entries
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -52,9 +49,8 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T005 Write the ledger
+- [x] T006 Validate and commit
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -62,9 +58,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every goal.md criterion passes on the orchestrator's rerun
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,6 +73,3 @@ contextType: "general"
 <!-- /ANCHOR:cross-refs -->
 
 ---
-
-
-

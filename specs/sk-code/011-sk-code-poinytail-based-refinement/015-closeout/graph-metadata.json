@@ -42,7 +42,7 @@
       "feature-catalog"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -97,12 +97,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -122,6 +116,12 @@
       },
       {
         "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -165,17 +165,17 @@
     ],
     "causal_summary": "The epic's phases 012 to 014 and the feature-catalog track each closed with items marked deferred, handed off or left to the master orchestrator",
     "created_at": "2026-10-11T04:49:19Z",
-    "last_save_at": "2026-10-11T05:54:27.890Z",
+    "last_save_at": "2026-10-11T06:05:13.526Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:8425a0c2b1b4a483e7f50455695977ad2520eb3cb1f10d33763b7514fe85f9ea",
+    "source_fingerprint": "sha256:53fadee3e2c101f07cbe27a45917f0d08de8973669b1eb71586933653c9fac93",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bb4d0ce234d58a57a603e488bd1f33b222e0b32a11339a3a5fba0cccc970dd6f"
+      "spec.md": "ba9783e651aa5b745faa19f980cfe8c906c635a11e1d9a5e8ec5345fced01593"
     },
     "last_active_at": null
   }

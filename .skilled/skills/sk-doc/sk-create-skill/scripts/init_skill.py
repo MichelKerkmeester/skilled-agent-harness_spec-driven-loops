@@ -639,8 +639,15 @@ def init_parent_skill(
                     "packetkind",
                 ]
             },
+            # The doctor's 5k check needs every mode alias to be a keyword of the
+            # mode's routerSignal classes, so the scaffold lists its own aliases here.
             "primary-aliases": {
-                "keywords": ["primary", f"{skill_name} primary"]
+                "keywords": [
+                    "primary",
+                    f"{skill_name} primary",
+                    packet_name,
+                    f"{skill_name} primary workflow",
+                ]
             },
         },
     }
@@ -724,7 +731,7 @@ def init_parent_skill(
         ),
         "version": "1.0.0.0",
         "importance_tier": "high",
-        "keywords": [skill_name, "mode-registry", "hub-router", "primary"],
+        "keywords": [skill_name, "mode-registry", "hub-router", "primary", packet_name],
         "trigger_examples": [
             f"example request for the {skill_name} primary workflow"
         ],

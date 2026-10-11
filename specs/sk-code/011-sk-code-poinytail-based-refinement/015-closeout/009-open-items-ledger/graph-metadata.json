@@ -15,7 +15,10 @@
       "phase 9 open items ledger",
       "open items ledger plan",
       "open items ledger tasks",
-      "open items ledger goal",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "open items ledger implementation summary"
     ],
     "key_topics": [
@@ -25,21 +28,22 @@
       "phase",
       "plan",
       "tasks",
+      "packet",
       "goal",
-      "implementation",
-      "summary",
-      "broken",
-      "missing",
-      "inefficient"
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py"
     ],
     "entities": [
       {
@@ -73,6 +77,12 @@
         "source": "derived"
       },
       {
+        "name": "init_skill.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -97,13 +107,13 @@
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
+        "name": "Known Limitation",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -121,7 +131,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Rerun",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,14 +149,8 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow One",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -175,21 +185,15 @@
         "source": "derived"
       },
       {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Decisions Frozen",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The 012, 013, 014 and 066 trees list about fifty Known Limitations, many handed to the master orchestrator or a hub owner",
     "created_at": "2026-10-11T04:49:38Z",
-    "last_save_at": "2026-10-11T04:49:41.564Z",
+    "last_save_at": "2026-10-11T06:11:29.053Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +203,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fc8a4b061a8a49cf6d0a9a0b6dd384148609e30c4eb0da5df36a802a48272ba2",
+    "source_fingerprint": "sha256:fc2ee01f4604d6a3d872734c99bf6c242e6406e754d5aa5849c5e92e1f8fee8c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1a459ec1d8f82b39528b9cce53bd94ab6df4a947e8a9c20eae02ee15e895bb40",
-      "plan.md": "e929651875f7e221f3f40fb6ee1106535c0a96a9c4a90c81049424b7e2a8b1c6",
-      "tasks.md": "6f392f60d2ebbc2e9d6a6494f70050bcef26e54bb3021221a42f845b60723e8e",
-      "implementation-summary.md": "5e30687ec0c179062cafd8360e2982d32719abda9b0fa2957d11d9f19c220719"
+      "spec.md": "33c885bfa5bf768a44111719f9aabbed025e2363082ac99a4da8e124d98e1aa8",
+      "plan.md": "dfb00667f5a0522835cc9601e2e9be25e218c45ffcd831807de20e4413730241",
+      "tasks.md": "85c5c0c86bfae2851f5cf423ba3d282aef55be90982f029896240b8bb0261714",
+      "implementation-summary.md": "b6ce70e64513561602d3cba0c343f44a1212b2dcf260cbd70c55fb7f9429c4c0"
     },
     "last_active_at": null
   }

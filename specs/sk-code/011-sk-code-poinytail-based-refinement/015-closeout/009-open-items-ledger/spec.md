@@ -1,11 +1,11 @@
 ---
 title: "Feature Specification: Phase 9: open-items-ledger"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "Give every remaining open item a final state, fixed with a check or closed with a reason, and fix the ones a gate run surfaced."
 trigger_phrases:
   - "open items ledger"
   - "phase 9 open items ledger"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 9: open-items-ledger
@@ -19,15 +19,15 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-10-11 |
-| **Branch** | `scaffold/009-open-items-ledger` |
+| **Branch** | `worktrees/098-post-092-integration` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 9 of 9 |
 | **Predecessor** | 008-advisor-residuals-and-surface-hint |
 | **Successor** | None |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | Every criterion in goal.md passes and strict validation passes |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -35,15 +35,15 @@ contextType: "general"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 9** of the Closeout phases specification.
+This is **Phase 9** of the epic closeout phase parent. It closes items 11 and 13 of the closeout list, and every Known Limitation in the 012, 013, 014 and 066 trees.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: Only the files in the table below change.
 
 **Dependencies**:
-- [To be defined during planning]
+- None beyond the files named below.
 
 **Deliverables**:
-- [To be defined during planning]
+- Give every remaining open item a final state, fixed with a check or closed with a reason, and fix the ones a gate run surfaced.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -55,10 +55,10 @@ This is **Phase 9** of the Closeout phases specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The 012, 013, 014 and 066 trees list about fifty Known Limitations, many handed to the master orchestrator or a hub owner. A gate run also surfaced a failing scaffold test, five failing deep-loop runtime tests from stale command-contract digests, a stale hub README version and two hub releases the catalog track handed off.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+One ledger names every item with its state and its evidence or reason, and each surfaced failure is fixed.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -67,19 +67,25 @@ This is **Phase 9** of the Closeout phases specification.
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- The ledger in this phase's implementation summary
+- The parent-hub scaffold in init_skill.py
+- The deep command contracts
+- The system-deep-loop hub release and README version
+- Lines in the unreleased cli-classifier, mcp-tooling and sk-create-skill entries
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Package findings in 13 units whose files are unchanged since origin/main
+- Doctor alias and README warnings in hubs this closeout did not release
+- Merging and pushing
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py` | Modify | Scaffold lists its aliases as keywords |
+| `.skilled/commands/deep/assets/compiled/*.contract.md` | Modify | Recompiled |
+| `system-deep-loop carriers, README.md, changelog/v1.5.6.0.md, manifests, Hermes copy` | Modify, Create | Hub release 1.5.6.0 |
+| cli-classifier v0.8.1.0, mcp-tooling v1.8.1.0, sk-create-skill v1.5.2.0 changelogs | Modify | Handed-off work listed |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -91,13 +97,14 @@ This is **Phase 9** of the Closeout phases specification.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Every item has a state | The ledger lists each closeout item and each Known Limitation |
+| REQ-002 | Surfaced failures are fixed | create-journey-proof and the deep-loop contract tests pass |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-090 | Strict validation of this phase passes | validate.sh --strict prints RESULT: PASSED |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -105,8 +112,8 @@ This is **Phase 9** of the Closeout phases specification.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: Every completion criterion in goal.md passes when the orchestrator reruns it.
+- **SC-002**: The phase lands as one conventional commit in the worktree.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -116,8 +123,7 @@ This is **Phase 9** of the Closeout phases specification.
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | A change reaches a caller the phase did not name | Med | The gates named in goal.md are rerun from the final state |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -125,10 +131,7 @@ This is **Phase 9** of the Closeout phases specification.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None.
 <!-- /ANCHOR:questions -->
 
 ---
-
-

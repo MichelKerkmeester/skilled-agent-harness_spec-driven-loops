@@ -32,17 +32,17 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/mode-registry.json",
-      "sha256": "9301461df329274d586b851ae0ecf07c91fde66679d44ddc68ceba3d46b9b9c2",
+      "sha256": "f621552429a0b2ad844a710f710c27aa9e8f1d20a47f9af5362b5190051271aa",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "1162240550c141bd7efb6edf19965edcb9155c537a563eaac74a6b332e92aec6",
+      "sha256": "af0a484b5182a21ebbd039687dda1a11f6bda7e5cc02267503f9322324eb9ab2",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
-      "sha256": "8de74aff5bcce17eb5e82068c21c7479a98d0356807d328a82972cce414e8b45",
+      "sha256": "c0b90d81f43b1038786b2c50e3ffdd524ac54483c5163eebf29ec2009f5e84af",
       "section": "full"
     },
     {

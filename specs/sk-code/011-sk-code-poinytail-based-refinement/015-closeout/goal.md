@@ -102,6 +102,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phases planned | Done | Nine children grouped by file ownership |
+| Phases 001 to 009 | Done | One commit per phase; every item fixed or closed in the 009 ledger |
 
 ### Deviations and findings
 

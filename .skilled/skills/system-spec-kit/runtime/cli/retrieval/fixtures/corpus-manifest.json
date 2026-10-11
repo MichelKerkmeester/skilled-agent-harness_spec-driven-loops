@@ -1,5 +1,5 @@
 {
-  "corpusHash": "723d9681c97d760dc50c570ae9b54d49c1f3ad0daa014de576f0094b42d27d4f",
+  "corpusHash": "3a39eb6882e5d2e9f7c75a73b42c0679961ed49c3894394f90ccaa2a8e656858",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24722,
+  "includedPathCount": 24723,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6863,6 +6863,7 @@
     ".skilled/skills/system-deep-loop/changelog/v1.5.3.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.5.4.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.5.5.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v1.5.6.0.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/README.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-dashboard.md",
@@ -24753,7 +24754,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d9e896de3eacc8a3a2b273acd23a7880628242ccead6d9cf32cea7fedd7e385b",
+  "manifestHash": "19737a437cfe3f0f287fea08948de86b97d00743b9317ed63d22ee8869f2c088",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

@@ -141,6 +141,18 @@
         "source": "derived"
       },
       {
+        "name": "proof",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "1. DURABLE DIRECTIVE",
         "kind": "heading",
         "path": "goal.md",
@@ -151,33 +163,21 @@
         "kind": "heading",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "2. BINDING",
-        "kind": "heading",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "3. COMPLETION CRITERIA",
-        "kind": "heading",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Ponytail is an external coding-agent plugin that teaches restraint: write the least code that meets the requirement, and still ship tests for risky logic",
     "created_at": "2026-10-09T13:20:16Z",
-    "last_save_at": "2026-10-11T04:55:23.332Z",
+    "last_save_at": "2026-10-11T06:05:13.534Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:62922bbb71ca994609364a3f1d8d2c36e48239e06a6a392231297ab3c4f3a468",
+    "source_fingerprint": "sha256:5fb8701a747cf84def713a88d31dea7e1d6a82a37a1ec68d181c76586c603262",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7ce4a8b9f0fc4e0038159712bca1c556ddbc8d13d9b10cb40b9a60507e300abe"
+      "spec.md": "4a679b4621c51ff66fc9041aca2535629f94dee16188d06b33a6dd90f4354b52"
     },
     "last_active_at": null
   }
