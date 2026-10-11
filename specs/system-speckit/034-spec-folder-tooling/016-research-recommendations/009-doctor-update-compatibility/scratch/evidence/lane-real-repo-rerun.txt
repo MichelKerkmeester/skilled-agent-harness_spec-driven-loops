@@ -1,0 +1,256 @@
+DOCTOR:UPDATE COMPAT — REAL v3 REPOSITORY RE-RUN AFTER THE D1+D2 FIX (lane: real-repo-rerun)
+============================================================================================
+
+Purpose: the first real-repo run (scratch/evidence/lane-real-repo-run.txt) stopped at D1
+(ENAMETOOLONG in the Downgrades preview) and D2 ("Invalid string length" writing the
+reversibility manifest). Both are fixed in the worktree (scratch/evidence/lane-d1-d2-fix.txt).
+This run repeats the whole workflow on a fresh clone of the same v3 era commit to verify the
+two fixes on the real 1.1 GB corpus.
+
+Source worktree : /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets
+Worktree HEAD   : 2d8e35161bf7c08074cff6a3342be2182a1399ca (unchanged since the first run)
+Clone path      : /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/compat-v3/repo2
+Clone commit    : 9f2970c46fa28eb52f5a80797cab4588b8738185 (branch compat-v3-rerun), same
+                  selection as the first run: 3465 spec.md files, 1.1 GB under specs/
+Tooling         : copied from the worktree; the clone's
+                  .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs is
+                  byte-identical to the worktree's (sha256 0e38252dc5e5417e96aea837079c550f69ef2f9bd6371ca0019079721b0880b4,
+                  3 x "dereference: false", 3 x BEFORE_IMAGES_DIR) — this run exercised the fix.
+Operator        : both approvals (move, upgrade apply) pre-approved for this clone.
+Raw outputs     : scratchpad/compat-v3/run2/ (37 MB, 58 files); only condensed lines appear here.
+
+Harness deviation (same as the first run): upgrade-legacy derives its REPO from its own
+location and refuses roots outside it, so the workflow's command strings run from the clone
+root, not through the worktree's absolute paths.
+
+Clone hygiene: `git clone --no-local --no-checkout <worktree> repo2` rc=0; `git checkout -b
+compat-v3-rerun 9f2970c46...` rc=0; HEAD 9f2970c46...; `git status --porcelain` empty;
+`.opencode/specs` a real directory, `specs` absent.
+
+========================================================================
+STEP 1 — HARNESS: TOOLING COPY AND RELEASE CHECK
+========================================================================
+
+$ rsync -a --delete <worktree>/.skilled/ .skilled/
+    (chained with &&; the commands below ran, so rc=0)
+$ find .skilled -type f | wc -l ; find .skilled -type l | wc -l ; du -sh .skilled
+    39390
+      270
+    1.4G
+$ find .skilled/skills/system-spec-kit -path '*/node_modules' -prune -o -path '*/dist/*' -type f -exec touch {} +
+    (mtime refresh only, as the project's own integration test does)
+$ node .skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs check-all
+    All watched dist outputs are fresh.                              exit=0
+$ node ... dist-freshness.cjs check --package system-spec-kit/runtime
+    @spec-kit/runtime dist is fresh                                  exit=0
+$ node ... dist-freshness.cjs check --package system-spec-kit/runtime/cli
+    @spec-kit/cli dist is fresh                                      exit=0
+
+$ node .skilled/commands/doctor/scripts/release-update.cjs check --repo . --json   # check #1
+    exit=0   json=18,061,407 bytes   stderr=0
+    head=9f2970c46fa28eb52f5a80797cab4588b8738185  release=v4.0.0.3
+    releaseCommit=c9bd4b156c7493722455ee17839ed4317de37107  localLatest=v4.0.0.3
+    status=updates-available  checkout position=behind behindBy=3696 dirty=true
+    baseRecording: needed=false, units=[]
+    units=79 counts={"conflict":65,"current":13,"new":1}
+    new (1): skill:system-deep-loop/deep-improvement      update (0)
+
+$ git checkout v4.0.0.3 -- .skilled/skills/system-deep-loop/deep-improvement
+    exit=0  tree 78bc9a01ab8e873605373ba56a0a9478f81f5621  354 files
+    (same normalization as the first run: HEAD content alone never satisfies the release gate)
+
+$ node .skilled/commands/doctor/scripts/release-update.cjs check --repo . --json   # check #2
+    exit=0   json=18,030,022 bytes   stderr=0
+    sha256 0de850d0eac649567de39d2ba83e6c0abac96e237991cb0e4191acbff1e65b4f
+    units=79 counts={"conflict":65,"current":14}   new (0)   update (0)
+
+========================================================================
+STEP 2 — LAYOUT MAP AND THE MOVE
+========================================================================
+
+$ node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map   # before
+    exit=0
+    {"state":"v3","moves":[{"from":".opencode/specs","to":"specs"}],"alreadyMoved":[],
+     "collisions":[],"steps":[{"id":"move-tree","argv":["git","mv",".opencode/specs","specs"]},
+     {"id":"link-legacy-path","argv":["ln","-s","../specs",".opencode/specs"]}]}
+$ git status --porcelain=v1 --untracked-files=all -- specs .opencode/specs
+    0 lines (clean spec roots, the move precondition)
+$ move progress log id 2026-10-11T18:20:31Z appended: run-started, step-started/step-done
+  (move-tree), step-started/step-done (link-legacy-path), move-complete
+$ git mv .opencode/specs specs                                      exit=0
+$ ln -s ../specs .opencode/specs                                    exit=0
+$ node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map   # after
+    exit=0
+    {"state":"v4","moves":[],"alreadyMoved":[],"collisions":[],"steps":[]}
+$ ls -ld .opencode/specs specs
+    .opencode/specs -> ../specs
+    specs (directory)
+
+========================================================================
+STEP 3 — UPGRADE PREVIEW (PHASE 5 DRY RUN) — D1 VERIFICATION
+========================================================================
+
+$ node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs
+    exit=1  elapsed=1507s
+    stdout 13936 lines / 2,263,859 bytes
+    failing lines=2048   unreadable=0   refused=0   would-refuse=0
+    inspected=2048 active=2048 archived=0
+    passing=0/2048
+    ENAMETOOLONG occurrences (stdout+stderr of preview and apply): 0
+    stderr, exactly one line:
+      upgrade-legacy: preview specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/.reducer-spec/research: symbolic link, not followed (the target leaves the packet)
+    stdout tail: Downgrades section present (error -> warning mappings), then
+      repo era report: layout: v4 (v3=false, v4=true); frontmatter present=14326 missing=463
+      --apply would run: fill-frontmatter, anchor-repair, heal-spec-docs, lane-modes,
+        repair-derived, migrate-generated-json, then record the remaining findings ...
+
+D1 verdict: the first run died here with exit 2 and
+  "could not predict Downgrades: ENAMETOOLONG ... .reducer-spec/research/.reducer-spec/..."
+  The preview now completes, the committed self-referential link
+  (.../lineages/sol/.reducer-spec/research -> ..) is left in place and reported once, and the
+  phase_5 exit policy reads exit 1 (failing packets listed) instead of exit 2.
+
+========================================================================
+STEP 4 — UPGRADE APPLY (PHASE 7) — D2 VERIFICATION
+========================================================================
+
+Pre-apply snapshot of the restore candidate
+  specs/cli-external-orchestration/026-cli-external-parent/004-onboard-cli-opencode: 6 files.
+
+$ node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --apply
+    exit=2  elapsed=3142s
+    stdout 2766 lines / 601,616 bytes   stderr 0 bytes
+    plan changes=2048
+    recorded (baseline written)=516
+    still failing=3   unreadable=0   refused=0
+    inspected=2048 active=2048 archived=0
+    passing before=0/2048 after=2045/2048
+    recorded findings by rule:
+      ANCHORS_VALID 246, FILE_EXISTS 122, FRONTMATTER_MEMORY_BLOCK 180, FRONTMATTER_VALID 358,
+      GREP_CONVENTION 329, LEVEL_MATCH 124, SCAFFOLD_NEVER_TOUCHED 206, SPEC_DOC_INTEGRITY 24,
+      SPEC_DOC_SUFFICIENCY 78, STATUS_CROSS_DOC_CONSISTENCY 14, TEMPLATE_SOURCE 73
+    still failing (all METADATA_DISK_PATH_CONSISTENCY):
+      specs/system-speckit/027-xce-research-based-refinement   parent_id=null expected=system-speckit
+      specs/system-speckit/029-spec-root-resolution-hardening  parent_id=system-speckit/000-migration-from-soa-and-cleanup expected=system-speckit
+      specs/system-speckit/030-rust-backend-rewrite-research   parent_id=null expected=system-speckit
+
+Manifest <git-dir>/upgrade-legacy.manifest.json
+    16,212,687 bytes   status=complete   headSha=9f2970c46...   scopeHashes=2048
+    beforeImages=32666  kinds={"file-bytes":32665,"symlink-target":1}  inline-content=0
+Sidecars <git-dir>/upgrade-legacy.before-images/
+    31,168 files / 712 MB
+
+D2 verdict: the first run refused here with "could not write reversibility manifest ...
+  Invalid string length; no packet changes were made" after 2048 dirty packets made one JSON
+  string out of the whole corpus. The apply now writes a 15.5 MB manifest with per-file
+  sidecars (0 inline content) and repairs the corpus: 2045 of 2048 packets pass afterwards.
+  exit 2 is the three still-failing packets below, not a refusal.
+
+Observation O1 (residual, by design, not a regression): METADATA_DISK_PATH_CONSISTENCY is one
+of the five NEVER_RECORDED_RULES (upgrade-legacy.mjs:146-149), so it stays an error and the
+tool reports the packet as still failing. 70 packets carried it in the preview; 67 were
+repaired by the apply. The workflow's phase_7 exit policy covers this: repairs were written
+(plan changes=2048), so the run is STATUS=PARTIAL with the named packets for manual review.
+
+========================================================================
+STEP 5 — validate.sh --strict ON 5 UPGRADED PACKETS
+========================================================================
+
+All five were repaired by the apply; all five pass strict validation. exit=0 each.
+
+validate-1  specs/cli-external-orchestration/026-cli-external-parent/004-onboard-cli-opencode
+            exit=0  RESULT: PASSED   Summary: Errors: 0  Warnings: 0
+validate-2  specs/sk-design/009-sk-design-claude-parity/006-parent-skill-canon-verification
+            exit=0  RESULT: PASSED   Summary: Errors: 0  Warnings: 4
+validate-3  specs/system-deep-loop/030-deep-loop-unification/011-skill-frontmatter-standardization
+            exit=0  RESULT: PASSED   Summary: Errors: 0  Warnings: 1
+validate-4  specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review
+            exit=0  RESULT: PASSED   Summary: Errors: 0  Warnings: 1
+validate-5  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings
+            exit=0  RESULT: PASSED   Summary: Errors: 0  Warnings: 2
+
+The warnings are the findings the apply recorded in each packet's upgrade-baseline.json.
+
+========================================================================
+STEP 6 — PER-PACKET RESTORE WITH THE README RECOVERY SCRIPT
+========================================================================
+
+Packet: specs/cli-external-orchestration/026-cli-external-parent/004-onboard-cli-opencode
+Method: the README script restores every beforeImages entry it is handed, so it was run
+against a packet-scoped view of the real manifest (same file shape, beforeImages and
+scopeHashes reduced to this packet; baselineMap entry copied unchanged). The view is written
+beside the real manifest so sidecar paths resolve; the real manifest and sidecars stay intact.
+
+$ node run2/filter-manifest.cjs <real-manifest> <filtered> <packet>
+    beforeImages=6  scopeHashes=1  baselineMapHas=true
+$ extract the fenced js block under "### Recover an Interrupted Apply" from
+  .skilled/skills/system-spec-kit/runtime/cli/spec/README.md (sha256 736b7242bff3343f2d308afaf80da25e8dfca1b301267b3aa2e0f0856603150d)
+    75 lines  sha256 784b1633e99c3dd26592422f833b5fba0d29a6df6cb8513f431b9caaee0e4eee
+$ UPGRADE_LEGACY_REPO_ROOT=<clone> node --input-type=module --eval "$(cat readme-restore.mjs)" <filtered>
+    exit=0
+    (the script reads the manifest as process.argv[1]; run through --eval as the README code implies)
+$ diff <pre-apply shasum snapshot> <post-restore shasum snapshot>
+    exit=0  0 lines  — every file byte-identical to its pre-apply state
+$ diff <pre-apply non-file entries> <post-restore non-file entries>
+    exit=0  0 lines
+$ ls <packet>/upgrade-baseline.json            No such file (none was written for this packet)
+$ bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <packet> --strict
+    exit=2  RESULT: FAILED  Summary: Errors: 1  Warnings: 0
+    (the pre-upgrade GENERATED_METADATA_INTEGRITY error returns)
+$ filtered view removed; real manifest 16,212,687 bytes and 712 MB of sidecars remain
+
+Restore verdict: the README recovery script restores a packet from the sidecar manifest
+exactly, and the packet is failing again exactly as it was before the upgrade. Undo works.
+
+========================================================================
+POST-RUN STATE
+========================================================================
+
+Clone: .opencode/specs -> ../specs, specs/ is the real tree; git status headline over specs:
+  46,426 renames, 5,189 rename+modified, 356 added, 570 untracked (move plus repairs)
+Move log .git/doctor-update-compat.log.jsonl: run 1 (move) complete; run 2 shows
+  run-started, upgrade-started, upgrade-failed, run-complete.
+.skilled write check: 0 new files besides 6 dist-freshness cache files
+  (5 under system-spec-kit — runtime/dist, runtime/dist/lib/validation, runtime/cli/dist,
+  runtime/cli/dist/spec, shared/dist — and 1 under system-skill-advisor/runtime/dist/runtime)
+  and the deliberately restored deep-improvement unit (354 files). The caches are ignored
+  by .gitignore:44 (dist/).
+Worktree footprint: the only path this runner created in the worktree is this evidence file
+  (scratch/evidence/ stays untracked as before). No commit, no push, no worktree action.
+
+========================================================================
+RESULT SUMMARY
+========================================================================
+
+  step                                          exit
+  --------------------------------------------  ----
+  1  clone + checkout 9f2970c46                  0
+  2  tooling copy + dist mtimes                  0 (chained)
+  2a release check #1 (before normalization)     0
+  2b deep-improvement restore from v4.0.0.3      0
+  2c release check #2 (0 new / 0 update)         0
+  3  layout map before (v3, 2 steps)             0
+  3a dirty check                                 0 (0 lines)
+  3b move-tree (git mv)                          0
+  3c link-legacy-path (ln -s)                    0
+  3d layout map after (v4, no steps)             0
+  4  upgrade preview (dry run)                   1  (2048 failing, 0 unreadable; D1 fixed)
+  5  upgrade --apply                             2  (2045/2048 pass; 3 residual; D2 fixed)
+  6  validate.sh --strict x5                     0,0,0,0,0 (RESULT: PASSED x5)
+  7  README restore of one packet                0  (hash diff empty; strict validation FAILED again)
+
+Defects:
+  D1 (preview followed a self-referential link)  FIXED AND VERIFIED on the real repo
+  D2 (manifest inlined every before-image)       FIXED AND VERIFIED on the real repo
+  No new code defects found. Residuals and notes:
+  O1  3/2048 packets still fail METADATA_DISK_PATH_CONSISTENCY after --apply; the rule is
+      never recorded by design, 67 of its 70 pre-apply packets were repaired; phase_7's
+      exit policy maps this to STATUS=PARTIAL with manual review.
+  O2  The README's recovery script reads the manifest as process.argv[1], so it must be run
+      in eval/stdin form; the README shows the code but not that invocation line.
+  O3  A single-packet restore needs a packet-scoped manifest view because the script restores
+      every beforeImages entry; the script itself was used unmodified.
+  O4  6 dist-freshness cache files appear under .skilled during the run (5 system-spec-kit,
+      1 system-skill-advisor; first run recorded 2), all ignored by the dist/ gitignore rule.
+
+END OF EVIDENCE — 2026-10-11T19:45:00Z

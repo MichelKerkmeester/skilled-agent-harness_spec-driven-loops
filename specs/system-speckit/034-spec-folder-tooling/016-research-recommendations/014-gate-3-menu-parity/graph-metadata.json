@@ -48,6 +48,8 @@
       "goal.md",
       "implementation-summary.md",
       "runtime/tests/hooks/gate-3-menu-parity.test.mjs",
+      ".skilled/commands/speckit/assets/speckit-implement.yaml",
+      "scratch/evidence/lane-followup-recheck.txt",
       ".skilled/commands/create/assets/create-feature-catalog-presentation.txt",
       ".skilled/commands/create/assets/create-manual-testing-playbook-presentation.txt",
       ".skilled/commands/create/assets/create-skill-parent-presentation.txt",
@@ -58,9 +60,7 @@
       ".skilled/commands/speckit/assets/speckit-complete-presentation.txt",
       ".skilled/commands/speckit/assets/speckit-plan-presentation.txt",
       ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
-      ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
-      ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs",
-      ".skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs"
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs"
     ],
     "entities": [
       {
@@ -103,6 +103,18 @@
         "name": "gate-3-menu-parity.test.mjs",
         "kind": "file",
         "path": "runtime/tests/hooks/gate-3-menu-parity.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-implement.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-implement.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "lane-followup-recheck.txt",
+        "kind": "file",
+        "path": "scratch/evidence/lane-followup-recheck.txt",
         "source": "derived"
       },
       {
@@ -172,12 +184,6 @@
         "source": "derived"
       },
       {
-        "name": "spec-gate-core.test.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -200,18 +206,12 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`GATE3CHOICERELATED` in `spec-gate-core.mjs:151` reads \"Use a related folder, phase child, or a series parent for a different change to the same artifact as an existing packet in the same track\"",
     "created_at": "2026-10-08T04:22:48Z",
-    "last_save_at": "2026-10-08T08:43:10.687Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-11T19:55:54.923Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e7ecdbc168a1d66dada565fc07db3756a622103f8962337c928d0524472bd9d6",
+    "source_fingerprint": "sha256:eeb1b25e3014b31c0b00f51dffaa51a36fc42a6e900de0723a284ae7802f7c0c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9c5399913d3dc1ac9f32df1feb0a1be49be1024c48b8dd9774e8e6f2f2e69e54",
-      "plan.md": "b245cfaf0908862a94531d4dcce1e7d092aa6f392063c0772f54e0bbfc9b54e5",
-      "tasks.md": "96049504a10ee0e67a387c5c95a05536ccdd44217f217ac1c6bb7c00b36b60ea",
-      "implementation-summary.md": "2dcd73decf133b1765b9d586a2e660b2c3c1c31f2474c8a6cf969789d810cf2a"
+      "plan.md": "613ef0945f5581ae2dc2ea034e3a89cf680fad64407961eeb089a4650dd7c097",
+      "tasks.md": "40630a90930a4953d13ad6dbbe3872d21e68efb11fbc4cbda58d6fddbbba15a0",
+      "implementation-summary.md": "34ee1a32fff574a057f33de341e8bdbd1bc8176b9cac886fef9f1d5a0b0a07ca"
     },
     "last_active_at": null
   }

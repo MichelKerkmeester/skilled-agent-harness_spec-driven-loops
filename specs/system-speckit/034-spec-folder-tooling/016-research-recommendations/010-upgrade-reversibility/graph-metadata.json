@@ -201,7 +201,7 @@
     ],
     "causal_summary": "`upgrade-legacy --apply` transforms a legacy spec tree into v4 format with no reversibility record",
     "created_at": "2026-10-08T04:22:46Z",
-    "last_save_at": "2026-10-08T13:08:08.053Z",
+    "last_save_at": "2026-10-11T20:54:24.593Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ab545f3849fc9a8fe19530249722570c38c1d09df1a98e2e10a1b736a138731",
+    "source_fingerprint": "sha256:f38acb91b6086169c3b35ba331852348476836ba6176bb41ce702d3f1c094436",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5945148938931b3b8acbf159d1ffb1fb3cd6e4502510ce12d256722461272403",
       "plan.md": "8ceab0e5be25dca0d651f1965769b42c365056562dbd8e226a30e8650be2266a",
       "tasks.md": "06c20a33f5974965f0c4e548cfe1eb1e334f2224c8f6ee1dbc7532125bbce532",
-      "implementation-summary.md": "a7d05b6616255c16561ff6dba48687e8054b50c072119872827a5ef7a8d9c2c6"
+      "implementation-summary.md": "9df045885913c8e4412650590764c2b3f91843b34f49baafed15d245a692af32"
     },
     "last_active_at": null
   }

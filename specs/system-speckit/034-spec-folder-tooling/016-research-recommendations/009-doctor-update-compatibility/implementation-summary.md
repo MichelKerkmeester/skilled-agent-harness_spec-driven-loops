@@ -8,20 +8,21 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility"
-    last_updated_at: "2026-10-09T09:17:51Z"
-    last_updated_by: "orchestrator"
-    recent_action: "Closeout 3: citations re-checked; AC-007 re-cited to tree5"
-    next_safe_action: "Ship in the combined upgrade-legacy commit, then the operator manual run"
+    last_updated_at: "2026-10-11T19:55:37Z"
+    last_updated_by: "generate-context"
+    recent_action: "Ran the real v3 upgrade twice, fixed two defects, proved undo"
+    next_safe_action: "Monitor the three residual packets the workflow leaves for manual review"
     blockers: []
     key_files:
-      - ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml"
+      - "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/scratch/evidence/lane-real-repo-rerun.txt"
+      - "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/scratch/evidence/lane-real-repo-run.txt"
+      - "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/scratch/evidence/lane-d1-d2-fix.txt"
       - ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs"
-      - ".skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:e2965f5b0084b81781ac8515961e48e966c5454f765961f0d3aa63616e109398"
       session_id: "bd2aa56c-623b-43f8-a2ef-69a13c32d626"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -73,6 +74,7 @@ Run on 2026-10-09 from the shared worktree. Raw output sits in the build gates f
 - Root command named in AC-007, `npm --prefix .skilled/skills/system-spec-kit test`: see the AC-007 row for its result and the bound it ran under.
 - Closeout 3 (2026-10-09), whole-tree gate `gates/tree5/`, which started at HEAD `02cc1fb948`. Commit `c2a0a667e9` landed at 10:37, inside the root step, but the spec documents it recorded were last written on 2026-10-08, so the run did not read content that changed during it (see AC-007). Build, build-cli, cli-check, typecheck and typecheck-cli rc 0. CLI test rc 0, and its raw `cli-test.log` has no vitest summary line, so its 171 files and 1775 tests are not confirmed from that log. Hooks 184 tests, 181 pass, 0 fail, rc 0 (`hooks.log`). Doctor `run-all.sh` 7 suites passed, 0 failed (`doctor.log`). Test-validation 31 total, 0 failed, RESULT: PASSED (`test-validation.log`). Doctor-update node tests 22 pass, 0 fail (`doctor-update.log`). Focused vitest 8 files, 152 tests passed (`focused-vitest.log`). Workflow invariance 2 of 2 (`workflow-invariance-isolated.log`). Drift guards: alignment drift and stack folders PASSED, with 0 errors (`drift.log`). `typecheck:tests` rc 2 with 95 `error TS` lines, report-only. Root test rc 0 (`root-test.log`), with runtime test:core at 281 files and 4180 tests passed, and CLI at 171 files and 1775 tests passed.
 - Packet gates, closeout 3 (2026-10-09). `repair-derived.cjs --folder` with `--apply` returned rc 0. `validate.sh --strict` printed RESULT: PASSED with Errors 0 and Warnings 0, rc 0. It also printed one advisory, AC_COVERAGE, because the Verification cells cite test names and logs rather than file:line. `check-goal.cjs` printed RESULT: PASSED (5/5 checks), rc 0. Logs sit in `gates/closeout3-009/`.
+- Closeout 5 (2026-10-11), real-repo upgrade runs. A fresh clone of the v3-era commit `9f2970c46fa28eb52f5a80797cab4588b8738185` (3465 `spec.md` files, 1.1 GB under `specs/`, 2048 packets) exercised the workflow end to end with the worktree tooling copied in. Preview exit 1 with 0 unreadable and no ENAMETOOLONG, apply exit 2 with 2045 of 2048 packets passing, five upgraded packets passing `validate.sh --strict` and one packet restored byte for byte by the README recovery script. The three residual packets fail only `METADATA_DISK_PATH_CONSISTENCY`, which the tool never records by design, so the workflow ends STATUS=PARTIAL for manual review. The runs and their results are recorded in Not Done below. Evidence: `scratch/evidence/lane-real-repo-run.txt`, `scratch/evidence/lane-d1-d2-fix.txt` and `scratch/evidence/lane-real-repo-rerun.txt`.
 
 ### Review rounds
 
@@ -81,6 +83,7 @@ Run on 2026-10-09 from the shared worktree. Raw output sits in the build gates f
 - Closeout 3 (2026-10-09): a fresh Opus high alignment and overengineering review, requested by the operator, ran after the test round. Its verdict was ALIGNED, with a simplify-first note, and all its findings were P2. The one fix that touched this phase's code gave `planLayoutMove` its JSDoc and removed an unreachable fallback in the same function. The other fixes in `upgrade-legacy.mjs` (one healer loader, one exported atomic writer and the duplicate writer removed) do not touch this phase's functions. The post-fix vitest run of five test files, including `upgrade-legacy.vitest.ts`, passed 124 tests (build log OC-F2O5).
 - No second DeepSeek round for this phase is recorded in the build evidence log.
 - The 009-T1 test round, added at closeout 2, has no review round recorded in the build evidence log. Closeout 3 correction (2026-10-09): TR-R1, a read-only Luna review of the test round on the cli-codex route, did review 009-T1 in `doctor-update-compat.test.cjs`. Its one finding there, that the comment at test line 646 names `phase_4_move`, was rejected. The name is the YAML workflow key that the test reads (test lines 317, 520, 692 and 822), so it is a durable identifier and not an ephemeral label. Its Vitest files could not start in its sandbox, which denied Vite's cache write, so that review read the files and ran only the doctor node tests
+- Post-rerun review (2026-10-11). A code review after the real-repo rerun found four issues, all fixed in `upgrade-legacy.mjs` and the README restore script. Item 1 concerned the dry-run preview, which dropped every symbolic link because the copy rewrote relative links to absolute ones and the macOS temp path did not match its real path. The preview keeps relative links as written and checks containment on the real preview path, so an in-packet link is kept while a self-referential or escaping link is still refused. The other three items extended the secret test to the sidecar files, hardened the README restore script and pruned sidecars that a written manifest does not reference. The focused suite moved from 63 to 67 tests, all passing. Evidence: `scratch/evidence/lane-review-fixes-upgrade.txt`.
 <!-- /ANCHOR:how-will-be-delivered -->
 
 ---
@@ -117,7 +120,7 @@ Run on 2026-10-09 from the shared worktree. Raw output sits in the build gates f
 <!-- ANCHOR:not-done -->
 ## Not Done
 
-- **Manual run on a real v3 repository.** `plan.md` section 3 lists it as an operator task. No operator session ran `/doctor:update compat` on a real repository.
+- **Manual run on a real v3 repository.** Closed 2026-10-11. A fresh clone of the v3-era commit `9f2970c46fa28eb52f5a80797cab4588b8738185` (3465 `spec.md` files, 1.1 GB under `specs/`, 2048 packets inspected) ran the workflow's command sequence. The first run stopped at D1, the preview following a committed self-referential link until ENAMETOOLONG, and D2, the reversibility manifest inlining every before-image into one JSON string until the apply refused with "Invalid string length" (`scratch/evidence/lane-real-repo-run.txt`). The fixes, the preview copy keeping links as links and before-images going to sidecar files, are recorded with red and green tests in `scratch/evidence/lane-d1-d2-fix.txt`. The rerun (`scratch/evidence/lane-real-repo-rerun.txt`) completed the move, the preview, the apply and the restore. The preview exited 1 with 2048 failing packets, 0 unreadable and 0 ENAMETOOLONG occurrences. The apply exited 2 with 2045 of 2048 packets passing, a 16,212,687-byte manifest with 0 inline content and 31,168 sidecar files. Three packets stay failing on `METADATA_DISK_PATH_CONSISTENCY` alone, a rule the tool never records by design, so the workflow ends STATUS=PARTIAL for manual review: `specs/system-speckit/027-xce-research-based-refinement`, `specs/system-speckit/029-spec-root-resolution-hardening` and `specs/system-speckit/030-rust-backend-rewrite-research`. Five upgraded packets pass `validate.sh --strict`. The README recovery script restored one packet byte for byte, and that packet fails strict validation again exactly as it did before the upgrade. What the clone run did not exercise: the `/doctor:update compat` orchestrator itself and prompted approvals. The harness ran the command strings from the clone root with both approvals pre-approved, and both run evidence files record that deviation.
 - **Approval prompts.** Neither the move approval nor the upgrade approval is run by any test. The suite replays the commands that follow each approval.
 - **Untested refusals.** No test covers the release lock refusal, a failed move step, an upgrade that fails after the move, or the manifest refusal printed by the upgrade. Closeout 2 (2026-10-09): the failed move step now has its own case, so the gaps left are the lock refusal, the upgrade failure and the manifest refusal.
 - **Performance.** The timing check on a 4,000-packet corpus, listed in `plan.md` section 3, was not run.
@@ -149,5 +152,5 @@ Run on 2026-10-09 from the shared worktree. Raw output sits in the build gates f
 <!-- ANCHOR:status -->
 ## Status: Complete
 
-Closeout 2 (2026-10-09): every acceptance row is Met in `acceptance-criteria.md`, each with the evidence it names. Closeout 3 (2026-10-09): citations re-checked after the Opus alignment fixes, AC-007 re-cited to tree5, and the goal's progress rows and completion criteria reconciled to the Met rows. Closeout 4 (2026-10-09): AC-007 is Met on the tree5 root run, `gates/tree5/root-test.log`, which ran on the final code. The closeout 2 raised-bound run, `gates/closeout2-009/root-test-bound-raised.log`, stays as history. The first-pass text of this paragraph said AC-007 was open, because the root command exited 1 at HEAD while the dead `test:file-watcher` step was still in `run-tests.mjs`. The operator decision removed that step. The caveats and the Not Done list above name what the suite does not reach.
+Closeout 2 (2026-10-09): every acceptance row is Met in `acceptance-criteria.md`, each with the evidence it names. Closeout 3 (2026-10-09): citations re-checked after the Opus alignment fixes, AC-007 re-cited to tree5, and the goal's progress rows and completion criteria reconciled to the Met rows. Closeout 4 (2026-10-09): AC-007 is Met on the tree5 root run, `gates/tree5/root-test.log`, which ran on the final code. The closeout 2 raised-bound run, `gates/closeout2-009/root-test-bound-raised.log`, stays as history. The first-pass text of this paragraph said AC-007 was open, because the root command exited 1 at HEAD while the dead `test:file-watcher` step was still in `run-tests.mjs`. The operator decision removed that step. The caveats and the Not Done list above name what the suite does not reach. Closeout 5 (2026-10-11): the real-repo runs close the manual-run item in Not Done, with the slash-command orchestrator and prompted approvals named there as what the clone run did not exercise.
 <!-- /ANCHOR:status -->

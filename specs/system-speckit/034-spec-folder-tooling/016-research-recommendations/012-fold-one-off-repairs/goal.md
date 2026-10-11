@@ -87,7 +87,7 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
-| Deviations and open items | Listed in implementation-summary.md under Deviations and Open Items: the widened fill set, the missing changelog refresh, the manual `--apply` still open (T011), the sandbox reset for the order-dependent packet (an `afterEach` hook that landed at 08:41 CEST, author not confirmed), and the process-wide cache variant, closed by removing the cache (see implementation-summary.md). The four classes that had no value-source case are pinned as of the second pass |
+| Deviations and open items | Listed in implementation-summary.md under Deviations and Open Items: the widened fill set, the missing changelog refresh, the manual `--apply`, closed on 2026-10-11 by the real-corpus run (T011 and CHK-021, exit 0, inspected 2265, passing 2256 to 2265 of 2265, 24 paths written under `specs/`, receipts in `scratch/evidence/lane-clone-apply.txt`, section "Real tree apply"), the sandbox reset for the order-dependent packet (an `afterEach` hook that landed at 08:41 CEST, author not confirmed), and the process-wide cache variant, closed by removing the cache (see implementation-summary.md). The four classes that had no value-source case are pinned as of the second pass |
 | Stale route text in D3 and D4 | D3 names the LLM Gateway route and D4 names Luna. The build ran on the opencode-go route with DeepSeek, and the review on the other route, under parent D1 and D7. The decisions are frozen, so the text stays and this row records the difference |
 
 <!-- /ANCHOR:log -->

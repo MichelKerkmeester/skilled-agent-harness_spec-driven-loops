@@ -1,0 +1,44 @@
+LANE: severity pin for the nesting check
+Date: 2026-10-11
+Author: dispatched closeout worker (@code persona)
+
+What this pins
+--------------
+ANCHORS_VALID reports a nested anchor at error severity. The two-step severity
+that once produced a warning before the corpus un-nesting was removed together
+with its constant, so only the error state exists now. The added test builds a
+nested document at run time from the template-compliant Level 2 fixture and
+asserts the rule entry is an error and the strict run exits 2.
+
+New file
+--------
+.skilled/skills/system-spec-kit/runtime/cli/tests/anchor-nesting-severity.vitest.ts
+
+What the test does
+------------------
+1. Copies test-fixtures/053-template-compliant-level2 to a temp folder.
+2. Inserts an inner anchor pair inside the scope anchor in spec.md.
+3. Runs validate.sh on the copy with --strict --json and SPECKIT_RULES=ANCHORS_VALID.
+4. Asserts exit code 2, report passed false, entry status error, and the detail
+   "spec.md: anchor 'inner' is opened inside 'scope'".
+
+Command (run from .skilled/skills/system-spec-kit/runtime/cli)
+--------------------------------------------------------------
+npx vitest run tests/anchor-nesting-severity.vitest.ts --config ../../vitest.config.ts --project cli --reporter=verbose
+
+Exit code: 0
+
+Output
+------
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+ ✓ |cli| tests/anchor-nesting-severity.vitest.ts > ANCHORS_VALID nesting severity > reports a nested anchor at error severity 260ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  17:59:54
+   Duration  377ms (transform 15ms, setup 14ms, import 9ms, tests 260ms, environment 0ms)

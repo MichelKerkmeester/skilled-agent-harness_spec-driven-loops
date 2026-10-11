@@ -1,0 +1,204 @@
+LANE D1+D2: UPGRADE-LEGACY PREVIEW RECURSION AND BEFORE-IMAGE MANIFEST SIZE
+========================================================================
+Date: 2026-10-11
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets
+Node: v26.8.2
+Purpose: fix the two defects recorded in scratch/evidence/lane-real-repo-run.txt
+(D1 ENAMETOOLONG in the Downgrades preview, D2 "Invalid string length" in the
+apply manifest), each red then green with a test. No commit was made.
+
+Files changed
+-------------
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs
+.skilled/skills/system-spec-kit/runtime/cli/spec/README.md
+.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts
+
+$ git diff --stat (before this evidence file)
+ .skilled/skills/system-spec-kit/runtime/cli/spec/README.md     |  33 ++++-
+ .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs | 108 ++++++++++++++--
+ .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts | 143 ++++++++++++++++++++-
+ 3 files changed, 258 insertions(+), 26 deletions(-)
+
+Test-file count moved from 60 cases to 63 (three new cases; two existing cases
+updated to read sidecars).
+
+
+========================================================================
+D1 — PREVIEW COPY FOLLOWED A SELF-REFERENTIAL LINK
+========================================================================
+
+New case: "previews a packet whose link points at its own ancestor without
+following it". It builds a packet holding
+
+  research/lineages/sol/.reducer-spec/research -> ..
+
+and a second link pointing at a file outside the packet, then runs the dry run.
+
+D1 RED (before the fix)
+-----------------------
+$ cd .skilled/skills/system-spec-kit/runtime/cli
+$ npx vitest run tests/upgrade-legacy.vitest.ts --config ../../vitest.config.ts --project cli \
+    -t 'previews a packet whose link points at its own ancestor'
+exit=1
+
+--- failure evidence (condensed):
+libc++abi: terminating due to uncaught exception of type std::__1::__fs::filesystem::filesystem_error:
+  filesystem error: in posix_stat: failed to determine attributes for the specified path:
+  File name too long
+  ["/var/folders/3c/.../upgrade-legacy-preview-Ku55Cj/specs/link-loop/001-packet/research/lineages/sol/.reducer-spec/research/.reducer-spec/research/.reducer-spec/research/..."]
+tests/upgrade-legacy.vitest.ts:314:60
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+                                              expected null to be 1
+ Test Files  1 failed (1)
+      Tests  1 failed | 60 skipped (61)
+
+The child process aborted (status null) while fs.cpSync(dereference: true)
+walked the link back through its own copy, exactly as recorded for the real
+repository.
+
+D1 FIX
+------
+- copyPreviewAncestorFiles and createPreviewWorkspace now copy with
+  dereference: false, so a link is copied as a link and the copy cannot recurse.
+- materializeSymlinks now refuses, removes from the preview and notes a link
+  that (a) does not resolve, (b) resolves outside the packet it belongs to, or
+  (c) resolves to a directory that contains the link itself. Only links that can
+  be copied inside the packet are materialized. Notes print as
+  "upgrade-legacy: preview <relative>: symbolic link, not followed (<reason>)".
+
+D1 GREEN
+--------
+$ npx vitest run tests/upgrade-legacy.vitest.ts --config ../../vitest.config.ts --project cli \
+    -t 'previews a packet whose link points at its own ancestor'
+exit=0
+ Test Files  1 passed (1)
+      Tests  1 passed | 60 skipped (61)
+
+$ npx vitest run tests/upgrade-legacy.vitest.ts --config ../../vitest.config.ts --project cli \
+    -t 'symlinked packet document'    # the earlier link-out-of-packet case
+exit=0
+ Test Files  1 passed (1)
+      Tests  1 passed | 60 skipped (61)
+
+
+========================================================================
+D2 — MANIFEST INLINED EVERY BEFORE-IMAGE AS ONE JSON STRING
+========================================================================
+
+New cases:
+- "keeps before-image bytes out of the manifest in sidecar files": one legacy
+  packet plus 24 committed 1 MiB payload files, each then made dirty, then
+  --apply. Asserts the manifest stays under 256 KiB, every file-bytes entry
+  carries sha256 and no "content", and every sidecar holds the saved bytes.
+- "readme recovery reads a before-image sidecar and refuses a changed digest":
+  runs the README recovery script against a sidecar manifest, then against the
+  same manifest with a tampered sidecar.
+
+D2 RED (before the fix)
+-----------------------
+$ npx vitest run tests/upgrade-legacy.vitest.ts --config ../../vitest.config.ts --project cli \
+    -t 'sidecar'
+exit=1
+
+--- failure evidence (condensed):
+FAIL keeps before-image bytes out of the manifest in sidecar files
+AssertionError: expected 33561148 to be less than 262144
+  at tests/upgrade-legacy.vitest.ts:1058
+  (24 MiB of payloads became a 33,561,148-byte manifest holding base64 strings;
+   the real 1.1 GB tree is far past V8's maximum string length, which is the
+   recorded "Invalid string length")
+
+FAIL readme recovery reads a before-image sidecar and refuses a changed digest
+TypeError [ERR_INVALID_ARG_TYPE]: The first argument must be of type string or an
+  instance of Buffer ... Received undefined
+    at Buffer.from
+  (the old recovery script reads image.content, which a sidecar manifest does not have)
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 61 skipped (63)
+
+D2 FIX
+------
+upgrade-legacy.mjs
+- saveBeforeImage copies one dirty file into its own sidecar beside the
+  manifest in 1 MiB chunks, hashing the same bytes in the same pass, and names
+  the sidecar <sha256>.bin under <git-dir>/upgrade-legacy.before-images/.
+- beforeImagesFor stores, for each file image:
+    { "path": "<repo-relative>",
+      "beforeImage": { "kind": "file-bytes",
+                       "sidecar": "upgrade-legacy.before-images/<sha256>.bin",
+                       "sha256": "<hex>", "mode": 420 } }
+  No "content" and no "encoding" key is written. absent and symlink-target
+  entries are unchanged.
+- prepareManifest creates the sidecar directory (mode 0o700) before saving.
+- schema stays 1; readManifestIfExists does not inspect beforeImages, so old
+  and new manifests are read alike.
+
+Example entry, exactly the shape the new tests assert (values illustrative):
+  {
+    "path": "specs/bulk-dirty/001-packet/payload-3.bin",
+    "beforeImage": {
+      "kind": "file-bytes",
+      "sidecar": "upgrade-legacy.before-images/6f1c...e2.bin",
+      "sha256": "6f1c...e2",
+      "mode": 420
+    }
+  }
+
+README.md (the restore script and its docs)
+- The script reads sidecar paths relative to the manifest file, refuses a path
+  that escapes the manifest directory or is a symbolic link, checks sha256
+  before writing, and still restores a manifest that inlines base64 "content".
+- Docs describe the sidecar entry, the digest refusal, and remove the sidecar
+  directory when the manifest is deliberately discarded.
+
+D2 GREEN
+--------
+$ npx vitest run tests/upgrade-legacy.vitest.ts --config ../../vitest.config.ts --project cli \
+    -t 'sidecar'
+exit=0
+ Test Files  1 passed (1)
+      Tests  2 passed | 61 skipped (63)
+
+
+========================================================================
+FULL VERIFICATION
+========================================================================
+
+$ node --check .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs
+exit=0   (SYNTAX OK)
+
+$ cd .skilled/skills/system-spec-kit/runtime/cli
+$ npx vitest run tests/upgrade-legacy.vitest.ts --config ../../vitest.config.ts --project cli
+exit=0
+ Test Files  1 passed (1)
+      Tests  63 passed (63)
+  Duration  333.56s   (rerun on the final state)
+
+$ cd .skilled/skills/system-spec-kit
+$ npx vitest run runtime/tests/upgrade-baseline.vitest.ts --config vitest.config.ts --project root
+exit=0
+ Test Files  1 passed (1)
+      Tests  11 passed (11)      # reversibility baseline read-back
+
+$ cd .skilled/skills/system-spec-kit/runtime/cli && npm run typecheck
+> tsc --noEmit --composite false -p tsconfig.json
+exit=0
+
+$ cd .skilled/skills/system-spec-kit/runtime && npm run typecheck
+> tsc --noEmit --composite false -p tsconfig.json
+exit=0
+
+$ node --test .skilled/commands/doctor/scripts/tests/doctor-update-compat-integration.test.cjs
+exit=0
+ tests 2 / pass 2 / fail 0
+  - takes a fixture v3 repository through check, preview, move, upgrade and validation
+
+
+========================================================================
+SCOPE NOTES
+========================================================================
+- No commit, no branch, no worktree action was performed.
+- The edited set is the three files named above plus this evidence file.
+- feature-catalog and packet docs that describe the old inline format were left
+  untouched (out of lane scope).

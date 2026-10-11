@@ -1,0 +1,20 @@
+LANE FOLLOW-UP RECHECK EVIDENCE
+Packet: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity
+Date: 2026-10-11T16:16:30Z
+Repo HEAD: 2d8e35161bf7c08074cff6a3342be2182a1399ca
+
+Claim under recheck: the Follow-ups section says three files outside the frozen list of
+12 carry an option C menu without "in the same track".
+
+Command:
+grep -rn "in the same track" .skilled/commands/speckit/assets/speckit-implement.yaml .skilled/skills/system-spec-kit/references/workflows/worked-examples.md .skilled/skills/system-spec-kit/references/memory/trigger-config.md
+
+Output:
+.skilled/commands/speckit/assets/speckit-implement.yaml:71:  standard_question: "Spec Folder (required): A) Existing | B) New (new or unrelated work only) | C) Related (Use a related folder, phase child, or a series parent for a different change to the same artifact as an existing packet in the same track) | D) Skip"
+.skilled/skills/system-spec-kit/references/workflows/worked-examples.md:60:AI: Spec folder? A) Existing B) New (new or unrelated work only) C) Related (Use a related folder, phase child, or a series parent for a different change to the same artifact as an existing packet in the same track) D) Skip
+.skilled/skills/system-spec-kit/references/memory/trigger-config.md:134:# AI then asks: "Spec Folder (required): A) Existing | B) New (new or unrelated work only) | C) Related (Use a related folder, phase child, or a series parent for a different change to the same artifact as an existing packet in the same track) | D) Skip"
+Grep exit status: 0
+
+Reading: all three files now carry the full option C wording, each ending
+"as an existing packet in the same track". The implement asset menu moved from line 52
+to line 71. The follow-up was fixed after this phase closed.

@@ -8,18 +8,16 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment"
-    last_updated_at: "2026-10-09T11:20:00Z"
-    last_updated_by: "closeout-worker"
-    recent_action: "Third closeout pass: citations re-checked after the simplification pass, gate re-cited to tree5"
-    next_safe_action: "None. Ship after or with 011's un-nesting commit"
+    last_updated_at: "2026-10-11T19:55:50Z"
+    last_updated_by: "generate-context"
+    recent_action: "Added the severity pin test and ticked both criteria"
+    next_safe_action: "Monitor the anchor severity pin in CI"
     blockers: []
     key_files:
-      - ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts"
-      - ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json"
-      - ".skilled/skills/system-spec-kit/references/validation/validation-rules.md"
-      - ".skilled/skills/system-spec-kit/runtime/cli/tests/anchor-contract.vitest.ts"
+      - "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/scratch/evidence/lane-severity-pin.txt"
+      - "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/goal.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:3dba22e2634bbdbf5b980778e50f98b324f004898aae8a679903722cc1538eb4"
       session_id: "bd2aa56c-623b-43f8-a2ef-69a13c32d626"
       parent_session_id: null
     completion_pct: 100
@@ -73,6 +71,7 @@ This phase is **complete**. ANCHORS_VALID checks three things it did not check b
 | `.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/003-valid-level2/spec.md` | Modify | Questions anchor moved so the fixture does not nest |
 | `scratch/anchors-baseline-step-a.{json,md}` | Create | Corpus baseline before any change |
 | `scratch/anchors-baseline-step-b.{json,md}` | Create | Corpus after the severity flip, compared with step A |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/anchor-nesting-severity.vitest.ts` | Create | Severity pin: a document with a nested anchor fails strict validation |
 
 The diff of orchestrator.ts and validation-rules.md holds only hunks from this phase.
 
@@ -175,7 +174,7 @@ Decided 2026-10-08 by the operator. Details and the measured cost are in spec.md
 ## Open Items
 
 - **Changelog not written.** spec.md asks for a refresh of the matching file in `../changelog/` at close. The parent packet has no changelog folder, and that path is outside this phase's write set, so none was written.
-- **Goal criterion for comparison reports.** goal.md asks for "a baseline and a comparison report" for each step as files in `scratch/`. Step B has a comparison file. Step A has a baseline only, and no separate after-step-A file exists. Criteria 1, 3 and 5 are ticked in goal.md on the evidence in this closeout. Criterion 2 stays unticked, because the warning state has no live fixture now. Criterion 4 stays unticked too. The parent decides on both.
+- **Goal criteria for severity and comparison reports are closed (2026-10-11).** On the operator's decision, criterion 2 is ticked because the nesting check reports error severity and a test builds a nested document to pin it (`scratch/evidence/lane-severity-pin.txt`). The two-step severity constant was removed, so the warning state no longer exists and only the error half is live. Criterion 4 is ticked because the step B report compares with step A: the operator accepted it as the comparison for both steps, since step A has no live warning state to report against. Step A has `scratch/anchors-baseline-step-a.{json,md}`, step B has `scratch/anchors-baseline-step-b.{json,md}`. Criteria 1, 3 and 5 are ticked on the evidence in this closeout.
 - **Dependency on 011.** AC-007 and the step B flip rest on 011's un-nesting. 011 reads Status Complete (checked 2026-10-09). If that changes, reopen AC-007 and this status.
 - **Root test verdict.** Resolved in tree5: `npm --prefix .skilled/skills/system-spec-kit test` exited 0 with `SPECKIT_TEST_RUN_TIMEOUT_MS=3600000` (`gates/tree5/root-test.rc`). Tree4 hit the 600 s bound with no verdict (`gates/tree4/root-test.log`, rc 124). The parent goal.md does not name this command in its completion criteria.
 - **Not committed.** The change is in the working tree. Per the parent's D6, it ships with the other phases that share files.

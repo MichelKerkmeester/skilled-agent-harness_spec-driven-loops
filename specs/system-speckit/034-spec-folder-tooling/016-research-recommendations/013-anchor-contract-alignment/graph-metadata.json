@@ -53,8 +53,10 @@
       ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/anchor-contract.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/cli/test-fixtures/003-valid-level2/spec.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/anchor-nesting-severity.vitest.ts",
       "scratch/anchors-baseline-step-b.md",
       "specs/agents/007-orchestrator-inline-authority/spec.md",
+      "scratch/evidence/lane-severity-pin.txt",
       "scratch/anchors-baseline-step-a.json",
       "scratch/anchors-baseline-step-a.md",
       "test-fixtures/003-valid-level2/spec.md"
@@ -121,9 +123,21 @@
         "source": "derived"
       },
       {
+        "name": "anchor-nesting-severity.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/anchor-nesting-severity.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "anchors-baseline-step-b.md",
         "kind": "doc",
         "path": "scratch/anchors-baseline-step-b.md",
+        "source": "derived"
+      },
+      {
+        "name": "lane-severity-pin.txt",
+        "kind": "file",
+        "path": "scratch/evidence/lane-severity-pin.txt",
         "source": "derived"
       },
       {
@@ -191,24 +205,12 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Status Complete",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Validator",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The ANCHORSVALID check in the validator code only detects duplicate anchor opens, unopened closes, unclosed opens, and documents with zero anchors",
     "created_at": "2026-10-08T04:22:48Z",
-    "last_save_at": "2026-10-09T09:21:43.481Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-11T19:55:50.271Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -218,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9dad4f902343093778b04843be34e7fdc218b9bc8f5b04c33fe15f03cce6c2de",
+    "source_fingerprint": "sha256:ad74fdd8157337a3573a2d0288b7bd47e1c1979a40836951e66296d73a11d2a4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f62d96ef40a67f210429de83235292d8615289b5859d3623a32183be2f3acbe0",
       "plan.md": "301ac613cd31b8f9029e46f12932b90eae4dd8868ada561e70413dbbb59a55ae",
       "tasks.md": "6b3bb1505a48da313effb3784ecacc629e639f53e4c134663c7ac760734da677",
-      "implementation-summary.md": "059672215d66d8ba1d2dd5edb3be5c26f845c253294f574ba37d1c6392deb5a1"
+      "implementation-summary.md": "a823c1f2d927a80afaba4ea5893bc1a51218d9c3540b31f079f82b47881287a4"
     },
     "last_active_at": null
   }

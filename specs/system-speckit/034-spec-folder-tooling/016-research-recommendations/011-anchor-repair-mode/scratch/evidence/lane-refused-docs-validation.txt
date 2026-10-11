@@ -1,0 +1,29 @@
+LANE: strict validation of the 10 refused documents' packet folders
+Date: 2026-10-11
+Author: dispatched closeout worker (@code persona)
+
+Source list
+-----------
+The 10 refused documents in tests/fixtures/anchor-repair-sample/index.json
+(seed 20261008, drawn from commit 02cc1fb94824). The repair refuses these
+wrapper-hybrid layouts by design and they were fixed by hand. This run checks
+that each packet the document sits in stands up to strict validation today.
+
+Command (run from the repository root, once per folder)
+-------------------------------------------------------
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <folder> --strict --no-recursive
+
+Results
+-------
+exit=0 | specs/system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/001-completion-evidence-reconcile | RESULT: PASSED
+exit=0 | specs/system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/002-shadow-parity-independent-derivation | RESULT: PASSED
+exit=0 | specs/system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/003-legacy-compat-event-vocabulary | RESULT: PASSED
+exit=0 | specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/004-alignment-coverage-integrity | RESULT: PASSED
+exit=0 | specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority | RESULT: PASSED
+exit=0 | specs/system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/004-maintenance | RESULT: PASSED
+exit=0 | specs/system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/011-scoring-and-calibration | RESULT: PASSED
+exit=0 | specs/system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/015-retrieval-enhancements | RESULT: PASSED
+exit=0 | specs/system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/018-ux-hooks | RESULT: PASSED
+exit=0 | specs/system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/016-json-mode-hybrid-enrichment/004-indexing-and-coherence | RESULT: PASSED
+
+Counts: 10 folders run, 10 exit 0, 10 RESULT: PASSED.

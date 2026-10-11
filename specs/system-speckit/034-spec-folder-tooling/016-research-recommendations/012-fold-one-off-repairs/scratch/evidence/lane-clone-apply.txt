@@ -1,0 +1,993 @@
+Evidence: full-tree upgrade-legacy --apply run in a throwaway clone (T011, CHK-021)
+Command under test: node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --roots specs --apply
+
+Why a clone: the script resolves its repository root from its own file location
+(upgrade-legacy.mjs:54  const REPO = path.resolve(SKILL_ROOT, '../../..')), so running
+the worktree copy with cwd in the clone would write into the worktree. The clone's own
+copy is byte-identical at HEAD and resolves REPO to the clone, so no worktree write can occur.
+
+Clone: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo
+Clone HEAD: 2d8e35161bf7c08074cff6a3342be2182a1399ca  branch=worktrees/091-consolidate-small-packets
+Source worktree HEAD: 2d8e35161bf7c08074cff6a3342be2182a1399ca (match: 2d8e35161bf7c08074cff6a3342be2182a1399ca)
+node: v26.8.2   npm: 11.19.1
+node_modules: reused from the worktree by APFS clonefile (cp -cR), no npm install ran.
+Run window: 2026-10-11T15:59:27Z (UTC) onward
+
+Pre-flight
+- clone git status --porcelain --untracked-files=all: 0 lines
+- release apply lock present: NO
+- existing upgrade-baseline.json under specs/: 0
+- manifest in clone git dir: absent
+
+═══════════════════════════════════════════════════════════════════════════
+ENVIRONMENT PREP (all inside the clone; the worktree was only read)
+═══════════════════════════════════════════════════════════════════════════
+$ mkdir -p <scratchpad>/apply-clone && cd <scratchpad>/apply-clone
+$ git clone --no-local /Users/.../.worktrees/091-consolidate-small-packets repo
+Cloning into 'repo'...
+Updating files: 100% (101021/101021), done.
+real 0m37.610s   exit=0
+
+$ git -C repo rev-parse --abbrev-ref HEAD ; git -C repo rev-parse HEAD
+worktrees/091-consolidate-small-packets
+2d8e35161bf7c08074cff6a3342be2182a1399ca      # equals the worktree HEAD, compared explicitly
+$ cd repo && git status --porcelain --untracked-files=all | wc -l
+0
+
+Problem: a clone carries tracked files only, and both node_modules and the compiled
+dist/ trees are gitignored. The first attempt against that clone failed:
+
+$ node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --roots specs
+exit=2   stderr:
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module
+  '<clone>/.skilled/skills/system-spec-kit/node_modules/@spec-kit/runtime/dist/api/index.js'
+  imported from '<clone>/.skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts'
+The node_modules/@spec-kit/runtime symlink resolves into the clone's runtime/, whose dist/
+is a build output that a clone does not carry.
+
+Fix, without npm install: reuse the worktree's ignored artifacts by APFS clonefile.
+cp -cR is copy-on-write, so the worktree copies stay untouched.
+
+$ cp -cR node_modules .skilled/node_modules .skilled/skills/system-spec-kit/node_modules \
+         .skilled/skills/system-deep-loop/node_modules .skilled/skills/sk-doc/node_modules \
+         .opencode/node_modules .pi/npm/node_modules <clone>/
+  exit=0 for every copy
+$ cp -cR <worktree>/.skilled/skills/system-spec-kit/.node-version-marker \
+         <worktree>/.skilled/skills/system-spec-kit/runtime/dist \
+         <worktree>/.skilled/skills/system-spec-kit/shared/dist \
+         <worktree>/.skilled/skills/system-spec-kit/runtime/cli/dist \
+         <worktree>/.skilled/skills/system-spec-kit/runtime/database \
+         <worktree>/.skilled/skills/system-spec-kit/runtime/node_modules \
+         <worktree>/.skilled/skills/system-spec-kit/runtime/cli/node_modules \
+         <clone>/.skilled/skills/system-spec-kit/
+  copied runtime/dist 2.0M, shared/dist 1.2M, runtime/cli/dist 4.0M, database 4K,
+  runtime/node_modules 12K, runtime/cli/node_modules 24K, .node-version-marker 4K.
+  exit=0 for every copy
+
+That cleared the import error but exposed the dist freshness guard, which validate.sh
+runs before it validates anything (validate.sh:327-341; the check itself is
+runtime/cli/lib/dist-freshness.cjs, checkPackageFreshness at :647, cache path at :296,
+the stored-record compare and the mtime fallback at :763-800):
+
+$ node .skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs check --package system-spec-kit/runtime --entry validation-orchestrator
+@spec-kit/runtime dist is stale. Rebuild with: cd .skilled/skills/system-spec-kit/runtime && npm run build
+exit=69
+(the same command inside the worktree prints "@spec-kit/runtime dist is fresh" and exits 0)
+
+The stored attestation at runtime/dist/.dist-freshness-*.json is content-hash based and its
+filename suffix is stable across checkouts (sha1 of pkg.id:entry:distEntry, dist-freshness.cjs:296):
+
+  {"version":2,"origin":"build",
+   "sourceHash":"8a8a344caf579be0eeb386913b8509bbdce49bbeea87b517f71b6d41bbc2661b",
+   "distHash":"a6652218f7f9f95cd93af6efbe9a14ad0062a5eaa62945116f1cb704051f1daa"}
+
+The clone fell through to the mtime heuristic, because a checkout rewrites source mtimes.
+Verdict JSON from the API inside the clone:
+
+  {"packageId":"system-spec-kit/runtime","packageName":"@spec-kit/runtime","status":"stale","stale":true,
+   "entry":"validation-orchestrator","sourceCount":16,
+   "newestSourceMtime":1791734324902.2874,"newestSourceFile":".../runtime/tsconfig.json",
+   "distMtime":1791641999463.4097,
+   "message":"@spec-kit/runtime dist is stale. Rebuild with: cd .skilled/skills/system-spec-kit/runtime && npm run build"}
+
+By the checker's own rule the two trees hold identical bytes: of the 621 watched-source files
+(extensions .ts/.tsx/.mts/.cts/.json, node_modules and dist excluded) the worktree has one file
+the clone does not (runtime/cli/tests/anchor-nesting-severity.vitest.ts, untracked in the worktree
+and therefore absent from a clone) and every other file hashes identically. That untracked test
+sits outside the watched entries the validator asks about, so the verdict difference is the mtime
+fallback alone, not source drift.
+
+Canonical fix, run inside the clone (writes only the clone's gitignored dist/):
+
+$ cd <clone>/.skilled/skills/system-spec-kit
+$ (cd shared && npm run build)          exit=0  "> @spec-kit/shared@1.7.2 build" then "> tsc --build"
+$ (cd runtime && npm run build)         exit=0  "dist build preparation recorded" x2, tsc --build,
+                                                 then node scripts/finalize-dist.mjs
+$ (cd runtime/cli && npm run build)     exit=0  "dist build attestation recorded" x2
+
+$ node .skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs check --package system-spec-kit/runtime --entry validation-orchestrator
+@spec-kit/runtime dist is fresh            exit=0
+$ node .skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs check --package system-spec-kit/runtime/cli --entry is-phase-parent
+@spec-kit/cli dist is fresh                exit=0
+$ node .skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs check --package system-spec-kit/shared
+@spec-kit/shared dist is fresh             exit=0
+$ git -C <clone> status --porcelain --untracked-files=all | wc -l
+0                                          # the builds wrote ignored paths only
+
+Write check for the census below: every file under specs/ was hashed with sha256 before and after
+the run, 82466 regular files each. A direct symlink count under specs/ after the run is 9; the
+census reports no deletion and no type change, and every added path is a regular JSON file, so no
+symlink was added or removed.
+
+$ cd <clone> && find specs -type f -print0 | xargs -0 -P 8 shasum -a 256 > specs.before.sha256
+  82466 files, exit=0, 10.2s
+
+═══════════════════════════════════════════════════════════════════════════
+STEP 2 - DRY RUN INSIDE THE CLONE (before --apply)
+═══════════════════════════════════════════════════════════════════════════
+$ cd <clone>
+$ node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --roots specs
+start=2026-10-11T16:02:03Z  end=2026-10-11T16:10:00Z
+exit=1 (the dry run exits 1 when packets fail)   stderr: 0 bytes   stdout: 85 lines
+$ git -C <clone> status --porcelain --untracked-files=all | wc -l
+0 (the dry run writes nothing, matching its documented preview-workspace behaviour)
+
+Reproduced the worktree figures exactly: inspected=2265 active=2265 archived=0,
+passing=2260/2265, 5 failing, all under 026-graph-and-context-optimization, and
+frontmatter: present=18810 missing=99. Verbatim stdout:
+
+────────────────────────────── dry run stdout (verbatim) ──────────────────────────────
+failing specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits: SPEC_DOC_INTEGRITY
+failing specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass: SPEC_DOC_INTEGRITY
+failing specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings: SPEC_DOC_INTEGRITY
+failing specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups: FRONTMATTER_VALID, TEMPLATE_SOURCE
+failing specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack: TEMPLATE_SOURCE
+grouped detail:
+### specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits / x SPEC_DOC_INTEGRITY (19)
+    - spec.md references missing markdown file: 001-workflow-correctness-audit/checklist.md
+    - spec.md references missing markdown file: 002-memory-data-integrity-audit/checklist.md
+    - spec.md references missing markdown file: 003-code-graph-readiness-audit/spec.md
+    - spec.md references missing markdown file: 003-code-graph-readiness-audit/plan.md
+    - spec.md references missing markdown file: 003-code-graph-readiness-audit/tasks.md
+    - spec.md references missing markdown file: 003-code-graph-readiness-audit/checklist.md
+    - spec.md references missing markdown file: 003-code-graph-readiness-audit/implementation-summary.md
+    - spec.md references missing markdown file: 003-code-graph-readiness-audit/review-report.md
+    - spec.md references missing markdown file: 004-cross-runtime-hook-parity-audit/checklist.md
+    - spec.md references missing markdown file: 005-mcp-tool-schema-governance-audit/checklist.md
+    - spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/spec.md
+    - spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/plan.md
+    - spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/tasks.md
+    - spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/checklist.md
+    - spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/implementation-summary.md
+    - spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/review-report.md
+    - spec.md references missing markdown file: 007-validator-spec-document-integrity-audit/checklist.md
+    - spec.md references missing markdown file: 008-documentation-truth-audit/checklist.md
+    - spec.md references missing markdown file: 009-upgrade-safety-operability-audit/checklist.md
+### specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass / x SPEC_DOC_INTEGRITY (6)
+    - spec.md references missing markdown file: 001-sk-code-opencode-standards-audit/checklist.md
+    - spec.md references missing markdown file: 002-feature-catalog-trio-alignment/checklist.md
+    - spec.md references missing markdown file: 003-testing-playbook-trio-alignment/checklist.md
+    - spec.md references missing markdown file: 004-sk-doc-template-alignment/checklist.md
+    - spec.md references missing markdown file: 005-stress-test-folder-migration/checklist.md
+    - spec.md references missing markdown file: 006-readme-cascade-refresh/checklist.md
+### specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings / x SPEC_DOC_INTEGRITY (2)
+    - HANDOVER-deferred.md references missing markdown file: ./001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md
+    - HANDOVER-deferred.md references missing markdown file: ./005-code-graph-fail-fast-routing/implementation-summary.md
+### specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups / x FRONTMATTER_VALID (1)
+    - spec.md: Empty required frontmatter field: contextType
+### specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups / x TEMPLATE_SOURCE (2)
+    - spec.md
+    - handover.md
+### specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack / x TEMPLATE_SOURCE (1)
+    - decision-record.md
+step heal-spec-docs: ok (5 packets)
+
+Downgrades:
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/implementation-summary.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/plan.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/review-report.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/spec.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/tasks.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 001-workflow-correctness-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 002-memory-data-integrity-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-code-graph-readiness-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-code-graph-readiness-audit/implementation-summary.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-code-graph-readiness-audit/plan.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-code-graph-readiness-audit/review-report.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-code-graph-readiness-audit/spec.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-code-graph-readiness-audit/tasks.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 004-cross-runtime-hook-parity-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 005-mcp-tool-schema-governance-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 007-validator-spec-document-integrity-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 008-documentation-truth-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 009-upgrade-safety-operability-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 001-sk-code-opencode-standards-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 002-feature-catalog-trio-alignment/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-testing-playbook-trio-alignment/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 004-sk-doc-template-alignment/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 005-stress-test-folder-migration/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 006-readme-cascade-refresh/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings | SPEC_DOC_INTEGRITY | error -> warning | HANDOVER-deferred.md references missing markdown file: ./001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings | SPEC_DOC_INTEGRITY | error -> warning | HANDOVER-deferred.md references missing markdown file: ./005-code-graph-fail-fast-routing/implementation-summary.md
+  specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups | TEMPLATE_SOURCE | error -> warning | handover.md
+  specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups | TEMPLATE_SOURCE | error -> warning | spec.md
+  specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack | TEMPLATE_SOURCE | error -> warning | decision-record.md
+
+inspected=2265 active=2265 archived=0
+passing=2260/2265
+repo era report:
+  layout provenance: source=none; description.json residue count=0
+  layout: v4 (v3=false, v4=true)
+  frontmatter: present=18810 missing=99
+
+--apply would run: fill-frontmatter, anchor-repair, heal-spec-docs, lane-modes, repair-derived, migrate-generated-json (archived packets: questions-anchor un-nesting and repair-derived only), then record the remaining findings in upgrade-baseline.json
+───────────────────────────────────────────────────────────────────────────────────────
+
+═══════════════════════════════════════════════════════════════════════════
+STEP 3 - --apply INSIDE THE CLONE
+═══════════════════════════════════════════════════════════════════════════
+$ node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --roots specs --apply
+start=2026-10-11T16:10:11Z  end=2026-10-11T16:25:33Z
+exit=0   stderr: 0 bytes   stdout: 53 lines
+
+The run's own figures: plan changes=5, every step ok, "passing before=2260/2265 after=2265/2265",
+"recorded findings by rule: SPEC_DOC_INTEGRITY: 27, TEMPLATE_SOURCE: 3", "grouped detail: none".
+One document was left untouched on purpose:
+
+  left as is .../005-stress-test/003-fix-mcp-runtime-stress-findings/spec.md:
+    Frontmatter block is not valid YAML-like key/value content
+
+Verbatim stdout:
+
+────────────────────────────── apply stdout (verbatim) ──────────────────────────────
+plan changes=5
+left as is specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/spec.md: Frontmatter block is not valid YAML-like key/value content
+step fill-frontmatter: ok
+step anchor-repair: ok (5 packets, 0 changed)
+step heal-spec-docs: ok (5 packets)
+step lane-modes: ok (5 packets, 27 refusals)
+step repair-derived: ok
+step migrate-generated-json: ok
+recorded specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits (19 findings, 19 refusals)
+recorded specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass (6 findings, 6 refusals)
+recorded specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings (2 findings)
+recorded specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups (2 findings, 2 refusals)
+recorded specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack (1 findings)
+
+Downgrades:
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/implementation-summary.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/plan.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/review-report.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/spec.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/tasks.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 001-workflow-correctness-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 002-memory-data-integrity-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-code-graph-readiness-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-code-graph-readiness-audit/implementation-summary.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-code-graph-readiness-audit/plan.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-code-graph-readiness-audit/review-report.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-code-graph-readiness-audit/spec.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-code-graph-readiness-audit/tasks.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 004-cross-runtime-hook-parity-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 005-mcp-tool-schema-governance-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 007-validator-spec-document-integrity-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 008-documentation-truth-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 009-upgrade-safety-operability-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 001-sk-code-opencode-standards-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 002-feature-catalog-trio-alignment/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-testing-playbook-trio-alignment/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 004-sk-doc-template-alignment/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 005-stress-test-folder-migration/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 006-readme-cascade-refresh/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings | SPEC_DOC_INTEGRITY | error -> warning | HANDOVER-deferred.md references missing markdown file: ./001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings | SPEC_DOC_INTEGRITY | error -> warning | HANDOVER-deferred.md references missing markdown file: ./005-code-graph-fail-fast-routing/implementation-summary.md
+  specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups | TEMPLATE_SOURCE | error -> warning | handover.md
+  specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups | TEMPLATE_SOURCE | error -> warning | spec.md
+  specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack | TEMPLATE_SOURCE | error -> warning | decision-record.md
+
+inspected=2265 active=2265 archived=0
+passing before=2260/2265 after=2265/2265
+recorded findings by rule:
+  SPEC_DOC_INTEGRITY: 27
+  TEMPLATE_SOURCE: 3
+grouped detail:
+  none
+
+───────────────────────────────────────────────────────────────────────────────────────
+───────────────────────────────────────────────────────────────────────────────────────
+
+═══════════════════════════════════════════════════════════════════════════
+STEP 4 - WHAT IT CHANGED
+═══════════════════════════════════════════════════════════════════════════
+$ cd <clone> && git status --porcelain --untracked-files=all
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/description.json
+ A specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/upgrade-baseline.json
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/description.json
+ A specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/upgrade-baseline.json
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/description.json
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/graph-metadata.json
+ A specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/upgrade-baseline.json
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/description.json
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/graph-metadata.json
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/handover.md
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/spec.md
+ A specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/upgrade-baseline.json
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/description.json
+ A specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/upgrade-baseline.json
+
+$ git diff --stat
+ .../description.json                               |   8 +-
+ .../upgrade-baseline.json                          | 180 +++++++++++++++++++++
+ .../003-post-program-quality-pass/description.json |   8 +-
+ .../upgrade-baseline.json                          |  63 ++++++++
+ .../description.json                               |   8 +-
+ .../graph-metadata.json                            |   9 +-
+ .../upgrade-baseline.json                          |  15 ++
+ .../description.json                               |   2 +-
+ .../graph-metadata.json                            |   8 +-
+ .../032-substrate-repair-followups/handover.md     |   3 +
+ .../032-substrate-repair-followups/spec.md         |   1 +
+ .../upgrade-baseline.json                          |  27 ++++
+ .../004-code-index-stack/description.json          |   2 +-
+ .../004-code-index-stack/upgrade-baseline.json     |  11 ++
+ 14 files changed, 319 insertions(+), 26 deletions(-)
+
+Independent census, git aside: every file under specs/ hashed with sha256 before and after
+(82466 -> 82471 files, the 5 added files being the new upgrade-baseline.json), then compared
+by (path -> hash) in python. Duplicate-key and space-in-filename artefacts of an earlier
+shell join are avoided in this comparison; 24 paths under specs/ contain spaces.
+
+before files=82466  after files=82471
+MODIFIED (9):
+  M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/description.json
+  M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/description.json
+  M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/description.json
+  M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/graph-metadata.json
+  M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/description.json
+  M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/graph-metadata.json
+  M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/handover.md
+  M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/spec.md
+  M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/description.json
+NEW (5):
+  A specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/upgrade-baseline.json
+  A specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/upgrade-baseline.json
+  A specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/upgrade-baseline.json
+  A specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/upgrade-baseline.json
+  A specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/upgrade-baseline.json
+DELETED (0):
+changes outside specs/: 0
+changes inside specs/system-speckit/026-graph-and-context-optimization: 14 of 14
+changes inside a z_archive path: 0
+
+Raw numstat form of the same list:
+Per-file change list (git diff --name-status plus line deltas; intent-to-add was set so new files appear):
+STATUS  ADDED DELETED  PATH
+M       4     4        specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/description.json
+A       180   0        specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/upgrade-baseline.json
+M       4     4        specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/description.json
+A       63    0        specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/upgrade-baseline.json
+M       4     4        specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/description.json
+M       1     8        specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/graph-metadata.json
+A       15    0        specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/upgrade-baseline.json
+M       1     1        specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/description.json
+M       4     4        specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/graph-metadata.json
+M       3     0        specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/handover.md
+M       1     0        specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/spec.md
+A       27    0        specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/upgrade-baseline.json
+M       1     1        specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/description.json
+A       11    0        specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/upgrade-baseline.json
+
+The change list is complete and git-independent: 9 modified, 5 added, 0 deleted, all 14 inside
+the five failing packets, none outside specs/, none under a z_archive path.
+
+Checked, then annotated: change kinds grouped by packet (line deltas from git diff --numstat;
+intent-to-add was set first, so the new files appear in the diff).
+
+Packet 1/5  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits
+  M  description.json         4+/4-  the v3-era "level" key moved to the top of the object; lastUpdated
+                                    2026-08-15T14:41:08.524Z -> 2026-10-11T15:58:50.098Z; trailing
+                                    newline dropped (the file now ends at "}", see the flag list)
+  A  upgrade-baseline.json    180+   19 SPEC_DOC_INTEGRITY findings, 19 link-repoint refusals, recorded
+                                    so the validator reports each as a warning
+Packet 2/5  .../000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass
+  M  description.json         4+/4-  same shape as packet 1; lastUpdated -> 2026-10-11T15:58:50.178Z
+  A  upgrade-baseline.json     63+   6 SPEC_DOC_INTEGRITY findings, 6 link-repoint refusals
+Packet 3/5  .../000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings
+  M  description.json         4+/4-  same shape; lastUpdated -> 2026-10-11T15:58:50.310Z
+  M  graph-metadata.json      1+/8-  drops the stale ".opencode/specs/descriptions.json" entry from
+                                    source_docs and from entities (that path does not exist in the
+                                    repo: v3 residue), and bumps last_save_at to 2026-10-11T16:18:09.362Z
+  A  upgrade-baseline.json     15+   2 SPEC_DOC_INTEGRITY findings, no refusals
+Packet 4/5  .../003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups
+  M  description.json         1+/1-  lastUpdated 2026-09-04T17:50:19.518Z -> 2026-10-11T16:18:05.611Z
+                                    (this file already ended without a trailing newline)
+  M  graph-metadata.json      4+/4-  last_save_at -> 2026-10-11T16:18:09.071Z, and source_fingerprint
+                                    plus both source_doc_hashes re-derived for the two edited docs
+  M  handover.md             3+/0-  frontmatter gains description, importance_tier: "normal",
+                                    contextType: "general" (the fields TEMPLATE_SOURCE wanted)
+  M  spec.md                 1+/0-  frontmatter gains contextType: "general", which clears the
+                                    FRONTMATTER_VALID "Empty required frontmatter field: contextType"
+  A  upgrade-baseline.json     27+   2 TEMPLATE_SOURCE findings, 2 refusals (anchor-wrap: no ANCHOR
+                                    marker; header-add: no level recorded in spec.md)
+Packet 5/5  .../003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack
+  M  description.json         1+/1-  lastUpdated 2026-08-15T14:41:10.886Z -> 2026-10-11T15:58:50.766Z
+                                    (already ended without a trailing newline)
+  A  upgrade-baseline.json     11+   1 TEMPLATE_SOURCE finding (decision-record.md)
+
+No file was deleted, no file changed outside specs/, and no archived packet was written:
+$ git -C <clone> status --porcelain --untracked-files=all | awk '{print $NF}' | grep -v '^specs/'
+(no output - the check found nothing)
+
+Full diff: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/apply.diff
+  produced with intent-to-add set so the five new files appear: 14 files changed,
+  319 insertions(+), 26 deletions(-), 26670 bytes, 526 lines.
+
+═══════════════════════════════════════════════════════════════════════════
+STEP 5 - validate.sh --strict ON EVERY PACKET THE APPLY TOUCHED
+═══════════════════════════════════════════════════════════════════════════
+The apply's 14 changed paths all fall inside the same 5 packets that were failing before it,
+so "every packet the apply touched" and "the 5 that failed" are one set. Each was validated
+with the clone's own validator, from the clone, so the freshness guard and the resolution of
+relative paths both read the clone:
+
+$ cd <clone>
+$ bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh "<packet>" --strict
+
+  [1] .../001-release-readiness/002-release-readiness-deep-review-audits          exit=0  477 lines of output
+  [2] .../004-followup-post-program/003-post-program-quality-pass                 exit=0  381 lines
+  [3] .../005-stress-test/003-fix-mcp-runtime-stress-findings                     exit=0  1495 lines
+  [4] .../001-local-embeddings-foundation/032-substrate-repair-followups          exit=0  316 lines
+  [5] .../004-code-index-stack                                                    exit=0  1120 lines
+
+--strict recurses into phase children, so each run prints one RESULT line per folder it
+validated. Every RESULT line in all five runs is PASSED, and no Summary line reports a
+non-zero error count:
+
+  total RESULT lines across the five runs: 70, PASSED: 70, FAILED: 0
+packet[1] RESULT lines=8 PASSED=8 FAILED=0 max-Errors-across-tree=0
+packet[2] RESULT lines=7 PASSED=7 FAILED=0 max-Errors-across-tree=0
+packet[3] RESULT lines=28 PASSED=28 FAILED=0 max-Errors-across-tree=0
+packet[4] RESULT lines=6 PASSED=6 FAILED=0 max-Errors-across-tree=0
+packet[5] RESULT lines=21 PASSED=21 FAILED=0 max-Errors-across-tree=0
+  (warnings per folder, counted over those same Summary lines:)
+38 Errors: 0  Warnings: 0
+26 Errors: 0  Warnings: 1
+4 Errors: 0  Warnings: 2
+1 Errors: 0  Warnings: 3
+1 Errors: 0  Warnings: 4
+
+The five full validate outputs follow, verbatim, one block per packet.
+(Condensed on 2026-10-11 before commit. The five verbatim validator transcripts, about 3,800
+lines, were cut to the lines below: each packet header, the folder line, every warning (!) or
+error line and the Summary and RESULT lines of every folder validated. Nothing else in this
+file was changed.)
+
+
+──────── packet [1] specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits ────────
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits
+  ! SPEC_DOC_INTEGRITY: 19 spec documentation integrity issue(s) found (recorded in upgrade-baseline.json)
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/001-workflow-correctness-audit
+  ! FRONTMATTER_MEMORY_BLOCK: 4 frontmatter_memory_block issue(s) found
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/002-memory-data-integrity-audit
+  ! FRONTMATTER_MEMORY_BLOCK: 4 frontmatter_memory_block issue(s) found
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/004-cross-runtime-hook-parity-audit
+  ! FRONTMATTER_MEMORY_BLOCK: 4 frontmatter_memory_block issue(s) found
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/005-mcp-tool-schema-governance-audit
+  ! FRONTMATTER_MEMORY_BLOCK: 4 frontmatter_memory_block issue(s) found
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/007-validator-spec-document-integrity-audit
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/008-documentation-truth-audit
+  ! FRONTMATTER_VALID: 5 frontmatter continuity warning(s)
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/009-upgrade-safety-operability-audit
+  ! FRONTMATTER_VALID: 5 frontmatter continuity warning(s)
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+
+──────── packet [2] specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass ────────
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass
+  ! SPEC_DOC_INTEGRITY: 6 spec documentation integrity issue(s) found (recorded in upgrade-baseline.json)
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/002-feature-catalog-trio-alignment
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/003-testing-playbook-trio-alignment
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/004-sk-doc-template-alignment
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/005-stress-test-folder-migration
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/006-readme-cascade-refresh
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+
+──────── packet [3] specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings ────────
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings
+  ! FRONTMATTER_MEMORY_BLOCK: 2 frontmatter_memory_block issue(s) found
+  ! GREP_CONVENTION: Grep convention: 1 warning(s) across 6 document(s)
+  ! SPEC_DOC_INTEGRITY: 2 spec documentation integrity issue(s) found (recorded in upgrade-baseline.json)
+  Summary: Errors: 0  Warnings: 3
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/002-mcp-runtime-improvement-research
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/003-memory-context-truncation-telemetry-contract
+  ! GREP_CONVENTION: Grep convention: 1 warning(s) across 4 document(s)
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/004-cocoindex-overfetch-dedup-rerank
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/006-causal-graph-relation-window-metrics
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/007-intent-classifier-stability-telemetry
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/008-mcp-daemon-rebuild-protocol
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/009-memory-search-citation-response-policy
+  ! GREP_CONVENTION: Grep convention: 1 warning(s) across 4 document(s)
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/010-stress-test-close-loop-measurement-rerun
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/011-research-post-stress-finding-followups
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/012-copilot-target-authority-gate-helper
+  ! GREP_CONVENTION: Grep convention: 1 warning(s) across 5 document(s)
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/015-cocoindex-seed-telemetry-passthrough
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/016-degraded-readiness-envelope-parity
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/017-cli-copilot-dispatch-test-parity
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/018-feature-catalog-playbook-degraded-alignment
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/019-search-query-rag-optimization-research
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/020-enterprise-readiness-verification-expansion-research
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/021-stress-test-enterprise-wiring-expansion
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/022-stress-test-results-deep-research
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/023-live-handler-envelope-capture-interface
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/024-harness-telemetry-export-mode
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/025-memory-search-degraded-readiness-wiring
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/026-remove-readiness-scaffolding
+  ! GREP_CONVENTION: Grep convention: 1 warning(s) across 5 document(s)
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/027-memory-context-structural-channel-research
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/028-deep-review-research-skill-contract-fixes
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/029-clean-infrastructure-stress-test
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/030-clean-infrastructure-full-matrix-stress-design
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+
+──────── packet [4] specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups ────────
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups
+  ! TEMPLATE_SOURCE: Template source header missing (recorded in upgrade-baseline.json)
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/001-governance-retention-decouple
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/002-rerun-24-scenarios-suite
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/003-mcp-server-build-fix
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/004-failed-embedding-cleanup
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/005-stability-instrumentation
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+
+──────── packet [5] specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack ────────
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack
+  ! TEMPLATE_SOURCE: Template source header missing (recorded in upgrade-baseline.json)
+  ! FRONTMATTER_VALID: 5 frontmatter continuity warning(s)
+  ! FRONTMATTER_MEMORY_BLOCK: 1 frontmatter_memory_block issue(s) found
+  ! GREP_CONVENTION: Grep convention: 2 warning(s) across 4 document(s)
+  Summary: Errors: 0  Warnings: 4
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/001-cocoindex-swap
+  ! FRONTMATTER_MEMORY_BLOCK: Session lineage warning(s) found
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/002-baseline-fixture
+  ! FRONTMATTER_MEMORY_BLOCK: Session lineage warning(s) found
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/003-comparison-measure
+  ! FRONTMATTER_MEMORY_BLOCK: Session lineage warning(s) found
+  ! LEVEL_MATCH: Level consistency warnings
+  Summary: Errors: 0  Warnings: 2
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off
+  ! FRONTMATTER_MEMORY_BLOCK: Session lineage warning(s) found
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/005-declarative-registry
+  ! FRONTMATTER_MEMORY_BLOCK: Session lineage warning(s) found
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/006-install-guide-updates
+  ! FRONTMATTER_MEMORY_BLOCK: Session lineage warning(s) found
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/007-reranker-integration
+  ! FRONTMATTER_MEMORY_BLOCK: Session lineage warning(s) found
+  ! GREP_CONVENTION: Grep convention: 1 warning(s) across 4 document(s)
+  Summary: Errors: 0  Warnings: 2
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/008-chunking-strategy-tuning
+  ! FRONTMATTER_MEMORY_BLOCK: Session lineage warning(s) found
+  ! GREP_CONVENTION: Grep convention: 1 warning(s) across 4 document(s)
+  Summary: Errors: 0  Warnings: 2
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/009-hybrid-search-bm25-fusion
+  ! FRONTMATTER_MEMORY_BLOCK: Session lineage warning(s) found
+  ! GREP_CONVENTION: Grep convention: 1 warning(s) across 4 document(s)
+  Summary: Errors: 0  Warnings: 2
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/010-daemon-resilience
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation
+  ! FRONTMATTER_MEMORY_BLOCK: Session lineage warning(s) found
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes
+  ! FRONTMATTER_MEMORY_BLOCK: Session lineage warning(s) found
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit
+  ! FRONTMATTER_MEMORY_BLOCK: Session lineage warning(s) found
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference
+  ! FRONTMATTER_MEMORY_BLOCK: Session lineage warning(s) found
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter
+  ! FRONTMATTER_MEMORY_BLOCK: Session lineage warning(s) found
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging
+  ! FRONTMATTER_MEMORY_BLOCK: Session lineage warning(s) found
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/017-hybrid-fusion-empirical-recalibration
+  ! FRONTMATTER_MEMORY_BLOCK: Session lineage warning(s) found
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/018-rerank-matrix-rebench
+  ! FRONTMATTER_MEMORY_BLOCK: Session lineage warning(s) found
+  Summary: Errors: 0  Warnings: 1
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/020-deep-review-p1-p2-remediation
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+  Spec Folder Validation v3.0.0
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots
+  Summary: Errors: 0  Warnings: 0
+  RESULT: PASSED
+═══════════════════════════════════════════════════════════════════════════
+STEP 6 - RE-INSPECTION AFTER --apply (same dry run, same clone)
+═══════════════════════════════════════════════════════════════════════════
+$ node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --roots specs
+start=2026-10-11T16:35:27Z  end=2026-10-11T16:43:10Z
+exit=0   stderr: 0 bytes   stdout: 43 lines
+$ git -C <clone> status --porcelain --untracked-files=all | wc -l
+14 (unchanged, so the second run wrote nothing either)
+
+inspected=2265 active=2265 archived=0, passing=2265/2265, "grouped detail: none" - nothing left
+to plan, and no packet regressed, because no file outside the five was written. The era report's
+frontmatter line is unchanged by the apply: present=18810 missing=99 before and after (stated as an
+observation; what that counter measures was not traced).
+
+Verbatim stdout:
+
+──────────────────────── result of the post-apply re-inspection ───────────────────────
+grouped detail:
+  none
+
+Downgrades:
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/implementation-summary.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/plan.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/review-report.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/spec.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/tasks.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 001-workflow-correctness-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 002-memory-data-integrity-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-code-graph-readiness-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-code-graph-readiness-audit/implementation-summary.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-code-graph-readiness-audit/plan.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-code-graph-readiness-audit/review-report.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-code-graph-readiness-audit/spec.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-code-graph-readiness-audit/tasks.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 004-cross-runtime-hook-parity-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 005-mcp-tool-schema-governance-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 007-validator-spec-document-integrity-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 008-documentation-truth-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 009-upgrade-safety-operability-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 001-sk-code-opencode-standards-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 002-feature-catalog-trio-alignment/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-testing-playbook-trio-alignment/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 004-sk-doc-template-alignment/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 005-stress-test-folder-migration/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 006-readme-cascade-refresh/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings | SPEC_DOC_INTEGRITY | error -> warning | HANDOVER-deferred.md references missing markdown file: ./001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings | SPEC_DOC_INTEGRITY | error -> warning | HANDOVER-deferred.md references missing markdown file: ./005-code-graph-fail-fast-routing/implementation-summary.md
+  specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups | TEMPLATE_SOURCE | error -> warning | handover.md
+  specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups | TEMPLATE_SOURCE | error -> warning | spec.md
+  specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack | TEMPLATE_SOURCE | error -> warning | decision-record.md
+
+inspected=2265 active=2265 archived=0
+passing=2265/2265
+repo era report:
+  layout provenance: source=none; description.json residue count=0
+  layout: v4 (v3=false, v4=true)
+  frontmatter: present=18810 missing=99
+
+--apply would run: fill-frontmatter, anchor-repair, heal-spec-docs, lane-modes, repair-derived, migrate-generated-json (archived packets: questions-anchor un-nesting and repair-derived only), then record the remaining findings in upgrade-baseline.json
+───────────────────────────────────────────────────────────────────────────────────────
+
+═══════════════════════════════════════════════════════════════════════════
+STEP 7 - FLAGGED CONCERNS
+═══════════════════════════════════════════════════════════════════════════
+F1  The pass is half repair, half recording, and the operator should decide that is acceptable.
+    2265/2265 passing does not mean every doc reference resolves. 30 findings stay in place and
+    are downgraded error -> warning by the five new upgrade-baseline.json files (27
+    SPEC_DOC_INTEGRITY, 3 TEMPLATE_SOURCE). The 27 are links to files that no longer exist
+    (checklist.md / spec.md / plan.md of long-finished child audits, and six links into
+    system-deep-loop/043 that resolve nowhere); the tool refuses to repoint a link when no file
+    ends with the target path rather than inventing a target, and records the refusal with the
+    finding. Reading the 19 refusals of packet 1: every one says "no file ends with <path>, so
+    the target cannot be derived". So the honest statement is: no *unrecorded* error remains,
+    and the recorded ones are history that no longer resolves.
+
+F2  One document was deliberately skipped, and one of its defects is a real one to hand-fix:
+    005-stress-test/003-fix-mcp-runtime-stress-findings/spec.md carries a frontmatter block the
+    tool calls "not valid YAML-like key/value content", so fill-frontmatter left it alone. That
+    packet still passes only through recorded findings. If the operator wants it clean, that
+    frontmatter wants a human.
+
+F3  description.json lastUpdated is mtime-derived, so three of the five values written here are an
+    artefact of the clone, not of the edit: 2026-10-11T15:58:50Z is the clone's checkout time
+    (the packet's docs all carry that mtime in the clone), and 032/004's 16:18 values are the
+    moment the apply rewrote their docs. On the real tree the same field will record the real
+    mtimes there, so these five timestamps are not meaningful content to carry forward.
+
+F4  Three description.json files lose their trailing newline (git prints "\ No newline at end of
+    file" for exactly those three: packets 1, 2 and 3). Packet 4 and 5 already had none. This is
+    normalisation toward the dominant in-repo shape, not damage: of 200 untouched description.json
+    files sampled, 181 have no trailing newline and 19 do. Recording it because it is a byte-level
+    change the diff shows.
+
+F5  Packet 3's graph-metadata.json loses eight lines: the ".opencode/specs/descriptions.json"
+    source_doc entry and its matching entity. Checked: .opencode/specs/ does not exist in this
+    repo at all, so the entry was v3 residue and its removal is correct. Noted as an asymmetry
+    only: for prose links the tool refuses when a target cannot be derived, while here it
+    removed the stale reference outright. The file is derived and regenerates, so nothing is
+    lost by it.
+
+F6  The fill-powered frontmatter values are schema-valid but thin. 032-substrate-repair-followups/
+    handover.md gains "description: \"Date: 2026-05-14\"" (the first body line of the file),
+    "importance_tier: normal" and "contextType: general"; spec.md gains "contextType: general".
+    These satisfy the rules; they are not authored prose and a reviewer may want to replace them.
+
+F7  The throwaway-clone route needs an extra prep step before this command can run at all: a
+    plain clone cannot execute the validator (missing runtime/dist) and, once dist is copied or
+    built, the content-hash attestation is per-checkout while the fallback compares mtimes, so a
+    fresh checkout reads as stale until dist is rebuilt in that checkout. This is a property of
+    the toolchain, not of this apply, but it means "clone, then run" is a two-step recipe:
+    clone, rebuild dist in the clone, then run.
+
+F8  The live worktree is no longer the tree the clone was taken from. At session start
+    git status was clean at 2d8e3516; by the end of this run the worktree carries sibling lanes'
+    edits (.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs, four docs under
+    specs/system-deep-loop/038-review-and-cli-lineage, and docs in the 011/013/014 packets) plus
+    their scratch/evidence directories. The clone is HEAD-exact and unaffected, but the
+    real-tree apply must re-run its own dry run against the tree as it stands then; the
+    2265/2260/5 figures here describe HEAD, not the live worktree.
+
+Nothing else was flagged: no change outside specs/, no deletion, no write into an archived
+packet, and no passing packet turned worse. All 14 changed paths belong to the five failing
+packets, and the post-apply re-inspection reports 2265/2265 with an empty plan.
+
+═══════════════════════════════════════════════════════════════════════════
+WRITE CHECK
+═══════════════════════════════════════════════════════════════════════════
+Worktree writes by this lane: this evidence file only. Every command above ran with cwd inside
+the clone, and the worktree copies of node_modules and dist were read through APFS clonefile
+(cp -cR), which copies rather than links, so nothing in the worktree was modified. No commit, no
+push, no branch change: the clone was never committed to, and git add was used only with
+--intent-to-add to make new files visible in the saved diff.
+
+  $ git -C <worktree> status --porcelain | grep lane-clone-apply
+  ?? specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs/scratch/evidence/lane-clone-apply.txt
+
+Clone state at the end: HEAD 2d8e3516 unchanged, 9 modified + 5 added paths, 0 deleted, dist/
+rebuilt inside the clone, untracked-only additions are the five upgrade-baseline.json files.
+
+═══════════════════════════════════════════════════════════════════════════
+REAL TREE APPLY (2026-10-11, after the operator reviewed the clone run)
+═══════════════════════════════════════════════════════════════════════════
+
+Operator decision: clone first, then the real tree. This section records the second step. The
+orchestrator ran the command on the worktree, not in the clone.
+
+$ node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --roots specs --apply
+exit 0
+inspected=2265 active=2265 archived=0
+passing before=2256/2265 after=2265/2265
+plan changes=9
+step fill-frontmatter: ok
+step anchor-repair: ok (9 packets, 0 changed)
+step heal-spec-docs: ok (9 packets)
+step lane-modes: ok (9 packets, 27 refusals)
+step repair-derived: ok
+step migrate-generated-json: ok
+recorded findings by rule: SPEC_DOC_INTEGRITY: 27, TEMPLATE_SOURCE: 3
+grouped detail: none
+left as is .../026/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/spec.md:
+  Frontmatter block is not valid YAML-like key/value content
+
+The Downgrades block is line-for-line identical to the clone run's, compared with diff after
+stripping the leading indentation (30 entries, 27 SPEC_DOC_INTEGRITY and 3 TEMPLATE_SOURCE).
+Receipts in the session scratchpad:
+  real-apply.out          the apply's stdout
+  real-apply-before.txt   git status --porcelain --untracked-files=all before the run (18:47 local)
+  real-apply-after.txt    the same status command after the run (19:04 local)
+
+Write delta, real-apply-before.txt against real-apply-after.txt: 24 paths, 19 modified and 5
+added, all under specs/.
+- Same 14 paths as the clone, in the same five 026 packets: 9 modified (5 description.json,
+  2 graph-metadata.json, handover.md, spec.md) and the 5 added upgrade-baseline.json.
+- Ten more modified paths, metadata re-derived for the packets sibling lanes had edited:
+  038-review-and-cli-lineage/007-lineage-reducer-compliance (description.json, graph-metadata.json),
+  011-anchor-repair-mode (description.json, graph-metadata.json),
+  013-anchor-contract-alignment (description.json, graph-metadata.json) and
+  014-gate-3-menu-parity (description.json, graph-metadata.json, plan.md, tasks.md).
+- 014-gate-3-menu-parity/plan.md and tasks.md gain `level: 2` in frontmatter, one added line
+  each, read with git diff on the worktree.
+- 0 deletions, 0 paths outside specs/, 0 writes into an archived packet.
+
+The worktree corpus differed from the clone's HEAD 2d8e3516 because sibling lanes had edited it
+in the meantime. Passing was 2256 before this apply, against 2260 in the clone. The plan named
+9 changes and 9 packets carry the write delta. The sibling edits remain in the worktree.
+
+The status method compares path lists, so it cannot show a further write to a file that was
+already modified before the run. Every path listed above is newly modified or added by the run.
+
+F2 is being hand-fixed separately. The one document left untouched is the same one the clone
+run left untouched, 026-graph-and-context-optimization/000-release-and-program-cleanup/
+005-stress-test/003-fix-mcp-runtime-stress-findings/spec.md.
+
+Nothing else was flagged on the real tree: no deletion, no write outside specs/, no archived-
+packet write, and no passing packet turned worse.

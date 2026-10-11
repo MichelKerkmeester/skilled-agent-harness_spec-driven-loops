@@ -37,7 +37,7 @@
       "durable"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -55,10 +55,10 @@
       "dist/lib/frontmatter-migration.js",
       "tests/test-frontmatter-backfill.js",
       "scratch/evidence/upgrade-legacy-dry-run-real-corpus.txt",
+      "scratch/evidence/lane-clone-apply.txt",
       "tests/frontmatter-template-literals.vitest.ts",
       "spec/README.md",
-      "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/research.md",
-      "spec/upgrade-legacy.mjs"
+      "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/research.md"
     ],
     "entities": [
       {
@@ -152,6 +152,12 @@
         "source": "derived"
       },
       {
+        "name": "lane-clone-apply.txt",
+        "kind": "file",
+        "path": "scratch/evidence/lane-clone-apply.txt",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
         "path": "spec/README.md",
@@ -198,18 +204,12 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 13 used one-off scripts for repairs",
     "created_at": "2026-10-08T04:22:47Z",
-    "last_save_at": "2026-10-10T09:49:52.275Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-11T19:55:45.260Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8ed53f2037ca1a0298d4071f5409df042101a672283e6fc3f54f3ad08c1212c1",
+    "source_fingerprint": "sha256:8260f23675f8c73a10da0193954736a1af95d733b685778d011d81fba1e617ff",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f7ba6e86e25727ae5ff7eb9285d8cbde788561f24b9b059a8074649a62cb3f43",
       "plan.md": "43f83efcbb3fff46a231c9a63bf53c9b5fa5c86f82c7d3b924280f8c5bb47535",
-      "tasks.md": "5b5e782d3f5b5c6cbf84d47234e2921ff05973bb31742e118d68f90f5ff5ae0e",
-      "implementation-summary.md": "a43caccc7e74c538a5886eeaadc141345c1b83d054b6493d36b465c60f72fcf4"
+      "tasks.md": "44a5d52ae76c39393081ae4746827c0c3dc3281683ee1ac08613349b590dd272",
+      "implementation-summary.md": "80faff840b18d07e9dfd1302c7ff36726dc67bb5278170d865e1a25c45e131c3"
     },
     "last_active_at": null
   }

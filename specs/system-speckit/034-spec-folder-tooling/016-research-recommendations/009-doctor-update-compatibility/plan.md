@@ -77,7 +77,7 @@ External-facing command workflow with mandatory preview and approval steps.
 | Unit | Path map collision checker function | Node.js test with fixture paths |
 | Integration | `/doctor:update check` calls era report and shows results | Bash test with fixture repo |
 | Integration | Compatibility action workflow: preview, approval, apply | Bash test with fixture v3 repo to v4 conversion |
-| Manual | Full external-user workflow on a real v3 repo | Manual execution by operator |
+| Manual | Full external-user workflow on a real v3 repo | Done 2026-10-11 on a fresh clone of a v3-era commit with 2048 packets. Preview exit 1 with 0 unreadable, apply exit 2 with 2045 of 2048 packets passing, five packets passing strict validation, one packet restored byte for byte. The three residual packets fail only `METADATA_DISK_PATH_CONSISTENCY`, a rule the tool never records by design, so the workflow ends STATUS=PARTIAL for manual review. The slash-command orchestrator and prompted approvals were not exercised (harness deviation in the evidence). Evidence: `scratch/evidence/lane-real-repo-rerun.txt` |
 | Performance | Path map collision check on large tree | Timing on 4,000+ packet corpus |
 <!-- /ANCHOR:testing -->
 
@@ -88,7 +88,9 @@ External-facing command workflow with mandatory preview and approval steps.
 - **Approval flow**: Test with approval, cancellation, and dirty tree scenarios.
 - **Full integration**: A fixture v3 repo from check through apply to v4, all packets passing strict validation.
 
-**Closeout 2 note (2026-10-09).** The built tests cover the check, the layout map, the collision preview, the dirty and interrupted cases, a failed move step, and the integration run through preview, move, upgrade and validation. Three parts of the plan above are not covered by a test. The approval prompts and the cancel path are not exercised, since the suite replays the commands that follow each approval. The timing check on a 4,000-packet corpus was not run. The manual run on a real v3 repository stays open with the operator.
+**Closeout 2 note (2026-10-09).** The built tests cover the check, the layout map, the collision preview, the dirty and interrupted cases, a failed move step, and the integration run through preview, move, upgrade and validation. Three parts of the plan above are not covered by a test. The approval prompts and the cancel path are not exercised, since the suite replays the commands that follow each approval. The timing check on a 4,000-packet corpus was not run. The manual run on a real v3 repository stayed open with the operator at that point.
+
+**Closeout 5 note (2026-10-11).** The manual run happened. A fresh clone of a v3-era commit (3465 `spec.md` files, 1.1 GB under `specs/`, 2048 packets) ran the workflow's command sequence. Both defects of the first run, D1 (the preview followed a committed self-referential link until ENAMETOOLONG) and D2 (the manifest inlined every before-image and the apply refused with "Invalid string length"), are fixed and the rerun completed. Preview exit 1 with 0 unreadable, apply exit 2 with 2045 of 2048 packets passing, five upgraded packets passing `validate.sh --strict`, and one packet restored byte for byte by the README recovery script. The three residual packets fail only `METADATA_DISK_PATH_CONSISTENCY`, a rule the tool never records by design, so the workflow ends STATUS=PARTIAL for manual review. Approvals were pre-approved and the commands ran from the clone root rather than through the `/doctor:update compat` orchestrator. Evidence: `scratch/evidence/lane-real-repo-run.txt`, `scratch/evidence/lane-d1-d2-fix.txt` and `scratch/evidence/lane-real-repo-rerun.txt`.
 
 ---
 

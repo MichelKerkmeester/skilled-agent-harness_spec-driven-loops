@@ -1,0 +1,70 @@
+Lane: review fixes for upgrade-legacy (preview links, sidecar guard/prune)
+Date: 2026-10-11
+Worktree: .worktrees/091-consolidate-small-packets
+
+Files changed (lane scope):
+  .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs
+  .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts
+  .skilled/skills/system-spec-kit/runtime/cli/spec/README.md
+
+Mechanism confirmation (finding 1), before the fix:
+  /tmp/cpsync-probe: fs.cpSync with { recursive: true, dereference: false }
+  rewrote the relative link sources/plan-source.md into the absolute real path
+  /private/tmp/cpsync-probe/src/packet/sources/plan-source.md.
+  Adding verbatimSymlinks: true kept the target as sources/plan-source.md.
+  Probe directory removed after use.
+
+Commands and results, in order:
+
+1. Baseline, before any edit:
+   cd .skilled/skills/system-spec-kit/runtime/cli
+   npx vitest run --config ../../vitest.config.ts --project cli tests/upgrade-legacy.vitest.ts
+   Result: 1 passed (1) files, 63 passed (63) tests, 491.70s.
+
+2. Negative control, new/changed tests against the unfixed code:
+   same runner, -t 'relative link in the preview|escaping sidecar name|linked sidecar directory|orphan before-image|does not copy a file read through a link'
+   Result: 4 failed | 1 passed | 62 skipped (67), 104.63s.
+   Failures matched the findings: preview dropped the in-packet link; the
+   restore script wrote the first target before dying on the '..' sidecar
+   (EISDIR) instead of refusing the name; the linked sidecar directory was
+   followed and restored; orphan sidecars were not pruned.
+   The extended manifest-secret test passed as a guard before and after.
+
+3. Post-fix targeted run, same -t pattern:
+   Result: 5 passed | 62 skipped (67), 51.97s.
+
+4. Adjacent regression probe (existing preview/link/manifest cases):
+   -t 'only inside the preview|own ancestor|Downgrades match the baseline|baseline that is a link out of the packet|reversibility manifest'
+   Result: 7 passed | 60 skipped (67), 65.11s.
+
+5. Full authoritative gate, after all edits:
+   npx vitest run --config ../../vitest.config.ts --project cli tests/upgrade-legacy.vitest.ts
+   Result: EXIT:0, 1 passed (1), 67 passed (67), 585.39s.
+   Counts: before 63, after 67 (4 added tests, 0 removed).
+
+6. Syntax check on the command module:
+   node --check .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs
+   Result: exit 0.
+
+What was fixed:
+  1. Preview copies use verbatimSymlinks: true at all four cpSync calls, and
+     the preview root is realpath'd before containment checks, so an in-packet
+     relative link is materialized in the preview while a self-referential or
+     escaping link is still refused without recursion.
+  2. The manifest-secret test now also scans every sidecar under
+     upgrade-legacy.before-images/ (regular files) and rejects the secret's
+     digest as a sidecar name.
+  3. The README restore script rejects '..' and any escaping sidecar name,
+     refuses a sidecar directory reached through a symlink, and reads and
+     sha256-checks every sidecar before the first write.
+  4. prepareManifest prunes sidecar files the manifest it just wrote does not
+     reference; referenced sidecars stay as the undo record.
+
+Notes:
+  - The worktree already held prior-lane modifications in all three files
+    (sidecar storage, preview link policy). This lane touched only the
+    four cpSync calls, the preview-root resolution, the prune function and
+    its call site, the README recovery block, and tests.
+  - Untracked tests/anchor-nesting-severity.vitest.ts predates this lane
+    (mtime 17:59) and was not touched.
+  - No commit was made.

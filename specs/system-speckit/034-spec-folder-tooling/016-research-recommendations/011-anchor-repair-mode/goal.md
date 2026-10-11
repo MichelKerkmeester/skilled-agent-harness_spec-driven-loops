@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode"
-    last_updated_at: "2026-10-08T12:00:00Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-10-11T16:00:00Z"
+    last_updated_by: "closeout-worker"
+    recent_action: "Criterion 3 closed on the operator's decision, see the Log"
+    next_safe_action: "None for this phase"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "bd2aa56c-623b-43f8-a2ef-69a13c32d626"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -62,7 +62,7 @@ Frozen choices. Changing one is an amendment.
 
 - [x] Dry-run on a document with all three anchor defect types reports findings and writes no files
 - [x] Collision detection prevents suffix conflicts when numbering ambiguous duplicates
-- [ ] Apply on 50 randomly selected documents from the 549 nested questions layouts leaves all documents valid
+- [x] Apply on 50 randomly selected documents from the 549 nested questions layouts leaves all documents valid. Closed 2026-10-11 on the operator's decision: the sample test confirms anchor integrity for each repaired copy, 49 of the 50 sampled packets passed strict validation earlier with the 50th ruled out of scope, and the 10 refused documents' packet folders all pass today. Evidence: scratch/evidence/lane-refused-docs-validation.txt
 - [x] The anchor-repair step runs in `upgrade-legacy --apply` and the full upgrade passes
 - [x] An archived fixture with the nested layout is un-nested by `upgrade-legacy --apply --include-archive`, and a test shows its prose lines are unchanged
 - [x] The spec-kit test suite passes with no regressions
@@ -89,4 +89,5 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | Archived un-nesting decided | 2026-10-08, the operator chose to run the marker-only un-nesting on archived documents too, because it moves marker lines only and never prose. Without it, about 164 archived packets would keep the nesting and fail once phase 13 makes nesting an error |
+| Criterion 3 closed (2026-10-11) | Ticked on the operator's decision. The 10 refused documents' packet folders each pass validate.sh --strict today (scratch/evidence/lane-refused-docs-validation.txt), and 49 of the 50 sampled packets passed earlier, with the 50th ruled out of scope. Anchor integrity of every repaired sample copy is in the sample test |
 <!-- /ANCHOR:log -->

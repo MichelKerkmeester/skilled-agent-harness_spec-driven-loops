@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Fold one-off repairs"
-description: "The task list for Fold one-off repairs, each task naming its file. Tasks are checked with their evidence, and T011 stays open for an operator decision."
+description: "The task list for Fold one-off repairs, each task naming its file. Tasks are checked with their evidence."
 trigger_phrases:
   - "fold one off repairs tasks"
 importance_tier: "important"
@@ -66,8 +66,8 @@ contextType: "implementation"
   - Evidence: `groups each failing packet's errors by rule with a detail count` at `:398` passed in the same run, and is at `:541` now, see AC-002.
 - [x] T010 [P0] Run suite with npm test and verify no regressions
   - Evidence: whole-tree gate (tree4) `npm --prefix .skilled/skills/system-spec-kit/runtime/cli test` exit 0, 171 files and 1775 tests passed, 19 skipped, 0 failed, against a pre-wave-1 baseline of 161 files and 1639 passed. Details in AC-004. Third pass: tree5 cli-test exits 0 with the same counts (gates/tree5/cli-test.rc), after the 012-T2 fix. Tree4 ran before the RLUNA test-isolation fix (012-T2), see implementation-summary.md.
-- [ ] T011 [P1] Manually verify upgrade-legacy --apply output with grouped-detail report
-  - Open: the dry run on the parent folder was run by hand and shows the grouped section (AC-002). The fourth pass ran a read-only dry run over the real corpus (`upgrade-legacy.mjs --roots specs`, no `--apply`). It inspected 2202 active packets, 2194 passing and 8 failing, so `--apply` would change 8 packets. Three of them, 016-research-recommendations, 019-epic-follow-up-fixes and 020-deep-review-remediation, are in folders another lane is editing, and five sit under 026-graph-and-context-optimization. The real-corpus `--apply` was not run. The apply output with the grouped section is covered by the sandbox case at `:398`. Needs an operator decision on whether to run it. Evidence: `scratch/evidence/upgrade-legacy-dry-run-real-corpus.txt`.
+- [x] T011 [P1] Manually verify upgrade-legacy --apply output with grouped-detail report
+  - Evidence (2026-10-11): the operator approved the apply after reviewing the clone run. Throwaway clone at `2d8e3516`: `upgrade-legacy.mjs --roots specs --apply` exit 0, passing 2260 to 2265 of 2265, the 14 paths in the five failing 026 packets, 0 deletions, flags F1 to F8. Real tree, run by the orchestrator: the same command, exit 0, inspected 2265, passing 2256 to 2265, the same findings recorded, 24 paths written (19 modified and 5 added) across 9 packets. The real-corpus apply output carries the grouped section, empty on this run (`grouped detail: none`), and grouped output with real headings is recorded in the fourth-pass dry run. Evidence: `scratch/evidence/lane-clone-apply.txt`, sections "STEP 3" and "Real tree apply", and `scratch/evidence/upgrade-legacy-dry-run-real-corpus.txt`.
 - [x] T012 [P1] Review spec.md, plan.md, tasks.md for consistency
   - Evidence: after the edits in this closeout, spec.md Status Complete matches the four acceptance rows, and the open items here are named in implementation-summary.md.
 <!-- /ANCHOR:phase-3 -->
@@ -77,9 +77,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]` (open: T011)
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed (open: the real-corpus `--apply`, T011 and CHK-021. The read-only dry run plans 8 changes, see T011)
+- [x] Manual verification passed (real-corpus `--apply` run 2026-10-11, passing 2256 to 2265 of 2265, see T011 and CHK-021)
 <!-- /ANCHOR:completion -->
 
 ---
@@ -132,7 +132,7 @@ contextType: "implementation"
 ## Testing Checklist
 
 - [x] CHK-020 [P0] All acceptance criteria met. Evidence: AC-001 to AC-004 are Met, see acceptance-criteria.md.
-- [ ] CHK-021 [P0] Manual testing complete. Open, operator item: the dry run on the parent folder was done by hand (AC-002). The fourth pass ran the read-only dry run over the real corpus with no `--apply`. It plans 8 changes (2202 active packets, 2194 passing, 8 failing, exit 1, no writes). Evidence: `scratch/evidence/upgrade-legacy-dry-run-real-corpus.txt`. Because the plan is not empty, the real-corpus `--apply` stays open (T011). The evidence log records the full-corpus `--apply` in a throwaway clone as skipped, with the operator not objecting, and lists it as a follow-up.
+- [x] CHK-021 [P0] Manual testing complete. Evidence (2026-10-11): the operator approved the full-tree apply after the clone review. Throwaway clone at `2d8e3516`: `--roots specs --apply` exit 0, passing 2260 to 2265 of 2265, 14 paths in the five failing 026 packets, 0 deletions. Real tree: the same command, exit 0, inspected 2265, passing 2256 to 2265, 24 paths written (19 modified and 5 added) inside `specs/`, 0 deletions. One document was left as is (the unparseable frontmatter in 026/000/005/003/spec.md, F2, hand-fix in progress). Receipts: `scratch/evidence/lane-clone-apply.txt`, section "Real tree apply", and `scratch/evidence/upgrade-legacy-dry-run-real-corpus.txt`.
 - [x] CHK-022 [P1] Edge cases tested. Evidence: the value-source case at `upgrade-legacy.vitest.ts:365` keeps an authored title and tier as written. It fills acceptance-criteria.md from its template, a file with no frontmatter block at all. It fills only the missing `contextType` on resource-map.md and tasks.md, and their authored tier stays. It pins the goal.md fields (`important` and `planning`). Malformed frontmatter is pinned at `:818`. The missing-template fallback is pinned at `:504`, added in the second pass. Not applicable: the plan's edge case for a document with no spec.md, because `fillMissingFrontmatter` (`spec/upgrade-legacy.mjs:734`) fills only the file it reads and never copies from spec.md (implementation-summary.md, Deviations item 2).
 - [x] CHK-023 [P1] Error scenarios validated. Evidence: a missing template falls back to the class defaults. The case at `upgrade-legacy.vitest.ts:504` renames the decision-record.md template for one `--apply` run, exits 0, and writes the table defaults `important` and `planning`. A frontmatter block the detector refuses is left byte-identical with a named reason, pinned at `:818`. Scope: the fallback case makes the read fail as a missing file. A permission-denied read takes the same catch branch in `readTemplateLiterals` (`lib/frontmatter-migration.ts:919`). That follows from reading the code, and no chmod variant was run.
 <!-- /ANCHOR:testing -->
@@ -187,11 +187,11 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 11/12 |
+| P0 Items | 12 | 12/12 |
 | P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
-Open P0 item: CHK-021, the real-corpus `--apply` (an operator decision, shared with T011). Open P1 task: T011, the same decision. No P1 checklist item is open. No P2 item is open.
+No item is open. CHK-021 and T011 were closed on 2026-10-11 by the real-corpus `--apply`, see their entries above.
 
 **Verification Date**: 2026-10-10
 <!-- /ANCHOR:summary -->

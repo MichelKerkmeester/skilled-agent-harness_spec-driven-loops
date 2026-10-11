@@ -8,22 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs"
-    last_updated_at: "2026-10-10T09:47:20Z"
-    last_updated_by: "closeout"
-    recent_action: "CHK-FIX-006 closed: cache removed, same-instance case added (uncommitted)"
-    next_safe_action: "Operator decides T011 (real-corpus --apply)"
+    last_updated_at: "2026-10-11T19:55:45Z"
+    last_updated_by: "generate-context"
+    recent_action: "Ran the full-tree apply on a clone then the real tree"
+    next_safe_action: "Monitor upgrade baselines in the five packets the apply touched"
     blockers: []
     key_files:
-      - ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs"
-      - ".skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts"
-      - ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts"
-      - ".skilled/skills/system-spec-kit/runtime/cli/tests/frontmatter-template-literals.vitest.ts"
+      - "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs/scratch/evidence/lane-clone-apply.txt"
+      - "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs/goal.md"
     completion_pct: 100
-    open_questions:
-      - "Run the manual --apply on the real corpus (T011), which plans 8 packet changes?"
-    answered_questions:
-      - "Pin the four classes that now take template values (CHK-FIX-002)? Pinned by 012-T1 in the value-source case at upgrade-legacy.vitest.ts:365."
-      - "Fix the same-instance template cache in lib/frontmatter-migration.ts (CHK-FIX-006)? Yes. The cache is removed, so each call reads the template, and the same-instance case in frontmatter-template-literals.vitest.ts pins the re-read. Receipts in scratch/evidence/frontmatter-template-cache-same-instance-red-green.txt. The change is uncommitted."
+    open_questions: []
+    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
@@ -133,6 +128,7 @@ A later test round added the four missing pins and the fallback case. Builder 01
 | Dependent CLI tests after the fix | The target file and the two `memory-quality` suites that import the module: `Test Files 3 passed (3)`, `Tests 7 passed (7)`, exit 0. `tests/test-frontmatter-backfill.js` run with node: `Summary: pass=15, fail=0`, exit 0 |
 | Lint and typecheck of the new test file (fourth pass) | `npx eslint` on the file: 0 errors, with the runtime config applied. `npx tsc -p tsconfig.tests.json --noEmit` in `runtime/`: exit 2 with 95 `error TS` lines, the same count as before, none in the new file or in `upgrade-legacy.vitest.ts` |
 | Real-corpus dry run (fourth pass) | `upgrade-legacy.mjs --roots specs`, no `--apply`: exit 1, inspected 2202 active, passing 2194, failing 8. No upgrade-baseline.json and no reversibility manifest were written. Receipts in `scratch/evidence/upgrade-legacy-dry-run-real-corpus.txt` |
+| Full-tree apply (2026-10-11) | Throwaway clone at `2d8e3516`: `upgrade-legacy.mjs --roots specs --apply` exit 0, passing 2260 to 2265 of 2265, 14 paths in the five failing 026 packets, 0 deletions. Real tree: the same command, exit 0, inspected 2265, passing 2256 to 2265, 24 paths written (19 modified and 5 added) under `specs/`. One document left as is. Details in `scratch/evidence/lane-clone-apply.txt`, section "Real tree apply" |
 
 The gate outputs are in the closeout's build scratchpad, and the raw logs back every row above. The tree4 logs are under `gates/tree4/`.
 
@@ -149,6 +145,16 @@ The whole-tree gate in `gates/tree5/` ran after the Opus alignment fixes. Git HE
 - Shuffled runs of this file, seeds 101 and 202, 39 of 39 each (`gates/tests-after-tr/`), added in this closeout.
 
 The `validate.sh --strict` and `check-goal.cjs` runs on this folder were repeated after these edits, and their logs are in `gates/closeout3-012/`.
+
+### Full-tree apply (2026-10-11)
+
+The operator approved the real apply after the clone review. On the worktree the orchestrator ran `node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --roots specs --apply`, exit 0, inspected 2265 active packets. Passing moved from 2256 to 2265 of 2265. The run recorded the same 27 SPEC_DOC_INTEGRITY and 3 TEMPLATE_SOURCE findings, printed an empty grouped-detail section (`grouped detail: none`), and left the unparseable frontmatter in `026/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/spec.md` as is (F2, hand-fix in progress). It wrote 24 paths under `specs/`: the same 14 paths as the clone in the five 026 packets (9 modified plus 5 new `upgrade-baseline.json`), plus re-derived metadata for four packets sibling lanes had edited (038-review-and-cli-lineage/007-lineage-reducer-compliance, 011-anchor-repair-mode, 013-anchor-contract-alignment and 014-gate-3-menu-parity) and `level: 2` frontmatter on 014's plan.md and tasks.md. Receipts are in the session scratchpad (`real-apply.out`, `real-apply-before.txt`, `real-apply-after.txt`), and the write delta is recorded in `scratch/evidence/lane-clone-apply.txt`, section "Real tree apply".
+
+### Limitations
+
+- The 30 recorded findings (27 SPEC_DOC_INTEGRITY and 3 TEMPLATE_SOURCE) are downgraded to warnings, not repaired. Their link targets no longer exist, so the tool records the refusal instead of inventing a target (F1 in the evidence log). A packet that carries a baseline passes `--strict` with those warnings.
+- The fill-authored frontmatter values are schema-valid but thin. 032-substrate-repair-followups/handover.md gained `description: "Date: 2026-05-14"` from its first body line, plus `importance_tier: normal` and `contextType: general` (F6). They are not authored prose.
+- The changelog refresh under the parent is still open (`plan.md` line 44). No changelog folder exists under the parent, so it stays an operator item.
 
 ### Test matrix
 
@@ -194,7 +200,7 @@ The line numbers in this table and in the first-pass rows above it are from the 
 <!-- ANCHOR:open-items -->
 ## Open Items
 
-- **T011 and CHK-021, real-corpus `--apply`.** Not run. The fourth pass ran the read-only dry run over the real corpus, and it plans 8 changes: 2202 active packets were inspected, 2194 pass and 8 fail. Three failing packets sit in folders another lane is editing (016-research-recommendations, 019-epic-follow-up-fixes and 020-deep-review-remediation), and five sit under 026-graph-and-context-optimization. The evidence log records a full-corpus `--apply` in a throwaway clone as skipped, with the operator not objecting, and lists it as a follow-up. Needs an operator decision. Receipts: `scratch/evidence/upgrade-legacy-dry-run-real-corpus.txt`.
+- **T011 and CHK-021, real-corpus `--apply`.** Closed 2026-10-11. The operator approved the real apply after the clone review. Throwaway clone at `2d8e3516`: exit 0, passing 2260 to 2265 of 2265, 14 paths in the five failing 026 packets, 0 deletions. Real tree: the same command, exit 0, inspected 2265, passing 2256 to 2265, 24 paths written (19 modified and 5 added) across 9 packets. Receipts: `scratch/evidence/lane-clone-apply.txt`, section "Real tree apply", and `scratch/evidence/upgrade-legacy-dry-run-real-corpus.txt`.
 - **Test isolation, RLUNA F2 (brief 012-T2).** The value-source case leaves its fm-track packet in the shared sandbox. The file now has an `afterEach(resetSandbox)` hook, which the verbose run at 08:44 CEST passed with. Closed in closeout 3. The evidence log records 012-T2 killed at the watchdog with no RESULT line, and its edit landed at 08:41. Shuffled runs (seeds 101 and 202, 39 of 39 each) and a normal run pass on the file as it stands.
 - **CHK-FIX-006, process-wide cache.** Closed. The module-level cache is removed from `lib/frontmatter-migration.ts`, so each call reads the template. The same-instance case in `tests/frontmatter-template-literals.vitest.ts` exits 1 on the unmodified code (`expected 'critical' to be 'normal'`) and exits 0 after the fix. The change is uncommitted in the working tree. Receipts: `scratch/evidence/frontmatter-template-cache-same-instance-red-green.txt`.
 - **CHK-FIX-007, evidence pin.** Closed in the fourth pass. The evidence is pinned to `124e11c883`, the combined commit under D6, which is an ancestor of `origin/main`.

@@ -1,0 +1,631 @@
+REAL V3 REPOSITORY RUN: CONDENSED RECORD
+The full run log was 55.8 MB (1,540,832 lines), too large to commit. It is kept outside the repository in the session scratchpad as compat-v3/lane-real-repo-run.raw.txt, sha256 af779c6d5cbd9e0373113297ba8058b9caa0c80f52ff171ec23d312211542afa.
+This record keeps every step header with up to 25 following lines (each cut to 300 characters) and replaces the per-packet validation listings with counts.
+
+DOCTOR:UPDATE COMPAT — REAL v3-ERA REPOSITORY RUN (lane: real-repo)
+========================================================================
+
+Purpose: run the /doctor:update compat workflow once, end to end, on a real
+v3-era repository in a throwaway clone (packet 009 Not Done item, plan.md
+section 3 "Manual — Full external-user workflow on a real v3 repo").
+
+Operator decision (given): clone this repository at a real v3-era commit where
+spec folders live under .opencode/specs. The operator approved the phase 3
+layout move and the phase 7 upgrade apply for this clone only.
+
+Source worktree : /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets
+Worktree HEAD   : 2d8e35161bf7c08074cff6a3342be2182a1399ca
+Clone path      : /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/compat-v3/repo
+
+COMMIT SELECTION (action 1)
+---------------------------
+Command: git rev-list HEAD (11015 commits) classified with git cat-file
+--batch-check on "<c>:.opencode/specs" and "<c>:specs" (types: tree / blob
+(symlink) / missing).
+
+- Newest commit where .opencode/specs is a real directory (tree, not a link)
+  and specs/ is absent: 9f2970c46fa28eb52f5a80797cab4588b8738185
+  (2026-08-03T16:42:13+02:00, "chore(pi): update runtime settings, statusline,
+  blackhole config"). 1748 commits match this shape.
+- The immediate next commit introduces specs as a symlink to .opencode/specs
+  (aa58091816b6), so this is the last commit of the long v3 era without any
+  specs path.
+- NOTE: at this shape the layout map emits TWO move steps (move-tree,
+  link-legacy-path). The third step in the dispatch text, remove-specs-link,
+  is emitted only when specs is a symlink. The newest commit of the classic
+  3-step shape (legacy tree + specs symlink) is
+  c14ef5a148ffaaf00c8528ae22f8b5e66bb1dae0, and the flip to specs canonical
+  is 416ef565272488401e6de146d45d23b77d0f8776. The instructed condition
+  ("specs/ is absent") selects 9f2970c4; its two steps are recorded below.
+
+HARNESS DEVIATION (action 3)
+----------------------------
+The dispatch asked for absolute paths to the worktree's .skilled scripts.
+That is not runnable against another repository: upgrade-legacy.mjs derives
+its repository from its own location (SKILL_ROOT/../../..) and refuses roots
+outside it; an absolute worktree path would target the worktree itself, and
+--apply would write the worktree. The project's own integration test
+(.skilled/commands/doctor/scripts/tests/doctor-update-compat-integration.test.cjs,
+comment at its top) documents the same constraint and its pattern: a throwaway
+repository holding a copy of the skill, commands run with cwd set to that
+repository.
+
+So the current tooling was copied byte-identical from the worktree into the
+clone (.skilled/skills/system-spec-kit and .skilled/commands/doctor), and the
+workflow's command strings are run verbatim from the clone root. The release
+check is additionally run through the worktree's absolute engine path with
+--repo . (read-only) to satisfy the dispatch's literal instruction; both
+spellings are recorded.
+
+Clone mutation boundary: everything below writes only inside the clone and
+inside the clone's git directory; the only write to the worktree is this
+evidence file.
+
+========================================================================
+COMMAND LOG
+========================================================================
+
+### STEP 1: harness — copy current tooling from the worktree into the clone
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/compat-v3/repo
+$ ls -d .skilled || echo absent   # before
+.skilled absent
+$ mkdir -p .skilled/skills .skilled/commands
+exit=0
+$ cp -R /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit .skilled/skills/
+exit=0
+$ cp -R /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/commands/doctor .skilled/commands/
+exit=0
+$ find .skilled/skills/system-spec-kit/runtime -name node_modules -prune -o -path '*/dist/*' -type f -exec touch {} +
+exit=0
+$ du -sh .skilled/skills/system-spec-kit .skilled/commands/doctor
+551M	.skilled/skills/system-spec-kit
+1.2M	.skilled/commands/doctor
+exit=0
+
+### STEP 2: pre-workflow baseline of the clone
+$ git -C /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/compat-v3/repo status --porcelain=v1 | wc -l
+       1
+$ git status --porcelain=v1 | head -3
+?? .skilled/
+exit=0
+$ find .skilled -type f | wc -l ; find .skilled -type l | wc -l
+   12624
+      40
+$ find .skilled -type f -print0 | sort -z | xargs -0 shasum -a 256 > /tmp/compat-scan/skilled-before.txt
+exit=0
+$ find .skilled -type l -print0 | sort -z | while read -r -d '' l; do printf '%s -> %s\n' "$l" "$(readlink "$l")"; done >> /tmp/compat-scan/skilled-before.txt
+exit=0
+$ wc -l /tmp/compat-scan/skilled-before.txt ; shasum -a 256 /tmp/compat-scan/skilled-before.txt
+   12664 /tmp/compat-scan/skilled-before.txt
+3381c2f936afb7954963323c0c4fddce65b083491a653a404ec6741273f2e08b  /tmp/compat-scan/skilled-before.txt
+$ git status --porcelain=v1 -- .skilled | head -3
+?? .skilled/
+$ ls -ld .opencode/specs specs 2>&1 ; find .opencode/specs -name spec.md | wc -l
+ls: specs: No such file or directory
+drwxr-xr-x@ 15 michelkerkmeester  wheel  480 Oct 11 18:04 .opencode/specs
+    3465
+exit=0
+
+### STEP 2b: evidence file ignore status (worktree, read-only)
+$ git check-ignore -v specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/scratch/evidence/lane-real-repo-run.txt
+check-ignore-exit=1
+
+### STEP 3: phase_1_preflight (no approval, read-only)
+--- precondition 1: current directory is inside a git repository
+true
+exit=0
+--- precondition 2: the two upstream scripts exist
+-rw-r--r--@ 1 michelkerkmeester  wheel  108350 Oct 11 18:06 .skilled/commands/doctor/scripts/release-update.cjs
+-rw-r--r--@ 1 michelkerkmeester  wheel   77619 Oct 11 18:06 .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs
+exit=0
+--- precondition 3: release apply lock absent (.skilled/release/.apply.lock)
+ls: .skilled/release/.apply.lock: No such file or directory
+exit=1 (1 = absent, as required)
+--- upstream_rule check: upstream origin
+origin	/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets (fetch)
+origin	/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets (push)
+exit=0
+
+--- release_check, YAML spelling: node .skilled/commands/doctor/scripts/release-update.cjs check --repo . --json
+exit=0
+$ wc -c /tmp/compat-scan/release-check-clone.json ; cat
+ 17208169 /tmp/compat-scan/release-check-clone.json
+{
+  "ok": true,
+  "schemaVersion": 1,
+  "command": "check",
+  "repo": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/compat-v3/repo",
+  "head": "9f2970c46fa28eb52f5a80797cab4588b8738185",
+### STEP 3c: release_check — top-level fields (the full 17,208,169-byte JSON sits above in this file)
+$ node -e '...print top-level fields of release-check-clone.json...'
+{
+  "ok": true,
+  "schemaVersion": 1,
+  "command": "check",
+  "repo": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/compat-v3/repo",
+  "head": "9f2970c46fa28eb52f5a80797cab4588b8738185",
+  "release": "v4.0.0.3",
+  "releaseCommit": "c9bd4b156c7493722455ee17839ed4317de37107",
+  "localLatest": "v4.0.0.3",
+  "upstream": {
+    "status": "known",
+    "latest": "v4.0.0.3",
+    "error": null
+  },
+  "checkout": {
+    "position": "behind",
+    "aheadBy": 0,
+    "behindBy": 3696,
+    "dirty": true
+  },
+  "status": "updates-available",
+  "baseRecording": {
+    "needed": false,
+    "units": [],
+### STEP 4: phase_2_layout_preview — layout map
+$ cd  && node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map
+exit=0
+$ cat /tmp/compat-scan/layout-before.json
+{
+  "state": "v3",
+  "moves": [
+    {
+      "from": ".opencode/specs",
+      "to": "specs"
+    }
+  ],
+  "alreadyMoved": [],
+  "collisions": [],
+  "steps": [
+    {
+      "id": "move-tree",
+      "argv": [
+        "git",
+        "mv",
+        ".opencode/specs",
+        "specs"
+      ]
+    },
+    {
+      "id": "link-legacy-path",
+### STEP 5: harness completion — the FULL current .skilled is copied into the clone
+Reason: check #1 (partial tooling copy) reported 72 of 79 units status=new. The YAML
+phase_1 release_gate refuses when any unit has status update or new. A tree that has
+completed /doctor:update apply has every unit present; the full copy emulates that
+post-apply state, and check #1 below remains the record of the partial state.
+--- check #1 non-current unit keys:
+conflict (2): command:commands/doctor, skill:system-spec-kit
+current (5): command:commands/agent-router.md, command:commands/goal-opencode.md, command:commands/README.txt, command:commands/vision.md, skill:README.txt
+update (0): 
+new (72): skill:.state, root:(root), directory:agents, directory:bin, directory:changelog, skill:cli-classifier, skill:cli-classifier/cli-jev, skill:cli-external-orchestration, ...
+
+$ rsync -a --delete /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/ /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/compat-v3/repo/.skilled/
+exit=0  elapsed=176s
+$ du -sh .skilled ; find .skilled -type f | wc -l ; find .skilled -type l | wc -l
+1.4G	.skilled
+   39387
+     270
+
+### STEP 5b: phase_1 release_check re-run on the full tree (YAML spelling)
+$ node .skilled/commands/doctor/scripts/release-update.cjs check --repo . --json
+exit=0
+$ wc -c /tmp/compat-scan/release-check-full.json
+ 18061380 /tmp/compat-scan/release-check-full.json
+--- top-level fields:
+{
+  "ok": true,
+  "schemaVersion": 1,
+  "command": "check",
+  "repo": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/compat-v3/repo",
+  "head": "9f2970c46fa28eb52f5a80797cab4588b8738185",
+  "release": "v4.0.0.3",
+  "releaseCommit": "c9bd4b156c7493722455ee17839ed4317de37107",
+  "localLatest": "v4.0.0.3",
+  "upstream": {
+    "status": "known",
+    "latest": "v4.0.0.3",
+    "error": null
+  },
+  "checkout": {
+    "position": "behind",
+    "aheadBy": 0,
+    "behindBy": 3696,
+    "dirty": true
+  },
+### STEP 6: harness normalization — restore the one release-only unit
+Reason: check #2 reported one unit status=new, skill:system-deep-loop/deep-improvement:
+the release v4.0.0.3 carries it and the worktree HEAD (3696 commits past the tag) has
+removed it, so HEAD content alone can never satisfy the release_gate. A post-apply tree
+holds every released unit; restoring this one unit from the release tag normalizes the
+tree to that shape. Everything else stays at current worktree HEAD content.
+$ git -C /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/compat-v3/repo rev-parse v4.0.0.3^{commit}
+c9bd4b156c7493722455ee17839ed4317de37107
+exit=0
+$ git ls-tree v4.0.0.3 -- .skilled/skills/system-deep-loop/deep-improvement
+040000 tree 78bc9a01ab8e873605373ba56a0a9478f81f5621	.skilled/skills/system-deep-loop/deep-improvement
+exit=0
+$ git checkout v4.0.0.3 -- .skilled/skills/system-deep-loop/deep-improvement
+exit=0
+$ find .skilled/skills/system-deep-loop/deep-improvement -type f | wc -l
+     354
+
+### STEP 6b: phase_1 release_check after normalization (YAML spelling)
+$ node .skilled/commands/doctor/scripts/release-update.cjs check --repo . --json
+exit=0
+$ wc -c /tmp/compat-scan/release-check-normalized.json
+ 18029995 /tmp/compat-scan/release-check-normalized.json
+--- top-level fields and unit status counts:
+{
+  "ok": true,
+  "schemaVersion": 1,
+  "command": "check",
+  "repo": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/compat-v3/repo",
+  "head": "9f2970c46fa28eb52f5a80797cab4588b8738185",
+  "release": "v4.0.0.3",
+  "releaseCommit": "c9bd4b156c7493722455ee17839ed4317de37107",
+  "localLatest": "v4.0.0.3",
+  "upstream": {
+    "status": "known",
+    "latest": "v4.0.0.3",
+    "error": null
+  },
+  "checkout": {
+    "position": "behind",
+    "aheadBy": 0,
+    "behindBy": 3696,
+    "dirty": true
+  },
+### STEP 6c: full outputs of checks #2 and #3 (check #1 full JSON is above; sha256 recorded here)
+$ shasum -a 256 /tmp/compat-scan/release-check-clone.json /tmp/compat-scan/release-check-full.json /tmp/compat-scan/release-check-normalized.json
+175d8cff53876fea5594fbb643bf11c6a8c603de33a7582cc129054ba557ee1b  /tmp/compat-scan/release-check-clone.json
+b46d94b443e3c6a7e91e155e985353f738f4ff65c3c55ced3a716612068e9fe5  /tmp/compat-scan/release-check-full.json
+74c298223e91af63e48b4ec502548dd8b4fa8a62746bbb05e1a3d5825d337ab6  /tmp/compat-scan/release-check-normalized.json
+--- release-check-full.json (check #2, 18,061,380 bytes) begins
+{
+  "ok": true,
+  "schemaVersion": 1,
+  "command": "check",
+  "repo": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/compat-v3/repo",
+  "head": "9f2970c46fa28eb52f5a80797cab4588b8738185",
+  "release": "v4.0.0.3",
+  "releaseCommit": "c9bd4b156c7493722455ee17839ed4317de37107",
+  "localLatest": "v4.0.0.3",
+  "upstream": {
+    "status": "known",
+    "latest": "v4.0.0.3",
+    "error": null
+  },
+  "checkout": {
+    "position": "behind",
+    "aheadBy": 0,
+    "behindBy": 3696,
+    "dirty": true
+  },
+### STEP 7: post-harness baseline of .skilled (write-invariant reference) and pre-run state
+$ date -u +%Y-%m-%dT%H:%M:%SZ ; sysctl -n hw.ncpu
+2026-10-11T16:22:48Z
+18
+$ find .skilled -type f -print0 | sort -z | xargs -0 shasum -a 256 > /tmp/compat-scan/skilled-baseline-final.txt
+exit=0 elapsed=165s
+$ find .skilled -type l -print0 | sort -z | while read -r -d '' l; do printf '%s -> %s\n' "$l" "$(readlink "$l")"; done >> /tmp/compat-scan/skilled-baseline-final.txt
+exit=0
+$ wc -l /tmp/compat-scan/skilled-baseline-final.txt ; shasum -a 256 /tmp/compat-scan/skilled-baseline-final.txt
+   40013 /tmp/compat-scan/skilled-baseline-final.txt
+9fa7e0d7ca89278e8a5afae73ca1d44bd47db741a4433d26131e8a8839d9a96b  /tmp/compat-scan/skilled-baseline-final.txt
+$ git rev-parse --absolute-git-dir
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/compat-v3/repo/.git
+$ git status --porcelain=v1 --untracked-files=all -- specs .opencode/specs
+exit=0 (empty output = clean spec roots, the move precondition)
+$ ls .git/doctor-update-compat.log.jsonl 2>&1
+ls: .git/doctor-update-compat.log.jsonl: No such file or directory
+exit=1 (1 = no run log yet)
+$ ls -ld .opencode/specs specs 2>&1
+ls: specs: No such file or directory
+drwxr-xr-x@ 15 michelkerkmeester  wheel  480 Oct 11 18:04 .opencode/specs
+
+=== WORKFLOW RUN BEGINS (doctor-update-compat-action.yaml) ===
+run id (move log): 2026-10-11T16:25:48Z
+
+### phase_2_layout_preview — layout map (recompute)
+$ node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map
+exit=0
+{
+  "state": "v3",
+  "moves": [
+    {
+      "from": ".opencode/specs",
+      "to": "specs"
+    }
+  ],
+  "alreadyMoved": [],
+  "collisions": [],
+  "steps": [
+    {
+      "id": "move-tree",
+      "argv": [
+        "git",
+        "mv",
+        ".opencode/specs",
+        "specs"
+      ]
+    },
+    {
+      "id": "link-legacy-path",
+      "argv": [
+### phase_3_move_approval — operator pre-approved for this clone (dispatch decision)
+ACTION=approved (neither the move approval nor the upgrade approval is exercised by any test;
+this run records the operator's pre-approval in place of the interactive prompt)
+
+### phase_4_move — dirty check (before run-started), then log + steps
+$ git status --porcelain=v1 --untracked-files=all -- specs .opencode/specs
+exit=0 (empty = not dirty, move allowed)
+$ append run-started to .git/doctor-update-compat.log.jsonl
+exit=0
+$ step move-tree: git mv .opencode/specs specs
+exit=0
+$ step link-legacy-path: ln -s ../specs .opencode/specs
+exit=0
+exit=0
+--- move log:
+{"run":"2026-10-11T16:25:48Z","event":"run-started","step":null,"argv":null,"at":"2026-10-11T16:25:49Z"}
+{"run":"2026-10-11T16:25:48Z","event":"step-started","step":"move-tree","argv":["git","mv",".opencode/specs","specs"],"at":"2026-10-11T16:25:49Z"}
+{"run":"2026-10-11T16:25:48Z","event":"step-done","step":"move-tree","argv":["git","mv",".opencode/specs","specs"],"at":"2026-10-11T16:25:50Z"}
+{"run":"2026-10-11T16:25:48Z","event":"step-started","step":"link-legacy-path","argv":["ln","-s","../specs",".opencode/specs"],"at":"2026-10-11T16:25:50Z"}
+{"run":"2026-10-11T16:25:48Z","event":"step-done","step":"link-legacy-path","argv":["ln","-s","../specs",".opencode/specs"],"at":"2026-10-11T16:25:50Z"}
+{"run":"2026-10-11T16:25:48Z","event":"move-complete","step":null,"argv":null,"at":"2026-10-11T16:25:50Z"}
+
+### phase_4 post_check — rerun layout map (must be v4, no steps)
+$ node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map
+exit=0
+{
+  "state": "v4",
+  "moves": [],
+  "alreadyMoved": [],
+  "collisions": [],
+  "steps": []
+}
+--- stderr:
+(stderr end)
+$ ls -ld .opencode/specs specs
+lrwxr-xr-x@  1 michelkerkmeester  wheel    8 Oct 11 18:25 .opencode/specs -> ../specs
+drwxr-xr-x@ 15 michelkerkmeester  wheel  480 Oct 11 18:04 specs
+
+### phase_5_upgrade_preview — upgrade dry run (layout state v4 as required)
+$ node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs
+exit=1  elapsed=1018s
+$ wc -l -c /tmp/compat-scan/dryrun-postmove.out
+    4109  672893 /tmp/compat-scan/dryrun-postmove.out
+--- first 15 lines:
+unreadable specs/cli-external-orchestration/026-cli-external-parent: exit 3: Run: cd .skilled/skills/system-spec-kit/runtime && npm run build
+unreadable specs/cli-external-orchestration/026-cli-external-parent/001-research-and-context: exit 3: Run: cd .skilled/skills/system-spec-kit/runtime && npm run build
+unreadable specs/cli-external-orchestration/026-cli-external-parent/002-architecture-decision: exit 3: Run: cd .skilled/skills/system-spec-kit/runtime && npm run build
+unreadable specs/cli-external-orchestration/026-cli-external-parent/003-scaffold-hub: exit 3: Run: cd .skilled/skills/system-spec-kit/runtime && npm run build
+unreadable specs/cli-external-orchestration/026-cli-external-parent/004-onboard-cli-opencode: exit 3: Run: cd .skilled/skills/system-spec-kit/runtime && npm run build
+unreadable specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code: exit 3: Run: cd .skilled/skills/system-spec-kit/runtime && npm run build
+unreadable specs/cli-external-orchestration/026-cli-external-parent/006-advisor-and-integration: exit 3: Run: cd .skilled/skills/system-spec-kit/runtime && npm run build
+unreadable specs/cli-external-orchestration/026-cli-external-parent/007-routing-benchmark-and-review: exit 3: Run: cd .skilled/skills/system-spec-kit/runtime && npm run build
+unreadable specs/cli-external-orchestration/026-cli-external-parent/008-cutover-and-rollout: exit 3: Run: cd .skilled/skills/system-spec-kit/runtime && npm run build
+unreadable specs/cli-external-orchestration/027-cli-codex-revival: exit 3: Run: cd .skilled/skills/system-spec-kit/runtime && npm run build
+unreadable specs/cli-external-orchestration/027-cli-codex-revival/001-codex-contract-pin: exit 3: Run: cd .skilled/skills/system-spec-kit/runtime && npm run build
+unreadable specs/cli-external-orchestration/027-cli-codex-revival/002-deep-loop-executor-support: exit 3: Run: cd .skilled/skills/system-spec-kit/runtime && npm run build
+unreadable specs/cli-external-orchestration/027-cli-codex-revival/003-cli-codex-skill-packet: exit 3: Run: cd .skilled/skills/system-spec-kit/runtime && npm run build
+unreadable specs/cli-external-orchestration/027-cli-codex-revival/004-codex-hook-adapter-layer: exit 3: Run: cd .skilled/skills/system-spec-kit/runtime && npm run build
+unreadable specs/cli-external-orchestration/027-cli-codex-revival/005-codex-agent-toml-sync: exit 3: Run: cd .skilled/skills/system-spec-kit/runtime && npm run build
+--- last 15 lines:
+[per-packet listing condensed: unreadable x2051]
+### phase_5_upgrade_preview — corrected run (harness prep: skill dist files touched after the copy)
+Diagnosis of the first attempt: every packet was unreadable with 'exit 3: Run: ... npm run build'.
+Cause: the worktree dist is proven fresh by a build record keyed by its absolute path; in the
+clone that record does not match, so dist-freshness.cjs fell back to mtimes, and the copied
+dist entry (orchestrator.js, Oct 10 16:19) was older than 70 source files. The integration test
+does the same touch after its copy (refreshCopiedDistMtimes). Touch changes mtimes only, not
+content, so the shasum-based .skilled baseline above stays valid.
+$ find .skilled/skills/system-spec-kit -path '*/node_modules' -prune -o -path '*/dist/*' -type f -exec touch {} +   # run before the header; freshness now:
+@spec-kit/runtime dist is fresh
+freshness exit=0
+$ node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs   # phase_5 re-run
+exit=2  elapsed=1398s
+$ wc -l -c /tmp/compat-scan/dryrun2.out ; grep -c '^failing ' ; grep -c unreadable
+   11906 1740779 /tmp/compat-scan/dryrun2.out
+failing lines: 2048
+unreadable lines: 0
+--- first 10 lines:
+failing specs/cli-external-orchestration/026-cli-external-parent: GENERATED_METADATA_INTEGRITY
+failing specs/cli-external-orchestration/026-cli-external-parent/001-research-and-context: GENERATED_METADATA_INTEGRITY
+failing specs/cli-external-orchestration/026-cli-external-parent/002-architecture-decision: GENERATED_METADATA_INTEGRITY
+failing specs/cli-external-orchestration/026-cli-external-parent/003-scaffold-hub: GENERATED_METADATA_INTEGRITY
+failing specs/cli-external-orchestration/026-cli-external-parent/004-onboard-cli-opencode: GENERATED_METADATA_INTEGRITY
+failing specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code: GENERATED_METADATA_INTEGRITY
+failing specs/cli-external-orchestration/026-cli-external-parent/006-advisor-and-integration: GENERATED_METADATA_INTEGRITY
+failing specs/cli-external-orchestration/026-cli-external-parent/007-routing-benchmark-and-review: GENERATED_METADATA_INTEGRITY
+failing specs/cli-external-orchestration/026-cli-external-parent/008-cutover-and-rollout: GENERATED_METADATA_INTEGRITY
+[per-packet listing condensed: x GENERATED_METADATA_INTEGRITY x2055, x ANCHORS_VALID x293, x SPEC_DOC_INTEGRITY x269, x FRONTMATTER_VALID x125, x GREP_CONVENTION x120, x GRAPH_METADATA_CHILD_IDENTITY x108, x SCAFFOLD_NEVER_TOUCHED x86, x METADATA_DISK_PATH_CONSISTENCY x72, x FILE_EXISTS x65, x LEVEL_MATCH x65, x TEMPLATE_SOURCE x49, x FRONTMATTER_MEMORY_BLOCK x35, x SPEC_DOC_SUFFICIENCY x24, x GENERATED_METADATA_DRIFT x10, x STATUS_CROSS_DOC_CONSISTENCY x7]
+### phase_5 exit_policy outcome: exit=2 (preview could not fully run)
+--- stderr tail (full stderr):
+upgrade-legacy: could not predict Downgrades: ENAMETOOLONG, File name too long '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/upgrade-legacy-preview-jDcCPq/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/.reducer-spec/research/.reducer-spec/rese
+(stderr end)
+DEFECT: createPreviewWorkspace (upgrade-legacy.mjs) copies failing packets with
+fs.cpSync(..., { recursive: true, dereference: true }). The real repository contains a
+committed self-referential symlink at
+  specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/.reducer-spec/research -> ..
+(git mode 120000, sha a96aa0ea9d8c443416d31c3a85dbe928f120cc23), so the copy recurses
+through the loop until ENAMETOOLONG. The catch in main sets process.exitCode = 2, the
+workflow's phase_5 exit_policy would stop with STATUS=FAILED before the upgrade approval.
+
+### phase_5 stop recorded per exit_policy: append run-complete to run 2026-10-11T16:25:48Z
+exit=0
+
+### DEVIATION (recorded): continue to the upgrade apply
+The operator pre-approved the upgrade apply for this clone, and the dispatch names
+upgrade-legacy.mjs --apply as a step of this run, so the apply is executed as a second,
+continued run after the phase_5 stop instead of leaving the moved tree unupgraded.
+The real data (including the symlink loop) is left untouched; no workaround is applied.
+run 2 id: 2026-10-11T17:08:35Z
+run-started exit=0
+
+### phase_7_upgrade — apply (background; wrapper appends upgrade-started/done/complete)
+$ nohup bash /tmp/compat-scan/apply-wrapper.sh > /tmp/compat-scan/apply-wrapper.log 2>&1 &
+pid=97997
+$ ps -p 97997
+97997 00:05 bash /tmp/compat-scan/apply-wrapper.sh
+
+### phase_7_upgrade — apply result
+$ cat /tmp/compat-scan/apply.rc
+2
+$ cat /tmp/compat-scan/apply-wrapper.log (empty)
+$ cat /tmp/compat-scan/apply.out
+plan changes=2048
+$ cat /tmp/compat-scan/apply.err
+upgrade-legacy: could not write reversibility manifest at /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/compat-v3/repo/.git/upgrade-legacy.manifest.json: Invalid string length; no packet changes were made
+
+phase_7 exit_policy: exit 2 with a 'could not write reversibility manifest' line on stderr
+is the manifest_refusal branch: append run-complete (done by the wrapper), end with
+STATUS=FAILED, and no packet changed. The tool's own stderr says 'no packet changes were made'.
+
+DEFECT 2: beforeImagesFor (upgrade-legacy.mjs) inlines the bytes of every dirty file inside
+the repaired packets, base64-encoded, into one JSON manifest string. After the move every
+packet file is dirty (rename), so the manifest is sized by the whole corpus; JSON.stringify
+throws 'Invalid string length' (V8 max string length) and the apply refuses.
+--- measurements:
+$ du -sh /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/compat-v3/repo/specs
+1.1G	/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/compat-v3/repo/specs
+$ du -sk /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/compat-v3/repo/specs (KB)
+1142016	/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/compat-v3/repo/specs
+$ find /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/compat-v3/repo/specs -type f | wc -l
+   51611
+$ node -e 'console.log(require("buffer").constants.MAX_STRING_LENGTH)'
+536870888
+### phase_8_summary (as the presentation would show it)
+Layout: v3 -> v4
+Moved: .opencode/specs -> specs
+Upgrade: passing 0/2048 -> not run (manifest refusal; no packet changed)
+Still failing: the 2048 previewed packets
+Move log: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/compat-v3/repo/.git/doctor-update-compat.log.jsonl
+Upgrade manifest: none (write refused with Invalid string length)
+Rollback: reverse the move log; the upgrade manifest has no entries to restore
+STATUS=FAILED
+
+### ROLLBACK TEST — second copy
+$ rsync -a /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/compat-v3/repo/ /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchp
+exit=0 elapsed=199s
+
+--- documented rollback block (source: .skilled/commands/doctor/assets/doctor-update-presentation.txt, section 10):
+  link-legacy-path -> rm .opencode/specs
+  remove-legacy-root -> mkdir .opencode/specs
+  move-tree -> git mv specs .opencode/specs
+  remove-specs-link -> ln -s .opencode/specs specs
+  mv <from> <to> -> mkdir -p "$(dirname <from>)" && mv <to> <from>
+  remove-empty-legacy-dirs -> mkdir -p "$(dirname <from>)" before each reverse move
+  Restore the beforeImages in [git-dir]/upgrade-legacy.manifest.json as the 'Recover an Interrupted Apply'
+  section of runtime/cli/spec/README.md shows, or use git restore when the tree was clean before the upgrade.
+
+--- pre-rollback state of the copy:
+$ node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map
+{
+  "state": "v4",
+  "moves": [],
+  "alreadyMoved": [],
+  "collisions": [],
+  "steps": []
+}
+exit=0
+
+$ step: link-legacy-path -> rm .opencode/specs
+### POST-RUN CHECKS
+
+--- A. .skilled write-invariant (compat_invariant: nothing is ever written under .skilled/)
+content manifest is shasum-based, so the harness dist touch (mtime only) is not a difference.
+$ find .skilled -type f -print0 | sort -z | xargs -0 shasum -a 256 > /tmp/compat-scan/skilled-after.txt
+exit=0
+$ wc -l /tmp/compat-scan/skilled-after.txt ; shasum -a 256 /tmp/compat-scan/skilled-after.txt
+   40015 /tmp/compat-scan/skilled-after.txt
+e4fa4d92594c31fb434406c03bcf988ab0834025e8c087846994371319568368  /tmp/compat-scan/skilled-after.txt
+$ diff /tmp/compat-scan/skilled-baseline-final.txt /tmp/compat-scan/skilled-after.txt
+diff exit=1
+diff line count: 4
+37848a37849
+> 236c6f049e5b932b4121473d2042f27fa6661fc80083cdb57557ca53ad70263b  .skilled/skills/system-spec-kit/runtime/cli/dist/spec/.dist-freshness-system-spec-kit-runtime-cli-267b2351d4f0.json
+39164a39166
+> 9204bd93bdedfdfe837a3992aa43760ec16172dfe264350c8db8335c033eb3b4  .skilled/skills/system-spec-kit/runtime/dist/lib/validation/.dist-freshness-system-spec-kit-runtime-c8a386aae24a.json
+(empty diff = the workflow wrote no content under .skilled/)
+
+--- B. validate.sh --strict on 5 packets
+SUBSTITUTION (recorded): the task asked for 5 upgraded packets, but the apply wrote nothing
+(manifest refusal: Invalid string length; 'no packet changes were made'), so zero packets were
+upgraded and no post-upgrade validation can exist. The 5 packets below are the first five from
+the phase_5 failing list; validating them shows the corpus is unchanged and still failing.
+$ bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-external-orchestration/026-cli-external-parent --strict
+exit=2
+
+### EVIDENCE FILE / WORKTREE CHECKS
+$ git -C worktree status --porcelain=v1
+ M .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs
+ M specs/system-deep-loop/038-review-and-cli-lineage/003-cli-pi-opencode-go-route/implementation-summary.md
+ M specs/system-deep-loop/038-review-and-cli-lineage/003-cli-pi-opencode-go-route/spec.md
+ M specs/system-deep-loop/038-review-and-cli-lineage/003-cli-pi-opencode-go-route/tasks.md
+ M specs/system-deep-loop/038-review-and-cli-lineage/007-lineage-reducer-compliance/description.json
+ M specs/system-deep-loop/038-review-and-cli-lineage/007-lineage-reducer-compliance/graph-metadata.json
+ M specs/system-deep-loop/038-review-and-cli-lineage/007-lineage-reducer-compliance/implementation-summary.md
+ M specs/system-deep-loop/038-review-and-cli-lineage/007-lineage-reducer-compliance/plan.md
+ M specs/system-deep-loop/038-review-and-cli-lineage/007-lineage-reducer-compliance/spec.md
+ M specs/system-deep-loop/038-review-and-cli-lineage/007-lineage-reducer-compliance/tasks.md
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/description.json
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/description.json
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/description.json
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/graph-metadata.json
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/description.json
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/graph-metadata.json
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/handover.md
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/spec.md
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/description.json
+ M specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/description.json
+ M specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/goal.md
+ M specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/graph-metadata.json
+ M specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/implementation-summary.md
+ M specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/description.json
+==========================================================================
+FINAL SUMMARY
+==========================================================================
+Clone commit      : 9f2970c46fa28eb52f5a80797cab4588b8738185 (2026-08-03, last commit
+                    with .opencode/specs a real directory and specs/ absent; 3465 spec.md
+                    files, 2048 discovered active packets, 51,611 files / 1.1G under specs/)
+Tooling           : current worktree HEAD 2d8e35161bf7c08074cff6a3342be2182a1399ca, copied
+                    byte-identical into the clone (upgrade-legacy derives its REPO from its
+                    own location; see the harness deviation at the top)
+
+Step results:
+  phase 1 release check         exit 0  (after harness normalization; 0 new, 0 update units)
+  phase 2 layout map            exit 0  (v3, 1 move, 0 collisions, 2 steps)
+  phase 4 move                  exit 0/0, post-check map exit 0 (v4, 0 steps)
+  phase 5 upgrade dry run       exit 2  DEFECT 1 (ENAMETOOLONG in the Downgrades preview)
+  phase 7 upgrade apply         exit 2  DEFECT 2 (manifest 'Invalid string length'; refused;
+                                         'no packet changes were made')
+  post-run validation           5/5 sample packets still FAIL (zero packets upgraded)
+  rollback                      move rollback verified in a second copy; upgrade rollback
+                                not applicable (no manifest, no changes)
+  .skilled write-invariant      only 2 dist-freshness cache files appeared (observation 3)
+
+Defects:
+  D1 upgrade-legacy createPreviewWorkspace: fs.cpSync(dereference: true) follows the committed
+     self-referential symlink .../lineages/sol/.reducer-spec/research -> '..' until
+     ENAMETOOLONG; predictDowngradeFindings throws, exit 2, and per phase_5 exit_policy the
+     compat action stops with STATUS=FAILED before the upgrade approval.
+  D2 upgrade-legacy beforeImagesFor: every packet file is dirty after the move, and their
+### POST-RUN PROVENANCE NOTES (added after the final checks)
+- Worktree footprint: the only path this runner created in the worktree is
+  specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/scratch/evidence/
+  (this file). The other modified/untracked entries in the worktree's git status
+  (deep-loop fanout-merge files, sibling packets 011-014 evidence dirs, upgrade-baseline.json
+  files) belong to concurrent lanes; this runner issued no write-capable command with the
+  worktree as cwd or target. The worktree was clean when this run started.
+- The worktree's system-spec-kit dist-freshness cache files are pre-existing: birth times
+  2026-10-11T12:50:36 and 16:27:28 local time, before this run's first command (~18:03 local).
+- The clone's two new checker caches are keyed by the clone root path and were written during
+  this run's validator calls at 18:43:39 local:
+  .skilled/skills/system-spec-kit/runtime/dist/lib/validation/.dist-freshness-system-spec-kit-runtime-c8a386aae24a.json
+  .skilled/skills/system-spec-kit/runtime/cli/dist/spec/.dist-freshness-system-spec-kit-runtime-cli-267b2351d4f0.json
+- Both kinds are gitignored by the repo-root .gitignore rule at line 58 (dist/), so they never
+  appear in git status even when present (D3 stays a literal-reading observation, not a showstopper).
+
+END OF EVIDENCE — 2026-10-11T17:40:24Z
+

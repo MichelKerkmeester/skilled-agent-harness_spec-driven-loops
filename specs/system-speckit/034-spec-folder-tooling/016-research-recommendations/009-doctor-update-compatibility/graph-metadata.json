@@ -47,6 +47,10 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "scratch/evidence/lane-real-repo-run.txt",
+      "scratch/evidence/lane-d1-d2-fix.txt",
+      "scratch/evidence/lane-real-repo-rerun.txt",
+      "scratch/evidence/lane-review-fixes-upgrade.txt",
       "runtime/scripts/run-tests.mjs",
       ".skilled/commands/doctor/assets/doctor-update-check.yaml",
       ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml",
@@ -56,10 +60,7 @@
       ".skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs",
       ".skilled/commands/doctor/scripts/tests/doctor-update-compat-integration.test.cjs",
       ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs",
-      ".skilled/commands/doctor/scripts/tests/README.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
-      "spec/README.md"
+      ".skilled/commands/doctor/scripts/tests/README.md"
     ],
     "entities": [
       {
@@ -96,6 +97,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "lane-real-repo-run.txt",
+        "kind": "file",
+        "path": "scratch/evidence/lane-real-repo-run.txt",
+        "source": "derived"
+      },
+      {
+        "name": "lane-d1-d2-fix.txt",
+        "kind": "file",
+        "path": "scratch/evidence/lane-d1-d2-fix.txt",
+        "source": "derived"
+      },
+      {
+        "name": "lane-real-repo-rerun.txt",
+        "kind": "file",
+        "path": "scratch/evidence/lane-real-repo-rerun.txt",
+        "source": "derived"
+      },
+      {
+        "name": "lane-review-fixes-upgrade.txt",
+        "kind": "file",
+        "path": "scratch/evidence/lane-review-fixes-upgrade.txt",
         "source": "derived"
       },
       {
@@ -159,18 +184,6 @@
         "source": "derived"
       },
       {
-        "name": "upgrade-legacy.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "upgrade-legacy.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -193,24 +206,12 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`upgrade-legacy.mjs` exists and ships tests but no workflow, hook, or command calls it",
     "created_at": "2026-10-08T04:22:45Z",
-    "last_save_at": "2026-10-10T21:34:16.117Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-11T20:54:20.998Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -220,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9d5fa34a4269bf1e6bab7181385b6b263b3c3c8d90183a56a70bd2d0886bd159",
+    "source_fingerprint": "sha256:3ef8bd7ae4a55265864a6f0973f3b060af4a15b243051c3ff9932fb7159471f2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e9aaf2568602e28fdd0c54719a08f0ab272863a5f2d717c7a493fa635f8a9936",
-      "plan.md": "6fda9cf131722271bf3f4a4a49f6d73fa78eef37adbeef44d8b6daefa4a7d5a7",
-      "tasks.md": "22818d90429922e61755bba2387a1d41028f393e6097050990c1199187d68fe3",
-      "implementation-summary.md": "5b7d7fac64a5ac458a9749e87c0e415188016defb6460e449c45ec8803c5ce42"
+      "plan.md": "c97bcb418e130f6702c9745293094a6e30d8d31eef3b93ce5c00dd6f2ccf84a0",
+      "tasks.md": "0387101fe0d205be130ef99e4718f2cb02a6710c5c5df3e71ea0b872e0aad77c",
+      "implementation-summary.md": "b6764ab7906fd36ca1d1f79762596a97979161baa32bb7e4d0de4722ca63c43a"
     },
     "last_active_at": null
   }

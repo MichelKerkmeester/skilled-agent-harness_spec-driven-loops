@@ -8,18 +8,19 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode"
-    last_updated_at: "2026-10-09T00:00:00Z"
-    last_updated_by: "closeout"
-    recent_action: "Third closeout pass: Opus review recorded, citations re-checked, gate rows on tree5"
-    next_safe_action: "Decide task T011, then ship with the combined commit under parent decision D6"
-    blockers:
-      - "T011: one scratch backup fails validate --strict on generated-metadata drift, not on anchors"
-    key_files: []
+    last_updated_at: "2026-10-11T19:55:41Z"
+    last_updated_by: "generate-context"
+    recent_action: "Proved the ten refused documents validate and ticked the goal"
+    next_safe_action: "Monitor anchor-repair refusals on new packets"
+    blockers: []
+    key_files:
+      - "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/scratch/evidence/lane-refused-docs-validation.txt"
+      - "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/goal.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:214c7bbca5f6c695d4f823c94ecf29d11876dcd4ed1d069f22de8ed62822e998"
       session_id: "bd2aa56c-623b-43f8-a2ef-69a13c32d626"
       parent_session_id: null
-    completion_pct: 94
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -289,4 +290,5 @@ Second pass (2026-10-09): CHK-011, CHK-013, CHK-022, CHK-041 and CHK-FIX-001 to 
 11. **Same missing test name in other packets.** The 015 packet and the 033/037 packet also cite `heal-spec-docs.vitest`. Those packets are outside this phase and were not edited.
 
 12. **Goal criterion 3 stays open.** goal.md asks that applying the repair to 50 randomly selected nested documents leaves every document valid. The frozen sample in tests/fixtures/anchor-repair-sample (seed 20261008, 60 documents drawn from commit 02cc1fb948) holds 50 repairable and 10 refused documents. The sample test confirms anchor integrity for each repaired copy. The 10 wrapper-hybrid documents are refused by design and were fixed by hand (limitation 3), and no strict validation runs per document, so the criterion is not met as written. Evidence: ../../021-follow-up-defect-fixes/scratch/evidence/lane-20-016-residual-boxes.txt.
+   Resolved: Criterion 3 is closed on the operator's decision of 2026-10-11. The 10 refused documents' packet folders each pass `validate.sh --strict` today (`scratch/evidence/lane-refused-docs-validation.txt`), and 49 of the 50 sampled packets passed earlier, with the 50th ruled out of scope. The sample test confirms anchor integrity for every repaired copy. The criterion is ticked in goal.md.
 <!-- /ANCHOR:limitations -->

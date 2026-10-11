@@ -6,6 +6,7 @@ trigger_phrases:
   - "gate 3 constants parity"
 importance_tier: "normal"
 contextType: "planning"
+level: 2
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
