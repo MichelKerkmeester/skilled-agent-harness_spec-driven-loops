@@ -8,18 +8,28 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/022-clickup-hosted-route-fix"
-    last_updated_at: "2026-10-09T08:51:40Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
-    blockers: []
-    key_files: []
+    last_updated_at: "2026-10-09T12:44:12Z"
+    last_updated_by: "generate-context"
+    recent_action: "Pushed the ClickUp route fix and wrote the handover for the ticket push"
+    next_safe_action: "Verify clickup_official is registered, then ask for the target ClickUp list"
+    blockers:
+      - "ClickUp OAuth approval pending"
+      - "Target ClickUp list not named"
+      - "Local main is 8 behind origin"
+    key_files:
+      - ".utcp_config.json"
+      - ".env.example"
+      - "README.md"
+      - ".skilled/changelog/skilled/v4.0.0.4.md"
+      - "specs/mcp-tooling/022-clickup-hosted-route-fix/handover.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-022-clickup-hosted-route-fix"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: []
+    completion_pct: 85
+    open_questions:
+      - "Q1"
+      - "Q2"
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
