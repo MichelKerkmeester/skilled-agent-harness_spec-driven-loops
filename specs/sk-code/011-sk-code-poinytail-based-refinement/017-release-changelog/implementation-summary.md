@@ -49,6 +49,8 @@ A reader of the v4.0.0.4 release entry now learns what the refinement epic and t
 
 Internal work stayed out: the research and review rounds, goal refreshes, version bumps, Hermes copies, canary and test pins and trigger index rebuilds.
 
+A second pass on 2026-10-11 aligned the whole entry with the current tree for external readers. The glance list now gives each theme one payoff line, with the code skill, hooks, routing and skill authoring themes taking the slots of the internal packet move and the closed follow-ups. Why This Release names the code-side gap. The create.sh unknown-option refusal and the router-sync git-ignore skip were added, and the README template change was noted. Entries that only this repository's maintainers would notice were cut: the 21-packet regroup and its upgrade note, test hygiene, README path fixes, workflow linting, the hostile-name tests and the template cache. The two Gate 3 child-worker items, which said the same thing, became one.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -79,6 +81,7 @@ The inventory came from the bodies of the 92 non-spec commits whose Spec trailer
 | Decision | Why |
 |----------|-----|
 | Glance list left at 12 bullets | The template caps it at 12, so the third opening paragraph carries the story |
+| Glance list rebalanced in the second pass | The template gives each theme one payoff line, so related bullets were merged and internal ones dropped to fit the four code-side themes |
 | Skill versions not named | No Skilled release entry names them |
 <!-- /ANCHOR:decisions -->
 
@@ -91,6 +94,7 @@ The inventory came from the bodies of the 92 non-spec commits whose Spec trailer
 |-------|--------|
 | hvr_scan.py before the edit | 0 hard blockers, 97/100 |
 | hvr_scan.py after the edit | 0 hard blockers, 97/100 |
+| hvr_scan.py after the second pass | 0 hard blockers, 98/100 |
 | validate_document.py | VALID, 0 issues |
 | extract_structure.py | exit 0 |
 | validate.sh parent --recursive --strict | RESULT: PASSED |
