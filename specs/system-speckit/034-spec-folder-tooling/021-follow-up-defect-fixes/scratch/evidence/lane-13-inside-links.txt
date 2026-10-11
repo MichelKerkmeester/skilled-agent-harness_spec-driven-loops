@@ -1,0 +1,220 @@
+Lane 13: packet-local symbolic links
+Date: 2026-10-10
+
+Scope
+-----
+Changed for this lane:
+- .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs
+- .skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts
+- .skilled/skills/system-spec-kit/runtime/lib/graph/generated-metadata-drift.ts
+- .skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts
+- .skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts
+- .skilled/skills/system-spec-kit/runtime/cli/tests/generated-metadata-drift.vitest.ts
+- specs/system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes/scratch/evidence/lane-13-inside-links.txt
+
+The requested rule is applied consistently: fs.realpathSync must resolve the link
+inside or equal to the packet's own real path. Dangling and outside links remain
+refused or skipped. heal-spec-docs.cjs and upgrade-legacy.vitest.ts were not edited.
+The worktree had unrelated concurrent edits before this lane; they were preserved.
+
+Test counts before and after
+---------------------------
+Baseline, before these edits:
+
+Command from runtime/cli:
+npx vitest run --config ../../vitest.config.ts --project cli tests/repair-derived.vitest.ts tests/upgrade-legacy.vitest.ts tests/generated-metadata-drift.vitest.ts tests/graph-metadata-backfill.vitest.ts
+Exit: 1. Combined result: 121 passed, 1 failed, 1 skipped (123 total).
+- repair-derived.vitest.ts: 33 passed, exit 0 (standalone run)
+- upgrade-legacy.vitest.ts: 58 passed, 1 failed (59 total, in the combined run); its failing inside-packet-link case was the reported regression
+- generated-metadata-drift.vitest.ts: 15 passed, exit 0 (standalone run)
+- graph-metadata-backfill.vitest.ts: 15 passed, 1 skipped, exit 0 (standalone run)
+
+Command from runtime:
+npx vitest run --config ../vitest.config.ts --project root tests/graph-metadata-schema.vitest.ts
+Exit: 0; 49 passed.
+
+After edits, repository worktree:
+- npm run build (from .skilled/skills/system-spec-kit/runtime): exit 0.
+- Requested combined CLI command above: exit 0; 124 passed, 1 skipped (125 total).
+- repair-derived.vitest.ts: 34 passed, exit 0.
+- upgrade-legacy.vitest.ts: 59 passed, exit 0 (standalone run; file was not edited).
+- generated-metadata-drift.vitest.ts: 16 passed, exit 0.
+- graph-metadata-backfill.vitest.ts: 15 passed, 1 skipped, exit 0.
+- Requested root graph-metadata-schema command above: exit 0; 50 passed.
+
+The combined CLI run reports the total across four files; standalone counts above
+are the per-file evidence. A later control-mirror run is recorded separately below.
+
+Mirror builds and mutation results
+----------------------------------
+The seven requested mirrors were made outside the repository with:
+node /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/mkmirror.mjs <name> <spec.mjs>
+All seven mirror creation commands exited 0. The unmutated control and the four
+TypeScript-mutant mirrors were built with npm run build from each mirror's runtime;
+all five builds exited 0. The two CJS guard mutants did not require a mirror build.
+
+Each focused mutation command used the same project/config as the requested suite:
+- Guard mutants: from mirror runtime/cli,
+  npx vitest run --config ../../vitest.config.ts --project cli tests/repair-derived.vitest.ts
+- readDoc mutants: from mirror runtime,
+  npx vitest run --config ../vitest.config.ts --project root tests/graph-metadata-schema.vitest.ts
+- Hash mutants: from mirror runtime/cli,
+  npx vitest run --config ../../vitest.config.ts --project cli tests/generated-metadata-drift.vitest.ts
+
+Mutant                         Focused result and mutation-specific failure                    Exit
+guard treats inside as leaving  31 passed, 3 failed; "re-derives after repair when               1
+                                plan.md resolves inside the packet" fails.
+guard follows a leaving link    32 passed, 2 failed; outside-link re-derive refusal test         1
+                                "never opens an outside file through a packet document
+                                planted as a link after planning, in the re-derive too" fails.
+readDoc treats inside as leaving 48 passed, 2 failed; the inside linked spec.md content test      1
+                                 fails (the existing outside-link case also fails).
+readDoc follows a leaving link  49 passed, 1 failed; existing outside-linked spec.md case        1
+                                "does not derive from a linked spec.md whose content lies
+                                outside the packet" fails.
+hash treats inside as leaving  14 passed, 2 failed; new inside-link hash case                    1
+                                "hashes a spec.md link whose content stays inside the packet" fails.
+hash follows a leaving link    15 passed, 1 failed; existing outside-link hash case              1
+                                "skips a spec.md that is a link to content outside the packet" fails.
+
+The same full CLI and root Vitest commands were also started in all seven mirrors.
+The unmutated control root command passed 50/50, exit 0. Its full CLI command exited
+1: 97 passed, 27 failed, 1 skipped. The failing files were repair-derived (one
+validation-off case) and upgrade-legacy (26 cases; repeated error: "step
+fill-frontmatter: FAILED exit 1"). The inside-link repair-derived control case passed.
+The mutant full CLI runs showed the same mirror baseline failure pattern. Their
+detailed combined-output summaries exceeded the tool output limit; the focused runs
+above retain each mutant's exit code and specific failing case. Do not use those
+mirror-wide legacy failures as mutation evidence; the focused affected-file runs
+above are the mutation checks.
+
+Other verification
+------------------
+- python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <six source/test files>: exit 0.
+- node --check .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs: exit 0.
+- bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh: exit 0; both guards passed, 247 warnings and 0 errors in alignment-drift.
+- git -c core.fsmonitor=false diff --check <six source/test files>: exit 0.
+- bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes --strict: exit 2, RESULT: FAILED. It reports GENERATED_METADATA_INTEGRITY (SOURCE_FINGERPRINT_MISMATCH) and GENERATED_METADATA_DRIFT (description differs from fresh derived text). No packet docs were edited by this lane.
+
+Commands that could not run cleanly
+-----------------------------------
+- ps -Ao pid,etime,command: exit 1; exact error: "zsh:1: operation not permitted: ps". This diagnostic was not required for the tests.
+- An initial bash invocation of check-comment-hygiene.sh exited 2 because the file is Python: output included "File name too long", "import: command not found", and a shell syntax error. The corrected python3 invocation above passed.
+- An initial git diff --check emitted "error: fsmonitor_ipc__send_query: unspecified error" from the worktree fsmonitor. Rerunning with core.fsmonitor=false passed.
+- No requested build or Vitest command reported EPERM or a listen error.
+
+Review fix P2-2 and P2-6
+========================
+
+Scope
+-----
+- Added directory-link outside and inside controls for graph derivation, source hashing and repair-derived re-derive.
+- Changed the three readers to check each existing input's real path against the packet root.
+- Changed phase-parent rollup so a parent with loadable children is complete only when every child loads and is complete. A parent with no loadable child keeps its stored status.
+- Changed only the six named source and test files plus this evidence file. No graph-metadata.json or description.json was edited. No git write was run.
+
+Files edited:
+- `.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts`
+- `.skilled/skills/system-spec-kit/runtime/lib/graph/generated-metadata-drift.ts`
+- `.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs`
+- `.skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts`
+- `.skilled/skills/system-spec-kit/runtime/cli/tests/generated-metadata-drift.vitest.ts`
+- `.skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts`
+- `specs/system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes/scratch/evidence/lane-13-inside-links.txt`
+
+Baseline before these regressions
+---------------------------------
+From runtime:
+`npx vitest run --config ../vitest.config.ts --project root tests/graph-metadata-schema.vitest.ts`
+Result: 50 passed, exit 0.
+
+From runtime/cli, each command ran separately:
+- `npx vitest run --config ../../vitest.config.ts --project cli tests/generated-metadata-drift.vitest.ts`: 16 passed, exit 0.
+- `npx vitest run --config ../../vitest.config.ts --project cli tests/repair-derived.vitest.ts`: 34 passed, exit 0.
+- `npx vitest run --config ../../vitest.config.ts --project cli tests/graph-metadata-backfill.vitest.ts`: 15 passed, 1 skipped, exit 0.
+- `npx vitest run --config ../../vitest.config.ts --project cli tests/upgrade-legacy.vitest.ts`: 59 passed, exit 0, duration 629.27 seconds.
+- Aggregate baseline: 124 passed, 1 skipped across 125 CLI tests. Each standalone command exited 0.
+
+An initial combined CLI baseline run produced no output for more than eight minutes. It was interrupted with Ctrl-C and exit 130. The individual commands above supplied the baseline counts.
+
+P2-2 red before the reader changes
+----------------------------------
+From runtime, the graph metadata schema suite reported 51 passed and 1 failed out of 52, exit 1. `does not derive research phrases through a directory link that leaves the packet` included the outside phrase.
+
+From runtime/cli:
+`npx vitest run --config ../../vitest.config.ts --project cli tests/generated-metadata-drift.vitest.ts tests/repair-derived.vitest.ts`
+Result: 52 passed and 2 failed out of 54, exit 1. The hash case included `research/research.md`, and repair-derived returned status 0 instead of refusing the required re-derive with status 2. The inside directory-link controls passed.
+
+P2-6 red before the rollup change
+---------------------------------
+From runtime, the graph metadata schema suite reported 52 passed and 1 failed out of 53, exit 1. With one planned child, one child without metadata and a stored complete parent, the parent remained complete instead of becoming in_progress.
+
+Build and final worktree verification
+-------------------------------------
+From runtime:
+`npm run build`
+Result: exit 0.
+
+From runtime:
+`npx vitest run --config ../vitest.config.ts --project root tests/graph-metadata-schema.vitest.ts`
+Result: 53 passed, exit 0.
+
+From runtime/cli:
+`npx vitest run --config ../../vitest.config.ts --project cli tests/generated-metadata-drift.vitest.ts tests/repair-derived.vitest.ts tests/graph-metadata-backfill.vitest.ts tests/upgrade-legacy.vitest.ts`
+Result: 128 passed, 1 skipped out of 129, exit 0.
+
+The first repair-derived run after the TypeScript edits happened before the required build. It reported 19 failures because the compiled runtime was stale. The build above refreshed dist, and the final four-file CLI run passed.
+
+Additional checks:
+- `node --check .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs`: exit 0.
+- `python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` with the six changed source and test paths: exit 0.
+- `git -c core.fsmonitor=false diff --check` with the six changed source and test paths: exit 0.
+
+Scratch mirror control
+----------------------
+The unmutated control was created with `node /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/mkmirror.mjs r021-p2-control-20261010 -` and built with `npm run build`. Both commands exited 0.
+
+From the control mirror runtime:
+`npx vitest run --config ../vitest.config.ts --project root tests/graph-metadata-schema.vitest.ts`
+Result: 53 passed, exit 0.
+
+From the control mirror runtime/cli:
+`npx vitest run --config ../../vitest.config.ts --project cli tests/generated-metadata-drift.vitest.ts tests/repair-derived.vitest.ts`
+Result: 53 passed and 1 failed out of 54, exit 1, as described below.
+
+The control root suite passed 53 of 53, exit 0. The control CLI run for generated-metadata-drift and repair-derived reported 53 passed and 1 failed out of 54, exit 1. The failed pre-existing validation-switch case needs `.skilled/hooks/shared/hook-flags.sh`, which the scratch mirror does not contain. `validate.sh` ignores the switch when that support file is missing. Both new repair directory-link cases passed in the control.
+
+Mutants
+-------
+Each mutant was created in its own scratch mirror from one exact-match spec. The four TypeScript mirrors built with `npm run build`, each with exit 0. The CommonJS repair guard mutant did not need a TypeScript build.
+
+The mirror commands were:
+- `node /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/mkmirror.mjs r021-p2-2-parser-mutant-20261010 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/p2-2-parser-mutant.mjs`
+- `node /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/mkmirror.mjs r021-p2-2-hash-mutant-20261010 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/p2-2-hash-mutant.mjs`
+- `node /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/mkmirror.mjs r021-p2-2-repair-mutant-20261010 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/p2-2-repair-mutant.mjs`
+- `node /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/mkmirror.mjs r021-p2-6-rollup-mutant-20261010 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/p2-6-rollup-mutant.mjs`
+
+From the parser and rollup mirror runtime directories:
+`npx vitest run --config ../vitest.config.ts --project root tests/graph-metadata-schema.vitest.ts`
+
+From the hash and repair mirror runtime/cli directories:
+`npx vitest run --config ../../vitest.config.ts --project cli tests/generated-metadata-drift.vitest.ts`
+`npx vitest run --config ../../vitest.config.ts --project cli tests/repair-derived.vitest.ts`
+
+- `read-doc-realpath-check-removed`: root schema suite, 51 passed and 2 failed out of 53, exit 1. The new outside research directory-link case failed, as did the existing outside spec-link case.
+- `source-hash-realpath-check-removed`: generated metadata drift suite, 16 passed and 2 failed out of 18, exit 1. The new outside research directory-link case failed, as did the existing outside spec-link case.
+- `rederive-realpath-check-removed`: repair-derived suite, 33 passed and 3 failed out of 36, exit 1. The new outside research directory-link case failed because apply returned 0 instead of refusing. The other failures were the scratch mirror validation-switch limitation and an existing linked-document re-derive case.
+- `incomplete-child-complete-downgrade-removed`: root schema suite, 52 passed and 1 failed out of 53, exit 1. The P2-6 regression returned complete instead of in_progress.
+
+The repair mutant was built from `p2-2-repair-mutant.mjs`. The other spec files were `p2-2-parser-mutant.mjs`, `p2-2-hash-mutant.mjs` and `p2-6-rollup-mutant.mjs` under the scratchpad gA directory. All mirrors were outside the repository.
+
+Expected packet validation result
+----------------------------------
+`bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes --strict`
+Result: exit 2, `RESULT: FAILED`, with `GENERATED_METADATA_INTEGRITY` and `GENERATED_METADATA_DRIFT`. These generated fields remain for the orchestrator's final re-derive, as directed. No metadata files were changed.
+
+Unavailable process inspection
+------------------------------
+- `ps -Ao pid,etime,command`: exit 127, `zsh:1: operation not permitted: ps`.
+- `pgrep -fl vitest`: exit 3, `sysmon request failed with error: sysmond service not found`. `pgrep` also reported `Cannot get process list`.
+- No build or Vitest command reported EPERM or a listen error.

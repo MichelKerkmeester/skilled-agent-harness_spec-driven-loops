@@ -1,0 +1,20 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes",
+  "description": "Phase 21: follow-up-defect-fixes",
+  "keywords": [
+    "phase",
+    "follow-up-defect-fixes"
+  ],
+  "lastUpdated": "2026-10-11T05:53:16.571Z",
+  "specId": "021",
+  "folderSlug": "follow-up-defect-fixes",
+  "parentChain": [
+    "system-speckit",
+    "034-spec-folder-tooling"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "11-10-26_06-53__follow-up-defect-fixes-for-the-spec-folder.md"
+  ]
+}

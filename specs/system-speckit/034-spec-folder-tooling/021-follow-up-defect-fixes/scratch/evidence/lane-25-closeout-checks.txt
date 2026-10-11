@@ -1,0 +1,396 @@
+LANE 25 CLOSEOUT CHECKS
+Packet: specs/system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes
+Date: 2026-10-11
+Worker: @code lane 25, non-interactive child dispatch. Read-only with respect to code and packet docs. The only repository write is this file.
+Repository: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets
+HEAD at closeout: 5d9c970447fff12c5d5cd7e87b978b0ce670b9df
+Work base: ba56b03412, fast-forwarded to 5d9c970447 (origin/main, 40 incoming commits).
+Scratch area used for probes: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/clA
+The final 19-job gate read for checks 4 and 5: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/final-gates6
+
+===============================================================
+CHECK 1 (T001): 020 evidence line and current location of the fix
+===============================================================
+
+Method: the 020 citation is the Evidence column of spec.md section 4, resolved to the line inside the 020 evidence file. The current location is the line read in the working tree at HEAD. Where the fix is a test rather than production code, the test line is named after the production line.
+
+REQ-001
+  020 evidence: 020 scratch/evidence/closure-guard-final-gB.txt line 53, "Row B-11, linked parent directory outside the default roots", and line 82, the no-roots variant observation.
+  Current fix: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs line 937 returns UNREACHED_REFUSAL from folderRefusal when no anchor is found and no --roots was given, the constant is at line 658, and refuseFolderArgument prints the refusal and sets exit 2 at lines 1039 to 1044. Test: heal-symlink-containment.vitest.ts line 753, the three-mode it.each that asserts exit 2, the unchanged outside digest and the --roots wording.
+
+REQ-002
+  020 evidence: 020 scratch/evidence/closure-guard-final-gA.txt line 27, "Extra 2. backfill --root", and line 31, probe 2.
+  Current fix: .skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts lines 341 to 347, isInsideRepository judged on real paths, called from the CLI entry at lines 848 to 852 before executeBackfill. Test: graph-metadata-backfill.vitest.ts line 299.
+
+REQ-003
+  020 evidence: 020 scratch/evidence/closure-guard-final-gA.txt line 27 and line 38, finding 3, the missing configured-root check.
+  Current fix: backfill-graph-metadata.ts line 196, isConfiguredSpecsRoot, and lines 221 to 223 inside writePruneReportArtifact which refuses a report directory that is not a configured specs root. Test: graph-metadata-backfill.vitest.ts line 415.
+
+REQ-004
+  020 evidence: 020 scratch/evidence/closure-guard-final-summary.txt line 22, section 1.6, and 020 implementation-summary.md line 387, Known Limitations item 22.
+  Current fix: .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh, reject_linked_argument at line 116, refuse_linked_argument and its real-folder message at lines 146 to 153, the archive call at line 337 and the restore call at line 537. Tests: archive-track.vitest.ts lines 238 and 250.
+
+REQ-005
+  020 evidence: 020 scratch/evidence/closure-guard-final-gC.txt line 43, "ROW C5 / C-15, linked manifest on the read path", and line 49.
+  Current fix: .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs runCheck at line 539 with the refusal at lines 541 to 542, matching runWrite at lines 518 to 519. Tests: generate-leaf-manifest-scopes.test.cjs lines 388 and 405.
+
+REQ-006
+  020 evidence: 020 scratch/evidence/closure-guard-final-gE.txt line 29, the second observation about readManifestIfExists.
+  Current fix: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs readManifestIfExists at line 466 with the link refusal at line 468. Test: upgrade-legacy.vitest.ts line 1909.
+
+REQ-007
+  020 evidence: 020 scratch/evidence/closure-guard-final-gE.txt line 27, the first observation about resolveRoots.
+  Current fix: upgrade-legacy.mjs resolveRoots at line 664 with the ".." refusal at line 667. Test: upgrade-legacy.vitest.ts line 365.
+
+REQ-008
+  020 evidence: 020 scratch/evidence/closure-guard-final-gD.txt line 67, the observation that apply closures read through a link planted after planning.
+  Current fix: .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs linkedRederiveInputs at line 280 and the apply-time guard at lines 553 to 554. Tests: repair-derived.vitest.ts lines 614, 618 and 625.
+
+REQ-009
+  020 evidence: 020 scratch/evidence/closure-guard-final-gD.txt line 67 and 020 implementation-summary.md line 388, Known Limitations item 23.
+  Current fix: repair-derived.cjs failureKind at lines 495 to 497, used for the failure line at line 541 so only the failure kind is reported, never file content. Test: repair-derived.vitest.ts line 652.
+
+REQ-010
+  020 evidence: 020 scratch/evidence/closure-changelog-hand-fix-part4.txt line 3, the 12-row cut.
+  Current fix: .skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts extractFilesChanged at lines 315 to 362 returns every row, and renderFilesTable at line 556 renders them. Test: nested-changelog.vitest.ts line 270, it.each over 12 and 13 files.
+
+REQ-011
+  020 evidence: 020 implementation-summary.md line 380, Known Limitations item 15, and line 382, item 17.
+  Current fix: nested-changelog.ts cleanInlineMarkdown at lines 165 to 174 with the HTML comment strip as the first step at line 167. Test: nested-changelog.vitest.ts line 303.
+
+REQ-012
+  020 evidence: this packet's scratch/evidence/lane-8-lean-parent.txt sections 4 and 9.
+  Current fix: .skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts derivePhaseParentRollup at line 1433, everyChildLoaded at lines 1447 to 1448, the no-children branch at lines 1450 to 1455. Tests: graph-metadata-schema.vitest.ts lines 956, 966, 976, 986 and 998.
+
+REQ-013
+  020 evidence: 020 implementation-summary.md line 391, Known Limitations item 26.
+  Current fix: .skilled/skills/system-spec-kit/runtime/cli/tests/ci-rule-set-comparison.vitest.ts, createdParents at line 88, recording at lines 304 to 307, and the rmdir cleanup in afterAll at lines 416 to 424.
+
+REQ-014
+  020 evidence: 020 implementation-summary.md line 368, Known Limitations item 3, and 020 scratch/evidence/closure-t046-26-benchmark.txt, warm medians 37.8 to 94.8 us against the 5 ms limit.
+  Current fix: .skilled/skills/system-spec-kit/runtime/tests/folder-discovery-integration.vitest.ts, T046-26 at line 873 with three warm-up calls and the median of nine samples at lines 886 to 905.
+
+REQ-015
+  020 evidence: 020 implementation-summary.md line 392, Known Limitations item 27.
+  Current fix: .skilled/bin/worktree-session.sh lines 177 to 185, the child branch that exports SYSTEM_SPEC_GATE_ENFORCE=0 and the SKILLED_WORKTREE_SESSION branch, and the launcher-only export at lines 465 to 466. Test: .skilled/bin/tests/worktree-session.test.sh lines 333, 384 and 401.
+
+REQ-016
+  020 evidence: 020 implementation-summary.md line 393, Known Limitations item 28.
+  Current fix: .hermes/plugins/repo-guards/__init__.py line 80, ORCHESTRATED_LEAF_ENV set to AI_SESSION_CHILD alone, and lines 571 to 573, _orchestrated_leaf. Test: .hermes/plugins/repo-guards/tests/test_repo_guards.py line 273.
+
+REQ-017
+  020 evidence: 020 acceptance-criteria.md line 69, AC-016, and the 020 final gate evidence in scratch/evidence/closure-gate-final4.txt.
+  Current fix: no code. The requirement is the final gate. Evidence for this packet is the gates6 folder, read for checks 4 and 5 below, and the strict validates recorded by the same gate run.
+
+===============================================================
+CHECK 2 (T002): starting numbers and the incoming delta
+===============================================================
+
+Command: git diff --stat bb2006123f ba56b03412 -- . ':(exclude)specs'
+Exit status 0. Every file it lists, four files, all generated trigger-index artifacts:
+  .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json
+  .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json
+  .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json
+  .skilled/skills/system-spec-kit/runtime/data/trigger-index.json
+The stat line was 4 files changed, 1005 insertions, 744 deletions. Read together with the file list this says the hand-written code between the 020 work commit and the 021 base is unchanged, and the whole non-spec delta is the four regenerated index artifacts.
+
+Starting numbers, copied from 020 scratch/evidence/closure-gate-final4.txt section 2:
+  j01 CLI suite: Test Files 176 passed | 3 skipped (179). Tests 1953 passed | 20 skipped (1973). In-job validate results: passed=51 failed=0, passed=27 failed=0, 12 passed 0 failed, 2 passed 0 failed, 12 passed 0 failed of 12.
+  j02 root project: Test Files 1 failed | 106 passed | 3 skipped (110). Tests 1 failed | 1306 passed | 13 skipped (1320). The one failure is T046-26.
+  j03 deep loop: Test Files 174 passed (174). Tests 2879 passed | 8 skipped (2887).
+  j04 hooks: pass 186, fail 0, skipped 3.
+  j05 doctor: 7 suites passed, 0 failed.
+  j17 hostile: 13 files passed, 345 tests passed with 2 skipped, plus 3 files and 159 tests in the second run, and one validate run passed=148 failed=0.
+  j18 lint: rc 0 with 21 ESLint files in the log.
+  The file records rc 0 for every step except j02. closure-gate-final4.txt has no separate launcher, Hermes or leaf job. Leaf checks appear inside j10 as leaf-check rows, all rc 0.
+
+Incoming delta, command: git diff --stat ba56b03412 5d9c970447 -- . ':(exclude)specs'
+Exit status 0. 303 files changed, 52115 insertions, 46186 deletions. Per top level folder:
+  .skilled 273 files (49 added, 3 deleted, 221 modified)
+  .hermes 14 files (all modified)
+  .pi 5 files (all modified)
+  .codex 5 files (all modified)
+  .claude 5 files (all modified)
+  AGENTS.md 1 file (modified)
+The three deletions are .skilled/skills/sk-code/shared/assets/patterns/README.md, validation-patterns.js and wait-patterns.js.
+Incoming specs delta, command: git diff --name-status ba56b03412 5d9c970447 -- specs
+Exit status 0. 1857 entries, 1849 added and 8 modified. 1849 additions are the new packet specs/sk-code/011-sk-code-poinytail-based-refinement. The 8 modifications are 7 files under specs/sk-doc/z_archive and specs/sk-code/graph-metadata.json. The final gate runs over these incoming files too.
+
+===============================================================
+CHECK 6 (CHK-021): manual shell runs
+===============================================================
+
+B-11, healer with no --roots on a packet no repository reaches
+fixture: clA/b11/specs/packet/spec.md links to clA/b11/outside/notes.md. cwd is clA/b11/cwd, outside every repository.
+command: node <repo>/.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs --apply --folder clA/b11/specs/packet
+output: refused /private/tmp/claude-501/.../clA/b11/specs/packet: no specs root or repository reaches it, pass --roots <dir> to name one
+exit status 2 (HEALER_EXIT:2)
+outside digest before and after: a9d44647cc6997b37d8460e098233bdb67079167af46968f487e7a84273c6cd5, unchanged.
+Verdict: pass. Exit 2, wording names --roots, the outside file was not touched.
+
+Archive alias
+fixture: clA/arch/repo, git init, archive.sh and refresh-track-roots.mjs copied into .skilled/skills/system-spec-kit/runtime/cli/spec and track-roots.mjs into lib, specs/001-real with spec.md, specs/002-alias a relative symlink to 001-real. This is the fixture shape archive-track.vitest.ts builds at line 238.
+command: cd clA/arch/repo and bash <fixture>/archive.sh --force specs/002-alias
+output: ERROR: Path argument passes through a symbolic link, not followed, and is refused: .../specs/002-alias
+        ERROR: Archive the real folder instead: .../specs/001-real
+exit status 1 (ARCHIVE_EXIT:1)
+after: 001-real/spec.md present, 002-alias still a symlink, no z_archive created.
+Verdict: pass. Exit 1, the real folder is named, nothing moved.
+
+===============================================================
+CHECK 7 (CHK-022): outside, inside, dangling and plain case coverage
+===============================================================
+
+Method: the case titles below are read from the test files the lanes changed at HEAD. The four words follow the packet's edge-case vocabulary.
+
+Lane 1, healer, heal-symlink-containment.vitest.ts:
+  outside: line 193, "default healer --apply leaves a symlinked spec.md and its outside target untouched".
+  inside: line 338, "default healer --apply refuses a symlinked spec.md whose target sits inside the same packet".
+  dangling: line 319, "default healer --apply reports a dangling spec.md link as refused and does not create its target".
+  plain: line 361, "default healer --apply changes no bytes on a plain packet with nothing left to heal". A plain folder outside the supplied root is line 594.
+  The new no-roots case is the three-mode it.each at line 753.
+
+Lane 2, backfill, graph-metadata-backfill.vitest.ts:
+  outside: line 299, "refuses a root outside the repository and writes no graph metadata under it".
+  inside: the same file's runCli at lines 271 to 279 starts every CLI case in the fixture repository so the root lies inside it, asserted by line 281, "exits 0 when every folder is read cleanly". The in-root report write is line 402.
+  dangling: line 388, "refuses a dangling link at the report name and keeps the link in place".
+  plain: line 138, "includes archived and future folders by default during dry-run traversal".
+
+Lane 3, archive, archive-track.vitest.ts:
+  outside: line 570, "refuses to archive a folder reached through a link that points outside specs, and changes neither side", and line 671 for restore.
+  inside: line 238, "refuses an argument that is a link, and moves nothing, so no link is left dangling", and line 250, the linked-track case.
+  dangling: line 832, "refuses a restore through a dangling z_archive, follows nothing and creates no link target", and line 860 for archive.
+  plain: line 308, "archives a plain absolute path under the physical specs root", and line 318, "restores an archived packet through its real path".
+
+Lane 4, leaf manifest, generate-leaf-manifest-scopes.test.cjs:
+  outside: testLinkedDefaultRootOutsideSkillFails line 252, testLinkedDeclaredScopeOutsideSkillFails line 280, testLinkedFileScopeOutsideSkillFails line 291, testLinkedPacketFolderOutsideSkillFails line 305, testLinkedManifestWriteIsRefused line 344, testLinkedManifestCheckIsRefused line 388.
+  inside: testLinkedRootInsideSkillStillWalks line 327.
+  dangling: testDanglingManifestWriteIsRefused line 372, testDanglingManifestCheckIsRefused line 405.
+  plain: testCheckOnUnchangedSkillIsNoOp line 419, testCheckOnStaleManifestFails line 432.
+
+Lane 5, upgrade-legacy, upgrade-legacy.vitest.ts:
+  outside: line 360, "refuses a root outside the repository", line 365, the ".." segment case, line 1644, a document link out of the packet, line 1836, a link to a sibling packet, line 1883, a default specs root that is a link outside the repository.
+  inside: line 1715, "still repairs a link whose target stays inside the packet", line 1756, an archived spec.md linking inside its packet, line 1857, a passing packet that links inside itself.
+  dangling: absent as a named case. The lane evidence (lane-5-upgrade-legacy.txt line 41) states a dangling manifest link is refused by the same check that refuses a live one, because the refusal runs before the existence check, but no case plants a dangling manifest link.
+  plain: the ordinary link-free cases serve, for example line 930, "dirty-tree-writes-manifest".
+
+Lane 6, repair-derived, repair-derived.vitest.ts:
+  outside: line 247, "refuses a target outside the packet tree", line 267, a packet folder linked outside the tree, line 614, a target that became an outside link after planning, line 754, research reached through an outside directory link.
+  inside: line 561, "leaves a rewrite target that links to a file inside the packet unread and unchanged", line 777, research reached through an inside directory link.
+  dangling: line 852, "refuses a dangling graph-metadata.json link in the dry run and with --apply, and creates nothing at its target", line 887, a dangling description.json link.
+  plain: line 385, "reports repairable=0 and writes nothing for a clean packet in a dry run".
+
+Lane 7 boundary rows, nested-changelog.vitest.ts:
+  line 270, it.each over 12 and 13 files, "keeps every Files Changed row when the summary lists %i files".
+  line 303, "removes an inline HTML comment, including one that spans a line break".
+
+Lane 8 boundary rows, graph-metadata-schema.vitest.ts:
+  line 956, both children complete over a stored in_progress.
+  line 966, one child still in_progress.
+  line 976, one child with no graph-metadata.json.
+  line 986, a planned child and an unloaded child over stored complete.
+  line 998, a lean parent with no children keeps the stored status.
+
+===============================================================
+CHECK 8 (CHK-FIX-003): consumer inventories
+===============================================================
+
+Method: ripgrep over the repository excluding node_modules and dist, with specs/ included only where a caller lives there. "Test covers" names the file that exercises the caller's path.
+
+Backfill CLI spawns:
+  .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs line 59, GRAPH_BACKFILL. Test covered: upgrade-legacy.vitest.ts re-derive cases, lines 731 and 777.
+  .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh line 1003. Test covered by the create flow tests in runtime/cli/tests, for example create-root-numbering.vitest.ts, and by the phase workflow fixture runs in the CLI suite.
+  .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs line 41, BACKFILL. Test covered: repair-derived.vitest.ts lines 731 and 777.
+  Documentation references (READMEs, catalogs, changelogs) are not callers.
+
+runBackfill and runBackfillCore:
+  runBackfill defined at backfill-graph-metadata.ts line 826. Callers are tests only: scoped-backfill-boundary.vitest.ts lines 78, 131 and 154, graph-metadata-backfill.vitest.ts lines 144, 158, 184, 405 and 426, backfill-prune-report-gate.vitest.ts lines 85 and 117.
+  runBackfillCore defined at line 660. Production caller: .skilled/skills/system-spec-kit/runtime/cli/graph/migrate-generated-json.ts line 253. Internal callers at lines 791, 794 and 822. Test covered by backfill-prune-report-gate.vitest.ts lines 94, 102, 128 and 134. The migrate-generated-json path has no dedicated test in the CLI suite, so its path is covered only through the module it calls.
+
+readManifestIfExists and the roots helpers in upgrade-legacy.mjs:
+  readManifestIfExists defined at line 466, called at line 1535. Test covered: upgrade-legacy.vitest.ts line 1909 and the manifest lifecycle cases, lines 930, 978, 1025, 1109, 1146 and 1669.
+  resolveRoots defined at line 664, called at line 1520. Test covered: upgrade-legacy.vitest.ts lines 360, 365, 645, 666, 1883 and 2012. No other production caller.
+
+deriveGraphMetadata, derivePhaseParentRollup and computeSourceDocHashes:
+  deriveGraphMetadata defined at graph-metadata-parser.ts line 1499, internal refresh call at line 1906. Production callers: api/index.ts line 93, backfill-graph-metadata.ts line 707, continuity/backfill-research-metadata.ts line 225. Tests: path-boundary.vitest.ts line 222, generated-metadata-integrity.vitest.ts lines 55, 112, 124 and 214, graph-metadata-schema.vitest.ts lines 203, 223 and 230, plus the backfill and drift suites.
+  derivePhaseParentRollup defined at line 1433, called at line 1517. Test covered: graph-metadata-schema.vitest.ts lines 956 to 998, plus the backfill rollup cases at graph-metadata-backfill.vitest.ts lines 189 and 207.
+  computeSourceDocHashes defined at generated-metadata-drift.ts line 94, called by graph-metadata-parser.ts line 1536 and generated-metadata-drift.ts line 246. Test covered: generated-metadata-drift.vitest.ts, 16 cases in the lane 13 run.
+
+buildFrontmatterContent:
+  defined at .skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts line 1480.
+  Production callers: continuity/backfill-frontmatter.ts line 552 and spec/upgrade-legacy.mjs line 864.
+  Test covered: tests/test-frontmatter-backfill.js, 11 call sites, and tests/frontmatter-template-literals.vitest.ts, which this packet changed, at lines 59, 60, 91, 105, 109 and 121.
+
+Readers of AI_SESSION_CHILD:
+  .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs lines 100 and 105. Test covered: runtime/tests/hooks/spec-gate-core.test.mjs lines 2187 to 2216, spec-gate-prebind.test.mjs line 125, and runtime/tests/spec-gate-pi-extension.vitest.ts lines 112 and 120.
+  .opencode/plugins/system-spec-gate.js. Test covered: .opencode/plugins/tests/system-spec-gate.test.cjs line 382, the WS4 child case.
+  .skilled/bin/worktree-guard.sh line 35. Test covered through the session-cleanup plugin tests, .opencode/plugins/tests/session-cleanup.test.cjs, whose cases neutralize the variable.
+  .skilled/bin/worktree-session.sh lines 177 to 182. Test covered: .skilled/bin/tests/worktree-session.test.sh lines 79 to 120 and 399 to 401.
+  .hermes/plugins/repo-guards/__init__.py lines 571 to 573. Test covered: .hermes/plugins/repo-guards/tests/test_repo_guards.py line 273.
+  Setters, not readers: .skilled/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs line 129 and fanout-run.cjs line 3488, plus .skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment.py line 151 in a helper script. Their paths run in the deep-loop job j03 and the sk-doc CJS job j06.
+  .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts line 148 carries the name in an allowlist, exercised by the deep-loop suite.
+
+Readers of SKILLED_WORKTREE_SESSION:
+  .skilled/bin/worktree-session.sh line 184 is the only production reader. Test covered: .skilled/bin/tests/worktree-session.test.sh lines 333, 384 and 401. Every other occurrence is a doc or a test.
+
+===============================================================
+CHECK 9 (CHK-030): secret scan
+===============================================================
+
+Method: git diff HEAD written to scratch and searched, then every untracked file from git ls-files --others --exclude-standard (33 files, all of this packet plus heal-arguments.vitest.ts) concatenated and searched. Patterns: ghp_, github_pat_, gho_, sk-, AKIA, BEGIN PRIVATE KEY, BEGIN OPENSSH, password=, token=, secret=, the operator's email domain.
+
+Tracked changes:
+  ghp_: 1 line, diff line 133726, in the deleted file specs/sk-communication/001-sk-communication-creation/001-research-strategy/research/lineages/deepseek-go/logs/fanout-lineage.out. The text is `devin mcp add -e GITHUB_TOKEN=ghp_xxx github -- npx -y @modelcontextprotocol`. The value is the placeholder ghp_xxx, not a key.
+  token=: 1 line, diff line 135621, in the deleted file specs/sk-communication/.../lineages/gpt-sol-fast/logs/fanout-lineage.out. The text is `minimax_token=$MINIMAX_TOKEN_OK`, a shell variable reference in a provider pre-flight probe, not a value.
+  sk-: 8467 lines. Every hit is an ordinary word ending in sk- (ask-, disk-, task-, risk-) or a skill or spec folder name. A key-shaped search, sk- followed by 20 or more word characters, returned only sk-communication and sk-code folder names such as sk-communication-clarity and sk-code-shared-references. A search for sk_live_ or sk_test_ returned 0.
+  github_pat_, gho_, AKIA, BEGIN PRIVATE KEY, BEGIN OPENSSH, password=, secret=, the operator's email domain: 0 lines each.
+Untracked files: 0 lines for every pattern, including sk-.
+Verdict: pass. 2 hits, both placeholder or variable text in deleted research logs, 0 live secrets.
+
+===============================================================
+CHECK 10 (CHK-041): comment hygiene on added code lines
+===============================================================
+
+Method: git diff HEAD restricted to .ts, .cjs, .mjs, .js, .sh and .py files, 2743 diff lines, plus the untracked file .skilled/skills/system-spec-kit/runtime/cli/tests/heal-arguments.vitest.ts. The added lines were filtered to comment lines and searched for REQ-, CHK-, T followed by a number, D followed by a number, lane, phase followed by a number, and specs/ paths.
+
+Added comment lines in the changed code files: 173. Matches for the forbidden tokens: 0.
+heal-arguments.vitest.ts comment lines: matches 0.
+The string occurrences of lane-modes and specs/ that appear in the diff are inside code and test arguments and fixture paths, not comments. Example, the KNOWN_FLAGS set at heal-spec-docs.cjs and the archive fixture calls at archive-track.vitest.ts are code, and the comment check excludes them.
+Verdict: pass, 0 hits.
+
+===============================================================
+CHECK 11 (CHK-013): new and changed test files and their neighbors
+===============================================================
+
+Method: for each test file this packet added or changed, the helper set and style were compared with the file's own established form and with a sibling test in the same family.
+
+  .skilled/skills/system-spec-kit/runtime/cli/tests/heal-arguments.vitest.ts (new): follows heal-symlink-containment.vitest.ts and heal-target-parity.vitest.ts for CLI_DIR and HEAL_SPEC_DOCS, spawnSync(process.execPath, [HEAL_SPEC_DOCS, ...]), a temp-root list with afterEach cleanup, digest, and loadTemplateContractForDocument from ../utils/template-structure.js. Departure: none found. The three-mode control rows are local to this file.
+  heal-symlink-containment.vitest.ts: follows the file's own helpers, makeRoot, outsideDirectory, digest and provableSpec, and the heal family's constant block. The new case is an it.each over the three modes at line 753. Departure: none, the file already uses it.each for its alias-entry group.
+  heal-anchor-repair.vitest.ts, heal-lane-modes.vitest.ts, heal-target-parity.vitest.ts: the changes pass --roots through the existing run helpers, runRepair, runLaneCli and the parity helper. Departure: heal-target-parity's "alone" case uses the fixture root as cwd instead of a --roots flag, recorded in lane-1-healer.txt.
+  archive-track.vitest.ts: follows its own beforeEach fixture, copied archive.sh and refresh-track-roots.mjs with git init, and the packet, trackRoot, archive and children helpers. Neighbor: graph-metadata-backfill.vitest.ts uses the same fixture-repository pattern. Departure: none.
+  graph-metadata-backfill.vitest.ts: follows its own createSpecTree and runCli helpers, with the case bodies added inside the existing describes. Departure: none.
+  generate-leaf-manifest-scopes.test.cjs: follows the file's named test functions with assert, makeSingleModeHub and makeOutsideTarget, run from the try/finally runner at the bottom. Departure: none.
+  upgrade-legacy.vitest.ts: follows its own and prepareDirtyManifest, runUpgrade and manifest helpers inside the sandbox describe. Departure: none.
+  repair-derived.vitest.ts: follows its own fixture helpers and the lane's existing describe structure. Departure: none.
+  nested-changelog.vitest.ts: follows its own build helpers and the existing it.each usage. Departure: none.
+  graph-metadata-schema.vitest.ts: follows the file's createLeanParent, addPhaseChild and storedInProgress helpers in the same describe. Departure: none.
+  generated-metadata-drift.vitest.ts: follows its own fixture helpers. Departure: none.
+  ci-rule-set-comparison.vitest.ts: follows its own createdRoots and createdParents cleanup pattern. Departure: none.
+  frontmatter-template-literals.vitest.ts: follows its own writeSpecTemplate and temporary-root helpers. Departure: none.
+  folder-discovery-integration.vitest.ts: the T046-26 change follows the file's own benchmark pattern in the same describe. Departure: none.
+  .skilled/bin/tests/worktree-session.test.sh: follows its own expect and expect_not harness and the F-numbered fixture records. Departure: none.
+  .hermes/plugins/repo-guards/tests/test_repo_guards.py: follows the file's unittest style with mock.patch.dict. Departure: none.
+
+===============================================================
+CHECK 3 (T003 and T038): setup listing, final listing and residue
+===============================================================
+
+All commands exit status 0 unless stated.
+
+Setup listing, command: git ls-tree --name-only ba56b03412
+  .claude .codex .cursor .devin .env.example .github .gitignore .hermes .mcp.json .npmrc .opencode .pi .skilled .utcp_config.json AGENTS.md CONTRIBUTING.md LICENSE PUBLIC-RELEASE.md README.md REPO RULES.md SECURITY.md opencode.json repo-rules specs tsconfig.pi.json tui.json
+Setup listing, command: git ls-tree -d --name-only ba56b03412:specs
+  agents cli-external-orchestration cli-jev cli-orca hooks mcp-tooling sk-code sk-communication sk-design sk-doc sk-git sk-prompt sk-vision system-deep-loop system-skill-advisor system-speckit
+
+Final listing, command: ls -1A at the repository root
+  .claude .codex .cursor .devin .env.example .git .github .gitignore .hermes .mcp.json .npmrc .opencode .pi .pytest_cache .skilled .utcp_config.json AGENTS.md CONTRIBUTING.md LICENSE node_modules opencode.json PUBLIC-RELEASE.md README.md REPO RULES.md repo-rules scratch SECURITY.md specs tsconfig.pi.json tui.json
+Final listing, command: ls -d specs/*/
+  specs/agents specs/cli-external-orchestration specs/cli-jev specs/cli-orca specs/hooks specs/mcp-tooling specs/sk-code specs/sk-design specs/sk-doc specs/sk-git specs/sk-prompt specs/sk-vision specs/system-deep-loop specs/system-skill-advisor specs/system-speckit
+Final status, command: git status --porcelain --untracked-files=all
+  1223 lines. 117 entries modified, 1072 entries deleted and staged, 34 entries untracked. The 34 untracked entries are 24 pre-existing lane evidence files and 8 packet documents or state files of this folder (spec.md, tasks.md, plan.md, acceptance-criteria.md, description.json, graph-metadata.json, implementation-summary.md, scratch/.gitkeep), the new heal-arguments.vitest.ts, and this file. The 1072 staged deletions are the whole specs/sk-communication track.
+
+Differences and their disposition:
+  specs/sk-communication: removed, expected under REQ-030. 1072 staged deletions.
+  The new P folder specs/system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes: expected. It is a child of system-speckit, so it does not change the specs top-level listing.
+  .skilled/skills/system-spec-kit/runtime/cli/tests/heal-arguments.vitest.ts: expected new file, untracked. It is not a root or specs listing entry.
+  Incoming commits: root-tracked entries unchanged, AGENTS.md modified. Under specs the incoming commits add the new packet specs/sk-code/011-sk-code-poinytail-based-refinement and modify 8 files under specs/sk-doc/z_archive and specs/sk-code/graph-metadata.json. None of these changes a top-level listing entry.
+  All other tracked root and specs entries match the setup listing. No unexpected tracked entry was added or removed.
+
+Residue, on disk only:
+  1. scratch/ at the repository root, present and empty. It is not in the setup listing and not in git status, because git does not track empty directories. It is task-created output of the CLI suite in the final gate, which finished at 02:18 and left the folder at 02:15. Three CLI test files create a root scratch parent, ci-rule-set-comparison.vitest.ts line 304, strict-pass-freshness.vitest.ts line 25 and validation-gate-hardening.vitest.ts line 29, and only the first records the parent for removal, so a parent that already exists when that file runs survives the run. This is residue of the j01 job and outside this packet's write set.
+  2. .pytest_cache at the repository root, gitignored at .gitignore line 271. Created by the Python test runs of the final gate. Not part of the packet work.
+  3. node_modules and .git are present as before and are not residue.
+Verdict: expected differences only, plus the two test-run residue folders above.
+
+===============================================================
+CHECK 4 (CHK-010): per-lane static checks and the gate typecheck and lint
+===============================================================
+
+Manual runs in the repository:
+  bash -n .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh, exit 0, no output.
+  bash -n .skilled/bin/worktree-session.sh, exit 0, no output.
+  node --check .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs, exit 0.
+  node --check .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs, exit 0.
+  python3 -I with an inline py_compile call that names the Hermes __init__.py and sends the .pyc to a cfile under the scratch area, exit 0. The .pyc is 36385 bytes. No __pycache__ was created beside the source, checked with ls of .hermes/plugins/repo-guards, which lists only __init__.py, plugin.yaml and tests.
+
+Gate results, read from the steps files in final-gates6:
+  steps-j08-speckit-ci.txt: speckit-cli-typecheck 0. The same file also records speckit-cli-check 0, speckit-shared-test 0, speckit-legacy 0 and speckit-validation 0.
+  steps-j18-lint.txt: eslint-changed-ts 0, node-check-changed-js 0, shellcheck-archive 0, shellcheck-launcher 0, python-parse-hermes 0, format-tool-probe 0. The j18 log lists the 21 ESLint files, including the new heal-arguments.vitest.ts. The node --check step covers heal-spec-docs.cjs, repair-derived.cjs, upgrade-legacy.mjs, generate-leaf-manifest.cjs and its test. The shellcheck step covers archive.sh, worktree-session.sh and worktree-session.test.sh. The python step parses the Hermes plugin file and its test with ast. The format probe reports no format tool configured.
+  steps-j01-cli-suite.txt: cli-npm-test 0.
+  steps-j02-root-project.txt: root-vitest-project 0.
+  steps-j17-hostile-env.txt: hostile-cli-vitest 0, hostile-root-vitest 0, hostile-doctor-compat 0, hostile-leaf-scopes 0, hostile-phase-workflows 0.
+
+Gate harness note, read from all 19 steps files and all 19 exit files:
+  All 19 jNN.exit files contain 0. Two steps in the steps files are non-zero.
+  steps-j03-deep-loop.txt: deep-loop-npm-test 1. The failure is tests/unit/fanout-run.vitest.ts line 3498, "lets the --containment-mode flag override the fan-out config value, and rejects an unknown value", Error: Test timed out in 30000ms at 30253ms. Suite totals: 1 failed, 2895 passed, 8 skipped (2904). This file is outside this packet's write set. The same job passed 2879 with 0 failed in the 020 G4 run.
+  steps-j06-skdoc-cjs.txt: skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/create-journey-proof.test.cjs 1. The assertion is "fresh scaffold doctor failures" at line 118, with 3 invariant failures on 5k-alias and 5k-packet, actual 1 expected 0. This file is outside this packet's write set and recorded rc 0 in the 020 G4 run.
+  The .exit files record only the last command of a job script, so a job whose script ends with an echo reports 0 whatever its steps returned. The 020 closure file documents this property.
+Verdict for CHK-010 as worded: every direct per-lane check exits 0, and the gate lint and typecheck steps exit 0. The two non-zero steps above are reported and are outside this packet's write set.
+
+===============================================================
+CHECK 5 (CHK-011): console and warning counts in the CLI and root logs
+===============================================================
+
+Method copied from the 020 scan in closure-gate-warnings-scan.txt. Counts were read with grep -a on the job logs.
+
+final-gates6 j01 CLI suite:
+  graph metadata derivation skipped: 21
+  Falling back to generic phase name: 3
+  ERROR: lines: 2
+  Error: lines: 3
+  console.error lines: 0
+  console.warn lines: 0
+  Warning: lines: 28
+  any Warning line: 36
+final-gates6 j02 root project:
+  every class above: 0, including Error: and any Warning line.
+
+020 G4 numbers, from closure-gate-final4.txt section 6:
+  G4 j01: graphskip=21 fallback=3 ERROR=2 Error=3 console.error=0 console.warn=0 Warning_colon=28 Warning_all=36.
+  G4 j02: graphskip=0 fallback=0 ERROR=0 Error=1 console.error=0 console.warn=0 Warning_colon=0 Warning_all=0.
+
+Comparison and message names:
+  j01 is identical in every class. The two ERROR: lines are the asserted refusal texts "Refusing to archive outside specs root" and "Folder is not in archive directory". The three Error: lines are the asserted usage errors "--subfolder requires a base folder path" and "Base folder must be under specs/ or .opencode/specs/". The 28 Warning: lines are the same classes as 020, 21 graph derivation skipped, 3 generic phase-name fallbacks, and 4 one-off lines from the memory and changelog helpers (No user prompts found, No observations found, No conversation data found, Generated output may be minimal or empty).
+  j02 loses the single Error: line that 020 recorded. That line was the T046-26 AssertionError. T046-26 now passes, so the loss is the fix and not a suppression.
+  New messages: none. No message class appears in the gates6 CLI or root logs that 020 did not record.
+  Final totals for context: j01 177 files passed with 3 skipped (180) and 2011 tests passed with 20 skipped (2031), j02 107 files passed with 3 skipped (110) and 1316 tests passed with 13 skipped (1329).
+Verdict: pass. No new console error or warning line, and the previously failing root Error line is gone.
+
+===============================================================
+COMMAND LOG: commands run by this lane and their exit status
+===============================================================
+
+git rev-parse HEAD, exit 0
+git diff --stat bb2006123f ba56b03412 -- . ':(exclude)specs', exit 0
+git diff --name-only bb2006123f ba56b03412 -- . ':(exclude)specs', exit 0
+git diff --stat ba56b03412 5d9c970447 -- . ':(exclude)specs', exit 0
+git diff --name-status ba56b03412 5d9c970447, exit 0
+git diff --name-status ba56b03412 5d9c970447 -- . ':(exclude)specs', exit 0
+git diff --name-status ba56b03412 5d9c970447 -- specs, exit 0
+git ls-tree --name-only ba56b03412, exit 0
+git ls-tree -d --name-only ba56b03412:specs, exit 0
+ls -1A at the root, exit 0
+ls -d specs/*/, exit 0
+git status --porcelain --untracked-files=all, exit 0
+git check-ignore -v scratch .pytest_cache node_modules, exit 0
+bash -n archive.sh, exit 0
+bash -n worktree-session.sh, exit 0
+node --check repair-derived.cjs, exit 0
+node --check heal-spec-docs.cjs, exit 0
+python3 -I with py_compile to a cfile under the scratch area, exit 0
+node heal-spec-docs.cjs --apply --folder <b11 packet> with no --roots, exit 2, the expected refusal
+bash archive.sh --force specs/002-alias, exit 1, the expected refusal
+rg and grep scans for the consumer inventories, the secret patterns and the comment tokens, exit 0 when a hit was printed and exit 1 when no hit was printed, as noted in each section
+rm -rf of the scratch area contents, exit 0, the area is now empty
+
+ORCHESTRATOR ADDENDUM (2026-10-11): one scan pattern name, the operator's email domain, was redacted from this file before commit at the operator's request (Decision 33). The scan and its result are unchanged.

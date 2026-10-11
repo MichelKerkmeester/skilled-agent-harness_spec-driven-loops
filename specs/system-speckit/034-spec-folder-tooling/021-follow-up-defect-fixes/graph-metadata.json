@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes",
+  "spec_folder": "system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes",
+  "parent_id": "system-speckit/034-spec-folder-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "follow up defect fixes",
+      "phase 21 follow up defect fixes",
+      "spec folder tooling follow up defects",
+      "follow up defect fixes plan",
+      "follow up defect fixes tasks",
+      "follow up defect fixes acceptance criteria",
+      "follow up defect fixes implementation summary"
+    ],
+    "key_topics": [
+      "follow",
+      "defect",
+      "phase",
+      "spec",
+      "folder",
+      "tooling",
+      "defects",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/graph-metadata-backfill.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "heal-spec-docs.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "heal-symlink-containment.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "heal-anchor-repair.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-graph-metadata.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-backfill.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/graph-metadata-backfill.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "archive.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+        "source": "derived"
+      },
+      {
+        "name": "archive-track.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-leaf-manifest.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "generate-leaf-manifest-scopes.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-legacy.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-legacy.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "repair-derived.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "repair-derived.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four spec-folder tools still follow a link at a step that writes, reads or moves a file",
+    "created_at": "2026-10-10T15:32:36Z",
+    "last_save_at": "2026-10-11T05:53:16.571Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6d8cebfa08b9b63267ca1f4ddb8a0bbf971cea3b5d09a3b76e2294b70a6dfaea",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c67bbc3fe3eca713cdafb968248459e6b49fcf64a04a9e7f8693b4512d6194ca",
+      "plan.md": "35f47f94d7df48fb7f0859933c59f4b389591b9cfa98d2b5dbecc9a70502e430",
+      "tasks.md": "2d3f37e1ac241ef971ffaef2d258f40c7481eb64dc8a877fe451147b970c06b1",
+      "implementation-summary.md": "4d1b2430cd21205919f37de6b932976837c5df260027c4db0ae7cae491ff71bc"
+    },
+    "last_active_at": null
+  }
+}

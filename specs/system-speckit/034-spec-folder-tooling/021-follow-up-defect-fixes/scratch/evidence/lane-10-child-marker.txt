@@ -1,0 +1,106 @@
+Lane 10 child marker evidence (REQ-015, REQ-016)
+
+Operator decisions applied
+Decision 3: worktree-session.sh exports SKILLED_WORKTREE_SESSION=1 in place of AI_SESSION_CHILD=1. Its child detection exec's in place for AI_SESSION_CHILD=1 (dispatched children) and for SKILLED_WORKTREE_SESSION=1 (descendants of a launched session). The structural linked-worktree backstop is unchanged.
+Decision 4: _orchestrated_leaf() in the Hermes repo-guards plugin treats AI_SESSION_CHILD=1 alone as a dispatched child.
+
+1. AI_SESSION_CHILD consumers
+Method: rg --hidden over code files, excluding specs, node_modules, dist, markdown and JSON. A first pass that used --glob exclusions silently skipped the dot-directories (.hermes), so the search was rerun with --hidden.
+
+Setters (no change needed)
+- .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3488 sets AI_SESSION_CHILD to 1 for fan-out leaves. It re-injects the variable because the executor env builder filters it.
+- .skilled/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs:129 sets it for codex dispatch.
+- .skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment.py:151 sets it for experiment runs.
+- Test fixtures and shims set or record it: cli-adapter fixtures, fanout.vitest.ts, cli-codex.vitest.ts, adapter-shim-core.cjs, codex-shim.cjs.
+
+Readers not changed by this lane
+- .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:100-106 (isChildSession) reads AI_SESSION_CHILD and accepts only the value 1. A top-level session started by the launcher used to read as a child here, so Gate 3 was a no-op for it. It is now interactive. This is the intended effect of REQ-015.
+- .skilled/bin/worktree-guard.sh:35 skips the shared-checkout warning when AI_SESSION_CHILD is 1. Launched sessions run in linked worktrees, where the warning never applied. A descendant that starts a runtime in the main checkout was silent before and now warns. Not changed, because the row names worktree-guard.sh as unchanged.
+- .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:148 lists AI_SESSION_CHILD in the common executor env allowlist. A worker dispatched directly from a launched session used to inherit child status through this list. It now inherits it only when its dispatch sets the variable. The sanctioned dispatch sites set it.
+
+Readers changed by this lane
+- .skilled/bin/worktree-session.sh: header comment, child detection block and the export.
+- .hermes/plugins/repo-guards/__init__.py: ORCHESTRATED_LEAF_ENV constant and _orchestrated_leaf().
+
+Not a synced copy
+.hermes/SYNC.md section 2 lists plugins/repo-guards as hand-authored. The generators sync-skills-hermes.cjs and sync-prompts-hermes.cjs do not write the plugin. No sync command applies.
+
+Docs that still describe the old launcher signals (outside the lane write set, not edited)
+- .skilled/bin/README.md lines 189 and 191 describe the wrapper's child signals and the exec in place.
+- .skilled/skills/sk-git/feature-catalog/session-lifecycle/launch-wrapper-session-isolation.md line 29 describes the two signals.
+
+2. Red (before the fix)
+- Launcher: PASS=44 FAIL=2 EXIT=1. The two FAIL lines are "launched session does not carry the dispatched-child marker" and "launched session carries the launcher-only marker". The two descendant checks passed at red, because the descendant inherited AI_SESSION_CHILD=1 from the launcher.
+- Hermes: Ran 52, FAILED (failures=1). The failure is test_the_dispatched_child_marker_alone_marks_a_leaf.
+
+3. Baseline (before any edit)
+- Launcher: PASS=41 FAIL=0 EXIT=0.
+- Hermes: Ran 51, OK, EXIT=0.
+- shellcheck -S warning on worktree-session.sh: EXIT=1, one SC2088 warning at line 216 in the "~/"* case pattern. The warning predates this lane.
+
+4. Green (after the fix)
+- Launcher: PASS=46 FAIL=0 EXIT=0.
+- Hermes: Ran 52, OK, EXIT=0.
+- shellcheck -S warning on worktree-session.sh: EXIT=1, the same single SC2088 warning, now at line 221. No new warning.
+
+5. Mutants (scratch copies, control first)
+- Launcher control (unmodified copy): PASS=46 FAIL=0 EXIT=0.
+- M10-a (old export restored beside the marker): PASS=45 FAIL=1 EXIT=1. FAIL: "launched session does not carry the dispatched-child marker".
+- M10-b (SKILLED_WORKTREE_SESSION exec-in-place block removed): PASS=44 FAIL=2 EXIT=1. FAIL: both descendant checks.
+- Hermes control (unmodified copy in a scratch mirror): Ran 52, OK, EXIT=0. The mirror needed the agents folder and the 071 packet folder copied with dereferencing, because the plugin's containment check resolves symlinks.
+- M10-c (pair rule restored in _orchestrated_leaf()): Ran 52, FAILED (failures=1). The failure is test_the_dispatched_child_marker_alone_marks_a_leaf.
+- The repository git status was the same before and after the mutant runs.
+
+6. Open item: shellcheck
+The SC2088 warning at worktree-session.sh line 221 predates this lane, so the launcher was not shellcheck-clean before the change. Scratch check: changing the pattern to \~/* clears shellcheck -S warning (EXIT=0), and the case match is the same for "~/x" (matches) and "/x" (does not match). It was not applied, because the line is outside the changes this lane names.
+
+7. Other notes
+- The _orchestrated_leaf() docstring said a dispatched child gets no prompt-time briefs. The code and the leaf test show it keeps the advisor brief, so the docstring now says that.
+- exec_in_place sets SYSTEM_SPEC_GATE_ENFORCE=0 for the new marker path as well, as it does for AI_SESSION_CHILD. A descendant of a launched session is therefore interactive for the gate core but unenforced by the launcher. Not changed. The operator should decide whether a launcher-marked descendant should keep enforcement.
+
+8. Diff
+git diff --stat, four files: 4 files changed, 70 insertions(+), 18 deletions(-).
+- .hermes/plugins/repo-guards/__init__.py
+- .hermes/plugins/repo-guards/tests/test_repo_guards.py
+- .skilled/bin/tests/worktree-session.test.sh
+- .skilled/bin/worktree-session.sh
+
+9. Follow-up: case pattern, ENFORCE scope, dry-run note (approved by the operator)
+Files changed in this follow-up
+- .skilled/bin/worktree-session.sh: the tilde case pattern, the enforce export and the dry-run note.
+- .skilled/bin/tests/worktree-session.test.sh: two new sections of cases, and the earlier launched-session section header reworded.
+The Hermes files were not touched in this follow-up.
+
+Change 1: tilde pattern
+- Line 221 changed from "~/"*) to \~/*). The branch body is unchanged.
+- Scratch check (before the change): the two patterns match the same inputs. "~/x" matches in both forms and "/x" matches in neither.
+- Test added: a worktree base of '~/f10-base' with HOME set to a fixture home directory. The dry run must plan its worktree under that home directory. This case passes before and after the pattern change, because the pattern change keeps behavior the same.
+
+Change 2: ENFORCE=0 for the dispatched child only
+- The export moved from exec_in_place to the AI_SESSION_CHILD=1 call site, with a comment that says a dispatched child has no user turn for Gate 3, while launched and in-worktree sessions keep the operator's setting.
+- exec_in_place no longer exports anything. The SKILLED_WORKTREE_SESSION=1 path and the linked-worktree path inherit the value unchanged.
+- The DRY_RUN echo appends " (SYSTEM_SPEC_GATE_ENFORCE=<value>)" only when the variable is set and non-empty. Reading: the echo shows the value the runtime would see, so a child shows =0 and a launched descendant with no setting shows no note. A descendant that inherits 1 shows =1. This is my reading of "shows ENFORCE=0 only when it is set".
+
+Test cases added. The stub runtime records the enforce value it inherits, and SYSTEM_SPEC_GATE_ENFORCE=1 is inherited unless a case says otherwise.
+- Child path: value 0. Passes before and after.
+- Descendant marker path (SKILLED_WORKTREE_SESSION=1): value 1. Failed at red, passes now.
+- Linked-worktree path (detached linked worktree of the fixture, no markers): value 1. Failed at red, passes now.
+- Top-level launch path (real launch into a fresh worktree base): value 1. Passes before and after.
+- Descendant dry run, no setting: names the exec in place, and does not print SYSTEM_SPEC_GATE_ENFORCE=0. The negative check failed at red, passes now.
+
+Counts
+- Baseline before this follow-up (measured on the file as it stood): PASS=46 FAIL=0 EXIT=0.
+- Red (new cases added, launcher not yet changed): PASS=51 FAIL=3 EXIT=1. Failures: "descendant of a launched session keeps the enforce setting", "session already in a linked worktree keeps the enforce setting", "dry run claims no enforce value when none is set".
+- Green (final files): PASS=54 FAIL=0 EXIT=0.
+- Control, unmodified scratch copy of the final .skilled/bin: PASS=54 FAIL=0 EXIT=0.
+
+Mutant M10-d (scratch copy only, never the repository)
+- Mutation: "export SYSTEM_SPEC_GATE_ENFORCE=0" placed again at the top of exec_in_place, so every path exports 0.
+- Result: PASS=51 FAIL=3 EXIT=1. Failures: "descendant of a launched session keeps the enforce setting", "session already in a linked worktree keeps the enforce setting", "dry run claims no enforce value when none is set". The child case still passes, as it should.
+
+shellcheck (installed: version 0.11.0, /opt/homebrew/bin/shellcheck)
+- Before: "shellcheck -S warning" EXIT=1 with one SC2088 at line 221. "shellcheck" at default severity EXIT=1 with the same single SC2088 at line 221.
+- After: "shellcheck -S warning" EXIT=0 with no output. "shellcheck" at default severity EXIT=0 with no output.
+
+Logs are in the lane scratch folder under v2/ (before-launcher.txt, red-launcher.txt, green-launcher.txt, final-green-launcher.txt, final-control.txt, final-m10d.txt, before-shellcheck-*.txt, after-shellcheck-*.txt, final-shellcheck-*.txt).
+Repository: 2 files changed in this follow-up. Nothing committed or staged. No process was started by this follow-up, so none needed stopping.

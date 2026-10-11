@@ -1,0 +1,445 @@
+Lane 23: 016/015 per-mode strict validation after apply
+======================================================
+
+Fixture
+-------
+Each mode used a fresh copy of the Level 2 packet specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes. The five copies are under the requested external scratch area at /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-<mode>/specs/.
+
+The copies include the packet Markdown files and the parent spec. Generated metadata JSON files were omitted. Each pristine strict validation returned RESULT: PASSED with 0 errors and 1 warning. The warning was GRAPH_METADATA_PRESENT because these fixture copies had no generated metadata.
+
+Per-mode results
+----------------
+### anchor-wrap
+
+Packet: `/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-anchor-wrap/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes`
+Defect: Removed the opening and closing architecture markers around the 3. ARCHITECTURE section in plan.md.
+
+Pristine packet validation
+Command:
+```sh
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-anchor-wrap/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes' --strict
+```
+Exit status: 0
+
+Result: RESULT: PASSED. Summary: Errors: 0  Warnings: 1.
+
+Defect setup
+Command:
+```sh
+python3 - <<'PY'
+from pathlib import Path
+p = Path("/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-anchor-wrap/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/plan.md")
+s = p.read_text()
+opening = '<!-- ANCHOR:architecture -->\n'
+closing = '<!-- /ANCHOR:architecture -->\n'
+if s.count(opening) != 1 or s.count(closing) != 1:
+    raise SystemExit('expected one architecture anchor pair')
+p.write_text(s.replace(opening, '', 1).replace(closing, '', 1))
+print('removed one architecture anchor pair')
+PY
+```
+Exit status: 0
+
+Output: removed one architecture anchor pair
+
+Defective packet validation before apply
+Command:
+```sh
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-anchor-wrap/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes' --strict
+```
+Exit status: 0
+
+Result: RESULT: PASSED. Summary: Errors: 0  Warnings: 1.
+
+Single-mode apply
+Command:
+```sh
+node -e '
+const { runLaneModes, LANE_MODES } = require("./.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs")
+const [packet, mode] = process.argv.slice(1)
+if (!LANE_MODES.some(item => item.name === mode)) throw new Error("unknown mode " + mode)
+const result = runLaneModes(packet, { modes: [mode], apply: true })
+console.log(JSON.stringify(result))
+if (!result.actions.some(item => item.mode === mode)) process.exitCode = 2
+' '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-anchor-wrap/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes' 'anchor-wrap'
+```
+Exit status: 0
+
+Action reported:
+anchor-wrap plan.md: wrapped "3. ARCHITECTURE" with anchor architecture
+
+Strict validation after apply
+Command:
+```sh
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-anchor-wrap/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes' --strict
+```
+Exit status: 0
+
+Result: RESULT: PASSED. Summary: Errors: 0  Warnings: 1.
+
+Content readback
+Command:
+```sh
+rg -n -C 1 'ANCHOR:architecture|3. ARCHITECTURE' '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-anchor-wrap/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/plan.md'
+```
+Exit status: 0
+
+Output:
+51-
+52:<!-- ANCHOR:architecture -->
+53:## 3. ARCHITECTURE
+54-
+--
+64-git invokes a hook, the hook resolves `REPO_ROOT` and `SOURCE_ROOT`, and the trust check either keeps `SOURCE_ROOT` or points it at a path that never exists, which turns every tree-sourced gate into its existing "not in the toolchain repo" path.
+65:<!-- /ANCHOR:architecture -->
+66-
+
+### link-repoint
+
+Packet: `/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-link-repoint/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes`
+Defect: Added a link in plan.md to the missing sibling ../002-moved/spec.md#scope and placed one matching spec.md under z_archive.
+
+Pristine packet validation
+Command:
+```sh
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-link-repoint/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes' --strict
+```
+Exit status: 0
+
+Result: RESULT: PASSED. Summary: Errors: 0  Warnings: 1.
+
+Defect setup
+Command:
+```sh
+python3 - <<'PY'
+from pathlib import Path
+packet = Path("/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-link-repoint/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes")
+plan = packet / 'plan.md'
+target = Path("/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-link-repoint/specs/sk-git/032-template-driven-message-enforcement/z_archive/002-moved/spec.md")
+text = plan.read_text()
+line = 'See [the moved spec](../002-moved/spec.md#scope) before editing.'
+if line in text or target.exists():
+    raise SystemExit('link fixture content or archive target already exists')
+plan.write_text(text.rstrip() + '\n\n' + line + '\n')
+target.parent.mkdir(parents=True)
+target.write_text('# Moved spec\n\n## Scope\n\nThe moved packet scope.\n')
+print('added one broken link and its archived target')
+PY
+```
+Exit status: 0
+
+Output: added one broken link and its archived target
+
+Defective packet validation before apply
+Command:
+```sh
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-link-repoint/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes' --strict
+```
+Exit status: 2
+
+Result: RESULT: FAILED. Summary: Errors: 1  Warnings: 1.
+Finding: SPEC_DOC_INTEGRITY reported that plan.md referenced missing markdown file ../002-moved/spec.md.
+
+Single-mode apply
+Command:
+```sh
+node -e '
+const { runLaneModes, LANE_MODES } = require("./.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs")
+const [packet, mode, repoRoot] = process.argv.slice(1)
+if (!LANE_MODES.some(item => item.name === mode)) throw new Error("unknown mode " + mode)
+const result = runLaneModes(packet, { modes: [mode], apply: true, repoRoot })
+console.log(JSON.stringify(result))
+if (!result.actions.some(item => item.mode === mode)) process.exitCode = 2
+' '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-link-repoint/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes' 'link-repoint' '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-link-repoint'
+```
+Exit status: 0
+
+Action reported:
+link-repoint plan.md: repointed ../002-moved/spec.md to ../z_archive/002-moved/spec.md
+
+Strict validation after apply
+Command:
+```sh
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-link-repoint/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes' --strict
+```
+Exit status: 0
+
+Result: RESULT: PASSED. Summary: Errors: 0  Warnings: 1.
+
+Content readback
+Command:
+```sh
+rg -n -C 1 'moved spec' '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-link-repoint/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/plan.md' && test -f '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-link-repoint/specs/sk-git/032-template-driven-message-enforcement/z_archive/002-moved/spec.md'
+```
+Exit status: 0
+
+Output:
+167-
+168:See [the moved spec](../z_archive/002-moved/spec.md#scope) before editing.
+
+### continuity-placeholders
+
+Packet: `/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-continuity-placeholders/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes`
+Defect: Changed recent_action and next_safe_action in implementation-summary.md to the two Level 2 template values.
+
+Pristine packet validation
+Command:
+```sh
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-continuity-placeholders/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes' --strict
+```
+Exit status: 0
+
+Result: RESULT: PASSED. Summary: Errors: 0  Warnings: 1.
+
+Defect setup
+Command:
+```sh
+python3 - <<'PY'
+from pathlib import Path
+p = Path("/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-continuity-placeholders/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/implementation-summary.md")
+s = p.read_text()
+pairs = [
+    ('recent_action: "All nineteen review findings fixed and verified in worktree 075"', 'recent_action: "Initialized Level 2 template"'),
+    ('next_safe_action: "Commit in worktree 075, then merge to main on the operator\'s go-ahead"', 'next_safe_action: "Replace continuity placeholders"'),
+]
+for old, new in pairs:
+    if s.count(old) != 1:
+        raise SystemExit(f'expected one field: {old}')
+    s = s.replace(old, new, 1)
+p.write_text(s)
+print('set the two template continuity values')
+PY
+```
+Exit status: 0
+
+Output: set the two template continuity values
+
+Defective packet validation before apply
+Command:
+```sh
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-continuity-placeholders/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes' --strict
+```
+Exit status: 2
+
+Result: RESULT: FAILED. Summary: Errors: 1  Warnings: 1.
+Finding: SCAFFOLD_NEVER_TOUCHED reported two scaffold-signature markers in implementation-summary.md.
+
+Single-mode apply
+Command:
+```sh
+node -e '
+const { runLaneModes, LANE_MODES } = require("./.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs")
+const [packet, mode] = process.argv.slice(1)
+if (!LANE_MODES.some(item => item.name === mode)) throw new Error("unknown mode " + mode)
+const result = runLaneModes(packet, { modes: [mode], apply: true })
+console.log(JSON.stringify(result))
+if (!result.actions.some(item => item.mode === mode)) process.exitCode = 2
+' '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-continuity-placeholders/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes' 'continuity-placeholders'
+```
+Exit status: 0
+
+Action reported:
+continuity-placeholders implementation-summary.md: set recent_action to "No continuity update was recorded"
+continuity-placeholders implementation-summary.md: set next_safe_action to "None recorded"
+
+Strict validation after apply
+Command:
+```sh
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-continuity-placeholders/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes' --strict
+```
+Exit status: 0
+
+Result: RESULT: PASSED. Summary: Errors: 0  Warnings: 1.
+
+Content readback
+Command:
+```sh
+rg -n 'recent_action|next_safe_action' '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-continuity-placeholders/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/implementation-summary.md'
+```
+Exit status: 0
+
+Output:
+16:    recent_action: "No continuity update was recorded"
+17:    next_safe_action: "None recorded"
+
+### level-from-spec
+
+Packet: `/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-level-from-spec/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes`
+Defect: Removed the plan.md SPECKIT_LEVEL marker while leaving its frontmatter without a level field.
+
+Pristine packet validation
+Command:
+```sh
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-level-from-spec/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes' --strict
+```
+Exit status: 0
+
+Result: RESULT: PASSED. Summary: Errors: 0  Warnings: 1.
+
+Defect setup
+Command:
+```sh
+python3 - <<'PY'
+from pathlib import Path
+p = Path("/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-level-from-spec/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/plan.md")
+s = p.read_text()
+marker = '<!-- SPECKIT_LEVEL: 2 -->\n'
+if s.count(marker) != 1:
+    raise SystemExit('expected one level marker in plan.md')
+p.write_text(s.replace(marker, '', 1))
+print('removed the plan level declaration')
+PY
+```
+Exit status: 0
+
+Output: removed the plan level declaration
+
+Defective packet validation before apply
+Command:
+```sh
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-level-from-spec/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes' --strict
+```
+Exit status: 0
+
+Result: RESULT: PASSED. Summary: Errors: 0  Warnings: 1.
+
+Single-mode apply
+Command:
+```sh
+node -e '
+const { runLaneModes, LANE_MODES } = require("./.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs")
+const [packet, mode] = process.argv.slice(1)
+if (!LANE_MODES.some(item => item.name === mode)) throw new Error("unknown mode " + mode)
+const result = runLaneModes(packet, { modes: [mode], apply: true })
+console.log(JSON.stringify(result))
+if (!result.actions.some(item => item.mode === mode)) process.exitCode = 2
+' '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-level-from-spec/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes' 'level-from-spec'
+```
+Exit status: 0
+
+Action reported:
+level-from-spec plan.md: added level: 2 to the frontmatter
+
+Strict validation after apply
+Command:
+```sh
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-level-from-spec/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes' --strict
+```
+Exit status: 0
+
+Result: RESULT: PASSED. Summary: Errors: 0  Warnings: 1.
+
+Content readback
+Command:
+```sh
+sed -n '1,20p' '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-level-from-spec/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/plan.md'
+```
+Exit status: 0
+
+Output:
+---
+title: "Implementation Plan: Phase 1: git-hook-review-fixes"
+description: "Fix the nineteen hook review findings in seventeen single-change units, each written here as literal text and implemented by DeepSeek V4.1 Flash at max effort through cli-opencode, with every diff and its tests checked before the next unit."
+trigger_phrases:
+  - "git hook fix plan"
+  - "hook trust block"
+  - "deepseek dispatch units"
+importance_tier: "important"
+contextType: "implementation"
+level: 2
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
+# Implementation Plan: Phase 1: git-hook-review-fixes
+
+
+---
+
+<!-- ANCHOR:summary -->
+## 1. SUMMARY
+
+### header-add
+
+Packet: `/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-header-add/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes`
+Defect: Removed the plan.md SPECKIT_TEMPLATE_SOURCE header while keeping its anchor set unchanged.
+
+Pristine packet validation
+Command:
+```sh
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-header-add/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes' --strict
+```
+Exit status: 0
+
+Result: RESULT: PASSED. Summary: Errors: 0  Warnings: 1.
+
+Defect setup
+Command:
+```sh
+python3 - <<'PY'
+from pathlib import Path
+p = Path("/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-header-add/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/plan.md")
+s = p.read_text()
+header = '<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->\n'
+if s.count(header) != 1:
+    raise SystemExit('expected one plan template-source header')
+p.write_text(s.replace(header, '', 1))
+print('removed the template-source header from plan.md')
+PY
+```
+Exit status: 0
+
+Output: removed the template-source header from plan.md
+
+Defective packet validation before apply
+Command:
+```sh
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-header-add/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes' --strict
+```
+Exit status: 2
+
+Result: RESULT: FAILED. Summary: Errors: 1  Warnings: 1.
+Finding: TEMPLATE_SOURCE reported a missing template-source header in plan.md.
+
+Single-mode apply
+Command:
+```sh
+node -e '
+const { runLaneModes, LANE_MODES } = require("./.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs")
+const [packet, mode] = process.argv.slice(1)
+if (!LANE_MODES.some(item => item.name === mode)) throw new Error("unknown mode " + mode)
+const result = runLaneModes(packet, { modes: [mode], apply: true })
+console.log(JSON.stringify(result))
+if (!result.actions.some(item => item.mode === mode)) process.exitCode = 2
+' '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-header-add/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes' 'header-add'
+```
+Exit status: 0
+
+Action reported:
+header-add plan.md: named the template as plan-core | v2.2, proven by its exact anchors
+
+Strict validation after apply
+Command:
+```sh
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-header-add/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes' --strict
+```
+Exit status: 0
+
+Result: RESULT: PASSED. Summary: Errors: 0  Warnings: 1.
+
+Content readback
+Command:
+```sh
+sed -n '8,16p' '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/res2/specs/probe-header-add/specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/plan.md'
+```
+Exit status: 0
+
+Output:
+importance_tier: "important"
+contextType: "implementation"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
+# Implementation Plan: Phase 1: git-hook-review-fixes
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+

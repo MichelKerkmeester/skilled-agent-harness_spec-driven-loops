@@ -1,0 +1,101 @@
+Lane 5: upgrade-legacy reads (REQ-006, REQ-007)
+
+Worktree HEAD at start: ba56b03412. Lane changes are uncommitted, nothing staged or stashed.
+
+Write set (two files):
+  .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs
+  .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts
+
+Defect lines re-read in the tree before the fix: readManifestIfExists at line 450, resolveRoots at line 646. Both match the plan row.
+
+Runner: cd runtime/cli, then npx vitest run --config ../../vitest.config.ts --project cli tests/upgrade-legacy.vitest.ts
+
+Baseline before any edit: 53 passed, 0 failed, exit 0.
+  log: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/L5/baseline-upgrade-legacy.log
+
+Red, new cases only, before the fix: 0 passed, 2 failed, 53 skipped (55 total).
+  refuses a --roots argument with a ".." segment: fails. The apply ran and printed "plan changes=1" with the packet repaired.
+  refuses a reversibility manifest that is a link: fails. The outside manifest's injected finding OUTSIDE_MANIFEST_FINDING was printed under Downgrades, so the linked baseline was reused.
+  log: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/L5/lane-5-red.txt
+
+Green, new cases after the fix: 2 passed, 53 skipped.
+  log: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/L5/lane-5-green-new.txt
+
+Green, whole file after the fix: 55 passed, 0 failed, exit 0. Delta from baseline: 2 new cases, no existing case changed.
+  log: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/L5/lane-5-green-full.txt
+
+Mirror control (L5-control, no mutant): 2 passed, 53 skipped, exit 0.
+  log: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/L5/lane-5-control.txt
+
+Mutant M5-a (link check in readManifestIfExists removed): 1 failed, 1 passed. The manifest case fails, the ".." case still passes.
+  log: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/L5/lane-5-mutant-M5-a.txt
+
+Mutant M5-b (".." refusal loop in resolveRoots removed): 1 failed, 1 passed. The ".." case fails, the manifest case still passes.
+  log: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/L5/lane-5-mutant-M5-b.txt
+
+Comment hygiene (check-comment-hygiene.sh, run with python3) on both files: exit 0.
+
+Diff stat: 2 files changed, 59 insertions(+), 1 deletion(-).
+
+Notes:
+  A link at the manifest path is refused before the existence check, so a dangling manifest link is refused too. A dangling link is not followed, so the refusal is stricter than the plan's wording requires but leaves no path that reads through a link.
+  The refusal is a thrown error in readManifestIfExists. Its caller already exits 2 on any thrown error, in dry run and apply alike, before any packet write.
+  The ".." refusal checks each --roots argument split on / and backslash. A plain relative path or "." is still accepted.
+  Mirror build needed sk-doc frontmatter-values.json copied to .skilled/skills/sk-doc/sk-create-frontmatter/assets/ inside each mirror, as lane gE did. Mirrors: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/mirrors/L5-control, L5-M5-a, L5-M5-b.
+  Runtime durations: baseline 519 s, whole file after the fix 398 s.
+
+Section 2: release apply lock (follow-up from the coordinator, open box 016/009 CHK-023)
+
+Step 1, lock holder check.
+  The lock is taken in release-update.cjs in three places: applyPlan (acquireLock call near line 2166), recordBase (near line 2353) and rollbackPlan (near line 2418). The lock is released in each finally path.
+  None of the three runs upgrade-legacy.mjs. The only child process in release-update.cjs is git (execFileSync near line 282). A search of the doctor assets found no lock holder that names upgrade-legacy.
+  The apply YAML runs the post-apply battery only after the engine exits and the lock is released.
+  Finding for the operator: the check flow (doctor-update-check.yaml, phase 3) runs --layout-map, and holds no lock. While an apply holds the lock, that call now exits 2 and the check reports it as an error. The check YAML was not edited, because it is outside this lane's write set.
+  Verdict: no lock holder calls upgrade-legacy while holding the lock, so the plain refusal goes ahead.
+
+Step 2, code.
+  Added RELEASE_APPLY_LOCK and releaseApplyLockPresent in upgrade-legacy.mjs. A lock that cannot be inspected also refuses. The check sits in the direct-run branch, so --layout-map, the dry run and --apply all refuse with exit 2 and a message that names the lock file. Module imports are unaffected.
+  The header exit code line now names the lock refusal under 2. Exit 1 is unchanged.
+  Updated line 86 of doctor-update-compat-action.yaml. The agent-side BLOCKED instruction stays.
+
+Order note: the code change was written before the four new cases. The red was therefore recorded on mirror L5-M5-c, which removes the lock check and so matches the behavior before this follow-up.
+
+Test counts.
+  Before this follow-up: 55 passed, 0 failed (section 1 whole-file log).
+  Four new cases: refuses --layout-map with the lock, refuses the dry run with the lock, refuses --apply with the lock (no packet or manifest written), and a control with no lock.
+  Real tree after the change, whole file: 58 passed, 1 failed, 59 total. Log: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/L5/lane-5-whole-file-after-lock.txt
+    The failure is "writes nothing for a passing packet that links inside itself, and keeps its baseline". It is not caused by the lock change. Evidence below.
+  Whole file in probe mirror L5-probe-live-olddist (live source, graph dist files from before the other lane's rebuild): 59 passed, 0 failed, exit 0. Log: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/L5/whole-file-mirror-olddist.txt
+  The four new cases on the real tree: 4 passed, exit 0. Log: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/L5/lane-5-green-lock.txt
+
+Failure attribution for the one case.
+  Another lane rebuilt dist/lib/graph/graph-metadata-parser.js and dist/lib/graph/generated-metadata-drift.js at 19:25:28, after the section 1 green run at 18:38. The sandbox copies the live dist.
+  Probes, all with the single case:
+    live tree: fails (log /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/L5/probe-live-single.txt)
+    mirror with HEAD repair-derived.cjs and heal-spec-docs.cjs: fails (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/L5/probe-head-single.txt)
+    mirror with HEAD upgrade-legacy.mjs: fails (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/L5/probe-nolock-single.txt)
+    mirror with every other lane runtime file at HEAD, lock change kept: fails (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/L5/probe-allhead-single.txt)
+    mirror with the whole runtime at HEAD: fails (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/L5/probe-fullhead-single.txt)
+    mirror with HEAD runtime and the two pre-rebuild dist files: passes (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/L5/probe-distold-single.txt)
+    mirror with live source, lock change included, and the two pre-rebuild dist files: passes, exit 0 (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/L5/probe-live-olddist-single.txt)
+  Caveat: the pre-rebuild dist files come from mirror L5-control, built at about 19:10 from the source of that time. They are not a clean HEAD build, so the attribution is strong but not a proof from a clean build.
+  Action taken: none on dist. Dist belongs to another lane, and rebuilding it is outside this write set. The operator or the owning lane should rebuild or check graph-metadata-parser.ts against this case.
+
+Doctor suite, bash .skilled/commands/doctor/scripts/tests/run-all.sh.
+  Before the YAML edit: 7 suites passed, 0 failed, exit 0. Log: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/L5/doctor-suite-baseline.txt
+  After the YAML edit: 7 suites passed, 0 failed, exit 0. Log: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/L5/doctor-suite-after.txt
+
+Mutant M5-c (lock check removed in scratch mirror L5-M5-c, mutant spec /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/L5/mut-M5-c.mjs).
+  Four new cases: 3 failed, 1 passed (the control). The three failures are the three entry points with the lock held. Exit 1.
+  Log: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/L5/lane-5-mutant-M5-c.txt
+
+Hygiene.
+  check-comment-hygiene.sh (run with python3) on upgrade-legacy.mjs and upgrade-legacy.vitest.ts: exit 0 for both.
+
+Diff stat, cumulative against HEAD for lane 5.
+  upgrade-legacy.mjs: 33 lines changed.
+  upgrade-legacy.vitest.ts: 120 insertions.
+  doctor-update-compat-action.yaml: 1 line changed.
+  Total: 3 files changed, 151 insertions, 4 deletions.
+
+Processes: no background process was started in this follow-up. Every run was in the foreground and finished.

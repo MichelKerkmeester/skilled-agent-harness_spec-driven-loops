@@ -1,0 +1,148 @@
+Lane 6: repair-derived apply reads (REQ-008, REQ-009)
+
+Files changed
+- .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs
+  readForWrite() added after readIfPresent(). The five apply closures read through it.
+  failureKind() added. The apply catch reports the file name and failureKind(err).
+- .skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts
+  recordingPlantPreload() and readRecord() added. Two cases added after the link-after-planning cases.
+
+Baseline (before any edit)
+- repair-derived.vitest.ts: 29 passed (29), exit 0.
+
+Red (unfixed code, new cases only)
+- never reads an outside file through a rewrite target that became a link after planning: FAILED.
+  The record holds a readFileSync of specs/.../description.json that resolves to the outside file.
+- reports an unparseable description by file name and failure kind, never by its content: FAILED.
+  The FAILED line reads "description.json: Unexpected token 'L', "LEAKMARK {"... is not valid JSON".
+- File total: 2 failed, 29 passed (31).
+
+Green (fixed code)
+- repair-derived.vitest.ts: 31 passed (31), exit 0.
+
+Mirrors (built with the lane's copy of the phase 020 runner, prefix L6-)
+- L6-control (no mutant): 31 passed (31), exit 0.
+- M6-a (readForWrite link check removed): 1 failed, 30 passed. The failing case is the link-after-planning
+  case, on the record assertion. The record shows the outside file read.
+- M6-b (apply catch reports err.message again): 1 failed, 30 passed. The failing case is the
+  unparseable-description case, on the marker assertion. The FAILED line carries LEAKMARK.
+
+Probe outside the suite (throwaway root, plant after the second read of description.json)
+- apply reports "description.json: symbolic link, not followed", exits 2, leaves the outside bytes unchanged.
+- The re-derive step is listed in the plan but does not run, because the first edit failed and nothing landed.
+
+Same-class inventory (path or content reads and writes in repair-derived.cjs, rechecked against the current tree)
+- readIfPresent: refuses a link before reading (planning reads).
+- readForWrite: refuses a link before reading (the five apply reads).
+- writeAtomic: refuses a link at the start, writes a random exclusive temp name, renames over the target.
+- writeAtomic: statSync(file) for the mode follows a link. It runs after the link check and before the rename.
+  It reads metadata only. Not changed in this lane.
+- discover, insideSpecs, existsSync, realpathSync: containment and existence checks, unchanged.
+
+Residuals, not changed in this lane
+- The re-derive child (backfill-graph-metadata.ts) runs when an earlier edit landed or a stale-metadata rule
+  is reported. It is a separate process, not preloaded by the suite, and its own link handling was not changed.
+  Whether it reads through a link planted after planning was not measured.
+- The worker catch in main() reports err.message for an exception that escapes repairFolder.
+  No parse path reaches it, because planning parses inside try blocks. Only file system messages can arrive there.
+
+Round 2: re-derive child reads through planted links (measurement, then refusal)
+
+Recorder
+- The recorder is a CommonJS module loaded through NODE_OPTIONS, so the tool and every node process it starts load it, including the re-derive child.
+- Each process writes its own record on exit: the path as given, the real path it resolves to, and the first call-stack frames.
+- Only the tool process plants. The fixture is a packet with valid spec.md, plan.md and tasks.md, a stale implementation-summary.md, and description.json at level 1 while spec.md declares level 2.
+- The plant fires after the third read of description.json, which is the apply read after both planning reads. At that point spec.md, plan.md and tasks.md become links to outside files.
+
+Measurement (code before the guard, log S/L6/measure/run1.txt, summary S/L6/measure/run1-summary.json)
+- The re-derive child (backfill-graph-metadata.ts) opened all three planted links, 12 reads in total.
+- Each pass reads spec.md, plan.md and tasks.md through readDoc (graph-metadata-parser.ts line 507, from collectPacketDocs), then through computeSourceDocHashes (generated-metadata-drift.ts line 101, from deriveGraphMetadata). There are two passes.
+- No other process opened an outside file. The tool process opened none after the plant, and the validator processes ran before the plant.
+- Answer to the question: yes, the child reads through a planted link.
+
+Writer check (read only, no change)
+- All five writeAtomic call sites (description level, spec folder row, description specFolder, graph parent, packet pointer) sit in apply closures that call readForWrite earlier in the same closure. No other caller exists, so readForWrite runs before every writeAtomic.
+- writeAtomic checks the target for a link first, then creates its random exclusive temp file, writes it, reads the target mode with statSync, and renames.
+- The statSync therefore follows a link only when the target becomes a link between writeAtomic's own check and the stat call. That window is a race of microseconds, the call returns mode bits only, and the rename replaces the entry without following it.
+
+Fix (repair-derived.cjs, the only source file changed in this round)
+- New helper linkedRederiveInputs(folder): returns the top-level .md and .json names of the packet, plus research/research.md, that are links. The list is wider than REWRITE_TARGETS, because the child reads acceptance-criteria.md, goal.md, decision-record.md, research.md and resource-map.md as well. Those names come from the CANONICAL_PACKET_DOCS and SYNOPSIS_SOURCE_DOCS constants in the library, and the measurement covered spec.md, plan.md and tasks.md only.
+- Apply: when the re-derive would start, a link among those names is refused. The child is not started, the failure reads "re-derive: <name>: symbolic link, not followed", and the exit is 2.
+- The dry run is unchanged, so it still plans the step. That keeps the existing dry-run equality for a live plan.md link.
+- Decision for the lead: this refuses rather than silently skipping. A linked graph-metadata.json is skipped silently in the existing code, but there the step is never planned. Here the step is planned and cannot land, which the header rule for exit 2 covers.
+
+Red, green and mutant results
+- Red (code before the guard, first run with the new case): 1 failed, 31 passed (32). The failing assertion is the through-link list, with 12 entries from backfill-graph-metadata.ts. Log: S/L6/measure/run1.txt.
+- Test count at the end of round 1: 31 passed (31). The case was then revised: its precondition that the child ran was replaced by an assertion that the refusal is reported and the three links remain. The revision does not weaken the through-link assertion. Reason: under the fix the child never starts.
+- Green (guard in place): repair-derived.vitest.ts 32 passed (32), exit 0. Log: S/L6/measure/green2.txt.
+- Control L6-control2 (current code, no mutant): 32 passed (32), exit 0. Log: S/L6/logs/L6-control2.log.
+- M6-c (guard disabled by forcing the branch condition to false): 1 failed, 31 passed (32). The failing case is the through-link case, and its log lists backfill-graph-metadata.ts reads of the planted links. Log: S/L6/logs/L6-m6c.log.
+- Neighbor check: upgrade-legacy.vitest.ts, which runs this repair as one of its steps, 55 passed (55), exit 0. Log: S/L6/measure/upgrade-legacy-repo.txt.
+
+Producer level (proposal only, not applied)
+- The root cause is that the library readers follow links. graph-metadata-parser.ts belongs to lane 8, and generated-metadata-drift.ts is not in any lane's write set, so neither was edited.
+- Proposed for graph-metadata-parser.ts, readDoc: before the readFileSync call, return status unknown with the error "symbolic link, not followed" when the path is a link. Status unknown may change review flags, so the lane 8 owner should decide.
+- Proposed for generated-metadata-drift.ts, computeSourceDocHashes: skip a link before the read, the same way a missing document is skipped.
+- Neither proposal was run. Once the producer refuses links, the repair guard is defence in depth, and keeping or dropping it is the lead's call.
+
+Process and workspace
+- No background process was started, so there are no PIDs to kill.
+- The worktree at .worktrees/091-consolidate-small-packets still exists, and the lane edits are intact.
+- The recorded round 1 text above is unchanged. This section supersedes its "not measured" note on the re-derive child.
+
+Round 3: re-derive guard narrowed to the measured read set
+
+Why
+- The round 2 guard refused any linked top-level .md or .json file. specs/system-deep-loop/036-deep-loop-innovation/changelog.md is a link inside its packet, to changelog/changelog-036-root.md. The child never opens it, so a needed re-derive of that packet would have exited 2.
+
+Measurement (the child's real read set)
+- The guard was disabled in a scratch mirror (L6-measure, the M6-c mutant), so the re-derive child runs. The mirror's copy of the test file gained a temporary case that is not in the repo.
+- Fixture: an anchored workspace, with a .opencode anchor, so the graph writer accepts the packet. The packet has spec.md, a stale implementation-summary.md and description.json at level 1, which makes the description level repair land and the re-derive needed.
+- Plant: after the third read of implementation-summary.md (the apply read, after both planning reads), every candidate name became a link to an outside file. Candidates: the three reader lists, the top-level files of the live 036 packet (before-and-after.md, review-scope.md, timeline.md, checklist.md, changelog.md), graph-metadata.json, and description.json.
+- Recorder: every node process loads it through NODE_OPTIONS and records each readFileSync, openSync and fs.promises.readFile with the real path it resolves to.
+- Result: the child opened these candidates through their links, and nothing else did.
+  spec.md, plan.md, tasks.md, acceptance-criteria.md, goal.md, decision-record.md, implementation-summary.md, handover.md, resource-map.md, description.json, research.md, research/research.md.
+- Not opened through a link: changelog.md, checklist.md, before-and-after.md, review-scope.md, timeline.md, graph-metadata.json.
+- Raw output: S/L6/round3/measure-out.txt (child records 376, read set above). Harness log: S/L6/round3/measure-run2.log.
+
+Change (repair-derived.cjs)
+- REDERIVE_INPUTS is a local frozen list of the twelve measured names. A one-line comment says it mirrors the packet document lists of the graph parser, the drift check and folder discovery. Nothing is imported from the TS files.
+- linkedRederiveInputs(folder) returns the list entries that are links. Apply refuses to start the child when one is present. graph-metadata.json keeps its silent skip, unchanged.
+
+Test changes (repair-derived.vitest.ts)
+- New control case: re-derives a packet whose only link is a changelog pointing inside the packet. It uses a new anchoredWorkspace helper, because without an anchor the graph writer refuses the packet and the re-derive exits 1 whatever the guard does.
+- The through-link red case is unchanged and still passes.
+
+Counts and results
+- Before this round: repair-derived.vitest.ts 32 passed (32).
+- Red, control on the broad guard: 1 failed, 32 passed (33). The failure is status 2, and the FAILED line reads "re-derive: changelog.md: symbolic link, not followed". Log: S/L6/round3/red-control-anchored-broad.txt.
+- Green, narrowed guard: 33 passed (33), exit 0. Logs: S/L6/round3/full-rerun.txt, S/L6/round3/repeat-2.txt, S/L6/round3/repeat-3.txt.
+- Control mirror L6-control3 (current code, no mutant): 33 passed (33), exit 0. Log: S/L6/logs/L6-control3.log.
+- Mutant M6-d (broad top-level match restored on the narrowed code, in a scratch mirror): 1 failed, 32 passed (33). The failing case is the changelog control. Vitest exit code 1. Log: S/L6/logs/L6-m6d.log.
+
+Intermittent failure during this round (not reproduced)
+- One full run with the narrowed guard failed three cases: the linked graph-metadata case, the dangling graph-metadata case and the dangling description case. Each asserts that the implementation summary got repaired. The write happens before the guarded line, so the guard cannot cause it.
+- Four later full runs passed 33 of 33. Run alone, the linked graph case also passes.
+- Likely cause, not confirmed: the validator refuses when the compiled build is stale (validate.sh exit 3, from the freshness check, which compares source hashes and mtimes). Other lanes run vitest and edit runtime sources in this same worktree. A refused validator leaves the packet unreadable, so no repair is planned and the summary stays stale.
+
+Neighbor check, upgrade-legacy.vitest.ts: 58 passed, 1 failed (59)
+- The failing case is "writes nothing for a passing packet that links inside itself, and keeps its baseline". Its second run expects exit 0 and "passing before=1/1", but the repair step reports FAILED exit 2.
+- Cause, verified by probe: the packet has plan.md as a link to sources/plan.md, inside the packet. With the narrowed guard the repair refuses it with "re-derive: plan.md: symbolic link, not followed" and exits 2. The HEAD version of the tool re-derives the same packet, reads through the inside link (no outside read) and exits 0. Probe: S/L6/round3/probe-inside.mjs, run once with the HEAD copy and once with the current file.
+- The mirror cannot settle the case: in both the guard-off mirror and the HEAD mirror, the first settle step crashes in fill-frontmatter (Node.js v26.8.2), before the repair step runs. So the in-repo HEAD result for this case is not measured. The probe is the evidence.
+- Variant, tested by probe only, not applied: refuse a measured-set link only when its real path resolves outside the packet. Inside-target link: exit 0 and repaired, the same as HEAD. Outside-target link: exit 2 and refused, the same as the narrowed guard. Scratch file: S/L6/round3/repair-derived.variant.cjs.
+- Decision needed: the coordinator said the guard lists exactly the measured set, and the plan requires approval before a deviation. So the variant is not in the repo. Until a decision is made, that upgrade-legacy case stays red because of this lane's guard.
+
+Writer check
+- Unchanged from the round 2 note. All five writeAtomic call sites follow readForWrite, and no other caller exists.
+
+Producer level
+- Unchanged from round 2. The producer fix in graph-metadata-parser.ts and generated-metadata-drift.ts waits on the operator, and neither file was edited.
+
+Process
+- No background process was started, so no PIDs were captured or killed.
+- Lane 6 changed two files this round, repair-derived.cjs and repair-derived.vitest.ts. The round 1 and round 2 sections above are unchanged.
+
+Correction to the round 3 section above
+- The intermittent run was followed by three repo runs of the full file, all 33 of 33 (full-rerun, repeat-2 and repeat-3), and by the control mirror, also 33 of 33. The text above says four, which counted the mirror.
+- "The child opened these candidates through their links, and nothing else did" refers to the child's own records only. The validator and tsx processes were recorded too, and none of them opened an outside file through a planted link.
+- Verified after the correction: a rerun of the measurement fixture recorded 20 node processes. All 53 outside reads came from backfill-graph-metadata.ts, and none came from another process. Log: S/L6/round3/measure-run3.log, with its counts in S/L6/round3/measure-all.txt.

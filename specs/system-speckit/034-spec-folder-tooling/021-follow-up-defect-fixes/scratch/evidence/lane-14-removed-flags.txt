@@ -1,0 +1,45 @@
+Removed healer flags
+====================
+
+Messages emitted on stderr before usage:
+
+--mode
+heal-spec-docs: --mode was removed in v4.0.0.4. Without it, --lane-modes runs all five modes. Drop --mode.
+
+--json
+heal-spec-docs: --json was removed in v4.0.0.4. Lane modes print "would apply", "applied" and "refused" lines. Drop --json.
+
+The --json wording is based on the healer's lane-mode output. A read-only run on the packet printed two "would apply continuity-placeholders" lines and exited 0.
+
+The current parser does not accept --flag=value for its existing flags, so no equals-form handling was added.
+
+Required CLI test command
+-------------------------
+Working directory: .skilled/skills/system-spec-kit/runtime/cli
+Command: npx vitest run --config ../../vitest.config.ts --project cli tests/heal-arguments.vitest.ts tests/heal-lane-modes.vitest.ts tests/heal-symlink-containment.vitest.ts tests/heal-target-parity.vitest.ts tests/heal-anchor-repair.vitest.ts
+Result: exit 0; 5 test files passed; 139 tests passed.
+
+Mutant
+------
+Spec: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/luna-flags/M-generic.mjs
+Build command: node /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/mkmirror.mjs luna-flags-M-generic /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/luna-flags/M-generic.mjs
+Build result: exit 0; mutated M-generic and mirror ready.
+Test command from the mirror CLI directory: npx vitest run --config ../../vitest.config.ts --project cli tests/heal-arguments.vitest.ts
+Test result: exit 1; 1 test file failed; 7 tests failed and 12 passed. The --mode and --json cases received the generic unknown-argument message instead of their specific messages.
+
+Unmutated control
+-----------------
+Build command: node /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/mkmirror.mjs luna-flags-control -
+Build result: exit 0; mirror ready.
+Test command from the mirror CLI directory: npx vitest run --config ../../vitest.config.ts --project cli tests/heal-arguments.vitest.ts
+Test result: exit 0; 1 test file passed; 19 tests passed.
+
+Additional verification
+-----------------------
+Command: bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
+Result: exit 0; both guards passed. Alignment drift reported 247 warnings and 0 errors; stack-folder verification passed for all 6 language folders.
+
+Command: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes --strict
+Result: exit 2; RESULT: FAILED with 2 errors and 0 warnings. The validator reported graph-metadata.json SOURCE_FINGERPRINT_MISMATCH and description drift. It also reported the AC_COVERAGE advisory at 0/26 rows with evidence. No file outside the requested allowlist was changed to address these packet findings.
+
+Commands not run: none. No EPERM or listen errors occurred.

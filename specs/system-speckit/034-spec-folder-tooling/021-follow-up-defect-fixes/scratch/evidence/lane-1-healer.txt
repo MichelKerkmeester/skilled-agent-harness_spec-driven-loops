@@ -1,0 +1,147 @@
+LANE 1: HEALER NO-ROOTS RULE (REQ-001)
+
+Operator decision 1: heal-spec-docs.cjs runs with no --roots and no root or repository that anchors the --folder refuses with exit 2, and the message names --roots. This applies in the default mode, --anchor-repair and --lane-modes.
+
+Run logs are kept in the lane scratch folder (L1/). Paths below are relative to that folder.
+
+BASELINE (before any edit)
+Files: anchor-repair-sample, create-root-numbering, heal-anchor-repair, heal-lane-modes, heal-provenance, heal-symlink-containment, heal-target-parity (the seven healer files)
+Result: Test Files 7 passed (7), Tests 135 passed (135), exit 0
+Log: L1/baseline-healer-7.txt
+
+RED (unfixed code)
+New case in heal-symlink-containment.vitest.ts, run for the default mode, --anchor-repair and --lane-modes. Fixture: the packet sits under a temp specs root outside every repository, the working directory is another temp directory outside every repository, specs/linked is a link to an outside track, and no --roots is given. The case asserts the outside spec.md digest is unchanged, exit 2, and a refusal line that names --roots.
+Result: Tests 3 failed | 35 passed (38), exit 1
+Failure: the outside spec.md digest changed. Expected fa9056db4a4a013e..., received 6d5183488f9f0768... The apply wrote through the link. All three modes failed the same way.
+Log: L1/lane-1-red.txt
+
+GREEN (fixed code)
+Change in heal-spec-docs.cjs: folderRefusal returns UNREACHED_REFUSAL where it returned null for a folder with no --roots and no reaching root. refuseFolderArgument prints "refused <folder>: no specs root or repository reaches it, pass --roots <dir> to name one" and exits 2. The link-reason lines keep their existing text.
+Change in spec/README.md: the healer description states the no-roots refusal.
+Test edits, limited to the cases the run named:
+  - heal-anchor-repair.vitest.ts: runRepair takes the fixture root and passes --roots <root>/specs. All 12 call sites changed, because every caller is a fixture outside every repository. The adversarial table is one test body, so its rows also get --roots, which restores the pre-fix behavior for the rows that passed.
+  - heal-lane-modes.vitest.ts: runLaneCli takes the fixture root and passes --roots. One call site.
+  - heal-target-parity.vitest.ts: the "alone" case of the --folder narrowing test runs with the fixture root as its working directory, so the default specs root reaches the packet and no --roots is needed. --roots was not used there, because it would make the alone case a repeat of the with-roots case.
+First green attempt, before the test edits: Tests 10 failed | 128 passed (138). All ten failures were the new refusal line on fixture packets with no --roots (8 in heal-anchor-repair, 1 in heal-lane-modes, 1 in heal-target-parity).
+Result after the edits: Test Files 7 passed (7), Tests 138 passed (138), exit 0 (135 baseline plus 3 new)
+Log: L1/green-7.txt
+
+NEIGHBOR
+upgrade-legacy.vitest.ts (the upgrade-legacy heal step passes --folder inside a repository)
+Result: Tests 53 passed (53), exit 0
+Log: L1/neighbor-upgrade-legacy.txt
+
+MIRROR METHOD
+Mirrors are built with S/gA/mkmirror.mjs under an L1- prefix. The three mirror fixes come from S/gD/run-lane.sh: regular copies get their repository mtimes back, the hook flag helper is copied in, and the build freshness record is re-keyed to the mirror path. The lane runner is L1/run-lane.sh. gD's script was not edited.
+
+MUTANT M1-a (mirror L1-m1a)
+Mutation: the no-root branch of folderRefusal returns null again. The mirror build reports one match in runtime/cli/spec/heal-spec-docs.cjs.
+Result: Tests 3 failed | 35 passed (38), exit 1
+The three new cases fail on the outside digest. The other 35 cases pass.
+Log: L1/logs/L1-m1a.log
+
+CONTROL (mirror L1-control, unmutated)
+Result: Tests 38 passed (38), exit 0
+Log: L1/logs/L1-control.log
+
+SAME-CLASS INVENTORY (healer, current tree)
+Writes: writeFileAtomic is called at lines 662, 1619 and 1679. Each call follows an isSymbolicLink check on the same path at lines 656, 1605 and 1664. writeFileAtomic renames over the path, which replaces a link without following it.
+Reads with no link check: declaredLevel reads the packet spec.md at line 198, and levelFromSpec reads the sibling spec.md at line 1507. Both are read-only and write nothing outside the packet. A linked spec.md can still supply a level value that is stamped into the packet's own document. This is recorded and not fixed, because it is a read path and outside REQ-001's write defect.
+Directory walks at line 761 (discover, over the --roots tree), line 1208 (markdownIndex, over the repository) and line 1318 (templateContinuityValues, over the template tree) name no write target.
+
+LANE 1 ADDENDUM: LINKED spec.md AT THE TWO LEVEL READS
+
+Requested by the coordinator after the section above was recorded. The two read sites listed in that section's inventory now refuse a linked spec.md through the healer's existing link check (isSymbolicLink), worded the way a linked document is refused. The section above is left as recorded. Where it says these reads are not checked, this addendum supersedes it.
+
+CHANGE
+Read site 1, declaredLevel. The packet spec.md is checked with isSymbolicLink before the existence check and the read. declaredLevel now returns { level, refusal }, and the refusal is "spec.md: symbolic link, not followed". Its callers, provenMarker and anchorWrap, pass the refusal on.
+Read site 2, levelFromSpec. The sibling spec.md is checked with isSymbolicLink before the read, and the same refusal is returned.
+Exit code: unchanged at 0. A linked document already exits 0 in all three modes, as the containment tests expect status 0, so a linked spec.md at a read site matches it.
+Message shape: in lane modes the line reads "refused <mode> <packet>/plan.md: spec.md: symbolic link, not followed". In the default mode the refusal joins the summary under "symbolic link, not followed", as the other header refusals do. The linked spec.md itself is still printed as "refused <packet>/spec.md: symbolic link, not followed".
+Reused check: the new lines call isSymbolicLink, the helper the healer already uses for every document. No second mechanism was added.
+
+RED (unfixed code, new case written first)
+Case: "a linked spec.md supplies no level to the packet documents beside it", in heal-symlink-containment.vitest.ts. The default run uses a plan.md carrying exactly the anchors of the Level 3 plan template. The lane run uses a plan.md with no anchors and no level. Both runs use a linked spec.md that points at an outside spec.md declaring Level 3. Each run has a regular control packet with the same plan.md, so a change to the control shows the run acts.
+Result: Tests 1 failed | 38 passed (39), exit 1.
+Failure: heal-symlink-containment.vitest.ts line 413, the default run's linked plan.md digest changed. Expected a4c7313b..., received d841b050....
+Probe on the same unfixed code, run outside the test with the same fixture shape: the default run stamps the linked plan.md with the template marker, and the lane run writes "level: 3" into the linked plan.md frontmatter. The outside spec.md is unchanged in both runs.
+Log: L1/lane-1-level-red.txt
+
+GREEN (fixed code)
+Result: Test Files 7 passed (7), Tests 139 passed (139), exit 0. Before this change the seven files stood at 138 of 138, so the new case is the only addition.
+Log: L1/lane-1-level-green-7.txt
+Both runs on the fixed code: exit 0, linked plan.md unchanged, control plan.md changed (default run) or given "level: 3" (lane run), outside spec.md unchanged.
+
+NEIGHBOR
+upgrade-legacy.vitest.ts: Tests 55 passed (55), exit 0. The count was 53 when first recorded. Another lane is editing that test file in this worktree (48 added lines, outside this lane's write set), so the change in count is not from this lane.
+Log: L1/lane-1-level-neighbor-upgrade-legacy.txt
+
+MUTANTS (mirrors built by L1/run-lane.sh, which uses the mirror builder and the three mirror fixes)
+Control L1-control-b, unmutated current code: Tests 39 passed (39), vitest exit 0. Log: L1/logs/L1-control-b.log
+M1-b, link check removed at read site 1 (declaredLevel): Tests 1 failed | 38 passed (39), vitest exit 1. Failing assertion: line 413, the default run's linked plan.md digest. The healer run directly in the mirror exits 0 and changes the linked plan.md, with the outside spec.md unchanged. Log: L1/logs/L1-m1b.log
+M1-c, link check removed at read site 2 (levelFromSpec): Tests 1 failed | 38 passed (39), vitest exit 1. Failing assertion: line 429, the lane run's linked plan.md digest. The healer run directly in the mirror exits 0 and changes the linked plan.md, with the outside spec.md unchanged. Log: L1/logs/L1-m1c.log
+Each mutant leaves the other read site checked, so each is caught by its own run.
+
+SCOPE NOTE
+The red case asserts exit 0 because that is the exit a linked document gets today. A nonzero exit for a linked spec.md read would be a different refusal class from the linked-document one, and would need its own decision.
+
+LANE 1 ADDENDUM 2: ARGUMENT CHECKS
+
+Requested by the coordinator. An unknown flag, and a --folder or --roots path that does not exist, now exit 2 in every mode, worded the way upgrade-legacy words its argument errors.
+
+CALLER INVENTORY (before any change)
+Search: rg -n "heal-spec-docs" over the repository, excluding dist, node_modules and specs, then a second pass over the feature catalog, the manual testing playbook, the changelogs, the command YAMLs and the agent and tool directories. Also searched for --lane-modes and --anchor-repair outside the healer and its tests.
+- upgrade-legacy.mjs, one spawn: --apply --folder <target>. Known.
+- Heal test files: --anchor-repair, --lane-modes, --roots, --folder and --apply. Known. Missing-value cases pass --apply --roots and --folder --apply, and rejectMissingFlagValue rejects them before the new checks run. The containment file also passes the node option -r with a preload path to node itself, which is not a healer argument.
+- create-root-numbering.vitest.ts: --folder <packet> --apply. Known.
+- anchor-repair-sample.vitest.ts: --anchor-repair --roots, with --apply on the second run. Known.
+- Command YAMLs under .skilled/commands: none runs the healer. Only upgrade-legacy is called, through doctor-update-compat-action.yaml, and that is a separate tool with its own arguments.
+- README usage block: --folder, --roots, --apply, --anchor-repair and --lane-modes. Known.
+- Feature catalog and playbook examples: --lane-modes --roots specs with and without --apply, --anchor-repair --roots specs with and without --apply, and --anchor-repair --folder specs/legacy-track/001-anchor-packet. All known. The last example names a path that exists only in a disposable fixture, so it exits 2 where that path is absent.
+- Changelogs (v4.0.0.4 and v2.7.1.0): --mode and --json were accepted and ignored for lane mode, and are now unknown. These are historical notes. No in-repo caller passes either flag. An external script that still passes them will exit 2.
+Result: no in-repo caller passes a flag the healer does not know.
+
+CHANGE
+runtime/cli/spec/heal-spec-docs.cjs
+- KNOWN_FLAGS and VALUE_FLAGS sets, and rejectUnknownArgument. An argument that is neither a known flag nor the value of --folder or --roots prints "heal-spec-docs: unknown argument: <arg>" on stderr, followed by the usage text, and exits 2. The first line matches upgrade-legacy.
+- rejectMissingPath. A --folder or --roots path that is neither present nor a link prints "heal-spec-docs: no such folder: <path>" or "heal-spec-docs: no such root: <path>" on stderr and exits 2. The path is printed resolved, as upgrade-legacy prints it. A link counts as present, so the dangling-folder cases keep their link reasons.
+- Both run in main after rejectMissingFlagValue and before refuseFolderArgument, so every mode is covered. rejectMissingFlagValue is unchanged, and its wording is still asserted by the containment tests.
+runtime/cli/spec/README.md
+- The heal-spec-docs row gains one sentence on the new exit status. The usage block already lists the full flag set, so it is unchanged.
+runtime/cli/tests/heal-arguments.vitest.ts (new)
+- Twelve cases: an unknown flag, a missing --folder and a missing --roots in each of the three modes, plus a control per mode where the known flags heal a packet with exit 0 and empty stderr.
+
+RED (new file, current healer before the checks)
+Result: Tests 9 failed | 3 passed (12), exit 1. The three passing cases are the controls.
+Failures: an unknown flag exits 0 in each mode and heals or repairs the control packet. A missing --folder prints "packets=1" with exit 0 in each mode. A missing --roots exits 0 in each mode.
+Log: L1/lane-1-args-red.txt
+
+GREEN
+Eight healer files: Test Files 8 passed (8), Tests 151 passed (151), exit 0. Before this change the seven existing files stood at 139 of 139, so the 12 new cases are the only addition.
+Log: L1/lane-1-args-green-8.txt
+upgrade-legacy.vitest.ts, two runs in the repository: first run Tests 1 failed | 54 passed (55), second run Tests 1 failed | 58 passed (59), exit 1 both times. The file grew between the runs because another lane is editing it. The same case failed both times: "writes nothing for a passing packet that links inside itself, and keeps its baseline". Logs: L1/lane-1-args-neighbor-upgrade-legacy.txt and L1/lane-1-args-neighbor-upgrade-legacy-rerun.txt
+
+UPGRADE-LEGACY FAILURE, WHAT IS KNOWN
+The failing case is in HEAD, and it passed in the earlier run of this suite in this worktree (55 of 55, recorded in the first section above).
+Its output shows "plan changes=1" and "step repair-derived: FAILED exit 2", and the expected line "passing before=1/1" is absent.
+The healer step in that run reads "step heal-spec-docs: ok (1 packets)". The healer runs with --apply --folder <target>, both new checks pass for that argument list, and the healer exits 0. The line "plan changes=1" is printed before the steps run, so it does not come from the healer's argument handling.
+Other lanes have uncommitted edits in this worktree to repair-derived.cjs, upgrade-legacy.mjs and their test files.
+NOT CONFIRMED. This is inferred from the code path and the step results. A scratch mirror could not isolate it, because the fill-frontmatter step imports a TypeScript library, and the mirror lacks the compiled extractor module that the library imports. Confirming it needs the upgrade-legacy run on a tree without the other lanes' uncommitted edits, or on an isolated copy with the two checks removed.
+
+MUTANTS (mirrors built by L1/run-args.sh, the argument variant of L1/run-lane.sh)
+Control L1-control-c, unmutated: Tests 12 passed (12), vitest exit 0. Log: L1/logs/L1-control-c.log
+M1-d, unknown-argument check removed from main: Tests 3 failed | 9 passed (12), vitest exit 1. The three unknown-flag cases fail. Healer exit codes in the mirror: unknown flag 0 (it prints packets=1 and heals), missing folder 2, missing roots 2. Log: L1/logs/L1-m1d.log
+M1-e, missing-path check removed from main: Tests 6 failed | 6 passed (12), vitest exit 1. The six missing-path cases fail. Healer exit codes in the mirror: unknown flag 2, missing folder 0 (it prints packets=1), missing roots 0 (it prints packets=1). Log: L1/logs/L1-m1e.log
+Healer exit codes for each scenario, run directly: fixed repository unknown flag 2, missing folder 2, missing roots 2, known flags 0. Control mirror the same. Probe: L1/probe/args-exit.cjs
+
+OPEN ITEMS, NOT CHANGED
+- The feature catalog file tooling-and-scripts/heal-spec-docs-lane-modes.md, line 38, says the lane CLI "ignores other arguments". That is now false. Proposed replacement for the sentence: "It refuses an argument it does not read with exit status 2." It is outside this lane's write set, so it was not edited.
+- The changelog entries for --mode and --json describe those flags as ignored. Decide whether the healer should keep ignoring those two as a compatibility allowance. Today they exit 2.
+
+LANE 1 ADDENDUM 2, FOLLOW-UP ON THE UPGRADE-LEGACY FAILURE
+
+The failing step is repair-derived, not the healer. rg over cli/spec/repair-derived.cjs, cli/spec/upgrade-legacy.mjs and upgrade-legacy.vitest.ts finds no call to heal-spec-docs from repair-derived. upgrade-legacy.mjs references the healer only as a step path (lines 71, 95) and in its own step runner (lines 973 to 987). The rerun log shows the healer step returned ok (1 packets) and lane-modes returned ok (1 packets, 4 refusals). The repair-derived step exited 2, and the log holds no repair-derived stderr.
+
+repair-derived.cjs exits 2 in three cases: its failed flag is set (line 770 area, final exitCode line), a UsageError or uncaught error reaches main().catch (line 777), or an output stream errors with something other than EPIPE. None of these involves the healer's argument checks. Lane 6 has uncommitted edits to repair-derived.cjs in this worktree (see its evidence file lane-6-repair-derived.txt).
+
+Conclusion, still inferred: the failure comes from repair-derived's own exit path, not from the argument checks. Confirming it needs the repair-derived step's stderr from a run of upgrade-legacy, or the same test on a tree without lane 6's uncommitted repair-derived edits.

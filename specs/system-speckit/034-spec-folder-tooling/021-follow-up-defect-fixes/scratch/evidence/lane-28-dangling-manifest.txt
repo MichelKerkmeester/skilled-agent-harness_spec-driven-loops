@@ -1,0 +1,36 @@
+LANE 28: Dangling reversibility manifest link
+
+Case
+- `refuses a dangling reversibility manifest link in dry run and apply` at `tests/upgrade-legacy.vitest.ts:1938`.
+- The case runs dry run and `--apply`. Each expects exit 2, the symbolic-link refusal on stderr, the manifest link still present, no file at its dangling target, and no packet-tree changes.
+
+Targeted runs
+- `cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run --config ../../vitest.config.ts --project cli tests/upgrade-legacy.vitest.ts -t "reversibility manifest"`
+  - Exit 0. 3 passed, 57 skipped. The filter matched both requested cases and one additional case.
+- `cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run --config ../../vitest.config.ts --project cli tests/upgrade-legacy.vitest.ts -t "refuses a (dangling )?reversibility manifest"`
+  - After restore, exit 0. 2 passed, 58 skipped. This exact filter matched the live-link neighbor and the new dangling-link case.
+
+Mutant and restore
+- Mutant: swapped the existence check and the symbolic-link check in `readManifestIfExists` in `spec/upgrade-legacy.mjs`.
+- `cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run --config ../../vitest.config.ts --project cli tests/upgrade-legacy.vitest.ts -t "refuses a (dangling )?reversibility manifest"`
+  - Exit 1. 1 passed, 1 failed, 58 skipped. The new case failed first at `tests/upgrade-legacy.vitest.ts:1949`: `expect(dryRun.stderr).toContain('symbolic link, not followed')`; received stderr was empty.
+- Restored `spec/upgrade-legacy.mjs` from `/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fixN/upgrade-legacy.mjs`.
+- `git diff --no-index -- <saved-copy> <working-file>` exited 0 with an empty diff. Both files had SHA-256 `973ef65d414a5178895616464a40c162b9c7bbe48ed9cfeb4f0495ee0d973280`.
+
+Whole-file run
+- `cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run --config ../../vitest.config.ts --project cli tests/upgrade-legacy.vitest.ts`
+  - Exit 0. 60 passed, duration 512.24 seconds.
+
+Checks
+- `git -c core.fsmonitor=false diff --check -- .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts`
+  - Exit 0, no output.
+- `bash .skilled/skills/system-spec-kit/runtime/cli/rules/check-comment-hygiene.sh .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts`
+  - Exit 0, no output. This script defines a spec-document rule helper and has no direct file-check entry point.
+- `python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts`
+  - Exit 0, no violations printed.
+- `python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit/runtime/cli/tests`
+  - Exit 0. 281 scanned, 0 findings, 0 errors, 0 warnings.
+- `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes --strict`
+  - Exit 0. `RESULT: PASSED`, 0 errors, 0 warnings.
+- `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh`
+  - Exit 1. Alignment-drift, stack-folders and doc-claims passed. Router-sync check 1b failed because ignored `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/.pytest_cache/README.md` is an orphan routable document. The cache timestamp is 2026-10-08 and `.gitignore` excludes `.pytest_cache/`; it predates this run and was left untouched.
