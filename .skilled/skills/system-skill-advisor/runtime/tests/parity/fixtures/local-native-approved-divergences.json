@@ -748,6 +748,16 @@
       "nativeTop": "mcp-tooling",
       "reason": "current-state capture after the MCP tooling hub reconciliation; browser and connector labels use the current hub identity",
       "approvedAt": "2026-09-22"
+    },
+    {
+      "id": "harder:4c8fe4462488",
+      "corpus": "harder",
+      "promptHash": "sha256:4c8fe4462488e7eedb3bc3f5d1c89b73de2cc62555589c5dbb55b8a41dc6e801",
+      "gold": "deep-review",
+      "localTop": "none",
+      "nativeTop": "sk-doc",
+      "reason": "both scorers stopped lifting sk-code from the generic word findings; local now abstains and native routes weakly to sk-doc, and neither reached the deep-review gold before or after",
+      "approvedAt": "2026-10-10"
     }
   ]
 }

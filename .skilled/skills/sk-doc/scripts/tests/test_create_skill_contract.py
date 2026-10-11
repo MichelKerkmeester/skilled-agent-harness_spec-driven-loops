@@ -66,10 +66,18 @@ def _write_valid_skill(
         "Standalone skill fixture for deterministic contract validation and packaging checks."
     ),
     include_escalate: bool = True,
+    include_recommended: bool = True,
 ) -> Path:
     """Materialize a standalone skill that passes the strict contract."""
     skill_path.mkdir(parents=True, exist_ok=True)
     escalate_rule = "### ESCALATE IF\n- Ask for help.\n" if include_escalate else ""
+    recommended_sections = (
+        "## 6. SUCCESS CRITERIA\nValidation passes.\n\n"
+        "## 7. INTEGRATION POINTS\nThe package validator.\n\n"
+        "## 8. RELATED RESOURCES\nNone.\n"
+        if include_recommended
+        else ""
+    )
     (skill_path / "SKILL.md").write_text(
         "---\n"
         f"name: {skill_path.name}\n"
@@ -88,9 +96,7 @@ def _write_valid_skill(
         "### NEVER\n- Use network access.\n"
         f"{escalate_rule}\n"
         "## 5. REFERENCES\nNo external references.\n\n"
-        "## 6. SUCCESS CRITERIA\nValidation passes.\n\n"
-        "## 7. INTEGRATION POINTS\nThe package validator.\n\n"
-        "## 8. RELATED RESOURCES\nNone.\n",
+        + recommended_sections,
         encoding="utf-8",
     )
     return skill_path
@@ -601,3 +607,68 @@ def test_validator_finds_the_source_root_under_either_name(tmp_path):
         assert validator.find_opencode_root(script) == tmp_path / name
     look_alike = tmp_path / "skilled" / "skills" / "scripts" / "validate_skill_package.py"
     assert validator.find_opencode_root(look_alike) is None
+
+
+def test_runtime_fixture_tree_is_exempt_from_kebab_path_findings(tmp_path):
+    module = _load_module()
+    skill_path = _write_valid_skill(tmp_path / "fixture-carrying-skill")
+    fixture_dir = skill_path / "runtime-fixture" / "known-good" / "src" / "2_javascript"
+    fixture_dir.mkdir(parents=True)
+    (fixture_dir / "z_minified").mkdir()
+    (fixture_dir / "z_minified" / "guarded-init.js").write_text("", encoding="utf-8")
+
+    _valid, _message, warnings = module.validate_generated_paths(skill_path)
+
+    assert not any("2_javascript" in warning for warning in warnings)
+    assert not any("z_minified" in warning for warning in warnings)
+
+
+def test_hub_without_recommended_sections_gets_no_section_warning(tmp_path):
+    module = _load_module()
+    hub_path = _write_valid_skill(tmp_path / "section-hub", include_recommended=False)
+    (hub_path / "mode-registry.json").write_text("{}\n", encoding="utf-8")
+    (hub_path / "ROUTER.md").write_text("# Hub Router\n", encoding="utf-8")
+
+    valid, message, warnings = module.validate_skill(hub_path)
+
+    assert valid is True, message
+    assert not any("Missing recommended section" in warning for warning in warnings)
+
+
+def test_standalone_without_recommended_sections_still_warns(tmp_path):
+    module = _load_module()
+    skill_path = _write_valid_skill(tmp_path / "standalone-sections", include_recommended=False)
+
+    valid, message, warnings = module.validate_skill(skill_path)
+
+    assert valid is True, message
+    assert any("Missing recommended section: SUCCESS CRITERIA" in warning for warning in warnings)
+
+
+def test_scripts_accept_typescript_and_txt_data_files(tmp_path):
+    module = _load_module()
+    skill_path = _write_valid_skill(tmp_path / "script-file-types")
+    scripts_dir = skill_path / "scripts"
+    scripts_dir.mkdir()
+    (scripts_dir / "tool.ts").write_text("export {};\n", encoding="utf-8")
+    (scripts_dir / "list.txt").write_text("skills/sk-git\n", encoding="utf-8")
+
+    _valid, _message, warnings = module.validate_resources(skill_path)
+
+    assert not any("Unexpected file type" in warning for warning in warnings)
+
+
+def test_scripts_still_flag_unknown_file_types(tmp_path):
+    module = _load_module()
+    skill_path = _write_valid_skill(tmp_path / "script-unknown-types")
+    scripts_dir = skill_path / "scripts"
+    scripts_dir.mkdir()
+    (scripts_dir / "notes.rst").write_text("notes\n", encoding="utf-8")
+
+    _valid, _message, warnings = module.validate_resources(skill_path)
+
+    assert any(
+        "Unexpected file type" in warning and "notes.rst" in warning
+        for warning in warnings
+    )
+

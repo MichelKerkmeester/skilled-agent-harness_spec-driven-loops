@@ -146,6 +146,8 @@ function probe() {
     // has no daemon to probe. Fall back to the underlying generation state so
     // a fresh skill-graph artifact is still considered usable when invoked
     // through skill_advisor.py (--force-native and the default routing path).
+    // A stopped daemon publishes an unavailable generation, but an index whose
+    // content hashes still match disk is safe for this one-shot reader.
     let shimEligible = status.freshness === 'live' || status.freshness === 'stale';
     let effectiveFreshness = status.freshness;
     if (!shimEligible) {
@@ -158,6 +160,10 @@ function probe() {
       } catch {
         // Keep shimEligible=false; surface the original status reason below.
       }
+    }
+    if (!shimEligible && status.indexStaleness && status.indexStaleness.state === 'fresh') {
+      shimEligible = true;
+      effectiveFreshness = 'live';
     }
     return {
       available: shimEligible,
@@ -1798,7 +1804,6 @@ INTENT_BOOSTERS = {
     # SK-CODE code-review mode: Stack-agnostic code review baseline
     # ─────────────────────────────────────────────────────────────────
     "review": ("sk-code", 1.2),
-    "findings": ("sk-code", 1.1),
     "blocker": ("sk-code", 0.9),
     "blockers": ("sk-code", 0.9),
     "vulnerability": ("sk-code", 1.0),
@@ -2689,6 +2694,62 @@ def _matches_phrase_boundary(text: str, phrase: str) -> bool:
     if not phrase:
         return False
     return _phrase_boundary_pattern(phrase).search(text) is not None
+
+
+# A skill name or author phrase beside one of these doc forms names a file to
+# edit rather than a skill to route to. The pattern mirrors the native scorer:
+# a made-up file name carries no word character after it, and changelog/ is a
+# directory form.
+_DOC_FILE_SUFFIX = re.compile(
+    r"^\s*(?:(?:skill\.md|router\.md|readme(?:\.md)?|changelog\.md)(?![a-z0-9_])|changelog/)"
+)
+
+
+def _has_plain_mention(text: str, phrase: str) -> bool:
+    """Return True when a phrase occurs outside a path token and doc-file target.
+
+    Boundary handling matches ``_matches_phrase_boundary``. A phrase inside a
+    whitespace-delimited path token names a path, and a phrase immediately to
+    the left of a doc file name titles that file; neither is a plain mention of
+    the skill.
+    """
+    normalized = phrase.strip().lower()
+    if not normalized:
+        return False
+    skip_path_rule = "/" in normalized
+    for match in _phrase_boundary_pattern(normalized).finditer(text):
+        end = match.end()
+        if _DOC_FILE_SUFFIX.match(text[end:]):
+            continue
+        if skip_path_rule:
+            return True
+        token_start = match.start()
+        while token_start > 0 and not text[token_start - 1].isspace():
+            token_start -= 1
+        token_end = end
+        while token_end < len(text) and not text[token_end].isspace():
+            token_end += 1
+        if "/" not in text[token_start:token_end][1:]:
+            return True
+    return False
+
+
+def _targets_own_doc_file(text: str, variants: Set[str]) -> bool:
+    """Return True when a write verb names a variant beside the skill's doc file.
+
+    The prompt edits that skill's own documentation, so its author keywords
+    describe the file being written rather than the skill handling the request.
+    """
+    if not TASK_INTENT_RE.search(text):
+        return False
+    for variant in variants:
+        normalized = variant.strip().lower()
+        if not normalized:
+            continue
+        for match in _phrase_boundary_pattern(normalized).finditer(text):
+            if _DOC_FILE_SUFFIX.match(text[match.end():]):
+                return True
+    return False
 
 
 def _build_inline_record(
@@ -3607,7 +3668,7 @@ EXECUTOR_DELEGATION_CUES_RE = re.compile(
 # The negative guard forces NON-delegation: "opencode {standards|route|...}" and a
 # bare ".skilled/" path are the code hub's own opencode surface, not a handoff.
 EXECUTOR_NEGATIVE_GUARD_RE = re.compile(
-    r"\bopencode[-\s]?(standards|route|skill|agent|plugin|command|convention)\b|\.opencode/"
+    r"\bopencode[-\s]?(standards|route|skill|agent|plugin|command|convention)\b|\.(?:opencode|skilled)/"
 )
 # Generic single tokens that appear in executor metadata as domain labels rather
 # than delegation cues; never treated as executor aliases.
@@ -4293,7 +4354,9 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     # This protects routing in mixed prompts that also contain broad terms like "opencode".
     for skill_name, config in skills.items():
         variants = set(config.get("variants", set())) or _build_variants(skill_name)
-        matched_variants = sorted({v for v in variants if _matches_phrase_boundary(prompt_lower, v)})
+        # A name inside a path or beside the skill's own doc file names a
+        # location, not an explicit request to use the skill.
+        matched_variants = sorted({v for v in variants if _has_plain_mention(prompt_lower, v)})
         if not matched_variants:
             continue
 
@@ -4305,11 +4368,16 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
             boost_reasons[skill_name].append(f"!{variant}(explicit)")
 
     for skill_name, config in skills.items():
+        variants = set(config.get("variants", set())) or _build_variants(skill_name)
+        # A write verb aimed at the skill's own doc file makes it the edit
+        # target, so its author keywords no longer describe the request.
+        if _targets_own_doc_file(prompt_lower, variants):
+            continue
         keyword_variants = set(config.get("keyword_variants", set()))
         matched_keywords = sorted({
             variant
             for variant in keyword_variants
-            if _matches_phrase_boundary(prompt_lower, variant)
+            if _has_plain_mention(prompt_lower, variant)
         })
         if not matched_keywords:
             continue

@@ -57,6 +57,14 @@ def fail_test(name, reason=""):
     print(f"  FAIL: {name}" + (f" ({reason})" if reason else ""))
 
 
+def local_reason(advisor, prompt, skill_name):
+    """Reason string from the local scorer for one skill, or None."""
+    for record in advisor.analyze_request(prompt):
+        if record.get("skill") == skill_name:
+            return record.get("reason", "")
+    return None
+
+
 # ───────────────────────────────────────────────────────────────
 # 2. SKILL ADVISOR TESTS
 # ───────────────────────────────────────────────────────────────
@@ -957,6 +965,160 @@ description: Fixture helper for routing tests
             advisor._run_native_bridge = original_bridge
     except Exception as exc:
         fail_test("native bridge receives at most the advisor prompt limit", str(exc))
+
+    # A stopped daemon publishes 'unavailable' even though the index hashes
+    # still match disk; the one-shot bridge must fall back to that index
+    # freshness instead of reporting the advisor unusable. The bridge is
+    # pointed at a private database directory so the real state is untouched.
+    try:
+        original_db_dir = os.environ.get("SYSTEM_SKILL_ADVISOR_DB_DIR")
+        try:
+            with tempfile.TemporaryDirectory() as tmpdir:
+                database_path = os.path.join(SCRIPT_DIR, "..", "database", "skill-graph.sqlite")
+                source_db = sqlite3.connect(f"file:{os.path.realpath(database_path)}?mode=ro", uri=True)
+                target_db = sqlite3.connect(os.path.join(tmpdir, "skill-graph.sqlite"))
+                with target_db:
+                    source_db.backup(target_db)
+                target_db.close()
+                source_db.close()
+
+                generation_path = os.path.join(
+                    advisor.SKILLS_DIR, ".state", "advisor", "skill-graph-generation.json"
+                )
+                with open(generation_path, "r", encoding="utf-8") as handle:
+                    generation = json.load(handle)
+                generation["state"] = "unavailable"
+                generation["reason"] = "launcher idle timeout"
+                with open(
+                    os.path.join(tmpdir, "skill-graph-generation.json"), "w", encoding="utf-8"
+                ) as handle:
+                    json.dump(generation, handle)
+
+                os.environ["SYSTEM_SKILL_ADVISOR_DB_DIR"] = tmpdir
+                response = advisor._run_native_bridge({
+                    "mode": "recommend",
+                    "workspaceRoot": advisor.REPO_ROOT,
+                    "prompt": "create a pull request on github",
+                    "topK": 10,
+                    "confidenceThreshold": 0.5,
+                    "uncertaintyThreshold": 1.0,
+                }, timeout=15)
+        finally:
+            if original_db_dir is None:
+                os.environ.pop("SYSTEM_SKILL_ADVISOR_DB_DIR", None)
+            else:
+                os.environ["SYSTEM_SKILL_ADVISOR_DB_DIR"] = original_db_dir
+
+        data = response.get("data") if isinstance(response, dict) else None
+        probe = response.get("probe") if isinstance(response, dict) else None
+        recommendations = data.get("recommendations") if isinstance(data, dict) else None
+        if (
+            response.get("status") == "ok"
+            and isinstance(probe, dict)
+            and probe.get("available") is True
+            and probe.get("freshness") == "live"
+            and isinstance(recommendations, list)
+            and len(recommendations) > 0
+        ):
+            ok(
+                "T243-SA-022: idle-daemon generation stays usable for the one-shot native bridge",
+                f"recommendations={len(recommendations)}",
+            )
+        else:
+            fail_test(
+                "T243-SA-022: idle-daemon generation stays usable for the one-shot native bridge",
+                f"status={response.get('status')}, probe={probe}, recommendations={recommendations}",
+            )
+    except Exception as exc:
+        fail_test(
+            "T243-SA-022: idle-daemon generation stays usable for the one-shot native bridge",
+            str(exc),
+        )
+
+    # A skill name that only occurs inside a path token names a location, not
+    # a request to use the skill, so it must not add an explicit reason.
+    try:
+        reason = local_reason(
+            advisor,
+            "Add set -euo pipefail and a trap to "
+            ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh "
+            "to clean up the temp dir on exit.",
+            "system-spec-kit",
+        )
+        if reason is not None and "(explicit)" not in reason:
+            ok("T243-SA-023: path-only skill name adds no explicit reason")
+        else:
+            fail_test(
+                "T243-SA-023: path-only skill name adds no explicit reason",
+                f"reason={reason!r}",
+            )
+    except Exception as exc:
+        fail_test("T243-SA-023: path-only skill name adds no explicit reason", str(exc))
+
+    # A write verb beside the skill's own doc file names an edit target, so the
+    # skill keeps neither an explicit reason nor an author keyword boost.
+    try:
+        reason = local_reason(
+            advisor,
+            "Update the sk-code SKILL.md headline section to clarify the "
+            "two-axis routing model.",
+            "sk-code",
+        )
+        if reason is not None and "(explicit)" not in reason and "(keyword)" not in reason:
+            ok("T243-SA-024: doc-file edit target suppresses explicit and keyword reasons")
+        else:
+            fail_test(
+                "T243-SA-024: doc-file edit target suppresses explicit and keyword reasons",
+                f"reason={reason!r}",
+            )
+    except Exception as exc:
+        fail_test(
+            "T243-SA-024: doc-file edit target suppresses explicit and keyword reasons",
+            str(exc),
+        )
+
+    # A plain mention still counts as explicit intent for the named skill.
+    try:
+        reason = local_reason(
+            advisor, "Use sk-code to implement this helper", "sk-code"
+        )
+        if reason is not None and "(explicit)" in reason:
+            ok("T243-SA-025: plain skill name keeps the explicit reason")
+        else:
+            fail_test(
+                "T243-SA-025: plain skill name keeps the explicit reason",
+                f"reason={reason!r}",
+            )
+    except Exception as exc:
+        fail_test("T243-SA-025: plain skill name keeps the explicit reason", str(exc))
+
+    # The doc-file forms need no word character after them and include the
+    # changelog directory form; a phrase that itself contains a slash is not a
+    # path token for this rule.
+    try:
+        plainness_cases = [
+            ("update sk-doc readme.md now", "sk-doc", False),
+            ("update sk-doc readmes now", "sk-doc", True),
+            ("update sk-doc changelog/notes.md now", "sk-doc", False),
+            ("run /sk-code/review now", "/sk-code", True),
+        ]
+        failures = [
+            f"{text!r}/{phrase}: expected={expected}"
+            for text, phrase, expected in plainness_cases
+            if advisor._has_plain_mention(text, phrase) != expected
+        ]
+        if not failures:
+            ok("T243-SA-026: doc-file and path plainness forms match the native rules")
+        else:
+            fail_test(
+                "T243-SA-026: doc-file and path plainness forms match the native rules",
+                "; ".join(failures),
+            )
+    except Exception as exc:
+        fail_test(
+            "T243-SA-026: doc-file and path plainness forms match the native rules",
+            str(exc),
+        )
 
 
 # ───────────────────────────────────────────────────────────────

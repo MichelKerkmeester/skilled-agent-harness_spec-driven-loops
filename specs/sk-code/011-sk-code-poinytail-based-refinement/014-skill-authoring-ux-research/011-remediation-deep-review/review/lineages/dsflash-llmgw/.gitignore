@@ -1,0 +1,2 @@
+# The deletion-filter probe is a throwaway git repository; its nested .git cannot be committed.
+probe/d-filter/

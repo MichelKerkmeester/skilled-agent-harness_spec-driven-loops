@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/012-advisor-doc-target-and-engines",
+  "description": "Phase 12: advisor-doc-target-and-engines",
+  "keywords": [
+    "phase",
+    "advisor-doc-target-and-engines"
+  ],
+  "lastUpdated": "2026-10-10T23:56:37.549Z",
+  "specId": "012",
+  "folderSlug": "advisor-doc-target-and-engines",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "014-skill-authoring-ux-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -35,8 +35,10 @@ Usage:
 
 import argparse
 import json
+import os
 import posixpath
 import re
+import subprocess
 import sys
 from pathlib import Path
 from typing import Any, Dict, Iterator, List, Optional, Sequence, Tuple
@@ -430,6 +432,73 @@ def check_phantom_rows(package_name: str, root_catalog_path: Path) -> List[Dict[
     return violations
 
 
+# A cited path can be absent from a checkout and still be correct: a committed symlink
+# whose target is a build output, or a gitignored runtime file that can never be
+# committed. The exemption is deliberately narrow, so a broken link, a typo under an
+# ignored directory, and machine-local excludes all stay reported rather than hidden.
+_PATH_PRESENT = 'present'
+_PATH_IGNORED_ABSENT = 'ignored_absent'
+_PATH_MISSING = 'missing'
+
+
+def _classify_cited_path(repo_root: Path, candidate: Path) -> str:
+    """Classify a cited path as _PATH_PRESENT, _PATH_IGNORED_ABSENT or _PATH_MISSING.
+
+    A path that exists is present. A dangling symlink is present only when its
+    resolved target is ignored by the repository's own rules, because a committed
+    link to a build output is expected while a genuinely broken link is not. An
+    absent path those rules match is ignored-absent, so callers can surface a note
+    instead of a silent pass and typos stay visible.
+
+    The ignore query disables core.excludesFile and accepts a match only when the
+    reported source is a .gitignore inside the repository, so .git/info/exclude and
+    the user's global excludes never change the verdict. Any git failure (binary
+    missing, not a repository, unparseable output) means not ignored, which keeps
+    behavior outside a git checkout unchanged.
+    """
+    if os.path.lexists(candidate):
+        if os.path.exists(candidate):
+            return _PATH_PRESENT
+        # The link itself exists, so probe the target the link resolves to.
+        probe = Path(os.path.realpath(candidate))
+    else:
+        probe = candidate
+
+    relative = os.path.relpath(probe, repo_root)
+    if relative == os.pardir or relative.startswith(os.pardir + os.sep):
+        return _PATH_MISSING
+    git_excludes = ['git', '-C', str(repo_root), '-c', 'core.excludesFile=/dev/null', 'check-ignore']
+    try:
+        ignored = subprocess.run(
+            [*git_excludes, '-q', '--', relative],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+        # -q decides ignored or not. -v, which names the deciding rule, also exits 0
+        # for a path a negated pattern un-ignores, so it never decides on its own.
+        verbose = subprocess.run(
+            [*git_excludes, '-v', '--', relative],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+        )
+    except OSError:
+        return _PATH_MISSING
+    if ignored.returncode != 0 or verbose.returncode != 0:
+        return _PATH_MISSING
+    for line in verbose.stdout.decode('utf-8', errors='replace').splitlines():
+        source_match = re.match(r'^(.+?):\d+:(.*)$', line.partition('\t')[0])
+        if source_match is None:
+            return _PATH_MISSING
+        source = Path(source_match.group(1))
+        pattern = source_match.group(2)
+        source_path = source if source.is_absolute() else repo_root / source
+        if (not pattern.startswith('!')
+                and source.name == '.gitignore'
+                and _is_relative_to(source_path, repo_root)):
+            return _PATH_PRESENT if os.path.lexists(candidate) else _PATH_IGNORED_ABSENT
+    return _PATH_MISSING
+
+
 def check_prose_paths(
     package_name: str,
     catalog_dir: Path,
@@ -458,15 +527,26 @@ def check_prose_paths(
                         'path': path,
                         'message': f'{package_name}/{document.name}:{line_number}: prose path escapes the repository: {path}',
                     })
-                elif not resolved.exists():
-                    violations.append({
-                        'type': 'missing_prose_path',
-                        'package': package_name,
-                        'leaf': str(document),
-                        'line': line_number,
-                        'path': path,
-                        'message': f'{package_name}/{document.name}:{line_number}: prose path does not exist on disk: {path}',
-                    })
+                else:
+                    status = _classify_cited_path(repo_root, repo_root / path)
+                    if status == _PATH_IGNORED_ABSENT:
+                        violations.append({
+                            'type': 'ignored_path_absent',
+                            'package': package_name,
+                            'leaf': str(document),
+                            'line': line_number,
+                            'path': path,
+                            'message': f'{package_name}/{document.name}:{line_number}: prose path is absent and ignored by a repository .gitignore: {path}',
+                        })
+                    elif status == _PATH_MISSING:
+                        violations.append({
+                            'type': 'missing_prose_path',
+                            'package': package_name,
+                            'leaf': str(document),
+                            'line': line_number,
+                            'path': path,
+                            'message': f'{package_name}/{document.name}:{line_number}: prose path does not exist on disk: {path}',
+                        })
             if VOLATILE_SNAPSHOT_RE.search(line):
                 violations.append({
                     'type': 'volatile_measurement_snapshot',
@@ -534,16 +614,30 @@ def check_source_file_paths(package_name: str, catalog_dir: Path, repo_root: Pat
             kind, raw_path = checkable
             check_path = LINE_RANGE_SUFFIX_RE.sub('', raw_path)
             base = repo_root if kind == 'repo-relative' else leaf.parent
-            resolved = (base / check_path).resolve()
-            if not resolved.exists():
+            status = _classify_cited_path(repo_root, base / check_path)
+            if status != _PATH_PRESENT:
                 leaf_resolved = leaf.resolve()
-                violations.append({
-                    'type': 'missing_source_path',
-                    'package': package_name,
-                    'leaf': str(leaf_resolved.relative_to(repo_root)) if _is_relative_to(leaf_resolved, repo_root) else str(leaf_resolved),
-                    'path': raw_path,
-                    'message': f"{package_name}/{leaf.name}: SOURCE FILES path does not exist on disk: {raw_path}",
-                })
+                leaf_label = (
+                    str(leaf_resolved.relative_to(repo_root))
+                    if _is_relative_to(leaf_resolved, repo_root)
+                    else str(leaf_resolved)
+                )
+                if status == _PATH_IGNORED_ABSENT:
+                    violations.append({
+                        'type': 'ignored_path_absent',
+                        'package': package_name,
+                        'leaf': leaf_label,
+                        'path': raw_path,
+                        'message': f"{package_name}/{leaf.name}: SOURCE FILES path is absent and ignored by a repository .gitignore: {raw_path}",
+                    })
+                else:
+                    violations.append({
+                        'type': 'missing_source_path',
+                        'package': package_name,
+                        'leaf': leaf_label,
+                        'path': raw_path,
+                        'message': f"{package_name}/{leaf.name}: SOURCE FILES path does not exist on disk: {raw_path}",
+                    })
     return violations
 
 
@@ -807,8 +901,16 @@ def check_workflow_mode_parity(skills_root: Path) -> List[Dict[str, Any]]:
 # ───────────────────────────────────────────────────────────────
 
 
+# Notes are informational findings: they are printed, but they never count toward a
+# package's verdict tier or the exit code.
+NOTE_VIOLATION_TYPES = frozenset({'ignored_path_absent'})
+
+
 def _apply_severity(violations: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     for violation in violations:
+        if violation.get('type') in NOTE_VIOLATION_TYPES:
+            violation['severity'] = 'note'
+            continue
         package_id = violation.get('package', '')
         violation['severity'] = 'warn' if package_id in WARN_PACKAGE_IDS else 'fail'
     return violations
@@ -852,7 +954,10 @@ def package_verdicts(
 ) -> List[Dict[str, Any]]:
     verdicts = []
     for package in packages:
-        package_violations = [v for v in violations if v.get('package') == package['name']]
+        package_violations = [
+            v for v in violations
+            if v.get('package') == package['name'] and v.get('severity') != 'note'
+        ]
         if not package_violations:
             verdicts.append({
                 'package': package['name'],
@@ -884,9 +989,10 @@ def format_report(
         lines.append('PASS: 0 violations (all enforced catalog checks).')
         return '\n'.join(lines)
     fail_count = sum(1 for v in violations if v.get('severity') == 'fail')
-    warn_count = len(violations) - fail_count
-    final_label = 'FAIL' if fail_count else 'WARN'
-    lines.append(f'{final_label}: {len(violations)} violation(s) ({fail_count} fail, {warn_count} warn):')
+    warn_count = sum(1 for v in violations if v.get('severity') == 'warn')
+    note_count = len(violations) - fail_count - warn_count
+    final_label = 'FAIL' if fail_count else ('WARN' if warn_count else 'NOTE')
+    lines.append(f'{final_label}: {len(violations)} violation(s) ({fail_count} fail, {warn_count} warn, {note_count} note):')
     for v in violations:
         lines.append(f"  - [{v['severity']}] [{v['type']}] {v['message']}")
     return '\n'.join(lines)
@@ -931,7 +1037,8 @@ def main(argv: List[str]) -> int:
         if not args.packages or pkg['name'] in set(args.packages)
     ]
     fail_count = sum(1 for v in violations if v.get('severity') == 'fail')
-    warn_count = len(violations) - fail_count
+    warn_count = sum(1 for v in violations if v.get('severity') == 'warn')
+    note_count = len(violations) - fail_count - warn_count
 
     if args.json:
         print(json.dumps({
@@ -940,6 +1047,7 @@ def main(argv: List[str]) -> int:
             'violationCount': len(violations),
             'failureCount': fail_count,
             'warningCount': warn_count,
+            'noteCount': note_count,
             'packagesSeen': len(selected_packages),
             'packageVerdicts': package_verdicts(selected_packages, violations),
             'violations': violations,
