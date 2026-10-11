@@ -368,6 +368,47 @@ function pathChecks(text, absPath, repoRoot, relPath) {
   return errors;
 }
 
+// Backticked repo paths in a scenario are checked report-only. A scenario that tells the
+// operator to read a moved file fails at run time, yet the link check never sees it, because
+// it names the file in code spans rather than as a link. Placeholders, globs, absolute and
+// scratch paths and runtime output are expected not to resolve, so they are skipped.
+const BACKTICK_SPAN_RE = /`([^`\s]+)`/g;
+const BACKTICK_PATH_EXT_RE = /\.(?:md|mdx|ts|tsx|js|cjs|mjs|py|sh|json|jsonl|jsonc|ya?ml|toml|txt|css|html|svg)$/i;
+const RUNTIME_OUTPUT_SEGMENT_RE = /(?:^|\/)(?:scratch|research|review|iterations|tmp|out|dist|node_modules)\//;
+
+function isExpectedUnresolved(token) {
+  return /[<>{}*?$[\]|]/.test(token)
+    || /(?:^|\/)(?:XXX|NNN)/.test(token)
+    || token.startsWith('/')
+    || token.startsWith('~')
+    || RUNTIME_OUTPUT_SEGMENT_RE.test(token);
+}
+
+function backtickPathChecks(text, absPath, playbookRoot, repoRoot, relPath) {
+  const warnings = [];
+  // Scenarios write paths relative to themselves, their playbook root, their skill or
+  // hub root, or that root's runtime/ and scripts/ code, as well as to the repository.
+  const skillRoot = path.dirname(playbookRoot);
+  const roots = [skillRoot];
+  if (fs.existsSync(path.join(path.dirname(skillRoot), 'SKILL.md'))) roots.push(path.dirname(skillRoot));
+  const bases = [path.dirname(absPath), playbookRoot,
+    ...roots.flatMap((root) => [root, path.join(root, 'runtime'), path.join(root, 'scripts')]), repoRoot];
+  const scanText = maskFencedCode(text);
+  const seen = new Set();
+  let match;
+  while ((match = BACKTICK_SPAN_RE.exec(scanText)) !== null) {
+    const token = match[1].replace(/:\d+(?:-\d+)?$/, '').replace(/[.,;:]+$/, '');
+    if (!token.includes('/') || !BACKTICK_PATH_EXT_RE.test(token)) continue;
+    if (/^[a-z][a-z0-9+.-]*:/i.test(token) || isExpectedUnresolved(token) || seen.has(token)) continue;
+    seen.add(token);
+    if (bases.some((base) => fs.existsSync(path.resolve(base, token)))) continue;
+    warnings.push(issue('BACKTICK_PATH_UNRESOLVED', relPath,
+      `backticked path resolves from no scenario, playbook, skill, hub or repository base: ${token}`,
+      'warning', lineNumberAt(text, match.index)));
+  }
+  return warnings;
+}
+
 function evergreenChecks(text, relPath) {
   const errors = [];
   const lines = text.split('\n');
@@ -715,6 +756,7 @@ function validatePackage({ playbookRoot, repoRoot, skillsRoot, manifest }) {
     errors.push(...fileErrors);
     const text = readText(file);
     warnings.push(...promptSyncChecks(text, path.relative(playbookRoot, file).split(path.sep).join('/'), rootPrompts.get(relativeKey(file))));
+    warnings.push(...backtickPathChecks(text, file, playbookRoot, repoRoot, path.relative(playbookRoot, file).split(path.sep).join('/')));
     const id = extractFeatureId(text, extractFrontmatter(text));
     if (id) {
       if (!ids.has(id)) ids.set(id, []);

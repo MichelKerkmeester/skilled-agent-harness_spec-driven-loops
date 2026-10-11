@@ -151,6 +151,9 @@ function run() {
   expectViolation('section-five', (root) => writeScenario(root, readScenario(root).replace(/\n## 5\. SOURCE METADATA[\s\S]*$/, '\n')), 'SECTION_5_MISSING');
   expectClean('frontmatter-version-absent', (root) => writeScenario(root, readScenario(root).replace(/^version: .*\n/m, '')));
   expectViolation('frontmatter-description', (root) => writeScenario(root, readScenario(root).replace('description: "A clean fixture for the operator-scenario validator."\n', '')), 'FRONTMATTER_DESCRIPTION_MISSING');
+  const backtick = expectClean('backtick-path-report-only', (root) => writeScenario(root, `${readScenario(root)}\nRead \`.skilled/commands/create/diagram.md\` and \`.skilled/skills/sk-doc/SKILL.md:1\`, then \`./clean-scenario.md\` and \`scenarios/clean-scenario.md\`; skip \`<skill>/references/x.md\`, \`/tmp/out.json\` and \`scripts/*.sh\`.\n`));
+  const backtickWarnings = backtick.report.packages.flatMap((pkg) => pkg.warnings).filter((item) => item.code === 'BACKTICK_PATH_UNRESOLVED');
+  assert.deepStrictEqual(backtickWarnings.map((item) => item.message.split(': ').pop()), ['.skilled/commands/create/diagram.md']);
 
   const requiredMutations = [
     ['required-feature-id', (text) => text.replace(/id: FX-001\n/, '').replace(/FX-001/g, 'Scenario'), 'REQUIRED_FEATURE_ID'],
