@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ec91ce0bc8df642989d6329ca22eb2850e8913e959d6aecd01d7472f0bf699a9",
+  "corpusHash": "6852abb0c8561d73a228623b6ed04570621c8e626c0b40218f8759173307d50b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24363,
+  "includedPathCount": 24364,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -23958,6 +23958,7 @@
     "specs/system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes/spec.md",
     "specs/system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes/tasks.md",
     "specs/system-speckit/034-spec-folder-tooling/changelog/changelog-034-010-trigger-index-ci-rebuild.md",
+    "specs/system-speckit/034-spec-folder-tooling/changelog/changelog-034-016-research-recommendations.md",
     "specs/system-speckit/034-spec-folder-tooling/changelog/changelog-034-017-heal-cli-and-compat-yaml-simplification.md",
     "specs/system-speckit/034-spec-folder-tooling/changelog/changelog-034-018-epic-docs-alignment.md",
     "specs/system-speckit/034-spec-folder-tooling/changelog/changelog-034-019-epic-follow-up-fixes.md",
@@ -24394,7 +24395,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "375887cf5bfdbd1d4d220f419a719849c43fecd5f64e4bc85f44a559d75defa6",
+  "manifestHash": "839c0160f03d9ef9c31ea9893675d5b36d218b9b93b28bb9879a217d1775f6b7",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28246,6 +28247,10 @@
     },
     {
       "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/001-stress-playbook-foundation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/scratch",
       "reason": "excluded directory"
     },
     {

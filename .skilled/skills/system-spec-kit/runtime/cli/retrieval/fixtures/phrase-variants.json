@@ -1,5 +1,5 @@
 {
-  "manifestHash": "375887cf5bfdbd1d4d220f419a719849c43fecd5f64e4bc85f44a559d75defa6",
+  "manifestHash": "839c0160f03d9ef9c31ea9893675d5b36d218b9b93b28bb9879a217d1775f6b7",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -96036,6 +96036,9 @@
     ],
     "spec folder tooling heal cli and compat yaml simplification changelog": [
       "spec folder tooling heal cli and compat yaml simplification changelog"
+    ],
+    "spec folder tooling research recommendations changelog": [
+      "spec folder tooling research recommendations changelog"
     ],
     "spec folder tooling timeline": [
       "spec folder tooling timeline"
