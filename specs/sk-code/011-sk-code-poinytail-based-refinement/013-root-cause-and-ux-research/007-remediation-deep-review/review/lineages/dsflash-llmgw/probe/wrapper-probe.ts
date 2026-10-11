@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Wrapper Probe
+// ───────────────────────────────────────────────────────────────────
 // Read-only probe: compare the Pi guard's classifier (inspectDispatch, no wrapper
 // unwrap) with the rule engine's resolver (resolveDispatchPacket, unwraps shell/exec
 // wrappers) on the same commands. Writes nothing.

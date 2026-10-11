@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Guard Probe
+// ───────────────────────────────────────────────────────────────────
 // Read-only probe: classify commands through the reviewed dispatch classifier.
 // No files are written; prints one JSON line per case. The guard's deny rule for an
 // ambiguous classification is a single unconditional branch
