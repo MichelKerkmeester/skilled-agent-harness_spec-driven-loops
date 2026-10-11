@@ -151,4 +151,16 @@ Orphaned mirror body.
     expect(result.status).toBe(1);
     expect(result.stdout).toContain(`canonical .opencode/agents/${orphanName}.md is missing`);
   });
+
+  it('reports an unbuilt frontmatter parser as not checkable, apart from drift', () => {
+    // The fixture links the real shared package; removing the link leaves the parser unbuilt.
+    fs.rmSync(path.join(tmpDir, '.skilled', 'skills', 'system-spec-kit', 'shared'));
+    writeFile(`.claude/agents/${AGENT_NAME}.md`, CANONICAL);
+
+    const result = runChecker(`.skilled/agents/${AGENT_NAME}.md`);
+
+    expect(result.status).toBe(3);
+    expect(result.stdout).toContain('NOT CHECKABLE');
+    expect(result.stdout).not.toContain('DRIFT');
+  });
 });

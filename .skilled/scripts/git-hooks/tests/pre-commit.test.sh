@@ -889,6 +889,27 @@ else
   echo "FAIL  the doctor ran without python3"; FAIL=$((FAIL + 1))
 fi
 
+# ── 64. a mirror checker that cannot check warns and skips instead of reporting drift ──
+setup_gate_fixture
+mkdir -p "$TMP/.opencode/bin"
+cat > "$TMP/.opencode/bin/check-agent-mirror-sync.cjs" <<'CHECKER'
+console.log('NOT CHECKABLE: the built frontmatter parser is missing');
+process.exit(3);
+CHECKER
+stage_new ".opencode/agents/probe.md" "agent"
+run_hook; RC=$?
+check "a not-checkable mirror checker warns and skips" 0 "$RC" "agent mirror-sync is not checkable"
+
+# ── 65. a mirror checker that reports drift still blocks ──
+setup_gate_fixture
+mkdir -p "$TMP/.opencode/bin"
+cat > "$TMP/.opencode/bin/check-agent-mirror-sync.cjs" <<'CHECKER'
+console.log('DRIFT  probe [claude]');
+process.exit(1);
+CHECKER
+stage_new ".opencode/agents/probe.md" "agent"
+run_hook; RC=$?
+check "a drifted mirror still blocks the commit" 1 "$RC" "staged agent files desync"
 echo ""
 echo "pre-commit gates: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]
