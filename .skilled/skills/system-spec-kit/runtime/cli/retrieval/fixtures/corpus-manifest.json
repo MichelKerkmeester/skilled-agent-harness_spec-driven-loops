@@ -1,5 +1,5 @@
 {
-  "corpusHash": "38a304f81cd1d4cb78c21374736c2fe206928459e64a9cec9ee186104aca4fa0",
+  "corpusHash": "921e6c744f6dbd539b0284b424a0709f0419aeff2a89bf5ee3960fd408801f9a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24172,
+  "includedPathCount": 24176,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -13946,6 +13946,10 @@
     "specs/system-deep-loop/039-deprecate-improvement-modes/012-residual-reference-sweep/plan.md",
     "specs/system-deep-loop/039-deprecate-improvement-modes/012-residual-reference-sweep/spec.md",
     "specs/system-deep-loop/039-deprecate-improvement-modes/012-residual-reference-sweep/tasks.md",
+    "specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/implementation-summary.md",
+    "specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/plan.md",
+    "specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/spec.md",
+    "specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/tasks.md",
     "specs/system-deep-loop/039-deprecate-improvement-modes/spec.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/implementation-summary.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/plan.md",
@@ -24203,7 +24207,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ecd5e9f9f5f8ac79e57694b300f95b0cc273af19c04a3ef84f85b26d4978412f",
+  "manifestHash": "f012f70c8216da33fb9438305cb31337c3062a0252545bc3314fde50baf1d79b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27715,6 +27719,10 @@
     },
     {
       "path": "specs/system-deep-loop/039-deprecate-improvement-modes/012-residual-reference-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/scratch",
       "reason": "excluded directory"
     },
     {

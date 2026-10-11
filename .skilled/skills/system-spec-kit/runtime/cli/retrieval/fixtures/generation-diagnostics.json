@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 6620,
-    "ok": 14005,
+    "ok": 14009,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 24172,
+  "documentsScanned": 24176,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "ecd5e9f9f5f8ac79e57694b300f95b0cc273af19c04a3ef84f85b26d4978412f",
+  "manifestHash": "f012f70c8216da33fb9438305cb31337c3062a0252545bc3314fde50baf1d79b",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36009,
+      "ok": 36017,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -68106,6 +68106,10 @@
     },
     {
       "path": "specs/system-deep-loop/039-deprecate-improvement-modes/012-residual-reference-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/scratch",
       "reason": "excluded directory"
     },
     {

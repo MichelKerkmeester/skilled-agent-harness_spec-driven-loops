@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ecd5e9f9f5f8ac79e57694b300f95b0cc273af19c04a3ef84f85b26d4978412f",
+  "manifestHash": "f012f70c8216da33fb9438305cb31337c3062a0252545bc3314fde50baf1d79b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -38299,6 +38299,18 @@
     ],
     "drift guard passes again": [
       "drift guard passes again"
+    ],
+    "drift guard repairs": [
+      "drift guard repairs"
+    ],
+    "drift guard repairs implementation summary": [
+      "drift guard repairs implementation summary"
+    ],
+    "drift guard repairs plan": [
+      "drift guard repairs plan"
+    ],
+    "drift guard repairs tasks": [
+      "drift guard repairs tasks"
     ],
     "drift guard scripts path fixed": [
       "drift guard scripts path fixed"
@@ -83331,6 +83343,9 @@
     "router state active": [
       "router state active"
     ],
+    "router sync baseline tasks": [
+      "router-sync baseline tasks"
+    ],
     "router sync guard": [
       "router sync guard",
       "router-sync guard"
@@ -83343,6 +83358,9 @@
     ],
     "router sync guard tasks": [
       "router sync guard tasks"
+    ],
+    "router sync ignored files": [
+      "router-sync ignored files"
     ],
     "router sync orphan check": [
       "router sync orphan check"
@@ -83433,6 +83451,12 @@
     ],
     "routing completeness": [
       "routing completeness"
+    ],
+    "routing corpus baseline recapture": [
+      "routing corpus baseline recapture"
+    ],
+    "routing corpus proof commands": [
+      "routing corpus proof commands"
     ],
     "routing decisions": [
       "routing decisions"
