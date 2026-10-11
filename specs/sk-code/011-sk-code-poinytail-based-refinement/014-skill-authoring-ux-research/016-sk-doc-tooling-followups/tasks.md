@@ -31,7 +31,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Add the failing catalog cases
+- [x] T001 Add the failing catalog cases
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -39,10 +39,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Tighten the exemption
-- [ ] T003 Copy the collision remedy
-- [ ] T004 Add the changelog lines
-- [ ] T005 Restore the mode
+- [x] T002 Tighten the exemption
+- [x] T003 Copy the collision remedy
+- [x] T004 Add the changelog lines
+- [x] T005 Restore the mode
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -50,7 +50,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 Validate and commit
+- [x] T006 Validate and commit
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -58,9 +58,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Every goal.md criterion passes on the orchestrator's rerun
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every goal.md criterion passes on the orchestrator's rerun
 <!-- /ANCHOR:completion -->
 
 ---

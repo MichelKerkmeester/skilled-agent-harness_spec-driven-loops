@@ -40,9 +40,9 @@ Close the four remaining review findings in the sk-doc tooling. The orchestrator
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All goal.md criteria pass on the orchestrator's rerun
-- [ ] Every new test failed once before its change
-- [ ] Strict validation passes
+- [x] All goal.md criteria pass on the orchestrator's rerun
+- [x] Every new test failed once before its change
+- [x] Strict validation passes
 <!-- /ANCHOR:quality-gates -->
 
 ---

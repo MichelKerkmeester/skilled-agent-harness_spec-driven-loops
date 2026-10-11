@@ -114,6 +114,7 @@ and findings belong here.
 | Remediation phases 002 to 009 planned | Done | One child per file area, each with its own goal |
 | Phases 002 to 009 built and committed | Done | Each phase closed with its criteria rerun and strict validation |
 | Phase 010 added and built | Done | Validator false positives handed off by the feature-catalog track |
+| Review findings remediated | Done | Phases 012 to 016 close both P1 and all ten P2 findings of phase 011 |
 | Phase 011 review | Done | Five-iteration deep review; 2 P1 and 10 P2 in `011-remediation-deep-review/review/review-report.md` |
 
 ### Deviations and findings
@@ -121,6 +122,7 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | Standard packet turned phase parent | The operator asked for the remediation phases as children of this packet. The research moved into 001-authoring-ux-research, and its goal criteria were amended to the new paths |
+| Criteria amended to sixteen children and fifteen commits | Phases 012 to 016 joined from the operator's fix round on the phase 011 review |
 | Criteria amended from nine to ten children and commits | Phase 010 joined after the plan, from a handoff by the feature-catalog track |
 | Criteria amended from ten to eleven children | Phase 011 adds the deep review of phases 002 to 010 |
 | Phase 003 dropped the version removal | The reader search showed the changelog and commit-hook phases stop the drift at far lower cost |

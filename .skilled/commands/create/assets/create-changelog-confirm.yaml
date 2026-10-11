@@ -498,7 +498,10 @@ workflow:
             Check work_context.summary for trigger keywords
             Default to "patch" if no clear signal
       - "Calculate next version using version_bump_rules.calculation"
-      - "Verify no collision with existing files, locally or in the upstream listing"
+      - |
+        Verify no collision:
+          IF file v{next_version}.md already exists locally or in the upstream listing:
+            Increment BUILD segment until unique
     outputs:
       - next_version: "Calculated version string (e.g., v2.1.0.0)"
       - bump_type_used: "major/minor/patch/build"

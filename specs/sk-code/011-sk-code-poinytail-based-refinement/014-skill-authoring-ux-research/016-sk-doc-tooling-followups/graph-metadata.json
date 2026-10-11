@@ -36,7 +36,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -44,7 +44,9 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_validate_catalog_package.py",
       ".skilled/commands/create/assets/create-changelog-confirm.yaml",
+      ".hermes/skills/sk-create-feature-catalog/SKILL.md",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs"
     ],
     "entities": [
@@ -85,9 +87,21 @@
         "source": "derived"
       },
       {
+        "name": "test_validate_catalog_package.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_validate_catalog_package.py",
+        "source": "derived"
+      },
+      {
         "name": "create-changelog-confirm.yaml",
         "kind": "config",
         "path": ".skilled/commands/create/assets/create-changelog-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/sk-create-feature-catalog/SKILL.md",
         "source": "derived"
       },
       {
@@ -179,23 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The review found that the catalog validator passes any gitignored or dangling path and depends on machine excludes (P2-02), confirm mode detects an upstream collision with no remedy (P2-06), the package and catalog validator changes have no changelog line (P2-09), and regenerate-skill-derived.cjs lost its executable bit (P2-10)",
     "created_at": "2026-10-10T23:56:41Z",
-    "last_save_at": "2026-10-11T00:03:51.120Z",
+    "last_save_at": "2026-10-11T00:37:45.552Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:805b9570a8341e2a6a46f2fd5b20c58d92d2aa0fb58e4b9aad71a09be584db12",
+    "source_fingerprint": "sha256:07553cba8b9c70528406332ad964b161f5f9130b616b9983b8194fe3f1d95560",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "43b0c007835491e759a786aecbdb3fbd4717ebcb7b8904047c562e4cf2c9538f",
-      "plan.md": "c7a220028b8856f7e3549ecfb5888f22551c2fdb119c73b8100031666602fcbc",
-      "tasks.md": "254e12e2090f510cd085100b7d171006026c5adc085d74839846c6e160a391da",
-      "implementation-summary.md": "bb757cd79ce80ec77c1f05602ca7623ab4282672976e6ccb98366411b89f2f19"
+      "spec.md": "cad2e6ba649063e93c35dbdc78d930394d8d463bd47f9802b688b53085d1acc8",
+      "plan.md": "fdd50fb94d4eec63e34669f2016e04133b57fdc6effb54e2a387184055079cf2",
+      "tasks.md": "2685f21b815185a3f448b0a6d6112044279209fb2574c380750510423b0cabd1",
+      "implementation-summary.md": "b38a403d35ef781475397d84320535df64735310fceaa829eec33acdf155acd6"
     },
     "last_active_at": null
   }

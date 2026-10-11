@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research"
     last_updated_at: "2026-10-10T20:00:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Built and committed remediation phases 002 to 010"
+    recent_action: "Built and committed remediation phases 002 to 016"
     next_safe_action: "Merge review by the master orchestrator"
     blockers: []
     key_files: []
@@ -38,7 +38,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-10 |
 | **Branch** | `worktrees/095-skill-authoring-ux-research` |
 | **Parent Spec** | `../spec.md` |
@@ -120,7 +120,7 @@ Fix every finding from phase 001 with the smallest change that stops the error w
 | 13 | 013-python-advisor-native-and-parity/ | Keep skill_advisor.py on the native scorer after the daemon idles out, port the path and doc-target rules, and make both batteries refuse a non-native row | Complete |
 | 14 | 014-gate-index-and-deletions/ | Make the skill authoring gate see deletions and unstaged regenerations and say when it cannot run | Complete |
 | 15 | 015-freshness-strict-content/ | Make the strict freshness panel compare compiled signals and families with disk | Complete |
-| 16 | 016-sk-doc-tooling-followups/ | Tighten the catalog validator exemption, give confirm mode its collision remedy, record the validator changes and restore an executable bit | Planned |
+| 16 | 016-sk-doc-tooling-followups/ | Tighten the catalog validator exemption, give confirm mode its collision remedy, record the validator changes and restore an executable bit | Complete |
 
 ### Phase Transition Rules
 

@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-014-016-sk-doc-tooling-followups"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -73,10 +73,12 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase planned | Done | spec.md, plan.md, tasks.md and this goal written by the orchestrator |
+| Validator | Done | t3-p016a |
+| Confirm remedy, changelogs, mode | Done | orchestrator |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | Recorded here as the phase runs |
+| None | The build matched the plan |
 <!-- /ANCHOR:log -->
