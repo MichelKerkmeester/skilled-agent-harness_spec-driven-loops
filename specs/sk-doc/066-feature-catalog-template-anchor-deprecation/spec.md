@@ -99,6 +99,7 @@ Remove the comment at its producer so new catalogs never get it, then remove eve
 | 6 | 006-skill-package-doc-findings/ | Fix skill package findings on six units | Complete |
 | 7 | 007-sk-code-script-kebab-names/ | Rename three sk-code scripts to kebab-case | Complete |
 | 8 | 008-remediation-deep-review/ | Deep review of phases 1 to 7, PASS with five P2 | Complete |
+| 9 | 009-review-remediation/ | Fix the five review findings and two tooling-track handoffs | Complete |
 
 ### Phase Transition Rules
 
@@ -118,6 +119,7 @@ Remove the comment at its producer so new catalogs never get it, then remove eve
 | 006-skill-package-doc-findings | 007-sk-code-script-kebab-names | Six units pass the strict package check | `package_skill.py --strict` prints PASS |
 | 007-sk-code-script-kebab-names | 003-feature-catalog-findings | sk-code-opencode passes with its tests green | Package PASS, tests and drift guards pass |
 | 003-feature-catalog-findings | 008-remediation-deep-review | Phases 1 to 7 committed | `git log main..HEAD` lists their eight commits |
+| 008-remediation-deep-review | 009-review-remediation | The review report lists its findings | `review/review-report.md` names F-001 to F-005 |
 <!-- /ANCHOR:phase-map -->
 
 ---

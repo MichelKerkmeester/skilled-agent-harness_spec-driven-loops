@@ -11,7 +11,8 @@
     "sk-doc/066-feature-catalog-template-anchor-deprecation/005-changelog-version-keys",
     "sk-doc/066-feature-catalog-template-anchor-deprecation/006-skill-package-doc-findings",
     "sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names",
-    "sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review"
+    "sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review",
+    "sk-doc/066-feature-catalog-template-anchor-deprecation/009-review-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -43,7 +44,7 @@
       "packet"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -54,7 +55,8 @@
       "005-changelog-version-keys/goal.md",
       "006-skill-package-doc-findings/goal.md",
       "007-sk-code-script-kebab-names/goal.md",
-      "008-remediation-deep-review/goal.md"
+      "008-remediation-deep-review/goal.md",
+      "009-review-remediation/goal.md"
     ],
     "entities": [
       {
@@ -130,13 +132,13 @@
         "source": "derived"
       },
       {
-        "name": "1. DURABLE DIRECTIVE",
-        "kind": "heading",
+        "name": "their JSON",
+        "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Decisions",
+        "name": "1. DURABLE DIRECTIVE",
         "kind": "heading",
         "path": "goal.md",
         "source": "derived"
@@ -144,17 +146,17 @@
     ],
     "causal_summary": "Every feature catalog document opens with a template-name HTML comment under its H1, `<!-- sk-doc-template: skillassetfeaturecatalog -->`, and 19 older files carry a hyphenated spelling of it",
     "created_at": "2026-10-10T18:42:45Z",
-    "last_save_at": "2026-10-10T21:57:21.952Z",
+    "last_save_at": "2026-10-11T00:03:17.848Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:5d66f442535f6d2eb509fa196a24ccf8b13569a1ddebcbb49f48d0d61c47430a",
+    "source_fingerprint": "sha256:9637bf58002aee676e248b2e99ced42a701caf63c363e0a2a03ae339f689043a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0213684d9a01e6aed5ea064b03a19e2211f2ce1e69e99e58515207baa3d722d2"
+      "spec.md": "4f03c59af107202b6ab3702ccbebed36cab77264b70bc2705fce731d7ebde4d1"
     },
     "last_active_at": null
   }

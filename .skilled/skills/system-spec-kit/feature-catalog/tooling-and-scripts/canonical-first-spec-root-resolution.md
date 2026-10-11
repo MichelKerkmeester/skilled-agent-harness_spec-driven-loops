@@ -24,7 +24,7 @@ The implementation is present on this implementation branch. Its real-data migra
 
 ### Canonical Selection And Compatibility
 
-`resolveSpecFolderCanonical()` preserves absolute paths and paths explicitly qualified with `specs/` or its legacy `.opencode/specs/` spelling. For an unqualified packet identity, it checks the canonical packet first, falls back to a unique existing legacy packet for reads, and otherwise returns the canonical destination for a new packet. The shared config helper follows the same canonical-before-legacy order while `getAllExistingSpecsDirs()` can still enumerate both distinct roots.
+`resolveSpecFolderCanonical()` preserves absolute paths and paths explicitly qualified with `specs/` or the legacy `specs` root under `.opencode`. For an unqualified packet identity, it checks the canonical packet first, falls back to a unique existing legacy packet for reads, and otherwise returns the canonical destination for a new packet. The shared config helper follows the same canonical-before-legacy order while `getAllExistingSpecsDirs()` can still enumerate both distinct roots.
 
 ### Collision And Write Safety
 

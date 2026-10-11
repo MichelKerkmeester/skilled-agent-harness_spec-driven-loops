@@ -58,7 +58,7 @@ Four DeepSeek V4.1 Flash builders wrote the bulk scripts, each dry-run before on
 |------|--------|---------|
 | About 380 catalog docs | Modified | Fixes |
 | `validate_catalog_package.py` | Modified | Warn tier |
-| 19 `changelog/v*.md` files | Created | Entries |
+| 20 `changelog/v*.md` files | Created | Entries |
 | Four `scratch/*.py` scripts | Created | One-run fixes |
 <!-- /ANCHOR:what-built -->
 
@@ -102,7 +102,7 @@ Builders reported dry-run receipts and their own checks. The orchestrator applie
 ## Known Limitations
 
 1. **15 findings remain by design.** Six root rows name `DESIGN.md`, `research/research.md` or `handover.md` as output or document names; eight prose paths name the legacy `.opencode/specs` alias, the gitignored `hook-flags.env`, the runtime loop-guard log or the sk-vision plugin symlink; one source row names that symlink. The validator needs an exemption for these.
-2. **Hub bumps handed off.** cli-classifier, cli-external-orchestration, mcp-tooling, sk-code, sk-doc and system-deep-loop.
+2. **Hub bumps handed off.** cli-classifier 0.8.1.0 to 0.8.2.0, cli-external-orchestration 1.7.2.0 to 1.7.3.0, mcp-tooling 1.8.1.0 to 1.8.2.0, sk-code 2.2.8.0 to 2.2.9.0, sk-doc 2.3.1.0 to 2.3.2.0 and system-deep-loop 1.5.4.0 to 1.5.5.0.
 <!-- /ANCHOR:limitations -->
 
 ---

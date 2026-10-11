@@ -46,7 +46,7 @@ contextType: "general"
 - [x] T006 Builders: stale paths in system-spec-kit, system-skill-advisor, system-deep-loop, sk-design, sk-vision and sk-doc
 - [x] T007 Builder: mcp-click-up unshipped labels and sk-git placeholder rows
 - [x] T008 Narrow the warn-tier list to five packages
-- [x] T009 Bump 19 non-hub units with `../scratch/bump_units.py`
+- [x] T009 Bump 20 non-hub units (19 with a `SKILL.md`) with `../scratch/bump_units.py`
 <!-- /ANCHOR:phase-2 -->
 
 ---

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "58168c567ef35d5aa156407bc002e8e4636f188a8e6c84cd2f20b715025a4c83",
+  "corpusHash": "dc9a76ceb9b66cb23db63205741d9035bb0a116695ecb3497d73fbf355546219",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24422,
+  "includedPathCount": 24437,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -573,6 +573,7 @@
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.4.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.5.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.6.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.7.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/agent-routing/context-profile.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/agent-routing/debug-profile.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/agent-routing/multi-ai-council-profile.md",
@@ -802,6 +803,7 @@
     ".skilled/skills/cli-external-orchestration/cli-cursor/changelog/v1.4.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-cursor/changelog/v1.5.0.0.md",
     ".skilled/skills/cli-external-orchestration/cli-cursor/changelog/v1.5.1.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-cursor/changelog/v1.5.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/agents-skills-rules/agent-mirror-integrity.md",
     ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/agents-skills-rules/agent-roster-enumeration.md",
     ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/agents-skills-rules/command-roster-invocation.md",
@@ -1787,6 +1789,7 @@
     ".skilled/skills/mcp-code-mode/changelog/v1.0.0.0.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.0.31.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.1.0.md",
+    ".skilled/skills/mcp-code-mode/changelog/v1.0.10.0.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.2.0.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.3.0.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.4.0.md",
@@ -2228,6 +2231,7 @@
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.0.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.1.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.2.0.md",
+    ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.3.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/examples/README.md",
     ".skilled/skills/mcp-tooling/mcp-figma/examples/optional-mcp-context.md",
     ".skilled/skills/mcp-tooling/mcp-figma/feature-catalog/a11y-and-analysis/a11y-and-analysis.md",
@@ -3329,6 +3333,7 @@
     ".skilled/skills/sk-design/sk-design-md-generator/changelog/v1.1.0.0.md",
     ".skilled/skills/sk-design/sk-design-md-generator/changelog/v1.1.1.0.md",
     ".skilled/skills/sk-design/sk-design-md-generator/changelog/v1.1.2.0.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/changelog/v1.1.3.0.md",
     ".skilled/skills/sk-design/sk-design-md-generator/feature-catalog/cluster-classify/cluster-classify.md",
     ".skilled/skills/sk-design/sk-design-md-generator/feature-catalog/extract/extract.md",
     ".skilled/skills/sk-design/sk-design-md-generator/feature-catalog/feature-catalog.md",
@@ -6281,6 +6286,7 @@
     ".skilled/skills/sk-doc/sk-create-feature-catalog/changelog/v1.0.2.0.md",
     ".skilled/skills/sk-doc/sk-create-feature-catalog/changelog/v1.0.3.0.md",
     ".skilled/skills/sk-doc/sk-create-feature-catalog/changelog/v1.0.4.0.md",
+    ".skilled/skills/sk-doc/sk-create-feature-catalog/changelog/v1.0.5.0.md",
     ".skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/catalog-structure/create-root-catalog-package.md",
     ".skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/catalog-structure/preserve-root-leaf-bijection.md",
     ".skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/manual-testing-playbook.md",
@@ -7193,6 +7199,7 @@
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.3.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.4.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.5.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.6.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.2.0.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.2.1.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.2.2.0.md",
@@ -7501,6 +7508,7 @@
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.4.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.5.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.6.0.md",
+    ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.7.0.md",
     ".skilled/skills/system-deep-loop/runtime/database/README.md",
     ".skilled/skills/system-deep-loop/runtime/feature-catalog/council/adjudicator-verdict-scoring.md",
     ".skilled/skills/system-deep-loop/runtime/feature-catalog/council/cost-guards.md",
@@ -8132,6 +8140,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.7.4.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.5.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.6.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.7.7.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
@@ -12090,6 +12099,12 @@
     "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/review-report.md",
     "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/spec.md",
     "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/tasks.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/009-review-remediation/acceptance-criteria.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/009-review-remediation/goal.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/009-review-remediation/implementation-summary.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/009-review-remediation/plan.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/009-review-remediation/spec.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/009-review-remediation/tasks.md",
     "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/goal.md",
     "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/spec.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
@@ -24453,7 +24468,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "67a97ac73dbf1964f570af26c625c74904cb5398dfa83dde02d8fec1a253f5f4",
+  "manifestHash": "25248c1b69fbb50a5fb60f11b772e5fba092b5ffa10c5042e0b8e8e04b821c1f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27145,6 +27160,10 @@
     },
     {
       "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/009-review-remediation/scratch",
       "reason": "excluded directory"
     },
     {

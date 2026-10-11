@@ -85,7 +85,7 @@ Every catalog finding is fixed or carries a stated reason, and every repaired pa
 |-----------|-------------|-------------|
 | `.skilled/skills/**/feature-catalog/**/*.md` (about 380 files) | Modify | Catalog fixes |
 | `sk-create-feature-catalog/scripts/validate_catalog_package.py` | Modify | Warn-tier list |
-| 19 unit version carriers and `changelog/v*.md` entries | Modify and create | Patch bump |
+| 20 unit `changelog/v*.md` entries and 19 `SKILL.md` version carriers | Modify and create | Patch bump |
 | Four `scratch/*.py` scripts | Create | One-run fixes |
 <!-- /ANCHOR:scope -->
 

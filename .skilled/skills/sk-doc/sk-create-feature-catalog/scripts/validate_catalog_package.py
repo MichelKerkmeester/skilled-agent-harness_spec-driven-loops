@@ -61,9 +61,6 @@ SK_DOC_NAME = 'sk-doc'
 # packages absent from this list (including any newly created catalog) fail closed from
 # their first validation.
 WARN_PACKAGE_IDS = frozenset({
-    'mcp-tooling/mcp-figma',
-    'sk-design/sk-design-md-generator',
-    'system-deep-loop/deep-research',
     'system-deep-loop/runtime',
     'system-spec-kit',
 })

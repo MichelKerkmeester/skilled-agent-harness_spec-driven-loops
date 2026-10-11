@@ -191,7 +191,7 @@
     ],
     "causal_summary": "`validatecatalogpackage.py` reported 761 findings: 303 off-taxonomy validation types, 110 packet-history lines, 166 root and leaf title or description mismatches, 91 plain-text root rows, 23 orphan leaves, 44 missing prose paths, 20 missing source paths and 4 unshipped labels on shipped features",
     "created_at": "2026-10-10T19:23:28Z",
-    "last_save_at": "2026-10-10T20:56:34.683Z",
+    "last_save_at": "2026-10-10T23:56:35.170Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a22cc2a50f98211c9c4b8c8b332960c2590d291a9b90eec21824c1b47f81844e",
+    "source_fingerprint": "sha256:d0d34dac906527b49972018522804a6b79fa99210b73a16c15bd74f506300095",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "37e31265cb75998d8af1df655eb9efd354b4659d2f183fcc51c1b9190625191e",
+      "spec.md": "a0772157a2614a4b19bcf4d9be0b3a830bd04bbcc69975c38f96c552c815c591",
       "plan.md": "822b51fc8a409d9e8372b3eec2a23cb0b99294205c341c7c83f2b4561fb9cbb4",
-      "tasks.md": "a34b7d3fd8fc46fefcc790fe890ce03fc13e943a0065cf7d1162ee777e61efbb",
-      "implementation-summary.md": "c4cb35a79ab0a906570cf50c485e4a73b1394059afce77177940e0699050c65b"
+      "tasks.md": "9fce94cf79b31be677093e96ed2a9470417110e48cbc25c6883a56ba482054c4",
+      "implementation-summary.md": "2a05aac2c9cbd6ae134fcb8b4e01b23aa8165d8f729043e659dd4707b8a6e768"
     },
     "last_active_at": null
   }

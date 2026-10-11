@@ -19,7 +19,7 @@ Use this catalog as the canonical inventory for the live `deep-research` feature
 | Loop lifecycle | 10 features | [`.skilled/commands/deep/research.md`](../../../../commands/deep/research.md), auto and confirm YAML workflows, fan-out runtime primitives, operator controls |
 | State management | 8 features | `research/deep-research-*.json`, `research/findings-registry.json`, reducer-owned strategy and dashboard surfaces |
 | Convergence | 6 features | [`references/convergence/convergence.md`](../references/convergence/convergence.md), workflow legal-stop gates, graph convergence hooks, minimum-iteration floor, divergent pivots |
-| Research output | 2 features | `research/research.md`, iteration files, reducer-backed negative knowledge surfaces |
+| Research output | 2 features | the research synthesis under `research/`, iteration files, reducer-backed negative knowledge surfaces |
 
 ---
 

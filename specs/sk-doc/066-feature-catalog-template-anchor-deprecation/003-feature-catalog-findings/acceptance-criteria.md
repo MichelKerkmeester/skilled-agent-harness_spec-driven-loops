@@ -53,7 +53,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 |-------|-----|---------------------|--------------|--------|--------|
 | AC-001 | REQ-001 | Given the catalogs, When the validator runs, Then only reasoned findings remain | 15 findings (3 fail, 12 warn), down from 761 (42 fail, 719 warn) | Met | - |
 | AC-002 | REQ-002 | Given a clean package, When the validator runs, Then it fails closed | The warn tier lists five packages, down from 24 | Met | - |
-| AC-003 | REQ-003 | Given the changed units, When versions are read, Then each non-hub unit is one patch higher | 19 entries; six hub bumps handed off | Met | - |
+| AC-003 | REQ-003 | Given the changed units, When versions are read, Then each non-hub unit is one patch higher | 20 entries, 19 of them with a `SKILL.md` bump; six hub bumps handed off | Met | - |
 
 ### Status values
 

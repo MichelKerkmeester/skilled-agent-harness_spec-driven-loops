@@ -48,7 +48,7 @@ Frozen choices. Changing one is an amendment.
 | D2 | One deterministic script kept in phase 2's scratch removes the existing copies, run once. |
 | D3 | The other template-name comments are removed the same way in their own phase. |
 | D4 | Each finding is fixed or dropped with a recorded reason; tooling fixes are handed off. |
-| D5 | Hub version bumps are handed off, because their JSON version fields belong to another owner. |
+| D5 | Phase 002 bumped six hubs with their JSON fields; from phase 003 on, hub bumps are handed off, because those fields belong to another owner. |
 
 <!-- /ANCHOR:directive -->
 
@@ -70,6 +70,7 @@ phase and binds as if written here.
 | 006-skill-package-doc-findings | `006-skill-package-doc-findings/goal.md` |
 | 007-sk-code-script-kebab-names | `007-sk-code-script-kebab-names/goal.md` |
 | 008-remediation-deep-review | `008-remediation-deep-review/goal.md` |
+| 009-review-remediation | `009-review-remediation/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -85,7 +86,7 @@ string, not these files.
 
 - [x] `git grep -E 'sk-doc-template: skill_asset_feature[_-]catalog' -- .skilled .hermes ':!**/changelog/**'` prints no match
 - [x] `validate_catalog_package.py --report-only` reports 15 findings, down from 761, each recorded with a reason
-- [x] sk-create-feature-catalog reads version 1.0.2.0, and every other skill or mode whose catalog changed has a bumped `SKILL.md` version and a matching new changelog entry
+- [x] sk-create-feature-catalog reads version 1.0.5.0, and every other skill or mode whose catalog changed has a bumped `SKILL.md` version and a matching new changelog entry
 - [x] `sync-skills-hermes.cjs --check` and the trigger index check both pass
 - [x] Each child goal's criteria pass
 - [x] `validate.sh --recursive --strict` on this packet prints RESULT: PASSED for the parent and every child

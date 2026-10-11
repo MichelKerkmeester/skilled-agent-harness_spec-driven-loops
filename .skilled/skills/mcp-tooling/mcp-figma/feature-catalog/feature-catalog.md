@@ -101,7 +101,7 @@ Move a design system out of Figma (read-only) or into Figma (gated). `extract` p
 
 | Feature | One-line description | Class | figma-ds-cli command |
 |---|---|---|---|
-| Extract DESIGN.md | Reads the design system to a `DESIGN.md` (11 sections + token JSON; auto-splits) | READ-ONLY (explicit output) | `figma-ds-cli extract [output] [--pages --sections --selection --split/--no-split]` |
+| Extract DESIGN file | Reads the design system to a DESIGN markdown file (11 sections + token JSON; auto-splits) | READ-ONLY (explicit output) | `figma-ds-cli extract [output] [--pages --sections --selection --split/--no-split]` |
 | Import design system | Imports Tailwind/CSS/tokens.json/Storybook into Figma collections | MUTATING | `figma-ds-cli import <source> [-c <collection> --save --type <tailwind\|css\|tokens\|storybook\|designmd> --print-context]` |
 
 See [`design-system-extract-and-import/design-system-extract-and-import.md`](../feature-catalog/design-system-extract-and-import/design-system-extract-and-import.md) for the extract output rule and the import gate.
