@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation"
-    last_updated_at: "2026-10-11T19:00:00Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-10-12T09:00:00Z"
+    last_updated_by: "rem-integration"
+    recent_action: "Merged the four build phases on one integration branch"
+    next_safe_action: "Operator reviews the integration branch before any push"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-021-parent"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -98,10 +98,10 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Scaffold | Done | Parent and four children created with create.sh phase mode, `--path`, `--level 1` and `--with-goal`; each child spec lists its ledger rows |
-| 001 typo-proof parsers | Pending | |
-| 002 onboarding fixes | Pending | |
-| 003 doc and catalog truth | Pending | |
-| 004 routing parity CI | Pending | |
+| 001 typo-proof parsers | Done | Branch 112 merged on `worktrees/116-rem-integration`; 68 ledger rows Fixed plus the extra row X1, goal 5/5 |
+| 002 onboarding fixes | Done | Branch 113 merged on `worktrees/116-rem-integration`; 14 rows Fixed or Closed, goal 5/5 |
+| 003 doc and catalog truth | Done | Branch 114 merged on `worktrees/116-rem-integration`; 17 rows Fixed or Closed, goal 5/5 |
+| 004 routing parity CI | Done | Branch 115 merged on `worktrees/116-rem-integration`; 9 rows Fixed or Closed, goal 5/5 |
 
 ### Deviations and findings
 

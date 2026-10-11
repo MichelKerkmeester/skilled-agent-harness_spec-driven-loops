@@ -10,17 +10,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation"
-    last_updated_at: "2026-10-11T19:00:00Z"
-    last_updated_by: "scaffold"
-    recent_action: "Scaffolded the parent and its four build children"
-    next_safe_action: "Build each child in its own worktree branched from the scaffold commit"
+    last_updated_at: "2026-10-12T09:00:00Z"
+    last_updated_by: "rem-integration"
+    recent_action: "Merged the four build branches and marked every phase Complete"
+    next_safe_action: "Operator reviews the integration branch before any push"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +37,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-11 |
 | **Branch** | `worktrees/111-open-ends-integration` |
 | **Parent Spec** | `../spec.md` |
@@ -95,10 +95,10 @@ Close every recommendation, Fixed with a command proof or Closed with a written 
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-typo-proof-parsers/ | Reject unknown options with exit 2 and exit non-zero on detected problems, 68 rows | Pending |
-| 2 | 002-onboarding-fixes/ | Fresh-clone onboarding fixes R1, R2 and R4 to R11; R3 and R12 to R14 closed | Pending |
-| 3 | 003-doc-and-catalog-truth/ | Version on `SKILL.md` only, and catalog, citation and playbook checks | Pending |
-| 4 | 004-routing-parity-ci/ | Divergence ratchet blocking in CI, pinned clock, wider holdout check | Pending |
+| 1 | 001-typo-proof-parsers/ | Reject unknown options with exit 2 and exit non-zero on detected problems, 68 rows | Complete |
+| 2 | 002-onboarding-fixes/ | Fresh-clone onboarding fixes R1, R2 and R4 to R11; R3 and R12 to R14 closed | Complete |
+| 3 | 003-doc-and-catalog-truth/ | Version on `SKILL.md` only, and catalog, citation and playbook checks | Complete |
+| 4 | 004-routing-parity-ci/ | Divergence ratchet blocking in CI, pinned clock, wider holdout check | Complete |
 
 ### Phase Transition Rules
 
