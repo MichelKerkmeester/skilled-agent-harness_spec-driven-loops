@@ -1,5 +1,5 @@
 {
-  "manifestHash": "890f6ea72a6822918425f66ef4a3da73fb41b1f96b600ff248dfd755f4a9ffbf",
+  "manifestHash": "3c9654083fb1e191bcc23b0ff107fa4a3c39692a344732b7798b49c550eee2a7",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8204,6 +8204,18 @@
     "admission ci blocking": [
       "admission ci blocking"
     ],
+    "admission corpus pin": [
+      "admission corpus pin"
+    ],
+    "admission corpus pin implementation summary": [
+      "admission corpus pin implementation summary"
+    ],
+    "admission corpus pin plan": [
+      "admission corpus pin plan"
+    ],
+    "admission corpus pin tasks": [
+      "admission corpus pin tasks"
+    ],
     "admission research fan out": [
       "admission research fan-out"
     ],
@@ -8635,6 +8647,18 @@
     "advisor doc cleanup post extraction": [
       "advisor doc cleanup post-extraction"
     ],
+    "advisor doc target and engines": [
+      "advisor doc target and engines"
+    ],
+    "advisor doc target and engines implementation summary": [
+      "advisor doc target and engines implementation summary"
+    ],
+    "advisor doc target and engines plan": [
+      "advisor doc target and engines plan"
+    ],
+    "advisor doc target and engines tasks": [
+      "advisor doc target and engines tasks"
+    ],
     "advisor docs alignment": [
       "advisor docs alignment"
     ],
@@ -8895,6 +8919,18 @@
     ],
     "advisor move recalibration": [
       "advisor move recalibration"
+    ],
+    "advisor name mention scoring": [
+      "advisor name mention scoring"
+    ],
+    "advisor name mention scoring implementation summary": [
+      "advisor name mention scoring implementation summary"
+    ],
+    "advisor name mention scoring plan": [
+      "advisor name mention scoring plan"
+    ],
+    "advisor name mention scoring tasks": [
+      "advisor name mention scoring tasks"
     ],
     "advisor no match diagnostic": [
       "advisor no match diagnostic"
@@ -9329,6 +9365,18 @@
     "advisor surface audit": [
       "advisor surface audit"
     ],
+    "advisor surface hint": [
+      "advisor surface hint"
+    ],
+    "advisor surface hint implementation summary": [
+      "advisor surface hint implementation summary"
+    ],
+    "advisor surface hint plan": [
+      "advisor surface hint plan"
+    ],
+    "advisor surface hint tasks": [
+      "advisor surface hint tasks"
+    ],
     "advisor test 37 failures": [
       "advisor test 37 failures"
     ],
@@ -9403,6 +9451,18 @@
     ],
     "advisor vocabulary chart": [
       "advisor vocabulary chart"
+    ],
+    "advisor vocabulary freshness": [
+      "advisor vocabulary freshness"
+    ],
+    "advisor vocabulary freshness implementation summary": [
+      "advisor vocabulary freshness implementation summary"
+    ],
+    "advisor vocabulary freshness plan": [
+      "advisor vocabulary freshness plan"
+    ],
+    "advisor vocabulary freshness tasks": [
+      "advisor vocabulary freshness tasks"
     ],
     "advisor warm mechanism": [
       "advisor warm mechanism"
@@ -9956,6 +10016,9 @@
     ],
     "agent mirror checker banner": [
       "agent mirror checker banner"
+    ],
+    "agent mirror checker header": [
+      "agent mirror checker header"
     ],
     "agent mirror crosswalk": [
       "agent mirror crosswalk"
@@ -12311,6 +12374,18 @@
     ],
     "authored case digest guarantee": [
       "authored case digest guarantee"
+    ],
+    "authored classifier fixture": [
+      "authored classifier fixture"
+    ],
+    "authored classifier fixture implementation summary": [
+      "authored classifier fixture implementation summary"
+    ],
+    "authored classifier fixture plan": [
+      "authored classifier fixture plan"
+    ],
+    "authored classifier fixture tasks": [
+      "authored classifier fixture tasks"
     ],
     "authored continuity snapshot": [
       "authored continuity snapshot"
@@ -15513,6 +15588,9 @@
     "catalog v2 front proxy schema error codes plan": [
       "catalog v2 front proxy schema error codes plan"
     ],
+    "catalog validator ignored paths": [
+      "catalog validator ignored paths"
+    ],
     "category quantity comparison": [
       "category quantity comparison"
     ],
@@ -16012,6 +16090,9 @@
     "changelog enrichment steps": [
       "changelog enrichment steps"
     ],
+    "changelog entries carry their version": [
+      "changelog entries carry their version"
+    ],
     "changelog entry frontmatter check": [
       "changelog entry frontmatter check"
     ],
@@ -16166,6 +16247,18 @@
     "changelog shipped vs planned mislabel fix": [
       "changelog shipped vs planned mislabel fix"
     ],
+    "changelog single bump": [
+      "changelog single bump"
+    ],
+    "changelog single bump implementation summary": [
+      "changelog single bump implementation summary"
+    ],
+    "changelog single bump plan": [
+      "changelog single bump plan"
+    ],
+    "changelog single bump tasks": [
+      "changelog single bump tasks"
+    ],
     "changelog spacing plan": [
       "changelog spacing plan"
     ],
@@ -16208,6 +16301,9 @@
     "changelog update plan": [
       "changelog update plan"
     ],
+    "changelog upstream numbering": [
+      "changelog upstream numbering"
+    ],
     "changelog v4 0 0 3 reality check": [
       "changelog v4.0.0.3 reality check"
     ],
@@ -16237,6 +16333,24 @@
     ],
     "changelog version examples": [
       "changelog version examples"
+    ],
+    "changelog version keys": [
+      "changelog version keys"
+    ],
+    "changelog version keys acceptance criteria": [
+      "changelog version keys acceptance criteria"
+    ],
+    "changelog version keys goal": [
+      "changelog version keys goal"
+    ],
+    "changelog version keys implementation summary": [
+      "changelog version keys implementation summary"
+    ],
+    "changelog version keys plan": [
+      "changelog version keys plan"
+    ],
+    "changelog version keys tasks": [
+      "changelog version keys tasks"
     ],
     "changelogs constitutional and templates cleanup plan": [
       "changelogs-constitutional-and-templates cleanup plan"
@@ -18603,6 +18717,9 @@
     "cli classifier 0 8 0 0": [
       "cli-classifier 0.8.0.0"
     ],
+    "cli classifier 0 8 1 0": [
+      "cli-classifier 0.8.1.0"
+    ],
     "cli classifier audit findings": [
       "cli-classifier audit findings"
     ],
@@ -18743,6 +18860,9 @@
     ],
     "cli classifier v0 8 0 0": [
       "cli-classifier v0.8.0.0"
+    ],
+    "cli classifier v0 8 1 0": [
+      "cli-classifier v0.8.1.0"
     ],
     "cli claude code 1 0 0 0": [
       "cli-claude-code 1.0.0.0"
@@ -18990,6 +19110,12 @@
     "cli codex 1 9 5 0": [
       "cli-codex 1.9.5.0"
     ],
+    "cli codex 1 9 6 0": [
+      "cli-codex 1.9.6.0"
+    ],
+    "cli codex 1 9 7 0": [
+      "cli-codex 1.9.7.0"
+    ],
     "cli codex adapter": [
       "cli-codex adapter"
     ],
@@ -19155,6 +19281,12 @@
     "cli codex v1 9 5 0": [
       "cli-codex v1.9.5.0"
     ],
+    "cli codex v1 9 6 0": [
+      "cli-codex v1.9.6.0"
+    ],
+    "cli codex v1 9 7 0": [
+      "cli-codex v1.9.7.0"
+    ],
     "cli command aliases snake kebab camel": [
       "cli command aliases snake kebab camel"
     ],
@@ -19230,6 +19362,12 @@
     "cli cursor 1 5 0 0": [
       "cli-cursor 1.5.0.0"
     ],
+    "cli cursor 1 5 1 0": [
+      "cli-cursor 1.5.1.0"
+    ],
+    "cli cursor 1 5 2 0": [
+      "cli-cursor 1.5.2.0"
+    ],
     "cli cursor benchmark": [
       "cli-cursor benchmark"
     ],
@@ -19283,6 +19421,12 @@
     ],
     "cli cursor v1 5 0 0": [
       "cli-cursor v1.5.0.0"
+    ],
+    "cli cursor v1 5 1 0": [
+      "cli-cursor v1.5.1.0"
+    ],
+    "cli cursor v1 5 2 0": [
+      "cli-cursor v1.5.2.0"
     ],
     "cli decommission orphan removal": [
       "cli decommission orphan removal"
@@ -19638,6 +19782,12 @@
     "cli external orchestration 1 7 1 0": [
       "cli-external-orchestration 1.7.1.0"
     ],
+    "cli external orchestration 1 7 2 0": [
+      "cli-external-orchestration 1.7.2.0"
+    ],
+    "cli external orchestration 1 7 3 0": [
+      "cli-external-orchestration 1.7.3.0"
+    ],
     "cli external orchestration benchmark": [
       "cli-external-orchestration benchmark"
     ],
@@ -19718,6 +19868,12 @@
     ],
     "cli external orchestration v1 7 1 0": [
       "cli-external-orchestration v1.7.1.0"
+    ],
+    "cli external orchestration v1 7 2 0": [
+      "cli-external-orchestration v1.7.2.0"
+    ],
+    "cli external orchestration v1 7 3 0": [
+      "cli-external-orchestration v1.7.3.0"
     ],
     "cli fallback envelope normalization": [
       "cli fallback envelope normalization"
@@ -19817,6 +19973,12 @@
     ],
     "cli hermes 1 0 4 0": [
       "cli-hermes 1.0.4.0"
+    ],
+    "cli hermes 1 0 5 0": [
+      "cli-hermes 1.0.5.0"
+    ],
+    "cli hermes 1 0 6 0": [
+      "cli-hermes 1.0.6.0"
     ],
     "cli hermes benchmark": [
       "cli-hermes benchmark"
@@ -19919,6 +20081,12 @@
     ],
     "cli hermes v1 0 4 0": [
       "cli-hermes v1.0.4.0"
+    ],
+    "cli hermes v1 0 5 0": [
+      "cli-hermes v1.0.5.0"
+    ],
+    "cli hermes v1 0 6 0": [
+      "cli-hermes v1.0.6.0"
     ],
     "cli hermes validation report": [
       "cli-hermes validation report"
@@ -20469,6 +20637,12 @@
     "cli orca 0 1 0 0": [
       "cli-orca 0.1.0.0"
     ],
+    "cli orca 0 1 1 0": [
+      "cli-orca 0.1.1.0"
+    ],
+    "cli orca 0 1 2 0": [
+      "cli-orca 0.1.2.0"
+    ],
     "cli orca audit surfaces": [
       "cli-orca audit surfaces"
     ],
@@ -20534,6 +20708,12 @@
     ],
     "cli orca v0 1 0 0": [
       "cli-orca v0.1.0.0"
+    ],
+    "cli orca v0 1 1 0": [
+      "cli-orca v0.1.1.0"
+    ],
+    "cli orca v0 1 2 0": [
+      "cli-orca v0.1.2.0"
     ],
     "cli orchestration ram overload": [
       "CLI orchestration RAM overload"
@@ -24547,6 +24727,18 @@
     "commit grammar decision": [
       "commit grammar decision"
     ],
+    "commit hook checks": [
+      "commit hook checks"
+    ],
+    "commit hook checks implementation summary": [
+      "commit hook checks implementation summary"
+    ],
+    "commit hook checks plan": [
+      "commit hook checks plan"
+    ],
+    "commit hook checks tasks": [
+      "commit hook checks tasks"
+    ],
     "commit id allocator": [
       "commit-id allocator"
     ],
@@ -25012,6 +25204,18 @@
     ],
     "compiled route manifest refresh": [
       "compiled route manifest refresh"
+    ],
+    "compiled route manifest suite": [
+      "compiled route manifest suite"
+    ],
+    "compiled route manifest suite implementation summary": [
+      "compiled route manifest suite implementation summary"
+    ],
+    "compiled route manifest suite plan": [
+      "compiled route manifest suite plan"
+    ],
+    "compiled route manifest suite tasks": [
+      "compiled route manifest suite tasks"
     ],
     "compiled route obsidian proof": [
       "compiled-route obsidian proof"
@@ -28156,6 +28360,18 @@
     "create skill": [
       "create skill"
     ],
+    "create skill guidance": [
+      "create skill guidance"
+    ],
+    "create skill guidance implementation summary": [
+      "create skill guidance implementation summary"
+    ],
+    "create skill guidance plan": [
+      "create skill guidance plan"
+    ],
+    "create skill guidance tasks": [
+      "create skill guidance tasks"
+    ],
     "create skill library": [
       "create-skill library"
     ],
@@ -30738,6 +30954,15 @@
     "deep ai council 1 8 2 0": [
       "deep-ai-council 1.8.2.0"
     ],
+    "deep ai council 1 8 3 0": [
+      "deep-ai-council 1.8.3.0"
+    ],
+    "deep ai council 1 8 4 0": [
+      "deep-ai-council 1.8.4.0"
+    ],
+    "deep ai council 1 8 5 0": [
+      "deep-ai-council 1.8.5.0"
+    ],
     "deep ai council anti patterns": [
       "deep-ai-council anti-patterns"
     ],
@@ -31085,6 +31310,15 @@
     ],
     "deep ai council v1 8 2 0": [
       "deep-ai-council v1.8.2.0"
+    ],
+    "deep ai council v1 8 3 0": [
+      "deep-ai-council v1.8.3.0"
+    ],
+    "deep ai council v1 8 4 0": [
+      "deep-ai-council v1.8.4.0"
+    ],
+    "deep ai council v1 8 5 0": [
+      "deep-ai-council v1.8.5.0"
     ],
     "deep ai council verified sealed reads": [
       "deep ai council verified sealed reads"
@@ -31494,6 +31728,15 @@
     "deep improvement 1 19 2 0": [
       "deep-improvement 1.19.2.0"
     ],
+    "deep improvement 1 19 3 0": [
+      "deep-improvement 1.19.3.0"
+    ],
+    "deep improvement 1 19 4 0": [
+      "deep-improvement 1.19.4.0"
+    ],
+    "deep improvement 1 19 5 0": [
+      "deep-improvement 1.19.5.0"
+    ],
     "deep improvement 1 2 0 0": [
       "deep-improvement 1.2.0.0"
     ],
@@ -31853,6 +32096,15 @@
     ],
     "deep improvement v1 19 2 0": [
       "deep-improvement v1.19.2.0"
+    ],
+    "deep improvement v1 19 3 0": [
+      "deep-improvement v1.19.3.0"
+    ],
+    "deep improvement v1 19 4 0": [
+      "deep-improvement v1.19.4.0"
+    ],
+    "deep improvement v1 19 5 0": [
+      "deep-improvement v1.19.5.0"
     ],
     "deep improvement v1 2 0 0": [
       "deep-improvement v1.2.0.0"
@@ -32568,6 +32820,15 @@
     "deep loop runtime 1 9 4 0": [
       "deep-loop-runtime 1.9.4.0"
     ],
+    "deep loop runtime 1 9 5 0": [
+      "deep-loop-runtime 1.9.5.0"
+    ],
+    "deep loop runtime 1 9 6 0": [
+      "deep-loop-runtime 1.9.6.0"
+    ],
+    "deep loop runtime 1 9 7 0": [
+      "deep-loop-runtime 1.9.7.0"
+    ],
     "deep loop runtime alignment": [
       "deep loop runtime alignment"
     ],
@@ -32657,6 +32918,15 @@
     ],
     "deep loop runtime v1 9 4 0": [
       "deep-loop-runtime v1.9.4.0"
+    ],
+    "deep loop runtime v1 9 5 0": [
+      "deep-loop-runtime v1.9.5.0"
+    ],
+    "deep loop runtime v1 9 6 0": [
+      "deep-loop-runtime v1.9.6.0"
+    ],
+    "deep loop runtime v1 9 7 0": [
+      "deep-loop-runtime v1.9.7.0"
     ],
     "deep loop safe now gated split": [
       "deep-loop safe-now gated split"
@@ -32963,6 +33233,18 @@
     ],
     "deep research 1 15 2 0": [
       "deep-research 1.15.2.0"
+    ],
+    "deep research 1 15 3 0": [
+      "deep-research 1.15.3.0"
+    ],
+    "deep research 1 15 4 0": [
+      "deep-research 1.15.4.0"
+    ],
+    "deep research 1 15 5 0": [
+      "deep-research 1.15.5.0"
+    ],
+    "deep research 1 15 6 0": [
+      "deep-research 1.15.6.0"
     ],
     "deep research 1 2 0 0": [
       "deep-research 1.2.0.0"
@@ -33626,6 +33908,18 @@
     "deep research v1 15 2 0": [
       "deep-research v1.15.2.0"
     ],
+    "deep research v1 15 3 0": [
+      "deep-research v1.15.3.0"
+    ],
+    "deep research v1 15 4 0": [
+      "deep-research v1.15.4.0"
+    ],
+    "deep research v1 15 5 0": [
+      "deep-research v1.15.5.0"
+    ],
+    "deep research v1 15 6 0": [
+      "deep-research v1.15.6.0"
+    ],
     "deep research v1 2 0 0": [
       "deep-research v1.2.0.0"
     ],
@@ -33713,6 +34007,15 @@
     ],
     "deep review 1 11 4 0": [
       "deep-review 1.11.4.0"
+    ],
+    "deep review 1 11 5 0": [
+      "deep-review 1.11.5.0"
+    ],
+    "deep review 1 11 6 0": [
+      "deep-review 1.11.6.0"
+    ],
+    "deep review 1 11 7 0": [
+      "deep-review 1.11.7.0"
     ],
     "deep review 1 2 0 0": [
       "deep-review 1.2.0.0"
@@ -34382,6 +34685,15 @@
     ],
     "deep review v1 11 4 0": [
       "deep-review v1.11.4.0"
+    ],
+    "deep review v1 11 5 0": [
+      "deep-review v1.11.5.0"
+    ],
+    "deep review v1 11 6 0": [
+      "deep-review v1.11.6.0"
+    ],
+    "deep review v1 11 7 0": [
+      "deep-review v1.11.7.0"
     ],
     "deep review v1 2 0 0": [
       "deep-review v1.2.0.0"
@@ -36668,6 +36980,9 @@
     ],
     "dispatch audit trail": [
       "dispatch audit trail"
+    ],
+    "dispatch authorization shell wrapper": [
+      "dispatch authorization shell wrapper"
     ],
     "dispatch candidate scoring": [
       "dispatch candidate scoring"
@@ -41971,6 +42286,12 @@
     "external user docs": [
       "external user docs"
     ],
+    "external user experience framework": [
+      "external user experience framework"
+    ],
+    "external user experience research": [
+      "external user experience research"
+    ],
     "external vs mcp search comparison": [
       "external vs MCP search comparison"
     ],
@@ -43367,6 +43688,9 @@
     "feature catalog accuracy fixes": [
       "feature catalog accuracy fixes"
     ],
+    "feature catalog anchor deprecation review report": [
+      "feature catalog anchor deprecation review report"
+    ],
     "feature catalog capabilities": [
       "feature catalog capabilities"
     ],
@@ -43402,6 +43726,24 @@
     ],
     "feature catalog examples and pitfalls": [
       "feature catalog examples and pitfalls"
+    ],
+    "feature catalog findings": [
+      "feature catalog findings"
+    ],
+    "feature catalog findings acceptance criteria": [
+      "feature catalog findings acceptance criteria"
+    ],
+    "feature catalog findings goal": [
+      "feature catalog findings goal"
+    ],
+    "feature catalog findings implementation summary": [
+      "feature catalog findings implementation summary"
+    ],
+    "feature catalog findings plan": [
+      "feature catalog findings plan"
+    ],
+    "feature catalog findings tasks": [
+      "feature catalog findings tasks"
     ],
     "feature catalog freshness": [
       "feature catalog freshness"
@@ -43480,6 +43822,24 @@
     ],
     "feature catalog template": [
       "feature catalog template"
+    ],
+    "feature catalog template anchor deprecation phase parent spec": [
+      "feature catalog template anchor deprecation phase parent spec"
+    ],
+    "feature catalog template comment removed": [
+      "feature catalog template comment removed"
+    ],
+    "feature catalog template comment sweep": [
+      "feature catalog template comment sweep"
+    ],
+    "feature catalog template marker removal": [
+      "feature catalog template marker removal"
+    ],
+    "feature catalog template marker removed": [
+      "feature catalog template marker removed"
+    ],
+    "feature catalog template marker source": [
+      "feature catalog template marker source"
     ],
     "feature catalog trio": [
       "feature catalog trio"
@@ -45774,6 +46134,18 @@
     "freshness sourcesignature fix": [
       "freshness sourcesignature fix"
     ],
+    "freshness strict content": [
+      "freshness strict content"
+    ],
+    "freshness strict content implementation summary": [
+      "freshness strict content implementation summary"
+    ],
+    "freshness strict content plan": [
+      "freshness strict content plan"
+    ],
+    "freshness strict content tasks": [
+      "freshness strict content tasks"
+    ],
     "freshness sweep baseline fix plan": [
       "freshness sweep baseline fix plan"
     ],
@@ -46758,6 +47130,18 @@
     ],
     "gate function completion claims": [
       "gate function completion claims"
+    ],
+    "gate index and deletions": [
+      "gate index and deletions"
+    ],
+    "gate index and deletions implementation summary": [
+      "gate index and deletions implementation summary"
+    ],
+    "gate index and deletions plan": [
+      "gate index and deletions plan"
+    ],
+    "gate index and deletions tasks": [
+      "gate index and deletions tasks"
     ],
     "gate input check design": [
       "gate input check design"
@@ -51165,6 +51549,18 @@
     "hook kill switch phase status": [
       "hook kill-switch phase status"
     ],
+    "hook late write test": [
+      "hook late write test"
+    ],
+    "hook late write test implementation summary": [
+      "hook late write test implementation summary"
+    ],
+    "hook late write test plan": [
+      "hook late write test plan"
+    ],
+    "hook late write test tasks": [
+      "hook late write test tasks"
+    ],
     "hook latency baseline": [
       "hook latency baseline"
     ],
@@ -54507,6 +54903,9 @@
     "kebab case naming rule": [
       "kebab-case naming rule"
     ],
+    "kebab case script names": [
+      "kebab-case script names"
+    ],
     "kebab to snake convention": [
       "kebab-to-snake convention"
     ],
@@ -55004,6 +55403,9 @@
     ],
     "last dedup checked at dedup marker": [
       "last_dedup_checked_at dedup marker"
+    ],
+    "late hook payload test": [
+      "late hook payload test"
     ],
     "late question injection": [
       "late question injection"
@@ -55527,6 +55929,9 @@
     "leaf manifest stale chart": [
       "leaf manifest stale chart"
     ],
+    "leaf manifest stale message": [
+      "leaf manifest stale message"
+    ],
     "leaf publication single winner": [
       "leaf publication single winner"
     ],
@@ -55836,6 +56241,24 @@
     ],
     "leftover ignored cruft cleanup": [
       "leftover ignored cruft cleanup"
+    ],
+    "leftover template comments": [
+      "leftover template comments"
+    ],
+    "leftover template comments acceptance criteria": [
+      "leftover template comments acceptance criteria"
+    ],
+    "leftover template comments goal": [
+      "leftover template comments goal"
+    ],
+    "leftover template comments implementation summary": [
+      "leftover template comments implementation summary"
+    ],
+    "leftover template comments plan": [
+      "leftover template comments plan"
+    ],
+    "leftover template comments tasks": [
+      "leftover template comments tasks"
     ],
     "legacy 065 child alias cleanup": [
       "legacy 065 child alias cleanup"
@@ -58516,11 +58939,23 @@
     "mcp aside devtools 1 1 0 0": [
       "mcp-aside-devtools 1.1.0.0"
     ],
+    "mcp aside devtools 1 1 1 0": [
+      "mcp-aside-devtools 1.1.1.0"
+    ],
+    "mcp aside devtools 1 1 2 0": [
+      "mcp-aside-devtools 1.1.2.0"
+    ],
     "mcp aside devtools v1 0 0 0": [
       "mcp-aside-devtools v1.0.0.0"
     ],
     "mcp aside devtools v1 1 0 0": [
       "mcp-aside-devtools v1.1.0.0"
+    ],
+    "mcp aside devtools v1 1 1 0": [
+      "mcp-aside-devtools v1.1.1.0"
+    ],
+    "mcp aside devtools v1 1 2 0": [
+      "mcp-aside-devtools v1.1.2.0"
     ],
     "mcp aside devtools workflow mode": [
       "mcp-aside-devtools workflow mode"
@@ -58551,6 +58986,15 @@
     ],
     "mcp chrome devtools 1 0 11 0": [
       "mcp-chrome-devtools 1.0.11.0"
+    ],
+    "mcp chrome devtools 1 0 12 0": [
+      "mcp-chrome-devtools 1.0.12.0"
+    ],
+    "mcp chrome devtools 1 0 13 0": [
+      "mcp-chrome-devtools 1.0.13.0"
+    ],
+    "mcp chrome devtools 1 0 14 0": [
+      "mcp-chrome-devtools 1.0.14.0"
     ],
     "mcp chrome devtools 1 0 2 0": [
       "mcp-chrome-devtools 1.0.2.0"
@@ -58587,6 +59031,15 @@
     ],
     "mcp chrome devtools v1 0 11 0": [
       "mcp-chrome-devtools v1.0.11.0"
+    ],
+    "mcp chrome devtools v1 0 12 0": [
+      "mcp-chrome-devtools v1.0.12.0"
+    ],
+    "mcp chrome devtools v1 0 13 0": [
+      "mcp-chrome-devtools v1.0.13.0"
+    ],
+    "mcp chrome devtools v1 0 14 0": [
+      "mcp-chrome-devtools v1.0.14.0"
     ],
     "mcp chrome devtools v1 0 2 0": [
       "mcp-chrome-devtools v1.0.2.0"
@@ -58636,6 +59089,12 @@
     "mcp click up 1 2 0 0": [
       "mcp-click-up 1.2.0.0"
     ],
+    "mcp click up 1 2 1 0": [
+      "mcp-click-up 1.2.1.0"
+    ],
+    "mcp click up 1 2 2 0": [
+      "mcp-click-up 1.2.2.0"
+    ],
     "mcp click up frontmatter alignment": [
       "mcp-click-up frontmatter alignment"
     ],
@@ -58662,6 +59121,12 @@
     ],
     "mcp click up v1 2 0 0": [
       "mcp-click-up v1.2.0.0"
+    ],
+    "mcp click up v1 2 1 0": [
+      "mcp-click-up v1.2.1.0"
+    ],
+    "mcp click up v1 2 2 0": [
+      "mcp-click-up v1.2.2.0"
     ],
     "mcp client reconnect": [
       "mcp client reconnect"
@@ -58720,6 +59185,9 @@
     "mcp code mode 1 0 1 0": [
       "mcp-code-mode 1.0.1.0"
     ],
+    "mcp code mode 1 0 10 0": [
+      "mcp-code-mode 1.0.10.0"
+    ],
     "mcp code mode 1 0 2 0": [
       "mcp-code-mode 1.0.2.0"
     ],
@@ -58737,6 +59205,9 @@
     ],
     "mcp code mode 1 0 8 0": [
       "mcp-code-mode 1.0.8.0"
+    ],
+    "mcp code mode 1 0 9 0": [
+      "mcp-code-mode 1.0.9.0"
     ],
     "mcp code mode changelog retrofit": [
       "mcp-code-mode changelog retrofit"
@@ -58783,6 +59254,9 @@
     "mcp code mode v1 0 1 0": [
       "mcp-code-mode v1.0.1.0"
     ],
+    "mcp code mode v1 0 10 0": [
+      "mcp-code-mode v1.0.10.0"
+    ],
     "mcp code mode v1 0 2 0": [
       "mcp-code-mode v1.0.2.0"
     ],
@@ -58800,6 +59274,9 @@
     ],
     "mcp code mode v1 0 8 0": [
       "mcp-code-mode v1.0.8.0"
+    ],
+    "mcp code mode v1 0 9 0": [
+      "mcp-code-mode v1.0.9.0"
     ],
     "mcp config 1 1 aligned": [
       "mcp config 1:1 aligned"
@@ -59037,6 +59514,15 @@
     "mcp figma 1 1 0 0": [
       "mcp-figma 1.1.0.0"
     ],
+    "mcp figma 1 1 1 0": [
+      "mcp-figma 1.1.1.0"
+    ],
+    "mcp figma 1 1 2 0": [
+      "mcp-figma 1.1.2.0"
+    ],
+    "mcp figma 1 1 3 0": [
+      "mcp-figma 1.1.3.0"
+    ],
     "mcp figma v1 0 0 0": [
       "mcp-figma v1.0.0.0"
     ],
@@ -59045,6 +59531,15 @@
     ],
     "mcp figma v1 1 0 0": [
       "mcp-figma v1.1.0.0"
+    ],
+    "mcp figma v1 1 1 0": [
+      "mcp-figma v1.1.1.0"
+    ],
+    "mcp figma v1 1 2 0": [
+      "mcp-figma v1.1.2.0"
+    ],
+    "mcp figma v1 1 3 0": [
+      "mcp-figma v1.1.3.0"
     ],
     "mcp front proxy": [
       "mcp front proxy"
@@ -59136,6 +59631,15 @@
     "mcp magicpath 1 1 0 0": [
       "mcp-magicpath 1.1.0.0"
     ],
+    "mcp magicpath 1 1 1 0": [
+      "mcp-magicpath 1.1.1.0"
+    ],
+    "mcp magicpath 1 1 2 0": [
+      "mcp-magicpath 1.1.2.0"
+    ],
+    "mcp magicpath 1 1 3 0": [
+      "mcp-magicpath 1.1.3.0"
+    ],
     "mcp magicpath cli manual": [
       "mcp-magicpath cli manual"
     ],
@@ -59148,11 +59652,29 @@
     "mcp magicpath v1 1 0 0": [
       "mcp-magicpath v1.1.0.0"
     ],
+    "mcp magicpath v1 1 1 0": [
+      "mcp-magicpath v1.1.1.0"
+    ],
+    "mcp magicpath v1 1 2 0": [
+      "mcp-magicpath v1.1.2.0"
+    ],
+    "mcp magicpath v1 1 3 0": [
+      "mcp-magicpath v1.1.3.0"
+    ],
     "mcp mobbin 1 0 0 0": [
       "mcp-mobbin 1.0.0.0"
     ],
     "mcp mobbin 1 1 0 0": [
       "mcp-mobbin 1.1.0.0"
+    ],
+    "mcp mobbin 1 1 1 0": [
+      "mcp-mobbin 1.1.1.0"
+    ],
+    "mcp mobbin 1 1 2 0": [
+      "mcp-mobbin 1.1.2.0"
+    ],
+    "mcp mobbin 1 1 3 0": [
+      "mcp-mobbin 1.1.3.0"
     ],
     "mcp mobbin delivered outcome pitch": [
       "mcp-mobbin delivered-outcome pitch"
@@ -59168,6 +59690,15 @@
     ],
     "mcp mobbin v1 1 0 0": [
       "mcp-mobbin v1.1.0.0"
+    ],
+    "mcp mobbin v1 1 1 0": [
+      "mcp-mobbin v1.1.1.0"
+    ],
+    "mcp mobbin v1 1 2 0": [
+      "mcp-mobbin v1.1.2.0"
+    ],
+    "mcp mobbin v1 1 3 0": [
+      "mcp-mobbin v1.1.3.0"
     ],
     "mcp mutation regex blind": [
       "mcp mutation regex blind"
@@ -59388,6 +59919,15 @@
     "mcp refero 1 1 0 0": [
       "mcp-refero 1.1.0.0"
     ],
+    "mcp refero 1 1 1 0": [
+      "mcp-refero 1.1.1.0"
+    ],
+    "mcp refero 1 1 2 0": [
+      "mcp-refero 1.1.2.0"
+    ],
+    "mcp refero 1 1 3 0": [
+      "mcp-refero 1.1.3.0"
+    ],
     "mcp refero design transport": [
       "mcp-refero design transport"
     ],
@@ -59396,6 +59936,15 @@
     ],
     "mcp refero v1 1 0 0": [
       "mcp-refero v1.1.0.0"
+    ],
+    "mcp refero v1 1 1 0": [
+      "mcp-refero v1.1.1.0"
+    ],
+    "mcp refero v1 1 2 0": [
+      "mcp-refero v1.1.2.0"
+    ],
+    "mcp refero v1 1 3 0": [
+      "mcp-refero v1.1.3.0"
     ],
     "mcp remote mobbin": [
       "mcp-remote mobbin"
@@ -59680,6 +60229,9 @@
     "mcp tooling 1 8 0 2": [
       "mcp-tooling 1.8.0.2"
     ],
+    "mcp tooling 1 8 1 0": [
+      "mcp-tooling 1.8.1.0"
+    ],
     "mcp tooling benchmark": [
       "mcp-tooling benchmark"
     ],
@@ -59769,6 +60321,9 @@
     ],
     "mcp tooling v1 8 0 2": [
       "mcp-tooling v1.8.0.2"
+    ],
+    "mcp tooling v1 8 1 0": [
+      "mcp-tooling v1.8.1.0"
     ],
     "mcp tools": [
       "mcp tools"
@@ -69503,8 +70058,17 @@
     "parent goal blank": [
       "parent goal blank"
     ],
+    "parent goal budget": [
+      "parent goal budget"
+    ],
+    "parent goal budget implementation summary": [
+      "parent goal budget implementation summary"
+    ],
     "parent goal budget plan": [
       "parent goal budget plan"
+    ],
+    "parent goal budget tasks": [
+      "parent goal budget tasks"
     ],
     "parent goal character cap": [
       "parent goal character cap"
@@ -70964,6 +71528,9 @@
     "phase 1 acceptance criteria": [
       "phase 1 acceptance criteria"
     ],
+    "phase 1 compiled route manifest suite": [
+      "phase 1 compiled route manifest suite"
+    ],
     "phase 1 hook stdin deadlines": [
       "phase 1 hook stdin deadlines"
     ],
@@ -70987,6 +71554,9 @@
     ],
     "phase 1 shared and hub docs": [
       "phase 1 shared and hub docs"
+    ],
+    "phase 1 source deprecation": [
+      "phase 1 source deprecation"
     ],
     "phase 1 spec template anchor nesting": [
       "phase 1 spec template anchor nesting"
@@ -71012,14 +71582,23 @@
     "phase 10 upgrade reversibility": [
       "phase 10 upgrade reversibility"
     ],
+    "phase 10 validator false positives": [
+      "phase 10 validator false positives"
+    ],
     "phase 11 anchor repair mode": [
       "phase 11 anchor repair mode"
     ],
     "phase 11 goal drift remediation": [
       "phase 11 goal drift remediation"
     ],
+    "phase 11 remediation deep review": [
+      "phase 11 remediation deep review"
+    ],
     "phase 11 template phrase census and cleanup": [
       "phase 11 template phrase census and cleanup"
+    ],
+    "phase 12 advisor doc target and engines": [
+      "phase 12 advisor doc target and engines"
     ],
     "phase 12 post merge deep review": [
       "phase 12 post merge deep review"
@@ -71051,11 +71630,23 @@
     "phase 13 corpus wide validation repair": [
       "phase 13 corpus wide validation repair"
     ],
+    "phase 13 python advisor native and parity": [
+      "phase 13 python advisor native and parity"
+    ],
+    "phase 13 root cause and ux research": [
+      "phase 13 root cause and ux research"
+    ],
     "phase 14 closure gate": [
       "phase 14 closure gate"
     ],
+    "phase 14 gate index and deletions": [
+      "phase 14 gate index and deletions"
+    ],
     "phase 14 results": [
       "phase 14 results"
+    ],
+    "phase 14 skill authoring ux research": [
+      "phase 14 skill authoring ux research"
     ],
     "phase 14 spec auto healing research": [
       "phase 14 spec auto healing research"
@@ -71068,6 +71659,9 @@
     ],
     "phase 15 closure gate": [
       "phase 15 closure gate"
+    ],
+    "phase 15 freshness strict content": [
+      "phase 15 freshness strict content"
     ],
     "phase 15 lane rules as heal modes": [
       "phase 15 lane rules as heal modes"
@@ -71092,6 +71686,9 @@
     ],
     "phase 16 results": [
       "phase 16 results"
+    ],
+    "phase 16 sk doc tooling followups": [
+      "phase 16 sk doc tooling followups"
     ],
     "phase 16 stale docs": [
       "phase 16 stale docs"
@@ -71150,11 +71747,17 @@
     "phase 2 acceptance criteria": [
       "phase 2 acceptance criteria"
     ],
+    "phase 2 admission corpus pin": [
+      "phase 2 admission corpus pin"
+    ],
     "phase 2 budget check": [
       "phase 2 budget check"
     ],
     "phase 2 leaf generator ignores": [
       "phase 2 leaf generator ignores"
+    ],
+    "phase 2 parent goal budget": [
+      "phase 2 parent goal budget"
     ],
     "phase 2 path extraction fix": [
       "phase 2 path extraction fix"
@@ -71167,6 +71770,9 @@
     ],
     "phase 2 rerank bench refinement": [
       "phase 2 rerank bench refinement"
+    ],
+    "phase 2 retroactive removal": [
+      "phase 2 retroactive removal"
     ],
     "phase 2 review contract": [
       "phase 2 review contract"
@@ -71264,6 +71870,9 @@
     "phase 3 drift guard warning count": [
       "phase 3 drift guard warning count"
     ],
+    "phase 3 feature catalog findings": [
+      "phase 3 feature catalog findings"
+    ],
     "phase 3 goal criteria": [
       "phase 3 goal criteria"
     ],
@@ -71276,11 +71885,20 @@
     "phase 3 quality mode": [
       "phase 3 quality mode"
     ],
+    "phase 3 stale jev canary": [
+      "phase 3 stale jev canary"
+    ],
+    "phase 3 unread version fields": [
+      "phase 3 unread version fields"
+    ],
     "phase 4 agents md pointers": [
       "phase 4 agents md pointers"
     ],
     "phase 4 cache optimizer": [
       "phase 4 cache optimizer"
+    ],
+    "phase 4 commit hook checks": [
+      "phase 4 commit hook checks"
     ],
     "phase 4 debt report and hermes gate": [
       "phase 4 debt report and hermes gate"
@@ -71290,6 +71908,12 @@
     ],
     "phase 4 hub doc pointers": [
       "phase 4 hub doc pointers"
+    ],
+    "phase 4 leftover template comments": [
+      "phase 4 leftover template comments"
+    ],
+    "phase 4 pi ambiguous denial": [
+      "phase 4 pi ambiguous denial"
     ],
     "phase 4 quality obsidian coverage": [
       "phase 4 quality obsidian coverage"
@@ -71302,6 +71926,12 @@
     ],
     "phase 4 webflow checker fix": [
       "phase 4 webflow checker fix"
+    ],
+    "phase 5 changelog single bump": [
+      "phase 5 changelog single bump"
+    ],
+    "phase 5 changelog version keys": [
+      "phase 5 changelog version keys"
     ],
     "phase 5 claim corrections": [
       "phase 5 claim corrections"
@@ -71327,6 +71957,9 @@
     "phase 5 opencode and guards": [
       "phase 5 opencode and guards"
     ],
+    "phase 5 readme node floor": [
+      "phase 5 readme node floor"
+    ],
     "phase 5 review output additions": [
       "phase 5 review output additions"
     ],
@@ -71341,6 +71974,9 @@
     ],
     "phase 6 continuity refactor gates": [
       "phase 6 continuity refactor gates"
+    ],
+    "phase 6 create skill guidance": [
+      "phase 6 create skill guidance"
     ],
     "phase 6 deep loop findings parser": [
       "phase 6 deep loop findings parser"
@@ -71360,6 +71996,9 @@
     "phase 6 guard retirement notes": [
       "phase 6 guard retirement notes"
     ],
+    "phase 6 hook late write test": [
+      "phase 6 hook late write test"
+    ],
     "phase 6 implementation summary": [
       "phase 6 implementation summary"
     ],
@@ -71369,8 +72008,14 @@
     "phase 6 remediation deep review": [
       "phase 6 remediation deep review"
     ],
+    "phase 6 skill package doc findings": [
+      "phase 6 skill package doc findings"
+    ],
     "phase 6 tasks": [
       "phase 6 tasks"
+    ],
+    "phase 7 advisor name mention scoring": [
+      "phase 7 advisor name mention scoring"
     ],
     "phase 7 ci rule set comparison": [
       "phase 7 ci rule set comparison"
@@ -71378,17 +72023,32 @@
     "phase 7 hook deadline margins": [
       "phase 7 hook deadline margins"
     ],
+    "phase 7 remediation deep review": [
+      "phase 7 remediation deep review"
+    ],
     "phase 7 remediation review fixes": [
       "phase 7 remediation review fixes"
     ],
     "phase 7 series parent review and hardening research": [
       "phase 7 series parent review and hardening research"
     ],
+    "phase 7 sk code script kebab names": [
+      "phase 7 sk code script kebab names"
+    ],
     "phase 7 spec kit hook deadlines": [
       "phase 7 spec kit hook deadlines"
     ],
+    "phase 8 advisor surface hint": [
+      "phase 8 advisor surface hint"
+    ],
+    "phase 8 authored classifier fixture": [
+      "phase 8 authored classifier fixture"
+    ],
     "phase 8 legacy era report": [
       "phase 8 legacy era report"
+    ],
+    "phase 8 remediation deep review": [
+      "phase 8 remediation deep review"
     ],
     "phase 8 series parent review fixes": [
       "phase 8 series parent review fixes"
@@ -71396,11 +72056,20 @@
     "phase 8 session aware tie break": [
       "phase 8 session aware tie break"
     ],
+    "phase 9 advisor vocabulary freshness": [
+      "phase 9 advisor vocabulary freshness"
+    ],
     "phase 9 doctor update compatibility": [
       "phase 9 doctor update compatibility"
     ],
     "phase 9 gate 3 menu series parent": [
       "phase 9 gate 3 menu series parent"
+    ],
+    "phase 9 pi guard classification": [
+      "phase 9 pi guard classification"
+    ],
+    "phase 9 review remediation": [
+      "phase 9 review remediation"
     ],
     "phase a readme authoring": [
       "Phase A readme authoring"
@@ -71959,6 +72628,18 @@
     "pi agent delegation": [
       "pi agent delegation"
     ],
+    "pi ambiguous denial": [
+      "pi ambiguous denial"
+    ],
+    "pi ambiguous denial implementation summary": [
+      "pi ambiguous denial implementation summary"
+    ],
+    "pi ambiguous denial plan": [
+      "pi ambiguous denial plan"
+    ],
+    "pi ambiguous denial tasks": [
+      "pi ambiguous denial tasks"
+    ],
     "pi api key": [
       "pi api key"
     ],
@@ -72396,6 +73077,18 @@
     ],
     "pi goal verify nudge census": [
       "pi goal verify nudge census"
+    ],
+    "pi guard classification": [
+      "pi guard classification"
+    ],
+    "pi guard classification implementation summary": [
+      "pi guard classification implementation summary"
+    ],
+    "pi guard classification plan": [
+      "pi guard classification plan"
+    ],
+    "pi guard classification tasks": [
+      "pi guard classification tasks"
     ],
     "pi has no default model": [
       "pi has no default model"
@@ -73630,6 +74323,9 @@
     ],
     "ponytail deep research tasks": [
       "ponytail deep research tasks"
+    ],
+    "ponytail epic root causes": [
+      "ponytail epic root causes"
     ],
     "ponytail follow up fixes": [
       "ponytail follow-up fixes"
@@ -75703,6 +76399,18 @@
     "python": [
       "python"
     ],
+    "python advisor native and parity": [
+      "python advisor native and parity"
+    ],
+    "python advisor native and parity implementation summary": [
+      "python advisor native and parity implementation summary"
+    ],
+    "python advisor native and parity plan": [
+      "python advisor native and parity plan"
+    ],
+    "python advisor native and parity tasks": [
+      "python advisor native and parity tasks"
+    ],
     "python bench": [
       "python bench"
     ],
@@ -76863,6 +77571,18 @@
     ],
     "readme model examples": [
       "readme model examples"
+    ],
+    "readme node floor": [
+      "readme node floor"
+    ],
+    "readme node floor implementation summary": [
+      "readme node floor implementation summary"
+    ],
+    "readme node floor plan": [
+      "readme node floor plan"
+    ],
+    "readme node floor tasks": [
+      "readme node floor tasks"
     ],
     "readme off switches section": [
       "readme off switches section"
@@ -79486,6 +80206,9 @@
     "remediation deep review": [
       "remediation deep review"
     ],
+    "remediation deep review acceptance criteria": [
+      "remediation deep review acceptance criteria"
+    ],
     "remediation deep review goal": [
       "remediation deep review goal"
     ],
@@ -79494,6 +80217,9 @@
     ],
     "remediation deep review plan": [
       "remediation deep review plan"
+    ],
+    "remediation deep review report": [
+      "remediation deep review report"
     ],
     "remediation deep review strategy": [
       "remediation deep review strategy"
@@ -82476,6 +83202,24 @@
     "retroactive phase parent tasks": [
       "retroactive phase parent tasks"
     ],
+    "retroactive removal": [
+      "retroactive removal"
+    ],
+    "retroactive removal acceptance criteria": [
+      "retroactive removal acceptance criteria"
+    ],
+    "retroactive removal goal": [
+      "retroactive removal goal"
+    ],
+    "retroactive removal implementation summary": [
+      "retroactive removal implementation summary"
+    ],
+    "retroactive removal plan": [
+      "retroactive removal plan"
+    ],
+    "retroactive removal tasks": [
+      "retroactive removal tasks"
+    ],
     "retroactive time log": [
       "retroactive time log"
     ],
@@ -83067,6 +83811,9 @@
     ],
     "review remediation eval benchmark fidelity changelog": [
       "review remediation eval benchmark fidelity changelog"
+    ],
+    "review remediation goal": [
+      "review remediation goal"
     ],
     "review remediation implementation summary": [
       "review remediation implementation summary"
@@ -83685,6 +84432,21 @@
     ],
     "root catalog scaffold": [
       "root catalog scaffold"
+    ],
+    "root cause and ux research": [
+      "root cause and ux research"
+    ],
+    "root cause and ux research implementation summary": [
+      "root cause and ux research implementation summary"
+    ],
+    "root cause and ux research plan": [
+      "root cause and ux research plan"
+    ],
+    "root cause and ux research synthesis": [
+      "root cause and ux research synthesis"
+    ],
+    "root cause and ux research tasks": [
+      "root cause and ux research tasks"
     ],
     "root cause before fix": [
       "root cause before fix"
@@ -89896,6 +90658,9 @@
     "sk code 2 2 8 0": [
       "sk-code 2.2.8.0"
     ],
+    "sk code 2 2 9 0": [
+      "sk-code 2.2.9.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -90274,6 +91039,9 @@
     "sk code obsidian 0 1 3 0": [
       "sk-code-obsidian 0.1.3.0"
     ],
+    "sk code obsidian 0 1 4 0": [
+      "sk-code-obsidian 0.1.4.0"
+    ],
     "sk code obsidian assets checklists": [
       "sk-code-obsidian assets checklists"
     ],
@@ -90397,6 +91165,9 @@
     "sk code obsidian v0 1 3 0": [
       "sk-code-obsidian v0.1.3.0"
     ],
+    "sk code obsidian v0 1 4 0": [
+      "sk-code-obsidian v0.1.4.0"
+    ],
     "sk code onboard implement": [
       "sk-code onboard implement"
     ],
@@ -90435,6 +91206,9 @@
     ],
     "sk code opencode 1 2 2 0": [
       "sk-code-opencode 1.2.2.0"
+    ],
+    "sk code opencode 1 2 3 0": [
+      "sk-code-opencode 1.2.3.0"
     ],
     "sk code opencode alignment": [
       "sk-code opencode alignment"
@@ -90495,6 +91269,9 @@
     ],
     "sk code opencode v1 2 2 0": [
       "sk-code-opencode v1.2.2.0"
+    ],
+    "sk code opencode v1 2 3 0": [
+      "sk-code-opencode v1.2.3.0"
     ],
     "sk code overlay hardcoded replacement": [
       "sk-code overlay hardcoded replacement"
@@ -90775,6 +91552,24 @@
     "sk code scaffold routing fixtures": [
       "sk-code scaffold routing fixtures"
     ],
+    "sk code script kebab names": [
+      "sk code script kebab names"
+    ],
+    "sk code script kebab names acceptance criteria": [
+      "sk code script kebab names acceptance criteria"
+    ],
+    "sk code script kebab names goal": [
+      "sk code script kebab names goal"
+    ],
+    "sk code script kebab names implementation summary": [
+      "sk code script kebab names implementation summary"
+    ],
+    "sk code script kebab names plan": [
+      "sk code script kebab names plan"
+    ],
+    "sk code script kebab names tasks": [
+      "sk code script kebab names tasks"
+    ],
     "sk code shared assets references research": [
       "sk-code shared assets references research"
     ],
@@ -90879,6 +91674,9 @@
     ],
     "sk code v2 2 8 0": [
       "sk-code v2.2.8.0"
+    ],
+    "sk code v2 2 9 0": [
+      "sk-code v2.2.9.0"
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"
@@ -91120,6 +91918,9 @@
     "sk create changelog 1 3 3 0": [
       "sk-create-changelog 1.3.3.0"
     ],
+    "sk create changelog 1 3 4 0": [
+      "sk-create-changelog 1.3.4.0"
+    ],
     "sk create changelog playbook": [
       "sk-create-changelog playbook"
     ],
@@ -91158,6 +91959,9 @@
     ],
     "sk create changelog v1 3 3 0": [
       "sk-create-changelog v1.3.3.0"
+    ],
+    "sk create changelog v1 3 4 0": [
+      "sk-create-changelog v1.3.4.0"
     ],
     "sk create changelog v4 style changelog": [
       "sk create changelog v4 style changelog"
@@ -91246,6 +92050,12 @@
     "sk create diff 1 1 2 0": [
       "sk-create-diff 1.1.2.0"
     ],
+    "sk create diff 1 1 3 0": [
+      "sk-create-diff 1.1.3.0"
+    ],
+    "sk create diff 1 1 4 0": [
+      "sk-create-diff 1.1.4.0"
+    ],
     "sk create diff v1 0 0 0": [
       "sk-create-diff v1.0.0.0"
     ],
@@ -91258,6 +92068,12 @@
     "sk create diff v1 1 2 0": [
       "sk-create-diff v1.1.2.0"
     ],
+    "sk create diff v1 1 3 0": [
+      "sk-create-diff v1.1.3.0"
+    ],
+    "sk create diff v1 1 4 0": [
+      "sk-create-diff v1.1.4.0"
+    ],
     "sk create feature catalog 1 0 0 0": [
       "sk-create-feature-catalog 1.0.0.0"
     ],
@@ -91269,6 +92085,21 @@
     ],
     "sk create feature catalog 1 0 1 2": [
       "sk-create-feature-catalog 1.0.1.2"
+    ],
+    "sk create feature catalog 1 0 1 3": [
+      "sk-create-feature-catalog 1.0.1.3"
+    ],
+    "sk create feature catalog 1 0 2 0": [
+      "sk-create-feature-catalog 1.0.2.0"
+    ],
+    "sk create feature catalog 1 0 3 0": [
+      "sk-create-feature-catalog 1.0.3.0"
+    ],
+    "sk create feature catalog 1 0 4 0": [
+      "sk-create-feature-catalog 1.0.4.0"
+    ],
+    "sk create feature catalog 1 0 5 0": [
+      "sk-create-feature-catalog 1.0.5.0"
     ],
     "sk create feature catalog playbook": [
       "sk-create-feature-catalog playbook"
@@ -91284,6 +92115,21 @@
     ],
     "sk create feature catalog v1 0 1 2": [
       "sk-create-feature-catalog v1.0.1.2"
+    ],
+    "sk create feature catalog v1 0 1 3": [
+      "sk-create-feature-catalog v1.0.1.3"
+    ],
+    "sk create feature catalog v1 0 2 0": [
+      "sk-create-feature-catalog v1.0.2.0"
+    ],
+    "sk create feature catalog v1 0 3 0": [
+      "sk-create-feature-catalog v1.0.3.0"
+    ],
+    "sk create feature catalog v1 0 4 0": [
+      "sk-create-feature-catalog v1.0.4.0"
+    ],
+    "sk create feature catalog v1 0 5 0": [
+      "sk-create-feature-catalog v1.0.5.0"
     ],
     "sk create frontmatter 1 0 0 0": [
       "sk-create-frontmatter 1.0.0.0"
@@ -91540,6 +92386,12 @@
     "sk create skill 1 5 1 0": [
       "sk-create-skill 1.5.1.0"
     ],
+    "sk create skill 1 5 2 0": [
+      "sk-create-skill 1.5.2.0"
+    ],
+    "sk create skill authoring errors": [
+      "sk-create-skill authoring errors"
+    ],
     "sk create skill playbook": [
       "sk-create-skill playbook"
     ],
@@ -91564,6 +92416,9 @@
     "sk create skill v1 5 1 0": [
       "sk-create-skill v1.5.1.0"
     ],
+    "sk create skill v1 5 2 0": [
+      "sk-create-skill v1.5.2.0"
+    ],
     "sk create with human voice 1 0 0 0": [
       "sk-create-with-human-voice 1.0.0.0"
     ],
@@ -91587,6 +92442,9 @@
     ],
     "sk design 2 0 0 0": [
       "sk-design 2.0.0.0"
+    ],
+    "sk design 2 0 1 0": [
+      "sk-design 2.0.1.0"
     ],
     "sk design advisor identity": [
       "sk-design advisor identity"
@@ -91807,6 +92665,12 @@
     "sk design diagram 1 2 0 0": [
       "sk-design-diagram 1.2.0.0"
     ],
+    "sk design diagram 1 2 1 0": [
+      "sk-design-diagram 1.2.1.0"
+    ],
+    "sk design diagram 1 2 2 0": [
+      "sk-design-diagram 1.2.2.0"
+    ],
     "sk design diagram review verdict": [
       "sk-design-diagram review verdict"
     ],
@@ -91821,6 +92685,12 @@
     ],
     "sk design diagram v1 2 0 0": [
       "sk-design-diagram v1.2.0.0"
+    ],
+    "sk design diagram v1 2 1 0": [
+      "sk-design-diagram v1.2.1.0"
+    ],
+    "sk design diagram v1 2 2 0": [
+      "sk-design-diagram v1.2.2.0"
     ],
     "sk design doc and routing check acceptance criteria": [
       "sk design doc and routing check acceptance criteria"
@@ -91846,6 +92716,9 @@
     "sk design hub routing replay result": [
       "sk-design hub routing replay result"
     ],
+    "sk design hub rules": [
+      "sk-design hub rules"
+    ],
     "sk design lane c baseline": [
       "sk-design Lane-C baseline"
     ],
@@ -91858,11 +92731,29 @@
     "sk design md generator 1 1 0 0": [
       "sk-design-md-generator 1.1.0.0"
     ],
+    "sk design md generator 1 1 1 0": [
+      "sk-design-md-generator 1.1.1.0"
+    ],
+    "sk design md generator 1 1 2 0": [
+      "sk-design-md-generator 1.1.2.0"
+    ],
+    "sk design md generator 1 1 3 0": [
+      "sk-design-md-generator 1.1.3.0"
+    ],
     "sk design md generator v1 0 0 0": [
       "sk-design-md-generator v1.0.0.0"
     ],
     "sk design md generator v1 1 0 0": [
       "sk-design-md-generator v1.1.0.0"
+    ],
+    "sk design md generator v1 1 1 0": [
+      "sk-design-md-generator v1.1.1.0"
+    ],
+    "sk design md generator v1 1 2 0": [
+      "sk-design-md-generator v1.1.2.0"
+    ],
+    "sk design md generator v1 1 3 0": [
+      "sk-design-md-generator v1.1.3.0"
     ],
     "sk design mode rename": [
       "sk-design mode rename"
@@ -91933,6 +92824,9 @@
     "sk design v2 0 0 0": [
       "sk-design v2.0.0.0"
     ],
+    "sk design v2 0 1 0": [
+      "sk-design v2.0.1.0"
+    ],
     "sk doc 1 5 0 0": [
       "sk-doc 1.5.0.0"
     ],
@@ -91980,6 +92874,12 @@
     ],
     "sk doc 2 3 0 0": [
       "sk-doc 2.3.0.0"
+    ],
+    "sk doc 2 3 1 0": [
+      "sk-doc 2.3.1.0"
+    ],
+    "sk doc 2 3 2 0": [
+      "sk-doc 2.3.2.0"
     ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
@@ -92191,11 +93091,29 @@
     "sk doc template alignment skill advisor": [
       "sk-doc template alignment skill-advisor"
     ],
+    "sk doc template comment removal": [
+      "sk-doc-template comment removal"
+    ],
     "sk doc template governance": [
       "sk-doc template governance"
     ],
+    "sk doc template skill asset feature catalog": [
+      "sk-doc-template skill_asset_feature_catalog"
+    ],
     "sk doc template traces advisor": [
       "sk-doc template traces advisor"
+    ],
+    "sk doc tooling followups": [
+      "sk doc tooling followups"
+    ],
+    "sk doc tooling followups implementation summary": [
+      "sk doc tooling followups implementation summary"
+    ],
+    "sk doc tooling followups plan": [
+      "sk doc tooling followups plan"
+    ],
+    "sk doc tooling followups tasks": [
+      "sk doc tooling followups tasks"
     ],
     "sk doc v1 5 0 0": [
       "sk-doc v1.5.0.0"
@@ -92244,6 +93162,12 @@
     ],
     "sk doc v2 3 0 0": [
       "sk-doc v2.3.0.0"
+    ],
+    "sk doc v2 3 1 0": [
+      "sk-doc v2.3.1.0"
+    ],
+    "sk doc v2 3 2 0": [
+      "sk-doc v2.3.2.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"
@@ -92343,6 +93267,15 @@
     ],
     "sk git 1 8 1 0": [
       "sk-git 1.8.1.0"
+    ],
+    "sk git 1 8 2 0": [
+      "sk-git 1.8.2.0"
+    ],
+    "sk git 1 8 3 0": [
+      "sk-git 1.8.3.0"
+    ],
+    "sk git 1 8 4 0": [
+      "sk-git 1.8.4.0"
     ],
     "sk git benchmark": [
       "sk-git benchmark"
@@ -92487,6 +93420,15 @@
     ],
     "sk git v1 8 1 0": [
       "sk-git v1.8.1.0"
+    ],
+    "sk git v1 8 2 0": [
+      "sk-git v1.8.2.0"
+    ],
+    "sk git v1 8 3 0": [
+      "sk-git v1.8.3.0"
+    ],
+    "sk git v1 8 4 0": [
+      "sk-git v1.8.4.0"
     ],
     "sk git workflow support": [
       "sk-git workflow support"
@@ -92844,6 +93786,18 @@
     ],
     "sk vision 0 3 1 0": [
       "sk-vision 0.3.1.0"
+    ],
+    "sk vision 0 3 2 0": [
+      "sk-vision 0.3.2.0"
+    ],
+    "sk vision 0 3 3 0": [
+      "sk-vision 0.3.3.0"
+    ],
+    "sk vision 0 3 4 0": [
+      "sk-vision 0.3.4.0"
+    ],
+    "sk vision 0 3 5 0": [
+      "sk-vision 0.3.5.0"
     ],
     "sk vision 006 001 summary": [
       "sk-vision 006-001 summary"
@@ -93406,6 +94360,18 @@
     "sk vision v0 3 1 0": [
       "sk-vision v0.3.1.0"
     ],
+    "sk vision v0 3 2 0": [
+      "sk-vision v0.3.2.0"
+    ],
+    "sk vision v0 3 3 0": [
+      "sk-vision v0.3.3.0"
+    ],
+    "sk vision v0 3 4 0": [
+      "sk-vision v0.3.4.0"
+    ],
+    "sk vision v0 3 5 0": [
+      "sk-vision v0.3.5.0"
+    ],
     "sk vision venv cleanup": [
       "sk-vision venv cleanup"
     ],
@@ -93850,6 +94816,9 @@
     "skill advisor routing fix": [
       "skill advisor routing fix"
     ],
+    "skill advisor routing ux": [
+      "skill advisor routing ux"
+    ],
     "skill advisor runtime alignment": [
       "skill advisor runtime alignment"
     ],
@@ -94032,6 +95001,27 @@
     ],
     "skill authoring contract": [
       "skill authoring contract"
+    ],
+    "skill authoring fixes": [
+      "skill authoring fixes"
+    ],
+    "skill authoring remediation": [
+      "skill authoring remediation"
+    ],
+    "skill authoring remediation review": [
+      "skill authoring remediation review"
+    ],
+    "skill authoring ux research": [
+      "skill authoring ux research"
+    ],
+    "skill authoring ux research implementation summary": [
+      "skill authoring ux research implementation summary"
+    ],
+    "skill authoring ux research plan": [
+      "skill authoring ux research plan"
+    ],
+    "skill authoring ux research tasks": [
+      "skill authoring ux research tasks"
     ],
     "skill benchmark ai council executor parity": [
       "skill-benchmark ai-council executor parity"
@@ -94798,6 +95788,27 @@
     ],
     "skill orchestrator deep research": [
       "skill orchestrator deep research"
+    ],
+    "skill package doc findings": [
+      "skill package doc findings"
+    ],
+    "skill package doc findings acceptance criteria": [
+      "skill package doc findings acceptance criteria"
+    ],
+    "skill package doc findings goal": [
+      "skill package doc findings goal"
+    ],
+    "skill package doc findings implementation summary": [
+      "skill package doc findings implementation summary"
+    ],
+    "skill package doc findings plan": [
+      "skill package doc findings plan"
+    ],
+    "skill package doc findings tasks": [
+      "skill package doc findings tasks"
+    ],
+    "skill package fixes": [
+      "skill package fixes"
     ],
     "skill package security audit": [
       "skill package security audit"
@@ -95695,6 +96706,24 @@
     ],
     "source citation check": [
       "source citation check"
+    ],
+    "source deprecation": [
+      "source deprecation"
+    ],
+    "source deprecation acceptance criteria": [
+      "source deprecation acceptance criteria"
+    ],
+    "source deprecation goal": [
+      "source deprecation goal"
+    ],
+    "source deprecation implementation summary": [
+      "source deprecation implementation summary"
+    ],
+    "source deprecation plan": [
+      "source deprecation plan"
+    ],
+    "source deprecation tasks": [
+      "source deprecation tasks"
     ],
     "source directory readme": [
       "source directory readme"
@@ -98645,6 +99674,18 @@
     "stale identifier regeneration plan": [
       "stale identifier regeneration plan"
     ],
+    "stale jev canary": [
+      "stale jev canary"
+    ],
+    "stale jev canary implementation summary": [
+      "stale jev canary implementation summary"
+    ],
+    "stale jev canary plan": [
+      "stale jev canary plan"
+    ],
+    "stale jev canary tasks": [
+      "stale jev canary tasks"
+    ],
     "stale lease cas": [
       "stale lease CAS"
     ],
@@ -100766,6 +101807,12 @@
     "system deep loop 1 5 3 0": [
       "system-deep-loop 1.5.3.0"
     ],
+    "system deep loop 1 5 4 0": [
+      "system-deep-loop 1.5.4.0"
+    ],
+    "system deep loop 1 5 5 0": [
+      "system-deep-loop 1.5.5.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -100880,6 +101927,12 @@
     "system deep loop v1 5 3 0": [
       "system-deep-loop v1.5.3.0"
     ],
+    "system deep loop v1 5 4 0": [
+      "system-deep-loop v1.5.4.0"
+    ],
+    "system deep loop v1 5 5 0": [
+      "system-deep-loop v1.5.5.0"
+    ],
     "system deep research bugs": [
       "system deep research bugs"
     ],
@@ -100942,6 +101995,21 @@
     ],
     "system skill advisor 0 14 3 0": [
       "system-skill-advisor 0.14.3.0"
+    ],
+    "system skill advisor 0 14 4 0": [
+      "system-skill-advisor 0.14.4.0"
+    ],
+    "system skill advisor 0 14 5 0": [
+      "system-skill-advisor 0.14.5.0"
+    ],
+    "system skill advisor 0 14 6 0": [
+      "system-skill-advisor 0.14.6.0"
+    ],
+    "system skill advisor 0 14 7 0": [
+      "system-skill-advisor 0.14.7.0"
+    ],
+    "system skill advisor 0 15 0 0": [
+      "system-skill-advisor 0.15.0.0"
     ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
@@ -101074,6 +102142,21 @@
     ],
     "system skill advisor v0 14 3 0": [
       "system-skill-advisor v0.14.3.0"
+    ],
+    "system skill advisor v0 14 4 0": [
+      "system-skill-advisor v0.14.4.0"
+    ],
+    "system skill advisor v0 14 5 0": [
+      "system-skill-advisor v0.14.5.0"
+    ],
+    "system skill advisor v0 14 6 0": [
+      "system-skill-advisor v0.14.6.0"
+    ],
+    "system skill advisor v0 14 7 0": [
+      "system-skill-advisor v0.14.7.0"
+    ],
+    "system skill advisor v0 15 0 0": [
+      "system-skill-advisor v0.15.0.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -101338,6 +102421,24 @@
     ],
     "system spec kit 2 7 2 0": [
       "system-spec-kit 2.7.2.0"
+    ],
+    "system spec kit 2 7 2 1": [
+      "system-spec-kit 2.7.2.1"
+    ],
+    "system spec kit 2 7 3 0": [
+      "system-spec-kit 2.7.3.0"
+    ],
+    "system spec kit 2 7 4 0": [
+      "system-spec-kit 2.7.4.0"
+    ],
+    "system spec kit 2 7 5 0": [
+      "system-spec-kit 2.7.5.0"
+    ],
+    "system spec kit 2 7 6 0": [
+      "system-spec-kit 2.7.6.0"
+    ],
+    "system spec kit 2 7 7 0": [
+      "system-spec-kit 2.7.7.0"
     ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
@@ -101716,6 +102817,24 @@
     ],
     "system spec kit v2 7 2 0": [
       "system-spec-kit v2.7.2.0"
+    ],
+    "system spec kit v2 7 2 1": [
+      "system-spec-kit v2.7.2.1"
+    ],
+    "system spec kit v2 7 3 0": [
+      "system-spec-kit v2.7.3.0"
+    ],
+    "system spec kit v2 7 4 0": [
+      "system-spec-kit v2.7.4.0"
+    ],
+    "system spec kit v2 7 5 0": [
+      "system-spec-kit v2.7.5.0"
+    ],
+    "system spec kit v2 7 6 0": [
+      "system-spec-kit v2.7.6.0"
+    ],
+    "system spec kit v2 7 7 0": [
+      "system-spec-kit v2.7.7.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
@@ -102369,6 +103488,9 @@
     ],
     "template moving target": [
       "template moving target"
+    ],
+    "template name anchor retired": [
+      "template-name anchor retired"
     ],
     "template optimization": [
       "template optimization"
@@ -105447,6 +106569,18 @@
     "unreachable validation path deleted": [
       "unreachable validation path deleted"
     ],
+    "unread version fields": [
+      "unread version fields"
+    ],
+    "unread version fields implementation summary": [
+      "unread version fields implementation summary"
+    ],
+    "unread version fields plan": [
+      "unread version fields plan"
+    ],
+    "unread version fields tasks": [
+      "unread version fields tasks"
+    ],
     "unrecognized event format review": [
       "unrecognized event format review"
     ],
@@ -105518,6 +106652,9 @@
     ],
     "unused mcp response type removed": [
       "unused mcp response type removed"
+    ],
+    "unused template name comments removed": [
+      "unused template-name comments removed"
     ],
     "upcast fork migrate cutover": [
       "upcast fork migrate cutover"
@@ -106701,6 +107838,18 @@
     ],
     "validator fallback warning plan": [
       "validator fallback warning plan"
+    ],
+    "validator false positives": [
+      "validator false positives"
+    ],
+    "validator false positives implementation summary": [
+      "validator false positives implementation summary"
+    ],
+    "validator false positives plan": [
+      "validator false positives plan"
+    ],
+    "validator false positives tasks": [
+      "validator false positives tasks"
     ],
     "validator first template dedup": [
       "validator-first template dedup"

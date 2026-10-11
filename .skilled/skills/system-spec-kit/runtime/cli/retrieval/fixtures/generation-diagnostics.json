@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 56,
-    "missing-frontmatter": 6882,
-    "ok": 13923,
+    "missing-frontmatter": 6903,
+    "ok": 14203,
     "valid-empty-list": 3509
   },
-  "documentsScanned": 24370,
+  "documentsScanned": 24671,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "890f6ea72a6822918425f66ef4a3da73fb41b1f96b600ff248dfd755f4a9ffbf",
+  "manifestHash": "3c9654083fb1e191bcc23b0ff107fa4a3c39692a344732b7798b49c550eee2a7",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36266,
+      "ok": 36649,
       "prose-sentence": 19,
       "single-token": 164,
       "stop-word-only": 1,
@@ -37529,6 +37529,54 @@
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/002-admission-corpus-pin/evidence/admission-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/review/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/001-authoring-ux-research/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/001-authoring-ux-research/research/research.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/011-remediation-deep-review/review/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/011-remediation-deep-review/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/sk-communication/001-sk-communication-creation/001-research-strategy/research/deep-research-dashboard.md",
@@ -38856,6 +38904,84 @@
       "line": 1,
       "path": "specs/sk-doc/062-doc-validation-off-switches/review/review-report.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/deep-review-strategy.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
@@ -68199,6 +68325,126 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/001-compiled-route-manifest-suite/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/002-admission-corpus-pin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/003-stale-jev-canary/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/004-pi-ambiguous-denial/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/005-readme-node-floor/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/006-hook-late-write-test/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/008-authored-classifier-fixture/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/009-pi-guard-classification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/001-authoring-ux-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/001-authoring-ux-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/002-parent-goal-budget/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/003-unread-version-fields/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/004-commit-hook-checks/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/005-changelog-single-bump/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/006-create-skill-guidance/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/007-advisor-name-mention-scoring/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/008-advisor-surface-hint/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/009-advisor-vocabulary-freshness/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/010-validator-false-positives/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/011-remediation-deep-review/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/011-remediation-deep-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/012-advisor-doc-target-and-engines/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/013-python-advisor-native-and-parity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/014-gate-index-and-deletions/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/015-freshness-strict-content/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/016-sk-doc-tooling-followups/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-code/z_archive",
       "reason": "excluded directory"
     },
@@ -68984,6 +69230,46 @@
     },
     {
       "path": "specs/sk-doc/065-changelog-section-spacing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/001-source-deprecation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/002-retroactive-removal/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/003-feature-catalog-findings/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/004-leftover-template-comments/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/005-changelog-version-keys/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/006-skill-package-doc-findings/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/009-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/scratch",
       "reason": "excluded directory"
     },
     {
