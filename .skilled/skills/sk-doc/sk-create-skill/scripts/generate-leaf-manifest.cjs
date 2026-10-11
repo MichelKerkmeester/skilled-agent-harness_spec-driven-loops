@@ -527,11 +527,20 @@ function runWrite(skillDir) {
 /**
  * Check that a skill root's committed `leaf-manifest.json` matches a fresh
  * regeneration, without writing.
+ *
+ * A manifest that is a link is refused rather than followed, as runWrite does.
+ * A dangling link is refused the same way: it would otherwise read as a missing
+ * manifest and hide the link.
+ *
  * @param {string} skillDir Absolute path to the skill root directory.
  * @returns {number} Exit code: 0 fresh, non-zero when stale or missing.
+ * @throws {Error} When `leaf-manifest.json` is a symbolic link.
  */
 function runCheck(skillDir) {
   const manifestPath = path.join(skillDir, 'leaf-manifest.json');
+  if (isSymbolicLink(manifestPath)) {
+    throw new Error(`leaf-manifest.json is a symbolic link, not followed: ${manifestPath}; remove the link and regenerate it with --write`);
+  }
   if (!fs.existsSync(manifestPath)) {
     process.stderr.write(`generate-leaf-manifest: no leaf-manifest.json to check under ${skillDir}\n`);
     return 2;
