@@ -1,0 +1,32 @@
+# Review scope: product files changed in fde8a56d87..8e1be919a4, then the claims each fix phase makes.
+# Derived artifacts (trigger index, retrieval fixtures) are checked with their generator --check, not read.
+.hermes/skills/system-spec-kit/SKILL.md
+.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/004-cli-external-orchestration/fixtures/canary-cases.v1.json
+.skilled/bin/tests/compiled-route-admission.test.cjs
+.skilled/bin/tests/compiled-route-manifest.test.cjs
+.skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts
+.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts
+.skilled/skills/system-spec-kit/SKILL.md
+.skilled/skills/system-spec-kit/changelog/v2.7.2.1.md
+.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs
+README.md
+specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/004-cli-external-orchestration/fixtures/canary-cases.v1.json
+specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/harness/build-artifacts.cjs
+specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/001-compiled-route-manifest-suite/spec.md
+specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/001-compiled-route-manifest-suite/implementation-summary.md
+specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/001-compiled-route-manifest-suite/goal.md
+specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/002-admission-corpus-pin/spec.md
+specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/002-admission-corpus-pin/implementation-summary.md
+specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/002-admission-corpus-pin/goal.md
+specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/003-stale-jev-canary/spec.md
+specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/003-stale-jev-canary/implementation-summary.md
+specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/003-stale-jev-canary/goal.md
+specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/004-pi-ambiguous-denial/spec.md
+specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/004-pi-ambiguous-denial/implementation-summary.md
+specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/004-pi-ambiguous-denial/goal.md
+specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/005-readme-node-floor/spec.md
+specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/005-readme-node-floor/implementation-summary.md
+specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/005-readme-node-floor/goal.md
+specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/006-hook-late-write-test/spec.md
+specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/006-hook-late-write-test/implementation-summary.md
+specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/006-hook-late-write-test/goal.md

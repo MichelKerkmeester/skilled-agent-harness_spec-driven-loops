@@ -1,0 +1,861 @@
+{
+  "sessionId": "fanout-dsflash-llmgw-1791667148881-n911tj",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "timestamp": "2026-10-10T21:39:47.637Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Authored cli-classifier fixture still expects the removed cli-deem mode, so the next documented rebuild reinstalls a fixture that fails its own gold",
+      "file": "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/fixtures/canary-cases.v1.json",
+      "line": 70,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-002",
+      "severity": "P1",
+      "title": "Pi guard denies benign commands when a variable expansion and a -p/--print token coexist, and the new deny text misdiagnoses them as failed dispatches",
+      "file": ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+      "line": 249,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "Pi dispatch authorization is bypassable by wrapper-delivered dispatches (bash -c, sh -c, zsh -c) that the rule engine's own resolver classifies as an executor",
+      "file": ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+      "line": 235,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Capability and playbook docs describe wrapper commands as ambiguous, but shell -c wrappers classify none and bypass the guard",
+      "file": ".skilled/skills/cli-external-orchestration/feature-catalog/cli-dispatch-authorization/cli-dispatch-authorization.md",
+      "line": 21,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 1
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "active_finding_replay",
+      "auth_bypass",
+      "claim_mismatch",
+      "comment_hygiene",
+      "false_positive_authorization",
+      "overengineering",
+      "stale_authored_artifact",
+      "stale_doc_contract",
+      "test_sensitivity",
+      "unrun_named_check"
+    ],
+    "ruledOut": [
+      "active_finding_replay",
+      "claim_mismatch",
+      "comment_hygiene",
+      "injection",
+      "mirror_drift",
+      "overengineering",
+      "regression",
+      "secret_exposure",
+      "test_pin_drift",
+      "test_sensitivity",
+      "timing_flake",
+      "unrun_named_check"
+    ],
+    "deferred": [
+      "test_pin_drift",
+      "tokenizer_evasion"
+    ],
+    "blocked": [
+      "derived_artifact_staleness"
+    ],
+    "byBugClass": {
+      "false_positive_authorization": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "stale_authored_artifact": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "test_pin_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "command_injection": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "secret_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "regression": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "auth_bypass": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "tokenizer_evasion": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "claim_mismatch": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "stale_doc_contract": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "mirror_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "derived_artifact_staleness": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          3
+        ]
+      },
+      "test_sensitivity": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "comment_hygiene": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "overengineering": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "timing_flake": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "active_finding_replay": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "unrun_named_check": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs"
+      ],
+      "bugClass": "test_pin_drift",
+      "disposition": "deferred",
+      "rationale": "timing envelope checked once; flake analysis belongs to the maintainability pass",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:266-283"
+      ],
+      "reason": "deferred to D4"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-104",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts"
+      ],
+      "bugClass": "tokenizer_evasion",
+      "disposition": "deferred",
+      "rationale": "same root cause as R2-P1-001; no distinct fix target to prove separately this iteration",
+      "evidenceRefs": [
+        "probe/wrapper-probe.ts"
+      ],
+      "reason": "deferred to the maintainability pass for a combined recommendation"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-204",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json"
+      ],
+      "bugClass": "derived_artifact_staleness",
+      "disposition": "blocked",
+      "rationale": "staleness is created by this review packet's uncommitted scaffold, not by the six commits; regenerate at 007 close",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/spec.md"
+      ],
+      "reason": "attribution blocked by uncommitted packet state"
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs"
+      ],
+      "bugClass": "test_pin_drift",
+      "disposition": "ruled_out",
+      "rationale": "an independent cross-check still fails on a dropped or added hub",
+      "evidenceRefs": [
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs:1128"
+      ],
+      "reason": "verified by direct read of the resolver set and its assertion"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/tests/compiled-route-admission.test.cjs",
+        ".skilled/bin/compiled-route-sync.cjs"
+      ],
+      "bugClass": "regression",
+      "disposition": "ruled_out",
+      "rationale": "served-state regressions absent; all named checks pass",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-sync.cjs:1020",
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs:1",
+        ".skilled/bin/tests/compiled-route-admission.test.cjs:1",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/003-hub-surface-precedence/scratch/all-canaries.cjs:1"
+      ],
+      "reason": "rerun evidence matches the commits' claims"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-102",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/dispatch/lib/dispatch-audit.mjs"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "scrubbing surface intact and outside the six commits' diff",
+      "evidenceRefs": [
+        ".skilled/hooks/dispatch/lib/dispatch-audit.mjs:531-536"
+      ],
+      "reason": "verified by direct read; no reviewed change touches it"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-103",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "static strings or a fixed skill-id token; no command echo",
+      "evidenceRefs": [
+        ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:257"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-201",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/goal.md"
+      ],
+      "bugClass": "claim_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "checked claims match; 004 suite unconfirmed but not contradicted",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/goal.md:44-49",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/spec.md:154-165"
+      ],
+      "reason": "reruns and commit diffs agree with the docs"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-203",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".hermes/skills/system-spec-kit/SKILL.md"
+      ],
+      "bugClass": "mirror_drift",
+      "disposition": "ruled_out",
+      "rationale": "generator check passes",
+      "evidenceRefs": [
+        ".hermes/skills/system-spec-kit/SKILL.md:1"
+      ],
+      "reason": "verified by generator --check exit 0"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-301",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs"
+      ],
+      "bugClass": "test_sensitivity",
+      "disposition": "ruled_out",
+      "rationale": "mutant detection reproduced; test is sensitive as claimed",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:282"
+      ],
+      "reason": "probe demonstrates the mutant fails the assertion"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-302",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+        ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts"
+      ],
+      "bugClass": "comment_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "scan found no violations on changed lines",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/goal-file-manifest.txt:1-32"
+      ],
+      "reason": "verified by diff scan"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-303",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "README.md",
+        ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs"
+      ],
+      "bugClass": "overengineering",
+      "disposition": "ruled_out",
+      "rationale": "all changes at or below extend-in-place rung",
+      "evidenceRefs": [
+        ".skilled/repo-rules/prevent-overengineering.md:53-66",
+        "README.md:160"
+      ],
+      "reason": "assessed against the declared rule"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-304",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs"
+      ],
+      "bugClass": "timing_flake",
+      "disposition": "ruled_out",
+      "rationale": "no new failure mode beyond the suite's existing envelope assumption",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:39"
+      ],
+      "reason": "assessed as pre-existing shared assumption"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-401",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/fixtures/canary-cases.v1.json"
+      ],
+      "bugClass": "active_finding_replay",
+      "disposition": "ruled_out",
+      "rationale": "replay shows the finding is still active; the resolution hypothesis is ruled out",
+      "evidenceRefs": [
+        "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/fixtures/canary-cases.v1.json:70"
+      ],
+      "reason": "authored fixture probe still throws GOLD_MISMATCH"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-402",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts"
+      ],
+      "bugClass": "active_finding_replay",
+      "disposition": "ruled_out",
+      "rationale": "replay shows both findings still active; the resolution hypothesis is ruled out",
+      "evidenceRefs": [
+        ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:185"
+      ],
+      "reason": "guard and wrapper probes behave exactly as recorded"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-403",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "unrun_named_check",
+      "disposition": "ruled_out",
+      "rationale": "guard passes; phase 001 REQ-003 confirmed",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "reason": "command exit 0"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs"
+      ],
+      "bugClass": "test_pin_drift",
+      "disposition": "ruled_out",
+      "rationale": "an independent cross-check still fails on a dropped or added hub",
+      "evidenceRefs": [
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs:1128"
+      ],
+      "proof": "verified by direct read of the resolver set and its assertion"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/tests/compiled-route-admission.test.cjs",
+        ".skilled/bin/compiled-route-sync.cjs"
+      ],
+      "bugClass": "regression",
+      "disposition": "ruled_out",
+      "rationale": "served-state regressions absent; all named checks pass",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-sync.cjs:1020",
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs:1",
+        ".skilled/bin/tests/compiled-route-admission.test.cjs:1",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/003-hub-surface-precedence/scratch/all-canaries.cjs:1"
+      ],
+      "proof": "rerun evidence matches the commits' claims"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-102",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/dispatch/lib/dispatch-audit.mjs"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "scrubbing surface intact and outside the six commits' diff",
+      "evidenceRefs": [
+        ".skilled/hooks/dispatch/lib/dispatch-audit.mjs:531-536"
+      ],
+      "proof": "verified by direct read; no reviewed change touches it"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-103",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "static strings or a fixed skill-id token; no command echo",
+      "evidenceRefs": [
+        ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:257"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-201",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/goal.md"
+      ],
+      "bugClass": "claim_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "checked claims match; 004 suite unconfirmed but not contradicted",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/goal.md:44-49",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/spec.md:154-165"
+      ],
+      "proof": "reruns and commit diffs agree with the docs"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-203",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".hermes/skills/system-spec-kit/SKILL.md"
+      ],
+      "bugClass": "mirror_drift",
+      "disposition": "ruled_out",
+      "rationale": "generator check passes",
+      "evidenceRefs": [
+        ".hermes/skills/system-spec-kit/SKILL.md:1"
+      ],
+      "proof": "verified by generator --check exit 0"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-301",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs"
+      ],
+      "bugClass": "test_sensitivity",
+      "disposition": "ruled_out",
+      "rationale": "mutant detection reproduced; test is sensitive as claimed",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:282"
+      ],
+      "proof": "probe demonstrates the mutant fails the assertion"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-302",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+        ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts"
+      ],
+      "bugClass": "comment_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "scan found no violations on changed lines",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/goal-file-manifest.txt:1-32"
+      ],
+      "proof": "verified by diff scan"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-303",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "README.md",
+        ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs"
+      ],
+      "bugClass": "overengineering",
+      "disposition": "ruled_out",
+      "rationale": "all changes at or below extend-in-place rung",
+      "evidenceRefs": [
+        ".skilled/repo-rules/prevent-overengineering.md:53-66",
+        "README.md:160"
+      ],
+      "proof": "assessed against the declared rule"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-304",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs"
+      ],
+      "bugClass": "timing_flake",
+      "disposition": "ruled_out",
+      "rationale": "no new failure mode beyond the suite's existing envelope assumption",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:39"
+      ],
+      "proof": "assessed as pre-existing shared assumption"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-401",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/fixtures/canary-cases.v1.json"
+      ],
+      "bugClass": "active_finding_replay",
+      "disposition": "ruled_out",
+      "rationale": "replay shows the finding is still active; the resolution hypothesis is ruled out",
+      "evidenceRefs": [
+        "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/fixtures/canary-cases.v1.json:70"
+      ],
+      "proof": "authored fixture probe still throws GOLD_MISMATCH"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-402",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts"
+      ],
+      "bugClass": "active_finding_replay",
+      "disposition": "ruled_out",
+      "rationale": "replay shows both findings still active; the resolution hypothesis is ruled out",
+      "evidenceRefs": [
+        ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:185"
+      ],
+      "proof": "guard and wrapper probes behave exactly as recorded"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-403",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "unrun_named_check",
+      "disposition": "ruled_out",
+      "rationale": "guard passes; phase 001 REQ-003 confirmed",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "proof": "command exit 0"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "active_finding_replay",
+      "coverage_gap",
+      "unrun_named_check"
+    ],
+    "covered": [
+      "active_finding_replay",
+      "unrun_named_check"
+    ],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

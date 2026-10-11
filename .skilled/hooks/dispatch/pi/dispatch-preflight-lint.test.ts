@@ -184,9 +184,18 @@ describe("registered Pi extension boundary", () => {
     ["quoted mention", 'devin -p "task"', 'use "cli-devin"'],
     ["variable executor", "$CLI -p task", "dispatch via cli-devin"],
     ["alias executor", "alias d=devin; d -p task", "dispatch via cli-devin"],
+    ["bash -c wrapped executor", "bash -c 'devin -p task'", "run the task"],
   ])("denies %s through the registered tool_call boundary", async (_name, command, rawText) => {
     const { result } = await invokeFactory(rawText, command);
     expect(result?.block).toBe(true);
+  });
+
+  it("tells the caller what an ambiguous command must look like", async () => {
+    const { result } = await invokeFactory("dispatch via cli-devin", "$CLI -p task");
+    expect(result?.block).toBe(true);
+    expect(result?.reason).toContain("Call one executor by its literal name");
+    // A path-qualified executor such as `~/bin/pi -p` is direct, so the advice must not forbid paths.
+    expect(result?.reason).not.toContain("path");
   });
 
   // Pi has no in-process delegation of its own, so a named cli-pi dispatch is judged by the

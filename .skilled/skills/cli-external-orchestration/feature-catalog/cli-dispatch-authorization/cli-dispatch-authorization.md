@@ -21,6 +21,8 @@ The dispatch hooks share one runtime-neutral inspector that decides whether a Ba
 - `ambiguous` — an executor-shaped candidate that cannot be pinned to a single direct executor: variable (`$CLI -p x`), alias, command substitution, unknown wrapper, variable-prompt, or two dispatch segments.
 - `none` — no dispatch evidence.
 
+A shell `-c` wrapper (`bash -c`, `sh -c`, `zsh -c` or `dash -c`) is not an unknown wrapper: the inspector classifies the quoted command it runs, so `bash -c 'devin -p task'` is `direct cli-devin`. A variable counts as an executor only in command position, so `mkdir -p "$DIR"` and `node -p "$EXPR"` are `none`.
+
 The same classification feeds two consumers: the observational audit trail (`matchDispatchShape` / `recordDispatch`, which records only `direct` dispatches) and the Pi authorization gate (`shouldDenyPiDispatch`). Because the inspector is a shared library, its classification governs all four inspector runtimes — Claude, Codex, Devin, and Pi.
 
 **Quote-safe executor normalization.** A quoted command-position token still names the binary the shell will run, so `"devin" -p x` invokes `devin` exactly as the bare form does. The inspector classifies such a quote-safe executor as `direct` by exact basename membership, identical to its unquoted twin, and also resolves quoted executors behind a transparent `env KEY=v` wrapper. Exact basename membership admits only a real executor name, so multi-word quoted prose (`"devin -p task"` as a single token) and a quoted token used as an argument (`echo "devin" -p "hi"`) correctly remain `none`. A quoted executor therefore can no longer classify as `none` and thereby evade both the Pi authorization gate and the audit trail.

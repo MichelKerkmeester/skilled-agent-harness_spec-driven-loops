@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/009-pi-guard-classification",
+  "description": "Phase 9: pi-guard-classification",
+  "keywords": [
+    "phase",
+    "pi-guard-classification"
+  ],
+  "lastUpdated": "2026-10-10T23:54:52.947Z",
+  "specId": "009",
+  "folderSlug": "pi-guard-classification",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "013-root-cause-and-ux-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
