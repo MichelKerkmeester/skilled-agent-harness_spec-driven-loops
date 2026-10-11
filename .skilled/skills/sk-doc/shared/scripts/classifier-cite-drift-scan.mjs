@@ -20,7 +20,7 @@ import { spawnClassifierCall } from '../../../cli-classifier/shared/scripts/jev-
 // ───────────────────────────────────────────────────────────────────
 
 /** Tracked-file citation with an optional inclusive line range. */
-export const CITATION_RE = /(?<![\w./-])([A-Za-z0-9_./-]+\.(?:ts|cjs|mjs|js|py|md|json|sh)):(\d+)(?:-(\d+))?/g;
+export const CITATION_RE = /(?<![\w./+-])([A-Za-z0-9_./+-]+\.(?:ts|cjs|mjs|js|py|md|json|sh)):(\d+)(?:-(\d+))?/g;
 
 /** Half-width, in lines, of the window a row records. */
 export const WINDOW_RADIUS_LINES = 10;

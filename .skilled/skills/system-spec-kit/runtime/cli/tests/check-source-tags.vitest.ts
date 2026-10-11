@@ -85,6 +85,17 @@ describe('SOURCE_TAGS helper', () => {
     expect(lines).toContain('CHECKED\t1');
   });
 
+  it('resolves a citation whose path contains a plus sign', () => {
+    const root = makeRepo();
+    write(root, {
+      'src/a+b/real.ts': TEN_LINES,
+      [`${PACKET}/research/research.md`]: 'Claim [SOURCE: src/a+b/real.ts:3].\n',
+    });
+    const lines = helper(root);
+    expect(warnings(lines)).toEqual([]);
+    expect(lines).toContain('CHECKED\t1');
+  });
+
   it('stays green on a packet with no tags', () => {
     const root = makeRepo();
     write(root, { [`${PACKET}/research/research.md`]: 'No tags here.\n' });
