@@ -1,5 +1,5 @@
 {
-  "manifestHash": "531d6ae00f233a3da759afddb18cabdf92826771fdc42468dc68d085a4cf410d",
+  "manifestHash": "a01f592260d6afa2a50006d4a7239116f81263c8efcb5b10c759a613ed947911",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8188,9 +8188,6 @@
     ],
     "admission gold": [
       "admission gold"
-    ],
-    "admission gold goal": [
-      "admission gold goal"
     ],
     "admission gold implementation summary": [
       "admission gold implementation summary"

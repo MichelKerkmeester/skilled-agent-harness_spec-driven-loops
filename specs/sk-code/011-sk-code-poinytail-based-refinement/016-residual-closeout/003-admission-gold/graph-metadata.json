@@ -15,7 +15,10 @@
       "phase 3 admission gold",
       "admission gold plan",
       "admission gold tasks",
-      "admission gold goal",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "admission gold implementation summary"
     ],
     "key_topics": [
@@ -24,22 +27,23 @@
       "phase",
       "plan",
       "tasks",
+      "packet",
       "goal",
-      "implementation",
-      "summary",
-      "broken",
-      "missing",
-      "inefficient",
-      "sentences"
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scratch/context-strip-trial.cjs"
     ],
     "entities": [
       {
@@ -73,6 +77,12 @@
         "source": "derived"
       },
       {
+        "name": "context-strip-trial.cjs",
+        "kind": "file",
+        "path": "scratch/context-strip-trial.cjs",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -103,7 +113,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -121,7 +131,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,14 +149,8 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow One",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -163,6 +173,12 @@
         "source": "derived"
       },
       {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
@@ -173,23 +189,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The system-deep-loop admission check reports one drift: DOC-331 (`doctor-deep-loop-lazy-init.md`) carries gold `UNKNOWN` and the prompt `Initialize the deep-loop graph from current iteration folders",
     "created_at": "2026-10-11T10:14:16Z",
-    "last_save_at": "2026-10-11T10:14:22.077Z",
+    "last_save_at": "2026-10-11T10:55:23.741Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +203,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e3014cf402153e4adfdd4e5ad5399662311eba3d785ad584e3400d38a1ed01d",
+    "source_fingerprint": "sha256:ac73eb54a04a8812c12a0318ddc00487b2c34089271ae53ca15c68bdd0d5f503",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e5f1054e4259ef01ad637bdc9b54e0eb60152e9584d32db41d65ca8f93f7514c",
-      "plan.md": "ee86f32d90ef2810cabda008002591d7e54b2f087fbb879cef37828cd7e9c323",
-      "tasks.md": "9dccf4ae9ef8e2ed31f992ece598135efcf233b4daff3743c2d9a26a87382544",
-      "implementation-summary.md": "9dfe6e471021e6c317f6fe2c53859927923d0b7eda02a8a7f70aeba6b30042ad"
+      "spec.md": "d20339439f2149ca1a265bdc878cb844d31dc6f087f7e0a8b39da339bff2fc6d",
+      "plan.md": "b501b1c06930b129b485b075b7ee1a72b40e311a8a22688c863a8684080f203d",
+      "tasks.md": "39bd44cb00d5bad88cbc57f531c8c7a55ce8ef2b1b950342fa46bba0f07a5a07",
+      "implementation-summary.md": "ee35a6998812eaa2152ad9bfd28ede97382dd4619f46c1b16707cf7bba49d673"
     },
     "last_active_at": null
   }
