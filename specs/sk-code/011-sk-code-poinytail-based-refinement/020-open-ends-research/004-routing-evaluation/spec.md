@@ -142,6 +142,17 @@ Done means:
 ## 7. OPEN QUESTIONS
 
 - None blocking the run. The research questions are in section 2.
+- Research topic: what a realistic held-out evaluation set and a cross-path parity check should look like for system-skill-advisor, and how both stay cheap and honest.
+- Research context: deep-research is active for this topic, and `research/research.md` is the canonical synthesis.
+
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+Abridged from `research/research.md`, which stays the source of truth:
+- The held-out set already exists: `holdout-prompts.jsonl` (66 frozen rows from three fixtures, checked for collisions with the training corpus, floored in CI). The 17+5 battery is a smoke test, not a held-out set.
+- The parity gate already exists, `local-native-divergence-ratchet.vitest.ts` (strict top-1 against a 73-entry reviewed ledger, 6/6 passing in 5.0 s), but no CI workflow runs it.
+- The gate measures the test-harness regime: on `rr-iter3-168` it passes on the ledgered skill while the live daemon routes elsewhere by 0.0001 confidence.
+- Ties at 0.82 are three floors sharing one value, broken the same way on both paths, so they belong in the ledger, never in a threshold change.
+- Nine ranked recommendations, R1 being to wire the ratchet as a blocking step in `golden-prompt-gate`.
+<!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 
 ---
