@@ -171,6 +171,15 @@ function measureOnce(src) {
 
 function main() {
   const args = process.argv.slice(2);
+  // A flag the script does not read is a typo, and a typo here silently turns a coverage
+  // check into a render, so every dash-prefixed token must be one of the two known options
+  // before either of them is interpreted.
+  const unknownOption = args.find((a) => a.startsWith('-') && a !== '--check' && a !== '--full-page');
+  if (unknownOption) {
+    process.stderr.write(`render-screenshots.cjs: unknown option: ${unknownOption}\n`);
+    process.stderr.write('usage: render-screenshots.cjs <assets-root> <screenshot-root> [--check] [--full-page]\n');
+    process.exit(2);
+  }
   const check = args.includes('--check');
   const fullPage = args.includes('--full-page');
   const [assetsRoot, outRoot] = args.filter((a) => !a.startsWith('--'));

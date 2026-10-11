@@ -873,6 +873,24 @@ function argValue(args: readonly string[], name: string): string | undefined {
 
 async function main(): Promise<void> {
   const args = process.argv.slice(2);
+  // Unknown options fail before any measurement or telemetry write, so a
+  // misspelled flag cannot silently flip what this run does.
+  const valueOptions = new Set(['--workspace-root', '--limit', '--corpus', '--telemetry-output', '--output', '--jsonl']);
+  const booleanOptions = new Set(['--no-record-telemetry', '--live-stream']);
+  for (let index = 0; index < args.length; index += 1) {
+    const token = args[index] ?? '';
+    if (valueOptions.has(token)) {
+      index += 1;
+      continue;
+    }
+    if (booleanOptions.has(token)) {
+      continue;
+    }
+    if (token.startsWith('-')) {
+      process.stderr.write(`smart-router-measurement: unknown option: ${token}\n`);
+      process.exit(2);
+    }
+  }
   const workspaceRoot = path.resolve(argValue(args, '--workspace-root') ?? locateWorkspaceRoot());
   const limitValue = argValue(args, '--limit');
   const summary = await runMeasurement({

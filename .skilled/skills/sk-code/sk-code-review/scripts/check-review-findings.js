@@ -84,6 +84,14 @@ function checkReviewFindings(text) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 function runCli() {
+  const args = process.argv.slice(2);
+  const offending = args.find((arg) => arg.startsWith('-')) ?? (args.length > 1 ? args[1] : null);
+  if (offending !== null) {
+    console.error(`check-review-findings.js: unknown option: ${offending}`);
+    console.error('usage: check-review-findings.js [file]');
+    process.exitCode = 2;
+    return;
+  }
   const inputPath = process.argv.length > 2 ? process.argv[2] : null;
   let text;
 

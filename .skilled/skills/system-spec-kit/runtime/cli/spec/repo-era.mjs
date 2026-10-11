@@ -654,6 +654,20 @@ export function buildReport(classification) {
 }
 
 if (process.argv[1] && pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url) {
-  const root = process.argv[2] ? path.resolve(process.argv[2]) : process.cwd();
+  const usage = 'Usage: repo-era.mjs [root-dir]\n'
+    + 'Reports repository layout and packet signal counts for the given directory.\n';
+  const positionals = [];
+  for (const argument of process.argv.slice(2)) {
+    if (argument === '--help' || argument === '-h') {
+      process.stdout.write(usage);
+      process.exit(0);
+    }
+    if (argument.startsWith('-') || positionals.length > 0) {
+      process.stderr.write(`repo-era: unknown option: ${argument}\n${usage}`);
+      process.exit(2);
+    }
+    positionals.push(argument);
+  }
+  const root = positionals.length === 1 ? path.resolve(positionals[0]) : process.cwd();
   process.stdout.write(`${JSON.stringify(buildReport(classifyRepo(root)), null, 2)}\n`);
 }

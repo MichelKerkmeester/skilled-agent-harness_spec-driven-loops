@@ -6,6 +6,8 @@
 # Run from spec-kit root: bash runtime/cli/setup/check-native-modules.sh
 set -euo pipefail
 
+FAILED=0
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd "$SCRIPT_DIR/../../.." && pwd)"
 MARKER="$ROOT_DIR/.node-version-marker"
@@ -43,9 +45,11 @@ NODE
   if [[ "$MARKER_MOD" = "$CURRENT_MOD" ]]; then
     echo "Version match:   [OK]"
   else
+    FAILED=1
     echo "Version match:   [FAIL] mismatch - rebuild needed" >&2
   fi
 else
+  FAILED=1
   echo "Marker:          [FAIL] not found (run rebuild script to create)" >&2
 fi
 
@@ -58,6 +62,7 @@ if [[ -d "$ROOT_DIR/shared/node_modules/sharp" ]]; then
   if node -e "require('$ROOT_DIR/shared/node_modules/sharp')" 2>/dev/null; then
     echo "sharp:             [OK] loads"
   else
+    FAILED=1
     echo "sharp:             [FAIL] did not load" >&2
   fi
 else
@@ -69,6 +74,10 @@ echo "-- Summary --"
 echo ""
 echo "If any modules FAILED, run: bash runtime/cli/setup/rebuild-native-modules.sh" >&2
 
+if [[ "$FAILED" -eq 1 ]]; then
+  exit 1
+fi
+
 # Exit codes:
 #   0 - Success
-#   1 - ERROR: node is required but was not found in PATH
+#   1 - ERROR: node missing, or a module check reported [FAIL]

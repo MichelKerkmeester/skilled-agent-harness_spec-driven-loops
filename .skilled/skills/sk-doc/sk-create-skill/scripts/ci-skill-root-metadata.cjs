@@ -80,9 +80,22 @@ function parseArgs(argv) {
   };
   for (let i = 0; i < argv.length; i += 1) {
     if (argv[i] === '--skills-dir') { args.skillsDir = argv[i + 1]; i += 1; }
-    else if (argv[i] === '--format') { args.format = argv[i + 1]; i += 1; }
+    else if (argv[i] === '--format') {
+      args.format = argv[i + 1];
+      // Only the text and json reports exist; any other value would silently
+      // fall back to text and read as a clean run.
+      if (args.format !== 'text' && args.format !== 'json') {
+        process.stderr.write(`ci-skill-root-metadata.cjs: unknown --format value: ${args.format}\n`);
+        process.exit(2);
+      }
+      i += 1;
+    }
     else if (argv[i] === '--fix') { args.fix = true; }
     else if (argv[i] === '--skill') { args.skill = argv[i + 1]; i += 1; }
+    else {
+      process.stderr.write(`ci-skill-root-metadata.cjs: unknown option: ${argv[i]}\n`);
+      process.exit(2);
+    }
   }
   return args;
 }

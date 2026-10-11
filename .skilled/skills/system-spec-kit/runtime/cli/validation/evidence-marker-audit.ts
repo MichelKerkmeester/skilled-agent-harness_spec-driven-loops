@@ -470,9 +470,34 @@ async function pathExists(p: string): Promise<boolean> {
 
 async function main(): Promise<number> {
   const args = process.argv.slice(2);
-  const folderArg = args.find((a) => a.startsWith('--folder='))?.split('=')[1];
-  const rewrap = args.includes('--rewrap');
-  const emitJson = args.includes('--json');
+
+  // Args are settled before any file is touched: a dash-prefixed token is either an
+  // option or the sign that --folder was written without its path. Either way it
+  // must not be read as a folder and silently fall back to the default tree.
+  let folderArg: string | undefined;
+  let rewrap = false;
+  let emitJson = false;
+  for (let index = 0; index < args.length; index += 1) {
+    const token = args[index];
+    if (token === '--rewrap') {
+      rewrap = true;
+    } else if (token === '--json') {
+      emitJson = true;
+    } else if (token === '--folder') {
+      const value: string | undefined = args[index + 1];
+      if (value === undefined || value.startsWith('-')) {
+        console.error('evidence-marker-audit: --folder needs a path');
+        return 2;
+      }
+      folderArg = value;
+      index += 1;
+    } else if (token.startsWith('--folder=')) {
+      folderArg = token.slice('--folder='.length);
+    } else if (token.startsWith('-')) {
+      console.error(`evidence-marker-audit: unknown option: ${token}`);
+      return 2;
+    }
+  }
 
   // Default audit tree: every direct child of the default spec root below.
   const DEFAULT_ROOT = path.resolve(

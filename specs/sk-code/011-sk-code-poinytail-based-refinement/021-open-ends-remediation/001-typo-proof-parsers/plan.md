@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 1: typo-proof-parsers"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Add a rejecting branch to each flagged parser and a non-zero exit to each detected-problem path, proven by typo-flag tests written before the fix."
 trigger_phrases:
   - "typo proof parsers plan"
 importance_tier: "normal"
@@ -20,13 +20,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Node.js (CommonJS, ESM, TypeScript) and Bash |
+| **Framework** | None, standalone CLI scripts |
+| **Storage** | None |
+| **Testing** | node --test, vitest and Bash harnesses beside each skill's existing tests |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Each flagged script checks its arguments against its own option list and refuses the first unknown one, using the script's existing usage code or 2. The ten class 2 scripts exit non-zero where they already detect the problem. A typo-flag test per skill is written and run red before any script changes.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -35,14 +35,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -51,14 +51,14 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Standalone CLI scripts, each owning its own argument parser.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Per-script parsers**: hold the option list and the rejecting branch.
+- **`cli-guards.cjs` and `reject-unknown-options.mjs`**: the two shared helpers, used only where three or more callers in one skill share a parser shape.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Arguments reach the parser, an unknown option stops the run before any read or write, and known options flow on unchanged.
 <!-- /ANCHOR:architecture -->
 
 

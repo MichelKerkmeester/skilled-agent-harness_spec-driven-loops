@@ -194,6 +194,12 @@ function runSelfTest() {
 // ───────────────────────────────────────────────────────────────────
 // 4. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
+const unknown = process.argv.slice(2).find((arg) => arg !== '--self-test');
+if (unknown !== undefined) {
+  console.error(`check-markdown-links.cjs: unknown option: ${unknown}`);
+  console.error('usage: check-markdown-links.cjs [--self-test]');
+  process.exit(2);
+}
 if (process.argv.includes('--self-test')) runSelfTest();
 
 const files = [];

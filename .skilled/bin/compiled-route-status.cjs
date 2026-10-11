@@ -282,6 +282,18 @@ function runtimeBindingFor(runtimeRoot = RUNTIME_ROOT) {
 
 function main() {
   const args = process.argv.slice(2);
+  // Unknown options must fail loudly: silently ignoring a misspelled one returns a
+  // status for a hub or engine selection the caller never asked for.
+  for (let i = 0; i < args.length; i += 1) {
+    const token = args[i];
+    if (token === '--pretty' || token === '--no-probe' || token === '--all') continue;
+    if (token === '--hub') { i += 1; continue; }
+    if (token.startsWith('-')) {
+      process.stderr.write(`compiled-route-status.cjs: unknown option: ${token}\n`);
+      process.stderr.write('usage: compiled-route-status.cjs --hub <hubId> | --all [--no-probe] [--pretty]\n');
+      process.exit(2);
+    }
+  }
   const pretty = args.includes('--pretty');
   const probeEngine = !args.includes('--no-probe');
   const hubIdx = args.indexOf('--hub');

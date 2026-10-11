@@ -598,6 +598,17 @@ function main(argv: string[]): void {
     return;
   }
 
+  // A misplaced or misspelled flag must fail loudly: --pretty is the only option
+  // either subcommand reads, so silently dropping another token would let a
+  // caller act on evidence produced without the option they asked for.
+  const unknownOption = argv.slice(1).find((token) => token !== '--pretty');
+  if (unknownOption !== undefined) {
+    console.error(`process-memory-harness: unknown option: ${unknownOption}`);
+    showHelp();
+    process.exitCode = 2;
+    return;
+  }
+
   const snapshot = command === 'fixture' ? syntheticFixtureSnapshot() : runSnapshot();
   console.log(JSON.stringify(snapshot, null, pretty ? 2 : 0));
 }

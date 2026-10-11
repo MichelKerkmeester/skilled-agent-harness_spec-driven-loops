@@ -30,6 +30,9 @@ import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { rejectUnknownOptions } from './reject-unknown-options.mjs';
+
+rejectUnknownOptions(import.meta.url, ['--write']);
 
 // The tightest contested margin band: a meaningful minority of the corpus.
 const TAU = 0.03;

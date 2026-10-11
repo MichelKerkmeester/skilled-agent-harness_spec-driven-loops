@@ -30,6 +30,16 @@ function parseArgs(argv) {
   const args = { packetSpecFolder: null, json: false, quiet: false };
   const rest = [...argv];
   args.packetSpecFolder = rest.shift() || null;
+  // The packet slot accepts a path only. A flag-shaped token there would be
+  // silently inspected as a folder, so it must surface as an unknown option.
+  if (
+    args.packetSpecFolder
+    && args.packetSpecFolder.startsWith('-')
+    && args.packetSpecFolder !== '--json'
+    && args.packetSpecFolder !== '--quiet'
+  ) {
+    args.unknownOption = args.packetSpecFolder;
+  }
   for (const flag of rest) {
     if (flag === '--json') args.json = true;
     else if (flag === '--quiet') args.quiet = true;
@@ -161,6 +171,11 @@ function renderHuman(packetSpecFolder, advisories, summary = null) {
  */
 function main(argv = process.argv.slice(2)) {
   const args = parseArgs(argv);
+  if (args.unknownOption) {
+    process.stderr.write(`advise-council-completion.cjs: unknown option: ${args.unknownOption}\n`);
+    process.stderr.write(`${usage()}\n`);
+    return 2;
+  }
   const packet = args.packetSpecFolder || '<missing-packet-spec-folder>';
   const advisories = args.packetSpecFolder && !args.unknown
     ? collectAdvisories(args.packetSpecFolder)

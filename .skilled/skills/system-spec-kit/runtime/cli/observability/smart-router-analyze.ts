@@ -361,6 +361,20 @@ function argValue(args: readonly string[], name: string): string | undefined {
 
 function main(): void {
   const args = process.argv.slice(2);
+  // Unknown options fail before any read or report write, so a misspelled
+  // flag cannot silently produce a report from the wrong input.
+  const valueOptions = new Set(['--workspace-root', '--input', '--output']);
+  for (let index = 0; index < args.length; index += 1) {
+    const token = args[index] ?? '';
+    if (valueOptions.has(token)) {
+      index += 1;
+      continue;
+    }
+    if (token.startsWith('-')) {
+      process.stderr.write(`smart-router-analyze: unknown option: ${token}\n`);
+      process.exit(2);
+    }
+  }
   const workspaceRoot = path.resolve(argValue(args, '--workspace-root') ?? locateWorkspaceRoot());
   const analysis = analyzeTelemetryFile({
     workspaceRoot,

@@ -8,6 +8,12 @@
 
 set -euo pipefail
 
+if [[ $# -gt 0 ]]; then
+    printf 'init-skill-graph.sh: unknown option: %s\n' "$1" >&2
+    printf 'usage: init-skill-graph.sh (takes no arguments)\n' >&2
+    exit 2
+fi
+
 # ───────────────────────────────────────────────────────────────
 # 1. PATHS
 # ───────────────────────────────────────────────────────────────

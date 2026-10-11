@@ -24,7 +24,7 @@ const { computeCompletionState } = require('../skills/system-spec-kit/runtime/cl
 // ─────────────────────────────────────────────────────────────────────────────
 
 function parseArgs(argv) {
-  const parsed = { specFolder: undefined, projectDir: undefined, strict: false, help: false };
+  const parsed = { specFolder: undefined, projectDir: undefined, strict: false, help: false, unknown: undefined };
   const positionals = [];
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -36,6 +36,10 @@ function parseArgs(argv) {
     } else if (token === '--project-dir') {
       parsed.projectDir = argv[index + 1];
       index += 1;
+    } else if (token.startsWith('-')) {
+      // Record the first unrecognized flag so main() fails loudly instead of
+      // treating it as the spec-folder positional.
+      parsed.unknown = parsed.unknown ?? token;
     } else {
       positionals.push(token);
     }
@@ -68,6 +72,12 @@ function printUsage(stream) {
 
 function main(argv) {
   const args = parseArgs(argv);
+
+  if (args.unknown) {
+    process.stderr.write(`speckit-completion.cjs: unknown option: ${args.unknown}\n`);
+    printUsage(process.stderr);
+    return 1;
+  }
 
   if (args.help) {
     printUsage(process.stdout);

@@ -25,8 +25,14 @@ const {
   deltaRowIteration,
   findingKeys,
 } = require('../lib/deep-loop/iteration-findings.cjs');
+const { assertKnownFlags } = require('./lib/cli-guards.cjs');
 
 const SEVERITY_RANK = { P0: 3, P1: 2, P2: 1 };
+
+// Every option the CLI merge entrypoint reads. parseArgs accepts any --key,
+// so without this list a misspelled flag would be silently ignored and change
+// what the merge does.
+const MERGE_FLAGS = ['loopType', 'artifactDir', 'enableNearDuplicateDedup'];
 
 /**
  * Collects findings whose `severity` is outside the three-tier scale of SEVERITY_RANK.
@@ -1277,6 +1283,7 @@ function mergeReconstructedResearchRegistry(registry, reconstructed) {
 async function main() {
   const { writeStateAtomic, writeTextAtomic } = await import('../lib/deep-loop/atomic-state.ts');
   const args = parseArgs();
+  assertKnownFlags(args, MERGE_FLAGS, inputError);
   const loopType = ensureString(args, 'loopType');
   if (loopType !== 'research' && loopType !== 'review') {
     throw inputError('loopType must be "research" or "review"');

@@ -353,6 +353,39 @@ printf '.skilled/skills/system-spec-kit/runtime\n' > "$UNNAMED_LIST"
 expect_eq "a buildable package listed without its output is reported" \
   ".skilled/skills/system-spec-kit/runtime" "$(unnamed_build_outputs "$UNNAMED_LIST")"
 
+# ── create reports a failed provision as a non-zero exit ────────
+# A worktree whose dependency install failed is not ready to use. The creator
+# must return non-zero but still name the branch and directory it created.
+FAILED_CREATE="$(mktemp -d)"
+mkdir -p "$FAILED_CREATE/repo/scripts" "$FAILED_CREATE/repo/stub" "$FAILED_CREATE/repo/pkg"
+cp "$NAMING" "$FAILED_CREATE/repo/scripts/worktree-naming.sh"
+printf 'pkg dist/out.js\n' > "$FAILED_CREATE/repo/scripts/worktree-provision-paths.txt"
+printf '{"name":"pkg","version":"1.0.0","dependencies":{"left-pad":"1.3.0"}}\n' \
+  > "$FAILED_CREATE/repo/pkg/package.json"
+cat > "$FAILED_CREATE/repo/stub/npm" <<'EOF'
+#!/usr/bin/env bash
+echo "npm stub: refusing install" >&2
+exit 1
+EOF
+chmod +x "$FAILED_CREATE/repo/stub/npm"
+(
+  cd "$FAILED_CREATE/repo" || exit 1
+  export GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.fsmonitor GIT_CONFIG_VALUE_0=false
+  git init -q -b main
+  git config user.email t@t
+  git config user.name t
+  git add scripts pkg
+  git commit -q -m init
+  PATH="$FAILED_CREATE/repo/stub:$PATH" bash -c 'source scripts/worktree-naming.sh; create_named_worktree demo main'
+) > "$FAILED_CREATE/stdout" 2> "$FAILED_CREATE/stderr"
+FAILED_CREATE_RC=$?
+FAILED_CREATE_DIR="$(cd "$FAILED_CREATE/repo" && pwd -P)/.worktrees/001-demo"
+expect_eq "failed provision create rc" 3 "$FAILED_CREATE_RC"
+expect_eq "failed provision create stdout" "worktrees/001-demo $FAILED_CREATE_DIR" \
+  "$(cat "$FAILED_CREATE/stdout")"
+expect_rc "failed provision create stderr" 0 grep -q "provisioning failed" "$FAILED_CREATE/stderr"
+rm -rf "$FAILED_CREATE"
+
 # ── report ─────────────────────────────────────────────────────
 echo "worktree-naming tests: PASS=$PASS FAIL=$FAIL"
 [ "$FAIL" -eq 0 ]

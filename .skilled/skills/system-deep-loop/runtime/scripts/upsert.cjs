@@ -16,6 +16,7 @@ const { spawnSync } = require('node:child_process');
 
 const {
   acquireWriterLock,
+  assertKnownFlags,
   classifyExitCode,
   installSignalHandlers,
   maybeThrowTestFault,
@@ -28,6 +29,19 @@ const {
 // ─────────────────────────────────────────────────────────────────────────────
 
 const TSX_LOADER = require.resolve('tsx');
+
+// Every option this entrypoint reads. parseArgs accepts any --key, so without
+// this list a misspelled flag would be silently ignored and change what runs.
+const UPSERT_FLAGS = [
+  'specFolder',
+  'loopType',
+  'sessionId',
+  'events',
+  'nodes',
+  'edges',
+  'seedSource',
+  'seedConfidence',
+];
 
 if (process.env.DEEP_LOOP_TSX_LOADED !== '1') {
   const child = spawnSync(process.execPath, ['--import', TSX_LOADER, __filename, ...process.argv.slice(2)], {
@@ -145,6 +159,7 @@ function jsonOut(payload) {
 
 async function main() {
   const args = parseArgs();
+  assertKnownFlags(args, UPSERT_FLAGS, inputError);
   const specFolder = validateNamespaceValue(ensureString(args, 'specFolder'), 'specFolder', inputError);
   const loopType = ensureString(args, 'loopType');
   const sessionId = validateNamespaceValue(ensureString(args, 'sessionId'), 'sessionId', inputError);

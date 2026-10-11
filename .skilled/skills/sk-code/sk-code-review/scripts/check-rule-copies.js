@@ -153,11 +153,34 @@ const EXAMPLE_OUTPUTS = [
 // ─────────────────────────────────────────────────────────────────────────────
 
 function parseRoot(argv) {
-  const idx = argv.indexOf('--root');
-  if (idx !== -1 && argv[idx + 1]) {
-    return argv[idx + 1];
+  let root = null;
+  for (let index = 0; index < argv.length; index += 1) {
+    const token = argv[index];
+    if (token === '--root') {
+      const value = argv[index + 1];
+      if (!value) {
+        console.error('check-rule-copies.js: --root needs a directory');
+        console.error('usage: check-rule-copies.js [--root <dir>]');
+        process.exit(2);
+      }
+      if (value.startsWith('--')) {
+        console.error(`check-rule-copies.js: unknown option: ${value}`);
+        console.error('usage: check-rule-copies.js [--root <dir>]');
+        process.exit(2);
+      }
+      if (root === null) {
+        root = value;
+      }
+      index += 1;
+      continue;
+    }
+    if (token.startsWith('-')) {
+      console.error(`check-rule-copies.js: unknown option: ${token}`);
+      console.error('usage: check-rule-copies.js [--root <dir>]');
+      process.exit(2);
+    }
   }
-  return process.cwd();
+  return root === null ? process.cwd() : root;
 }
 
 const root = parseRoot(process.argv.slice(2));

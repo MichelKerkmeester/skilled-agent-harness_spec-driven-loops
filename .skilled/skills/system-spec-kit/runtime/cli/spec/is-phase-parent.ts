@@ -196,8 +196,20 @@ export function assessPhaseParentHealth(specFolderAbsPath: string): PhaseParentH
 // emits the writer-derived child directory names, one per line, for drift checks.
 function runCli(): void {
   const [, , command, folderArg] = process.argv;
-  if (!command || !folderArg) {
-    return;
+  // Exiting silently here is read by the `check` caller as exit 0, which means
+  // "is a phase parent"; every malformed invocation must fail loudly instead.
+  const usage = 'usage: is-phase-parent <check|health|children> <folder>';
+  if (!command) {
+    console.error(`is-phase-parent: missing command\n${usage}`);
+    process.exit(2);
+  }
+  if (command !== 'check' && command !== 'health' && command !== 'children') {
+    console.error(`is-phase-parent: unknown command: ${command}\n${usage}`);
+    process.exit(2);
+  }
+  if (!folderArg) {
+    console.error(`is-phase-parent: missing folder for ${command}\n${usage}`);
+    process.exit(2);
   }
   const absFolder = path.resolve(folderArg);
   if (command === 'check') {

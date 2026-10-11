@@ -51,7 +51,20 @@ function parseArgs(argv) {
   const args = { skillsDir: null, format: 'text' };
   for (let i = 0; i < argv.length; i += 1) {
     if (argv[i] === '--skills-dir') { args.skillsDir = argv[i + 1]; i += 1; }
-    else if (argv[i] === '--format') { args.format = argv[i + 1]; i += 1; }
+    else if (argv[i] === '--format') {
+      args.format = argv[i + 1];
+      // Any other value would silently fall back to the text report, so a
+      // format typo must fail loudly instead.
+      if (args.format !== 'text' && args.format !== 'json') {
+        process.stderr.write(`ci-leaf-manifest-freshness.cjs: unknown --format value: ${args.format}\n`);
+        process.exit(2);
+      }
+      i += 1;
+    }
+    else {
+      process.stderr.write(`ci-leaf-manifest-freshness.cjs: unknown option: ${argv[i]}\n`);
+      process.exit(2);
+    }
   }
   return args;
 }

@@ -391,6 +391,11 @@ function parseArgs(argv) {
     if (a === '--dir') { args.dir = argv[i + 1]; i += 1; }
     else if (a === '--strict') { args.strict = true; }
     else if (a === '--format') { args.format = argv[i + 1]; i += 1; }
+    else if (a.startsWith('-')) {
+      process.stderr.write(`validate-compiled-routing-scenarios.cjs: unknown option: ${a}\n`);
+      process.stderr.write('usage: validate-compiled-routing-scenarios.cjs --dir <compiled-routing scenario dir> [--strict] [--format json]\n');
+      process.exit(2);
+    }
   }
   return args;
 }

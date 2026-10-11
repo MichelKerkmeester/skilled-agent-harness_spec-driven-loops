@@ -130,9 +130,22 @@ function loadFamilies() {
 }
 
 function main() {
+  const argv = process.argv.slice(2);
+  // An option the checker does not read is a typo, and a typo here silently turns the run
+  // into a different one, so every option-position token is settled before the known one
+  // is acted on. The token after --extra is its value, not an option.
+  for (let i = 0; i < argv.length; i += 1) {
+    const token = argv[i];
+    if (token === '--extra') {
+      i += 1;
+      continue;
+    }
+    console.error(`check-diagram-corpus.cjs: unknown option: ${token}`);
+    process.exit(2);
+  }
   let extraDirectory;
   try {
-    extraDirectory = parseExtraDirectory(process.argv.slice(2));
+    extraDirectory = parseExtraDirectory(argv);
   } catch (error) {
     console.error(`ERROR: ${error.message}`);
     process.exit(2);

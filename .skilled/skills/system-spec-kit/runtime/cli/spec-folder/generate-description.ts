@@ -85,6 +85,22 @@ function main(): void {
     process.exit(1);
   }
 
+  // Options begin at index 2, and the token after --description or --level is
+  // that option's value. Only a dash in option position can be a misspelled
+  // flag, so reject it before resolving positionals or reading any file.
+  for (let i = 2; i < args.length; i++) {
+    const token = args[i];
+    if (token === '--description' || token === '--level') {
+      i++; // skip the value
+      continue;
+    }
+    if (token.startsWith('-')) {
+      console.error(`generate-description: unknown option: ${token}`);
+      console.error('Usage: generate-description.js <folder-path> <base-path> [--description "text"] [--level N]');
+      process.exit(1);
+    }
+  }
+
   const folderPath = path.resolve(args[0]);
   const basePath = path.resolve(args[1]);
 

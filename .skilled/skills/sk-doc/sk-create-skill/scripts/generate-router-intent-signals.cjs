@@ -69,6 +69,27 @@ function write(p) {
 
 function main() {
   const args = process.argv.slice(2);
+  // A misspelled flag must fail loudly rather than fall back to a default run.
+  // Only a token in option position is checked: the token after --hub is its
+  // value even when it begins with a dash, and --hub with no usable value is
+  // itself a usage error.
+  const valueOptions = new Set(['--hub']);
+  const knownOptions = new Set(['--write', '--check', '--json', ...valueOptions]);
+  for (let i = 0; i < args.length; i += 1) {
+    if (valueOptions.has(args[i])) {
+      const value = args[i + 1];
+      if (value === undefined || value.startsWith('-')) {
+        process.stderr.write('generate-router-intent-signals.cjs: --hub needs a hub id\n');
+        process.exit(2);
+      }
+      i += 1;
+      continue;
+    }
+    if (!knownOptions.has(args[i]) && args[i].startsWith('-')) {
+      process.stderr.write(`generate-router-intent-signals.cjs: unknown option: ${args[i]}\n`);
+      process.exit(2);
+    }
+  }
   const doWrite = args.includes('--write');
   const doCheck = args.includes('--check');
   const asJson = args.includes('--json');

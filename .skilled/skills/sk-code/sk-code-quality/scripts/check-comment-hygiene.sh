@@ -8,6 +8,7 @@ Exit codes:
   0 — every checked file is clean (no violations found)
   1 — violations found in at least one file (reported to stdout as FILEPATH:LINE: excerpt)
   2 — every file was skipped (binary, unknown extension, or in excluded dir)
+  3 = an input file could not be read
 
 Escape: add "hygiene-ok" anywhere on a comment line to suppress it.
 
@@ -52,8 +53,8 @@ def check_file(filepath):
         with open(filepath, "r", encoding="utf-8", errors="replace") as f:
             lines = f.readlines()
     except (OSError, IOError) as e:
-        print(f"WARNING: cannot read {filepath}: {e}", file=sys.stderr)
-        return 0
+        print(f"ERROR: cannot read {filepath}: {e}", file=sys.stderr)
+        return 3
 
     # --- Comment detection ---
     def find_unquoted_js_line_comment(line: str) -> int:
@@ -218,6 +219,8 @@ def main():
     codes = [check_file(path) for path in sys.argv[1:]]
     if 1 in codes:
         sys.exit(1)
+    if 3 in codes:
+        sys.exit(3)
     sys.exit(0 if 0 in codes else 2)
 
 

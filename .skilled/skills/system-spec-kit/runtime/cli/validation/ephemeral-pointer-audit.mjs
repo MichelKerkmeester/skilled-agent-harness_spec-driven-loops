@@ -454,13 +454,29 @@ function auditPaths(targets) {
 
 function main(argv) {
   const args = argv.slice(2);
-  const json = args.includes("--json");
-  const targets = args.filter((a) => a !== "--json");
+  let json = false;
+  const targets = [];
+  for (const a of args) {
+    if (a === "--json") {
+      json = true;
+    } else if (a.startsWith("-")) {
+      process.stderr.write(`ephemeral-pointer-audit: unknown option: ${a}\n`);
+      return 2;
+    } else {
+      targets.push(a);
+    }
+  }
   if (targets.length === 0) {
     process.stderr.write(
       "usage: node ephemeral-pointer-audit.mjs <path> [<path> ...] [--json]\n",
     );
     return 2;
+  }
+  for (const target of targets) {
+    if (!fs.existsSync(target)) {
+      process.stderr.write(`ephemeral-pointer-audit: no such file or directory: ${target}\n`);
+      return 2;
+    }
   }
 
   const findings = auditPaths(targets);

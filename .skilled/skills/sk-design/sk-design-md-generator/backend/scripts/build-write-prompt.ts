@@ -187,8 +187,9 @@ if (require.main === module) {
   if (studyPath) {
     try {
       studyContext = JSON.parse(fs.readFileSync(studyPath, 'utf-8')) as StudyContext;
-    } catch {
-      studyContext = undefined;
+    } catch (err) {
+      console.error(`build-write-prompt: cannot read --study-context ${studyPath}: ${(err as Error).message}`);
+      process.exit(1);
     }
   }
   process.stdout.write(buildWritePrompt(tokens, V3_SCHEMA, studyContext));

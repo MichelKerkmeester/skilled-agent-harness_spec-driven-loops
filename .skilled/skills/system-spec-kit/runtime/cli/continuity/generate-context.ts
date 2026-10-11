@@ -936,6 +936,18 @@ async function parseArguments(
   let sessionId: string | null = null;
   let plannerMode: 'plan-only' | 'full-auto' | 'hybrid' = 'plan-only';
   const filteredArgv: string[] = [];
+  // The complete option set of this CLI: the loop branches below plus the
+  // flags consumed after it (--json/--stdin and the top-level --help/-h). A
+  // token in option position that is not one of these is a typo, not data.
+  const knownOptions = new Set([
+    '--json',
+    '--stdin',
+    '--help',
+    '-h',
+    '--session-id',
+    '--planner-mode',
+    '--full-auto',
+  ]);
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === '--session-id') {
       const candidate = argv[i + 1];
@@ -958,6 +970,16 @@ async function parseArguments(
     if (argv[i] === '--full-auto') {
       plannerMode = 'full-auto';
       continue;
+    }
+    // The token right after --json is its inline JSON payload: data, not an
+    // option, even when it begins with a dash.
+    const followsJson = i > 0 && argv[i - 1] === '--json';
+    if (
+      !followsJson &&
+      (argv[i].startsWith('--') || /^-[A-Za-z]/.test(argv[i])) &&
+      !knownOptions.has(argv[i])
+    ) {
+      throw new Error(`Unknown option: ${argv[i]}`);
     }
     filteredArgv.push(argv[i]);
   }

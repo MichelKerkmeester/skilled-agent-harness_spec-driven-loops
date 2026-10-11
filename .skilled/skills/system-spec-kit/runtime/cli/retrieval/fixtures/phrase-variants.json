@@ -1,5 +1,5 @@
 {
-  "manifestHash": "375887cf5bfdbd1d4d220f419a719849c43fecd5f64e4bc85f44a559d75defa6",
+  "manifestHash": "6685672cb66f1314ce7df1dd7418f0ce5f677485577921cc0e7ad1038c13dad3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9394,6 +9394,9 @@
     ],
     "advisor unification review pt 01": [
       "advisor unification review pt-01"
+    ],
+    "advisor unknown option": [
+      "advisor unknown option"
     ],
     "advisor utilities": [
       "advisor utilities"
@@ -32345,6 +32348,9 @@
     ],
     "deep loop typecheck errors": [
       "deep loop typecheck errors"
+    ],
+    "deep loop unknown option": [
+      "deep-loop unknown option"
     ],
     "deep loop upcaster implementation tasks": [
       "deep-loop upcaster implementation tasks"
@@ -89243,6 +89249,9 @@
     "sk code 2 2 11 0": [
       "sk-code 2.2.11.0"
     ],
+    "sk code 2 2 12 0": [
+      "sk-code 2.2.12.0"
+    ],
     "sk code 2 2 2 0": [
       "sk-code 2.2.2.0"
     ],
@@ -90243,6 +90252,9 @@
     "sk code two axis tasks": [
       "sk-code two-axis tasks"
     ],
+    "sk code unknown option": [
+      "sk-code unknown option"
+    ],
     "sk code v1 0 0 0": [
       "sk-code v1.0.0.0"
     ],
@@ -90287,6 +90299,9 @@
     ],
     "sk code v2 2 11 0": [
       "sk-code v2.2.11.0"
+    ],
+    "sk code v2 2 12 0": [
+      "sk-code v2.2.12.0"
     ],
     "sk code v2 2 2 0": [
       "sk-code v2.2.2.0"
@@ -91032,6 +91047,9 @@
     "sk design 2 0 1 0": [
       "sk-design 2.0.1.0"
     ],
+    "sk design 2 0 2 0": [
+      "sk-design 2.0.2.0"
+    ],
     "sk design advisor identity": [
       "sk-design advisor identity"
     ],
@@ -91410,6 +91428,9 @@
     "sk design transform verbs": [
       "sk-design transform verbs"
     ],
+    "sk design unknown option": [
+      "sk-design unknown option"
+    ],
     "sk design v1 0 0 0": [
       "sk-design v1.0.0.0"
     ],
@@ -91418,6 +91439,9 @@
     ],
     "sk design v2 0 1 0": [
       "sk-design v2.0.1.0"
+    ],
+    "sk design v2 0 2 0": [
+      "sk-design v2.0.2.0"
     ],
     "sk doc 1 5 0 0": [
       "sk-doc 1.5.0.0"
@@ -91478,6 +91502,9 @@
     ],
     "sk doc 2 3 4 0": [
       "sk-doc 2.3.4.0"
+    ],
+    "sk doc 2 3 5 0": [
+      "sk-doc 2.3.5.0"
     ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
@@ -91713,6 +91740,9 @@
     "sk doc tooling followups tasks": [
       "sk doc tooling followups tasks"
     ],
+    "sk doc unknown option": [
+      "sk-doc unknown option"
+    ],
     "sk doc v1 5 0 0": [
       "sk-doc v1.5.0.0"
     ],
@@ -91772,6 +91802,9 @@
     ],
     "sk doc v2 3 4 0": [
       "sk-doc v2.3.4.0"
+    ],
+    "sk doc v2 3 5 0": [
+      "sk-doc v2.3.5.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"
@@ -91881,6 +91914,9 @@
     "sk git 1 8 4 0": [
       "sk-git 1.8.4.0"
     ],
+    "sk git 1 8 5 0": [
+      "sk-git 1.8.5.0"
+    ],
     "sk git benchmark": [
       "sk-git benchmark"
     ],
@@ -91952,6 +91988,9 @@
     ],
     "sk git required a commit body only": [
       "sk git required a commit body only"
+    ],
+    "sk git script exit codes": [
+      "sk-git script exit codes"
     ],
     "sk git scripts folder": [
       "sk-git scripts folder"
@@ -92045,6 +92084,9 @@
     ],
     "sk git v1 8 4 0": [
       "sk-git v1.8.4.0"
+    ],
+    "sk git v1 8 5 0": [
+      "sk-git v1.8.5.0"
     ],
     "sk git workflow support": [
       "sk-git workflow support"
@@ -96831,6 +96873,9 @@
     "spec kit troubleshooting guide": [
       "spec kit troubleshooting guide"
     ],
+    "spec kit unknown option": [
+      "spec-kit unknown option"
+    ],
     "spec kit utilities": [
       "spec kit utilities"
     ],
@@ -100366,6 +100411,9 @@
     "system deep loop 1 6 1 0": [
       "system-deep-loop 1.6.1.0"
     ],
+    "system deep loop 1 6 2 0": [
+      "system-deep-loop 1.6.2.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -100495,6 +100543,9 @@
     "system deep loop v1 6 1 0": [
       "system-deep-loop v1.6.1.0"
     ],
+    "system deep loop v1 6 2 0": [
+      "system-deep-loop v1.6.2.0"
+    ],
     "system deep research bugs": [
       "system deep research bugs"
     ],
@@ -100575,6 +100626,9 @@
     ],
     "system skill advisor 0 15 3 0": [
       "system-skill-advisor 0.15.3.0"
+    ],
+    "system skill advisor 0 15 4 0": [
+      "system-skill-advisor 0.15.4.0"
     ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
@@ -100731,6 +100785,9 @@
     ],
     "system skill advisor v0 15 3 0": [
       "system-skill-advisor v0.15.3.0"
+    ],
+    "system skill advisor v0 15 4 0": [
+      "system-skill-advisor v0.15.4.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -100995,6 +101052,9 @@
     ],
     "system spec kit 2 7 10 0": [
       "system-spec-kit 2.7.10.0"
+    ],
+    "system spec kit 2 7 11 0": [
+      "system-spec-kit 2.7.11.0"
     ],
     "system spec kit 2 7 2 0": [
       "system-spec-kit 2.7.2.0"
@@ -101400,6 +101460,9 @@
     ],
     "system spec kit v2 7 10 0": [
       "system-spec-kit v2.7.10.0"
+    ],
+    "system spec kit v2 7 11 0": [
+      "system-spec-kit v2.7.11.0"
     ],
     "system spec kit v2 7 2 0": [
       "system-spec-kit v2.7.2.0"

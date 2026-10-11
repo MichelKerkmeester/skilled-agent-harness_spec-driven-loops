@@ -14,11 +14,22 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 
+const { assertKnownFlags } = require('./lib/cli-guards.cjs');
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 const TSX_LOADER = require.resolve('tsx');
+
+// Options each subcommand reads. A misspelled flag must fail as an input error
+// instead of being silently ignored; an unknown subcommand keeps its own error.
+const SUBCOMMAND_FLAGS = Object.freeze({
+  acquire: Object.freeze(['lockPath', 'packetId', 'ttlMs', 'runtimeKind', 'ownerPid']),
+  status: Object.freeze(['lockPath']),
+  refresh: Object.freeze(['lockPath', 'ownerPid', 'nonce']),
+  release: Object.freeze(['lockPath', 'ownerPid', 'nonce']),
+});
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. TSX BOOTSTRAP
@@ -142,6 +153,9 @@ async function main() {
     throw inputError('A subcommand is required: acquire | status | refresh | release');
   }
   const flags = parseFlags(argv.slice(1));
+  if (Object.prototype.hasOwnProperty.call(SUBCOMMAND_FLAGS, subcommand)) {
+    assertKnownFlags(flags, SUBCOMMAND_FLAGS[subcommand], inputError);
+  }
 
   const lib = await import('../lib/deep-loop/loop-lock.ts');
 

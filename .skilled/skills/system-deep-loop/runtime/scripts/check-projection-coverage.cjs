@@ -162,6 +162,9 @@ function parseArgs(argv) {
       out.dir = argv[++i];
     } else if (a.startsWith('--dir=')) {
       out.dir = a.slice('--dir='.length);
+    } else if (a.startsWith('-')) {
+      process.stderr.write(`check-projection-coverage.cjs: unknown option: ${a}\n`);
+      process.exit(2);
     }
   }
   return out;

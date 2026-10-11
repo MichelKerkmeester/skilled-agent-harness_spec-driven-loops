@@ -257,7 +257,7 @@ test('the walker excludes scratch paths and z_archive', () => {
   }
 });
 
-test('the command line exits 0 and names a missing packet or a bad option', () => {
+test('the command line exits 0 on a missing packet and 2 on a bad option', () => {
   const missing = spawnSync(
     process.execPath,
     [LINT, '--root', WORKSPACE_ROOT, 'specs/no-such-packet'],
@@ -270,7 +270,7 @@ test('the command line exits 0 and names a missing packet or a bad option', () =
 
   const bogus = spawnSync(process.execPath, [LINT, '--bogus'], { encoding: 'utf8' });
 
-  assert.equal(bogus.status, 0);
+  assert.equal(bogus.status, 2);
   assert.ok(bogus.stderr.includes('[lint-goal-criteria] ERROR unknown option: --bogus'));
 });
 

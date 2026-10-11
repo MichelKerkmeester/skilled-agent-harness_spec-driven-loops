@@ -384,6 +384,16 @@ function generatedSources(entries, pythonOwnerNormalization) {
 // ───────────────────────────────────────────────────────────────────
 
 function main() {
+  // CLI-only rejection: requiring this module (for example from tests) must
+  // not exit on arguments belonging to the host process.
+  if (require.main === module) {
+    const unknownArg = process.argv.slice(2).find((token) => token !== '--check');
+    if (unknownArg !== undefined) {
+      console.error(`derive-command-bridges.cjs: unknown option: ${unknownArg}`);
+      console.error('usage: derive-command-bridges.cjs [--check]');
+      process.exit(2);
+    }
+  }
   const checkOnly = process.argv.includes('--check');
   const metadata = metadataEntries();
   const allowList = allowListEntries();

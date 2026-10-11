@@ -22,10 +22,22 @@
 # Exit codes:
 #   0 — all checks pass
 #   1 — any check fails (see FAIL lines)
+#   2 - unknown option or extra argument
 #
 # Usage: check-prompt-quality-card-sync.sh [repo-root]
 set -euo pipefail
 
+OFFENDING_ARG=""
+if [ "${1:-}" != "" ] && [ "${1#-}" != "$1" ]; then
+  OFFENDING_ARG="$1"
+elif [ "$#" -gt 1 ]; then
+  OFFENDING_ARG="$2"
+fi
+if [ -n "$OFFENDING_ARG" ]; then
+  printf 'check-prompt-quality-card-sync.sh: unknown option: %s\n' "$OFFENDING_ARG" >&2
+  printf 'usage: check-prompt-quality-card-sync.sh [repo-root]\n' >&2
+  exit 2
+fi
 ROOT="${1:-.}"
 export ROOT
 

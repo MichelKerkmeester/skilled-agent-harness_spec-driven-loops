@@ -34,6 +34,12 @@ const SKIP_FOLDERS = ['z_minified', 'node_modules', '.git'];
 
 // Parse arguments
 const args = process.argv.slice(2);
+const unknown_arg = args.find((arg) => arg !== '--force');
+if (unknown_arg !== undefined) {
+  console.error(`minify-webflow.mjs: unknown option: ${unknown_arg}`);
+  console.error('usage: minify-webflow.mjs [--force]');
+  process.exit(2);
+}
 const FORCE_MODE = args.includes('--force');
 
 /* ─────────────────────────────────────────────────────────────

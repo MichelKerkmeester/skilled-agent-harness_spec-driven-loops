@@ -41,6 +41,17 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/bin/tests/typo-flags.test.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/typo-flags.test.sh",
+      ".skilled/skills/sk-design/sk-design-chart/scripts/tests/typo-flags.test.cjs",
+      ".skilled/skills/sk-design/sk-design-md-generator/backend/tests/typo-flags.test.ts",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/typo-flags.test.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/typo-flags.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/typo-flags.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/typo-flags.vitest.ts",
+      ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+      ".skilled/skills/sk-git/scripts/tests/migrate-legacy-branch-names.test.sh",
+      ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs",
       "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/review-report.md",
       ".skilled/skills/sk-git/scripts/migrate-legacy-branch-names.sh"
     ],
@@ -73,6 +84,48 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "typo-flags.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/typo-flags.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "typo-flags.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/typo-flags.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "typo-flags.test.ts",
+        "kind": "test",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/backend/tests/typo-flags.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "typo-flags.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/typo-flags.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "migrate-legacy-branch-names.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/tests/migrate-legacy-branch-names.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "resolve.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs",
         "source": "derived"
       },
       {
@@ -136,63 +189,21 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Each",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Pattern Standalone",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "54 scripts accept an unknown or misspelled option and carry on",
     "created_at": "2026-10-11T18:31:49Z",
-    "last_save_at": "2026-10-11T18:39:18.939Z",
+    "last_save_at": "2026-10-11T21:26:59.627Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:199490b61fc582fce145bdaad2470f9f583e861e8cf2491ea97e9289ff207c33",
+    "source_fingerprint": "sha256:6c96c033ea8adbb21f079adb89a5bd28b5b6c5524213cd4ada10bbeaebf48b27",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d3a289d586fdb8d46a8f1923efb1bbc3258e985124c51bf1f4e81874047c633b",
-      "plan.md": "1261bd4214a8ff1cca96083b0eb5968cece5883e6736d1a3ea537e114860d216",
-      "tasks.md": "0ffd4f126577ea768e8a4d34bd3a275aa5e4e1e233e96f63fd2bc75f5fe6eb9b",
-      "implementation-summary.md": "06de37e76d159fd35b44e4ddc4c061b99cbf5401da8a5de0149fa484db32af03"
+      "plan.md": "60af3f35a441820d80bd6b55875cd8485dc16e2e07042a89e7f72560da6bb261",
+      "tasks.md": "13ebc6ad47c4cb6f458390fe565d5cfee24921f5f354392b93a265fdbfd3715f",
+      "implementation-summary.md": "cb8395ddea71b48702e7ace2c3ed86eb168d8fcac2209f4fd1325b7597bd0984"
     },
     "last_active_at": null
   }

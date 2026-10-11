@@ -15,6 +15,7 @@ const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 
 const {
+  assertKnownFlags,
   classifyExitCode,
   installSignalHandlers,
   maybeThrowTestFault,
@@ -31,6 +32,9 @@ const {
 
 const TSX_LOADER = require.resolve('tsx');
 const OBSERVABILITY_EVENTS_FILENAME = 'observability-events.jsonl';
+// Every key this entrypoint reads from the parsed arguments. A flag missing
+// here is treated as an unknown option, so this list is the accepted set.
+const STATUS_FLAGS = ['loopType', 'readOnly', 'sessionId', 'specFolder'];
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. TSX BOOTSTRAP
@@ -112,6 +116,7 @@ function appendStatusObservabilityEvent(dbModule, payload, ns) {
 
 async function main() {
   const args = parseArgs();
+  assertKnownFlags(args, STATUS_FLAGS, inputError);
   const specFolder = validateNamespaceValue(ensureString(args, 'specFolder'), 'specFolder', inputError);
   const loopType = ensureString(args, 'loopType');
   const sessionId = validateNamespaceValue(ensureString(args, 'sessionId'), 'sessionId', inputError);

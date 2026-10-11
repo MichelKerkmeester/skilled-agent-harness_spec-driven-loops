@@ -29,6 +29,13 @@ function read(filePath) {
 }
 
 function parseArgs(argv) {
+  // A mistyped flag must fail rather than silently changing which checks run.
+  const known = ['--links', '--reports', '--mismatch', '--report-mismatch'];
+  const unknown = argv.find((token) => token.startsWith('-') && !known.includes(token));
+  if (unknown) {
+    process.stderr.write(`check-documentation-drift.cjs: unknown option: ${unknown}\n`);
+    process.exit(2);
+  }
   return {
     linksOnly: argv.includes('--links'),
     reportsOnly: argv.includes('--reports'),

@@ -16,6 +16,7 @@ const { spawnSync } = require('node:child_process');
 
 const {
   acquireWriterLock,
+  assertKnownFlags,
   classifyExitCode,
   installSignalHandlers,
   maybeThrowTestFault,
@@ -39,6 +40,32 @@ const MIN_OBSERVATIONS_FLOOR = 1;
 const MIN_OBSERVATIONS_CEILING = 10;
 const OBSERVABILITY_EVENTS_FILENAME = 'observability-events.jsonl';
 const VALID_CONVERGENCE_MODES = new Set(['default', 'off', 'sliding-window', 'divergent']);
+// Every key this entrypoint reads from the parsed arguments. A flag missing
+// here is treated as an unknown option, so this list is the accepted set.
+const CONVERGENCE_FLAGS = [
+  'configJson',
+  'convergenceMode',
+  'convergence_mode',
+  'graphNoveltyFloor',
+  'improvementEffect',
+  'improvementEffectTrace',
+  'iteration',
+  'loopType',
+  'minObservations',
+  'min_observations',
+  'minObservationsGuard',
+  'observationThresholdGuard',
+  'persistSnapshot',
+  'readOnly',
+  'reportedNovelty',
+  'reportedNoveltyThreshold',
+  'roundId',
+  'sessionId',
+  'slidingWindowSize',
+  'sliding_window_size',
+  'specFolder',
+  'traceImprovementEffect',
+];
 
 /**
  * Shared convergence profile schema:
@@ -669,6 +696,7 @@ function buildImprovementEffect(snapshots, scoreDelta) {
 
 async function main() {
   const args = parseArgs();
+  assertKnownFlags(args, CONVERGENCE_FLAGS, inputError);
   const specFolder = validateNamespaceValue(ensureString(args, 'specFolder'), 'specFolder', inputError);
   const loopType = ensureString(args, 'loopType');
   const sessionId = validateNamespaceValue(ensureString(args, 'sessionId'), 'sessionId', inputError);

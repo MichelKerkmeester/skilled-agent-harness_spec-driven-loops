@@ -62,6 +62,21 @@ function parseRootArg(argv) {
   return index !== -1 && argv[index + 1] ? path.resolve(argv[index + 1]) : null;
 }
 
+// An unknown flag must fail loudly rather than fall back to a default run. A
+// token is an option only when it stands in option position: the token after
+// `--root` is that option's value, even when it begins with `--`.
+function findUnknownOption(argv) {
+  for (let index = 0; index < argv.length; index += 1) {
+    const token = argv[index];
+    if (token === '--root') {
+      index += 1;
+      continue;
+    }
+    if (token.startsWith('-')) return token;
+  }
+  return null;
+}
+
 // Walk up from the script so the command works from anywhere in the tree.
 function findRepoRoot(startDir) {
   let current = path.resolve(startDir);
@@ -590,8 +605,15 @@ const CHECKS = [
 ];
 
 function main() {
+  const argv = process.argv.slice(2);
+  const unknown = findUnknownOption(argv);
+  if (unknown !== null) {
+    console.error(`check-repo-rules.cjs: unknown option: ${unknown}`);
+    console.error('usage: check-repo-rules.cjs [--root <dir>]');
+    return 2;
+  }
   exitIfValidationOff('check-repo-rules.cjs');
-  const rootArg = parseRootArg(process.argv.slice(2));
+  const rootArg = parseRootArg(argv);
   const located = findRepoRoot(rootArg || __dirname);
   if (located === null || (rootArg !== null && located.root !== rootArg)) {
     console.error(`${TAG} ERROR: no ${ROUTER_FILE} with a ${RULES_DIR_CANDIDATES.join(' or ')} directory found at ${rootArg || `or above ${__dirname}`}`);

@@ -31,8 +31,14 @@ const regen = require('./regenerate-skill-derived.cjs');
  */
 function run(argv = process.argv.slice(2)) {
   let skillsDir = regen.SKILLS_DIR;
+  let format = 'text';
   for (let i = 0; i < argv.length; i += 1) {
     if (argv[i] === '--skills-dir') { skillsDir = path.resolve(argv[i + 1]); i += 1; }
+    else if (argv[i] === '--format') { format = argv[i + 1]; i += 1; }
+    else {
+      process.stderr.write(`ci-skill-derived-freshness.cjs: unknown option: ${argv[i]}\n`);
+      return 2;
+    }
   }
 
   let stat;
@@ -63,7 +69,6 @@ function run(argv = process.argv.slice(2)) {
     }
   }
 
-  const format = argv.includes('--format') ? argv[argv.indexOf('--format') + 1] : 'text';
   if (format === 'json') {
     process.stdout.write(`${JSON.stringify({ checked, stale: stale.length, errored: errored.length, staleRoots: stale, erroredRoots: errored }, null, 2)}\n`);
   } else {

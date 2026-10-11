@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ec91ce0bc8df642989d6329ca22eb2850e8913e959d6aecd01d7472f0bf699a9",
+  "corpusHash": "435b1447f9a80fcd22b261038312cf21849a5f655b9f8dfa90ad188b42270431",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24363,
+  "includedPathCount": 24370,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2664,6 +2664,7 @@
     ".skilled/skills/sk-code/changelog/v2.2.1.0.md",
     ".skilled/skills/sk-code/changelog/v2.2.10.0.md",
     ".skilled/skills/sk-code/changelog/v2.2.11.0.md",
+    ".skilled/skills/sk-code/changelog/v2.2.12.0.md",
     ".skilled/skills/sk-code/changelog/v2.2.2.0.md",
     ".skilled/skills/sk-code/changelog/v2.2.3.0.md",
     ".skilled/skills/sk-code/changelog/v2.2.4.0.md",
@@ -3104,6 +3105,7 @@
     ".skilled/skills/sk-design/benchmark/reports/2026-09-27--manual-testing-playbook--hub-routing-replay/skill-benchmark-report.md",
     ".skilled/skills/sk-design/changelog/v2.0.0.0.md",
     ".skilled/skills/sk-design/changelog/v2.0.1.0.md",
+    ".skilled/skills/sk-design/changelog/v2.0.2.0.md",
     ".skilled/skills/sk-design/manual-testing-playbook/holdout/flowchart-natural.md",
     ".skilled/skills/sk-design/manual-testing-playbook/holdout/ind-flowchart.md",
     ".skilled/skills/sk-design/manual-testing-playbook/manual-testing-playbook.md",
@@ -6065,6 +6067,7 @@
     ".skilled/skills/sk-doc/changelog/v2.3.2.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.4.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.3.5.0.md",
     ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/changelog-entry-frontmatter-check.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-census-across-doc-families.md",
@@ -6568,6 +6571,7 @@
     ".skilled/skills/sk-git/changelog/v1.8.2.0.md",
     ".skilled/skills/sk-git/changelog/v1.8.3.0.md",
     ".skilled/skills/sk-git/changelog/v1.8.4.0.md",
+    ".skilled/skills/sk-git/changelog/v1.8.5.0.md",
     ".skilled/skills/sk-git/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/github-mcp-integration.md",
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/gitkraken-mcp-integration.md",
@@ -6876,6 +6880,7 @@
     ".skilled/skills/system-deep-loop/changelog/v1.5.6.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.0.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.1.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v1.6.2.0.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/README.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-dashboard.md",
@@ -7527,6 +7532,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.15.1.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.15.2.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.15.3.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.15.4.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.2.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.4.0.0.md",
@@ -7944,6 +7950,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.7.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.10.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.7.11.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.2.1.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.3.0.md",
@@ -24394,7 +24401,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "375887cf5bfdbd1d4d220f419a719849c43fecd5f64e4bc85f44a559d75defa6",
+  "manifestHash": "6685672cb66f1314ce7df1dd7418f0ce5f677485577921cc0e7ad1038c13dad3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

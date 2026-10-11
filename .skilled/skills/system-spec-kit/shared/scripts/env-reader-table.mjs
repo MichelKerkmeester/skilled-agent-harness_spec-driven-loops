@@ -113,7 +113,17 @@ function isMainModule() {
 }
 
 if (isMainModule()) {
-  const mode = process.argv[2] ?? '--print';
+  const args = process.argv.slice(2);
+  const known = ['--check', '--write', '--print'];
+  let unknown = null;
+  if (args[0] !== undefined && !known.includes(args[0])) unknown = args[0];
+  else if (args.length > 1) unknown = args[1];
+  if (unknown !== null) {
+    console.error(`env-reader-table.mjs: unknown option: ${unknown}`);
+    console.error('usage: env-reader-table.mjs [--check | --write | --print]');
+    process.exit(2);
+  }
+  const mode = args[0] ?? '--print';
   const readers = scanEnvReaders();
   if (mode === '--check') {
     const result = checkReadme(readFileSync(README, 'utf8'), readers);

@@ -99,6 +99,13 @@ function checkText(text, accepted) {
 // ───────────────────────────────────────────────────────────────
 
 if (require.main === module) {
+  const files = process.argv.slice(2);
+  for (const file of files) {
+    if (file.startsWith('-')) {
+      process.stderr.write(`check-frontmatter-values-helper: unknown option: ${file}\n`);
+      process.exit(2);
+    }
+  }
   let accepted;
   try {
     accepted = loadAccepted();
@@ -106,12 +113,13 @@ if (require.main === module) {
     process.stderr.write(`shared frontmatter list unreadable: ${error.message}\n`);
     process.exit(2);
   }
-  for (const file of process.argv.slice(2)) {
+  for (const file of files) {
     let text;
     try {
       text = fs.readFileSync(file, 'utf8');
-    } catch {
-      continue;
+    } catch (error) {
+      process.stderr.write(`check-frontmatter-values-helper: cannot read ${file}: ${error.message}\n`);
+      process.exit(2);
     }
     for (const warning of checkText(text, accepted)) {
       process.stdout.write(`WARN\t${file}\t${warning}\n`);

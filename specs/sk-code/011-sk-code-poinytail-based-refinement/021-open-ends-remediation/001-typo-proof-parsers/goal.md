@@ -78,11 +78,15 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet scaffolded | Done | create.sh phase mode with `--with-goal`; spec.md lists every ledger row |
-| Build | Pending | |
+| Build | Done | 68 ledger rows Fixed in `implementation-summary.md`; ten typo-flag test files red before, green after |
+| Release | Done | Seven skills bumped once, one changelog entry each |
+| Deep review | Pending | Five cli-pi iterations over the build commit |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Exit codes | Operator decision: each script keeps its existing usage code (64, 1, deep-loop exit 3 JSON); 2 elsewhere |
+| `resolve.cjs` | Left unchanged: served copy of an archived authored source; the live `compiled-route.cjs` carries the fix |
+| Feature catalog caller | `mcp-tooling` feature catalog documents `ci-skill-root-metadata.cjs --skills-dir`, which now exits 2; listed, not edited |
 <!-- /ANCHOR:log -->

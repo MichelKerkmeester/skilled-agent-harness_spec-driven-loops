@@ -313,6 +313,12 @@ export function main(argv, deps = {}) {
   const out = deps.out ?? ((line) => process.stdout.write(`${line}\n`));
   const err = deps.err ?? ((line) => process.stderr.write(`${line}\n`));
   const folder = argv[0];
+  const folderIsOption = typeof folder === 'string' && folder.startsWith('-');
+  if (folderIsOption || argv.length > 1) {
+    err(`check-source-tags-helper: unknown option: ${folderIsOption ? folder : argv[1]}`);
+    err('usage: node check-source-tags-helper.mjs <packet-folder>');
+    return 2;
+  }
   if (!folder || !fs.existsSync(folder)) {
     err('usage: node check-source-tags-helper.mjs <packet-folder>');
     return 2;

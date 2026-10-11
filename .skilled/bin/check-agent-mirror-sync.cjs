@@ -64,6 +64,17 @@ function collectAllAgentNames() {
 function main() {
   const args = process.argv.slice(2);
 
+  // Reject unknown options before any work: a stray flag would otherwise be
+  // filtered out as a non-agent path and let the gate pass without checking.
+  const unknownOption = args.find((arg) => arg.startsWith('-') && arg !== '--all');
+  if (unknownOption !== undefined) {
+    process.stderr.write(
+      `check-agent-mirror-sync.cjs: unknown option: ${unknownOption}\n` +
+        'usage: check-agent-mirror-sync.cjs [--all | <agent-file>...]\n'
+    );
+    process.exit(2);
+  }
+
   const names = args.length === 0 || args.includes('--all')
     ? collectAllAgentNames()
     : args.map(agentNameFromPath).filter(Boolean);

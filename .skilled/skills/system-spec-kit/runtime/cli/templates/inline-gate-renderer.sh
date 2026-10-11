@@ -230,11 +230,22 @@ function renderInlineGates(template, level) {
 
 function parseCliArgs(args) {
   const levelIndex = args.indexOf('--level');
+  const outDirIndex = args.indexOf('--out-dir');
+  const valueIndexes = new Set();
+  if (levelIndex >= 0) valueIndexes.add(levelIndex + 1);
+  if (outDirIndex >= 0) valueIndexes.add(outDirIndex + 1);
+  // A token that follows --level or --out-dir is that option's value even when it
+  // starts with --, so only tokens in option position can be unknown options.
+  const unknownOption = args.find(
+    (arg, index) => arg.startsWith('--') && arg !== '--level' && arg !== '--out-dir' && !valueIndexes.has(index),
+  );
+  if (unknownOption) {
+    return { error: unknownOption };
+  }
   if (levelIndex === -1 || !args[levelIndex + 1]) {
     return null;
   }
   const level = args[levelIndex + 1];
-  const outDirIndex = args.indexOf('--out-dir');
   const outDir = outDirIndex >= 0 ? args[outDirIndex + 1] : undefined;
   if (outDirIndex >= 0 && !outDir) {
     return null;
@@ -257,7 +268,10 @@ async function readStdin() {
 
 async function main() {
   const parsed = parseCliArgs(process.argv.slice(1));
-  if (!parsed) {
+  if (!parsed || 'error' in parsed) {
+    if (parsed && 'error' in parsed) {
+      console.error(`inline-gate-renderer: unknown option: ${parsed.error}`);
+    }
     console.error('Usage: inline-gate-renderer.sh --level <1|2|3|3+|phase|review|research> [--out-dir DIR file...] [template-file]');
     process.exitCode = 2;
     return;

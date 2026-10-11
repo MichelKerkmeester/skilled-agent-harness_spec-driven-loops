@@ -910,7 +910,13 @@ function parseArgs(argv) {
     else if (arg === '--package') parsed.packageId = argv[++index];
     else if (arg === '--entry') parsed.entry = argv[++index];
     else if (arg === '--file') parsed.filePath = argv[++index];
-    else parsed.positional.push(arg);
+    else if (arg.startsWith('--')) {
+      // A misspelled option used to fall through to the positional list and run
+      // the default command as if the flag had never been passed.
+      process.stderr.write(`dist-freshness: unknown option: ${arg}\n`);
+      process.stderr.write('Usage: dist-freshness.cjs <check|prepare-build|record-build|check-file|check-all|list> [options]\n');
+      process.exit(64);
+    } else parsed.positional.push(arg);
   }
   return parsed;
 }
@@ -968,6 +974,9 @@ function runCli() {
 
   printResult(result, args.json);
   if (result.stale) process.exit(STALE_EXIT_CODE);
+  // An error result means the check could not verify freshness; exiting 0 let
+  // callers that read only the exit code treat the failure as a pass.
+  if (result.status === 'error') process.exit(1);
   process.exit(0);
 }
 
