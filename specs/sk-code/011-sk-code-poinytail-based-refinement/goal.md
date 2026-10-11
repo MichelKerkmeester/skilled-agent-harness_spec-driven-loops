@@ -46,8 +46,8 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | Build: codex 002-6, haiku 007-8, sonnet 009; 010-11 Opus plan, DeepSeek build, sonnet verify |
 | D2 | A report is a claim; rerun criteria |
-| D3 | One sk-git worktree, no raw git; edit only packet copy |
-| D4 | Commit 002-006, then 007-011 children; one commit per phase or round; no push |
+| D3 | One sk-git worktree, no raw git; edit packet copy |
+| D4 | Commit 002-006, then 007-011 children, one per phase or round; no push |
 | D7 | Halt and report after three failed repairs |
 
 <!-- /ANCHOR:directive -->
@@ -82,6 +82,7 @@ phase and binds as if written here.
 | 018-create-sh-unknown-options | `018-create-sh-unknown-options/goal.md` |
 | 019-routing-miss-fixes | `019-routing-miss-fixes/goal.md` |
 | 020-open-ends-research | `020-open-ends-research/goal.md` |
+| 021-open-ends-remediation | `021-open-ends-remediation/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -95,12 +96,12 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 21 times, `RESULT: FAILED` 0 times
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 22 times and no `RESULT: FAILED`
 - [ ] `grep -lr --include=implementation-summary.md 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement | grep -vc /001-ponytail` prints 97
 - [ ] `git log --format='%(trailers:key=Spec,valueonly)' | grep -c '^sk-code/011-'` prints 100 or more; `git status --short` prints nothing
 - [ ] `node .skilled/bin/compiled-route-guard.cjs` exits 0 listing sk-code `fresh`; `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "code review my obsidian plugin"` prints `"action":"route"`, no `servingAuthority`
 - [ ] `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js`, `bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh` and `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` all exit 0
-- [ ] `node .skilled/bin/check-agent-mirror-sync.cjs --all` and `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` both exit 0
+- [ ] `node .skilled/bin/check-agent-mirror-sync.cjs --all` and `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` exit 0
 <!-- /ANCHOR:completion -->
 
 ---
@@ -153,5 +154,6 @@ and findings belong here.
 | Criterion 6 path amended 2026-10-11 | The deep-improvement packet was retired, so the agent mirror checker now runs from `.skilled/bin/check-agent-mirror-sync.cjs`; the check itself is unchanged |
 | 017 added 2026-10-11 | Child 017 records the epic's user-facing changes in the v4.0.0.4 release entry; criteria 1 and 2 counts amended to 18 and 89, and the objective shortened to keep the durable slice under 4,000 characters |
 | Integration 2026-10-11, open ends | Branches 110, 105, 106, 108 and 109 merged on one integration branch, keeping both the 019 and 020 rows. Criterion 1 amended to 21 (the parent and 20 direct children) and criterion 2 to 97, both as printed. The slice was 4,037 characters, so the objective was shortened, D5 was dropped because the stop paragraph and criteria 1 and 2 already decide done, D6 was folded into D4, D7 was shortened, criterion 3 drops the default `HEAD` and criterion 4 joins its checks with a semicolon; no criterion was removed |
+| 021 added 2026-10-11 | Child 021 scaffolds four build phases for every open ends recommendation; binding row added, criterion 1 amended to 22 (the parent and 21 direct children, as printed) and criterion 2 stays 97, as printed, until the four 021 summaries complete. The new row took the slice to 4,011 characters, so D3, D4 and criteria 1 and 6 were shortened with the same checks; no criterion was removed |
 | Handed off, not built here | D2 Codex mirror gap (deep-improvement and git hooks) and D4 stdin deadline (hooks); recorded in the parent spec |
 <!-- /ANCHOR:log -->

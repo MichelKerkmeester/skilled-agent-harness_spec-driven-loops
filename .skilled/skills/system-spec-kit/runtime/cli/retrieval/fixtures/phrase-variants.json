@@ -1,5 +1,5 @@
 {
-  "manifestHash": "45a48455abe2e191756c01c3217177b00a6369c5defb39050a547d0deb594188",
+  "manifestHash": "375887cf5bfdbd1d4d220f419a719849c43fecd5f64e4bc85f44a559d75defa6",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -36576,6 +36576,9 @@
     "divergence injection test parity": [
       "divergence injection test parity"
     ],
+    "divergence ratchet ci": [
+      "divergence ratchet ci"
+    ],
     "divergence seams": [
       "divergence seams"
     ],
@@ -36617,6 +36620,21 @@
     ],
     "doc alignment tasks": [
       "doc alignment tasks"
+    ],
+    "doc and catalog truth": [
+      "doc and catalog truth"
+    ],
+    "doc and catalog truth goal": [
+      "doc and catalog truth goal"
+    ],
+    "doc and catalog truth implementation summary": [
+      "doc and catalog truth implementation summary"
+    ],
+    "doc and catalog truth plan": [
+      "doc and catalog truth plan"
+    ],
+    "doc and catalog truth tasks": [
+      "doc and catalog truth tasks"
     ],
     "doc authoring resource map": [
       "doc authoring resource map"
@@ -45239,6 +45257,9 @@
     "fresh clone onboarding": [
       "fresh clone onboarding"
     ],
+    "fresh clone onboarding fixes": [
+      "fresh clone onboarding fixes"
+    ],
     "fresh clone onboarding goal": [
       "fresh clone onboarding goal"
     ],
@@ -51841,6 +51862,9 @@
     ],
     "implement non deepseek fixes": [
       "implement non-deepseek fixes"
+    ],
+    "implement open ends recommendations": [
+      "implement open ends recommendations"
     ],
     "implement the 178 deep loop recs": [
       "implement the 178 deep-loop recs"
@@ -66422,6 +66446,21 @@
     "onboarding completion states": [
       "onboarding completion states"
     ],
+    "onboarding fixes": [
+      "onboarding fixes"
+    ],
+    "onboarding fixes goal": [
+      "onboarding fixes goal"
+    ],
+    "onboarding fixes implementation summary": [
+      "onboarding fixes implementation summary"
+    ],
+    "onboarding fixes plan": [
+      "onboarding fixes plan"
+    ],
+    "onboarding fixes tasks": [
+      "onboarding fixes tasks"
+    ],
     "onboarding flow": [
       "Onboarding flow"
     ],
@@ -66562,6 +66601,12 @@
     ],
     "open an obsidian plugin action": [
       "open an Obsidian plugin action"
+    ],
+    "open ends remediation": [
+      "open ends remediation"
+    ],
+    "open ends remediation phase parent spec": [
+      "open ends remediation phase parent spec"
     ],
     "open ends research": [
       "open ends research"
@@ -70360,6 +70405,9 @@
     "phase 1 spec template anchor nesting": [
       "phase 1 spec template anchor nesting"
     ],
+    "phase 1 typo proof parsers": [
+      "phase 1 typo proof parsers"
+    ],
     "phase 10 final gate ledger": [
       "phase 10 final gate ledger"
     ],
@@ -70582,6 +70630,9 @@
     "phase 2 leaf generator ignores": [
       "phase 2 leaf generator ignores"
     ],
+    "phase 2 onboarding fixes": [
+      "phase 2 onboarding fixes"
+    ],
     "phase 2 parent goal budget": [
       "phase 2 parent goal budget"
     ],
@@ -70699,6 +70750,9 @@
     "phase 3 deep review case rule": [
       "phase 3 deep review case rule"
     ],
+    "phase 3 doc and catalog truth": [
+      "phase 3 doc and catalog truth"
+    ],
     "phase 3 doctrine pass": [
       "phase 3 doctrine pass"
     ],
@@ -70770,6 +70824,9 @@
     ],
     "phase 4 routing evaluation": [
       "phase 4 routing evaluation"
+    ],
+    "phase 4 routing parity ci": [
+      "phase 4 routing parity ci"
     ],
     "phase 4 trigger index rebuild hardening": [
       "phase 4 trigger index rebuild hardening"
@@ -77882,6 +77939,9 @@
     "reject out of scope council write": [
       "reject out-of-scope council write"
     ],
+    "reject unknown cli options": [
+      "reject unknown cli options"
+    ],
     "rejected edges gate": [
       "rejected edges gate"
     ],
@@ -83736,6 +83796,21 @@
     ],
     "routing ownership table": [
       "routing ownership table"
+    ],
+    "routing parity ci": [
+      "routing parity ci"
+    ],
+    "routing parity ci goal": [
+      "routing parity ci goal"
+    ],
+    "routing parity ci implementation summary": [
+      "routing parity ci implementation summary"
+    ],
+    "routing parity ci plan": [
+      "routing parity ci plan"
+    ],
+    "routing parity ci tasks": [
+      "routing parity ci tasks"
     ],
     "routing perfection research": [
       "routing perfection research"
@@ -104728,6 +104803,21 @@
     ],
     "typescript workspace configuration": [
       "typescript workspace configuration"
+    ],
+    "typo proof parsers": [
+      "typo proof parsers"
+    ],
+    "typo proof parsers goal": [
+      "typo proof parsers goal"
+    ],
+    "typo proof parsers implementation summary": [
+      "typo proof parsers implementation summary"
+    ],
+    "typo proof parsers plan": [
+      "typo proof parsers plan"
+    ],
+    "typo proof parsers tasks": [
+      "typo proof parsers tasks"
     ],
     "typography font stack": [
       "typography font stack"

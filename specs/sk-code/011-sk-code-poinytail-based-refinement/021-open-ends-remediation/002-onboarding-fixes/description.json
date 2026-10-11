@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/002-onboarding-fixes",
+  "description": "Phase 2: onboarding-fixes",
+  "keywords": [
+    "phase",
+    "onboarding-fixes"
+  ],
+  "lastUpdated": "2026-10-11T18:31:51.091Z",
+  "specId": "002",
+  "folderSlug": "onboarding-fixes",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "021-open-ends-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

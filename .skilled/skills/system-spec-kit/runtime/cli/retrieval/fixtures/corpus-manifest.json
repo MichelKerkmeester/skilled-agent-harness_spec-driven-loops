@@ -1,5 +1,5 @@
 {
-  "corpusHash": "a7bd8c016edffb873c076f67cf7ae4b7347efe56025aa9ba6ce6a50da2ddd3a9",
+  "corpusHash": "ec91ce0bc8df642989d6329ca22eb2850e8913e959d6aecd01d7472f0bf699a9",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24341,
+  "includedPathCount": 24363,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10937,6 +10937,28 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/006-ci-truth-checks/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/001-typo-proof-parsers/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/001-typo-proof-parsers/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/001-typo-proof-parsers/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/001-typo-proof-parsers/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/001-typo-proof-parsers/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/002-onboarding-fixes/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/002-onboarding-fixes/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/002-onboarding-fixes/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/002-onboarding-fixes/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/002-onboarding-fixes/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/003-doc-and-catalog-truth/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/003-doc-and-catalog-truth/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/003-doc-and-catalog-truth/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/003-doc-and-catalog-truth/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/003-doc-and-catalog-truth/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/004-routing-parity-ci/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/004-routing-parity-ci/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/004-routing-parity-ci/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/004-routing-parity-ci/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/004-routing-parity-ci/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
@@ -24372,7 +24394,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "45a48455abe2e191756c01c3217177b00a6369c5defb39050a547d0deb594188",
+  "manifestHash": "375887cf5bfdbd1d4d220f419a719849c43fecd5f64e4bc85f44a559d75defa6",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26508,6 +26530,22 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/006-ci-truth-checks/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/001-typo-proof-parsers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/002-onboarding-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/003-doc-and-catalog-truth/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/004-routing-parity-ci/scratch",
       "reason": "excluded directory"
     },
     {

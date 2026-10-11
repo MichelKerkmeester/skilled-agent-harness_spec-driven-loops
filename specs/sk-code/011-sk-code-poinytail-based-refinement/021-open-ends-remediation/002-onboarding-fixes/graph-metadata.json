@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/002-onboarding-fixes",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/002-onboarding-fixes",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "onboarding fixes",
+      "phase 2 onboarding fixes",
+      "fresh clone onboarding fixes",
+      "onboarding fixes plan",
+      "onboarding fixes tasks",
+      "onboarding fixes goal",
+      "onboarding fixes implementation summary"
+    ],
+    "key_topics": [
+      "onboarding",
+      "phase",
+      "fresh",
+      "clone",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "meets",
+      "readme",
+      "promise"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/research/research.md",
+      ".claude/settings.json",
+      ".codex/hooks.json",
+      ".pi/extensions/session-start-context.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+      ".skilled/skills/sk-vision/SKILL.md",
+      ".skilled/bin/lib/mirror-sync-verify.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "session-start-context.ts",
+        "kind": "code",
+        "path": ".pi/extensions/session-start-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-vision/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mirror-sync-verify.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/mirror-sync-verify.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "and",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A fresh clone meets a README promise the advisor launcher does not keep, an unstated Node range, a missing build step, two runtimes that fail without naming the cause, and a hook trust key outside the numbered steps",
+    "created_at": "2026-10-11T18:31:50Z",
+    "last_save_at": "2026-10-11T18:39:22.756Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6db50dd7672d1321ab0cf0eb2008040c90a2e0b484f3af9c34211b0a307f9036",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "89cf7aa12e7b1843c6f6d4671876a119f57d86df7bb6ef46773fc3871de1c654",
+      "plan.md": "971873f09e744ab8626bff91f14b71758b91764a313fb17a3f0b600313a656e2",
+      "tasks.md": "fc66ca1e20d2587a5c0a8f9722b15a0ee6a106abdd254760b46b15b319033459",
+      "implementation-summary.md": "47468f02d96c40facbb2ee9fa34b19d93ddf284c8e7b9773709a65a0316d840f"
+    },
+    "last_active_at": null
+  }
+}

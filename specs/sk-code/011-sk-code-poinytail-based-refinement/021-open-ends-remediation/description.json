@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation",
+  "description": "Open ends remediation",
+  "keywords": [
+    "open",
+    "ends",
+    "remediation"
+  ],
+  "lastUpdated": "2026-10-11T18:31:49.080Z",
+  "specId": "021",
+  "folderSlug": "open-ends-remediation",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

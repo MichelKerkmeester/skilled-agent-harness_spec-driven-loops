@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/001-typo-proof-parsers",
+  "description": "Phase 1: typo-proof-parsers",
+  "keywords": [
+    "phase",
+    "typo-proof-parsers"
+  ],
+  "lastUpdated": "2026-10-11T18:31:50.048Z",
+  "specId": "001",
+  "folderSlug": "typo-proof-parsers",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "021-open-ends-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
