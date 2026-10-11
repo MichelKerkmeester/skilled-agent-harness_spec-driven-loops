@@ -115,6 +115,8 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | 3 | `003-cli-pi-opencode-go-route/` | Add an opencode-go route for cli-pi | Draft |
 | 4 | `004-read-only-and-research-bookkeeping/` | Make graph commands read-only and fix research bookkeeping | Complete |
 | 5 | `005-cli-lineage-findings-contract/` | Stop a lineage undercounting findings at closeout | Complete |
+| 6 | 006-research-lineage-reducer-path/ | Point the research reducer at the lineage folder during fan-out | Complete |
+| 7 | 007-lineage-reducer-compliance/ | Detect a CLI research lineage that skips the reducer | Planned |
 
 ### Phase Transition Rules
 
@@ -131,6 +133,8 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | `002-review-state-init-and-dispatch` | `003-cli-pi-opencode-go-route` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
 | `003-cli-pi-opencode-go-route` | `004-read-only-and-research-bookkeeping` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
 | `004-read-only-and-research-bookkeeping` | `005-cli-lineage-findings-contract` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
+| 005-cli-lineage-findings-contract | 006-research-lineage-reducer-path | 005 complete | `validate.sh --strict` on 005 |
+| 006-research-lineage-reducer-path | 007-lineage-reducer-compliance | Reducer writes into the lineage folder | Live proof run, `006/implementation-summary.md` |
 <!-- /ANCHOR:phase-map -->
 
 ---

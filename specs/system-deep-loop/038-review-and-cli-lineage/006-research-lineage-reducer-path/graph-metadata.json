@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/038-review-and-cli-lineage/006-research-lineage-reducer-path",
+  "spec_folder": "system-deep-loop/038-review-and-cli-lineage/006-research-lineage-reducer-path",
+  "parent_id": "system-deep-loop/038-review-and-cli-lineage",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "research lineage reducer path",
+      "phase 6 research lineage reducer path",
+      "research lineage reducer path plan",
+      "research lineage reducer path tasks",
+      "research lineage reducer path implementation summary"
+    ],
+    "key_topics": [
+      "research",
+      "lineage",
+      "reducer",
+      "path",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "fan-out",
+      "deep-research",
+      "run"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+      ".skilled/commands/deep/assets/deep-research-auto.yaml",
+      ".skilled/commands/deep/assets/deep-research-confirm.yaml",
+      ".skilled/commands/deep/assets/compiled/deep-research.contract.md",
+      "specs/hooks/022-smart-rule-injection/graph-metadata.json",
+      ".skilled/commands/deep/assets/deep-review-auto.yaml",
+      ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-reduce-state.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-confirm.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.contract.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/assets/compiled/deep-research.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/hooks/022-smart-rule-injection/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement During",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Haiku",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Copy",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "During a fan-out deep-research run, each lineage owns `research/lineages/<label>/` and the workflow binds `artifactdir` to it",
+    "created_at": "2026-10-09T14:01:32Z",
+    "last_save_at": "2026-10-09T16:06:36.667Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ec57ed570e2be4e1eb6c925469177f3a811d88796657b613520c2ab9d4f9271f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "91b0695d6584084984569e8b36eaa2089753d53d1613d18abc3d0ec771c0eabf",
+      "plan.md": "0241f4085189d8f5e2d36f9e1432b3c408ee551eacf5963ff64480bf924752b0",
+      "tasks.md": "29373e959ea536f4c6bdca63177174c61ce9ba7f411aced2e96c8f6b303800b5",
+      "implementation-summary.md": "ec6c5a6863ca05247d800aeb1f06d0ec7ed7a9adf925e143574587acb57d86d6"
+    },
+    "last_active_at": null
+  }
+}

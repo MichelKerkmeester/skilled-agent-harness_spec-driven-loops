@@ -1,0 +1,26 @@
+{
+  "run_id": "1791561073753-7hht4d",
+  "loop_type": "research",
+  "spec_folder": "specs/system-deep-loop/038-review-and-cli-lineage/006-research-lineage-reducer-path",
+  "base_artifact_dir": "specs/system-deep-loop/038-review-and-cli-lineage/006-research-lineage-reducer-path/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0,
+    "needs_input": 0
+  }
+}

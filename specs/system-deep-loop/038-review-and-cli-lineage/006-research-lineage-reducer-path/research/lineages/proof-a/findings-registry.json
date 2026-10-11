@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "1.0",
+  "topic": "Which file in this packet documents the deep-research reducer's --artifact-dir flag, and what exit code does a missing value produce?",
+  "generatedAt": "2026-10-09T15:58:44Z",
+  "iterationsCompleted": 1,
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "kq-doc-file",
+      "text": "Which file in this packet documents the deep-research reducer's --artifact-dir flag?",
+      "answer": "implementation-summary.md documents the flag: what it is, the exit-1 decision for a missing value, and the verification of that behavior. spec.md is the requirement source and tasks.md the work record; neither documents the behavior.",
+      "status": "resolved",
+      "resolvedInRun": 1,
+      "source": "specs/system-deep-loop/038-review-and-cli-lineage/006-research-lineage-reducer-path/implementation-summary.md"
+    },
+    {
+      "id": "kq-exit-code",
+      "text": "What exit code does a missing --artifact-dir value produce?",
+      "answer": "Exit code 1. The reducer writes '[deep-research] --artifact-dir requires a path value' to stderr and calls process.exit(1).",
+      "status": "resolved",
+      "resolvedInRun": 1,
+      "source": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs"
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-iter001-impl-summary-doc",
+      "text": "implementation-summary.md is the packet file that documents the deep-research reducer's --artifact-dir flag, including its exit-1 decision and missing-value verification.",
+      "run": 1,
+      "source": "specs/system-deep-loop/038-review-and-cli-lineage/006-research-lineage-reducer-path/implementation-summary.md",
+      "confidence": "high"
+    },
+    {
+      "id": "f-iter001-exit-code",
+      "text": "A missing --artifact-dir value produces exit code 1: the reducer prints '[deep-research] --artifact-dir requires a path value' to stderr and calls process.exit(1).",
+      "run": 1,
+      "source": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      "confidence": "high"
+    },
+    {
+      "id": "f-iter001-file-discrimination",
+      "text": "spec.md is the requirement source, tasks.md the work record, and plan.md describes the plan; only implementation-summary.md documents the flag's missing-value behavior.",
+      "run": 1,
+      "source": "specs/system-deep-loop/038-review-and-cli-lineage/006-research-lineage-reducer-path/spec.md",
+      "confidence": "high"
+    },
+    {
+      "id": "f-iter001-guard-breadth",
+      "text": "The missing-value guard also fires when the next token starts with --, so '--artifact-dir --lenient' exits 1, and the equals form --artifact-dir=<path> is ignored and falls back to the base research folder.",
+      "run": 1,
+      "source": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      "confidence": "high"
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 1,
+    "sourceFindings": 4,
+    "answeredQuestions": 2,
+    "openQuestionCount": 0,
+    "averageNewInfoRatio": 1.0,
+    "corruptionWarnings": 0
+  }
+}
