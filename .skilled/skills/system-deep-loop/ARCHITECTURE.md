@@ -148,7 +148,7 @@ Other consumers call the runtime directly: the `/deep:*` workflow YAMLs through 
 | ADR-001 | The runtime exposes no MCP tools; consumers call JSON-stdout scripts or import `lib/` | Accepted |
 | ADR-002 | The runtime lives inside this skill as nested infrastructure, not as a separate skill | Accepted |
 | ADR-003 | One `graph-metadata.json` for the whole package, none inside a mode packet | Accepted |
-| ADR-004 | Improvement stays host-driven, with no runtime loop type | Accepted |
+| ADR-004 | Improvement stays host-driven, with no runtime loop type | Retired |
 | ADR-005 | Mode state reaches a ledger only through the append gateway once a mode's authority has moved | Accepted |
 
 ---

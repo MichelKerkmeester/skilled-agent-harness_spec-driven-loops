@@ -95,7 +95,7 @@ Fill all four below, not just the date.
   applied until a `tTerminal` exists per cell. The `budget_ms` values in the
   scenario contracts ({{THE_PROVISIONAL_FLOOR_180000_MS_UNTIL_CAPTURE}}) are the
   framework-floor provisional defaults, capped by mode at 900000 ms
-  (research/review) or 1500000 ms (ai-council/improvement/alignment). See
+  (research/review) or 1500000 ms (ai-council). See
   framework.md BUDGET POLICY, never a per-scenario invented number, and recompute
   them from the captured `tTerminal` values when this baseline is filled in.
 - **Autonomous-cell watchdog.** {{WHICH_CELLS_SET_WATCHDOG_MS_AND_WHY_A_DELEGATING_CELL_LEGITIMATELY_GOES_QUIET}}

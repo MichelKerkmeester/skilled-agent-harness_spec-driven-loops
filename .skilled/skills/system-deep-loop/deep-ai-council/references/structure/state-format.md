@@ -170,7 +170,7 @@ v1 readers must ignore `artifact_written`, `rollback`, and `artifact_superseded`
 
 ## 5.2 PROGRESS RECORD (v1.3, shared cross-mode)
 
-A cross-cutting additive event type shared by all deep-loop modes (council, context, review, research, improvement). It provides step-transition liveness: `started`/`completed` pairs around long steps so the no-progress watchdog resets without masking genuine stalls. A progress record is NOT an iteration, a seat return, or a synthesis event — it is purely a liveness signal.
+A cross-cutting additive event type shared by all deep-loop modes (council, context, review, research). It provides step-transition liveness: `started`/`completed` pairs around long steps so the no-progress watchdog resets without masking genuine stalls. A progress record is NOT an iteration, a seat return, or a synthesis event — it is purely a liveness signal.
 
 ```ts
 type ProgressRecord = {
@@ -178,7 +178,7 @@ type ProgressRecord = {
   protocol: "deep-loop";
   type: "progress";
   event: "progress_record";
-  mode: "ai-council" | "context" | "review" | "research" | "improvement";
+  mode: "ai-council" | "context" | "review" | "research";
   run: string;            // e.g. "round-001", "iter-003"
   phase: string;          // e.g. "STEP 2: Deliberate And Converge"
   step: string;           // e.g. "Run independent proposals"

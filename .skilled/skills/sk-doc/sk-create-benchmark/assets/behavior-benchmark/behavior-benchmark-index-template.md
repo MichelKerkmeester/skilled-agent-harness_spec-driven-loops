@@ -82,7 +82,7 @@ already cover. They concentrate on the behaviors **distinctive to `{{MODE}}`**:
      Expected ∈ {autonomous, question_halt, fail_fast}, and Budget is the
      provisional framework floor (180000 ms) until a baseline lands, capped by
      mode at 900000 ms (research/review) or 1500000 ms
-     (ai-council/improvement/alignment). Confirm against framework.md BUDGET
+     (ai-council). Confirm against framework.md BUDGET
      POLICY, and do not invent a per-scenario number. -->
 
 | ID | Title | Entry | Clarity | Expected | Budget |

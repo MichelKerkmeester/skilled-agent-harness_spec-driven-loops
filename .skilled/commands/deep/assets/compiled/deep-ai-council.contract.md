@@ -37,7 +37,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "fea50b0168f57d55fe7244645fbc9489c51abfc3ab7be9dc0511c7d3edf746b7",
+      "sha256": "0b994c13be7561d3fd54ab5d6605a02cf440836deeb124ad338b805ae366043d",
       "section": "full"
     },
     {
@@ -87,7 +87,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md",
-      "sha256": "aef7412a6112d4cba9f45338dda5da9cbf5f13f23b608ccef40c31703d19d296",
+      "sha256": "fdf6e50390965d129ba95550d197dd262d5c0f00789cd333b61140fc2783d38a",
       "section": "full"
     },
     {

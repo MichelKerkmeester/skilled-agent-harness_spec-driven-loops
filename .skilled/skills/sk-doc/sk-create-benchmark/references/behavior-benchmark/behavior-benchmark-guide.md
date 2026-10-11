@@ -98,7 +98,7 @@ reference until its owning rename phase.
   example `RVB-001-auto-run-specified.md`. The `NNN` is contiguous from `001`.
 - **Baseline file**: `baselines/claude-baseline.md`.
 - **ID prefix**: three uppercase letters, unique per package. The framework fixes
-  `ACB` (ai-council), `IMB` (improvement), `RSB` (research), and `RVB` (review).
+  `ACB` (ai-council), `RSB` (research), and `RVB` (review).
   A new mode extends that table with its own prefix and declares it
   in the index OVERVIEW. Confirm the prefix is not already taken before assigning it.
 
@@ -130,7 +130,7 @@ Complete these steps in order.
    is planned-but-not-built.
 6. **Write one scenario file per row.** Copy the scenario template per row, then
    keep exactly ONE of its two JSON blocks: the schema-v1 core for the
-   research/review/ai-council/improvement/context packages, or the schema-v2 block
+   research/review/ai-council/context packages, or the schema-v2 block
    (`"schema_version": 2` with `command_topology`, direct-dispatch targets,
    `postconditions`, and `boundary`) for command, direct-tool/plugin, and
    the block you are not using. The remaining fenced

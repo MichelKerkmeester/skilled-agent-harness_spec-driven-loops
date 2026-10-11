@@ -14,7 +14,7 @@ version: "1.2.0.0"
 
 ## 1. OVERVIEW
 
-This scenario verifies that the three non-improvement workflow families are lexically scored modes, as declared by `advisorRouting.routingClass: "lexical"`.
+This scenario verifies that the three workflow families are lexically scored modes, as declared by `advisorRouting.routingClass: "lexical"`.
 
 ---
 

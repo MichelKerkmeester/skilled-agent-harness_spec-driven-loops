@@ -14,11 +14,6 @@
     ],
     "siblings": [
       {
-        "target": "system-deep-loop",
-        "weight": 0.4,
-        "context": "improvement utility peer"
-      },
-      {
         "target": "sk-doc",
         "weight": 0.4,
         "context": "prompt docs and documentation authoring hand off to each other"

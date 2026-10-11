@@ -110,7 +110,7 @@ system-deep-loop/
 Each active mode packet keeps its own `SKILL.md`, `references/`, `scripts/`, `assets/`, `feature-catalog/`, or `manual-testing-playbook/` as applicable, with internal paths repointed and **no per-packet `graph-metadata.json`** — only this hub carries one, so the advisor discovers exactly one skill. The `deep-ai-council` packet folder follows the standard `folder == packetSkillName` convention (`deep-ai-council`); its legacy public surfaces (the `/deep:ai-council` command and the `ai-council` agent) intentionally keep the shorter `ai-council` key, so always resolve the packet path through `mode-registry.json` rather than hardcoding it.
 
 ### Backend
-All modes consume `runtime/` (frozen, MCP-free): executor config, prompt-pack, validation, atomic state, coverage-graph, Bayesian scoring, fan-out, the council primitives, and the promoted plumbing (capability resolver, artifact-root, loop-lock CLI, lifecycle taxonomy). The offline fan-out pair replay at `runtime/scripts/score-fanout-pairs.cjs` reads the merge's own decisions on near-line and cross-body pairs and compares a backend's judgment with the operator's labels: it makes no model call by default, prints `stop: fewer than 40 labeled pairs` until the operator has labeled 40 pairs, 10 of them cross-body, runs its `--jev` arm only with `--out <dir>` and past that backend's own gate, and leaves the merge unchanged. The runtime never gains an `improvement` loopType — improvement stays host-driven.
+All modes consume `runtime/` (frozen, MCP-free): executor config, prompt-pack, validation, atomic state, coverage-graph, Bayesian scoring, fan-out, and the council primitives. The offline fan-out pair replay at `runtime/scripts/score-fanout-pairs.cjs` reads the merge's own decisions on near-line and cross-body pairs and compares a backend's judgment with the operator's labels: it makes no model call by default, prints `stop: fewer than 40 labeled pairs` until the operator has labeled 40 pairs, 10 of them cross-body, runs its `--jev` arm only with `--out <dir>` and past that backend's own gate, and leaves the merge unchanged.
 
 ---
 
@@ -125,15 +125,13 @@ All modes consume `runtime/` (frozen, MCP-free): executor config, prompt-pack, v
 - **ALWAYS** keep `Skill(system-deep-loop)` hub routing, the `/deep:*` commands, and the agent types as complementary surfaces over the same packets — never let one surface fork per-mode logic out of its packet.
 
 ### ⛔ NEVER
-- **NEVER** add an `improvement` `loopType` to `runtime/convergence.cjs` (improvement is host-driven; `runtimeLoopType` stays `null`).
 - **NEVER** infer `runtimeLoopType` from `workflowMode` — read it from the registry (explicit `null` is load-bearing).
-- **NEVER** let a read-only mode (research/review/ai-council) reach the improvement mutation scripts (`promote-candidate.cjs`/`rollback-candidate.cjs`).
 - **NEVER** add a `graph-metadata.json` or a discoverable skill marker inside a mode packet or `shared/`.
 - **NEVER** let a CLI lineage dispatch a nested executor for its own iteration, and prefer not to edit tracked files in a checkout with a live lineage (write containment reports them against that lineage; it no longer reverts them, and a lane that produced its artifacts still completes). Both rules live in `deep-research/references/protocol/loop-protocol.md` under "Executor Resolution".
 
 ### ⚠️ ESCALATE IF
-- A new mode is needed beyond the six registered — extend `mode-registry.json` and open a packet, do not bolt logic onto the hub.
-- A change would require the runtime to gain MCP tools or an improvement loopType — that contradicts the architecture; escalate.
+- A new mode is needed beyond the three registered — extend `mode-registry.json` and open a packet, do not bolt logic onto the hub.
+- A change would require the runtime to gain MCP tools — that contradicts the architecture; escalate.
 
 ---
 

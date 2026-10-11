@@ -21,7 +21,7 @@ Current state:
 
 - One exported function, `appendModeEvent`, runs the whole pipeline.
 - `resolveCutoverBinding` derives the binding the first stage needs, so no human retypes a commit SHA or capability id at an approval stop.
-- Composite domains (research, review, council, improvement) resolve their legacy projection surface and default contract from the mode name.
+- Composite domains (research, review, council) resolve their legacy projection surface and default contract from the mode name.
 - The gateway fails closed on a projection refresh that ran and did not succeed, and returns the durable receipt alongside the failure.
 
 ---
@@ -70,7 +70,7 @@ Supporting helpers in the same module:
 
 | Helper | Behavior |
 |---|---|
-| `resolveModeSurfaceId()` | Maps the research, review, ai-council and improvement mode names to their legacy projection surface ids, then falls back to the projection manifest, then to a `${mode}-state` default |
+| `resolveModeSurfaceId()` | Maps the research, review and ai-council mode names to their legacy projection surface ids, then falls back to the projection manifest, then to a `${mode}-state` default |
 | `resolveLegacyStateRelativePath()` | Keeps the legacy state file at the run directory root when that path is already the mode artifact directory or a lineage directory, and nests it under `research/` or `review/` for any other run directory |
 | `resolveDefaultProjectionContract()` | Returns the deep-research or deep-review projection contract, and null for every other mode |
 | `resolveModeEventRegistry()` | Returns the caller-supplied registry, else the deep-research or deep-review registry, else null |

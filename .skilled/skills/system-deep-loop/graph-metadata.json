@@ -21,11 +21,6 @@
     ],
     "siblings": [
       {
-        "target": "sk-prompt",
-        "weight": 0.4,
-        "context": "improvement utility peer"
-      },
-      {
         "target": "cli-external-orchestration",
         "weight": 0.4,
         "context": "deep-loop iterations dispatch through the cli-* executors"
