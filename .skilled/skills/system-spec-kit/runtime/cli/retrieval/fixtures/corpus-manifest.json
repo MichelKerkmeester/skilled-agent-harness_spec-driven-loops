@@ -1,5 +1,5 @@
 {
-  "corpusHash": "118d9735442532964b96eaadd8d6b5ee6013afc44cfc3885d4cc7d9ca17a51e5",
+  "corpusHash": "22f89feaac1bc8e1c340e9203f3f274a951a29136ce5ac7266d9d399dd0852bb",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24317,
+  "includedPathCount": 24341,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10904,6 +10904,30 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/implementation-summary.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/deep-review-dashboard.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/deep-review-strategy.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/iterations/iteration-001.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/iterations/iteration-002.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/iterations/iteration-003.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/iterations/iteration-004.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/iterations/iteration-005.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/iterations/iteration-006.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/iterations/iteration-007.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/iterations/iteration-008.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/iterations/iteration-009.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/iterations/iteration-010.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/prompts/iteration-1.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/prompts/iteration-10.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/prompts/iteration-2.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/prompts/iteration-3.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/prompts/iteration-4.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/prompts/iteration-5.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/prompts/iteration-6.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/prompts/iteration-7.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/prompts/iteration-8.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/prompts/iteration-9.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/resource-map.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/review-report.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/006-ci-truth-checks/goal.md",
@@ -24348,7 +24372,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "6b0f6bb4c22d3ecadb3ed18c7f05c4162bab4529fbe4bb551575d2219259d107",
+  "manifestHash": "9dcd35f464cd2418f72a14f27f8a30d34cb7d37d35a74f58c4f38cb8043bdd3d",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
