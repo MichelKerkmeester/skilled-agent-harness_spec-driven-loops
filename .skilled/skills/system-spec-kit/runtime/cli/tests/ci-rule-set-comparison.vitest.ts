@@ -83,6 +83,9 @@ interface FixtureRepo {
 }
 
 const createdRoots: string[] = [];
+// Workspace-root parents that this run creates. Only a parent that was absent before
+// the run is recorded, so a folder that already existed is never removed.
+const createdParents: string[] = [];
 let cachedRunBlock: string | null = null;
 
 function loadRunBlock(): string {
@@ -299,6 +302,7 @@ const TSX_LOADER = path.resolve(TEST_DIR, '..', '..', '..', 'node_modules', 'tsx
 
 function makeSweepWorkspace(): string {
   const scratchRoot = path.join(WORKSPACE_ROOT, 'scratch');
+  if (!fs.existsSync(scratchRoot)) createdParents.push(scratchRoot);
   fs.mkdirSync(scratchRoot, { recursive: true });
   const workspace = fs.mkdtempSync(path.join(scratchRoot, 'ci-rule-set-sweep-'));
   createdRoots.push(workspace);
@@ -412,6 +416,13 @@ function runBaselineFetch(scenario: BaselineScenario): BaselineOutcome {
 afterAll(() => {
   for (const root of createdRoots) {
     fs.rmSync(root, { recursive: true, force: true });
+  }
+  // Removed with rmdir, which refuses a folder that still holds entries, so content
+  // another writer placed there survives the run.
+  for (const parent of createdParents) {
+    if (fs.existsSync(parent) && fs.readdirSync(parent).length === 0) {
+      fs.rmdirSync(parent);
+    }
   }
 });
 

@@ -15,6 +15,9 @@ const repoRoot = path.resolve(scriptsRoot, '..', '..', '..', '..', '..');
 const sweepScript = path.join(scriptsRoot, 'sweep', 'strict-pass-freshness.ts');
 const tsxLoader = path.join(scriptsRoot, '..', '..', 'node_modules', 'tsx', 'dist', 'loader.mjs');
 const createdRoots = new Set<string>();
+// Workspace-root parents that this run creates. Only a parent that was absent before
+// the run is recorded, so a folder that already existed is never removed.
+const createdParents: string[] = [];
 
 function writeFile(filePath: string, content: string): void {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
@@ -23,6 +26,7 @@ function writeFile(filePath: string, content: string): void {
 
 function makeWorkspace(): string {
   const scratchRoot = path.join(repoRoot, 'scratch');
+  if (!fs.existsSync(scratchRoot)) createdParents.push(scratchRoot);
   fs.mkdirSync(scratchRoot, { recursive: true });
   const workspace = fs.mkdtempSync(path.join(scratchRoot, 'strict-pass-freshness-'));
   createdRoots.add(workspace);
@@ -75,6 +79,14 @@ function runSweep(specsRoot: string, baselinePath: string, validator: string) {
 afterEach(() => {
   for (const root of createdRoots) fs.rmSync(root, { recursive: true, force: true });
   createdRoots.clear();
+  // Removed with rmdir, which refuses a folder that still holds entries, so content
+  // another writer placed there survives the run.
+  for (const parent of createdParents) {
+    if (fs.existsSync(parent) && fs.readdirSync(parent).length === 0) {
+      fs.rmdirSync(parent);
+    }
+  }
+  createdParents.length = 0;
 });
 
 describe('strict-pass freshness baseline handling', () => {

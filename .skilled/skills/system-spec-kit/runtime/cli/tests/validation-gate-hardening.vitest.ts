@@ -18,6 +18,9 @@ const statusClassifier = path.join(scriptsRoot, 'lib', 'status-classifier.sh');
 const sweepScript = path.join(scriptsRoot, 'sweep', 'strict-pass-freshness.ts');
 const tsxLoader = path.join(scriptsRoot, '..', '..', 'node_modules', 'tsx', 'dist', 'loader.mjs');
 const createdRoots = new Set<string>();
+// Workspace-root parents that this run creates. Only a parent that was absent before
+// the run is recorded, so a folder that already existed is never removed.
+const createdParents: string[] = [];
 
 function makeWorkspace(): string {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'validation-hardening-'));
@@ -27,6 +30,7 @@ function makeWorkspace(): string {
 
 function makeRepoWorkspace(): string {
   const scratchRoot = path.join(repoRoot, 'scratch');
+  if (!fs.existsSync(scratchRoot)) createdParents.push(scratchRoot);
   fs.mkdirSync(scratchRoot, { recursive: true });
   const root = fs.mkdtempSync(path.join(scratchRoot, 'validation-hardening-'));
   createdRoots.add(root);
@@ -111,6 +115,14 @@ function runValidate(folder: string, rules: string, env: Record<string, string> 
 afterEach(() => {
   for (const root of createdRoots) fs.rmSync(root, { recursive: true, force: true });
   createdRoots.clear();
+  // Removed with rmdir, which refuses a folder that still holds entries, so content
+  // another writer placed there survives the run.
+  for (const parent of createdParents) {
+    if (fs.existsSync(parent) && fs.readdirSync(parent).length === 0) {
+      fs.rmdirSync(parent);
+    }
+  }
+  createdParents.length = 0;
 });
 
 describe('validation gate hardening', () => {
