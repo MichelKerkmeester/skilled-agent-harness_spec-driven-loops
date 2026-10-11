@@ -2,8 +2,8 @@
 // MODULE: Divergence Ledger Capture Workspace-Root Tests
 // ───────────────────────────────────────────────────────────────
 // The capture script finds the workspace by the system-spec-kit sentinel before it
-// loads the built scorer. Run from a copy with no build beside it, a script that got
-// past the lookup fails on the missing scorer instead of on the workspace root.
+// loads the built runtime. Run from a copy with no build beside it, a script that got
+// past the lookup fails on a missing built module instead of on the workspace root.
 
 import { copyFileSync, mkdirSync, mkdtempSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -41,7 +41,7 @@ describe('capture-local-native-divergence-ledger workspace root', () => {
           const result = spawnSync(process.execPath, [join(root, entry, SCRIPT_SUBPATH)], { encoding: 'utf8', timeout: 30_000 });
 
           expect(result.stderr).not.toContain('Unable to locate the workspace root');
-          expect(result.stderr).toContain('fusion.js');
+          expect(result.stderr).toMatch(/Cannot find module '[^']*\/dist\/runtime\/lib\//);
         } finally {
           rmSync(root, { recursive: true, force: true });
         }

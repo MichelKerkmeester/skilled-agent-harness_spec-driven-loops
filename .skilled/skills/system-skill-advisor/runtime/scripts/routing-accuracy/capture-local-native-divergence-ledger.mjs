@@ -7,6 +7,11 @@
 // only when their prompt hash and both current tops still match. The output is
 // therefore a capture of live source behavior, not a hand-edited fixture.
 //
+// It scores in the regime the ratchet replays: both scorers read a skill graph
+// indexed fresh from this checkout into a temporary directory, and the clock is
+// pinned to midnight UTC of the capture day, which the ledger records as its
+// scoringInstant. Requires a built dist (npm run build).
+//
 // Usage:
 //   node capture-local-native-divergence-ledger.mjs
 //   node capture-local-native-divergence-ledger.mjs --write
@@ -18,7 +23,8 @@
 
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -50,7 +56,6 @@ function findWorkspaceRoot(start) {
 
 const WORKSPACE_ROOT = findWorkspaceRoot(HERE);
 
-delete process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
 process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
 process.env.SPECKIT_SKILL_ADVISOR_FORCE_LOCAL = '1';
 process.env.PYTHONDONTWRITEBYTECODE = '1';
@@ -58,6 +63,34 @@ process.env.VITEST = 'true';
 delete process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON;
 delete process.env.SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON;
 delete process.env.SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW;
+
+// The derived lane discounts each skill by its age at scoring time. Scoring at
+// one fixed instant lets the ratchet replay this capture exactly on a later day.
+const CAPTURED_AT = new Date().toISOString().slice(0, 10);
+const SCORING_INSTANT_ISO = `${CAPTURED_AT}T00:00:00Z`;
+const SCORING_INSTANT = Date.parse(SCORING_INSTANT_ISO);
+const RealDate = Date;
+globalThis.Date = class extends RealDate {
+  constructor(...args) {
+    if (args.length === 0) super(SCORING_INSTANT);
+    else super(...args);
+  }
+
+  static now() {
+    return SCORING_INSTANT;
+  }
+};
+
+// The native projection reads the graph directory once, when its module loads,
+// so the directory is set and indexed before the scorer is imported.
+const FRESH_DB_DIR = mkdtempSync(join(tmpdir(), 'advisor-divergence-capture-'));
+process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = FRESH_DB_DIR;
+const skillGraphDb = await import(join(DIST, 'lib/skill-graph/skill-graph-db.js'));
+const indexed = skillGraphDb.indexSkillMetadata(join(WORKSPACE_ROOT, '.skilled/skills'));
+skillGraphDb.closeDb();
+if (indexed.indexedNodes === 0 || !existsSync(join(FRESH_DB_DIR, 'skill-graph.sqlite'))) {
+  throw new Error(`Indexing the skill graph into ${FRESH_DB_DIR} produced no graph.`);
+}
 
 const { scoreAdvisorPrompt } = await import(join(DIST, 'lib/scorer/fusion.js'));
 
@@ -83,14 +116,16 @@ function readJsonl(path) {
 
 function readHarderCorpus() {
   const source = readFileSync(HARDER_CORPUS_PATH, 'utf8');
-  const arrayStart = source.indexOf('[', source.indexOf('HARDER_INTENT_PROMPT_CORPUS'));
-  const arrayEnd = source.lastIndexOf(']');
-  if (arrayStart < 0 || arrayEnd < arrayStart) {
+  const marker = source.indexOf('HARDER_INTENT_PROMPT_CORPUS');
+  const arrayStart = source.indexOf('= [', marker);
+  const arrayEnd = source.indexOf('\n];', arrayStart);
+  if (marker < 0 || arrayStart < 0 || arrayEnd < 0) {
     throw new Error(`Unable to locate the harder corpus literal in ${HARDER_CORPUS_PATH}`);
   }
-  // The fixture is a data-only array. Evaluating just that literal avoids
+  // The fixture is a data-only array. Evaluating just that literal, bounded by
+  // its own closing line rather than the last bracket in the file, avoids
   // duplicating the corpus in a second source of truth.
-  return Function(`return ${source.slice(arrayStart, arrayEnd + 1)}`)();
+  return Function(`return ${source.slice(arrayStart + 2, arrayEnd + 2)}`)();
 }
 
 function runPython(prompts) {
@@ -166,7 +201,7 @@ const divergences = corpus.flatMap((row) => {
 
 const priorLedger = JSON.parse(readFileSync(LEDGER_PATH, 'utf8'));
 const priorById = new Map(priorLedger.entries.map((entry) => [entry.id, entry]));
-const capturedAt = new Date().toISOString().slice(0, 10);
+const capturedAt = CAPTURED_AT;
 const capturedById = new Map(divergences.map((row) => {
   const previous = priorById.get(row.id);
   const unchanged = previous
@@ -204,7 +239,9 @@ const changed = entries
 // 6. CLI ENTRY
 // ───────────────────────────────────────────────────────────────────
 
-const output = JSON.stringify({ schemaVersion: 1, entries }, null, 2) + '\n';
+rmSync(FRESH_DB_DIR, { recursive: true, force: true });
+
+const output = JSON.stringify({ schemaVersion: 1, scoringInstant: SCORING_INSTANT_ISO, entries }, null, 2) + '\n';
 console.log(JSON.stringify({
   corpusSize: corpus.length,
   currentDivergences: entries.length,

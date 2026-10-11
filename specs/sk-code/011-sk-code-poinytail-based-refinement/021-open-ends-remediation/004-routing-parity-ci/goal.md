@@ -77,11 +77,14 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet scaffolded | Done | create.sh phase mode with `--with-goal`; spec.md lists every ledger row |
-| Build | Pending | |
+| Build | Done | R1, R3, R5, R8 built in f34b01bf0a; R2, R4, R6, R7, R9 closed in implementation-summary.md |
+| Deep review | Done | 5 iterations, cli-pi deepseek-v4.1-flash max; 1 P1 and 9 P2, all confirmed and fixed (review/review-report.md) |
+| Release | Done | system-skill-advisor 0.15.4.0 with changelog entry |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Ratchet regime | The ratchet passed only where a daemon had built skill-graph.sqlite; it now indexes a fresh graph itself, which keeps the ledger entries frozen (D1) |
+| Scope addition | The ledger capture script and the ledger's top-level scoringInstant changed to fix review findings R1-P2-001 and R4-P2-002; no ledger entry changed |
 <!-- /ANCHOR:log -->

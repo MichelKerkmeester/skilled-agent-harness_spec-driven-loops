@@ -150,7 +150,7 @@
     ],
     "causal_summary": "The open ends research in `../020-open-ends-research/` ended with ranked recommendations and one review report, and only 006 built any of them",
     "created_at": "2026-10-11T18:31:49Z",
-    "last_save_at": "2026-10-11T18:39:15.307Z",
+    "last_save_at": "2026-10-11T20:21:02.639Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -162,6 +162,7 @@
     "source_doc_hashes": {
       "spec.md": "9d96b547cc9e82806ce92e9690dd83065b20146830e761fea68643e5f5def232"
     },
-    "last_active_at": null
+    "last_active_at": "2026-10-11T20:21:02.639Z",
+    "last_active_child_id": "sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/004-routing-parity-ci"
   }
 }

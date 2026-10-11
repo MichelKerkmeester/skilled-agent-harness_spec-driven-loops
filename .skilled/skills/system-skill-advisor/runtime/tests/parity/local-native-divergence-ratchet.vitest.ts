@@ -11,15 +11,24 @@
 // than silently lingering. Gold preservation is covered elsewhere; this gate
 // exists because large local-vs-native disagreement on harder prompts was
 // otherwise invisible.
+//
+// Regime: a pass shows harness-regime parity, not live-daemon parity. The
+// local side is the Python scorer in a subprocess. The native side is the
+// in-process TypeScript scorer under VITEST, where the semantic-shadow lane
+// substitutes deterministic fixture vectors for real embeddings. Both read a
+// skill graph indexed fresh from this checkout into a temporary directory,
+// never the daemon's live database, and both score at a pinned instant. A
+// prompt the live daemon routes differently can still pass here.
 
 import { createHash } from 'node:crypto';
-import { existsSync, readFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
+import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 
-import { beforeAll, describe, expect, it } from 'vitest';
-import { scoreAdvisorPrompt } from '../../lib/scorer/fusion.js';
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
+import type { AdvisorScoringOptions, AdvisorScoringResult } from '../../lib/scorer/types.js';
 import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
 import { HARDER_INTENT_PROMPT_CORPUS } from '../scorer/fixtures/harder-intent-prompt-corpus.js';
 
@@ -30,7 +39,8 @@ const NONE = 'none';
 
 // Default: the Python step is required. This is a CI gate, not the opportunistic
 // CLI-parity skip — a missing interpreter must fail loudly. Set
-// SPECKIT_PARITY_REQUIRE_PYTHON=0 only in a genuinely python-less environment.
+// SPECKIT_PARITY_REQUIRE_PYTHON=0 only in a genuinely python-less environment,
+// where the whole suite is then skipped rather than run against empty state.
 const REQUIRE_PYTHON = process.env.SPECKIT_PARITY_REQUIRE_PYTHON !== '0';
 
 interface CorpusRow {
@@ -64,6 +74,7 @@ interface LedgerEntry {
 
 interface Ledger {
   readonly schemaVersion: number;
+  readonly scoringInstant?: string;
   readonly entries: readonly LedgerEntry[];
 }
 
@@ -197,8 +208,50 @@ function freezeNativeEnv(): void {
   delete process.env.SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW;
 }
 
+// Imported in beforeAll, after the graph directory is set: the native projection
+// reads SYSTEM_SKILL_ADVISOR_DB_DIR once, when its module loads.
+let scoreAdvisorPrompt: (prompt: string, options: AdvisorScoringOptions) => AdvisorScoringResult;
+let closeDb: () => void = () => {};
+
 function nativeTop(prompt: string): string {
   return scoreAdvisorPrompt(prompt, { workspaceRoot: WORKSPACE_ROOT }).topSkill ?? NONE;
+}
+
+// The derived lane discounts each skill by its age at scoring time, so a
+// ledgered top-1 can flip with the calendar alone. Score at the instant the
+// ledger records, the one its capture scored at, so a later day cannot move a
+// decision that no change touched. The instant moves only when the ledger is
+// recaptured, which re-scores every entry at the new instant.
+function ledgerScoringInstant(ledger: Ledger): Date {
+  const instant = new Date(ledger.scoringInstant ?? Number.NaN);
+  if (typeof ledger.scoringInstant !== 'string' || Number.isNaN(instant.getTime())) {
+    throw new Error(
+      `Cannot pin the scoring clock: the ledger's scoringInstant is ${String(ledger.scoringInstant)}. `
+      + 'Recapture the ledger with capture-local-native-divergence-ledger.mjs --write.',
+    );
+  }
+  return instant;
+}
+
+// Index this checkout's skill graph into a throwaway directory and point both
+// scorers at it. Each scorer otherwise reads whatever database the local daemon
+// last built, or none at all in CI, so one commit passed on a machine with a
+// built graph and failed on a clean runner.
+async function indexFreshSkillGraph(): Promise<string> {
+  const dbDir = mkdtempSync(join(tmpdir(), 'advisor-divergence-'));
+  process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = dbDir;
+  const skillGraphDb = await import('../../lib/skill-graph/skill-graph-db.js');
+  closeDb = skillGraphDb.closeDb;
+  closeDb();
+  const indexed = skillGraphDb.indexSkillMetadata(resolve(WORKSPACE_ROOT, '.skilled/skills'));
+  closeDb();
+  // Fail on a missing graph here: an empty directory would score both sides
+  // without a graph and surface later as unrelated divergences.
+  if (indexed.indexedNodes === 0 || !existsSync(join(dbDir, 'skill-graph.sqlite'))) {
+    throw new Error(`Indexing the skill graph into ${dbDir} produced no graph (${indexed.indexedNodes} nodes).`);
+  }
+  scoreAdvisorPrompt = (await import('../../lib/scorer/fusion.js')).scoreAdvisorPrompt;
+  return dbDir;
 }
 
 function pythonReachable(): boolean {
@@ -213,19 +266,21 @@ let DIVERGENCES: DivergenceRow[] = [];
 let DIVERGENCE_BY_ID: Map<string, DivergenceRow> = new Map();
 let CORPUS_IDS: Set<string> = new Set();
 let LEDGER: Ledger = { schemaVersion: 1, entries: [] };
+let SCORING_INSTANT: Date | null = null;
+let FRESH_DB_DIR: string | null = null;
+const PREVIOUS_DB_DIR = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
 
-describe('local-vs-native routing divergence ratchet (eval gate)', () => {
-  beforeAll(() => {
+const SKIP_WITHOUT_PYTHON = !REQUIRE_PYTHON && !pythonReachable();
+
+describe.skipIf(SKIP_WITHOUT_PYTHON)('local-vs-native routing divergence ratchet (eval gate)', () => {
+  beforeAll(async () => {
     // Fail loudly when python is unavailable and required, instead of skipping.
     if (!pythonReachable()) {
-      if (REQUIRE_PYTHON) {
-        throw new Error(
-          'python3 is unavailable but the local-vs-native parity ratchet requires it. '
-          + 'This is a CI gate (unlike the CLI-parity skip). Install python3, or set '
-          + 'SPECKIT_PARITY_REQUIRE_PYTHON=0 only in a genuinely python-less environment.',
-        );
-      }
-      return;
+      throw new Error(
+        'python3 is unavailable but the local-vs-native parity ratchet requires it. '
+        + 'This is a CI gate (unlike the CLI-parity skip). Install python3, or set '
+        + 'SPECKIT_PARITY_REQUIRE_PYTHON=0 only in a genuinely python-less environment.',
+      );
     }
     if (!existsSync(SKILL_ADVISOR_PY)) {
       throw new Error(
@@ -238,6 +293,10 @@ describe('local-vs-native routing divergence ratchet (eval gate)', () => {
     CORPUS = loadCorpus();
     CORPUS_IDS = new Set(CORPUS.map((entry) => entry.id));
     LEDGER = loadLedger();
+    SCORING_INSTANT = ledgerScoringInstant(LEDGER);
+    vi.useFakeTimers({ toFake: ['Date'] });
+    vi.setSystemTime(SCORING_INSTANT);
+    FRESH_DB_DIR = await indexFreshSkillGraph();
 
     const python = runPython(CORPUS.map((entry) => entry.prompt));
     // Map python results by prompt (the subprocess echoes the prompt back); the
@@ -277,6 +336,32 @@ describe('local-vs-native routing divergence ratchet (eval gate)', () => {
   // The single Python subprocess (loads the skill graph) plus ~215 in-process
   // native scoring calls run past vitest's default 10s hook timeout.
   }, 60_000);
+
+  afterAll(() => {
+    vi.useRealTimers();
+    closeDb();
+    if (FRESH_DB_DIR) rmSync(FRESH_DB_DIR, { recursive: true, force: true });
+    if (PREVIOUS_DB_DIR === undefined) delete process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+    else process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = PREVIOUS_DB_DIR;
+  });
+
+  it('scores at the pinned ledger instant, not the wall clock', () => {
+    expect(SCORING_INSTANT, 'the scoring clock was never pinned').not.toBeNull();
+    expect(new Date().toISOString()).toBe(SCORING_INSTANT?.toISOString());
+  });
+
+  // An approval dated after the pin was observed at a later instant than the
+  // one the gate replays, so it is not evidence for this replay.
+  it('pins no earlier than the newest approval', () => {
+    const newest = LEDGER.entries.map((entry) => entry.approvedAt).sort().at(-1) ?? '';
+    expect(SCORING_INSTANT?.toISOString().slice(0, 10) >= newest, `scoringInstant precedes approval ${newest}`).toBe(true);
+  });
+
+  it('scores against the freshly indexed skill graph', () => {
+    expect(FRESH_DB_DIR, 'no temporary skill graph was indexed').not.toBeNull();
+    expect(process.env.SYSTEM_SKILL_ADVISOR_DB_DIR).toBe(FRESH_DB_DIR);
+    expect(existsSync(join(FRESH_DB_DIR ?? '', 'skill-graph.sqlite'))).toBe(true);
+  });
 
   it('uses a non-trivial union corpus and a well-formed ledger', () => {
     expect(CORPUS.length).toBeGreaterThan(190);
