@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 56,
     "missing-frontmatter": 6882,
-    "ok": 13918,
+    "ok": 13923,
     "valid-empty-list": 3509
   },
-  "documentsScanned": 24365,
+  "documentsScanned": 24370,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "de6f793e5b6b818504d20c01e05ad69d6aa3e3d69947af93c66fe76765d4d701",
+  "manifestHash": "890f6ea72a6822918425f66ef4a3da73fb41b1f96b600ff248dfd755f4a9ffbf",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36260,
+      "ok": 36266,
       "prose-sentence": 19,
       "single-token": 164,
       "stop-word-only": 1,
@@ -68188,6 +68188,10 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/006-remediation-deep-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/007-remediation-review-fixes/scratch",
       "reason": "excluded directory"
     },
     {

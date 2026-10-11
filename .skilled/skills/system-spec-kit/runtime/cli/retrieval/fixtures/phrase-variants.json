@@ -1,5 +1,5 @@
 {
-  "manifestHash": "de6f793e5b6b818504d20c01e05ad69d6aa3e3d69947af93c66fe76765d4d701",
+  "manifestHash": "890f6ea72a6822918425f66ef4a3da73fb41b1f96b600ff248dfd755f4a9ffbf",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -71378,6 +71378,9 @@
     "phase 7 hook deadline margins": [
       "phase 7 hook deadline margins"
     ],
+    "phase 7 remediation review fixes": [
+      "phase 7 remediation review fixes"
+    ],
     "phase 7 series parent review and hardening research": [
       "phase 7 series parent review and hardening research"
     ],
@@ -79566,6 +79569,21 @@
     ],
     "remediation program summary": [
       "remediation program summary"
+    ],
+    "remediation review fixes": [
+      "remediation review fixes"
+    ],
+    "remediation review fixes goal": [
+      "remediation review fixes goal"
+    ],
+    "remediation review fixes implementation summary": [
+      "remediation review fixes implementation summary"
+    ],
+    "remediation review fixes plan": [
+      "remediation review fixes plan"
+    ],
+    "remediation review fixes tasks": [
+      "remediation review fixes tasks"
     ],
     "remediation sequence": [
       "remediation sequence"

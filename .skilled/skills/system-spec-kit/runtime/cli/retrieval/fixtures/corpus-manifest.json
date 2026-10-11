@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3b122881731348a0c603b33a959da006444d6a1941d470251cef0305061db26b",
+  "corpusHash": "13b77e27f54c8f25c38137686921c20b8c639e7630345c16bf2449adebc35cc6",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24365,
+  "includedPathCount": 24370,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10606,6 +10606,11 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/006-remediation-deep-review/review/review-report.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/006-remediation-deep-review/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/006-remediation-deep-review/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/007-remediation-review-fixes/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/007-remediation-review-fixes/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/007-remediation-review-fixes/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/007-remediation-review-fixes/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/007-remediation-review-fixes/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/implementation-summary.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/plan.md",
@@ -24396,7 +24401,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "de6f793e5b6b818504d20c01e05ad69d6aa3e3d69947af93c66fe76765d4d701",
+  "manifestHash": "890f6ea72a6822918425f66ef4a3da73fb41b1f96b600ff248dfd755f4a9ffbf",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26292,6 +26297,10 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/006-remediation-deep-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/007-remediation-review-fixes/scratch",
       "reason": "excluded directory"
     },
     {
