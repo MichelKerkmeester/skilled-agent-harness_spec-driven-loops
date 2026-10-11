@@ -1,5 +1,5 @@
 {
-  "manifestHash": "375887cf5bfdbd1d4d220f419a719849c43fecd5f64e4bc85f44a559d75defa6",
+  "manifestHash": "d6f01cc5dd16886c48e77638b3b48050bee1bf57ea61022e4141c35a5b5af07f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -36579,6 +36579,9 @@
     "divergence ratchet ci": [
       "divergence ratchet ci"
     ],
+    "divergence ratchet in ci": [
+      "divergence ratchet in CI"
+    ],
     "divergence seams": [
       "divergence seams"
     ],
@@ -50554,6 +50557,9 @@
     ],
     "holding the boundaries tasks": [
       "holding the boundaries tasks"
+    ],
+    "holdout overlap check": [
+      "holdout overlap check"
     ],
     "home config cutover": [
       "home config cutover"
@@ -66607,6 +66613,9 @@
     ],
     "open ends remediation phase parent spec": [
       "open ends remediation phase parent spec"
+    ],
+    "open ends remediation routing parity ci changelog": [
+      "open ends remediation routing parity ci changelog"
     ],
     "open ends research": [
       "open ends research"
@@ -100576,6 +100585,9 @@
     "system skill advisor 0 15 3 0": [
       "system-skill-advisor 0.15.3.0"
     ],
+    "system skill advisor 0 15 4 0": [
+      "system-skill-advisor 0.15.4.0"
+    ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
     ],
@@ -100731,6 +100743,9 @@
     ],
     "system skill advisor v0 15 3 0": [
       "system-skill-advisor v0.15.3.0"
+    ],
+    "system skill advisor v0 15 4 0": [
+      "system-skill-advisor v0.15.4.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"

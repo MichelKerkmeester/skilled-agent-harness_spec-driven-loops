@@ -34,17 +34,23 @@
       "runs"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/004-routing-evaluation/research/research.md",
       ".github/workflows/routing-registry-drift.yml",
       ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts",
-      ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts"
+      ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-local-native-divergence-ledger.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/parity/capture-ledger-workspace-root.vitest.ts",
+      ".skilled/skills/system-skill-advisor/SKILL.md",
+      ".hermes/skills/system-skill-advisor/SKILL.md",
+      "review/review-report.md",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/004-routing-evaluation/research/research.md"
     ],
     "entities": [
       {
@@ -96,6 +102,36 @@
         "source": "derived"
       },
       {
+        "name": "local-native-approved-divergences.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json",
+        "source": "derived"
+      },
+      {
+        "name": "capture-local-native-divergence-ledger.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-local-native-divergence-ledger.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "capture-ledger-workspace-root.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/capture-ledger-workspace-root.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -144,7 +180,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -154,48 +196,12 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "No workflow runs the divergence ratchet, so a new unledgered divergence between the Python and native scorers never fails a push",
     "created_at": "2026-10-11T18:31:52Z",
-    "last_save_at": "2026-10-11T18:39:30.256Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-11T20:33:42.141Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -204,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1b0820121ad4e8b16cbb5f48c8c05838643909f5ce9c449e923eecea6b92af40",
+    "source_fingerprint": "sha256:4cc8dd7c0f99bee6ac65fb739a1e3a7163eacce21dd3414ead6814e634983e7f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c5b129510549b2e209159edcae38e0b71913e5036c94d2ab80d86bce0fbb7387",
-      "plan.md": "4b0bda735def53fa2358e8da0c5540f1f39dc587ed78b1f3874bdbc24c42dfba",
-      "tasks.md": "c575e80e56703f125f29e4be38ff2c9528dc29477ecff9ec7018e604bacd5703",
-      "implementation-summary.md": "217d285ad48fd29baa2c9d6d3c627bc328b7e03e088acf3c919daea6327c6b26"
+      "spec.md": "c726ec5a81e142ae81beada556843167acd9eee61b93b57e7eadb0ee74b19026",
+      "plan.md": "7f5297c0aa3083dc24b709c744f4320e509ee34462c3dd3a2ab2145cbc5ae4a1",
+      "tasks.md": "31de274aef387b7e2a90d53924f0e1ff9ca69fc65522f903342b184bc537cf35",
+      "implementation-summary.md": "4fba9b12fb85808bfa377b53daf9e9692059d58b92f501c619661934b0fd1b7d"
     },
     "last_active_at": null
   }

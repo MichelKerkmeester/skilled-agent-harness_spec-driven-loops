@@ -1,0 +1,1322 @@
+{
+  "sessionId": "rvw-021-004-routing-parity-20261011T193333Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "The change touches the advisor skill but ships no version bump and no changelog entry",
+      "file": ".skilled/skills/system-skill-advisor/SKILL.md",
+      "line": 5,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "Capture and replay score the divergence ledger under different clock and graph regimes",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-local-native-divergence-ledger.mjs",
+      "line": 53,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "The declaration scan proves references are declared, never that declarations are true",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts",
+      "line": 333,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "allowedOverlap keys the declaration by source type, so one reason licenses every corpus of the surface",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts",
+      "line": 306,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "Dynamic code evaluation evaluates more than the data literal it slices",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-local-native-divergence-ledger.mjs",
+      "line": 93,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "The widened runtime scan follows a symlinked directory outside its declared root",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts",
+      "line": 233,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "The spec-designated evidence artifact is still the untouched template",
+      "file": "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/004-routing-parity-ci/implementation-summary.md",
+      "line": 48,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "The fresh-graph regime is arranged but never asserted",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts",
+      "line": 235,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "The pinned scoring instant is derived from the growing ledger, so one new approval re-pins every entry",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts",
+      "line": 222,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-003",
+      "severity": "P2",
+      "title": "SPECKIT_PARITY_REQUIRE_PYTHON=0 cannot deliver the python-less run its comment promises",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts",
+      "line": 40,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 9
+  },
+  "openFindingsCount": 10,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "code_injection",
+      "declaration_coverage",
+      "fixture_coupled_clock",
+      "misleading_configuration",
+      "missing_closure_evidence",
+      "overlap_key_masking",
+      "path_traversal",
+      "regime_parity",
+      "silent_regime_downgrade"
+    ],
+    "ruledOut": [
+      "clock_derivation",
+      "command_injection",
+      "comment_hygiene_violation",
+      "cross_runtime_reference_drift",
+      "declaration_coverage",
+      "doc_code_divergence",
+      "duplicated_setup",
+      "env_capture_order",
+      "holdout_temp_dir_leak",
+      "scan_cost",
+      "scan_whitelist_drift",
+      "secrets_exposure",
+      "spec_code_drift",
+      "sql_injection",
+      "stale_evidence_pointer",
+      "supply_chain",
+      "time_dependent_scoring",
+      "unsafe_env_trust",
+      "workflow_blocking"
+    ],
+    "deferred": [
+      "missing_closure_evidence"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "regime_parity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "declaration_coverage": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "overlap_key_masking": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "time_dependent_scoring": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "env_capture_order": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "scan_whitelist_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "clock_derivation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "workflow_blocking": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "code_injection": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "path_traversal": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "command_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "secrets_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "supply_chain": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "sql_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "unsafe_env_trust": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "missing_closure_evidence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3,
+          5
+        ]
+      },
+      "spec_code_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "doc_code_divergence": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "cross_runtime_reference_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "stale_evidence_pointer": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "silent_regime_downgrade": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "fixture_coupled_clock": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "misleading_configuration": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "duplicated_setup": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "scan_cost": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "comment_hygiene_violation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "holdout_temp_dir_leak": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 5,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/004-routing-parity-ci/spec.md"
+      ],
+      "bugClass": "missing_closure_evidence",
+      "disposition": "deferred",
+      "rationale": "already registered as R3-P1-001 and R3-P2-001; packet-closure backfill is the owning step",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/004-routing-parity-ci/spec.md:136"
+      ],
+      "reason": "tracked findings cover it; no new finding permissible"
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
+      ],
+      "bugClass": "time_dependent_scoring",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:1185",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:1241",
+        ".skilled/skills/system-skill-advisor/runtime/lib/lifecycle/age-haircut.ts:31"
+      ],
+      "reason": "the local scorer is time-invariant, so the one-sided pin is sound for the current implementation"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/utils/workspace-root.ts"
+      ],
+      "bugClass": "env_capture_order",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:70",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts:237",
+        ".skilled/skills/system-skill-advisor/runtime/lib/utils/workspace-root.ts:9"
+      ],
+      "reason": "the env var is set before skill-graph-db and fusion load, and no statically imported module reaches projection.ts"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts"
+      ],
+      "bugClass": "scan_whitelist_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/package.json",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts:346"
+      ],
+      "reason": "the declaration set is complete against the current tree and the build output directory is skipped"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json"
+      ],
+      "bugClass": "clock_derivation",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts:222"
+      ],
+      "reason": "the fixture values are date-only and non-empty; the deriver guards invalid input by throwing"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-008",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".github/workflows/routing-registry-drift.yml"
+      ],
+      "bugClass": "workflow_blocking",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".github/workflows/routing-registry-drift.yml:275",
+        ".github/workflows/routing-registry-drift.yml:278",
+        ".github/workflows/routing-registry-drift.yml:289",
+        ".github/workflows/routing-registry-drift.yml:278"
+      ],
+      "reason": "the steps are blocking job steps on the right job and paths, with python installed before them"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows/routing-registry-drift.yml",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        "runtime/scripts/routing-accuracy/score-routing-corpus.py"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".github/workflows/routing-registry-drift.yml:118",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:617",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:714",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:1382",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-routing-corpus.py:72"
+      ],
+      "reason": "All run: steps are static text and every subprocess call uses an argv array without a shell"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows/routing-registry-drift.yml"
+      ],
+      "bugClass": "secrets_exposure",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".github/workflows/routing-registry-drift.yml:118",
+        ".github/workflows/routing-registry-drift.yml:126",
+        ".github/workflows/routing-registry-drift.yml:240"
+      ],
+      "reason": "Read-only token and no secrets referenced; unpinned-npx surface is version-pinned and the new steps resolve the npm-ci-installed local vitest"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts"
+      ],
+      "bugClass": "sql_injection",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:497",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:593"
+      ],
+      "reason": "Parameterized statements throughout; only static SQL text is executed"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts"
+      ],
+      "bugClass": "unsafe_env_trust",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:70",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts:236"
+      ],
+      "reason": "Operator-controlled environment with the same trust level as the running user; no cross-boundary input"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-TR-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".github/workflows/routing-registry-drift.yml"
+      ],
+      "bugClass": "spec_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "No scope drift in either direction",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/004-routing-parity-ci/spec.md:80-82"
+      ],
+      "reason": "name-status equals the spec's Files to Change exactly"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-TR-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/SKILL.md",
+        ".skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "bugClass": "doc_code_divergence",
+      "disposition": "ruled_out",
+      "rationale": "Checked rather than assumed",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md:39",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/004-routing-parity-ci/spec.md:80-82"
+      ],
+      "reason": "No doc claim covers these internal gates; catalog updates are outside this phase's frozen scope"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-TR-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".pi/agents",
+        ".opencode/agents",
+        ".claude/agents",
+        ".codex/agents"
+      ],
+      "bugClass": "cross_runtime_reference_drift",
+      "disposition": "ruled_out",
+      "rationale": "Overlay protocol checked and not applicable to this change",
+      "evidenceRefs": [],
+      "reason": "No agent definition references the changed paths; nothing to reconcile"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-TR-006",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/004-routing-parity-ci/spec.md",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts"
+      ],
+      "bugClass": "stale_evidence_pointer",
+      "disposition": "ruled_out",
+      "rationale": "No reader-misleading drift",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/004-routing-parity-ci/spec.md:104"
+      ],
+      "reason": "Research-time pointers identify regions, not content; all probed lines resolve"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts:239",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts:203"
+      ],
+      "bugClass": "duplicated_setup",
+      "disposition": "ruled_out",
+      "rationale": "existing per-file pattern; extraction would edit frozen test files outside the change's purpose",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/scorer-eval-baseline-ratchet.vitest.ts:168"
+      ],
+      "reason": "no new duplication introduced; below scope threshold"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-005",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts:228"
+      ],
+      "bugClass": "scan_cost",
+      "disposition": "ruled_out",
+      "rationale": "bounded file count and read-only work; no evidence of cost",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts:228"
+      ],
+      "reason": "measured bounded; no finding"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-006",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".github/workflows/routing-registry-drift.yml",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts"
+      ],
+      "bugClass": "comment_hygiene_violation",
+      "disposition": "ruled_out",
+      "rationale": "comment hygiene holds in the new text",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts:14",
+        ".github/workflows/routing-registry-drift.yml:269",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts:5"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-007",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts:240",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts:334"
+      ],
+      "bugClass": "holdout_temp_dir_leak",
+      "disposition": "ruled_out",
+      "rationale": "pre-existing, OS-temp scoped, no user impact; noted in the narrative only",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts:240"
+      ],
+      "reason": "no impact; pre-existing"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts"
+      ],
+      "bugClass": "declaration_coverage",
+      "disposition": "ruled_out",
+      "rationale": "the widened gate is green as committed",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts:306",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts:322"
+      ],
+      "reason": "replayed green on the live tree"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-local-native-divergence-ledger.mjs",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json"
+      ],
+      "bugClass": "clock_derivation",
+      "disposition": "ruled_out",
+      "rationale": "capture and pin agree on date-only format",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-local-native-divergence-ledger.mjs:169",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-local-native-divergence-ledger.mjs:181",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json:1"
+      ],
+      "reason": "verified by direct read and fixture probe"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
+      ],
+      "bugClass": "time_dependent_scoring",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:1185",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:1241",
+        ".skilled/skills/system-skill-advisor/runtime/lib/lifecycle/age-haircut.ts:31"
+      ],
+      "proof": "the local scorer is time-invariant, so the one-sided pin is sound for the current implementation"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/utils/workspace-root.ts"
+      ],
+      "bugClass": "env_capture_order",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:70",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts:237",
+        ".skilled/skills/system-skill-advisor/runtime/lib/utils/workspace-root.ts:9"
+      ],
+      "proof": "the env var is set before skill-graph-db and fusion load, and no statically imported module reaches projection.ts"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts"
+      ],
+      "bugClass": "scan_whitelist_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/package.json",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts:346"
+      ],
+      "proof": "the declaration set is complete against the current tree and the build output directory is skipped"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json"
+      ],
+      "bugClass": "clock_derivation",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts:222"
+      ],
+      "proof": "the fixture values are date-only and non-empty; the deriver guards invalid input by throwing"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-008",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".github/workflows/routing-registry-drift.yml"
+      ],
+      "bugClass": "workflow_blocking",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".github/workflows/routing-registry-drift.yml:275",
+        ".github/workflows/routing-registry-drift.yml:278",
+        ".github/workflows/routing-registry-drift.yml:289",
+        ".github/workflows/routing-registry-drift.yml:278"
+      ],
+      "proof": "the steps are blocking job steps on the right job and paths, with python installed before them"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows/routing-registry-drift.yml",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        "runtime/scripts/routing-accuracy/score-routing-corpus.py"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".github/workflows/routing-registry-drift.yml:118",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:617",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:714",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:1382",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-routing-corpus.py:72"
+      ],
+      "proof": "All run: steps are static text and every subprocess call uses an argv array without a shell"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows/routing-registry-drift.yml"
+      ],
+      "bugClass": "secrets_exposure",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".github/workflows/routing-registry-drift.yml:118",
+        ".github/workflows/routing-registry-drift.yml:126",
+        ".github/workflows/routing-registry-drift.yml:240"
+      ],
+      "proof": "Read-only token and no secrets referenced; unpinned-npx surface is version-pinned and the new steps resolve the npm-ci-installed local vitest"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts"
+      ],
+      "bugClass": "sql_injection",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:497",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:593"
+      ],
+      "proof": "Parameterized statements throughout; only static SQL text is executed"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts"
+      ],
+      "bugClass": "unsafe_env_trust",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:70",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts:236"
+      ],
+      "proof": "Operator-controlled environment with the same trust level as the running user; no cross-boundary input"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-TR-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".github/workflows/routing-registry-drift.yml"
+      ],
+      "bugClass": "spec_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "No scope drift in either direction",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/004-routing-parity-ci/spec.md:80-82"
+      ],
+      "proof": "name-status equals the spec's Files to Change exactly"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-TR-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/SKILL.md",
+        ".skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "bugClass": "doc_code_divergence",
+      "disposition": "ruled_out",
+      "rationale": "Checked rather than assumed",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md:39",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/004-routing-parity-ci/spec.md:80-82"
+      ],
+      "proof": "No doc claim covers these internal gates; catalog updates are outside this phase's frozen scope"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-TR-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".pi/agents",
+        ".opencode/agents",
+        ".claude/agents",
+        ".codex/agents"
+      ],
+      "bugClass": "cross_runtime_reference_drift",
+      "disposition": "ruled_out",
+      "rationale": "Overlay protocol checked and not applicable to this change",
+      "evidenceRefs": [],
+      "proof": "No agent definition references the changed paths; nothing to reconcile"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-TR-006",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/004-routing-parity-ci/spec.md",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts"
+      ],
+      "bugClass": "stale_evidence_pointer",
+      "disposition": "ruled_out",
+      "rationale": "No reader-misleading drift",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/004-routing-parity-ci/spec.md:104"
+      ],
+      "proof": "Research-time pointers identify regions, not content; all probed lines resolve"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts:239",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts:203"
+      ],
+      "bugClass": "duplicated_setup",
+      "disposition": "ruled_out",
+      "rationale": "existing per-file pattern; extraction would edit frozen test files outside the change's purpose",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/scorer-eval-baseline-ratchet.vitest.ts:168"
+      ],
+      "proof": "no new duplication introduced; below scope threshold"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-005",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts:228"
+      ],
+      "bugClass": "scan_cost",
+      "disposition": "ruled_out",
+      "rationale": "bounded file count and read-only work; no evidence of cost",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts:228"
+      ],
+      "proof": "measured bounded; no finding"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-006",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".github/workflows/routing-registry-drift.yml",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts"
+      ],
+      "bugClass": "comment_hygiene_violation",
+      "disposition": "ruled_out",
+      "rationale": "comment hygiene holds in the new text",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts:14",
+        ".github/workflows/routing-registry-drift.yml:269",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts:5"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-007",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts:240",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts:334"
+      ],
+      "bugClass": "holdout_temp_dir_leak",
+      "disposition": "ruled_out",
+      "rationale": "pre-existing, OS-temp scoped, no user impact; noted in the narrative only",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts:240"
+      ],
+      "proof": "no impact; pre-existing"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts"
+      ],
+      "bugClass": "declaration_coverage",
+      "disposition": "ruled_out",
+      "rationale": "the widened gate is green as committed",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts:306",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts:322"
+      ],
+      "proof": "replayed green on the live tree"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-local-native-divergence-ledger.mjs",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json"
+      ],
+      "bugClass": "clock_derivation",
+      "disposition": "ruled_out",
+      "rationale": "capture and pin agree on date-only format",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-local-native-divergence-ledger.mjs:169",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-local-native-divergence-ledger.mjs:181",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json:1"
+      ],
+      "proof": "verified by direct read and fixture probe"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "declaration_coverage",
+      "clock_derivation",
+      "missing_closure_evidence"
+    ],
+    "covered": [],
+    "ruledOut": [
+      "declaration_coverage",
+      "clock_derivation"
+    ],
+    "deferred": [
+      "missing_closure_evidence"
+    ],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

@@ -1,0 +1,50 @@
+[19:35:56] iter 1: lock refresh exit 0: {"command":"refresh","refreshed":true}
+[19:35:57] iter 1: graph convergence telemetry exit 0: lse,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.4,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[19:36:01] iter 1: dispatch start attempt 1 (model deepseek-v4.1-flash, dimension correctness)
+[19:46:07] iter 1: dispatch exit 0
+[19:46:07] iter 1: stopped worktree advisor daemon pid 81101
+[19:46:08] iter 1: verify exit 0: OK iteration 1 complete: narrative + route-proof + delta
+[19:46:09] iter 1: claim adjudication append exit 0 passed=true newP0P1=0
+[19:46:09] iter 1: reducer exit 0:  
+[19:46:09] iter 1: graph upsert exit 0
+[19:46:09] iter 1: done: findings P0=0 P1=0 P2=3 ratio=1
+[19:46:09] iter 2: lock refresh exit 0: {"command":"refresh","refreshed":true}
+[19:46:10] iter 2: graph convergence telemetry exit 0: e,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.463,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[19:46:11] iter 2: dispatch start attempt 1 (model deepseek-v4.1-flash, dimension security)
+[19:51:34] iter 2: dispatch exit 0
+[19:51:34] iter 2: stopped worktree advisor daemon pid 22514
+[19:51:34] iter 2: verify exit 0: OK iteration 2 complete: narrative + route-proof + delta
+[19:51:35] iter 2: claim adjudication append exit 0 passed=true newP0P1=0
+[19:51:36] iter 2: reducer exit 0:  
+[19:51:36] iter 2: graph upsert exit 0
+[19:51:36] iter 2: done: findings P0=0 P1=0 P2=2 ratio=1
+[19:51:36] iter 3: lock refresh exit 0: {"command":"refresh","refreshed":true}
+[19:51:36] iter 3: graph convergence telemetry exit 0: e,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.525,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[19:51:38] iter 3: dispatch start attempt 1 (model deepseek-v4.1-flash, dimension traceability)
+[19:57:09] iter 3: dispatch exit 0
+[19:57:09] iter 3: stopped worktree advisor daemon pid 20199
+[19:57:09] iter 3: verify exit 0: OK iteration 3 complete: narrative + route-proof + delta
+[19:57:10] iter 3: claim adjudication append exit 0 passed=false newP0P1=1
+[19:57:10] iter 3: reducer exit 0:  
+[19:57:10] iter 3: graph upsert exit 0
+[19:57:10] iter 3: done: findings P0=0 P1=1 P2=1 ratio=1
+[19:57:11] iter 4: lock refresh exit 0: {"command":"refresh","refreshed":true}
+[19:57:11] iter 4: graph convergence telemetry exit 0: e,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.588,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[19:57:13] iter 4: dispatch start attempt 1 (model deepseek-v4.1-flash, dimension maintainability)
+[20:03:25] iter 4: dispatch exit 0
+[20:03:25] iter 4: stopped worktree advisor daemon pid 36327
+[20:03:25] iter 4: verify exit 0: OK iteration 4 complete: narrative + route-proof + delta
+[20:03:26] iter 4: claim adjudication append exit 0 passed=true newP0P1=0
+[20:03:26] iter 4: reducer exit 0:  
+[20:03:27] iter 4: graph upsert exit 0
+[20:03:27] iter 4: done: findings P0=0 P1=0 P2=3 ratio=1
+[20:03:27] iter 5: lock refresh exit 0: {"command":"refresh","refreshed":true}
+[20:03:27] iter 5: graph convergence telemetry exit 0: se,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.65,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[20:03:29] iter 5: dispatch start attempt 1 (model deepseek-v4.1-flash, dimension correctness)
+[20:09:39] iter 5: dispatch exit 0
+[20:09:39] iter 5: stopped worktree advisor daemon pid 12120
+[20:09:39] iter 5: verify exit 0: OK iteration 5 complete: narrative + route-proof + delta
+[20:09:41] iter 5: claim adjudication append exit 0 passed=true newP0P1=0
+[20:09:41] iter 5: reducer exit 0:  
+[20:09:41] iter 5: graph upsert exit 0
+[20:09:41] iter 5: done: findings P0=0 P1=0 P2=0 ratio=0
