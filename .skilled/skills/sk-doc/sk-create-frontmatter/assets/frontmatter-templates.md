@@ -477,7 +477,7 @@ Verify with `.skilled/skills/system-skill-advisor/runtime/scripts/check-skill-do
 
 ### Skill README Frontmatter Template
 
-**Required Fields**: `title`, `description`, `trigger_phrases`, `version`
+**Required Fields**: `title`, `description`, `trigger_phrases`
 
 This is the `README.md` that sits beside a `SKILL.md`, and the block is required there rather than optional. It carries no `version`: under [frontmatter-versioning.md](../references/frontmatter-versioning.md) only `SKILL.md` carries the skill edition.
 
@@ -511,7 +511,7 @@ trigger_phrases:
 
 ### Feature Catalog Frontmatter Template
 
-**Required Fields**: `title`, `description`, `trigger_phrases`, `version`
+**Required Fields**: `title`, `description`, `trigger_phrases`
 
 A catalog has two document shapes and they differ by one field. Per-feature leaf card:
 

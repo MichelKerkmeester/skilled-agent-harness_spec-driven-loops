@@ -27,7 +27,9 @@ contextType: general
 
 ### Out of scope (MUST NOT carry `version`)
 
-Every other document in a skill: `README.md`, `references/**`, `assets/**`, `feature-catalog/**` and `manual-testing-playbook/**`. A child doc ships inside the same package as its `SKILL.md` and its changelog, so the edition is already known to anyone who holds it, and a per-doc copy only goes stale.
+The child docs of a skill: a `README.md` beside a `SKILL.md`, and every file under `references/**`, `assets/**`, `feature-catalog/**` and `manual-testing-playbook/**`. A child doc ships inside the same package as its `SKILL.md` and its changelog, so the edition is already known to anyone who holds it, and a per-doc copy only goes stale.
+
+Other files under a skill, such as a hub's `ROUTER.md`, benchmark reports, component READMEs, examples and hook docs, sit outside this contract. A `version` on one of them is not the skill edition, and no check reads it.
 
 Changelog entries keep the version of the release they record, and `package_skill.py` checks it. `.skilled/commands/*.md` and `.skilled/agents/*.md` are governed separately: a command's `version` stays optional, and an agent carries none.
 
@@ -92,7 +94,7 @@ Every check above is per-document. No gate compares a hub's routing artifacts ag
 
 | File | Frontmatter | Highest changelog | Version |
 |------|-------------|-------------------|---------|
-| `system-spec-kit/SKILL.md` | `2.7.10.0` | `v2.7.10.0.md` | `2.7.10.0` |
+| `system-spec-kit/SKILL.md` | `2.7.11.0` | `v2.7.11.0.md` | `2.7.11.0` |
 | A `SKILL.md` that lags its newest entry | `1.2.0.0` | `v1.3.0.0.md` | `1.3.0.0` after `apply` |
 | `sk-code/references/...` | none | n/a | none, a child doc |
 
