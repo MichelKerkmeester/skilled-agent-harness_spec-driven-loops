@@ -41,6 +41,58 @@ afterEach(() => {
 });
 
 describe('frontmatter template literals', () => {
+  it('derives a missing description from the body after frontmatter', async () => {
+    const root = makeRoot();
+    const templatesRoot = path.join(root, 'templates');
+    const filePath = path.join(root, 'packet', 'spec.md');
+    const bodySentence = 'The first body sentence describes the packet behavior.';
+    const content = [
+      '---',
+      'title: "Packet Spec"',
+      'trigger_phrases: ["frontmatter description", "body sentence"]',
+      '---',
+      '# Packet Spec',
+      bodySentence,
+    ].join('\n');
+
+    const mod = await loadFreshModule();
+    const result = mod.buildFrontmatterContent(content, { templatesRoot }, filePath);
+    const plainResult = mod.buildFrontmatterContent(
+      `# Packet Spec\n${bodySentence}\n`,
+      { templatesRoot },
+      filePath,
+    );
+
+    expect(result.managed.description).toBe(bodySentence);
+    expect(result.managed.description).not.toMatch(/^(?:title|trigger_phrases):/);
+    expect(plainResult.managed.description).toBe(bodySentence);
+  });
+
+  it('skips a retained frontmatter block before the body', async () => {
+    const root = makeRoot();
+    const templatesRoot = path.join(root, 'templates');
+    const filePath = path.join(root, 'packet', 'implementation-summary.md');
+    const bodySentence = 'The summary records the completed implementation work.';
+    const content = [
+      '---',
+      'title: "Current Summary"',
+      'trigger_phrases: ["implementation summary"]',
+      '---',
+      '<!-- Template source -->',
+      '---',
+      'title: "Legacy Summary"',
+      'description: "Template description."',
+      '---',
+      '# Current Summary',
+      bodySentence,
+    ].join('\n');
+
+    const mod = await loadFreshModule();
+    const result = mod.buildFrontmatterContent(content, { templatesRoot }, filePath);
+
+    expect(result.managed.description).toBe(bodySentence);
+  });
+
   it('reads the template again in a fresh run instead of a value an earlier run cached', async () => {
     const root = makeRoot();
     const templatesRoot = path.join(root, 'templates');
