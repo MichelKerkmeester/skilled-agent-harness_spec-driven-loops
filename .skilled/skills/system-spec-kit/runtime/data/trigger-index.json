@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f84debb90ae5b97b21a390a1c0ed957a56976af309d512c7d56c7043fd76c6d1",
+  "manifestHash": "1be274ff96b4cb28e880b7c8d8e40162a0e27ecfe61c2d0a68fdeb26ce686b15",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -41109,6 +41109,7 @@
       4639,
       4644,
       4649,
+      4654,
       4666,
       5015,
       5021,
@@ -55856,6 +55857,7 @@
       4639,
       4644,
       4649,
+      4654,
       4666,
       4961,
       5015,
@@ -65438,6 +65440,7 @@
       4639,
       4644,
       4649,
+      4654,
       4666,
       5015,
       5021,
@@ -69593,9 +69596,6 @@
     ],
     "hooks vitest scope": [
       4657
-    ],
-    "hooks vitest scope goal": [
-      4654
     ],
     "hooks vitest scope implementation summary": [
       4655
@@ -88692,6 +88692,7 @@
       4639,
       4644,
       4649,
+      4654,
       4666,
       4961,
       5015,

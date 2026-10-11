@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout"
     last_updated_at: "2026-10-11T18:00:00Z"
     last_updated_by: "residual-closeout-orchestrator"
-    recent_action: "Closed phase 004"
-    next_safe_action: "Build phase 005"
+    recent_action: "Closed phase 005"
+    next_safe_action: "Run the phase 006 review"
     blockers: []
     key_files: []
     session_dedup:
@@ -99,7 +99,7 @@ Fix each item with proof from a command that ran, or close it only where every h
 | 2 | 002-hooks-readme-voice/ | Bring the hooks README HVR hard blockers to 0 | Complete |
 | 3 | 003-admission-gold/ | Settle the drifted DOC-331 deep-loop admission scenario | Complete |
 | 4 | 004-battery-misses/ | Retry battery misses P4, P7 and P15 at their root cause | Complete |
-| 5 | 005-hooks-vitest-scope/ | Restrict the hooks vitest include to the hooks tree | Pending |
+| 5 | 005-hooks-vitest-scope/ | Restrict the hooks vitest include to the hooks tree | Complete |
 | 6 | 006-closeout-deep-review/ | DeepSeek deep review of the 015 closeout commits | Pending |
 
 ### Phase Transition Rules

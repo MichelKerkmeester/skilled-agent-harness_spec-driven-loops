@@ -15,7 +15,10 @@
       "phase 5 hooks vitest scope",
       "hooks vitest scope plan",
       "hooks vitest scope tasks",
-      "hooks vitest scope goal",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "hooks vitest scope implementation summary"
     ],
     "key_topics": [
@@ -25,21 +28,23 @@
       "phase",
       "plan",
       "tasks",
+      "packet",
       "goal",
-      "implementation",
-      "summary",
-      "broken",
-      "missing",
-      "inefficient"
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/hooks/vitest.config.ts",
+      "specs/system-speckit/z_archive/001-fix-command-dispatch/z_archive/072-speckit-template-memory-ranking-release/tests/spec-070-composite.test.js"
     ],
     "entities": [
       {
@@ -70,6 +75,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-070-composite.test.js",
+        "kind": "code",
+        "path": "specs/system-speckit/z_archive/001-fix-command-dispatch/z_archive/072-speckit-template-memory-ranking-release/tests/spec-070-composite.test.js",
         "source": "derived"
       },
       {
@@ -121,7 +138,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Reproduce",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,14 +156,8 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow One",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -173,23 +190,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "`.skilled/hooks/vitest.config.ts` sets `root` to the repository root so hook imports resolve, and it sets no `include`",
     "created_at": "2026-10-11T10:14:19Z",
-    "last_save_at": "2026-10-11T10:14:22.462Z",
+    "last_save_at": "2026-10-11T11:07:27.627Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +204,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1dd97b64a547ed613971385c82fc9de9f3aee5ec4308c29648aabd2098bc29a5",
+    "source_fingerprint": "sha256:e40565f1712b88865eebf31dfcffbe8c0d29fee6102d882351c2bfc2c9895bac",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "43313b71e0086cd76f8970498bd39689bbcb2ef5d0dbebd8ecf6bbc7fdb2ea3e",
-      "plan.md": "213642dd4be9152587c8a13eb73e2fdf4430ba3d331e7784281b3595cddcce77",
-      "tasks.md": "9ebcfe222cb3faaed5b528b2352a202c9546adefb5b09d3a007f978f9d72dd6d",
-      "implementation-summary.md": "175f5c2b0943538a2752a01be70f3b77c3530795e99fa5184c9aeaa42975fae2"
+      "spec.md": "9162a8533d47763a7fecde51a75abfefecebd0c8fd77e6964a9e472edad86f55",
+      "plan.md": "e1d5610eea9c41b068655ad5489235c5ad0220a866d2553f2bd2df9014ff13ba",
+      "tasks.md": "a8fce767477d2e934cf858063c151715adcf4223f57ce5e1feb80166002d6b62",
+      "implementation-summary.md": "d5a26e92dcdc91cdc51595e908fee4e2b9e95c405cc8734c1de23b0fbe51f077"
     },
     "last_active_at": null
   }

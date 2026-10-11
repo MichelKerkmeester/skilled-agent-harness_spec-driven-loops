@@ -34,6 +34,8 @@ export default defineConfig({
     ],
   },
   test: {
+    // Root is the repository so hook imports resolve; collection stays inside the hooks tree.
+    include: [`${path.relative(REPO_ROOT, HOOKS_ROOT)}/**/*.{test,spec}.?(c|m)[jt]s?(x)`],
     exclude: [
       '**/node_modules/**',
       '**/.git/**',

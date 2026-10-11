@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f84debb90ae5b97b21a390a1c0ed957a56976af309d512c7d56c7043fd76c6d1",
+  "manifestHash": "1be274ff96b4cb28e880b7c8d8e40162a0e27ecfe61c2d0a68fdeb26ce686b15",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -51397,9 +51397,6 @@
     ],
     "hooks vitest scope": [
       "hooks vitest scope"
-    ],
-    "hooks vitest scope goal": [
-      "hooks vitest scope goal"
     ],
     "hooks vitest scope implementation summary": [
       "hooks vitest scope implementation summary"

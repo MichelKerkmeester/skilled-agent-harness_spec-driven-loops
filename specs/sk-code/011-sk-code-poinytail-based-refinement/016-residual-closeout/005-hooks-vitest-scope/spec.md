@@ -1,11 +1,11 @@
 ---
 title: "Feature Specification: Phase 5: hooks-vitest-scope"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "Restrict the hooks vitest include to the hooks tree so a filtered run from .skilled/hooks collects only hooks suites and leaves the tree clean."
 trigger_phrases:
   - "hooks vitest scope"
   - "phase 5 hooks vitest scope"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 5: hooks-vitest-scope
@@ -19,15 +19,15 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-10-11 |
-| **Branch** | `scaffold/005-hooks-vitest-scope` |
+| **Branch** | `worktrees/099-residual-closeout` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 5 of 6 |
+| **Phase** | 5 of 7 |
 | **Predecessor** | 004-battery-misses |
 | **Successor** | 006-closeout-deep-review |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | Every criterion in goal.md passes and strict validation passes |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -35,15 +35,15 @@ contextType: "general"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 5** of the Residual closeout specification.
+This is **Phase 5** of the residual closeout phase parent. It closes item 5 of the residual list: the hooks vitest config that collects archived spec tests.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: Only the files in the table below change.
 
 **Dependencies**:
-- [To be defined during planning]
+- None beyond the files named below.
 
 **Deliverables**:
-- [To be defined during planning]
+- Restrict the hooks vitest include to the hooks tree so a filtered run from .skilled/hooks collects only hooks suites and leaves the tree clean.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -55,10 +55,10 @@ This is **Phase 5** of the Residual closeout specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+`.skilled/hooks/vitest.config.ts` sets `root` to the repository root so hook imports resolve, and it sets no `include`. A filtered run such as `npx vitest run dispatch` from `.skilled/hooks` therefore matched every test path in the repository containing `dispatch`, including archived spec tests. One of them, `specs/system-speckit/z_archive/001-fix-command-dispatch/z_archive/072-speckit-template-memory-ranking-release/tests/spec-070-composite.test.js`, rewrites the tracked `test-results-composite.md` and fails.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+The same command exits 0, collects only hooks files, and leaves `git status` clean, while every hooks suite the config collected before is still collected.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -67,19 +67,17 @@ This is **Phase 5** of the Residual closeout specification.
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- One `include` entry in `.skilled/hooks/vitest.config.ts`
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- The archived spec tests themselves
+- The node:test exclusion the config already makes
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.skilled/hooks/vitest.config.ts` | Modify | `include` limited to the hooks tree |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -91,13 +89,14 @@ This is **Phase 5** of the Residual closeout specification.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | The reported command is clean | `npx vitest run dispatch` from `.skilled/hooks` exits 0 and `git status` stays clean |
+| REQ-002 | No hooks suite is lost | `vitest list` over `.skilled/hooks` returns the same five files before and after |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-090 | Strict validation of this phase passes | validate.sh --strict prints RESULT: PASSED |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -105,8 +104,8 @@ This is **Phase 5** of the Residual closeout specification.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: Every completion criterion in goal.md passes when the orchestrator reruns it.
+- **SC-002**: The phase lands as one conventional commit in the worktree.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -116,8 +115,7 @@ This is **Phase 5** of the Residual closeout specification.
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | A change reaches a caller the phase did not name | Med | The gates named in goal.md are rerun from the final state |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -125,10 +123,7 @@ This is **Phase 5** of the Residual closeout specification.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None.
 <!-- /ANCHOR:questions -->
 
 ---
-
-
