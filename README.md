@@ -157,9 +157,9 @@ From request to documented result:
 
 **Prerequisites**
 
-- Node.js 20.19+ (22.12+ for the spec-kit runtime CLI)
+- Node.js 24.x for a full install. Code Mode's MCP server needs `>=24.0.0 <25.0.0`, the spec-kit runtime CLI needs 22.12+ and the advisor runtime needs 20.19+ or 22.12+, so Node 24 is the one line every part accepts
 - `npm`, `git` and a POSIX shell
-- No global TypeScript needed. The builds use the TypeScript the spec-kit workspace installs, and the advisor launcher installs and builds its own runtime on first run
+- No global TypeScript needed. The builds use the TypeScript the spec-kit workspace installs
 
 ```bash
 # 1. Clone the repository
@@ -169,11 +169,17 @@ cd skilled-agent-harness_spec-driven-loops
 # 2. Install the spec-kit workspace (TypeScript and the shared package the advisor builds against)
 npm --prefix .skilled/skills/system-spec-kit install
 
-# 3. Build the advisor runtime and check its CLI front door
+# 3. Build the spec-kit workspace. The runtimes' session hooks and the agent mirror check load this build
+npm --prefix .skilled/skills/system-spec-kit run build
+
+# 4. Build the advisor runtime and check its CLI front door. Run it after step 2: the advisor build compiles against the types step 2 installs
 # The CLI spawns the resident daemon on demand. Code Mode needs its own server build, see the mcp-code-mode install guide.
 npm --prefix .skilled/skills/system-skill-advisor/runtime install
 npm --prefix .skilled/skills/system-skill-advisor/runtime run build
 node .skilled/bin/skill-advisor.cjs list-tools --format json
+
+# 5. Let the git hooks run their checks in this clone. Without it, a second clone on the same machine skips the pre-commit checks
+git config --local skilled.trustRepoHooks true
 ```
 
 ### Verify Installation
@@ -209,11 +215,13 @@ echo 'SYSTEM_GIT_HOOKS_CHECK_DISABLED=1' >> .skilled/hooks/hook-flags.env
 
 ### First Use
 
-Open OpenCode in your project directory. The framework is active. Try:
+Open your project directory in any of the seven supported runtimes: OpenCode, Claude Code, Codex, Cursor, Devin, Pi or Hermes. The framework is active in each. Try:
 
 ```
 /speckit:complete Build a user authentication system
 ```
+
+That is the OpenCode and Claude Code spelling. Codex, Cursor and Pi name the same command `/speckit-complete`. Hermes runs it from the prompt template `.hermes/prompts/speckit-complete.md`, as [`.hermes/SYNC.md`](.hermes/SYNC.md) describes. Devin carries no command mirror and reaches the same workflow through its `/system-spec-kit` skill.
 
 That one command does five things:
 

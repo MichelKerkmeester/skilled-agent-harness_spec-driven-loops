@@ -34,20 +34,28 @@
       "promise"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/research/research.md",
       ".claude/settings.json",
+      "runtime/dist/hooks/claude/session-prime.js",
       ".codex/hooks.json",
-      ".pi/extensions/session-start-context.ts",
+      ".skilled/bin/check-agent-mirror-sync.vitest.ts",
+      ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/hook-registration-sync.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/session-start-context-pi-extension.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-context.ts",
       ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
       ".skilled/skills/sk-vision/SKILL.md",
-      ".skilled/bin/lib/mirror-sync-verify.cjs"
+      ".skilled/bin/lib/mirror-sync-verify.cjs",
+      ".skilled/bin/check-agent-mirror-sync.cjs",
+      ".skilled/hooks/git/README.md",
+      ".skilled/scripts/git-hooks/README.md",
+      "review/review-report.md"
     ],
     "entities": [
       {
@@ -87,15 +95,45 @@
         "source": "derived"
       },
       {
+        "name": "session-prime.js",
+        "kind": "code",
+        "path": "runtime/dist/hooks/claude/session-prime.js",
+        "source": "derived"
+      },
+      {
         "name": "hooks.json",
         "kind": "config",
         "path": ".codex/hooks.json",
         "source": "derived"
       },
       {
+        "name": "check-agent-mirror-sync.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/bin/check-agent-mirror-sync.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "pre-commit.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registration-sync.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/hook-registration-sync.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-start-context-pi-extension.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/session-start-context-pi-extension.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "session-start-context.ts",
         "kind": "code",
-        "path": ".pi/extensions/session-start-context.ts",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-context.ts",
         "source": "derived"
       },
       {
@@ -114,6 +152,24 @@
         "name": "mirror-sync-verify.cjs",
         "kind": "file",
         "path": ".skilled/bin/lib/mirror-sync-verify.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-agent-mirror-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/check-agent-mirror-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/git/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -145,59 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A fresh clone meets a README promise the advisor launcher does not keep, an unstated Node range, a missing build step, two runtimes that fail without naming the cause, and a hook trust key outside the numbered steps",
     "created_at": "2026-10-11T18:31:50Z",
-    "last_save_at": "2026-10-11T18:39:22.756Z",
+    "last_save_at": "2026-10-11T20:29:32.830Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6db50dd7672d1321ab0cf0eb2008040c90a2e0b484f3af9c34211b0a307f9036",
+    "source_fingerprint": "sha256:1766f26da796110216fbe0ade1e429d51851146ece22f083296435fb99bab7e2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "89cf7aa12e7b1843c6f6d4671876a119f57d86df7bb6ef46773fc3871de1c654",
-      "plan.md": "971873f09e744ab8626bff91f14b71758b91764a313fb17a3f0b600313a656e2",
-      "tasks.md": "fc66ca1e20d2587a5c0a8f9722b15a0ee6a106abdd254760b46b15b319033459",
-      "implementation-summary.md": "47468f02d96c40facbb2ee9fa34b19d93ddf284c8e7b9773709a65a0316d840f"
+      "spec.md": "8b5045d9b27e60493cf35c70226f0fe5f9dccdd5cb8e457b357cccb97b288ff6",
+      "plan.md": "50a18f2cc50511de116be8eaa9a4a09bce3bc4f3ca7abffb3b01ba43775225da",
+      "tasks.md": "9542a6b4e8f51be32879d3506a2adfb36fa5dbdd578f22455738290271069cb6",
+      "implementation-summary.md": "c9dd59d3b6761d65510ae05ad59954b6c1039e38b1f7245dde258a247a3415c7"
     },
     "last_active_at": null
   }

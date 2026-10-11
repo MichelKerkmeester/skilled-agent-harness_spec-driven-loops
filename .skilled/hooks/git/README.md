@@ -25,10 +25,10 @@ This folder is the standalone/legacy surface. The repository's primary Git hook 
 
 | Gate | Scope | Behavior | Bypass |
 |---|---|---|---|
-| Comment hygiene | Staged added/modified files (`git diff --cached --name-only --diff-filter=ACM`) | Copies the staged blobs to a temporary tree and runs `check-comment-hygiene.sh` once over all of them. Exit 1 blocks the commit, and any exit other than 0, 1 or 2 blocks naming the exit code. A staged file whose content cannot be read blocks; a submodule entry is skipped. | `SPECKIT_SKIP_COMMENT_HYGIENE=1` (primary pre-commit only); this standalone hook has no per-gate bypass, use the kill switch below. |
-| Agent mirror-sync | Staged agent files under `.skilled/agents/` or `.claude/agents/` (`--diff-filter=ACMD`) | Runs `check-agent-mirror-sync.cjs` over the staged agent files. Blocks the commit if the `.skilled` / `.claude` mirrors desync. | None per-gate; use the kill switch. |
+| Comment hygiene | Staged added/modified files (`git diff --cached --name-only --diff-filter=ACM`) | Copies the staged blobs to a temporary tree and runs `check-comment-hygiene.sh` once over all of them. Exit 1 blocks the commit, and any exit other than 0, 1 or 2 blocks naming the exit code. A staged file whose content cannot be read blocks. A submodule entry is skipped. | `SPECKIT_SKIP_COMMENT_HYGIENE=1` (primary pre-commit only). This standalone hook has no per-gate bypass, so use the kill switch below. |
+| Agent mirror-sync | Staged agent files under `.skilled/agents/` or `.claude/agents/` (`--diff-filter=ACMD`) | Runs `check-agent-mirror-sync.cjs` over the staged agent files. Blocks the commit if the `.skilled` / `.claude` mirrors desync. | None per-gate. Use the kill switch. |
 
-Both gates resolve their checkers from the repository root. A missing or non-executable comment-hygiene checker blocks in a repository that carries the toolchain and warns and skips anywhere else; if `node` or the mirror-sync checker is unavailable, the mirror gate warns and skips. The kill switch (`hook_enabled git-commit-hooks`) short-circuits the whole hook before any gate runs.
+Both gates resolve their checkers from the repository root. A missing or non-executable comment-hygiene checker blocks in a repository that carries the toolchain and warns and skips anywhere else. If `node` or the mirror-sync checker is unavailable, the mirror gate warns and skips. The kill switch (`hook_enabled git-commit-hooks`) short-circuits the whole hook before any gate runs.
 
 On a block, the hook prints:
 
@@ -49,14 +49,14 @@ Fix: re-sync the mirrors so each agent body matches, then re-stage.
 
 ## 3. PER-RUNTIME DELIVERY
 
-This concern has no per-runtime adapters: it is a native Git hook, not a runtime hook. Git invokes `pre-commit` directly from `.git/hooks/` during `git commit`. The kill-switch resolver (`hook-flags.sh`) is sourced at the top of the hook; it is the same POSIX mirror the shell entrypoints under `shared/` use.
+This concern has no per-runtime adapters: it is a native Git hook, not a runtime hook. Git invokes `pre-commit` directly from `.git/hooks/` during `git commit`. The kill-switch resolver (`hook-flags.sh`) is sourced at the top of the hook. It is the same POSIX mirror the shell entrypoints under `shared/` use.
 
 | Surface | File | How it fires |
 |---|---|---|
 | Git | `pre-commit` | Symlinked into `.git/hooks/pre-commit` by `install-hooks.sh`. Git runs it on `git commit`. |
 | Git (primary) | `.skilled/scripts/git-hooks/pre-commit` | Symlinked into `.git/hooks/pre-commit` by `.skilled/scripts/install-git-hooks.sh`. Runs its own staged-blob comment-hygiene check and does not call this folder's `pre-commit`. |
 
-The two installers are mutually exclusive at the same target path: whichever runs last wins the symlink. The primary installer is the recommended one for normal use; this folder's installer exists for standalone hygiene-gate testing.
+The two installers are mutually exclusive at the same target path: whichever runs last wins the symlink. The primary installer is the recommended one for normal use. This folder's installer exists for standalone hygiene-gate testing.
 
 ---
 
@@ -75,7 +75,7 @@ git/
 | File | Responsibility |
 |---|---|
 | `install-hooks.sh` | Resolves the repo root, symlinks `pre-commit` into `$REPO_ROOT/.git/hooks/pre-commit`. Does not check for existing hooks or ownership: the primary installer does. |
-| `pre-commit` | Sources `shared/hook-flags.sh` and short-circuits on the `git-commit-hooks` kill switch. Runs `check-comment-hygiene.sh` once over the staged blobs (blocks if absent where the toolchain ships). Runs `check-agent-mirror-sync.cjs` over staged agent files (fail-open if `node` or the checker is absent). Blocks on violations; exits 0 otherwise. |
+| `pre-commit` | Sources `shared/hook-flags.sh` and short-circuits on the `git-commit-hooks` kill switch. Runs `check-comment-hygiene.sh` once over the staged blobs (blocks if absent where the toolchain ships). Runs `check-agent-mirror-sync.cjs` over staged agent files (fail-open if `node` or the checker is absent, and warn-and-skip when the checker exits 3 because its built frontmatter parser is missing or fails to load). Blocks on violations, and exits 0 otherwise. |
 
 ---
 
@@ -97,7 +97,7 @@ The `hook-flags.sh` mirror checks the master switch and the default-shape `SYSTE
 | Boundary | Rule |
 |---|---|
 | Imports | The hook sources `shared/hook-flags.sh` (POSIX sh, Node-free). The checkers are spawned by path: `check-comment-hygiene.sh` (shell) and `check-agent-mirror-sync.cjs` (Node). |
-| Decisions | Block (exit 1) or allow (exit 0). No advisory state: both gates are blocking when they fire. |
+| Decisions | Block (exit 1) or allow (exit 0). Both gates block when they fire. The one advisory state is a mirror checker that exits 3 because it could not run: the hook warns, names `npm --prefix .skilled/skills/system-spec-kit run build` and skips that gate. |
 | Failure | A missing comment-hygiene checker blocks where the toolchain ships and warns elsewhere. A missing `node` or mirror-sync checker warns and skips that gate. An unavailable kill-switch resolver lets the hook run without checking its switches. |
 | Scope | Only staged files are inspected (`git diff --cached --name-only`). Commits that touch no in-scope files are unaffected. |
 
@@ -116,7 +116,7 @@ ls -l .git/hooks/pre-commit
 git commit --allow-empty -m "chore(repo): test hook installation" -m "Check that the installed hooks run."
 ```
 
-Expected result: the symlink points at `.skilled/hooks/git/pre-commit`; the test commit runs silently (no staged in-scope files → no gates fire).
+Expected result: the symlink points at `.skilled/hooks/git/pre-commit`. The test commit runs silently (no staged in-scope files → no gates fire).
 
 ```bash
 # Verify the kill switch short-circuits

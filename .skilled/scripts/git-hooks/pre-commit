@@ -186,12 +186,21 @@ if [[ "${#STAGED_AGENTS[@]}" -gt 0 ]]; then
     if _in_toolchain_repo; then
       echo "WARNING: node or agent mirror-sync checker unavailable — skipping mirror gate" >&2
     fi
-  elif ! node "$MIRROR_CHECKER" "${STAGED_AGENTS[@]}"; then
-    echo ""
-    echo "BLOCKED [gate:agent-mirror-sync]: staged agent files desync the .opencode / .claude mirrors."
-    echo "Fix: re-sync the mirrors so each agent body matches, then re-stage."
-    echo "Bypass: SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1 git commit ... (this gate has no switch of its own, so that one turns off every pre-commit gate)"
-    exit 1
+  else
+    # Exit 3 means the checker could not run, here because its built parser is missing. That is
+    # a missing prerequisite like a missing node, so it warns and skips rather than claim drift.
+    MIRROR_RC=0
+    node "$MIRROR_CHECKER" "${STAGED_AGENTS[@]}" || MIRROR_RC=$?
+    if [[ "$MIRROR_RC" -eq 3 ]]; then
+      echo "WARNING [gate:agent-mirror-sync]: agent mirror-sync is not checkable here, so the mirror gate was skipped." >&2
+      echo "Build its parser: npm --prefix .skilled/skills/system-spec-kit run build" >&2
+    elif [[ "$MIRROR_RC" -ne 0 ]]; then
+      echo ""
+      echo "BLOCKED [gate:agent-mirror-sync]: staged agent files desync the .opencode / .claude mirrors."
+      echo "Fix: re-sync the mirrors so each agent body matches, then re-stage."
+      echo "Bypass: SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1 git commit ... (this gate has no switch of its own, so that one turns off every pre-commit gate)"
+      exit 1
+    fi
   fi
 fi
 

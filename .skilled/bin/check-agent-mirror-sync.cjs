@@ -18,7 +18,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
-const { verifyMirrorSync } = require('./lib/mirror-sync-verify.cjs');
+const { NOT_CHECKABLE_CODE, verifyMirrorSync } = require('./lib/mirror-sync-verify.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -104,6 +104,12 @@ function main() {
     try {
       result = verifyMirrorSync(name, canonicalContent, { repoRoot: REPO_ROOT });
     } catch (err) {
+      // A check that could not run is not drift: exit 3 lets the pre-commit hook warn and
+      // skip, as it does when node itself is missing, instead of blocking on a false desync.
+      if (err && err.code === NOT_CHECKABLE_CODE) {
+        console.log(`NOT CHECKABLE  ${name}: ${err.message}`);
+        process.exit(3);
+      }
       drifted.push(name);
       console.log(`DRIFT  ${name}: cannot verify — ${err.message}`);
       continue;

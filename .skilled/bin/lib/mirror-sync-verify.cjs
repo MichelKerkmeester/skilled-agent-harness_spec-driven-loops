@@ -9,9 +9,39 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
-const { parseFrontmatter } = require(path.join(
+// The parser ships only as build output. Load it on first use, so a clone that has not built it
+// can report that the check could not run, instead of crashing into the drift exit code.
+const PARSER_PATH = path.join(
   __dirname, '..', '..', 'skills', 'system-spec-kit', 'shared', 'dist', 'frontmatter', 'parse-frontmatter.js',
-));
+);
+const NOT_CHECKABLE_CODE = 'MIRROR_SYNC_NOT_CHECKABLE';
+let loadedParseFrontmatter = null;
+
+function parseFrontmatter(content) {
+  if (!loadedParseFrontmatter) {
+    let reason = null;
+    if (!fs.existsSync(PARSER_PATH)) {
+      reason = 'is missing';
+    } else {
+      try {
+        const loaded = require(PARSER_PATH).parseFrontmatter;
+        if (typeof loaded === 'function') loadedParseFrontmatter = loaded;
+        else reason = 'does not export parseFrontmatter';
+      } catch (loadError) {
+        reason = `failed to load (${loadError && loadError.message ? loadError.message : loadError})`;
+      }
+    }
+    if (reason) {
+      const error = new Error(
+        `the built frontmatter parser at ${PARSER_PATH} ${reason}; ` +
+          'build it with: npm --prefix .skilled/skills/system-spec-kit run build',
+      );
+      error.code = NOT_CHECKABLE_CODE;
+      throw error;
+    }
+  }
+  return loadedParseFrontmatter(content);
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -352,6 +382,7 @@ function verifyMirrorSync(agentName, content, options = {}) {
 
 module.exports = {
   RUNTIME_MIRRORS,
+  NOT_CHECKABLE_CODE,
   compareBodyTokens,
   compareToolSurface,
   extractAgentBody,

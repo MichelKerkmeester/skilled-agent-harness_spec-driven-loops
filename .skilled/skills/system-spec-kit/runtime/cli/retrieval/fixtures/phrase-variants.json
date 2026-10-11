@@ -1,5 +1,5 @@
 {
-  "manifestHash": "22450d4b5ed6903112f145ec40f0f49bbcfc079efc56a46fe81d32eafb4a2484",
+  "manifestHash": "62dab5cf3d7eb81bb31a2825248b902236deb0111aaa38e2b8c363cdc47adf94",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -66464,6 +66464,9 @@
     "onboarding fixes plan": [
       "onboarding fixes plan"
     ],
+    "onboarding fixes review report": [
+      "onboarding fixes review report"
+    ],
     "onboarding fixes tasks": [
       "onboarding fixes tasks"
     ],
@@ -92427,6 +92430,9 @@
     "sk vision 0 3 5 0": [
       "sk-vision 0.3.5.0"
     ],
+    "sk vision 0 3 6 0": [
+      "sk-vision 0.3.6.0"
+    ],
     "sk vision 006 001 summary": [
       "sk-vision 006-001 summary"
     ],
@@ -92492,6 +92498,9 @@
     ],
     "sk vision bun build": [
       "sk-vision bun build"
+    ],
+    "sk vision bun setup": [
+      "sk-vision bun setup"
     ],
     "sk vision bun test": [
       "sk-vision bun test"
@@ -92999,6 +93008,9 @@
     ],
     "sk vision v0 3 5 0": [
       "sk-vision v0.3.5.0"
+    ],
+    "sk vision v0 3 6 0": [
+      "sk-vision v0.3.6.0"
     ],
     "sk vision venv cleanup": [
       "sk-vision venv cleanup"
@@ -101014,6 +101026,9 @@
     "system spec kit 2 7 10 0": [
       "system-spec-kit 2.7.10.0"
     ],
+    "system spec kit 2 7 11 0": [
+      "system-spec-kit 2.7.11.0"
+    ],
     "system spec kit 2 7 2 0": [
       "system-spec-kit 2.7.2.0"
     ],
@@ -101418,6 +101433,9 @@
     ],
     "system spec kit v2 7 10 0": [
       "system-spec-kit v2.7.10.0"
+    ],
+    "system spec kit v2 7 11 0": [
+      "system-spec-kit v2.7.11.0"
     ],
     "system spec kit v2 7 2 0": [
       "system-spec-kit v2.7.2.0"
@@ -104911,6 +104929,9 @@
     ],
     "unbounded json parsing sidecar": [
       "unbounded json parsing sidecar"
+    ],
+    "unbuilt spec kit runtime notice": [
+      "unbuilt spec-kit runtime notice"
     ],
     "uncertainty weighted average": [
       "uncertainty weighted average"

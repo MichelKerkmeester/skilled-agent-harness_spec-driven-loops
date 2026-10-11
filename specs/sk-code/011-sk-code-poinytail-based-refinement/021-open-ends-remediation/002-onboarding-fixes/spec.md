@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-11 |
 | **Branch** | `worktrees/111-open-ends-integration` (scaffold); the builder works in its own worktree branched from the scaffold commit |
 | **Parent Spec** | ../spec.md |

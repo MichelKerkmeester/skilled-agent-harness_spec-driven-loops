@@ -889,6 +889,42 @@ else
   echo "FAIL  the doctor ran without python3"; FAIL=$((FAIL + 1))
 fi
 
+# ── 64. a mirror checker that cannot check warns and skips instead of reporting drift ──
+setup_gate_fixture
+mkdir -p "$TMP/.opencode/bin"
+cat > "$TMP/.opencode/bin/check-agent-mirror-sync.cjs" <<'CHECKER'
+console.log('NOT CHECKABLE: the built frontmatter parser is missing');
+process.exit(3);
+CHECKER
+stage_new ".opencode/agents/probe.md" "agent"
+run_hook; RC=$?
+check "a not-checkable mirror checker warns and skips" 0 "$RC" "agent mirror-sync is not checkable"
+check "the not-checkable warning names the build" 0 "$RC" "npm --prefix .skilled/skills/system-spec-kit run build"
+
+# ── 65. a mirror checker that reports drift still blocks ──
+setup_gate_fixture
+mkdir -p "$TMP/.opencode/bin"
+cat > "$TMP/.opencode/bin/check-agent-mirror-sync.cjs" <<'CHECKER'
+console.log('DRIFT  probe [claude]');
+process.exit(1);
+CHECKER
+stage_new ".opencode/agents/probe.md" "agent"
+run_hook; RC=$?
+check "a drifted mirror still blocks the commit" 1 "$RC" "staged agent files desync"
+
+# ── 66. the helper also warns and skips when its mirror checker cannot check ──
+setup_gate_fixture
+plant_comment_checker
+mkdir -p "$TMP/.opencode/bin"
+cat > "$TMP/.opencode/bin/check-agent-mirror-sync.cjs" <<'CHECKER'
+console.log('NOT CHECKABLE: the built frontmatter parser is missing');
+process.exit(3);
+CHECKER
+stage_new ".opencode/agents/probe.md" "agent"
+run_legacy; RC=$?
+check "the helper warns and skips a not-checkable mirror checker" 0 "$RC" "agent mirror-sync is not checkable"
+check "the helper's warning names the build" 0 "$RC" "npm --prefix .skilled/skills/system-spec-kit run build"
+
 echo ""
 echo "pre-commit gates: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]

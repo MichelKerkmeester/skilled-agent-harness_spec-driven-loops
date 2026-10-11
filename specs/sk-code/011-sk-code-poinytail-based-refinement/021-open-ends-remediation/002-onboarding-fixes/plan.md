@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 2: onboarding-fixes"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Fix the fresh-clone onboarding stumbles with README edits and two small code changes, each proven on a pristine clone or by a test that fails first."
 trigger_phrases:
   - "onboarding fixes plan"
 importance_tier: "normal"
@@ -20,13 +20,14 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Markdown, TypeScript, CommonJS, Bash |
+| **Framework** | Pi extension API, git hooks |
+| **Storage** | None |
+| **Testing** | Vitest and the pre-commit shell harness |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+
+The README install block, CONTRIBUTING's Node line and sk-vision's setup line change as doc edits. Two code paths change: Pi's session-start extension names a missing build, and the agent mirror checker reports a check it could not run apart from drift. Codex's message changes in the hook registry and is regenerated.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -35,14 +36,16 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -51,16 +54,19 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+
+Extend in place, per the research's reversal-cost ranking.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+
+- **README numbered steps**: the only install path a newcomer follows.
+- **Mirror checker and its hooks**: exit 0 in sync, 1 drift, 3 not checkable.
+- **Pi session-start extension**: warns once when the built session-prime adapter is missing.
 
 ### Data Flow
-[Brief description of how data moves through the system]
-<!-- /ANCHOR:architecture -->
 
+The README steps produce `runtime/dist` and `shared/dist`. The session hooks and the mirror checker load those builds, and each now names the build when it is absent.
+<!-- /ANCHOR:architecture -->
 
 ---
 
@@ -75,7 +81,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-N/A — record any testing beyond the verification tasks in `tasks.md` here.
+Each code row gets a test written first and run red. The README path is proven on a pristine clone of the branch HEAD.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -83,7 +89,7 @@ N/A — record any testing beyond the verification tasks in `tasks.md` here.
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-N/A — record dependencies beyond the components named in the architecture here.
+Node 24.x for the pristine-clone proof, and the existing hook-registry generator for `.codex/hooks.json`.
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -91,8 +97,7 @@ N/A — record dependencies beyond the components named in the architecture here
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-N/A — record rollback steps beyond reverting the scoped change here.
+Revert this phase's commits. No data or generated state outlives them, and `.codex/hooks.json` regenerates from the reverted registry.
 <!-- /ANCHOR:rollback -->
 
 ---
-
