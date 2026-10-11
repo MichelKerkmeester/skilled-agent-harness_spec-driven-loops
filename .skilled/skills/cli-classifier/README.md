@@ -5,7 +5,7 @@ trigger_phrases:
   - "cli-classifier hub"
   - "local classifier hub"
   - "jev judgment hub"
-version: 0.4.0.0
+version: 0.8.1.0
 ---
 
 # cli-classifier
