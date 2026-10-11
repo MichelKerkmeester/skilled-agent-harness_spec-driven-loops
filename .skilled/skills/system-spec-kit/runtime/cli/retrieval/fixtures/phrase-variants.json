@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1bd4c3ab0865c48c30dc1308e58336824136869c398d5f931829f5dc96ea7f8f",
+  "manifestHash": "de9894e5999371da52ded894061f9a8d7ec64574a40eba325bb25822999bee23",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -36792,6 +36792,9 @@
     "doc version contract plan": [
       "doc version contract plan"
     ],
+    "doc version contract research": [
+      "doc version contract research"
+    ],
     "doc version contract tasks": [
       "doc version contract tasks"
     ],
@@ -45728,6 +45731,9 @@
     ],
     "frontmatter variant taxonomy": [
       "frontmatter variant taxonomy"
+    ],
+    "frontmatter version verify fails everywhere": [
+      "frontmatter version verify fails everywhere"
     ],
     "frontmatter version verify failures": [
       "frontmatter version verify failures"
@@ -69546,6 +69552,9 @@
     ],
     "per doc version contract": [
       "per-doc version contract"
+    ],
+    "per doc version removal": [
+      "per-doc version removal"
     ],
     "per edge embedding causal graph": [
       "per edge embedding causal graph"
@@ -93932,6 +93941,9 @@
     ],
     "skill documents vanished published index": [
       "skill documents vanished published index"
+    ],
+    "skill edition version contract": [
+      "skill edition version contract"
     ],
     "skill effect certificate": [
       "skill effect certificate"

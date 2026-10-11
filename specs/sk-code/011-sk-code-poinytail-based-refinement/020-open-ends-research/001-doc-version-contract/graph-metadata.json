@@ -18,7 +18,11 @@
       "doc version contract plan",
       "doc version contract tasks",
       "doc version contract goal",
-      "doc version contract implementation summary"
+      "doc version contract implementation summary",
+      "doc version contract research",
+      "frontmatter version verify fails everywhere",
+      "per-doc version removal",
+      "skill edition version contract"
     ],
     "key_topics": [
       "doc",
@@ -35,16 +39,26 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      "research/research.md",
       ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
       ".skilled/skills/sk-doc/scripts/frontmatter-version.mjs",
-      ".skilled/repo-rules/prevent-overengineering.md"
+      ".skilled/repo-rules/prevent-overengineering.md",
+      ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+      ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+      ".skilled/skills/sk-doc/shared/scripts/quick_validate.py",
+      ".skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh",
+      ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
+      ".github/workflows/skill-doc-frontmatter.yml",
+      ".github/workflows/sk-doc-script-tests.yml",
+      "research/iterations/iteration-001.md"
     ],
     "entities": [
       {
@@ -78,6 +92,12 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
         "name": "frontmatter-versioning.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
@@ -93,6 +113,54 @@
         "name": "prevent-overengineering.md",
         "kind": "doc",
         "path": ".skilled/repo-rules/prevent-overengineering.md",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-templates.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "package_skill.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "quick_validate.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/quick_validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "check-frontmatter-versions.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh",
+        "source": "derived"
+      },
+      {
+        "name": "post-edit-router.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-doc-frontmatter.yml",
+        "kind": "config",
+        "path": ".github/workflows/skill-doc-frontmatter.yml",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc-script-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/sk-doc-script-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
         "source": "derived"
       },
       {
@@ -136,81 +204,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Other",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`node .skilled/skills/sk-doc/scripts/frontmatter-version.mjs verify --skill <name>` exits 1 on every skill checked: 340 files flagged in sk-code, 320 in sk-doc and 115 in system-skill-advisor",
     "created_at": "2026-10-11T15:54:52Z",
-    "last_save_at": "2026-10-11T16:01:38.253Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-11T17:41:19.793Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:0cc8ace822370694b6d3eda915dd8afa9175a977d082e52dad0ab8f151212fbe",
+    "source_fingerprint": "sha256:e7f3fdae5b14ea11649959bee8bef88697e7a53907104978c137bdf28d504d64",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1c3b5a06e6a1c043b3cf7f1b4128774da4a4c534255bd76084f0446e81958e0a",
-      "plan.md": "97a4b444188a0cc11aae31dadfae3b2ba98ca416eba75c8c5ab443e72e243441",
-      "tasks.md": "24e1a0d34e670fe354d2f965b9f7d8336a794b583a1eb62a3f9a91ff3fb8b3a8",
-      "implementation-summary.md": "ad1dd3103290e0ecac4aa0afc74bffcc5ffc6a7fd441e7765ffdc54dbb5ddda7"
+      "spec.md": "65366faa215c6252973e09198a47486dc41f9fc26f1fc419f39a4d4b53bd8bbb",
+      "plan.md": "34107d5ad5ece01cbc62e7a285047322839fe4b40ab14a2b9ba0af3e311e5274",
+      "tasks.md": "b006949ec7405f339a318640f7d3632c316515de282c0b00e691224338306760",
+      "implementation-summary.md": "b99e1fe1e05c2b3be25b58107775f47f78f8bff437121036754a770f67cd7563",
+      "research/research.md": "a1385072029faa874a25f05d7014a2abc0ab86b47e9fb1625053b25ff17d0f1a"
     },
     "last_active_at": null
   }

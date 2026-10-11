@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-11 |
 | **Branch** | `worktrees/104-open-ends-scaffold` |
 | **Parent Spec** | ../spec.md |
@@ -145,6 +145,15 @@ Done means:
 ## 7. OPEN QUESTIONS
 
 - None blocking the run. The research questions are in section 2.
+- Deep-research topic: why frontmatter-version.mjs verify exits 1 on every skill, what a per-doc version should mean for an external author, the smallest contract that stays green by construction, and whether the per-doc version should exist at all.
+- Research Context: deep-research is active for this topic; research/research.md is canonical.
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+Abridged from `research/research.md`, which stays canonical:
+- `verify` fails by construction: the build segment `W` is derived from git history and writing it is itself an edit, the skill-era segment goes stale on every anchor bump, and nothing runs `verify` or reconciles values. Measured: `verify` exits 1 on 14 of 14 skills (2,795 mismatches over 2,909 docs) while `gate` exits 0 on all 14.
+- A doc version can mean only the skill edition for an external author, and `SKILL.md` plus the changelog already carry it.
+- Smallest contract green by construction: `version` on `SKILL.md` only, equal to the max of its own value and the highest changelog filename. `verify` over the 57 `SKILL.md` files exits 0 today.
+- Recommendation R1: drop the per-doc version from child doc classes. R1 to R7 are in `research/research.md` Section 11.
+<!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 
 ---

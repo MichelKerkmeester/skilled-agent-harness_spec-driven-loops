@@ -1,0 +1,1430 @@
+{
+  "sessionId": "dr-001-doc-version-contract-2026-10-11T16:23:33.000Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-why-does-verify-fail-the-rule-the-derivation-or-the-fact-that-nothing-enforce",
+      "inboxId": null,
+      "text": "Q1: Why does verify fail: the rule, the derivation, or the fact that nothing enforces it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-q2-what-should-doc-versions-mean-for-an-external-author",
+      "inboxId": null,
+      "text": "Q2: What should doc versions mean for an external author?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "resolved": true
+    },
+    {
+      "id": "question-3-q3-what-is-the-smallest-contract-that-stays-green-by-construction",
+      "inboxId": null,
+      "text": "Q3: What is the smallest contract that stays green by construction?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-4-q4-should-the-per-doc-version-exist-at-all",
+      "inboxId": null,
+      "text": "Q4: Should the per-doc version exist at all?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-5-q5-which-hooks-generators-or-ci-steps-write-or-check-a-doc-version-today-if-any",
+      "inboxId": null,
+      "text": "Q5: Which hooks, generators or CI steps write or check a doc version today, if any?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-q1-why-does-verify-fail-the-rule-the-derivation-or-the-fact-that-nothing-enforce",
+      "inboxId": null,
+      "text": "Q1: Why does verify fail: the rule, the derivation, or the fact that nothing enforces it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-q2-what-should-doc-versions-mean-for-an-external-author",
+      "inboxId": null,
+      "text": "Q2: What should doc versions mean for an external author?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7
+    },
+    {
+      "id": "question-3-q3-what-is-the-smallest-contract-that-stays-green-by-construction",
+      "inboxId": null,
+      "text": "Q3: What is the smallest contract that stays green by construction?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-4-q4-should-the-per-doc-version-exist-at-all",
+      "inboxId": null,
+      "text": "Q4: Should the per-doc version exist at all?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-5-q5-which-hooks-generators-or-ci-steps-write-or-check-a-doc-version-today-if-any",
+      "inboxId": null,
+      "text": "Q5: Which hooks, generators or CI steps write or check a doc version today, if any?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q4: Should the per-doc version exist at all?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: Which hooks, generators or CI steps write or check a doc version today, if any? (evidence partially gathered this iteration: post-edit hook gate, package-time validators, separate CI coverage guard; nothing runs verify/apply — to be consolidated under Q5 rather than claimed answered here.)",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: What should doc versions mean for an external author?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3: What is the smallest contract that stays green by construction?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: What should doc versions mean for an external author? (partial: the era-only reading is recorded; blocked on a definition of \"external author\")",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: Should the per-doc version exist at all? (deferred; bounded by this iteration's contract shape)",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: What should doc versions mean for an external author? (partial: the era-only reading is recorded; the definition of \"external author\" is still outstanding)",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None at the key-question level: Q1-Q5 are all resolved (Q1, Q3-Q5 in earlier iterations [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md:63-67], Q4 in iteration 6, Q2 here). Iterations 8-10 remain under the max-iterations stop policy; the productive direction is consolidation, not new questions.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None at the key-question level. Iterations 9-10 remain under the max-iterations stop policy; the productive direction is the single decision record (see Recommended Next Focus).",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None at the key-question level. Iteration 10 remains under the max-iterations stop policy; the productive direction is the single decision record (see Recommended Next Focus).",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None. This is the terminal iteration (max-iterations stop policy); the consolidation is complete.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-7-composite-answer-to-q1-the-rule-and-the-derivation-are-coherent-and-functioning-",
+      "text": "**Composite answer to Q1.** The rule and the derivation are coherent and functioning; what is not functioning is the expectation of a green fleet-wide `verify`. `verify` is the only consumer of stored-vs-derived equality, it is deliberately not a gate, nothing schedules it, and its derivation changes with every commit that touches a doc — so exit 1 on (nearly) every skill is guaranteed until a skill is two-pass reconciled and then left untouched. The open design question that follows is not \"fix verify\" but \"what property should the stored per-doc version assert?\" (feeds Q2–Q4).",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (lines 44-55, 61-73, 85-136, 164-172, 193)",
+        "`.skilled/skills/sk-doc/scripts/frontmatter-version.mjs` (lines 50-101, 165-194, 270-339, 389-414)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (identical copy, `diff -q` clean)",
+        "`.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh` (line 13: `exec node ... gate \"$@\"`)",
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (lines 38, 125-128, 200-212)",
+        "`.skilled/hooks/post-edit-quality/README.md` (line 50)",
+        "`.github/workflows/skill-doc-frontmatter.yml` (lines 23-43)",
+        "`.skilled/skills/sk-code/shared/references/stack-detection.md` (spot check: 28 path-commits, expected `W=26`)",
+        "Command outputs: `verify --skill sk-code` (340 mismatches, exit 1); wrapper `gate --skill sk-code` (exit 0), recorded in Action 4-5."
+      ]
+    },
+    {
+      "id": "finding-1-4-enforcement-covers-presence-format-only-on-three-surfaces-none-of-which-compares",
+      "text": "**Enforcement covers presence + format only, on three surfaces, none of which compares stored against derived.** (a) The post-edit hook's row 3 runs the corpus wrapper in `gate` mode scoped by skill [SOURCE: .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:200][SOURCE: .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:38][SOURCE: .skilled/hooks/post-edit-quality/README.md:50]. (b) `quick_validate.py` / `package_skill.py` reject a malformed or absent version at package time [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:166]. (c) CI's `skill-doc-frontmatter.yml` runs a different guard (`check-skill-doc-frontmatter.sh`), which checks frontmatter coverage, not version values [SOURCE: .github/workflows/skill-doc-frontmatter.yml:31]. Nothing runs `apply`/`verify` automatically, and even `apply` silently skips a differing value without `--update` [SOURCE: .skilled/skills/sk-doc/scripts/frontmatter-version.mjs:315]. The \"nothing enforces it\" half is deliberate, documented under the standard's own heading \"What nothing enforces\" [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:170].",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (lines 44-55, 61-73, 85-136, 164-172, 193)",
+        "`.skilled/skills/sk-doc/scripts/frontmatter-version.mjs` (lines 50-101, 165-194, 270-339, 389-414)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (identical copy, `diff -q` clean)",
+        "`.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh` (line 13: `exec node ... gate \"$@\"`)",
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (lines 38, 125-128, 200-212)",
+        "`.skilled/hooks/post-edit-quality/README.md` (line 50)",
+        "`.github/workflows/skill-doc-frontmatter.yml` (lines 23-43)",
+        "`.skilled/skills/sk-code/shared/references/stack-detection.md` (spot check: 28 path-commits, expected `W=26`)",
+        "Command outputs: `verify --skill sk-code` (340 mismatches, exit 1); wrapper `gate --skill sk-code` (exit 0), recorded in Action 4-5."
+      ]
+    },
+    {
+      "id": "finding-1-3-the-derivation-is-faithful-the-stored-values-are-stale-snapshots-from-earlier-mi",
+      "text": "**The derivation is faithful; the stored values are stale snapshots from earlier mint epochs.** Spot check on `stack-detection.md`: 28 commits touch the path, the engine derives `W=26` and expects 2.2.0.26, while the stored value is 2.2.0.0 — consistent with zero-line/rename commits being discarded by the numstat gate and with no re-apply since mint [SOURCE: .skilled/skills/sk-code/shared/references/stack-detection.md:1]. Other stored values carry a nonzero `Z` that the current rule seeds to `0` (e.g. `sk-code/README.md` stored 2.2.11.0 vs expected 2.2.0.38) [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:50]. [INFERENCE: Z-bearing stored values were minted under an earlier layout or are human-set values preserved by `skip-conflict`; distinguishing the two needs `git log -S` on the version line and is deferred.] Anchor-era moves also strand children: stored `1.5.0.x` values against expected `2.2.0.y` show child docs were never re-versioned when the skill anchor advanced [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:61].",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (lines 44-55, 61-73, 85-136, 164-172, 193)",
+        "`.skilled/skills/sk-doc/scripts/frontmatter-version.mjs` (lines 50-101, 165-194, 270-339, 389-414)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (identical copy, `diff -q` clean)",
+        "`.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh` (line 13: `exec node ... gate \"$@\"`)",
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (lines 38, 125-128, 200-212)",
+        "`.skilled/hooks/post-edit-quality/README.md` (line 50)",
+        "`.github/workflows/skill-doc-frontmatter.yml` (lines 23-43)",
+        "`.skilled/skills/sk-code/shared/references/stack-detection.md` (spot check: 28 path-commits, expected `W=26`)",
+        "Command outputs: `verify --skill sk-code` (340 mismatches, exit 1); wrapper `gate --skill sk-code` (exit 0), recorded in Action 4-5."
+      ]
+    },
+    {
+      "id": "finding-1-2-the-derivation-is-self-invalidating-by-construction-because-w-is-a-git-history-f",
+      "text": "**The derivation is self-invalidating by construction because `W` is a git-history function.** For every non-`SKILL.md` doc the engine derives `X.Y.0.W` with `W = min(realEditCount(file), 99)` [SOURCE: .skilled/skills/sk-doc/scripts/frontmatter-version.mjs:282], where `realEditCount` counts commits with nonzero per-file added+deleted `numstat` after `git log --follow` [SOURCE: .skilled/skills/sk-doc/scripts/frontmatter-version.mjs:70][SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:90]. Applying `W` is itself an edit that changes `W`, so one pass never converges; the standard mandates a two-pass apply + amend per skill and says the ordinary case is to apply in the same commit as the content change [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:98][SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:106][SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:120]. Nothing carries that discipline into ordinary editing, so stored-vs-derived drift is the default state.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (lines 44-55, 61-73, 85-136, 164-172, 193)",
+        "`.skilled/skills/sk-doc/scripts/frontmatter-version.mjs` (lines 50-101, 165-194, 270-339, 389-414)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (identical copy, `diff -q` clean)",
+        "`.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh` (line 13: `exec node ... gate \"$@\"`)",
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (lines 38, 125-128, 200-212)",
+        "`.skilled/hooks/post-edit-quality/README.md` (line 50)",
+        "`.github/workflows/skill-doc-frontmatter.yml` (lines 23-43)",
+        "`.skilled/skills/sk-code/shared/references/stack-detection.md` (spot check: 28 path-commits, expected `W=26`)",
+        "Command outputs: `verify --skill sk-code` (340 mismatches, exit 1); wrapper `gate --skill sk-code` (exit 0), recorded in Action 4-5."
+      ]
+    },
+    {
+      "id": "finding-1-6-the-engine-is-duplicated-byte-for-byte-across-two-paths-skilled-skills-sk-doc-sc",
+      "text": "**The engine is duplicated byte-for-byte across two paths.** `.skilled/skills/sk-doc/scripts/frontmatter-version.mjs` and `.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` are identical (`diff -q` clean) [SOURCE: .skilled/skills/sk-doc/scripts/frontmatter-version.mjs:1][SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:1]; the standard links only the `shared/scripts` copy [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:193]. Two copies of drift-sensitive logic double the update surface whenever the contract changes.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (lines 44-55, 61-73, 85-136, 164-172, 193)",
+        "`.skilled/skills/sk-doc/scripts/frontmatter-version.mjs` (lines 50-101, 165-194, 270-339, 389-414)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (identical copy, `diff -q` clean)",
+        "`.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh` (line 13: `exec node ... gate \"$@\"`)",
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (lines 38, 125-128, 200-212)",
+        "`.skilled/hooks/post-edit-quality/README.md` (line 50)",
+        "`.github/workflows/skill-doc-frontmatter.yml` (lines 23-43)",
+        "`.skilled/skills/sk-code/shared/references/stack-detection.md` (spot check: 28 path-commits, expected `W=26`)",
+        "Command outputs: `verify --skill sk-code` (340 mismatches, exit 1); wrapper `gate --skill sk-code` (exit 0), recorded in Action 4-5."
+      ]
+    },
+    {
+      "id": "finding-1-1-the-exit-1-is-the-documented-expected-state-not-a-fault-the-standard-separates-g",
+      "text": "**The exit 1 is the documented expected state, not a fault.** The standard separates `gate` (the enforced check the post-edit hook runs; presence + 4-part format only; never consults git) from `verify` (compares each recorded version against what git implies now; \"a reconciliation tool, not a gate\") [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:127][SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:131]. It states that a fleet-wide `verify` \"reports thousands of mismatches on a repository whose `gate` is clean, and that is the expected reading rather than a fault to chase\" [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:133]. Observed live: `verify --skill sk-code` → 340 mismatches, exit 1; the same skill's corpus wrapper → exit 0.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (lines 44-55, 61-73, 85-136, 164-172, 193)",
+        "`.skilled/skills/sk-doc/scripts/frontmatter-version.mjs` (lines 50-101, 165-194, 270-339, 389-414)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (identical copy, `diff -q` clean)",
+        "`.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh` (line 13: `exec node ... gate \"$@\"`)",
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (lines 38, 125-128, 200-212)",
+        "`.skilled/hooks/post-edit-quality/README.md` (line 50)",
+        "`.github/workflows/skill-doc-frontmatter.yml` (lines 23-43)",
+        "`.skilled/skills/sk-code/shared/references/stack-detection.md` (spot check: 28 path-commits, expected `W=26`)",
+        "Command outputs: `verify --skill sk-code` (340 mismatches, exit 1); wrapper `gate --skill sk-code` (exit 0), recorded in Action 4-5."
+      ]
+    },
+    {
+      "id": "finding-1-5-the-standard-s-instruction-to-run-it-in-ci-or-pre-commit-the-corpus-gate-is-unho",
+      "text": "**The standard's instruction to \"Run it in CI or pre-commit\" the corpus gate is unhonored, and honoring it would not catch value drift anyway** — `gate` is presence + format only by design [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:168][SOURCE: .skilled/skills/sk-doc/scripts/frontmatter-version.mjs:397]. A searched surface (`.github/workflows`, `.githooks`, `package.json`) contains no reference to `check-frontmatter-versions.sh` or `frontmatter-version.mjs`; the only version-adjacent CI job is the different coverage guard above.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (lines 44-55, 61-73, 85-136, 164-172, 193)",
+        "`.skilled/skills/sk-doc/scripts/frontmatter-version.mjs` (lines 50-101, 165-194, 270-339, 389-414)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (identical copy, `diff -q` clean)",
+        "`.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh` (line 13: `exec node ... gate \"$@\"`)",
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (lines 38, 125-128, 200-212)",
+        "`.skilled/hooks/post-edit-quality/README.md` (line 50)",
+        "`.github/workflows/skill-doc-frontmatter.yml` (lines 23-43)",
+        "`.skilled/skills/sk-code/shared/references/stack-detection.md` (spot check: 28 path-commits, expected `W=26`)",
+        "Command outputs: `verify --skill sk-code` (340 mismatches, exit 1); wrapper `gate --skill sk-code` (exit 0), recorded in Action 4-5."
+      ]
+    },
+    {
+      "id": "finding-2-6-opencode-skills-and-opencode-agents-are-symlinks-into-skilled-ls-la-opencode-sho",
+      "text": "**`.opencode/skills` and `.opencode/agents` are symlinks into `.skilled`.** `ls -la .opencode/` shows `skills -> ../.skilled/skills` and `agents -> ../.skilled/agents` [SOURCE: .opencode/skills][SOURCE: .opencode/agents]. Every CI path that names `.opencode/...` and the router's `.skilled/...` paths execute the same physical files; there is no `.opencode` second copy to keep in sync. The duplicate engine pair iteration 1 found is intra-`.skilled` (`scripts/` vs `shared/scripts/`) and remains real [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:1].",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (lines 38, 200-210)",
+        "`.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh` (line 13)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 11-13, 399, 445)",
+        "`.opencode/scripts/git-hooks/pre-commit` (lines 97, 172, 322-326; gate-label inventory; zero `frontmatter` matches)",
+        "`.skilled/hooks/git/pre-commit` (legacy helper, line 43 and gates)",
+        "`.github/workflows/skill-doc-frontmatter.yml` (line 31)",
+        "`.opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh` (lines 7-8)",
+        "`.github/workflows/sk-doc-script-tests.yml` (line 53)",
+        "`.opencode/skills/sk-doc/scripts/tests/run-script-tests.sh` (line 12)",
+        "`.skilled/skills/sk-doc/scripts/tests/README.md` (line 73)",
+        "`.gitignore` (lines 386-390)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md` (line 411)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (lines 109, 148-149, 166-170; carried from iteration 1)",
+        "`.opencode/skills`, `.opencode/agents` (symlinks, `ls -la .opencode/`)",
+        "Command outputs: repo-wide `frontmatter-version` search; `gate:*` inventory of the pre-commit; `test-frontmatter-version` wiring search; symlink listing"
+      ]
+    },
+    {
+      "id": "finding-2-4-ci-s-frontmatter-guard-does-not-know-the-version-field-exists-skill-doc-frontmat",
+      "text": "**CI's frontmatter guard does not know the `version` field exists.** `skill-doc-frontmatter.yml` runs the coverage guard [SOURCE: .github/workflows/skill-doc-frontmatter.yml:31], whose declared contract is title, description, trigger_phrases (3-8), importance_tier and contextType [SOURCE: .opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh:7-8]. `version` is absent from that list, so CI cannot fail on any version value in any state.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (lines 38, 200-210)",
+        "`.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh` (line 13)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 11-13, 399, 445)",
+        "`.opencode/scripts/git-hooks/pre-commit` (lines 97, 172, 322-326; gate-label inventory; zero `frontmatter` matches)",
+        "`.skilled/hooks/git/pre-commit` (legacy helper, line 43 and gates)",
+        "`.github/workflows/skill-doc-frontmatter.yml` (line 31)",
+        "`.opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh` (lines 7-8)",
+        "`.github/workflows/sk-doc-script-tests.yml` (line 53)",
+        "`.opencode/skills/sk-doc/scripts/tests/run-script-tests.sh` (line 12)",
+        "`.skilled/skills/sk-doc/scripts/tests/README.md` (line 73)",
+        "`.gitignore` (lines 386-390)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md` (line 411)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (lines 109, 148-149, 166-170; carried from iteration 1)",
+        "`.opencode/skills`, `.opencode/agents` (symlinks, `ls -la .opencode/`)",
+        "Command outputs: repo-wide `frontmatter-version` search; `gate:*` inventory of the pre-commit; `test-frontmatter-version` wiring search; symlink listing"
+      ]
+    },
+    {
+      "id": "finding-2-3-no-git-hook-checks-a-doc-version-at-all-the-installed-pre-commit-s-gates-are-com",
+      "text": "**No git hook checks a doc version at all.** The installed pre-commit's gates are comment-hygiene, template-phrase-lint, agent-mirror-sync, mirror-parity, skill-authoring, plus hook-flags/trust, spec/route remint, prompt-card-sync and mcp-mutation-class [SOURCE: .opencode/scripts/git-hooks/pre-commit:97][SOURCE: .opencode/scripts/git-hooks/pre-commit:172][SOURCE: .opencode/scripts/git-hooks/pre-commit:322]; a ripgrep for `frontmatter` across `.opencode/scripts/git-hooks/` returns zero matches. The `skill-authoring` gate checks leaf-manifest freshness and the parent-skill doctor [SOURCE: .opencode/scripts/git-hooks/pre-commit:324-326]. The legacy helper `.skilled/hooks/git/pre-commit` runs only comment-hygiene and mirror gates as well [SOURCE: .skilled/hooks/git/pre-commit:43].",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (lines 38, 200-210)",
+        "`.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh` (line 13)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 11-13, 399, 445)",
+        "`.opencode/scripts/git-hooks/pre-commit` (lines 97, 172, 322-326; gate-label inventory; zero `frontmatter` matches)",
+        "`.skilled/hooks/git/pre-commit` (legacy helper, line 43 and gates)",
+        "`.github/workflows/skill-doc-frontmatter.yml` (line 31)",
+        "`.opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh` (lines 7-8)",
+        "`.github/workflows/sk-doc-script-tests.yml` (line 53)",
+        "`.opencode/skills/sk-doc/scripts/tests/run-script-tests.sh` (line 12)",
+        "`.skilled/skills/sk-doc/scripts/tests/README.md` (line 73)",
+        "`.gitignore` (lines 386-390)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md` (line 411)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (lines 109, 148-149, 166-170; carried from iteration 1)",
+        "`.opencode/skills`, `.opencode/agents` (symlinks, `ls -la .opencode/`)",
+        "Command outputs: repo-wide `frontmatter-version` search; `gate:*` inventory of the pre-commit; `test-frontmatter-version` wiring search; symlink listing"
+      ]
+    },
+    {
+      "id": "finding-2-1-no-hook-generator-or-ci-step-writes-a-doc-version-automatically-the-only-writer-",
+      "text": "**No hook, generator or CI step writes a doc version automatically; the only writer is `apply`, operator-run.** The engine's modes are `compute`/`apply`/`verify`/`gate` [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:11-13]; `apply` is the write path [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:445], and the standard documents it as a manual two-pass flow with `--update` required to overwrite a differing value [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:109]. A search for `frontmatter-version` across `.github/`, `.skilled/hooks/`, and `.opencode/scripts/git-hooks/` finds no caller (matches live in `.gitignore`, the engine and its tests, the wrapper, and documentation). The `compute` manifest output is gitignored [SOURCE: .gitignore:386-390]. Templates seed a literal `version:` at authoring time only [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md:411].",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (lines 38, 200-210)",
+        "`.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh` (line 13)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 11-13, 399, 445)",
+        "`.opencode/scripts/git-hooks/pre-commit` (lines 97, 172, 322-326; gate-label inventory; zero `frontmatter` matches)",
+        "`.skilled/hooks/git/pre-commit` (legacy helper, line 43 and gates)",
+        "`.github/workflows/skill-doc-frontmatter.yml` (line 31)",
+        "`.opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh` (lines 7-8)",
+        "`.github/workflows/sk-doc-script-tests.yml` (line 53)",
+        "`.opencode/skills/sk-doc/scripts/tests/run-script-tests.sh` (line 12)",
+        "`.skilled/skills/sk-doc/scripts/tests/README.md` (line 73)",
+        "`.gitignore` (lines 386-390)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md` (line 411)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (lines 109, 148-149, 166-170; carried from iteration 1)",
+        "`.opencode/skills`, `.opencode/agents` (symlinks, `ls -la .opencode/`)",
+        "Command outputs: repo-wide `frontmatter-version` search; `gate:*` inventory of the pre-commit; `test-frontmatter-version` wiring search; symlink listing"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-engine-s-own-mjs-test-suite-is-not-wired-into-ci-the-sk-doc-ci-job-runs-run-",
+      "text": "**The engine's own `.mjs` test suite is not wired into CI.** The sk-doc CI job runs `run-script-tests.sh` [SOURCE: .github/workflows/sk-doc-script-tests.yml:53], which loops over `test_*.py` files only [SOURCE: .opencode/skills/sk-doc/scripts/tests/run-script-tests.sh:12]. `test-frontmatter-version.mjs` exists and is documented in the suite README [SOURCE: .skilled/skills/sk-doc/scripts/tests/README.md:73], but a search for the name found no reference in any workflow or runner — engine-behavior regressions are caught only by manual runs.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (lines 38, 200-210)",
+        "`.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh` (line 13)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 11-13, 399, 445)",
+        "`.opencode/scripts/git-hooks/pre-commit` (lines 97, 172, 322-326; gate-label inventory; zero `frontmatter` matches)",
+        "`.skilled/hooks/git/pre-commit` (legacy helper, line 43 and gates)",
+        "`.github/workflows/skill-doc-frontmatter.yml` (line 31)",
+        "`.opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh` (lines 7-8)",
+        "`.github/workflows/sk-doc-script-tests.yml` (line 53)",
+        "`.opencode/skills/sk-doc/scripts/tests/run-script-tests.sh` (line 12)",
+        "`.skilled/skills/sk-doc/scripts/tests/README.md` (line 73)",
+        "`.gitignore` (lines 386-390)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md` (line 411)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (lines 109, 148-149, 166-170; carried from iteration 1)",
+        "`.opencode/skills`, `.opencode/agents` (symlinks, `ls -la .opencode/`)",
+        "Command outputs: repo-wide `frontmatter-version` search; `gate:*` inventory of the pre-commit; `test-frontmatter-version` wiring search; symlink listing"
+      ]
+    },
+    {
+      "id": "finding-2-2-the-only-automatic-check-on-a-version-value-is-the-post-edit-plugin-s-gate-row-a",
+      "text": "**The only automatic check on a version value is the post-edit plugin's gate row, and `gate` is presence + format only — no git, no manifest.** Row 3 of the router routes an in-scope skill doc to `check-frontmatter-versions.sh --skill <name>` [SOURCE: .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:200-210]; the wrapper execs the engine in `gate` mode [SOURCE: .skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh:13]; the engine's own comment for that mode is \"Presence + format only — no git, no manifest\" [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:399]. So no automated surface can detect stored-vs-derived drift.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (lines 38, 200-210)",
+        "`.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh` (line 13)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 11-13, 399, 445)",
+        "`.opencode/scripts/git-hooks/pre-commit` (lines 97, 172, 322-326; gate-label inventory; zero `frontmatter` matches)",
+        "`.skilled/hooks/git/pre-commit` (legacy helper, line 43 and gates)",
+        "`.github/workflows/skill-doc-frontmatter.yml` (line 31)",
+        "`.opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh` (lines 7-8)",
+        "`.github/workflows/sk-doc-script-tests.yml` (line 53)",
+        "`.opencode/skills/sk-doc/scripts/tests/run-script-tests.sh` (line 12)",
+        "`.skilled/skills/sk-doc/scripts/tests/README.md` (line 73)",
+        "`.gitignore` (lines 386-390)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md` (line 411)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (lines 109, 148-149, 166-170; carried from iteration 1)",
+        "`.opencode/skills`, `.opencode/agents` (symlinks, `ls -la .opencode/`)",
+        "Command outputs: repo-wide `frontmatter-version` search; `gate:*` inventory of the pre-commit; `test-frontmatter-version` wiring search; symlink listing"
+      ]
+    },
+    {
+      "id": "finding-3-5-consolidated-q5-answer-closure-no-hook-generator-packaging-step-or-ci-workflow-w",
+      "text": "**Consolidated Q5 answer (closure):** no hook, generator, packaging step or CI workflow writes a doc version; the only writer is operator-run `apply` [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:445]. Every automated check is presence/format only, at three surfaces: the post-edit gate (skill docs), the package validators (command-run), and CI's coverage guard, which does not know the `version` field exists [SOURCE: .opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh:7]. `verify` — the only stored-vs-derived comparison — is invoked by nothing at all. Audit trail: iteration 1 (surfaces named) + iteration 2 (inventory) + iteration 3 (legs source-verified, duplicate-engine claim corrected).",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (lines 56, 200, 326-339)",
+        "`.skilled/skills/sk-doc/shared/scripts/quick_validate.py` (lines 255-268)",
+        "`.skilled/commands/create/assets/create-skill-auto.yaml` (lines 210-227)",
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (lines 131-139, 196-212)",
+        "`.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh` (line 13)",
+        "`.skilled/skills/sk-doc/scripts/frontmatter-version.mjs`, `.skilled/skills/sk-doc/scripts/quick_validate.py`, `.skilled/skills/sk-doc/scripts/package_skill.py` (symlink entries)",
+        "`rg` sweeps: `.opencode/scripts/git-hooks/`, `.skilled/hooks/`, `.github/workflows/`"
+      ]
+    },
+    {
+      "id": "finding-3-3-no-hook-or-workflow-invokes-the-package-time-validators-they-run-only-inside-the",
+      "text": "**No hook or workflow invokes the package-time validators; they run only inside the create-skill command flow.** A search for `package_skill|quick_validate` across `.opencode/scripts/git-hooks/` and `.skilled/hooks/` returns zero matches, and the `.github/workflows/` search finds no reference either (only frontmatter-guard comments). Package-time validation happens when an operator or command runs `package_skill.py --check` during skill authoring — never on ordinary doc edits, never in CI, never at commit time. [INFERENCE: based on zero-match searches over the hook and workflow surfaces, plus the command-asset usage lines at .skilled/commands/create/assets/create-skill-auto.yaml:227.]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (lines 56, 200, 326-339)",
+        "`.skilled/skills/sk-doc/shared/scripts/quick_validate.py` (lines 255-268)",
+        "`.skilled/commands/create/assets/create-skill-auto.yaml` (lines 210-227)",
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (lines 131-139, 196-212)",
+        "`.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh` (line 13)",
+        "`.skilled/skills/sk-doc/scripts/frontmatter-version.mjs`, `.skilled/skills/sk-doc/scripts/quick_validate.py`, `.skilled/skills/sk-doc/scripts/package_skill.py` (symlink entries)",
+        "`rg` sweeps: `.opencode/scripts/git-hooks/`, `.skilled/hooks/`, `.github/workflows/`"
+      ]
+    },
+    {
+      "id": "finding-3-4-the-only-automatic-version-check-is-row-3-of-the-post-edit-router-and-its-scope-",
+      "text": "**The only automatic version check is Row 3 of the post-edit router, and its scope is precisely bounded: skill-tree docs only, presence+format, deduped per skill.** Row 3 fires only when the edited file lives under `.skilled|.opencode` + `skills/` with at least four path segments [SOURCE: .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:198], and only when `isVersionedSkillDoc` accepts the file: `SKILL.md` always; `README.md` only when a sibling `SKILL.md` exists; other docs only when a middle segment maps to a canonical skill scope subtree [SOURCE: .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:131]. It then dispatches `check-frontmatter-versions.sh --skill <name>` with a per-skill dedupe key [SOURCE: .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:204], and the wrapper execs the engine in `gate` mode [SOURCE: .skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh:13] — \"presence + format only — no git, no manifest\" [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:399]. Docs outside skill trees receive no version check at all, and no automatic surface compares stored vs derived.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (lines 56, 200, 326-339)",
+        "`.skilled/skills/sk-doc/shared/scripts/quick_validate.py` (lines 255-268)",
+        "`.skilled/commands/create/assets/create-skill-auto.yaml` (lines 210-227)",
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (lines 131-139, 196-212)",
+        "`.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh` (line 13)",
+        "`.skilled/skills/sk-doc/scripts/frontmatter-version.mjs`, `.skilled/skills/sk-doc/scripts/quick_validate.py`, `.skilled/skills/sk-doc/scripts/package_skill.py` (symlink entries)",
+        "`rg` sweeps: `.opencode/scripts/git-hooks/`, `.skilled/hooks/`, `.github/workflows/`"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-package-time-validators-enforce-version-presence-and-4-part-shape-at-source-",
+      "text": "**The package-time validators enforce version presence and 4-part shape at source level — format only, so they too cannot see stored-vs-derived drift.** `package_skill.py` lists `version` in `REQUIRED_FRONTMATTER_FIELDS` [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:56], hard-errors on a missing version for versioned doc-class files [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:200], and rejects any value failing `^\\d+\\.\\d+\\.\\d+\\.\\d+$` [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:334]. The create-skill command asset states the same contract as \"package_skill.py --check hard-fails missing version / non-4-part version / name!=folder\" [SOURCE: .skilled/commands/create/assets/create-skill-auto.yaml:210]. `quick_validate.py` mirrors it for skills: missing version is an error, present values must be 4-part [SOURCE: .skilled/skills/sk-doc/shared/scripts/quick_validate.py:255]. Neither script reads git, so both check shape only. (Source-verifies the leg iteration 2 cited only through the standard.)",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (lines 56, 200, 326-339)",
+        "`.skilled/skills/sk-doc/shared/scripts/quick_validate.py` (lines 255-268)",
+        "`.skilled/commands/create/assets/create-skill-auto.yaml` (lines 210-227)",
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (lines 131-139, 196-212)",
+        "`.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh` (line 13)",
+        "`.skilled/skills/sk-doc/scripts/frontmatter-version.mjs`, `.skilled/skills/sk-doc/scripts/quick_validate.py`, `.skilled/skills/sk-doc/scripts/package_skill.py` (symlink entries)",
+        "`rg` sweeps: `.opencode/scripts/git-hooks/`, `.skilled/hooks/`, `.github/workflows/`"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-validator-entrypoints-are-symlinks-extending-iteration-2-s-alias-pattern-and",
+      "text": "**The validator entrypoints are symlinks, extending iteration 2's alias pattern — and the same test supersedes the \"duplicated engine\" claim.** `.skilled/skills/sk-doc/scripts/quick_validate.py -> ../shared/scripts/quick_validate.py` and `.skilled/skills/sk-doc/scripts/package_skill.py -> ../sk-create-skill/scripts/package_skill.py` [SOURCE: .skilled/skills/sk-doc/scripts/quick_validate.py:1][SOURCE: .skilled/skills/sk-doc/scripts/package_skill.py:1]. Applied to the engine pair: `.skilled/skills/sk-doc/scripts/frontmatter-version.mjs -> ../shared/scripts/frontmatter-version.mjs` and `.skilled/skills/sk-doc/scripts/check-frontmatter-versions.sh -> ../shared/scripts/check-frontmatter-versions.sh` [SOURCE: .skilled/skills/sk-doc/scripts/frontmatter-version.mjs:1][SOURCE: .skilled/skills/sk-doc/scripts/check-frontmatter-versions.sh:1]. There is exactly one physical `frontmatter-version.mjs` (21686 bytes) at the `shared/scripts` path [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:1]; `diff -q` reported \"identical\" because it followed the symlink. The prior \"two copies double the update surface\" finding is corrected: the update surface is single, and the repository's convention is symlink aliasing (`.opencode/skills`, `.opencode/agents`, and these script pairs), not duplication.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (lines 56, 200, 326-339)",
+        "`.skilled/skills/sk-doc/shared/scripts/quick_validate.py` (lines 255-268)",
+        "`.skilled/commands/create/assets/create-skill-auto.yaml` (lines 210-227)",
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (lines 131-139, 196-212)",
+        "`.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh` (line 13)",
+        "`.skilled/skills/sk-doc/scripts/frontmatter-version.mjs`, `.skilled/skills/sk-doc/scripts/quick_validate.py`, `.skilled/skills/sk-doc/scripts/package_skill.py` (symlink entries)",
+        "`rg` sweeps: `.opencode/scripts/git-hooks/`, `.skilled/hooks/`, `.github/workflows/`"
+      ]
+    },
+    {
+      "id": "finding-4-2-ci-does-exercise-the-engine-via-python-tests-against-fixtures-not-against-reposi",
+      "text": "**CI does exercise the engine — via Python tests, against fixtures, not against repository docs.** `.github/workflows/sk-doc-script-tests.yml` runs on every push/PR to `main` and `skilled/**` and executes `bash .opencode/skills/sk-doc/scripts/tests/run-script-tests.sh` [SOURCE: .github/workflows/sk-doc-script-tests.yml:50-53]. The runner's loop globs `test_*.py` only [SOURCE: .opencode/skills/sk-doc/scripts/tests/run-script-tests.sh:12], dispatching each file through pytest or plain python [SOURCE: .opencode/skills/sk-doc/scripts/tests/run-script-tests.sh:19-22]. One file in that glob, `test_validation_switch.py`, invokes the engine: `frontmatter-version.mjs gate --from-manifest` [SOURCE: .opencode/skills/sk-doc/scripts/tests/test_validation_switch.py:183] and `frontmatter-version.mjs apply --paths` [SOURCE: .opencode/skills/sk-doc/scripts/tests/test_validation_switch.py:205]. Consequences: (a) iteration 2's narrow claim stands — the `.mjs` file `test-frontmatter-version.mjs` is not run by any workflow; (b) the broad gloss \"the engine is untested in CI\" would be wrong — its CLI modes run on every push; (c) no CI step inspects any real document's stored version, so the Q5 conclusion is unchanged. Recorded as a partial SUPERSEDES of the iteration-2 dead-end text.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.github/workflows/skill-doc-frontmatter.yml` (lines 28-42)",
+        "`.github/workflows/sk-doc-script-tests.yml` (lines 50-53)",
+        "`.opencode/skills/sk-doc/scripts/tests/run-script-tests.sh` (lines 12, 19-22)",
+        "`.opencode/skills/sk-doc/scripts/tests/test_validation_switch.py` (lines 183, 205)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md` (lines 411, 476)",
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (line 38; Row 3 lines 198-212 per iteration 3)",
+        "`.opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh` (lines 7-8 per iteration 2)",
+        "Search surfaces: `.github/`, `.skilled/hooks/`, `.opencode/scripts/`, `.opencode/skills/sk-doc/scripts/tests/`"
+      ]
+    },
+    {
+      "id": "finding-4-3-fresh-no-caller-re-verification-verify-and-fleet-apply-still-have-no-automated-c",
+      "text": "**Fresh no-caller re-verification: `verify` and fleet `apply` still have no automated caller.** A non-markdown search for `frontmatter-version` across `.github`, `.skilled/hooks`, `.opencode/scripts` and the sk-doc scripts tree returns only the post-edit router (Row 3, gate mode, presence+format) and test files [SOURCE: .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:38]. No workflow or hook invokes `verify` or an operator-scaled `apply`; the `apply` leg in `test_validation_switch.py` runs against an empty path list inside a test [SOURCE: .opencode/skills/sk-doc/scripts/tests/test_validation_switch.py:205].",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.github/workflows/skill-doc-frontmatter.yml` (lines 28-42)",
+        "`.github/workflows/sk-doc-script-tests.yml` (lines 50-53)",
+        "`.opencode/skills/sk-doc/scripts/tests/run-script-tests.sh` (lines 12, 19-22)",
+        "`.opencode/skills/sk-doc/scripts/tests/test_validation_switch.py` (lines 183, 205)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md` (lines 411, 476)",
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (line 38; Row 3 lines 198-212 per iteration 3)",
+        "`.opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh` (lines 7-8 per iteration 2)",
+        "Search surfaces: `.github/`, `.skilled/hooks/`, `.opencode/scripts/`, `.opencode/skills/sk-doc/scripts/tests/`"
+      ]
+    },
+    {
+      "id": "finding-4-5-q5-final-inventory-with-the-ci-legs-now-source-cited-writers-apply-only-operator",
+      "text": "**Q5 final inventory, with the CI legs now source-cited:** writers — `apply` only, operator-run; automated checkers — post-edit gate (skill-tree versioned docs, presence+format), package validators (command-run, presence+format), CI coverage guard (five-field contract, version excluded), CI script tests (engine fixtures only); `verify` — no caller anywhere. All three artifacts of this iteration cite the two previously uncited CI surfaces.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.github/workflows/skill-doc-frontmatter.yml` (lines 28-42)",
+        "`.github/workflows/sk-doc-script-tests.yml` (lines 50-53)",
+        "`.opencode/skills/sk-doc/scripts/tests/run-script-tests.sh` (lines 12, 19-22)",
+        "`.opencode/skills/sk-doc/scripts/tests/test_validation_switch.py` (lines 183, 205)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md` (lines 411, 476)",
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (line 38; Row 3 lines 198-212 per iteration 3)",
+        "`.opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh` (lines 7-8 per iteration 2)",
+        "Search surfaces: `.github/`, `.skilled/hooks/`, `.opencode/scripts/`, `.opencode/skills/sk-doc/scripts/tests/`"
+      ]
+    },
+    {
+      "id": "finding-4-1-the-ci-coverage-guard-is-a-real-wired-workflow-and-its-checked-contract-still-ha",
+      "text": "**The CI coverage guard is a real wired workflow — and its checked contract still has no `version` field.** `.github/workflows/skill-doc-frontmatter.yml` runs on PRs to `main` and pushes to `main`/`skilled/**` when skill `references/**` or `assets/**` paths change, fails closed if the guard file is missing, and executes `bash \"$GUARD\" . --coverage` [SOURCE: .github/workflows/skill-doc-frontmatter.yml:28-42]. The guard's header contract remains the five fields iteration 2 read — `version` is not among them [SOURCE: .opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh:7-8]. Net: CI does check skill-doc frontmatter coverage, but it cannot see any document's stored version.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.github/workflows/skill-doc-frontmatter.yml` (lines 28-42)",
+        "`.github/workflows/sk-doc-script-tests.yml` (lines 50-53)",
+        "`.opencode/skills/sk-doc/scripts/tests/run-script-tests.sh` (lines 12, 19-22)",
+        "`.opencode/skills/sk-doc/scripts/tests/test_validation_switch.py` (lines 183, 205)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md` (lines 411, 476)",
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (line 38; Row 3 lines 198-212 per iteration 3)",
+        "`.opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh` (lines 7-8 per iteration 2)",
+        "Search surfaces: `.github/`, `.skilled/hooks/`, `.opencode/scripts/`, `.opencode/skills/sk-doc/scripts/tests/`"
+      ]
+    },
+    {
+      "id": "finding-4-4-the-version-field-is-born-from-a-template-literal-not-a-generator-the-frontmatte",
+      "text": "**The version field is born from a template literal, not a generator.** The `frontmatter-templates` asset carries literal `version:` values (`1.0.0.0`, `1.7.0.0`, `0.1.2.0`, and similar) as the authoring surface where a document's first version value is typed by hand [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md:411][SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md:476]. With `apply` as the only automated writer [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:445], every version value originates from a template literal or an operator command — never from a pipeline.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.github/workflows/skill-doc-frontmatter.yml` (lines 28-42)",
+        "`.github/workflows/sk-doc-script-tests.yml` (lines 50-53)",
+        "`.opencode/skills/sk-doc/scripts/tests/run-script-tests.sh` (lines 12, 19-22)",
+        "`.opencode/skills/sk-doc/scripts/tests/test_validation_switch.py` (lines 183, 205)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md` (lines 411, 476)",
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (line 38; Row 3 lines 198-212 per iteration 3)",
+        "`.opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh` (lines 7-8 per iteration 2)",
+        "Search surfaces: `.github/`, `.skilled/hooks/`, `.opencode/scripts/`, `.opencode/skills/sk-doc/scripts/tests/`"
+      ]
+    },
+    {
+      "id": "finding-5-1-doc-version-drift-reduces-to-a-single-segment-segments-x-major-and-y-minor-are-i",
+      "text": "**Doc-version drift reduces to a single segment.** Segments X (major) and Y (minor) are inherited from the owning skill's anchor, which is resolved from SKILL.md frontmatter and changelog/v*.md filenames as a filesystem max — no git [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:63-66] [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:177-190]. Z is seeded 0 by design [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:50]. Only W is git-derived: W = min(realEditCount(file), 99) [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:51] [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:281-282]. Any \"stays green\" analysis therefore only has to solve for W. (Partially new: the derivation was known from iteration 1; the segment-level reduction is the new frame.)",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md (full read)",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs (lines 1-400)",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-004.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deltas/iter-001.jsonl (iteration-1 record: live verify exit 1, 340 mismatches)",
+        "Search surfaces: .skilled/skills/sk-doc/**, .skilled/skills/system-spec-kit/** (external-author terminology); script globs for frontmatter consumers"
+      ]
+    },
+    {
+      "id": "finding-5-9-external-author-reading-partial-for-q2-w-depends-on-this-repository-s-git-histor",
+      "text": "**External-author reading (partial, for Q2).** W depends on this repository's git history [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:70-101] and so is not reproducible by any consumer without it; the externally reproducible component is the skill-era X.Y, inherited from the human-curated anchor [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:44] [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:47-49]. No in-repo source defines \"external author\" (search of sk-doc and system-spec-kit returned no such term), so Q2's normative answer needs a definition decision this iteration cannot supply. (Partially new.)",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md (full read)",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs (lines 1-400)",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-004.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deltas/iter-001.jsonl (iteration-1 record: live verify exit 1, 340 mismatches)",
+        "Search surfaces: .skilled/skills/sk-doc/**, .skilled/skills/system-spec-kit/** (external-author terminology); script globs for frontmatter consumers"
+      ]
+    },
+    {
+      "id": "finding-5-4-the-smallest-contract-that-stays-green-by-construction-q3-answer-two-layers",
+      "text": "**The smallest contract that stays green by construction (Q3 answer).** Two layers:",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md (full read)",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs (lines 1-400)",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-004.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deltas/iter-001.jsonl (iteration-1 record: live verify exit 1, 340 mismatches)",
+        "Search surfaces: .skilled/skills/sk-doc/**, .skilled/skills/system-spec-kit/** (external-author terminology); script globs for frontmatter consumers"
+      ]
+    },
+    {
+      "id": "finding-5-2-w-cannot-stay-green-by-any-workflow-only-by-discipline-w-counts-commits-whose-pe",
+      "text": "**W cannot stay green by any workflow, only by discipline.** W counts commits whose per-file numstat is nonzero [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:70-101], and writing W is itself such an edit, so one apply pass never converges [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:98-104]. The documented convergent flow is apply -> commit -> apply -> commit --amend [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:106-113]; the ordinary case (apply inside the content commit) avoids the extra commit but still requires every contributor to remember it [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:120-121]. The count reads committed history only (git log --follow), so a dirty tree can verify green and turn stale on the very commit that saves the work. (Partially new: sharpens the documented churn into a mechanism-level statement.)",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md (full read)",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs (lines 1-400)",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-004.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deltas/iter-001.jsonl (iteration-1 record: live verify exit 1, 340 mismatches)",
+        "Search surfaces: .skilled/skills/sk-doc/**, .skilled/skills/system-spec-kit/** (external-author terminology); script globs for frontmatter consumers"
+      ]
+    },
+    {
+      "id": "finding-5-3-what-can-never-fail-today-is-the-gate-and-only-the-gate-gate-is-presence-four-pa",
+      "text": "**What can never fail today is the gate, and only the gate.** gate is presence + four-part format, explicitly git-free (\"no git, no manifest\") [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:397-400], and cannot be made stale by a commit [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:127-129]. verify compares the full stored tuple against the git-derived tuple [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:334]; a fleet-wide verify reports thousands of mismatches on a gate-clean repo and that is documented as the expected reading [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:131-136]. Iterations 2-4 closed the enforcement inventory: every automated surface is presence/format or engine-fixture tests, and verify has no caller [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-004.md:21-29]. (Redundant with prior iterations; restated only as the constraint set Q3 is answered against.)",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md (full read)",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs (lines 1-400)",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-004.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deltas/iter-001.jsonl (iteration-1 record: live verify exit 1, 340 mismatches)",
+        "Search surfaces: .skilled/skills/sk-doc/**, .skilled/skills/system-spec-kit/** (external-author terminology); script globs for frontmatter consumers"
+      ]
+    },
+    {
+      "id": "finding-5-8-delta-from-today-s-contract-a-deletion-w-stops-being-a-stored-invariant-and-beco",
+      "text": "Delta from today's contract: a deletion. W stops being a stored invariant and becomes at most a human-facing informational print. Prevent-overengineering move: delete a derivation from the enforced path rather than add machinery — no new generator, CI job, or reconciliation loop; the existing gate stays the only enforced surface and verify remains descriptive [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:127-136].",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md (full read)",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs (lines 1-400)",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-004.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deltas/iter-001.jsonl (iteration-1 record: live verify exit 1, 340 mismatches)",
+        "Search surfaces: .skilled/skills/sk-doc/**, .skilled/skills/system-spec-kit/** (external-author terminology); script globs for frontmatter consumers"
+      ]
+    },
+    {
+      "id": "finding-5-6-smallest-meaningful-layer-presence-format-era-parity-the-child-s-x-y-must-equal-",
+      "text": "Smallest meaningful layer: presence + format + era parity — the child's X.Y must equal its owning skill anchor's X.Y, with Z recorded as 0 and W demoted out of the asserted contract. Every component is git-free: the anchor resolver [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:177-190] and the in-scope walk [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:246-266] are filesystem-only, and the post-edit gate already computes over the same selection [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:384].",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md (full read)",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs (lines 1-400)",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-004.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deltas/iter-001.jsonl (iteration-1 record: live verify exit 1, 340 mismatches)",
+        "Search surfaces: .skilled/skills/sk-doc/**, .skilled/skills/system-spec-kit/** (external-author terminology); script globs for frontmatter consumers"
+      ]
+    },
+    {
+      "id": "finding-5-5-strict-layer-never-fails-minimal-meaning-presence-four-part-format-i-e-today-s-g",
+      "text": "Strict layer (never fails, minimal meaning): presence + four-part format, i.e. today's gate. Green by construction because it consults only the working tree.",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md (full read)",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs (lines 1-400)",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-004.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deltas/iter-001.jsonl (iteration-1 record: live verify exit 1, 340 mismatches)",
+        "Search surfaces: .skilled/skills/sk-doc/**, .skilled/skills/system-spec-kit/** (external-author terminology); script globs for frontmatter consumers"
+      ]
+    },
+    {
+      "id": "finding-5-7-why-it-stays-green-no-commit-can-invalidate-an-assertion-that-is-a-pure-function",
+      "text": "Why it stays green: no commit can invalidate an assertion that is a pure function of the working tree. An anchor bump stales children until apply rides the bump commit — bounded to human anchor events — whereas W stales on every commit that touches the file.",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md (full read)",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs (lines 1-400)",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-004.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deltas/iter-001.jsonl (iteration-1 record: live verify exit 1, 340 mismatches)",
+        "Search surfaces: .skilled/skills/sk-doc/**, .skilled/skills/system-spec-kit/** (external-author terminology); script globs for frontmatter consumers"
+      ]
+    },
+    {
+      "id": "finding-6-7-a-remove-the-field-from-child-doc-classes-readme-references-assets-feature-catal",
+      "text": "**(a) Remove the field from child doc classes** (README, references, assets, feature catalogs, playbooks): deletes an unearned attribute; the enforced contract (presence + format) then applies to `SKILL.md` alone and stays green by construction [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:397-414]. Cost: one-time deletion across the flagged fleet plus the template rows that require the field per class [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md:135] [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md:193].",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (full read)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 230-438)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md` (version rows: 57, 124-135, 193)",
+        "`.skilled/skills/sk-doc/shared/scripts/quick_validate.py`; `.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (located; contract cited from the standard §7)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-005.md`; `iteration-001.md`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md`",
+        "Command outputs: iteration-6 dry-run classification of `verify --skill` for sk-code/sk-doc/system-skill-advisor (counts in Actions §3, Finding 1)"
+      ]
+    },
+    {
+      "id": "finding-6-8-b-keep-an-era-only-child-stamp-iteration-5-s-smallest-meaningful-layer-keeps-the",
+      "text": "**(b) Keep an era-only child stamp** (iteration 5's smallest meaningful layer): keeps the era; costs an anchor-bump mint on every child doc and would flag 574 docs today — going green would require the fleet sweep the standard explicitly discourages [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:131-136].",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (full read)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 230-438)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md` (version rows: 57, 124-135, 193)",
+        "`.skilled/skills/sk-doc/shared/scripts/quick_validate.py`; `.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (located; contract cited from the standard §7)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-005.md`; `iteration-001.md`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md`",
+        "Command outputs: iteration-6 dry-run classification of `verify --skill` for sk-code/sk-doc/system-skill-advisor (counts in Actions §3, Finding 1)"
+      ]
+    },
+    {
+      "id": "finding-6-9-c-status-quo-asserted-4-part-rejected-non-convergent-source-skilled-skills-sk-do",
+      "text": "**(c) Status quo asserted 4-part:** rejected, non-convergent [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:98-104].",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (full read)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 230-438)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md` (version rows: 57, 124-135, 193)",
+        "`.skilled/skills/sk-doc/shared/scripts/quick_validate.py`; `.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (located; contract cited from the standard §7)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-005.md`; `iteration-001.md`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md`",
+        "Command outputs: iteration-6 dry-run classification of `verify --skill` for sk-code/sk-doc/system-skill-advisor (counts in Actions §3, Finding 1)"
+      ]
+    },
+    {
+      "id": "finding-6-2-no-in-repo-consumer-reads-a-child-document-s-stored-version-the-bounded-consumer",
+      "text": "**No in-repo consumer reads a child document's stored version.** The bounded consumer search (Actions §4, plus the Q5 inventory that iterations 2-4 closed [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-004.md:21-29]) shows the only equality consumer is `verify` itself, which has no caller [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:131-136]; the only enforced assertions are presence and four-part format [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:397-410]; the validators require the field for skills, i.e. `SKILL.md` [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:166-167]. [INFERENCE: consumer-search surfaces and result, Actions §4.] A field whose only reader is the checker that always fails is not carrying information to anyone else.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (full read)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 230-438)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md` (version rows: 57, 124-135, 193)",
+        "`.skilled/skills/sk-doc/shared/scripts/quick_validate.py`; `.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (located; contract cited from the standard §7)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-005.md`; `iteration-001.md`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md`",
+        "Command outputs: iteration-6 dry-run classification of `verify --skill` for sk-code/sk-doc/system-skill-advisor (counts in Actions §3, Finding 1)"
+      ]
+    },
+    {
+      "id": "finding-6-6-q4-answer-the-per-doc-version-should-not-exist-as-an-asserted-per-doc-invariant-",
+      "text": "**Q4 answer: the per-doc version should not exist as an asserted per-doc invariant.** Keep `version` on `SKILL.md` as the anchor of record — it is already load-bearing and required there [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:61-66] [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:166-167]; remove it from child doc classes, or at most retain an era-only child stamp. Decision shapes with costs:",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (full read)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 230-438)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md` (version rows: 57, 124-135, 193)",
+        "`.skilled/skills/sk-doc/shared/scripts/quick_validate.py`; `.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (located; contract cited from the standard §7)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-005.md`; `iteration-001.md`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md`",
+        "Command outputs: iteration-6 dry-run classification of `verify --skill` for sk-code/sk-doc/system-skill-advisor (counts in Actions §3, Finding 1)"
+      ]
+    },
+    {
+      "id": "finding-6-5-the-cost-is-structural-and-the-enforcement-active-rollout-did-not-reduce-it-anch",
+      "text": "**The cost is structural, and the \"enforcement active\" rollout did not reduce it.** Anchor bumps stale every child's `X.Y` [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:61-73]; each content commit stales `W` and convergence needs per-doc discipline [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:98-121]; no automated surface reconciles stored against derived [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:127-136]; the rollout states presence/format requirements only [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:162-168]. Measured result: 574 of 713 flags are era staleness — the field's meaningful segment is stale across 80.5% of flagged docs. [INFERENCE: counts, Actions §3.]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (full read)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 230-438)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md` (version rows: 57, 124-135, 193)",
+        "`.skilled/skills/sk-doc/shared/scripts/quick_validate.py`; `.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (located; contract cited from the standard §7)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-005.md`; `iteration-001.md`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md`",
+        "Command outputs: iteration-6 dry-run classification of `verify --skill` for sk-code/sk-doc/system-skill-advisor (counts in Actions §3, Finding 1)"
+      ]
+    },
+    {
+      "id": "finding-6-3-the-field-s-stated-purpose-is-an-era-stamp-and-the-era-is-redundant-inside-its-o",
+      "text": "**The field's stated purpose is an era stamp, and the era is redundant inside its own tree.** `Y` \"ties the doc to its skill-version era\" and is inherited from the anchor [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:79-86]; a child doc lives under the skill whose `SKILL.md`/changelog defines that era [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:61-66], so a consumer browsing the tree already has the era without the field. The standard itself documents that duplicated version state drifts without tooling — a hub's five artifacts may state five different values and every gate still passes [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:170-172]. [INFERENCE: an extracted single-doc consumer is the only scenario where the stamp adds information, and no such consumer is defined (Q2's open definition).]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (full read)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 230-438)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md` (version rows: 57, 124-135, 193)",
+        "`.skilled/skills/sk-doc/shared/scripts/quick_validate.py`; `.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (located; contract cited from the standard §7)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-005.md`; `iteration-001.md`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md`",
+        "Command outputs: iteration-6 dry-run classification of `verify --skill` for sk-code/sk-doc/system-skill-advisor (counts in Actions §3, Finding 1)"
+      ]
+    },
+    {
+      "id": "finding-6-1-the-measured-drift-is-dominated-by-the-era-segment-not-by-w-all-713-verify-misma",
+      "text": "**The measured drift is dominated by the era segment, not by W.** All 713 `verify` mismatches today classify as 574 era drift (stored `X.Y` differs from the owning skill's current anchor; 80.5%), 134 W-only drift (18.8%), 5 other, and 8 files carrying a stale nonzero Z — see Actions §3 for the per-skill split. Verify's reasons are exactly these value inequalities [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:327-339]; the derivation makes `X.Y` a function of the anchor and `W` a function of git history [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:79-86]. [INFERENCE: counts from the iteration-6 dry-run `verify --skill` classification recorded in Actions §3.] This refines iteration 5's frame [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-005.md:18]: W is the segment that *must* drift on every commit, but era is the segment that *has* drifted most in practice — so the field cannot be defended as \"only the noisy build count is stale\".",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (full read)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 230-438)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md` (version rows: 57, 124-135, 193)",
+        "`.skilled/skills/sk-doc/shared/scripts/quick_validate.py`; `.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (located; contract cited from the standard §7)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-005.md`; `iteration-001.md`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md`",
+        "Command outputs: iteration-6 dry-run classification of `verify --skill` for sk-code/sk-doc/system-skill-advisor (counts in Actions §3, Finding 1)"
+      ]
+    },
+    {
+      "id": "finding-6-4-two-of-the-four-segments-assert-nothing-durable-per-doc-z-is-reserved-for-future",
+      "text": "**Two of the four segments assert nothing durable per doc.** `Z` is \"Reserved for future granular per-doc bumps; seeded 0\" with no producer or consumer [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:50] [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:84]; `W` is repository git history the engine counts per file [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:88-96] [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:70-101]. [INFERENCE: half of the 4-part shape encodes nothing a reader outside the repository can use.]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (full read)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 230-438)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md` (version rows: 57, 124-135, 193)",
+        "`.skilled/skills/sk-doc/shared/scripts/quick_validate.py`; `.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (located; contract cited from the standard §7)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-005.md`; `iteration-001.md`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md`",
+        "Command outputs: iteration-6 dry-run classification of `verify --skill` for sk-code/sk-doc/system-skill-advisor (counts in Actions §3, Finding 1)"
+      ]
+    },
+    {
+      "id": "finding-7-2-package-time-version-checking-is-presence-format-only-advisory-by-default-and-ha",
+      "text": "**Package-time version checking is presence + format only, advisory by default and hard-fail only under strict, and it never consults git.** The packager requires `version` in `REQUIRED_FRONTMATTER_FIELDS` [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:56], checks 4-part `X.Y.Z.W` shape [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:334-339], and its resource-frontmatter pass demands a 4-part version on every versioned doc-class file that has frontmatter — frontmatter-less files are skipped, not failed [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:672-688]. Findings are emitted as warnings because the contract is advisory to stay backward-compatible [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:106-110], and `_partition_strict` promotes exactly the version markers to hard errors under strict mode [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:194-201] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:770-774]. No branch of the packager reads git, so it cannot and does not compare a stored value against a derived one — the same shape as every other automated surface (Q5). Partially new — sharpens iteration 5's segment argument with package-side evidence.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (lines 56, 106-136, 194-201, 326-339, 630-688, 770-774, 937-957)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (lines 49-50, 63-70, 79-86)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 57, 70-101, 177-190)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` (line 1)",
+        "`.opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh` (lines 7-8)",
+        "`.skilled/skills/sk-doc/changelog/v2.3.3.0.md` (lines 1-11; 19/19 sk-doc changelog entries carry `version`)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-005.md`; `iteration-006.md`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md`; `findings-registry.json`",
+        "Command outputs: zip-walk and version-check reads of `package_skill.py`; changelog frontmatter coverage count; skill-graph top-level key read"
+      ]
+    },
+    {
+      "id": "finding-7-6-q2-answer-for-an-external-author-a-doc-version-can-only-mean-the-skill-era-and-t",
+      "text": "**Q2 answer: for an external author, a doc version can only mean the skill era — and the package already carries it.** The meaningful layer is the skill edition: `SKILL.md`'s version plus the changelog history, the human-curated identity of the release a doc belongs to [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:49] [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:69-70]; the era semantics are exactly what `Y` documents (\"ties the doc to its skill-version era\") [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:79-86]. A per-doc stored copy adds nothing an external author cannot already derive: `X.Y` is re-derivable from shipped files (Finding 4), `W` is irreproducible, `Z` is reserved. Normative statement: **doc versions are for skill editions; an edition's version carriers are `SKILL.md` and the changelog, which ship together in the package; child docs should not assert an independently checkable version of their own** — consistent with Q4's removal answer (iteration 6) and with iteration 5's era-only stamp as the maximal fallback if a per-doc era marker is ever wanted. Prevent-overengineering move: no new generator or stamp is added; the meaning rides on artifacts that already exist. New — closes Q2.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (lines 56, 106-136, 194-201, 326-339, 630-688, 770-774, 937-957)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (lines 49-50, 63-70, 79-86)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 57, 70-101, 177-190)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` (line 1)",
+        "`.opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh` (lines 7-8)",
+        "`.skilled/skills/sk-doc/changelog/v2.3.3.0.md` (lines 1-11; 19/19 sk-doc changelog entries carry `version`)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-005.md`; `iteration-006.md`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md`; `findings-registry.json`",
+        "Command outputs: zip-walk and version-check reads of `package_skill.py`; changelog frontmatter coverage count; skill-graph top-level key read"
+      ]
+    },
+    {
+      "id": "finding-7-7-reversal-condition-stated-so-the-decision-stays-falsifiable-if-a-named-external-",
+      "text": "**Reversal condition, stated so the decision stays falsifiable.** If a named external consumer is ever defined that receives a single extracted doc without `SKILL.md`/`changelog` and needs its era, an era-only stamp becomes load-bearing and should be restored on that doc class alone. No such consumer is defined in-repo: iteration 5's term search was negative [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-005.md:29], and the package/changelog/graph surfaces checked here do not read per-doc versions (Findings 4-5). Partially new.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (lines 56, 106-136, 194-201, 326-339, 630-688, 770-774, 937-957)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (lines 49-50, 63-70, 79-86)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 57, 70-101, 177-190)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` (line 1)",
+        "`.opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh` (lines 7-8)",
+        "`.skilled/skills/sk-doc/changelog/v2.3.3.0.md` (lines 1-11; 19/19 sk-doc changelog entries carry `version`)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-005.md`; `iteration-006.md`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md`; `findings-registry.json`",
+        "Command outputs: zip-walk and version-check reads of `package_skill.py`; changelog frontmatter coverage count; skill-graph top-level key read"
+      ]
+    },
+    {
+      "id": "finding-7-4-the-era-is-re-derivable-from-the-package-alone-the-build-count-is-not-the-anchor",
+      "text": "**The era is re-derivable from the package alone; the build count is not.** The anchor resolver that yields `X.Y` reads only the filesystem — SKILL.md frontmatter and the highest `changelog/v*.md` filename, normalized, taking `max` [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:63-65] [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:177-190] — and both artifacts ship in the zip (Finding 1), so an external author can re-derive the era from package contents. `W` counts `git log --follow` numstat hits [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:70-101], which no external party can reproduce without the repository; `Z` is reserved and seeded 0 by design [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:50]. The version tuple splits cleanly from the outside: `X.Y` travels as a derivable fact, `Z` asserts nothing, `W` is dead weight. New — the key synthesis for Q2.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (lines 56, 106-136, 194-201, 326-339, 630-688, 770-774, 937-957)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (lines 49-50, 63-70, 79-86)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 57, 70-101, 177-190)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` (line 1)",
+        "`.opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh` (lines 7-8)",
+        "`.skilled/skills/sk-doc/changelog/v2.3.3.0.md` (lines 1-11; 19/19 sk-doc changelog entries carry `version`)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-005.md`; `iteration-006.md`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md`; `findings-registry.json`",
+        "Command outputs: zip-walk and version-check reads of `package_skill.py`; changelog frontmatter coverage count; skill-graph top-level key read"
+      ]
+    },
+    {
+      "id": "finding-7-1-the-packaged-artifact-is-the-concrete-external-surface-it-ships-every-non-hidden",
+      "text": "**The packaged artifact is the concrete external surface: it ships every non-hidden working-tree file — changelog included — and never the git history.** `package_skill.py` zips the skill folder into `{skill_name}.zip` [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:937], walking `skill_path.rglob('*')` and adding every file except hidden paths, `__pycache__`, and bytecode [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:943-957]. The packager's versioned doc-class scope includes the `changelog` subtree [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:128-136], so `changelog/v*.md` entries travel inside the zip — e.g. sk-doc's `v2.3.3.0.md` with its 4-part `version` field [SOURCE: .skilled/skills/sk-doc/changelog/v2.3.3.0.md:1-11]. Git history is not a file, so it does not travel. [INFERENCE: from the rglob walk and zip semantics; the archive carries no manifest or git metadata.] New — first iteration to examine the packager.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (lines 56, 106-136, 194-201, 326-339, 630-688, 770-774, 937-957)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (lines 49-50, 63-70, 79-86)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 57, 70-101, 177-190)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` (line 1)",
+        "`.opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh` (lines 7-8)",
+        "`.skilled/skills/sk-doc/changelog/v2.3.3.0.md` (lines 1-11; 19/19 sk-doc changelog entries carry `version`)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-005.md`; `iteration-006.md`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md`; `findings-registry.json`",
+        "Command outputs: zip-walk and version-check reads of `package_skill.py`; changelog frontmatter coverage count; skill-graph top-level key read"
+      ]
+    },
+    {
+      "id": "finding-7-3-the-packager-and-the-engine-disagree-on-scope-today-changelog-is-a-versioned-doc",
+      "text": "**The packager and the engine disagree on scope today: `changelog` is a versioned doc class for the packager but is excluded from the engine's scope.** `VERSIONED_DOC_SUBTREES` includes `references`, `assets`, feature catalogs, playbooks and `changelog` — the comment states the addition is \"per the hardening contract\" and that `frontmatter-version.mjs` excludes changelog for its own reasons [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:124-136]; the engine's `SCOPE_SUBTREES` is `['references', 'assets', 'feature-catalog', 'manual-testing-playbook']`, with no changelog [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:57]. Two live contracts already treat the same file class differently. New — empirical divergence, recorded for the fix phase.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (lines 56, 106-136, 194-201, 326-339, 630-688, 770-774, 937-957)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (lines 49-50, 63-70, 79-86)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 57, 70-101, 177-190)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` (line 1)",
+        "`.opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh` (lines 7-8)",
+        "`.skilled/skills/sk-doc/changelog/v2.3.3.0.md` (lines 1-11; 19/19 sk-doc changelog entries carry `version`)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-005.md`; `iteration-006.md`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md`; `findings-registry.json`",
+        "Command outputs: zip-walk and version-check reads of `package_skill.py`; changelog frontmatter coverage count; skill-graph top-level key read"
+      ]
+    },
+    {
+      "id": "finding-7-5-the-remaining-candidate-consumer-surface-carries-no-versions-at-all-the-advisor-",
+      "text": "**The remaining candidate consumer surface carries no versions at all.** The advisor's harvested `skill-graph.json` holds `schema_version`, `generated_at`, families, adjacency, signals (trigger phrases), conflicts and hub lists — no per-skill or per-doc version data [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json:1]; the advisor's frontmatter guard validates the five-field doc contract, which excludes `version` [SOURCE: .opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh:7-8]. The surface enumeration iteration 6 asked for is now closed: package (versioned, format-checked), changelog (versioned filenames and fields), graph (no versions), hooks/CI (presence/format only, Q5). New.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (lines 56, 106-136, 194-201, 326-339, 630-688, 770-774, 937-957)",
+        "`.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md` (lines 49-50, 63-70, 79-86)",
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 57, 70-101, 177-190)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` (line 1)",
+        "`.opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh` (lines 7-8)",
+        "`.skilled/skills/sk-doc/changelog/v2.3.3.0.md` (lines 1-11; 19/19 sk-doc changelog entries carry `version`)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-005.md`; `iteration-006.md`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md`; `findings-registry.json`",
+        "Command outputs: zip-walk and version-check reads of `package_skill.py`; changelog frontmatter coverage count; skill-graph top-level key read"
+      ]
+    },
+    {
+      "id": "finding-8-6-consolidation-verdict-on-the-run-s-load-bearing-claims-the-gate-green-claim-the-",
+      "text": "**Consolidation verdict on the run's load-bearing claims: the gate-green claim, the scope head-count, and the hook wiring are now the best-supported claims in the run.** Gate-green: executed, exit 0, falsifiable [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:397-415]. Scope: double-confirmed (spec counts = gate discovery = iteration-6 measurement denominator). Hook: code path + hook README agree [SOURCE: .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:210] [SOURCE: .skilled/hooks/post-edit-quality/README.md:50]; behavior is single-source (no test asserts the row), so a deliberate live edit probe would be the next strengthening step if ever needed — not a blocker for the consolidation record. [INFERENCE: strength ranking from this iteration's execution results versus the read-only evidence of iterations 1-7.]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 397-415 gate branch and exit rule; 440-465 mode dispatch; 57 scope)",
+        "`.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh` (line 13: wrapper execs gate)",
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (lines 33-51 checker map and scope mirror; 196-213 row 3; 210 dedupeKey; 284 dedupe semantics)",
+        "`.skilled/hooks/post-edit-quality/README.md` (line 50: row-3 trigger set and exit rule)",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (lines 124-136: versioned-doc scope including changelog)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/spec.md` (340/320/115 reported flag counts)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-006.md` (line 11: 713 = 332 + 266 + 115 measurement)",
+        "Command outputs: `gate --skill sk-code` EXIT=0 (340 files, 337 ok, 3 skip); `gate --skill sk-doc` EXIT=0 (320 files, 319 ok, 1 skip); `gate --skill system-skill-advisor` EXIT=0 (115 files, 115 ok); changelog version-field census 68/68; router test-file search (none found)"
+      ]
+    },
+    {
+      "id": "finding-8-3-the-enforced-surface-is-mechanically-wired-not-aspirational-any-edit-to-an-in-sc",
+      "text": "**The enforced surface is mechanically wired, not aspirational: any edit to an in-scope skill doc reruns the gate for that whole skill and blocks on exit 1.** The router maps a markdown edit under `.skilled/skills/<name>/` to the presence+format checker with `--skill <name>`, fired when the file is a versioned skill doc (SKILL.md, README.md adjacent to a SKILL.md, or any file under references/assets/feature-catalog/manual-testing-playbook) [SOURCE: .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:196-213], deduped once per skill per session [SOURCE: .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:210] [SOURCE: .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:284]; the checker path resolves to the shared wrapper, which execs the same engine in `gate` mode [SOURCE: .skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh:13]. The hook's README independently documents the same row-3 trigger set and exit rule [SOURCE: .skilled/hooks/post-edit-quality/README.md:50]. Because the gate does not compare values, an editor never has to reconcile a stale `W`/era to land an edit — the enforcement is compatible with docs that currently carry stale values, which is why it can stay green on the current fleet. Partially new — the wiring was cited from iteration 1; the current-source reread plus the README row are the new evidence; no router test file exists to add a third leg (single-source on behavior, code + doc cited).",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 397-415 gate branch and exit rule; 440-465 mode dispatch; 57 scope)",
+        "`.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh` (line 13: wrapper execs gate)",
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (lines 33-51 checker map and scope mirror; 196-213 row 3; 210 dedupeKey; 284 dedupe semantics)",
+        "`.skilled/hooks/post-edit-quality/README.md` (line 50: row-3 trigger set and exit rule)",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (lines 124-136: versioned-doc scope including changelog)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/spec.md` (340/320/115 reported flag counts)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-006.md` (line 11: 713 = 332 + 266 + 115 measurement)",
+        "Command outputs: `gate --skill sk-code` EXIT=0 (340 files, 337 ok, 3 skip); `gate --skill sk-doc` EXIT=0 (320 files, 319 ok, 1 skip); `gate --skill system-skill-advisor` EXIT=0 (115 files, 115 ok); changelog version-field census 68/68; router test-file search (none found)"
+      ]
+    },
+    {
+      "id": "finding-8-1-the-gate-is-green-on-every-skill-today-q3-s-green-by-construction-is-now-observe",
+      "text": "**The gate is green on every skill today — Q3's \"green by construction\" is now observed fact, not inference.** Gate mode exited 0 with `bad=0` for sk-code (340 files, 337 ok + 3 skipped), sk-doc (320 files, 319 ok + 1 skipped) and system-skill-advisor (115 files, 115 ok); the skip case is a counted action (`skip-no-frontmatter`), not silence [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:408] [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:413-414]. Exit is 1 only when a file is missing its version line or carries a non-4-part value [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:409-410], so the gate can only fail on presence and format — never on stored-vs-derived drift, which is the mode that fails on every skill [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:451-461]. The finding is falsifiable and was tested: any in-scope doc missing a version would have produced exit 1. New — first execution of gate mode in the run.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 397-415 gate branch and exit rule; 440-465 mode dispatch; 57 scope)",
+        "`.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh` (line 13: wrapper execs gate)",
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (lines 33-51 checker map and scope mirror; 196-213 row 3; 210 dedupeKey; 284 dedupe semantics)",
+        "`.skilled/hooks/post-edit-quality/README.md` (line 50: row-3 trigger set and exit rule)",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (lines 124-136: versioned-doc scope including changelog)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/spec.md` (340/320/115 reported flag counts)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-006.md` (line 11: 713 = 332 + 266 + 115 measurement)",
+        "Command outputs: `gate --skill sk-code` EXIT=0 (340 files, 337 ok, 3 skip); `gate --skill sk-doc` EXIT=0 (320 files, 319 ok, 1 skip); `gate --skill system-skill-advisor` EXIT=0 (115 files, 115 ok); changelog version-field census 68/68; router test-file search (none found)"
+      ]
+    },
+    {
+      "id": "finding-8-2-the-gate-s-discovered-scope-reproduces-the-packet-spec-s-verify-flag-counts-exac",
+      "text": "**The gate's discovered scope reproduces the packet spec's verify-flag counts exactly (340 / 320 / 115), which independently confirms the iteration-6 measurement's denominator.** The packet spec reports verify flagging 340 files in sk-code, 320 in sk-doc and 115 in system-skill-advisor [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/spec.md] — and these are exactly the files gate discovers and classifies for those three skills. Iteration 6 measured the same 713 = 332 + 266 + 115 mismatch lines over the same tree [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-006.md:11]. Two independent probes now agree on the in-scope file population; the divergence is the metric (flags vs mismatches), not the scope. New — cross-validates the head count behind the 713 / 574 figures.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 397-415 gate branch and exit rule; 440-465 mode dispatch; 57 scope)",
+        "`.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh` (line 13: wrapper execs gate)",
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (lines 33-51 checker map and scope mirror; 196-213 row 3; 210 dedupeKey; 284 dedupe semantics)",
+        "`.skilled/hooks/post-edit-quality/README.md` (line 50: row-3 trigger set and exit rule)",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (lines 124-136: versioned-doc scope including changelog)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/spec.md` (340/320/115 reported flag counts)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-006.md` (line 11: 713 = 332 + 266 + 115 measurement)",
+        "Command outputs: `gate --skill sk-code` EXIT=0 (340 files, 337 ok, 3 skip); `gate --skill sk-doc` EXIT=0 (320 files, 319 ok, 1 skip); `gate --skill system-skill-advisor` EXIT=0 (115 files, 115 ok); changelog version-field census 68/68; router test-file search (none found)"
+      ]
+    },
+    {
+      "id": "finding-8-4-the-gate-s-skip-case-is-a-documented-escape-hatch-a-doc-with-no-frontmatter-bloc",
+      "text": "**The gate's skip case is a documented escape hatch: a doc with no frontmatter block at all is skipped, not failed — so the only way to regress the gate is to add a malformed version or remove the whole block.** `!fm.hasFrontmatter` sets `skip-no-frontmatter` and continues [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:406-408] — 4 files across the three skills take this path today. The contract's presence claim is therefore \"if the doc declares frontmatter, `version` must be 4-part,\" not \"every in-scope doc declares a version\"; the state the hook actually guards is *missing `version` given frontmatter* and *malformed value*. This bounds the Q3 contract shape precisely: green by construction holds for the fleet because the gate cannot fail on drift and skips the frontmatter-less class, and the fix phase should not assume the gate enforces frontmatter existence. New — the skip branch was read, not executed against a mutated fixture (out of scope: research is read-only).",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 397-415 gate branch and exit rule; 440-465 mode dispatch; 57 scope)",
+        "`.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh` (line 13: wrapper execs gate)",
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (lines 33-51 checker map and scope mirror; 196-213 row 3; 210 dedupeKey; 284 dedupe semantics)",
+        "`.skilled/hooks/post-edit-quality/README.md` (line 50: row-3 trigger set and exit rule)",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (lines 124-136: versioned-doc scope including changelog)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/spec.md` (340/320/115 reported flag counts)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-006.md` (line 11: 713 = 332 + 266 + 115 measurement)",
+        "Command outputs: `gate --skill sk-code` EXIT=0 (340 files, 337 ok, 3 skip); `gate --skill sk-doc` EXIT=0 (320 files, 319 ok, 1 skip); `gate --skill system-skill-advisor` EXIT=0 (115 files, 115 ok); changelog version-field census 68/68; router test-file search (none found)"
+      ]
+    },
+    {
+      "id": "finding-8-5-the-packager-engine-class-divergence-has-no-live-violation-on-the-divergence-axi",
+      "text": "**The packager/engine class divergence has no live violation on the divergence axis measured: all 68 changelog entries across the three skills carry a 4-part `version`.** 23/23 sk-code, 19/19 sk-doc, 26/26 system-skill-advisor changelog docs carry the field, so the packager's stricter versioned-doc scope (which includes `changelog` [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:124-136]) and the engine's exclusion of `changelog` from its scope [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:57] differ in coverage, not in outcome, today. The divergence remains real for the fix phase (the hook never checks changelog docs if they regress), but it is not producing a current failure. New — the iteration-7 divergence claim is now quantified on the class it names.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (lines 397-415 gate branch and exit rule; 440-465 mode dispatch; 57 scope)",
+        "`.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh` (line 13: wrapper execs gate)",
+        "`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` (lines 33-51 checker map and scope mirror; 196-213 row 3; 210 dedupeKey; 284 dedupe semantics)",
+        "`.skilled/hooks/post-edit-quality/README.md` (line 50: row-3 trigger set and exit rule)",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` (lines 124-136: versioned-doc scope including changelog)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/spec.md` (340/320/115 reported flag counts)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-006.md` (line 11: 713 = 332 + 266 + 115 measurement)",
+        "Command outputs: `gate --skill sk-code` EXIT=0 (340 files, 337 ok, 3 skip); `gate --skill sk-doc` EXIT=0 (320 files, 319 ok, 1 skip); `gate --skill system-skill-advisor` EXIT=0 (115 files, 115 ok); changelog version-field census 68/68; router test-file search (none found)"
+      ]
+    },
+    {
+      "id": "finding-9-1-gate-green-is-now-fleet-wide-not-a-three-skill-sample-all-14-skill-directories-e",
+      "text": "**Gate green is now fleet-wide, not a three-skill sample: all 14 skill directories executed, 2,909 in-scope docs, 7 skips, 0 failures.** Previously measured (iteration 8): sk-code 340 files (337 ok, 3 skip), sk-doc 320 (319, 1), system-skill-advisor 115 (115, 0). New this pass: cli-classifier 49/49; cli-external-orchestration 433/433; cli-orca 30/30; mcp-code-mode 43/43; mcp-tooling 569/569; sk-design 200 (198, 2); sk-git 75/75; sk-prompt 37/37; sk-vision 47/47; system-deep-loop 444/444; system-spec-kit 207 (206, 1). Every invocation exited 0; the output shape confirms the counted-actions contract [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:468-472]. The packet spec's 340/320/115 figures are a three-skill subset (775 files) of this 2,909-file fleet. New — first execution beyond the three benchmarked skills.",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs (451-461 verify exit rule; 468-472 summary shape; 53-57 scope subtrees; 236 dual-form acceptance)",
+        ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs (38 checker path pin; 46-54 mirror set and map; 120-121, 131-139 matcher; 200-211 row 3)",
+        ".skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh (line 13: execs engine in gate mode)",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md (63-67 key questions; 128-280 exhausted approaches)",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-008.md and iteration-007.md (prior execution claims and next-focus recommendations)",
+        "Command outputs: gate loop over 11 unmeasured skills (EXIT=0 each; 2,134 files, 3 skips); wrapper check-frontmatter-versions.sh --skill sk-code (EXIT=0, 340 files); verify --skill sk-prompt (EXIT=1, 36 FAIL/37 files); verify --skill sk-git (EXIT=1, 74 FAIL/75 files); subtree census (0 underscore / 86 hyphen directories); readlink of .opencode/skills -> ../.skilled/skills"
+      ]
+    },
+    {
+      "id": "finding-9-5-synthesis-the-run-s-last-breadth-gap-is-closed-both-halves-of-the-topic-claim-no",
+      "text": "**Synthesis: the run's last breadth gap is closed — both halves of the topic claim now hold at fleet scale.** Gate-green holds across 14/14 skill dirs (2,909 docs, exit 0; failures require only presence/format regressions), and verify-red holds on 5/5 skills measured (823 flagged docs), with nothing automated running it. The enforceable invariant is therefore presence/format only, already green fleet-wide; the stored-vs-derived mismatch population is measured but unenforced. Partially new — no new external evidence; folds this iteration's breadth results into the consolidation frame. [INFERENCE: from executed gate and verify results across 14 and 5 skills respectively, versus iterations 6 and 8's three-skill samples.]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs (451-461 verify exit rule; 468-472 summary shape; 53-57 scope subtrees; 236 dual-form acceptance)",
+        ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs (38 checker path pin; 46-54 mirror set and map; 120-121, 131-139 matcher; 200-211 row 3)",
+        ".skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh (line 13: execs engine in gate mode)",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md (63-67 key questions; 128-280 exhausted approaches)",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-008.md and iteration-007.md (prior execution claims and next-focus recommendations)",
+        "Command outputs: gate loop over 11 unmeasured skills (EXIT=0 each; 2,134 files, 3 skips); wrapper check-frontmatter-versions.sh --skill sk-code (EXIT=0, 340 files); verify --skill sk-prompt (EXIT=1, 36 FAIL/37 files); verify --skill sk-git (EXIT=1, 74 FAIL/75 files); subtree census (0 underscore / 86 hyphen directories); readlink of .opencode/skills -> ../.skilled/skills"
+      ]
+    },
+    {
+      "id": "finding-9-4-the-enforced-set-and-the-checked-set-agree-in-source-and-in-the-tree-today-one-l",
+      "text": "**The enforced set and the checked set agree in source and in the tree today; one latent underscore-form asymmetry is bounded to zero instances.** The engine's scope array [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:57] carries a comment stating both underscore and hyphen root forms stay in scope during the naming migration [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:53-56], with dual-form acceptance in code [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:236]. The router's mirror set cross-references the engine explicitly [SOURCE: .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:46-48], but its canonical map is hyphen-keyed [SOURCE: .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:49-54] and the matcher resolves segments only through that map [SOURCE: .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:120-121] [SOURCE: .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:131-139]. Census: 0 underscore-form vs 86 hyphen-form directories today, so there is no live divergence; if an underscore-form root returns during the migration, the engine would check it while the router would not trigger an edit-time check for docs under it — a fix-phase caveat, not a current violation. New.",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs (451-461 verify exit rule; 468-472 summary shape; 53-57 scope subtrees; 236 dual-form acceptance)",
+        ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs (38 checker path pin; 46-54 mirror set and map; 120-121, 131-139 matcher; 200-211 row 3)",
+        ".skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh (line 13: execs engine in gate mode)",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md (63-67 key questions; 128-280 exhausted approaches)",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-008.md and iteration-007.md (prior execution claims and next-focus recommendations)",
+        "Command outputs: gate loop over 11 unmeasured skills (EXIT=0 each; 2,134 files, 3 skips); wrapper check-frontmatter-versions.sh --skill sk-code (EXIT=0, 340 files); verify --skill sk-prompt (EXIT=1, 36 FAIL/37 files); verify --skill sk-git (EXIT=1, 74 FAIL/75 files); subtree census (0 underscore / 86 hyphen directories); readlink of .opencode/skills -> ../.skilled/skills"
+      ]
+    },
+    {
+      "id": "finding-9-2-the-hook-s-literal-entry-point-executes-green-running-the-wrapper-the-router-pin",
+      "text": "**The hook's literal entry point executes green: running the wrapper the router pins produces the identical gate result.** check-frontmatter-versions.sh --skill sk-code exited 0 with \"[gate] 340 files | ok=337 skip-no-frontmatter=3\", byte-identical in substance to iteration 8's direct engine invocation. The router constant resolves the checker to exactly this wrapper [SOURCE: .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:38] and passes ['--skill', skillName] [SOURCE: .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:207-209]; the wrapper execs the shared engine in gate mode [SOURCE: .skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh:13]. This converts iteration 8's code+doc hook evidence into code+doc+execution of the routing target; a live edit probe is the only remaining leg and stays out of scope. Partially new — the wiring was cited before, the execution of the pinned path is new.",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs (451-461 verify exit rule; 468-472 summary shape; 53-57 scope subtrees; 236 dual-form acceptance)",
+        ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs (38 checker path pin; 46-54 mirror set and map; 120-121, 131-139 matcher; 200-211 row 3)",
+        ".skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh (line 13: execs engine in gate mode)",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md (63-67 key questions; 128-280 exhausted approaches)",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-008.md and iteration-007.md (prior execution claims and next-focus recommendations)",
+        "Command outputs: gate loop over 11 unmeasured skills (EXIT=0 each; 2,134 files, 3 skips); wrapper check-frontmatter-versions.sh --skill sk-code (EXIT=0, 340 files); verify --skill sk-prompt (EXIT=1, 36 FAIL/37 files); verify --skill sk-git (EXIT=1, 74 FAIL/75 files); subtree census (0 underscore / 86 hyphen directories); readlink of .opencode/skills -> ../.skilled/skills"
+      ]
+    },
+    {
+      "id": "finding-9-3-verify-red-generalizes-beyond-the-three-benchmarked-skills-and-verify-is-per-ski",
+      "text": "**Verify-red generalizes beyond the three benchmarked skills, and verify is per-skill red because at least one doc mismatches — not because every doc is wrong.** verify --skill sk-prompt exited 1 with 36 FAIL lines over 37 files; verify --skill sk-git exited 1 with 74 FAIL lines over 75 files [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:451-461]. Combined with iteration 6's 713 flagged files across the three skills, the measured red population is now 823 flagged docs across 5 executed skills. One document per newly measured skill currently matches its derived value, so the value comparison is falsifiable at doc level; exit 1 is driven by at least one mismatch per skill. Nothing automated runs verify (Q5), so this population remains telemetry rather than a live gate. New — first verify execution outside the three measured skills.",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs (451-461 verify exit rule; 468-472 summary shape; 53-57 scope subtrees; 236 dual-form acceptance)",
+        ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs (38 checker path pin; 46-54 mirror set and map; 120-121, 131-139 matcher; 200-211 row 3)",
+        ".skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh (line 13: execs engine in gate mode)",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md (63-67 key questions; 128-280 exhausted approaches)",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-008.md and iteration-007.md (prior execution claims and next-focus recommendations)",
+        "Command outputs: gate loop over 11 unmeasured skills (EXIT=0 each; 2,134 files, 3 skips); wrapper check-frontmatter-versions.sh --skill sk-code (EXIT=0, 340 files); verify --skill sk-prompt (EXIT=1, 36 FAIL/37 files); verify --skill sk-git (EXIT=1, 74 FAIL/75 files); subtree census (0 underscore / 86 hyphen directories); readlink of .opencode/skills -> ../.skilled/skills"
+      ]
+    },
+    {
+      "id": "finding-10-4-gate-and-verify-honor-an-operator-validation-switch-that-exits-0-with-validation",
+      "text": "**Gate and verify honor an operator validation switch that exits 0 with `validation skipped`; it was off for every invocation in this run.** `exitIfValidationOff` runs before gate/verify work [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:393]; when the switch is on it prints `validation skipped, <switch> is on` and exits 0 [SOURCE: .skilled/skills/sk-doc/shared/scripts/validation-switch.cjs:64-72]. Empirical status: all 14 gate and 14 verify invocations in this run executed and reported file counts, so the switch is off in this working tree; the \"green fleet-wide\" enforcement claim is conditional on it staying off. New — not previously cited.",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (362-376, 393, 397-398, 408-410)",
+        "`.skilled/skills/sk-doc/shared/scripts/validation-switch.cjs` (64-72)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-006.md`, `iteration-007.md`, `iteration-009.md`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md`, `findings-registry.json`, `deep-research-config.json`, `deep-research-state.jsonl`",
+        "Command outputs: `verify --skill` for 9 dirs (EXIT=1 each; totals 2,022 files, 1,975 mismatches, 44 ok, 3 skip); record/delta staging (19 delta rows)"
+      ]
+    },
+    {
+      "id": "finding-10-3-stored-side-aggregates-corroborate-stale-mint-epochs-at-fleet-scale-template-def",
+      "text": "**Stored-side aggregates corroborate stale mint epochs at fleet scale; template-default snapshots dominate several skills.** Verify's aggregate line groups mismatches as `stored!=derived` with counts: sk-vision 32 of 46 flags are stored `1.0.0.0` vs derived `0.3.0.x`; cli-orca 28 of 29; cli-classifier stores `0.1.0.x` against derived up to `0.8.0.x`; system-spec-kit stores `1.0.0.0`/`1.6.0.x` against derived `2.7.0.x`; cli-external-orchestration stores `1.4.0.2-.5` against a spread of derived values. Consistent with iteration 6's era-dominance (574 of 713 = 80.5%) [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-006.md:11] and the registry's template-literal field origin (finding-4-4). Partially new — breadth instance of the era-dominance finding; the template-default pattern is new at fleet scale.",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (362-376, 393, 397-398, 408-410)",
+        "`.skilled/skills/sk-doc/shared/scripts/validation-switch.cjs` (64-72)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-006.md`, `iteration-007.md`, `iteration-009.md`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md`, `findings-registry.json`, `deep-research-config.json`, `deep-research-state.jsonl`",
+        "Command outputs: `verify --skill` for 9 dirs (EXIT=1 each; totals 2,022 files, 1,975 mismatches, 44 ok, 3 skip); record/delta staging (19 delta rows)"
+      ]
+    },
+    {
+      "id": "finding-10-5-synthesis-the-single-decision-record-the-run-s-terminal-consolidation-a-q1-why-e",
+      "text": "**Synthesis — the single decision record (the run's terminal consolidation).** (a) **Q1 (why exit 1):** rule and derivation are faithful; stored values are stale snapshots; `W` is self-invalidating (stored==derived is non-convergent by construction); nothing automated runs `verify` — exit 1 on every skill is the expected steady state of an unenforced, non-convergent invariant, not a fault and not a missing rule. (b) **Q2 (external author):** at most the skill era; its carriers (`SKILL.md`, changelog) ship in the package; per-doc `X.Y` is re-derivable from shipped files, `W` irreproducible without git, `Z` vacuous [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-007.md:26]. (c) **Q3 (smallest green-by-construction contract):** presence + 4-part format on in-scope docs, enforced by the post-edit gate — already green fleet-wide (2,902 ok, 7 skips, 0 failures [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-009.md:19]); do not assert stored==derived; no new CI job, generator, or reconciliation loop. (d) **Q4 (should the field exist):** no as an asserted per-doc invariant; keep `SKILL.md`; remove from child classes — now carrying the gate-branch prerequisite of Finding 2 — or at most retain an era-only stamp [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-006.md:28-32]. (e) **Fix-phase prerequisites:** the gate-branch edit, template rows, the changelog scope divergence (packager vs engine [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-007.md:20]), the 7 frontmatter-less skips, the underscore-form scope asymmetry (0 live [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-009.md:25]), and this pass's validation-switch caveat. [INFERENCE: consolidation from the findings registry, iterations 5-9, and this pass's executions.]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (362-376, 393, 397-398, 408-410)",
+        "`.skilled/skills/sk-doc/shared/scripts/validation-switch.cjs` (64-72)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-006.md`, `iteration-007.md`, `iteration-009.md`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md`, `findings-registry.json`, `deep-research-config.json`, `deep-research-state.jsonl`",
+        "Command outputs: `verify --skill` for 9 dirs (EXIT=1 each; totals 2,022 files, 1,975 mismatches, 44 ok, 3 skip); record/delta staging (19 delta rows)"
+      ]
+    },
+    {
+      "id": "finding-10-2-the-gate-s-fail-missing-branch-pins-q4-s-removal-precondition-deleting-the-per-d",
+      "text": "**The gate's FAIL:missing branch pins Q4's removal precondition: deleting the per-doc version from in-scope docs turns the green gate red unless the rule itself changes.** Gate mode fails any in-scope doc whose frontmatter lacks a version line [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:409]; frontmatter-less docs skip [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:408]; malformed values fail [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:410]; the gate's stated contract is that every in-scope file carries a 4-part version [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:397-398]. Iteration 6's option (a) (\"remove the field from child doc classes... the enforced contract then applies to `SKILL.md` alone and stays green by construction\") [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-006.md:29] is therefore incomplete as priced: the same change must also delete or narrow the gate branch at :409 (and/or shrink the engine's scope definition [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-007.md:20]), or every child doc flips gate-red. This is the single most decision-relevant gap closed this iteration. Partially new — presence/format semantics were cited before; the removal consequence and the exact branch were not.",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (362-376, 393, 397-398, 408-410)",
+        "`.skilled/skills/sk-doc/shared/scripts/validation-switch.cjs` (64-72)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-006.md`, `iteration-007.md`, `iteration-009.md`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md`, `findings-registry.json`, `deep-research-config.json`, `deep-research-state.jsonl`",
+        "Command outputs: `verify --skill` for 9 dirs (EXIT=1 each; totals 2,022 files, 1,975 mismatches, 44 ok, 3 skip); record/delta staging (19 delta rows)"
+      ]
+    },
+    {
+      "id": "finding-10-1-verify-is-red-across-the-entire-fleet-14-14-skill-dirs-exit-1-2-798-of-2-909-in-",
+      "text": "**Verify is red across the entire fleet: 14/14 skill dirs exit 1; 2,798 of 2,909 in-scope docs flagged (96.2%).** New this pass: cli-classifier 47/49; cli-external-orchestration 424/433; cli-orca 29/30; mcp-code-mode 42/43; mcp-tooling 559/569; sk-design 189/200 (+2 skip-no-frontmatter); sk-vision 46/47; system-deep-loop 440/444; system-spec-kit 199/207 (+1 skip). Every invocation EXIT=1. Combined with the 823 flags measured across 5 earlier skills (713 in iteration 6 [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-006.md:11]; 36 sk-prompt + 74 sk-git in iteration 9 [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-009.md:23]), the topic's first clause holds fleet-wide. Count reconciliation: 2,022 files this pass + 887 from iterations 6/9 = 2,909 — the fleet gate denominator [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-009.md:19]. No skill verifies green. New — first verify execution outside the 5 measured skills.",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs` (362-376, 393, 397-398, 408-410)",
+        "`.skilled/skills/sk-doc/shared/scripts/validation-switch.cjs` (64-72)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-006.md`, `iteration-007.md`, `iteration-009.md`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md`, `findings-registry.json`, `deep-research-config.json`, `deep-research-state.jsonl`",
+        "Command outputs: `verify --skill` for 9 dirs (EXIT=1 each; totals 2,022 files, 1,975 mismatches, 44 ok, 3 skip); record/delta staging (19 delta rows)"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-ef5182f02d12",
+      "text": "\"Make `verify` quiet by reconciling the fleet\" — explicitly discouraged: the sweep rewrites every in-scope document, buries real changes in noise, and is undone by its own commit [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:135]. Candidate for reducer promotion to Exhausted Approaches; any recommendation that amounts to \"run `apply --update` everywhere and commit\" is a dead end.",
+      "contentHash": "ef5182f02d12",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-b80660a3d427",
+      "text": "\"Nothing enforces it\" as an accidental oversight — the gate/verify separation and the \"What nothing enforces\" section are explicit in the standard, so this is a stated boundary, not a gap someone forgot.",
+      "contentHash": "b80660a3d427",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-acee16d91d2e",
+      "text": "`verify` exit 1 as an engine bug — the engine's comparison matches its documented rule, and the spot-check arithmetic supports the derivation.",
+      "contentHash": "acee16d91d2e",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-71b1681aff4c",
+      "text": "The numstat edit counter as silently broken — 28 path-commits resolve to an expected `W=26`, consistent with zero-line/rename commits being discarded as documented.",
+      "contentHash": "71b1681aff4c",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-a288ede4468d",
+      "text": "**An automated writer hiding in hooks/CI.** Searched `.github/`, `.skilled/hooks/`, `.opencode/scripts/git-hooks/` for `frontmatter-version`/`check-frontmatter-versions` callers: none exist; every match is documentation, tests, or the engine itself.",
+      "contentHash": "a288ede4468d",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-c743853411a9",
+      "text": "**The CI coverage guard as a version checker.** Its header contract lists five fields and `version` is not among them [SOURCE: .opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh:7-8].",
+      "contentHash": "c743853411a9",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-53601ac2a9eb",
+      "text": "**The engine's `.mjs` tests as a wired CI check.** The CI harness globs `test_*.py` only; the `.mjs` suite is unreferenced by any workflow.",
+      "contentHash": "53601ac2a9eb",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-c847ef0ab5af",
+      "text": "None newly eliminated. The iteration-1 dead ends (fleet reconcile via `apply --update`; \"nothing enforces it\" as oversight; engine bug; broken numstat counter) all remain outside this focus and were not retried.",
+      "contentHash": "c847ef0ab5af",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-736bd22c225b",
+      "text": "**Package-time validators as an automated enforcement surface.** Nothing under `.opencode/scripts/git-hooks/`, `.skilled/hooks/` or `.github/workflows/` references `package_skill.py`/`quick_validate.py`; they are command-run only.",
+      "contentHash": "736bd22c225b",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-65c5284a1b95",
+      "text": "**The engine pair as two drift-prone copies.** `readlink` resolves `scripts/frontmatter-version.mjs` to `../shared/scripts/frontmatter-version.mjs`; one physical file, one update surface.",
+      "contentHash": "65c5284a1b95",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-822eaa1cdfd3",
+      "text": "None newly eliminated. All iteration 1-2 dead ends remain BLOCKED and were not retried.",
+      "contentHash": "822eaa1cdfd3",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-2cfd16184bbe",
+      "text": "**CI script tests as a doc-version check.** The suite runs the engine against fixtures in gate/apply modes [SOURCE: .opencode/skills/sk-doc/scripts/tests/test_validation_switch.py:183]; it never inspects real repository documents, so it cannot fail on a stored version and does not close the enforcement gap.",
+      "contentHash": "2cfd16184bbe",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-40815af37c9c",
+      "text": "**Re-running the Q5 inventory as fresh ground.** Iteration 3 already consolidated Q5; this pass's value was adversarial re-verification plus the two uncited CI wiring surfaces. Repeating the inventory itself would add no new evidence.",
+      "contentHash": "40815af37c9c",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-496e4e7803b8",
+      "text": "None newly eliminated for the Q5 focus. The iteration-2 `.mjs`-suite claim is refined, not reversed: `test-frontmatter-version.mjs` remains unrun by any workflow, while a sibling Python test does invoke the engine in CI.",
+      "contentHash": "496e4e7803b8",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-48154b5e5c8d",
+      "text": "**Re-running the Q5 inventory as fresh ground.** Q5 was consolidated and adversarially re-verified in iterations 3-4; re-running it is BLOCKED [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md:144-147].",
+      "contentHash": "48154b5e5c8d",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-8e0ab097dc5d",
+      "text": "**Stored git-derived W with a better reconciliation workflow.** Any commit that changes the file's numstat count makes the stored value stale by definition [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:98-104]; the two-pass amend flow amortizes the ceremony per commit but never removes it [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:106-113].",
+      "contentHash": "8e0ab097dc5d",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-4a894df031fe",
+      "text": "**Wiring verify into CI to force fleet reconciliation.** Re-enters the explicitly documented fleet-sweep dead end [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:131-136] and adds a pipeline where the smallest contract calls for a deletion.",
+      "contentHash": "4a894df031fe",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-bc623fa7a745",
+      "text": "Git-derived precision as a stored invariant: structurally non-convergent. New elimination candidate for the reducer to promote to strategy \"Exhausted Approaches\".",
+      "contentHash": "bc623fa7a745",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-cc91b700bfbe",
+      "text": "**Enforced per-doc era parity:** would flag 574 docs today; going green requires the fleet-wide sweep the standard explicitly discourages [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:131-136].",
+      "contentHash": "cc91b700bfbe",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-b39e6a850699",
+      "text": "**Status-quo retention of the asserted 4-part per-doc version:** non-convergent by construction — writing `W` changes `W` [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:98-104] — and measured today at 713 mismatches, 80.5% era staleness (Actions §3).",
+      "contentHash": "b39e6a850699",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-e4c6c9f8a4da",
+      "text": "New elimination candidate for the reducer: **\"Retain the per-doc field asserting era parity\"** — its measured cost equals the discouraged reconciliation [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:131-136].",
+      "contentHash": "e4c6c9f8a4da",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-ef3fd70db34a",
+      "text": "None of iterations 1-5's dead ends were retried; all remain BLOCKED [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md:120-212].",
+      "contentHash": "ef3fd70db34a",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-c87c12bed904",
+      "text": "**An external meaning for `W` or `Z`.** `W` needs repository git history that cannot travel in the package [SOURCE: .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:70-101]; `Z` has no producer or consumer by design [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:50].",
+      "contentHash": "c87c12bed904",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-cf3808889243",
+      "text": "**Re-searching for an in-repo definition of \"external author\".** Iteration 5's search of sk-doc and system-spec-kit returned no definition [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-005.md:29]; iteration 6 recommended the surface-enumeration path instead [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-006.md:79], and that path closed the question this iteration.",
+      "contentHash": "cf3808889243",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-2d0aef696e81",
+      "text": "No new elimination candidate beyond the two above; the divergence in Finding 3 is a fix-phase item, not a dead end.",
+      "contentHash": "2d0aef696e81",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-0b670d25fc3a",
+      "text": "None of iterations 1-6's dead ends were retried; all remain BLOCKED [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md:120-212].",
+      "contentHash": "0b670d25fc3a",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-c58fc251742d",
+      "text": "**Re-deriving the 713 / 574 classification.** That measurement belongs to iteration 6's scope and its arithmetic was not challenged by new evidence; the useful new check was the scope denominator (Finding 2), which held.",
+      "contentHash": "c58fc251742d",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-691fb870caac",
+      "text": "**Treating the changelog divergence as a live failure.** Measured: 68/68 entries versioned (Finding 5); the divergence is a coverage gap for the fix phase, not a current flag.",
+      "contentHash": "691fb870caac",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-e96f522069a6",
+      "text": "New elimination candidate for the reducer: **\"the gate silently stops enforcing after one edit per skill\"** — dedupe is per checking row label (`frontmatter:<skillName>`) within a session [SOURCE: .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:210], but each edit to an in-scope doc recomputes scope, so a regression introduced by a different file in a later edit session still fires on the next such edit. Not a dead end; recorded as an operational caveat for the fix phase.",
+      "contentHash": "e96f522069a6",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-eb996091449b",
+      "text": "None of iterations 1-7's dead ends were retried; all remain BLOCKED [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md:127-258].",
+      "contentHash": "eb996091449b",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-02185269db85",
+      "text": "**Live edit probe of the post-edit hook.** Would mutate a read-only researched file, outside the research boundary; executing the router-pinned wrapper is the strongest permissible strengthening step.",
+      "contentHash": "02185269db85",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-284e178e7267",
+      "text": "**Re-running gate/verify on the three already-measured skills.** Covered by iteration 8 (gate) and iteration 1 (verify); this pass extended breadth to previously unmeasured skills instead.",
+      "contentHash": "284e178e7267",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-dd4254a8d930",
+      "text": "No new elimination candidate: the underscore-form scope asymmetry is latent (0 instances) and recorded as a fix-phase caveat, not eliminated.",
+      "contentHash": "dd4254a8d930",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-1c175101082b",
+      "text": "None of iterations 1-8's dead ends were retried; all remain BLOCKED [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md:128-280].",
+      "contentHash": "1c175101082b",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-d22051fe6294",
+      "text": "**A live fixture probe of the FAIL:missing branch** (a scratch skill tree under `/tmp` fed to `gate --skills-root`). Rejected: it would create files outside the allowed-write list; the direct code citation at :408-410 is sufficient and the branch is unambiguous.",
+      "contentHash": "d22051fe6294",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-0fb7252c8299",
+      "text": "**Re-running the fleet gate.** Already executed green across 14/14 dirs in iterations 8-9 [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/iterations/iteration-009.md:19]; this pass extended verify breadth instead.",
+      "contentHash": "0fb7252c8299",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-0add7d449100",
+      "text": "No new elimination candidate. The validation-switch escape hatch is an operational caveat, not a dead end.",
+      "contentHash": "0add7d449100",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-42a2cc6b6c19",
+      "text": "None of iterations 1-9's dead ends were retried; all remain BLOCKED [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/deep-research-strategy.md:131-302].",
+      "contentHash": "42a2cc6b6c19",
+      "addedAtIteration": 10
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 11,
+    "keyFindings": 64,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.85,
+    "coverageBySources": {
+      "code": 37,
+      "other": 107
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/105-oe-doc-version-contract/specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}
