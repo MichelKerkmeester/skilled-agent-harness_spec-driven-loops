@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The drift workflow still checks a corpus hash from before four retired-mode rows were removed, so its pin check stops before scoring",
     "created_at": "2026-10-11T13:05:52Z",
-    "last_save_at": "2026-10-11T15:02:21.409Z",
+    "last_save_at": "2026-10-11T15:33:16.378Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:36b67e35b8470412c76006aada4f882e5b35829d63c4d72732d883bf294f29be",
+    "source_fingerprint": "sha256:34c3f4b10341fceb6be27b95dea003b9009d1cd99c0601f38d3d45c0492d6405",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e2df041fac9f4e01698db6e6492e222d95d294c600140d4b0654dd133c897b3b",
       "plan.md": "1ca3e2838287aac5035720f23548e56a02cb6278ed88426f0495def5b2d8b870",
       "tasks.md": "035c0585055a9d0eaa5bd5d26a9566d85920e4d46b42f8cba82a489924e42884",
-      "implementation-summary.md": "240c16bce936e4b9ae12bcf6be7784b7b20be4fcb4c6937550899c0561c9ba4a"
+      "implementation-summary.md": "57113a1953d4a5d4851977658763a4500d46b419a80b2a8914d76e098696bfe6"
     },
     "last_active_at": null
   }

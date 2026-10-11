@@ -104,8 +104,8 @@ The four implementation commits were rebased onto origin/main after main advance
 | Pre-commit final gate, lane 03 | 118 steps, 117 returned 0. The only failed step was eslint-changed-ts with an empty TypeScript file list. The changed JavaScript check passed. See [lane-03-final-gate.txt](scratch/evidence/lane-03-final-gate.txt). |
 | Post-rebase final gate, lane 04 | 118 steps, 117 returned 0. The only failed step was eslint-changed-ts with an empty TypeScript file list. The changed JavaScript and routing checks passed. See [lane-04-post-rebase-gate.txt](scratch/evidence/lane-04-post-rebase-gate.txt). |
 | Post-push CI on main | PASS, 14 of 14 workflows on `326f138e33`. Routing Registry Drift Guard run `38147728254` passed the corpus pin and scorer gates with no threshold failures. See [post-push-ci.txt](scratch/evidence/post-push-ci.txt). |
-| Child strict validation | RESULT: FAILED, exit 2. Only GENERATED_METADATA_INTEGRITY and GENERATED_METADATA_DRIFT remain for the orchestrator to repair. |
-| Parent strict validation | RESULT: FAILED, exit 2. Only GENERATED_METADATA_INTEGRITY and GENERATED_METADATA_DRIFT remain for the orchestrator to repair. Two pre-existing recent_action warnings remain in the parent and phase 012. |
+| Child strict validation | RESULT: PASSED, 0 errors and 0 warnings after the completion-100 save. See [decision ledger](scratch/evidence/decision-ledger.txt#L38). |
+| Parent strict validation | RESULT: PASSED, 14 of 14 recursive runs after the completion-100 save. The two pre-existing recent_action warnings remain, recorded under Known Limitations. See [decision ledger](scratch/evidence/decision-ledger.txt#L38). |
 <!-- /ANCHOR:verification -->
 
 ---
