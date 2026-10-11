@@ -819,6 +819,76 @@ SPECKIT_SKIP_MIRROR_PARITY=0 run_hook; RC=$?
 check "a failed mirror check names its exact repair" 1 "$RC" \
   "Fix: node .*sync-skills-hermes[.]cjs, then git add its output"
 
+# ══ skill authoring gate: index-versus-tree and tool availability ═════════════
+# A restricted PATH of symlinks lets a case remove exactly one tool while every
+# other command the hook reaches for stays reachable.
+make_restricted_path() { # make_restricted_path <dir> <command>...
+  local dir="$1"
+  shift
+  local cmd resolved
+  mkdir -p "$dir"
+  for cmd in "$@"; do
+    resolved="$(command -v "$cmd" 2>/dev/null || true)"
+    if [[ -z "$resolved" ]]; then
+      echo "FAIL  restricted PATH: cannot resolve $cmd"; FAIL=$((FAIL + 1)); return 1
+    fi
+    ln -sf "$resolved" "$dir/$cmd"
+  done
+}
+
+# ── 59. a staged deletion under a hub still selects that skill's checks ──
+setup_skill_fixture 1 0 0
+git -C "$TMP" rm -q ".opencode/skills/demo-hub/SKILL.md"
+SPECKIT_SKIP_SKILL_AUTHORING=0 run_hook; RC=$?
+check "a staged deletion still runs the skill's checks" 1 "$RC" "leaf-manifest.json is stale"
+
+# ── 60. a regenerated derived file left unstaged blocks, because the index ships the old copy ──
+setup_skill_fixture 0 0 0
+stage_new ".opencode/skills/demo-hub/notes.txt" "demo"
+printf '%s\n' '{"leaf":"regenerated"}' > "$TMP/.opencode/skills/demo-hub/leaf-manifest.json"
+SPECKIT_SKIP_SKILL_AUTHORING=0 run_hook; RC=$?
+check "an unstaged regenerated manifest blocks the commit" 1 "$RC" "leaf-manifest.json has unstaged changes"
+check "the unstaged block names the git add repair" 1 "$RC" "Fix: git add .*leaf-manifest.json"
+
+# ── 61. no node on PATH warns and skips instead of blocking ──
+setup_skill_fixture 1 1 1
+stage_new ".opencode/skills/demo-hub/notes.txt" "demo"
+MINPATH_NODE="$TMP/minpath-no-node"
+make_restricted_path "$MINPATH_NODE" bash git env dirname basename readlink grep sed sort cut cat tail head rm mkdir mktemp cp
+PATH="$MINPATH_NODE" SPECKIT_SKIP_SKILL_AUTHORING=0 run_hook; RC=$?
+check "a PATH without node warns instead of blocking" 0 "$RC" "node is not on PATH"
+if [[ ! -e "$TMP/skill-authoring-calls.log" ]]; then
+  echo "PASS  no creator tool ran without node"; PASS=$((PASS + 1))
+else
+  echo "FAIL  a creator tool ran without node"; FAIL=$((FAIL + 1))
+fi
+
+# ── 62. a missing creator script inside the toolchain blocks ──
+setup_skill_fixture 0 0 0
+rm "$TMP/.opencode/commands/doctor/scripts/parent-skill-check.cjs"
+stage_new ".opencode/skills/demo-hub/notes.txt" "demo"
+SPECKIT_SKIP_SKILL_AUTHORING=0 run_hook; RC=$?
+check "a missing doctor script blocks" 1 "$RC" "script is missing"
+if grep -q 'parent-skill-check[.]cjs' "$TMP/out.log"; then
+  echo "PASS  the missing-script block names the doctor"; PASS=$((PASS + 1))
+else
+  echo "FAIL  the missing-script block did not name the doctor"; FAIL=$((FAIL + 1))
+fi
+
+# ── 63. no python3 on PATH skips only the doctor, with a warning ──
+setup_skill_fixture 0 1 0
+stage_new ".opencode/skills/demo-hub/notes.txt" "demo"
+MINPATH_PY="$TMP/minpath-no-python3"
+make_restricted_path "$MINPATH_PY" bash git env dirname basename readlink grep sed sort cut cat tail head rm mkdir mktemp cp node
+PATH="$MINPATH_PY" SPECKIT_SKIP_SKILL_AUTHORING=0 run_hook; RC=$?
+check "a PATH without python3 skips the doctor with a warning" 0 "$RC" "python3 is not on PATH"
+check "the doctor warning names the skill" 0 "$RC" "parent-skill doctor was skipped for demo-hub"
+if ! grep -qx doctor "$TMP/skill-authoring-calls.log" 2>/dev/null; then
+  echo "PASS  the doctor did not run without python3"; PASS=$((PASS + 1))
+else
+  echo "FAIL  the doctor ran without python3"; FAIL=$((FAIL + 1))
+fi
+
 echo ""
 echo "pre-commit gates: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]

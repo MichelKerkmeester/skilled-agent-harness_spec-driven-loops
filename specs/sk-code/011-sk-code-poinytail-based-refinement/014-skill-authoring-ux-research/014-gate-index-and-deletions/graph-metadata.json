@@ -36,7 +36,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The review found four gaps in the pre-commit skill authoring gate: a staged deletion selects no skill (P1-02), a regenerated but unstaged derived file passes (P2-03), a missing node or creator script skips silently (P2-04), and a machine without python3 blocks every hub commit through the doctor (P2-05)",
     "created_at": "2026-10-10T23:56:39Z",
-    "last_save_at": "2026-10-11T00:03:46.305Z",
+    "last_save_at": "2026-10-11T00:24:32.863Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b3fe99ab1d54504b233cbfc838df7984997d64e19c119a86176f7f3d205123f0",
+    "source_fingerprint": "sha256:f8236fdcc5683d75262c9f8e23c98517ac5d727950c129cdfac4c704e1bdb2bc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bd2c4c0df7ec9be510f0c76d7d69c809c9ed66ca2c25aea1bf93b540b2addfd9",
-      "plan.md": "2d8946e8dc10ed4b723824ceb6339c34a6e3bf676a399a17b99e989dc1cb522e",
-      "tasks.md": "6eca214de22cef5ba07b9e21b74cafd7bb84451e7023c6a853138fc494a7679b",
-      "implementation-summary.md": "ddee926b9a4fe9fcd676c99794ae780fe5d4acbd2b7d2fa61d6c389dc5aea99c"
+      "spec.md": "ea555c0c19e8a91e4188dc95c9363b85cabba634a5e95a7c03df4e6e67a95193",
+      "plan.md": "30fbd5d219e45b0114a3d2d2bc5a7e6c633c852fbded6fb695c13784cf545220",
+      "tasks.md": "b4b5e87f43ab39b7d5a1c8dabc7b7c4dde2a965b09f855678ff22dc1db297de5",
+      "implementation-summary.md": "64e351a1cdcf58d99772023b42ad3b9bce6e7849f22d372f1beb058e0ac74d26"
     },
     "last_active_at": null
   }
