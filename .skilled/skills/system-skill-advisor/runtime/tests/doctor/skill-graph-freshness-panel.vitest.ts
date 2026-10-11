@@ -42,16 +42,31 @@ function tempRoot(): string {
   return root;
 }
 
-function writeSkill(root: string, id: string, family: string, derived: Record<string, string | null>): void {
+function writeSkill(
+  root: string,
+  id: string,
+  family: string,
+  derived: Record<string, string | null>,
+  intentSignals: readonly string[] = [],
+): void {
   const dir = join(root, '.skilled/skills', id);
   mkdirSync(dir, { recursive: true });
-  writeFileSync(join(dir, 'graph-metadata.json'), JSON.stringify({ skill_id: id, family, derived }, null, 2));
+  const metadata: Record<string, unknown> = { skill_id: id, family, derived };
+  if (intentSignals.length) metadata.intent_signals = intentSignals;
+  writeFileSync(join(dir, 'graph-metadata.json'), JSON.stringify(metadata, null, 2));
 }
 
-function writeCompiled(root: string, generatedAt: string, families: Record<string, string[]>): void {
+function writeCompiled(
+  root: string,
+  generatedAt: string,
+  families: Record<string, string[]>,
+  signals?: Record<string, string[]>,
+): void {
   const dir = join(root, '.skilled/skills/system-skill-advisor/runtime/scripts');
   mkdirSync(dir, { recursive: true });
-  writeFileSync(join(dir, 'skill-graph.json'), JSON.stringify({ generated_at: generatedAt, families }, null, 2));
+  const graph: Record<string, unknown> = { generated_at: generatedAt, families };
+  if (signals) graph.signals = signals;
+  writeFileSync(join(dir, 'skill-graph.json'), JSON.stringify(graph, null, 2));
 }
 
 function writeCompiledRaw(root: string, body: string): void {
@@ -315,5 +330,60 @@ describe('skill-graph freshness panel', () => {
     const { status, output } = runPanel(root, dbDir, ['--strict']);
     expect(status, output).toBe(0);
     expect(output).toContain('ZOMBIE (in SQLite, not on disk): retired');
+  });
+
+  it('compiled signals missing an on-disk intent signal stay exit 0 by default and fail --strict', () => {
+    const root = tempRoot();
+    const dbDir = join(root, 'db');
+    writeSkill(root, 'alpha', 'hub', { last_updated_at: OLD_STAMP }, ['deploy', 'rollback']);
+    writeCompiled(root, NEW_STAMP, { hub: ['alpha'] }, { alpha: ['deploy'] });
+    writeDb(dbDir, [['alpha', 'hub']]);
+
+    const relaxed = runPanel(root, dbDir);
+    expect(relaxed.status, relaxed.output).toBe(0);
+    expect(relaxed.stdout).toContain('SIGNAL DRIFT compiled vs disk: alpha');
+
+    const strict = runPanel(root, dbDir, ['--strict']);
+    expect(strict.status, strict.output).toBe(1);
+    expect(strict.stdout).toContain('SIGNAL DRIFT compiled vs disk: alpha');
+  });
+
+  it('an on-disk intent signal with no compiled signals entry is reported as drift', () => {
+    const root = tempRoot();
+    const dbDir = join(root, 'db');
+    writeSkill(root, 'alpha', 'hub', { last_updated_at: OLD_STAMP }, ['deploy']);
+    writeCompiled(root, NEW_STAMP, { hub: ['alpha'] });
+    writeDb(dbDir, [['alpha', 'hub']]);
+
+    const strict = runPanel(root, dbDir, ['--strict']);
+    expect(strict.status, strict.output).toBe(1);
+    expect(strict.stdout).toContain('SIGNAL DRIFT compiled vs disk: alpha');
+  });
+
+  it('family mismatch compiled vs disk fails --strict while the default exit stays 0', () => {
+    const root = tempRoot();
+    const dbDir = join(root, 'db');
+    writeSkill(root, 'alpha', 'other', { last_updated_at: OLD_STAMP });
+    writeCompiled(root, NEW_STAMP, { hub: ['alpha'] });
+    writeDb(dbDir, [['alpha', 'other']]);
+
+    const relaxed = runPanel(root, dbDir);
+    expect(relaxed.status, relaxed.output).toBe(0);
+
+    const strict = runPanel(root, dbDir, ['--strict']);
+    expect(strict.status, strict.output).toBe(1);
+    expect(strict.stdout).toContain('FAMILY MISMATCH compiled vs disk: skill alpha (family disk=other compiled=hub)');
+  });
+
+  it('matching intent signals with derived triggers after the prefix pass --strict', () => {
+    const root = tempRoot();
+    const emptyDbDir = join(root, 'db-empty');
+    mkdirSync(emptyDbDir, { recursive: true });
+    writeSkill(root, 'alpha', 'hub', { last_updated_at: OLD_STAMP }, ['deploy', 'rollback']);
+    writeCompiled(root, NEW_STAMP, { hub: ['alpha'] }, { alpha: ['deploy', 'rollback', 'extra derived affordance trigger'] });
+
+    const { status, output } = runPanel(root, emptyDbDir, ['--strict']);
+    expect(status, output).toBe(0);
+    expect(output).toContain('SIGNAL DRIFT compiled vs disk: none');
   });
 });

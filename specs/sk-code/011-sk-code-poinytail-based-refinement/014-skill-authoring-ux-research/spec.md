@@ -119,7 +119,7 @@ Fix every finding from phase 001 with the smallest change that stops the error w
 | 12 | 012-advisor-doc-target-and-engines/ | Stop 'sk-doc changelog' from counting as a doc target and match the Node range to the toolchain | Complete |
 | 13 | 013-python-advisor-native-and-parity/ | Keep skill_advisor.py on the native scorer after the daemon idles out, port the path and doc-target rules, and make both batteries refuse a non-native row | Complete |
 | 14 | 014-gate-index-and-deletions/ | Make the skill authoring gate see deletions and unstaged regenerations and say when it cannot run | Complete |
-| 15 | 015-freshness-strict-content/ | Make the strict freshness panel compare compiled signals and families with disk | Planned |
+| 15 | 015-freshness-strict-content/ | Make the strict freshness panel compare compiled signals and families with disk | Complete |
 | 16 | 016-sk-doc-tooling-followups/ | Tighten the catalog validator exemption, give confirm mode its collision remedy, record the validator changes and restore an executable bit | Planned |
 
 ### Phase Transition Rules

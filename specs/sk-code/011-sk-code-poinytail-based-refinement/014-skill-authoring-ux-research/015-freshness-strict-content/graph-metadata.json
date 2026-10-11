@@ -36,7 +36,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "skill-graph-freshness.cjs --strict decides staleness from timestamps only and never fails on a family mismatch, so an intent-signal edit with an unchanged derived stamp passes while the compiled graph no longer matches disk (P2-01)",
     "created_at": "2026-10-10T23:56:40Z",
-    "last_save_at": "2026-10-11T00:03:48.257Z",
+    "last_save_at": "2026-10-11T00:29:31.224Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7af7f3dc35dbeadce9a06dac0bedabbad859a9671679a7b98fe5fb2b1e87f3cd",
+    "source_fingerprint": "sha256:6cc2b7a3185d1bae0145044135d35038df44b50cb85b0cb52e6077580804cee2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "78463fe11416712bfbb6791b28ba114206c48931d597c7d9e3005c54ae576148",
-      "plan.md": "c15289e9cc4b1ad4667782c5ceed58f1d79f5c0e34fc5403ec741d9b97f05f5f",
-      "tasks.md": "a45af3223d0b263e0d391c08b8e8f8ab6cd57998eeee66051c85e05877628e93",
-      "implementation-summary.md": "eaeec3523378c90667b13e20d14a22049ff0138ec3b286bb295d0380c0f2199e"
+      "spec.md": "e455eb2ea0254259ee049dcbafa424a2f578a2884d32cdc4962e937196120f25",
+      "plan.md": "f5d26ca9ffe6369104616c3fe3dd097afdfa4e8c61b73e86edf913f398033fe1",
+      "tasks.md": "02829b31a656aa5f1d0c629fa81d0103644c016870299660a79ba7c4ac64efed",
+      "implementation-summary.md": "7c7a532ee8c538b79a7b954456d7c2e0b628a15d55634ef37538748f81c85c18"
     },
     "last_active_at": null
   }

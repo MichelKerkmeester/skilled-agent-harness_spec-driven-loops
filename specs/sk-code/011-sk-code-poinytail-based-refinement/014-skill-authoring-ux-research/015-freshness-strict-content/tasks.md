@@ -31,7 +31,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read how the compiler builds signals and families
+- [x] T001 Read how the compiler builds signals and families
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -39,8 +39,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Add failing cases
-- [ ] T003 Build the comparison
+- [x] T002 Add failing cases
+- [x] T003 Build the comparison
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -48,7 +48,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T004 Validate and commit
+- [x] T004 Validate and commit
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -56,9 +56,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Every goal.md criterion passes on the orchestrator's rerun
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every goal.md criterion passes on the orchestrator's rerun
 <!-- /ANCHOR:completion -->
 
 ---
