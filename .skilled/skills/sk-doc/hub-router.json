@@ -293,7 +293,8 @@
         "deterministic scenario",
         "evidence collection",
         "operator validation",
-        "multi-agent execution"
+        "multi-agent execution",
+        "release readiness"
       ]
     },
     "create-benchmark-aliases": {
@@ -384,7 +385,9 @@
         "retire a rule",
         "revise a rule",
         "we should always",
-        "stop doing"
+        "stop doing",
+        "repo rule",
+        "add a rule"
       ]
     },
     "create-with-human-voice-aliases": {

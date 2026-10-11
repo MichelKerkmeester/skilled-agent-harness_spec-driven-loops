@@ -42,7 +42,7 @@
         "create skill",
         "new skill",
         "skill scaffold",
-        "OpenCode skill",
+        "opencode skill",
         "package skill"
       ],
       "advisorRouting": {
@@ -110,7 +110,7 @@
         "readme",
         "folder readme",
         "write readme",
-        "README.md",
+        "readme.md",
         "code folder readme"
       ],
       "advisorRouting": {
@@ -142,8 +142,8 @@
       "command": "/create:agent",
       "aliases": [
         "create agent",
-        "OpenCode agent",
-        "Claude Code agent",
+        "opencode agent",
+        "claude code agent",
         "agent file",
         "new agent",
         "agent persona",
@@ -183,14 +183,14 @@
       "aliases": [
         "create command",
         "slash command",
-        "OpenCode command",
+        "opencode command",
         "argument-hint",
         "allowed-tools",
         "command template",
         "router presentation split",
         "thin router",
         "presentation contract",
-        "$ARGUMENTS"
+        "$arguments"
       ],
       "advisorRouting": {
         "routingClass": "metadata"
@@ -293,14 +293,14 @@
       "command": "/create:benchmark",
       "aliases": [
         "benchmark-report.md",
-        "SOURCE.md",
+        "source.md",
         "mcp-server/benchmarks",
-        "MCP bake-off",
+        "mcp bake-off",
         "behavior benchmark",
         "behavior-benchmark.md",
         "scenario contract",
         "claude-baseline",
-        "benchmark/README.md",
+        "benchmark/readme.md",
         "run-label folder",
         "benchmark package",
         "benchmark fixture",
@@ -345,7 +345,7 @@
         "nested changelog",
         "--bump",
         "--release",
-        "vX.Y.Z.B"
+        "vx.y.z.b"
       ],
       "advisorRouting": {
         "routingClass": "metadata"
@@ -416,10 +416,10 @@
         "trigger_phrases",
         "trigger phrases",
         "importance_tier",
-        "contextType",
+        "contexttype",
         "description budget",
         "4-part version",
-        "X.Y.Z.W",
+        "x.y.z.w",
         "frontmatter versioning",
         "frontmatter version",
         "version field",
@@ -472,8 +472,8 @@
         "validate markdown",
         "score this document",
         "optimize this doc",
-        "DQI",
-        "AI-friendly documentation",
+        "dqi",
+        "ai-friendly documentation",
         "extract structure"
       ],
       "advisorRouting": {
@@ -507,7 +507,7 @@
         "create repo rule",
         "repo rule",
         "project rule",
-        "REPO RULES.md",
+        "repo rules.md",
         "repo-rules",
         "add a rule",
         "retire a rule",
