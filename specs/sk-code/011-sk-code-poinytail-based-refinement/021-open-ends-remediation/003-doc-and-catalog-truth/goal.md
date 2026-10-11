@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/003-doc-and-catalog-truth"
     last_updated_at: "2026-10-11T19:00:00Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "Built the phase, ran the deep review and fixed its findings"
+    next_safe_action: "Operator confirms the bump reading for criterion 4"
     blockers: []
     key_files: []
     session_dedup:
@@ -77,11 +77,18 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet scaffolded | Done | create.sh phase mode with `--with-goal`; spec.md lists every ledger row |
-| Build | Pending | |
+| Build | Done | DV-R1 to R4, DV-R6 and PC-R3 to R7 Fixed; the seven other rows Closed; ledger and Tests table in `implementation-summary.md` |
+| Fleet measures | Done | `frontmatter-version.mjs verify`: exit 1 on 14 of 14 skills before, exit 0 on 14 of 14 after; `gate` and `package_skill.py --check --strict` exit 0 on 14 of 14 before and after |
+| Deep review | Done | Five iterations through cli-pi, DeepSeek V4.1 Flash at max effort, stop policy max-iterations; artifacts in `review/` |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Bump reading (D5, REQ-005, criterion 4) | The orchestrator ruled that the fleet-wide `version:` line removal is housekeeping the sk-doc contract owns: sk-doc is bumped and its changelog explains the removal, and skills touched only by the removal are not bumped. Criterion 4 therefore lists cli-classifier, cli-external-orchestration, cli-orca, mcp-code-mode, mcp-tooling, sk-code, sk-git, sk-prompt and sk-vision. That output is expected under this reading, not a missed bump. |
+| sk-code re-anchor | The line removal shifted 15 live citations in the sk-code playbook down by one line; a separate commit re-anchored them. sk-code is not bumped for it, under the same reading. |
+| `computeForFile` child-doc branch | Left in place and now unreachable, because another phase edits the option parsing in `frontmatter-version.mjs`; this phase changed only `inScope()` and `classify()`. |
+| Warning count in two commit messages | `660e23f537` says 226 and `fc8b3a97e0` says 225 backticked-path warnings. The full report, read after the piped-output fix, has 258. History was not rewritten; `implementation-summary.md` records the correct count. |
+| Deep review R3-P1-001 | The review rated the bump reading as P1 against D5 and criterion 4. Its downgrade trigger asks for an operator-approved amendment, so this reading waits for the operator to confirm it or to ask for the nine bumps. Every other finding was fixed; see `implementation-summary.md`. |
+| Continuity save | The review workflow's `generate-context.js` save step was not run, because it writes into `implementation-summary.md`, which holds the ledger. This file and `implementation-summary.md` carry the continuity. |
 <!-- /ANCHOR:log -->

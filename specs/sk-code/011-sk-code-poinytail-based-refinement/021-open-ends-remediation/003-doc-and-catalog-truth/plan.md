@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 3: doc-and-catalog-truth"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Keep the frontmatter version on SKILL.md only, with the engine, packager, router, standard and templates agreeing, and widen the catalog, citation and playbook checks so they catch the doc drift the research found."
 trigger_phrases:
   - "doc and catalog truth plan"
 importance_tier: "normal"
@@ -20,13 +20,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Node.js ESM and CommonJS scripts, Python 3, Markdown |
+| **Framework** | None |
+| **Storage** | None |
+| **Testing** | `node --test`, plain Node assertion scripts, pytest |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The frontmatter-version engine, the packager and the post-edit router narrow the versioned doc set to `SKILL.md`, and one deterministic script removes the stale `version:` line from every child doc. The standard and templates are rewritten to match. The catalog validator reads two-column File tables, the citation scanner adds the skill's `runtime/` and `scripts/` bases and an opt-in overlap advisory, and the playbook validator reports backticked paths that no longer resolve.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -35,14 +35,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -51,14 +51,18 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Other: validator and checker scripts plus doc edits
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **frontmatter-version.mjs**: computes, applies, verifies and gates the skill edition on `SKILL.md`
+- **package_skill.py**: checks a version on changelog entries and the `SKILL.md` frontmatter only
+- **post-edit-router.cjs**: fires the version gate after an edit to a `SKILL.md`
+- **validate_catalog_package.py**: checks the paths in catalog File tables, three-column and two-column
+- **cite-drift-scan.mjs**: resolves `path:line` citations and can print an identifier-overlap advisory
+- **validate-playbook-package.cjs**: validates playbook packages and reports unresolved backticked paths
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Each checker reads tracked Markdown under `.skilled/skills/`, resolves the paths or versions it names against the tree, and prints a report. Only the version gate and the existing strict checks can fail; the new path and overlap checks only report.
 <!-- /ANCHOR:architecture -->
 
 
@@ -75,7 +79,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-N/A — record any testing beyond the verification tasks in `tasks.md` here.
+Each changed behavior has a test that exits non-zero against the previous code and 0 now; `implementation-summary.md` lists them. The fleet checks (`frontmatter-version.mjs verify` and `gate`, `package_skill.py --check --strict`, the catalog and playbook validators and the citation gate) were measured before and after.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -83,7 +87,7 @@ N/A — record any testing beyond the verification tasks in `tasks.md` here.
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-N/A — record dependencies beyond the components named in the architecture here.
+`020-open-ends-research/006-ci-truth-checks` already built the citation gate and the CI catalog run, which this phase records as Closed.
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -91,8 +95,7 @@ N/A — record dependencies beyond the components named in the architecture here
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-N/A — record rollback steps beyond reverting the scoped change here.
+Revert the phase's commits. The version-line removal is one commit, so reverting it restores every child doc's line.
 <!-- /ANCHOR:rollback -->
 
 ---
-
