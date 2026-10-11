@@ -100,7 +100,7 @@ string, not these files.
 - [ ] `git log --format='%(trailers:key=Spec,valueonly)' HEAD | grep -c '^sk-code/011-'` prints 100 or more, and `git status --short` prints nothing
 - [ ] `node .skilled/bin/compiled-route-guard.cjs` exits 0 listing sk-code `fresh`, and `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "code review my obsidian plugin"` prints `"action":"route"` and no `servingAuthority` key
 - [ ] `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js`, `bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh` and `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` all exit 0
-- [ ] `node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all` and `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` both exit 0
+- [ ] `node .skilled/bin/check-agent-mirror-sync.cjs --all` and `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` both exit 0
 <!-- /ANCHOR:completion -->
 
 ---
@@ -148,6 +148,7 @@ and findings belong here.
 | Integration 2026-10-11 | 012, 013 and 014 were built on separate branches and merged on one integration branch. Binding rows 013 and 014 added; criterion 1 amended to 15 (the parent and 14 direct children) and criterion 2 to 69. Criterion 3 counted `main..HEAD`, which is empty once the epic is on main, so it now counts the epic's `Spec:` trailers reachable from HEAD (80 before integration) and keeps the clean-tree check; the unpushed-branch check is dropped because it cannot hold on main |
 | Closeout added 2026-10-11 | Child 015 closes every item the epic left open, fixed with proof or closed with a written reason; criterion 1 amended to 16 (the parent and 15 direct children) and criterion 2 to 78 (nine closeout summaries) |
 | 018 added 2026-10-11 | Child 018 makes create.sh refuse unknown options; criteria 1 and 2 counts amended to 19 and 90. To fit the new binding row, D2, D3, D5 and D7 were shortened, criterion 3's grep pattern was cut to the `sk-code/011-` prefix, which matches the same trailers, and criterion 5 joins its three commands. No criterion was removed |
+| Criterion 6 path amended 2026-10-11 | The deep-improvement packet was retired, so the agent mirror checker now runs from `.skilled/bin/check-agent-mirror-sync.cjs`; the check itself is unchanged |
 | 017 added 2026-10-11 | Child 017 records the epic's user-facing changes in the v4.0.0.4 release entry; criteria 1 and 2 counts amended to 18 and 89, and the objective shortened to keep the durable slice under 4,000 characters |
 | Handed off, not built here | D2 Codex mirror gap (deep-improvement and git hooks) and D4 stdin deadline (hooks); recorded in the parent spec |
 <!-- /ANCHOR:log -->
