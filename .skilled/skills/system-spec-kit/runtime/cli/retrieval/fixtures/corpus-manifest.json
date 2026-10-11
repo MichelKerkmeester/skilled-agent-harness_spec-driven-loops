@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f7a1f14e6efe7a977507839465f37d5104052d724b9a6b9a35ac6f060933cce8",
+  "corpusHash": "018ba51394e6763b26b7843003fb5cc48a6b3a15142e511ab4da00e04f379d12",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24094,
+  "includedPathCount": 24095,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -23694,6 +23694,7 @@
     "specs/system-speckit/034-spec-folder-tooling/changelog/changelog-034-018-epic-docs-alignment.md",
     "specs/system-speckit/034-spec-folder-tooling/changelog/changelog-034-019-epic-follow-up-fixes.md",
     "specs/system-speckit/034-spec-folder-tooling/changelog/changelog-034-020-deep-review-remediation.md",
+    "specs/system-speckit/034-spec-folder-tooling/changelog/changelog-034-021-follow-up-defect-fixes.md",
     "specs/system-speckit/034-spec-folder-tooling/review/deep-review-dashboard.md",
     "specs/system-speckit/034-spec-folder-tooling/review/deep-review-strategy.md",
     "specs/system-speckit/034-spec-folder-tooling/review/iterations/iteration-001.md",
@@ -24125,7 +24126,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "deb2d799501cd78ceafdaca6712aff8d2663fde6c94aa129b8cec8083ed1c76a",
+  "manifestHash": "dab8bd64cb34879bf6551d09c8c3497045da7393ebefc689849a627bbefb169b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

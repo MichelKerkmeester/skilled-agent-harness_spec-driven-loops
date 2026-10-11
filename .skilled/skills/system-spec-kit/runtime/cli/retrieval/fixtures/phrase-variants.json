@@ -1,5 +1,5 @@
 {
-  "manifestHash": "deb2d799501cd78ceafdaca6712aff8d2663fde6c94aa129b8cec8083ed1c76a",
+  "manifestHash": "dab8bd64cb34879bf6551d09c8c3497045da7393ebefc689849a627bbefb169b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -95403,6 +95403,9 @@
     ],
     "spec folder tooling epic follow up fixes changelog": [
       "spec folder tooling epic follow up fixes changelog"
+    ],
+    "spec folder tooling follow up defect fixes changelog": [
+      "spec folder tooling follow up defect fixes changelog"
     ],
     "spec folder tooling follow up defects": [
       "spec folder tooling follow up defects"
