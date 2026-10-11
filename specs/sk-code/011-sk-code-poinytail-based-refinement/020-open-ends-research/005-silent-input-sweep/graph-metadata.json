@@ -35,14 +35,17 @@
       "phase"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/repo-rules/prevent-overengineering.md"
+      "review/review-report.md",
+      "review/deep-review-state.jsonl",
+      ".skilled/repo-rules/prevent-overengineering.md",
+      "spec/create.sh"
     ],
     "entities": [
       {
@@ -76,9 +79,27 @@
         "source": "derived"
       },
       {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-state.jsonl",
+        "kind": "file",
+        "path": "review/deep-review-state.jsonl",
+        "source": "derived"
+      },
+      {
         "name": "prevent-overengineering.md",
         "kind": "doc",
         "path": ".skilled/repo-rules/prevent-overengineering.md",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": "spec/create.sh",
         "source": "derived"
       },
       {
@@ -170,30 +191,12 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "CLI scripts under `.skilled` can accept bad input without saying so",
     "created_at": "2026-10-11T15:54:56Z",
-    "last_save_at": "2026-10-11T16:01:44.283Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-11T18:03:34.693Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -202,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0eccbf97681ac2a9cfce38eb54661cf23f2c9bfe03998b02da4bdcd807fdb6a0",
+    "source_fingerprint": "sha256:4007ed538357541acb6ed28ca98877c0acc15ed35fc6a55db9229069cbb38b31",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bc0357528a13627511eff821da3a0c78474f85f1b0b5bc9732b2420ee32cd005",
-      "plan.md": "6d5bd93aec9c5dba6a361a37612ff860665796802a97fe6a2a1edf075a31b141",
-      "tasks.md": "098604a176ecd53bb59efeb32967b540e7751669c924a730f8b0d26c9fb31913",
-      "implementation-summary.md": "713ca27ff29e5190e3a06c301fcc0cc39454d9ade690d77732a80c36d551e7a6"
+      "spec.md": "32adae8612684c5490828d4ade0407c34e702a9e3cae7492c4e32edb5fca111a",
+      "plan.md": "cef1c8c1f7374caa1e9b00e054b6558b12d0a78c2b658cc6424860d1dd1f6999",
+      "tasks.md": "130f136a15cca2f77e546db84bf4e4154be332fc86e14e55f8b8fc42e102e9af",
+      "implementation-summary.md": "726222df6ad2f86c8726082444414ca237478a3c03738d45d1dc518c7e0916eb"
     },
     "last_active_at": null
   }

@@ -1,11 +1,12 @@
 {
+  "level": "1",
   "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep",
   "description": "Phase 5: silent-input-sweep",
   "keywords": [
     "phase",
     "silent-input-sweep"
   ],
-  "lastUpdated": "2026-10-11T15:54:57.476Z",
+  "lastUpdated": "2026-10-11T18:02:10.487Z",
   "specId": "005",
   "folderSlug": "silent-input-sweep",
   "parentChain": [
@@ -13,7 +14,8 @@
     "011-sk-code-poinytail-based-refinement",
     "020-open-ends-research"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "11-10-26_19-02__deep-review-of-273-cli-scripts-under-skilled.md"
+  ]
 }

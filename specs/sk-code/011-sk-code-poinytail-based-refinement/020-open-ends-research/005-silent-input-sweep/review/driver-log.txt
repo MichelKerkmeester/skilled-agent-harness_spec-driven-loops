@@ -1,0 +1,80 @@
+[16:26:36] iter 1: graph convergence telemetry: .9,"passed":true,"role":"weighted"},{"signal":"evidenceDensity","value":0,"threshold":1,"passed":false,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.4,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[16:26:44] iter 1: dispatch start (model deepseek-v4.1-flash, dimension correctness, slice 33 files)
+[16:33:02] iter 1: dispatch exit 0
+[16:33:03] iter 1: verify exit 0: OK iteration 1 complete: narrative + route-proof + delta
+[16:33:06] iter 1: claim adjudication append exit 0 passed=False
+[16:33:06] iter 1: reducer exit 0: "openFindingsCount":5,"convergenceScore":0,
+[16:33:07] iter 1: graph upsert exit 0
+[16:33:07] iter 1: done (route deepseek-v4.1-flash)
+[16:33:45] iter 2: graph convergence telemetry: 9,"passed":true,"role":"weighted"},{"signal":"evidenceDensity","value":0,"threshold":1,"passed":false,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.65,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[16:33:47] iter 2: dispatch start (model deepseek-v4.1-flash, dimension security, slice 32 files)
+[16:41:32] iter 2: dispatch exit 0
+[16:41:33] iter 2: verify exit 0: OK iteration 2 complete: narrative + route-proof + delta
+[16:41:36] iter 2: claim adjudication append exit 0 passed=True
+[16:41:36] iter 2: reducer exit 0: "openFindingsCount":12,"convergenceScore":0,
+[16:41:37] iter 2: graph upsert exit 0
+[16:41:37] iter 2: done (route deepseek-v4.1-flash)
+[16:41:38] iter 3: graph convergence telemetry: 9,"passed":true,"role":"weighted"},{"signal":"evidenceDensity","value":0,"threshold":1,"passed":false,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.65,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[16:41:39] iter 3: dispatch start (model deepseek-v4.1-flash, dimension traceability, slice 26 files)
+[16:56:56] iter 3: dispatch exit 0
+[16:56:57] iter 3: verify exit 0: OK iteration 3 complete: narrative + route-proof + delta
+[16:56:59] iter 3: claim adjudication append exit 0 passed=True
+[16:56:59] iter 3: reducer exit 0: "openFindingsCount":18,"convergenceScore":0.69,
+[16:56:59] iter 3: graph upsert exit 0
+[16:56:59] iter 3: done (route deepseek-v4.1-flash)
+[16:57:00] iter 4: graph convergence telemetry: 9,"passed":true,"role":"weighted"},{"signal":"evidenceDensity","value":0,"threshold":1,"passed":false,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.65,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[16:57:00] iter 4: dispatch start (model deepseek-v4.1-flash, dimension maintainability, slice 26 files)
+[17:05:11] iter 4: dispatch exit 0
+[17:05:11] iter 4: verify exit 0: OK iteration 4 complete: narrative + route-proof + delta
+[17:05:12] iter 4: claim adjudication append exit 0 passed=True
+[17:05:12] iter 4: reducer exit 0: "openFindingsCount":25,"convergenceScore":0.725,
+[17:05:13] iter 4: graph upsert exit 0
+[17:05:13] iter 4: done (route deepseek-v4.1-flash)
+[17:05:13] iter 5: graph convergence telemetry: 9,"passed":true,"role":"weighted"},{"signal":"evidenceDensity","value":0,"threshold":1,"passed":false,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.65,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[17:05:13] iter 5: dispatch start (model deepseek-v4.1-flash, dimension correctness, slice 22 files)
+[17:15:17] iter 5: dispatch exit 0
+[17:15:17] iter 5: verify exit 0: OK iteration 5 complete: narrative + route-proof + delta
+[17:15:18] iter 5: claim adjudication append exit 0 passed=True
+[17:15:18] iter 5: reducer exit 0: "openFindingsCount":33,"convergenceScore":0.732,
+[17:15:19] iter 5: graph upsert exit 0
+[17:15:19] iter 5: done (route deepseek-v4.1-flash)
+[17:15:19] iter 6: graph convergence telemetry: 9,"passed":true,"role":"weighted"},{"signal":"evidenceDensity","value":0,"threshold":1,"passed":false,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.65,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[17:15:19] iter 6: dispatch start (model deepseek-v4.1-flash, dimension security, slice 17 files)
+[17:23:34] iter 6: dispatch exit 0
+[17:23:34] iter 6: verify exit 0: OK iteration 6 complete: narrative + route-proof + delta
+[17:23:37] iter 6: claim adjudication append exit 0 passed=True
+[17:23:37] iter 6: reducer exit 0: "openFindingsCount":42,"convergenceScore":0.6599999999999999,
+[17:23:38] iter 6: graph upsert exit 0
+[17:23:38] iter 6: done (route deepseek-v4.1-flash)
+[17:23:38] iter 7: graph convergence telemetry: 9,"passed":true,"role":"weighted"},{"signal":"evidenceDensity","value":0,"threshold":1,"passed":false,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.65,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[17:23:39] iter 7: dispatch start (model deepseek-v4.1-flash, dimension traceability, slice 23 files)
+[17:29:54] iter 7: dispatch exit 0
+[17:29:54] iter 7: verify exit 0: OK iteration 7 complete: narrative + route-proof + delta
+[17:29:56] iter 7: claim adjudication append exit 0 passed=True
+[17:29:56] iter 7: reducer exit 0: "openFindingsCount":50,"convergenceScore":0.7,
+[17:29:56] iter 7: graph upsert exit 0
+[17:29:56] iter 7: done (route deepseek-v4.1-flash)
+[17:29:56] iter 8: graph convergence telemetry: 9,"passed":true,"role":"weighted"},{"signal":"evidenceDensity","value":0,"threshold":1,"passed":false,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.65,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[17:29:57] iter 8: dispatch start (model deepseek-v4.1-flash, dimension maintainability, slice 32 files)
+[17:40:21] iter 8: dispatch exit 0
+[17:40:21] iter 8: verify exit 0: OK iteration 8 complete: narrative + route-proof + delta
+[17:40:23] iter 8: claim adjudication append exit 0 passed=True
+[17:40:23] iter 8: reducer exit 0: "openFindingsCount":58,"convergenceScore":0.87,
+[17:40:23] iter 8: graph upsert exit 0
+[17:40:23] iter 8: done (route deepseek-v4.1-flash)
+[17:40:23] iter 9: graph convergence telemetry: 9,"passed":true,"role":"weighted"},{"signal":"evidenceDensity","value":0,"threshold":1,"passed":false,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.65,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[17:40:24] iter 9: dispatch start (model deepseek-v4.1-flash, dimension correctness, slice 33 files)
+[17:47:28] iter 9: dispatch exit 0
+[17:47:28] iter 9: verify exit 0: OK iteration 9 complete: narrative + route-proof + delta
+[17:47:30] iter 9: claim adjudication append exit 0 passed=True
+[17:47:30] iter 9: reducer exit 0: "openFindingsCount":64,"convergenceScore":0.92,
+[17:47:30] iter 9: graph upsert exit 0
+[17:47:30] iter 9: done (route deepseek-v4.1-flash)
+[17:47:30] iter 10: graph convergence telemetry: 9,"passed":true,"role":"weighted"},{"signal":"evidenceDensity","value":0,"threshold":1,"passed":false,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.65,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[17:47:31] iter 10: dispatch start (model deepseek-v4.1-flash, dimension security, slice 29 files)
+[17:55:27] iter 10: dispatch exit 0
+[17:55:27] iter 10: verify exit 0: OK iteration 10 complete: narrative + route-proof + delta
+[17:55:29] iter 10: claim adjudication append exit 0 passed=True
+[17:55:29] iter 10: reducer exit 0: "openFindingsCount":73,"convergenceScore":0.91,
+[17:55:29] iter 10: graph upsert exit 0
+[17:55:29] iter 10: done (route deepseek-v4.1-flash)
