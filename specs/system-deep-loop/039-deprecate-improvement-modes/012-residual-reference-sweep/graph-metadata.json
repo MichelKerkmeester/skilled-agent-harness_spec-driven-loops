@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Phase 010 searched for the retired mode and command names",
     "created_at": "2026-10-11T07:17:18Z",
-    "last_save_at": "2026-10-11T08:38:17.264Z",
+    "last_save_at": "2026-10-11T09:18:56.318Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fef49eb19f2eae03af3948c8814fbeb6937f551b58d6ea803dfb6e55d38e4e9e",
+    "source_fingerprint": "sha256:082c64ae32a1ec17027b2d912ee7ed54dc3160074dda9f98e1b3d3ec7eac8e7f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dfcd4b73dff96ddec2c9413046b6db36e688767a9f393aef9769e3c4a94cb820",
       "plan.md": "c64904d24e1b5c64b5515484c8f8849a67a2c70812f04be95b7c6ded8a399839",
       "tasks.md": "dbab92668179516508d881d4f1933edba81804fc624de1fea7634301df688e18",
-      "implementation-summary.md": "b3af6f81838fa535be8f52bce57b53ba30490cffff4a3a7d550e2a55cf33e26e"
+      "implementation-summary.md": "7f88e4547aef46916e7b3d1200c36b95624ec9c3e7be425e24c4620812ecd747"
     },
     "last_active_at": null
   }

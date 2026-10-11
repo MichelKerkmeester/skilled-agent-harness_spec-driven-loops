@@ -60,6 +60,7 @@ Searching for the retired modes' vocabulary rather than their names found live l
 | `.skilled/skills/sk-doc/sk-create-benchmark/` SKILL, guide and three templates | Modified | Improvement prefix, mode and evidence placeholders removed |
 | Hub `SKILL.md`, `ARCHITECTURE.md`, `graph-metadata.json`, runtime READMEs, state-format, playbook, `sk-prompt/graph-metadata.json`, `.skilled/skills/README.txt`, three benchmark READMEs | Modified | Stale statements, two guard rules, the improvement peer edge and three dead related-skill rows removed; ADR-004 marked Retired |
 | `specs/system-deep-loop/graph-metadata.json` | Modified | Track root lists this packet |
+| `cli-classifier`, `cli-external-orchestration`, `mcp-tooling`, `sk-design`, `sk-doc` README, `mode-registry.json`, `hub-router.json`, `description.json` | Modified | Follow-up at the operator's request: every parent-skill-check warning on these hubs cleared (README versions match `SKILL.md`, aliases lowercased, each alias added to its router class keywords, packet names added to description keywords); all five hubs report 0 warnings, scorer metrics unchanged |
 | Contracts, activation manifests, Hermes mirrors, skill graph, trigger index | Regenerated | Built from the edited sources |
 <!-- /ANCHOR:what-built -->
 
