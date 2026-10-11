@@ -129,7 +129,7 @@ These bind every build phase, 002 to 006.
 | 13 | 013-root-cause-and-ux-research/ | Ten-iteration deep research into the root causes of the epic's issues and the external-user experience, plus six fix phases | Complete |
 | 14 | 014-skill-authoring-ux-research/ | Research on how sk-create-skill and system-skill-advisor can make the 092 class of authoring errors near impossible | Complete |
 | 15 | 015-closeout/ | Close every item the epic left open: fixed with proof, or closed with a written reason | Complete |
-| 16 | 016-residual-closeout/ | Fix what the closeout left: package strict, hooks README voice, admission gold, battery misses, hooks vitest scope, and a DeepSeek review of the closeout with its fixes | In Progress |
+| 16 | 016-residual-closeout/ | Fix what the closeout left: package strict, hooks README voice, admission gold, battery misses, hooks vitest scope, and a DeepSeek review of the closeout with its fixes | Complete |
 
 ### Phase Transition Rules
 

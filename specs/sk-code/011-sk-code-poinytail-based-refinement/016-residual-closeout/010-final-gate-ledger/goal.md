@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-016-010-final-gate-ledger"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -70,7 +70,9 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase planned | Done | Scope written from review-report.md |
+| Phases 007 to 009 committed | Done | 7ef682b00a, 2f77c02894, 29931d7cd3 |
+| Final gate | Done | Every step exit 0 |
+| Ledgers closed | Done | 016 parent and epic |
 
 ### Deviations and findings
 

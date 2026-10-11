@@ -19,7 +19,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-016-residual-closeout"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -111,10 +111,13 @@ and findings belong here.
 | Phase 007 | Done | Every wrapper payload is read |
 | Phase 008 | Done | OPENCODE hint only inside the hub |
 | Phase 009 | Done | Missing config named in the headline |
+| Phase 010 | Done | Final gate green from the committed state |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | Each phase records its own |
+| Review run | /deep:review ran through the fan-out step with one cli-pi lineage, as the 013 review did; the orchestrator wrote review-report.md |
+| Changelog entries | Written by the orchestrator, not by a dispatch |
+| Advisor vitest baseline flake | Not reproduced in three later runs; recorded, not fixed |
 <!-- /ANCHOR:log -->

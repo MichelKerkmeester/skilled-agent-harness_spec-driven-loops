@@ -12,15 +12,15 @@ _memory:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout"
     last_updated_at: "2026-10-11T18:00:00Z"
     last_updated_by: "residual-closeout-orchestrator"
-    recent_action: "Closed phase 009"
-    next_safe_action: "Run the final gate in phase 010"
+    recent_action: "Closed phase 010 and the parent"
+    next_safe_action: "None. The operator decides on merging the worktree branch"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "rc-016-phase-parent"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +37,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-11 |
 | **Branch** | `worktrees/099-residual-closeout` |
 | **Parent Spec** | `../spec.md` |
@@ -108,7 +108,7 @@ Fix each item with proof from a command that ran, or close it only where every h
 | 7 | 007-dispatch-wrapper-scan/ | Read every shell wrapper payload, not only the first | Complete |
 | 8 | 008-surface-hint-hub-root/ | Send OPENCODE only inside the hub's own `.skilled` directory | Complete |
 | 9 | 009-reducer-config-message/ | Name the missing review config in the strict failure headline | Complete |
-| 10 | 010-final-gate-ledger/ | Run the final gate from the committed state and close the ledger | Pending |
+| 10 | 010-final-gate-ledger/ | Run the final gate from the committed state and close the ledger | Complete |
 
 ### Phase Transition Rules
 

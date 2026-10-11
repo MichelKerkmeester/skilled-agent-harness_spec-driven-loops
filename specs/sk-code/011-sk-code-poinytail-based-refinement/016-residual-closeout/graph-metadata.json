@@ -99,12 +99,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -124,6 +118,12 @@
       },
       {
         "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Fix",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -167,17 +167,17 @@
     ],
     "causal_summary": "The 015 closeout ended several items CLOSED that an honest fix could reach: 13 skill units failing the strict package check, seven HVR hard blockers in a hooks README, a drifted deep-loop admission scenario, three advisor battery misses, and a hooks vitest config that collects archived spec tests and rewrites a tracked file",
     "created_at": "2026-10-11T10:14:03Z",
-    "last_save_at": "2026-10-11T12:38:57.111Z",
+    "last_save_at": "2026-10-11T12:44:48.180Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:510ab5623fb99d91bde4c35039db8831858aae8b5001f8d36d0e30f182c49731",
+    "source_fingerprint": "sha256:85537ef2b7e1b7d84d8742e0059ff8e4092e7fd2d528cf1e5cea25f119a8eb0f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6f6fcbf147dd6c76651104d63b8e53bb860eddf32d7d5ba9ba335ef5a6d827df"
+      "spec.md": "3e78dae9e3adfe14680236deeb3506a7ec72cb9698f09c1fcfb9aa37f7934747"
     },
     "last_active_at": null
   }

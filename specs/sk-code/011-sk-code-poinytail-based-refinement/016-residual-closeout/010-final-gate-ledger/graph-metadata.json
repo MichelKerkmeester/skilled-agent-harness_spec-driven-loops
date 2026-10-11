@@ -36,7 +36,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -82,12 +82,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -107,6 +101,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Each",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Each phase ran its own checks",
     "created_at": "2026-10-11T11:28:06Z",
-    "last_save_at": "2026-10-11T11:30:01.108Z",
+    "last_save_at": "2026-10-11T12:44:49.810Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c8772aedc36e354636394e85a84e88e815424e1b8b8c57ed7f5113219cf69602",
+    "source_fingerprint": "sha256:a22fed7691ab9bb7054edc85e32e8f1556d816a38e90b8b2eeca58bb9f2b6639",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a082d632a2ad5054a897ccf5cdf021dde063dd169b5e00dfb02bb40b750fb027",
-      "plan.md": "c60cb81157a0ac97420363b97d339fcdafaaac9861a50f23616ec05d129a2413",
-      "tasks.md": "95c93f4a1148762f09001b6168218373a6c97a19eaa4d21b64b9412b4ec1cd3d",
-      "implementation-summary.md": "2ba37457960a681189add090b28e42f7bcf64f2305eb45136e64655b2761e5e1"
+      "spec.md": "c00fb1415565b90059aa0d99e6519b9445d5ae1fb16df3ac1ccb6872217ca502",
+      "plan.md": "e0cd3fcec01c2690e0a8bf4e73b0c9a3804c85a62cc1647f76562b5debe5f229",
+      "tasks.md": "faf7a437db3159422583d8b26f0187cbcb873479427c4b6a2710c2fe0111e61f",
+      "implementation-summary.md": "323304ba16d423e829dd0a91d334fae8de9b23207168d1942e14c0d731e1e8ef"
     },
     "last_active_at": null
   }
