@@ -1,3 +1,0 @@
-All 5 iterations, state files, and the synthesis report are complete for this lineage, confined entirely to `specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/`. Final verdict: **CONDITIONAL** (0 P0, 2 P1 — both adjudicated, 4 P2 advisories), covering all 4 dimensions plus core/overlay traceability protocols. No writes occurred outside the lineage directory.
-
-FANOUT_LINEAGE_COMPLETE:sonnet5-xhigh
