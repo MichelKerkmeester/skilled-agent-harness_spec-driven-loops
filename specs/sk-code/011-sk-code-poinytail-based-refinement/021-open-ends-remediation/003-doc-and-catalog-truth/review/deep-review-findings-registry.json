@@ -1,0 +1,1646 @@
+{
+  "sessionId": "rvw-021-003-doc-catalog-truth-20261011T195710Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "Goal D5 bump gate fails: 9 of 14 touched skills carry no bump or changelog entry",
+      "file": "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/003-doc-and-catalog-truth/goal.md",
+      "line": 48,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "Templates asset lists version as a Required Field for the Skill README and Feature Catalog child templates",
+      "file": ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md",
+      "line": 480,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "Post-edit quality README still documents the pre-change frontmatter-versions dispatch scope",
+      "file": ".skilled/hooks/post-edit-quality/README.md",
+      "line": 50,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "Dead child-doc derivation branch and unreachable git-walk machinery remain in the engine",
+      "file": ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+      "line": 260,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-004",
+      "severity": "P2",
+      "title": "Versioning standard example cites a superseded system-spec-kit version that the same change set bumped",
+      "file": ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+      "line": 95,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Completion ledger is still the template scaffold: 0 of 17 rows, no Tests table",
+      "file": "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/003-doc-and-catalog-truth/implementation-summary.md",
+      "line": 1,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Router catalog/playbook scope mapper and table have no production caller after the SKILL.md-only narrowing",
+      "file": ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
+      "line": 120,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "SKILL.md predicate spelled five ways in the engine, vestigial skillsRoot parameters, unread openIdx field",
+      "file": ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+      "line": 196,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "Strip executed a narrower scope than the standard MUST-NOT statement: 47 child docs still carry frontmatter version lines",
+      "file": ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+      "line": 30,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "Goal D5 bump gate fails: 9 of 14 touched skills carry no bump or changelog entry",
+      "file": "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/003-doc-and-catalog-truth/goal.md",
+      "line": 48,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "Goal D5 bump gate fails: 9 of 14 touched skills carry no bump or changelog entry",
+      "file": "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/003-doc-and-catalog-truth/goal.md",
+      "line": 48,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 8
+  },
+  "openFindingsCount": 9,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.89,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "dead_code",
+      "dead_code_after_narrowing",
+      "doc_contract_drift",
+      "duplicated_policy_surface",
+      "incomplete_refactor",
+      "missing_completion_evidence",
+      "spec_mismatch"
+    ],
+    "ruledOut": [
+      "bulk_mutation_integrity",
+      "catalog_anchor_drift",
+      "citation_drift",
+      "command_injection",
+      "comment_hygiene",
+      "cross_runtime_drift",
+      "doc_code_drift",
+      "doc_contract_drift",
+      "fragile_parsing",
+      "gate_bypass",
+      "incomplete_refactor",
+      "logic_error",
+      "path_traversal_read",
+      "path_traversal_write",
+      "playbook_capability_drift",
+      "scope_regression",
+      "spec_mismatch",
+      "test_coverage_gap",
+      "untrusted_input_regex",
+      "validator_regression",
+      "version_anchor_drift"
+    ],
+    "deferred": [
+      "pinned_artifact_integrity"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "incomplete_refactor": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "dead_code": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "doc_contract_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "scope_regression": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "logic_error": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "validator_regression": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "command_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "path_traversal_write": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "path_traversal_read": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "untrusted_input_regex": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "gate_bypass": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "bulk_mutation_integrity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          5
+        ]
+      },
+      "pinned_artifact_integrity": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "spec_mismatch": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          5
+        ]
+      },
+      "missing_completion_evidence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          5
+        ]
+      },
+      "citation_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "version_anchor_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          5
+        ]
+      },
+      "cross_runtime_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "catalog_anchor_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "playbook_capability_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "dead_code_after_narrowing": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "duplicated_policy_surface": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "comment_hygiene": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "test_coverage_gap": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "fragile_parsing": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "doc_code_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 2,
+      "id": "SL-210",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json",
+        ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs"
+      ],
+      "bugClass": "pinned_artifact_integrity",
+      "disposition": "deferred",
+      "rationale": "Not scored; deferred to the compiled-routing test suite.",
+      "evidenceRefs": [
+        ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs:118"
+      ],
+      "reason": "recomputation needs the compiled-routing tooling; runtime comparison verified instead"
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+        ".skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh"
+      ],
+      "bugClass": "scope_regression",
+      "disposition": "ruled_out",
+      "rationale": "the wrapper execs the engine and the engine discovers only SKILL.md; all 57 pass",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:203",
+        "command:gate"
+      ],
+      "reason": "gate and verify executed green over the complete SKILL.md population"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+      ],
+      "bugClass": "validator_regression",
+      "disposition": "ruled_out",
+      "rationale": "both extensions are covered by passing dedicated tests",
+      "evidenceRefs": [
+        "command:catalog-tests",
+        "command:playbook-tests"
+      ],
+      "reason": "executed suites green and each new behavior has a named assertion"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+        ".skilled/skills/sk-doc/shared/scripts/classifier-cite-drift-scan.mjs"
+      ],
+      "bugClass": "logic_error",
+      "disposition": "ruled_out",
+      "rationale": "candidate order preserves prior resolutions and the advisory semantics match their tests",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:360",
+        ".skilled/skills/sk-doc/shared/scripts/classifier-cite-drift-scan.mjs:118",
+        "command:cite-drift-tests"
+      ],
+      "reason": "direct read plus 67 green tests"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-008",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+      ],
+      "bugClass": "logic_error",
+      "disposition": "ruled_out",
+      "rationale": "piped regression assertions confirm the whole report and the same exit codes",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:884",
+        "command:playbook-tests"
+      ],
+      "reason": "dedicated piped-report regression test green"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-009",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md"
+      ],
+      "bugClass": "doc_contract_drift",
+      "disposition": "ruled_out",
+      "rationale": "all spot-checked corrections resolve to the claimed content",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1060"
+      ],
+      "reason": "spot checks passed"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-010",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+      ],
+      "bugClass": "scope_regression",
+      "disposition": "ruled_out",
+      "rationale": "fleet-wide checks show a clean, consistent strip",
+      "evidenceRefs": [
+        "command:verify-57-57"
+      ],
+      "reason": "engine verify and gate green; changelog and sample checks clean"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-201",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "New attacker-influenced input is a directory name passed as one argv element.",
+      "evidenceRefs": [
+        ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:202",
+        ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:351",
+        ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:407"
+      ],
+      "reason": "argv-array spawn sites with no shell and no string command lines"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-202",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "The wrapper is 12 lines and every expansion is quoted.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh:12"
+      ],
+      "reason": "quoted exec with no dynamic command construction"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-203",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+      ],
+      "bugClass": "path_traversal_write",
+      "disposition": "ruled_out",
+      "rationale": "No path in this change set strengthens or weakens the guard.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:280",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:225"
+      ],
+      "reason": "lexical containment guard plus non-symlink discovery; explicit-symlink case is pre-existing and operator-supplied"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-204",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+      ],
+      "bugClass": "path_traversal_read",
+      "disposition": "ruled_out",
+      "rationale": "Output records non-resolution only, so it is not a usable existence oracle.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:379",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:387",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:399"
+      ],
+      "reason": "existence probe with no read/exec/write, and a hit produces no output"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-205",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py"
+      ],
+      "bugClass": "path_traversal_read",
+      "disposition": "ruled_out",
+      "rationale": "The widening changes row selection, not probing capability.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py:425",
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py:586"
+      ],
+      "reason": "containment check precedes any git call and no shell is used"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-206",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/classifier-cite-drift-scan.mjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+      ],
+      "bugClass": "untrusted_input_regex",
+      "disposition": "ruled_out",
+      "rationale": "Token comparison is exact, not pattern-based.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/classifier-cite-drift-scan.mjs:118",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:375"
+      ],
+      "reason": "no dynamic RegExp construction; patterns are fixed and linear"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-207",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs"
+      ],
+      "bugClass": "path_traversal_read",
+      "disposition": "ruled_out",
+      "rationale": "The new bases append candidates; only tracked paths are ever opened.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:765"
+      ],
+      "reason": "tracked-only resolution gates every read"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-208",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md"
+      ],
+      "bugClass": "gate_bypass",
+      "disposition": "ruled_out",
+      "rationale": "The rewritten standard retains the skip rule for the narrowed SKILL.md-only scope.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:387",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:65"
+      ],
+      "reason": "documented contract, reported as skip rather than ok, unchanged by this change set"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-209",
+      "dimension": "security",
+      "targetRefs": [
+        "31888d05bb"
+      ],
+      "bugClass": "bulk_mutation_integrity",
+      "disposition": "ruled_out",
+      "rationale": "Git arithmetic over the strip commit bounds the mutation to the version line.",
+      "evidenceRefs": [
+        "31888d05bb"
+      ],
+      "reason": "one removed line per file, all version lines, no additions"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-303",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/003-doc-and-catalog-truth/spec.md",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md"
+      ],
+      "bugClass": "citation_drift",
+      "disposition": "ruled_out",
+      "rationale": "verified against the scaffold commit",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/003-doc-and-catalog-truth/spec.md:113"
+      ],
+      "reason": "citations were accurate when written; drift is inherent to a frozen plan, not an error"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-304",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/*/SKILL.md",
+        ".hermes/skills/*/SKILL.md"
+      ],
+      "bugClass": "version_anchor_drift",
+      "disposition": "ruled_out",
+      "rationale": "anchor alignment holds across all skills",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/SKILL.md:5"
+      ],
+      "reason": "no version or mirror mismatch found"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-305",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".claude",
+        ".codex",
+        ".cursor",
+        ".pi",
+        ".opencode"
+      ],
+      "bugClass": "cross_runtime_drift",
+      "disposition": "ruled_out",
+      "rationale": "mirrors are symlinks or updated",
+      "evidenceRefs": [
+        ".opencode/plugins/tests/sk-code-post-edit-quality.test.cjs:181"
+      ],
+      "reason": "no stale cross-runtime description found"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-306",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts"
+      ],
+      "bugClass": "catalog_anchor_drift",
+      "disposition": "ruled_out",
+      "rationale": "third of three advisor anchors; other two verified in iteration 1",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1495"
+      ],
+      "reason": "anchor resolves to the described code"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-307",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/iteration-citation-jsonl.md",
+        ".skilled/agents/deep-research.md"
+      ],
+      "bugClass": "playbook_capability_drift",
+      "disposition": "ruled_out",
+      "rationale": "ranges verified against file length",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/iteration-citation-jsonl.md:101"
+      ],
+      "reason": "all corrected ranges are inside their files"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-308",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+      ],
+      "bugClass": "spec_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "directly replayed",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/003-doc-and-catalog-truth/spec.md:103"
+      ],
+      "reason": "requirement satisfied on the full population"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/003-doc-and-catalog-truth/spec.md"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "no new duplication beyond R4-P2-002",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:32",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/003-doc-and-catalog-truth/spec.md:134",
+        ".skilled/skills/sk-doc/changelog/v2.3.5.0.md:11"
+      ],
+      "reason": "membership differences are documented as deliberate (standard line 32, DV-R7 spec line 134) and the remaining template gap is already tracked as R1-P2-001"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py",
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs"
+      ],
+      "bugClass": "comment_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "hard-block comment-hygiene directive checked against the changed files",
+      "evidenceRefs": [
+        ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:55"
+      ],
+      "reason": "no artifact ids or spec paths appear in the changed scripts' comments"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-405",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/scripts/tests/test-frontmatter-version.mjs",
+        ".skilled/skills/sk-doc/scripts/tests/test_validate_catalog_package.py",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs",
+        ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
+        ".opencode/plugins/tests/sk-code-post-edit-quality.test.cjs"
+      ],
+      "bugClass": "test_coverage_gap",
+      "disposition": "ruled_out",
+      "rationale": "coverage floor checked per public surface changed",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/scripts/tests/test_validate_catalog_package.py:190",
+        ".skilled/skills/sk-doc/scripts/tests/test-frontmatter-version.mjs:96"
+      ],
+      "reason": "each changed behavior carries a named regression test at the reviewed lines"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-406",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs"
+      ],
+      "bugClass": "fragile_parsing",
+      "disposition": "ruled_out",
+      "rationale": "read the changed parsing blocks end to end",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py:310",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:396"
+      ],
+      "reason": "guards are explicit at the changed lines and no silent failure path was introduced"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-503",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-design/SKILL.md",
+        ".skilled/skills/sk-doc/SKILL.md",
+        ".skilled/skills/system-deep-loop/SKILL.md",
+        ".skilled/skills/system-skill-advisor/SKILL.md",
+        ".skilled/skills/system-spec-kit/SKILL.md"
+      ],
+      "bugClass": "version_anchor_drift",
+      "disposition": "ruled_out",
+      "rationale": "anchor rule holds for every bumped skill",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/SKILL.md:1-12"
+      ],
+      "reason": "all five bumped SKILL.md values equal their newest changelog entry"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-504",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/**",
+        "commit:31888d05bb"
+      ],
+      "bugClass": "bulk_mutation_integrity",
+      "disposition": "ruled_out",
+      "rationale": "no over-strip found",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/SKILL.md:6",
+        "commit:31888d05bb"
+      ],
+      "reason": "no SKILL.md or changelog entry lost a version, and the strip is one deletion per file by its own numstat"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-505",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs"
+      ],
+      "bugClass": "incomplete_refactor",
+      "disposition": "ruled_out",
+      "rationale": "no separate checker regression",
+      "evidenceRefs": [
+        "commit:c071e01662"
+      ],
+      "reason": "checker-level narrowing is consistent; the residual mismatch is the strip-versus-standard scope filed as R5-P2-001"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+        ".skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh"
+      ],
+      "bugClass": "scope_regression",
+      "disposition": "ruled_out",
+      "rationale": "the wrapper execs the engine and the engine discovers only SKILL.md; all 57 pass",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:203",
+        "command:gate"
+      ],
+      "proof": "gate and verify executed green over the complete SKILL.md population"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+      ],
+      "bugClass": "validator_regression",
+      "disposition": "ruled_out",
+      "rationale": "both extensions are covered by passing dedicated tests",
+      "evidenceRefs": [
+        "command:catalog-tests",
+        "command:playbook-tests"
+      ],
+      "proof": "executed suites green and each new behavior has a named assertion"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+        ".skilled/skills/sk-doc/shared/scripts/classifier-cite-drift-scan.mjs"
+      ],
+      "bugClass": "logic_error",
+      "disposition": "ruled_out",
+      "rationale": "candidate order preserves prior resolutions and the advisory semantics match their tests",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:360",
+        ".skilled/skills/sk-doc/shared/scripts/classifier-cite-drift-scan.mjs:118",
+        "command:cite-drift-tests"
+      ],
+      "proof": "direct read plus 67 green tests"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-008",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+      ],
+      "bugClass": "logic_error",
+      "disposition": "ruled_out",
+      "rationale": "piped regression assertions confirm the whole report and the same exit codes",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:884",
+        "command:playbook-tests"
+      ],
+      "proof": "dedicated piped-report regression test green"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-009",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md"
+      ],
+      "bugClass": "doc_contract_drift",
+      "disposition": "ruled_out",
+      "rationale": "all spot-checked corrections resolve to the claimed content",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1060"
+      ],
+      "proof": "spot checks passed"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-010",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+      ],
+      "bugClass": "scope_regression",
+      "disposition": "ruled_out",
+      "rationale": "fleet-wide checks show a clean, consistent strip",
+      "evidenceRefs": [
+        "command:verify-57-57"
+      ],
+      "proof": "engine verify and gate green; changelog and sample checks clean"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-201",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "New attacker-influenced input is a directory name passed as one argv element.",
+      "evidenceRefs": [
+        ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:202",
+        ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:351",
+        ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:407"
+      ],
+      "proof": "argv-array spawn sites with no shell and no string command lines"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-202",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "The wrapper is 12 lines and every expansion is quoted.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh:12"
+      ],
+      "proof": "quoted exec with no dynamic command construction"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-203",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+      ],
+      "bugClass": "path_traversal_write",
+      "disposition": "ruled_out",
+      "rationale": "No path in this change set strengthens or weakens the guard.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:280",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:225"
+      ],
+      "proof": "lexical containment guard plus non-symlink discovery; explicit-symlink case is pre-existing and operator-supplied"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-204",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+      ],
+      "bugClass": "path_traversal_read",
+      "disposition": "ruled_out",
+      "rationale": "Output records non-resolution only, so it is not a usable existence oracle.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:379",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:387",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:399"
+      ],
+      "proof": "existence probe with no read/exec/write, and a hit produces no output"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-205",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py"
+      ],
+      "bugClass": "path_traversal_read",
+      "disposition": "ruled_out",
+      "rationale": "The widening changes row selection, not probing capability.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py:425",
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py:586"
+      ],
+      "proof": "containment check precedes any git call and no shell is used"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-206",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/classifier-cite-drift-scan.mjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+      ],
+      "bugClass": "untrusted_input_regex",
+      "disposition": "ruled_out",
+      "rationale": "Token comparison is exact, not pattern-based.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/classifier-cite-drift-scan.mjs:118",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:375"
+      ],
+      "proof": "no dynamic RegExp construction; patterns are fixed and linear"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-207",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs"
+      ],
+      "bugClass": "path_traversal_read",
+      "disposition": "ruled_out",
+      "rationale": "The new bases append candidates; only tracked paths are ever opened.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:765"
+      ],
+      "proof": "tracked-only resolution gates every read"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-208",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md"
+      ],
+      "bugClass": "gate_bypass",
+      "disposition": "ruled_out",
+      "rationale": "The rewritten standard retains the skip rule for the narrowed SKILL.md-only scope.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:387",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:65"
+      ],
+      "proof": "documented contract, reported as skip rather than ok, unchanged by this change set"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-209",
+      "dimension": "security",
+      "targetRefs": [
+        "31888d05bb"
+      ],
+      "bugClass": "bulk_mutation_integrity",
+      "disposition": "ruled_out",
+      "rationale": "Git arithmetic over the strip commit bounds the mutation to the version line.",
+      "evidenceRefs": [
+        "31888d05bb"
+      ],
+      "proof": "one removed line per file, all version lines, no additions"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-303",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/003-doc-and-catalog-truth/spec.md",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md"
+      ],
+      "bugClass": "citation_drift",
+      "disposition": "ruled_out",
+      "rationale": "verified against the scaffold commit",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/003-doc-and-catalog-truth/spec.md:113"
+      ],
+      "proof": "citations were accurate when written; drift is inherent to a frozen plan, not an error"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-304",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/*/SKILL.md",
+        ".hermes/skills/*/SKILL.md"
+      ],
+      "bugClass": "version_anchor_drift",
+      "disposition": "ruled_out",
+      "rationale": "anchor alignment holds across all skills",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/SKILL.md:5"
+      ],
+      "proof": "no version or mirror mismatch found"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-305",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".claude",
+        ".codex",
+        ".cursor",
+        ".pi",
+        ".opencode"
+      ],
+      "bugClass": "cross_runtime_drift",
+      "disposition": "ruled_out",
+      "rationale": "mirrors are symlinks or updated",
+      "evidenceRefs": [
+        ".opencode/plugins/tests/sk-code-post-edit-quality.test.cjs:181"
+      ],
+      "proof": "no stale cross-runtime description found"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-306",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts"
+      ],
+      "bugClass": "catalog_anchor_drift",
+      "disposition": "ruled_out",
+      "rationale": "third of three advisor anchors; other two verified in iteration 1",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1495"
+      ],
+      "proof": "anchor resolves to the described code"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-307",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/iteration-citation-jsonl.md",
+        ".skilled/agents/deep-research.md"
+      ],
+      "bugClass": "playbook_capability_drift",
+      "disposition": "ruled_out",
+      "rationale": "ranges verified against file length",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/iteration-citation-jsonl.md:101"
+      ],
+      "proof": "all corrected ranges are inside their files"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-308",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+      ],
+      "bugClass": "spec_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "directly replayed",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/003-doc-and-catalog-truth/spec.md:103"
+      ],
+      "proof": "requirement satisfied on the full population"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/003-doc-and-catalog-truth/spec.md"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "no new duplication beyond R4-P2-002",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:32",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/003-doc-and-catalog-truth/spec.md:134",
+        ".skilled/skills/sk-doc/changelog/v2.3.5.0.md:11"
+      ],
+      "proof": "membership differences are documented as deliberate (standard line 32, DV-R7 spec line 134) and the remaining template gap is already tracked as R1-P2-001"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py",
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs"
+      ],
+      "bugClass": "comment_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "hard-block comment-hygiene directive checked against the changed files",
+      "evidenceRefs": [
+        ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:55"
+      ],
+      "proof": "no artifact ids or spec paths appear in the changed scripts' comments"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-405",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/scripts/tests/test-frontmatter-version.mjs",
+        ".skilled/skills/sk-doc/scripts/tests/test_validate_catalog_package.py",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs",
+        ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
+        ".opencode/plugins/tests/sk-code-post-edit-quality.test.cjs"
+      ],
+      "bugClass": "test_coverage_gap",
+      "disposition": "ruled_out",
+      "rationale": "coverage floor checked per public surface changed",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/scripts/tests/test_validate_catalog_package.py:190",
+        ".skilled/skills/sk-doc/scripts/tests/test-frontmatter-version.mjs:96"
+      ],
+      "proof": "each changed behavior carries a named regression test at the reviewed lines"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-406",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs"
+      ],
+      "bugClass": "fragile_parsing",
+      "disposition": "ruled_out",
+      "rationale": "read the changed parsing blocks end to end",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py:310",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:396"
+      ],
+      "proof": "guards are explicit at the changed lines and no silent failure path was introduced"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-503",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-design/SKILL.md",
+        ".skilled/skills/sk-doc/SKILL.md",
+        ".skilled/skills/system-deep-loop/SKILL.md",
+        ".skilled/skills/system-skill-advisor/SKILL.md",
+        ".skilled/skills/system-spec-kit/SKILL.md"
+      ],
+      "bugClass": "version_anchor_drift",
+      "disposition": "ruled_out",
+      "rationale": "anchor rule holds for every bumped skill",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/SKILL.md:1-12"
+      ],
+      "proof": "all five bumped SKILL.md values equal their newest changelog entry"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-504",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/**",
+        "commit:31888d05bb"
+      ],
+      "bugClass": "bulk_mutation_integrity",
+      "disposition": "ruled_out",
+      "rationale": "no over-strip found",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/SKILL.md:6",
+        "commit:31888d05bb"
+      ],
+      "proof": "no SKILL.md or changelog entry lost a version, and the strip is one deletion per file by its own numstat"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-505",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs"
+      ],
+      "bugClass": "incomplete_refactor",
+      "disposition": "ruled_out",
+      "rationale": "no separate checker regression",
+      "evidenceRefs": [
+        "commit:c071e01662"
+      ],
+      "proof": "checker-level narrowing is consistent; the residual mismatch is the strip-versus-standard scope filed as R5-P2-001"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "spec_mismatch",
+      "missing_completion_evidence",
+      "doc_contract_drift",
+      "version_anchor_drift",
+      "bulk_mutation_integrity",
+      "incomplete_refactor"
+    ],
+    "covered": [
+      "spec_mismatch",
+      "missing_completion_evidence",
+      "doc_contract_drift"
+    ],
+    "ruledOut": [
+      "version_anchor_drift",
+      "bulk_mutation_integrity",
+      "incomplete_refactor"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}
