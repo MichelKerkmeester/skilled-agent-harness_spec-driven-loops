@@ -11,15 +11,24 @@
 // than silently lingering. Gold preservation is covered elsewhere; this gate
 // exists because large local-vs-native disagreement on harder prompts was
 // otherwise invisible.
+//
+// Regime: a pass shows harness-regime parity, not live-daemon parity. The
+// local side is the Python scorer in a subprocess. The native side is the
+// in-process TypeScript scorer under VITEST, where the semantic-shadow lane
+// substitutes deterministic fixture vectors for real embeddings. Both read a
+// skill graph indexed fresh from this checkout into a temporary directory,
+// never the daemon's live database, and both score at a pinned instant. A
+// prompt the live daemon routes differently can still pass here.
 
 import { createHash } from 'node:crypto';
-import { existsSync, readFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
+import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 
-import { beforeAll, describe, expect, it } from 'vitest';
-import { scoreAdvisorPrompt } from '../../lib/scorer/fusion.js';
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
+import type { AdvisorScoringOptions, AdvisorScoringResult } from '../../lib/scorer/types.js';
 import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
 import { HARDER_INTENT_PROMPT_CORPUS } from '../scorer/fixtures/harder-intent-prompt-corpus.js';
 
@@ -197,8 +206,42 @@ function freezeNativeEnv(): void {
   delete process.env.SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW;
 }
 
+// Imported in beforeAll, after the graph directory is set: the native projection
+// reads SYSTEM_SKILL_ADVISOR_DB_DIR once, when its module loads.
+let scoreAdvisorPrompt: (prompt: string, options: AdvisorScoringOptions) => AdvisorScoringResult;
+let closeDb: () => void = () => {};
+
 function nativeTop(prompt: string): string {
   return scoreAdvisorPrompt(prompt, { workspaceRoot: WORKSPACE_ROOT }).topSkill ?? NONE;
+}
+
+// The derived lane discounts each skill by its age at scoring time, so a
+// ledgered top-1 can flip with the calendar alone. Score at midnight UTC of the
+// newest ledger approval, the day the ledger was last reviewed against live
+// output, so a later day cannot move a decision that no change touched.
+function ledgerScoringInstant(ledger: Ledger): Date {
+  const newest = ledger.entries.map((entry) => entry.approvedAt).sort().at(-1);
+  const instant = new Date(`${newest}T00:00:00Z`);
+  if (newest === undefined || Number.isNaN(instant.getTime())) {
+    throw new Error(`Cannot pin the scoring clock: the ledger's newest approvedAt is ${String(newest)}.`);
+  }
+  return instant;
+}
+
+// Index this checkout's skill graph into a throwaway directory and point both
+// scorers at it. Each scorer otherwise reads whatever database the local daemon
+// last built, or none at all in CI, so one commit passed on a machine with a
+// built graph and failed on a clean runner.
+async function indexFreshSkillGraph(): Promise<string> {
+  const dbDir = mkdtempSync(join(tmpdir(), 'advisor-divergence-'));
+  process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = dbDir;
+  const skillGraphDb = await import('../../lib/skill-graph/skill-graph-db.js');
+  closeDb = skillGraphDb.closeDb;
+  closeDb();
+  skillGraphDb.indexSkillMetadata(resolve(WORKSPACE_ROOT, '.skilled/skills'));
+  closeDb();
+  scoreAdvisorPrompt = (await import('../../lib/scorer/fusion.js')).scoreAdvisorPrompt;
+  return dbDir;
 }
 
 function pythonReachable(): boolean {
@@ -213,9 +256,12 @@ let DIVERGENCES: DivergenceRow[] = [];
 let DIVERGENCE_BY_ID: Map<string, DivergenceRow> = new Map();
 let CORPUS_IDS: Set<string> = new Set();
 let LEDGER: Ledger = { schemaVersion: 1, entries: [] };
+let SCORING_INSTANT: Date | null = null;
+let FRESH_DB_DIR: string | null = null;
+const PREVIOUS_DB_DIR = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
 
 describe('local-vs-native routing divergence ratchet (eval gate)', () => {
-  beforeAll(() => {
+  beforeAll(async () => {
     // Fail loudly when python is unavailable and required, instead of skipping.
     if (!pythonReachable()) {
       if (REQUIRE_PYTHON) {
@@ -238,6 +284,10 @@ describe('local-vs-native routing divergence ratchet (eval gate)', () => {
     CORPUS = loadCorpus();
     CORPUS_IDS = new Set(CORPUS.map((entry) => entry.id));
     LEDGER = loadLedger();
+    SCORING_INSTANT = ledgerScoringInstant(LEDGER);
+    vi.useFakeTimers({ toFake: ['Date'] });
+    vi.setSystemTime(SCORING_INSTANT);
+    FRESH_DB_DIR = await indexFreshSkillGraph();
 
     const python = runPython(CORPUS.map((entry) => entry.prompt));
     // Map python results by prompt (the subprocess echoes the prompt back); the
@@ -277,6 +327,19 @@ describe('local-vs-native routing divergence ratchet (eval gate)', () => {
   // The single Python subprocess (loads the skill graph) plus ~215 in-process
   // native scoring calls run past vitest's default 10s hook timeout.
   }, 60_000);
+
+  afterAll(() => {
+    vi.useRealTimers();
+    closeDb();
+    if (FRESH_DB_DIR) rmSync(FRESH_DB_DIR, { recursive: true, force: true });
+    if (PREVIOUS_DB_DIR === undefined) delete process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+    else process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = PREVIOUS_DB_DIR;
+  });
+
+  it('scores at the pinned ledger instant, not the wall clock', () => {
+    expect(SCORING_INSTANT, 'the scoring clock was never pinned').not.toBeNull();
+    expect(new Date().toISOString()).toBe(SCORING_INSTANT?.toISOString());
+  });
 
   it('uses a non-trivial union corpus and a well-formed ledger', () => {
     expect(CORPUS.length).toBeGreaterThan(190);
