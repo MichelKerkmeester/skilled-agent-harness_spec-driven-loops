@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement",
+  "children_ids": [
+    "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/001-hook-stdin-deadlines",
+    "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/002-webflow-runtime-and-references",
+    "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/003-drift-guard-warning-count",
+    "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/004-hub-doc-pointers",
+    "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/005-claim-corrections",
+    "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/006-remediation-deep-review",
+    "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/007-remediation-review-fixes"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "post merge deep review",
+      "phase 12 post merge deep review",
+      "092 epic review on main",
+      "post merge deep review plan",
+      "post merge deep review tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "post merge deep review implementation summary"
+    ],
+    "key_topics": [
+      "post",
+      "merge",
+      "deep",
+      "review",
+      "phase",
+      "epic",
+      "main",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "review/review-report.md",
+      "review/deep-review-state.jsonl",
+      ".skilled/repo-rules/prevent-overengineering.md",
+      "001-hook-stdin-deadlines/goal.md",
+      "002-webflow-runtime-and-references/goal.md",
+      "003-drift-guard-warning-count/goal.md",
+      "004-hub-doc-pointers/goal.md",
+      "005-claim-corrections/goal.md",
+      "006-remediation-deep-review/goal.md",
+      "007-remediation-review-fixes/goal.md",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/review/review-report.md",
+      "006-remediation-deep-review/review/review-report.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-state.jsonl",
+        "kind": "file",
+        "path": "review/deep-review-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "prevent-overengineering.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/prevent-overengineering.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Externalized",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Rendered",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 092 epic shipped 37 commits, then a merge brought in 45 upstream commits and resolved eight conflicts by hand",
+    "created_at": "2026-10-10T18:38:32Z",
+    "last_save_at": "2026-10-11T00:02:16.622Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:56ba1a703c19efaad19086b5eff13426c84a1e60777e6780d9cd72dc7c59c2d0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b6a21624df9da939c127b60e5f9a857c49fa706efd31d87ddc3a203860ea6b5a",
+      "plan.md": "5fe6822c4268e57bb51994379b07540ed57fe5f3707431a49a9093a26ef472cd",
+      "tasks.md": "cbfc607a4026f7ecf29527a81521a87be944f70c5ddf466786babe51872bc539",
+      "implementation-summary.md": "bc1c009c1d4a1ae334b8884d72c0616d808bc2d1d08a1ecb6696001be661bc44"
+    },
+    "last_active_at": null
+  }
+}

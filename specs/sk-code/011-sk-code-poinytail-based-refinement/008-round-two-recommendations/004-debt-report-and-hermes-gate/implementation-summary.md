@@ -112,7 +112,7 @@ Nothing is committed. The change sits in the worktree. The live hook in the main
 | Check | Result |
 |-------|--------|
 | Goal 1: `ceiling-report.test.sh` | PASS. Prints `All ceiling report test cases passed`, exit 0 |
-| Goal 2: `ceiling-report.sh` on the repository | PASS. Prints `markers=0 no-trigger=0 no-signal=0`, exit 0 |
+| Goal 2: `ceiling-report.sh` on the repository | PASS. Printed `markers=0 no-trigger=0 no-signal=0`, exit 0, before `scratch/after/probe.py` was committed. A run after the commit prints `markers=3 no-trigger=1 no-signal=1`, all three from that fixture. |
 | Goal 3: `bash -n` on the hook, and both Hermes `--check` commands | PASS. Prints `PASS: 70 Hermes skill copies in sync` and `[hermes-prompt-sync] PASS: 37 prompts are in sync.`, exit 0 |
 | Goal 4: `pre-commit.test.sh` | PASS. Prints `pre-commit gates: 71 passed, 0 failed`, exit 0 |
 | Goal 5: leaf freshness and rule copies | PASS. Freshness prints `checked=14 fresh=14 failed=0`, rule copies exit 0 |

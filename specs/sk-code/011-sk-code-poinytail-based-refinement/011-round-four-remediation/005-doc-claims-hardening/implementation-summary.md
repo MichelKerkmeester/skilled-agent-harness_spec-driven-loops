@@ -58,7 +58,7 @@ Four new test cases prove each behavior, the guardrails text is now free of semi
 | File | Action | Purpose |
 |------|--------|---------|
 | `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs` | Modified | Root check, label check, anchor resolution, condition rule |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs` | Modified | Four new test cases, 10 in total |
+| `.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs` | Modified | Six new test cases, 12 in total |
 | `.skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md` | Modified | Four semicolons rewritten as sentence breaks |
 | `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md` | Modified | Checker row names link labels and anchors |
 | `.skilled/skills/sk-code/sk-code-opencode/SKILL.md` | Modified | Version 1.2.0.0 to 1.2.1.0 |

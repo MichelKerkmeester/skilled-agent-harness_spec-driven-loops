@@ -142,7 +142,7 @@ YAML is a live OpenCode config-adjacent genre for command routers, command auto/
 | Root `package.json`, no `manifest.json`, no `.skilled/` target | UNKNOWN | Generic Node is not owned; OBSIDIAN needs its positive markers, not merely the absence of other surfaces |
 | Changed `apps/desktop/src/styles/app.css` AND changed `.opencode/agents/code.md` | **OPENCODE** | `.opencode/` target wins when a task also touches a path outside the hub |
 | Obsidian plugin repo-root markers (`manifest.json` with `minAppVersion`, `esbuild.config.mjs`) AND a Webflow library marker (`new Lenis`, `window.gsap`) in the same tree, no `.skilled/` target | **OBSIDIAN** | Precedence OPENCODE > OBSIDIAN > WEBFLOW: the OBSIDIAN branch returns early, so the Webflow marker never overwrites it |
-| WEBFLOW marker (Lenis, GSAP) AND changed `.skilled/skills/sk-doc/scripts/preview-server.js` | **OPENCODE** | Mixed-marker repo: OPENCODE target/CWD takes precedence over WEBFLOW library marker |
+| WEBFLOW marker (Lenis, GSAP) AND changed `.skilled/skills/sk-doc/scripts/frontmatter-version.mjs` | **OPENCODE** | Mixed-marker repo: OPENCODE target/CWD takes precedence over WEBFLOW library marker |
 | Prompt says `NOT Webflow no Webflow Designer` and asks for Motion.dev guidance | **UNKNOWN/N/A** | Explicit non-Webflow guard blocks WEBFLOW promotion |
 | Root `package.json` with no `.skilled/` target | UNKNOWN | Generic Node.js is not owned |
 | `go.mod` or `next.config.js` only | UNKNOWN | Go/NextJS placeholder routes were removed |

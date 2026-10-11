@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Round three shipped `verifydocclaims.cjs` with five recorded gaps, and all five still reproduce",
     "created_at": "2026-10-10T14:44:45Z",
-    "last_save_at": "2026-10-10T16:50:17.687Z",
+    "last_save_at": "2026-10-10T20:50:59.331Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4315f5e76b1c727fc4ddab8191bb1ede33bf9003d57d5555217c59c038bb46d0",
+    "source_fingerprint": "sha256:591d817ae430a0a737c33444fdafc0b32f1f114b9e30ddeab56ce37ff54f6683",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "80087dc4a18fa3fed0e03f3b772aecea6dd8affce1a2c507477aa6b3e1a595cb",
       "plan.md": "2f48a600e335cfa46b6538463d9dd1bac682afbfb9f532767f13c67627ef2e5b",
       "tasks.md": "37e0bfd273d07380f8492ddd64479b002a23d28299cc41b25bcf8f8a04a8b53c",
-      "implementation-summary.md": "2c8cb211580a40a10717e9c1a6a1489dfa836941124f42389639f8b2d2de6b05"
+      "implementation-summary.md": "0844944c634f23fe698bb1545ff9b5b5191078310e1e9034f2408244c49e9ff3"
     },
     "last_active_at": null
   }

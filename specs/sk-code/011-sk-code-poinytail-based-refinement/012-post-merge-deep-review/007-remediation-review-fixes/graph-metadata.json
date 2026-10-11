@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/007-remediation-review-fixes",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/007-remediation-review-fixes",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "remediation review fixes",
+      "phase 7 remediation review fixes",
+      "remediation review fixes plan",
+      "remediation review fixes tasks",
+      "remediation review fixes goal",
+      "remediation review fixes implementation summary"
+    ],
+    "key_topics": [
+      "remediation",
+      "review",
+      "phase",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "sk-git",
+      "open-stdin",
+      "test",
+      "passed"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/shared/hook-stdin-deadline.test.mjs",
+      ".skilled/hooks/shared/README.md",
+      ".skilled/skills/sk-git/scripts/hooks/README.md",
+      ".skilled/skills/sk-git/changelog/v1.8.1.0.md",
+      ".skilled/skills/sk-code/sk-code-webflow/references/performance/webflow-constraints.md",
+      ".skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.3.0.md",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/005-claim-corrections/implementation-summary.md",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/005-claim-corrections/spec.md",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/001-hook-stdin-deadlines/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-stdin-deadline.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-stdin-deadline.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/shared/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.8.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/changelog/v1.8.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "webflow-constraints.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/references/performance/webflow-constraints.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.3.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.3.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reuse",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Not",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-git open-stdin test passed against the unfixed preflight hook when a kill-switch was set, because the hook exits before reading stdin and the test kept the parent's environment and asserted only an upper bound",
+    "created_at": "2026-10-10T23:55:14Z",
+    "last_save_at": "2026-10-11T00:00:45.961Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0251bf6b5a7ac85c9d42213d8172c27237fa589fc0b192d93d4366b9e7aee896",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1bae8efa45c319edffc2d018fa941d5e977c45c06fbb2c854ba934f27dba58d8",
+      "plan.md": "b8f4ed3364ff50702c47bfb3f6397d47b029572ddf357290d72e3261bcc2a4c8",
+      "tasks.md": "0c34b3bae7656ede540f4cd86a1c2ec8e26bd36e350b20bd8bbbc83c49567f21",
+      "implementation-summary.md": "7cb0b61fdf9794cb73093011bc8c3c43ef359b244e2a7d90db03d5c63865d57e"
+    },
+    "last_active_at": null
+  }
+}

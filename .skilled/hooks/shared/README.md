@@ -76,7 +76,7 @@ shared/
 | `hook-adapter-shared.cjs` | `readStdin({ timeoutMs })` + `parseJsonFailOpen()`. The reader resolves at a 3000 ms deadline with the bytes read so far, and the JSON parser returns `null` on bad JSON. Byte-identical behavior for every consumer, CommonJS or ESM. |
 | `hook-flags.test.cjs` | `node --test` suite: default-on, master switch, per-concern switch, `concernFlag` derivation, config-file merge, legacy-alias parity, named-switch precedence in both resolvers, trailing comments in all four readers of the file. |
 | `hook-adapter-shared.test.cjs` | `node --test` suite: a never-closed stdin resolves at the deadline and its process exits; complete input comes back whole. |
-| `hook-stdin-deadline.test.mjs` | `node --test` suite: with stdin left open and never written, each of the fourteen ESM adapters that import `readStdin` exits 0 at the deadline with its fail-open output, and the seven adapters no other suite spawns still answer a normal payload. |
+| `hook-stdin-deadline.test.mjs` | `node --test` suite: with stdin left open and never written, each of the seventeen ESM adapters that import `readStdin` exits 0 at the deadline with its fail-open output, and the seven adapters no other suite spawns still answer a normal payload. |
 
 ---
 

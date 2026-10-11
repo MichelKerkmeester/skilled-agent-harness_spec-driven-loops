@@ -1,0 +1,190 @@
+[18:45:48] iter 1: graph convergence telemetry: hreshold":0.7,"passed":false,"role":"weighted"},{"signal":"p0ResolutionRate","value":1,"threshold":0.9,"passed":true,"role":"weighted"},{"signal":"evidenceDensity","value":0,"threshold":1,"passed":false,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.4,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[18:45:49] iter 1: dispatch start
+[18:52:36] iter 1: dispatch exit 0
+[18:52:36] iter 1: verify exit 0: OK iteration 1 complete: narrative + route-proof + delta
+[18:52:38] iter 1: claim adjudication append exit 0 passed=True
+[18:52:38] iter 1: reducer exit 0: p-review-strategy.md",
+  "openFindingsCount": 0,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "searchDebtCount": 2,
+  "corruptionCount": 0,
+  "strategyWarning": null,
+  "resourceMapPath": null,
+  "resourceMapSkipped": null,
+  "resourceMapSkipReason": null
+}
+[18:52:38] iter 1: graph upsert exit 0
+[18:52:38] iter 1: done
+[18:52:38] iter 2: graph convergence telemetry: reshold":0.7,"passed":false,"role":"weighted"},{"signal":"p0ResolutionRate","value":1,"threshold":0.9,"passed":true,"role":"weighted"},{"signal":"evidenceDensity","value":0,"threshold":1,"passed":false,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.65,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[18:52:39] iter 2: dispatch start (model deepseek-v4.1-flash)
+[18:59:01] iter 2: dispatch exit 0
+[18:59:01] iter 2: verify exit 0: OK iteration 2 complete: narrative + route-proof + delta
+[18:59:02] iter 2: claim adjudication append exit 0 passed=True
+[18:59:02] iter 2: reducer exit 0: p-review-strategy.md",
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "searchDebtCount": 2,
+  "corruptionCount": 0,
+  "strategyWarning": null,
+  "resourceMapPath": null,
+  "resourceMapSkipped": null,
+  "resourceMapSkipReason": null
+}
+[18:59:03] iter 2: graph upsert exit 0
+[18:59:03] iter 2: done
+[18:59:03] iter 3: graph convergence telemetry: reshold":0.7,"passed":false,"role":"weighted"},{"signal":"p0ResolutionRate","value":1,"threshold":0.9,"passed":true,"role":"weighted"},{"signal":"evidenceDensity","value":0,"threshold":1,"passed":false,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.65,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[18:59:03] iter 3: dispatch start (model deepseek-v4.1-flash)
+[19:05:58] iter 3: dispatch exit 0
+[19:05:58] iter 3: verify exit 0: OK iteration 3 complete: narrative + route-proof + delta
+[19:06:00] iter 3: claim adjudication append exit 0 passed=True
+[19:06:00] iter 3: reducer exit 0: review-strategy.md",
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.5,
+  "graphConvergenceScore": 0,
+  "searchDebtCount": 3,
+  "corruptionCount": 0,
+  "strategyWarning": null,
+  "resourceMapPath": null,
+  "resourceMapSkipped": null,
+  "resourceMapSkipReason": null
+}
+[19:06:00] iter 3: graph upsert exit 0
+[19:06:00] iter 3: done
+[19:06:00] iter 4: graph convergence telemetry: reshold":0.7,"passed":false,"role":"weighted"},{"signal":"p0ResolutionRate","value":1,"threshold":0.9,"passed":true,"role":"weighted"},{"signal":"evidenceDensity","value":0,"threshold":1,"passed":false,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.65,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[19:06:01] iter 4: dispatch start (model deepseek-v4.1-flash)
+[19:10:27] iter 4: dispatch exit 0
+[19:10:27] iter 4: verify exit 0: OK iteration 4 complete: narrative + route-proof + delta
+[19:10:28] iter 4: claim adjudication append exit 0 passed=True
+[19:10:28] iter 4: reducer exit 0: review-strategy.md",
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.8,
+  "graphConvergenceScore": 0,
+  "searchDebtCount": 4,
+  "corruptionCount": 0,
+  "strategyWarning": null,
+  "resourceMapPath": null,
+  "resourceMapSkipped": null,
+  "resourceMapSkipReason": null
+}
+[19:10:28] iter 4: graph upsert exit 0
+[19:10:28] iter 4: done
+[19:10:29] iter 5: graph convergence telemetry: reshold":0.7,"passed":false,"role":"weighted"},{"signal":"p0ResolutionRate","value":1,"threshold":0.9,"passed":true,"role":"weighted"},{"signal":"evidenceDensity","value":0,"threshold":1,"passed":false,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.65,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[19:10:29] iter 5: dispatch start (model deepseek-v4.1-flash)
+[19:15:13] iter 5: dispatch exit 0
+[19:15:13] iter 5: verify exit 0: OK iteration 5 complete: narrative + route-proof + delta
+[19:15:16] iter 5: claim adjudication append exit 0 passed=True
+[19:15:16] iter 5: reducer exit 0: view-strategy.md",
+  "openFindingsCount": 8,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.625,
+  "graphConvergenceScore": 0,
+  "searchDebtCount": 4,
+  "corruptionCount": 0,
+  "strategyWarning": null,
+  "resourceMapPath": null,
+  "resourceMapSkipped": null,
+  "resourceMapSkipReason": null
+}
+[19:15:16] iter 5: graph upsert exit 0
+[19:15:16] iter 5: done
+[19:15:17] iter 6: graph convergence telemetry: reshold":0.7,"passed":false,"role":"weighted"},{"signal":"p0ResolutionRate","value":1,"threshold":0.9,"passed":true,"role":"weighted"},{"signal":"evidenceDensity","value":0,"threshold":1,"passed":false,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.65,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[19:15:17] iter 6: dispatch start (model deepseek-v4.1-flash)
+[19:33:08] iter 6: dispatch exit 0
+[19:33:09] iter 6: verify exit 0: OK iteration 6 complete: narrative + route-proof + delta
+[19:33:10] iter 6: claim adjudication append exit 0 passed=True
+[19:33:10] iter 6: reducer exit 0: eview-strategy.md",
+  "openFindingsCount": 10,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.8,
+  "graphConvergenceScore": 0,
+  "searchDebtCount": 4,
+  "corruptionCount": 0,
+  "strategyWarning": null,
+  "resourceMapPath": null,
+  "resourceMapSkipped": null,
+  "resourceMapSkipReason": null
+}
+[19:33:10] iter 6: graph upsert exit 0
+[19:33:10] iter 6: done
+[19:33:11] iter 7: graph convergence telemetry: reshold":0.7,"passed":false,"role":"weighted"},{"signal":"p0ResolutionRate","value":1,"threshold":0.9,"passed":true,"role":"weighted"},{"signal":"evidenceDensity","value":0,"threshold":1,"passed":false,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.65,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[19:33:11] iter 7: dispatch start (model deepseek-v4.1-flash)
+[19:38:17] iter 7: dispatch exit 0
+[19:38:17] iter 7: verify exit 0: OK iteration 7 complete: narrative + route-proof + delta
+[19:38:19] iter 7: claim adjudication append exit 0 passed=True
+[19:38:19] iter 7: reducer exit 0: iew-strategy.md",
+  "openFindingsCount": 11,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.909,
+  "graphConvergenceScore": 0,
+  "searchDebtCount": 4,
+  "corruptionCount": 0,
+  "strategyWarning": null,
+  "resourceMapPath": null,
+  "resourceMapSkipped": null,
+  "resourceMapSkipReason": null
+}
+[19:38:19] iter 7: graph upsert exit 0
+[19:38:19] iter 7: done
+[19:38:20] iter 8: graph convergence telemetry: reshold":0.7,"passed":false,"role":"weighted"},{"signal":"p0ResolutionRate","value":1,"threshold":0.9,"passed":true,"role":"weighted"},{"signal":"evidenceDensity","value":0,"threshold":1,"passed":false,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.65,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[19:38:20] iter 8: dispatch start (model deepseek-v4.1-flash)
+[19:45:54] iter 8: dispatch exit 0
+[19:45:54] iter 8: verify exit 0: OK iteration 8 complete: narrative + route-proof + delta
+[19:45:57] iter 8: claim adjudication append exit 0 passed=True
+[19:45:57] iter 8: reducer exit 0: iew-strategy.md",
+  "openFindingsCount": 13,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.846,
+  "graphConvergenceScore": 0,
+  "searchDebtCount": 4,
+  "corruptionCount": 0,
+  "strategyWarning": null,
+  "resourceMapPath": null,
+  "resourceMapSkipped": null,
+  "resourceMapSkipReason": null
+}
+[19:45:57] iter 8: graph upsert exit 0
+[19:45:57] iter 8: done
+[19:45:58] iter 9: graph convergence telemetry: reshold":0.7,"passed":false,"role":"weighted"},{"signal":"p0ResolutionRate","value":1,"threshold":0.9,"passed":true,"role":"weighted"},{"signal":"evidenceDensity","value":0,"threshold":1,"passed":false,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.65,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[19:45:58] iter 9: dispatch start (model deepseek-v4.1-flash)
+[19:53:50] iter 9: dispatch exit 0
+[19:53:50] iter 9: verify exit 0: OK iteration 9 complete: narrative + route-proof + delta
+[19:53:52] iter 9: claim adjudication append exit 0 passed=True
+[19:53:52] iter 9: reducer exit 0: ew-strategy.md",
+  "openFindingsCount": 16,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.8125,
+  "graphConvergenceScore": 0,
+  "searchDebtCount": 4,
+  "corruptionCount": 0,
+  "strategyWarning": null,
+  "resourceMapPath": null,
+  "resourceMapSkipped": null,
+  "resourceMapSkipReason": null
+}
+[19:53:52] iter 9: graph upsert exit 0
+[19:53:52] iter 9: done
+[19:53:52] iter 10: graph convergence telemetry: reshold":0.7,"passed":false,"role":"weighted"},{"signal":"p0ResolutionRate","value":1,"threshold":0.9,"passed":true,"role":"weighted"},{"signal":"evidenceDensity","value":0,"threshold":1,"passed":false,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.65,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[19:53:53] iter 10: dispatch start (model deepseek-v4.1-flash)
+[20:03:09] iter 10: dispatch exit 0
+[20:03:09] iter 10: verify exit 0: OK iteration 10 complete: narrative + route-proof + delta
+[20:03:12] iter 10: claim adjudication append exit 0 passed=True
+[20:03:12] iter 10: reducer exit 0: iew-strategy.md",
+  "openFindingsCount": 18,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.889,
+  "graphConvergenceScore": 0,
+  "searchDebtCount": 4,
+  "corruptionCount": 0,
+  "strategyWarning": null,
+  "resourceMapPath": null,
+  "resourceMapSkipped": null,
+  "resourceMapSkipReason": null
+}
+[20:03:13] iter 10: graph upsert exit 0
+[20:03:13] iter 10: done

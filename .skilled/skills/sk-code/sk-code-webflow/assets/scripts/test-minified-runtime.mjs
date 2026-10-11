@@ -34,12 +34,16 @@ const MAX_SYNC_CALLBACK_DEPTH = 20;
 ──────────────────────────────────────────────────────────────── */
 
 // Create mock browser environment
-function create_mock_environment(callback_errors) {
+function create_mock_environment(callback_errors, skipped_callbacks) {
   let callback_depth = 0;
 
   // Only invoked callbacks are judged because listeners never fire and element lookups return null.
   const run_callback = (source, callback) => {
-    if (callback_depth >= MAX_SYNC_CALLBACK_DEPTH) return;
+    if (callback_depth >= MAX_SYNC_CALLBACK_DEPTH) {
+      // A polling loop legitimately reaches the cap, so the skip is reported rather than failed.
+      skipped_callbacks.count++;
+      return;
+    }
 
     callback_depth++;
     try {
@@ -343,7 +347,8 @@ function test_file(relative_path) {
 
   // Create fresh mock environment
   const callback_errors = [];
-  const mock_env = create_mock_environment(callback_errors);
+  const skipped_callbacks = { count: 0 };
+  const mock_env = create_mock_environment(callback_errors, skipped_callbacks);
 
   try {
     // Create VM context
@@ -382,6 +387,7 @@ function test_file(relative_path) {
     return {
       status: 'PASS',
       set_flags,
+      skipped_callbacks: skipped_callbacks.count,
     };
   } catch (error) {
     return {
@@ -430,6 +436,10 @@ function main() {
         for (const flag of result.set_flags) {
           console.log(`  ✓ Init flag set: ${flag}`);
         }
+      }
+
+      if (result.skipped_callbacks > 0) {
+        console.log(`  ⚠ ${result.skipped_callbacks} callback(s) past depth ${MAX_SYNC_CALLBACK_DEPTH} were not run, so errors inside them were not checked`);
       }
 
       console.log('  RESULT: PASS\n');
