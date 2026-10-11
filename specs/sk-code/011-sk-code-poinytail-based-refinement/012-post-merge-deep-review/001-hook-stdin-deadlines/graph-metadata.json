@@ -204,7 +204,7 @@
     ],
     "causal_summary": "`git-message-gate.mjs` and `git-preflight-advisory.mjs` are registered as PreToolUse hooks in Claude (5 s), Codex (5 s), Devin (5 s) and Cursor (10 s), and `sk-vision.mjs` is registered as Devin's UserPromptSubmit hook (60 s)",
     "created_at": "2026-10-10T20:17:43Z",
-    "last_save_at": "2026-10-11T00:00:51.214Z",
+    "last_save_at": "2026-10-11T05:17:08.822Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e700c7d08ae6a8b866eef1be02f712e3fded6337c0a7592a96925f71205274f5",
+    "source_fingerprint": "sha256:94ac514953e9fd1d5534c62bdaa88d4e0d47595911424a37707b5b1a169aa404",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "824edcde81e70a6b204d05d103a8506873db95499adea1e9891b8e1a048f03ea",

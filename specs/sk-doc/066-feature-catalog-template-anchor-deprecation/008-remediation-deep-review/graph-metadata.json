@@ -43,6 +43,7 @@
       "goal.md",
       "implementation-summary.md",
       "review/review-report.md",
+      ".opencode/plugins/sk-vision.js",
       "review/iterations/iteration-001.md",
       "review/iterations/iteration-002.md",
       "review/iterations/iteration-003.md",
@@ -90,6 +91,12 @@
         "name": "review-report.md",
         "kind": "doc",
         "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-vision.js",
+        "kind": "code",
+        "path": ".opencode/plugins/sk-vision.js",
         "source": "derived"
       },
       {
@@ -187,17 +194,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow Config",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phases 1 to 7 rewrote 548 catalog docs, 217 changelog entries and 97 other docs with one-shot scripts, renamed three scripts and bumped dozens of versions",
     "created_at": "2026-10-10T21:16:50Z",
-    "last_save_at": "2026-10-10T22:00:04.682Z",
+    "last_save_at": "2026-10-11T05:17:10.821Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +209,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ffb36758415073e2bbc08b36433438f9f8d3388def46cea8d47b4a6dddce6a65",
+    "source_fingerprint": "sha256:cfbc5388431c05892df3e41ec5d530137ce072f099ccfca863f3fb1031208f50",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "455c8900ec4cee4ccaa0afa3c6a1c4da3d6fdc0727373c5c81bd8d478ea99f1c",

@@ -56,11 +56,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node --test .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs` prints `ℹ tests 39`, `ℹ pass 39` and `ℹ fail 0` and exits 0.
+- [ ] `node --test .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs` prints `ℹ tests 40`, `ℹ pass 40` and `ℹ fail 0` and exits 0.
 - [ ] `grep -n 'readSync' .skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts` prints nothing and exits 1.
 - [ ] `node specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/007-hook-deadline-margins/scratch/measure-open-stdin.mjs` prints `entries=7 late=0 margin_ms=1000 runs=3` and exits 0.
 - [ ] `node specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/007-hook-deadline-margins/scratch/compare-fail-open.mjs` prints `cases=66 mismatches=0` and exits 0.
-- [ ] `cd .skilled/skills/system-spec-kit/runtime && npx --no-install vitest run tests/hook-*.vitest.ts tests/hooks-*.vitest.ts tests/user-prompt-submit-shim.vitest.ts tests/directive-lifecycle-*.vitest.ts tests/edge-cases.vitest.ts tests/completion-evidence-sentinel.vitest.ts && node --test tests/hooks/*.test.mjs` prints `Tests  290 passed (290)`, `ℹ pass 181` and `ℹ fail 0` and exits 0.
+- [ ] `cd .skilled/skills/system-spec-kit/runtime && npx --no-install vitest run tests/hook-*.vitest.ts tests/hooks-*.vitest.ts tests/user-prompt-submit-shim.vitest.ts tests/directive-lifecycle-*.vitest.ts tests/edge-cases.vitest.ts tests/completion-evidence-sentinel.vitest.ts && node --test tests/hooks/*.test.mjs` prints `Tests  290 passed (290)`, `ℹ pass 186` and `ℹ fail 0` and exits 0.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/007-hook-deadline-margins --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
@@ -93,4 +93,6 @@ and findings belong here.
 | Review | No defects found, so `scratch/fix-units.json` is `[]`. `run-all-drift-guards.sh` printed `all 4 guards PASSED` |
 | Not covered by any test | The shim's 1 MB overflow path is exercised by no suite, before or after this phase. A manual 2.2 MB probe of `dist/hooks/claude/user-prompt-submit.js` printed `INPUT_OVERFLOW` and `{}` with exit 0 |
 | Orchestrator steps | Done on 2026-10-10. Hermes `--check` prints `PASS: 70 Hermes skill copies in sync`, `compiled-route-guard.cjs` prints `sk-code fresh` after the re-mint and archive copy, and the trigger index `--check` exits 0 |
+| Criterion 1 amended 2026-10-11 | Later phases added cases to the same suite, so the exact count went stale. The criterion now names the current count, or a floor where the suite keeps growing. Phase 013 added the late-write case |
+| Criterion 5 amended 2026-10-11 | Later phases added cases to the same suite, so the exact count went stale. The criterion now names the current count, or a floor where the suite keeps growing |
 <!-- /ANCHOR:log -->

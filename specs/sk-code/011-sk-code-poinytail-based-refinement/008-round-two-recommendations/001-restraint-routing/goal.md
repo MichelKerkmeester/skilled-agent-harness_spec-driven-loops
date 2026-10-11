@@ -54,10 +54,10 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 
 - [ ] From the repository root, `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "this module is over-engineered, apply yagni and find the simplest solution" | jq -e '.action == "route" and .selectionKind == "single" and ([.targets[].workflowMode] == ["sk-code-quality"]) and (has("servingAuthority") | not)'` prints `true` and exits 0.
-- [ ] From the repository root, `node specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/001-restraint-routing/scratch/canary-assert.cjs` prints `cases 11 failures 0` and exits 0.
+- [ ] From the repository root, `node specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/001-restraint-routing/scratch/canary-assert.cjs` prints a `cases N failures 0` line with N of 11 or more and exits 0.
 - [ ] From the repository root, `node --test .skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs && node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code` prints `ℹ fail 0`, then a `PASS: 5k-alias` line, a `PASS: 5k-packet` line and a `PASS: 5k-canary` line, then `OK: parent-skill-check`, and exits 0.
 - [ ] From the repository root, `for h in cli-classifier cli-external-orchestration mcp-tooling sk-code sk-design sk-doc system-deep-loop; do node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/$h >/dev/null 2>&1; echo "$h exit=$?"; done` prints seven lines, each reading `exit=0`.
-- [ ] From the repository root, `node .skilled/bin/compiled-route-guard.cjs && bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` prints a sk-code line reading `fresh`, then `run-all-drift-guards: all 3 guards PASSED`, and exits 0.
+- [ ] From the repository root, `node .skilled/bin/compiled-route-guard.cjs && bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` prints a sk-code line reading `fresh`, then a line starting `run-all-drift-guards: all 4 guards PASSED`, and exits 0.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/001-restraint-routing --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
@@ -97,4 +97,6 @@ and findings belong here.
 | Stage one advisor output is unchanged | The yagni prompt returns the same advisor output before and after (T041). This change does not regenerate the sk-code graph. |
 | Orchestrator verification, 2026-10-10 | All six criteria rerun: route check `true`, canary `cases 11 failures 0`, invariants 95 pass 0 fail plus three sibling suites 0 fail, 5k-alias, 5k-packet and 5k-canary PASS, seven hubs exit 0, sk-code fresh, drift guards all 3 PASSED, strict validation 0 errors |
 | Out-of-domain replay kept the aliases | The hub router routes "find the simplest solution for my tax return" to the quality mode, as it routes "run a quality check on my holiday packing list" with an older alias. The advisor recommends no skill for all three out-of-domain prompts and sends "Simplify this code, it is bloated and over-engineered" to sk-code at 0.82, so the aliases capture no outside traffic |
+| Criterion 2 amended 2026-10-11 | Later phases added cases to the same suite, so the exact count went stale. The criterion now names the current count, or a floor where the suite keeps growing |
+| Criterion 5 amended 2026-10-11 | Phase 010 added the doc-claims guard, so the umbrella runs four guards |
 <!-- /ANCHOR:log -->

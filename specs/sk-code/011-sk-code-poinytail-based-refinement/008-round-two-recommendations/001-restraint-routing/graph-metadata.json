@@ -204,7 +204,7 @@
     ],
     "causal_summary": "At stage two, requests that ask for restraint reach no sk-code mode",
     "created_at": "2026-10-10T06:56:28Z",
-    "last_save_at": "2026-10-10T07:41:49.682Z",
+    "last_save_at": "2026-10-11T05:17:04.035Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:719f9005d0fd3c3e81e65c4b6249510ff43232db1e304e5d059fbb1106eeee64",
+    "source_fingerprint": "sha256:344addd270027ea67ef4e85e98c853a002273f909263be4591a7353548678ce9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "df6a3a6e3108023a2333c7ecb9d9907bee495d0dbe390c3334f1fa89ff0d91cd",

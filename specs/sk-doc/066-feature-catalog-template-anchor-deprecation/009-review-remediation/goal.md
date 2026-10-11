@@ -54,7 +54,7 @@ Frozen choices. Changing one is an amendment.
 
 - [x] `package_skill.py --check --strict` prints Result: PASS for cli-codex, cli-cursor, mcp-code-mode and sk-design
 - [x] No changelog entry under system-deep-loop/runtime lacks a version key
-- [x] `validate_catalog_package.py --report-only` reports 5 findings
+- [x] `python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py --repo-root . --report-only`, run from the repository root, reports 0 fail and 0 warn findings; the only remaining entries are `ignored_path_absent` notes, each naming a path a repository .gitignore covers
 - [x] The parent goal criterion names sk-create-feature-catalog 1.0.5.0 and phase 003 names the sk-doc 2.3.2.0 target
 - [x] `validate.sh --strict` on this phase prints RESULT: PASSED
 <!-- /ANCHOR:completion -->
@@ -80,4 +80,5 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | Cascade | Renaming the sk-design heading exposed the missing rules subsections, which a second brief fixed. |
+| Criterion 3 amended 2026-10-11 | The sk-code epic phase 014-skill-authoring-ux-research/016 made an absent ignored path a note, so the five findings became zero fail and zero warn findings |
 <!-- /ANCHOR:log -->

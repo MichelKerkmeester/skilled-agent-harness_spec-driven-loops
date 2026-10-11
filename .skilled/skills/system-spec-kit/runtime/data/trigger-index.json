@@ -1,5 +1,5 @@
 {
-  "manifestHash": "080e0db00a04863f74e867930d655ba2a98bb4eddc6c41d3f78d0dbf3a75f8e0",
+  "manifestHash": "149954ac23845a708cd58c28cd581d86b96dab1b2a05f1d07c91189ae154f928",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -41172,6 +41172,7 @@
       4669,
       4674,
       4676,
+      4681,
       4723,
       5072,
       5078,
@@ -56201,6 +56202,7 @@
       4669,
       4674,
       4676,
+      4681,
       4723,
       5018,
       5072,
@@ -65816,6 +65818,7 @@
       4669,
       4674,
       4676,
+      4681,
       4723,
       5072,
       5078,
@@ -66283,9 +66286,6 @@
     ],
     "goal criteria refresh": [
       4684
-    ],
-    "goal criteria refresh goal": [
-      4681
     ],
     "goal criteria refresh implementation summary": [
       4682
@@ -89254,6 +89254,7 @@
       4669,
       4674,
       4676,
+      4681,
       4723,
       5018,
       5072,

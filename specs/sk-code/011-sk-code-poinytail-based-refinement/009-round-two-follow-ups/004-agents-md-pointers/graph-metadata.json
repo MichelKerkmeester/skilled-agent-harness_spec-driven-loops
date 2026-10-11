@@ -204,7 +204,7 @@
     ],
     "causal_summary": "AGENTS.md section 10 (line 296) lists four close-out items",
     "created_at": "2026-10-10T08:16:21Z",
-    "last_save_at": "2026-10-10T09:04:29.388Z",
+    "last_save_at": "2026-10-11T05:17:04.034Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ca873cd9c488d2c40e806716ac43abc8c153e51607f37fccd16d4e6674c79b56",
+    "source_fingerprint": "sha256:507079c42ade8edc56b8109c01aa252d481ee0e518a59845cff7eb9817432eac",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cae240f449dd7a67a71064a094f88047aec4bb8569677bec895650a675b55b0e",

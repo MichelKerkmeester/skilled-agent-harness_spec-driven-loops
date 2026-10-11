@@ -1,5 +1,5 @@
 {
-  "manifestHash": "080e0db00a04863f74e867930d655ba2a98bb4eddc6c41d3f78d0dbf3a75f8e0",
+  "manifestHash": "149954ac23845a708cd58c28cd581d86b96dab1b2a05f1d07c91189ae154f928",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -48349,9 +48349,6 @@
     ],
     "goal criteria refresh": [
       "goal criteria refresh"
-    ],
-    "goal criteria refresh goal": [
-      "goal criteria refresh goal"
     ],
     "goal criteria refresh implementation summary": [
       "goal criteria refresh implementation summary"

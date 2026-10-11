@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The frontmatter versioning standard requires a four-part `version` key on every changelog entry, but 217 older entries across 14 skills and modes carried the five search keys without it",
     "created_at": "2026-10-10T19:23:34Z",
-    "last_save_at": "2026-10-10T19:33:54.936Z",
+    "last_save_at": "2026-10-11T05:17:08.956Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,7 +203,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d60f8693300927d723f5bf553c176e83c0398e285a5d60f1ae47fa3c88723d70",
+    "source_fingerprint": "sha256:2f1ecd3f846f3d428465e6d818e8302b09c9c3c933a8a826202a0b887966c98e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "52d45889f9c3c4f4c8c6182603db19cadba940254a16bd7338f39cf79ae2b7bb",

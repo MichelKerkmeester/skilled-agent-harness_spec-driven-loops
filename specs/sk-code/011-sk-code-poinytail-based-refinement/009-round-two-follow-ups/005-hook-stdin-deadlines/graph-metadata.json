@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Thirteen hook scripts under `.skilled/hooks/` read stdin with `for await (const chunk of process.stdin)` and `task-dispatch/claude/fable-subagent-guard.mjs` reads it with `fs.readFileSync(0, 'utf8')` (line 24)",
     "created_at": "2026-10-10T08:16:22Z",
-    "last_save_at": "2026-10-10T09:04:32.382Z",
+    "last_save_at": "2026-10-11T05:17:04.053Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9437c5bde4040e4466e46cd28994ef5c9846212ce0c7c9b95f4aa9ed4094df98",
+    "source_fingerprint": "sha256:9c01ca7edf97413dbb1755de5dff288e9ecb19a432bc1b49fba44f57442c8d77",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c47cc1f86fe73e12c684cff09c996ac759516ebebadaf8f7f3a72bc92a186a7a",

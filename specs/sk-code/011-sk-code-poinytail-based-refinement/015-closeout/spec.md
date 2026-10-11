@@ -99,8 +99,8 @@ End every open item in one of two states: fixed, with a check that ran, or close
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-sk-code-hub-voice/ | Rewrite the 36 HVR hard blockers in the sk-code hub SKILL.md | Pending |
-| 2 | 002-goal-criteria-refresh/ | Rerun every completed goal criterion in the 011 and 066 trees and update the stale ones | Pending |
+| 1 | 001-sk-code-hub-voice/ | Rewrite the 36 HVR hard blockers in the sk-code hub SKILL.md | Complete |
+| 2 | 002-goal-criteria-refresh/ | Rerun every completed goal criterion in the 011 and 066 trees and update the stale ones | Complete |
 | 3 | 003-sk-git-playbook-changelog/ | Record the sk-git playbook change in its changelog | Pending |
 | 4 | 004-dispatch-guard-and-vitest/ | Keep the node:test file out of the hooks vitest run and read escaped quotes in a `-c` payload | Pending |
 | 5 | 005-stdin-late-write-coverage/ | Drive every short-deadline hook entry with a late write and record the residual risk | Pending |

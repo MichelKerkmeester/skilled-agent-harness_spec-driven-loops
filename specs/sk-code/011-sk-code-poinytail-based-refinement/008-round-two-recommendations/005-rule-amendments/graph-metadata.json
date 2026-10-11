@@ -53,8 +53,8 @@
       ".skilled/skills/sk-code/shared/references/workflow-implement.md",
       ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
       ".skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md",
-      "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md",
-      ".skilled/repo-rules/communication-prose.md"
+      ".skilled/repo-rules/communication-prose.md",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json"
     ],
     "entities": [
       {
@@ -160,6 +160,12 @@
         "source": "derived"
       },
       {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -194,17 +200,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The second Ponytail research round found six gaps in the repo rules",
     "created_at": "2026-10-10T06:56:32Z",
-    "last_save_at": "2026-10-10T07:25:59.555Z",
+    "last_save_at": "2026-10-11T05:17:04.038Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e619868c486b3028450b7b4712398ab578bd27bef8eb0244fbf51e880d2ab565",
+    "source_fingerprint": "sha256:47456db428499134076dccce7b39840e14f91c64a81d9e887db8c88c9886cb1f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "077c31c2d44b72fe879067ef527c1cddfe9ba19c529ff9b5d965320cd800017e",

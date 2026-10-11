@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Stand-in `setTimeout`, `requestAnimationFrame` and `Webflow.push` run callbacks inside empty catch blocks, and `addEventListener` is a no-op, so a PASS only means top-level code ran",
     "created_at": "2026-10-09T16:00:50Z",
-    "last_save_at": "2026-10-09T20:08:28.348Z",
+    "last_save_at": "2026-10-11T05:17:04.031Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:048114167065577e41cbd1e5fec2e223851361d8af644ca378231625b351fbb5",
+    "source_fingerprint": "sha256:cbd6ddf9eaa66c91a9f10f82bf91928d65a2c54fbb3e17a260ad9022508cf882",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1a44c7b87d57e31707f406cdadb6259e7b47cc26c3fdb55d9fa457a00fa1831e",

@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The final-line checker in `sk-code-review` is the gate that automation runs on every full review",
     "created_at": "2026-10-10T05:26:25Z",
-    "last_save_at": "2026-10-10T05:58:38.945Z",
+    "last_save_at": "2026-10-11T05:17:04.068Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7bc77e6f77ba78aef457d99807789d3c2b944420ef3934eff77004d7c2fad9b1",
+    "source_fingerprint": "sha256:0ae00e245680af1548012a59674909c052242ca33289cfc996d6ec3fcb4229c4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b1d9ba364653d7f6e43ccf23889e66158923ff1eed70623ece57a85338ca7f6b",

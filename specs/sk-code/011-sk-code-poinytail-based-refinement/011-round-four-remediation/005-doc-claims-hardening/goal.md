@@ -56,9 +56,9 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs` prints `tests 12`, `pass 12` and `fail 0` and exits 0.
-- [ ] `node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs --root /nonexistent-dir` writes the one stderr line `usage: verify_doc_claims [--root <hub dir>] [--checks paths,names,surfaces,tiers] (--root is not a directory: /nonexistent-dir)` and exits 2.
-- [ ] `node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs --root specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening/scratch/repro-fixture` prints `doc.md:3: link label is a path that does not resolve: assets/checklists/gone.md`, `doc.md:4: link anchor does not resolve: ./target.md#9-missing-section`, `doc.md:5: anchor does not resolve: sk-code-demo/references/target.md#nope` and `PASS check tiers`, and exits 1.
+- [ ] `node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs` prints `tests 12`, `pass 12` and `fail 0` and exits 0.
+- [ ] `node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs --root /nonexistent-dir` writes the one stderr line `usage: verify-doc-claims [--root <hub dir>] [--checks paths,names,surfaces,tiers] (--root is not a directory: /nonexistent-dir)` and exits 2.
+- [ ] `node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs --root specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening/scratch/repro-fixture` prints `sk-code-demo/references/doc.md:3: link label is a path that does not resolve: assets/checklists/gone.md`, `sk-code-demo/references/doc.md:4: link anchor does not resolve: ./target.md#9-missing-section`, `sk-code-demo/references/doc.md:5: anchor does not resolve: sk-code-demo/references/target.md#nope` and `PASS check tiers`, and exits 1.
 - [ ] `node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs | grep -c 'sk-code-opencode/'` prints `0`, and `grep -c ';' .skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md` prints `0`.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
@@ -92,4 +92,7 @@ and findings belong here.
 | Reviewer findings | Eight findings, R01 to R08, applied as T051 to T060, plus three stale OpenCode labels the whole-hub checker found (T061 to T063) |
 | tasks.md repair | The fix-unit insertion pasted the file tail twice, because a shell `$'` sequence in T050's check text was read as a replacement pattern. The orchestrator rebuilt tasks.md from its parts, kept every tick and reran the 14 fix checks |
 | Orchestrator steps | Done on 2026-10-10. Hermes `--check` prints `PASS: 70 Hermes skill copies in sync`, `compiled-route-guard.cjs` prints `sk-code fresh` after the re-mint and archive copy, and the trigger index `--check` exits 0 |
+| Criterion 1 amended 2026-10-11 | The sk-code-opencode scripts were renamed to kebab-case by `sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file |
+| Criterion 2 amended 2026-10-11 | The sk-code-opencode scripts were renamed to kebab-case by `sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file, and the usage line now prints that name |
+| Criterion 3 amended 2026-10-11 | The sk-code-opencode scripts were renamed to kebab-case by `sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file. The guard now prints each fixture path from its hub root |
 <!-- /ANCHOR:log -->

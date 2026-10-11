@@ -194,7 +194,7 @@
     ],
     "causal_summary": "When a command looks like a CLI dispatch but does not name exactly one executor literally, for example through a variable, alias or path, the Pi guard blocked it with \"Pi dispatch denied: the command does not prove one direct executor.\" The reader learns that it failed, not how to pass",
     "created_at": "2026-10-10T19:27:05Z",
-    "last_save_at": "2026-10-10T19:39:53.047Z",
+    "last_save_at": "2026-10-11T05:17:08.970Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,7 +204,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:62df778666667acddf023c1906bf934bde32d7a7e67ffda11b8c57c712db54f1",
+    "source_fingerprint": "sha256:a45dd751fb0b0cda1ce2902477621c6ee8d5f9376e7e4ffc5c249842c04096e2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f251adcbc479d79fd70c190d6d6315df574b32bcd0267a2f272863f94762a2a3",

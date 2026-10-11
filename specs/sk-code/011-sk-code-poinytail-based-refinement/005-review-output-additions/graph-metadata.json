@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Ponytail's review ends with one line naming what mattered and could not be checked",
     "created_at": "2026-10-09T16:00:50Z",
-    "last_save_at": "2026-10-09T20:26:15.123Z",
+    "last_save_at": "2026-10-11T05:17:04.032Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c07304654b2d2486cf003e26671857eb033d632ddd86f35af0bda401bc1d4bd4",
+    "source_fingerprint": "sha256:ee678348c697b737480ba4054a49a3e8784d3201c2d798c2cf09d14ce69c18c1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5d2ab07750c3f79e69bbb888443da755a7f05a672e3239059a18e7bd50fc8be7",

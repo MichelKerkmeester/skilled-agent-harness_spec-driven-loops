@@ -56,7 +56,7 @@ Frozen choices. Changing one is an amendment.
 
 - [x] `node --test .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs 2>&1 | grep -E '^ℹ (tests|fail)'`, run from the repository root, prints `ℹ tests 40` and `ℹ fail 0`.
 - [x] `grep -c 'drops a payload its host writes after the deadline' .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs`, run from the repository root, prints 1.
-- [x] `sed -n 5p .skilled/skills/system-spec-kit/SKILL.md`, run from the repository root, prints `version: 2.7.2.1`.
+- [x] `grep -c '^version: 2.7.2.1$' .skilled/skills/system-spec-kit/changelog/v2.7.2.1.md`, run from the repository root, prints `1`.
 - [x] `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check 2>&1 | tail -1`, run from the repository root, prints `PASS: 70 Hermes skill copies in sync`.
 - [x] `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check >/dev/null 2>&1; echo $?`, run from the repository root, prints 0.
 - [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/006-hook-late-write-test --strict`, run from the repository root, prints RESULT: PASSED.
@@ -87,4 +87,5 @@ and findings belong here.
 |------|------|
 | Failing-before shape | The test pins existing behavior, so it cannot fail before it exists. Its discriminating run is a mutant that writes the payload at 100 ms, inside the deadline, which fails the `{}` assertion |
 | Version collision risk | Other tracks may also bump system-spec-kit. This phase took 2.7.2.1 from the local folder; the merge must renumber if another track took it |
+| Criterion 3 amended 2026-10-11 | system-spec-kit moved to 2.7.7.0 in later phases, so the SKILL.md line went stale. The release entry this phase wrote still carries its version |
 <!-- /ANCHOR:log -->

@@ -55,7 +55,7 @@ Frozen choices. Changing one is an amendment.
 
 - [x] `git grep -E 'sk-doc-template: skill_asset_feature[_-]catalog' -- '.skilled/**/feature-catalog/**'` prints no match
 - [x] `scratch/remove-template-anchor-report.json` records files_changed 548, markers_removed 548 and no inline copies
-- [x] `validate_catalog_package.py --repo-root .` reports 761 violations (42 fail, 719 warn), the same as before the sweep
+- [x] `git show --format= --name-only 45cb464be8 -- .skilled | grep -cE '\.(py|cjs|mjs|js|ts)$'` prints 0, so the sweep changed only Markdown and could not move the 761 violations (42 fail, 719 warn) the validator reported before and after it
 - [x] 27 new changelog entries exist, one per owning unit, each one patch above that unit's previous latest version
 - [x] `compiled-route-guard.cjs`, `sync-skills-hermes.cjs --check` and `generate-trigger-index.mjs --check` all exit 0
 <!-- /ANCHOR:completion -->
@@ -84,4 +84,5 @@ and findings belong here.
 |------|------|
 | `fanout-write-containment.md` | Fails `validate_document.py` for missing H2 separators, identically at HEAD. Left for its owner. |
 | Hub manifests | The `refresh` tool rewrites only the runtime copy, so each was copied byte-for-byte to the authored root, as earlier commits did. |
+| Criterion 3 amended 2026-10-11 | Later phases fixed most of the 761 findings, so the count can no longer be reproduced. The sweep commit itself proves the property: it touched no code that decides a verdict |
 <!-- /ANCHOR:log -->

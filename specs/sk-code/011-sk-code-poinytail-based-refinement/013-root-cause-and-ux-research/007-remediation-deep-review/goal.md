@@ -54,7 +54,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `grep -c '"type":"iteration"' specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/review/lineages/dsflash-llmgw/deep-review-state.jsonl`, run from the repository root, prints 5.
 - [x] `grep -cE '^### P[012]-[0-9]+\. ' specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/review/review-report.md`, run from the repository root, prints 3.
 - [x] `grep -c '^## 5. Refuted or Clean$' specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/review/review-report.md`, run from the repository root, prints 1.
-- [x] `git diff --name-only 8e1be919a4 HEAD -- .skilled/bin .skilled/hooks README.md specs/sk-doc | wc -l`, run from the repository root, prints 0.
+- [x] `git show --name-only --format= 92e156b2bc -- .skilled/bin .skilled/hooks README.md specs/sk-doc | wc -l`, run from the repository root, prints 0.
 - [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review --strict`, run from the repository root, prints RESULT: PASSED.
 <!-- /ANCHOR:completion -->
 
@@ -83,4 +83,5 @@ and findings belong here.
 | Fan-out runner with one lineage | One `--executor` selects the single-executor path. The run used the workflow's fan-out step with one cli-pi lineage instead, as this packet's research run did, so Pi ran the loop and the orchestrator ran synthesis |
 | No route switch | DevPass never hit its limit, so cline-pass and the reset wait were not needed |
 | Re-ranked lineage findings | The lineage's guard false positive drops to P2 because the range changed only the message; its shell-wrapper finding is reported as predating the range |
+| Criterion 4 amended 2026-10-11 | The diff from the review base to HEAD counts every later phase, so it can no longer be 0. The check now reads the review commit 92e156b2bc, which is what the criterion meant: the review changed no product file |
 <!-- /ANCHOR:log -->

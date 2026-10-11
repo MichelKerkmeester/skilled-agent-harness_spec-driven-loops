@@ -1,11 +1,11 @@
 ---
 title: "Feature Specification: Phase 2: goal-criteria-refresh"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "Rerun every completed goal criterion in the 011 and 066 trees against today's tree and amend each one that fails only because a name, count or version moved on, with a dated log row."
 trigger_phrases:
   - "goal criteria refresh"
   - "phase 2 goal criteria refresh"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 2: goal-criteria-refresh
@@ -19,15 +19,15 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-10-11 |
-| **Branch** | `scaffold/002-goal-criteria-refresh` |
+| **Branch** | `worktrees/098-post-092-integration` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 2 of 9 |
 | **Predecessor** | 001-sk-code-hub-voice |
 | **Successor** | 003-sk-git-playbook-changelog |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | Every criterion in goal.md passes and strict validation passes |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -35,15 +35,15 @@ contextType: "general"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 2** of the Closeout phases specification.
+This is **Phase 2** of the epic closeout phase parent. It closes item 2 of the closeout list, every completed goal criterion in the 011 and 066 trees.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: Only the files in the table below change.
 
 **Dependencies**:
-- [To be defined during planning]
+- None beyond the files named below.
 
 **Deliverables**:
-- [To be defined during planning]
+- Rerun every completed goal criterion in the 011 and 066 trees against today's tree and amend each one that fails only because a name, count or version moved on, with a dated log row.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -55,10 +55,10 @@ This is **Phase 2** of the Closeout phases specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+Completed goals in the 011 and 066 trees name scripts that were since renamed to kebab case, counts that later phases grew, branch ranges such as main..HEAD that are empty once merged, and versions that later bumps replaced. Those criteria fail today although the work they prove is still in place.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Every completed criterion in both trees passes when run against today's tree, and every amendment carries a dated row saying what changed and why.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -67,19 +67,20 @@ This is **Phase 2** of the Closeout phases specification.
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Every goal.md under specs/sk-code/011-sk-code-poinytail-based-refinement and specs/sk-doc/066-feature-catalog-template-anchor-deprecation
+- The 005 router-sync prototype script, which still called the old script names
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Criteria of goals that are not complete
+- Changing what any criterion proves: amendments only follow renames, growth and released versions
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| goal.md files in the 011 tree (42 goals) | Modify | 69 criteria amended, one log row each |
+| goal.md files in the 066 tree (6 goals) | Modify | 6 criteria amended, one log row each |
+| `007-follow-up-fixes/005-router-sync-guard/scratch/prototype/negative-controls.sh` | Modify | Calls verify-router-sync.cjs and router-replay-lib.cjs |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -91,13 +92,14 @@ This is **Phase 2** of the Closeout phases specification.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Every completed criterion passes today | Each amended command reran and printed what its criterion names |
+| REQ-002 | Every amendment is dated | 75 rows of the form Criterion N amended 2026-10-11 |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-090 | Strict validation of this phase passes | validate.sh --strict prints RESULT: PASSED |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -105,8 +107,8 @@ This is **Phase 2** of the Closeout phases specification.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: Every completion criterion in goal.md passes when the orchestrator reruns it.
+- **SC-002**: The phase lands as one conventional commit in the worktree.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -116,8 +118,7 @@ This is **Phase 2** of the Closeout phases specification.
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | A change reaches a caller the phase did not name | Med | The gates named in goal.md are rerun from the final state |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -125,10 +126,7 @@ This is **Phase 2** of the Closeout phases specification.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None.
 <!-- /ANCHOR:questions -->
 
 ---
-
-

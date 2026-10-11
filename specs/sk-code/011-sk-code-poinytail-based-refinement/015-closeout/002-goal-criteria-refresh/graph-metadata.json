@@ -15,7 +15,10 @@
       "phase 2 goal criteria refresh",
       "goal criteria refresh plan",
       "goal criteria refresh tasks",
-      "goal criteria refresh goal",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "goal criteria refresh implementation summary"
     ],
     "key_topics": [
@@ -25,15 +28,15 @@
       "phase",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
-      "broken",
-      "missing",
-      "inefficient",
-      "sentences"
+      "packet",
+      "durable",
+      "directive",
+      "completion",
+      "binding",
+      "implementation"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -103,7 +106,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement Completed",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -121,7 +124,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Extract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,14 +142,8 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow One",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -163,6 +166,12 @@
         "source": "derived"
       },
       {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
@@ -175,21 +184,15 @@
         "source": "derived"
       },
       {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Decisions Frozen",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Completed goals in the 011 and 066 trees name scripts that were since renamed to kebab case, counts that later phases grew, branch ranges such as main..HEAD that are empty once merged, and versions that later bumps replaced",
     "created_at": "2026-10-11T04:49:31Z",
-    "last_save_at": "2026-10-11T04:49:40.407Z",
+    "last_save_at": "2026-10-11T05:15:39.608Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +202,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9f36221b8479295d7800825386abc001f6d4f5ee21233f9f8fa01c14eec83d56",
+    "source_fingerprint": "sha256:ba49c3e61f1276e34a8fc0e3e5e2c61e90629b662346780d717e0d0856c4b9ff",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6845688e8b8b0a9724383f5cc3cb6fec16ce1ff262666e9680862167b4d1b653",
-      "plan.md": "1f2678d5f89d50a2db16f72435c284037c318bdb08c3fa9b4bcb17f82a61375c",
-      "tasks.md": "ec87dc746e1e3f08846a0f61a28f9ebc61f99e43813afda42e9e8068077cc1ae",
-      "implementation-summary.md": "3790dd5f1037ce6ebcbf4725dbcce07362ed9e139d9ff6d9c05e6b218be95784"
+      "spec.md": "06f0245a99b550df098d526179b88cb417446d12d4008032559dac4feed218f0",
+      "plan.md": "af16fbc4417ea49ab9aa26460d8261970aac4b6728ca0d46020f0b7b1297f008",
+      "tasks.md": "db6fa8f3d48a65c1b85097e3b16716c44442ed50129d1702da7dcf455ac4b998",
+      "implementation-summary.md": "37d64d58834c1287da0c11ab644a3da9056d882763c33a9e07150ddc4d04445f"
     },
     "last_active_at": null
   }

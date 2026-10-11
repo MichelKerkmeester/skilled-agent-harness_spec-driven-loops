@@ -85,7 +85,7 @@ string, not these files.
 ## 3. COMPLETION CRITERIA
 
 - [x] `git grep -E 'sk-doc-template: skill_asset_feature[_-]catalog' -- .skilled .hermes ':!**/changelog/**'` prints no match
-- [x] `validate_catalog_package.py --report-only` reports 15 findings, down from 761, each recorded with a reason
+- [x] `python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py --repo-root . --report-only`, run from the repository root, reports 0 fail and 0 warn findings; the only remaining entries are `ignored_path_absent` notes, each naming a path a repository .gitignore covers, down from 761
 - [x] sk-create-feature-catalog reads version 1.0.5.0, and every other skill or mode whose catalog changed has a bumped `SKILL.md` version and a matching new changelog entry
 - [x] `sync-skills-hermes.cjs --check` and the trigger index check both pass
 - [x] Each child goal's criteria pass
@@ -116,4 +116,5 @@ and findings belong here.
 |------|------|
 | Origin | Commit `7d7650471d` added the comment to the template and 588 snippets in one sweep. |
 | Criterion 1 scope | Changelog entries name the removed comment, so the grep excludes `changelog/` paths. |
+| Criterion 2 amended 2026-10-11 | Phase 014-skill-authoring-ux-research/010 and 016 of the sk-code epic stopped the validator failing correct paths and made an absent ignored path a note, and phase 009 here cleared the rest, so the 15 findings this criterion counted are gone |
 <!-- /ANCHOR:log -->

@@ -53,7 +53,7 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 
 - [x] `package_skill.py --check --strict` over the 28 touched units reports 0 missing-version findings
-- [x] `git diff` for this phase adds exactly one `version:` line to each of 217 changelog entries and deletes none
+- [x] `git show --numstat --format= caafc08377 -- '*/changelog/v*.md' | awk '$1==1 && $2==0' | wc -l` prints 217, one added `version:` line and no deleted line in each of 217 changelog entries
 - [x] Each of the ten non-hub units changed here has a new changelog entry one patch above its previous latest
 - [x] `validate.sh --strict` on this phase prints RESULT: PASSED
 <!-- /ANCHOR:completion -->
@@ -79,4 +79,5 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | Persona | The brief inlined a condensed persona instead of the 46 KB agent file, to keep the brief short as the operator asked. |
+| Criterion 2 amended 2026-10-11 | A working-tree diff of the phase no longer exists after its commit. The phase commit caafc08377 holds the same count |
 <!-- /ANCHOR:log -->

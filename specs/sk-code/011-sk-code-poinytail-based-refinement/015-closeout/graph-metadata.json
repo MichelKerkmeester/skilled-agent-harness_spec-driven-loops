@@ -165,17 +165,17 @@
     ],
     "causal_summary": "The epic's phases 012 to 014 and the feature-catalog track each closed with items marked deferred, handed off or left to the master orchestrator",
     "created_at": "2026-10-11T04:49:19Z",
-    "last_save_at": "2026-10-11T04:55:21.378Z",
+    "last_save_at": "2026-10-11T05:17:08.369Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:d3c30911ea581ed7317df4abecccd264b4f7816581835cc4be50693d7b9d3ab5",
+    "source_fingerprint": "sha256:7d8d305481996dfcf34f4942adcfd2a1b60fac39deef8a8b1908b21d36d57a8a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3ad587f5c5022310a194765937771f97af346427ad752ebd179b9fbfe27c04bc"
+      "spec.md": "ad0c13b298a3b0746500d125fb4ab41dfc6d2bbfffe6d8bdf0befd2307c4b7ee"
     },
     "last_active_at": null
   }

@@ -55,7 +55,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `grep -rn 'sk-doc-template' .skilled/skills/sk-doc/sk-create-feature-catalog --exclude-dir=changelog` prints no match
 - [x] `validate_document.py` exits 0 on both feature catalog assets, `references/examples.md` and the mode's `SKILL.md`
 - [x] The mode's `test_validator_fixtures.py` prints ALL PASS
-- [x] The mode's `SKILL.md` reads `version: 1.0.2.0` and `changelog/v1.0.2.0.md` exists
+- [x] `grep -c '^version: 1.0.2.0$' .skilled/skills/sk-doc/sk-create-feature-catalog/changelog/v1.0.2.0.md` prints `1`
 - [x] `sync-skills-hermes.cjs --check` prints PASS
 <!-- /ANCHOR:completion -->
 
@@ -81,4 +81,5 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | Other stray `sk-doc-template:` comments | Found in system-skill-advisor and a few playbooks. No template emits them, so they stay out of scope and are reported to the operator. |
+| Criterion 4 amended 2026-10-11 | Later phases moved the mode to 1.0.5.0, so the SKILL.md half went stale. The release entry this phase wrote still carries its version |
 <!-- /ANCHOR:log -->

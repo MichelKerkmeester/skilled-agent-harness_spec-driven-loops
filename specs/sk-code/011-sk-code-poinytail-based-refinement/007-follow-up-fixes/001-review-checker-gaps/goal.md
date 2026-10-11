@@ -56,11 +56,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh; echo "exit=$?"` ends with `All rule-canary test cases passed` and `exit=0`, and `bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh 2>&1 | grep -c '^PASS '` prints `48`. This covers the skip, spacing, Not checked and unreadable-file messages (REQ-001 to REQ-003) and the 48-line count (REQ-005).
-- [ ] `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js; echo "exit=$?"` and `node .opencode/skills/sk-code/sk-code-review/scripts/check-rule-copies.js; echo "exit=$?"` each print `OK: all rule invariants present (5 exact-string file(s) + 2 Iron Law file(s) + 21 delivery-prefix anchor(s) + 2 example output(s)).` and `exit=0`, which covers both example outputs (REQ-006).
+- [ ] `bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh; echo "exit=$?"` ends with `All rule-canary test cases passed` and `exit=0`, and `bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh 2>&1 | grep -c '^PASS '` prints `70` or more. This covers the skip, spacing, Not checked and unreadable-file messages (REQ-001 to REQ-003) and the line count (REQ-005).
+- [ ] `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js; echo "exit=$?"` and `node .opencode/skills/sk-code/sk-code-review/scripts/check-rule-copies.js; echo "exit=$?"` each print `OK: all rule invariants present (7 exact-string file(s) + 2 Iron Law file(s) + 21 delivery-prefix anchor(s) + 2 example output(s)).` and `exit=0`, which covers both example outputs (REQ-006).
 - [ ] `python3 -I -c "import sys; ls=open('.skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js',encoding='utf8').read().split('\n'); w=[len(l) for l in ls[1:4]]; print(w[0]==w[1]==w[2])"` prints `True`, which shows the banner title and both border lines have equal length in code points (REQ-004).
 - [ ] `grep -c 'must hold exactly one line that starts with' .skilled/skills/sk-code/sk-code-review/scripts/README.md` prints `1` (REQ-007).
-- [ ] `diff -rq specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/001-review-checker-gaps/scratch/before-sk-code-review .skilled/skills/sk-code/sk-code-review; echo "exit=$?"` prints exactly three lines, each reading `Files ... differ`, that name `check-review-final-line.js`, `check-rule-copies.test.sh` and `scripts/README.md`, and it prints `exit=1`. No `Only in` line appears (SC-001).
+- [ ] `git show --name-only --format= 637eeaeb2e -- .skilled/skills/sk-code/sk-code-review` prints exactly three paths, ending in `scripts/README.md`, `check-review-final-line.js` and `check-rule-copies.test.sh` (SC-001).
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/001-review-checker-gaps --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
@@ -96,4 +96,7 @@ and findings belong here.
 | Parent Files table omits `scripts/README.md` | This child lists the README because the brief asks for the row. The parent amendment is proposed in the spec's Open Questions and was not made. |
 | Nested-child workflow asks for criteria repeated in the objective | The brief asks for a one-sentence objective, which matches the phase 004 goal. The orchestrator should confirm the parent's set string copies the criteria. |
 | Halt at T005 on a goal.md edit conflict | The brief said not to edit goal.md, while T005 and the spec's Files table asked for a log entry. The coordinator allowed edits to this LOG section only, and the COMPLETION CRITERIA and Decisions stay as written. |
+| Criterion 1 amended 2026-10-11 | Later phases added cases to the same suite, so the exact count went stale. The criterion now names the current count, or a floor where the suite keeps growing |
+| Criterion 2 amended 2026-10-11 | Phase 010 added two exact-string files to the canary, so the OK line counts 7 |
+| Criterion 5 amended 2026-10-11 | The scratch snapshot this diff read was not committed, so the scope check now reads the phase commit 637eeaeb2e itself |
 <!-- /ANCHOR:log -->

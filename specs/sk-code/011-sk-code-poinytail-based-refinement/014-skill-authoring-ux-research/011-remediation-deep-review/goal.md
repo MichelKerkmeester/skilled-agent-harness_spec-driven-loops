@@ -54,7 +54,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `ls specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/011-remediation-deep-review/review/lineages/dsflash-llmgw/iterations | wc -l`, run from the repository root, prints 5.
 - [x] `grep -cE '^### P[012]-[0-9]+\. ' specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/011-remediation-deep-review/review/review-report.md`, run from the repository root, prints 12.
 - [x] `grep -c '^## 5. Refuted or Clean$' specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/011-remediation-deep-review/review/review-report.md`, run from the repository root, prints 1.
-- [x] `git diff --name-only 03e31f902b HEAD -- .skilled .github | wc -l`, run from the repository root, prints 0.
+- [x] `git show --name-only --format= 127f935ad8 -- .skilled .github | wc -l`, run from the repository root, prints 0.
 - [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/011-remediation-deep-review --strict`, run from the repository root, prints RESULT: PASSED.
 <!-- /ANCHOR:completion -->
 
@@ -85,4 +85,5 @@ and findings belong here.
 | Agent definition inlined through steer.md | The runner has no Pi persona option; the child reads steer.md before init and every iteration |
 | Duplicate state row | The lineage recorded iteration 5 twice, so the state log's iteration row count is 6 |
 | No route switch | DevPass never hit its limit, so cline-pass and the reset wait were not needed |
+| Criterion 4 amended 2026-10-11 | The diff from the review base to HEAD counts every later phase, so it can no longer be 0. The check now reads the review commit 127f935ad8: the review changed no product file |
 <!-- /ANCHOR:log -->

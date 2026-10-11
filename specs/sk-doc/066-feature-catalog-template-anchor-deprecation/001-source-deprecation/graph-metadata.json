@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The feature catalog scaffolds stamp a template-name HTML comment under the H1 of every new catalog document, `<!-- sk-doc-template: skillassetfeaturecatalog -->`",
     "created_at": "2026-10-10T18:42:46Z",
-    "last_save_at": "2026-10-10T18:50:19.612Z",
+    "last_save_at": "2026-10-11T05:17:08.984Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a761354951fbc901ce688bc93a947e550c1ed123503e3ace40013f9193558767",
+    "source_fingerprint": "sha256:79a45c84890557e9f98fbc19a19b8abdc5011c023eab103961d602681e522761",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5f64caa081b725e72bc1f05bd90bade1dc5959cccae063e88b84dbd77eabf152",

@@ -4,7 +4,7 @@
 # runs the copied guard and requires the expected FAIL line and exit status. The repository
 # is never changed, and nothing is deleted.
 #
-# GUARD_SRC_DIR holds verify_router_sync.cjs and router_replay_lib.cjs. Default: the repository's
+# GUARD_SRC_DIR holds verify-router-sync.cjs and router-replay-lib.cjs. Default: the repository's
 # assets/scripts folder, which is where the built guard lives.
 set -u
 
@@ -29,12 +29,12 @@ control() {
   local t
   t="$(mktemp -d)"
   cp -R "${base}/." "${t}/"
-  cp "${GUARD_SRC_DIR}/verify_router_sync.cjs" "${GUARD_SRC_DIR}/router_replay_lib.cjs" "${t}/${DEST_REL}/"
+  cp "${GUARD_SRC_DIR}/verify-router-sync.cjs" "${GUARD_SRC_DIR}/router-replay-lib.cjs" "${t}/${DEST_REL}/"
   if [ "$#" -gt 0 ]; then
     (cd "${t}" && "$@") || { echo "seed failed: ${name}"; total=$((total + 1)); return; }
   fi
   local out rc
-  out="$(SK_SKILLS_ROOT="${t}/.skilled/skills" node "${t}/${DEST_REL}/verify_router_sync.cjs" --checks "${checks}" 2>&1)"
+  out="$(SK_SKILLS_ROOT="${t}/.skilled/skills" node "${t}/${DEST_REL}/verify-router-sync.cjs" --checks "${checks}" 2>&1)"
   rc=$?
   total=$((total + 1))
   if [ "${rc}" -eq "${expect_exit}" ] && printf '%s\n' "${out}" | grep -F -q -- "${expect_text}"; then

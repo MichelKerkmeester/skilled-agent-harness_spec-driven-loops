@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The hooks whose host allows 3 seconds read stdin for 500 ms",
     "created_at": "2026-10-10T19:27:07Z",
-    "last_save_at": "2026-10-10T19:47:46.365Z",
+    "last_save_at": "2026-10-11T05:17:08.985Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0270eea211c9d73938a8b49669cbf576928141f3832661c8f4f458d3fea92866",
+    "source_fingerprint": "sha256:abcaf5b0e977e5edab7910dbedc5f1f44ff6c66d0c46905aa23bd22ec5bef974",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c189e849488716b9c5f5aee4efd9b4ac83dc33572e5ec2002024e8ab64d111cf",

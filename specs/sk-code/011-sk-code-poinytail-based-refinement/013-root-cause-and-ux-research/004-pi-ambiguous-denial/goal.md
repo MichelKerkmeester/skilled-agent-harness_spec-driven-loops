@@ -54,7 +54,7 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] `npx vitest run .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts 2>&1 | grep 'Tests '`, run from the repository root, prints `Tests  36 passed (36)`.
+- [x] `npx vitest run .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts 2>&1 | grep 'Tests '`, run from the repository root, prints `Tests  37 passed (37)`.
 - [x] `grep -c 'Call one executor by its literal name' .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts`, run from the repository root, prints 1 for each file.
 - [x] `grep -c 'the command does not prove one direct executor\.' .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts`, run from the repository root, prints 1.
 - [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/004-pi-ambiguous-denial --strict`, run from the repository root, prints RESULT: PASSED.
@@ -82,4 +82,5 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | No version bump | The dispatch hooks sit outside every skill and carry no version or changelog |
+| Criterion 1 amended 2026-10-11 | Later phases added cases to the same suite, so the exact count went stale. The criterion now names the current count, or a floor where the suite keeps growing. A later phase added one case |
 <!-- /ANCHOR:log -->

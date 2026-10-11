@@ -53,8 +53,8 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node --test .skilled/skills/sk-git/scripts/hooks/stdin-deadline.test.mjs` prints `pass 2` and `fail 0`.
-- [ ] `node --test .skilled/skills/sk-vision/hooks/devin/sk-vision-devin.test.mjs` prints `pass 8` and `fail 1`, and the failing case is `resolves a built entry that exports what the adapter calls`.
+- [ ] `node --test .skilled/hooks/shared/hook-stdin-deadline.test.mjs` prints `✔ git-preflight/shared` and `✔ git-message-gate/shared` lines and `ℹ fail 0`.
+- [ ] `node --test .skilled/skills/sk-vision/hooks/devin/sk-vision-devin.test.mjs` prints `pass 9` and `fail 0`, including `resolves a built entry that exports what the adapter calls`, once the sk-vision runtime is built.
 - [ ] `node --test .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.test.mjs` prints `pass 7` and `fail 0`.
 - [ ] `rg -n 'for await \(const chunk of process.stdin\)' .skilled/skills/sk-git/scripts/hooks .skilled/skills/sk-vision/hooks` prints nothing.
 - [ ] `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check` prints `PASS: 70 Hermes skill copies in sync`.
@@ -88,4 +88,6 @@ and findings belong here.
 | Inline briefs replaced | The first hook briefs asked for an inline reader. They were stopped before any finished and replaced with import briefs. One stopped build had already rewritten `sk-vision.mjs`, which was restored from HEAD before its replacement ran |
 | Test moved 2026-10-11 | The remediation review found `stdin-deadline.test.mjs` passed on the unfixed preflight hook when a kill-switch was set. Phase 007 moved both sk-git cases and the Devin case into `.skilled/hooks/shared/hook-stdin-deadline.test.mjs`, which strips every kill-switch, and deleted the file, so criterion 1 is now checked by that suite |
 | Trigger index | Rebuilt once after all five phases, as the repository's own rebuild commits do, because the index reads every doc on disk |
+| Criterion 1 amended 2026-10-11 | Phase 012-post-merge-deep-review/007-remediation-review-fixes moved the two sk-git open-stdin cases into the shared hooks suite and deleted the sk-git test file |
+| Criterion 2 amended 2026-10-11 | The case failed only because the gitignored `vision-runtime/dist` was not built. With the runtime built, as the integration gates require, all nine cases pass |
 <!-- /ANCHOR:log -->

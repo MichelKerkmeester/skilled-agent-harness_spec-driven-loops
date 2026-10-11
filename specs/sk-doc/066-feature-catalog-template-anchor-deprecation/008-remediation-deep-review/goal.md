@@ -55,7 +55,7 @@ Frozen choices. Changing one is an amendment.
 
 - [x] Five iteration files exist and each passed `verify-iteration.cjs`
 - [x] `review/review-report.md` states a verdict and each kept finding with file:line, evidence and a fix
-- [x] `git status` shows no product file changed
+- [x] `git show --name-only --format= 11ff18b3b1 -- .skilled .hermes .github | grep -vE 'retrieval/fixtures/|data/trigger-index.json'` prints nothing, so the review commit changed only its own packet and the regenerated trigger index
 - [x] `validate.sh --strict` on this phase prints RESULT: PASSED
 <!-- /ANCHOR:completion -->
 
@@ -80,4 +80,5 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | Bookkeeping | The graph-convergence ledger event and the continuity save were skipped; convergence was logged instead. |
+| Criterion 3 amended 2026-10-11 | A working-tree status check no longer applies after the commit. The review commit 11ff18b3b1 changed four product-tree files, all of them the derived trigger index |
 <!-- /ANCHOR:log -->

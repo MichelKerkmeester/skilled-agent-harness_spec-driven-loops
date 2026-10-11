@@ -55,7 +55,7 @@ Frozen choices. Changing one is an amendment.
 
 - [ ] `rg -n 'shared Claude Code PostToolUse|shared PostToolUse|shared .claude-posttooluse' .skilled/skills/sk-code/manual-testing-playbook/tooling-and-hooks .skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md` prints nothing.
 - [ ] `rg -n preview-server .skilled/skills/sk-code/shared/references/stack-detection.md` prints nothing, and `test -e .skilled/skills/sk-doc/scripts/frontmatter-version.mjs` exits 0.
-- [ ] `rg -n '2\.2\.8\.0' .skilled/skills/sk-code/SKILL.md .skilled/skills/sk-code/README.md .skilled/skills/sk-code/ROUTER.md .skilled/skills/sk-code/description.json .skilled/skills/sk-code/hub-router.json .skilled/skills/sk-code/mode-registry.json` prints six lines.
+- [ ] `rg -n '^version: 2\.2\.8\.0$' .skilled/skills/sk-code/changelog/v2.2.8.0.md` prints one line, and `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code | grep -c 'PASS: 13a-version'` prints `1`.
 - [ ] `node .skilled/bin/compiled-route-guard.cjs` prints `sk-code` as `fresh`, and `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check` prints `PASS: 70 Hermes skill copies in sync`.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/004-hub-doc-pointers --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
@@ -84,4 +84,5 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | Playbook root wording | The builder placed the parenthetical between "hook's" and "two warn-only banner branches". The orchestrator reordered the clause so the sentence reads cleanly |
+| Criterion 3 amended 2026-10-11 | The hub moved past 2.2.8.0 in later phases. The release entry still exists, and the doctor check 13a proves the six carriers agree on the current version |
 <!-- /ANCHOR:log -->

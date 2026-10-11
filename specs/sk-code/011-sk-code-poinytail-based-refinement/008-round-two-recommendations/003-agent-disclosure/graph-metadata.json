@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The agents that do code work lag their own hub",
     "created_at": "2026-10-10T06:56:30Z",
-    "last_save_at": "2026-10-10T07:57:36.670Z",
+    "last_save_at": "2026-10-11T05:17:04.040Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ef74a5ee0deb9f91bcfef81e642c0854739ef67bef75174cc7108ac6b66cac50",
+    "source_fingerprint": "sha256:69e35b1f16324633869c18fa8010ff9e65a555a8d6e5b5d05a60b379ae2b4597",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "69efb206007aab62f9849d76440031d795ef782cade64a6c175a35c92f2920cf",

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "A census before the sweep found 548 feature catalog files holding the comment: 529 with `skillassetfeaturecatalog` and 19 in `mcp-aside-devtools` with the hyphenated `skillassetfeature-catalog`",
     "created_at": "2026-10-10T18:42:47Z",
-    "last_save_at": "2026-10-10T19:06:45.939Z",
+    "last_save_at": "2026-10-11T05:17:08.858Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cc791b2df68cf5c426e06222cb9efe0f71b788028d718a526578b52155b047a2",
+    "source_fingerprint": "sha256:5299d5f5f273cc2351c21b513b25d9700a845c7b7a0dd8364f54d397062adc6c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "925d3d886403c8d5154c12979ae4157570dcbe31018ef9b9b02b9060e66caba6",

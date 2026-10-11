@@ -43,8 +43,6 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs",
-      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/router_replay_lib.cjs",
       ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
       ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
       ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
@@ -56,8 +54,10 @@
       ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs",
       "specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/005-router-sync-guard/implementation-summary.md",
       "scratch/prototype/negative-controls.sh",
-      "scratch/before/leaf-manifest.json",
-      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/compiled/route-gold.typed.json"
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/compiled/route-gold.typed.json",
+      "scratch/prototype/prior/run-verbatim.txt",
+      "scratch/prototype/run-subset-v2.txt",
+      "scratch/prototype/run-default-v2.txt"
     ],
     "entities": [
       {
@@ -88,18 +88,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/005-router-sync-guard/implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "verify_router_sync.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "router_replay_lib.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/router_replay_lib.cjs",
         "source": "derived"
       },
       {
@@ -151,6 +139,24 @@
         "source": "derived"
       },
       {
+        "name": "run-verbatim.txt",
+        "kind": "file",
+        "path": "scratch/prototype/prior/run-verbatim.txt",
+        "source": "derived"
+      },
+      {
+        "name": "run-subset-v2.txt",
+        "kind": "file",
+        "path": "scratch/prototype/run-subset-v2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "run-default-v2.txt",
+        "kind": "file",
+        "path": "scratch/prototype/run-default-v2.txt",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -197,17 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Commit `b45ea54cea3` deleted the sk-code router-sync suite with the skill-benchmark lane",
     "created_at": "2026-10-10T05:26:28Z",
-    "last_save_at": "2026-10-10T06:17:27.712Z",
+    "last_save_at": "2026-10-11T05:17:04.039Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:79f50afdf59a4d221e1c9c1298945cbc93af1f80dddf71c5b3e5530e06b860d8",
+    "source_fingerprint": "sha256:0546c1a17862cc546b3a906ed238520ff44eb0e4161b2a0fc5c31985b303df43",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e46d8374fe281e37e07390377bd6a646a65be552a4692af7e3a5d831e3b8adec",

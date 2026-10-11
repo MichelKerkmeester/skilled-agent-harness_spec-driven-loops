@@ -4,7 +4,7 @@ description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "goal criteria refresh tasks"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Phase 2: goal-criteria-refresh
@@ -31,9 +31,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Extract 459 criteria and 556 commands from both trees
+- [x] T002 Run them all and judge each against its sentence
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -41,10 +40,8 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T003 Amend 69 criteria in the 011 tree and 6 in the 066 tree, each with a dated log row
+- [x] T004 Repoint the router-sync prototype to the renamed scripts
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -52,9 +49,8 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T005 Rerun every amended command
+- [x] T006 Validate and commit
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -62,9 +58,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every goal.md criterion passes on the orchestrator's rerun
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,6 +73,3 @@ contextType: "general"
 <!-- /ANCHOR:cross-refs -->
 
 ---
-
-
-

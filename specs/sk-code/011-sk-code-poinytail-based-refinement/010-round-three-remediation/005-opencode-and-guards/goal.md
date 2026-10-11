@@ -56,8 +56,8 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs` prints `pass 6` and `fail 0` and exits 0.
-- [ ] `node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs && node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs` prints `router-sync: 5/5 checks passed`, `pass 5` and `fail 0` and exits 0.
+- [ ] `node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs` prints `pass 12` and `fail 0` and exits 0.
+- [ ] `node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs && node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs` prints `router-sync: 5/5 checks passed`, `pass 5` and `fail 0` and exits 0.
 - [ ] `node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs | grep -c 'sk-code-opencode/'` prints `0` and exits 1.
 - [ ] `node .skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs` prints `pass 98` and `fail 0` and exits 0.
 - [ ] `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` prints `PASS: doc-claims` and `run-all-drift-guards: all 4 guards PASSED` and exits 0, which holds only after children 001 to 004 have landed.
@@ -91,4 +91,6 @@ and findings belong here.
 | Phase 1 skipped by the builder | No `before-*` files exist; before state was taken from HEAD, plan.md section 6 and `scratch/plan-doc-claims.txt` |
 | Checker false positive | The four `ROUTER.md:605` hits were correct prose. Fixed by FX1 and FX2 (applied; `scratch/fix-units-applied.json`); the test stays at 6 by extending the existing clean-hub and tiers tests, so criterion 1 keeps `pass 6` |
 | Compiled routing and Hermes | `compiled-route-guard` reads `sk-code stale-manifest` and Hermes `--check` reports drift: PENDING-ORCHESTRATOR |
+| Criterion 1 amended 2026-10-11 | The sk-code-opencode scripts were renamed to kebab-case by `sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file. Phase 011 added six cases, so it counts 12 |
+| Criterion 2 amended 2026-10-11 | The sk-code-opencode scripts were renamed to kebab-case by `sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file |
 <!-- /ANCHOR:log -->

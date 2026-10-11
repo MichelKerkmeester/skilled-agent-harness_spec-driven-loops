@@ -44,7 +44,7 @@
       "packet"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -146,14 +146,14 @@
     ],
     "causal_summary": "Every feature catalog document opens with a template-name HTML comment under its H1, `<!-- sk-doc-template: skillassetfeaturecatalog -->`, and 19 older files carry a hyphenated spelling of it",
     "created_at": "2026-10-10T18:42:45Z",
-    "last_save_at": "2026-10-11T00:03:17.848Z",
+    "last_save_at": "2026-10-11T05:17:10.092Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:9637bf58002aee676e248b2e99ced42a701caf63c363e0a2a03ae339f689043a",
+    "source_fingerprint": "sha256:b73902f6cfe06659681d7e538e66e0e443299be018cc92e77750384b41b2353f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4f03c59af107202b6ab3702ccbebed36cab77264b70bc2705fce731d7ebde4d1"

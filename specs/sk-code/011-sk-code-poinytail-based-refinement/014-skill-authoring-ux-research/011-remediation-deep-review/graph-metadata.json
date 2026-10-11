@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Each remediation phase was built by a cli-pi builder and checked by the same orchestrator that wrote its brief",
     "created_at": "2026-10-10T22:12:11Z",
-    "last_save_at": "2026-10-10T22:46:07.363Z",
+    "last_save_at": "2026-10-11T05:17:08.985Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,7 +203,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:44dbb21da36a8b9221435b73a39ca9d14ce4cc26b5f2b7b9b26abfcb0da153d6",
+    "source_fingerprint": "sha256:4abb56ce54b768fb7eb6e4cee7071ee5b5d3678ad08e853a800609265ae4fea0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3b68d94296d597b780d090c07a4a245da19a876020c7682f66111f82d7240e82",

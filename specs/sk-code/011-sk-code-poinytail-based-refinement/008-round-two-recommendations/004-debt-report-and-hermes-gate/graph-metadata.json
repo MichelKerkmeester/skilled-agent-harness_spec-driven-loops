@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The code style guide asks authors to mark a deliberate shortcut with a `ceiling:` comment that names the ceiling and the upgrade trigger, and the review checklist downgrades a finding on the strength of such a comment",
     "created_at": "2026-10-10T06:56:31Z",
-    "last_save_at": "2026-10-10T20:50:56.116Z",
+    "last_save_at": "2026-10-11T05:17:04.048Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,7 +219,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:95204531be7f9ba7e23a86ee43ea746f09d5a6251f9633b3a4b694c333c4267f",
+    "source_fingerprint": "sha256:8aa059712d156e269a01e6608164f1b56c6ffd4065644a3e4fc740a3925812ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7edc9b0bbce059538c98fbe4884f53563f356d2e0726d1012c571f43d528bae5",

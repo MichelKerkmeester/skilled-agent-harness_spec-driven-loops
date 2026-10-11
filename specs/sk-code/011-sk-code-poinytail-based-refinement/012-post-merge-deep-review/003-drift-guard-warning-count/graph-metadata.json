@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`run-all-drift-guards.sh` runs the alignment leg without `--fail-on-warn`",
     "created_at": "2026-10-10T20:17:48Z",
-    "last_save_at": "2026-10-10T20:46:22.384Z",
+    "last_save_at": "2026-10-11T05:17:08.819Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,7 +205,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:48a942a949c5542bc1c150a83872f162e4354157bebdc2fcf54b1cee588e52da",
+    "source_fingerprint": "sha256:3beb27123e2e5a2223c62e935758aee183f7f777fe23a9f89536193f0ac76ec9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4f11de18a8928e507312502b343efe734ff617223b1ab5a72abd32c4e153ad04",
