@@ -35,7 +35,7 @@
       "proof"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -146,12 +146,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -171,6 +165,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The drift workflow still checks a corpus hash from before four retired-mode rows were removed, so its pin check stops before scoring",
     "created_at": "2026-10-11T13:05:52Z",
-    "last_save_at": "2026-10-11T13:46:18.310Z",
+    "last_save_at": "2026-10-11T15:02:21.409Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d1c22af3770360715ada784b9fee90c73f08a69ba7c90dd2dd67fec98be9a64b",
+    "source_fingerprint": "sha256:36b67e35b8470412c76006aada4f882e5b35829d63c4d72732d883bf294f29be",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4845e2e496fa1b510508162086e1106c06b35b9d340635e4cdce351fee1da754",
+      "spec.md": "e2df041fac9f4e01698db6e6492e222d95d294c600140d4b0654dd133c897b3b",
       "plan.md": "1ca3e2838287aac5035720f23548e56a02cb6278ed88426f0495def5b2d8b870",
-      "tasks.md": "09aabdc24298441ac05d2bfb8dc8812aeee2f8d19e0f50fbdbb08848effe7acd",
-      "implementation-summary.md": "f2e028e61eaea511e6be8c7a081e3f8f29355260dcf411ec84141a53e47c106d"
+      "tasks.md": "035c0585055a9d0eaa5bd5d26a9566d85920e4d46b42f8cba82a489924e42884",
+      "implementation-summary.md": "240c16bce936e4b9ae12bcf6be7784b7b20be4fcb4c6937550899c0561c9ba4a"
     },
     "last_active_at": null
   }

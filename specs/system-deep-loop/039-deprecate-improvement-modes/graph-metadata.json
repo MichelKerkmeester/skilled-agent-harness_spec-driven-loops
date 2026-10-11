@@ -79,12 +79,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -107,22 +101,28 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Purpose Remove",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`system-deep-loop` registers five modes",
     "created_at": "2026-10-10T18:23:47Z",
-    "last_save_at": "2026-10-11T13:46:18.328Z",
+    "last_save_at": "2026-10-11T15:02:21.429Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:9e66d5043576c1b7d6ec5cba2bec6937ef5e9313d8a809d2d7cdc78ebf39c240",
+    "source_fingerprint": "sha256:9f96731dea4fa66d19495bdfb5deae2ff553f20588c996c4785bdf4bf9eeb85c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "50892bfe06d8e842c7b06ebf32c5c0e11c62b7df5de3b2c50b6e884e752c645a"
+      "spec.md": "4e3c5d8f97493b3f9bd158a292ba488fd053f430c751b0cae38d43da25ea1c33"
     },
-    "last_active_at": "2026-10-11T13:46:18.328Z",
-    "last_active_child_id": "system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs"
+    "last_active_child_id": "system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs",
+    "last_active_at": "2026-10-11T15:02:21.429Z"
   }
 }

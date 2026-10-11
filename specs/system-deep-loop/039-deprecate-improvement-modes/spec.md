@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-10 |
 | **Branch** | `main` |
 | **Parent Spec** | None (track root `specs/system-deep-loop/`) |
@@ -115,7 +115,7 @@ Each phase owns an exact file list in its `scratch/files.txt`; this table summar
 | 10 | 010-verification-and-closeout/ | Regenerate derived surfaces, run every gate and prove zero live references | Complete |
 | 11 | 011-pre-existing-gate-failures/ | Fix the gate failures that predate the removal | Complete |
 | 12 | 012-residual-reference-sweep/ | Remove leftovers the name-based search missed | Complete |
-| 13 | 013-drift-guard-repairs/ | Recapture the routing corpus baseline and make router-sync check 1b honor Git ignore rules | In Progress |
+| 13 | 013-drift-guard-repairs/ | Recapture the routing corpus baseline and make router-sync check 1b honor Git ignore rules | Complete |
 
 ### Phase Transition Rules
 

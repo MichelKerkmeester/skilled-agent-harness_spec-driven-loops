@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Records the drift-guard repairs, current evidence and pending release gates."
+description: "Records the drift-guard repairs, their verification and post-push CI closure."
 trigger_phrases:
   - "drift guard repairs implementation summary"
 importance_tier: "normal"
@@ -8,22 +8,22 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs"
-    last_updated_at: "2026-10-11T13:46:18Z"
+    last_updated_at: "2026-10-11T15:02:21Z"
     last_updated_by: "generate-context"
-    recent_action: "Recaptured the routing baseline and made check 1b skip ignored files"
-    next_safe_action: "Commit the four changes, push to main and watch the drift guard"
+    recent_action: "Closed on push 326f138e33 with CI green and the corpus gate passing"
+    next_safe_action: "Monitor the drift guard on main and recapture when the corpus changes"
     blockers: []
     key_files:
+      - "specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/scratch/evidence/post-push-ci.txt"
       - ".github/workflows/routing-registry-drift.yml"
       - "specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/routing-baseline.json"
       - ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs"
-      - ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs"
       - "specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/scratch/evidence/decision-ledger.txt"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:0845ae579d83af8647a153be2a5911a9d1eba3d43c10ec1704a924347b9718a2"
       session_id: "scaffold-013-drift-guard-repairs"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,8 +41,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 013-drift-guard-repairs |
-| **Status** | In Progress |
-| **Completed** | Not set |
+| **Status** | Complete |
+| **Completed** | 2026-10-11 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -75,7 +75,7 @@ The stale holdout pin stopped the workflow before corpus scoring. The recaptured
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Both implementation lanes have local evidence. The packet remains In Progress because metadata refresh, the final strict gate, commit, push and CI on main are still open.
+The four implementation commits were rebased onto origin/main after main advanced by three commits. The trigger-index commit conflicted, so the index was regenerated from the merged tree. The push to main completed after a fetch showed zero commits behind. Post-push CI passed all 14 workflows, including the routing corpus gate in run 38147728254. This final documentation update stays uncommitted in the worktree.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -101,8 +101,11 @@ Both implementation lanes have local evidence. The packet remains In Progress be
 | CI-regime corpus scorer | PASS at exact thresholds. Accuracy 0.5487, Gate 3 F1 0.9843, joint TT 104, TF 87, FT 3 and FF 1. See [ledger correction](scratch/evidence/decision-ledger.txt#L15) and [lane-02 evidence](scratch/evidence/lane-02-baseline-recapture.txt). |
 | Scorer ratchet and golden prompts | PASS, 7 of 7 and 10 of 10, exit 0. See [lane-02 evidence](scratch/evidence/lane-02-baseline-recapture.txt). |
 | Fresh review | No P0. The reviewer reproduced the reported metrics and edge cases. See [review-opus-high.txt](scratch/evidence/review-opus-high.txt). |
-| Child strict validation | RESULT: FAILED, exit 2. Errors are limited to GENERATED_METADATA_INTEGRITY and GENERATED_METADATA_DRIFT. |
-| Parent strict validation | RESULT: FAILED, exit 2. Parent-level errors are the same two generated metadata codes. The recursive run also reports one FRONTMATTER_MEMORY_BLOCK warning in the parent and one in phase 012. |
+| Pre-commit final gate, lane 03 | 118 steps, 117 returned 0. The only failed step was eslint-changed-ts with an empty TypeScript file list. The changed JavaScript check passed. See [lane-03-final-gate.txt](scratch/evidence/lane-03-final-gate.txt). |
+| Post-rebase final gate, lane 04 | 118 steps, 117 returned 0. The only failed step was eslint-changed-ts with an empty TypeScript file list. The changed JavaScript and routing checks passed. See [lane-04-post-rebase-gate.txt](scratch/evidence/lane-04-post-rebase-gate.txt). |
+| Post-push CI on main | PASS, 14 of 14 workflows on `326f138e33`. Routing Registry Drift Guard run `38147728254` passed the corpus pin and scorer gates with no threshold failures. See [post-push-ci.txt](scratch/evidence/post-push-ci.txt). |
+| Child strict validation | RESULT: FAILED, exit 2. Only GENERATED_METADATA_INTEGRITY and GENERATED_METADATA_DRIFT remain for the orchestrator to repair. |
+| Parent strict validation | RESULT: FAILED, exit 2. Only GENERATED_METADATA_INTEGRITY and GENERATED_METADATA_DRIFT remain for the orchestrator to repair. Two pre-existing recent_action warnings remain in the parent and phase 012. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -111,7 +114,8 @@ Both implementation lanes have local evidence. The packet remains In Progress be
 ## Known Limitations
 
 1. **Temporary database directory** The capture script creates a fresh empty advisor database directory under the system temp folder and leaves it there after scoring. This prevents a pre-existing database from affecting results. See [lane-02 evidence](scratch/evidence/lane-02-baseline-recapture.txt).
-2. **Alignment warnings** The full drift-guard run still reports 277 non-blocking alignment warnings. This count was unchanged in the recorded run. See [lane-01 evidence](scratch/evidence/lane-01-router-sync-ignored.txt).
+2. **Alignment warnings** The full drift-guard run reports 277 non-blocking alignment warnings. This count was unchanged in the recorded run. See [lane-01 evidence](scratch/evidence/lane-01-router-sync-ignored.txt).
+3. **Pre-existing recent_action warnings** Strict validation reports two existing warnings, one in the parent spec and one in phase 012 implementation-summary.md. Neither file is in this child closeout scope.
 <!-- /ANCHOR:limitations -->
 
 ---

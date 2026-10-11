@@ -1,0 +1,17 @@
+POST-PUSH CI ON MAIN
+Push: a8ea9f5cca..326f138e33 to main on 2026-10-11, after a fetch showed 0 behind. Commits, oldest first:
+  52a54da631 fix(sk-code): skip git-ignored files in router-sync check 1b
+  b7a961af64 fix(ci): pin the routing corpus gate to a recaptured baseline
+  ce539b8ee6 docs(specs): record the drift guard repairs
+  326f138e33 chore(system-spec-kit): rebuild the trigger index
+
+RESULT ON 326f138e33: 14 of 14 workflows success
+  Advisory Checks 38147728244, Changed Packet Validation 38147728247, Command Tree Parity 38147728248, Dispatch Enforcement Guard 38147728180, Gate Inputs 38147728245, Markdown Link Integrity 38147728242, Message Contract 38147728221, Playbook Operator Contract 38147728208, Routing Registry Drift Guard 38147728254, Rule Canary Sync 38147728178, sk-doc Script Tests 38147728266, Skill Doc Frontmatter 38147728218, Spec-Kit Check 38147728228, Trigger Index Rebuild 38147728252.
+
+THE DRIFT GUARD
+  Run 38147728254, job "Gate-2 golden prompts": Golden-prompt acceptance suite success, Scorer-eval baseline ratchet success, Routing-accuracy corpus gate success.
+  The corpus gate's log prints "corpus matches the pinned baseline hashes", then the score JSON with "threshold_failures": [] and "overall_pass": true.
+  Before this push the same workflow failed at that step on every main run since e052417268: 34fe5a546b, e5dba9dab1, 01db8367c3, 4edbf2c666 (38141281950) and 00f0b4b1bf (38145092477). The last green run before them was d04df31790.
+
+TRIGGER INDEX
+  Trigger Index Rebuild succeeded and pushed no bot commit: origin/main after the runs is 326f138e33, the pushed commit itself.
