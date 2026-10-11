@@ -77,11 +77,13 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet scaffolded | Done | create.sh phase mode with `--with-goal`; spec.md lists every ledger row |
-| Build | Pending | |
+| Build | Done | R1, R2 and R4 to R11 Fixed, R3 and R12 to R14 Closed; ledger in implementation-summary.md |
+| Pristine-clone proof | Done | README steps 1 to 5 each exit 0 on Node 24.9.0; advisor_recommend exit 0; first spec packet validate RESULT: PASSED |
+| Deep review | Done | 5 iterations, PASS, 7 P2: six fixed, one rejected by the changelog contract; review/review-report.md |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Both pre-commit hooks changed | The installed hook is .skilled/scripts/git-hooks/pre-commit; the research cited only the legacy helper |
 <!-- /ANCHOR:log -->
