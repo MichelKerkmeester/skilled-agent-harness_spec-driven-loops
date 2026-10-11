@@ -31,8 +31,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read `spec.md` and `goal.md`, and load `.skilled/repo-rules/prevent-overengineering.md`
-- [ ] T002 Configure `/deep:research` with the questions from `spec.md` section 2 and 10 iterations (`research/`)
+- [x] T001 Read `spec.md` and `goal.md`, and load `.skilled/repo-rules/prevent-overengineering.md`
+- [x] T002 Configure `/deep:research` with the questions from `spec.md` section 2 and 10 iterations (`research/`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -40,10 +40,10 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Run all 10 iterations; resume rather than stop on early convergence (`research/`)
-- [ ] T004 Spot-check every cited path:line and rerun every quoted command
-- [ ] T005 Write the ranked table that `spec.md` REQ-002 defines (`research/research.md`)
-- [ ] T006 Give every row its move and, above Build nothing, what fails at the cheaper move (`research/research.md`)
+- [x] T003 Run all 10 iterations; resume rather than stop on early convergence (`research/`)
+- [x] T004 Spot-check every cited path:line and rerun every quoted command
+- [x] T005 Write the ranked table that `spec.md` REQ-002 defines (`research/research.md`)
+- [x] T006 Give every row its move and, above Build nothing, what fails at the cheaper move (`research/research.md`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -51,9 +51,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T007 Run every criterion in `goal.md` and record the output in its log
-- [ ] T008 Fill `implementation-summary.md`
-- [ ] T009 Run strict validation on this folder
+- [x] T007 Run every criterion in `goal.md` and record the output in its log
+- [x] T008 Fill `implementation-summary.md`
+- [x] T009 Run strict validation on this folder
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -61,9 +61,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Every criterion in `goal.md` passes
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every criterion in `goal.md` passes
 <!-- /ANCHOR:completion -->
 
 ---

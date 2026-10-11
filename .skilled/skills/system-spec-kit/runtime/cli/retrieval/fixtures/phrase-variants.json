@@ -1,5 +1,5 @@
 {
-  "manifestHash": "de9894e5999371da52ded894061f9a8d7ec64574a40eba325bb25822999bee23",
+  "manifestHash": "232fe4340589f8f6909f2989ae846b49a29b286ac273889f1661efe3c7df0fe3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -45248,11 +45248,17 @@
     "fresh clone onboarding plan": [
       "fresh clone onboarding plan"
     ],
+    "fresh clone onboarding research": [
+      "fresh clone onboarding research"
+    ],
     "fresh clone onboarding tasks": [
       "fresh clone onboarding tasks"
     ],
     "fresh clone stumbles": [
       "fresh clone stumbles"
+    ],
+    "fresh clone stumbles ranked": [
+      "fresh clone stumbles ranked"
     ],
     "fresh completion verdict return": [
       "fresh_completion verdict return"

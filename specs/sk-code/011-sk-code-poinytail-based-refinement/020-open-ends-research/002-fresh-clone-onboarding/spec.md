@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-11 |
 | **Branch** | `worktrees/104-open-ends-scaffold` |
 | **Parent Spec** | ../spec.md |
@@ -143,6 +143,13 @@ Done means:
 ## 7. OPEN QUESTIONS
 
 - None blocking the run. The research questions are in section 2.
+- Research topic under active deep research: the ranked fresh-clone stumbles from install to the first routed request and the first spec packet.
+
+**Research Context**: deep research is active for this topic, and `research/research.md` is the canonical synthesis.
+
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+- Findings: 10 iterations ran, all 5 research questions are answered, and `research/research.md` ranks 14 recommendations. The two top items are documentation faults that stop a newcomer before the first routed request: the false advisor auto-build claim (README.md:162) and the missing Node 24.x requirement for Code Mode (README.md:160).
+<!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 
 ---

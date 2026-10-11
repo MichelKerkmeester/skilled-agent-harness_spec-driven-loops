@@ -1,0 +1,1646 @@
+{
+  "sessionId": "dr-002-fresh-clone-2026-10-11T16-22-38-567Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-what-is-the-documented-install-path-for-an-external-user-readme-public-releas",
+      "inboxId": null,
+      "text": "Q1 What is the documented install path for an external user (README, PUBLIC-RELEASE.md, CONTRIBUTING.md, install guides), and what does each step require up to the first routed request and the first spec packet?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-q2-is-the-node-floor-mismatch-real-today-which-engines-version-floors-do-the-adv",
+      "inboxId": null,
+      "text": "Q2 Is the Node floor mismatch real today: which engines/version floors do the advisor runtime and the spec-kit CLI declare, and what happens on a single Node version a newcomer is likely to have?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-q3-are-the-sk-vision-vision-runtime-dist-build-gap-and-the-compiled-routing-rebu",
+      "inboxId": null,
+      "text": "Q3 Are the sk-vision vision-runtime/dist build gap and the compiled-routing rebuild dependence on specs/sk-doc/z_archive (.skilled/bin/lib/compiled-route-layout.cjs) real today, and when does a newcomer hit them?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-q4-are-worktree-provisioning-and-hook-trust-skilled-trustrepohooks-real-stumbles",
+      "inboxId": null,
+      "text": "Q4 Are worktree provisioning and hook trust (skilled.trustRepoHooks) real stumbles on the first-packet path, and what does each cost the user (blocked, confused, or silent degradation)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-5-q5-what-further-stumbles-appear-on-the-walk-unclear-errors-missing-prerequisites",
+      "inboxId": null,
+      "text": "Q5 What further stumbles appear on the walk (unclear errors, missing prerequisites, tracked clutter, absent credentials, per-runtime setup), and what is the smallest ranked fix set, each passed through .skilled/repo-rules/prevent-overengineering.md?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-q1-what-is-the-documented-install-path-for-an-external-user-readme-public-releas",
+      "inboxId": null,
+      "text": "Q1 What is the documented install path for an external user (README, PUBLIC-RELEASE.md, CONTRIBUTING.md, install guides), and what does each step require up to the first routed request and the first spec packet?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-q2-is-the-node-floor-mismatch-real-today-which-engines-version-floors-do-the-adv",
+      "inboxId": null,
+      "text": "Q2 Is the Node floor mismatch real today: which engines/version floors do the advisor runtime and the spec-kit CLI declare, and what happens on a single Node version a newcomer is likely to have?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-q3-are-the-sk-vision-vision-runtime-dist-build-gap-and-the-compiled-routing-rebu",
+      "inboxId": null,
+      "text": "Q3 Are the sk-vision vision-runtime/dist build gap and the compiled-routing rebuild dependence on specs/sk-doc/z_archive (.skilled/bin/lib/compiled-route-layout.cjs) real today, and when does a newcomer hit them?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-q4-are-worktree-provisioning-and-hook-trust-skilled-trustrepohooks-real-stumbles",
+      "inboxId": null,
+      "text": "Q4 Are worktree provisioning and hook trust (skilled.trustRepoHooks) real stumbles on the first-packet path, and what does each cost the user (blocked, confused, or silent degradation)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-5-q5-what-further-stumbles-appear-on-the-walk-unclear-errors-missing-prerequisites",
+      "inboxId": null,
+      "text": "Q5 What further stumbles appear on the walk (unclear errors, missing prerequisites, tracked clutter, absent credentials, per-runtime setup), and what is the smallest ranked fix set, each passed through .skilled/repo-rules/prevent-overengineering.md?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q2, Q3, Q4, Q5 (4 of 5)",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3, Q4, Q5 (3 of 5).",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None from the strategy's key-question registry. The reducer owns the tick; this iteration answers Q5.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None in the strategy registry. Optional unprobed slots are listed under Recommended Next Focus.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None in the strategy registry. The two unranked candidates are listed under Recommended Next Focus.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None in the strategy registry. Two carried fix-set items are listed under Recommended Next Focus.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None in the strategy registry. Iteration 10 candidates: the settings-defaults security flag (iteration 5, finding 4) and the Pi silent fail-open notice question (iteration 6, finding 4).",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None in the strategy registry. The run reaches its iteration ceiling with no open question.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-7-first-use-names-only-opencode-though-seven-runtime-configs-ship-the-readme-verif",
+      "text": "**\"First Use\" names only OpenCode, though seven runtime configs ship.** The README Verify step greps `opencode.json`, `.mcp.json`, `.claude/mcp.json`, `.codex/config.toml`, `.cursor/mcp.json`, `.devin/mcp_config.json`, `.pi/mcp.json`; all seven exist in the fresh clone and all reference `mcp-code-mode-launcher` (probe). The first-use instruction names only OpenCode, leaving users of the other six runtimes without a documented first step. [SOURCE: README.md:210-216] [SOURCE: README.md:183] [INFERENCE: fresh-clone Verify-step probe; 7/7 configs matched; this iteration]",
+      "addedAtIteration": 1,
+      "sources": [
+        "README.md:90-249, 1050-1139, 1456-1592",
+        "CONTRIBUTING.md (full)",
+        "PUBLIC-RELEASE.md (full)",
+        ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md:1-120",
+        ".skilled/skills/system-skill-advisor/runtime/package.json (full)",
+        ".skilled/skills/system-spec-kit/package.json (full)",
+        "Fresh-clone fixture probes (root listing, config presence, launcher grep, tracked-clutter count, advisor runtime dir)"
+      ]
+    },
+    {
+      "id": "finding-1-10-a-fresh-clone-carries-36-empty-tracked-skilled-skills-files-at-the-repository-ro",
+      "text": "**A fresh clone carries 36 empty tracked `.skilled_skills_*` files at the repository root.** Verified this iteration: count 36, each 0 bytes (spot-checked names such as `.skilled_skills_cli-orca`, `.skilled_skills_mcp-code-mode`). No document mentions them; cosmetic clutter that appears in every listing. [INFERENCE: git ls-files probe, count 36, 3 spot-checked at 0 bytes, this iteration] [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/research/deep-research-strategy.md:169]",
+      "addedAtIteration": 1,
+      "sources": [
+        "README.md:90-249, 1050-1139, 1456-1592",
+        "CONTRIBUTING.md (full)",
+        "PUBLIC-RELEASE.md (full)",
+        ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md:1-120",
+        ".skilled/skills/system-skill-advisor/runtime/package.json (full)",
+        ".skilled/skills/system-spec-kit/package.json (full)",
+        "Fresh-clone fixture probes (root listing, config presence, launcher grep, tracked-clutter count, advisor runtime dir)"
+      ]
+    },
+    {
+      "id": "finding-1-9-code-mode-setup-is-a-deferred-side-quest-with-its-own-prerequisites-readme-step-",
+      "text": "**Code Mode setup is a deferred side-quest with its own prerequisites.** README step 3 defers Code Mode to a separate guide; that guide requires checking a Node 24 interpreter, `npx`, and creating `.utcp_config.json` + `.env`, and estimates 10-15 minutes -- none of it surfaced in the README numbered sequence, yet the first `/speckit:complete` request routes through MCP. [SOURCE: README.md:173] [SOURCE: .skilled/skills/mcp-code-mode/INSTALL-GUIDE.md:18-24] [SOURCE: .skilled/skills/mcp-code-mode/INSTALL-GUIDE.md:41]",
+      "addedAtIteration": 1,
+      "sources": [
+        "README.md:90-249, 1050-1139, 1456-1592",
+        "CONTRIBUTING.md (full)",
+        "PUBLIC-RELEASE.md (full)",
+        ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md:1-120",
+        ".skilled/skills/system-skill-advisor/runtime/package.json (full)",
+        ".skilled/skills/system-spec-kit/package.json (full)",
+        "Fresh-clone fixture probes (root listing, config presence, launcher grep, tracked-clutter count, advisor runtime dir)"
+      ]
+    },
+    {
+      "id": "finding-1-3-contributing-setup-never-reaches-a-first-routed-request-its-install-block-instal",
+      "text": "**CONTRIBUTING setup never reaches a first routed request.** Its install block installs only `.skilled/skills/system-spec-kit`; it never installs or builds the advisor runtime, which the README verification step checks. A contributor following only CONTRIBUTING finishes \"setup\" without the component that answers the first routed request, and is told \"Your first AI session in the clone installs this repository's git hooks\" -- a machine-wide hook install with no numbered step. [SOURCE: CONTRIBUTING.md:29-41] [SOURCE: README.md:179-186]",
+      "addedAtIteration": 1,
+      "sources": [
+        "README.md:90-249, 1050-1139, 1456-1592",
+        "CONTRIBUTING.md (full)",
+        "PUBLIC-RELEASE.md (full)",
+        ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md:1-120",
+        ".skilled/skills/system-skill-advisor/runtime/package.json (full)",
+        ".skilled/skills/system-spec-kit/package.json (full)",
+        "Fresh-clone fixture probes (root listing, config presence, launcher grep, tracked-clutter count, advisor runtime dir)"
+      ]
+    },
+    {
+      "id": "finding-1-5-docs-contradict-themselves-about-first-run-auto-build-prerequisites-say-the-advi",
+      "text": "**Docs contradict themselves about first-run auto-build.** Prerequisites say \"the advisor launcher installs and builds its own runtime on first run\", while the numbered path tells the user to install and build it manually. A user trusting the first sentence may skip step 3; the launcher actual behavior is unverified (Q2). [SOURCE: README.md:162] [SOURCE: README.md:172-176]",
+      "addedAtIteration": 1,
+      "sources": [
+        "README.md:90-249, 1050-1139, 1456-1592",
+        "CONTRIBUTING.md (full)",
+        "PUBLIC-RELEASE.md (full)",
+        ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md:1-120",
+        ".skilled/skills/system-skill-advisor/runtime/package.json (full)",
+        ".skilled/skills/system-spec-kit/package.json (full)",
+        "Fresh-clone fixture probes (root listing, config presence, launcher grep, tracked-clutter count, advisor runtime dir)"
+      ]
+    },
+    {
+      "id": "finding-1-8-hook-trust-is-prose-not-a-step-on-the-fresh-clone-path-a-fresh-clone-s-hooks-run",
+      "text": "**Hook trust is prose, not a step, on the fresh-clone path.** A fresh clone's hooks run the toolchain scripts only after `git config --local skilled.trustRepoHooks true`; the requirement sits mid-prose in Git Hooks, and hook install itself fires silently on \"the first AI session\". Cost (blocked commit vs silent degradation) is Q4's measurement. [SOURCE: README.md:189-197] [SOURCE: CONTRIBUTING.md:41]",
+      "addedAtIteration": 1,
+      "sources": [
+        "README.md:90-249, 1050-1139, 1456-1592",
+        "CONTRIBUTING.md (full)",
+        "PUBLIC-RELEASE.md (full)",
+        ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md:1-120",
+        ".skilled/skills/system-skill-advisor/runtime/package.json (full)",
+        ".skilled/skills/system-spec-kit/package.json (full)",
+        "Fresh-clone fixture probes (root listing, config presence, launcher grep, tracked-clutter count, advisor runtime dir)"
+      ]
+    },
+    {
+      "id": "finding-1-6-public-release-md-is-not-an-install-path-and-can-mislead-it-documents-the-mainta",
+      "text": "**PUBLIC-RELEASE.md is not an install path and can mislead.** It documents the maintainer release workflow and the symlink consumer model (`ln -s <framework-checkout>/.opencode .opencode`, `cp opencode.json .`, editing the shared checkout `.gitignore` with `specs/NNN-your-project/`). That presupposes ownership of a shared framework checkout; a stranger cloning the repository cannot follow it for a standalone install, and the document never says so. [SOURCE: PUBLIC-RELEASE.md:204-235] [SOURCE: PUBLIC-RELEASE.md:74-182]",
+      "addedAtIteration": 1,
+      "sources": [
+        "README.md:90-249, 1050-1139, 1456-1592",
+        "CONTRIBUTING.md (full)",
+        "PUBLIC-RELEASE.md (full)",
+        ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md:1-120",
+        ".skilled/skills/system-skill-advisor/runtime/package.json (full)",
+        ".skilled/skills/system-spec-kit/package.json (full)",
+        "Fresh-clone fixture probes (root listing, config presence, launcher grep, tracked-clutter count, advisor runtime dir)"
+      ]
+    },
+    {
+      "id": "finding-1-1-readme-section-4-is-the-only-end-to-end-install-path-documented-sequence-clone-n",
+      "text": "**README section 4 is the only end-to-end install path.** Documented sequence: clone -> `npm --prefix .skilled/skills/system-spec-kit install` -> `npm --prefix .skilled/skills/system-skill-advisor/runtime install` + `... run build` -> verify `node .skilled/bin/skill-advisor.cjs list-tools --format json` -> \"Open OpenCode in your project directory\" -> `/speckit:complete Build a user authentication system`. That `/speckit:complete` call is the documented first routed request and also creates the first spec packet (\"Creates a spec folder\"). [SOURCE: README.md:154-176] [SOURCE: README.md:210-225]",
+      "addedAtIteration": 1,
+      "sources": [
+        "README.md:90-249, 1050-1139, 1456-1592",
+        "CONTRIBUTING.md (full)",
+        "PUBLIC-RELEASE.md (full)",
+        ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md:1-120",
+        ".skilled/skills/system-skill-advisor/runtime/package.json (full)",
+        ".skilled/skills/system-spec-kit/package.json (full)",
+        "Fresh-clone fixture probes (root listing, config presence, launcher grep, tracked-clutter count, advisor runtime dir)"
+      ]
+    },
+    {
+      "id": "finding-1-4-readme-step-3-has-an-unstated-cross-workspace-dependency-the-advisor-build-scrip",
+      "text": "**README step 3 has an unstated cross-workspace dependency.** The advisor `build` script runs `npm --prefix ../../system-spec-kit/shared run build` and invokes `../../system-spec-kit/node_modules/.bin/tsc`, so step 3 only works after step 2 install completes; the prose never states it. `main` points at `./dist/runtime/advisor-server.js`, and no `dist` exists in the fresh clone, so `list-tools` cannot work before the build. [SOURCE: .skilled/skills/system-skill-advisor/runtime/package.json:5] [SOURCE: .skilled/skills/system-skill-advisor/runtime/package.json:11] [INFERENCE: fresh-clone probe listing the advisor runtime directory; no dist entry; this iteration]",
+      "addedAtIteration": 1,
+      "sources": [
+        "README.md:90-249, 1050-1139, 1456-1592",
+        "CONTRIBUTING.md (full)",
+        "PUBLIC-RELEASE.md (full)",
+        ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md:1-120",
+        ".skilled/skills/system-skill-advisor/runtime/package.json (full)",
+        ".skilled/skills/system-spec-kit/package.json (full)",
+        "Fresh-clone fixture probes (root listing, config presence, launcher grep, tracked-clutter count, advisor runtime dir)"
+      ]
+    },
+    {
+      "id": "finding-1-2-three-documents-declare-three-different-node-floors-readme-node-js-20-19-22-12-f",
+      "text": "**Three documents declare three different Node floors.** README: \"Node.js 20.19+ (22.12+ for the spec-kit runtime CLI)\". CONTRIBUTING: \"Node.js 18+\". The Code Mode install guide the README points to: \"Dependencies: Node.js 24\". The advisor manifest declares `^20.19.0 || >=22.12.0`; the spec-kit workspace manifest declares `>=20.11.0`. The spec-kit CLI workspace manifest (`runtime/cli/package.json`) was not read this iteration -- CARRIED FORWARD to Q2; whether Node 18 actually breaks is unverified today, the doc contradiction is verified. [SOURCE: README.md:160] [SOURCE: CONTRIBUTING.md:25] [SOURCE: .skilled/skills/mcp-code-mode/INSTALL-GUIDE.md:6] [SOURCE: .skilled/skills/system-skill-advisor/runtime/package.json:6-8] [SOURCE: .skilled/skills/system-spec-kit/package.json:11-13]",
+      "addedAtIteration": 1,
+      "sources": [
+        "README.md:90-249, 1050-1139, 1456-1592",
+        "CONTRIBUTING.md (full)",
+        "PUBLIC-RELEASE.md (full)",
+        ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md:1-120",
+        ".skilled/skills/system-skill-advisor/runtime/package.json (full)",
+        ".skilled/skills/system-spec-kit/package.json (full)",
+        "Fresh-clone fixture probes (root listing, config presence, launcher grep, tracked-clutter count, advisor runtime dir)"
+      ]
+    },
+    {
+      "id": "finding-2-6-code-mode-requires-exactly-node-24-x-and-a-single-node-machine-is-refused-on-a-f",
+      "text": "**Code Mode requires exactly Node 24.x, and a single-Node machine is refused.** On a fake-HOME machine with only Node 26 the launcher prints `[mcp-code-mode-launcher] Cannot start the MCP server: no Node interpreter satisfies >=24.0.0 <25.0.0 (resolution reason: unsatisfied). Install a Node interpreter matching that range and retry.` and exits 1 [INFERENCE: fresh-clone probe, this iteration]. With the operator's nvm present it resolves a Node 24 interpreter and proceeds to spawn the server (which then fails on the unbuilt clone dist: `Cannot find module .../mcp-server/dist/index.js`) [INFERENCE: fresh-clone probe, this iteration]. The resolver scans nvm/fnm/volta layouts [SOURCE: .skilled/bin/lib/node-engine-resolver.cjs:41-57], so multi-version machines self-heal, but a newcomer whose only Node is 20/22/26 cannot start the MCP front door the README verify step points at [SOURCE: README.md:181-184].",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/package.json:7-8",
+        ".skilled/skills/system-skill-advisor/runtime/package.json:6-7, 11",
+        ".skilled/skills/system-spec-kit/package.json:11-13",
+        ".skilled/skills/system-spec-kit/shared/package.json:19-20",
+        ".skilled/skills/system-spec-kit/runtime/package.json:40-41",
+        ".skilled/skills/mcp-code-mode/mcp-server/package.json:42-43",
+        ".skilled/skills/mcp-code-mode/mcp-server/scripts/check-node.cjs:1-14",
+        ".skilled/bin/skill-advisor.cjs:24, 70-83",
+        ".skilled/bin/lib/node-engine-resolver.cjs:41-57",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:30, 647",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:21-24, 322-349",
+        "README.md:160-176, 181-184",
+        ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md:146",
+        "Fresh-clone probes A, B/B2, C/D/E, F/G/H, 22/26 verify, Code Mode launcher (fake HOME, nvm-present)"
+      ]
+    },
+    {
+      "id": "finding-2-1-five-distinct-node-floors-are-declared-and-the-readme-line-hides-the-one-that-ma",
+      "text": "**Five distinct Node floors are declared, and the README line hides the one that matters.** @spec-kit/cli declares `>=22.12.0` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/package.json:7-8]; the advisor runtime declares `^20.19.0 || >=22.12.0` [SOURCE: .skilled/skills/system-skill-advisor/runtime/package.json:6-7]; the spec-kit root, shared and runtime workspaces declare `>=20.11.0` [SOURCE: .skilled/skills/system-spec-kit/package.json:11-13] [SOURCE: .skilled/skills/system-spec-kit/shared/package.json:19-20] [SOURCE: .skilled/skills/system-spec-kit/runtime/package.json:40-41]; the Code Mode MCP server declares `>=24.0.0 <25.0.0` [SOURCE: .skilled/skills/mcp-code-mode/mcp-server/package.json:42-43] with a hard ABI-137 constraint [SOURCE: .skilled/skills/mcp-code-mode/mcp-server/scripts/check-node.cjs:1-14]; deep-loop/runtime and sk-doc declare `>=20.11` [SOURCE: .skilled/skills/system-deep-loop/runtime/package.json:7-8] [SOURCE: .skilled/skills/sk-doc/package.json:7-8]. README's one line (20.19+, 22.12+ for the CLI) never mentions Node 24 [SOURCE: README.md:160], yet the first routed request routes through the Code Mode MCP [SOURCE: .skilled/skills/mcp-code-mode/INSTALL-GUIDE.md:146].",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/package.json:7-8",
+        ".skilled/skills/system-skill-advisor/runtime/package.json:6-7, 11",
+        ".skilled/skills/system-spec-kit/package.json:11-13",
+        ".skilled/skills/system-spec-kit/shared/package.json:19-20",
+        ".skilled/skills/system-spec-kit/runtime/package.json:40-41",
+        ".skilled/skills/mcp-code-mode/mcp-server/package.json:42-43",
+        ".skilled/skills/mcp-code-mode/mcp-server/scripts/check-node.cjs:1-14",
+        ".skilled/bin/skill-advisor.cjs:24, 70-83",
+        ".skilled/bin/lib/node-engine-resolver.cjs:41-57",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:30, 647",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:21-24, 322-349",
+        "README.md:160-176, 181-184",
+        ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md:146",
+        "Fresh-clone probes A, B/B2, C/D/E, F/G/H, 22/26 verify, Code Mode launcher (fake HOME, nvm-present)"
+      ]
+    },
+    {
+      "id": "finding-2-4-on-node-20-19-5-the-mismatch-is-warn-only-and-the-documented-path-passes-the-spe",
+      "text": "**On Node 20.19.5 the mismatch is warn-only and the documented path passes.** The spec-kit install prints `npm warn EBADENGINE Unsupported engine { package: @spec-kit/cli@1.7.2, required: { node: '>=22.12.0' }, current: v20.19.5 }` and exits 0; npm 10.8.2 default is warn-only. After the documented steps, the advisor build exits 0, the README verify command `list-tools` exits 0, the explicit workspace build exits 0, and `generate-context.js --help` exits 0 -- all on 20.19.5 [INFERENCE: fresh-clone probes C/D/E/G/H, this iteration]. No Node-22-only API (node:sqlite, fs.globSync, process.loadEnvFile, process.getBuiltinModule) appears in CLI source; the only hits are strings in a retrieval fixture [INFERENCE: grep this iteration]. The declared floor is therefore a warning to a Node 20.19 newcomer, not a wall, for the sampled surfaces.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/package.json:7-8",
+        ".skilled/skills/system-skill-advisor/runtime/package.json:6-7, 11",
+        ".skilled/skills/system-spec-kit/package.json:11-13",
+        ".skilled/skills/system-spec-kit/shared/package.json:19-20",
+        ".skilled/skills/system-spec-kit/runtime/package.json:40-41",
+        ".skilled/skills/mcp-code-mode/mcp-server/package.json:42-43",
+        ".skilled/skills/mcp-code-mode/mcp-server/scripts/check-node.cjs:1-14",
+        ".skilled/bin/skill-advisor.cjs:24, 70-83",
+        ".skilled/bin/lib/node-engine-resolver.cjs:41-57",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:30, 647",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:21-24, 322-349",
+        "README.md:160-176, 181-184",
+        ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md:146",
+        "Fresh-clone probes A, B/B2, C/D/E, F/G/H, 22/26 verify, Code Mode launcher (fake HOME, nvm-present)"
+      ]
+    },
+    {
+      "id": "finding-2-2-readme-162-s-auto-install-auto-build-claim-is-false-today-bare-clone-no-installs",
+      "text": "**README:162's auto-install/auto-build claim is false today.** Bare clone, no installs: `node .skilled/bin/skill-advisor.cjs list-tools --format json` exits 1 with `Error: Cannot find module '@spec-kit/shared/workspace/repo-root.mjs'` -- the shim loads spec-kit's dist-freshness lib at require time [SOURCE: .skilled/bin/skill-advisor.cjs:24], which requires the spec-kit shared package [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:30]; the shim then fails on missing/stale dist [SOURCE: .skilled/bin/skill-advisor.cjs:70-83]; no spawn/build path exists in dist-freshness.cjs [INFERENCE: grep for spawnSync/execSync/rebuild matches only the checkPackageFreshness definition at line 647]. Cost: a user who trusts the sentence and skips steps 2-3 gets a raw module-resolution stack trace naming an internal package.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/package.json:7-8",
+        ".skilled/skills/system-skill-advisor/runtime/package.json:6-7, 11",
+        ".skilled/skills/system-spec-kit/package.json:11-13",
+        ".skilled/skills/system-spec-kit/shared/package.json:19-20",
+        ".skilled/skills/system-spec-kit/runtime/package.json:40-41",
+        ".skilled/skills/mcp-code-mode/mcp-server/package.json:42-43",
+        ".skilled/skills/mcp-code-mode/mcp-server/scripts/check-node.cjs:1-14",
+        ".skilled/bin/skill-advisor.cjs:24, 70-83",
+        ".skilled/bin/lib/node-engine-resolver.cjs:41-57",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:30, 647",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:21-24, 322-349",
+        "README.md:160-176, 181-184",
+        ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md:146",
+        "Fresh-clone probes A, B/B2, C/D/E, F/G/H, 22/26 verify, Code Mode launcher (fake HOME, nvm-present)"
+      ]
+    },
+    {
+      "id": "finding-2-7-the-missing-cli-dist-after-the-documented-path-is-designed-for-not-a-block-after",
+      "text": "**The missing CLI dist after the documented path is designed-for, not a block.** After README steps 1-3, `runtime/cli/dist` is absent [INFERENCE: fresh-clone probe F, this iteration]. validate.sh prefers the compiled orchestrator, hard-errors on stale dist, and when dist is missing runs `node --import <tsx loader> lib/validation/orchestrator.ts` instead -- the source-only-checks keep working path [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:322-349] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:21-24]; tsx is present after the step-2 install [INFERENCE: clone probe].",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/package.json:7-8",
+        ".skilled/skills/system-skill-advisor/runtime/package.json:6-7, 11",
+        ".skilled/skills/system-spec-kit/package.json:11-13",
+        ".skilled/skills/system-spec-kit/shared/package.json:19-20",
+        ".skilled/skills/system-spec-kit/runtime/package.json:40-41",
+        ".skilled/skills/mcp-code-mode/mcp-server/package.json:42-43",
+        ".skilled/skills/mcp-code-mode/mcp-server/scripts/check-node.cjs:1-14",
+        ".skilled/bin/skill-advisor.cjs:24, 70-83",
+        ".skilled/bin/lib/node-engine-resolver.cjs:41-57",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:30, 647",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:21-24, 322-349",
+        "README.md:160-176, 181-184",
+        ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md:146",
+        "Fresh-clone probes A, B/B2, C/D/E, F/G/H, 22/26 verify, Code Mode launcher (fake HOME, nvm-present)"
+      ]
+    },
+    {
+      "id": "finding-2-3-the-unstated-step-2-step-3-dependency-is-real-with-its-first-failing-command-obs",
+      "text": "**The unstated step-2 -> step-3 dependency is real, with its first failing command observed.** Advisor `install` alone succeeds (141 packages), but the subsequent `run build` fails (exit 1) inside its first stage `npm --prefix ../../system-spec-kit/shared run build` with TS2591/TS2503 ('Cannot find name process', 'Cannot find namespace NodeJS') because the workspace Node type packages arrive only with the step-2 install [SOURCE: .skilled/skills/system-skill-advisor/runtime/package.json:11] [INFERENCE: fresh-clone probe B2, this iteration; after step 2 the identical build exits 0]. The README never states the order [SOURCE: README.md:169-176].",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/package.json:7-8",
+        ".skilled/skills/system-skill-advisor/runtime/package.json:6-7, 11",
+        ".skilled/skills/system-spec-kit/package.json:11-13",
+        ".skilled/skills/system-spec-kit/shared/package.json:19-20",
+        ".skilled/skills/system-spec-kit/runtime/package.json:40-41",
+        ".skilled/skills/mcp-code-mode/mcp-server/package.json:42-43",
+        ".skilled/skills/mcp-code-mode/mcp-server/scripts/check-node.cjs:1-14",
+        ".skilled/bin/skill-advisor.cjs:24, 70-83",
+        ".skilled/bin/lib/node-engine-resolver.cjs:41-57",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:30, 647",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:21-24, 322-349",
+        "README.md:160-176, 181-184",
+        ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md:146",
+        "Fresh-clone probes A, B/B2, C/D/E, F/G/H, 22/26 verify, Code Mode launcher (fake HOME, nvm-present)"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-verify-command-also-exits-0-on-node-22-23-1-and-26-8-2-inference-fresh-clone",
+      "text": "**The verify command also exits 0 on Node 22.23.1 and 26.8.2** [INFERENCE: fresh-clone probes, this iteration]. Node 18 stays below every declared floor and untested (not installed).",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/package.json:7-8",
+        ".skilled/skills/system-skill-advisor/runtime/package.json:6-7, 11",
+        ".skilled/skills/system-spec-kit/package.json:11-13",
+        ".skilled/skills/system-spec-kit/shared/package.json:19-20",
+        ".skilled/skills/system-spec-kit/runtime/package.json:40-41",
+        ".skilled/skills/mcp-code-mode/mcp-server/package.json:42-43",
+        ".skilled/skills/mcp-code-mode/mcp-server/scripts/check-node.cjs:1-14",
+        ".skilled/bin/skill-advisor.cjs:24, 70-83",
+        ".skilled/bin/lib/node-engine-resolver.cjs:41-57",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:30, 647",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:21-24, 322-349",
+        "README.md:160-176, 181-184",
+        ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md:146",
+        "Fresh-clone probes A, B/B2, C/D/E, F/G/H, 22/26 verify, Code Mode launcher (fake HOME, nvm-present)"
+      ]
+    },
+    {
+      "id": "finding-3-8-f1-p1-delete-the-false-auto-build-sentence-and-state-the-real-build-requirement-",
+      "text": "**F1 (P1): delete the false auto-build sentence and state the real build requirement.** Move: change prose in place (one sentence). What fails at the cheaper move: doing nothing leaves README.md:162 promising an auto-install/auto-build that the bare-clone probe falsified (iteration 2), so the first-run failure stays. [SOURCE: README.md:162]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/bin/lib/compiled-route-layout.cjs (full)",
+        ".skilled/bin/compiled-route-sync.cjs:1-60",
+        ".skilled/bin/compiled-route-guard.cjs:39 (grep)",
+        ".skilled/scripts/git-hooks/pre-commit:30-54, 488-539 (grep)",
+        ".skilled/scripts/git-hooks/post-commit:30-53 (grep)",
+        ".skilled/scripts/install-git-hooks.sh:1-60",
+        "README.md:154-241",
+        ".skilled/skills/sk-vision/vision-runtime/package.json (full)",
+        ".skilled/skills/sk-vision/vision-runtime/scripts/build.ts:68 (grep)",
+        ".skilled/skills/sk-vision/vision-runtime/python/runtime.test.ts:8-30, 75",
+        ".skilled/skills/sk-vision/SKILL.md:208, 230-251, 264, 288-290 (grep)",
+        ".skilled/skills/sk-git/SKILL.md:207-224 (grep)",
+        ".skilled/repo-rules/prevent-overengineering.md (full)",
+        "Fresh-clone probes: authored-dir presence, dist absence, plugin symlink, tracked z_archive count, `.skilled_skills_*` count (all read-only)"
+      ]
+    },
+    {
+      "id": "finding-3-9-f2-p1-add-code-mode-s-exact-node-24-x-requirement-to-readme-prerequisites-move-e",
+      "text": "**F2 (P1): add Code Mode's exact Node 24.x requirement to README prerequisites.** Move: extend the existing prerequisites line. Cheaper move (build nothing) fails because a single-Node 20/22/26 machine is refused by the launcher before the first routed request (iteration 2 probe), and README.md:160 never mentions Node 24.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/bin/lib/compiled-route-layout.cjs (full)",
+        ".skilled/bin/compiled-route-sync.cjs:1-60",
+        ".skilled/bin/compiled-route-guard.cjs:39 (grep)",
+        ".skilled/scripts/git-hooks/pre-commit:30-54, 488-539 (grep)",
+        ".skilled/scripts/git-hooks/post-commit:30-53 (grep)",
+        ".skilled/scripts/install-git-hooks.sh:1-60",
+        "README.md:154-241",
+        ".skilled/skills/sk-vision/vision-runtime/package.json (full)",
+        ".skilled/skills/sk-vision/vision-runtime/scripts/build.ts:68 (grep)",
+        ".skilled/skills/sk-vision/vision-runtime/python/runtime.test.ts:8-30, 75",
+        ".skilled/skills/sk-vision/SKILL.md:208, 230-251, 264, 288-290 (grep)",
+        ".skilled/skills/sk-git/SKILL.md:207-224 (grep)",
+        ".skilled/repo-rules/prevent-overengineering.md (full)",
+        "Fresh-clone probes: authored-dir presence, dist absence, plugin symlink, tracked z_archive count, `.skilled_skills_*` count (all read-only)"
+      ]
+    },
+    {
+      "id": "finding-3-10-f3-p2-document-the-sk-vision-setup-bun-prerequisite-bun-install-bun-run-build-wh",
+      "text": "**F3 (P2): document the sk-vision setup (Bun prerequisite + `bun install && bun run build`) where the skill is introduced.** Move: one README/skill line beside the existing sk-vision docs; no new mechanism. What fails at \"build nothing\": the tracked plugin symlink dangles in every fresh clone (finding 1), so `/vision` fails with ENOENT for any user who follows the skill without the unstated build.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/bin/lib/compiled-route-layout.cjs (full)",
+        ".skilled/bin/compiled-route-sync.cjs:1-60",
+        ".skilled/bin/compiled-route-guard.cjs:39 (grep)",
+        ".skilled/scripts/git-hooks/pre-commit:30-54, 488-539 (grep)",
+        ".skilled/scripts/git-hooks/post-commit:30-53 (grep)",
+        ".skilled/scripts/install-git-hooks.sh:1-60",
+        "README.md:154-241",
+        ".skilled/skills/sk-vision/vision-runtime/package.json (full)",
+        ".skilled/skills/sk-vision/vision-runtime/scripts/build.ts:68 (grep)",
+        ".skilled/skills/sk-vision/vision-runtime/python/runtime.test.ts:8-30, 75",
+        ".skilled/skills/sk-vision/SKILL.md:208, 230-251, 264, 288-290 (grep)",
+        ".skilled/skills/sk-git/SKILL.md:207-224 (grep)",
+        ".skilled/repo-rules/prevent-overengineering.md (full)",
+        "Fresh-clone probes: authored-dir presence, dist absence, plugin symlink, tracked z_archive count, `.skilled_skills_*` count (all read-only)"
+      ]
+    },
+    {
+      "id": "finding-3-11-f4-p2-move-the-hook-trust-command-into-the-numbered-install-steps-move-relocate-",
+      "text": "**F4 (P2): move the hook-trust command into the numbered install steps.** Move: relocate/duplicate one existing sentence. Cheaper move fails because the trust requirement only appears mid-prose [SOURCE: README.md:197] while the numbered steps never mention it [SOURCE: README.md:164-177]; a second clone silently skips all gates.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/bin/lib/compiled-route-layout.cjs (full)",
+        ".skilled/bin/compiled-route-sync.cjs:1-60",
+        ".skilled/bin/compiled-route-guard.cjs:39 (grep)",
+        ".skilled/scripts/git-hooks/pre-commit:30-54, 488-539 (grep)",
+        ".skilled/scripts/git-hooks/post-commit:30-53 (grep)",
+        ".skilled/scripts/install-git-hooks.sh:1-60",
+        "README.md:154-241",
+        ".skilled/skills/sk-vision/vision-runtime/package.json (full)",
+        ".skilled/skills/sk-vision/vision-runtime/scripts/build.ts:68 (grep)",
+        ".skilled/skills/sk-vision/vision-runtime/python/runtime.test.ts:8-30, 75",
+        ".skilled/skills/sk-vision/SKILL.md:208, 230-251, 264, 288-290 (grep)",
+        ".skilled/skills/sk-git/SKILL.md:207-224 (grep)",
+        ".skilled/repo-rules/prevent-overengineering.md (full)",
+        "Fresh-clone probes: authored-dir presence, dist absence, plugin symlink, tracked z_archive count, `.skilled_skills_*` count (all read-only)"
+      ]
+    },
+    {
+      "id": "finding-3-12-f5-p3-one-clause-on-readme-step-3-stating-it-requires-step-2-completed-move-chan",
+      "text": "**F5 (P3): one clause on README step 3 stating it requires step 2 completed.** Move: change prose in place. Cheaper move fails because running the advisor build before the spec-kit install exits 1 with TS2591/TS2503 (iteration 2 probe).",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/bin/lib/compiled-route-layout.cjs (full)",
+        ".skilled/bin/compiled-route-sync.cjs:1-60",
+        ".skilled/bin/compiled-route-guard.cjs:39 (grep)",
+        ".skilled/scripts/git-hooks/pre-commit:30-54, 488-539 (grep)",
+        ".skilled/scripts/git-hooks/post-commit:30-53 (grep)",
+        ".skilled/scripts/install-git-hooks.sh:1-60",
+        "README.md:154-241",
+        ".skilled/skills/sk-vision/vision-runtime/package.json (full)",
+        ".skilled/skills/sk-vision/vision-runtime/scripts/build.ts:68 (grep)",
+        ".skilled/skills/sk-vision/vision-runtime/python/runtime.test.ts:8-30, 75",
+        ".skilled/skills/sk-vision/SKILL.md:208, 230-251, 264, 288-290 (grep)",
+        ".skilled/skills/sk-git/SKILL.md:207-224 (grep)",
+        ".skilled/repo-rules/prevent-overengineering.md (full)",
+        "Fresh-clone probes: authored-dir presence, dist absence, plugin symlink, tracked z_archive count, `.skilled_skills_*` count (all read-only)"
+      ]
+    },
+    {
+      "id": "finding-3-13-f6-p3-optional-remove-the-36-empty-root-clutter-files-from-tracking-move-change-",
+      "text": "**F6 (P3, optional): remove the 36 empty root clutter files from tracking.** Move: change tracked content (git rm of empty files). This is the weakest fix: doing nothing costs only visual noise, and no observed failure names it. Recommended only if bundled with an unrelated root cleanup; otherwise note it, do not build it (prevent-overengineering \"while we're here\" signal).",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/bin/lib/compiled-route-layout.cjs (full)",
+        ".skilled/bin/compiled-route-sync.cjs:1-60",
+        ".skilled/bin/compiled-route-guard.cjs:39 (grep)",
+        ".skilled/scripts/git-hooks/pre-commit:30-54, 488-539 (grep)",
+        ".skilled/scripts/git-hooks/post-commit:30-53 (grep)",
+        ".skilled/scripts/install-git-hooks.sh:1-60",
+        "README.md:154-241",
+        ".skilled/skills/sk-vision/vision-runtime/package.json (full)",
+        ".skilled/skills/sk-vision/vision-runtime/scripts/build.ts:68 (grep)",
+        ".skilled/skills/sk-vision/vision-runtime/python/runtime.test.ts:8-30, 75",
+        ".skilled/skills/sk-vision/SKILL.md:208, 230-251, 264, 288-290 (grep)",
+        ".skilled/skills/sk-git/SKILL.md:207-224 (grep)",
+        ".skilled/repo-rules/prevent-overengineering.md (full)",
+        "Fresh-clone probes: authored-dir presence, dist absence, plugin symlink, tracked z_archive count, `.skilled_skills_*` count (all read-only)"
+      ]
+    },
+    {
+      "id": "finding-3-6-further-stumbles-found-on-the-walk-a-sk-vision-requires-bun-engines-bun-1-0-0-bu",
+      "text": "**Further stumbles found on the walk.** (a) sk-vision requires Bun (`engines.bun >= 1.0.0`, `build`/`test` scripts are `bun run`/`bun test`), but README prerequisites list only Node, npm, git and a POSIX shell -- no `bun` string appears anywhere in README.md [SOURCE: .skilled/skills/sk-vision/vision-runtime/package.json:11-12] [SOURCE: .skilled/skills/sk-vision/vision-runtime/package.json:45-46] [SOURCE: README.md:158-162]. A newcomer without Bun hits `command not found` at the first sk-vision build. (b) First sk-vision model load downloads ~3.9 GB of weights and may provision a venv via `uv`, requiring Apple Silicon or an Ampere+ GPU -- documented inside sk-vision's SKILL.md but absent from the root install path [SOURCE: .skilled/skills/sk-vision/SKILL.md:242] [SOURCE: .skilled/skills/sk-vision/SKILL.md:230-251]. (c) SKILL.md:208 names `.skilled/plugins/sk-vision.js` as the plugin load path; that path does not exist -- the shipped shim is `.opencode/plugins/sk-vision.js` [SOURCE: .skilled/skills/sk-vision/SKILL.md:208] [SOURCE: .skilled/skills/sk-vision/SKILL.md:290]. (d) Re-verified: 36 empty tracked `.skilled_skills_*` files at the repository root, still unexplained by any document [INFERENCE: `git ls-files | grep -c '^\\.skilled_skills'` = 36, this iteration].",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/bin/lib/compiled-route-layout.cjs (full)",
+        ".skilled/bin/compiled-route-sync.cjs:1-60",
+        ".skilled/bin/compiled-route-guard.cjs:39 (grep)",
+        ".skilled/scripts/git-hooks/pre-commit:30-54, 488-539 (grep)",
+        ".skilled/scripts/git-hooks/post-commit:30-53 (grep)",
+        ".skilled/scripts/install-git-hooks.sh:1-60",
+        "README.md:154-241",
+        ".skilled/skills/sk-vision/vision-runtime/package.json (full)",
+        ".skilled/skills/sk-vision/vision-runtime/scripts/build.ts:68 (grep)",
+        ".skilled/skills/sk-vision/vision-runtime/python/runtime.test.ts:8-30, 75",
+        ".skilled/skills/sk-vision/SKILL.md:208, 230-251, 264, 288-290 (grep)",
+        ".skilled/skills/sk-git/SKILL.md:207-224 (grep)",
+        ".skilled/repo-rules/prevent-overengineering.md (full)",
+        "Fresh-clone probes: authored-dir presence, dist absence, plugin symlink, tracked z_archive count, `.skilled_skills_*` count (all read-only)"
+      ]
+    },
+    {
+      "id": "finding-3-4-hook-trust-is-code-enforced-and-its-cost-on-a-secondary-checkout-is-silent-degra",
+      "text": "**Hook trust is code-enforced, and its cost on a secondary checkout is silent degradation made audible only by a NOTICE.** Both hooks compare the hook script's git common dir with the checkout's; when they differ and `git config --local skilled.trustRepoHooks` is not exactly `true`, `SOURCE_ROOT` becomes `.skilled-untrusted` and the checks are skipped [SOURCE: .skilled/scripts/git-hooks/pre-commit:30-46] [SOURCE: .skilled/scripts/git-hooks/post-commit:30-46]. The skip is not silent: the hook prints `NOTICE [gate:hook-trust]: this clone is not trusted, so the pre-commit checks were skipped.` plus the enable command [SOURCE: .skilled/scripts/git-hooks/pre-commit:48-54]. The installer copies the hooks and selects the source root, and the README documents the machine-wide install and the trust requirement in the Git Hooks section [SOURCE: .skilled/scripts/install-git-hooks.sh:22-60] [SOURCE: README.md:189-197]. On the first-packet path the cost is near zero (creating a spec packet needs no commit); the cost lands at the first commit from a second clone or a moved checkout, where all gates -- including comment hygiene -- are skipped and only a stderr notice records why. The trust line is prose mid-section, not a numbered install step, so a user who honors only the numbered steps never sees it [SOURCE: README.md:164-177] [SOURCE: README.md:197].",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/bin/lib/compiled-route-layout.cjs (full)",
+        ".skilled/bin/compiled-route-sync.cjs:1-60",
+        ".skilled/bin/compiled-route-guard.cjs:39 (grep)",
+        ".skilled/scripts/git-hooks/pre-commit:30-54, 488-539 (grep)",
+        ".skilled/scripts/git-hooks/post-commit:30-53 (grep)",
+        ".skilled/scripts/install-git-hooks.sh:1-60",
+        "README.md:154-241",
+        ".skilled/skills/sk-vision/vision-runtime/package.json (full)",
+        ".skilled/skills/sk-vision/vision-runtime/scripts/build.ts:68 (grep)",
+        ".skilled/skills/sk-vision/vision-runtime/python/runtime.test.ts:8-30, 75",
+        ".skilled/skills/sk-vision/SKILL.md:208, 230-251, 264, 288-290 (grep)",
+        ".skilled/skills/sk-git/SKILL.md:207-224 (grep)",
+        ".skilled/repo-rules/prevent-overengineering.md (full)",
+        "Fresh-clone probes: authored-dir presence, dist absence, plugin symlink, tracked z_archive count, `.skilled_skills_*` count (all read-only)"
+      ]
+    },
+    {
+      "id": "finding-3-7-provisional-ranked-fix-set-q5-progress-each-passed-through-prevent-overengineeri",
+      "text": "**Provisional ranked fix set (Q5 progress), each passed through `prevent-overengineering.md` §1/§2.** Ranked by user impact; move + climbing sentence written for every move past \"build nothing\":",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/bin/lib/compiled-route-layout.cjs (full)",
+        ".skilled/bin/compiled-route-sync.cjs:1-60",
+        ".skilled/bin/compiled-route-guard.cjs:39 (grep)",
+        ".skilled/scripts/git-hooks/pre-commit:30-54, 488-539 (grep)",
+        ".skilled/scripts/git-hooks/post-commit:30-53 (grep)",
+        ".skilled/scripts/install-git-hooks.sh:1-60",
+        "README.md:154-241",
+        ".skilled/skills/sk-vision/vision-runtime/package.json (full)",
+        ".skilled/skills/sk-vision/vision-runtime/scripts/build.ts:68 (grep)",
+        ".skilled/skills/sk-vision/vision-runtime/python/runtime.test.ts:8-30, 75",
+        ".skilled/skills/sk-vision/SKILL.md:208, 230-251, 264, 288-290 (grep)",
+        ".skilled/skills/sk-git/SKILL.md:207-224 (grep)",
+        ".skilled/repo-rules/prevent-overengineering.md (full)",
+        "Fresh-clone probes: authored-dir presence, dist absence, plugin symlink, tracked z_archive count, `.skilled_skills_*` count (all read-only)"
+      ]
+    },
+    {
+      "id": "finding-3-3-the-compiled-routing-dependence-on-specs-sk-doc-z-archive-is-real-and-load-beari",
+      "text": "**The compiled-routing dependence on `specs/sk-doc/z_archive` is real and load-bearing, but it does not break a fresh clone.** `AUTHORED_PROGRAM_DIR` is hardcoded to `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program` [SOURCE: .skilled/bin/lib/compiled-route-layout.cjs:53-55]; the sync tool derives `IMPL_ROOT` from it and traces the authored closure into the promoted runtime under `.skilled/bin/lib/compiled-routing` [SOURCE: .skilled/bin/compiled-route-sync.cjs:40] [SOURCE: .skilled/bin/compiled-route-sync.cjs:3-17], and the guard reads the same authored root [SOURCE: .skilled/bin/compiled-route-guard.cjs:39]. The pre-commit route-remint gate also reads the authored program dir and blocks the commit when it cannot resolve it [SOURCE: .skilled/scripts/git-hooks/pre-commit:539] [SOURCE: .skilled/scripts/git-hooks/pre-commit:488-490]. That tree is fully tracked (6996 `z_archive` files) and the exact path was confirmed present in `o2-fresh-clone`, so the fresh-clone default path never misses it. The honest cost is structural fragility, not a current stumble: moving or deleting the archived spec tree (e.g., a specs cleanup) makes sync fail and blocked commits appear. The sync tool's own header acknowledges the authored source sits under a \"mutable documentation tree\" [SOURCE: .skilled/bin/compiled-route-sync.cjs:6-9], and it ships a `--verify` mode that simulates the move [SOURCE: .skilled/bin/compiled-route-sync.cjs:20-24]. [INFERENCE: directory-presence probes in worktree and clone, this iteration]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/bin/lib/compiled-route-layout.cjs (full)",
+        ".skilled/bin/compiled-route-sync.cjs:1-60",
+        ".skilled/bin/compiled-route-guard.cjs:39 (grep)",
+        ".skilled/scripts/git-hooks/pre-commit:30-54, 488-539 (grep)",
+        ".skilled/scripts/git-hooks/post-commit:30-53 (grep)",
+        ".skilled/scripts/install-git-hooks.sh:1-60",
+        "README.md:154-241",
+        ".skilled/skills/sk-vision/vision-runtime/package.json (full)",
+        ".skilled/skills/sk-vision/vision-runtime/scripts/build.ts:68 (grep)",
+        ".skilled/skills/sk-vision/vision-runtime/python/runtime.test.ts:8-30, 75",
+        ".skilled/skills/sk-vision/SKILL.md:208, 230-251, 264, 288-290 (grep)",
+        ".skilled/skills/sk-git/SKILL.md:207-224 (grep)",
+        ".skilled/repo-rules/prevent-overengineering.md (full)",
+        "Fresh-clone probes: authored-dir presence, dist absence, plugin symlink, tracked z_archive count, `.skilled_skills_*` count (all read-only)"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-sk-vision-dist-gap-is-real-and-it-lands-at-plugin-load-not-at-test-time-open",
+      "text": "**The sk-vision dist gap is real, and it lands at plugin load, not at test time.** `.opencode/plugins/sk-vision.js` is a tracked symlink (git mode 120000) pointing at `../skills/sk-vision/vision-runtime/dist/plugin.js`; the target does not exist in the worktree or in the fresh clone, and `dist` is not gitignored (check-ignore exits 1) -- it is simply never built. The package's `main`/`exports`/`files` all point into `dist` [SOURCE: .skilled/skills/sk-vision/vision-runtime/package.json:25] and `build` emits `dist/plugin.js` [SOURCE: .skilled/skills/sk-vision/vision-runtime/scripts/build.ts:68]. SKILL.md states the OpenCode adapter loads through `.opencode/plugins/sk-vision.js` resolving to `vision-runtime/dist/plugin.js` [SOURCE: .skilled/skills/sk-vision/SKILL.md:290]. Cost: on a fresh clone the symlink dangles, so loading the plugin (and any `/vision` use) fails with ENOENT until `bun install && bun run build` [SOURCE: .skilled/skills/sk-vision/vision-runtime/package.json:11-12]. A newcomer does not hit this in README steps 1-3 (sk-vision is not in that path); they hit it when they enable or use sk-vision. [INFERENCE: git ls-files -s .opencode/plugins/sk-vision.js (120000), `find` for dist empty in repo and clone, clone symlink probe, this iteration]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/bin/lib/compiled-route-layout.cjs (full)",
+        ".skilled/bin/compiled-route-sync.cjs:1-60",
+        ".skilled/bin/compiled-route-guard.cjs:39 (grep)",
+        ".skilled/scripts/git-hooks/pre-commit:30-54, 488-539 (grep)",
+        ".skilled/scripts/git-hooks/post-commit:30-53 (grep)",
+        ".skilled/scripts/install-git-hooks.sh:1-60",
+        "README.md:154-241",
+        ".skilled/skills/sk-vision/vision-runtime/package.json (full)",
+        ".skilled/skills/sk-vision/vision-runtime/scripts/build.ts:68 (grep)",
+        ".skilled/skills/sk-vision/vision-runtime/python/runtime.test.ts:8-30, 75",
+        ".skilled/skills/sk-vision/SKILL.md:208, 230-251, 264, 288-290 (grep)",
+        ".skilled/skills/sk-git/SKILL.md:207-224 (grep)",
+        ".skilled/repo-rules/prevent-overengineering.md (full)",
+        "Fresh-clone probes: authored-dir presence, dist absence, plugin symlink, tracked z_archive count, `.skilled_skills_*` count (all read-only)"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-stated-sk-vision-tests-failing-until-vision-runtime-dist-is-built-hypothesis",
+      "text": "**The stated \"sk-vision tests failing until vision-runtime/dist is built\" hypothesis is not supported.** Every test file imports source or spawns source paths: `src/model-modality.test.ts` imports `./model-modality.js`; `python/runtime.test.ts` resolves an interpreter from `~/.cache/sk-vision/venv`, then a repo `.venv`, then system `python3` (none shipped) and spawns `REPO/python/runtime.py` -- the source file, not `dist/python/runtime.py` [SOURCE: .skilled/skills/sk-vision/vision-runtime/python/runtime.test.ts:8-22] [SOURCE: .skilled/skills/sk-vision/vision-runtime/python/runtime.test.ts:75]. No test or hook references a `dist/` path (grep this iteration: only `build.ts:68` mentions dist). So the build gap cannot be the cause of test failures as stated; the dist artifact's consumers are delivery surfaces (plugin, CLI, devin hook), not the test suite. Residual uncertainty: a runtime `bun test` bake-off (with and without a build) was not executed this iteration, so this conclusion is file-level, not observed test output.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/bin/lib/compiled-route-layout.cjs (full)",
+        ".skilled/bin/compiled-route-sync.cjs:1-60",
+        ".skilled/bin/compiled-route-guard.cjs:39 (grep)",
+        ".skilled/scripts/git-hooks/pre-commit:30-54, 488-539 (grep)",
+        ".skilled/scripts/git-hooks/post-commit:30-53 (grep)",
+        ".skilled/scripts/install-git-hooks.sh:1-60",
+        "README.md:154-241",
+        ".skilled/skills/sk-vision/vision-runtime/package.json (full)",
+        ".skilled/skills/sk-vision/vision-runtime/scripts/build.ts:68 (grep)",
+        ".skilled/skills/sk-vision/vision-runtime/python/runtime.test.ts:8-30, 75",
+        ".skilled/skills/sk-vision/SKILL.md:208, 230-251, 264, 288-290 (grep)",
+        ".skilled/skills/sk-git/SKILL.md:207-224 (grep)",
+        ".skilled/repo-rules/prevent-overengineering.md (full)",
+        "Fresh-clone probes: authored-dir presence, dist absence, plugin symlink, tracked z_archive count, `.skilled_skills_*` count (all read-only)"
+      ]
+    },
+    {
+      "id": "finding-3-5-worktree-provisioning-is-not-on-the-first-packet-path-it-is-a-deferred-mandatory",
+      "text": "**Worktree provisioning is not on the first-packet path; it is a deferred mandatory choice on the first git write.** The README install steps create no worktree [SOURCE: README.md:164-177]. sk-git owns worktrees and makes the worktree-vs-current-branch question mandatory whenever git-workspace work begins; the AI must ask and wait (A/B) [SOURCE: .skilled/skills/sk-git/SKILL.md:207-216]. The launch wrapper (`worktree-session.sh`, scripts exist under `.skilled/bin/`) is operator opt-in and runs pre-session; it symlinks shared `node_modules`/`dist` into each worktree, and the skill documents a known gap where those wholesale links do not satisfy its own isolation invariant [SOURCE: .skilled/skills/sk-git/SKILL.md:220-224]. Cost on the first packet: none. Cost immediately after: one mandatory, unexplained-to-a-newcomer choice (confused-by-choice), and a wrapper session started before installs links nothing. Classify as confused/deferred, not blocked.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/bin/lib/compiled-route-layout.cjs (full)",
+        ".skilled/bin/compiled-route-sync.cjs:1-60",
+        ".skilled/bin/compiled-route-guard.cjs:39 (grep)",
+        ".skilled/scripts/git-hooks/pre-commit:30-54, 488-539 (grep)",
+        ".skilled/scripts/git-hooks/post-commit:30-53 (grep)",
+        ".skilled/scripts/install-git-hooks.sh:1-60",
+        "README.md:154-241",
+        ".skilled/skills/sk-vision/vision-runtime/package.json (full)",
+        ".skilled/skills/sk-vision/vision-runtime/scripts/build.ts:68 (grep)",
+        ".skilled/skills/sk-vision/vision-runtime/python/runtime.test.ts:8-30, 75",
+        ".skilled/skills/sk-vision/SKILL.md:208, 230-251, 264, 288-290 (grep)",
+        ".skilled/skills/sk-git/SKILL.md:207-224 (grep)",
+        ".skilled/repo-rules/prevent-overengineering.md (full)",
+        "Fresh-clone probes: authored-dir presence, dist absence, plugin symlink, tracked z_archive count, `.skilled_skills_*` count (all read-only)"
+      ]
+    },
+    {
+      "id": "finding-3-14-not-earned-any-fix-for-the-compiled-routing-z-archive-dependence-the-authored-tr",
+      "text": "Not earned: any fix for the compiled-routing `z_archive` dependence. The authored tree ships in the clone (finding 3), so no requirement exists today that a fix would serve; record the fragility and move on. \"Build nothing\" is the correct move here.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/bin/lib/compiled-route-layout.cjs (full)",
+        ".skilled/bin/compiled-route-sync.cjs:1-60",
+        ".skilled/bin/compiled-route-guard.cjs:39 (grep)",
+        ".skilled/scripts/git-hooks/pre-commit:30-54, 488-539 (grep)",
+        ".skilled/scripts/git-hooks/post-commit:30-53 (grep)",
+        ".skilled/scripts/install-git-hooks.sh:1-60",
+        "README.md:154-241",
+        ".skilled/skills/sk-vision/vision-runtime/package.json (full)",
+        ".skilled/skills/sk-vision/vision-runtime/scripts/build.ts:68 (grep)",
+        ".skilled/skills/sk-vision/vision-runtime/python/runtime.test.ts:8-30, 75",
+        ".skilled/skills/sk-vision/SKILL.md:208, 230-251, 264, 288-290 (grep)",
+        ".skilled/skills/sk-git/SKILL.md:207-224 (grep)",
+        ".skilled/repo-rules/prevent-overengineering.md (full)",
+        "Fresh-clone probes: authored-dir presence, dist absence, plugin symlink, tracked z_archive count, `.skilled_skills_*` count (all read-only)"
+      ]
+    },
+    {
+      "id": "finding-4-4-absent-credentials-are-not-a-first-walk-stumble-they-gate-optional-integration-s",
+      "text": "**Absent credentials are not a first-walk stumble; they gate optional integration surfaces only.** `.utcp_config.json` is tracked in the clone with top-level keys `load_variables_from`, `tool_repository`, `tool_search_strategy`, `manual_call_templates` and seven variable placeholders rather than secrets; the per-runtime MCP configs reference only the tracked launcher. README names per-integration keys (`figma_FIGMA_API_KEY`, `github_GITHUB_PERSONAL_ACCESS_TOKEN`, `webflow_WEBFLOW_TOKEN`) and states that MCP and cross-AI CLI skills need extra tooling or keys depending on the surface. Code Mode's `install` routine (builds Code Mode when its `dist` is missing or stale and registers it across the seven runtime configs, each write after its own approval) is documented in the skills catalog, not the numbered install steps. [SOURCE: README.md:1329-1331] [SOURCE: README.md:1505] [SOURCE: README.md:1254] [INFERENCE: clone `git ls-files --error-unmatch`, `jq keys` and placeholder-count probes, this iteration]",
+      "addedAtIteration": 4,
+      "sources": [
+        "README.md:16, 154-217, 1254, 1329-1331, 1505 (reads and greps, this iteration)",
+        ".skilled/repo-rules/prevent-overengineering.md (full, this iteration)",
+        "o2-fresh-clone probes: per-runtime listings, MCP config cats, tracked-symlink census, trigger-index and advisor runs, `bun install` + `bun run build`, symlink-resolution check",
+        "Packet state: config, state JSONL, strategy, findings registry `openQuestions`"
+      ]
+    },
+    {
+      "id": "finding-4-7-f1-p1-readme-md-162-drop-the-false-advisor-auto-build-sentence-the-claim-that-th",
+      "text": "**F1 (P1) - README.md:162: drop the false advisor auto-build sentence.** The claim that the launcher \"installs and builds its own runtime on first run\" was falsified by the bare-clone launcher probe (iteration 2). Fails at build-nothing: the first failure a newcomer meets is an unexplained exit instead of the two-command step already present at README.md:174-175.",
+      "addedAtIteration": 4,
+      "sources": [
+        "README.md:16, 154-217, 1254, 1329-1331, 1505 (reads and greps, this iteration)",
+        ".skilled/repo-rules/prevent-overengineering.md (full, this iteration)",
+        "o2-fresh-clone probes: per-runtime listings, MCP config cats, tracked-symlink census, trigger-index and advisor runs, `bun install` + `bun run build`, symlink-resolution check",
+        "Packet state: config, state JSONL, strategy, findings registry `openQuestions`"
+      ]
+    },
+    {
+      "id": "finding-4-8-f2-p1-readme-md-160-state-code-mode-s-exact-node-requirement-beside-the-existing",
+      "text": "**F2 (P1) - README.md:160: state Code Mode's exact Node requirement beside the existing floors.** Fails at build-nothing: on a single-Node 20/22/26 machine the Code Mode launcher refuses before the first routed request (iteration 2 probe), and line 160 names no Node 24.x.",
+      "addedAtIteration": 4,
+      "sources": [
+        "README.md:16, 154-217, 1254, 1329-1331, 1505 (reads and greps, this iteration)",
+        ".skilled/repo-rules/prevent-overengineering.md (full, this iteration)",
+        "o2-fresh-clone probes: per-runtime listings, MCP config cats, tracked-symlink census, trigger-index and advisor runs, `bun install` + `bun run build`, symlink-resolution check",
+        "Packet state: config, state JSONL, strategy, findings registry `openQuestions`"
+      ]
+    },
+    {
+      "id": "finding-4-9-f3-p2-introduce-sk-vision-s-bun-prerequisite-and-its-two-command-setup-where-sk-",
+      "text": "**F3 (P2) - introduce sk-vision's Bun prerequisite and its two-command setup where sk-vision is introduced.** New observed basis: without it the tracked plugin symlink dangles in every fresh clone; with it, two commands restore it (finding 5). Fails at build-nothing: plugin load and `/vision` fail with ENOENT while README prerequisites never mention Bun.",
+      "addedAtIteration": 4,
+      "sources": [
+        "README.md:16, 154-217, 1254, 1329-1331, 1505 (reads and greps, this iteration)",
+        ".skilled/repo-rules/prevent-overengineering.md (full, this iteration)",
+        "o2-fresh-clone probes: per-runtime listings, MCP config cats, tracked-symlink census, trigger-index and advisor runs, `bun install` + `bun run build`, symlink-resolution check",
+        "Packet state: config, state JSONL, strategy, findings registry `openQuestions`"
+      ]
+    },
+    {
+      "id": "finding-4-10-f4-p2-move-the-hook-trust-requirement-into-the-numbered-install-region-the-trust",
+      "text": "**F4 (P2) - move the hook-trust requirement into the numbered install region.** The trust line sits at README.md:197, mid-prose; the numbered steps (README.md:164-177) never mention it. Fails at build-nothing: a second clone silently skips every gate, audible only in a stderr NOTICE (iteration 3 finding 4).",
+      "addedAtIteration": 4,
+      "sources": [
+        "README.md:16, 154-217, 1254, 1329-1331, 1505 (reads and greps, this iteration)",
+        ".skilled/repo-rules/prevent-overengineering.md (full, this iteration)",
+        "o2-fresh-clone probes: per-runtime listings, MCP config cats, tracked-symlink census, trigger-index and advisor runs, `bun install` + `bun run build`, symlink-resolution check",
+        "Packet state: config, state JSONL, strategy, findings registry `openQuestions`"
+      ]
+    },
+    {
+      "id": "finding-4-11-f5-p3-one-clause-on-step-3-stating-it-requires-step-2-completed-fails-at-build-n",
+      "text": "**F5 (P3) - one clause on step 3 stating it requires step 2 completed.** Fails at build-nothing: running the advisor build before the spec-kit install exits 1 with TS2591/TS2503 (iteration 2 probe).",
+      "addedAtIteration": 4,
+      "sources": [
+        "README.md:16, 154-217, 1254, 1329-1331, 1505 (reads and greps, this iteration)",
+        ".skilled/repo-rules/prevent-overengineering.md (full, this iteration)",
+        "o2-fresh-clone probes: per-runtime listings, MCP config cats, tracked-symlink census, trigger-index and advisor runs, `bun install` + `bun run build`, symlink-resolution check",
+        "Packet state: config, state JSONL, strategy, findings registry `openQuestions`"
+      ]
+    },
+    {
+      "id": "finding-4-12-f6-p3-optional-weakest-root-tracked-clutter-cleanup-36-empty-skilled-skills-file",
+      "text": "**F6 (P3, optional, weakest) - root tracked-clutter cleanup (36 empty `.skilled_skills_*` files, the two shipped-broken `.skilled/changelog` symlinks, the four machine-absolute spec-scratch symlinks).** No observed failure names any of it; that is the \"while we're here\" restraint signal, so the recommendation is: note it, do not build it unless an unrelated root cleanup is already happening (finding 3).",
+      "addedAtIteration": 4,
+      "sources": [
+        "README.md:16, 154-217, 1254, 1329-1331, 1505 (reads and greps, this iteration)",
+        ".skilled/repo-rules/prevent-overengineering.md (full, this iteration)",
+        "o2-fresh-clone probes: per-runtime listings, MCP config cats, tracked-symlink census, trigger-index and advisor runs, `bun install` + `bun run build`, symlink-resolution check",
+        "Packet state: config, state JSONL, strategy, findings registry `openQuestions`"
+      ]
+    },
+    {
+      "id": "finding-4-6-final-ranked-fix-set-q5-each-move-passed-through-prevent-overengineering-section",
+      "text": "**Final ranked fix set (Q5), each move passed through prevent-overengineering sections 1-2 with its climbing sentence.** Every move starts at \"change prose in place\" - the cheapest move that requires a write - because \"build nothing\" leaves a named, observed failure in each case:",
+      "addedAtIteration": 4,
+      "sources": [
+        "README.md:16, 154-217, 1254, 1329-1331, 1505 (reads and greps, this iteration)",
+        ".skilled/repo-rules/prevent-overengineering.md (full, this iteration)",
+        "o2-fresh-clone probes: per-runtime listings, MCP config cats, tracked-symlink census, trigger-index and advisor runs, `bun install` + `bun run build`, symlink-resolution check",
+        "Packet state: config, state JSONL, strategy, findings registry `openQuestions`"
+      ]
+    },
+    {
+      "id": "finding-4-13-not-earned-any-fix-for-the-compiled-routing-z-archive-dependence-the-authored-tr",
+      "text": "**Not earned:** any fix for the compiled-routing `z_archive` dependence (the authored tree ships complete; iteration 3); any fix for the advisor's degraded mode (the documented path's step 3 already builds the runtime); deleting the `.skilled/changelog` dangling links (no consumer is named).",
+      "addedAtIteration": 4,
+      "sources": [
+        "README.md:16, 154-217, 1254, 1329-1331, 1505 (reads and greps, this iteration)",
+        ".skilled/repo-rules/prevent-overengineering.md (full, this iteration)",
+        "o2-fresh-clone probes: per-runtime listings, MCP config cats, tracked-symlink census, trigger-index and advisor runs, `bun install` + `bun run build`, symlink-resolution check",
+        "Packet state: config, state JSONL, strategy, findings registry `openQuestions`"
+      ]
+    },
+    {
+      "id": "finding-4-2-per-runtime-wiring-ships-pre-wired-with-two-mechanisms-and-no-runtime-specific-s",
+      "text": "**Per-runtime wiring ships pre-wired with two mechanisms, and no runtime-specific setup step is needed for the first request in the sampled runtimes.** Seven runtime dirs are tracked (`.opencode`, `.pi`, `.claude`, `.codex`, `.cursor`, `.devin`, `.hermes`); `.opencode` wires agents/bin/commands/hooks/scripts/skills/repo-rules through relative symlinks into `../.skilled/*`, while `.pi`, `.claude`, `.codex`, `.cursor` and `.devin` carry real mirrored directories plus their own config surfaces. All three sampled MCP configs (`.pi/mcp.json`, `.claude/mcp.json`, `.devin/mcp_config.json`) point at the same tracked launcher, `.skilled/bin/mcp-code-mode-launcher.cjs` (present in the clone), with `UTCP_CONFIG_FILE=.utcp_config.json`. README lists all seven runtimes up front, and its Verify step checks any of the seven MCP configs. [SOURCE: README.md:16] [SOURCE: README.md:183] [INFERENCE: clone listing and config-cat probes, this iteration]",
+      "addedAtIteration": 4,
+      "sources": [
+        "README.md:16, 154-217, 1254, 1329-1331, 1505 (reads and greps, this iteration)",
+        ".skilled/repo-rules/prevent-overengineering.md (full, this iteration)",
+        "o2-fresh-clone probes: per-runtime listings, MCP config cats, tracked-symlink census, trigger-index and advisor runs, `bun install` + `bun run build`, symlink-resolution check",
+        "Packet state: config, state JSONL, strategy, findings registry `openQuestions`"
+      ]
+    },
+    {
+      "id": "finding-4-1-the-first-routed-request-in-a-bare-clone-is-not-blocked-the-advisor-answers-from",
+      "text": "**The first routed request in a bare clone is not blocked; the advisor answers from a degraded local scorer.** `lookup-trigger-index.mjs` exited 0 with real results, and `skill-advisor.cjs advisor_recommend` exited 0 with `\"status\":\"ok\",\"degraded\":true,\"source\":\"local-scorer\"` (recommendation: `sk-git` for the probe prompt). The pre-build error mode is therefore silent routing-quality reduction, not refusal; the machine-readable `degraded` flag is the only signal, and the documented build step is what upgrades it. [SOURCE: README.md:174-176] [INFERENCE: bare-clone probe outputs with exit codes, this iteration; advisor `dist` absence established by the iteration 2 checkpoint]",
+      "addedAtIteration": 4,
+      "sources": [
+        "README.md:16, 154-217, 1254, 1329-1331, 1505 (reads and greps, this iteration)",
+        ".skilled/repo-rules/prevent-overengineering.md (full, this iteration)",
+        "o2-fresh-clone probes: per-runtime listings, MCP config cats, tracked-symlink census, trigger-index and advisor runs, `bun install` + `bun run build`, symlink-resolution check",
+        "Packet state: config, state JSONL, strategy, findings registry `openQuestions`"
+      ]
+    },
+    {
+      "id": "finding-4-5-the-sk-vision-delivery-gap-is-now-observed-end-to-end-not-inferred-in-the-clone-",
+      "text": "**The sk-vision delivery gap is now observed end-to-end, not inferred.** In the clone, `bun install` installed 33 packages (exit 0) and `bun run build` (exit 0) emitted `dist/plugin.js`, `dist/prompt-evidence.js`, `dist/vision-cli.js`, `dist/python/runtime.py` and `hooks/opencode/sk-vision.js`; the tracked `.opencode/plugins/sk-vision.js` symlink then resolves. Two commands under one minute repair the dangling symlink. The original \"tests fail until dist is built\" claim stays falsified, and the Python-spawning test roast stays deliberately unrun (its motivating hypothesis is dead and the delivery surface is now observed). [INFERENCE: clone `bun install` + `bun run build` + symlink-resolution probe, this iteration]",
+      "addedAtIteration": 4,
+      "sources": [
+        "README.md:16, 154-217, 1254, 1329-1331, 1505 (reads and greps, this iteration)",
+        ".skilled/repo-rules/prevent-overengineering.md (full, this iteration)",
+        "o2-fresh-clone probes: per-runtime listings, MCP config cats, tracked-symlink census, trigger-index and advisor runs, `bun install` + `bun run build`, symlink-resolution check",
+        "Packet state: config, state JSONL, strategy, findings registry `openQuestions`"
+      ]
+    },
+    {
+      "id": "finding-4-3-tracked-clutter-with-broken-links-8-of-468-tracked-symlinks-dangle-in-the-clone-",
+      "text": "**Tracked clutter with broken links: 8 of 468 tracked symlinks dangle in the clone, two also dangle in the maintainer worktree, and four point at the maintainer's absolute home path.** Known: `.opencode/plugins/sk-vision.js`. Shipped broken (worktree too): `.skilled/changelog/cli-jev/cli-usage` and `.skilled/changelog/cli-jev/parent`. Machine-bound, dead by construction for every external user: four symlinks under `specs/.../review/lineages/.../scratch/` whose targets sit under `/Users/michelkerkmeester/...`. No observed failure names any of these; the cost is visual and semantic noise on clone inspection. [INFERENCE: `git ls-files -s` census filtered to mode 120000 plus an existence loop over all 468 in the clone, and a worktree re-check of the two `.skilled` links, this iteration]",
+      "addedAtIteration": 4,
+      "sources": [
+        "README.md:16, 154-217, 1254, 1329-1331, 1505 (reads and greps, this iteration)",
+        ".skilled/repo-rules/prevent-overengineering.md (full, this iteration)",
+        "o2-fresh-clone probes: per-runtime listings, MCP config cats, tracked-symlink census, trigger-index and advisor runs, `bun install` + `bun run build`, symlink-resolution check",
+        "Packet state: config, state JSONL, strategy, findings registry `openQuestions`"
+      ]
+    },
+    {
+      "id": "finding-5-3-all-seven-runtime-surfaces-ship-tracked-first-session-machinery-the-first-use-ga",
+      "text": "**All seven runtime surfaces ship tracked first-session machinery; the First Use gap is documentation coverage, not missing wiring.** The clone's runtime dirs are all real tracked trees (`.opencode` 58, `.pi` 169, `.claude` 80, `.codex` 71, `.cursor` 78, `.devin` 44, `.hermes` 111 tracked files) [INFERENCE: `git ls-files` counts in the clone, this iteration]. `.claude/SYNC.md` documents the model: whole-dir symlinks for skills, generated per-file command mirrors, a guarded `.claude/agents/` fork, and `settings.json` as hand-authored and unmirrorable [SOURCE: .claude/SYNC.md:33] [SOURCE: .claude/SYNC.md:39] [SOURCE: .claude/SYNC.md:111]. The carried iteration-1 gap stands: the first-use example names only OpenCode while six other runtimes ship equivalent surfaces (registry entry, not re-read this iteration).",
+      "addedAtIteration": 5,
+      "sources": [
+        "README.md:154-200 (re-read for anchor verification, this iteration)",
+        ".skilled/bin/check-git-hooks.sh:1-165 (full read, this iteration)",
+        ".skilled/scripts/install-git-hooks.sh:1-55 (read, this iteration)",
+        ".claude/settings.json (full via head + rg, this iteration)",
+        ".claude/SYNC.md:1-40, 111 (read, this iteration)",
+        ".codex/hooks.json, .cursor/hooks.json, .devin/hooks.v1.json (read, this iteration)",
+        ".opencode/plugins/session-cleanup.js:35, .hermes/plugins/repo-guards/__init__.py:115 (rg hits, this iteration)",
+        ".pi/settings.json (head read, this iteration); .pi/extensions/README.md (rg hit, this iteration)",
+        ".skilled/skills/system-spec-kit/package.json and runtime/package.json (scripts, this iteration)",
+        "o2-fresh-clone probes: runtime dir listings and tracked counts, `git ls-files` dist counts, hook config reads"
+      ]
+    },
+    {
+      "id": "finding-5-2-dist-based-sessionstart-adapters-degrade-to-one-line-drift-notices-until-the-spe",
+      "text": "**Dist-based SessionStart adapters degrade to one-line drift notices until the spec-kit runtime is built, and the documented path never builds it.** The `.codex`, `.cursor` and `.devin` chains run `node .skilled/skills/system-spec-kit/runtime/dist/hooks/<host>/session-start.js` with a `||` fallback that prints `mk-hook-drift ...` to stderr and hands the agent a rebuild-the-runtime note [SOURCE: .codex/hooks.json] [SOURCE: .cursor/hooks.json] [SOURCE: .devin/hooks.v1.json]. `runtime/dist` carries 0 tracked files, so a fresh clone has none of it; the documented install does not build it (root `postinstall` only records the Node version [SOURCE: .skilled/skills/system-spec-kit/package.json], and the runtime workspace `build` script runs only when invoked [SOURCE: .skilled/skills/system-spec-kit/runtime/package.json]). A newcomer who follows README steps 1-3 and opens Codex/Cursor/Devin therefore gets repeated drift notices and no session-start context until someone runs the workspace build; the notice itself names the remedy. Candidate F7 (P3, note-only under the restraint filter): one clause in step 3's prose naming that the same build feeds the session-start hooks. [INFERENCE: tracked-file counts and package scripts read this iteration; the probe clone's `runtime/dist` came from prior iterations' builds]",
+      "addedAtIteration": 5,
+      "sources": [
+        "README.md:154-200 (re-read for anchor verification, this iteration)",
+        ".skilled/bin/check-git-hooks.sh:1-165 (full read, this iteration)",
+        ".skilled/scripts/install-git-hooks.sh:1-55 (read, this iteration)",
+        ".claude/settings.json (full via head + rg, this iteration)",
+        ".claude/SYNC.md:1-40, 111 (read, this iteration)",
+        ".codex/hooks.json, .cursor/hooks.json, .devin/hooks.v1.json (read, this iteration)",
+        ".opencode/plugins/session-cleanup.js:35, .hermes/plugins/repo-guards/__init__.py:115 (rg hits, this iteration)",
+        ".pi/settings.json (head read, this iteration); .pi/extensions/README.md (rg hit, this iteration)",
+        ".skilled/skills/system-spec-kit/package.json and runtime/package.json (scripts, this iteration)",
+        "o2-fresh-clone probes: runtime dir listings and tracked counts, `git ls-files` dist counts, hook config reads"
+      ]
+    },
+    {
+      "id": "finding-5-5-fix-set-anchors-re-verified-unchanged-readme-md-160-still-carries-the-two-versio",
+      "text": "**Fix-set anchors re-verified unchanged.** README.md:160 still carries the two-version Node line with no Node 24 mention; README.md:162 still makes the auto-install/auto-build claim that the iteration-2 probe falsified; the numbered steps at README.md:164-177 still omit hook trust; the trust sentence still sits at README.md:197; and README.md:191 now gives the first-session hook install its prose home, so F4 is a discoverability fix, not a missing-mechanism fix. No fix text has drifted since iteration 3's fix set was written. [SOURCE: README.md:154-200]",
+      "addedAtIteration": 5,
+      "sources": [
+        "README.md:154-200 (re-read for anchor verification, this iteration)",
+        ".skilled/bin/check-git-hooks.sh:1-165 (full read, this iteration)",
+        ".skilled/scripts/install-git-hooks.sh:1-55 (read, this iteration)",
+        ".claude/settings.json (full via head + rg, this iteration)",
+        ".claude/SYNC.md:1-40, 111 (read, this iteration)",
+        ".codex/hooks.json, .cursor/hooks.json, .devin/hooks.v1.json (read, this iteration)",
+        ".opencode/plugins/session-cleanup.js:35, .hermes/plugins/repo-guards/__init__.py:115 (rg hits, this iteration)",
+        ".pi/settings.json (head read, this iteration); .pi/extensions/README.md (rg hit, this iteration)",
+        ".skilled/skills/system-spec-kit/package.json and runtime/package.json (scripts, this iteration)",
+        "o2-fresh-clone probes: runtime dir listings and tracked counts, `git ls-files` dist counts, hook config reads"
+      ]
+    },
+    {
+      "id": "finding-5-1-the-first-session-hook-install-claim-has-a-working-trust-independent-mechanism-c",
+      "text": "**The first-session hook-install claim has a working, trust-independent mechanism.** `check-git-hooks.sh` selects its source root by sentinel file only, with no trust check [SOURCE: .skilled/bin/check-git-hooks.sh:37-49]; when a versioned hook has no matching effective symlink it prints one warning line and - with live-sync enabled and this checkout being the main checkout (`_self_dir == _self_common`) - self-heals by running `$SOURCE_ROOT/scripts/install-git-hooks.sh` and printing `auto-installed git hook symlinks (self-heal)` [SOURCE: .skilled/bin/check-git-hooks.sh:129-160]. The guard is wired into the SessionStart chains of `.claude` [SOURCE: .claude/settings.json:143], `.codex` [SOURCE: .codex/hooks.json], `.cursor` [SOURCE: .cursor/hooks.json], `.devin` [SOURCE: .devin/hooks.v1.json], `.opencode` [SOURCE: .opencode/plugins/session-cleanup.js:35] and `.hermes` [SOURCE: .hermes/plugins/repo-guards/__init__.py:115]; `.pi` references the guard from its extensions documentation [SOURCE: .pi/extensions/README.md]. This resolves the tension between README.md:191 and iteration 3's trust finding: `skilled.trustRepoHooks` gates the check scripts in secondary checkouts, not this self-heal. Remaining cost: the install is still prose-only (README.md:189-197) and skipped for linked worktrees by design [SOURCE: .skilled/bin/check-git-hooks.sh:14-17].",
+      "addedAtIteration": 5,
+      "sources": [
+        "README.md:154-200 (re-read for anchor verification, this iteration)",
+        ".skilled/bin/check-git-hooks.sh:1-165 (full read, this iteration)",
+        ".skilled/scripts/install-git-hooks.sh:1-55 (read, this iteration)",
+        ".claude/settings.json (full via head + rg, this iteration)",
+        ".claude/SYNC.md:1-40, 111 (read, this iteration)",
+        ".codex/hooks.json, .cursor/hooks.json, .devin/hooks.v1.json (read, this iteration)",
+        ".opencode/plugins/session-cleanup.js:35, .hermes/plugins/repo-guards/__init__.py:115 (rg hits, this iteration)",
+        ".pi/settings.json (head read, this iteration); .pi/extensions/README.md (rg hit, this iteration)",
+        ".skilled/skills/system-spec-kit/package.json and runtime/package.json (scripts, this iteration)",
+        "o2-fresh-clone probes: runtime dir listings and tracked counts, `git ls-files` dist counts, hook config reads"
+      ]
+    },
+    {
+      "id": "finding-5-4-tracked-per-runtime-settings-ship-permission-and-trust-defaults-that-the-checked",
+      "text": "**Tracked per-runtime settings ship permission and trust defaults that the checked docs never mention.** `.claude/settings.json` is tracked and sets `\"defaultMode\": \"bypassPermissions\"`, `\"skipDangerousModePermissionPrompt\": true` and `env.SYSTEM_SPEC_GATE_ENFORCE: \"0\"` [SOURCE: .claude/settings.json:3-7] [SOURCE: .claude/settings.json:35-41]; `.pi/settings.json` is tracked and sets `\"defaultProjectTrust\": \"always\"` [SOURCE: .pi/settings.json:12]. A scoped grep over README.md, `.claude/SYNC.md`, `.skilled/repo-rules` and the system-spec-kit SKILL found no mention of either value [INFERENCE: rg probe, this iteration], and `.claude/SYNC.md:111` confirms `settings.json` is intentionally hand-authored and outside the mirror gates. If the runtimes honor project settings, every external user of Claude Code silently gets permission prompts bypassed and this repository's spec-gate enforcement switched off; the runtime's merge precedence was not probed, so the finding records the shipped default only.",
+      "addedAtIteration": 5,
+      "sources": [
+        "README.md:154-200 (re-read for anchor verification, this iteration)",
+        ".skilled/bin/check-git-hooks.sh:1-165 (full read, this iteration)",
+        ".skilled/scripts/install-git-hooks.sh:1-55 (read, this iteration)",
+        ".claude/settings.json (full via head + rg, this iteration)",
+        ".claude/SYNC.md:1-40, 111 (read, this iteration)",
+        ".codex/hooks.json, .cursor/hooks.json, .devin/hooks.v1.json (read, this iteration)",
+        ".opencode/plugins/session-cleanup.js:35, .hermes/plugins/repo-guards/__init__.py:115 (rg hits, this iteration)",
+        ".pi/settings.json (head read, this iteration); .pi/extensions/README.md (rg hit, this iteration)",
+        ".skilled/skills/system-spec-kit/package.json and runtime/package.json (scripts, this iteration)",
+        "o2-fresh-clone probes: runtime dir listings and tracked counts, `git ls-files` dist counts, hook config reads"
+      ]
+    },
+    {
+      "id": "finding-6-4-pi-is-the-sixth-dist-consumer-and-the-only-one-with-no-notice-at-all-it-fails-op",
+      "text": "**Pi is the sixth dist consumer and the only one with no notice at all — it fails open silently.** Pi's `session-start-context.ts` calls `runClaudeHookAdapter(ctx.cwd, \"session-prime.js\", ...)` [SOURCE: .pi/extensions/session-start-context.ts:36-41] and returns quietly when the adapter yields nothing [SOURCE: .pi/extensions/session-start-context.ts:42]; the adapter resolves its target under `.skilled/skills/system-spec-kit/runtime/dist/hooks/claude` [SOURCE: .pi/extensions/lib/claude-hook-adapter.ts:41-45] and returns `null` on spawn error, nonzero exit or exception [SOURCE: .pi/extensions/lib/claude-hook-adapter.ts:55-58]. The extension README documents that every handler \"wraps its call in try/catch and fails open\" [SOURCE: .pi/extensions/README.md:32] and maps `session-start-context.ts` to the claude dist's `session-prime.js` [SOURCE: .pi/extensions/README.md:75]; a recursive `mk-hook-drift` search over `.pi` returned nothing (probe this iteration). On a fresh clone a Pi user therefore loses session-start context (compact recovery, resume reminder) with no diagnostic line, while Claude/Codex/Cursor/Devin users each get one [INFERENCE: file-level chain above; no Pi session was executed]. Ranking by cost to the newcomer: a silent loss with no remedy hint outranks a notice that at least names the failing adapter, and codex's misdirecting notice outranks the correct-but-generic claude/cursor text.",
+      "addedAtIteration": 6,
+      "sources": [
+        "README.md:150-204 (re-read for step anchors, this iteration)",
+        ".skilled/skills/system-spec-kit/package.json (full read, this iteration)",
+        ".skilled/skills/system-spec-kit/runtime/package.json (full read, this iteration)",
+        ".codex/hooks.json (full read, this iteration)",
+        ".cursor/hooks.json (full read, this iteration)",
+        ".devin/hooks.v1.json (full read, this iteration)",
+        ".claude/settings.json:116-238 (rg hits + SessionStart block, this iteration)",
+        ".pi/extensions/session-start-context.ts:1-50 (numbered read, this iteration)",
+        ".pi/extensions/lib/claude-hook-adapter.ts:38-60 (numbered read, this iteration)",
+        ".pi/extensions/README.md:32, 75 (rg hits, this iteration)",
+        ".skilled/bin/install-codex-hooks.mjs:1-30 plus `dist|build|tsc` scan (this iteration)",
+        "o2-fresh-clone probes: `dist/hooks` tree listing, codex and cursor `session-start.js` executions, `git ls-files` dist count (this iteration)"
+      ]
+    },
+    {
+      "id": "finding-6-2-the-documented-path-never-runs-that-build-readme-s-only-build-command-is-the-adv",
+      "text": "**The documented path never runs that build; README's only build command is the advisor workspace.** Step 3 builds only `.skilled/skills/system-skill-advisor/runtime` [SOURCE: README.md:172-176]. An rg pass over README for `run build` returned only line 175 (the advisor build), and the sentence \"No global TypeScript needed. The builds use the TypeScript the spec-kit workspace installs\" [SOURCE: README.md:162] assumes builds that the numbered steps never issue for the spec-kit runtime. Candidate F7 therefore stays a one-clause prose fix: step 2 already installs the workspaces and their TypeScript, so naming the build costs one line and earns no new script, hook or postinstall step. (Partially new: iteration 5 established no build on the documented path; this iteration adds the step-2 sufficiency evidence.)",
+      "addedAtIteration": 6,
+      "sources": [
+        "README.md:150-204 (re-read for step anchors, this iteration)",
+        ".skilled/skills/system-spec-kit/package.json (full read, this iteration)",
+        ".skilled/skills/system-spec-kit/runtime/package.json (full read, this iteration)",
+        ".codex/hooks.json (full read, this iteration)",
+        ".cursor/hooks.json (full read, this iteration)",
+        ".devin/hooks.v1.json (full read, this iteration)",
+        ".claude/settings.json:116-238 (rg hits + SessionStart block, this iteration)",
+        ".pi/extensions/session-start-context.ts:1-50 (numbered read, this iteration)",
+        ".pi/extensions/lib/claude-hook-adapter.ts:38-60 (numbered read, this iteration)",
+        ".pi/extensions/README.md:32, 75 (rg hits, this iteration)",
+        ".skilled/bin/install-codex-hooks.mjs:1-30 plus `dist|build|tsc` scan (this iteration)",
+        "o2-fresh-clone probes: `dist/hooks` tree listing, codex and cursor `session-start.js` executions, `git ls-files` dist count (this iteration)"
+      ]
+    },
+    {
+      "id": "finding-6-3-the-drift-notices-name-three-different-remedies-and-codex-s-advice-cannot-work-c",
+      "text": "**The drift notices name three different remedies, and codex's advice cannot work.** Claude's SessionStart fallback says \"rebuild the spec-kit runtime or restore the missing adapter\" [SOURCE: .claude/settings.json:133]; cursor's says the same [SOURCE: .cursor/hooks.json:6]; devin's names the exact remedy — \"run npm run build in the spec-kit runtime package\" [SOURCE: .devin/hooks.v1.json:8]; codex's says \"re-run the codex hooks installer with --check\" [SOURCE: .codex/hooks.json:8]. That installer reconciles the user-global Codex hook config (\"Remove repo-owned hooks from Codex's user-global hook file\" [SOURCE: .skilled/bin/install-codex-hooks.mjs:1-14]) and contains no build or dist step — a `dist|build|tsc` scan hit only `buildPerEvent` label helpers [SOURCE: .skilled/bin/install-codex-hooks.mjs:211]. Running it cannot produce `runtime/dist/hooks/*.js`, so a Codex user on a fresh clone is sent to a tool that will report config health while the drift persists. This also corrects iteration 5's notice matrix: `.claude` itself consumes dist hooks with a drift notice, so five runtimes carry notices, not three.",
+      "addedAtIteration": 6,
+      "sources": [
+        "README.md:150-204 (re-read for step anchors, this iteration)",
+        ".skilled/skills/system-spec-kit/package.json (full read, this iteration)",
+        ".skilled/skills/system-spec-kit/runtime/package.json (full read, this iteration)",
+        ".codex/hooks.json (full read, this iteration)",
+        ".cursor/hooks.json (full read, this iteration)",
+        ".devin/hooks.v1.json (full read, this iteration)",
+        ".claude/settings.json:116-238 (rg hits + SessionStart block, this iteration)",
+        ".pi/extensions/session-start-context.ts:1-50 (numbered read, this iteration)",
+        ".pi/extensions/lib/claude-hook-adapter.ts:38-60 (numbered read, this iteration)",
+        ".pi/extensions/README.md:32, 75 (rg hits, this iteration)",
+        ".skilled/bin/install-codex-hooks.mjs:1-30 plus `dist|build|tsc` scan (this iteration)",
+        "o2-fresh-clone probes: `dist/hooks` tree listing, codex and cursor `session-start.js` executions, `git ls-files` dist count (this iteration)"
+      ]
+    },
+    {
+      "id": "finding-6-1-the-drift-clearing-remedy-is-a-single-workspace-build-whose-toolchain-step-2-alr",
+      "text": "**The drift-clearing remedy is a single workspace build whose toolchain step 2 already provisions, and the built adapters execute.** `system-spec-kit` is an npm workspace root covering `shared`, `runtime` and `runtime/cli` [SOURCE: .skilled/skills/system-spec-kit/package.json:6-10]; its root devDependencies carry `typescript` [SOURCE: .skilled/skills/system-spec-kit/package.json:47-51], and README step 2 runs `npm --prefix .skilled/skills/system-spec-kit install` [SOURCE: README.md:169-170]. The runtime workspace's `build` script is `npm run prepare-build && tsc --build && node scripts/finalize-dist.mjs` [SOURCE: .skilled/skills/system-spec-kit/runtime/package.json:17]. Its product is the `runtime/dist/hooks/{claude,codex,cursor,devin}` tree: the main checkout tracks 0 files under `runtime/dist` (`git ls-files` probe, this iteration), and the probe clone's builds from earlier iterations hold it; both adapters probed execute — codex `session-start.js` exits 0 with empty stdout on empty stdin, cursor `session-start.js` prints `{\"permission\":\"allow\"}` and exits 0 in the clone [INFERENCE: clone probe this iteration; the clone's dist comes from prior iterations' builds, so this shows the built product runs, not that step 2 alone suffices]. Remedy-chain conclusion: one command clears the drift class for every dist consumer, and step 2 makes it runnable, but nothing on the documented path invokes it.",
+      "addedAtIteration": 6,
+      "sources": [
+        "README.md:150-204 (re-read for step anchors, this iteration)",
+        ".skilled/skills/system-spec-kit/package.json (full read, this iteration)",
+        ".skilled/skills/system-spec-kit/runtime/package.json (full read, this iteration)",
+        ".codex/hooks.json (full read, this iteration)",
+        ".cursor/hooks.json (full read, this iteration)",
+        ".devin/hooks.v1.json (full read, this iteration)",
+        ".claude/settings.json:116-238 (rg hits + SessionStart block, this iteration)",
+        ".pi/extensions/session-start-context.ts:1-50 (numbered read, this iteration)",
+        ".pi/extensions/lib/claude-hook-adapter.ts:38-60 (numbered read, this iteration)",
+        ".pi/extensions/README.md:32, 75 (rg hits, this iteration)",
+        ".skilled/bin/install-codex-hooks.mjs:1-30 plus `dist|build|tsc` scan (this iteration)",
+        "o2-fresh-clone probes: `dist/hooks` tree listing, codex and cursor `session-start.js` executions, `git ls-files` dist count (this iteration)"
+      ]
+    },
+    {
+      "id": "finding-7-4-fix-direction-candidates-for-the-final-ranked-set-synthesis-nothing-implemented-",
+      "text": "**Fix-direction candidates for the final ranked set (synthesis; nothing implemented here).** Read through the overengineering lens ([INFERENCE: combines findings 1-3 with iteration 6's finding that the documented path never runs the spec-kit build]): (a) *Document one spec-kit workspace build on the setup path* (`npm --prefix .skilled/skills/system-spec-kit run build`) — one prose line; it closes this crash **and** the `runtime/dist` session-start gaps from iteration 6, so it is the highest-leverage single fix in the family. (b) *Make the gate's failure honest* — have the checker detect the absent parser and exit \"not checkable\", and let the hook warn-skip it the way it already warn-skips a missing `node` [SOURCE: .skilled/hooks/git/pre-commit:94-102], or print the build command as the remedy. Small, two surfaces, no new machinery. (c) *Rejected on restraint grounds*: tracking the built parser (generated-output drift), and teaching the checker to inline-parse frontmatter (a second parser to keep in step — a new failure surface the current requirement does not earn).",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/bin/check-agent-mirror-sync.cjs:1-148` (full read, this iteration)",
+        "`.skilled/bin/lib/mirror-sync-verify.cjs:1-364` (full read, this iteration)",
+        "`.skilled/bin/agent-mirror-crosswalk.md:30-99, 149-161, 204-212` (formatted reads, this iteration)",
+        "`.claude/agents/README.txt` (full read, this iteration)",
+        "`.pi/SYNC.md:1-40` (head read, this iteration)",
+        "`.skilled/hooks/git/pre-commit:60-103` (full tail read; file is 103 lines, this iteration)",
+        "`.github/workflows/agent-mirror-sync.yml:20-50` (read, this iteration)",
+        "`.github/workflows/spec-kit-check.yml:150-165` (read, this iteration)",
+        "`.skilled/skills/system-spec-kit/package.json:1-30` (read, this iteration)",
+        "`.skilled/skills/system-spec-kit/shared/package.json:14-22` (read, this iteration)",
+        "`.skilled/skills/system-spec-kit/runtime/package.json:14-26` (read, this iteration)",
+        "Clone probes (this iteration): HEAD equality `82a71c87…`; `check-agent-mirror-sync.cjs --all` exit 0; `agent-roster-mirror-check.cjs` exit 0; `git ls-files` dist count 0; `ls -ld` dir identities; `git ls-files -s` symlink modes."
+      ]
+    },
+    {
+      "id": "finding-7-2-mirror-content-is-hermetic-at-the-current-head-the-committed-state-passes-both-g",
+      "text": "**Mirror *content* is hermetic at the current HEAD — the committed state passes both gates when they can run, and the guarded Explore fork is handled everywhere.** In the clone at the same HEAD as the checkout, `check-agent-mirror-sync.cjs --all` exits 0 with `11 agent(s) checked — all mirrors in sync — OK`, and the `/doctor` roster check exits 0 with `cursor 11/11 symlinked`, `devin 11/11 symlinked`, `opencode/codex/pi 11/11 present` (probes this iteration). The Claude-only fork is excluded by design: the checker filters `Explore` via `CLAUDE_ONLY_AGENTS` [SOURCE: .skilled/bin/check-agent-mirror-sync.cjs:39], the crosswalk documents that no other runtime has anything to mirror [SOURCE: .skilled/bin/agent-mirror-crosswalk.md:159-161], and no other tree ships it (probe). Two structural facts keep this stable: `.opencode/agents` is a tracked symlink to `../.skilled/agents` (probe), so the checker's canonical dir *is* the crosswalk's canonical dir; and `.cursor`/`.devin` agent entries are tracked symlinks (git mode `120000`) onto `.claude` files (probe), so their bodies cannot drift independently on POSIX. Answer to the iteration's question: a fresh clone does **not** fail a sync gate for content it did not touch — the failure mode is environmental (finding 1), not content drift.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/bin/check-agent-mirror-sync.cjs:1-148` (full read, this iteration)",
+        "`.skilled/bin/lib/mirror-sync-verify.cjs:1-364` (full read, this iteration)",
+        "`.skilled/bin/agent-mirror-crosswalk.md:30-99, 149-161, 204-212` (formatted reads, this iteration)",
+        "`.claude/agents/README.txt` (full read, this iteration)",
+        "`.pi/SYNC.md:1-40` (head read, this iteration)",
+        "`.skilled/hooks/git/pre-commit:60-103` (full tail read; file is 103 lines, this iteration)",
+        "`.github/workflows/agent-mirror-sync.yml:20-50` (read, this iteration)",
+        "`.github/workflows/spec-kit-check.yml:150-165` (read, this iteration)",
+        "`.skilled/skills/system-spec-kit/package.json:1-30` (read, this iteration)",
+        "`.skilled/skills/system-spec-kit/shared/package.json:14-22` (read, this iteration)",
+        "`.skilled/skills/system-spec-kit/runtime/package.json:14-26` (read, this iteration)",
+        "Clone probes (this iteration): HEAD equality `82a71c87…`; `check-agent-mirror-sync.cjs --all` exit 0; `agent-roster-mirror-check.cjs` exit 0; `git ls-files` dist count 0; `ls -ld` dir identities; `git ls-files -s` symlink modes."
+      ]
+    },
+    {
+      "id": "finding-7-1-the-fresh-clone-s-pre-commit-mirror-gate-cannot-run-until-shared-dist-is-built-a",
+      "text": "**The fresh clone's pre-commit mirror gate cannot run until `shared/dist` is built, and nothing on the documented path builds it — any staged agent file then hard-blocks with the wrong diagnosis.** The checker's first act is `require('./lib/mirror-sync-verify.cjs')` [SOURCE: .skilled/bin/check-agent-mirror-sync.cjs:21], and that library requires the *built* parser at `.skilled/skills/system-spec-kit/shared/dist/frontmatter/parse-frontmatter.js` at module load [SOURCE: .skilled/bin/lib/mirror-sync-verify.cjs:12-14]. A pristine checkout of HEAD tracks zero files there (`git ls-files` count 0, probe this iteration); the clone's copy exists only because earlier iterations built it. No documented step produces it: the workspace root's only install-time script is `postinstall` = `node runtime/cli/setup/record-node-version.js` [SOURCE: .skilled/skills/system-spec-kit/package.json:25], and neither `shared` [SOURCE: .skilled/skills/system-spec-kit/shared/package.json:14-18] nor `runtime` [SOURCE: .skilled/skills/system-spec-kit/runtime/package.json:14-19] declares any `prepare` script, so README step 2's `npm install` builds nothing. When a user stages any change under `.opencode|.skilled|.claude|.codex/agents/`, the hook runs the checker and any nonzero exit — crash included — lands in the same branch as drift: `BLOCKED: staged agent files desync the .opencode / .claude mirrors. Fix: re-sync the mirrors...` [SOURCE: .skilled/hooks/git/pre-commit:82-103]. The user is told to fix a desync that does not exist while the real remedy — building the spec-kit workspace — is not on the documented path. [INFERENCE: the absent-file → require-throw → nonzero-exit arc is Node's module-resolution semantics; it was not executed because reproducing it would require deleting the built parser file, and deletions are banned in this run.] Cost: a commit-time hard block with a misleading instruction for anyone who customizes an agent before building; trigger requires staging an agent file, so it sits off the first-packet path.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/bin/check-agent-mirror-sync.cjs:1-148` (full read, this iteration)",
+        "`.skilled/bin/lib/mirror-sync-verify.cjs:1-364` (full read, this iteration)",
+        "`.skilled/bin/agent-mirror-crosswalk.md:30-99, 149-161, 204-212` (formatted reads, this iteration)",
+        "`.claude/agents/README.txt` (full read, this iteration)",
+        "`.pi/SYNC.md:1-40` (head read, this iteration)",
+        "`.skilled/hooks/git/pre-commit:60-103` (full tail read; file is 103 lines, this iteration)",
+        "`.github/workflows/agent-mirror-sync.yml:20-50` (read, this iteration)",
+        "`.github/workflows/spec-kit-check.yml:150-165` (read, this iteration)",
+        "`.skilled/skills/system-spec-kit/package.json:1-30` (read, this iteration)",
+        "`.skilled/skills/system-spec-kit/shared/package.json:14-22` (read, this iteration)",
+        "`.skilled/skills/system-spec-kit/runtime/package.json:14-26` (read, this iteration)",
+        "Clone probes (this iteration): HEAD equality `82a71c87…`; `check-agent-mirror-sync.cjs --all` exit 0; `agent-roster-mirror-check.cjs` exit 0; `git ls-files` dist count 0; `ls -ld` dir identities; `git ls-files -s` symlink modes."
+      ]
+    },
+    {
+      "id": "finding-7-3-the-local-and-ci-paths-diverge-at-exactly-the-point-of-failure-ci-builds-the-par",
+      "text": "**The local and CI paths diverge at exactly the point of failure: CI builds the parser first, the pre-commit hook does not, and of the crosswalk's \"three gates\" only one is wired into pre-commit.** CI's mirror workflow installs the workspace and runs `tsc --build` in `shared/` *before* invoking the checker [SOURCE: .github/workflows/agent-mirror-sync.yml:20-25] — which is why the crash has never been seen in CI. The local hook has no such primer [SOURCE: .skilled/hooks/git/pre-commit:78-103]. The crosswalk says the three gates \"are also wired into the pre-commit and CI paths\" [SOURCE: .skilled/bin/agent-mirror-crosswalk.md:211-212]; the file evidence is that CI runs all three (mirror checker, `sync-agents.cjs --check` / `sync-agents-pi.cjs --check`, roster check [SOURCE: .github/workflows/spec-kit-check.yml:154-162]) while pre-commit runs only the mirror checker and comment hygiene. Practical consequence: local commits can carry `.pi`/`.codex` generator staleness that CI later blocks — a maintainer-facing papercut, not an external-newcomer stumble.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/bin/check-agent-mirror-sync.cjs:1-148` (full read, this iteration)",
+        "`.skilled/bin/lib/mirror-sync-verify.cjs:1-364` (full read, this iteration)",
+        "`.skilled/bin/agent-mirror-crosswalk.md:30-99, 149-161, 204-212` (formatted reads, this iteration)",
+        "`.claude/agents/README.txt` (full read, this iteration)",
+        "`.pi/SYNC.md:1-40` (head read, this iteration)",
+        "`.skilled/hooks/git/pre-commit:60-103` (full tail read; file is 103 lines, this iteration)",
+        "`.github/workflows/agent-mirror-sync.yml:20-50` (read, this iteration)",
+        "`.github/workflows/spec-kit-check.yml:150-165` (read, this iteration)",
+        "`.skilled/skills/system-spec-kit/package.json:1-30` (read, this iteration)",
+        "`.skilled/skills/system-spec-kit/shared/package.json:14-22` (read, this iteration)",
+        "`.skilled/skills/system-spec-kit/runtime/package.json:14-26` (read, this iteration)",
+        "Clone probes (this iteration): HEAD equality `82a71c87…`; `check-agent-mirror-sync.cjs --all` exit 0; `agent-roster-mirror-check.cjs` exit 0; `git ls-files` dist count 0; `ls -ld` dir identities; `git ls-files -s` symlink modes."
+      ]
+    },
+    {
+      "id": "finding-8-4-decision-the-codex-notice-alignment-is-a-separate-one-string-fix-not-part-of-f7-",
+      "text": "**Decision: the codex notice alignment is a separate one-string fix, not part of F7 — report it as the companion candidate F7b, to be bundled with F7 in one implementation pass.** F7 (README prose naming the spec-kit workspace build) fixes the *absence* of a remedy where users need it; F7b removes a *wrong* remedy where one is offered. Both are one-line changes rooted in the same fact: nothing on the documented path builds `system-spec-kit/runtime/dist` [INFERENCE: combining findings 1-3 with iteration 6's finding 3 [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/research/iterations/iteration-006.md:23], the dist-absence evidence repeated in iteration 7, and iteration 7's recommendation [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/research/iterations/iteration-007.md:88]]. Ranking if the two are separated: F7 first (its absence misleads every fresh-clone runtime), F7b immediately after (its wrong remedy additionally burns one debugging step, codex-only). No dependency either way; F7's acceptance criteria stay untouched. Passed through `.skilled/repo-rules/prevent-overengineering.md`: one string, the existing generator, the existing gates; the per-binding variant is declined explicitly.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.codex/hooks.json` (full read, this iteration)",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json` (head read + key-line rg, this iteration)",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs` (full read, this iteration)",
+        "`.skilled/scripts/git-hooks/pre-commit:263-277` (gate context, this iteration)",
+        "`.github/workflows/spec-kit-check.yml:150-162` (gate context, this iteration)",
+        "`.skilled/bin/README.md:168` (installer contract, rg hit, this iteration)",
+        "`.codex/SYNC.md:52` (rg hit, this iteration)",
+        "`.cursor/hooks.json:31` (rg hit, this iteration)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/research/iterations/iteration-006.md:23` (prior finding, this iteration)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/research/iterations/iteration-007.md:88` (prior recommendation, this iteration)",
+        "o2-fresh-clone probes (this iteration): HEAD equality `82a71c87…`; `sync-hook-registrations.cjs --check` exit 0 with the PASS line; artifact fencing checks."
+      ]
+    },
+    {
+      "id": "finding-8-1-the-codex-fallback-text-is-generated-and-its-single-hand-authored-home-is-hook-r",
+      "text": "**The codex fallback text is generated, and its single hand-authored home is `hook-registry.json` line 23.** The registry's own `_note` declares the four runtime registration files — including `.codex/hooks.json` — as generated via `sync-hook-registrations.cjs` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json:2]. The script renders each file from the registry, codex through `renderCodex` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs:166-168], and writes only files whose content differs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs:241-244]. The message itself is `runtimes.codex.defaultMessage` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json:23], resolved per binding as `binding.message ?? runtimeConfig.defaultMessage` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs:73] and rendered into each envelope fallback [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs:81]. All eighteen envelope-fallback command entries in `.codex/hooks.json` carry that one string (full read this iteration; first at [SOURCE: .codex/hooks.json:8]). Drift is gate-enforced on both paths: pre-commit runs the synchronizer with `--check` [SOURCE: .skilled/scripts/git-hooks/pre-commit:272] and CI runs the same check [SOURCE: .github/workflows/spec-kit-check.yml:161]; the clone probe at the same HEAD exits 0 with the PASS line [INFERENCE: clone probe this iteration]. This reframes the fix: no inline-string sweep, no second copy to keep in step — one registry string plus a regeneration.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.codex/hooks.json` (full read, this iteration)",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json` (head read + key-line rg, this iteration)",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs` (full read, this iteration)",
+        "`.skilled/scripts/git-hooks/pre-commit:263-277` (gate context, this iteration)",
+        "`.github/workflows/spec-kit-check.yml:150-162` (gate context, this iteration)",
+        "`.skilled/bin/README.md:168` (installer contract, rg hit, this iteration)",
+        "`.codex/SYNC.md:52` (rg hit, this iteration)",
+        "`.cursor/hooks.json:31` (rg hit, this iteration)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/research/iterations/iteration-006.md:23` (prior finding, this iteration)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/research/iterations/iteration-007.md:88` (prior recommendation, this iteration)",
+        "o2-fresh-clone probes (this iteration): HEAD equality `82a71c87…`; `sync-hook-registrations.cjs --check` exit 0 with the PASS line; artifact fencing checks."
+      ]
+    },
+    {
+      "id": "finding-8-2-the-message-accompanies-a-failure-class-the-named-tool-cannot-address-and-codex-",
+      "text": "**The message accompanies a failure class the named tool cannot address, and codex is the only runtime whose default advice is off-target.** The fallback fires whenever a codex command fails (missing dist adapter, script crash) and prints \"re-run the codex hooks installer with --check\" [SOURCE: .codex/hooks.json:8]. The named tool only removes copies of repo-owned hooks from the user-global `~/.codex/hooks.json` and \"never rewrites a clean file\"; `--check` exits 1 while a copy or orphan remains [SOURCE: .skilled/bin/README.md:168]. The project's own SYNC note states that `.codex/hooks.json` changes need *no* install, and runs the check only to confirm the user-global file holds no stale copy [SOURCE: .codex/SYNC.md:52]. On a fresh clone, where the missing `runtime/dist` is the dominant adapter failure, the advice sends the user to a user-global config cleaner that reports OK while nothing is fixed. The sibling defaults differ in kind: devin's names the working command — \"run npm run build in the spec-kit runtime package\" [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json:52] — while claude and cursor say \"rebuild the spec-kit runtime or restore the missing adapter\" [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json:8] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json:36]. (Partially new: iteration 6's finding 3 established that the installer cannot build; new here is that the fallback's runtime-wide default — not a dist-specific message — is the mechanism, and that codex alone is misaligned.)",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.codex/hooks.json` (full read, this iteration)",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json` (head read + key-line rg, this iteration)",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs` (full read, this iteration)",
+        "`.skilled/scripts/git-hooks/pre-commit:263-277` (gate context, this iteration)",
+        "`.github/workflows/spec-kit-check.yml:150-162` (gate context, this iteration)",
+        "`.skilled/bin/README.md:168` (installer contract, rg hit, this iteration)",
+        "`.codex/SYNC.md:52` (rg hit, this iteration)",
+        "`.cursor/hooks.json:31` (rg hit, this iteration)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/research/iterations/iteration-006.md:23` (prior finding, this iteration)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/research/iterations/iteration-007.md:88` (prior recommendation, this iteration)",
+        "o2-fresh-clone probes (this iteration): HEAD equality `82a71c87…`; `sync-hook-registrations.cjs --check` exit 0 with the PASS line; artifact fencing checks."
+      ]
+    },
+    {
+      "id": "finding-8-3-the-smallest-correct-fix-is-one-registry-string-plus-a-regeneration-and-it-stays",
+      "text": "**The smallest correct fix is one registry string plus a regeneration, and it stays inside machinery that already exists.** Edit `runtimes.codex.defaultMessage` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json:23] to name the build remedy, then run `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs`; the renderer rewrites only the changed file, `.codex/hooks.json` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs:241-244], and both `--check` gates then confirm the pair is consistent [SOURCE: .skilled/scripts/git-hooks/pre-commit:272] [SOURCE: .github/workflows/spec-kit-check.yml:161]. The registry already supports per-binding `message` overrides — five uses today, three of them exactly the `[codex-hooks] drift detected` installer notice [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json:728] [SOURCE: .cursor/hooks.json:31] — so a more granular fix is possible but not earned: all four runtimes already carry one runtime-level default, and per-adapter wording would add binding bookkeeping for a message no user has complained about. Direct edits of the generated file would be flagged by both gates; per-binding overrides for the five dist-consuming codex bindings would triple the edit surface.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.codex/hooks.json` (full read, this iteration)",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json` (head read + key-line rg, this iteration)",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs` (full read, this iteration)",
+        "`.skilled/scripts/git-hooks/pre-commit:263-277` (gate context, this iteration)",
+        "`.github/workflows/spec-kit-check.yml:150-162` (gate context, this iteration)",
+        "`.skilled/bin/README.md:168` (installer contract, rg hit, this iteration)",
+        "`.codex/SYNC.md:52` (rg hit, this iteration)",
+        "`.cursor/hooks.json:31` (rg hit, this iteration)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/research/iterations/iteration-006.md:23` (prior finding, this iteration)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/research/iterations/iteration-007.md:88` (prior recommendation, this iteration)",
+        "o2-fresh-clone probes (this iteration): HEAD equality `82a71c87…`; `sync-hook-registrations.cjs --check` exit 0 with the PASS line; artifact fencing checks."
+      ]
+    },
+    {
+      "id": "finding-9-2-anchor-re-verification-at-the-shared-head-every-fix-anchor-is-unchanged-worktree",
+      "text": "**Anchor re-verification at the shared HEAD: every fix anchor is unchanged.** Worktree and clone both sit at `82a71c87d035b0a1c7bc3a9405c116125e1ea6be` (probe this iteration). `README.md:162` still makes the auto-install/auto-build claim; `README.md:160` still carries the two-version line with no Node 24; the numbered steps (`164-177`) still omit hook trust; the trust sentence still sits at `197`; the First Use section still names only OpenCode at `212`; and the codex defaultMessage still reads `mk codex hook could not resolve; re-run the codex hooks installer with --check` at `hook-registry.json:23`. No fix text has drifted since iteration 5's anchor pass.",
+      "addedAtIteration": 9,
+      "sources": [
+        "`README.md:150-239` (anchor re-verification read, this iteration)",
+        "`.skilled/hooks/git/pre-commit:55-103` (failure-branch read, this iteration)",
+        "`.skilled/repo-rules/prevent-overengineering.md` (full read, this iteration)",
+        "`.skilled/skills/system-spec-kit/package.json:14-16` (scripts rg, this iteration)",
+        "`.skilled/skills/system-spec-kit/runtime/package.json:16-17` (scripts rg, this iteration)",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json:23` (rg, this iteration)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/research/iterations/iteration-006.md`, `iteration-007.md`, `iteration-008.md` (carried recommendations, this iteration)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/research/findings-registry.json` (full read, this iteration)",
+        "Probes (this iteration): HEAD prints for worktree and `o2-fresh-clone` (equal); state-log iteration-record count 8; `research/` listing shows no `research.md`."
+      ]
+    },
+    {
+      "id": "finding-9-3-f8-s-mechanism-is-an-exit-code-collision-and-the-same-hook-file-already-models-t",
+      "text": "**F8's mechanism is an exit-code collision, and the same hook file already models the fix.** `.skilled/hooks/git/pre-commit:95` runs `node \"$MIRROR_CHECKER\"` and treats any nonzero exit as drift, printing the desync message at 97-99; an uncaught `require` throw in the checker also exits 1, so \"cannot load the built parser\" and \"mirrors desynced\" are indistinguishable to the hook. The comment-hygiene gate in the same file already distinguishes environmental non-execution from a finding — `# Exit 2 means no staged file was checkable` at 69-70, with its own branch at 71-76 — and the mirror branch already warn-skips a missing `node` at 93-94. F8 therefore reuses an existing convention on two small surfaces (checker exit code + hook branch), no new machinery.",
+      "addedAtIteration": 9,
+      "sources": [
+        "`README.md:150-239` (anchor re-verification read, this iteration)",
+        "`.skilled/hooks/git/pre-commit:55-103` (failure-branch read, this iteration)",
+        "`.skilled/repo-rules/prevent-overengineering.md` (full read, this iteration)",
+        "`.skilled/skills/system-spec-kit/package.json:14-16` (scripts rg, this iteration)",
+        "`.skilled/skills/system-spec-kit/runtime/package.json:16-17` (scripts rg, this iteration)",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json:23` (rg, this iteration)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/research/iterations/iteration-006.md`, `iteration-007.md`, `iteration-008.md` (carried recommendations, this iteration)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/research/findings-registry.json` (full read, this iteration)",
+        "Probes (this iteration): HEAD prints for worktree and `o2-fresh-clone` (equal); state-log iteration-record count 8; `research/` listing shows no `research.md`."
+      ]
+    },
+    {
+      "id": "finding-9-4-ranking-rationale-the-order-is-the-walk-s-order-with-severity-as-the-tiebreak-f1",
+      "text": "**Ranking rationale: the order is the walk's order, with severity as the tiebreak.** F1 lands first in time (a reader meets Prerequisites before commands); F2 is the highest-frequency hard block at the first routed request; F7/F7b affect five runtimes every session and cost one clause plus one string; F3/F4 hit optional-but-shipped surfaces; F8's hard block requires staging an agent file, so it sits off the first-packet path and below the prose fixes it shares a cause with; F5 costs one debugging cycle; F9 is documentation coverage with no observed failure.",
+      "addedAtIteration": 9,
+      "sources": [
+        "`README.md:150-239` (anchor re-verification read, this iteration)",
+        "`.skilled/hooks/git/pre-commit:55-103` (failure-branch read, this iteration)",
+        "`.skilled/repo-rules/prevent-overengineering.md` (full read, this iteration)",
+        "`.skilled/skills/system-spec-kit/package.json:14-16` (scripts rg, this iteration)",
+        "`.skilled/skills/system-spec-kit/runtime/package.json:16-17` (scripts rg, this iteration)",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json:23` (rg, this iteration)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/research/iterations/iteration-006.md`, `iteration-007.md`, `iteration-008.md` (carried recommendations, this iteration)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/research/findings-registry.json` (full read, this iteration)",
+        "Probes (this iteration): HEAD prints for worktree and `o2-fresh-clone` (equal); state-log iteration-record count 8; `research/` listing shows no `research.md`."
+      ]
+    },
+    {
+      "id": "finding-9-1-the-consolidated-ranked-fix-set-the-iteration-s-artifact-order-is-by-probability",
+      "text": "**The consolidated ranked fix set (the iteration's artifact).** Order is by (probability × cost) along the walk from clone to first spec packet, not by fix cost; when two ranks tie, the one-line prose move wins. Every move starts at the cheapest write and carries its climbing sentence — the observed failure that \"build nothing\" leaves:",
+      "addedAtIteration": 9,
+      "sources": [
+        "`README.md:150-239` (anchor re-verification read, this iteration)",
+        "`.skilled/hooks/git/pre-commit:55-103` (failure-branch read, this iteration)",
+        "`.skilled/repo-rules/prevent-overengineering.md` (full read, this iteration)",
+        "`.skilled/skills/system-spec-kit/package.json:14-16` (scripts rg, this iteration)",
+        "`.skilled/skills/system-spec-kit/runtime/package.json:16-17` (scripts rg, this iteration)",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json:23` (rg, this iteration)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/research/iterations/iteration-006.md`, `iteration-007.md`, `iteration-008.md` (carried recommendations, this iteration)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/research/findings-registry.json` (full read, this iteration)",
+        "Probes (this iteration): HEAD prints for worktree and `o2-fresh-clone` (equal); state-log iteration-record count 8; `research/` listing shows no `research.md`."
+      ]
+    },
+    {
+      "id": "finding-9-5-the-smallest-set-fits-four-surfaces-and-adds-nothing-readme-md-carries-f1-f2-f4-",
+      "text": "**The smallest set fits four surfaces and adds nothing.** README.md carries F1, F2, F4, F5, F7 and F9 (all prose, no new script); `hook-registry.json` plus the existing regenerator carries F7b; the sk-vision docs carry F3; the hook plus the mirror checker carry F8. No new file, dependency, script, option or abstraction is earned by any item; the six declined directions (z_archive fix, advisor degraded mode, tracking the built parser, inline frontmatter parsing, per-binding codex messages, claude/cursor rewording) stay declined for the reasons iterations 3-8 recorded.",
+      "addedAtIteration": 9,
+      "sources": [
+        "`README.md:150-239` (anchor re-verification read, this iteration)",
+        "`.skilled/hooks/git/pre-commit:55-103` (failure-branch read, this iteration)",
+        "`.skilled/repo-rules/prevent-overengineering.md` (full read, this iteration)",
+        "`.skilled/skills/system-spec-kit/package.json:14-16` (scripts rg, this iteration)",
+        "`.skilled/skills/system-spec-kit/runtime/package.json:16-17` (scripts rg, this iteration)",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json:23` (rg, this iteration)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/research/iterations/iteration-006.md`, `iteration-007.md`, `iteration-008.md` (carried recommendations, this iteration)",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/research/findings-registry.json` (full read, this iteration)",
+        "Probes (this iteration): HEAD prints for worktree and `o2-fresh-clone` (equal); state-log iteration-record count 8; `research/` listing shows no `research.md`."
+      ]
+    },
+    {
+      "id": "finding-10-1-iteration-5-s-pi-half-is-falsified-the-tracked-defaultprojecttrust-cannot-bypass",
+      "text": "**Iteration 5's Pi half is falsified: the tracked `defaultProjectTrust` cannot bypass project trust in a fresh clone.** Pi's settings reference states `defaultProjectTrust` \"**Can only be set in agent-directory settings**\" [SOURCE: /Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/settings.md:34], while ordinary project settings otherwise override agent-directory settings [SOURCE: /Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/settings.md:3]. The trust decision order reads the global fallback only after saved decisions [SOURCE: /Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/security.md:59-65], and the dist resolves `getDefaultProjectTrust()` from `globalSettings` [INFERENCE: dist probe this iteration — `dist/core/settings-manager.js` reads `this.globalSettings.defaultProjectTrust`; no project-scope read path exists]. Project settings themselves load only *after* trust is granted, and `.pi/settings.json` is itself a protected resource that triggers the trust decision [SOURCE: /Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/security.md:39-45]. Net: the tracked line [SOURCE: .pi/settings.json:12] is inert for external users — a fresh-clone Pi user still gets their own global default (`\"ask\"` unless they changed it) and the trust prompt pi documents [SOURCE: /Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/security.md:79-80]. Residual cost: the line is dead weight that misstates shipped behavior (it misled iteration 5) and no checked doc names it. Fix: delete the line (F10, rank 3 below).",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.claude/settings.json:1-245` (full read, this iteration)",
+        "`.pi/settings.json:1-52` (full read, this iteration)",
+        "`.pi/extensions/session-start-context.ts:1-51` (full read, this iteration)",
+        "`.pi/extensions/lib/claude-hook-adapter.ts:1-76` (full read, this iteration)",
+        "`.gitignore:316`, `.claude/SYNC.md:37` (rg hits, this iteration)",
+        "`.skilled/hooks/README.md:65`, `.skilled/bin/README.md:192` (rg hits, this iteration)",
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/settings.md:3,34` (read, this iteration)",
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/security.md:37-80` (read, this iteration)",
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/configuration.md:3` (rg hit, this iteration)",
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/core/settings-manager.js` (rg hit, this iteration)",
+        "`https://json.schemastore.org/claude-code-settings.json` (fetched, this iteration)",
+        "`o2-fresh-clone` probes: `git ls-files` settings files, `diff` equality, HEAD hash (this iteration)",
+        "Iterations 5, 6 and 9 narratives; findings registry (reads, this iteration)"
+      ]
+    },
+    {
+      "id": "finding-10-4-pi-silent-fail-open-re-verified-at-head-and-the-notice-belongs-in-the-fix-set-th",
+      "text": "**Pi silent fail-open re-verified at HEAD, and the notice belongs in the fix set.** The chain is unchanged: the extension calls the adapter on `session_start` [SOURCE: .pi/extensions/session-start-context.ts:36-41], returns silently on a falsy context [SOURCE: .pi/extensions/session-start-context.ts:42], and the catch returns `undefined` (\"Fail open because a context-priming bug must never block session start\") [SOURCE: .pi/extensions/session-start-context.ts:45-47]; the adapter resolves its target under `.skilled/skills/system-spec-kit/runtime/dist/hooks/claude` [SOURCE: .pi/extensions/lib/claude-hook-adapter.ts:41-45] and returns `null` on spawn error, nonzero exit or exception [SOURCE: .pi/extensions/lib/claude-hook-adapter.ts:55-58]; the repository tracks 0 files under `runtime/dist` [INFERENCE: `git ls-files` probe this iteration] and the dist present on this machine exists only because local builds produced it. Decision (closing iteration 6, finding 4): fold a one-branch notice into F7's move — the branch at line 42 is the only place the sixth runtime can learn the cause, and the five sibling consumers already carry drift notices. Restraint check: one branch in one tracked file, the same remedy text devin's notice names, no new mechanism; if the implementation phase wants strictly minimal, F7's prose clause alone remains the floor.",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.claude/settings.json:1-245` (full read, this iteration)",
+        "`.pi/settings.json:1-52` (full read, this iteration)",
+        "`.pi/extensions/session-start-context.ts:1-51` (full read, this iteration)",
+        "`.pi/extensions/lib/claude-hook-adapter.ts:1-76` (full read, this iteration)",
+        "`.gitignore:316`, `.claude/SYNC.md:37` (rg hits, this iteration)",
+        "`.skilled/hooks/README.md:65`, `.skilled/bin/README.md:192` (rg hits, this iteration)",
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/settings.md:3,34` (read, this iteration)",
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/security.md:37-80` (read, this iteration)",
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/configuration.md:3` (rg hit, this iteration)",
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/core/settings-manager.js` (rg hit, this iteration)",
+        "`https://json.schemastore.org/claude-code-settings.json` (fetched, this iteration)",
+        "`o2-fresh-clone` probes: `git ls-files` settings files, `diff` equality, HEAD hash (this iteration)",
+        "Iterations 5, 6 and 9 narratives; findings registry (reads, this iteration)"
+      ]
+    },
+    {
+      "id": "finding-10-2-the-claude-half-stands-and-is-sharper-the-tracked-file-ships-skips-all-prompts-m",
+      "text": "**The Claude half stands, and is sharper: the tracked file ships \"skips all prompts\" mode.** `.claude/settings.json` sets `permissions.defaultMode: \"bypassPermissions\"` [SOURCE: .claude/settings.json:5], `skipDangerousModePermissionPrompt: true` [SOURCE: .claude/settings.json:7], and `env.SYSTEM_SPEC_GATE_ENFORCE: \"0\"` [SOURCE: .claude/settings.json:39]; the file is tracked and byte-identical in the fresh clone (probe, this iteration). The schema URL the file itself declares documents the value as `\"bypassPermissions\": skips all prompts (use only in isolated environments)` [SOURCE: https://json.schemastore.org/claude-code-settings.json]. So a Claude Code user who opens a clone and accepts the folder-trust step (the standard project-settings path) runs every session with the permission system skipped and the warning prompt for that mode also suppressed — silently, because no checked doc names either key. Residual uncertainty, stated honestly: no live Claude session was executed, so the startup sequencing was not re-probed; the shipped `skipDangerousModePermissionPrompt` is itself evidence the dangerous-mode path is engaged. The relocation surface already exists: `.claude/settings.local.json` is gitignored [SOURCE: .gitignore:316] and called \"operator-local … gitignored, never synced\" [SOURCE: .claude/SYNC.md:37].",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.claude/settings.json:1-245` (full read, this iteration)",
+        "`.pi/settings.json:1-52` (full read, this iteration)",
+        "`.pi/extensions/session-start-context.ts:1-51` (full read, this iteration)",
+        "`.pi/extensions/lib/claude-hook-adapter.ts:1-76` (full read, this iteration)",
+        "`.gitignore:316`, `.claude/SYNC.md:37` (rg hits, this iteration)",
+        "`.skilled/hooks/README.md:65`, `.skilled/bin/README.md:192` (rg hits, this iteration)",
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/settings.md:3,34` (read, this iteration)",
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/security.md:37-80` (read, this iteration)",
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/configuration.md:3` (rg hit, this iteration)",
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/core/settings-manager.js` (rg hit, this iteration)",
+        "`https://json.schemastore.org/claude-code-settings.json` (fetched, this iteration)",
+        "`o2-fresh-clone` probes: `git ls-files` settings files, `diff` equality, HEAD hash (this iteration)",
+        "Iterations 5, 6 and 9 narratives; findings registry (reads, this iteration)"
+      ]
+    },
+    {
+      "id": "finding-10-5-the-frozen-ranked-fix-set-this-iteration-s-deliverable-iteration-9-s-order-is-pr",
+      "text": "**The frozen ranked fix set (this iteration's deliverable).** Iteration 9's order is preserved; F10 (new) enters at rank 3 and F7 gains its second surface. Anchors last re-verified by iteration 9 at HEAD `82a71c87d035b0a1c7bc3a9405c116125e1ea6be`, which is still HEAD this iteration (probe).",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.claude/settings.json:1-245` (full read, this iteration)",
+        "`.pi/settings.json:1-52` (full read, this iteration)",
+        "`.pi/extensions/session-start-context.ts:1-51` (full read, this iteration)",
+        "`.pi/extensions/lib/claude-hook-adapter.ts:1-76` (full read, this iteration)",
+        "`.gitignore:316`, `.claude/SYNC.md:37` (rg hits, this iteration)",
+        "`.skilled/hooks/README.md:65`, `.skilled/bin/README.md:192` (rg hits, this iteration)",
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/settings.md:3,34` (read, this iteration)",
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/security.md:37-80` (read, this iteration)",
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/configuration.md:3` (rg hit, this iteration)",
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/core/settings-manager.js` (rg hit, this iteration)",
+        "`https://json.schemastore.org/claude-code-settings.json` (fetched, this iteration)",
+        "`o2-fresh-clone` probes: `git ls-files` settings files, `diff` equality, HEAD hash (this iteration)",
+        "Iterations 5, 6 and 9 narratives; findings registry (reads, this iteration)"
+      ]
+    },
+    {
+      "id": "finding-10-3-the-tracked-env-is-a-project-wide-spec-gate-neutralization-not-just-a-child-hand",
+      "text": "**The tracked env is a project-wide spec-gate neutralization, not just a child-handoff wrapper.** `SYSTEM_SPEC_GATE_ENFORCE` is documented as \"a separate opt-in control for spec-gate denial, not a kill-switch\" [SOURCE: .skilled/hooks/README.md:65], and the `=0` export pattern exists in the repo only for child handoffs (\"Every `exec_in_place` path … also exports `SYSTEM_SPEC_GATE_ENFORCE=0` before handing off to the runtime\") [SOURCE: .skilled/bin/README.md:192]. Setting it in the tracked Claude project env forces that neutralization onto every root session in this repository — including a newcomer's first one — where it disables the framework's own Gate-3 denial while no checked doc names it [INFERENCE: same three sources; observed file value at .claude/settings.json:39].",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.claude/settings.json:1-245` (full read, this iteration)",
+        "`.pi/settings.json:1-52` (full read, this iteration)",
+        "`.pi/extensions/session-start-context.ts:1-51` (full read, this iteration)",
+        "`.pi/extensions/lib/claude-hook-adapter.ts:1-76` (full read, this iteration)",
+        "`.gitignore:316`, `.claude/SYNC.md:37` (rg hits, this iteration)",
+        "`.skilled/hooks/README.md:65`, `.skilled/bin/README.md:192` (rg hits, this iteration)",
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/settings.md:3,34` (read, this iteration)",
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/security.md:37-80` (read, this iteration)",
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/configuration.md:3` (rg hit, this iteration)",
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/core/settings-manager.js` (rg hit, this iteration)",
+        "`https://json.schemastore.org/claude-code-settings.json` (fetched, this iteration)",
+        "`o2-fresh-clone` probes: `git ls-files` settings files, `diff` equality, HEAD hash (this iteration)",
+        "Iterations 5, 6 and 9 narratives; findings registry (reads, this iteration)"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-f1d6f96a9205",
+      "text": "`docs/` tree: no `docs/` directory exists in worktree or clone; internal docs are the root markdown files plus the skill-local READMEs listed in README section 16. [SOURCE: README.md:1576-1592] [INFERENCE: find docs probe returned nothing, this iteration]",
+      "contentHash": "f1d6f96a9205",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-f8f9ec3898db",
+      "text": "PUBLIC-RELEASE.md as the external-user install path: it documents the maintainer release workflow and the symlink consumer model, both requiring ownership of a shared framework checkout. [SOURCE: PUBLIC-RELEASE.md:74-235]",
+      "contentHash": "f8f9ec3898db",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-a2dbbb546413",
+      "text": "Root-level single install (`npm install` at the repository root): no root `package.json` exists; install is per-workspace across 15 manifests outside `specs/` (probe). [INFERENCE: find probe listing package.json files, this iteration]",
+      "contentHash": "a2dbbb546413",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-a5255b26c894",
+      "text": "Node 18 runtime reproduction on this machine: no Node 18 interpreter in nvm (versions v20.19.5+ only); used the lowest available floor 20.19.5 instead. The CONTRIBUTING 18+ claim stays contradicted statically by the >=20.11 floors [SOURCE: .skilled/skills/system-spec-kit/package.json:11-13] and is not runtime-proven either way.",
+      "contentHash": "a5255b26c894",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-7f93a1ffc7a5",
+      "text": "None new this iteration. No exhausted-approach direction was retried: the docs-tree, PUBLIC-RELEASE and root-install directions stayed untouched.",
+      "contentHash": "7f93a1ffc7a5",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-df15e784445e",
+      "text": "\"sk-vision tests fail until `vision-runtime/dist` is built\": falsified at file level. Tests import `src` and spawn `python/runtime.py`; no test consumes `dist` [SOURCE: .skilled/skills/sk-vision/vision-runtime/python/runtime.test.ts:8-22]. The dist consumer is the plugin/CLI delivery surface, not the test suite.",
+      "contentHash": "df15e784445e",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-0143d551d437",
+      "text": "\"The compiled-routing rebuild breaks a fresh clone because the authored source under `specs/sk-doc/z_archive` is absent\": falsified. The path is tracked (6996 files) and present in the clone; sync, guard and the pre-commit gate all resolve it there.",
+      "contentHash": "0143d551d437",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-d8621dea11b8",
+      "text": "None new. No exhausted-approach direction was retried: the docs-tree, PUBLIC-RELEASE, root-install and Node-18 directions stayed untouched.",
+      "contentHash": "d8621dea11b8",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-14716d4341d1",
+      "text": "Runtime `bun test` roast of sk-vision was planned and not executed (tool-call budget and the clone's missing node_modules for that workspace); carried to next iteration rather than inferred away.",
+      "contentHash": "14716d4341d1",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-34c86e083cdb",
+      "text": "No exhausted-approach direction was retried: docs-tree, PUBLIC-RELEASE, root-install, Node-18, the sk-vision test-failure claim, and the `z_archive`-absence claim all stayed untouched.",
+      "contentHash": "34c86e083cdb",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-3c36df55618c",
+      "text": "None new. Nothing found this iteration suggests a productive path for the falsified hypotheses.",
+      "contentHash": "3c36df55618c",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-a04e7f5fbf42",
+      "text": "The `bun test` Python-spawning roast was not run and is superseded: its motivating hypothesis (tests fail until `dist` is built) is falsified, and the delivery-surface question it was meant to close is answered by the observed build probe (finding 5).",
+      "contentHash": "a04e7f5fbf42",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-ae1d0d151c0a",
+      "text": "Executing the `check-git-hooks.sh` self-heal end-to-end inside the clone: running it invokes the installer whose effects beyond the clone's `.git/hooks` were not verified from the 1-55 read, so the mechanism and its trigger conditions were established from the script text instead of mutating machine state.",
+      "contentHash": "ae1d0d151c0a",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-6c2569aa9226",
+      "text": "No exhausted-approach direction was retried: docs-tree, PUBLIC-RELEASE, root-install, Node-18, the sk-vision test-failure claim, the `z_archive`-absence claim, and the two superseded `bun test` roasts all stayed untouched.",
+      "contentHash": "6c2569aa9226",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-dd0fa8a284b1",
+      "text": "None new.",
+      "contentHash": "dd0fa8a284b1",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-f746275e9a01",
+      "text": "Re-running the spec-kit runtime workspace build end-to-end in the clone to re-prove the devin-named remedy command: the clone is not pristine (prior iterations installed its node_modules and produced its dist), so a re-run would not establish the claim that matters — that the documented step 2 is sufficient. The build script, the present `dist/hooks` tree and the two executed adapters already ground the remedy chain; the step-2 sufficiency statement stays an explicit inference.",
+      "contentHash": "f746275e9a01",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-8891989b62bb",
+      "text": "Executing the checker against a tree without the built parser (the decisive crash reproduction): it would require deleting the built file inside the clone, and deletions are banned in this run; the arc is grounded by the tracked-file count, the load-time require structure, and Node module semantics, with the last hop marked inference.",
+      "contentHash": "8891989b62bb",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-fd56bf653d08",
+      "text": "None new. The mirror-content direction is *not* a dead end but is now fully mapped: no content drift exists at HEAD, so no content fix is owed there.",
+      "contentHash": "fd56bf653d08",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-f580708794cd",
+      "text": "Retrying any exhausted-approach direction: docs-tree, PUBLIC-RELEASE, root-install, Node-18, the sk-vision test-failure claim, the `z_archive`-absence claim, the `bun test` roasts, the `check-git-hooks.sh` execution, and the build re-run all stayed untouched.",
+      "contentHash": "f580708794cd",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-9b776a6678df",
+      "text": "Spawning a second pristine sandbox clone: the sanctioned fixture plus `git ls-files` tracking evidence answers the pristine-state question without a new probe zone.",
+      "contentHash": "9b776a6678df",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-a502177dc292",
+      "text": "Editing the generated `.codex/hooks.json` directly to change the notice: pre-commit and CI run `sync-hook-registrations.cjs --check` [SOURCE: .skilled/scripts/git-hooks/pre-commit:272] [SOURCE: .github/workflows/spec-kit-check.yml:161], so an un-regenerated edit reports drift; the registry is the edit point.",
+      "contentHash": "a502177dc292",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-4d2296992a66",
+      "text": "Executing `install-codex-hooks.mjs --check` in the clone to observe user-global behavior: the user-global `~/.codex/hooks.json` sits outside the clone sandbox; the tool's contract is documented and `--check` is non-mutating by design [SOURCE: .skilled/bin/README.md:168], so its semantics were read, not executed.",
+      "contentHash": "4d2296992a66",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-32616c014663",
+      "text": "None new. The registry-sourced generation pipeline is the live mechanism at HEAD, confirmed by both gates and by the clone probe; the direction is resolved rather than dead, and no content fix remains owed beyond the one string.",
+      "contentHash": "32616c014663",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-178fc971931d",
+      "text": "Per-binding `message` overrides for the dist-only codex adapters: the mechanism exists [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs:73] and is used five times [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json:728], but all four runtimes use runtime-level defaults; adding per-adapter strings adds binding bookkeeping the requirement does not earn.",
+      "contentHash": "178fc971931d",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-340d762cb971",
+      "text": "Rewording the claude/cursor defaults in the same pass: both name a correct rebuild direction [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json:8] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json:36]; no observed misdirection; keeps the pass off the \"while we're here\" path.",
+      "contentHash": "340d762cb971",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-61c8fff53471",
+      "text": "Adding F6 to the implementation bundle: the \"while we're here\" restraint signal; no observed failure names it.",
+      "contentHash": "61c8fff53471",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-ef8704aed208",
+      "text": "None new. The consolidated set resolves the carried fix-set recommendation; the remaining work is implementation-time anchor re-verification, not research.",
+      "contentHash": "ef8704aed208",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-1bab72501063",
+      "text": "Re-probing the anchors beyond the fresh read: the read is the verification; a second pass is owed only at implementation start per iteration 8's (b).",
+      "contentHash": "1bab72501063",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-34409b169601",
+      "text": "Retrying any exhausted-approach direction: docs-tree, PUBLIC-RELEASE, root-install, Node-18, the sk-vision test-failure claim, the z_archive-absence claim, the bun-test roasts, the check-git-hooks execution and the build re-run all stayed untouched.",
+      "contentHash": "34409b169601",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-98a43a03858d",
+      "text": "Writing `research/research.md` despite `progressiveSynthesis: true`: outside this dispatch's allowed write paths; progressive synthesis stays workflow-owned.",
+      "contentHash": "98a43a03858d",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-5ca886a06a3c",
+      "text": "**A fresh-HOME pi launch to observe the trust prompt end-to-end.** The trust decision is interactive, and a one-shot probe cannot bind it; pi's normative scope rule, the trust-resolution order and the dist read path settle the file-level question with primary sources (Finding 1).",
+      "contentHash": "5ca886a06a3c",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-a3213118ffbe",
+      "text": "**A live Claude Code session to observe project-settings startup precedence.** No safe non-interactive probe exists; the fetched schema documents the shipped values' semantics, and the residual uncertainty is recorded in Finding 2 instead of being smoothed over.",
+      "contentHash": "a3213118ffbe",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-85421aef5168",
+      "text": "**Reproducing the Pi silence by removing `runtime/dist`.** Deletion is banned, and the probe clone's dist was produced by earlier iterations; the file-level chain plus the 0-tracked `git ls-files` count stand as the evidence.",
+      "contentHash": "85421aef5168",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-a507dc911fa4",
+      "text": "No exhausted-approach direction was retried: docs-tree, PUBLIC-RELEASE, root-install, Node-18, the sk-vision test-failure claim, the `z_archive`-absence claim, the `bun test` roasts, the generated `.codex/hooks.json` edit path and the F6-bundling direction all stayed untouched.",
+      "contentHash": "a507dc911fa4",
+      "addedAtIteration": 10
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 8,
+    "keyFindings": 71,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.6,
+    "coverageBySources": {
+      "code": 107,
+      "json.schemastore.org": 1,
+      "other": 87
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/106-oe-fresh-clone-onboarding/specs/sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}
