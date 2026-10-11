@@ -412,3 +412,50 @@ fi
 | Timeout / hung | No output within expected time | Simplify task scope; break into smaller steps |
 | Low-quality output | Calling AI validation fails | Retry with refined prompt; use a different profile |
 | Nesting limit reached | Subagent cannot spawn children | Increase `max-nesting` in custom AGENT.md or restructure the task |
+
+---
+
+## 10. INSTALLED-VERSION PROBES
+
+Live probe records moved here from SKILL.md, which keeps only the conclusions.
+
+### Skills and Rules Discovery
+
+The installed Devin CLI discovers repository skills and rules that are already present; this phase does not add adapters for either mechanism. On Devin `3000.2.17`, the live `devin skills list` output included these repo-local packets:
+
+```text
+  /sk-doc [user,model] (./.skilled/skills/sk-doc)
+  /cli-external-orchestration [user,model] (./.skilled/skills/cli-external-orchestration)
+  /sk-git [user,model] (./.skilled/skills/sk-git)
+  /mcp-tooling [user,model] (./.skilled/skills/mcp-tooling)
+  /mcp-code-mode [user,model] (./.skilled/skills/mcp-code-mode)
+  /system-skill-advisor [user,model] (./.skilled/skills/system-skill-advisor)
+  /system-spec-kit [user,model] (./.skilled/skills/system-spec-kit)
+  /sk-code [user,model] (./.skilled/skills/sk-code)
+  /system-deep-loop [user,model] (./.skilled/skills/system-deep-loop)
+  /sk-prompt [user,model] (./.skilled/skills/sk-prompt)
+  /sk-design-md-generator [user,model] (./.skilled/skills/sk-design/sk-design-md-generator)
+```
+
+The phase's live context records Devin as discovering 13 top-level skill packets. The rerun in this checkout printed the 12 concrete `./.skilled/skills/*` paths above, plus the external `devin-cli` packet and the empty-path `declarative-repo-setup` entry; the output is preserved here rather than inventing a filesystem path for the thirteenth local packet.
+
+The live `devin rules list` output was:
+
+```text
+Available Rules
+
+  global_rules [Windsurf] always-on
+  CLAUDE [Claude] always-on
+  AGENTS [Standard] always-on
+  CLAUDE [Claude] always-on
+```
+
+That listing predates `.devin/config.json`, which turns Devin's Claude import off. The command still names `CLAUDE`, but a session no longer loads it: it loads the checkout's own root `AGENTS.md`, cut at Devin's fixed 16,384-byte limit per rule file. `.devin/SYNC.md` §5 records why the import is off.
+
+### Installed-Version Import Correction
+
+Devin's docs claim that `.claude/agents/*.md` files are automatically imported. A live probe against the installed Devin `3000.2.17` found the repo's 13-file `.claude/agents/` directory but reported that none of those profiles were usable through `run_subagent`; only `subagent_explore` and `subagent_general` were dispatchable. This is a confirmed installed-version finding, not an assumption. A native `.devin/agents/[name]/AGENT.md` profile is required for a custom profile here. The older import note in the reference material must not be treated as working behavior for this version.
+
+### Devin Has No Command-File System
+
+Commands are not a missing Devin parity feature. The installed `devin --help` lists `auth`, `mcp`, `models`, `rules`, `skills`, `plugins`, `cloud`, `list`, `update`, `version`, `migrate`, `sandbox`, `setup`, `uninstall`, `acp`, `shell`, and `help`; it has no `commands` subcommand. A direct `devin commands` probe returns `error: unexpected argument 'commands' found`, and the installed docs expose no command-file directory. This is an architectural non-concept for Devin, not a build gap.

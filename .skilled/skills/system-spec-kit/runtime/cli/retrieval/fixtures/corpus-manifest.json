@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ec516a0f687cca00eca2bd03cb96b4dc8a1178fc4180f2ca92704e3cc6c1c66a",
+  "corpusHash": "e6a14c0b974d63480a13085d36097706fb1855cc648fb770a4cea834f8e3ccec",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24566,
+  "includedPathCount": 24612,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -146,6 +146,7 @@
     ".skilled/skills/cli-classifier/cli-jev/changelog/v0.1.3.0.md",
     ".skilled/skills/cli-classifier/cli-jev/changelog/v0.1.4.0.md",
     ".skilled/skills/cli-classifier/cli-jev/changelog/v0.1.5.0.md",
+    ".skilled/skills/cli-classifier/cli-jev/changelog/v0.1.6.0.md",
     ".skilled/skills/cli-classifier/cli-jev/feature-catalog/dispatch-guards/dispatch-guards.md",
     ".skilled/skills/cli-classifier/cli-jev/feature-catalog/feature-catalog.md",
     ".skilled/skills/cli-classifier/cli-jev/feature-catalog/judgment-primitives/judgment-primitives.md",
@@ -266,6 +267,7 @@
     ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.5.0.0.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.5.1.0.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.5.2.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.5.3.0.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/agent-routing/context-agent-codebase-exploration.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/agent-routing/debug-agent-fresh-perspective-root-cause.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/agent-routing/handover-agent-context-transfer.md",
@@ -1018,6 +1020,7 @@
     ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.3.0.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.4.0.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.5.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.6.0.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/cli-invocation/availability-probe.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/cli-invocation/default-invocation.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/cli-invocation/hallucination-fixture-fabricated-flag.md",
@@ -1426,6 +1429,7 @@
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.11.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.12.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.13.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.14.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.3.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.4.0.md",
@@ -1664,6 +1668,7 @@
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.12.0.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.13.0.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.14.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.15.0.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.3.0.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.4.0.md",
@@ -2348,6 +2353,7 @@
     ".skilled/skills/mcp-tooling/mcp-notion/README.md",
     ".skilled/skills/mcp-tooling/mcp-notion/SKILL.md",
     ".skilled/skills/mcp-tooling/mcp-notion/changelog/v0.1.0.0.md",
+    ".skilled/skills/mcp-tooling/mcp-notion/changelog/v0.1.1.0.md",
     ".skilled/skills/mcp-tooling/mcp-notion/examples/README.md",
     ".skilled/skills/mcp-tooling/mcp-notion/feature-catalog/FEATURE-CATALOG.md",
     ".skilled/skills/mcp-tooling/mcp-notion/feature-catalog/api-gap-fills/async-task-polling.md",
@@ -2442,6 +2448,7 @@
     ".skilled/skills/mcp-tooling/mcp-obsidian/changelog/v0.22.0.0.md",
     ".skilled/skills/mcp-tooling/mcp-obsidian/changelog/v0.23.0.0.md",
     ".skilled/skills/mcp-tooling/mcp-obsidian/changelog/v0.24.0.0.md",
+    ".skilled/skills/mcp-tooling/mcp-obsidian/changelog/v0.24.1.0.md",
     ".skilled/skills/mcp-tooling/mcp-obsidian/changelog/v0.3.0.0.md",
     ".skilled/skills/mcp-tooling/mcp-obsidian/changelog/v0.4.0.0.md",
     ".skilled/skills/mcp-tooling/mcp-obsidian/changelog/v0.5.0.0.md",
@@ -3304,6 +3311,7 @@
     ".skilled/skills/sk-design/sk-design-fundamentals/benchmark/README.md",
     ".skilled/skills/sk-design/sk-design-fundamentals/benchmark/reports/README.md",
     ".skilled/skills/sk-design/sk-design-fundamentals/changelog/v1.0.0.0.md",
+    ".skilled/skills/sk-design/sk-design-fundamentals/changelog/v1.0.1.0.md",
     ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/boundary/extraction-defers-to-md-generator.md",
     ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/boundary/implementation-defers-to-sk-code.md",
     ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/contrast-escape-hatches.md",
@@ -6054,6 +6062,7 @@
     ".skilled/skills/sk-doc/changelog/v2.3.0.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.1.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.2.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.3.3.0.md",
     ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/changelog-entry-frontmatter-check.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-census-across-doc-families.md",
@@ -6229,6 +6238,7 @@
     ".skilled/skills/sk-doc/sk-create-command/changelog/v1.0.1.0.md",
     ".skilled/skills/sk-doc/sk-create-command/changelog/v1.0.1.1.md",
     ".skilled/skills/sk-doc/sk-create-command/changelog/v1.0.2.0.md",
+    ".skilled/skills/sk-doc/sk-create-command/changelog/v1.0.3.0.md",
     ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/component-and-path/reference-guidance-stays-a-skill.md",
     ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/component-and-path/repeatable-slash-command.md",
     ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/input-and-modes/complete-auto-and-confirm-modes.md",
@@ -6332,6 +6342,7 @@
     ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.4.0.0.md",
     ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.4.1.0.md",
+    ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.4.2.0.md",
     ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/add-goal-to-packet-without-goal.md",
     ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/cut-over-budget-parent.md",
     ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/detect-unbound-phase.md",
@@ -6462,6 +6473,7 @@
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.0.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.1.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.2.0.md",
+    ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.3.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/author-a-two-axis-parent-hub.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/keep-one-parent-identity.md",
@@ -6492,6 +6504,7 @@
     ".skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.1.0.0.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.2.1.0.md",
+    ".skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.2.2.0.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/scope-gate/accuracy-outranks-the-standard.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/scope-gate/code-and-quotations-untouched.md",
@@ -6674,6 +6687,7 @@
     ".skilled/skills/sk-prompt/changelog/v3.0.0.0.md",
     ".skilled/skills/sk-prompt/changelog/v3.0.1.0.md",
     ".skilled/skills/sk-prompt/changelog/v3.0.2.0.md",
+    ".skilled/skills/sk-prompt/changelog/v3.0.3.0.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/clear-five-dimensions.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/dimension-drilldown-rationale.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/dimension-floors-block.md",
@@ -10694,6 +10708,38 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/009-open-items-ledger/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/001-package-strict/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/001-package-strict/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/001-package-strict/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/001-package-strict/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/001-package-strict/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/002-hooks-readme-voice/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/002-hooks-readme-voice/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/002-hooks-readme-voice/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/002-hooks-readme-voice/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/002-hooks-readme-voice/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/003-admission-gold/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/003-admission-gold/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/003-admission-gold/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/003-admission-gold/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/003-admission-gold/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/004-battery-misses/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/004-battery-misses/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/004-battery-misses/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/004-battery-misses/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/004-battery-misses/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/005-hooks-vitest-scope/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/005-hooks-vitest-scope/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/005-hooks-vitest-scope/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/005-hooks-vitest-scope/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/005-hooks-vitest-scope/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/spec.md",
     "specs/sk-communication/001-sk-communication-creation/001-research-strategy/implementation-summary.md",
@@ -24597,7 +24643,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "dcb1fa803064a053d3aa4e4ed83a2c165954afe22caf03914c69524f61c108a4",
+  "manifestHash": "9b596776f681a1cad81c9fe309001b4499d998b2d2e6f2259b4595372f7c4771",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26649,6 +26695,34 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/001-package-strict/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/002-hooks-readme-voice/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/003-admission-gold/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/004-battery-misses/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/005-hooks-vitest-scope/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/scratch",
       "reason": "excluded directory"
     },
     {

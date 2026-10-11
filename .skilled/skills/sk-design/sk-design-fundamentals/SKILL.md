@@ -1,8 +1,8 @@
 ---
 name: sk-design-fundamentals
-description: "Designs, builds and reviews any laid-out surface from fixed value scales: screen UI, slide decks, printed and document layouts. Adds interaction guidelines, motion principles and a WCAG review pass where the surface is a screen."
+description: "Designs, builds and reviews any laid-out surface from fixed value scales: screen UI, slide decks, printed and document layouts."
 allowed-tools: [Read, Write, Edit, Grep, Glob]
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 <!-- Keywords: ui design rules, what padding, how much padding, padding, margin, spacing between elements, spacing scale, what font size, font size, type scale, font weight, color palette, hsl shades, shade ramp, shadow elevation, box shadow, border radius, visual hierarchy, de-emphasize, ui looks off, looks amateur, feels cluttered, make this look better, design tokens, contrast ratio, wcag, wcag 4.5:1, a11y, accessibility, accessibility issues, accessibility review, accessibility audit, aria-label, alt text, screen reader, grey on color, em versus rem, breakpoint scaling, empty state, interaction guidelines, focus ring, focus outline, touch target, hit area, keyboard navigation, animation duration, transition duration, easing curve, spring animation, twelve principles of animation, review this component, design review, ui review, component states, dark mode palette, where do i start designing, grayscale first, how much white space, nothing draws the eye, primary secondary tertiary, destructive button, labels are a last resort, too many options, overwhelming, cognitive load, progressive disclosure, fitts law, hicks law, doherty threshold, chunking, concentric radius, layered shadows, button shadow anatomy, text-wrap balance, tabular nums, drop shadow, shadow, draws the eye, no visual hierarchy, everything looks the same, slide deck design, slide layout, presentation design, deck spacing, print layout, printed page design, margins for print, document layout, report layout, long-form layout, poster layout, how should this slide be laid out, type scale for print, laid out -->
@@ -505,9 +505,7 @@ Correct values do not make a screen behave correctly. Three references carry the
 
 ### Reading Versus Authoring
 
-`sk-design-md-generator/references/design-knowledge/numeric-design-laws.md` records type ratios, a short spacing scale and motion bands as targets for *reading* a measured surface. This skill decides those values for a surface that does not exist yet, and on three of them the two would appear to disagree if direction were ignored.
-
-They do not. That document reports; this one decides; a measurement outranks a default for the surface it covers. Both sides now state the reconciliation — its Section 1, and [`references/motion-principles.md`](references/motion-principles.md) Section 5 here.
+`sk-design-md-generator/references/design-knowledge/numeric-design-laws.md` records type ratios, spacing and motion bands for *reading* a measured surface. This skill decides them for a surface not yet built. A measurement outranks a default, and [`references/motion-principles.md`](references/motion-principles.md) Section 5 states the reconciliation.
 
 ---
 

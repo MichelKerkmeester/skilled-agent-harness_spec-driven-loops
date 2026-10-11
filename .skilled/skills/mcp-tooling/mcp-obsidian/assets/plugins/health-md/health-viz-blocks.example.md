@@ -1,3 +1,14 @@
+---
+title: "Health.md health-viz Render Blocks"
+description: "Researched-validated health-viz render-block forms for the step-spiral renderer, with the documented optional keys and the mock-data warning."
+trigger_phrases:
+  - "health-viz render block"
+  - "health-md step-spiral block"
+importance_tier: "normal"
+contextType: "implementation"
+version: 0.24.1.0
+---
+
 # Health.md `health-viz` render blocks (researched-validated examples)
 
 These blocks are the forms validated against the researched render contract. The fenced language is `health-viz` (the plugin does not read a `health-md` fence). Every block names a registered renderer via `type`; the research documents the `step-spiral` renderer explicitly, so it is the only renderer shown here. Documented optional keys are `width`, `height`, inclusive `from`, inclusive `to`, `last`, and `clickAction`. Dates may be ISO dates or built-in dynamic variables such as `{{today:YYYY-MM-DD}}`. The `clickAction` value below labels the first documented click behavior (pin the tooltip); the research does not enumerate exact value spellings.

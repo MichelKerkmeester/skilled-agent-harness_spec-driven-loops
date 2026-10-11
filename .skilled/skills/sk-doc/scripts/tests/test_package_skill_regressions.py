@@ -431,3 +431,22 @@ def test_smart_router_combined_header_recognized(tmp_path):
     )
     _valid, _message, warnings = module.validate_smart_router(content)
     assert not warnings
+
+
+def test_rules_section_ignores_level_three_rules_subsection():
+    """A `### Rules` subsection before the real RULES section is not read as the section."""
+    module = _load_module()
+    content = (
+        "---\nname: demo\ndescription: x\n---\n\n"
+        "## 4. STORAGE CONTRACT\n"
+        "### Rules\n"
+        "- A run never edits the corpus.\n\n"
+        "## 6. SCENARIO DESIGN RULES\n"
+        "Text.\n\n"
+        "## 8. RULES\n"
+        "### ✅ ALWAYS\n- Do this.\n"
+        "### ⛔ NEVER\n- Avoid this.\n"
+        "### ⚠️ ESCALATE IF\n- Ask.\n"
+    )
+    _valid, _message, warnings = module.validate_rules_section(content)
+    assert warnings == []

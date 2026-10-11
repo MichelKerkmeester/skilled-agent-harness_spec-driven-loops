@@ -1,5 +1,5 @@
 {
-  "manifestHash": "dcb1fa803064a053d3aa4e4ed83a2c165954afe22caf03914c69524f61c108a4",
+  "manifestHash": "9b596776f681a1cad81c9fe309001b4499d998b2d2e6f2259b4595372f7c4771",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7430,6 +7430,9 @@
     "a deep research run including each fan out": [
       "a deep research run including each fan out"
     ],
+    "a description inside the budget": [
+      "a description inside the budget"
+    ],
     "a fan out run merges every finding": [
       "a fan out run merges every finding"
     ],
@@ -8182,6 +8185,21 @@
     ],
     "admission corpus pin tasks": [
       "admission corpus pin tasks"
+    ],
+    "admission gold": [
+      "admission gold"
+    ],
+    "admission gold goal": [
+      "admission gold goal"
+    ],
+    "admission gold implementation summary": [
+      "admission gold implementation summary"
+    ],
+    "admission gold plan": [
+      "admission gold plan"
+    ],
+    "admission gold tasks": [
+      "admission gold tasks"
     ],
     "admission research fan out": [
       "admission research fan-out"
@@ -13043,6 +13061,21 @@
     ],
     "batched rescue hydration": [
       "batched rescue hydration"
+    ],
+    "battery misses": [
+      "battery misses"
+    ],
+    "battery misses goal": [
+      "battery misses goal"
+    ],
+    "battery misses implementation summary": [
+      "battery misses implementation summary"
+    ],
+    "battery misses plan": [
+      "battery misses plan"
+    ],
+    "battery misses tasks": [
+      "battery misses tasks"
     ],
     "bayesian scorer": [
       "bayesian scorer"
@@ -18780,6 +18813,9 @@
     "cli claude code 1 5 2 0": [
       "cli-claude-code 1.5.2.0"
     ],
+    "cli claude code 1 5 3 0": [
+      "cli-claude-code 1.5.3.0"
+    ],
     "cli claude code benchmark": [
       "cli-claude-code benchmark"
     ],
@@ -18878,6 +18914,9 @@
     ],
     "cli claude code v1 5 2 0": [
       "cli-claude-code v1.5.2.0"
+    ],
+    "cli claude code v1 5 3 0": [
+      "cli-claude-code v1.5.3.0"
     ],
     "cli codex 1 0 0 0": [
       "cli-codex 1.0.0.0"
@@ -19386,6 +19425,9 @@
     "cli devin 1 4 5 0": [
       "cli-devin 1.4.5.0"
     ],
+    "cli devin 1 4 6 0": [
+      "cli-devin 1.4.6.0"
+    ],
     "cli devin 17 skill audit": [
       "cli-devin 17-skill audit"
     ],
@@ -19499,6 +19541,9 @@
     ],
     "cli devin v1 4 5 0": [
       "cli-devin v1.4.5.0"
+    ],
+    "cli devin v1 4 6 0": [
+      "cli-devin v1.4.6.0"
     ],
     "cli devin wiring plan": [
       "cli-devin wiring plan"
@@ -19986,6 +20031,9 @@
     "cli jev 0 1 5 0": [
       "cli-jev 0.1.5.0"
     ],
+    "cli jev 0 1 6 0": [
+      "cli-jev 0.1.6.0"
+    ],
     "cli jev 0 2 0 0": [
       "cli-jev 0.2.0.0"
     ],
@@ -20172,6 +20220,9 @@
     "cli jev v0 1 5 0": [
       "cli-jev v0.1.5.0"
     ],
+    "cli jev v0 1 6 0": [
+      "cli-jev v0.1.6.0"
+    ],
     "cli jev v0 2 0 0": [
       "cli-jev v0.2.0.0"
     ],
@@ -20312,6 +20363,9 @@
     ],
     "cli opencode 1 4 13 0": [
       "cli-opencode 1.4.13.0"
+    ],
+    "cli opencode 1 4 14 0": [
+      "cli-opencode 1.4.14.0"
     ],
     "cli opencode 1 4 2 0": [
       "cli-opencode 1.4.2.0"
@@ -20465,6 +20519,9 @@
     ],
     "cli opencode v1 4 13 0": [
       "cli-opencode v1.4.13.0"
+    ],
+    "cli opencode v1 4 14 0": [
+      "cli-opencode v1.4.14.0"
     ],
     "cli opencode v1 4 2 0": [
       "cli-opencode v1.4.2.0"
@@ -20670,6 +20727,9 @@
     "cli pi 1 5 14 0": [
       "cli-pi 1.5.14.0"
     ],
+    "cli pi 1 5 15 0": [
+      "cli-pi 1.5.15.0"
+    ],
     "cli pi 1 5 2 0": [
       "cli-pi 1.5.2.0"
     ],
@@ -20841,6 +20901,9 @@
     ],
     "cli pi v1 5 14 0": [
       "cli-pi v1.5.14.0"
+    ],
+    "cli pi v1 5 15 0": [
+      "cli-pi v1.5.15.0"
     ],
     "cli pi v1 5 2 0": [
       "cli-pi v1.5.2.0"
@@ -21520,6 +21583,21 @@
     ],
     "closeout and drift reconcile": [
       "closeout and drift reconcile"
+    ],
+    "closeout deep review": [
+      "closeout deep review"
+    ],
+    "closeout deep review goal": [
+      "closeout deep review goal"
+    ],
+    "closeout deep review implementation summary": [
+      "closeout deep review implementation summary"
+    ],
+    "closeout deep review plan": [
+      "closeout deep review plan"
+    ],
+    "closeout deep review tasks": [
+      "closeout deep review tasks"
     ],
     "closeout drift reconciliation plan": [
       "closeout drift reconciliation plan"
@@ -41058,6 +41136,9 @@
     "every executor reachable fanout": [
       "every executor reachable fanout"
     ],
+    "every mode passes the strict package check": [
+      "every mode passes the strict package check"
+    ],
     "every one of the 34 per file findings": [
       "every one of the 34 per file findings"
     ],
@@ -43157,6 +43238,9 @@
     "fast command ownership": [
       "fast command ownership"
     ],
+    "fast forward and fix remaining": [
+      "fast forward and fix remaining"
+    ],
     "fast forward main to v4": [
       "fast-forward main to v4"
     ],
@@ -44575,6 +44659,9 @@
     ],
     "fix orphaned test files": [
       "fix orphaned test files"
+    ],
+    "fix remaining": [
+      "fix remaining"
     ],
     "fix remaining advisor defects": [
       "fix remaining advisor defects"
@@ -50140,6 +50227,9 @@
     "health md settings json": [
       "health md settings json"
     ],
+    "health md step spiral block": [
+      "health-md step-spiral block"
+    ],
     "health md support": [
       "health-md support"
     ],
@@ -51281,6 +51371,21 @@
     "hooks lib": [
       "hooks lib"
     ],
+    "hooks readme voice": [
+      "hooks readme voice"
+    ],
+    "hooks readme voice goal": [
+      "hooks readme voice goal"
+    ],
+    "hooks readme voice implementation summary": [
+      "hooks readme voice implementation summary"
+    ],
+    "hooks readme voice plan": [
+      "hooks readme voice plan"
+    ],
+    "hooks readme voice tasks": [
+      "hooks readme voice tasks"
+    ],
     "hooks shared helpers": [
       "hooks shared helpers"
     ],
@@ -51295,6 +51400,21 @@
     ],
     "hooks v1 json session start path": [
       "hooks.v1.json session start path"
+    ],
+    "hooks vitest scope": [
+      "hooks vitest scope"
+    ],
+    "hooks vitest scope goal": [
+      "hooks vitest scope goal"
+    ],
+    "hooks vitest scope implementation summary": [
+      "hooks vitest scope implementation summary"
+    ],
+    "hooks vitest scope plan": [
+      "hooks vitest scope plan"
+    ],
+    "hooks vitest scope tasks": [
+      "hooks vitest scope tasks"
     ],
     "hookspath deferred alternative": [
       "hooksPath deferred alternative"
@@ -59144,8 +59264,14 @@
     "mcp notion 0 1 0 0": [
       "mcp-notion 0.1.0.0"
     ],
+    "mcp notion 0 1 1 0": [
+      "mcp-notion 0.1.1.0"
+    ],
     "mcp notion v0 1 0 0": [
       "mcp-notion v0.1.0.0"
+    ],
+    "mcp notion v0 1 1 0": [
+      "mcp-notion v0.1.1.0"
     ],
     "mcp obsidian 0 1 0 0": [
       "mcp-obsidian 0.1.0.0"
@@ -59191,6 +59317,9 @@
     ],
     "mcp obsidian 0 24 0 0": [
       "mcp-obsidian 0.24.0.0"
+    ],
+    "mcp obsidian 0 24 1 0": [
+      "mcp-obsidian 0.24.1.0"
     ],
     "mcp obsidian 0 3 0 0": [
       "mcp-obsidian 0.3.0.0"
@@ -59275,6 +59404,9 @@
     ],
     "mcp obsidian v0 24 0 0": [
       "mcp-obsidian v0.24.0.0"
+    ],
+    "mcp obsidian v0 24 1 0": [
+      "mcp-obsidian v0.24.1.0"
     ],
     "mcp obsidian v0 3 0 0": [
       "mcp-obsidian v0.3.0.0"
@@ -66722,6 +66854,9 @@
     "old specs upgrade without a model": [
       "old specs upgrade without a model"
     ],
+    "older changelog entries carry their version": [
+      "older changelog entries carry their version"
+    ],
     "older generation skips": [
       "older generation skips"
     ],
@@ -68974,6 +69109,18 @@
     "package skill strict gate": [
       "package skill strict gate"
     ],
+    "package strict": [
+      "package strict"
+    ],
+    "package strict implementation summary": [
+      "package strict implementation summary"
+    ],
+    "package strict plan": [
+      "package strict plan"
+    ],
+    "package strict tasks": [
+      "package strict tasks"
+    ],
     "package topology readme": [
       "package topology readme"
     ],
@@ -70849,6 +70996,9 @@
     "phase 1 model benchmark inventory": [
       "phase 1 model benchmark inventory"
     ],
+    "phase 1 package strict": [
+      "phase 1 package strict"
+    ],
     "phase 1 ponytail deep research": [
       "phase 1 ponytail deep research"
     ],
@@ -71086,6 +71236,9 @@
     "phase 2 goal criteria refresh": [
       "phase 2 goal criteria refresh"
     ],
+    "phase 2 hooks readme voice": [
+      "phase 2 hooks readme voice"
+    ],
     "phase 2 leaf generator ignores": [
       "phase 2 leaf generator ignores"
     ],
@@ -71188,6 +71341,9 @@
     "phase 24 tasks": [
       "phase 24 tasks"
     ],
+    "phase 3 admission gold": [
+      "phase 3 admission gold"
+    ],
     "phase 3 agent disclosure": [
       "phase 3 agent disclosure"
     ],
@@ -71235,6 +71391,9 @@
     ],
     "phase 4 agents md pointers": [
       "phase 4 agents md pointers"
+    ],
+    "phase 4 battery misses": [
+      "phase 4 battery misses"
     ],
     "phase 4 cache optimizer": [
       "phase 4 cache optimizer"
@@ -71299,6 +71458,9 @@
     "phase 5 hook stdin deadlines": [
       "phase 5 hook stdin deadlines"
     ],
+    "phase 5 hooks vitest scope": [
+      "phase 5 hooks vitest scope"
+    ],
     "phase 5 implementation review": [
       "phase 5 implementation review"
     ],
@@ -71325,6 +71487,9 @@
     ],
     "phase 5 stdin late write coverage": [
       "phase 5 stdin late write coverage"
+    ],
+    "phase 6 closeout deep review": [
+      "phase 6 closeout deep review"
     ],
     "phase 6 compiled route content check": [
       "phase 6 compiled route content check"
@@ -81541,6 +81706,12 @@
     "residual backlog roadmap charter": [
       "residual backlog roadmap charter"
     ],
+    "residual closeout": [
+      "residual closeout"
+    ],
+    "residual closeout goal": [
+      "residual closeout goal"
+    ],
     "residual design units": [
       "residual design units"
     ],
@@ -90666,6 +90837,9 @@
     "sk code refinement closeout": [
       "sk-code refinement closeout"
     ],
+    "sk code refinement residual closeout": [
+      "sk-code refinement residual closeout"
+    ],
     "sk code relocation map": [
       "sk-code relocation map"
     ],
@@ -91302,6 +91476,9 @@
     "sk create command 1 0 2 0": [
       "sk-create-command 1.0.2.0"
     ],
+    "sk create command 1 0 3 0": [
+      "sk-create-command 1.0.3.0"
+    ],
     "sk create command playbook": [
       "sk-create-command playbook"
     ],
@@ -91316,6 +91493,9 @@
     ],
     "sk create command v1 0 2 0": [
       "sk-create-command v1.0.2.0"
+    ],
+    "sk create command v1 0 3 0": [
+      "sk-create-command v1.0.3.0"
     ],
     "sk create diagram benchmark index": [
       "sk-create-diagram benchmark index"
@@ -91455,6 +91635,9 @@
     "sk create goal 1 3 0 0": [
       "sk-create-goal 1.3.0.0"
     ],
+    "sk create goal 1 4 2 0": [
+      "sk-create-goal 1.4.2.0"
+    ],
     "sk create goal acceptance criteria": [
       "sk-create-goal acceptance criteria"
     ],
@@ -91529,6 +91712,9 @@
     ],
     "sk create goal v1 4 1 0": [
       "sk-create-goal v1.4.1.0"
+    ],
+    "sk create goal v1 4 2 0": [
+      "sk-create-goal v1.4.2.0"
     ],
     "sk create manual testing playbook 1 0 0 0": [
       "sk-create-manual-testing-playbook 1.0.0.0"
@@ -91674,6 +91860,9 @@
     "sk create skill 1 5 2 0": [
       "sk-create-skill 1.5.2.0"
     ],
+    "sk create skill 1 5 3 0": [
+      "sk-create-skill 1.5.3.0"
+    ],
     "sk create skill authoring errors": [
       "sk-create-skill authoring errors"
     ],
@@ -91704,11 +91893,17 @@
     "sk create skill v1 5 2 0": [
       "sk-create-skill v1.5.2.0"
     ],
+    "sk create skill v1 5 3 0": [
+      "sk-create-skill v1.5.3.0"
+    ],
     "sk create with human voice 1 0 0 0": [
       "sk-create-with-human-voice 1.0.0.0"
     ],
     "sk create with human voice 1 1 0 0": [
       "sk-create-with-human-voice 1.1.0.0"
+    ],
+    "sk create with human voice 1 2 2 0": [
+      "sk-create-with-human-voice 1.2.2.0"
     ],
     "sk create with human voice testing": [
       "sk-create-with-human-voice testing"
@@ -91718,6 +91913,9 @@
     ],
     "sk create with human voice v1 1 0 0": [
       "sk-create-with-human-voice v1.1.0.0"
+    ],
+    "sk create with human voice v1 2 2 0": [
+      "sk-create-with-human-voice v1.2.2.0"
     ],
     "sk deep research cli codex dispatch": [
       "sk-deep-research cli-codex dispatch"
@@ -91989,11 +92187,17 @@
     "sk design fundamentals 1 0 0 0": [
       "sk-design-fundamentals 1.0.0.0"
     ],
+    "sk design fundamentals 1 0 1 0": [
+      "sk-design-fundamentals 1.0.1.0"
+    ],
     "sk design fundamentals reads as a ui skill": [
       "sk design fundamentals reads as a ui skill"
     ],
     "sk design fundamentals v1 0 0 0": [
       "sk-design-fundamentals v1.0.0.0"
+    ],
+    "sk design fundamentals v1 0 1 0": [
+      "sk-design-fundamentals v1.0.1.0"
     ],
     "sk design hub routing replay": [
       "sk-design hub routing replay"
@@ -92165,6 +92369,9 @@
     ],
     "sk doc 2 3 2 0": [
       "sk-doc 2.3.2.0"
+    ],
+    "sk doc 2 3 3 0": [
+      "sk-doc 2.3.3.0"
     ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
@@ -92453,6 +92660,9 @@
     ],
     "sk doc v2 3 2 0": [
       "sk-doc v2.3.2.0"
+    ],
+    "sk doc v2 3 3 0": [
+      "sk-doc v2.3.3.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"
@@ -92784,6 +92994,9 @@
     "sk prompt 3 0 2 0": [
       "sk-prompt 3.0.2.0"
     ],
+    "sk prompt 3 0 3 0": [
+      "sk-prompt 3.0.3.0"
+    ],
     "sk prompt 7 against 5 frameworks": [
       "sk-prompt 7 against 5 frameworks"
     ],
@@ -93068,6 +93281,9 @@
     ],
     "sk prompt v3 0 2 0": [
       "sk-prompt v3.0.2.0"
+    ],
+    "sk prompt v3 0 3 0": [
+      "sk-prompt v3.0.3.0"
     ],
     "sk vision": [
       "sk-vision"
@@ -95010,6 +95226,9 @@
     ],
     "skill md authoring": [
       "skill md authoring"
+    ],
+    "skill md back under the word limit": [
+      "skill.md back under the word limit"
     ],
     "skill md changelog alignment": [
       "SKILL.md changelog alignment"
@@ -103502,6 +103721,9 @@
     ],
     "the reply rule opened by stating one idea": [
       "the reply rule opened by stating one idea"
+    ],
+    "the rules check reads the rules section": [
+      "the rules check reads the rules section"
     ],
     "the scan flags on the evidence it already": [
       "the scan flags on the evidence it already"

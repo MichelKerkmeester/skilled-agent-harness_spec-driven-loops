@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement",
+  "children_ids": [
+    "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/001-package-strict",
+    "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/002-hooks-readme-voice",
+    "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/003-admission-gold",
+    "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/004-battery-misses",
+    "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/005-hooks-vitest-scope",
+    "sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/006-closeout-deep-review"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "residual closeout",
+      "sk-code refinement residual closeout",
+      "fast forward and fix remaining",
+      "residual closeout goal",
+      "fix remaining"
+    ],
+    "key_topics": [
+      "residual",
+      "closeout",
+      "sk-code",
+      "refinement",
+      "fast",
+      "forward",
+      "remaining",
+      "goal",
+      "ended",
+      "several",
+      "items",
+      "closed"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".skilled/hooks/vitest.config.ts",
+      "001-package-strict/goal.md",
+      "002-hooks-readme-voice/goal.md",
+      "003-admission-gold/goal.md",
+      "004-battery-misses/goal.md",
+      "005-hooks-vitest-scope/goal.md",
+      "006-closeout-deep-review/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cline Pass",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "proof",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 015 closeout ended several items CLOSED that an honest fix could reach: 13 skill units failing the strict package check, seven HVR hard blockers in a hooks README, a drifted deep-loop admission scenario, three advisor battery misses, and a hooks vitest config that collects archived spec tests and rewrites a tracked file",
+    "created_at": "2026-10-11T10:14:03Z",
+    "last_save_at": "2026-10-11T10:43:53.075Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:6ebb782438250c118cb2cd3f8bc4972a6f771ea4ba641bfe4752a6540b0e692a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ae204100bb62a5b50763eb9f779654cd531e02a794ff1c3a780f824f69fa5b30"
+    },
+    "last_active_at": null
+  }
+}

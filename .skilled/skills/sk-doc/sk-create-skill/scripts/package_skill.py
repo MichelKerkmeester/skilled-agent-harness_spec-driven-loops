@@ -420,7 +420,8 @@ def validate_rules_section(content: str) -> Tuple[bool, str, List[str]]:
         Tuple of (is_valid, error_message, warnings).
     """
     warnings = []
-    rules_match = re.search(r'##\s+(?:\d+\.\s*)?(?:[\U0001F300-\U0001F9FF]\s*)?RULES.*?\n(.*?)(?=\n##\s|\Z)', content, re.DOTALL | re.IGNORECASE)
+    # Anchored to a line start so a `### Rules` subsection or a heading such as `## 6. DESIGN RULES` is not read as the section.
+    rules_match = re.search(r'^##\s+(?:\d+\.\s*)?(?:[\U0001F300-\U0001F9FF]\s*)?RULES\b.*?\n(.*?)(?=\n##\s|\Z)', content, re.DOTALL | re.IGNORECASE | re.MULTILINE)
 
     if not rules_match:
         return True, "No RULES section to validate", warnings
