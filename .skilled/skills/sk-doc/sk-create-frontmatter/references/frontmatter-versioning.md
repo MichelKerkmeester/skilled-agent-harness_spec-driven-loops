@@ -1,19 +1,19 @@
 ---
-title: Frontmatter Versioning Standard - 4-Part Derivation Reference
-description: Canonical rules for the 4-part version field carried by every in-scope skill doc, including changelog-anchored derivation and idempotent insertion.
+title: Frontmatter Versioning Standard - Skill Edition Reference
+description: Canonical rules for the 4-part version field, which names the skill edition and lives on SKILL.md only, anchored to the changelog.
 trigger_phrases:
   - "frontmatter versioning standard"
-  - "4-part version derivation"
+  - "skill edition version contract"
   - "changelog anchored version"
-  - "numstat gated edit count"
-  - "skill anchored doc version"
+  - "version on skill md only"
+  - "4-part version format"
 importance_tier: important
 contextType: general
 ---
 
 # Frontmatter Versioning Standard
 
-Every in-scope skill documentation file carries a 4-part `version: X.Y.Z.W` field in its YAML frontmatter. This reference is the single source of truth for the format, how each document's version is derived, and how the field is inserted and enforced.
+`version` names the skill edition. It lives on `SKILL.md` only, as a 4-part `version: X.Y.Z.W` field, and it equals the highest of that frontmatter value and the skill's newest changelog entry. Child docs carry no version. This reference is the single source of truth for the format, the anchor rule and how the field is enforced.
 
 ---
 
@@ -21,173 +21,85 @@ Every in-scope skill documentation file carries a 4-part `version: X.Y.Z.W` fiel
 
 ### In scope (MUST carry `version`)
 
-Under `.skilled/skills/*/`:
-
 | Doc class | Path glob |
 |-----------|-----------|
-| Skill manifest | `SKILL.md` |
-| Skill readme | `README.md` |
-| References | `references/**/*.md` |
-| Assets | `assets/**/*.md` |
-| Feature catalogs | `feature-catalog/**/*.md` (roots **and** per-feature leaves) |
-| Testing playbooks | `manual-testing-playbook/**/*.md` (roots **and** per-feature leaves) |
+| Skill manifest | `.skilled/skills/*/SKILL.md`, and the `SKILL.md` of every mode packet nested under a hub |
 
-### Out of scope (do NOT add `version` in this standard)
+### Out of scope (MUST NOT carry `version`)
 
-`.skilled/commands/*.md`, `.skilled/agents/*.md`, and a skill's own `INSTALL-GUIDE.md`. The first two carry frontmatter and are governed separately; the install guide is the skill's own document and carries none by default. A follow-up packet may bring them in.
+Every other document in a skill: `README.md`, `references/**`, `assets/**`, `feature-catalog/**` and `manual-testing-playbook/**`. A child doc ships inside the same package as its `SKILL.md` and its changelog, so the edition is already known to anyone who holds it, and a per-doc copy only goes stale.
+
+Changelog entries keep the version of the release they record, and `package_skill.py` checks it. `.skilled/commands/*.md` and `.skilled/agents/*.md` are governed separately: a command's `version` stays optional, and an agent carries none.
 
 ---
 
-## 2. FORMAT — `X.Y.Z.W`
+## 2. FORMAT: `X.Y.Z.W`
 
-Exactly four dot-separated non-negative integers. Segments are **not** capped at 9 — the minor/patch/build may grow large — but the **major stays low** by construction (it is inherited from the human-curated skill version, never computed from git).
-
-| Segment | Name | Source |
-|---------|------|--------|
-| `X` | major | Skill anchor major (human-curated; rarely changes) |
-| `Y` | minor | Skill anchor minor (human-curated; changelog cadence) |
-| `Z` | patch | Reserved for future granular per-doc bumps; seeded `0` |
-| `W` | build | Per-document real edit count (git-derived) |
-
-> Design rule: keep the front digit low. A document reads `3.6.0.41` (low major, magnitude in the build segment), never `41.x.x.x`.
-
-Validation pattern: `^\d+\.\d+\.\d+\.\d+$`.
+Exactly four dot-separated non-negative integers, validated by `^\d+\.\d+\.\d+\.\d+$`. The value is the skill edition the changelog records, so the segments follow the release cadence in [`sk-create-changelog`](../../sk-create-changelog/SKILL.md) rather than any per-document count.
 
 ---
 
-## 3. SKILL ANCHOR (per skill)
+## 3. SKILL ANCHOR
 
-A skill's anchor is the version written to its `SKILL.md` and inherited (major.minor) by all of its child docs:
+A skill's version is its anchor:
 
 ```
 anchor = max( normalize4(SKILL.md frontmatter version),
               normalize4(highest changelog/v*.md filename version) )
 ```
 
-- Compared as integer tuples (not string compare).
-- The changelog is frequently **more current** than the frontmatter (e.g. `system-spec-kit` frontmatter `3.4.1.0` vs changelog `3.6.0.0`); taking `max` reconciles them.
-- If the skill has no `changelog/` directory, fall back to the frontmatter version and record `anchor-source = frontmatter-only`.
-- Mode-packet sub-skills (a `SKILL.md` nested under a parent skill) each resolve their own anchor; their child docs inherit from the nearest `SKILL.md`.
+- Compared as integer tuples, not as strings.
+- If the skill has no `changelog/` directory, the anchor is the frontmatter version and the engine records `anchor-source = frontmatter-only`.
+- A mode packet's `SKILL.md` resolves its own anchor from its own changelog. It is never compared against its hub's.
 
-The `SKILL.md` version is set to the anchor (normalized to 4-part). This reconciles stale frontmatter values and normalizes any 3-part versions.
-
----
-
-## 4. CHILD DOC VERSION
-
-For every in-scope doc that is **not** a `SKILL.md`:
-
-```
-X = anchor.major          # inherited — stays low
-Y = anchor.minor          # inherited — ties the doc to its skill-version era
-Z = 0                     # reserved for future granular per-doc patch bumps
-W = min( realEditCount(file), 99 )
-```
-
-### `realEditCount(file)` — the critical correctness rule
-
-`W` is the number of commits whose **own added+deleted line count for that file is > 0**. Trace the path with `git log --follow` for continuity across renames, but **gate every commit through per-file `numstat`** and discard commits that changed 0 lines in the file.
-
-This gate is mandatory, and its size is worth stating accurately because the number moved. A naive `git log --follow | wc -l` over-counts for two reasons: (a) the historical repo-wide rename `skill/ -> .skilled/skills/`, where a file inherits pre-move history as commits that changed zero of its lines, and (b) bulk sweep commits that touch a file's siblings without changing the file. The gate removes both.
-
-Measured across all 1,214 in-scope docs of `sk-doc` and `system-spec-kit` on 2026-09-02, the ungated count is **1.06-1.09x** the gated one in aggregate, **2.25x** at the worst single file, and identical on 262 of `sk-doc`'s 390. No file in either skill reaches 3x. The gate still changes the answer on 128 of those 390, so run it. But a run that reports a large multiple today is reporting something other than these two inflators, and is worth reading before it is trusted.
-
-Brand-new files (0-1 commits) get `W = 0`.
-
-### Writing `W` is itself an edit, so one pass never converges
-
-`W` is a function of git history, and applying `W` to a file changes that history. Commit a
-reconcile and every file it touched is stale again by exactly one, because the version-only
-commit changed a line and the numstat gate counts it. Reconcile again and the same thing
-happens. This is a property of the definition, not a bug in any run, and it is why a bulk
-`apply --update` looks like it failed when it did exactly what it was asked.
-
-Two passes converge, and the second one must amend rather than add:
-
-```bash
-node frontmatter-version.mjs apply --skill <name> --update
-git commit -m "..." -- .skilled/skills/<name>
-node frontmatter-version.mjs apply --skill <name> --update
-git commit --amend --no-edit -- .skilled/skills/<name>
-```
-
-The amend folds the second pass's increment into the commit that caused it, so the file's
-history gains one commit and the file records one more edit. Verify then passes against a
-clean tree, which is the only state worth calling converged. A green verify over a dirty
-tree just means the numbers have not been committed yet.
-
-The ordinary case avoids this entirely: run `apply` in the same commit as the content change
-you are versioning, and no separate version-only commit ever exists.
-
-### What is enforced, and what is advice
-
-Two commands answer different questions and only one of them gates anything.
-
-`gate` is the enforced check, and it is what the post-edit hook runs. It asks whether every
-in-scope document carries a well-formed four-part version. It never consults git, so it cannot
-drift and it cannot be made stale by a commit.
-
-`verify` compares each recorded version against the value git implies right now. It is a
-reconciliation tool, not a gate. Because writing a version is itself an edit, a fleet-wide
-`verify` reports thousands of mismatches on a repository whose `gate` is clean, and that is the
-expected reading rather than a fault to chase. Reconcile a skill when you want its numbers to
-mean something precise. Do not reconcile the fleet to make `verify` quiet, since the sweep
-rewrites every in-scope document, buries real changes in noise, and is undone by its own commit.
+The anchor never consults git, so no commit can make it stale. It changes only when a release adds a changelog entry above the frontmatter value, and that release is the moment to raise the `SKILL.md` version to match.
 
 ---
 
-## 5. NORMALIZATION & EDGE CASES
+## 4. NORMALIZATION AND EDGE CASES
 
 | Case | Rule |
 |------|------|
-| 3-part version (`1.4.0`) | Append `.0` exactly once -> `1.4.0.0`. Never left-pad or shift segments; padding adds zero magnitude and cannot inflate. |
-| No `changelog/` dir | Anchor = frontmatter version; record `anchor-source = frontmatter-only`. |
-| File has no frontmatter | Skip and report (`skipped:no-frontmatter`). A versioning pass never synthesizes a frontmatter block. |
-| `version` already present, equal to computed | No-op. |
-| `version` already present, differs | Skip and report (`skip-conflict`); never silently overwrite a human-set version. An explicit `--update` flag rewrites. |
-| `SKILL.md` differs from its anchor | Reconciled to the anchor (engine `reconcile` path). The `SKILL.md` version IS the anchor of record, so this is the one intentional exception to the skip-on-differ rule above, and it is not gated by `--update`. |
-| Idempotency | Re-running a versioned tree is a byte-level no-op. |
+| 3-part version (`1.4.0`) | Append `.0` exactly once, giving `1.4.0.0`. Never shift segments. |
+| No `changelog/` dir | Anchor = frontmatter version, `anchor-source = frontmatter-only`. |
+| `SKILL.md` has no frontmatter | Skip and report (`skip-no-frontmatter`). A versioning pass never synthesizes a block. |
+| `SKILL.md` differs from its anchor | `apply` reconciles it to the anchor. |
+| Idempotency | Re-running `apply` on a reconciled tree is a byte-level no-op. |
 
 ---
 
-## 6. INSERTION RULE
+## 5. INSERTION RULE
 
-Insert `version: X.Y.Z.W` as the **last key inside the frontmatter block, immediately before the closing `---`**. This is field-relative, not a fixed line number: a reference carries the 5-field block (`title/description/trigger_phrases/importance_tier/contextType`) while a playbook leaf may carry only `title` + `description`. "Last line before closing `---`" is correct for every doc class and never lands inside a multi-line `trigger_phrases` array.
-
-Edit **line-wise**. Never run a YAML re-serializer — it reflows and corrupts multi-line block sequences such as `trigger_phrases`.
+When `apply` adds a missing `version`, it inserts `version: X.Y.Z.W` as the last key of the frontmatter block, immediately before the closing `---`. Edit line-wise. Never run a YAML re-serializer, because it reflows multi-line values such as a block list.
 
 ---
 
-## 7. ENFORCEMENT ROLLOUT
+## 6. ENFORCEMENT
 
-`version` is a **required** field for all in-scope doc classes. Enforcement is now active:
+Three checks read the field, and each one is git-free:
 
-1. **Format-check:** `quick_validate.py` and `package_skill.py` reject a `version` that is not `^\d+\.\d+\.\d+\.\d+$`.
-2. **Required:** the same validators error on an absent `version` for skills (commands keep it optional).
-3. **Corpus gate:** `shared/scripts/check-frontmatter-versions.sh` (a wrapper for `frontmatter-version.mjs gate`) discovers every in-scope doc git-free and exits non-zero on any missing/malformed version. Run it in CI or pre-commit. Frontmatter-less docs are skipped, not failed.
+1. **Post-edit gate:** editing a `SKILL.md` runs `shared/scripts/check-frontmatter-versions.sh`, a wrapper for `frontmatter-version.mjs gate`, which fails a missing or malformed `version`.
+2. **Validators:** `quick_validate.py` and `package_skill.py` require a 4-part `version` on `SKILL.md`, and `package_skill.py` also checks the version on changelog entries.
+3. **Reconciliation:** `frontmatter-version.mjs verify` compares each `SKILL.md` version with its anchor and exits 0 when they agree. It is run by hand after a release, and no workflow or git hook calls it.
 
 ### What nothing enforces
 
-Every check above is per-document: presence and format. No gate compares a hub's routing artifacts against each other, so nothing fails when `SKILL.md`, `ROUTER.md`, `description.json`, `hub-router.json` and `mode-registry.json` state five different values. Version parity across a hub's own artifacts is upheld by convention and review, not by tooling. A hub that drifts apart keeps passing every gate, which is why the shared value is restated in each hub's `SKILL.md` rather than merely recorded here. A packet version is likewise unconstrained: nested `SKILL.md` files resolve their own anchors and are never compared against their hub's.
+Every check above is per-document. No gate compares a hub's routing artifacts against each other, so nothing fails when `SKILL.md`, `ROUTER.md`, `description.json`, `hub-router.json` and `mode-registry.json` state different values. Version parity across a hub's own artifacts is upheld by convention and review, which is why the shared value is restated in each hub's `SKILL.md`.
 
 ---
 
-## 8. EXAMPLES
+## 7. EXAMPLES
 
-| File | Anchor (max fm/changelog) | realEdit `W` | Derived version |
-|------|---------------------------|-------------:|-----------------|
-| `system-spec-kit/SKILL.md` | `3.6.0.0` | — | `3.6.0.0` |
-| `system-spec-kit/README.md` | `3.6.x` | 41 | `3.6.0.41` |
-| `sk-code/SKILL.md` | `3.5.0.0` | — | `3.5.0.0` |
-| `sk-code/ROUTER.md` | `3.5.x` | 9 | `3.5.0.9` |
-| `sk-design/.../design-principles.md` | `1.5.x` | 4 | `1.5.0.4` |
-
-Every major equals the owning skill's major — always low.
+| File | Frontmatter | Highest changelog | Version |
+|------|-------------|-------------------|---------|
+| `system-spec-kit/SKILL.md` | `2.7.10.0` | `v2.7.10.0.md` | `2.7.10.0` |
+| A `SKILL.md` that lags its newest entry | `1.2.0.0` | `v1.3.0.0.md` | `1.3.0.0` after `apply` |
+| `sk-code/references/...` | none | n/a | none, a child doc |
 
 ---
 
-## 9. RELATED RESOURCES
+## 8. RELATED RESOURCES
 
-- [frontmatter-templates.md](../assets/frontmatter-templates.md) — frontmatter by document type (carries the per-class `version` rows)
-- Engine: [`frontmatter-version.mjs`](../../shared/scripts/frontmatter-version.mjs), the deterministic compute/insert/verify tool that implements this standard
-- Corpus gate: [`check-frontmatter-versions.sh`](../../shared/scripts/check-frontmatter-versions.sh), the CI wrapper that runs the engine in `gate` mode
+- [frontmatter-templates.md](../assets/frontmatter-templates.md): frontmatter by document type, with `version` on the `SKILL.md` template only
+- Engine: [`frontmatter-version.mjs`](../../shared/scripts/frontmatter-version.mjs), the deterministic compute, apply, verify and gate tool that implements this standard
+- Gate wrapper: [`check-frontmatter-versions.sh`](../../shared/scripts/check-frontmatter-versions.sh), which the post-edit hook runs in `gate` mode
