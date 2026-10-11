@@ -70,14 +70,13 @@ function frontmatterClass(rootName) {
 // their lane. The remaining consumers are the ones that still exist; a replacement for the
 // retired pair has to arrive with a replacement lane, not by re-adding dead paths here.
 function run() {
-  check('post-edit router canonicalizes the hyphen root and rejects the underscore alias', () => {
-    assert.equal(postRouter.canonicalSkillScopeSubtree('feature-catalog'), 'feature-catalog');
-    assert.equal(postRouter.canonicalSkillScopeSubtree('manual-testing-playbook'), 'manual-testing-playbook');
-    assert.equal(postRouter.canonicalSkillScopeSubtree('feature_catalog'), null);
-    assert.equal(postRouter.canonicalSkillScopeSubtree('manual_testing_playbook'), null);
-  });
-  check('post-edit router returns null for an unsupported root', () => {
-    assert.equal(postRouter.canonicalSkillScopeSubtree('feature_catalog_v2'), null);
+  check('post-edit router keys the version check on SKILL.md, not on a catalog or playbook root name', () => {
+    assert.equal('canonicalSkillScopeSubtree' in postRouter, false);
+    assert.equal('SKILL_SCOPE_SUBTREES' in postRouter, false);
+    for (const root of ['feature-catalog', 'feature_catalog', 'manual-testing-playbook', 'manual_testing_playbook', 'feature_catalog_v2']) {
+      assert.deepEqual(postRouter.resolveDispatch(`.skilled/skills/sk-doc/${root}/a.md`, '/tmp/proj'), []);
+    }
+    assert.equal(postRouter.resolveDispatch('.skilled/skills/sk-doc/SKILL.md', '/tmp/proj')[0].label, 'frontmatter-versions');
   });
   check('leaf generator refuses an unsupported configured root before emission', () => {
     const skillRoot = tempDir('root-matrix-leaf-generator-');
