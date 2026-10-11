@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 # Broken-move drill for the gate inputs.
 #
-# Clones this repository and moves the source tree the way the migration will: every
-# file under .skilled/, and .opencode a tracked relative link back to it. On that
-# tree the independent check must pass and each hook must stay quiet on a benign
+# Clones this repository and lands on the migrated tree: every file under .skilled/,
+# and .opencode a tracked relative link back to it. The move is rebuilt only when the
+# clone predates it; on an already-moved clone its commit is read from history. On
+# that tree the independent check must pass and each hook must stay quiet on a benign
 # change. Then each gate input is deleted in turn: the check must fail naming it, and
 # the hook that uses it must block or warn. Two controls keep the proof honest. The
 # hooks from before the missing-script rule must pass the silent breaks without a
@@ -55,20 +56,33 @@ done
 git -C "$SRC" show "$FIRST_RULE^:.opencode/bin/check-git-hooks.sh" > "$PRE_HOOKS/check-git-hooks.sh" || exit 2
 git -C "$SRC" show "$FIRST_RULE^:.opencode/hooks/git/pre-commit" > "$PRE_HOOKS/legacy-pre-commit" || exit 2
 
-say "setup: clone and move the source tree"
+say "setup: clone and reach the moved tree"
 git clone --local -q "$SRC" "$CLONE" || exit 2
 git -C "$CLONE" config core.hooksPath /dev/null
 git -C "$CLONE" config user.email drill@example.com
 git -C "$CLONE" config user.name drill
-rm -rf "$CLONE/.skilled"
-mv "$CLONE/.opencode" "$CLONE/.skilled"
-ln -s .skilled "$CLONE/.opencode"
-git -C "$CLONE" add -A .opencode .skilled || exit 2
-git -C "$CLONE" commit -qm "move the source tree under .skilled" || exit 2
-echo "moved $(git -C "$CLONE" diff --name-only -M HEAD~1 HEAD | wc -l | tr -d ' ') paths"
+# The authored sentinel under .skilled marks the tree as already moved, and then
+# .opencode is a directory of relative links into it, so there is nothing to move.
+# A clone that predates the move still gets the move built the way the migration
+# did, and the move commit is its own.
+if [[ -f "$CLONE/.skilled/skills/system-spec-kit/SKILL.md" ]]; then
+  MOVE_SHA="$(git -C "$CLONE" log --reverse --diff-filter=A --format=%H -- .skilled/skills | head -1)"
+  [[ -n "$MOVE_SHA" ]] || { echo "cannot find the commit that added the .skilled tree" >&2; exit 2; }
+  PRE_MOVE_SHA="$(git -C "$CLONE" rev-parse "$MOVE_SHA^")"
+  echo "already moved; the move commit is $MOVE_SHA"
+else
+  rm -rf "$CLONE/.skilled"
+  mv "$CLONE/.opencode" "$CLONE/.skilled"
+  ln -s .skilled "$CLONE/.opencode"
+  git -C "$CLONE" add -A .opencode .skilled || exit 2
+  git -C "$CLONE" commit -qm "move the source tree under .skilled" || exit 2
+  echo "moved $(git -C "$CLONE" diff --name-only -M HEAD~1 HEAD | wc -l | tr -d ' ') paths"
+  MOVE_SHA="$(git -C "$CLONE" rev-parse HEAD)"
+  PRE_MOVE_SHA="$(git -C "$CLONE" rev-parse HEAD~1)"
+fi
 
 H="$CLONE/.opencode/scripts/git-hooks"
-SKIP_ALL="SPECKIT_SKIP_COMMENT_HYGIENE=1 SPECKIT_SKIP_MIRROR_PARITY=1 SPECKIT_SKIP_CARD_SYNC=1 SPECKIT_SKIP_MCP_MUTATION_CLASS=1 SPECKIT_SKIP_ROUTE_REMINT=1 SPECKIT_SKIP_SPEC_REMINT=1"
+SKIP_ALL="SPECKIT_SKIP_COMMENT_HYGIENE=1 SPECKIT_SKIP_MIRROR_PARITY=1 SPECKIT_SKIP_PHRASE_LINT=1 SPECKIT_SKIP_CARD_SYNC=1 SPECKIT_SKIP_MCP_MUTATION_CLASS=1 SPECKIT_SKIP_ROUTE_REMINT=1 SPECKIT_SKIP_SPEC_REMINT=1"
 SPEC_DOC="$(git -C "$CLONE" ls-files 'specs/*/graph-metadata.json' 'specs/**/graph-metadata.json' | while IFS= read -r m; do d="$(dirname "$m")"; [[ -f "$CLONE/$d/spec.md" ]] && { echo "$d/spec.md"; break; }; done)"
 [[ -n "$SPEC_DOC" ]] || { echo "no spec packet to stage" >&2; exit 2; }
 
@@ -88,25 +102,25 @@ run_plain() { ( cd "$CLONE" && bash "$1" ) >"$WORK/out.log" 2>&1; }
 # Two push ranges. The move itself, which a diff across sees as every .opencode file
 # deleted. And an ordinary change to a skill after the move, which is the range the
 # gates meet from then on, and the one where a filter naming .opencode alone sees nothing.
-MOVE_SHA="$(git -C "$CLONE" rev-parse HEAD)"
-PRE_MOVE_SHA="$(git -C "$CLONE" rev-parse HEAD~1)"
 MOVE_LINE="refs/heads/main $MOVE_SHA refs/heads/main $PRE_MOVE_SHA"
 SKILL_FILE="$(git -C "$CLONE" ls-files '.skilled/skills/*/README.md' | head -1)"
 echo "drill" >> "$CLONE/$SKILL_FILE"
 git -C "$CLONE" add -- "$SKILL_FILE"
-git -C "$CLONE" commit -qm "change a skill after the move" || exit 2
+git -C "$CLONE" commit -qm "feat(drill): change a skill after the move" \
+  -m "The drill edits one skill README so each push range carries an ordinary post-move change." || exit 2
 AFTER_SHA="$(git -C "$CLONE" rev-parse HEAD)"
-MAIN_LINE="refs/heads/main $AFTER_SHA refs/heads/main $MOVE_SHA"
-FEATURE_LINE="refs/heads/feature-drill $AFTER_SHA refs/heads/feature-drill $MOVE_SHA"
+BASE_SHA="$(git -C "$CLONE" rev-parse HEAD~1)"
+MAIN_LINE="refs/heads/main $AFTER_SHA refs/heads/main $BASE_SHA"
+FEATURE_LINE="refs/heads/feature-drill $AFTER_SHA refs/heads/feature-drill $BASE_SHA"
 
 say "section 1: moved and whole"
 run_check; RC=$?
 expect "the check passes on the moved tree" 0 "$RC" present "RESULT: PASSED"
 stage AGENTS.md
-run_pre_commit "$H/pre-commit" "SPECKIT_SKIP_MIRROR_PARITY=1 SPECKIT_SKIP_ROUTE_REMINT=1 SPECKIT_SKIP_SPEC_REMINT=1"; RC=$?
+run_pre_commit "$H/pre-commit" "SPECKIT_SKIP_MIRROR_PARITY=1 SPECKIT_SKIP_PHRASE_LINT=1 SPECKIT_SKIP_ROUTE_REMINT=1 SPECKIT_SKIP_SPEC_REMINT=1"; RC=$?
 expect "pre-commit stays quiet on a benign change" 0 "$RC" absent "gate:"
 unstage_all
-run_pre_push "$H/pre-push" "$MOVE_LINE" "SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1"; RC=$?
+run_pre_push "$H/pre-push" "$MOVE_LINE" "SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1 SPECKIT_SKIP_PREPUSH_TRACK_GATE=1"; RC=$?
 expect "pre-push lets the move itself through" 0 "$RC" absent "BLOCKED"
 run_prepare "$H/prepare-commit-msg"; RC=$?
 expect "prepare-commit-msg stamps through the link" 0 "$RC" absent "allocator"
@@ -154,7 +168,7 @@ expect "pre-commit blocks on a missing card-sync guard" 1 "$RC" present "BLOCKED
 unstage_all; restore_input
 
 break_input commands/doctor/scripts/check-mcp-mutation-class.sh
-check_names "a missing mutation-class guard" ".opencode/commands/doctor/scripts/check-mcp-mutation-class.sh resolves nowhere"
+check_names "a missing mutation-class guard" "\$SOURCE_ROOT/commands/doctor/scripts/check-mcp-mutation-class.sh resolves nowhere"
 stage .skilled/skills/mcp-code-mode/scripts/doctor.sh
 run_pre_commit "$H/pre-commit" "$SKIP_ALL SPECKIT_SKIP_MCP_MUTATION_CLASS=0"; RC=$?
 expect "pre-commit blocks on a missing mutation-class guard" 1 "$RC" present "BLOCKED [gate:mcp-mutation-class]: contract guard is missing"
@@ -168,14 +182,14 @@ expect "pre-commit blocks on a missing re-derive tool" 1 "$RC" present "BLOCKED 
 unstage_all; restore_input
 
 break_input hooks/shared/hook-flags.sh
-check_names "a missing kill switch" ".opencode/hooks/shared/hook-flags.sh resolves nowhere"
+check_names "a missing kill switch" "\$SOURCE_ROOT/hooks/shared/hook-flags.sh resolves nowhere"
 stage AGENTS.md
 run_pre_commit "$H/pre-commit" "$SKIP_ALL"; RC=$?
 expect "pre-commit warns on a missing kill switch" 0 "$RC" present "WARNING [gate:hook-flags]"
 unstage_all; restore_input
 
 break_input bin/compiled-route-guard.cjs
-check_names "a missing route guard" ".opencode/bin/compiled-route-guard.cjs resolves nowhere"
+check_names "a missing route guard" "\$SOURCE_ROOT/bin/compiled-route-guard.cjs resolves nowhere"
 run_pre_push "$H/pre-push" "$MAIN_LINE" "SPECKIT_ALLOW_MASS_DELETION=1"; RC=$?
 expect "pre-push blocks on a missing route guard" 1 "$RC" present "BLOCKED [gate:compiled-routing]: route guard is missing"
 restore_input
@@ -187,7 +201,7 @@ expect "pre-push blocks on a missing mass-deletion library" 1 "$RC" present "BLO
 restore_input
 
 break_input skills/sk-git/scripts/worktree-naming.sh
-check_names "a missing permission script" ".opencode/skills/sk-git/scripts/worktree-naming.sh resolves nowhere"
+check_names "a missing permission script" "\$SOURCE_ROOT/skills/sk-git/scripts/worktree-naming.sh resolves nowhere"
 run_pre_push "$H/pre-push" "$FEATURE_LINE" "SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1 SPECKIT_ALLOW_MASS_DELETION=1"; RC=$?
 expect "pre-push blocks on a missing permission script" 1 "$RC" present "BLOCKED [gate:remote-permission]: the permission script is missing"
 restore_input
@@ -199,7 +213,7 @@ expect "pre-push warns on a missing skill-root metadata checker" 0 "$RC" present
 restore_input
 
 break_input skills/sk-git/scripts/commit-id-naming.sh
-check_names "a missing commit id allocator" ".opencode/skills/sk-git/scripts/commit-id-naming.sh resolves nowhere"
+check_names "a missing commit id allocator" "\$SOURCE_ROOT/skills/sk-git/scripts/commit-id-naming.sh resolves nowhere"
 run_prepare "$H/prepare-commit-msg"; RC=$?
 expect "prepare-commit-msg warns on a missing allocator" 0 "$RC" present "allocator is missing"
 restore_input
@@ -277,6 +291,7 @@ git -C "$FOREIGN" config user.email drill@example.com
 git -C "$FOREIGN" config user.name drill
 echo seed > "$FOREIGN/seed.txt"; git -C "$FOREIGN" add seed.txt; git -C "$FOREIGN" commit -qm seed
 FOREIGN_SHA="$(git -C "$FOREIGN" rev-parse HEAD)"
+FOREIGN_REAL="$(cd "$FOREIGN" && pwd -P)"
 
 compare_foreign() { # compare_foreign <label> <current-file> <earlier-file> <mode> [stdin line]
   local label="$1" cur="$2" pre="$3" mode="$4" line="${5:-}" rc_cur rc_pre
@@ -290,6 +305,11 @@ compare_foreign() { # compare_foreign <label> <current-file> <earlier-file> <mod
       message) ( cd "$FOREIGN" && bash "$file" "$WORK/fmsg.txt" message ) >"$WORK/foreign-$which.log" 2>&1 ;;
     esac
     rc=$?
+    # Both hooks name the repository they ran in; the current ones spell it absolute,
+    # the earlier ones relative. Strip that prefix so the comparison reads behavior,
+    # not the spelling the source-root migration changed.
+    sed -e "s|$FOREIGN_REAL/||g" -e "s|$FOREIGN/||g" "$WORK/foreign-$which.log" > "$WORK/foreign-$which.norm"
+    mv "$WORK/foreign-$which.norm" "$WORK/foreign-$which.log"
     if [[ "$which" == "cur" ]]; then rc_cur=$rc; else rc_pre=$rc; fi
   done
   cp "$WORK/foreign-cur.log" "$WORK/out.log"

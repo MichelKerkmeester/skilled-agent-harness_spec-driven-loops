@@ -93,8 +93,9 @@ printf 'PASS --status names the global hooksPath: %s\n' "$global_dir"
 # A hook link written through either source-root name belongs to the installer,
 # so a reinstall replaces it instead of skipping it as another tool's, and a link
 # into some other tool's hooks stays untouched. The fixture holds the tree under
-# .skilled with .opencode linked to it. The second installer is a copy whose source
-# directory names .skilled, the way the path rewrite leaves it.
+# .skilled with .opencode linked to it. The sentinel file under .skilled decides
+# which source root the installer resolves to: absent, it falls back to .opencode;
+# present, it stays on .skilled.
 LAYOUT_REPO="$TEMP_ROOT/layout-repo"
 mkdir -p "$LAYOUT_REPO/.skilled/scripts/git-hooks" "$TEMP_ROOT/other-tool"
 printf '#!/usr/bin/env bash\nexit 0\n' > "$LAYOUT_REPO/.skilled/scripts/git-hooks/pre-commit"
@@ -104,20 +105,20 @@ git -C "$LAYOUT_REPO" init -q
 LAYOUT_REPO="$(cd "$LAYOUT_REPO" && pwd -P)"
 git -C "$LAYOUT_REPO" config core.hooksPath .layout-hooks
 mkdir -p "$LAYOUT_REPO/.layout-hooks"
-SKILLED_INSTALLER="$TEMP_ROOT/install-git-hooks-skilled.sh"
-sed 's#^HOOK_SOURCE_DIR="$REPO_ROOT/.opencode/#HOOK_SOURCE_DIR="$REPO_ROOT/.skilled/#' "$INSTALLER" > "$SKILLED_INSTALLER"
-grep -q '^HOOK_SOURCE_DIR="$REPO_ROOT/.skilled/scripts/git-hooks"$' "$SKILLED_INSTALLER" \
-  || fail 'could not point the installer copy at .skilled'
-
+sentinel="$LAYOUT_REPO/.skilled/skills/system-spec-kit/SKILL.md"
 for scenario in 'installer under .opencode:.skilled:.opencode' 'installer under .skilled:.opencode:.skilled'; do
   IFS=: read -r label old_root new_root <<< "$scenario"
-  installer="$INSTALLER"
-  [[ "$new_root" == .skilled ]] && installer="$SKILLED_INSTALLER"
+  if [[ "$new_root" == .skilled ]]; then
+    mkdir -p "$(dirname "$sentinel")"
+    printf '# sentinel: selects .skilled as the installer source root\n' > "$sentinel"
+  else
+    rm -f "$sentinel"
+  fi
   ln -sfn "$LAYOUT_REPO/$old_root/scripts/git-hooks/pre-commit" "$LAYOUT_REPO/.layout-hooks/pre-commit"
   layout_output="$TEMP_ROOT/layout-output.txt"
   (
     cd "$LAYOUT_REPO"
-    bash "$installer"
+    bash "$INSTALLER"
   ) > "$layout_output" 2>&1
   layout_link="$(readlink "$LAYOUT_REPO/.layout-hooks/pre-commit")"
   [[ "$layout_link" == "$LAYOUT_REPO/$new_root/scripts/git-hooks/pre-commit" ]] \
@@ -140,12 +141,13 @@ grep -q 'not a symlink we installed' "$layout_output" \
   || fail "the installer did not report skipping another tool's hook link"
 printf '%s\n' "PASS another tool's hook link is left in place"
 
-# A checkout that holds its tree only under .skilled has no .opencode path to scan, so
-# the installer takes its hooks from .skilled instead of installing nothing.
+# A checkout that holds its tree only under .skilled carries the sentinel there, so the
+# installer takes its hooks from .skilled even though there is no .opencode path to scan.
 SKILLED_ONLY_REPO="$TEMP_ROOT/skilled-only-repo"
-mkdir -p "$SKILLED_ONLY_REPO/.skilled/scripts/git-hooks"
+mkdir -p "$SKILLED_ONLY_REPO/.skilled/scripts/git-hooks" "$SKILLED_ONLY_REPO/.skilled/skills/system-spec-kit"
 printf '#!/usr/bin/env bash\nexit 0\n' > "$SKILLED_ONLY_REPO/.skilled/scripts/git-hooks/pre-commit"
 chmod +x "$SKILLED_ONLY_REPO/.skilled/scripts/git-hooks/pre-commit"
+printf '# sentinel: selects .skilled as the installer source root\n' > "$SKILLED_ONLY_REPO/.skilled/skills/system-spec-kit/SKILL.md"
 git -C "$SKILLED_ONLY_REPO" init -q
 SKILLED_ONLY_REPO="$(cd "$SKILLED_ONLY_REPO" && pwd -P)"
 (
