@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Review the 40 commits `ba56b03412..5d9c970447` on main in ten deep-review iterations, confirm the 092 epic's work and its merge resolution are intact, record every confirmed error and open end with a ranked fix, then fix confirmed P2s 1 to 10 except P2 4 in five phase children and review those fixes in a sixth.
+**Objective:** Review the 40 commits `ba56b03412..5d9c970447` on main in ten deep-review iterations, confirm the 092 epic's work and its merge resolution are intact, record every confirmed error and open end with a ranked fix, then fix confirmed P2s 1 to 10 except P2 4 in five children, review them in a sixth and fix that review's findings in a seventh.
 
 ### Decisions
 
@@ -44,11 +44,11 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | `/deep:review:auto` with `--max-iterations=10 --stop-policy=max-iterations`, executor cli-pi `deepseek-v4.1-flash` at `max` on the DevPass route; `cline-pass/deepseek-v4.1-flash` only if that route fails |
+| D1 | `/deep:review:auto` with `--max-iterations=10 --stop-policy=max-iterations`, executor cli-pi `deepseek-v4.1-flash` at `max` on the DevPass route; the cline route only if DevPass fails |
 | D2 | The review changes no product file; fixes land only through the phase children, which own disjoint files |
 | D5 | Each phase is planned by the orchestrator and built by DeepSeek V4.1 Flash at `max` through cli-pi, one change per brief; the orchestrator verifies every builder report |
 | D6 | P2 4 is the master orchestrator's at merge; P2 11 and P2 12 are build nothing |
-| D3 | A finding stays only when a rerun command or a read line proves it, and it is marked CONFIRMED with that evidence |
+| D3 | A finding stays only when a rerun or a read line proves it, marked CONFIRMED with that evidence |
 | D4 | Every recommendation kept passes `.skilled/repo-rules/prevent-overengineering.md` |
 
 <!-- /ANCHOR:directive -->
@@ -69,6 +69,7 @@ phase and binds as if written here.
 | 004-hub-doc-pointers | `004-hub-doc-pointers/goal.md` |
 | 005-claim-corrections | `005-claim-corrections/goal.md` |
 | 006-remediation-deep-review | `006-remediation-deep-review/goal.md` |
+| 007-remediation-review-fixes | `007-remediation-review-fixes/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -86,7 +87,7 @@ string, not these files.
 - [ ] `specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/review/review-report.md` exists and `grep -c 'CONFIRMED' specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/review/review-report.md` prints at least 1
 - [ ] `grep -c 'generate-leaf-manifest.cjs' specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/review/review-report.md` prints at least 1, showing the merge resolution was checked
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review --strict` prints `RESULT: PASSED`
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review --recursive --strict` prints `RESULT: PASSED` 7 times and `RESULT: FAILED` 0 times, `git status --short` prints nothing, and `git ls-remote --heads origin "$(git branch --show-current)"` prints nothing
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review --recursive --strict` prints `RESULT: PASSED` 8 times and `RESULT: FAILED` 0 times, `git status --short` prints nothing, and `git ls-remote --heads origin "$(git branch --show-current)"` prints nothing
 <!-- /ANCHOR:completion -->
 
 ---
@@ -114,5 +115,6 @@ and findings belong here.
 |------|------|
 | Fix phases added 2026-10-10 | The operator chose to fix confirmed P2s 1 to 10 in phase children; the objective, D2 and criterion 5 amended, D5 and D6 added, binding table added |
 | Phase 006 added 2026-10-10 | A five-iteration review of the remediation commits; binding row added and criterion 5 amended from 6 to 7 passes |
+| 007 added 2026-10-11 | The operator chose to fix the remediation review's four confirmed P2s in child 007; the objective, the binding table and criterion 5's count (7 to 8) amended |
 | Criterion 1 amended 2026-10-10 | The state log is a projection of the ledger and drops the executor field, so the executor kind is counted in the dispatch completion receipts instead |
 <!-- /ANCHOR:log -->

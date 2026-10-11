@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The debt-report summary says `ceiling-report.sh` prints `markers=0 no-trigger=0 no-signal=0`, but once that packet committed its fixture `scratch/after/probe.py` the report prints `markers=3 no-trigger=1 no-signal=1`",
     "created_at": "2026-10-10T20:17:53Z",
-    "last_save_at": "2026-10-10T20:50:20.352Z",
+    "last_save_at": "2026-10-11T00:00:48.277Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bbb46cafdc867d70b104d1114ec52a7c22ffa634353c8d10f9f4d8fe0cf0079a",
+    "source_fingerprint": "sha256:0cfa89ab2031ae15cece2766f7a2f4dcf76fed1016837291c63aa8d405aa1596",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9db7fa96e3aad1073dbfa165b0a64c67a872fd308c16b82d9804661617fa85d2",
+      "spec.md": "2a3eb0dbda1e6dfc270e21b106fc19d9668b3bd9691b64a28d77dd3f4bc2f48b",
       "plan.md": "29c90ae763284631dae0c54897e634f0118a3aa9fe2921f4d1e6a0ffb4c1f40f",
       "tasks.md": "fdce8e028afbb73e3641bd2a1bca5e66910604c2ebcff06a394226280b3b1196",
-      "implementation-summary.md": "f49dfcf2a50e3821dd78cadef5a820fce4441ec8bb70df9b3c95e7e20a7dc163"
+      "implementation-summary.md": "5cd1a56f69468ef6094f00a50419f76cd69f20c1cfc8720ca50999b16443ade2"
     },
     "last_active_at": null
   }

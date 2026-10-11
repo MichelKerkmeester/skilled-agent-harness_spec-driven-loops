@@ -42,7 +42,6 @@
       "implementation-summary.md",
       ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
       ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
-      ".skilled/skills/sk-git/scripts/hooks/stdin-deadline.test.mjs",
       ".skilled/skills/sk-git/SKILL.md",
       ".skilled/skills/sk-git/README.md",
       ".skilled/skills/sk-git/changelog/v1.8.1.0.md",
@@ -54,7 +53,8 @@
       ".hermes/skills/sk-git/SKILL.md",
       ".hermes/skills/sk-vision/SKILL.md",
       ".claude/settings.json",
-      ".codex/hooks.json"
+      ".codex/hooks.json",
+      ".cursor/hooks.json"
     ],
     "entities": [
       {
@@ -97,12 +97,6 @@
         "name": "git-preflight-advisory.mjs",
         "kind": "file",
         "path": ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "stdin-deadline.test.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-git/scripts/hooks/stdin-deadline.test.mjs",
         "source": "derived"
       },
       {
@@ -200,11 +194,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Write",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`git-message-gate.mjs` and `git-preflight-advisory.mjs` are registered as PreToolUse hooks in Claude (5 s), Codex (5 s), Devin (5 s) and Cursor (10 s), and `sk-vision.mjs` is registered as Devin's UserPromptSubmit hook (60 s)",
     "created_at": "2026-10-10T20:17:43Z",
-    "last_save_at": "2026-10-10T20:42:34.629Z",
+    "last_save_at": "2026-10-11T00:00:51.214Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:96c031d84e421dbe7509cc5bd7cf7f9bbab973e77b3ee55ebbdadca9dbb1d6c8",
+    "source_fingerprint": "sha256:e700c7d08ae6a8b866eef1be02f712e3fded6337c0a7592a96925f71205274f5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "824edcde81e70a6b204d05d103a8506873db95499adea1e9891b8e1a048f03ea",

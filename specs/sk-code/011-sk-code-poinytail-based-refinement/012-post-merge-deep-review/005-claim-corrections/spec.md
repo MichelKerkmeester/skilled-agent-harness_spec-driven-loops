@@ -102,7 +102,7 @@ Every recorded number and header claim the review flagged matches what a rerun o
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | The ceiling row matches a rerun | Line 115 names `markers=3 no-trigger=1 no-signal=1`, and `ceiling-report.sh` ends with that line |
-| REQ-002 | The test count matches the file | Line 61 says "Six new test cases, 12 in total", and `grep -c '^test('` on the test file prints 12. Git shows the packet's commits took it from 0 to 6 and from 6 to 12 |
+| REQ-002 | The test count matches the file | Line 61 says "Six new test cases, 12 in total", and `grep -c '^test('` on the test file prints 12. Git shows `817ff5b2a7` (`010-round-three-remediation/005-opencode-and-guards`) took it from 0 to 6 and `d2701afc3b` (`011-round-four-remediation/005-doc-claims-hardening`) from 6 to 12 |
 
 ### P1 - Required (complete OR user-approved deferral)
 

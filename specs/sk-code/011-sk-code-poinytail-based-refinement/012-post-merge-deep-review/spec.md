@@ -150,6 +150,7 @@ Confirm that the epic's work survived the merge intact, and record every error a
 | 4 | 004-hub-doc-pointers/ | P2 2 and P2 9: playbooks name the live hook, stack detection names a real file | Complete |
 | 5 | 005-claim-corrections/ | P2 6, 7 and 8: two summary claims and the mirror checker banner | Complete |
 | 6 | 006-remediation-deep-review/ | Five-iteration deep review of the remediation commits `1d078f3356..d1741a28f7` | Complete |
+| 7 | 007-remediation-review-fixes/ | The four P2s of the remediation review: shared stdin suite rows, one dead Webflow link, a packet credit, the sk-git hooks README | Complete |
 
 ### Phase Transition Rules
 
@@ -167,6 +168,7 @@ Confirm that the epic's work survived the merge intact, and record every error a
 | 003-drift-guard-warning-count | 004-hub-doc-pointers | Previous phase committed | Orchestrator rerun of the phase goal criteria |
 | 004-hub-doc-pointers | 005-claim-corrections | Previous phase committed | Orchestrator rerun of the phase goal criteria |
 | 005-claim-corrections | 006-remediation-deep-review | Previous phase committed | `review/review-report.md` ranks the confirmed findings |
+| 006-remediation-deep-review | 007-remediation-review-fixes | Previous phase committed | Orchestrator rerun of the phase goal criteria |
 
 ### Findings Not Built
 

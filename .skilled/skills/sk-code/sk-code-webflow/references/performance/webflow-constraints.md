@@ -165,7 +165,7 @@ Despite platform constraints, you CAN optimize:
 
 ### Decision Records
 
-See [decision-record.md](/specs/005-example.com/024-performance-optimization/decision-record.md) for implementation decisions:
+Implementation decisions behind these constraints:
 
 - **DR-002**: TypeKit preconnect implementation
 - **DR-004**: GTM delay strategy (requestIdleCallback)

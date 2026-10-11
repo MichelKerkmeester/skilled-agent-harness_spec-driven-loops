@@ -86,5 +86,6 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | Inline briefs replaced | The first hook briefs asked for an inline reader. They were stopped before any finished and replaced with import briefs. One stopped build had already rewritten `sk-vision.mjs`, which was restored from HEAD before its replacement ran |
+| Test moved 2026-10-11 | The remediation review found `stdin-deadline.test.mjs` passed on the unfixed preflight hook when a kill-switch was set. Phase 007 moved both sk-git cases and the Devin case into `.skilled/hooks/shared/hook-stdin-deadline.test.mjs`, which strips every kill-switch, and deleted the file, so criterion 1 is now checked by that suite |
 | Trigger index | Rebuilt once after all five phases, as the repository's own rebuild commits do, because the index reads every doc on disk |
 <!-- /ANCHOR:log -->

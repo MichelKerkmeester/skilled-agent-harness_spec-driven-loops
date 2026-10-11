@@ -85,7 +85,7 @@ Each correction went to DeepSeek V4.1 Flash at max effort through cli-pi on the 
 | Decision | Why |
 |----------|-----|
 | Keep the original ceiling reading | It was true when taken, so the row records both readings and why they differ |
-| Six new cases, not four | Git shows `817ff5b2a7` added 6 and `d2701afc3b` took the file from 6 to 12, both in the packet |
+| Six new cases, not four | Git shows `817ff5b2a7` (`010-round-three-remediation/005-opencode-and-guards`) added the first 6, and `d2701afc3b` (`011-round-four-remediation/005-doc-claims-hardening`) took the file from 6 to 12 |
 <!-- /ANCHOR:decisions -->
 
 ---
