@@ -879,7 +879,9 @@ if (require.main === module) {
       strict: args.strict,
     });
     process.stdout.write(args.format === 'json' ? `${JSON.stringify(report, null, 2)}\n` : `${formatText(report)}\n`);
-    process.exit(args.strict ? report.exitCode : EXIT_OK);
+    // Set the code rather than exit: process.exit() drops whatever stdout has not yet
+    // drained, and a fleet report larger than one pipe buffer would lose its tail.
+    process.exitCode = args.strict ? report.exitCode : EXIT_OK;
   } catch (error) {
     process.stderr.write(`validate-playbook-package: ${error.message}\n`);
     process.exit(EXIT_USAGE);

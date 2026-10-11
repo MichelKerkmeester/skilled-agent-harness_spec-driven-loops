@@ -279,6 +279,15 @@ function runPromptSyncRegressions() {
   console.log('prompt sync regressions: PASS (8 assertions)');
 }
 
+// A fleet report is larger than one pipe buffer, so the text report must arrive whole.
+function runPipedReportRegression() {
+  const fleet = spawnSync(process.execPath, [validatorPath, '--strict'], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
+  assert(fleet.stdout.length > 65536, `fleet report should exceed one pipe buffer; got ${fleet.stdout.length} bytes`);
+  assert(/\nexit=\d+\n$/.test(fleet.stdout), 'piped fleet report must end with its exit line');
+  console.log('piped report regression: PASS (2 assertions)');
+}
+
 run();
 runContractRegressions();
 runPromptSyncRegressions();
+runPipedReportRegression();
