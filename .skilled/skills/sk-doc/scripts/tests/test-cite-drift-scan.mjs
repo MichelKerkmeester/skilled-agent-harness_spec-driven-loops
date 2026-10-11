@@ -293,6 +293,25 @@ test('resolve unresolved', () => {
   }
 });
 
+test('resolve skill runtime and scripts bases', () => {
+  const { root } = makeFixture();
+  try {
+    commitFiles(root, {
+      [`${ALPHA_SKILL_ROOT}/runtime/schemas/tool.ts`]: TEN_LINES,
+      [`${ALPHA_SKILL_ROOT}/scripts/lib/run.mjs`]: TEN_LINES,
+    });
+    const tracked = listTrackedFiles(root);
+    const cite = (target) => resolveCitation(
+      { doc: `${ALPHA_SKILL_ROOT}/feature-catalog/area/leaf.md`, line: 1, sentence: '', target, targetLine: 3, targetLineEnd: null },
+      { tracked, repoRoot: root, skillRoot: ALPHA_SKILL_ROOT },
+    );
+    assert.deepEqual(cite('schemas/tool.ts'), { status: 'in_range', path: `${ALPHA_SKILL_ROOT}/runtime/schemas/tool.ts`, endLine: 3 });
+    assert.deepEqual(cite('lib/run.mjs'), { status: 'in_range', path: `${ALPHA_SKILL_ROOT}/scripts/lib/run.mjs`, endLine: 3 });
+  } finally {
+    cleanup(root);
+  }
+});
+
 test('resolve spaced path', () => {
   const { root } = makeFixture();
   try {
@@ -421,6 +440,34 @@ test('moved via redirect rule', async () => {
     // Without the rule the same citations only match by basename: redirects come first.
     const bare = await runCensus(root);
     assert.match(bare.totalLine, / moved_in_range=0 moved_past_end=0 basename_only=2 /);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('overlap advisory names an in-range citation whose window lost its identifier', async () => {
+  const { root } = makeFixture();
+  try {
+    const locks = Array.from({ length: 40 }, (_, index) => `// filler ${index + 1}\n`);
+    locks[1] = 'export const ALPHA_ONE = 1;\n';
+    locks[29] = 'export const SPEC_LOCKS = new Map();\n';
+    commitFiles(root, {
+      'src/locks.ts': locks.join(''),
+      '.skilled/skills/beta-skill/overlap.md': [
+        'The constant `SPEC_LOCKS` is defined at `src/locks.ts:2`.',
+        '',
+        'The constant `ALPHA_ONE` is defined at `src/locks.ts:2`.',
+        '',
+      ].join('\n'),
+    });
+    const quiet = await runCensus(root);
+    assert.equal(quiet.code, 0);
+    assert.deepEqual(quiet.lines.filter((line) => line.startsWith('cite overlap: ')), []);
+    const listed = await runCensus(root, ['--overlap']);
+    assert.equal(listed.code, 0);
+    assert.deepEqual(listed.lines.filter((line) => line.startsWith('cite overlap: ')), [
+      'cite overlap: .skilled/skills/beta-skill/overlap.md:1 -> src/locks.ts:2 (advisory: no identifier the citing line names appears within 10 lines of src/locks.ts:2)',
+    ]);
   } finally {
     cleanup(root);
   }

@@ -9,7 +9,7 @@
 // exits 0.
 //
 // Usage:
-//   node cite-drift-scan.mjs [--corpus <skills|specs|all>] [--draw --seed <n>] [--jev] [--out <dir>] [--labels <file>] | --advise <doc>... [--out <dir>]
+//   node cite-drift-scan.mjs [--corpus <skills|specs|all>] [--moved] [--overlap] [--draw --seed <n>] [--jev] [--out <dir>] [--labels <file>] | --advise <doc>... [--out <dir>]
 //
 // Exit codes: 0 = report printed, a skipped or stopped arm included; 2 = bad
 // invocation or unreadable input, refused before any call.
@@ -28,6 +28,7 @@ import {
   INSTRUCTION,
   KEEP_RULE_LINE,
   WINDOW_RADIUS_LINES,
+  flagByIdentifierOverlap,
   jevGate,
   labelCounts,
   measurementIdentity,
@@ -112,7 +113,7 @@ function hasClaim(claim) {
 }
 
 /** Usage line printed when an invocation misses an input. */
-export const USAGE = 'usage: node cite-drift-scan.mjs [--corpus <skills|specs|all>] [--moved] [--draw --seed <n>] [--jev] [--out <dir>] [--labels <file>] | --advise <doc>... [--out <dir>]';
+export const USAGE = 'usage: node cite-drift-scan.mjs [--corpus <skills|specs|all>] [--moved] [--overlap] [--draw --seed <n>] [--jev] [--out <dir>] [--labels <file>] | --advise <doc>... [--out <dir>]';
 
 /** Prefix redirect table beside the script, derived from the git rename record. */
 export const REDIRECTS_PATH = path.join(SCRIPT_DIR, 'cite-drift-redirects.json');
@@ -355,11 +356,15 @@ function redirectTarget(candidate, redirects, tracked) {
   return null;
 }
 
+/** Bases under a skill root that a citation may be written relative to, in order. */
+const SKILL_CODE_BASES = ['', 'runtime', 'scripts'];
+
 /**
  * Resolved location of one citation, tested in order: a lead's every suffix
  * joined to the target as one spaced path, then the target as written, each at
- * the citing document's own folder, the repository root and the citing
- * document's skill root; then each of those rewritten by the redirect table;
+ * the citing document's own folder, the repository root, the citing document's
+ * skill root and that skill's runtime/ and scripts/ directories; then each of
+ * those rewritten by the redirect table;
  * then a unique basename across the tracked set. Only a tracked path is read,
  * so an untracked copy is refused rather than opened. A spaced path counts
  * only when the whole joined name is tracked; it skips the table and the
@@ -379,8 +384,12 @@ export function resolveCitation(citation, { tracked, repoRoot, skillRoot = null,
     path.posix.join(path.posix.dirname(citation.doc), citation.target),
     citation.target,
   ];
+  // A skill's code lives under runtime/ or scripts/, and its docs cite paths
+  // relative to those directories, so both are bases after the skill root.
   if (typeof skillRoot === 'string' && skillRoot !== '') {
-    candidates.push(path.posix.join(skillRoot, citation.target));
+    for (const base of SKILL_CODE_BASES) {
+      candidates.push(path.posix.join(skillRoot, base, citation.target));
+    }
   }
 
   // 'REPO RULES.md:2' names one file, so a non-empty lead tries every suffix
@@ -394,7 +403,9 @@ export function resolveCitation(citation, { tracked, repoRoot, skillRoot = null,
         spaced,
       ];
       if (typeof skillRoot === 'string' && skillRoot !== '') {
-        spacedCandidates.push(path.posix.join(skillRoot, spaced));
+        for (const base of SKILL_CODE_BASES) {
+          spacedCandidates.push(path.posix.join(skillRoot, base, spaced));
+        }
       }
       for (const candidate of spacedCandidates) {
         if (tracked.has(candidate)) return resolveTracked(candidate, citation, repoRoot, lineCounts);
@@ -697,7 +708,7 @@ export function corpusDocs(tracked, corpus) {
  * @param {string} repoRoot
  * @param {Set<string>} tracked
  * @param {Map<string, string|null>} [readCache]
- * @param {{ corpus?: 'skills'|'specs'|'all', redirects?: Array<{ from: string, to: string }> }} [options]
+ * @param {{ corpus?: 'skills'|'specs'|'all', redirects?: Array<{ from: string, to: string }>, overlap?: boolean }} [options]
  * @returns {{
  *   commit: string,
  *   corpus: string,
@@ -707,6 +718,7 @@ export function corpusDocs(tracked, corpus) {
  *   total: { citations: number, dead: number },
  *   dead: Array<{ doc: string, line: number, target: string, targetLine: number }>,
  *   moved: Array<{ doc: string, family: string, line: number, target: string, targetLine: number, path: string, status: string }>,
+ *   overlap: Array<{ doc: string, line: number, target: string, targetLine: number, path: string }>,
  *   refused: number
  * }}
  */
@@ -723,6 +735,8 @@ export function buildCensus(repoRoot, tracked, readCache = new Map(), options = 
   const lineCounts = new Map();
   const dead = [];
   const moved = [];
+  const overlap = [];
+  const checkOverlap = options.overlap === true;
 
   const docs = corpusDocs(tracked, corpus);
   prefetchCommitted(repoRoot, commit, docs.map((entry) => entry.doc), readCache);
@@ -741,6 +755,16 @@ export function buildCensus(repoRoot, tracked, readCache = new Map(), options = 
         dead.push({ doc, line: citation.line, target: citation.target, targetLine: citation.targetLine });
       } else if (status === 'moved_in_range' || status === 'moved_past_end') {
         moved.push({ doc, family, line: citation.line, target: citation.target, targetLine: citation.targetLine, path: resolvedPath, status });
+      }
+      // Advisory: a citation that resolves in range but whose window holds none
+      // of the identifiers the citing line names has likely drifted to another line.
+      if (checkOverlap && (status === 'in_range' || status === 'moved_in_range')) {
+        const end = citation.targetLineEnd ?? citation.targetLine;
+        const windowText = readWindow(repoRoot, commit, resolvedPath,
+          citation.targetLine - WINDOW_RADIUS_LINES, end + WINDOW_RADIUS_LINES, readCache).join('\n');
+        if (flagByIdentifierOverlap(citation.sentence, windowText, citation.target)) {
+          overlap.push({ doc, line: citation.line, target: citation.target, targetLine: citation.targetLine, path: resolvedPath });
+        }
       }
     }
     groups[family].set(group, counts);
@@ -773,6 +797,7 @@ export function buildCensus(repoRoot, tracked, readCache = new Map(), options = 
     total: project(totals),
     dead: [...dead].sort(byDocLine),
     moved: [...moved].sort(byDocLine),
+    overlap: [...overlap].sort(byDocLine),
     refused: totals.refused,
   };
 }
@@ -1200,6 +1225,7 @@ export async function main(argv, deps = {}) {
         labels: { type: 'string' },
         corpus: { type: 'string' },
         moved: { type: 'boolean' },
+        overlap: { type: 'boolean' },
         'rebuild-redirects': { type: 'string' },
       },
     });
@@ -1315,7 +1341,7 @@ export async function main(argv, deps = {}) {
   const readCache = new Map();
   try {
     const redirects = deps.redirects ?? loadRedirects(deps.redirectsPath ?? REDIRECTS_PATH);
-    census = buildCensus(repoRoot, listTrackedFiles(repoRoot), readCache, { corpus, redirects });
+    census = buildCensus(repoRoot, listTrackedFiles(repoRoot), readCache, { corpus, redirects, overlap: values.overlap === true });
   } catch (error) {
     err(error instanceof Error ? error.message : String(error));
     return 2;
@@ -1364,6 +1390,13 @@ export async function main(argv, deps = {}) {
   if (values.moved === true) {
     for (const entry of census.moved) {
       out(`cite moved: ${entry.family} ${entry.doc}:${entry.line} -> ${entry.target}:${entry.targetLine} now ${entry.path} (${entry.status})`);
+    }
+  }
+
+  // Opt-in advisory, like --moved, so the default census output stays unchanged.
+  if (values.overlap === true) {
+    for (const entry of census.overlap) {
+      out(`cite overlap: ${entry.doc}:${entry.line} -> ${entry.target}:${entry.targetLine} (advisory: no identifier the citing line names appears within ${WINDOW_RADIUS_LINES} lines of ${entry.path}:${entry.targetLine})`);
     }
   }
   let windows;
