@@ -43,7 +43,6 @@ No Lane C skill-benchmark run was archived for `cli-external-orchestration` befo
 
 | Document | Purpose |
 |---|---|
-| `deep-improvement` | Owns the surviving improvement lanes (agent-improvement, model-benchmark) |
 | [`cli-external-orchestration`](../SKILL.md) | The hub under measurement |
 
 ---

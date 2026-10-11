@@ -113,7 +113,6 @@ Retained from the retired lane; these symptoms describe historical runs only.
 
 | Skill | Relationship | Use When |
 |---|---|---|
-| `deep-improvement` | Owns the surviving improvement lanes | Running or extending the agent-improvement or model-benchmark lanes |
 | [`sk-code`](../SKILL.md) | The skill under measurement | Reading or tuning the router being scored |
 
 ### Related Documents
