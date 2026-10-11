@@ -32,13 +32,18 @@
       "run"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      "scratch/evidence/lane-review-fixes-merge.txt",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge-reducer-provenance.vitest.ts",
+      "specs/system-deep-loop/038-review-and-cli-lineage/007-lineage-reducer-compliance/scratch/evidence/lane-review-fixes-merge.txt",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "scratch/evidence/lane-01-reducer-provenance.txt"
     ],
     "entities": [
       {
@@ -66,9 +71,33 @@
         "source": "derived"
       },
       {
+        "name": "lane-review-fixes-merge.txt",
+        "kind": "file",
+        "path": "scratch/evidence/lane-review-fixes-merge.txt",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge-reducer-provenance.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge-reducer-provenance.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "fanout-run.cjs",
         "kind": "file",
         "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "lane-01-reducer-provenance.txt",
+        "kind": "file",
+        "path": "scratch/evidence/lane-01-reducer-provenance.txt",
         "source": "derived"
       },
       {
@@ -120,7 +149,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Diagnosis",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Guard",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -132,14 +167,8 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow The",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -160,36 +189,12 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "In a live two-lineage proof run on 2026-10-09, both cli-pi DeepSeek V4.1 Flash lineages exited 0 and the runner reported 2 of 2 fulfilled",
     "created_at": "2026-10-09T16:05:59Z",
-    "last_save_at": "2026-10-09T16:06:38.251Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-11T20:54:17.532Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -197,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f21c41ccfef57422fe66af5b06bbff3fd8d12710475f1542a10e80e1bf7b83cc",
+    "source_fingerprint": "sha256:68e9948fb941332a0a1cc5591759177a9e2f1b92d7ec7a8a5589e71ed86cb683",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f3f942d5e36071a72b1e683dab9b75b9229572d1f36c8383f56d181978e4d180",
-      "plan.md": "37f88cd4b22bcb6324f734ee20052eeffd6a06eeaad26830bcb880fdc0a39936",
-      "tasks.md": "ac6a210d4e0b1d499beafd017d3e77cb794cb837aafc9172d9834a8d5636334e",
-      "implementation-summary.md": "cdc56ebce43764912234e9313ecce80ce8a158a440385a8e9df63f86c79965aa"
+      "spec.md": "b406c12ee9e8df13f6e65beef7f221f6236e17d406bb83ce089ec17093526868",
+      "plan.md": "9cd9a485b1f047e5fc75ba443a1eb885308cb60c4d78617b582bcce47ba47601",
+      "tasks.md": "39389890e7f3d8bed76c17c06003af8bf22878937beb6098b429768c42b2b777",
+      "implementation-summary.md": "c292241c17edf068adaebed3e59a9a7bd5e3fef2072218528dbf0fdd5200df0f"
     },
     "last_active_at": null
   }

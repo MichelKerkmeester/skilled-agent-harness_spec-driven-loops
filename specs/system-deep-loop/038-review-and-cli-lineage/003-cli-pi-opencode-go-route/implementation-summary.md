@@ -8,17 +8,19 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/038-review-and-cli-lineage/003-cli-pi-opencode-go-route"
-    last_updated_at: "2026-10-02T18:36:37Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-10-11T19:55:30Z"
+    last_updated_by: "generate-context"
+    recent_action: "Closed the packet on the 167 of 167 fanout rerun"
+    next_safe_action: "Monitor the cli-pi opencode-go route in later fanout runs"
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/system-deep-loop/038-review-and-cli-lineage/003-cli-pi-opencode-go-route/scratch/evidence/lane-status-reconcile.txt"
+      - "specs/system-deep-loop/038-review-and-cli-lineage/003-cli-pi-opencode-go-route/implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:78829619d19880cab9ff8416929f935772059de12780901a1f49b19ec3e1d243"
       session_id: "scaffold-040-cli-pi-opencode-go-route"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,6 +40,7 @@ _memory:
 | **Spec Folder** | 003-cli-pi-opencode-go-route |
 | **Completed** | 2026-10-02 |
 | **Level** | 1 |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -86,9 +89,13 @@ Edited on Public main, which every project reads live through `.skilled`, at the
 
 | Check | Result |
 |-------|--------|
-| `npx vitest run tests/unit/executor-config.vitest.ts tests/unit/fanout-run.vitest.ts tests/unit/combo-matrix.vitest.ts` | PASS, 261 tests, exit 0 |
+| Three runtime test files, original delivery run | PASS, 261 tests, exit 0 |
 | Same test with the selector line reverted | FAIL as expected, `opencode-go/opencode-go/deepseek-v4.1-flash` |
 | `pi -p --offline --mode json --model opencode-go/deepseek-v4.1-flash --thinking max` | PASS, `CANARY-OK`, exit 0 |
+| Three runtime test files at reconcile, machine under load (`scratch/evidence/lane-status-reconcile.txt` RUN 1) | 273 tests collected, 266 passed, 7 failed as 20s or 30s child spawn timeouts, none inside this packet's selector or roster coverage |
+| `fanout-run.vitest.ts` rerun at lower load (`scratch/evidence/lane-status-reconcile.txt` RERUN) | PASS, 167 of 167, exit 0 |
+| Verdict | No defect, the 7 failures were machine load, and every test in the three files passes |
+| `validate.sh --strict` on this packet | 2 errors, both GENERATED_METADATA (source fingerprint mismatch and description drift against the edited docs), and no other error. The 2 are the expected generated-metadata lag until the next save |
 <!-- /ANCHOR:verification -->
 
 ---

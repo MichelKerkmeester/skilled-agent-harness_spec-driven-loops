@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-02 |
 | **Branch** | `scaffold/040-cli-pi-opencode-go-route` |
 <!-- /ANCHOR:metadata -->

@@ -24,6 +24,8 @@ contextType: "general"
 | `[B]` | Blocked |
 
 **Task Format**: `T### [P?] Description (file path)`
+
+Evidence citations below point at `scratch/evidence/lane-01-reducer-provenance.txt` by section number, except T012, which cites `scratch/evidence/lane-review-fixes-merge.txt`.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -31,9 +33,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Capture the baseline before any edit: combined run 238 tests with 9 failures, solo `fanout-run.vitest.ts` run 167 tests with the same 9 failures (evidence section 5)
+- [x] T002 Locate the cause from the saved proof artifacts: `proof-a` carries a hand-written dashboard and an 8-key registry with none of the reducer's machine-owned fields, `proof-b` carries the reducer stamp (evidence section 1)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -41,10 +42,10 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T003 Write the failing regression case first: `tests/unit/fanout-merge-reducer-provenance.vitest.ts`, 3 cases from the `proof-a` and `proof-b` shapes (evidence section 2)
+- [x] T004 Record the red run: exit 1, 2 failed and 1 passed, with empty stderr in both failures as the negative control that no provenance check existed (evidence section 2)
+- [x] T005 Add the merge-time check in `scripts/fanout-merge.cjs`: a stamped dashboard passes, a dashboard without the stamp is refused with `lineage_reducer_provenance_missing`, and a lineage with no dashboard merges with `lineage_reducer_provenance_unverified` (evidence section 7)
+- [x] T006 Record the green run: exit 0, 3 of 3 new cases (evidence section 3)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -52,9 +53,12 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T007 Rerun the merge suite: 5 files, 74 of 74, which is 71 pre-existing plus the 3 new cases (evidence section 3)
+- [x] T008 Run the merge end to end over the saved proof lineages: exit 0, `refused_reducer_provenance: ["proof-a"]`, merged registry `mergedFrom: ["proof-b"]` with 4 findings and no `proof-a` finding id present (evidence section 4)
+- [x] T009 Rerun `fanout-run.vitest.ts` against the baseline: 9 failed and 158 passed of 167, the same 9 pre-existing failures and delta 0 (evidence section 5)
+- [x] T010 Run the static checks: `node --check` exit 0, `npm run typecheck` exit 0, a targeted `tsc` on the new test exit 0 with a control that exits 2, and the comment-hygiene check exit 0 (evidence section 6)
+- [x] T011 Fill this packet's docs from the lane evidence and run `validate.sh --strict` on the folder (result recorded in `implementation-summary.md`)
+- [x] T012 Address the two code review findings on the merge: a refused lineage now reads `REFUSED` in `fanout-attribution.md`, and a dashboard that is a symbolic link refuses only its own lineage instead of aborting the merge. Two new cases bring `fanout-merge-reducer-provenance.vitest.ts` to 5 (evidence `scratch/evidence/lane-review-fixes-merge.txt`)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -62,9 +66,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,6 +81,3 @@ contextType: "general"
 <!-- /ANCHOR:cross-refs -->
 
 ---
-
-
-

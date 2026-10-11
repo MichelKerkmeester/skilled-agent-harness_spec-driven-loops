@@ -1,0 +1,201 @@
+LANE 01 — REDUCER PROVENANCE AT MERGE TIME
+==============================================================================
+Packet   : specs/system-deep-loop/038-review-and-cli-lineage/007-lineage-reducer-compliance
+Worktree : .worktrees/091-consolidate-small-packets (dirty; nothing committed)
+Files    : .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs                  [modified]
+           .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge-reducer-provenance.vitest.ts [new]
+
+Gate: Gate 3 pre-resolved by dispatch (AI_SESSION_CHILD=1). Write authority bound to this packet.
+Not committed, per dispatch rules.
+
+------------------------------------------------------------------------------
+1. DIAGNOSIS (REQ-002) — why proof-a skipped the reducer
+------------------------------------------------------------------------------
+
+Mechanism, in one sentence: the reducer runs only as a model-executed step of the
+detached lineage workflow, and the runner's "fulfilled" verdict is decided from
+artifacts that do not include the reducer's projections, so a lineage that never
+invoked it still passes completion.
+
+Step that lets it be skipped, path:line:
+  1. .skilled/commands/deep/assets/deep-research-auto.yaml:1841  step_reduce_state
+     (command at :1843 runs deep-research/scripts/reduce-state.cjs). It is a step
+     in the phase_loop list; the detached CLI leaf orchestrates the YAML itself
+     (fanout-run.cjs:1602-1614 hands it "Run phase_init, phase_main_loop ... and
+     phase_synthesis"), and nothing machine-verifies that this step ran.
+  2. .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1043
+     findMaxIterationsPolicyViolation. Without a recognised synthesis event it
+     falls back at :1073-:1075 to completionFromArtifacts (:1015), which validates
+     only research.md (:1023-:1025) and the iteration count (:1027-:1032). The one
+     registry-shaped check on this path, hasLineageRegisteredFindings (:950),
+     proves only that keyFindings is non-empty, never who wrote it.
+
+Observed on the saved evidence (all paths under
+006-research-lineage-reducer-path/research/lineages/):
+  - proof-a/deep-research-state.jsonl: iteration row, `phase_main_loop` complete
+    event, `synthesis_complete` with stopReason maxIterationsReached.
+  - proof-a/research.md exists; 1/1 iteration files on disk -> every check in
+    findMaxIterationsPolicyViolation returns null -> lineage reported fulfilled.
+  - proof-a/deep-research-dashboard.md: hand-written header, no reducer stamp.
+  - proof-a/findings-registry.json: 8 hand keys (schemaVersion, topic, generatedAt,
+    iterationsCompleted, openQuestions, resolvedQuestions, keyFindings, metrics),
+    none of the reducer's machine-owned fields.
+  - proof-b/deep-research-dashboard.md: `description: Auto-generated reducer view
+    over the research packet.` (the reducer's own stamp).
+  - proof-b/findings-registry.json: reducer-owned shape (sessionId, lineageMode,
+    terminalStop, keyQuestions, rejectedPatternIndex, idea backlog, graph rollup,
+    corruption/inbox/strategy warnings).
+
+Conclusion: the skip is leaf non-compliance with an unenforced workflow step. The
+workflow cannot be fixed by the runner without duplicating the reducer call, so the
+gate belongs at the merge, where the operator placed it.
+
+------------------------------------------------------------------------------
+2. RED — new test before the implementation
+------------------------------------------------------------------------------
+
+$ cd .skilled/skills/system-deep-loop/runtime
+$ npx vitest run --no-coverage tests/unit/fanout-merge-reducer-provenance.vitest.ts
+EXIT=1
+
+  × refuses a lineage whose hand-written dashboard shows its registry never came from the reducer 480ms
+  × flags a registry with no dashboard as unverified provenance and still merges it 258ms
+  ✓ merges a reducer-produced lineage with no provenance warning
+
+  FAIL ... > refuses a lineage whose hand-written dashboard ...
+  AssertionError: expected '' to contain 'lineage_reducer_provenance_missing'
+  ❯ tests/unit/fanout-merge-reducer-provenance.vitest.ts:230:29
+
+  FAIL ... > flags a registry with no dashboard as unverified provenance ...
+  AssertionError: expected '' to contain 'lineage_reducer_provenance_unverified'
+  ❯ tests/unit/fanout-merge-reducer-provenance.vitest.ts:280:29
+
+  Test Files  1 failed (1)
+       Tests  2 failed | 1 passed (3)
+
+The empty stderr in both failures is the negative control: no provenance check
+existed, so both shapes merged silently.
+
+------------------------------------------------------------------------------
+3. GREEN — after the check was added
+------------------------------------------------------------------------------
+
+$ npx vitest run --no-coverage tests/unit/fanout-merge-reducer-provenance.vitest.ts
+EXIT=0
+  Test Files  1 passed (1)
+       Tests  3 passed (3)
+
+$ npx vitest run --no-coverage tests/unit/fanout-merge.vitest.ts \
+    tests/unit/fanout-merge-latest-record.vitest.ts \
+    tests/unit/fanout-merge-question-shape.vitest.ts \
+    tests/unit/fanout-merge-structured-missing.vitest.ts \
+    tests/unit/fanout-merge-reducer-provenance.vitest.ts
+EXIT=0
+  Test Files  5 passed (5)
+       Tests  74 passed (74)
+  (71 pre-existing merge tests + 3 new; the pre-existing 71 all pass.)
+
+The green run prints the new advisory for legacy fixtures that carry a registry but
+no dashboard, e.g.:
+{"type":"lineage_reducer_provenance_unverified","severity":"warn","lineage":"linb", ...}
+
+------------------------------------------------------------------------------
+4. END-TO-END ON THE SAVED PROOF EVIDENCE (strongest check)
+------------------------------------------------------------------------------
+
+$ TMP=$(mktemp -d /tmp/real-lineage-proof.XXXXXX)
+$ mkdir -p "$TMP/lineages"
+$ cp -R specs/.../006-research-lineage-reducer-path/research/lineages/proof-a "$TMP/lineages/"
+$ cp -R specs/.../006-research-lineage-reducer-path/research/lineages/proof-b "$TMP/lineages/"
+$ node .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs \
+    --loop-type research --artifact-dir "$TMP"
+EXIT=0
+
+stdout:
+{"status":"ok","loop_type":"research","merged_lineages":1,"skipped_no_registry":0,
+ "refused_reducer_provenance":["proof-a"],
+ "merged_registry_path":"/tmp/real-lineage-proof.vM6cjR/findings-registry.json",
+ "compatibility_registry_path":"/tmp/real-lineage-proof.vM6cjR/deep-research-findings-registry.json",
+ "attribution_path":"/tmp/real-lineage-proof.vM6cjR/fanout-attribution.md",
+ "key_findings":4}
+
+stderr:
+{"type":"lineage_reducer_provenance_missing","severity":"error","lineage":"proof-a",
+ "message":"lineage proof-a refused: deep-research-dashboard.md lacks the reducer's
+ \"description: Auto-generated reducer view over the research packet.\" stamp, so its
+ registry was hand-written rather than reduced"}
+
+merged registry:
+  key_findings: 4
+  mergedFrom: ["proof-b"]
+  ids: finding-1-1-implementation-summary-md-..., finding-1-2-three-other-packet-files-...,
+       finding-1-3-a-missing-value-produces-exit-code-1-..., finding-1-4-the-packet-docs-and-...
+  (no proof-a finding id present)
+
+------------------------------------------------------------------------------
+5. BASELINE AND REGRESSION — fanout-run.vitest.ts
+------------------------------------------------------------------------------
+
+Baseline captured BEFORE any edit:
+  first combined run:  Test Files  1 failed | 4 passed (5)   Tests  9 failed | 229 passed (238)
+  solo rerun:          Test Files  1 failed (1)             Tests  9 failed | 158 passed (167)   EXIT=1
+
+Post-change rerun:
+  Test Files  1 failed (1)   Tests  9 failed | 158 passed (167)   EXIT=1
+
+Same 9 failures, same names, delta 0:
+  - containment advisory suites (2 tests, exitCode null after the 20s spawn budget)
+  - containment mode opt-in (1 test)
+  - containment runs for failed lanes (2 tests)
+  - shared-checkout churn forces preserve (3 tests)
+  - persisted wait checkpoint resume (1 test)
+All nine end with `exitCode: null` (the spawned lane is killed at the test's own
+20s budget; each takes 21-30s in this sandbox), and none of them invokes
+fanout-merge.cjs. They are pre-existing environment failures, reproduced twice
+before the change and identically after.
+
+------------------------------------------------------------------------------
+6. STATIC CHECKS
+------------------------------------------------------------------------------
+
+$ node --check scripts/fanout-merge.cjs
+EXIT=0
+
+$ npm run typecheck          # runtime package script: tsc -p tsconfig.json
+EXIT=0
+  Note: runtime/tsconfig.json includes `lib/**/*.ts` only and excludes `tests/**`,
+  so this covers neither the .cjs script nor the new test.
+
+$ ../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false --strict \
+    --target es2022 --module es2022 --moduleResolution node --esModuleInterop \
+    --skipLibCheck --verbatimModuleSyntax --resolveJsonModule \
+    tests/unit/fanout-merge-reducer-provenance.vitest.ts
+EXIT=0, no output (vitest type declarations resolved; file was in the program per --listFiles)
+Control: the same command on tests/unit/fanout-merge.vitest.ts exits 2 on a
+pre-existing better-sqlite3 declaration error, proving the command does check types.
+
+$ .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh \
+    .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs \
+    .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge-reducer-provenance.vitest.ts
+EXIT=0 (no spec paths / artifact ids in code comments)
+
+------------------------------------------------------------------------------
+7. CHANGE SUMMARY AND AMENDMENT
+------------------------------------------------------------------------------
+
+Merge-time check in fanout-merge.cjs main(), for research lineages that carry an
+on-disk registry:
+  - dashboard present WITHOUT the reducer stamp -> lineage REFUSED (registry
+    excluded from the merge, `refused_reducer_provenance` in the payload, and a
+    `lineage_reducer_provenance_missing` error line naming the lineage and the
+    missing stamp);
+  - dashboard absent -> provenance unconfirmed, lineage MERGED with a
+    `lineage_reducer_provenance_unverified` warning and
+    `reducer_provenance_warnings` in the payload.
+
+Amendment to the "refuse" wording: refusal engages on positive evidence (a
+dashboard that proves the projections were hand-written, the proof-a shape).
+Refusing dashboard-less registries as well would fail the frozen success criterion
+SC-002 ("existing deep-research fan-out tests still pass"): the existing merge
+suite's fixtures are hand-built registries with no dashboards, and editing those
+tests is outside this lane's allowlist. They are therefore flagged, not refused.

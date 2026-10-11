@@ -22,9 +22,9 @@ contextType: "general"
 ## 1. METADATA
 
 **Subject:** `system-deep-loop/038-review-and-cli-lineage`, children 001 to 007
-**Status:** In Progress
+**Status:** Complete
 **Started:** 2026-10-02
-**Last updated:** 2026-10-09
+**Last updated:** 2026-10-11
 **Owner:** the spec-kit maintainers. Dates and hashes come from `git log` over each packet's former path, so the hashes are the ones in history after the commit message rewrite that repointed the old folder names. Commits made after the move under this parent were repository-wide maintenance and are not listed per packet.
 <!-- /ANCHOR:metadata -->
 
@@ -48,6 +48,9 @@ Each entry is a packet's first commit, or for an uncommitted packet the day its 
 **2026-10-09:** `006-research-lineage-reducer-path` started and finished, created directly under this parent. Not committed yet, so it has no hashes. Outcome: The deep-research reducer takes `--artifact-dir`, both research workflows pass the lineage folder to it during fan-out, and a live two-lineage run confirmed a lineage's registry, dashboard and strategy now land in its own folder.
 
 **2026-10-09:** `007-lineage-reducer-compliance` started, created directly under this parent. Not committed yet, so it has no hashes. Outcome: Not built yet, the packet is planned. It covers the lineage in that live run that skipped the reducer and wrote its projections by hand.
+
+**2026-10-11:** All seven children closed late, past the 2026-10-05 target. `003-cli-pi-opencode-go-route` closed on `003-cli-pi-opencode-go-route/scratch/evidence/lane-status-reconcile.txt`, where the reconcile rerun passed 167 of 167 tests at lower load. `007-lineage-reducer-compliance` closed on `007-lineage-reducer-compliance/scratch/evidence/lane-01-reducer-provenance.txt`, where the fan-out merge now refuses a research lineage whose dashboard lacks the reducer stamp. The other five children had already reported complete.
+
 <!-- /ANCHOR:timeline -->
 
 ---
@@ -55,7 +58,7 @@ Each entry is a packet's first commit, or for an uncommitted packet the day its 
 <!-- ANCHOR:milestones -->
 ## 3. MILESTONES
 
-**All children closed:** target 2026-10-05, missed. Status: In Progress. Evidence: 5 of 7 children report complete; `003-cli-pi-opencode-go-route` is still a draft and `007-lineage-reducer-compliance` is planned.
+**All children closed:** target 2026-10-05, missed. Status: Complete. Evidence: all 7 children report complete. `003-cli-pi-opencode-go-route` closed on `003-cli-pi-opencode-go-route/scratch/evidence/lane-status-reconcile.txt` and `007-lineage-reducer-compliance` closed on `007-lineage-reducer-compliance/scratch/evidence/lane-01-reducer-provenance.txt`.
 <!-- /ANCHOR:milestones -->
 
 ---

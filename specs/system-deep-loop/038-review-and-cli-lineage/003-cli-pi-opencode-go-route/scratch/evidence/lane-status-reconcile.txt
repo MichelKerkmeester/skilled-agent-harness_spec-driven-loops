@@ -1,0 +1,358 @@
+LANE STATUS RECONCILE EVIDENCE
+Packet: specs/system-deep-loop/038-review-and-cli-lineage/003-cli-pi-opencode-go-route
+Date: 2026-10-11T16:16:24Z
+Repo HEAD: 2d8e35161bf7c08074cff6a3342be2182a1399ca (same commit in this worktree and in the main checkout)
+Runtime dir: .skilled/skills/system-deep-loop/runtime
+All commands below ran from that runtime dir.
+
+================================================================================
+RUN 1: full command over the three runtime test files
+================================================================================
+$ npx vitest run tests/unit/executor-config.vitest.ts tests/unit/fanout-run.vitest.ts tests/unit/combo-matrix.vitest.ts
+EXIT=1
+
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-deep-loop/runtime
+
+FATAL WARN: lineage opencode runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+ ❯ tests/unit/fanout-run.vitest.ts (167 tests | 7 failed) 353866ms
+     × resolves a lineage with complete artifacts and a containment violation, carrying an advisory status 20960ms
+     × completes the lineage with a containment advisory for the stray file, which survives byte-for-byte 21358ms
+     × lets the --containment-mode flag override the fan-out config value, and rejects an unknown value 21508ms
+     × reports an out-of-scope write from a lane that exits non-zero and keeps it failed 21584ms
+     × reports an out-of-scope write from a lane that produced no artifacts and keeps it failed 21761ms
+     × a burst above the threshold emits shared_checkout_detected and latches preserve despite a requested restore 30190ms
+     × resumes a future checkpoint before dispatching lineages 2638ms
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/fanout-run.vitest.ts > fanout-run.cjs — a containment finding does not fail a lineage that produced its artifacts > resolves a lineage with complete artifacts and a containment violation, carrying an advisory status
+AssertionError: expected null to be +0 // Object.is equality
+
+- Expected:
+0
+
++ Received:
+null
+
+ ❯ tests/unit/fanout-run.vitest.ts:3388:29
+    3386|     // Fulfilled, not rejected: the finding is reported without discar…
+    3387|     // artifacts all exist.
+    3388|     expect(result.exitCode).toBe(0);
+       |                             ^
+    3389|     const payload = JSON.parse(result.stdout.split('\n').filter(Boolea…
+    3390|       results?: Array<{
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  tests/unit/fanout-run.vitest.ts > fanout-run.cjs — an out-of-packet untracked write settles as an advisory, never a lane failure > completes the lineage with a containment advisory for the stray file, which survives byte-for-byte
+AssertionError: expected null to be +0 // Object.is equality
+
+- Expected:
+0
+
++ Received:
+null
+
+ ❯ tests/unit/fanout-run.vitest.ts:3472:29
+    3470|     // Completed, not rejected: preservation already guarantees the by…
+    3471|     // out-of-packet untracked write is a finding to report rather tha…
+    3472|     expect(result.exitCode).toBe(0);
+       |                             ^
+    3473|     const payload = JSON.parse(result.stdout.split('\n').filter(Boolea…
+    3474|       results?: Array<{ status?: string }>;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  tests/unit/fanout-run.vitest.ts > fanout-run.cjs — containment mode is an explicit opt-in > lets the --containment-mode flag override the fan-out config value, and rejects an unknown value
+AssertionError: expected null to be +0 // Object.is equality
+
+- Expected:
+0
+
++ Received:
+null
+
+ ❯ runCase tests/unit/fanout-run.vitest.ts:3561:31
+    3559|       );
+    3560|
+    3561|       expect(result.exitCode).toBe(0);
+       |                               ^
+    3562|       return readFileSync(trackedPath, 'utf8');
+    3563|     };
+ ❯ tests/unit/fanout-run.vitest.ts:3565:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  tests/unit/fanout-run.vitest.ts > fanout-run.cjs — containment runs for failed lanes > reports an out-of-scope write from a lane that exits non-zero and keeps it failed
+AssertionError: expected null to be 3 // Object.is equality
+
+- Expected:
+3
+
++ Received:
+null
+
+ ❯ tests/unit/fanout-run.vitest.ts:3681:26
+    3679|
+    3680|     // The lane settles failed and the finding never rewrites that ver…
+    3681|     expect(run.exitCode).toBe(3);
+       |                          ^
+    3682|     expect(run.payload.summary).toMatchObject({ failed: 1, succeeded: …
+    3683|     expect(run.payload.results?.[0]?.status).toBe('rejected');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+ FAIL  tests/unit/fanout-run.vitest.ts > fanout-run.cjs — containment runs for failed lanes > reports an out-of-scope write from a lane that produced no artifacts and keeps it failed
+AssertionError: expected null to be 3 // Object.is equality
+
+- Expected:
+3
+
++ Received:
+null
+
+ ❯ tests/unit/fanout-run.vitest.ts:3703:26
+    3701|
+    3702|     // Exit 0 is not a pass when the artifact gate finds nothing: the …
+    3703|     expect(run.exitCode).toBe(3);
+       |                          ^
+    3704|     expect(run.payload.summary).toMatchObject({ failed: 1, succeeded: …
+    3705|     expect(run.payload.results?.[0]?.status).toBe('rejected');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/8]⎯
+
+ FAIL  tests/unit/fanout-run.vitest.ts > fanout-run.cjs — shared-checkout churn forces preserve > a burst above the threshold emits shared_checkout_detected and latches preserve despite a requested restore
+Error: Test timed out in 30000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/unit/fanout-run.vitest.ts:3829:3
+    3827|   };
+    3828|
+    3829|   it('a burst above the threshold emits shared_checkout_detected and l…
+       |   ^
+    3830|     const run = await runChurnCase('churn-above', 4);
+    3831|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/8]⎯
+
+ FAIL  tests/unit/fanout-run.vitest.ts > fanout-run.cjs — shared-checkout churn forces preserve > a burst above the threshold emits shared_checkout_detected and latches preserve despite a requested restore
+Error: ENOTEMPTY, Directory not empty: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/dlr-hermetic-B289Io '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/dlr-hermetic-B289Io'
+ ❯ Object.cleanup tests/helpers/spawn-cjs.ts:152:7
+    150|     },
+    151|     cleanup: () => {
+    152|       rmSync(tmpRoot, { recursive: true, force: true });
+       |       ^
+    153|     },
+    154|   };
+ ❯ tests/unit/fanout-run.vitest.ts:442:27
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/8]⎯
+
+ FAIL  tests/unit/fanout-run.vitest.ts > fanout-run.cjs — persisted wait checkpoint > resumes a future checkpoint before dispatching lineages
+AssertionError: expected -1 to be greater than or equal to 0
+ ❯ tests/unit/fanout-run.vitest.ts:4129:25
+    4127|     const resumeIndex = ledgerEvents.findIndex((event) => event.event …
+    4128|     const startedIndex = ledgerEvents.findIndex((event) => event.event…
+    4129|     expect(resumeIndex).toBeGreaterThanOrEqual(0);
+       |                         ^
+    4130|     expect(startedIndex).toBeGreaterThan(resumeIndex);
+    4131|     // The lineage must not launch before the checkpoint deadline. Pro…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/8]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  7 failed | 266 passed (273)
+   Start at  18:05:49
+   Duration  362.02s (transform 173ms, setup 0ms, import 641ms, tests 360.55s, environment 0ms)
+
+
+================================================================================
+RUN 2: the failing fanout-run tests rerun in isolation
+================================================================================
+$ npx vitest run tests/unit/fanout-run.vitest.ts -t "resolves a lineage with complete artifacts|completes the lineage with a containment advisory|lets the --containment-mode flag override|reports an out-of-scope write|a burst above the threshold|resumes a future checkpoint"
+EXIT=1
+
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-deep-loop/runtime
+
+ ❯ tests/unit/fanout-run.vitest.ts (167 tests | 7 failed | 160 skipped) 139733ms
+     × resolves a lineage with complete artifacts and a containment violation, carrying an advisory status 21477ms
+     × completes the lineage with a containment advisory for the stray file, which survives byte-for-byte 20976ms
+     × lets the --containment-mode flag override the fan-out config value, and rejects an unknown value 21413ms
+     × reports an out-of-scope write from a lane that exits non-zero and keeps it failed 21002ms
+     × reports an out-of-scope write from a lane that produced no artifacts and keeps it failed 22306ms
+     × a burst above the threshold emits shared_checkout_detected and latches preserve despite a requested restore 30168ms
+     × resumes a future checkpoint before dispatching lineages 2390ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/fanout-run.vitest.ts > fanout-run.cjs — a containment finding does not fail a lineage that produced its artifacts > resolves a lineage with complete artifacts and a containment violation, carrying an advisory status
+AssertionError: expected null to be +0 // Object.is equality
+
+- Expected:
+0
+
++ Received:
+null
+
+ ❯ tests/unit/fanout-run.vitest.ts:3388:29
+    3386|     // Fulfilled, not rejected: the finding is reported without discar…
+    3387|     // artifacts all exist.
+    3388|     expect(result.exitCode).toBe(0);
+       |                             ^
+    3389|     const payload = JSON.parse(result.stdout.split('\n').filter(Boolea…
+    3390|       results?: Array<{
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  tests/unit/fanout-run.vitest.ts > fanout-run.cjs — an out-of-packet untracked write settles as an advisory, never a lane failure > completes the lineage with a containment advisory for the stray file, which survives byte-for-byte
+AssertionError: expected null to be +0 // Object.is equality
+
+- Expected:
+0
+
++ Received:
+null
+
+ ❯ tests/unit/fanout-run.vitest.ts:3472:29
+    3470|     // Completed, not rejected: preservation already guarantees the by…
+    3471|     // out-of-packet untracked write is a finding to report rather tha…
+    3472|     expect(result.exitCode).toBe(0);
+       |                             ^
+    3473|     const payload = JSON.parse(result.stdout.split('\n').filter(Boolea…
+    3474|       results?: Array<{ status?: string }>;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  tests/unit/fanout-run.vitest.ts > fanout-run.cjs — containment mode is an explicit opt-in > lets the --containment-mode flag override the fan-out config value, and rejects an unknown value
+AssertionError: expected null to be +0 // Object.is equality
+
+- Expected:
+0
+
++ Received:
+null
+
+ ❯ runCase tests/unit/fanout-run.vitest.ts:3561:31
+    3559|       );
+    3560|
+    3561|       expect(result.exitCode).toBe(0);
+       |                               ^
+    3562|       return readFileSync(trackedPath, 'utf8');
+    3563|     };
+ ❯ tests/unit/fanout-run.vitest.ts:3565:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  tests/unit/fanout-run.vitest.ts > fanout-run.cjs — containment runs for failed lanes > reports an out-of-scope write from a lane that exits non-zero and keeps it failed
+AssertionError: expected null to be 3 // Object.is equality
+
+- Expected:
+3
+
++ Received:
+null
+
+ ❯ tests/unit/fanout-run.vitest.ts:3681:26
+    3679|
+    3680|     // The lane settles failed and the finding never rewrites that ver…
+    3681|     expect(run.exitCode).toBe(3);
+       |                          ^
+    3682|     expect(run.payload.summary).toMatchObject({ failed: 1, succeeded: …
+    3683|     expect(run.payload.results?.[0]?.status).toBe('rejected');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  tests/unit/fanout-run.vitest.ts > fanout-run.cjs — containment runs for failed lanes > reports an out-of-scope write from a lane that produced no artifacts and keeps it failed
+AssertionError: expected null to be 3 // Object.is equality
+
+- Expected:
+3
+
++ Received:
+null
+
+ ❯ tests/unit/fanout-run.vitest.ts:3703:26
+    3701|
+    3702|     // Exit 0 is not a pass when the artifact gate finds nothing: the …
+    3703|     expect(run.exitCode).toBe(3);
+       |                          ^
+    3704|     expect(run.payload.summary).toMatchObject({ failed: 1, succeeded: …
+    3705|     expect(run.payload.results?.[0]?.status).toBe('rejected');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  tests/unit/fanout-run.vitest.ts > fanout-run.cjs — shared-checkout churn forces preserve > a burst above the threshold emits shared_checkout_detected and latches preserve despite a requested restore
+Error: Test timed out in 30000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/unit/fanout-run.vitest.ts:3829:3
+    3827|   };
+    3828|
+    3829|   it('a burst above the threshold emits shared_checkout_detected and l…
+       |   ^
+    3830|     const run = await runChurnCase('churn-above', 4);
+    3831|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+ FAIL  tests/unit/fanout-run.vitest.ts > fanout-run.cjs — persisted wait checkpoint > resumes a future checkpoint before dispatching lineages
+AssertionError: expected -1 to be greater than or equal to 0
+ ❯ tests/unit/fanout-run.vitest.ts:4129:25
+    4127|     const resumeIndex = ledgerEvents.findIndex((event) => event.event …
+    4128|     const startedIndex = ledgerEvents.findIndex((event) => event.event…
+    4129|     expect(resumeIndex).toBeGreaterThanOrEqual(0);
+       |                         ^
+    4130|     expect(startedIndex).toBeGreaterThan(resumeIndex);
+    4131|     // The lineage must not launch before the checkpoint deadline. Pro…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/7]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  7 failed | 160 skipped (167)
+   Start at  18:12:34
+   Duration  140.51s (transform 182ms, setup 0ms, import 472ms, tests 139.73s, environment 0ms)
+
+
+================================================================================
+RUN 3: the packet's own selector coverage, focused
+================================================================================
+$ npx vitest run tests/unit/fanout-run.vitest.ts -t "builds the headless pi command|dispatches the provider-qualified DeepSeek routes|defaults an omitted model|routes the opencode-go DeepSeek literal|pins cli-pi deepseek"
+EXIT=0
+
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-deep-loop/runtime
+
+
+ Test Files  1 passed (1)
+      Tests  8 passed | 159 skipped (167)
+   Start at  18:16:00
+   Duration  1.55s (transform 147ms, setup 0ms, import 393ms, tests 859ms, environment 0ms)
+
+
+================================================================================
+READING
+================================================================================
+- RUN 3 exit 0: 8 passed, 159 skipped. This includes the opencode-go DeepSeek selector
+  test at fanout-run.vitest.ts:2010 and the PI roster tests. executor-config.vitest.ts
+  and combo-matrix.vitest.ts passed in RUN 1 (2 of 3 files passed).
+- RUN 1 and RUN 2 exit 1: 7 tests fail reproducibly in fanout-run.vitest.ts, all
+  outside this packet's coverage. The failing groups are containment advisory (5
+  tests), shared-checkout churn (1), and persisted wait checkpoint resume (1). Six
+  fail on a 20s or 30s child spawn timeout with exitCode null. The checkpoint test
+  exits 0 but never logs resume_waiting.
+- None of the 7 failing test names intersects the packet's selector or roster tests.
+- spec.md Status and the task boxes were left untouched: the lane instruction says to
+  change nothing and report when the test run is not green.
+
+RERUN AT LOWER LOAD (orchestrator, 2026-10-11 19:05)
+The 7 failures above were spawn timeouts at the tests' 20s budget while four other lanes were running clones, dry runs and test suites (load average near 28). Rerun with those lanes finished, same worktree, which by then also held the fan-out merge provenance check:
+  cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/fanout-run.vitest.ts
+  Test Files 1 passed (1), Tests 167 passed (167), duration 191.66s, exit 0. Load average at start 19.20.
+Conclusion: no defect. The failures were machine load.

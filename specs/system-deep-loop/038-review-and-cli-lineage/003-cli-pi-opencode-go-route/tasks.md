@@ -49,7 +49,7 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T005 Rerun the three test files: 261 tests, 0 failed, exit 0
+- [x] T005 Rerun the three test files: 266 of 273 passed, 7 failed as child spawn timeouts under machine load with none in this packet's coverage, and the `fanout-run.vitest.ts` rerun at lower load passed 167 of 167, exit 0 (scratch/evidence/lane-status-reconcile.txt)
 - [x] T006 Revert the selector line and watch the new test fail with `opencode-go/opencode-go/deepseek-v4.1-flash`, then restore it
 - [x] T007 Live `pi` canary on `opencode-go/deepseek-v4.1-flash` at `--thinking max`: `CANARY-OK`, exit 0, no error
 - [x] T008 Update the cli-pi route row and the PI-017 roster count and line range

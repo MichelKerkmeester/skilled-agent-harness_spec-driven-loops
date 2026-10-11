@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-deep-loop/038-review-and-cli-lineage/003-cli-pi-opencode-go-route",
   "description": "Let the deep-loop cli-pi executor reach DeepSeek V4.1 Flash through opencode-go",
   "keywords": [
@@ -11,14 +12,15 @@
     "flash",
     "opencode-go"
   ],
-  "lastUpdated": "2026-10-02T18:36:37.840Z",
+  "lastUpdated": "2026-10-11T19:55:30.435Z",
   "specId": "003",
   "folderSlug": "cli-pi-opencode-go-route",
   "parentChain": [
     "system-deep-loop",
     "038-review-and-cli-lineage"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "11-10-26_20-55__the-opencode-go-route-for-cli-pi-closed-on-a.md"
+  ]
 }

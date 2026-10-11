@@ -1,0 +1,53 @@
+Lane: review fixes — fanout-merge refused-lineage attribution and linked dashboard
+Files changed:
+  .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs
+  .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge-reducer-provenance.vitest.ts
+
+Fixes
+  1. buildAttributionMd(lineageData, loopType, { refusedLineages }) marks a refused
+     lineage REFUSED in the verdict cell instead of n/a, so fanout-attribution.md
+     cannot show a refused lineage as merged. No merged totals exist in the table.
+  2. inspectResearchReducerProvenance no longer lets a dashboard resolution error
+     (symbolic link, non-file, outside root) escape main. It returns
+     { state: 'refused', reason }; main refuses only that lineage, reports the reason
+     in the lineage_reducer_provenance_missing stderr event and the label in
+     refused_reducer_provenance, and merges the rest. Registry symlink handling is
+     unchanged (still aborts).
+
+BASELINE (before edits, same commands)
+  $ npx vitest run --no-coverage tests/unit/fanout-merge-reducer-provenance.vitest.ts
+    Test Files 1 passed (1) | Tests 3 passed (3) | exit 0
+  $ npx vitest run --no-coverage <5 fanout-merge files + tests/unit/result-envelopes.vitest.ts>
+    Test Files 6 passed (6) | Tests 104 passed (104) | exit 0
+
+FINAL STATE (cwd .skilled/skills/system-deep-loop/runtime)
+  $ npx vitest run --no-coverage tests/unit/fanout-merge-reducer-provenance.vitest.ts
+    Test Files 1 passed (1) | Tests 5 passed (5) | exit 0
+
+  Per file, run individually (repo test dir grepped for fanout-merge):
+    fanout-merge-latest-record.vitest.ts       exit 0 | Tests 2 passed (2)
+    fanout-merge-question-shape.vitest.ts      exit 0 | Tests 1 passed (1)
+    fanout-merge-reducer-provenance.vitest.ts  exit 0 | Tests 5 passed (5)
+    fanout-merge-structured-missing.vitest.ts  exit 0 | Tests 5 passed (5)
+    fanout-merge.vitest.ts                     exit 0 | Tests 63 passed (63)
+    result-envelopes.vitest.ts                 exit 0 | Tests 30 passed (30)
+  Aggregate: 6 files | 106 tests passed | exit 0   (baseline 104 + 2 new tests)
+
+  $ node --check scripts/fanout-merge.cjs            exit 0
+  $ git diff --check -- scripts/fanout-merge.cjs     exit 0
+
+NEGATIVE CONTROL
+  Isolated copy of the runtime under /tmp with the pre-fix script reconstructed
+  (copy removed after the run; repo untouched). Same test file:
+    Test Files 1 failed (1) | Tests 2 failed | 3 passed (5) | exit 1
+  - attribution test failed: old row was "| hand-written | unknown | unknown | 1 | n/a | 0 | n/a |"
+    (no REFUSED mark)
+  - linked dashboard test failed: merge exit 3 (INPUT_VALIDATION) instead of 0 — one
+    symlinked dashboard aborted the whole merge
+  - the 3 pre-existing tests passed on the reconstructed script (reconstruction fidelity)
+
+New tests
+  - 'marks a refused lineage as refused in fanout-attribution.md'
+  - 'refuses only the lineage whose dashboard is a symbolic link and still merges the others'
+
+Not committed.

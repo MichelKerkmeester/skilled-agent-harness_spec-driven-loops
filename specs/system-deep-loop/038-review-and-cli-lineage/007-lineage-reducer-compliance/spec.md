@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-09 |
 | **Branch** | `scaffold/007-lineage-reducer-compliance` |
 | **Parent Spec** | ../spec.md |
@@ -93,7 +93,7 @@ A lineage whose projections did not come from the reducer is detected before the
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | A lineage with hand-written projections is flagged | A fixture shaped like `proof-a` fails or is flagged before merge; a `proof-b`-shaped fixture passes |
+| REQ-001 | A lineage with hand-written projections is flagged | A fixture shaped like `proof-a` fails or is flagged before merge. A `proof-b`-shaped fixture passes |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -127,7 +127,7 @@ A lineage whose projections did not come from the reducer is detected before the
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Detection at merge, or the runner running the reducer itself?
+- Answered 2026-10-11: detection at merge time. The runner cannot enforce the step without duplicating the workflow's own reducer call, and REQ-001 allows a refusal or a flag.
 <!-- /ANCHOR:questions -->
 
 ---
