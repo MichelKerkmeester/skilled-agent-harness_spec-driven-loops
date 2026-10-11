@@ -50,10 +50,8 @@ async function mapPool(items, limit, fn) {
 const VERSION_RE = /^\d+\.\d+\.\d+\.\d+$/;
 const W_CAP = 99;
 const EXCLUDED_DIRS = new Set(['changelog', 'scratch', 'node_modules', '.git', 'dist']);
-// In-scope doc-class globs under a skill directory (markdown only).
-// Both the underscore and hyphen root forms are in scope while the naming
-// migration is in flight, so a file under either form of the catalog/playbook
-// root stays validated. Kept in step with post-edit-router.cjs's mirror set.
+// Catalog and playbook root names the explicit-target guard recognizes, so an
+// unsupported root such as feature_catalog_v2 is refused by name.
 const SCOPE_SUBTREES = ['references', 'assets', 'feature-catalog', 'manual-testing-playbook'];
 
 // ─── git helpers ───────────────────────────────────────────────
@@ -196,33 +194,14 @@ function resolveAnchor(skillDir) {
 // ─── file classification + scope discovery ─────────────────────
 
 function classify(absFile, skillsRoot) {
-  const base = path.basename(absFile);
-  if (base === 'SKILL.md') return 'skill-md';
-  if (base === 'README.md') return 'readme';
-  const rel = path.relative(skillsRoot, absFile).split(path.sep);
-  // rel = [skill, ...subtree...]; find first in-scope subtree segment
-  for (const seg of rel) {
-    if (seg === 'references') return 'reference';
-    if (seg === 'assets') return 'asset';
-    if (seg === 'feature-catalog') return 'feature-catalog';
-    if (seg === 'manual-testing-playbook') return 'playbook';
-  }
-  return null;
+  // Only SKILL.md carries a version: it is the skill edition, and child docs carry none.
+  return path.basename(absFile) === 'SKILL.md' ? 'skill-md' : null;
 }
 
-/** An in-scope markdown file: SKILL.md anywhere; any file under a scope subtree;
- *  README.md only when adjacent to a SKILL.md (skill or mode-packet root). */
+/** An in-scope markdown file is a SKILL.md, at a skill root or a mode-packet root.
+ *  Child docs (references, assets, catalogs, playbooks, READMEs) carry no version. */
 function inScope(absFile, skillsRoot) {
-  const base = path.basename(absFile);
-  if (base === 'SKILL.md') return true;
-  const rel = path.relative(skillsRoot, absFile).split(path.sep);
-  for (const seg of rel) {
-    if (SCOPE_SUBTREES.includes(seg)) return true;
-  }
-  if (base === 'README.md') {
-    return fs.existsSync(path.join(path.dirname(absFile), 'SKILL.md'));
-  }
-  return false;
+  return path.basename(absFile) === 'SKILL.md';
 }
 
 function assertExplicitTargets(targets, skillsRoot) {

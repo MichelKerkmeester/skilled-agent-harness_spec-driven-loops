@@ -272,28 +272,34 @@ def test_resource_frontmatter_flags_missing_five_fields(tmp_path):
     assert "contextType" in joined
 
 
-def test_resource_frontmatter_flags_missing_version(tmp_path):
+def test_child_doc_without_version_passes_strict(tmp_path):
+    # Only SKILL.md carries the version (the skill edition); a child doc carries none.
     module = _load_module()
-    skill_path = _write_valid_skill(tmp_path / "demo-skill")
-    assets = skill_path / "assets"
-    assets.mkdir()
+    skill_path = _write_valid_skill(tmp_path / "demo-skill", with_recommended_sections=True)
     no_version = _VALID_RESOURCE_FM.replace("version: 1.0.0.0\n", "")
-    (assets / "no_version.md").write_text(no_version, encoding="utf-8")
+    for subtree in ("assets", "references", "feature-catalog", "manual-testing-playbook"):
+        (skill_path / subtree).mkdir()
+        (skill_path / subtree / "no-version.md").write_text(no_version, encoding="utf-8")
 
     _valid, _message, warnings = module.validate_resource_frontmatter(skill_path)
-    assert any("no_version.md" in w and "version" in w for w in warnings)
+    assert not any("version" in w for w in warnings), warnings
+    valid, message, strict_warnings = module.validate_skill(skill_path, strict=True)
+    assert valid is True, message
+    assert not any("version" in w for w in strict_warnings), strict_warnings
 
 
-def test_resource_frontmatter_flags_non_four_part_version(tmp_path):
+def test_changelog_entry_flags_non_four_part_version(tmp_path):
     module = _load_module()
     skill_path = _write_valid_skill(tmp_path / "demo-skill")
-    refs = skill_path / "references"
-    refs.mkdir()
-    three_part = _VALID_RESOURCE_FM.replace("version: 1.0.0.0", "version: 1.0.0")
-    (refs / "three_part.md").write_text(three_part, encoding="utf-8")
+    changelog = skill_path / "changelog"
+    changelog.mkdir()
+    (changelog / "v1.0.0.0.md").write_text(
+        "---\ntitle: Changelog entry\ndescription: A changelog entry.\nversion: 1.0.0\n---\n\n# v1.0.0.0\n",
+        encoding="utf-8",
+    )
 
     _valid, _message, warnings = module.validate_resource_frontmatter(skill_path)
-    assert any("three_part.md" in w and "4-part" in w for w in warnings)
+    assert any("v1.0.0.0.md" in w and "4-part" in w for w in warnings)
 
 
 def test_resource_frontmatter_version_checks_changelog(tmp_path):
@@ -404,7 +410,7 @@ def test_new_checks_are_warnings_not_hard_errors(tmp_path):
     skill_path = _write_valid_skill(tmp_path / "demo-skill", with_router_markers=False)
     refs = skill_path / "references" / "domain"
     refs.mkdir(parents=True)
-    # Invalid case + missing version + missing 3 of 5 fields, all at once.
+    # Invalid case + missing 3 of 5 fields, all at once.
     (refs / "bad-Name.md").write_text(
         "---\ntitle: Bad\ndescription: Violates name, version, and 5-field at once.\n---\n\n# Bad\n",
         encoding="utf-8",
@@ -414,7 +420,6 @@ def test_new_checks_are_warnings_not_hard_errors(tmp_path):
     assert valid is True, f"new checks must be warnings, got hard fail: {message}"
     joined = " ".join(warnings)
     assert "kebab-case" in joined
-    assert "version" in joined
     assert "trigger_phrases" in joined
     assert "smart-router marker" in joined
 

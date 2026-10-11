@@ -149,7 +149,7 @@ function run() {
   const positive = expectClean('positive');
   const sectionOrder = expectViolation('section-order', (root) => writeScenario(root, readScenario(root).replace('## 2. SCENARIO CONTRACT', '## 9. WRONG ORDER').replace('## 3. TEST EXECUTION', '## 2. SCENARIO CONTRACT').replace('## 9. WRONG ORDER', '## 3. TEST EXECUTION')), 'SECTION_ORDER_MISMATCH');
   expectViolation('section-five', (root) => writeScenario(root, readScenario(root).replace(/\n## 5\. SOURCE METADATA[\s\S]*$/, '\n')), 'SECTION_5_MISSING');
-  expectViolation('frontmatter-version', (root) => writeScenario(root, readScenario(root).replace('version: 1.0.0.0', 'version: 1.0.0')), 'FRONTMATTER_VERSION_INVALID');
+  expectClean('frontmatter-version-absent', (root) => writeScenario(root, readScenario(root).replace(/^version: .*\n/m, '')));
   expectViolation('frontmatter-description', (root) => writeScenario(root, readScenario(root).replace('description: "A clean fixture for the operator-scenario validator."\n', '')), 'FRONTMATTER_DESCRIPTION_MISSING');
 
   const requiredMutations = [

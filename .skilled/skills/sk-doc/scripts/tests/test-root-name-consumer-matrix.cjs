@@ -110,8 +110,8 @@ function run() {
     assert.doesNotThrow(() => topology.assertPlaybookBoundary('/tmp/manual-testing-playbook'));
     assert.doesNotThrow(() => topology.assertPlaybookBoundary('/tmp/manual-testing-playbook'));
   });
-  check('frontmatter engine classifies the canonical root', () => {
-    assert.equal(frontmatterClass('feature-catalog'), 'feature-catalog');
+  check('frontmatter engine keeps a canonical-root leaf out of the versioned scope', () => {
+    assert.throws(() => frontmatterClass('feature-catalog'), /outside the versioned document scope/);
   });
   check('frontmatter engine refuses an unsupported explicit root', () => {
     const fixture = tempDir('root-matrix-frontmatter-bad-');

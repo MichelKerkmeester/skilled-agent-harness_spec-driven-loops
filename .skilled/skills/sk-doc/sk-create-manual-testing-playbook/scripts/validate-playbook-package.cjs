@@ -670,7 +670,6 @@ function validateScenario(absPath, playbookRoot, repoRoot) {
   else {
     if (!frontmatter.fields.title) errors.push(issue('FRONTMATTER_TITLE_MISSING', relPath, 'frontmatter title is missing'));
     if (!frontmatter.fields.description) errors.push(issue('FRONTMATTER_DESCRIPTION_MISSING', relPath, 'frontmatter description is missing'));
-    if (!/^\d+\.\d+\.\d+\.\d+$/.test(frontmatter.fields.version || '')) errors.push(issue('FRONTMATTER_VERSION_INVALID', relPath, 'frontmatter version must have four numeric parts'));
   }
   errors.push(...sectionChecks(text, relPath));
   errors.push(...requiredContentChecks(text, relPath, frontmatter, featureId));
