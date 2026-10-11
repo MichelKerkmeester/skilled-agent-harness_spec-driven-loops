@@ -1,6 +1,6 @@
 ---
 title: "Five-dimension rubric"
-description: "Scores candidates across structural integrity, rule coherence, integration consistency, output quality, and system fitness."
+description: "Defines the weighted evaluation model used to judge prompt-surface quality."
 trigger_phrases:
   - "five-dimension rubric"
   - "score-candidate.cjs"
@@ -11,8 +11,6 @@ version: 1.17.0.13
 ---
 
 # Five-dimension rubric
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 
@@ -45,8 +43,8 @@ The dynamic scorer is lenient in one important way: missing derived checks defau
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/system-deep-loop/deep-improvement/references/shared/quick-reference.md` | Operator reference | Restates the shipped dimension weights for the live release. |
-| `.skilled/skills/system-deep-loop/deep-improvement/README.md` | Package reference | Mirrors the current recommendation threshold and weighted-score formula for operators. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/shared/quick-reference.md` | Reference | Restates the shipped dimension weights for the live release. |
+| `.skilled/skills/system-deep-loop/deep-improvement/README.md` | Reference | Mirrors the current recommendation threshold and weighted-score formula for operators. |
 
 ---
 

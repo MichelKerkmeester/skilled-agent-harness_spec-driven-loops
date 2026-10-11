@@ -132,12 +132,12 @@ Each theme maps to one domain overview file plus one per-tool leaf per documente
 
 | Section | Theme | Tools listed | Domain overview | Per-tool leaves |
 |---|---|---|---|---|
-| 2 | Session | 2 | `session/session.md` | `session/info.md`, `session/whoami.md` |
-| 3 | Components | 3 | `components/components.md` | `components/search-components.md`, `components/inspect-component.md`, `components/list-components.md` |
-| 4 | Projects | 3 | `projects/projects.md` | `projects/list-projects.md`, `projects/active-project.md`, `projects/share-link.md` |
-| 5 | Teams | 2 | `teams/teams.md` | `teams/list-teams.md`, `teams/list-members.md` |
-| 6 | Themes | 2 | `themes/themes.md` | `themes/list-themes.md`, `themes/get-theme.md` |
-| 7 | Local & canvas | 2 | `local-canvas/local-canvas.md` | `local-canvas/list-installed.md`, `local-canvas/selection.md` |
+| 2 | Session | 2 | [`session/session.md`](session/session.md) | [`session/info.md`](session/info.md), [`session/whoami.md`](session/whoami.md) |
+| 3 | Components | 3 | [`components/components.md`](components/components.md) | [`components/search-components.md`](components/search-components.md), [`components/inspect-component.md`](components/inspect-component.md), [`components/list-components.md`](components/list-components.md) |
+| 4 | Projects | 3 | [`projects/projects.md`](projects/projects.md) | [`projects/list-projects.md`](projects/list-projects.md), [`projects/active-project.md`](projects/active-project.md), [`projects/share-link.md`](projects/share-link.md) |
+| 5 | Teams | 2 | [`teams/teams.md`](teams/teams.md) | [`teams/list-teams.md`](teams/list-teams.md), [`teams/list-members.md`](teams/list-members.md) |
+| 6 | Themes | 2 | [`themes/themes.md`](themes/themes.md) | [`themes/list-themes.md`](themes/list-themes.md), [`themes/get-theme.md`](themes/get-theme.md) |
+| 7 | Local & canvas | 2 | [`local-canvas/local-canvas.md`](local-canvas/local-canvas.md) | [`local-canvas/list-installed.md`](local-canvas/list-installed.md), [`local-canvas/selection.md`](local-canvas/selection.md) |
 | **Total** | **6 themes** | **14 tools** | **6 domain files** | **14 per-tool leaves** |
 
 > The fourteen tools are the complete registered surface. The unregistered write surface (`add`, `code`, `image`, `create-project`, `clone`) is deliberately out of reach and documented only as a boundary, never as a capability. The per-tool leaf count MUST equal the 14 registered tools; keep them in sync as the registered surface evolves, and treat any live drift from these 14 tools as a fail-closed escalation.

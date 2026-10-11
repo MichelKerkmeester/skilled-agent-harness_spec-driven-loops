@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # OCR text extraction (sk_vision_ocr)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Exact text extraction from images, with modes for all text, code screenshots, and error messages.

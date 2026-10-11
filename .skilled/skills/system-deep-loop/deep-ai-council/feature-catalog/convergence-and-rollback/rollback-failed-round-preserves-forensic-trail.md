@@ -12,8 +12,6 @@ version: 1.7.0.9
 
 # Rollback failed round preserves forensic trail
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify failed rounds move under failed/ and state records rollback events.
@@ -54,7 +52,6 @@ The user-visible contract is concrete: Verify failed rounds move under failed/ a
 
 ## 4. SOURCE METADATA
 - Group: Convergence And Rollback
-- Feature ID: DAC-010
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md`
 - Playbook scenario: `manual-testing-playbook/convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md`

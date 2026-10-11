@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Screens (refero_search_screens / refero_get_screen / refero_get_similar_screens / refero_get_screen_image)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Carries concrete UI patterns from real shipped apps: page structure, components, states, copy, and product-specific patterns, for both `web` and `ios` platforms. This is also the layer for app/company research and element research, through query terms plus the `site` and `ui_elements` result facets; no dedicated app or element tools exist.

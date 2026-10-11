@@ -19,8 +19,6 @@ expected_leaf_resources: []
 Prompt: Manual validation that supersession metadata in lib/lifecycle/supersession.ts applies asymmetric routing with redirect_from and redirect_to and that superseded skills forward correctly.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

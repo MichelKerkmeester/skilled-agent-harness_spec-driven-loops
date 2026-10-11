@@ -11,8 +11,6 @@ version: 1.19.0.0
 
 # Reviewer verdict fallback (score-verdict-fallback.cjs)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Measures offline how well a Jev grader resolves the reviewer outputs the deterministic verdict pattern misses, against operator labels.

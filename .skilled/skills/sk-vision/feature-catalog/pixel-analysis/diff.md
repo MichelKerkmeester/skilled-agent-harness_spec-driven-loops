@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Image diffing (sk_vision_diff)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Pixel-level comparison of two images with changed-region boxes and an optional model description of the changes.

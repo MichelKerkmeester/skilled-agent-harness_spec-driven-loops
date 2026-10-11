@@ -1,6 +1,6 @@
 ---
 title: "Iteration dispatch"
-description: "Dispatches one fresh-context deep-research iteration and syncs reducer-owned packet state afterward."
+description: "Runs one fresh-context research cycle through the LEAF agent and reducer sync path."
 trigger_phrases:
   - "iteration dispatch"
   - "dispatch research iteration"
@@ -11,8 +11,6 @@ version: 1.14.0.7
 ---
 
 # Iteration dispatch
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

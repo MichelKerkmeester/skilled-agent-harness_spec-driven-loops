@@ -19,8 +19,6 @@ expected_leaf_resources: []
 Prompt: Manual validation that lib/lifecycle/rollback.ts can revert lifecycle metadata changes atomically without leaving partial state.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

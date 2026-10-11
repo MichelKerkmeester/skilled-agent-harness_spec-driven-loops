@@ -26,8 +26,8 @@ The skill runs two lanes through one agent. Each category and feature below is t
 
 | Category | Coverage | Lane | Primary Runtime Surface |
 |---|---:|---|---|
-| Evaluation loop | 7 features | Lane A | `.skilled/commands/deep/agent-improvement.md`, deep-improvement YAML workflows, `scripts/*.cjs` |
-| Integration scanning | 3 features | Lane A | `scan-integration.cjs`, `/deep:agent-improvement`, `.skilled/agents/deep-improvement.md` |
+| Evaluation loop | 7 features | Lane A | [`.skilled/commands/deep/agent-improvement.md`](../../../../commands/deep/agent-improvement.md), deep-improvement YAML workflows, `scripts/*.cjs` |
+| Integration scanning | 3 features | Lane A | `scan-integration.cjs`, `/deep:agent-improvement`, [`.skilled/agents/deep-improvement.md`](../../../../agents/deep-improvement.md) |
 | Scoring system | 5 features | Shared | `generate-profile.cjs`, `score-candidate.cjs`, `reduce-state.cjs`, `scorer/score-d4-agreement.cjs` |
 | Model-benchmark mode | 6 features | Lane B | `loop-host.cjs`, `dispatch-model.cjs`, `run-benchmark.cjs`, `scorer/score-model-variant.cjs`, `scorer/classifier-score-model-variant.cjs`, `lib/score-verdict-fallback.cjs`, `lib/classifier-reviewer-scorer.cjs` |
 

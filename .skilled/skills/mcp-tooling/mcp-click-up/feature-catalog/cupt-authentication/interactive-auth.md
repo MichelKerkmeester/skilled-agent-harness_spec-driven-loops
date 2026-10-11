@@ -12,8 +12,6 @@ version: 1.0.0.3
 
 # Interactive Auth
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -40,7 +38,7 @@ Credentials stored as plaintext YAML in `~/.cupt/config.yaml`, protected by owne
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | Per-scenario playbook files for this feature |
+| `manual-testing-playbook/` | Manual playbook | Per-scenario playbook files for this feature |
 
 ---
 

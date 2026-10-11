@@ -19,8 +19,6 @@ expected_leaf_resources: []
 Prompt: Manual validation that the flag-gated doc harvest indexes reference/asset frontmatter, routes doc-specific prompts with matchedDocs pointers and stays inert flag-off.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

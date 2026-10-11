@@ -11,8 +11,6 @@ version: 2.3.0.2
 
 # Shared Frontmatter Value Warning (validate_document.py)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Warns, never blocks, when a document's contextType or importance_tier is outside the shared value list that system-spec-kit owns, so skill docs and spec docs are judged by the same list.

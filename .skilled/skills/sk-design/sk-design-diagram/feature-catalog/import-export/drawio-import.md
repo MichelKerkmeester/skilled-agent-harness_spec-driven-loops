@@ -12,8 +12,6 @@ version: 1.0.0.4
 
 # draw.io import (drawio_extract.py)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Redraws a `.drawio` source (raw XML, deflate+base64, or PNG/SVG-embedded mxfile) into an editorial diagram via the `drawio_extract.py` intermediate representation, at a chosen format, size, detail level, and audience.

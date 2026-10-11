@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # Cleanup Leak Detection
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -39,7 +37,7 @@ Prevention is trap-based cleanup (`trap cleanup EXIT INT TERM` around `bdg stop`
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/recovery-and-failure/cleanup-leak.md` | Manual | BDG-022 scenario contract (destructive) |
+| `manual-testing-playbook/recovery-and-failure/cleanup-leak.md` | Manual playbook | BDG-022 scenario contract (destructive) |
 
 ---
 

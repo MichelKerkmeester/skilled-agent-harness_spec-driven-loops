@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # inspect_component
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Component source, dependencies, and imports without installing. READ-ONLY. Canonical callable: `magicpath.inspect_component({ generated_name })` (confirm via `tool_info` first).

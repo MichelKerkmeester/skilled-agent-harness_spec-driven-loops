@@ -11,8 +11,6 @@ version: 1.4.0.15
 
 # Observation-threshold guard
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -44,9 +42,9 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/integration/convergence-script.vitest.ts` | Test | Primary regression coverage for Observation-threshold guard. |
-| `tests/unit/convergence-score-delta.vitest.ts` | Test | Primary regression coverage for Observation-threshold guard. |
-| `tests/unit/coverage-graph-signals.vitest.ts` | Test | Primary regression coverage for Observation-threshold guard. |
+| `tests/integration/convergence-script.vitest.ts` | Automated test | Primary regression coverage for Observation-threshold guard. |
+| `tests/unit/convergence-score-delta.vitest.ts` | Automated test | Primary regression coverage for Observation-threshold guard. |
+| `tests/unit/coverage-graph-signals.vitest.ts` | Automated test | Primary regression coverage for Observation-threshold guard. |
 
 ---
 
@@ -54,9 +52,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Coverage graph
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F039
 - Feature file path: `coverage-graph/observation-threshold-guard.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//012-observation-threshold-guard`
 - Primary sources: `lib/coverage-graph/coverage-graph-signals.ts`, `scripts/convergence.cjs`, `tests/integration/convergence-script.vitest.ts`, `tests/unit/convergence-score-delta.vitest.ts`, `tests/unit/coverage-graph-signals.vitest.ts`
 Related references:
 - [coverage graph](../../feature-catalog/coverage-graph) — Coverage graph category

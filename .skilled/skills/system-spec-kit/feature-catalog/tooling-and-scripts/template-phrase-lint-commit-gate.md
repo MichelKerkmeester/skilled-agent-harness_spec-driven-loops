@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Template phrase lint commit gate (template-phrase-lint.mjs)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 A packet whose trigger phrases are a template's placeholder text is hard to find by search, because the phrase names no topic. The phrase lint gate stops such a phrase from entering a commit. It judges only the phrases that the commit adds, so a phrase already in HEAD is never graded again.

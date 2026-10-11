@@ -12,8 +12,6 @@ version: 1.0.0.1
 
 # A11y and analysis (figma-ds-cli a11y / analyze)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Audits and analyzes the document without changing it: accessibility checks, general analysis, gradient extraction (read-only when not applied), and URL analysis. All read-only.

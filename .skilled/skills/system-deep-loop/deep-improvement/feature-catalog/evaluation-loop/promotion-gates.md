@@ -1,6 +1,6 @@
 ---
 title: "Promotion gates"
-description: "Applies the narrow policy and helper checks that decide whether canonical promotion is even allowed."
+description: "Defines the narrow conditions under which a packet-local candidate can become promotion-eligible."
 trigger_phrases:
   - "promotion gates"
   - "promote-candidate.cjs"
@@ -11,8 +11,6 @@ version: 1.17.0.13
 ---
 
 # Promotion gates
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 
@@ -46,8 +44,8 @@ The helper that enforces those rules is stricter than the current dynamic scorer
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/system-deep-loop/deep-improvement/references/model-benchmark/evaluator-contract.md` | Contract reference | Documents the current scorer output shape and recommendation labels. |
-| `.skilled/skills/system-deep-loop/deep-improvement/references/shared/promotion-rules.md` | Safety reference | Defines the conditions that should block expansion or promotion. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/model-benchmark/evaluator-contract.md` | Reference | Documents the current scorer output shape and recommendation labels. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/shared/promotion-rules.md` | Reference | Defines the conditions that should block expansion or promotion. |
 
 ---
 

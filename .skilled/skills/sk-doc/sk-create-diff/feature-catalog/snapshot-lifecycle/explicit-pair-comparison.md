@@ -1,6 +1,6 @@
 ---
 title: "Explicit-pair comparison"
-description: "Compares two explicit files with no stored state — the fallback for arbitrary versions or a missing baseline."
+description: "Compares two explicit files with no stored state, the fallback when no baseline exists or when comparing two arbitrary versions."
 trigger_phrases:
   - "Explicit-pair comparison"
   - "compare two files directly"
@@ -10,8 +10,6 @@ version: 1.1.0.4
 ---
 
 # Explicit-pair comparison (compare-pair)
-
-<!-- sk-doc-template: skill_asset_feature-catalog -->
 
 ## 1. OVERVIEW
 

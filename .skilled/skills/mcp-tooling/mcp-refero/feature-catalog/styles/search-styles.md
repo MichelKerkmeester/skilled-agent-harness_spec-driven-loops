@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # refero_search_styles
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Semantic search over Refero's style references — the entry point of the styles layer and the first call of any visual task. READ-ONLY. Canonical callable: `refero.refero_refero_search_styles({ query, page?, response_format? })` (doubled prefix; confirm via `tool_info` first).

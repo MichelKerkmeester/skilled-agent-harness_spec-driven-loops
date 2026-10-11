@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # Screenshot Capture
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -40,7 +38,7 @@ The performance target is capture in under 2 seconds. The graceful-degradation p
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/dom-and-screenshot/screenshot-capture.md` | Manual | BDG-010 scenario contract (critical path) |
+| `manual-testing-playbook/dom-and-screenshot/screenshot-capture.md` | Manual playbook | BDG-010 scenario contract (critical path) |
 
 ---
 

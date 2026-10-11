@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # Context Isolation
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -40,7 +38,7 @@ Isolation is what makes parallel testing safe: no session conflicts between inst
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-parallel-instances/page-context-isolation.md` | Manual | BDG-018 scenario contract |
+| `manual-testing-playbook/mcp-parallel-instances/page-context-isolation.md` | Manual playbook | BDG-018 scenario contract |
 
 ---
 

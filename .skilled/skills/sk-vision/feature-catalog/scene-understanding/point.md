@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Point location (sk_vision_point)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Find the exact on-screen position of a target in an image as normalized point coordinates.

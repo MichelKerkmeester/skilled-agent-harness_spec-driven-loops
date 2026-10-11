@@ -11,8 +11,6 @@ version: 0.8.0.14
 
 # Python Bench Runner (skill_advisor_bench.py)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Keep latency visible from the Python surface so routing performance regressions are caught quickly without needing a TypeScript test harness.

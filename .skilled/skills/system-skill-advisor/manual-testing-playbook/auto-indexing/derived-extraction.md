@@ -19,8 +19,6 @@ expected_leaf_resources: []
 Prompt: Manual validation that derived/extract.ts produces deterministic n-gram and pattern extractions from SKILL.md frontmatter, body, examples, references, assets, intent_signals, source_docs and key_files.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

@@ -12,8 +12,6 @@ version: 2.3.0.6
 
 # Citation Drift Scan (cite-drift-scan.mjs)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Reports the dead file-and-line citations in the tracked skill docs, where the target is gone or the cited line sits past its end, so an author can repair the citation before a reader follows it.

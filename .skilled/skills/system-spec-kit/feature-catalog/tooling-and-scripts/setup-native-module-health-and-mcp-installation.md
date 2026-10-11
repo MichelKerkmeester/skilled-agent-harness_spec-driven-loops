@@ -1,5 +1,5 @@
 ---
-title: "Setup, Native Module Health, and MCP Installation"
+title: "Setup, native module health and prerequisite validation"
 description: "Spec-folder prerequisite validation, native module diagnostics and rebuild, and Node ABI marker recording."
 trigger_phrases:
   - "setup native module health"
@@ -11,8 +11,6 @@ version: 1.6.0.13
 ---
 
 # Setup, Native Module Health, and MCP Installation
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

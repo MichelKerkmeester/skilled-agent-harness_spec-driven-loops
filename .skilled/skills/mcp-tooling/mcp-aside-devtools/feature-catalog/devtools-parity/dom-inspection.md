@@ -12,8 +12,6 @@ version: 1.0.0.0
 
 # DOM Inspection and JS Evaluation (DevTools parity)
 
-<!-- sk-doc-template: skill_asset_feature-catalog -->
-
 ## 1. OVERVIEW
 
 Chrome DevTools' Elements panel and Console eval map onto the Aside REPL through the Playwright `page` API. The discovery fixture ([`../../references/discovery-fixture-2026-07-16.json`](../../references/discovery-fixture-2026-07-16.json)) confirms `page` is a real Playwright `Page` with the full API available, so `page.$`, `page.$$`, `page.$eval`, `page.evaluate`, and `page.content()` are reachable even though only `snapshot(page)` is pre-named as a helper. This is the honest analog of `bdg dom query` / `bdg dom eval` — same capability, expressed as Playwright rather than a typed `aside dom` subcommand (which does not exist).

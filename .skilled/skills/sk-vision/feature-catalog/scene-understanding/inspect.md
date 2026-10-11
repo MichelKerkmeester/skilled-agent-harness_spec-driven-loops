@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Image inspection (sk_vision_inspect)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Comprehensive image read: optional question answering, or a structured scene summary plus caption and exact OCR of visible text.

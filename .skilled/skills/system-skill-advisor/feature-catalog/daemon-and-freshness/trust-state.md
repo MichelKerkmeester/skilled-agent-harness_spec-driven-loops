@@ -11,8 +11,6 @@ version: 0.8.0.12
 
 # Live / Stale / Absent / Unavailable Trust State
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Give every consumer (the CLI, hooks, the OpenCode plugin, the Python shim) a single shared vocabulary for describing whether advisor state is current, aged, missing or unreadable, without ever blocking the reader.

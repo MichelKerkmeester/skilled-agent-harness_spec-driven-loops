@@ -1,6 +1,6 @@
 ---
 title: "Initialization"
-description: "Sets up the deep research packet, canonical state files, and lineage mode before the loop begins."
+description: "Sets up a research packet and locks the lineage contract before the first iteration runs."
 trigger_phrases:
   - "initialization"
   - "packet setup"
@@ -11,8 +11,6 @@ version: 1.14.0.8
 ---
 
 # Initialization
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

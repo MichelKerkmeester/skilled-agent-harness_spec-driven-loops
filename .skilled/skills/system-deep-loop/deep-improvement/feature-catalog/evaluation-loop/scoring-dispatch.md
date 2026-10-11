@@ -1,6 +1,6 @@
 ---
 title: "Scoring dispatch"
-description: "Dispatches a candidate through scoring, evidence capture, and reducer refresh steps."
+description: "Routes a generated candidate through scoring, evidence recording, and state reduction."
 trigger_phrases:
   - "scoring dispatch"
   - "score-candidate.cjs"
@@ -11,8 +11,6 @@ version: 1.17.0.2
 ---
 
 # Scoring dispatch
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 
@@ -50,7 +48,7 @@ The benchmark runner exists as a real helper, but the YAML workflows currently d
 |---|---|---|
 | `.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/tests/benchmark-stability.vitest.ts` | Automated test | Verifies replay-stability thresholds, warnings, and insufficient-sample handling. |
 | `.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/tests/trade-off-detector.vitest.ts` | Automated test | Verifies trade-off detection thresholds and score-history extraction from journal events. |
-| `.skilled/skills/system-deep-loop/deep-improvement/references/model-benchmark/benchmark-operator-guide.md` | Operator reference | Documents the benchmark command shape and evidence expectations that sit beside the scorer output. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/model-benchmark/benchmark-operator-guide.md` | Reference | Documents the benchmark command shape and evidence expectations that sit beside the scorer output. |
 
 ---
 

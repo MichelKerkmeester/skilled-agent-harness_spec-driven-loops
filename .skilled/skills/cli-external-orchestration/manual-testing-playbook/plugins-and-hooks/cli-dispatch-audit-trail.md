@@ -16,8 +16,6 @@ version: 1.4.0.10
 
 # CLI Dispatch Audit Trail
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

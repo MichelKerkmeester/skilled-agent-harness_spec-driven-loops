@@ -1,6 +1,6 @@
 ---
 title: "Doctor router and manifest-driven dispatch"
-description: "Four doctor routers split by owner that dispatch to nine per-subsystem YAML workflows via the canonical _routes.yaml manifest."
+description: "Four doctor routers that dispatch to per-subsystem YAML workflows via a canonical `_routes.yaml` manifest, where each route names its owning command."
 trigger_phrases:
   - "doctor router and manifest-driven dispatch"
   - "_routes.yaml"
@@ -11,8 +11,6 @@ version: 1.6.0.12
 ---
 
 # Doctor router and manifest-driven dispatch
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 
@@ -74,7 +72,6 @@ The routers themselves never mutate anything. Each YAML workflow declares its ow
 | Path | Role |
 |------|------|
 | `.claude/commands/doctor/{speckit,skill-advisor,deep-loop,runtime-mirrors,mcp}.md` | Per-file symlinks into `.skilled/commands/doctor/` |
-| `.skilled/prompts` | Symlink to `.skilled/commands` |
 
 ### Specification
 

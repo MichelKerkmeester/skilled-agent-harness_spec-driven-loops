@@ -12,8 +12,6 @@ version: 0.9.0.0
 
 # advisor_recommend Command
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Expose the native scoring pipeline as a command that any runtime can call through the CLI front door, with prompt-safe attribution and lifecycle-aware redirects.

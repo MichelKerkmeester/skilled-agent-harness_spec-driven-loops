@@ -12,8 +12,6 @@ version: 1.7.0.10
 
 # runtime convergence CLI three-state decision matrix
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify runtime convergence CLI returns the correct bucket for each of three documented signal configurations.
@@ -55,7 +53,6 @@ The user-visible contract is concrete: Verify runtime convergence CLI returns th
 
 ## 4. SOURCE METADATA
 - Group: Council Graph Integration
-- Feature ID: DAC-023
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/council-graph-integration/council-graph-convergence-three-state-decision-matrix.md`
 - Playbook scenario: `manual-testing-playbook/council-graph-integration/council-graph-convergence-three-state-decision-matrix.md`

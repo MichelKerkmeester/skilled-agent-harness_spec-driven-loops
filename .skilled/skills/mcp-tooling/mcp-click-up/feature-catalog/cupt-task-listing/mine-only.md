@@ -12,8 +12,6 @@ version: 1.0.0.3
 
 # Mine Only
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -40,7 +38,7 @@ Explicit equivalent of the default self-assigned scope. Does NOT override `--all
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | Per-scenario playbook files for this feature |
+| `manual-testing-playbook/` | Manual playbook | Per-scenario playbook files for this feature |
 
 ---
 

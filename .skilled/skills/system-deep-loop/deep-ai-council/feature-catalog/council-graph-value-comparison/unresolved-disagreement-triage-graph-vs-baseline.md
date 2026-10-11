@@ -12,8 +12,6 @@ version: 1.7.0.10
 
 # Unresolved disagreement triage: graph vs baseline
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Demonstrate measurable effort reduction between no-graph baseline and graph-driven workflow for finding unresolved critical disagreements.
@@ -56,7 +54,6 @@ The user-visible contract is concrete: Demonstrate measurable effort reduction b
 
 ## 4. SOURCE METADATA
 - Group: Council Graph Value Comparison
-- Feature ID: DAC-027
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/council-graph-value-comparison/unresolved-disagreement-triage-graph-vs-baseline.md`
 - Playbook scenario: `manual-testing-playbook/council-graph-value-comparison/unresolved-disagreement-triage-graph-vs-baseline.md`

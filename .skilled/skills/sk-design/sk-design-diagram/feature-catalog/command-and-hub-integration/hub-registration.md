@@ -12,8 +12,6 @@ version: 1.0.0.4
 
 # Hub registration
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The packet's registration in the `sk-design` hub: `workflowMode`, command, and aliases in `mode-registry.json`, router signals in `hub-router.json`, and command choreography in `command-metadata.json`, with no packet-local advisor metadata.

@@ -11,8 +11,6 @@ version: 1.4.0.15
 
 # Coverage-graph fuzzy merge
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -43,7 +41,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/coverage-graph-query.vitest.ts` | Test | Primary regression coverage for Coverage-graph fuzzy merge. |
+| `tests/unit/coverage-graph-query.vitest.ts` | Automated test | Primary regression coverage for Coverage-graph fuzzy merge. |
 
 ---
 
@@ -51,9 +49,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Coverage graph
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F041
 - Feature file path: `coverage-graph/coverage-graph-fuzzy-merge.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//014-coverage-graph-fuzzy-merge`
 - Primary sources: `lib/coverage-graph/coverage-graph-query.ts`, `tests/unit/coverage-graph-query.vitest.ts`
 Related references:
 - [coverage graph](../../feature-catalog/coverage-graph) — Coverage graph category

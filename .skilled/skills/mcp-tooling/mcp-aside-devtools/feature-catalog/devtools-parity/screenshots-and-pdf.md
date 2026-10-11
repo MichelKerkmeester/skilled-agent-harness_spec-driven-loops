@@ -12,8 +12,6 @@ version: 1.0.0.0
 
 # Screenshots, Element Captures, and PDF (DevTools parity)
 
-<!-- sk-doc-template: skill_asset_feature-catalog -->
-
 ## 1. OVERVIEW
 
 Chrome DevTools' capture-screenshot / capture-full-size / capture-node commands map onto three fixture-confirmed repl calls: `page.screenshot(options?)`, `locator.screenshot(options?)`, and `page.pdf(options?)`. The discovery fixture ([`../../references/discovery-fixture-2026-07-16.json`](../../references/discovery-fixture-2026-07-16.json)) lists all three with their option sets. This overlaps the existing evidence lane ([`../repl/repl-evidence-capture.md`](../repl/repl-evidence-capture.md)) but pins the DevTools-parity option surface (`fullPage`, `clip`, element capture, PDF format) explicitly.

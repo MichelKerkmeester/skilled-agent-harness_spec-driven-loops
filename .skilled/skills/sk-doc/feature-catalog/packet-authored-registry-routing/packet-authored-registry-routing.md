@@ -1,6 +1,6 @@
 ---
 title: "Packet-Authored, Registry-Projected Routing"
-description: "How the sk-doc hub routes across fourteen documentation-authoring packets, with each packet's own Keyword triggers line as the source of truth and mode-registry.json as a synchronized runtime projection."
+description: "Each of the hub's fourteen packets owns a single `Keyword triggers:` line as the source of truth for its routing vocabulary. Modes and packets are separately addressable: the `sk-create-skill` packet backs two modes (`sk-create-skill` and `sk-create-skill-parent`), so the fifteen workflow modes span fourteen packets rather than mapping one-to-one. `mode-registry.json` and `hub-router.json` are synchronized runtime projections, not an independently-maintained second source."
 trigger_phrases:
   - "packet-authored registry-projected routing"
   - "sk-doc discriminator"
@@ -10,8 +10,6 @@ version: 2.1.0.5
 ---
 
 # Packet-Authored, Registry-Projected Routing (sk-doc)
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

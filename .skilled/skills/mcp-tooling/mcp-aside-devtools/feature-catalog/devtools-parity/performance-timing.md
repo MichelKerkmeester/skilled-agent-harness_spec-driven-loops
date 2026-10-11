@@ -12,8 +12,6 @@ version: 1.0.0.0
 
 # Performance Timing and Web Vitals (DevTools parity)
 
-<!-- sk-doc-template: skill_asset_feature-catalog -->
-
 ## 1. OVERVIEW
 
 Chrome DevTools' Performance panel and the Chrome DevTools MCP's `performance_start_trace` / `lighthouse_audit` map only PARTIALLY onto Aside. The fixture-confirmed path is `page.evaluate` over the browser Performance API — navigation timing, resource entries, and paint/web-vitals metrics. There is **no built-in Lighthouse audit and no trace-recording tool** in the one-`repl`-tool inventory. That is the honest gap: timing metrics via the Performance API are available; a Lighthouse-score / performance-trace equivalent is NOT — it requires external tooling (e.g. a separate Lighthouse run against the URL).

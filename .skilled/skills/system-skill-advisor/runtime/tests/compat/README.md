@@ -9,8 +9,6 @@ trigger_phrases:
 
 # Skill Advisor Compat Tests
 
-<!-- sk-doc-template: skill_readme -->
-
 > Compatibility coverage for the advisor daemon, Python parity and redirect contracts.
 
 ---

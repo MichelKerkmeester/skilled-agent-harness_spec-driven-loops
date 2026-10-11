@@ -1,6 +1,6 @@
 ---
 title: "Semantic convergence signals"
-description: "Two supplementary stop signals (semanticNovelty and findingStability) that measure conceptual novelty and finding-set stability beyond the severity-weighted 3-signal composite vote."
+description: "Two supplementary stop signals (semanticNovelty and findingStability) that measure conceptual novelty and finding-set stability beyond the severity-weighted composite vote."
 trigger_phrases:
   - "semantic convergence signals"
   - "semanticNovelty findingStability"
@@ -11,8 +11,6 @@ version: 1.11.0.5
 ---
 
 # Semantic convergence signals
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 
@@ -45,8 +43,8 @@ Two signals supplement the 3-signal composite vote and participate in legal-stop
 
 | File | Type | Role |
 |---|---|---|
-| `manual-testing-playbook/convergence-and-recovery/composite-review-convergence-stop-behavior.md` | Manual scenario | Verifies composite convergence stop behavior the semantic signals supplement. |
-| `manual-testing-playbook/convergence-and-recovery/dimension-coverage-convergence-signal.md` | Manual scenario | Verifies dimension-coverage signal interaction with stop evaluation. |
+| `manual-testing-playbook/convergence-and-recovery/composite-review-convergence-stop-behavior.md` | Manual playbook | Verifies composite convergence stop behavior the semantic signals supplement. |
+| `manual-testing-playbook/convergence-and-recovery/dimension-coverage-convergence-signal.md` | Manual playbook | Verifies dimension-coverage signal interaction with stop evaluation. |
 
 ---
 

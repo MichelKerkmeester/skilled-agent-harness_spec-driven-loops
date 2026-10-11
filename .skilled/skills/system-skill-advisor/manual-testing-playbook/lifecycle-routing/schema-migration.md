@@ -19,8 +19,6 @@ expected_leaf_resources: []
 Prompt: Manual validation that schema migration from v1 to v2 is additive, preserves existing data and supports rollback without data loss.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

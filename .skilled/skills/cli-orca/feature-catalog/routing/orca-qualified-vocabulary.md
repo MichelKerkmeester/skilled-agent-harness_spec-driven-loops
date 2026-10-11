@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Orca-qualified routing vocabulary (SKILL.md activation triggers)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The cli-orca skill activates only on a multi-word signal that qualifies a phrase with Orca or with an Orca-owned surface name. The bare token `orca` is deliberately absent from every signal, because it also matches the `OpenOrca` model family, the GNOME Orca screen reader on Linux and Orca app-internal strings, so an unqualified mention is never a routing decision.

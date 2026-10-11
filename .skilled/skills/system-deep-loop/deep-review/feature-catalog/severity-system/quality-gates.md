@@ -1,6 +1,6 @@
 ---
 title: "Quality gates"
-description: "Prevents the review loop from stopping or passing on weak evidence, missing coverage, or unresolved blockers."
+description: "Prevents the loop from stopping or passing on weak evidence."
 trigger_phrases:
   - "quality gates"
   - "legal-stop gate bundle"
@@ -11,8 +11,6 @@ version: 1.11.0.9
 ---
 
 # Quality gates
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 
@@ -64,9 +62,9 @@ Gate failures also affect verdicts. A quality-gate failure yields FAIL regardles
 
 | File | Type | Role |
 |---|---|---|
-| `manual-testing-playbook/convergence-and-recovery/review-quality-guards-block-premature-stop.md` | Manual scenario | Verifies that failed gates block early stop. |
-| `manual-testing-playbook/convergence-and-recovery/blocked-stop-reducer-surfacing.md` | Manual scenario | Confirms gate failures persist as blocked-stop reducer state. |
-| `manual-testing-playbook/synthesis-save-and-guardrails/review-verdict-determines-post-review-workflow.md` | Manual scenario | Verifies gate outcomes shape the final verdict path. |
+| `manual-testing-playbook/convergence-and-recovery/review-quality-guards-block-premature-stop.md` | Manual playbook | Verifies that failed gates block early stop. |
+| `manual-testing-playbook/convergence-and-recovery/blocked-stop-reducer-surfacing.md` | Manual playbook | Confirms gate failures persist as blocked-stop reducer state. |
+| `manual-testing-playbook/synthesis-save-and-guardrails/review-verdict-determines-post-review-workflow.md` | Manual playbook | Verifies gate outcomes shape the final verdict path. |
 
 ---
 

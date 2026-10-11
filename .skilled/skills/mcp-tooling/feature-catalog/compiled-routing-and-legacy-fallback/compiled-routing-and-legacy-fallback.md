@@ -11,8 +11,6 @@ version: 1.1.0.0
 
 # Compiled Routing And Legacy Fallback (compiled-route.cjs)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 `mcp-tooling` exposes a compiled-route front door, but compiled serving is conditional. The resolver may serve only when the tri-state runtime flag permits it and the promoted activation manifest is fresh and authorizes compiled serving. Otherwise the legacy registry-driven `hub-router.json` and `mode-registry.json` contract remains authoritative.
@@ -65,8 +63,8 @@ The Orca packet left this hub for the standalone `cli-orca` skill, so the former
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/mcp-tooling/manual-testing-playbook/` | Manual gold | Records source-router outcomes and compiled availability. |
-| `.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` | Automated gate | Checks the generated leaf manifest and root metadata class. |
+| `.skilled/skills/mcp-tooling/manual-testing-playbook/` | Manual playbook | Records source-router outcomes and compiled availability. |
+| `.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` | Automated test | Checks the generated leaf manifest and root metadata class. |
 
 ---
 

@@ -21,8 +21,6 @@ expected_leaf_resources:
 Prompt: Manual validation that advisor_status is diagnostic-only and advisor_rebuild is the explicit repair path for stale Skill Advisor state.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ## 1. OVERVIEW
 
 Validate the separation between `advisor_status` and `advisor_rebuild`. `advisor_status` must report stale, absent or unavailable state without repair side effects; `advisor_rebuild` must perform the rebuild only when explicitly called.

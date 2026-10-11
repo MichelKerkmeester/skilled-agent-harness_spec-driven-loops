@@ -1,6 +1,6 @@
 ---
-title: "Filter Config Contract"
-description: "JSONC contract for the content-filter pipeline, covering stage order, filtering thresholds, and the loader behavior that deep-merges `filters.jsonc` with code defaults."
+title: "Filter config contract"
+description: "`config/filters.jsonc` is the file-backed contract for the content-filter pipeline used by `runtime/cli/lib/content-filter.ts`."
 trigger_phrases:
   - "filter config contract"
   - "filters.jsonc"
@@ -10,8 +10,6 @@ version: 1.6.0.8
 ---
 
 # Filter Config Contract
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 This document captures the implemented behavior, source references, and remediation metadata for the content-filter configuration contract centered on `config/filters.jsonc`.
 

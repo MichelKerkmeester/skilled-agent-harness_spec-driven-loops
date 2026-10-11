@@ -1,6 +1,6 @@
 ---
 title: "Architecture boundary enforcement"
-description: "Architecture boundary enforcement automates two rules: `shared/` must not import from `runtime/` or `runtime/cli/`, and `runtime/scripts/` must contain only thin wrappers."
+description: "Automates two import rules: `shared/` must not import from `runtime/` or `runtime/cli/`, and `runtime/scripts/` must contain only thin wrappers."
 trigger_phrases:
   - architecture boundary enforcement
   - check-architecture-boundaries
@@ -11,8 +11,6 @@ version: 1.6.0.16
 ---
 
 # Architecture boundary enforcement
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

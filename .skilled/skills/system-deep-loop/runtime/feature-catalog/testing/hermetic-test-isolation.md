@@ -11,8 +11,6 @@ version: 1.4.0.15
 
 # Hermetic test isolation
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -43,8 +41,8 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/helpers/spawn-cjs.ts` | Test | Primary regression coverage for Hermetic test isolation. |
-| `tests/unit/fanout-run.vitest.ts` | Test | Primary regression coverage for Hermetic test isolation. |
+| `tests/helpers/spawn-cjs.ts` | Automated test | Primary regression coverage for Hermetic test isolation. |
+| `tests/unit/fanout-run.vitest.ts` | Automated test | Primary regression coverage for Hermetic test isolation. |
 
 ---
 
@@ -52,9 +50,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Testing
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F048
 - Feature file path: `testing/hermetic-test-isolation.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/007-testing/001-hermetic-test-isolation`
 - Primary sources: `tests/helpers/spawn-cjs.ts`, `tests/unit/fanout-run.vitest.ts`
 Related references:
 - [testing](../testing/) — Testing category

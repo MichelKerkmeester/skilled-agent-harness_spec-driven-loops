@@ -11,8 +11,6 @@ version: 1.4.0.15
 
 # Loop-lock heartbeat hardening
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -43,7 +41,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/loop-lock.vitest.ts` | Test | Primary regression coverage for Loop-lock heartbeat hardening. |
+| `tests/unit/loop-lock.vitest.ts` | Automated test | Primary regression coverage for Loop-lock heartbeat hardening. |
 
 ---
 
@@ -51,9 +49,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: State safety
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F034
 - Feature file path: `state-safety/loop-lock-heartbeat-hardening.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//007-loop-lock-heartbeat-hardening`
 - Primary sources: `lib/deep-loop/loop-lock.ts`, `tests/unit/loop-lock.vitest.ts`
 Related references:
 - [state safety](../../feature-catalog/state-safety) — State safety category

@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # refero_search_flows
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Task-journey search over real shipped flows — the entry point of the flows layer and the only search returning **numeric** IDs. READ-ONLY. Canonical callable: `refero.refero_refero_search_flows({ query, platform, page?, response_format? })` (doubled prefix; confirm via `tool_info` first).

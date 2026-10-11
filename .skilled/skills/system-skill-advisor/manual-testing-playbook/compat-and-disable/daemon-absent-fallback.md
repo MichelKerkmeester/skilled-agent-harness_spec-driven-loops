@@ -19,8 +19,6 @@ expected_leaf_resources: []
 Prompt: Manual validation for daemon-absent local fallback and native fail-open behavior.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

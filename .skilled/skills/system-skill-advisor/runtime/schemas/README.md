@@ -9,8 +9,6 @@ trigger_phrases:
 
 # Skill Advisor Schemas: Tool And Metadata Contracts
 
-<!-- sk-doc-template: skill_readme -->
-
 ---
 
 ## 1. OVERVIEW

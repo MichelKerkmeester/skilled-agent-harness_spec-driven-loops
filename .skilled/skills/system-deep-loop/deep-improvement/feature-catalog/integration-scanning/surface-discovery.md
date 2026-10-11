@@ -1,6 +1,6 @@
 ---
 title: "Surface discovery"
-description: "Discovers the repo surfaces that define an agent beyond its canonical markdown file."
+description: "Builds the inventory of files and references that define an agent beyond its canonical markdown file."
 trigger_phrases:
   - "surface discovery"
   - "scan-integration.cjs"
@@ -11,8 +11,6 @@ version: 1.17.0.12
 ---
 
 # Surface discovery
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 
@@ -45,8 +43,8 @@ The discovery map includes the consolidated advisor script at `.skilled/skills/s
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/system-deep-loop/deep-improvement/references/model-benchmark/evaluator-contract.md` | Contract reference | Locks the scanner into the integration-consistency dimension and its weighted contribution. |
-| `.skilled/skills/system-deep-loop/deep-improvement/references/agent-improvement/target-onboarding.md` | Operator reference | Requires the integration scan before new targets enter the loop. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/model-benchmark/evaluator-contract.md` | Reference | Locks the scanner into the integration-consistency dimension and its weighted contribution. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/agent-improvement/target-onboarding.md` | Reference | Requires the integration scan before new targets enter the loop. |
 
 ---
 

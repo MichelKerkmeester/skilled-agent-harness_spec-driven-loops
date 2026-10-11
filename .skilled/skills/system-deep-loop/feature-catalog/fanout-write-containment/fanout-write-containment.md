@@ -11,13 +11,13 @@ version: 1.0.0.0
 
 # Fan-Out Write Containment (system-deep-loop)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 A dispatched leaf is told to write only inside its lineage directory, but that boundary is carried
 in its prompt, not enforced by its sandbox. Containment makes the boundary structural: after a
 dispatch it diffs the working tree and reports what landed outside.
+
+---
 
 ## 2. HOW IT WORKS
 
@@ -36,12 +36,16 @@ A churn detector watches for a burst of newly dirty paths between heartbeats. On
 edits come and go; a burst is a second writer, and once that is proven the run latches preservation
 even if restore was requested.
 
+---
+
 ## 3. SOURCE FILES
 
 | File | Role |
 |------|------|
 | `runtime/lib/deep-loop/write-containment.ts` | Detection, the preserve and restore remedies, and the quarantine writer |
 | `runtime/scripts/fanout-run.cjs` | Wiring, the churn detector and the per-run flags |
+
+---
 
 ## 4. SOURCE METADATA
 

@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # Code Mode Invocation
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -40,7 +38,7 @@ The AI client sees only the 4 Code Mode tools rather than the 26 Chrome DevTools
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-parallel-instances/chrome-devtools-1-navigate.md` | Manual | BDG-014 scenario contract |
+| `manual-testing-playbook/mcp-parallel-instances/chrome-devtools-1-navigate.md` | Manual playbook | BDG-014 scenario contract |
 
 ---
 

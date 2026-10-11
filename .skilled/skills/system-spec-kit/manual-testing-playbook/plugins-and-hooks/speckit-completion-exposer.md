@@ -15,8 +15,6 @@ expected_leaf_resources: []
 
 # Speckit Completion Exposer
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

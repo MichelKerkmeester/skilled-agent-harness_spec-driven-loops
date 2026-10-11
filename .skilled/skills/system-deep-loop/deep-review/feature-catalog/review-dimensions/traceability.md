@@ -1,6 +1,6 @@
 ---
 title: "Traceability"
-description: "Audits whether claims and linked artifacts line up with shipped behavior."
+description: "Audits whether claims and artifacts line up with shipped behavior."
 trigger_phrases:
   - "traceability"
   - "audit artifact alignment"
@@ -11,8 +11,6 @@ version: 1.11.0.6
 ---
 
 # Traceability
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 
@@ -45,9 +43,9 @@ Traceability is not marked `requiredForSeverityCoverage` in the contract, but it
 
 | File | Type | Role |
 |---|---|---|
-| `manual-testing-playbook/iteration-execution-and-state-discipline/cross-reference-verification-detects-misalignment.md` | Manual scenario | Exercises protocol execution and misalignment reporting. |
-| `manual-testing-playbook/convergence-and-recovery/dimension-coverage-convergence-signal.md` | Manual scenario | Verifies required protocol coverage participates in the stop vote. |
-| `manual-testing-playbook/synthesis-save-and-guardrails/review-report-synthesis-has-all-9-sections.md` | Manual scenario | Confirms traceability status is preserved in the final report. |
+| `manual-testing-playbook/iteration-execution-and-state-discipline/cross-reference-verification-detects-misalignment.md` | Manual playbook | Exercises protocol execution and misalignment reporting. |
+| `manual-testing-playbook/convergence-and-recovery/dimension-coverage-convergence-signal.md` | Manual playbook | Verifies required protocol coverage participates in the stop vote. |
+| `manual-testing-playbook/synthesis-save-and-guardrails/review-report-synthesis-has-all-9-sections.md` | Manual playbook | Confirms traceability status is preserved in the final report. |
 
 ---
 

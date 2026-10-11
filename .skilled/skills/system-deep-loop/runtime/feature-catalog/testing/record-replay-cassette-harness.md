@@ -11,8 +11,6 @@ version: 1.4.0.15
 
 # Record-replay cassette harness
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -43,9 +41,9 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/helpers/spawn-cjs.ts` | Test | Primary regression coverage for Record-replay cassette harness. |
-| `tests/integration/convergence-script.vitest.ts` | Test | Primary regression coverage for Record-replay cassette harness. |
-| `tests/unit/fanout-run.vitest.ts` | Test | Primary regression coverage for Record-replay cassette harness. |
+| `tests/helpers/spawn-cjs.ts` | Automated test | Primary regression coverage for Record-replay cassette harness. |
+| `tests/integration/convergence-script.vitest.ts` | Automated test | Primary regression coverage for Record-replay cassette harness. |
+| `tests/unit/fanout-run.vitest.ts` | Automated test | Primary regression coverage for Record-replay cassette harness. |
 
 ---
 
@@ -53,9 +51,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Testing
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F049
 - Feature file path: `testing/record-replay-cassette-harness.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/007-testing/002-record-replay-cassette-harness`
 - Primary sources: `tests/helpers/spawn-cjs.ts`, `tests/integration/convergence-script.vitest.ts`, `tests/unit/fanout-run.vitest.ts`
 Related references:
 - [testing](../testing/) — Testing category

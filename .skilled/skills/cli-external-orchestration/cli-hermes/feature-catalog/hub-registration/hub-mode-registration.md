@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Hub Mode Registration (cli-hermes)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The hub registers `cli-hermes` as a workflow mode, so a Hermes-naming request resolves through `hub-router.json` scoring and `mode-registry.json` dispatch rather than a hub default.

@@ -1,8 +1,8 @@
 ---
 name: cli-hermes
-description: "Hermes Agent CLI executor for quiet oneshot coding dispatch, LLM Gateway model routing, project skills and plugins, and cross-AI validation."
+description: "Hermes Agent CLI executor for quiet oneshot coding dispatch, LLM Gateway model routing and cross-AI validation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.0.4.0
+version: 1.0.6.0
 ---
 
 <!-- Keywords: hermes cli, hermes agent, nous hermes, delegate to hermes, hermes chat, hermes oneshot, hermes query-file, cross-ai, headless dispatch, llm gateway, project skills, hermes plugins -->

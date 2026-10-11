@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Troubleshoot (failure classification and recovery)
 
-<!-- sk-doc-template: skill_asset_feature-catalog -->
-
 ## 1. OVERVIEW
 
 Carries diagnosis discipline: every failure gets classified by its real cause before any recovery is attempted, and unverified capabilities fail closed instead of being promised. The taxonomy separates states that look alike: a browser-unbound REPL/MCP call (PROFILE_UNBOUND) is never a missing credential; a dead stdio child is never a daemon outage (stderr tells them apart); built-in models failing after sign-out is account state, not breakage.

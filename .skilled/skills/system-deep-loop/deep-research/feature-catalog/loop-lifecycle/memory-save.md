@@ -1,6 +1,6 @@
 ---
 title: "Memory save"
-description: "Refreshes the deep research continuity artifact through the supported generate-context.js save path."
+description: "Preserves the finished packet through the supported continuity save boundary."
 trigger_phrases:
   - "memory save"
   - "save research context"
@@ -11,8 +11,6 @@ version: 1.14.0.8
 ---
 
 # Memory save
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

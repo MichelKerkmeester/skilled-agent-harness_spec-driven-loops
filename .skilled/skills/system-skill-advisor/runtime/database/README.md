@@ -8,8 +8,6 @@ trigger_phrases:
 
 # Skill Advisor Database: Local Runtime State
 
-<!-- sk-doc-template: skill_readme -->
-
 This folder holds package-local SQLite runtime state for the standalone Skill Advisor runtime.
 
 ---

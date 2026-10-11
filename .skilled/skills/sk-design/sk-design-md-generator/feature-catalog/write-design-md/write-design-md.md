@@ -13,8 +13,6 @@ version: 1.0.0.10
 
 # Write DESIGN.md (Phase 2)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Produces the v3 **Style Reference** `DESIGN.md` that AI agents consume as a hallucination-proof, ship-ready design-system handoff — named colour tokens, a semantic type scale, named components, Surfaces, Elevation, an Agent Prompt Guide, Similar Brands, and a copy-paste Quick Start (CSS + Tailwind). This is the highest-risk phase: an agent reading `tokens.json` must transcribe every value without estimating, rounding, normalizing, or inventing. The cardinal fidelity rule is the single non-negotiable contract of the skill. The writer loads the v3 section specification from `references/design-md-format.md` and the voice/tone rules from `references/writing-style-guide.md` before composing. The write-phase prompt template (`assets/design-md-prompt-template.md`) and the cardinal rules card (`assets/cardinal-rules-card.md`) front-load the fidelity contract.

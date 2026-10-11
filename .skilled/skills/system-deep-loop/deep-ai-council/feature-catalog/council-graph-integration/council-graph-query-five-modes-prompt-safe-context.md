@@ -12,8 +12,6 @@ version: 1.7.0.10
 
 # runtime query CLI five modes return prompt-safe context
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify all 5 documented runtime query CLI modes return prompt-safe bounded context.
@@ -56,7 +54,6 @@ The user-visible contract is concrete: Verify all 5 documented runtime query CLI
 
 ## 4. SOURCE METADATA
 - Group: Council Graph Integration
-- Feature ID: DAC-022
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/council-graph-integration/council-graph-query-five-modes-prompt-safe-context.md`
 - Playbook scenario: `manual-testing-playbook/council-graph-integration/council-graph-query-five-modes-prompt-safe-context.md`

@@ -1,6 +1,6 @@
 ---
 title: "Speckit autopilot lifecycle"
-description: "Documents the branch-preserved :autopilot/:unattended SpecKit command envelope for plan, implement and complete."
+description: "The branch-preserved `:autopilot` / `:unattended` command envelope for `/speckit:plan`, `/speckit:implement` and `/speckit:complete`."
 trigger_phrases:
   - "speckit autopilot lifecycle"
   - "speckit unattended"
@@ -11,8 +11,6 @@ version: 1.6.0.99
 ---
 
 # Speckit autopilot lifecycle
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 
@@ -57,9 +55,9 @@ When planning in autopilot mode, executable `tasks.md` rows must include `agent`
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/commands/speckit/complete.md` | Manual validation anchor | Router contract and terminal reason-code source |
-| `.skilled/commands/speckit/plan.md` | Manual validation anchor | Metadata requirement source |
-| `.skilled/commands/speckit/implement.md` | Manual validation anchor | Branch-preserved failure source |
+| `.skilled/commands/speckit/complete.md` | Manual playbook | Router contract and terminal reason-code source |
+| `.skilled/commands/speckit/plan.md` | Manual playbook | Metadata requirement source |
+| `.skilled/commands/speckit/implement.md` | Manual playbook | Branch-preserved failure source |
 | `manual-testing-playbook/lifecycle/speckit-autopilot-lifecycle.md` | Manual playbook | Operator scenario for unattended lifecycle validation |
 
 ---

@@ -12,8 +12,6 @@ version: 1.7.0.9
 
 # Two-of-three agree triggers convergence
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify two-of-three agreement triggers convergence.
@@ -52,7 +50,6 @@ The user-visible contract is concrete: Verify two-of-three agreement triggers co
 
 ## 4. SOURCE METADATA
 - Group: Convergence And Rollback
-- Feature ID: DAC-008
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/convergence-and-rollback/two-of-three-agree-triggers-convergence.md`
 - Playbook scenario: `manual-testing-playbook/convergence-and-rollback/two-of-three-agree-triggers-convergence.md`

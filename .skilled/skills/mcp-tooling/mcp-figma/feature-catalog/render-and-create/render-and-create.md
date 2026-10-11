@@ -13,8 +13,6 @@ version: 1.0.0.1
 
 # Render and create (figma-ds-cli render / create / set)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Authors content in the document: renders JSX-described nodes, creates frames, icons, images, and primitives, lays out, duplicates, converts to components, and generates variants and combos. This is the write direction, and every verb here is gated.

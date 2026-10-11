@@ -8,8 +8,6 @@ trigger_phrases:
 
 # Auth Library: Trusted Caller Checks
 
-<!-- sk-doc-template: skill_readme -->
-
 ---
 
 ## 1. OVERVIEW

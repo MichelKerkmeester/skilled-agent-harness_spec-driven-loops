@@ -2,7 +2,7 @@
 name: mcp-tooling
 description: "Parent hub for nine MCP tool bridges: five workflow modes and four read-only design transports routed by workflowMode."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.8.0.2
+version: 1.8.1.0
 metadata:
   author: OpenCode
   family: mcp

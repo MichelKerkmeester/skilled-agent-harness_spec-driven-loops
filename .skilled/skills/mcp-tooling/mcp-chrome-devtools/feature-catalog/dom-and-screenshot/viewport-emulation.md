@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # Viewport Emulation
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -40,7 +38,7 @@ The multi-viewport example script iterates desktop (1920x1080), laptop (1366x768
 
 | File | Type | Role |
 |------|------|------|
-| `examples/README.md` §3.3 | Manual | Viewport matrix, outputs, and exit codes |
+| `examples/README.md` §3.3 | Manual playbook | Viewport matrix, outputs, and exit codes |
 
 ---
 

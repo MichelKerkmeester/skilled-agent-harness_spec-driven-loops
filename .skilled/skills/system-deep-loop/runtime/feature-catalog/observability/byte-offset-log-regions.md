@@ -11,8 +11,6 @@ version: 1.4.0.15
 
 # Byte-offset log regions
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -45,9 +43,9 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/post-dispatch-validate.vitest.ts` | Test | Primary regression coverage for Byte-offset log regions. |
-| `tests/unit/deep-research-reduce-state.vitest.ts` | Test | Primary regression coverage for Byte-offset log regions. |
-| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state-sparkline.test.cjs` | Test | Primary regression coverage for Byte-offset log regions. |
+| `tests/unit/post-dispatch-validate.vitest.ts` | Automated test | Primary regression coverage for Byte-offset log regions. |
+| `tests/unit/deep-research-reduce-state.vitest.ts` | Automated test | Primary regression coverage for Byte-offset log regions. |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state-sparkline.test.cjs` | Automated test | Primary regression coverage for Byte-offset log regions. |
 
 ---
 
@@ -55,9 +53,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Observability
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F036
 - Feature file path: `observability/byte-offset-log-regions.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//009-byte-offset-log-regions`
 - Primary sources: `lib/deep-loop/post-dispatch-validate.ts`, `.skilled/commands/deep/assets/deep-research-auto.yaml`, `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`, `tests/unit/post-dispatch-validate.vitest.ts`, `tests/unit/deep-research-reduce-state.vitest.ts`, `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state-sparkline.test.cjs`
 Related references:
 - [observability](../observability/) — Observability category

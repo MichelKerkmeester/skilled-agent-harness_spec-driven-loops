@@ -12,8 +12,6 @@ version: 1.7.0.10
 
 # runtime query CLI hostile metadata redaction
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify runtime query CLI redacts arbitrary metadata keys and bounds string lengths in its response.
@@ -55,7 +53,6 @@ The user-visible contract is concrete: Verify runtime query CLI redacts arbitrar
 
 ## 4. SOURCE METADATA
 - Group: Council Graph Integration
-- Feature ID: DAC-021
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/council-graph-integration/council-graph-query-hostile-metadata-redaction.md`
 - Playbook scenario: `manual-testing-playbook/council-graph-integration/council-graph-query-hostile-metadata-redaction.md`

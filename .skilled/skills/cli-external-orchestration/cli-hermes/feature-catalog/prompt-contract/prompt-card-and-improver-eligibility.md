@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Prompt-Quality Card Sync And Prompt-Improver Eligibility
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The packet's prompt-quality card is held in sync with the canonical card by a repository guard, and the prompt-improver agents carry the `cli-hermes` model-eligibility row across three runtimes.

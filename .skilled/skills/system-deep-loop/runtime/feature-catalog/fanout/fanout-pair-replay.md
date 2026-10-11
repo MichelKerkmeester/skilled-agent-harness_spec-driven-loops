@@ -12,8 +12,6 @@ version: 1.9.0.0
 
 # Fan-out pair replay
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW

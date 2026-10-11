@@ -1,6 +1,6 @@
 ---
 title: "Rejected-pattern cache"
-description: "Builds a bounded reducer-owned cache that suppresses rejected candidates before they re-enter focus selection."
+description: "Suppresses rejected candidates before they re-enter next-focus or recovery selection."
 trigger_phrases:
   - "rejected-pattern cache"
   - "idea_rejected suppression"
@@ -11,8 +11,6 @@ version: 1.14.0.13
 ---
 
 # Rejected-pattern cache
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

@@ -11,8 +11,6 @@ version: 0.8.0.17
 
 # OpenCode Plugin
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Give OpenCode a first-class plugin that surfaces advisor output at prompt time while delegating scoring to the advisor CLI.

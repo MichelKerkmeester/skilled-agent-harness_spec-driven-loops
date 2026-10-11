@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Teams (list_teams / list_members)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Carries team scope. `list_teams` returns the teams the current user belongs to, with their role in each. `list_members` returns the members of one team. Together they establish the team boundary that `search_components`, `list_projects`, and `list_themes` can narrow to with a `team` argument.

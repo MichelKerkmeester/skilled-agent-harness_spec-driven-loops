@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # Describe Domain or Method
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -40,7 +38,7 @@ Step two and three of progressive disclosure: after `--list` finds the domain, `
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/protocol-discovery/describe-page-domain.md` | Manual | BDG-006 scenario contract |
+| `manual-testing-playbook/protocol-discovery/describe-page-domain.md` | Manual playbook | BDG-006 scenario contract |
 
 ---
 

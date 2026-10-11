@@ -1,6 +1,6 @@
 ---
 title: "Fan-out worker pool"
-description: "Concurrency-capped fan-out pool primitive: runCappedPool with injected worker, never-throws per-item settlement, ordered results, and JSONL status ledger."
+description: "Concurrency-capped pool primitive with injected worker, never-throws per-item settlement, ordered results, and a JSONL status ledger."
 trigger_phrases:
   - "fan-out worker pool"
   - "fanout-pool.cjs"
@@ -11,8 +11,6 @@ version: 1.4.0.3
 ---
 
 # Fan-out worker pool
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ---
 
@@ -69,7 +67,6 @@ carrying `metric: 'time_since_last_completion'`. The committed `lagCeilingMs` de
 ## 4. SOURCE METADATA
 
 - Group: Fan-Out
-- Feature ID: F024
 - Catalog source: `feature-catalog/fanout/fanout-pool.md`
 - Primary source files: `scripts/fanout-pool.cjs`
 Related references:

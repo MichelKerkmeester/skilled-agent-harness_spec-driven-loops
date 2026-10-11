@@ -74,8 +74,6 @@ version: 1.0.0.0
 
 # {FEATURE_NAME} ({tool_name_or_command})
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 {OVERVIEW_ONE_LINE}
@@ -175,7 +173,6 @@ Before publishing a per-feature snippet file, verify:
 Structure:
 - [ ] Frontmatter has title, description, and trigger_phrases
 - [ ] importance_tier present only if this is a Tier 1 critical feature
-- [ ] Template marker present after H1: <!-- sk-doc-template: skill_asset_feature_catalog -->
 - [ ] All four body sections present: OVERVIEW, HOW IT WORKS, SOURCE FILES, SOURCE METADATA
 
 Content:

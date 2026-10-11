@@ -12,8 +12,6 @@ version: 1.7.0.11
 
 # Derived projection rebuilds from artifacts
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify deleting derived graph rows for one session and replaying from artifacts restores graph state without modifying artifacts.
@@ -55,7 +53,6 @@ The user-visible contract is concrete: Verify deleting derived graph rows for on
 
 ## 4. SOURCE METADATA
 - Group: Council Graph Integration
-- Feature ID: DAC-025
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/council-graph-integration/council-graph-derived-projection-rebuilds-from-artifacts.md`
 - Playbook scenario: `manual-testing-playbook/council-graph-integration/council-graph-derived-projection-rebuilds-from-artifacts.md`

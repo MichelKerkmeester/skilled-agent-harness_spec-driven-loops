@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-doc/066-feature-catalog-template-anchor-deprecation",
+  "description": "Deprecate the template-name anchor that the feature catalog mode stamps into every catalog doc and remove it from every feature catalog",
+  "keywords": [
+    "deprecate",
+    "template-name",
+    "anchor",
+    "feature",
+    "catalog",
+    "mode",
+    "stamps",
+    "every",
+    "doc",
+    "remove"
+  ],
+  "lastUpdated": "2026-10-10T18:42:45.967Z",
+  "specId": "066",
+  "folderSlug": "feature-catalog-template-anchor-deprecation",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

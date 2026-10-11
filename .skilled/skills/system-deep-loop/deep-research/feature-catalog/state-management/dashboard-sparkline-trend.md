@@ -1,6 +1,6 @@
 ---
 title: "Dashboard sparkline trend"
-description: "Renders new-information and score history as dashboard sparklines with a flatline advisory signal."
+description: "Renders dashboard sparklines for novelty and score history."
 trigger_phrases:
   - "dashboard sparkline trend"
   - "renderSparkline"
@@ -11,8 +11,6 @@ version: 1.14.0.13
 ---
 
 # Dashboard sparkline trend
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

@@ -35,8 +35,6 @@ intent_signals:
 
 # System Skill Advisor
 
-<!-- sk-doc-template: skill_md -->
-
 Routes non-trivial user requests to the right skill through the standalone Skill Advisor package and its CLI front door.
 
 ---

@@ -12,8 +12,6 @@ version: 1.7.0.9
 
 # State JSONL records council_complete event
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify final state includes council_complete.
@@ -53,7 +51,6 @@ The user-visible contract is concrete: Verify final state includes council_compl
 
 ## 4. SOURCE METADATA
 - Group: Artifact Persistence And State Format
-- Feature ID: DAC-006
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/artifact-persistence-and-state-format/state-jsonl-records-council-complete-event.md`
 - Playbook scenario: `manual-testing-playbook/artifact-persistence-and-state-format/state-jsonl-records-council-complete-event.md`

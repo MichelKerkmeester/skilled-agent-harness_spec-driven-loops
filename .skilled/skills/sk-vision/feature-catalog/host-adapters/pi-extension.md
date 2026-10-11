@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Pi extension adapter (sk-vision.ts)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Registers the 13 vision tools hidden by default in Pi and drives the hidden inspect tool through `/vision`.

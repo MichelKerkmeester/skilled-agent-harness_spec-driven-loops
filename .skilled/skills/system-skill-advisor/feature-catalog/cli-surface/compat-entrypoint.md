@@ -11,8 +11,6 @@ version: 0.8.0.14
 
 # Stable compat/index.ts Entrypoint
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW

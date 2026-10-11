@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Runtime status (sk_vision_status)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Report runtime health: model load state, device, VRAM, request count, and inference timing.

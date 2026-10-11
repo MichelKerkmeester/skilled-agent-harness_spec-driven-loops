@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # Missing Browser
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -40,7 +38,7 @@ Escalation rule: if Chrome/Chromium cannot be found after the env fix, stop and 
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/recovery-and-failure/missing-browser.md` | Manual | BDG-019 scenario contract |
+| `manual-testing-playbook/recovery-and-failure/missing-browser.md` | Manual playbook | BDG-019 scenario contract |
 
 ---
 

@@ -11,8 +11,6 @@ version: 1.4.0.15
 
 # Fixed-rate overrun accounting
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -44,7 +42,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/fanout-run.vitest.ts` | Test | Primary regression coverage for Fixed-rate overrun accounting. |
+| `tests/unit/fanout-run.vitest.ts` | Automated test | Primary regression coverage for Fixed-rate overrun accounting. |
 
 ---
 
@@ -52,9 +50,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Fan-out
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F037
 - Feature file path: `fanout/fixed-rate-overrun-accounting.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//010-fixed-rate-overrun-accounting`
 - Primary sources: `scripts/fanout-run.cjs`, `.skilled/commands/deep/assets/deep-research-auto.yaml`, `tests/unit/fanout-run.vitest.ts`
 Related references:
 - [fanout](../fanout/) — Fan-out category

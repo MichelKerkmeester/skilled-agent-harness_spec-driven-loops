@@ -1,6 +1,6 @@
 ---
 title: "Bayesian scorer"
-description: "Two primitives: computeScore returns a Bayesian success probability via Laplace smoothing (success+1)/(total+2); shouldDemote returns true when score<0.5 and totalCalls>=3."
+description: "Scores executor reliability and decides when enough evidence supports demotion."
 trigger_phrases:
   - "bayesian scorer"
   - "bayesian-scorer.ts"
@@ -11,8 +11,6 @@ version: 1.4.0.5
 ---
 
 # Bayesian scorer
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ---
 
@@ -44,7 +42,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/bayesian-scorer.vitest.ts` | Test | Primary regression coverage for Bayesian scorer. |
+| `tests/unit/bayesian-scorer.vitest.ts` | Automated test | Primary regression coverage for Bayesian scorer. |
 
 ---
 
@@ -52,6 +50,5 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Scoring
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F010
 - Feature file path: `scoring/bayesian-scorer.md`
 - Primary sources: `lib/deep-loop/bayesian-scorer.ts`, `tests/unit/bayesian-scorer.vitest.ts`

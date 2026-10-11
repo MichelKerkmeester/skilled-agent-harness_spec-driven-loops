@@ -12,8 +12,6 @@ version: 1.0.0.0
 
 # Post-Edit Quality Router
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

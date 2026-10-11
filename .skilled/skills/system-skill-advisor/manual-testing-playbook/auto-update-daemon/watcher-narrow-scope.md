@@ -21,8 +21,6 @@ expected_leaf_resources:
 Prompt: Manual validation that the daemon Chokidar watcher subscribes only to SKILL.md, graph-metadata.json and derived.key_files paths and does not fire on unrelated file changes.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

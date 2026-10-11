@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # Session Start
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -40,7 +38,7 @@ The canonical lifecycle is Start, Verify, Execute, Stop. Always capture stderr w
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/cli-bdg-lifecycle/session-start.md` | Manual | BDG-002 scenario contract |
+| `manual-testing-playbook/cli-bdg-lifecycle/session-start.md` | Manual playbook | BDG-002 scenario contract |
 
 ---
 

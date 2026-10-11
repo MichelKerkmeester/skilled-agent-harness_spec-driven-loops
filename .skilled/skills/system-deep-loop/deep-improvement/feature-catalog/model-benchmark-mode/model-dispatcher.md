@@ -12,8 +12,6 @@ version: 1.17.0.9
 
 # Model dispatcher
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Model-agnostic dispatcher that routes prompts across executor CLIs only on the model-benchmark path.
@@ -45,7 +43,7 @@ The dispatcher forwards `cwd` to every executor so spawned CLIs run against the 
 | File | Type | Role |
 |---|---|---|
 | `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/remediation.vitest.ts` | Automated test | Exercises dispatcher behavior alongside the model-benchmark remediation fixes. |
-| `.skilled/skills/system-deep-loop/deep-improvement/SKILL.md` | Skill contract | Documents the dispatcher as the model-agnostic seam loaded only on the model-benchmark path. |
+| `.skilled/skills/system-deep-loop/deep-improvement/SKILL.md` | Reference | Documents the dispatcher as the model-agnostic seam loaded only on the model-benchmark path. |
 
 ---
 

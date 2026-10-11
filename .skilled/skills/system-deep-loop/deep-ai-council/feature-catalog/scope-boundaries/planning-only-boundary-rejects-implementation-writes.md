@@ -12,8 +12,6 @@ version: 1.7.0.8
 
 # Planning-only boundary rejects implementation writes
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify the council writes only packet-local ai-council/** artifacts.
@@ -53,7 +51,6 @@ The user-visible contract is concrete: Verify the council writes only packet-loc
 
 ## 4. SOURCE METADATA
 - Group: Scope Boundaries
-- Feature ID: DAC-012
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/scope-boundaries/planning-only-boundary-rejects-implementation-writes.md`
 - Playbook scenario: `manual-testing-playbook/scope-boundaries/planning-only-boundary-rejects-implementation-writes.md`

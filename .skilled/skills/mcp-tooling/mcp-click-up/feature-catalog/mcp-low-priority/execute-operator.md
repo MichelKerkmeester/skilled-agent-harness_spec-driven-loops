@@ -15,8 +15,6 @@ Run one enabled operator, as the signed-in user.
 
 > **Live name (2026-10-08).** Call it as `clickup_official.clickup_official_clickup_execute_operator` in Code Mode. The parameter table comes from the server's own schema, captured when the hosted server registered 61 tools on that date.
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -53,7 +51,7 @@ Only operators that `clickup_get_operators` lists can run. None were enabled on 
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | No dedicated scenario. Confirm the call with `tool_info()` before first use |
+| `manual-testing-playbook/` | Manual playbook | No dedicated scenario. Confirm the call with `tool_info()` before first use |
 
 ---
 

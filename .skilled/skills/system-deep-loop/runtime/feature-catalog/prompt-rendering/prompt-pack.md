@@ -12,8 +12,6 @@ version: 1.4.0.4
 
 # Prompt pack
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -44,7 +42,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/prompt-pack.vitest.ts` | Test | Primary regression coverage for Prompt pack. |
+| `tests/unit/prompt-pack.vitest.ts` | Automated test | Primary regression coverage for Prompt pack. |
 
 ---
 
@@ -52,6 +50,5 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Prompt rendering
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F004
 - Feature file path: `prompt-rendering/prompt-pack.md`
 - Primary sources: `lib/deep-loop/prompt-pack.ts`, `tests/unit/prompt-pack.vitest.ts`

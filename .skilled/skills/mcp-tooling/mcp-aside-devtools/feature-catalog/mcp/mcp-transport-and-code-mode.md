@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Mcp (stdio transport and Code Mode composition)
 
-<!-- sk-doc-template: skill_asset_feature-catalog -->
-
 ## 1. OVERVIEW
 
 Carries the composition lane: browser work chained with other Code Mode tools through the Aside MCP server. `aside mcp` is a client-spawned local **stdio** process with no URL, port, token, or credential field; it inherits the logged-in CLI account/provider context. On `1.26.626.1517` (protocol `2024-11-05`) the live inventory is exactly **one tool, `repl`** (`title` + `code` inputs, persistent sandboxed ES2023+/Playwright REPL, 120-second call timeout) — version-pinned evidence, never a permanent contract.

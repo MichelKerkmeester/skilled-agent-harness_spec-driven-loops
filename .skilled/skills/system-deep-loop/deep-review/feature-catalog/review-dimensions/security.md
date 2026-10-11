@@ -12,8 +12,6 @@ version: 1.11.0.6
 
 # Security
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Audits trust boundaries, exploit paths, and exposure risk.
@@ -45,9 +43,9 @@ Because security findings can escalate to P0, this dimension sits near the front
 
 | File | Type | Role |
 |---|---|---|
-| `manual-testing-playbook/initialization-and-state-setup/scope-discovery-and-dimension-ordering.md` | Manual scenario | Verifies security stays in the default second position. |
-| `manual-testing-playbook/iteration-execution-and-state-discipline/adversarial-self-check-runs-on-p0-findings.md` | Manual scenario | Exercises blocker validation on high-severity findings, including security blockers. |
-| `manual-testing-playbook/convergence-and-recovery/p0-override-blocks-convergence.md` | Manual scenario | Confirms critical findings, often security-driven, block early stop. |
+| `manual-testing-playbook/initialization-and-state-setup/scope-discovery-and-dimension-ordering.md` | Manual playbook | Verifies security stays in the default second position. |
+| `manual-testing-playbook/iteration-execution-and-state-discipline/adversarial-self-check-runs-on-p0-findings.md` | Manual playbook | Exercises blocker validation on high-severity findings, including security blockers. |
+| `manual-testing-playbook/convergence-and-recovery/p0-override-blocks-convergence.md` | Manual playbook | Confirms critical findings, often security-driven, block early stop. |
 
 ---
 

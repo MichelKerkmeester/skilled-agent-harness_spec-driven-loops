@@ -12,8 +12,6 @@ version: 1.4.0.4
 
 # JSONL repair
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -44,7 +42,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/jsonl-repair.vitest.ts` | Test | Primary regression coverage for JSONL repair. |
+| `tests/unit/jsonl-repair.vitest.ts` | Automated test | Primary regression coverage for JSONL repair. |
 
 ---
 
@@ -52,7 +50,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: State safety
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F007
 - Feature file path: `state-safety/jsonl-repair.md`
 - Primary sources: `lib/deep-loop/jsonl-repair.ts`, `tests/unit/jsonl-repair.vitest.ts`
 Related references:

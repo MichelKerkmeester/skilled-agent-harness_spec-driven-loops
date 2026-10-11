@@ -12,8 +12,6 @@ version: 1.0.0.4
 
 # Mermaid import (mermaid_extract.py)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Redraws a `.mmd`, `.mermaid`, or fenced Mermaid block into an editorial diagram via the `mermaid_extract.py` intermediate representation, without copying the renderer layout or theme.

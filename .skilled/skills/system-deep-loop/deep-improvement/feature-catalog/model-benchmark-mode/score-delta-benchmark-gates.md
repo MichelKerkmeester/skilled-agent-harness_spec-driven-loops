@@ -1,6 +1,6 @@
 ---
 title: "Score-delta benchmark gates"
-description: "Emits outcomeScoreDelta and fixtureDeltas helped/hurt evidence from Lane B benchmark runs, summarizes the deltas in reduce-state, and blocks promotion on regressions or unreviewed hurt fixtures."
+description: "Turns benchmark reports into quality-delta evidence and blocks promotion on regressions or unreviewed hurt fixtures."
 trigger_phrases:
   - "score-delta benchmark gates"
   - "outcomeScoreDelta"
@@ -11,8 +11,6 @@ version: 1.17.0.1
 ---
 
 # Score-delta benchmark gates
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

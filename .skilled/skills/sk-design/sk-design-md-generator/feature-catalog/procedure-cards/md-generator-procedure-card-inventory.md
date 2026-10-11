@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Md-Generator Procedure Card Inventory
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 `design-md-generator` has one private procedure card selected after the public mode is chosen: `design-system-extraction.md`.
@@ -37,13 +35,13 @@ The card grants no additional permission beyond the mode's existing extraction p
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/skills/sk-design-md-generator/procedures/design-system-extraction.md` | Shared | Design-system-extraction card: purpose, tool boundary, procedure, and conflict rule. |
+| `.skilled/skills/sk-design/sk-design-md-generator/procedures/design-system-extraction.md` | Shared | Design-system-extraction card: purpose, tool boundary, procedure, and conflict rule. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/sk-design-md-generator/manual-testing-playbook/manual-testing-playbook.md` | Manual playbook | Exercises measured extraction scenarios against the live mode. |
+| `.skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/manual-testing-playbook.md` | Manual playbook | Exercises measured extraction scenarios against the live mode. |
 
 ---
 

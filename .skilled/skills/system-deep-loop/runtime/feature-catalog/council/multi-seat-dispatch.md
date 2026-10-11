@@ -12,8 +12,6 @@ version: 1.4.0.4
 
 # Multi-seat dispatch
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -44,7 +42,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/council/multi-seat-dispatch.vitest.ts` | Test | Primary regression coverage for Multi-seat dispatch. |
+| `tests/council/multi-seat-dispatch.vitest.ts` | Automated test | Primary regression coverage for Multi-seat dispatch. |
 
 ---
 
@@ -52,7 +50,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Council
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F018
 - Feature file path: `council/multi-seat-dispatch.md`
 - Primary sources: `lib/council/multi-seat-dispatch.cjs`, `tests/council/multi-seat-dispatch.vitest.ts`
 Related references:

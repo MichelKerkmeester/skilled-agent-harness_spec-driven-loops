@@ -179,7 +179,7 @@ different kind of drift: `references/accessibility.md`, `references/theme-variab
 shipped files that no intent group in `SKILL.md` §2b carried. §2b now carries all six:
 `accessibility.md` and `theme-variables.md` under `STACK_STANDARDS`, `setup/setup.md`,
 `operations/operations.md` and `skill-reference-integrity.md` under `VERIFICATION`, and
-`quality/doc-quality-gate.md` under `CODE_QUALITY`. Check 1b of `verify_router_sync.cjs` runs by
+`quality/doc-quality-gate.md` under `CODE_QUALITY`. Check 1b of `verify-router-sync.cjs` runs by
 default and fails when a reference or asset doc is left unrouted again.
 Every `expected_resources` path in every scenario in
 this package was checked against the live packet directory with `test -e`, never against `SKILL.md`'s

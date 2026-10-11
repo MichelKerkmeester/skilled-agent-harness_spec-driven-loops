@@ -78,7 +78,7 @@ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.c
 |---|---|
 | `mode-registry.json` | Canonical mode identity, packet kind, backend, tool surface, aliases, and advisor routing class |
 | `hub-router.json` | Stage-one policy, signal classes, and tie-break order |
-| `ROUTER.md` | Stage-two packet-qualified leaf routing |
+| [`ROUTER.md`](../ROUTER.md) | Stage-two packet-qualified leaf routing |
 | `graph-metadata.json` | Single advisor identity and graph/routing context |
 | `leaf-manifest.json` | Generated mode-to-leaf inventory |
 | `manual-testing-playbook/` | Hub routing scenarios and coverage claims |

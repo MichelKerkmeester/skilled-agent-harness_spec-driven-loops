@@ -1,6 +1,6 @@
 ---
 title: "Two-phase promotion and rollback"
-description: "Splits promotion into accept and ship phases, preserves branch evidence on blocked failures, and restores the canonical target through rollback-candidate.cjs."
+description: "Splits promotion into accept and ship phases and adds explicit rollback from the accepted-state backup."
 trigger_phrases:
   - "two-phase promotion"
   - "accept ship promotion"
@@ -11,8 +11,6 @@ version: 1.17.0.1
 ---
 
 # Two-phase promotion and rollback
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

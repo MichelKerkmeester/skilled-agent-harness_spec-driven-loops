@@ -12,8 +12,6 @@ version: 1.7.0.8
 
 # Advisor routes council prompts to skill
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify scorer coverage for deep-ai-council.
@@ -53,7 +51,6 @@ The user-visible contract is concrete: Verify scorer coverage for deep-ai-counci
 
 ## 4. SOURCE METADATA
 - Group: Runtime Routing And Rename
-- Feature ID: DAC-002
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/runtime-routing-and-rename/advisor-routes-council-prompts-to-skill.md`
 - Playbook scenario: `manual-testing-playbook/runtime-routing-and-rename/advisor-routes-council-prompts-to-skill.md`

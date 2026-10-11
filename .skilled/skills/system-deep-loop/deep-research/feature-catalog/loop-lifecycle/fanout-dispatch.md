@@ -1,6 +1,6 @@
 ---
 title: "Fan-out loop dispatch"
-description: "Opt-in fan-out dispatch layer in the research loop: step_resolve_artifact_root artifact-dir override branch, step_fanout_spawn (CLI pool + native sequential agent dispatch), and step_fanout_merge at the top of phase_synthesis. Single-executor path unchanged."
+description: "Opt-in fan-out dispatch layer: `step_resolve_artifact_root` artifact-dir override branch, `step_fanout_spawn` (CLI pool + native sequential agent dispatch), and `step_fanout_merge` at the top of `phase_synthesis`. Single-executor path is byte-identical to pre-change behavior."
 trigger_phrases:
   - "fan-out loop dispatch"
   - "fanout dispatch"
@@ -11,8 +11,6 @@ version: 1.14.0.4
 ---
 
 # Fan-out loop dispatch
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ---
 

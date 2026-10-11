@@ -12,8 +12,6 @@ version: 0.8.0.10
 
 # Skill graph scan
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 **Owned by**: the `system-skill-advisor` CLI front door and its daemon (since `013/009/008`).
 
 ## 1. OVERVIEW

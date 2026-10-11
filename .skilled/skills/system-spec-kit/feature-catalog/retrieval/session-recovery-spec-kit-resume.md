@@ -1,6 +1,6 @@
 ---
 title: "Session recovery via /speckit:resume"
-description: "Reconstructs interrupted session state through the unified spec-folder resume workflow."
+description: "Reconstructs interrupted session state through the spec-folder resume workflow and routes the operator to one next step."
 trigger_phrases:
   - "session recovery"
   - "speckit:resume"
@@ -11,8 +11,6 @@ version: 2.0.0.0
 ---
 
 # Session recovery via /speckit:resume
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 
@@ -79,7 +77,7 @@ There is no session inference, no semantic paraphrase and no candidate ranking b
 
 | File | Type | Role |
 |---|---|---|
-| `runtime/cli/retrieval/measure-cold-lookup.mjs` | Automated check | Cold-lookup cost of the trigger-index lane |
+| `runtime/cli/retrieval/measure-cold-lookup.mjs` | Automated test | Cold-lookup cost of the trigger-index lane |
 
 ---
 

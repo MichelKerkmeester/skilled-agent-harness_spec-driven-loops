@@ -1,6 +1,6 @@
 ---
 title: "Conventional commit workflows"
-description: "Deterministic commit-message contract, artifact filtering, and scoped-staging discipline that keep AI-authored commits atomic and free of unrelated in-flight work."
+description: "A deterministic commit-message contract (`type(scope)[!]: imperative summary`) plus artifact-filtering and scoped-staging guidance so an AI-authored commit is atomic, self-contained, and never sweeps in another session's in-flight work."
 trigger_phrases:
   - "conventional commit workflows"
   - "scoped staging discipline"
@@ -10,8 +10,6 @@ version: 1.0.0.0
 ---
 
 # Conventional commit workflows
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

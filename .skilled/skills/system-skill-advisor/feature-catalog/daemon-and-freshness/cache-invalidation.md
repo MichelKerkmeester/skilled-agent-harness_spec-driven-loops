@@ -11,8 +11,6 @@ version: 0.8.0.13
 
 # Generation-Tied Cache Invalidation
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Prevent stale cache reads after a graph reindex. Every cache entry is tagged with the generation under which it was computed. A generation bump atomically invalidates affected entries without blowing away the whole cache.

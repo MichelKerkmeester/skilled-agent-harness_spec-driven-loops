@@ -7,7 +7,7 @@ trigger_phrases:
   - "capture website css"
   - "design tokens from url"
   - "validate design.md"
-version: 1.1.0.0
+version: 1.1.3.0
 ---
 
 # sk-design-md-generator

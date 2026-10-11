@@ -1,6 +1,6 @@
 ---
-title: "Spec Lifecycle Automation"
-description: "Coordinated shell-script lifecycle for recommending spec depth, creating spec folders and phases, upgrading documentation level, measuring completion, checking checklist readiness, and archiving finished work."
+title: "Spec lifecycle automation"
+description: "Coordinated shell lifecycle for recommending spec depth, creating spec folders and phases, upgrading level, measuring completion and archiving finished work."
 trigger_phrases:
   - spec lifecycle automation
   - recommend-level.sh
@@ -11,8 +11,6 @@ version: 1.6.0.7
 ---
 
 # Spec Lifecycle Automation
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

@@ -1,6 +1,6 @@
 ---
 title: "Code standards alignment"
-description: "Code standards alignment brought comments, MODULE/COMPONENT headers, import ordering, and constant naming into line with sk-code OPENCODE route standards."
+description: "Brings comments, MODULE/COMPONENT headers, import ordering and constant naming into line with the sk-code OPENCODE route standards."
 trigger_phrases:
   - code standards alignment
   - MODULE COMPONENT headers
@@ -11,8 +11,6 @@ version: 1.6.0.24
 ---
 
 # Code standards alignment
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # Eval JavaScript
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -40,7 +38,7 @@ The helper wraps the Runtime domain (`Runtime.evaluate` with `returnByValue`). P
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/dom-and-screenshot/eval-javascript.md` | Manual | BDG-009 scenario contract |
+| `manual-testing-playbook/dom-and-screenshot/eval-javascript.md` | Manual playbook | BDG-009 scenario contract |
 
 ---
 

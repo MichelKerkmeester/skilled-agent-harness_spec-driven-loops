@@ -1,6 +1,6 @@
 ---
 title: "Large reorg playbook"
-description: "Step-ordered runbook for a large rename/reorg that confines file-rename operations to a worktree while deferring the spec-kit toolchain and memory reindex to main after merge."
+description: "A step-ordered runbook for a large rename/reorg (hundreds-to-thousands of `git mv`) that keeps file-rename operations confined to a worktree while deferring the spec-kit toolchain and the global memory/vector database reindex to `main` after merge."
 trigger_phrases:
   - "large reorg playbook"
   - "mass git mv renames"
@@ -10,8 +10,6 @@ version: 1.0.0.0
 ---
 
 # Large reorg playbook
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 
@@ -50,7 +48,7 @@ Everything from this point runs on `main`, the merged tree being the source of t
 
 | File | Type | Role |
 |---|---|---|
-| — | — | No dedicated automated test or manual playbook scenario exercises the large-reorg runbook itself; verification is the step-by-step checklist in the runbook source |
+| `.skilled/skills/sk-git/references/large-reorg-playbook.md` | Reference | No dedicated test or playbook scenario exercises the runbook; verification is its step-by-step checklist |
 
 ---
 

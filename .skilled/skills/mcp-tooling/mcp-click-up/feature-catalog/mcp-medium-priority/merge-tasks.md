@@ -16,8 +16,6 @@ Merge source tasks into a target task. The sources are consumed.
 
 > **Live name (2026-10-08).** Call it as `clickup_official.clickup_official_clickup_merge_tasks` in Code Mode. The parameter table comes from the server's own schema, captured when the hosted server registered 61 tools on that date.
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -50,7 +48,7 @@ The target survives, and its field values win on conflicts. The source tasks are
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | No dedicated scenario. Confirm the call with `tool_info()` before first use |
+| `manual-testing-playbook/` | Manual playbook | No dedicated scenario. Confirm the call with `tool_info()` before first use |
 
 ---
 

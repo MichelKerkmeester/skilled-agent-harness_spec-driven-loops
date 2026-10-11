@@ -1,6 +1,6 @@
 ---
 title: "Dimensional progress"
-description: "Reduces run records into per-dimension trends, best-known state, and operator-facing stop guidance."
+description: "Reduces raw run records into trends, best-known state, and operator-facing stop guidance."
 trigger_phrases:
   - "dimensional progress"
   - "reduce-state.cjs"
@@ -11,8 +11,6 @@ version: 1.17.0.11
 ---
 
 # Dimensional progress
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

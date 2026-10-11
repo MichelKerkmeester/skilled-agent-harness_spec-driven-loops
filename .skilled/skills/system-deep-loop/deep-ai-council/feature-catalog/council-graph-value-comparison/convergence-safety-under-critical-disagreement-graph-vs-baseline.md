@@ -12,8 +12,6 @@ version: 1.7.0.10
 
 # Convergence safety under critical disagreement
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Demonstrate the graph provides a safety guarantee (block on unresolved critical) that the two-of-three baseline does not.
@@ -56,7 +54,6 @@ The user-visible contract is concrete: Demonstrate the graph provides a safety g
 
 ## 4. SOURCE METADATA
 - Group: Council Graph Value Comparison
-- Feature ID: DAC-029
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/council-graph-value-comparison/convergence-safety-under-critical-disagreement-graph-vs-baseline.md`
 - Playbook scenario: `manual-testing-playbook/council-graph-value-comparison/convergence-safety-under-critical-disagreement-graph-vs-baseline.md`

@@ -9,8 +9,6 @@ trigger_phrases:
 
 # Skill Advisor Library: Runtime, Scoring And Metadata Helpers
 
-<!-- sk-doc-template: skill_readme -->
-
 ---
 
 ## 1. OVERVIEW

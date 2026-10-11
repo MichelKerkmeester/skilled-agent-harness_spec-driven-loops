@@ -11,8 +11,6 @@ version: 0.8.0.12
 
 # Archive and Future Skills Indexed But Not Routed
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Preserve historical and staged skills for inspection (audits, history, pre-activation preview) without letting them surface in live routing recommendations.

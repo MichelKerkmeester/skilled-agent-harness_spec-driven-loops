@@ -11,8 +11,6 @@ version: 0.8.0.14
 
 # Lane-by-Lane Ablation Protocol
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Quantify each lane's contribution to accuracy so lane weights can be reasoned about empirically. Ablation must never mutate live weights.

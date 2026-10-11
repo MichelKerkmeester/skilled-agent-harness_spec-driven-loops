@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # refero_get_screen
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Full screen-metadata retrieval for UUIDs shortlisted by [`refero_search_screens`](search-screens.md). READ-ONLY. Canonical callable: `refero.refero_refero_get_screen({ screen_id | screen_ids, response_format? })` (doubled prefix; confirm via `tool_info` first).

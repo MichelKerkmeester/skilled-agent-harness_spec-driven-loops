@@ -1,6 +1,6 @@
 ---
 title: "Continuous integration autosync"
-description: "Always-current live branch model that keeps every concurrent AI session's committed work visible in the operator's IDE within seconds, without giving up per-session isolation."
+description: "An always-current live branch model keeps every concurrent AI session's committed work visible in the operator's IDE checkout within seconds, without giving up per-session worktree isolation."
 trigger_phrases:
   - "continuous integration autosync"
   - "always-current live branch"
@@ -10,8 +10,6 @@ version: 1.0.0.0
 ---
 
 # Continuous integration autosync (git-sync.sh / post-commit hook)
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

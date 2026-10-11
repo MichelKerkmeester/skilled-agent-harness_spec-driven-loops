@@ -12,8 +12,6 @@ version: 1.7.0.9
 
 # Five-dimension scoring rubric application
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify the 5-dimension rubric is documented with weights matching agent 6 and can be applied to a hypothetical seat output.
@@ -53,7 +51,6 @@ The user-visible contract is concrete: Verify the 5-dimension rubric is document
 
 ## 4. SOURCE METADATA
 - Group: Writer Library Contract
-- Feature ID: DAC-015
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/writer-library-contract/five-dimension-scoring-rubric-application.md`
 - Playbook scenario: `manual-testing-playbook/writer-library-contract/five-dimension-scoring-rubric-application.md`

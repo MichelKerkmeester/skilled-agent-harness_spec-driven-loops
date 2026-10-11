@@ -1,6 +1,6 @@
 ---
-title: "sk-git numbered worktree convention (wt/{NNNN}-{name})"
-description: "The sk-git skill owns the numbered worktree convention: feature worktrees use a wt/{NNNN}-{name} branch under a .worktrees/{NNNN}-{name} directory, where {NNNN} is a 4-digit zero-padded global max+1 counter. Cross-reference to the sk-git skill, which owns the full mechanics."
+title: "sk-git numbered worktree convention"
+description: "Feature worktrees use a `wt/{NNNN}-{name}` branch under a `.worktrees/{NNNN}-{name}` directory, where `{NNNN}` is allocated, never hand-counted."
 trigger_phrases:
   - "sk-git worktree convention"
   - "wt/{NNNN}-{name} numbered worktree"
@@ -11,8 +11,6 @@ version: 1.6.0.2
 ---
 
 # sk-git numbered worktree convention (wt/{NNNN}-{name})
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

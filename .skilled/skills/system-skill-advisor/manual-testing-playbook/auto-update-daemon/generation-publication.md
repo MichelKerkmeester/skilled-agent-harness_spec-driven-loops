@@ -19,8 +19,6 @@ expected_leaf_resources: []
 Prompt: Manual validation that generation counters bump atomically after reindex and that post-commit publication makes fresh snapshots visible to readers.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

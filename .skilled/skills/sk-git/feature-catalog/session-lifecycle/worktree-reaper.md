@@ -1,6 +1,6 @@
 ---
 title: "Worktree reaper"
-description: "Companion script that prunes finished launch-wrapper worktrees and their leftover session state, never touching a human-created or still-active worktree."
+description: "A companion script that prunes finished launch-wrapper worktrees and their leftover session state, without ever touching a human-created or still-active worktree."
 trigger_phrases:
   - "worktree reaper"
   - "worktree-reaper.sh"
@@ -11,8 +11,6 @@ version: 1.0.0.0
 ---
 
 # Worktree reaper (worktree-reaper.sh)
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

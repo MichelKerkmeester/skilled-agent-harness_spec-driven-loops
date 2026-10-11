@@ -12,8 +12,6 @@ version: 1.0.0.4
 
 # Editorial style and connectors
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The shared editorial design system every diagram draws against: semantic color and typography tokens, the 4px grid, the complexity budget, and the five non-negotiable connector rules.

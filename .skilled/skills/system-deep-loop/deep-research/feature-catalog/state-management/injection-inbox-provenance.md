@@ -1,6 +1,6 @@
 ---
 title: "Injection inbox provenance"
-description: "Adds `research/inbox.jsonl` as the canonical late-question injection surface with reducer-carried provenance."
+description: "Adds `research/inbox.jsonl` as the canonical late-question injection surface."
 trigger_phrases:
   - "injection inbox provenance"
   - "research inbox.jsonl"
@@ -11,8 +11,6 @@ version: 1.14.0.13
 ---
 
 # Injection inbox provenance
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

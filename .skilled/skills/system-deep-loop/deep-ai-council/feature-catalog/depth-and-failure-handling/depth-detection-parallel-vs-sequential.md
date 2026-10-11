@@ -12,8 +12,6 @@ version: 1.7.0.9
 
 # Depth detection parallel vs sequential
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify Depth 0 versus Depth 1 dispatch detection and confirm sequential_thinking inline mode is selected for an explicit Depth: 1 marker.
@@ -53,7 +51,6 @@ The user-visible contract is concrete: Verify Depth 0 versus Depth 1 dispatch de
 
 ## 4. SOURCE METADATA
 - Group: Depth And Failure Handling
-- Feature ID: DAC-014
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/depth-and-failure-handling/depth-detection-parallel-vs-sequential.md`
 - Playbook scenario: `manual-testing-playbook/depth-and-failure-handling/depth-detection-parallel-vs-sequential.md`

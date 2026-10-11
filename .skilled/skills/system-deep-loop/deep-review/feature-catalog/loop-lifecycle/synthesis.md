@@ -1,6 +1,6 @@
 ---
 title: "Synthesis"
-description: "Compiles iteration output into the final review report, verdict, and terminal state."
+description: "Compiles iteration output into the final review report and terminal state."
 trigger_phrases:
   - "synthesis"
   - "compile review report"
@@ -11,8 +11,6 @@ version: 1.11.0.7
 ---
 
 # Synthesis
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 
@@ -45,9 +43,9 @@ The final report follows a fixed nine-section contract covering the executive su
 
 | File | Type | Role |
 |---|---|---|
-| `manual-testing-playbook/synthesis-save-and-guardrails/review-report-synthesis-has-all-9-sections.md` | Manual scenario | Verifies the report structure and synthesis output. |
-| `manual-testing-playbook/synthesis-save-and-guardrails/review-verdict-determines-post-review-workflow.md` | Manual scenario | Confirms verdict routing after synthesis. |
-| `manual-testing-playbook/synthesis-save-and-guardrails/finding-deduplication-and-registry.md` | Manual scenario | Exercises synthesis-time deduplication and registry alignment. |
+| `manual-testing-playbook/synthesis-save-and-guardrails/review-report-synthesis-has-all-9-sections.md` | Manual playbook | Verifies the report structure and synthesis output. |
+| `manual-testing-playbook/synthesis-save-and-guardrails/review-verdict-determines-post-review-workflow.md` | Manual playbook | Confirms verdict routing after synthesis. |
+| `manual-testing-playbook/synthesis-save-and-guardrails/finding-deduplication-and-registry.md` | Manual playbook | Exercises synthesis-time deduplication and registry alignment. |
 
 ---
 

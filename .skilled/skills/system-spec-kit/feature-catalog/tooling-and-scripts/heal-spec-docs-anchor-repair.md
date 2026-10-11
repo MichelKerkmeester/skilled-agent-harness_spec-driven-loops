@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Heal spec docs anchor repair (heal-spec-docs.cjs --anchor-repair)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Anchor repair is the document repair that fixes anchor structure in a packet's `spec.md`. It handles two defects that each have one safe fix: a duplicate anchor pair, and a questions opener that does not sit directly above its heading. Anything it cannot place with certainty is refused and left unchanged.

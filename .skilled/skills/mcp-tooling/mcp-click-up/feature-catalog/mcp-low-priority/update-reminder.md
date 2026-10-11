@@ -16,8 +16,6 @@ Change a reminder or mark it complete.
 
 > **Live name (2026-10-08).** Call it as `clickup_official.clickup_official_clickup_update_reminder` in Code Mode. The parameter table comes from the server's own schema, captured when the hosted server registered 61 tools on that date.
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -53,7 +51,7 @@ Find the `reminder_id` with `clickup_search_reminders`.
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | No dedicated scenario. Confirm the call with `tool_info()` before first use |
+| `manual-testing-playbook/` | Manual playbook | No dedicated scenario. Confirm the call with `tool_info()` before first use |
 
 ---
 

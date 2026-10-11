@@ -1,6 +1,6 @@
 ---
 title: "Goal OpenCode plugin"
-description: "Local /goal-opencode OpenCode plugin that binds a session to a packet goal.md, injects the objective slice built from it as active-goal context, exposes opencode_goal tools including bind, resent and packet, and documents restart and validation boundaries."
+description: "Local `/goal` OpenCode plugin that binds a session to a packet `goal.md`, injects the objective slice built from the file as active-goal context, and exposes `opencode_goal` tools including `bind`, `resent` and `packet`."
 trigger_phrases:
   - "goal opencode plugin"
   - "opencode-goal"
@@ -14,8 +14,6 @@ version: 1.9.0.0
 # Goal OpenCode plugin
 
 This catalog entry maps the current `/goal-opencode` OpenCode plugin behavior to its implementation files, validation tests, and operator reference.
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

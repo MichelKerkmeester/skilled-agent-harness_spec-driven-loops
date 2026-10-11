@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Themes (list_themes / get_theme)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Carries design-system lookup. `list_themes` lists the design systems available to the user, or to one team. `get_theme` fetches a design system's CSS variables, fonts, and styling prompt, to match generated UI to an existing brand rather than inventing values.

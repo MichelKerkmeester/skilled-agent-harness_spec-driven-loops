@@ -1,6 +1,6 @@
 ---
 title: "Runtime mirrors"
-description: "Measures whether the runtime-specific agent mirrors still reflect the canonical agent body."
+description: "Checks whether the runtime-specific mirrors still reflect the canonical agent body closely enough."
 trigger_phrases:
   - "runtime mirrors"
   - "scan-integration.cjs"
@@ -11,8 +11,6 @@ version: 1.17.0.15
 ---
 
 # Runtime mirrors
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 
@@ -45,8 +43,8 @@ The scanner uses signal matching instead of byte equality. It strips frontmatter
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/system-deep-loop/deep-improvement/references/model-benchmark/benchmark-operator-guide.md` | Operator reference | Documents the mirror-score weighting used when benchmark runs include integration data. |
-| `.skilled/skills/system-deep-loop/deep-improvement/references/shared/promotion-rules.md` | Safety reference | Treats undocumented mirror drift as a blocker for safe loop expansion. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/model-benchmark/benchmark-operator-guide.md` | Reference | Documents the mirror-score weighting used when benchmark runs include integration data. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/shared/promotion-rules.md` | Reference | Treats undocumented mirror drift as a blocker for safe loop expansion. |
 
 ---
 

@@ -21,8 +21,6 @@ expected_leaf_resources:
 Prompt: Manual validation that corruption of the skill graph SQLite database triggers a rebuild-from-source recovery path without crashing the runtime.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

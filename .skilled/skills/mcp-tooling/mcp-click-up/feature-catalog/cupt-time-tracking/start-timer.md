@@ -12,8 +12,6 @@ version: 1.0.0.3
 
 # Start Timer
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -40,7 +38,7 @@ Exit 0 and confirmation message on success. Error if a timer is already running.
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | Per-scenario playbook files for this feature |
+| `manual-testing-playbook/` | Manual playbook | Per-scenario playbook files for this feature |
 
 ---
 

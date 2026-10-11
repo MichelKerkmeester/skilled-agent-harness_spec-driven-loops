@@ -1,6 +1,6 @@
 ---
 title: "GitHub MCP integration"
-description: "Full CRUD access to GitHub's remote PR, issue, and repository operations via Code Mode, layered on top of local git and the gh CLI rather than replacing them."
+description: "Full CRUD access to GitHub's remote PR, issue, and repository operations via Code Mode, layered on top of (not replacing) local git and the `gh` CLI."
 trigger_phrases:
   - "github mcp integration"
   - "remote github operations"
@@ -10,8 +10,6 @@ version: 1.0.0.0
 ---
 
 # GitHub MCP integration (github.github_*)
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

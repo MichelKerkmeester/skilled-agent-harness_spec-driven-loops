@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Hermes Dispatch-Shape Recognition (inspectDispatch)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The shared dispatch inspector recognizes `hermes chat` with a query flag, and the top-level `-z` oneshot, as a dispatch, while a bare chat or a management subcommand stays unrecognized.

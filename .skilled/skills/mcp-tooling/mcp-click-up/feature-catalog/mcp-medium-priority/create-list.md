@@ -16,8 +16,6 @@ Create a list directly in a space.
 
 > **Live name (2026-10-08).** Call it as `clickup_official.clickup_official_clickup_create_list` in Code Mode. The parameter table comes from the server's own schema, captured when the hosted server registered 61 tools on that date.
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW
@@ -56,7 +54,7 @@ Pass `name` and `space_id` or `space_name`. For a list inside a folder, use `cli
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-structure/create-list.md` | Manual | Scenario that exercises this tool |
+| `manual-testing-playbook/mcp-structure/create-list.md` | Manual playbook | Scenario that exercises this tool |
 
 ---
 

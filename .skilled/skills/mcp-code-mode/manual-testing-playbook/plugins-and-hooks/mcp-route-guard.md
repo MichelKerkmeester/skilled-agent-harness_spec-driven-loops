@@ -17,8 +17,6 @@ expected_leaf_resources: []
 
 # MCP Route Guard
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

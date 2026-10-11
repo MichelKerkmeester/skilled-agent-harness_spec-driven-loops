@@ -1,5 +1,5 @@
 ---
-title: "Spec Validation Rule Engine"
+title: "Spec validation rule engine"
 description: "Validation orchestrator that detects spec level, loads configured or alphabetical rule scripts, applies severity policy, supports recursive phase validation, and emits human-readable or JSON results."
 trigger_phrases:
   - "spec validation rule engine"
@@ -11,8 +11,6 @@ version: 2.1.0.30
 ---
 
 # Spec Validation Rule Engine
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

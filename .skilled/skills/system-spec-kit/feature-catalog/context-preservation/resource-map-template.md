@@ -1,6 +1,6 @@
 ---
 title: "Resource map template"
-description: "Optional cross-cutting template that provides a lean, scannable catalog of analyzed, created, updated, or removed paths and wires that surface into the system-spec-kit discovery docs."
+description: "Optional cross-cutting packet template that records the file footprint of a packet in one flat, review-friendly place."
 trigger_phrases:
   - "resource map template"
   - "resource-map.md"
@@ -11,8 +11,6 @@ version: 1.6.0.8
 ---
 
 # Resource map template
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 

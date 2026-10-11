@@ -1,6 +1,6 @@
 ---
-title: "Executor Selection Contract"
-description: "Resolves which executor runs each review iteration (native agent or one of two CLIs) and enforces per-kind flag compatibility before dispatch."
+title: "Executor selection contract"
+description: "Resolves which executor runs each iteration and enforces per-kind flag compatibility before dispatch."
 trigger_phrases:
   - "executor selection contract"
   - "parseExecutorConfig"
@@ -11,8 +11,6 @@ version: 1.11.0.6
 ---
 
 # Executor Selection Contract
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 
@@ -58,8 +56,8 @@ Per-kind flag compatibility is enforced at config parse time by `EXECUTOR_KIND_F
 
 | File | Type | Role |
 |---|---|---|
-| `manual-testing-playbook/entry-points-and-modes/parameterized-invocation-max-iterations-convergence.md` | Manual scenario | Exercises parameterized invocation paths that feed executor config. |
-| `manual-testing-playbook/command-flow-stress-tests/write-boundary-reducer-owned-files.md` | Manual scenario | Confirms executor write boundaries against reducer-owned files. |
+| `manual-testing-playbook/entry-points-and-modes/parameterized-invocation-max-iterations-convergence.md` | Manual playbook | Exercises parameterized invocation paths that feed executor config. |
+| `manual-testing-playbook/command-flow-stress-tests/write-boundary-reducer-owned-files.md` | Manual playbook | Confirms executor write boundaries against reducer-owned files. |
 
 ---
 

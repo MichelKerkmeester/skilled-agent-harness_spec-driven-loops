@@ -12,8 +12,6 @@ version: 2.7.0.2
 
 # Shared frontmatter value list (frontmatter-values.json)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 One JSON list holds the legal contextType and importance_tier values, the save CLI reads its sets from it, and the FRONTMATTER_VALUES rule warns when a packet doc carries a value outside it.
