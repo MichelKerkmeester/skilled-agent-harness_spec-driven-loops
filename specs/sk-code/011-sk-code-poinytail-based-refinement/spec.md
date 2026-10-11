@@ -132,6 +132,7 @@ These bind every build phase, 002 to 006.
 | 16 | 016-residual-closeout/ | Fix what the closeout left: package strict, hooks README voice, admission gold, battery misses, hooks vitest scope, and a DeepSeek review of the closeout with its fixes | Complete |
 | 17 | 017-release-changelog/ | Record the epic's and the catalog anchor track's user-facing changes in the v4.0.0.4 release entry | Complete |
 | 18 | 018-create-sh-unknown-options/ | Make create.sh refuse an unknown option instead of adding it to the title, and fix the docs that passed a flag it never had | Complete |
+| 19 | 019-routing-miss-fixes/ | Fix the three routing misses the closeout left: DOC-331 in the deep-loop router, and P4 and P7 in the advisor | Complete |
 
 ### Phase Transition Rules
 
@@ -161,6 +162,7 @@ These bind every build phase, 002 to 006.
 | 015-closeout | 016-residual-closeout | 015 committed with every gate green | `validate.sh --recursive --strict` on the parent |
 | 016-residual-closeout | 017-release-changelog | 016 committed and both tracks on origin/main | `validate.sh --recursive --strict` on the parent |
 | 017-release-changelog | 018-create-sh-unknown-options | 017 committed and on origin/main | `validate.sh --recursive --strict` on the parent |
+| 018-create-sh-unknown-options | 019-routing-miss-fixes | 018 committed and on origin/main | `validate.sh --recursive --strict` on the parent |
 
 ### Handoffs Outside sk-code
 
