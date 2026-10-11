@@ -36,7 +36,7 @@
       "completion"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "skilladvisor.py --force-native reports freshness unavailable whenever the advisor daemon has shut down on its idle timeout, because shutdown publishes generation state unavailable and the bridge probe accepts only live or stale, although the index content hashes match disk",
     "created_at": "2026-10-10T23:56:37Z",
-    "last_save_at": "2026-10-11T00:03:44.373Z",
+    "last_save_at": "2026-10-11T00:17:27.988Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:990d777f107d88af0613dfd775c9ba4681ff762a26ae826e232640daf159ec9c",
+    "source_fingerprint": "sha256:1cc033264852ab4cf3defb4db2be548ed11168cd84809df1d317be732a4253e8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d986d9bfbe32ec4f0681244944071d0fe130e21f1850837a4c543bda8111d828",
-      "plan.md": "03d8e467d9366b410b8bd9b2524f3dbf1f85387fa96bf58b46f5f864c113109b",
-      "tasks.md": "6b781b19c1e3aab54fdbffa0dda503659be30210547f760f742207c71fcaf751",
-      "implementation-summary.md": "cc6571443b7e17b8d68e2c0268373209c7c2ad584b5afbeb2a22d7bfffb67eb5"
+      "spec.md": "29029033e5f963ce8e0a64af938f7739a59c0a3ca73b7f08c867f18f9e42c634",
+      "plan.md": "4728b94f9c95fc61086d8bf5ca0af80cd7785e236061b3889bf6616029d5ce03",
+      "tasks.md": "351a6a982fa6f059067579bb4666c55176c820b73118ef4d640121cec74b6a9e",
+      "implementation-summary.md": "c660f27b8192e8e17ccdc6281b587c6abdc347fd87e2dc08508c34f4e774b416"
     },
     "last_active_at": null
   }

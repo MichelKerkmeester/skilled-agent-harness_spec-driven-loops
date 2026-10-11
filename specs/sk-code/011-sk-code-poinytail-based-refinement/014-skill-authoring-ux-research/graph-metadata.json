@@ -168,17 +168,17 @@
     ],
     "causal_summary": "The sk-code refinement epic kept hitting the same skill-authoring errors: generated artifacts drifting from their sources, a hub version carried in six files with a changelog number that collided at merge, advisor routes pulled off course by named files and generic words, a surface hint the advisor never passes, and doctor checks that fire only after a change lands",
     "created_at": "2026-10-10T18:39:32Z",
-    "last_save_at": "2026-10-11T00:04:51.148Z",
+    "last_save_at": "2026-10-11T00:17:33.945Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:c6d63ea6b7ebeb8fce45386485f77cd1b1fec17b9095a0c2e32e99b7489aa9b2",
+    "source_fingerprint": "sha256:08271b1a16b9c27069053f5e4ae0740a3d568fa16c1d6cd2abe257a861397062",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0ee66da6167c418228f0b0e188f0168f0f65cc9e29d94383d3ad489b7202d3cf"
+      "spec.md": "740b82d469405b64a03fb7f0ae984103a5b0af1c6d3976787bbf22c8780feb05"
     },
     "last_active_at": null
   }

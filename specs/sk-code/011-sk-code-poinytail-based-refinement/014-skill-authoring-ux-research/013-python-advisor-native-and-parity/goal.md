@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-014-013-python-advisor-native-and-parity"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -73,10 +73,14 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase planned | Done | spec.md, plan.md, tasks.md and this goal written by the orchestrator |
+| Cause traced | Done | orchestrator |
+| Bridge fix | Done | t3-p013a |
+| Batteries | Done | t3-p013c |
+| Python port | Done | t3-p013b |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | Recorded here as the phase runs |
+| None | The build matched the plan |
 <!-- /ANCHOR:log -->

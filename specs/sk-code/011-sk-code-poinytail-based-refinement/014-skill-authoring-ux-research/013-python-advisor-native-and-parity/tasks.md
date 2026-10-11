@@ -31,7 +31,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Trace the unavailable freshness to its cause
+- [x] T001 Trace the unavailable freshness to its cause
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -39,9 +39,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Fix bridge eligibility
-- [ ] T003 Port the two rules with tests
-- [ ] T004 Make both batteries fail on non-native rows
+- [x] T002 Fix bridge eligibility
+- [x] T003 Port the two rules with tests
+- [x] T004 Make both batteries fail on non-native rows
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -49,7 +49,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T005 Validate and commit
+- [x] T005 Validate and commit
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -57,9 +57,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Every goal.md criterion passes on the orchestrator's rerun
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every goal.md criterion passes on the orchestrator's rerun
 <!-- /ANCHOR:completion -->
 
 ---
