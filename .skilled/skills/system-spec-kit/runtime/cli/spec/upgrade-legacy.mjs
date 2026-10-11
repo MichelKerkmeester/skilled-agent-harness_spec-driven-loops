@@ -123,6 +123,10 @@ const ARTIFACT_TREES = new Set(['research', 'review', 'context']);
 const BASELINE_FILE = 'upgrade-baseline.json';
 const MANIFEST_FILE = 'upgrade-legacy.manifest.json';
 
+// Before-image bytes live in their own files beside the manifest, so the
+// manifest itself stays small whatever the size of the repaired tree.
+const BEFORE_IMAGES_DIR = 'upgrade-legacy.before-images';
+
 // The release apply holds this lock while it writes release files, and a layout move or
 // repair that ran beside it would race those writes. A lock that cannot be inspected also
 // refuses, so an unreadable path never lets a run through.
@@ -386,8 +390,53 @@ function baselineMapFor(packets, manifest = null) {
   return map;
 }
 
+// Copy one before-image into its own file beside the manifest, hashing the
+// bytes in the same pass, and return the digest. A single JSON string cannot
+// hold a whole corpus's bytes, so the manifest carries this reference and a
+// restore can prove the sidecar still holds the saved bytes.
+function saveBeforeImage(target, directory) {
+  const hash = crypto.createHash('sha256');
+  const buffer = Buffer.allocUnsafe(1024 * 1024);
+  const temporary = path.join(directory, `${process.pid}-${crypto.randomBytes(6).toString('hex')}.tmp`);
+  let source = null;
+  let destination = null;
+  try {
+    source = fs.openSync(target, 'r');
+    destination = fs.openSync(temporary, 'wx', 0o600);
+    for (;;) {
+      const bytes = fs.readSync(source, buffer, 0, buffer.length, null);
+      if (bytes === 0) break;
+      const slice = buffer.subarray(0, bytes);
+      hash.update(slice);
+      let written = 0;
+      while (written < slice.length) {
+        written += fs.writeSync(destination, slice, written, slice.length - written);
+      }
+    }
+    fs.fsyncSync(destination);
+    fs.closeSync(destination);
+    destination = null;
+    fs.closeSync(source);
+    source = null;
+  } catch (err) {
+    if (destination !== null) {
+      try { fs.closeSync(destination); } catch { /* The copy error is the useful failure. */ }
+    }
+    if (source !== null) {
+      try { fs.closeSync(source); } catch { /* The copy error is the useful failure. */ }
+    }
+    try { fs.unlinkSync(temporary); } catch { /* A failed copy must not leave a partial sidecar. */ }
+    throw err;
+  }
+  const sha256 = hash.digest('hex');
+  fs.renameSync(temporary, path.join(directory, `${sha256}.bin`));
+  return sha256;
+}
+
 // Snapshot dirty files inside packets this run will repair, not unrelated worktree files.
-function beforeImagesFor(gitState, packets) {
+// Each file's bytes go to a sidecar, and the manifest keeps only the path, the
+// sidecar reference, its digest and the file mode.
+function beforeImagesFor(gitState, packets, beforeImagesDirectory) {
   const images = [];
   for (const relative of gitState.dirtyPaths) {
     const target = resolveRepoPath(relative);
@@ -407,18 +456,49 @@ function beforeImagesFor(gitState, packets) {
     if (stat.isSymbolicLink()) {
       images.push({ path: relative, beforeImage: { kind: 'symlink-target', target: fs.readlinkSync(target) } });
     } else if (stat.isFile()) {
+      const sha256 = saveBeforeImage(target, beforeImagesDirectory);
       images.push({
         path: relative,
         beforeImage: {
           kind: 'file-bytes',
-          encoding: 'base64',
-          content: fs.readFileSync(target).toString('base64'),
+          sidecar: `${BEFORE_IMAGES_DIR}/${sha256}.bin`,
+          sha256,
           mode: stat.mode & 0o777,
         },
       });
     }
   }
   return images.sort((a, b) => (a.path < b.path ? -1 : a.path > b.path ? 1 : 0));
+}
+
+// A manifest that was replaced or removed leaves its sidecars behind, so the
+// replacement removes every file in the before-images directory it does not
+// reference. The sidecars the replacement references stay: the manifest is the
+// undo record until a later run replaces it, and its bytes must remain
+// restorable. Cleanup is best-effort; a sidecar that cannot be removed must not
+// stop an otherwise valid apply.
+function pruneBeforeImages(directory, manifest) {
+  const referenced = new Set();
+  for (const entry of manifest.beforeImages || []) {
+    const sidecar = entry.beforeImage && entry.beforeImage.sidecar;
+    if (typeof sidecar === 'string') referenced.add(path.basename(sidecar));
+  }
+  let names;
+  try {
+    names = fs.readdirSync(directory);
+  } catch {
+    return;
+  }
+  for (const name of names) {
+    if (referenced.has(name)) continue;
+    const target = path.join(directory, name);
+    try {
+      if (!fs.lstatSync(target).isFile()) continue;
+      fs.unlinkSync(target);
+    } catch {
+      // The orphan stays; the next successful apply prunes it again.
+    }
+  }
 }
 
 function manifestPathFor(gitState) {
@@ -569,6 +649,9 @@ function prepareManifest(gitState, packets, failing, file) {
     scopeHashes[relative] = packetTreeHash([relative]);
   }
 
+  const beforeImagesDirectory = path.join(gitState.gitDir, BEFORE_IMAGES_DIR);
+  fs.mkdirSync(beforeImagesDirectory, { recursive: true, mode: 0o700 });
+
   const next = {
     schema: 1,
     repoRoot: REPO,
@@ -578,9 +661,12 @@ function prepareManifest(gitState, packets, failing, file) {
     baselineMap: baselineMapFor(packets),
     recordedBaselineMap: null,
     scopeHashes,
-    beforeImages: beforeImagesFor(gitState, failing),
+    beforeImages: beforeImagesFor(gitState, failing, beforeImagesDirectory),
   };
   writeManifestFile(file, next, !fs.existsSync(file));
+  // The manifest just written is the recovery record from now on, so every
+  // sidecar it does not reference is from a record that no longer exists.
+  pruneBeforeImages(beforeImagesDirectory, next);
   return { file, manifest: next };
 }
 
@@ -1110,9 +1196,15 @@ function copyPreviewAncestorFiles(folder, previewRoot) {
     fs.mkdirSync(targetDirectory, { recursive: true });
     for (const entry of fs.readdirSync(ancestor, { withFileTypes: true })) {
       if (!entry.isFile() && !entry.isSymbolicLink()) continue;
+      // A link is copied as a link: dereferencing could follow one that points
+      // at an ancestor of itself and never finish the copy. verbatimSymlinks
+      // keeps the recorded target text, so a relative target still resolves
+      // inside the preview instead of being rewritten to an absolute path into
+      // the real tree.
       fs.cpSync(path.join(ancestor, entry.name), path.join(targetDirectory, entry.name), {
         recursive: true,
-        dereference: true,
+        dereference: false,
+        verbatimSymlinks: true,
       });
     }
     ancestor = path.dirname(ancestor);
@@ -1122,30 +1214,54 @@ function copyPreviewAncestorFiles(folder, previewRoot) {
 // cpSync's dereference option does not reach symlinks nested inside a
 // recursive copy, so a linked document would reach the preview as a link and
 // the preview's repair steps would write through it into the real tree.
-// Replace every link under the copied spec roots with a copy of its target.
-function materializeSymlinks(directory) {
+// Replace a link under the copied spec roots with a copy of its target, but
+// never follow one whose target leaves the copied packet, does not resolve,
+// or contains the link itself: a copy of an ancestor would recurse into its
+// own descendant and never finish, and a target outside the packet is content
+// the packet does not own. Such a link is removed from the preview and noted.
+function materializeSymlinks(directory, packetFolders, notes, scope = directory) {
   if (!fs.existsSync(directory)) return;
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
     const target = path.join(directory, entry.name);
     if (entry.isSymbolicLink()) {
-      const resolved = fs.realpathSync(target);
+      const packet = packetFolders.find((folder) => contained(target, folder));
+      const boundary = packet ?? scope;
+      const resolved = realPathOrNull(target);
+      const refusal = resolved === null
+        ? 'the target does not resolve'
+        : !contained(resolved, boundary)
+          ? 'the target leaves the packet'
+          : contained(target, resolved)
+            ? 'the target contains the link itself'
+            : null;
+      if (refusal !== null) {
+        notes.push({ target, reason: refusal });
+        fs.unlinkSync(target);
+        continue;
+      }
       fs.unlinkSync(target);
-      fs.cpSync(resolved, target, { recursive: true, dereference: true });
-      if (fs.statSync(target).isDirectory()) materializeSymlinks(target);
+      // The copy keeps nested link targets as recorded, so each one still
+      // resolves against its own location inside the preview.
+      fs.cpSync(resolved, target, { recursive: true, dereference: false, verbatimSymlinks: true });
+      if (fs.statSync(target).isDirectory()) materializeSymlinks(target, packetFolders, notes, scope);
     } else if (entry.isDirectory()) {
-      materializeSymlinks(target);
+      materializeSymlinks(target, packetFolders, notes, scope);
     }
   }
 }
 
 async function createPreviewWorkspace(packets) {
-  const previewRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'upgrade-legacy-preview-'));
+  // The containment checks below compare real paths, and os.tmpdir() can itself
+  // sit behind a link (/var on macOS), so the preview root is resolved before
+  // any folder under it is named.
+  const previewRoot = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'upgrade-legacy-preview-')));
   try {
     const skillRoot = path.join(previewRoot, '.skilled/skills/system-spec-kit');
     fs.mkdirSync(path.dirname(skillRoot), { recursive: true });
     fs.cpSync(SKILL_ROOT, skillRoot, {
       recursive: true,
       filter: (source) => path.basename(source) !== 'node_modules',
+      verbatimSymlinks: true,
     });
 
     for (const relative of ['node_modules', 'runtime/node_modules', 'runtime/cli/node_modules']) {
@@ -1179,15 +1295,22 @@ async function createPreviewWorkspace(packets) {
       const folder = path.resolve(previewRoot, ...relative.split('/'));
       if (!contained(folder, previewRoot)) throw new Error(`packet path escapes preview root: ${relative}`);
       fs.mkdirSync(path.dirname(folder), { recursive: true });
-      fs.cpSync(packet.folder, folder, { recursive: true, dereference: true });
+      // A link is copied as a link so a self-referential one cannot make the
+      // copy recurse; materializeSymlinks replaces the links it can copy, and
+      // verbatimSymlinks keeps a relative target relative to the copy.
+      fs.cpSync(packet.folder, folder, { recursive: true, dereference: false, verbatimSymlinks: true });
       return { ...packet, folder, root: path.join(previewRoot, repoRelative(packet.root)) };
     });
-    for (const specRoot of ['specs', '.opencode/specs']) materializeSymlinks(path.join(previewRoot, specRoot));
+    const symlinkNotes = [];
+    const packetFolders = previewPackets.map((packet) => packet.folder);
+    for (const specRoot of ['specs', '.opencode/specs']) {
+      materializeSymlinks(path.join(previewRoot, specRoot), packetFolders, symlinkNotes);
+    }
 
     await run('git', ['init', '-q'], { cwd: previewRoot, encoding: 'utf8' });
     const context = createRunContext(previewRoot, skillRoot);
     context.silent = true;
-    return { previewRoot, packets: previewPackets, context };
+    return { previewRoot, packets: previewPackets, context, symlinkNotes };
   } catch (err) {
     fs.rmSync(previewRoot, { recursive: true, force: true });
     throw err;
@@ -1211,6 +1334,10 @@ async function predictDowngradeFindings(packets, reports, manifestIssue, manifes
   if (failing.length === 0) return findingsByFolder;
 
   const preview = await createPreviewWorkspace(failing);
+  for (const note of preview.symlinkNotes) {
+    const shown = path.relative(preview.previewRoot, note.target).split(path.sep).join('/');
+    process.stderr.write(`${SCRIPT}: preview ${shown}: symbolic link, not followed (${note.reason})\n`);
+  }
   try {
     const active = preview.packets.filter((packet) => !packet.archived).map((packet) => packet.folder);
     const archived = preview.packets.filter((packet) => packet.archived).map((packet) => packet.folder);

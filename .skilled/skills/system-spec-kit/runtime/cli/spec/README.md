@@ -133,7 +133,7 @@ Each worktree has its own Git directory, so its manifest stays separate. A clean
 
 The manifest records `schema`, `repoRoot`, `headSha`, `recordedAt`, `status`, `baselineMap`, `recordedBaselineMap`, `scopeHashes`, `beforeImages` and `completedAt`. `baselineMap` records the baselines present before the run. `recordedBaselineMap` records each in-scope packet's findings after repair. The manifest starts with `status: "in-progress"` and becomes `complete` after the repairs and baseline writes finish. `completedAt` is set at that point, so an in-progress manifest has no `completedAt` value.
 
-Each `beforeImages` entry has a repository-relative path and a `beforeImage` value. File entries store the original bytes as base64 and the file mode. Missing paths use `kind: "absent"`. Symbolic links store their target.
+Each `beforeImages` entry has a repository-relative path and a `beforeImage` value. A file entry names a `sidecar` under `upgrade-legacy.before-images/` beside the manifest, the `sha256` digest of the saved bytes and the file mode; the bytes sit in that sidecar so the manifest stays small on a large tree. Missing paths use `kind: "absent"`. Symbolic links store their target. A manifest written before sidecars existed holds the file bytes inline as base64 `content`; the recovery script below reads both forms. When a later apply replaces a completed manifest, sidecar files the replacement does not reference are removed from `upgrade-legacy.before-images/`. Every sidecar the manifest on disk references is kept, because that manifest stays the undo record after a completed apply.
 
 Dry run uses a temporary packet copy to predict findings when no matching complete manifest exists. A complete manifest supplies `recordedBaselineMap` for the **Downgrades** section in both dry run and `--apply`, after the tool verifies its HEAD and packet tree hashes. The tool trusts matching hashes even when `repoRoot` names another absolute path. A HEAD or packet tree mismatch makes dry run report the mismatch and continue, while `--apply` refuses. An in-progress manifest marks a run that stopped before finalizing its recovery record. Dry run reports it and continues. `--apply` refuses until you recover or deliberately clear the manifest.
 
@@ -151,9 +151,10 @@ The script resolves every restore path from `UPGRADE_LEGACY_REPO_ROOT`, so you c
 
 Check `headSha` against the current HEAD before restoring committed files. When they differ, restore before-images only if their paths still match the current tree. Otherwise remove the manifest deliberately and keep the current tree.
 
-For a matching HEAD, inspect `git status --short`. Restore changed committed packet files that are not listed in `beforeImages` from `headSha`. Leave paths listed in `beforeImages` for the script below, since those entries may hold uncommitted bytes from before the run. The script restores those bytes and modes, removes paths marked absent, recreates symbolic links and restores or removes baselines according to `baselineMap`.
+For a matching HEAD, inspect `git status --short`. Restore changed committed packet files that are not listed in `beforeImages` from `headSha`. Leave paths listed in `beforeImages` for the script below, since those entries may hold uncommitted bytes from before the run. The script restores those bytes and modes, removes paths marked absent, recreates symbolic links and restores or removes baselines according to `baselineMap`. A sidecar it cannot read, or one whose digest does not match the manifest, stops the script before anything is written. A sidecar name that leaves the manifest directory, or a sidecar directory that is a symbolic link, is refused the same way.
 
 ```js
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
@@ -162,6 +163,7 @@ const repoRootInput = process.env.UPGRADE_LEGACY_REPO_ROOT;
 if (!repoRootInput) throw new Error('UPGRADE_LEGACY_REPO_ROOT must name the repository to restore');
 const repoRoot = fs.realpathSync(repoRootInput);
 const manifestFile = process.argv[1];
+const manifestDirectory = path.dirname(manifestFile);
 const manifest = JSON.parse(fs.readFileSync(manifestFile, 'utf8'));
 const beforeImages = Array.isArray(manifest.beforeImages) ? manifest.beforeImages : [];
 
@@ -174,13 +176,58 @@ function resolveInsideRepo(relative) {
   return target;
 }
 
+// Saved bytes live beside the manifest, never in the repository tree, and the
+// digest proves a sidecar still holds what the run recorded. A name that
+// escapes the manifest directory, or a directory component that is a link, is
+// refused: either one would read bytes outside the sidecar directory.
+function readSidecar(name, sha256) {
+  const target = path.resolve(manifestDirectory, name);
+  const fromManifest = path.relative(manifestDirectory, target);
+  if (!fromManifest || fromManifest === '..' || fromManifest.startsWith(`..${path.sep}`) || path.isAbsolute(fromManifest)) {
+    throw new Error(`before-image sidecar escapes the manifest directory: ${name}`);
+  }
+  let current = manifestDirectory;
+  const parts = fromManifest.split(path.sep);
+  for (const part of parts.slice(0, -1)) {
+    current = path.join(current, part);
+    if (fs.lstatSync(current).isSymbolicLink()) {
+      throw new Error(`before-image sidecar directory is a symbolic link, not followed: ${name}`);
+    }
+  }
+  const state = fs.lstatSync(target);
+  if (state.isSymbolicLink()) {
+    throw new Error(`before-image sidecar is a symbolic link, not followed: ${name}`);
+  }
+  if (!state.isFile()) {
+    throw new Error(`before-image sidecar is not a regular file: ${name}`);
+  }
+  const bytes = fs.readFileSync(target);
+  const digest = crypto.createHash('sha256').update(bytes).digest('hex');
+  if (digest !== sha256) throw new Error(`before-image sidecar digest mismatch: ${name}`);
+  return bytes;
+}
+
+// Every sidecar is read and verified before the first write, so one bad
+// sidecar leaves the tree untouched instead of half restored.
+const restoredBytes = new Map();
+for (const entry of beforeImages) {
+  const image = entry.beforeImage;
+  if (image.kind === 'file-bytes' && typeof image.content !== 'string') {
+    restoredBytes.set(entry, readSidecar(image.sidecar, image.sha256));
+  }
+}
+
 for (const entry of beforeImages) {
   const target = resolveInsideRepo(entry.path);
   const image = entry.beforeImage;
   if (image.kind === 'file-bytes') {
+    // A manifest written before sidecars existed inlined the bytes as base64 content.
+    const bytes = typeof image.content === 'string'
+      ? Buffer.from(image.content, 'base64')
+      : restoredBytes.get(entry);
     fs.rmSync(target, { recursive: true, force: true });
     fs.mkdirSync(path.dirname(target), { recursive: true });
-    fs.writeFileSync(target, Buffer.from(image.content, 'base64'));
+    fs.writeFileSync(target, bytes);
     fs.chmodSync(target, image.mode);
   } else if (image.kind === 'absent') {
     fs.rmSync(target, { recursive: true, force: true });
@@ -208,14 +255,24 @@ for (const relative of Object.keys(manifest.scopeHashes || {})) {
 }
 ```
 
+Save the script above as `restore.mjs` and run it with the manifest as its argument:
+
+```bash
+UPGRADE_LEGACY_REPO_ROOT="$repo_root" node --input-type=module --eval "$(cat restore.mjs)" "$manifest"
+```
+
+The script reads the manifest path from `process.argv[1]`, so it must run through `--eval`, because a script file would fill that position with its own path.
+
+The script restores every `beforeImages` entry in the manifest it is given. To restore one packet, write a packet-scoped copy of the manifest beside the real manifest, with `beforeImages` and `scopeHashes` reduced to that packet and the `baselineMap` kept as it is, then pass that copy as the manifest argument. Sidecar paths resolve against the manifest directory, so the copy reads the same before-images and the real manifest stays intact.
+
 After restoring the packet files and baselines, remove the manifest to clear the interrupted state, then validate the recovered packets with `validate.sh [packet] --strict`:
 
 ```bash
-rm "$manifest"
+rm -rf "$manifest" "$(dirname "$manifest")/upgrade-legacy.before-images"
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<packet> --strict
 ```
 
-If you choose not to recover, remove the manifest deliberately. This discards its before-images.
+If you choose not to recover, remove the manifest and its sidecar directory deliberately. This discards its before-images.
 
 ### Heal Lane Modes
 

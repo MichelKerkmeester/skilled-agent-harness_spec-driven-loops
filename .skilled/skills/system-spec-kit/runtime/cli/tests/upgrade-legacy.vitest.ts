@@ -180,6 +180,17 @@ function nestedQuestionsSpec(): string {
   ].join('\n');
 }
 
+// The README's recovery script is the executable contract for an interrupted
+// apply, so the cases below run the fenced copy rather than a paraphrase of it.
+function readmeRecoveryScript(): string {
+  const readme = fs.readFileSync(path.join(copy, 'runtime/cli/spec/README.md'), 'utf8');
+  const recoverySection = readme.slice(readme.indexOf('### Recover an Interrupted Apply'));
+  const fence = String.fromCharCode(96).repeat(3);
+  const script = recoverySection.match(new RegExp(fence + 'js\\n([\\s\\S]*?)\\n' + fence, 'u'))?.[1];
+  expect(script).toBeDefined();
+  return script!;
+}
+
 beforeAll(() => {
   sandbox = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'upgrade-legacy-')));
   copy = path.join(sandbox, '.skilled/skills/system-spec-kit');
@@ -290,6 +301,65 @@ describe('upgrade-legacy', () => {
     } finally {
       fs.rmSync(packetFolder, { recursive: true, force: true });
       fs.rmSync(outsideTarget, { force: true });
+    }
+  }, 180_000);
+
+  it('previews a packet whose link points at its own ancestor without following it', () => {
+    const folder = 'specs/link-loop/001-packet';
+    writeLegacyPacket(folder);
+    const packetFolder = path.join(sandbox, folder);
+    const loopLink = path.join(packetFolder, 'research/lineages/sol/.reducer-spec/research');
+    fs.mkdirSync(path.dirname(loopLink), { recursive: true });
+    fs.symlinkSync('..', loopLink);
+    const outsideTarget = path.join(sandbox, 'outside-preview-target.md');
+    const outsideBytes = 'bytes outside the packet\n';
+    fs.writeFileSync(outsideTarget, outsideBytes);
+    const outsideLink = path.join(packetFolder, 'research/outside-link.md');
+    fs.symlinkSync(outsideTarget, outsideLink);
+
+    try {
+      const result = runUpgrade(['--roots', folder]);
+      // A copy that followed the link would recurse until ENAMETOOLONG and stop
+      // the whole dry run, and a copy that followed the outside link would read
+      // a file the packet does not own.
+      expect(result.status, result.stdout + result.stderr).toBe(1);
+      expect(fs.readlinkSync(loopLink)).toBe('..');
+      expect(fs.readlinkSync(outsideLink)).toBe(outsideTarget);
+      expect(fs.readFileSync(outsideTarget, 'utf8')).toBe(outsideBytes);
+      expect(`${result.stdout}${result.stderr}`).toContain('symbolic link, not followed');
+    } finally {
+      fs.rmSync(packetFolder, { recursive: true, force: true });
+      fs.rmSync(outsideTarget, { force: true });
+    }
+  }, 180_000);
+
+  // A relative link inside the packet is content the packet owns, so the
+  // preview materializes its target; a link whose target contains the link
+  // itself is still refused without following it.
+  it('keeps an in-packet relative link in the preview and still refuses a self-referential one', () => {
+    const folder = 'specs/preview-links/001-packet';
+    writeLegacyPacket(folder);
+    const packetFolder = path.join(sandbox, folder);
+    const source = path.join(packetFolder, 'sources', 'plan-source.md');
+    fs.mkdirSync(path.dirname(source), { recursive: true });
+    fs.renameSync(path.join(packetFolder, 'plan.md'), source);
+    const relativeLink = path.join('sources', 'plan-source.md');
+    fs.symlinkSync(relativeLink, path.join(packetFolder, 'plan.md'));
+    const loopLink = path.join(packetFolder, 'research', 'self');
+    fs.mkdirSync(path.dirname(loopLink), { recursive: true });
+    fs.symlinkSync('..', loopLink);
+    const sourceBytes = fs.readFileSync(source);
+
+    try {
+      const result = runUpgrade(['--roots', folder]);
+      const output = result.stdout + result.stderr;
+      expect(result.status, output).toBe(1);
+      expect(output).not.toContain('plan.md: symbolic link, not followed');
+      expect(output).toContain('research/self: symbolic link, not followed');
+      expect(fs.readlinkSync(path.join(packetFolder, 'plan.md'))).toBe(relativeLink);
+      expect(fs.readFileSync(source)).toEqual(sourceBytes);
+    } finally {
+      fs.rmSync(packetFolder, { recursive: true, force: true });
     }
   }, 180_000);
 
@@ -798,7 +868,8 @@ describe('upgrade-legacy', () => {
     const body = JSON.parse(fs.readFileSync(upgradeManifestPath(), 'utf8'));
     const image = body.beforeImages.find((entry: { path: string }) => entry.path === `${folder}/spec.md`);
     expect(image, JSON.stringify(body.beforeImages)).toBeDefined();
-    expect(Buffer.from(image.beforeImage.content, 'base64')).toEqual(nested);
+    const saved = fs.readFileSync(path.join(path.dirname(upgradeManifestPath()), image.beforeImage.sidecar));
+    expect(saved).toEqual(nested);
   }, 180_000);
 
   it('records a detail the validator repeats once per copy', () => {
@@ -966,13 +1037,18 @@ describe('upgrade-legacy', () => {
     expect(body.beforeImages).toEqual(expect.arrayContaining([
       expect.objectContaining({
         path: `${DIRTY_PACKET}/spec.md`,
-        beforeImage: expect.objectContaining({ kind: 'file-bytes', encoding: 'base64' }),
+        beforeImage: expect.objectContaining({
+          kind: 'file-bytes',
+          sha256: expect.stringMatching(/^[0-9a-f]{64}$/u),
+        }),
       }),
     ]));
-    const specImage = body.beforeImages.find((image: { path: string }) => image.path === `${DIRTY_PACKET}/spec.md`);
-    expect(Buffer.from(specImage.beforeImage.content, 'base64')).toEqual(originalSpec);
-    const planImage = body.beforeImages.find((image: { path: string }) => image.path === `${DIRTY_PACKET}/plan.md`);
-    expect(Buffer.from(planImage.beforeImage.content, 'base64')).toEqual(originalPlan);
+    const readBeforeImage = (relative: string) => {
+      const image = body.beforeImages.find((entry: { path: string }) => entry.path === relative);
+      return fs.readFileSync(path.join(path.dirname(manifestFile), image.beforeImage.sidecar));
+    };
+    expect(readBeforeImage(`${DIRTY_PACKET}/spec.md`)).toEqual(originalSpec);
+    expect(readBeforeImage(`${DIRTY_PACKET}/plan.md`)).toEqual(originalPlan);
   }, 180_000);
 
   it('manifest-before-image-restores', () => {
@@ -985,7 +1061,8 @@ describe('upgrade-legacy', () => {
 
     const file = path.join(sandbox, relative);
     const current = fs.readFileSync(file);
-    const restored = Buffer.from(image.beforeImage.content, 'base64');
+    const restored = fs.readFileSync(path.join(path.dirname(upgradeManifestPath()), image.beforeImage.sidecar));
+    expect(crypto.createHash('sha256').update(restored).digest('hex')).toBe(image.beforeImage.sha256);
     expect(current).not.toEqual(restored);
     try {
       fs.writeFileSync(file, restored);
@@ -993,6 +1070,78 @@ describe('upgrade-legacy', () => {
     } finally {
       fs.writeFileSync(file, current);
     }
+  }, 180_000);
+
+  it('keeps before-image bytes out of the manifest in sidecar files', () => {
+    const folder = 'specs/bulk-dirty/001-packet';
+    writeLegacyPacket(folder);
+    const payloads = 24;
+    for (let index = 0; index < payloads; index += 1) {
+      fs.writeFileSync(
+        path.join(sandbox, folder, `payload-${index}.bin`),
+        Buffer.alloc(1024 * 1024, index % 251),
+      );
+    }
+    commitChanges('committed bulk packet', [folder]);
+    const originals = new Map<string, Buffer>();
+    for (let index = 0; index < payloads; index += 1) {
+      const relative = `${folder}/payload-${index}.bin`;
+      const file = path.join(sandbox, relative);
+      fs.appendFileSync(file, 'dirty\n');
+      originals.set(relative, fs.readFileSync(file));
+    }
+
+    const result = runUpgrade(['--apply', '--roots', folder]);
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+
+    const manifestFile = upgradeManifestPath();
+    const body = JSON.parse(fs.readFileSync(manifestFile, 'utf8'));
+    const fileImages = body.beforeImages.filter(
+      (entry: { beforeImage: { kind: string } }) => entry.beforeImage.kind === 'file-bytes',
+    );
+    expect(fileImages.length).toBe(payloads);
+    // One JSON string holding the whole corpus is the shape that breaks a
+    // large tree, so the manifest holds paths and hashes while the sidecars
+    // hold the bytes.
+    expect(fs.statSync(manifestFile).size).toBeLessThan(256 * 1024);
+    for (const entry of fileImages) {
+      expect(entry.beforeImage.content).toBeUndefined();
+      expect(entry.beforeImage.sha256).toMatch(/^[0-9a-f]{64}$/u);
+      const sidecar = path.join(path.dirname(manifestFile), entry.beforeImage.sidecar);
+      const saved = fs.readFileSync(sidecar);
+      expect(crypto.createHash('sha256').update(saved).digest('hex')).toBe(entry.beforeImage.sha256);
+      expect(saved).toEqual(originals.get(entry.path));
+    }
+  }, 180_000);
+
+  // A record that was replaced or removed leaves its sidecars behind, so the
+  // next manifest write drops what it does not reference and keeps the rest as
+  // a restorable recovery record.
+  it('prunes orphan before-image sidecars but keeps the ones the manifest references', () => {
+    prepareDirtyManifest();
+    const manifestFile = upgradeManifestPath();
+    const sidecarDir = path.join(path.dirname(manifestFile), 'upgrade-legacy.before-images');
+    expect(fs.readdirSync(sidecarDir).length).toBeGreaterThan(0);
+    fs.rmSync(manifestFile, { force: true });
+    const orphan = path.join(sidecarDir, `${'f'.repeat(64)}.bin`);
+    fs.writeFileSync(orphan, 'orphan bytes\n');
+
+    fs.appendFileSync(path.join(sandbox, DIRTY_PACKET, 'spec.md'), '\nFresh mistake [x](./prune-missing.md).\n');
+    const second = runUpgrade(['--apply', '--roots', DIRTY_PACKET]);
+    expect(second.status, second.stdout + second.stderr).toBe(0);
+
+    const body = JSON.parse(fs.readFileSync(manifestFile, 'utf8'));
+    const referenced = new Set<string>();
+    for (const entry of body.beforeImages) {
+      if (entry.beforeImage.kind === 'file-bytes' && typeof entry.beforeImage.sidecar === 'string') {
+        referenced.add(path.basename(entry.beforeImage.sidecar));
+      }
+    }
+    expect(referenced.size).toBeGreaterThan(0);
+    const remaining = fs.readdirSync(sidecarDir)
+      .filter((name) => fs.lstatSync(path.join(sidecarDir, name)).isFile());
+    expect(new Set(remaining)).toEqual(referenced);
+    expect(fs.existsSync(orphan)).toBe(false);
   }, 180_000);
 
   it('no-git-refuses-apply', () => {
@@ -1103,6 +1252,139 @@ describe('upgrade-legacy', () => {
     } finally {
       fs.rmSync(repoRoot, { recursive: true, force: true });
       fs.rmSync(callerRoot, { recursive: true, force: true });
+    }
+  }, 180_000);
+
+  it('readme recovery reads a before-image sidecar and refuses a changed digest', () => {
+    const readme = fs.readFileSync(path.join(copy, 'runtime/cli/spec/README.md'), 'utf8');
+    const recoverySection = readme.slice(readme.indexOf('### Recover an Interrupted Apply'));
+    const fence = String.fromCharCode(96).repeat(3);
+    const recoveryScript = recoverySection.match(new RegExp(fence + 'js\\n([\\s\\S]*?)\\n' + fence, 'u'))?.[1];
+    expect(recoveryScript).toBeDefined();
+
+    const repoRoot = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'upgrade-legacy-sidecar-root-')));
+    const callerRoot = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'upgrade-legacy-sidecar-cwd-')));
+    const relative = 'specs/recovery-packet/plan.md';
+    const target = path.join(repoRoot, relative);
+    const original = Buffer.from('sidecar repository bytes\n');
+    const digest = crypto.createHash('sha256').update(original).digest('hex');
+    const sidecar = `upgrade-legacy.before-images/${digest}.bin`;
+    const manifestFile = path.join(callerRoot, 'manifest.json');
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.mkdirSync(path.dirname(path.join(callerRoot, sidecar)), { recursive: true });
+    fs.writeFileSync(target, 'changed repository bytes\n');
+    fs.writeFileSync(path.join(callerRoot, sidecar), original);
+    fs.writeFileSync(manifestFile, JSON.stringify({
+      beforeImages: [{
+        path: relative,
+        beforeImage: { kind: 'file-bytes', sidecar, sha256: digest, mode: 0o644 },
+      }],
+      scopeHashes: {},
+    }));
+
+    const runRecovery = () => spawnSync(
+      process.execPath,
+      ['--input-type=module', '-e', recoveryScript!, manifestFile],
+      { cwd: callerRoot, encoding: 'utf8', env: { ...process.env, UPGRADE_LEGACY_REPO_ROOT: repoRoot } },
+    );
+
+    try {
+      const restored = runRecovery();
+      expect(restored.status, restored.stdout + restored.stderr).toBe(0);
+      expect(fs.readFileSync(target)).toEqual(original);
+
+      // A sidecar whose digest no longer matches the manifest must not reach
+      // the repository.
+      fs.writeFileSync(target, 'changed repository bytes\n');
+      fs.writeFileSync(path.join(callerRoot, sidecar), 'tampered sidecar bytes\n');
+      const refused = runRecovery();
+      expect(refused.status, refused.stdout + refused.stderr).not.toBe(0);
+      expect(fs.readFileSync(target, 'utf8')).toBe('changed repository bytes\n');
+    } finally {
+      fs.rmSync(repoRoot, { recursive: true, force: true });
+      fs.rmSync(callerRoot, { recursive: true, force: true });
+    }
+  }, 180_000);
+
+  it('readme recovery refuses an escaping sidecar name before it writes anything', () => {
+    const recoveryScript = readmeRecoveryScript();
+    const repoRoot = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'upgrade-legacy-restore-root-')));
+    const callerRoot = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'upgrade-legacy-restore-cwd-')));
+    const first = 'specs/recovery-packet/plan.md';
+    const second = 'specs/recovery-packet/tasks.md';
+    const firstTarget = path.join(repoRoot, first);
+    const secondTarget = path.join(repoRoot, second);
+    const original = Buffer.from('first before-image bytes\n');
+    fs.mkdirSync(path.dirname(firstTarget), { recursive: true });
+    fs.writeFileSync(firstTarget, 'changed first bytes\n');
+    fs.writeFileSync(secondTarget, 'changed second bytes\n');
+    const manifestFile = path.join(callerRoot, 'manifest.json');
+    fs.writeFileSync(manifestFile, JSON.stringify({
+      beforeImages: [
+        {
+          path: first,
+          beforeImage: { kind: 'file-bytes', encoding: 'base64', content: original.toString('base64'), mode: 0o644 },
+        },
+        {
+          path: second,
+          beforeImage: { kind: 'file-bytes', sidecar: '..', sha256: '0'.repeat(64), mode: 0o644 },
+        },
+      ],
+      scopeHashes: {},
+    }));
+
+    try {
+      const result = spawnSync(
+        process.execPath,
+        ['--input-type=module', '-e', recoveryScript, manifestFile],
+        { cwd: callerRoot, encoding: 'utf8', env: { ...process.env, UPGRADE_LEGACY_REPO_ROOT: repoRoot } },
+      );
+      expect(result.status, result.stdout + result.stderr).not.toBe(0);
+      expect(result.stderr).toContain('escapes the manifest directory');
+      // The valid entry sorts before the bad one, so a script that verified
+      // sidecars as it went would already have written this one.
+      expect(fs.readFileSync(firstTarget, 'utf8')).toBe('changed first bytes\n');
+      expect(fs.readFileSync(secondTarget, 'utf8')).toBe('changed second bytes\n');
+    } finally {
+      fs.rmSync(repoRoot, { recursive: true, force: true });
+      fs.rmSync(callerRoot, { recursive: true, force: true });
+    }
+  }, 180_000);
+
+  it('readme recovery refuses a linked sidecar directory and writes nothing', () => {
+    const recoveryScript = readmeRecoveryScript();
+    const repoRoot = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'upgrade-legacy-sidecar-link-root-')));
+    const callerRoot = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'upgrade-legacy-sidecar-link-cwd-')));
+    const elsewhere = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'upgrade-legacy-sidecar-link-out-')));
+    const relative = 'specs/recovery-packet/spec.md';
+    const target = path.join(repoRoot, relative);
+    const original = Buffer.from('sidecar bytes behind a linked directory\n');
+    const digest = crypto.createHash('sha256').update(original).digest('hex');
+    const sidecar = `upgrade-legacy.before-images/${digest}.bin`;
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.writeFileSync(target, 'changed bytes\n');
+    fs.mkdirSync(path.join(elsewhere, 'upgrade-legacy.before-images'));
+    fs.writeFileSync(path.join(elsewhere, sidecar), original);
+    fs.symlinkSync(path.join(elsewhere, 'upgrade-legacy.before-images'), path.join(callerRoot, 'upgrade-legacy.before-images'), 'dir');
+    const manifestFile = path.join(callerRoot, 'manifest.json');
+    fs.writeFileSync(manifestFile, JSON.stringify({
+      beforeImages: [{ path: relative, beforeImage: { kind: 'file-bytes', sidecar, sha256: digest, mode: 0o644 } }],
+      scopeHashes: {},
+    }));
+
+    try {
+      const result = spawnSync(
+        process.execPath,
+        ['--input-type=module', '-e', recoveryScript, manifestFile],
+        { cwd: callerRoot, encoding: 'utf8', env: { ...process.env, UPGRADE_LEGACY_REPO_ROOT: repoRoot } },
+      );
+      expect(result.status, result.stdout + result.stderr).not.toBe(0);
+      expect(result.stderr).toContain('symbolic link, not followed');
+      expect(fs.readFileSync(target, 'utf8')).toBe('changed bytes\n');
+    } finally {
+      fs.rmSync(repoRoot, { recursive: true, force: true });
+      fs.rmSync(callerRoot, { recursive: true, force: true });
+      fs.rmSync(elsewhere, { recursive: true, force: true });
     }
   }, 180_000);
 
@@ -1684,6 +1966,19 @@ describe('upgrade-legacy link containment', () => {
       const result = runUpgrade(['--apply', '--roots', folder]);
       const manifest = fs.existsSync(upgradeManifestPath()) ? fs.readFileSync(upgradeManifestPath(), 'utf8') : '';
       expect(manifest).not.toContain(Buffer.from(secret).toString('base64'));
+      // The bytes live in sidecars now, so the manifest alone no longer proves
+      // the secret stayed out; no sidecar may hold it either.
+      const secretBytes = Buffer.from(secret);
+      const secretDigest = crypto.createHash('sha256').update(secretBytes).digest('hex');
+      const beforeImagesDir = path.join(path.dirname(upgradeManifestPath()), 'upgrade-legacy.before-images');
+      const sidecarNames = fs.existsSync(beforeImagesDir)
+        ? fs.readdirSync(beforeImagesDir).filter((name) => fs.lstatSync(path.join(beforeImagesDir, name)).isFile())
+        : [];
+      for (const name of sidecarNames) {
+        const sidecar = path.join(beforeImagesDir, name);
+        expect(fs.readFileSync(sidecar).equals(secretBytes), sidecar).toBe(false);
+      }
+      expect(sidecarNames).not.toContain(`${secretDigest}.bin`);
       expect(fs.readFileSync(outsideNote, 'utf8')).toBe(secret);
       expect(result.status, result.stdout + result.stderr).toBe(2);
     } finally {

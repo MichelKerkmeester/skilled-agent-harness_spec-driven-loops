@@ -13,9 +13,9 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-Upgrade-legacy repairs a spec tree in place, so a run that stops halfway must leave a record of what it touched. Before it repairs a dirty tree, the command writes a reversibility manifest into the git directory of the repository. The manifest lists the packets in scope, a hash of each packet tree and the bytes of every uncommitted file inside those packets. An apply that cannot write that record stops before it changes anything.
+Upgrade-legacy repairs a spec tree in place, so a run that stops halfway must leave a record of what it touched. Before it repairs a dirty tree, the command writes a reversibility manifest into the git directory of the repository. The manifest lists the packets in scope, a hash of each packet tree and a reference to the saved bytes of every uncommitted file inside those packets. The bytes themselves sit in sidecar files beside the manifest under `upgrade-legacy.before-images/`, so the manifest stays small on a large tree. An apply that cannot write that record stops before it changes anything.
 
-The manifest is what lets a later run tell an interrupted repair from a finished one, and it is what a person restores from when a repair goes wrong. It lives outside the working tree, so it never shows up in `git status`.
+The manifest is what lets a later run tell an interrupted repair from a finished one, and it is what a person restores from when a repair goes wrong. It lives outside the working tree, so it never shows up in `git status`. Its sidecars live beside it, so the saved bytes stay out of the working tree too.
 
 ---
 
@@ -23,7 +23,13 @@ The manifest is what lets a later run tell an interrupted repair from a finished
 
 ### Manifest Lifecycle
 
-The command writes the manifest only when the apply path finds packets that fail and the working tree has uncommitted changes. The manifest records the HEAD commit, a schema version of 1, the scope and the before image of each uncommitted file inside a failing packet. Its status is `in-progress` while the repairs run. Once the run has recorded its baselines, the status becomes `complete` and each scope hash is recomputed from the repaired packets.
+The command writes the manifest only when the apply path finds packets that fail and the working tree has uncommitted changes. The manifest records the HEAD commit, a schema version of 1, the scope and a before-image entry for each uncommitted file inside a failing packet. Its status is `in-progress` while the repairs run. Once the run has recorded its baselines, the status becomes `complete` and each scope hash is recomputed from the repaired packets.
+
+### Before-image Files
+
+A file before-image is recorded as `{ "path", "beforeImage": { "kind": "file-bytes", "sidecar": "upgrade-legacy.before-images/<sha256>.bin", "sha256", "mode" } }`. The run copies each dirty file into its own sidecar in 1 MiB chunks, hashes the same bytes in the same pass and names the sidecar after the digest. The sidecar directory is created under the git directory with mode `0o700` before the first file is saved. Entries for a missing path (`kind: "absent"`) and for a symbolic link (`kind: "symlink-target"`) are unchanged.
+
+A manifest written before sidecars existed holds the file bytes inline as base64 `content` with an `encoding` key. The tool still reads that old form, and the README recovery script restores it. The recovery script resolves a sidecar path relative to the manifest directory, refuses `..` and any name that escapes that directory, refuses a sidecar folder reached through a symbolic link, and reads and checks every sidecar against its recorded `sha256` before its first write, so a bad sidecar leaves nothing half restored. An apply on the same HEAD replaces a completed manifest with a fresh recovery point. After a manifest is written, sidecars it does not reference are removed, while referenced sidecars stay as the undo record.
 
 ### Refusals
 
@@ -39,7 +45,7 @@ A tree whose packets still live under the legacy `.opencode` spec root is refuse
 
 | File | Layer | Role |
 |------|-------|------|
-| `.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs` | Script | Writes and completes the reversibility manifest, reads it back for interruption and refuses the git, interrupted and v3 layout cases |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs` | Script | Writes and completes the reversibility manifest and its before-image sidecars, reads the manifest back for interruption and refuses the git, interrupted and v3 layout cases |
 
 ### Validation And Tests
 
