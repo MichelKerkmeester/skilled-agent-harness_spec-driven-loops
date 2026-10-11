@@ -18,7 +18,10 @@
       "playbook catalog truth plan",
       "playbook catalog truth tasks",
       "playbook catalog truth goal",
-      "playbook catalog truth implementation summary"
+      "playbook catalog truth implementation summary",
+      "playbook catalog truth synthesis",
+      "playbook drift self check research",
+      "feature catalog anchor drift"
     ],
     "key_topics": [
       "playbook",
@@ -35,14 +38,19 @@
       "goal"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/repo-rules/prevent-overengineering.md"
+      "research/research.md",
+      "research/deep-research-state.jsonl",
+      ".skilled/repo-rules/prevent-overengineering.md",
+      ".skilled/commands/design/diagram.md",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/018-create-sh-unknown-options/spec.md",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/016-residual-closeout/003-admission-gold/spec.md"
     ],
     "entities": [
       {
@@ -76,9 +84,27 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
         "name": "prevent-overengineering.md",
         "kind": "doc",
         "path": ".skilled/repo-rules/prevent-overengineering.md",
+        "source": "derived"
+      },
+      {
+        "name": "diagram.md",
+        "kind": "doc",
+        "path": ".skilled/commands/design/diagram.md",
         "source": "derived"
       },
       {
@@ -170,45 +196,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Manual-testing playbooks and feature catalogs drift from reality silently",
     "created_at": "2026-10-11T15:54:54Z",
-    "last_save_at": "2026-10-11T16:01:41.382Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-11T17:35:33.491Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:fda3393b0a0978db939c6045a08194a2844f7a787c91b35326199611920db513",
+    "source_fingerprint": "sha256:e2e8b2b5402644baa758d73ef2252eb19c030e6ad8e20a8c95216337255c2e27",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3d7e02c0a40b3d8cd687b91ba55f3c568aa43b140651f52ec88564c931e4da67",
-      "plan.md": "b6591e3812f5b21904e76ad9767e9ddd508086d30984d4223426c700e2de1984",
-      "tasks.md": "2a5b5e441808f78663564f83934f7b1f2254d0a88c329c18e1a6e3143429b30c",
-      "implementation-summary.md": "69e401b47b9ce3ae0d925f26ee1ff622439b07b72bc9b796c6b09ee18b455787"
+      "spec.md": "789bb34181c1e03d8864690f49b395d827f32dc397f7e8c071cf4df1b8b94f0d",
+      "plan.md": "8fbb4e3e3765c160dbac0590823a6a10b8e382b8a942ee592f97093fd5b3a6e7",
+      "tasks.md": "ab2850416fdbfc950c2618ed2e5671a859ffb3a249cae1add1cdd366236ec926",
+      "implementation-summary.md": "74002f3d7726af27c0031cb4750d2687e52a402941b937be0aa222aae89d5555",
+      "research/research.md": "8924edccfe6bab9cce42f7246450c9f8838c42f6d6a72e261cb56feee8b91384"
     },
     "last_active_at": null
   }

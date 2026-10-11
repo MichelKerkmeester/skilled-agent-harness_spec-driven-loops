@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-11 |
 | **Branch** | `worktrees/104-open-ends-scaffold` |
 | **Parent Spec** | ../spec.md |
@@ -144,6 +144,19 @@ Done means:
 ## 7. OPEN QUESTIONS
 
 - None blocking the run. The research questions are in section 2.
+- Deep-research topic: find the lightest way to make manual-testing playbook scenarios and feature catalog entries check themselves against the code through their sk-doc modes and validators.
+
+**Research Context**: a `/deep:research` run is active for this topic. `research/research.md` is the canonical synthesis.
+
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+Abridged from `research/research.md` (ten iterations, stop reason maxIterationsReached):
+
+- The existing citation scanner already resolves every `path:line` in playbooks and catalogs and finds two past-end anchors today, but no workflow runs it.
+- The catalog package validator runs green across 29 packages, but no workflow runs it, and it skips every two-column `File` table.
+- The token-at-line check already exists in the scanner as an identifier-overlap function used only for scoring.
+- Scenario options, expected answers and router answers need no new checker: the producer, the scenario run and the compiled-route admission step already cover them.
+- Ten ranked recommendations, with their moves, are in `research/research.md` section 5.
+<!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 
 ---
