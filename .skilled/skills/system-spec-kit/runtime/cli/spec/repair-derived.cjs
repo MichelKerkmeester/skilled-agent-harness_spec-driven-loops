@@ -245,6 +245,45 @@ function linkedRewriteTargets(folder) {
   return REWRITE_TARGETS.map((name) => path.join(folder, name)).filter(isSymbolicLink);
 }
 
+// Measured set: the packet files the re-derive child opened through planted links. Mirrors the packet document lists of the graph parser, the drift check and folder discovery.
+const REDERIVE_INPUTS = Object.freeze([
+  'spec.md',
+  'plan.md',
+  'tasks.md',
+  'acceptance-criteria.md',
+  'goal.md',
+  'decision-record.md',
+  'implementation-summary.md',
+  'handover.md',
+  'resource-map.md',
+  'description.json',
+  'research.md',
+  path.join('research', 'research.md'),
+]);
+
+function isWithinPacketFolder(filePath, packetFolderPath) {
+  try {
+    const realPacketFolderPath = fs.realpathSync(packetFolderPath);
+    const realFilePath = fs.realpathSync(filePath);
+    const relativePath = path.relative(realPacketFolderPath, realFilePath);
+    return relativePath === '' || (
+      relativePath !== '..'
+      && !relativePath.startsWith(`..${path.sep}`)
+      && !path.isAbsolute(relativePath)
+    );
+  } catch {
+    return false;
+  }
+}
+
+// Re-derive imports packet documents, so a link must resolve within the same packet.
+function linkedRederiveInputs(folder) {
+  return REDERIVE_INPUTS.filter((name) => {
+    const inputPath = path.join(folder, name);
+    return (fs.existsSync(inputPath) || isSymbolicLink(inputPath)) && !isWithinPacketFolder(inputPath, folder);
+  });
+}
+
 /** Read a file that may not be there, without racing a separate existence check. */
 function readIfPresent(file) {
   if (isSymbolicLink(file)) return null;
@@ -254,6 +293,14 @@ function readIfPresent(file) {
     if (err.code === 'ENOENT' || err.code === 'EISDIR') return null;
     throw err;
   }
+}
+
+// Planning ran earlier, so a target may have become a link since it was read.
+// Reading through that link would take bytes from outside the packet, so the
+// write-time read refuses it the same way readIfPresent does.
+function readForWrite(file) {
+  if (isSymbolicLink(file)) throw new Error(SYMLINK_REFUSAL);
+  return fs.readFileSync(file, 'utf8');
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -328,7 +375,7 @@ function fixDescriptionLevel(folder, report) {
     file,
     what: `description level ${verb} -> ${level}`,
     apply: () => {
-      const current = JSON.parse(fs.readFileSync(file, 'utf8'));
+      const current = JSON.parse(readForWrite(file));
       // Recorded as a string: that is what the overwhelming majority of packets
       // already carry, and the schema accepts either, so matching them keeps the
       // field comparable across the fleet.
@@ -352,7 +399,7 @@ function fixRecordedLocation(folder) {
         file: summary,
         what: `spec folder -> ${basename}`,
         apply: () => {
-          const current = fs.readFileSync(summary, 'utf8');
+          const current = readForWrite(summary);
           const hit = SPEC_FOLDER_ROW.exec(current);
           if (!hit) throw new Error('the Spec Folder row moved between the report and the write');
           writeAtomic(summary, current.slice(0, hit.index) + hit[1] + basename + hit[3] + current.slice(hit.index + hit[0].length));
@@ -376,7 +423,7 @@ function fixRecordedLocation(folder) {
         file: description,
         what: `description specFolder -> ${pointer}`,
         apply: () => {
-          const current = JSON.parse(fs.readFileSync(description, 'utf8'));
+          const current = JSON.parse(readForWrite(description));
           current.specFolder = pointer;
           writeAtomic(description, `${JSON.stringify(current, null, 2)}\n`);
         },
@@ -402,7 +449,7 @@ function fixRecordedLocation(folder) {
         file: graph,
         what: `graph parent ${data.parent_id} -> none, the packet is archived`,
         apply: () => {
-          const current = JSON.parse(fs.readFileSync(graph, 'utf8'));
+          const current = JSON.parse(readForWrite(graph));
           current.parent_id = null;
           delete current.parent_id_review_required;
           writeAtomic(graph, `${JSON.stringify(current, null, 2)}\n`);
@@ -421,7 +468,7 @@ function fixRecordedLocation(folder) {
       file,
       what: `packet pointer -> ${pointer}`,
       apply: () => {
-        const current = fs.readFileSync(file, 'utf8');
+        const current = readForWrite(file);
         const found = POINTER_LINE.exec(current);
         if (!found || found.index >= frontmatterEnd(current)) {
           throw new Error('the packet pointer left the frontmatter between the report and the write');
@@ -440,6 +487,14 @@ async function rederive(folder) {
   } catch (err) {
     return childFailure(err);
   }
+}
+
+// A JSON parse error's message quotes the bytes around the fault, so a failed write
+// is reported by the kind of failure alone. Other messages come from this file or
+// from the file system, and file system errors carry a code.
+function failureKind(err) {
+  if (err instanceof SyntaxError) return 'not valid JSON';
+  return err.code || err.message;
 }
 
 async function repairFolder(folder, apply) {
@@ -483,7 +538,7 @@ async function repairFolder(folder, apply) {
       edit.apply();
       wrote += 1;
     } catch (err) {
-      failure = `${path.basename(edit.file)}: ${err.message}`;
+      failure = `${path.basename(edit.file)}: ${failureKind(err)}`;
       break;
     }
   }
@@ -492,7 +547,11 @@ async function repairFolder(folder, apply) {
   // step exists to prevent. A linked graph file is the one case where it cannot
   // run, so that packet keeps the stale fingerprint and its link is reported.
   if (!graphIsLink && (wrote > 0 || staleMetadata)) {
-    const reason = await rederive(folder);
+    // A link among the re-derive's inputs is refused here, whether it was present at planning or
+    // appeared after it, so the child never reads through it. The dry run plans the same step,
+    // so the refusal is reported as a failed repair.
+    const linked = linkedRederiveInputs(folder);
+    const reason = linked.length > 0 ? `${linked[0]}: ${SYMLINK_REFUSAL}` : await rederive(folder);
     if (reason && !failure) failure = `re-derive: ${reason}`;
   }
   return { folder, planned, authored, failure };

@@ -502,7 +502,26 @@ export function loadGraphMetadata(filePath: string): GraphMetadata | null {
   return validation.metadata;
 }
 
-function readDoc(filePath: string): GraphMetadataDocReadResult {
+function isWithinPacketFolder(filePath: string, packetFolderPath: string): boolean {
+  try {
+    const realPacketFolderPath = fs.realpathSync(packetFolderPath);
+    const realFilePath = fs.realpathSync(filePath);
+    const relativePath = path.relative(realPacketFolderPath, realFilePath);
+    return relativePath === '' || (
+      relativePath !== '..'
+      && !relativePath.startsWith(`..${path.sep}`)
+      && !path.isAbsolute(relativePath)
+    );
+  } catch {
+    return false;
+  }
+}
+
+function readDoc(filePath: string, packetFolderPath: string): GraphMetadataDocReadResult {
+  // Source links can import another packet's content, so check containment before reading.
+  if ((fs.existsSync(filePath) || isSymbolicLink(filePath)) && !isWithinPacketFolder(filePath, packetFolderPath)) {
+    return { status: 'unknown', error: 'symbolic link, not followed' };
+  }
   try {
     return { status: 'found', content: fs.readFileSync(filePath, 'utf-8') };
   } catch (error: unknown) {
@@ -712,7 +731,7 @@ function collectPacketDocs(specFolderPath: string): CollectedPacketDocs {
   const availability = new Map<string, GraphMetadataDocReadResult['status']>();
   for (const relativePath of CANONICAL_PACKET_DOCS) {
     const filePath = path.join(specFolderPath, relativePath);
-    const readResult = readDoc(filePath);
+    const readResult = readDoc(filePath, specFolderPath);
     availability.set(relativePath.replace(/\\/g, '/'), readResult.status);
     if (readResult.status !== 'found') {
       continue;
@@ -1418,14 +1437,17 @@ function derivePhaseParentRollup(
   existingLastActiveChildId: string | null,
   statusOverride?: string | null,
 ): PhaseParentRollup {
-  const children = listPhaseChildren(specFolderPath)
+  const childEntries = listPhaseChildren(specFolderPath)
     .filter((child) => PHASE_CHILD_DIRECTORY_RE.test(child.name))
     .map((child) => ({
       id: `${specFolder}/${child.name}`,
       name: child.name,
       metadata: loadGraphMetadata(path.join(specFolderPath, child.name, GRAPH_METADATA_FILENAME)),
-    }))
+    }));
+  const children = childEntries
     .filter((child): child is typeof child & { metadata: GraphMetadata } => child.metadata !== null);
+  // A child without loadable metadata has no stored status, so it cannot count as complete.
+  const everyChildLoaded = children.length === childEntries.length;
 
   if (children.length === 0) {
     return {
@@ -1436,9 +1458,9 @@ function derivePhaseParentRollup(
 
   let status = derivedStatus;
   if (!normalizeDerivedStatus(statusOverride)) {
-    if (children.every((child) => child.metadata.derived.status === 'complete')) {
+    if (everyChildLoaded && children.every((child) => child.metadata.derived.status === 'complete')) {
       status = 'complete';
-    } else if (children.some((child) => (
+    } else if (status === 'complete' || children.some((child) => (
       child.metadata.derived.status === 'in_progress'
       || child.metadata.derived.status === 'complete'
     ))) {

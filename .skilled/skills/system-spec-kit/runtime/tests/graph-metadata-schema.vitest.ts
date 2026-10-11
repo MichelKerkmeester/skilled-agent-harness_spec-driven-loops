@@ -907,6 +907,103 @@ describe('graph metadata schema and parser', () => {
   });
 });
 
+describe('graph metadata lean phase parent status', () => {
+  const NOW = '2026-04-12T12:00:00.000Z';
+  const CHILD_COMPLETE: GraphMetadataFixtureOptions = {
+    specStatus: null,
+    planStatus: null,
+    implementationSummaryCompletionPct: 100,
+  };
+  const CHILD_IN_PROGRESS: GraphMetadataFixtureOptions = {
+    specStatus: null,
+    planStatus: null,
+    implementationSummaryStatus: null,
+    implementationSummaryCompletionPct: 40,
+  };
+
+  // A lean parent has spec docs and children but no implementation-summary.md.
+  function createLeanParent(): string {
+    const parent = createSpecFolder({ packetId: '900-lean-parent', specStatus: 'complete', planStatus: null });
+    fs.rmSync(path.join(parent, 'implementation-summary.md'));
+    return parent;
+  }
+
+  // Each child is built in its own fixture root and moved under the parent, then given
+  // the graph-metadata.json that the parent's rollup reads.
+  function addPhaseChild(
+    parent: string,
+    name: string,
+    options: GraphMetadataFixtureOptions,
+    withMetadata = true,
+  ): void {
+    const childPath = path.join(parent, name);
+    fs.renameSync(createSpecFolder({ ...options, packetId: name }), childPath);
+    if (withMetadata) {
+      fs.writeFileSync(
+        path.join(childPath, 'graph-metadata.json'),
+        serializeGraphMetadata(deriveGraphMetadata(childPath, null, { now: NOW })),
+        'utf-8',
+      );
+    }
+  }
+
+  // The parent's stored status is in_progress, as it is when derived before its children finished.
+  function storedInProgress(parent: string): GraphMetadata {
+    const derived = deriveGraphMetadata(parent, null, { now: NOW });
+    return { ...derived, derived: { ...derived.derived, status: 'in_progress' } };
+  }
+
+  it('derives complete for a lean parent whose two children are complete over a stored in_progress status', () => {
+    const parent = createLeanParent();
+    addPhaseChild(parent, '001-child-a', CHILD_COMPLETE);
+    addPhaseChild(parent, '002-child-b', CHILD_COMPLETE);
+
+    const metadata = deriveGraphMetadata(parent, storedInProgress(parent), { now: NOW });
+
+    expect(metadata.derived.status).toBe('complete');
+  });
+
+  it('keeps in_progress for a lean parent when one child is still in_progress', () => {
+    const parent = createLeanParent();
+    addPhaseChild(parent, '001-child-a', CHILD_COMPLETE);
+    addPhaseChild(parent, '002-child-b', CHILD_IN_PROGRESS);
+
+    const metadata = deriveGraphMetadata(parent, storedInProgress(parent), { now: NOW });
+
+    expect(metadata.derived.status).toBe('in_progress');
+  });
+
+  it('keeps in_progress for a lean parent when a child has no graph-metadata.json', () => {
+    const parent = createLeanParent();
+    addPhaseChild(parent, '001-child-a', CHILD_COMPLETE);
+    addPhaseChild(parent, '002-child-b', CHILD_COMPLETE, false);
+
+    const metadata = deriveGraphMetadata(parent, storedInProgress(parent), { now: NOW });
+
+    expect(metadata.derived.status).toBe('in_progress');
+  });
+
+  it('does not keep a stored complete status when a planned child and an unloaded child remain', () => {
+    const parent = createLeanParent();
+    addPhaseChild(parent, '001-child-planned', { specStatus: 'planned', planStatus: null });
+    addPhaseChild(parent, '002-child-unloaded', CHILD_COMPLETE, false);
+    const current = deriveGraphMetadata(parent, null, { now: NOW });
+    const storedComplete = { ...current, derived: { ...current.derived, status: 'complete' } };
+
+    const metadata = deriveGraphMetadata(parent, storedComplete, { now: NOW });
+
+    expect(metadata.derived.status).toBe('in_progress');
+  });
+
+  it('keeps the stored status for a lean parent with no children', () => {
+    const parent = createLeanParent();
+
+    const metadata = deriveGraphMetadata(parent, storedInProgress(parent), { now: NOW });
+
+    expect(metadata.derived.status).toBe('in_progress');
+  });
+});
+
 describe('graph metadata key files under either source-root name', () => {
   for (const layout of ['skilled-only', 'whole-link'] as const) {
     it(`${layout}: resolves a repository-relative key file for a packet under the canonical specs root`, () => {
@@ -946,6 +1043,10 @@ describe('graph metadata key files under either source-root name', () => {
 
 describe('graph metadata symbolic link is not followed', () => {
   const OUTSIDE_MARKER = 'LINKED-OUTSIDE-RELATIONSHIP';
+  const OUTSIDE_SPEC_MARKER = 'linked-outside-spec-marker';
+  const INSIDE_SPEC_MARKER = 'linked-inside-spec-marker';
+  const OUTSIDE_RESEARCH_MARKER = 'linked-outside-research-marker';
+  const INSIDE_RESEARCH_MARKER = 'linked-inside-research-marker';
 
   // Links the packet's graph-metadata.json to an outside file that carries a
   // manual relationship the packet does not own.
@@ -989,5 +1090,89 @@ describe('graph metadata symbolic link is not followed', () => {
     expect(fs.lstatSync(graphPath).isSymbolicLink()).toBe(false);
     expect(fs.readFileSync(graphPath, 'utf-8')).not.toContain(OUTSIDE_MARKER);
     expect(fs.readFileSync(outside, 'utf-8')).toContain(OUTSIDE_MARKER);
+  });
+
+  it('does not derive from a linked spec.md whose content lies outside the packet', () => {
+    const specFolder = createSpecFolder();
+    const outsideDir = fs.mkdtempSync(path.join(os.tmpdir(), 'graph-metadata-spec-outside-'));
+    createdRoots.add(outsideDir);
+    const outsideSpec = path.join(outsideDir, 'spec.md');
+    fs.writeFileSync(outsideSpec, [
+      '---',
+      'title: "Outside spec"',
+      `trigger_phrases: ["${OUTSIDE_SPEC_MARKER}"]`,
+      '---',
+      '# Outside spec',
+      '',
+    ].join('\n'), 'utf-8');
+    fs.rmSync(path.join(specFolder, 'spec.md'));
+    fs.symlinkSync(outsideSpec, path.join(specFolder, 'spec.md'));
+
+    const metadata = deriveGraphMetadata(specFolder, null, { now: '2026-04-12T12:00:00.000Z' });
+
+    expect(metadata.derived.status).toBe('unknown');
+    expect(JSON.stringify(metadata)).not.toContain(OUTSIDE_SPEC_MARKER);
+  });
+
+  it('derives from a linked spec.md whose content stays inside the packet', () => {
+    const specFolder = createSpecFolder();
+    const sourceSpec = path.join(specFolder, 'sources', 'spec.md');
+    fs.mkdirSync(path.dirname(sourceSpec), { recursive: true });
+    fs.writeFileSync(sourceSpec, [
+      '---',
+      'title: "Inside spec"',
+      'status: "planned"',
+      `trigger_phrases: ["${INSIDE_SPEC_MARKER}"]`,
+      '---',
+      '# Inside spec',
+      '',
+    ].join('\n'), 'utf-8');
+    const specPath = path.join(specFolder, 'spec.md');
+    fs.rmSync(specPath);
+    fs.symlinkSync(path.relative(specFolder, sourceSpec), specPath);
+
+    const metadata = deriveGraphMetadata(specFolder, null, { now: '2026-04-12T12:00:00.000Z' });
+
+    expect(metadata.derived.trigger_phrases).toContain(INSIDE_SPEC_MARKER);
+  });
+
+  it('does not derive research phrases through a directory link that leaves the packet', () => {
+    const specFolder = createSpecFolder();
+    const outsideDir = fs.mkdtempSync(path.join(os.tmpdir(), 'graph-metadata-research-outside-'));
+    createdRoots.add(outsideDir);
+    fs.writeFileSync(path.join(outsideDir, 'research.md'), [
+      '---',
+      'title: "Outside research"',
+      `trigger_phrases: ["${OUTSIDE_RESEARCH_MARKER}"]`,
+      '---',
+      '# Outside research',
+      '',
+    ].join('\n'), 'utf-8');
+    fs.symlinkSync(outsideDir, path.join(specFolder, 'research'), 'dir');
+
+    const metadata = deriveGraphMetadata(specFolder, null, { now: '2026-04-12T12:00:00.000Z' });
+
+    expect(metadata.derived.trigger_phrases).not.toContain(OUTSIDE_RESEARCH_MARKER);
+    expect(metadata.derived.source_docs).not.toContain('research/research.md');
+  });
+
+  it('derives research phrases through a directory link that stays inside the packet', () => {
+    const specFolder = createSpecFolder();
+    const sourceDir = path.join(specFolder, 'sources', 'research');
+    fs.mkdirSync(sourceDir, { recursive: true });
+    fs.writeFileSync(path.join(sourceDir, 'research.md'), [
+      '---',
+      'title: "Inside research"',
+      `trigger_phrases: ["${INSIDE_RESEARCH_MARKER}"]`,
+      '---',
+      '# Inside research',
+      '',
+    ].join('\n'), 'utf-8');
+    fs.symlinkSync(path.relative(specFolder, sourceDir), path.join(specFolder, 'research'), 'dir');
+
+    const metadata = deriveGraphMetadata(specFolder, null, { now: '2026-04-12T12:00:00.000Z' });
+
+    expect(metadata.derived.trigger_phrases).toContain(INSIDE_RESEARCH_MARKER);
+    expect(metadata.derived.source_docs).toContain('research/research.md');
   });
 });

@@ -105,6 +105,93 @@ function swapOnReadPreload(target: string, replacement: string, readNumber: numb
   return file;
 }
 
+type PlantedChange = { at: string; link: string } | { at: string; content: string };
+
+type ReadEntry = {
+  pid: number;
+  script: string;
+  call: string;
+  file: string;
+  resolved: string | null;
+  frames: string[];
+};
+
+// Writes a CommonJS module that every node process loads through NODE_OPTIONS, so the
+// tool and the re-derive child it starts are both recorded. Each process records every
+// path it passes to fs.readFileSync, fs.openSync or fs.promises.readFile: the path as
+// given, the real path it resolves to, and the first stack frames of the call. Only the
+// tool process plants. Once the target's readNumber-th read has returned, the changes
+// are applied, so they land after planning and before the write. The module and the
+// records live outside the fixture root, and each process writes its own record on exit.
+function recordingPreload(
+  target: string,
+  readNumber: number,
+  changes: PlantedChange[],
+): { env: Record<string, string>; records: string } {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'repair-record-'));
+  created.push(dir);
+  const preload = path.join(dir, 'record-and-plant.cjs');
+  const records = path.join(dir, 'records');
+  fs.mkdirSync(records);
+  const plant = changes.flatMap((change) => ('link' in change
+    ? [
+      `fs.rmSync(${JSON.stringify(change.at)}, { force: true });`,
+      `fs.symlinkSync(${JSON.stringify(change.link)}, ${JSON.stringify(change.at)});`,
+    ]
+    : [`fs.writeFileSync(${JSON.stringify(change.at)}, ${JSON.stringify(change.content)});`]));
+  fs.writeFileSync(preload, [
+    "'use strict';",
+    "const fs = require('node:fs');",
+    "const path = require('node:path');",
+    `const target = ${JSON.stringify(target)};`,
+    `const records = ${JSON.stringify(records)};`,
+    `const isTool = (process.argv[1] || '').endsWith(${JSON.stringify(TOOL)});`,
+    'const entries = [];',
+    'const readFileOriginal = fs.readFileSync;',
+    'const openOriginal = fs.openSync;',
+    'const readPromiseOriginal = fs.promises.readFile;',
+    'let reads = 0;',
+    'function note(call, file) {',
+    '  let resolved = null;',
+    '  try { resolved = fs.realpathSync(file); } catch { resolved = null; }',
+    "  const frames = new Error().stack.split('\\n').slice(3, 7).map((line) => line.trim());",
+    '  entries.push({ pid: process.pid, script: process.argv[1] || \'\', call, file: String(file), resolved, frames });',
+    '}',
+    "process.on('exit', () => {",
+    '  fs.writeFileSync(path.join(records, `reads-${process.pid}.jsonl`), entries.map((entry) => JSON.stringify(entry) + \'\\n\').join(\'\'));',
+    '});',
+    'fs.readFileSync = function recordingRead(file, ...rest) {',
+    "  note('readFileSync', file);",
+    "  if (!isTool || typeof file !== 'string' || path.resolve(file) !== target) return readFileOriginal.call(fs, file, ...rest);",
+    '  reads += 1;',
+    '  const bytes = readFileOriginal.call(fs, file, ...rest);',
+    `  if (reads === ${readNumber}) {`,
+    ...plant.map((line) => `    ${line}`),
+    '  }',
+    '  return bytes;',
+    '};',
+    'fs.openSync = function recordingOpen(file, ...rest) {',
+    "  note('openSync', file);",
+    '  return openOriginal.call(fs, file, ...rest);',
+    '};',
+    'fs.promises.readFile = function recordingReadFile(file, ...rest) {',
+    "  note('promises.readFile', file);",
+    '  return readPromiseOriginal.call(fs.promises, file, ...rest);',
+    '};',
+    '',
+  ].join('\n'));
+  const existing = process.env.NODE_OPTIONS ? `${process.env.NODE_OPTIONS} ` : '';
+  return { env: { NODE_OPTIONS: `${existing}--require "${preload}"` }, records };
+}
+
+// Every record file in the directory, one per node process that the tool started.
+function readRecords(dir: string): ReadEntry[] {
+  return fs.readdirSync(dir).flatMap((name) => fs.readFileSync(path.join(dir, name), 'utf8')
+    .split('\n')
+    .filter(Boolean)
+    .map((line) => JSON.parse(line) as ReadEntry));
+}
+
 // Fixtures live inside the packet tree because the tool refuses anything
 // outside it, which is the containment behaviour a separate test asserts.
 // They nest under a staging folder rather than sitting directly in the specs
@@ -120,6 +207,22 @@ function fixture(name: string, files: Record<string, string>): string {
     fs.writeFileSync(path.join(dir, file), body);
   }
   return path.relative(ROOT, dir);
+}
+
+// A workspace whose anchor directory lets the graph writer accept a packet, for a case
+// whose re-derive must complete. The packet is returned relative to the workspace, which
+// is the working directory for the tool.
+function anchoredWorkspace(name: string, files: Record<string, string>): { workspace: string; dir: string } {
+  const workspace = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'repair-anchored-')));
+  created.push(workspace);
+  fs.mkdirSync(path.join(workspace, '.opencode'));
+  fs.symlinkSync(path.join(TOOL_TREE, '.skilled'), path.join(workspace, '.skilled'), 'dir');
+  const dir = path.join('specs', '.repair-fixture-anchored', name);
+  fs.mkdirSync(path.join(workspace, dir), { recursive: true });
+  for (const [file, body] of Object.entries(files)) {
+    fs.writeFileSync(path.join(workspace, dir, file), body);
+  }
+  return { workspace, dir };
 }
 
 function summaryDoc(pointer: string, specFolder: string): string {
@@ -514,6 +617,193 @@ describe('repair-derived', () => {
 
   it('refuses to replace a rewrite target that became a link after planning, when the link points inside the packet', () => {
     linkAppearsAfterPlanning('inside');
+  });
+
+  // Planning reads the description twice, and the level repair reads it again to write.
+  // A link that appears after planning is refused before that read, so no read in the
+  // record resolves to the outside file.
+  it('never reads an outside file through a rewrite target that became a link after planning', () => {
+    const outsideDir = fs.mkdtempSync(path.join(os.tmpdir(), 'repair-outside-'));
+    created.push(outsideDir);
+    const outsideFile = path.join(outsideDir, 'description.json');
+    const outsideBefore = `${JSON.stringify({ level: 1, title: 'Outside' }, null, 2)}\n`;
+    fs.writeFileSync(outsideFile, outsideBefore);
+
+    const dir = fixture('001-read-after-plan', {
+      'spec.md': '---\ntitle: "Fixture"\n---\n# Fixture\n<!-- SPECKIT_LEVEL: 2 -->\n',
+      'implementation-summary.md': summaryDoc('wrong-track/999-stale', '999-stale-name'),
+      'description.json': `${JSON.stringify({ level: 1, title: 'Fixture' }, null, 2)}\n`,
+    });
+    const link = path.join(ROOT, dir, 'description.json');
+    const recorder = recordingPreload(link, 2, [{ at: link, link: outsideFile }]);
+
+    const result = run(['--folder', dir, '--apply'], recorder.env);
+
+    expect(readRecords(recorder.records).filter((entry) => entry.resolved === fs.realpathSync(outsideFile))).toEqual([]);
+    expect(result.status).toBe(2);
+    expect(result.stdout).toContain('FAILED');
+    expect(result.stdout).toContain('description.json: symbolic link, not followed');
+    expect(fs.lstatSync(link).isSymbolicLink()).toBe(true);
+    expect(fs.readFileSync(outsideFile, 'utf8')).toBe(outsideBefore);
+  });
+
+  // A parse error quotes the bytes around the fault, so a description that stops parsing
+  // after planning must be reported by file name and failure kind, never by its content.
+  it('reports an unparseable description by file name and failure kind, never by its content', () => {
+    const marker = 'LEAKMARK';
+    const dir = fixture('001-invalid-after-plan', {
+      'spec.md': '---\ntitle: "Fixture"\n---\n# Fixture\n<!-- SPECKIT_LEVEL: 2 -->\n',
+      'implementation-summary.md': summaryDoc('wrong-track/999-stale', '999-stale-name'),
+      'description.json': `${JSON.stringify({ level: 1, title: 'Fixture' }, null, 2)}\n`,
+    });
+    const description = path.join(ROOT, dir, 'description.json');
+    const recorder = recordingPreload(description, 2, [{ at: description, content: `${marker} {"title": "Fixture", "level": 1}\n` }]);
+
+    const result = run(['--folder', dir, '--apply'], recorder.env);
+
+    expect(result.status).toBe(2);
+    expect(result.stdout).toContain('FAILED');
+    expect(result.stdout).not.toContain(marker);
+    expect(result.stdout).toContain('description.json: not valid JSON');
+  });
+
+  // The re-derive is a separate process, so the record covers every node process the tool
+  // starts. A packet document planted as a link after planning must not be opened through
+  // that link by the re-derive either.
+  it('never opens an outside file through a packet document planted as a link after planning, in the re-derive too', () => {
+    const outsideDir = fs.mkdtempSync(path.join(os.tmpdir(), 'repair-outside-'));
+    created.push(outsideDir);
+    const docs = ['spec.md', 'plan.md', 'tasks.md'];
+    const outsideFiles = docs.map((name) => {
+      const file = path.join(outsideDir, name);
+      fs.writeFileSync(file, `OUTSIDE ${name}\n`);
+      return file;
+    });
+    const dir = fixture('001-child-after-plan', {
+      'spec.md': '---\ntitle: "Fixture"\n---\n# Fixture\n<!-- SPECKIT_LEVEL: 2 -->\n',
+      'plan.md': '---\ntitle: "Fixture plan"\n---\n# Fixture plan\n',
+      'tasks.md': '---\ntitle: "Fixture tasks"\n---\n# Fixture tasks\n',
+      'implementation-summary.md': summaryDoc('wrong-track/999-stale', '999-stale-name'),
+      'description.json': `${JSON.stringify({ level: 1, title: 'Fixture' }, null, 2)}\n`,
+    });
+    const packet = path.join(ROOT, dir);
+    const changes = docs.map((name, index) => ({ at: path.join(packet, name), link: outsideFiles[index] }));
+    // The description is read twice at planning and once more by its own apply, so the links appear after planning.
+    const recorder = recordingPreload(path.join(packet, 'description.json'), 3, changes);
+
+    const result = run(['--folder', dir, '--apply'], recorder.env);
+
+    const records = readRecords(recorder.records);
+    const outsideReal = new Set(outsideFiles.map((file) => fs.realpathSync(file)));
+    const throughLinks = records
+      .filter((entry) => entry.resolved !== null && outsideReal.has(entry.resolved))
+      .map((entry) => ({ script: path.basename(entry.script), call: entry.call, file: path.basename(entry.file) }));
+    expect(throughLinks).toEqual([]);
+    expect(result.status).toBe(2);
+    expect(result.stdout).toMatch(/re-derive: (spec|plan|tasks)\.md: symbolic link, not followed/);
+    for (const name of docs) {
+      expect(fs.lstatSync(path.join(packet, name)).isSymbolicLink()).toBe(true);
+    }
+  });
+
+  // A changelog that links to a file inside the same packet is not a document the re-derive
+  // reads, so it must not stop a re-derive that is needed.
+  it('re-derives a packet whose only link is a changelog pointing inside the packet', () => {
+    const { workspace, dir } = anchoredWorkspace('001-changelog-link', {
+      'spec.md': '---\ntitle: "Fixture"\n---\n# Fixture\n<!-- SPECKIT_LEVEL: 2 -->\n',
+      'implementation-summary.md': summaryDoc('wrong-track/999-stale', '999-stale-name'),
+      'description.json': `${JSON.stringify({ level: 1, title: 'Fixture' }, null, 2)}\n`,
+    });
+    const packet = path.join(workspace, dir);
+    fs.mkdirSync(path.join(packet, 'changelog'));
+    fs.writeFileSync(path.join(packet, 'changelog', 'changelog-001-changelog-link.md'), '# Changelog\n');
+    fs.symlinkSync(path.join('changelog', 'changelog-001-changelog-link.md'), path.join(packet, 'changelog.md'));
+
+    const result = run(['--folder', dir, '--apply'], undefined, [], workspace);
+
+    expect(result.status).toBe(0);
+    expect(result.stdout).not.toContain('FAILED');
+    expect(result.stdout).toContain(`repaired ${dir}`);
+    expect(fs.existsSync(path.join(packet, 'graph-metadata.json'))).toBe(true);
+    expect(fs.lstatSync(path.join(packet, 'changelog.md')).isSymbolicLink()).toBe(true);
+  });
+
+  it('re-derives after repair when plan.md resolves inside the packet', () => {
+    const { workspace, dir } = anchoredWorkspace('001-plan-link', {
+      'spec.md': '---\ntitle: "Fixture"\n---\n# Fixture\n<!-- SPECKIT_LEVEL: 2 -->\n',
+      'plan.md': '---\ntitle: "Fixture plan"\n---\n# Fixture plan\n',
+      'implementation-summary.md': summaryDoc('wrong-track/999-stale', '999-stale-name'),
+      'description.json': `${JSON.stringify({ level: 1, title: 'Fixture' }, null, 2)}\n`,
+    });
+    const packet = path.join(workspace, dir);
+    const planPath = path.join(packet, 'plan.md');
+    const sourcePlanPath = path.join(packet, 'sources', 'plan.md');
+    fs.mkdirSync(path.dirname(sourcePlanPath), { recursive: true });
+    fs.writeFileSync(sourcePlanPath, '---\ntitle: "Internal plan"\n---\n# Internal plan\n');
+    fs.rmSync(planPath);
+    fs.symlinkSync(path.relative(packet, sourcePlanPath), planPath);
+
+    const result = run(['--folder', dir, '--apply'], undefined, [], workspace);
+
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain(`repaired ${dir}`);
+    expect(fs.existsSync(path.join(packet, 'graph-metadata.json'))).toBe(true);
+    expect(fs.lstatSync(planPath).isSymbolicLink()).toBe(true);
+  });
+
+  it('refuses a needed re-derive when research is reached through a directory link outside the packet', () => {
+    const { workspace, dir } = anchoredWorkspace('001-research-directory-link-outside', {
+      'spec.md': '---\ntitle: "Fixture"\n---\n# Fixture\n<!-- SPECKIT_LEVEL: 2 -->\n',
+      'implementation-summary.md': summaryDoc('wrong-track/999-stale', '999-stale-name'),
+      'description.json': `${JSON.stringify({ level: 1, title: 'Fixture' }, null, 2)}\n`,
+    });
+    const packet = path.join(workspace, dir);
+    const outsideDir = fs.mkdtempSync(path.join(os.tmpdir(), 'repair-research-outside-'));
+    created.push(outsideDir);
+    const outsideResearch = path.join(outsideDir, 'research.md');
+    const outsideContent = '---\ntitle: "Outside research"\n---\n# Outside research\n';
+    fs.writeFileSync(outsideResearch, outsideContent);
+    fs.symlinkSync(outsideDir, path.join(packet, 'research'), 'dir');
+
+    const result = run(['--folder', dir, '--apply'], undefined, [], workspace);
+
+    expect(result.status).toBe(2);
+    expect(result.stdout).toContain('re-derive: research/research.md: symbolic link, not followed');
+    expect(fs.readFileSync(outsideResearch, 'utf8')).toBe(outsideContent);
+    expect(fs.existsSync(path.join(packet, 'graph-metadata.json'))).toBe(false);
+    expect(fs.lstatSync(path.join(packet, 'research')).isSymbolicLink()).toBe(true);
+  });
+
+  it('re-derives when research is reached through a directory link inside the packet', () => {
+    const { workspace, dir } = anchoredWorkspace('001-research-directory-link-inside', {
+      'spec.md': '---\ntitle: "Fixture"\n---\n# Fixture\n<!-- SPECKIT_LEVEL: 2 -->\n',
+      'implementation-summary.md': summaryDoc('wrong-track/999-stale', '999-stale-name'),
+      'description.json': `${JSON.stringify({ level: 1, title: 'Fixture' }, null, 2)}\n`,
+    });
+    const packet = path.join(workspace, dir);
+    const sourceDir = path.join(packet, 'sources', 'research');
+    fs.mkdirSync(sourceDir, { recursive: true });
+    fs.writeFileSync(path.join(sourceDir, 'research.md'), [
+      '---',
+      'title: "Inside research"',
+      'trigger_phrases: ["inside linked research phrase"]',
+      '---',
+      '# Inside research',
+      '',
+    ].join('\n'));
+    const researchDir = path.join(packet, 'research');
+    fs.symlinkSync(path.relative(packet, sourceDir), researchDir, 'dir');
+
+    const result = run(['--folder', dir, '--apply'], undefined, [], workspace);
+
+    expect(result.status).toBe(0);
+    expect(fs.existsSync(path.join(packet, 'graph-metadata.json'))).toBe(true);
+    expect(fs.lstatSync(researchDir).isSymbolicLink()).toBe(true);
+    const metadata = JSON.parse(fs.readFileSync(path.join(packet, 'graph-metadata.json'), 'utf8')) as {
+      derived: { source_docs: string[]; trigger_phrases: string[] };
+    };
+    expect(metadata.derived.source_docs).toContain('research/research.md');
+    expect(metadata.derived.trigger_phrases).toContain('inside linked research phrase');
   });
 
   // The re-derive rewrites graph-metadata.json through the backfill writer, which replaces

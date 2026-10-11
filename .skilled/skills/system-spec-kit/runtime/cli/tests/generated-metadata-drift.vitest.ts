@@ -186,6 +186,49 @@ describe('source_doc_hashes freshness key (REQ-003, SC-004)', () => {
     const flagOn = deriveGraphMetadata(folder);
     expect(flagOn.derived.source_doc_hashes?.['spec.md']).toMatch(/^[0-9a-f]{64}$/);
   });
+
+  it('skips a spec.md that is a link to content outside the packet, as it skips a missing doc', () => {
+    const outsideDir = fs.mkdtempSync(path.join(tmpDir, 'outside-'));
+    const outsideSpec = path.join(outsideDir, 'spec.md');
+    fs.writeFileSync(outsideSpec, specWithOverview(LONG_OVERVIEW), 'utf-8');
+    const folder = writeFolder({});
+    fs.symlinkSync(outsideSpec, path.join(folder, 'spec.md'));
+
+    expect(computeSourceDocHashes(folder)).toEqual({});
+  });
+
+  it('hashes a spec.md link whose content stays inside the packet', () => {
+    const folder = writeFolder({});
+    const content = specWithOverview('Internal linked overview.');
+    const sourceSpec = path.join(folder, 'sources', 'spec.md');
+    fs.mkdirSync(path.dirname(sourceSpec), { recursive: true });
+    fs.writeFileSync(sourceSpec, content, 'utf-8');
+    fs.symlinkSync(path.relative(folder, sourceSpec), path.join(folder, 'spec.md'));
+    const expectedHash = crypto.createHash('sha256').update(content).digest('hex');
+
+    expect(computeSourceDocHashes(folder)).toEqual({ 'spec.md': expectedHash });
+  });
+
+  it('skips research reached through a directory link that leaves the packet', () => {
+    const folder = writeFolder({});
+    const outsideDir = fs.mkdtempSync(path.join(tmpDir, 'outside-research-'));
+    fs.writeFileSync(path.join(outsideDir, 'research.md'), specWithOverview('Outside research overview.'), 'utf-8');
+    fs.symlinkSync(outsideDir, path.join(folder, 'research'), 'dir');
+
+    expect(computeSourceDocHashes(folder)).not.toHaveProperty('research/research.md');
+  });
+
+  it('hashes research reached through a directory link that stays inside the packet', () => {
+    const folder = writeFolder({});
+    const content = specWithOverview('Internal research overview.');
+    const sourceDir = path.join(folder, 'sources', 'research');
+    fs.mkdirSync(sourceDir, { recursive: true });
+    fs.writeFileSync(path.join(sourceDir, 'research.md'), content, 'utf-8');
+    fs.symlinkSync(path.relative(folder, sourceDir), path.join(folder, 'research'), 'dir');
+    const expectedHash = crypto.createHash('sha256').update(content).digest('hex');
+
+    expect(computeSourceDocHashes(folder)).toEqual({ 'research/research.md': expectedHash });
+  });
 });
 
 describe('drift detection (REQ-002, SC-002)', () => {
