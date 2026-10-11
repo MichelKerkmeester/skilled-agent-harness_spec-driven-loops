@@ -73,6 +73,11 @@ phase and binds as if written here.
 | 009-advisor-vocabulary-freshness | `009-advisor-vocabulary-freshness/goal.md` |
 | 010-validator-false-positives | `010-validator-false-positives/goal.md` |
 | 011-remediation-deep-review | `011-remediation-deep-review/goal.md` |
+| 012-advisor-doc-target-and-engines | `012-advisor-doc-target-and-engines/goal.md` |
+| 013-python-advisor-native-and-parity | `013-python-advisor-native-and-parity/goal.md` |
+| 014-gate-index-and-deletions | `014-gate-index-and-deletions/goal.md` |
+| 015-freshness-strict-content | `015-freshness-strict-content/goal.md` |
+| 016-sk-doc-tooling-followups | `016-sk-doc-tooling-followups/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -86,8 +91,8 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research --strict --recursive`, run from the repository root, prints RESULT: PASSED for the parent and all eleven children.
-- [ ] `git log --format=%s 5d9c970447..HEAD -- specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research`, run from the repository root, lists at least ten commits.
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research --strict --recursive`, run from the repository root, prints RESULT: PASSED for the parent and all sixteen children.
+- [ ] `git log --format=%s 5d9c970447..HEAD -- specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research`, run from the repository root, lists at least fifteen commits.
 - [ ] `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research`, run from the repository root, prints RESULT: PASSED.
 - [ ] `git status --short`, run from the repository root, prints nothing after the last phase commit.
 <!-- /ANCHOR:completion -->

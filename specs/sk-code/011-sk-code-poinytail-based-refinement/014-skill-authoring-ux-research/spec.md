@@ -38,7 +38,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-10-10 |
 | **Branch** | `worktrees/095-skill-authoring-ux-research` |
 | **Parent Spec** | `../spec.md` |
@@ -89,6 +89,11 @@ Fix every finding from phase 001 with the smallest change that stops the error w
 | Advisor schema, recommend handler, test, `SKILL.md`, changelog | Modify | 008-advisor-surface-hint | Pass the surface hint to the compiled-route front door |
 | cli-classifier graph metadata, compiled skill graph, freshness panel, routing CI job | Modify | 009-advisor-vocabulary-freshness | Clear the two live drifts and make the panel able to fail |
 | `validate_catalog_package.py`, `package_skill.py` and their tests | Modify | 010-validator-false-positives | Clear validator false positives handed off by the feature-catalog track |
+| Advisor `explicit.ts`, its vitest, runtime `package.json` and lockfile | Modify | 012-advisor-doc-target-and-engines | Changelog doc-target rule and engines range |
+| `skill_advisor.py`, its pytest, two battery scripts | Modify | 013-python-advisor-native-and-parity | Native bridge eligibility, Python parity, battery source check |
+| `pre-commit` and its harness | Modify | 014-gate-index-and-deletions | Deletions, index, missing tools |
+| `skill-graph-freshness.cjs` and its panel vitest | Modify | 015-freshness-strict-content | Content and family comparison |
+| Catalog validator, confirm workflow, two changelogs, one file mode | Modify | 016-sk-doc-tooling-followups | Remaining review findings |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -111,6 +116,11 @@ Fix every finding from phase 001 with the smallest change that stops the error w
 | 9 | 009-advisor-vocabulary-freshness/ | Clear the failing intent-signal carry and the stale compiled graph, and let the freshness panel fail in CI | Complete |
 | 10 | 010-validator-false-positives/ | Stop the catalog and skill package validators from failing on paths and files that are correct | Complete |
 | 11 | 011-remediation-deep-review/ | Review phases 002 to 010 with a five-iteration deep review and keep only confirmed findings | Complete |
+| 12 | 012-advisor-doc-target-and-engines/ | Stop 'sk-doc changelog' from counting as a doc target and match the Node range to the toolchain | Complete |
+| 13 | 013-python-advisor-native-and-parity/ | Keep skill_advisor.py on the native scorer after the daemon idles out, port the path and doc-target rules, and make both batteries refuse a non-native row | Planned |
+| 14 | 014-gate-index-and-deletions/ | Make the skill authoring gate see deletions and unstaged regenerations and say when it cannot run | Planned |
+| 15 | 015-freshness-strict-content/ | Make the strict freshness panel compare compiled signals and families with disk | Planned |
+| 16 | 016-sk-doc-tooling-followups/ | Tighten the catalog validator exemption, give confirm mode its collision remedy, record the validator changes and restore an executable bit | Planned |
 
 ### Phase Transition Rules
 
@@ -133,6 +143,11 @@ Fix every finding from phase 001 with the smallest change that stops the error w
 | 008-advisor-surface-hint | 009-advisor-vocabulary-freshness | 008-advisor-surface-hint committed with its goal criteria passing | `validate.sh --strict` on 008-advisor-surface-hint |
 | 009-advisor-vocabulary-freshness | 010-validator-false-positives | 009-advisor-vocabulary-freshness committed with its goal criteria passing | `validate.sh --strict` on 009-advisor-vocabulary-freshness |
 | 010-validator-false-positives | 011-remediation-deep-review | 010-validator-false-positives committed with its goal criteria passing | `validate.sh --strict` on 010-validator-false-positives |
+| 011-remediation-deep-review | 012-advisor-doc-target-and-engines | 011-remediation-deep-review committed with its goal criteria passing | `validate.sh --strict` on 011-remediation-deep-review |
+| 012-advisor-doc-target-and-engines | 013-python-advisor-native-and-parity | 012-advisor-doc-target-and-engines committed with its goal criteria passing | `validate.sh --strict` on 012-advisor-doc-target-and-engines |
+| 013-python-advisor-native-and-parity | 014-gate-index-and-deletions | 013-python-advisor-native-and-parity committed with its goal criteria passing | `validate.sh --strict` on 013-python-advisor-native-and-parity |
+| 014-gate-index-and-deletions | 015-freshness-strict-content | 014-gate-index-and-deletions committed with its goal criteria passing | `validate.sh --strict` on 014-gate-index-and-deletions |
+| 015-freshness-strict-content | 016-sk-doc-tooling-followups | 015-freshness-strict-content committed with its goal criteria passing | `validate.sh --strict` on 015-freshness-strict-content |
 <!-- /ANCHOR:phase-map -->
 
 ---

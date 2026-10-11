@@ -14,7 +14,12 @@
     "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/008-advisor-surface-hint",
     "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/009-advisor-vocabulary-freshness",
     "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/010-validator-false-positives",
-    "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/011-remediation-deep-review"
+    "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/011-remediation-deep-review",
+    "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/012-advisor-doc-target-and-engines",
+    "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/013-python-advisor-native-and-parity",
+    "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/014-gate-index-and-deletions",
+    "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/015-freshness-strict-content",
+    "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/016-sk-doc-tooling-followups"
   ],
   "manual": {
     "depends_on": [],
@@ -47,7 +52,7 @@
       "directive"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -62,6 +67,11 @@
       "009-advisor-vocabulary-freshness/goal.md",
       "010-validator-false-positives/goal.md",
       "011-remediation-deep-review/goal.md",
+      "012-advisor-doc-target-and-engines/goal.md",
+      "013-python-advisor-native-and-parity/goal.md",
+      "014-gate-index-and-deletions/goal.md",
+      "015-freshness-strict-content/goal.md",
+      "016-sk-doc-tooling-followups/goal.md",
       "011-remediation-deep-review/review/review-report.md"
     ],
     "entities": [
@@ -90,6 +100,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -109,12 +125,6 @@
       },
       {
         "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Fix",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -158,17 +168,17 @@
     ],
     "causal_summary": "The sk-code refinement epic kept hitting the same skill-authoring errors: generated artifacts drifting from their sources, a hub version carried in six files with a changelog number that collided at merge, advisor routes pulled off course by named files and generic words, a surface hint the advisor never passes, and doctor checks that fire only after a change lands",
     "created_at": "2026-10-10T18:39:32Z",
-    "last_save_at": "2026-10-10T22:47:00.456Z",
+    "last_save_at": "2026-10-11T00:04:51.148Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:9a8379f3a798a4d80e65a99893a2f2373b1988efbb588fb667858d3741c43ff2",
+    "source_fingerprint": "sha256:c6d63ea6b7ebeb8fce45386485f77cd1b1fec17b9095a0c2e32e99b7489aa9b2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9cecd62bdf954a7abdf81afd624ebb1b8fed4c6f8b3e31bc6736359333eec002"
+      "spec.md": "0ee66da6167c418228f0b0e188f0168f0f65cc9e29d94383d3ad489b7202d3cf"
     },
     "last_active_at": null
   }

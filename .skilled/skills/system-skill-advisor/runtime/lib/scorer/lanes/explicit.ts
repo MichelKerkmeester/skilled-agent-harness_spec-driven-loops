@@ -268,7 +268,10 @@ function push(
 
 const WORD_CHAR = /\w/;
 const WHITESPACE_CHAR = /\s/;
-const DOC_FILE_SUFFIX = /^\s*(?:skill\.md|router\.md|readme(?:\.md)?|changelog)/;
+// `changelog` alone names sk-doc's changelog mode; only its file forms count as
+// a doc-file target. The `(?!\w)` bound keeps `readme` from matching `readmes`;
+// a `changelog/` path is followed by a file name, so it carries no bound.
+const DOC_FILE_SUFFIX = /^\s*(?:(?:skill\.md|router\.md|readme(?:\.md)?|changelog\.md)(?!\w)|changelog\/)/;
 
 // A skill name or author phrase inside a path or beside a doc filename names a location, not a request to use the skill.
 function hasPlainMention(text: string, phrase: string): boolean {

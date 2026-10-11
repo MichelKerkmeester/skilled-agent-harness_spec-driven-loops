@@ -44,12 +44,12 @@ function findWorkspaceRoot(): string {
 }
 
 // The fixture keeps only the vocabulary the cases exercise: a bare skill-name
-// keyword, a short generic keyword, a hyphenated keyword, and a doc skill with
-// no keywords so its only path to evidence is the write-doc-surface rule.
+// keyword, a short generic keyword, a hyphenated keyword, and a doc skill whose
+// changelog keyword makes the doc-file-target suppression observable.
 const PROJECTION = createFixtureProjection([
   skill({ id: 'sk-code', keywords: ['sk-code', 'code', 'two-axis'] }),
   skill({ id: 'system-spec-kit', keywords: ['spec-kit'] }),
-  skill({ id: 'sk-doc' }),
+  skill({ id: 'sk-doc', keywords: ['changelog'] }),
 ]);
 
 function evidenceFor(skillId: string, prompt: string): readonly string[] {
@@ -80,6 +80,26 @@ describe('advisor name mention scoring', () => {
     expect(evidence.some((item) => item.startsWith('explicit:'))).toBe(false);
     expect(evidence.some((item) => item.startsWith('author:'))).toBe(false);
     expect(evidenceFor('sk-doc', prompt)).toContain('write-doc-surface');
+  });
+
+  it('keeps a changelog mode phrase from reading as a doc-file target', () => {
+    const prompt = 'Create a changelog entry for sk-git with the sk-doc changelog mode.';
+    const evidence = evidenceFor('sk-doc', prompt);
+
+    expect(evidence).toContain('explicit:sk-doc');
+    // The own-doc-target rule suppresses author phrases; changelog surviving
+    // shows the mention named the tool doing the writing, not a file.
+    expect(evidence).toContain('author:changelog');
+  });
+
+  it('keeps a changelog.md target from scoring the named skill', () => {
+    const prompt = 'Update the sk-doc changelog.md entry';
+    const evidence = evidenceFor('sk-doc', prompt);
+
+    expect(evidence.some((item) => item.startsWith('explicit:'))).toBe(false);
+    // Control on the case above: without the doc-target rule this projection
+    // emits author:changelog for sk-doc, so the absence here is suppression.
+    expect(evidence).not.toContain('author:changelog');
   });
 
   it('keeps a bare skill name as direct explicit evidence', () => {
