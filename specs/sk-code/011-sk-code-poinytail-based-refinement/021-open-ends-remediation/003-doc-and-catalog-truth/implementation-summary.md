@@ -129,7 +129,7 @@ Five iterations ran over the commits since `0039903bde` through cli-pi with Deep
 
 | Finding | Sev | Disposition |
 |---------|-----|-------------|
-| R3-P1-001 bump gate | P1 | Recorded, not built. The orchestrator ruled that the line removal is housekeeping the sk-doc contract owns, so the nine skills touched only by it are not bumped. The ruling and its effect on goal criterion 4 are in the goal log. The finding's downgrade trigger asks for operator approval of that amendment, so this stays open for the operator. |
+| R3-P1-001 bump gate | P1 | Closed by operator decision on 2026-10-11. The line removal is housekeeping the sk-doc contract owns, so the nine skills touched only by it are not bumped. Goal D5 and criterion 4 were amended to say so. |
 | R1-P2-001 template required fields | P2 | Fixed in `aa42f00cc6` |
 | R1-P2-002 post-edit README scope | P2 | Fixed in `aa42f00cc6` |
 | R1-P2-004 stale worked example | P2 | Fixed in `aa42f00cc6` |
@@ -181,8 +181,7 @@ Five iterations ran over the commits since `0039903bde` through cli-pi with Deep
 3. **Historical citations into stripped docs are not re-anchored.** About 5,400 citations from `specs/` into child docs point one line low now; they are dated records.
 4. **258 backticked-path warnings remain.** The check only reports; the paths are left for the owners of each playbook.
 5. **Two commit messages carry a wrong warning count.** `660e23f537` says 226 and `fc8b3a97e0` says 225; the full report, measured after the piped-output fix, has 258.
-6. **The bump-rule reading still needs the operator.** Goal criterion 4 prints the nine skills touched only by the line removal (R3-P1-001).
-7. **Some files outside the contract still carry `version`.** 61 tracked docs, such as `ROUTER.md`, benchmark reports and component READMEs, keep a `version:` line. The standard now says they sit outside the contract.
+6. **Some files outside the contract still carry `version`.** 61 tracked docs, such as `ROUTER.md`, benchmark reports and component READMEs, keep a `version:` line. The standard now says they sit outside the contract.
 <!-- /ANCHOR:limitations -->
 
 ---

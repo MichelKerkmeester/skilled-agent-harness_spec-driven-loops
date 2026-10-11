@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Doc-version `verify` fails on every skill because child docs carry a per-doc version that most state in the wrong era",
     "created_at": "2026-10-11T18:31:51Z",
-    "last_save_at": "2026-10-11T20:41:59.640Z",
+    "last_save_at": "2026-10-11T21:02:57.570Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:82b95e02ecf97792891d700c2983aaeefe120ebaea052ee68b7c6b704339f522",
+    "source_fingerprint": "sha256:5df525a40baa91cf47ff120376d9a20b1d7cc00a213d0f580e4efc4d99e22cd9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1bf3c2fa42e6c6d051f0ed9ffd79d3a7e400f2e91675b2b81f4a5c4f2ab1f78d",
       "plan.md": "62d03215e38f9e6f5d84fb047a0ffe37f7b4113fea99963f123deaff15ecd9cc",
       "tasks.md": "a0a879722c60768306a51c7178b55dab31d1ea4b1062b547557080c98090932f",
-      "implementation-summary.md": "23881042740920efb501681ca1cb7e664af14004302fabfc7ab5bde2c750e2a8"
+      "implementation-summary.md": "6137980eb7deaed53a9d7d9cbcc267f9ad8ff91227a942681826cd54e11fba8e"
     },
     "last_active_at": null
   }
