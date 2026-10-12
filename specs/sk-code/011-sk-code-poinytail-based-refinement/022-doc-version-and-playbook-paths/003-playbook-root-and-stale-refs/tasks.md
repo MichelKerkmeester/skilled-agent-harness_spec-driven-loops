@@ -40,9 +40,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 RR-1: run `backtickPathChecks` on the root file in `validatePackage()`, add a root-file test case, bump sk-doc to 2.3.9.0 (`.skilled/skills/sk-doc/`)
-- [ ] T004 RR-2.01 to RR-2.13: correct the 13 root files (`.skilled/skills/*/manual-testing-playbook/manual-testing-playbook.md`)
-- [ ] T005 SR-1 to SR-6: the six stale references
+- [x] T003 RR-1: run `backtickPathChecks` on the root file in `validatePackage()`, add a root-file test case, bump sk-doc to 2.3.9.0 (`.skilled/skills/sk-doc/`) Evidence: commit `0099d2c6d7`
+- [x] T004 RR-2.01 to RR-2.13: correct the 13 root files (`.skilled/skills/*/manual-testing-playbook/manual-testing-playbook.md`) Evidence: commit `45d7fca7fd`, root warnings 70 to 1
+- [x] T005 SR-1 to SR-6: the six stale references Evidence: commit `45d7fca7fd`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -50,7 +50,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 Rerun the validator: exit 0, scenario count 1, root count equal to the Remaining rows
+- [x] T006 Rerun the validator: exit 0, scenario count 1, root count equal to the Remaining rows Evidence: exit 0, 1 root and 1 scenario line, 1 Remaining row
 - [ ] T007 Run the five-iteration `/deep:review :auto` and fix confirmed P0 to P2 findings
 - [ ] T008 Fill the ledger and Remaining table, then run the goal criteria, `check-goal.cjs` and strict `validate.sh`
 <!-- /ANCHOR:phase-3 -->

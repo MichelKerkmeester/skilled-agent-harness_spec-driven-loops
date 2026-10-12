@@ -44,7 +44,10 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
-      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs"
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs",
+      ".hermes/skills/sk-doc/SKILL.md",
+      ".codex/config.toml",
+      ".skilled/skills/sk-doc/changelog/v2.3.9.0.md"
     ],
     "entities": [
       {
@@ -93,6 +96,24 @@
         "name": "validate-playbook-package.test.cjs",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "v2.3.9.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/changelog/v2.3.9.0.md",
         "source": "derived"
       },
       {
@@ -172,29 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`backtickPathChecks` in `validate-playbook-package.cjs` runs inside the operator scenario loop only, so a root playbook file can cite a path that no longer exists and nothing reports it",
     "created_at": "2026-10-12T09:34:39Z",
-    "last_save_at": "2026-10-12T09:46:01.501Z",
+    "last_save_at": "2026-10-12T10:00:22.669Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:22501ebe9514c9645d890de5eed959dd657aacfddbc097a1ca11399e2515ab08",
+    "source_fingerprint": "sha256:11d38b6f08b8bea5d3c55a47b7c50f56aa7933c0da95afec920a9863fc168257",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "28abd90c40aec265f2af8ede11897b370bcd461aede32485e3f0af0f2b2ac0d3",
       "plan.md": "ec8c509c5b84b58dc4d0c52209a4615a091f05776bdb9557d66bf6000a4b4ddc",
-      "tasks.md": "b882baf167d68a0a339d80df43bb28ac2b70db8f8b7520aa4c2cef26b1429677",
-      "implementation-summary.md": "fe56ff90142cd471756f2c3ff570c624e07276483c726dec09a5e8972725f943"
+      "tasks.md": "aa2f295a86b554fb98207cf1d4e73d743e44a8231c418ef092d7e53d5d3e6acf",
+      "implementation-summary.md": "3c036e10cdf2e4428e1385f2801e3e4b5b323d489447f6c5fc1e1eeab594d1e1"
     },
     "last_active_at": null
   }
