@@ -69,7 +69,7 @@ For severity-distribution validation, re-invoke `/deep:review:auto` against the 
 |---|---|
 | `../../SKILL.md` §3 "OpenCode Agent Delegation" item 3 | Command-owned loop executor contract (never raw `--agent deep-review`) |
 | `../../references/agent-delegation.md` | §3 deep-review, LEAF iteration loop executor |
-| `system-deep-loop/deep-review/README.md` | Packet-local artifact layout (`review/deep-review-state.jsonl`, `review/iterations/` etc.) and `/deep:review:auto` invocation shape |
+| `.skilled/skills/system-deep-loop/deep-review/README.md` | Packet-local artifact layout (`review/deep-review-state.jsonl`, `review/iterations/` etc.) and `/deep:review:auto` invocation shape |
 | `.skilled/agents/deep-review.md` | Agent definition file |
 
 ---

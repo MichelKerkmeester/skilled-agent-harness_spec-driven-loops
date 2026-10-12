@@ -26,7 +26,7 @@ Operators run the exact prompt and command sequence for `CO-037` and confirm the
 - Objective: Confirm a MiniMax-M3 dispatch for design/UI build work carries the model profile, the measured Style Reference manifest, the build-against-measured requirements, and the validate + sk-code handoff proof.
 - Real user request: `Use MiniMax to build this SaaS onboarding UI so it matches the live source before I hand it to implementation.`
 - Prompt: `Use MiniMax-M3 to build a SaaS onboarding UI against a measured Style Reference. Dispatch it with the sk-design-md-generator Style Reference manifest (measured DESIGN.md tokens), the build-against-measured requirements, and the validate + sk-code-handoff proof requirements.`
-- Expected execution process: Read `../../assets/prompt-quality-card.md`, read `../../../../sk-design-md-generator/references/creation-contract.md`, compose a MiniMax prompt with `<pre-plan>`, Style Reference Manifest, measured-token load step, `## Verification`, and the sk-code handoff card, then dispatch or dry-run the exact packet depending on provider availability.
+- Expected execution process: Read `../../assets/prompt-quality-card.md`, read `../../../../sk-design/sk-design-md-generator/references/creation-contract.md`, compose a MiniMax prompt with `<pre-plan>`, Style Reference Manifest, measured-token load step, `## Verification`, and the sk-code handoff card, then dispatch or dry-run the exact packet depending on provider availability.
 - Expected signals: The prompt names the required sk-design-md-generator files, loads the measured tokens first, requires every built value to trace to a measured token, flags any inferred value as an OPEN RISK, requires the validate step (hex accuracy, section completeness) before ready language, and tells the child not to claim ready/fidelity/handoff unless the validate result and locked-value trace are complete.
 - Desired user-visible outcome: A MiniMax dispatch packet and child-output check that prove the measured Style Reference was loaded and built against, with missing validate/locked-value proof causing an explicit FAIL rather than accepting design values from memory.
 - Pass/fail: PASS if the dispatch packet contains the MiniMax profile shape plus the measured Style Reference manifest and fidelity proof; FAIL if the prompt is generic, omits the measured-token manifest, omits the validate/handoff proof, uses `--agent` for the small-model dispatch, invites the child to invent new visual direction, or permits readiness/fidelity claims without complete proof.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `CO-037` and confirm the
 ### Recommended Orchestration Process
 
 1. Confirm the operator is allowed to dispatch OpenCode from the active runtime and that MiniMax credentials are available. If credentials are unavailable, run the prompt-packet composition check and mark live dispatch SKIP with the provider blocker.
-2. Read `../../../../sk-design-md-generator/references/creation-contract.md` and copy the typed context envelope and typed proof requirements into the dispatch packet.
+2. Read `../../../../sk-design/sk-design-md-generator/references/creation-contract.md` and copy the typed context envelope and typed proof requirements into the dispatch packet.
 3. Compose `/tmp/co-037-minimax-design-prompt.md` with TIDD-EC plus dense pre-plan, Style Reference Manifest, measured-token load step, loaded-file checklist, required fidelity-proof fields, verification, and the sk-code handoff card.
 5. Dispatch with MiniMax-M3 without `--agent`, or validate the packet only when provider credentials are missing.
 6. Inspect the output or packet for the child echo of loaded measured tokens and the validate/handoff proof sections.
@@ -61,7 +61,7 @@ Operators run the exact prompt and command sequence for `CO-037` and confirm the
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../../../sk-design-md-generator/references/creation-contract.md` | Design-reference creation contract: typed context envelope, typed proof, and failure semantics |
+| `../../../../sk-design/sk-design-md-generator/references/creation-contract.md` | Design-reference creation contract: typed context envelope, typed proof, and failure semantics |
 
 ### Implementation And Test Anchors
 
@@ -69,8 +69,8 @@ Operators run the exact prompt and command sequence for `CO-037` and confirm the
 |---|---|
 | `../../SKILL.md` | cli-opencode provider and dispatch workflow |
 | `../../assets/prompt-quality-card.md` | Small-model prompt-quality override table and executor notes |
-| `../../../../sk-design-md-generator/references/quality-checklist.md` | Numerical-accuracy and completeness gates for the extracted Style Reference |
-| `../../../../sk-design-md-generator/references/sk-code-handoff.md` | Handoff card (LOCKED VALUES, OPEN RISKS, NEVER-CHANGE) before ready or handoff claims |
+| `../../../../sk-design/sk-design-md-generator/references/quality-checklist.md` | Numerical-accuracy and completeness gates for the extracted Style Reference |
+| `../../../../sk-design/sk-design-md-generator/references/sk-code-handoff.md` | Handoff card (LOCKED VALUES, OPEN RISKS, NEVER-CHANGE) before ready or handoff claims |
 
 ---
 

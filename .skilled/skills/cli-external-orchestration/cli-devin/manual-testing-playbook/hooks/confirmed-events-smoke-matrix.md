@@ -68,8 +68,8 @@ Hook registration is a lifecycle contract. A command can return a good answer wh
 
 | File | Role |
 |---|---|
-| `../../../../specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/implementation-summary.md` | Corrected-schema live event evidence |
-| `../../../../specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/implementation-summary.md` | Adapter registration precedent |
+| `specs/cli-external-orchestration/z_archive/029-cli-devin-revival/008-devin-hook-parity/implementation-summary.md` | Corrected-schema live event evidence |
+| `specs/cli-external-orchestration/z_archive/029-cli-devin-revival/004-devin-hook-adapter-layer/implementation-summary.md` | Adapter registration precedent |
 | `../../SKILL.md` | Devin self-invocation and dispatch rules |
 
 ---

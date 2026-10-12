@@ -11,7 +11,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario checks the documented resolution order for a project `.pi/agents/name.md` and a global `~/.pi/agent/agents/name.md` with the same name.
+This scenario checks the documented resolution order for a project `.pi/agents/<name>.md` and a global `~/.pi/agent/agents/<name>.md` with the same name.
 
 ### Why This Matters
 

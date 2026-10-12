@@ -37,7 +37,7 @@ that rather than treating it as an anomaly.
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: confirm the whole `tests/stress/cli-adapter/cli-hermes.vitest.ts` file passes, so the
+- Objective: confirm the whole `.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-hermes.vitest.ts` file passes, so the
   three cells no filtered scenario reaches are exercised and the matrix cell count is asserted.
 - Operator prompt: `Run the cli-hermes stress file unfiltered and report PASS, FAIL, or SKIP with the exact blocker.`
 - Expected execution process: run the exact Vitest invocation in §3 from the repository root, capture

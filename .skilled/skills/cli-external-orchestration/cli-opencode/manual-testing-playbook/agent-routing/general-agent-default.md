@@ -15,7 +15,7 @@ This scenario validates the unflagged default-agent route for `CO-013`. It focus
 
 ### Why This Matters
 
-`general` is an OpenCode built-in, not a project-local `.opencode/agents/general.md` file, and the current cli-opencode contract explicitly forbids passing it at the top level: `opencode run --agent general` is rejected by the installed binary (SKILL.md §3 "The `--agent` flag" note; hard rule `no-bare-agent-general`). The default agent already runs whenever `--agent` is omitted, which is what every ordinary dispatch should do. If the unflagged path silently fails or produces degraded behavior, the entire default-routing contract collapses and every other scenario that relies on the unflagged shape inherits the failure.
+`general` is an OpenCode built-in, not a project-local agent file under `.opencode/agents/`, and the current cli-opencode contract explicitly forbids passing it at the top level: `opencode run --agent general` is rejected by the installed binary (SKILL.md §3 "The `--agent` flag" note; hard rule `no-bare-agent-general`). The default agent already runs whenever `--agent` is omitted, which is what every ordinary dispatch should do. If the unflagged path silently fails or produces degraded behavior, the entire default-routing contract collapses and every other scenario that relies on the unflagged shape inherits the failure.
 
 ---
 
@@ -49,7 +49,7 @@ Operators run the exact prompt and command sequence for `CO-013` and confirm the
 
 ### Optional Supplemental Checks
 
-For agent-frontmatter introspection of a project-local agent (not the `general` built-in, which has no `.opencode/agents/general.md` file), run `opencode debug agent orchestrate` separately and confirm the resolved frontmatter matches `.opencode/agents/orchestrate.md`. This catches user-level agent fallbacks that might silently shadow a project agent.
+For agent-frontmatter introspection of a project-local agent (not the `general` built-in, which has no agent file under `.opencode/agents/`), run `opencode debug agent orchestrate` separately and confirm the resolved frontmatter matches `.opencode/agents/orchestrate.md`. This catches user-level agent fallbacks that might silently shadow a project agent.
 
 ---
 

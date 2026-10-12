@@ -76,4 +76,4 @@ For comparison with the `--effort high` baseline (CC-008), confirm both scenario
 - Group: Agent Routing
 - Playbook ID: CC-014
 - Canonical root source: `manual-testing-playbook.md`
-- Feature file path: `agent-routing/004-ai-council-multi-strategy-planning.md`
+- Feature file path: `agent-routing/multi-ai-council-multi-strategy-planning.md`

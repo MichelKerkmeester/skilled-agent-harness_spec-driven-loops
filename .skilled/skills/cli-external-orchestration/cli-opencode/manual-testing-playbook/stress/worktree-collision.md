@@ -26,7 +26,7 @@ from a single hermetic run.
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: confirm `tests/stress/cli-adapter/cli-opencode.vitest.ts` reports `runs cli-opencode from each isolated worktree cwd` as passing under the shipped stress-matrix
+- Objective: confirm `.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-opencode.vitest.ts` reports `runs cli-opencode from each isolated worktree cwd` as passing under the shipped stress-matrix
   cell `cli-opencode:EC-012`.
 - Operator prompt: `Run the manifest-indexed hermetic stress test for cli-opencode:EC-012 and report PASS, FAIL, or SKIP with the exact blocker.`
 - Expected execution process: run the exact Vitest invocation in §3 from the repository root, capture

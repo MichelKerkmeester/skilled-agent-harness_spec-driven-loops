@@ -79,7 +79,6 @@ Captured output files from every command in §3, the table's Expected Signal cel
 | `../../SKILL.md` | Verified rules paths and loaded list |
 | `../../../../.cursor/rules/` | Cursor conditional rules |
 | `../../../../AGENTS.md` | Standard repository rules |
-| `../../../../CLAUDE.md` | Claude repository rules |
 
 ---
 

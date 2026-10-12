@@ -78,4 +78,4 @@ Operators run the exact prompt and command sequence for `CX-015` and confirm the
 - Group: Agent Routing
 - Playbook ID: CX-015
 - Canonical root source: `manual-testing-playbook.md`
-- Feature file path: `agent-routing/004-ai-council-profile.md`
+- Feature file path: `agent-routing/multi-ai-council-profile.md`

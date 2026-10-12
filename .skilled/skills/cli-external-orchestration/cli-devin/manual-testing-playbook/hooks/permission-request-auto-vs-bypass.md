@@ -78,8 +78,8 @@ If a future CLI exposes a controllable trigger, update this scenario to exercise
 | File | Role |
 |---|---|
 | `../../SKILL.md` | Canonical Devin permission modes and hook limitations |
-| `../../../../../specs/cli-external-orchestration/029-cli-devin-revival/013-devin-permission-request-handler/implementation-summary.md` | Historical PermissionRequest behavior |
-| `../../../../../specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/implementation-summary.md` | Historical hook-event matrix |
+| `specs/cli-external-orchestration/z_archive/029-cli-devin-revival/013-devin-permission-request-handler/implementation-summary.md` | Historical PermissionRequest behavior |
+| `specs/cli-external-orchestration/z_archive/029-cli-devin-revival/008-devin-hook-parity/implementation-summary.md` | Historical hook-event matrix |
 
 ---
 

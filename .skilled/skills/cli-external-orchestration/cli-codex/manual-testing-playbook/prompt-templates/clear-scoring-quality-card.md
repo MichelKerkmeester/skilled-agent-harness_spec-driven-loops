@@ -15,7 +15,7 @@ This scenario validates the CLEAR 5-check workflow from `prompt-quality-card.md`
 
 ### Why This Matters
 
-The canonical card at `sk-prompt/assets/cli-prompt-quality-card.md` §4 (CLEAR 5-Check) and §3 (Task to Framework Map) are the explicit quality gate before any non-trivial dispatch (reached via the local `assets/prompt-quality-card.md` delegation). SKILL.md §4 ALWAYS rule 9 (Prompt construction & model-craft) makes loading the card mandatory. This scenario keeps the discipline auditable by requiring operators to record CLEAR scores BEFORE dispatch and produce evidence the upgrade actually mattered.
+The canonical card at `.skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md` §4 (CLEAR 5-Check) and §3 (Task to Framework Map) are the explicit quality gate before any non-trivial dispatch (reached via the local `assets/prompt-quality-card.md` delegation). SKILL.md §4 ALWAYS rule 9 (Prompt construction & model-craft) makes loading the card mandatory. This scenario keeps the discipline auditable by requiring operators to record CLEAR scores BEFORE dispatch and produce evidence the upgrade actually mattered.
 
 ---
 
@@ -26,7 +26,7 @@ Operators run the exact prompt and command sequence for `CX-022` and confirm the
 - Objective: Verify the prompt-quality-card.md CLEAR 5-check is applied and an under-scored prompt is upgraded via the RCAF (or other) framework before dispatch.
 - Real user request: `Walk me through the CLEAR check on a weak prompt, upgrade it via RCAF, and show me the result is better.`
 - RCAF Prompt: `Spec folder: /tmp/cli-codex-playbook (pre-approved, skip Gate 3). As a cross-AI orchestrator constructing a non-trivial dispatch, FIRST take a deliberately weak prompt ("Fix auth"), score it with the prompt-quality-card.md CLEAR 5-check (Correctness, Logic, Expression, Arrangement, Reusability), THEN escalate it to a structured prompt by applying the RCAF framework from the canonical `cli-prompt-quality-card.md` §3. Dispatch the improved prompt through an authorized child with AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0 against /tmp/cli-codex-playbook-cx022/auth.ts with --model gpt-6-luna --sandbox workspace-write -c model_reasoning_effort="high" -c service_tier="fast". Verify the operator records the CLEAR scores for both versions, names the framework selected, and Codex produces a meaningfully better implementation from the improved prompt than the weak prompt would have. Return a verdict including both CLEAR score sets and the framework selected.`
-- Expected execution process: Operator reads the canonical `sk-prompt/assets/cli-prompt-quality-card.md` -> scores the weak prompt "Fix auth" against the 5 CLEAR axes (low on Expression, Arrangement and Reusability) -> applies RCAF (Role + Context + Action + Format) to produce a structured upgraded prompt -> records both score sets in evidence -> pre-creates a deliberately weak `auth.ts` -> dispatches the upgraded prompt through an authorized child -> verifies the result.
+- Expected execution process: Operator reads the canonical `.skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md` -> scores the weak prompt "Fix auth" against the 5 CLEAR axes (low on Expression, Arrangement and Reusability) -> applies RCAF (Role + Context + Action + Format) to produce a structured upgraded prompt -> records both score sets in evidence -> pre-creates a deliberately weak `auth.ts` -> dispatches the upgraded prompt through an authorized child -> verifies the result.
 - Expected signals: Operator records CLEAR scores for the weak prompt (low on Expression and Arrangement). Operator names the chosen framework from `prompt-quality-card.md` §2 (e.g., RCAF). Improved prompt scores higher. Dispatched command line uses the improved prompt and exits 0.
 - Desired user-visible outcome: An auditable trail showing the prompt-quality discipline was applied before the dispatch and a working file demonstrating the upgrade actually mattered.
 - Pass/fail: PASS if both CLEAR score sets are recorded, the improved prompt scores higher than the weak prompt, the framework is named, AND the dispatch exits 0 with a generated file. FAIL if scores are missing, framework is not named or dispatch fails.
@@ -37,7 +37,7 @@ Operators run the exact prompt and command sequence for `CX-022` and confirm the
 
 ### Recommended Orchestration Process
 
-1. Read the canonical card at `sk-prompt/assets/cli-prompt-quality-card.md` §4 (CLEAR check) and §3 (Task to Framework Map), reached via the local `assets/prompt-quality-card.md` delegation.
+1. Read the canonical card at `.skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md` §4 (CLEAR check) and §3 (Task to Framework Map), reached via the local `assets/prompt-quality-card.md` delegation.
 2. Score the weak prompt "Fix auth" on Correctness, Logic, Expression, Arrangement, Reusability.
 3. Pick a framework from the canonical card §2 (RCAF for general implementation) and rewrite the prompt.
 4. Re-score the improved prompt and confirm it scores higher.
@@ -49,7 +49,7 @@ Operators run the exact prompt and command sequence for `CX-022` and confirm the
 
 ### Optional Supplemental Checks
 
-- For complexity >= 7/10 prompts, escalate to `@prompt-improver` per the canonical card `sk-prompt/assets/cli-prompt-quality-card.md` §5 (Prompt-Composition Precedence). Capture the returned `ENHANCED_PROMPT` as additional evidence.
+- For complexity >= 7/10 prompts, escalate to `@prompt-improver` per the canonical card `.skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md` §5 (Prompt-Composition Precedence). Capture the returned `ENHANCED_PROMPT` as additional evidence.
 
 ---
 

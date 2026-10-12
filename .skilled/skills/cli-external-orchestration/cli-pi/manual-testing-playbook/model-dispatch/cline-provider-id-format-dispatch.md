@@ -68,7 +68,7 @@ pi builds providers from `.pi/models.json` and, on dispatch, sends a model objec
 | `.pi/models.json` | The `cline-pass` provider block and the slashed model `id` values pi forwards as the API `model` |
 | `.pi/settings.json` | `enabledModels` three-segment references and the `cline-pass` default |
 | `.pi/custom-providers.md` | The custom-provider setup and the documented slashed-id gotcha |
-| `../../../../../../specs/cli-external-orchestration/049-cline-provider-roster/006-cline-pi-model-id-format-fix/implementation-summary.md` | The model-id format regression and its fix |
+| `../../../../../../specs/cli-external-orchestration/z_archive/049-cline-provider-roster/006-cline-pi-model-id-format-fix/implementation-summary.md` | The model-id format regression and its fix |
 
 ---
 

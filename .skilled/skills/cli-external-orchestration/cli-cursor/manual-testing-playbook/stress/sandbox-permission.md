@@ -26,7 +26,7 @@ from a single hermetic run.
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: confirm `tests/stress/cli-adapter/cli-cursor.vitest.ts` reports `forwards the asserted cli-cursor sandbox and permission flags` as passing under the shipped stress-matrix
+- Objective: confirm `.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-cursor.vitest.ts` reports `forwards the asserted cli-cursor sandbox and permission flags` as passing under the shipped stress-matrix
   cell `cli-cursor:EC-007`.
 - Operator prompt: `Run the manifest-indexed hermetic stress test for cli-cursor:EC-007 and report PASS, FAIL, or SKIP with the exact blocker.`
 - Expected execution process: run the exact Vitest invocation in §3 from the repository root, capture

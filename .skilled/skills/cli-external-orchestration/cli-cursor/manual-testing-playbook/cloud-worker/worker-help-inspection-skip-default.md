@@ -70,7 +70,7 @@ Operators run the exact prompt and command sequence for `CU-017` and confirm the
 | File | Role |
 |---|---|
 | `../../references/cursor-tools.md` | §3 "What It Is" / "Why It's Out of Scope for This Packet's Runtime Wiring" |
-| `../../../../../specs/cli-external-orchestration/030-cli-cursor-creation/001-cursor-contract-pin/implementation-summary.md` | Historical live citation of the worker subcommand's documented flags |
+| `specs/cli-external-orchestration/z_archive/030-cli-cursor-creation/001-cursor-contract-pin/implementation-summary.md` | Historical live citation of the worker subcommand's documented flags |
 
 ---
 
