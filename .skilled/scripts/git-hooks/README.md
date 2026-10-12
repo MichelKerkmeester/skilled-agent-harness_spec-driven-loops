@@ -17,7 +17,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`.skilled/scripts/git-hooks/` holds the hook scripts this repo installs, usually machine-wide through a global `core.hooksPath`. Most checks here have their own bypass env var. The exceptions block by default: `pre-commit` runs nine blocking sub-gates, `pre-push` blocks outright, and `commit-msg` blocks with no bypass at all (see below).
+`.skilled/scripts/git-hooks/` holds the hook scripts this repo installs, usually machine-wide through a global `core.hooksPath`. Most checks here have their own bypass env var. The exceptions block by default: `pre-commit` runs ten blocking sub-gates, `pre-push` blocks outright, and `commit-msg` blocks with no bypass at all (see below).
 
 Current state:
 
