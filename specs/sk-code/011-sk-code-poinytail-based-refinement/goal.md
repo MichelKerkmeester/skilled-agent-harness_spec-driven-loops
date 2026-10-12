@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Build and verify every sk-code refinement phase.
+**Objective:** Build and verify every refinement phase.
 
 ### Decisions
 
@@ -45,7 +45,7 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | codex 002-6, haiku 007-8, sonnet 009; 010-11 Opus plan, DeepSeek build, sonnet verify |
-| D2 | Reports are claims: rerun criteria; halt after three failed repairs |
+| D2 | Reports are claims: rerun criteria; halt after 3 failed repairs |
 | D3 | One sk-git worktree, no raw git; edit packet copy |
 | D4 | Commit per phase or round; no push |
 
@@ -56,8 +56,7 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:binding -->
 ## 2. BINDING
 
-**Read the child goal before working a phase.** Each is authoritative for its
-phase and binds as if written here.
+**Read the child goal before working a phase**; it binds as if written here.
 
 | Phase | Goal document |
 |-------|---------------|
@@ -83,12 +82,13 @@ phase and binds as if written here.
 | 020-open-ends-research | `020-open-ends-research/goal.md` |
 | 021-open-ends-remediation | `021-open-ends-remediation/goal.md` |
 | 022-doc-version-and-playbook-paths | `022-doc-version-and-playbook-paths/goal.md` |
+| 025-external-surface-priority-research | `025-external-surface-priority-research/goal.md` |
 
-**Precedence.** Decisions above outrank child detail. Child detail outranks any
-summary of it. Name a conflict rather than resolving it silently.
+**Precedence.** Decisions outrank child detail, which outranks any summary of
+it. Name a conflict, never resolve it silently.
 
-**Stop.** Only the criteria below decide done. An evaluator sees the objective
-string, not these files.
+**Stop.** Only the criteria below decide done; an evaluator sees only the
+objective string.
 <!-- /ANCHOR:binding -->
 
 ---
@@ -96,9 +96,9 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 23 times, no `RESULT: FAILED`
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 24 times, none FAILED
 - [ ] `grep -lr --include=implementation-summary.md 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement | grep -vc /001-ponytail` prints 104
-- [ ] `git log --format='%(trailers:key=Spec,valueonly)' | grep -c '^sk-code/011-'` prints 100+; `git status --short` prints nothing
+- [ ] `git log --format='%(trailers:key=Spec,valueonly)' | grep -c '^sk-code/011-'` prints 100+; `git status --short` is empty
 - [ ] `node .skilled/bin/compiled-route-guard.cjs` exits 0 with sk-code `fresh`; `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "code review my obsidian plugin"` prints `"action":"route"`, no `servingAuthority`
 - [ ] `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js`, `bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh` and `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` exit 0
 - [ ] `node .skilled/bin/check-agent-mirror-sync.cjs --all` and `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` exit 0
@@ -158,5 +158,6 @@ and findings belong here.
 | Integration 2026-10-12, open ends remediation | Branches 115, 113, 114 and 112 merged on `worktrees/116-rem-integration`, with colliding skill versions renumbered in merge order. The four 021 summaries reached `completion_pct: 100`, so criterion 2 is amended from 97 to 101, as printed; criterion 1 stays 22 |
 | 022 added 2026-10-12 | Child 022 scaffolds two build phases, per-doc versions and playbook path repair; binding row added, criterion 1 amended to 23 (the parent and 22 direct children, as printed) and criterion 2 stays 101, as printed, until the two 022 summaries complete, when it becomes 103. The new row took the slice to 4,079 characters, so D7 was folded into D2, D1 lost its `Build:` prefix, D4 lost the finished 002-011 commit order, and criteria 1, 3, 4 and 5 were reworded with the same checks; the slice is 3,999 characters and no criterion was removed |
 | Integration 2026-10-12, doc version and playbook paths | Branches 119 and 118 merged on `worktrees/120-docver-integration`; 002's sk-doc release renumbered from 2.3.7.0 to 2.3.8.0. The two 022 summaries reached `completion_pct: 100`, so criterion 2 is amended from 101 to 103, as printed; criterion 1 stays 23 |
+| 025 added 2026-10-12 | Child 025 runs a read-only research, two ten-iteration lineages on cli-devin DeepSeek V4.1 Flash max and cli-codex GPT-6 Luna max fast, on how a user's own sk-code surface should outrank sk-code-opencode once the obsidian and webflow examples are deleted. It is numbered 025 because 023 and 024 exist on `worktrees/122-readme-freshness-research`, not yet on main. Binding row added; criterion 1 amended to 24 (the parent and 23 direct children on this branch, as printed), criterion 2 stays 104 until the 025 summary completes, when it becomes 105. The row took the slice to 4,011 characters, so the objective, D2, binding, precedence and stop lines and criteria 1 and 3 were reworded with the same checks; the slice is 3,998 characters and no criterion was removed |
 | Handed off, not built here | D2 Codex mirror gap (deep-improvement and git hooks) and D4 stdin deadline (hooks); recorded in the parent spec |
 <!-- /ANCHOR:log -->

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "bf02a119cd29f3600c22720c5bc2b8689986214278ce49cb4f3d0e547a6ca900",
+  "manifestHash": "1bc2d3a8bb28cc6ca5e1a269b5beb28bb207743e7622dd07adafee823da7b34a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -41539,6 +41539,21 @@
     "external scanner reset bash": [
       "external_scanner_reset bash"
     ],
+    "external surface priority research": [
+      "external surface priority research"
+    ],
+    "external surface priority research goal": [
+      "external surface priority research goal"
+    ],
+    "external surface priority research implementation summary": [
+      "external surface priority research implementation summary"
+    ],
+    "external surface priority research plan": [
+      "external surface priority research plan"
+    ],
+    "external surface priority research tasks": [
+      "external surface priority research tasks"
+    ],
     "external user docs": [
       "external user docs"
     ],
@@ -65715,6 +65730,9 @@
     "obsidian": [
       "obsidian"
     ],
+    "obsidian and webflow are examples": [
+      "obsidian and webflow are examples"
+    ],
     "obsidian api key unset": [
       "obsidian api key unset"
     ],
@@ -70840,6 +70858,9 @@
     ],
     "phase 24 tasks": [
       "phase 24 tasks"
+    ],
+    "phase 25 external surface priority research": [
+      "phase 25 external surface priority research"
     ],
     "phase 3 admission gold": [
       "phase 3 admission gold"
@@ -90388,6 +90409,9 @@
     "sk code surface detection": [
       "sk-code surface detection"
     ],
+    "sk code surface order for external users": [
+      "sk-code surface order for external users"
+    ],
     "sk code surface packet rename": [
       "sk-code surface packet rename"
     ],
@@ -105797,6 +105821,9 @@
     ],
     "user onboarding flowchart": [
       "user onboarding flowchart"
+    ],
+    "user surface outranks sk code opencode": [
+      "user surface outranks sk-code-opencode"
     ],
     "userpaused event": [
       "userPaused event"

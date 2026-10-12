@@ -136,6 +136,7 @@ These bind every build phase, 002 to 006.
 | 20 | 020-open-ends-research/ | Five ten-iteration loops on the epic's open ends: doc versions, fresh-clone onboarding, playbook and catalog truth, routing evaluation and silent CLI input | Complete |
 | 21 | 021-open-ends-remediation/ | Build every recommendation the open ends research kept: typo-proof parsers, onboarding fixes, doc and catalog truth, and routing parity in CI | Complete |
 | 22 | 022-doc-version-and-playbook-paths/ | Give every skill doc its own automatically raised version again, and resolve every unresolved backticked playbook path | Complete |
+| 25 | 025-external-surface-priority-research/ | Two-lineage ten-iteration research into how a user's own sk-code surface outranks sk-code-opencode once the obsidian and webflow examples are deleted; research only | In Progress |
 
 ### Phase Transition Rules
 
@@ -169,6 +170,7 @@ These bind every build phase, 002 to 006.
 | 019-routing-miss-fixes | 020-open-ends-research | 019 committed and on origin/main; 020 is read-only research | `validate.sh --recursive --strict` on the parent |
 | 020-open-ends-research | 021-open-ends-remediation | The five 020 syntheses merged; 021's four children build in parallel | `validate.sh --recursive --strict` on the parent |
 | 021-open-ends-remediation | 022-doc-version-and-playbook-paths | 021 merged; 022's two children build in parallel from the scaffold commit | `validate.sh --recursive --strict` on the parent |
+| 022-doc-version-and-playbook-paths | 025-external-surface-priority-research | 022 on origin/main; 025 is read-only research, numbered after 023 and 024 on another branch | `validate.sh --recursive --strict` on the parent |
 
 ### Handoffs Outside sk-code
 

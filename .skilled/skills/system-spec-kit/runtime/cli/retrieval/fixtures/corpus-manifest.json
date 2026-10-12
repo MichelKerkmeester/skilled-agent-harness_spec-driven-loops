@@ -1,5 +1,5 @@
 {
-  "corpusHash": "fe163a310b5f1d0a50c1d628332853f6196ef84fe176b5418856f3d3a7aac135",
+  "corpusHash": "cd5358d3bbca237bb4ce2cf94af02007f564b0872af33dc856ffb44224ede1bd",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24488,
+  "includedPathCount": 24493,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11083,6 +11083,11 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/025-external-surface-priority-research/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/025-external-surface-priority-research/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/025-external-surface-priority-research/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/025-external-surface-priority-research/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/025-external-surface-priority-research/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
@@ -24519,7 +24524,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "bf02a119cd29f3600c22720c5bc2b8689986214278ce49cb4f3d0e547a6ca900",
+  "manifestHash": "1bc2d3a8bb28cc6ca5e1a269b5beb28bb207743e7622dd07adafee823da7b34a",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26687,6 +26692,10 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/025-external-surface-priority-research/scratch",
       "reason": "excluded directory"
     },
     {
