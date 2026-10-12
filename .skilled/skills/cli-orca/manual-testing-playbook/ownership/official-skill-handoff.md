@@ -78,5 +78,5 @@ The zero exit of the byte comparison is the load-bearing signal for identity, no
 - Playbook ID: ORCA-008
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `ownership/official-skill-handoff.md`
-- Catalog entry: `routing/orca-qualified-vocabulary.md`
+- Catalog entry: `../../feature-catalog/routing/orca-qualified-vocabulary.md`
 - Prompt equality requirement: the SCENARIO CONTRACT prompt equals the 9-column table Exact Prompt cell and the root summary prompt.

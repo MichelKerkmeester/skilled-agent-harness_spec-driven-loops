@@ -22,7 +22,7 @@ Iconic's entire configuration is one JSON file. If the mode can merge a rule wit
 - Feature Name: Iconic rulebook merge round-trip
 - Scenario Objective: Merge one file rule + flip one toggle in a throwaway data.json, preserving every other key, with a backup created first.
 - Exact Prompt: Add a red icon rule for PDF files and enable tag-pill icons in the Iconic setup, without touching anything else.
-- Exact Command Sequence: 1. Read `.obsidian/plugins/iconic/data.json` 2. Back up to `data.json.bak` 3. Merge: append a PDF rule to `fileRules` + set `showTagPillIcons: true` 4. Re-parse + diff against the backup 5. Restore the backup (cleanup)
+- Exact Command Sequence: 1. Read the vault's `data.json` under `.obsidian/plugins/iconic/` 2. Back up to `data.json.bak` 3. Merge: append a PDF rule to `fileRules` + set `showTagPillIcons: true` 4. Re-parse + diff against the backup 5. Restore the backup (cleanup)
 - Expected Signals: Backup file exists; the diff shows exactly 2 changes (new rule + toggle); JSON parses; unrelated keys byte-identical.
 - Evidence: Backup path, json diff output, re-parse result.
 - Pass/Fail Criteria: PASS if the merge is minimal (diff = 2 changes), backup exists, JSON parses; FAIL if unrelated keys changed, no backup, or invalid JSON.

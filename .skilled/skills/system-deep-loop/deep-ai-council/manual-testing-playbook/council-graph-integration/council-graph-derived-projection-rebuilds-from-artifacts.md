@@ -37,7 +37,7 @@ Operators run the exact prompt and command sequence for `DAC-025` and confirm th
 
 ### Recommended Orchestration Process
 
-1. Pick a healthy session with persisted artifacts (e.g., `specFolder='sandbox/dac-025', sessionId='dac-025-run-01'`); confirm `ai-council/ai-council-state.jsonl` exists with rows.
+1. Pick a healthy session with persisted artifacts (e.g., `specFolder='sandbox/dac-025', sessionId='dac-025-run-01'`); confirm `<spec-folder>/ai-council/ai-council-state.jsonl` exists with rows.
 2. Snapshot `runtime status CLI` counts.
 3. Snapshot artifact mtimes: `bash: stat -f '%m %N' <spec-folder>**/*`.
 4. Delete derived rows scoped to `(sandbox/dac-025, dac-025-run-01)` via direct SQL or `runtime status CLI` `recovery` payload guidance.

@@ -48,7 +48,7 @@ Show me how the environment switches handle a secret and a switch that only appl
 | `SPECKIT_DOCTOR_FIXTURE_API_KEY` | (unset) | string | Fixture provider API key used only by this scenario inside the environment. | `shared/config.ts` |
 ```
 
-3. Record the sha256 of `.env`, `.claude/settings.local.json` and `.skilled/hooks/hook-flags.env` where each exists, and record each missing one as absent.
+3. Record the sha256 of `.env`, the local Claude settings file `settings.local.json` under `.claude/` and `.skilled/hooks/hook-flags.env` where each exists, and record each missing one as absent.
 4. Run `/doctor:env SPECKIT_DOCTOR_FIXTURE_API_KEY` through the real runtime.
 5. Capture the fixture's inventory row and source-state row. Confirm the Default cell reads `[redacted]`, the class is secret, and each source cell holds exactly one of `set`, `unset` or `unreadable`.
 6. Capture the selected block. Confirm it names the variable, prints the `Set in:` line, the hidden-value statement and the Code Mode `.env` note, and then ends with `STATUS=OK` without a value prompt, a destination menu or a confirmation.

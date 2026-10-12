@@ -27,8 +27,8 @@ Operators run the exact command sequence and verify only file and text signals.
 - Layer partition: command-flow.
 - Real user request: `Review a target with a declared resource map and prove the coverage gate is visible.`
 - Prompt: `Run the resource-map coverage scenario and prove map evidence changes deep-review state and coverage output.`
-- Expected execution process: create sandbox and spec fixture, add `resource-map.md` plus `applied/T-001.md`, run one traceability iteration, then inspect artifacts.
-- Expected signals: `resource_map_present`, `Resource Map Coverage`, `resource-map.md`, `applied/T-001.md`, `traceability`, clean target diff, clean tripwire.
+- Expected execution process: create sandbox and spec fixture, add `resource-map.md` plus `/tmp/cp-054-spec/applied/T-001.md`, run one traceability iteration, then inspect artifacts.
+- Expected signals: `resource_map_present`, `Resource Map Coverage`, `resource-map.md`, `/tmp/cp-054-spec/applied/T-001.md`, `traceability`, clean target diff, clean tripwire.
 - Desired outcome: PASS verdict proving resource map coverage is not silently skipped.
 - Pass/fail: PASS if all field counts are `1+`. FAIL if config says resource map absent or coverage language never appears.
 

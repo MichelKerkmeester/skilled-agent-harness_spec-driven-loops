@@ -28,7 +28,7 @@ Operators run the exact command sequence and confirm the expected signals withou
 - Real user request: `Run one correctness iteration over a small file target and prove the durable iteration contract exists.`
 - Prompt: `Run the three-artifact iteration scenario and prove deep-review writes iteration markdown, state JSONL, and delta JSONL.`
 - Expected execution process: sandbox setup, one `/deep:review:auto` invocation, artifact aggregation, diff and tripwire checks.
-- Expected signals: `iterations/iteration-001.md`, `deep-review-state.jsonl`, `deltas/iter-001.jsonl`, `"type":"iteration"`, `newFindingsRatio`, `findingsSummary`, and post-dispatch validation language or absence of schema-mismatch failure.
+- Expected signals: `iterations/iteration-001.md`, `deep-review-state.jsonl`, `review/deltas/iter-001.jsonl`, `"type":"iteration"`, `newFindingsRatio`, `findingsSummary`, and post-dispatch validation language or absence of schema-mismatch failure.
 - Desired outcome: PASS verdict showing command-flow dispatch externalized state for reducer consumption.
 - Pass/fail: PASS if all field counts are `1+`. FAIL if the run only explains what it would do or writes `iteration_delta` instead of `iteration`.
 

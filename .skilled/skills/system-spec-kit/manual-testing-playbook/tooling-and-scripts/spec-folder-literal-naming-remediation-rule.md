@@ -10,7 +10,7 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-Packet 012 REQ-006 added ALWAYS rule 20 (REMEDIATION PACKET NAMING) to `system-spec-kit/SKILL.md`. Rule 20 requires that remediation packet slugs reference both the SOURCE of the findings (the deep-review verdict that triggered remediation) and the specific TARGET component being fixed. Bare names like `remediation`, `cleanup`, `phase-N`, `round-N`, or `review-remediation` are explicitly forbidden.
+Packet 012 REQ-006 added ALWAYS rule 20 (REMEDIATION PACKET NAMING) to `.skilled/skills/system-spec-kit/SKILL.md`. Rule 20 requires that remediation packet slugs reference both the SOURCE of the findings (the deep-review verdict that triggered remediation) and the specific TARGET component being fixed. Bare names like `remediation`, `cleanup`, `phase-N`, `round-N`, or `review-remediation` are explicitly forbidden.
 
 This scenario routes a synthetic deep-review FAIL verdict through multiple external CLI agents and checks whether each agent's proposed remediation slug honors rule 20. An agent that still returns a bare stoplist slug signals either a broken SKILL.md wiring or insufficient rule weight.
 

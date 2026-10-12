@@ -38,7 +38,7 @@ Validate Feature flag governance against the documented validation surface and r
 
 ### Commands
 
-1. Enumerate the `SPECKIT_*` and `SYSTEM_SKILL_ADVISOR_*` tokens declared across the surviving flag read sites, not from one module. The memory engine's `lib/search/search-flags.ts`, which used to be the single enumeration source for this scenario, was deleted with that engine.
+1. Enumerate the `SPECKIT_*` and `SYSTEM_SKILL_ADVISOR_*` tokens declared across the surviving flag read sites, not from one module. The memory engine's `search-flags.ts`, which used to be the single enumeration source for this scenario, was deleted with that engine.
 2. Diff that token set against the `ENV-REFERENCE.md` feature-flags table and against `.env.example`.
 3. Verify each table row carries default state, env var, gated automation, and added-in version.
 4. Record any flag present in code but missing from either document, and any row documenting a flag no code reads.
@@ -51,7 +51,7 @@ All flags enumerated with the documented governance columns (default, env, autom
 
 ### Evidence
 
-The recorded transcript for this scenario predates the memory decommission. It counted 91 unique `SPECKIT_*` tokens in `lib/search/search-flags.ts` against 120 `ENV-REFERENCE.md` rows — a module and a table that the decommission removed and rewrote. Those numbers were removed rather than reinterpreted, because a stale count reads as a passing audit.
+The recorded transcript for this scenario predates the memory decommission. It counted 91 unique `SPECKIT_*` tokens in `search-flags.ts` against 120 `ENV-REFERENCE.md` rows — a module and a table that the decommission removed and rewrote. Those numbers were removed rather than reinterpreted, because a stale count reads as a passing audit.
 
 Re-execute the Commands block against the surviving flag surface and capture the transcript here before this scenario carries a verdict again.
 

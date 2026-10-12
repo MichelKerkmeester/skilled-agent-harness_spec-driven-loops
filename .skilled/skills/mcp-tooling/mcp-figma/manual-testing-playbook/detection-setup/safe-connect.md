@@ -43,7 +43,7 @@ Operators run the exact command sequence for `CONNECT-001` and confirm the expec
 4. Compare the observed output against the desired user-visible outcome.
 5. Return a concise final answer that a real user would understand.
 
-PRE: Import the FigCli plugin manifest (`plugin/manifest.json`) once and keep `Plugins → Development → FigCli` open in Figma. Safe connect applies no patch. Do NOT run the yolo patch during this playbook.
+PRE: Import the FigCli plugin manifest (`manifest.json` in figma-ds-cli's `plugin/` folder) once and keep `Plugins → Development → FigCli` open in Figma. Safe connect applies no patch. Do NOT run the yolo patch during this playbook.
 
 1. agent confirms Figma open + FigCli plugin running  # -> plugin running stated
 2. `figma-ds-cli connect --safe`  # -> safe connect succeeds, no patch, no port-9222 change

@@ -108,7 +108,7 @@ Capture, for every step in the Commands sequence above:
 
 - Helper script: `.skilled/skills/system-spec-kit/runtime/cli/spec/scaffold-debug-delegation.sh`
 - Schema source: `.skilled/agents/debug.md` (Debug Context Handoff format, lines 60-89)
-- Workflow YAML: `.skilled/commands/speckit/assets/speckit-implement.yaml` (debug_delegation block) and `.../speckit-complete.yaml` (debug_escalation block)
+- Workflow YAML: `.skilled/commands/speckit/assets/speckit-implement.yaml` (debug_delegation block) and `.skilled/commands/speckit/assets/speckit-complete.yaml` (debug_escalation block)
 - Operator constraint: the debug agent is user-invoked only; the workflow must never dispatch it autonomously.
 
 Provenance: manual only - /tmp

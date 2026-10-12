@@ -74,5 +74,5 @@ Do not treat a non-empty recommendation list alone as success. `cli-orca` must b
 - Playbook ID: ORCA-001
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `routing/orca-positive-route.md`
-- Catalog entry: `routing/orca-qualified-vocabulary.md`
+- Catalog entry: `../../feature-catalog/routing/orca-qualified-vocabulary.md`
 - Prompt equality requirement: the SCENARIO CONTRACT prompt equals the 9-column table Exact Prompt cell and the root summary prompt.

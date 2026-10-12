@@ -76,5 +76,5 @@ Do not treat an empty first list alone as success without recording it. The gene
 - Playbook ID: ORCA-002
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `routing/negative-holdouts.md`
-- Catalog entry: `routing/orca-qualified-vocabulary.md`
+- Catalog entry: `../../feature-catalog/routing/orca-qualified-vocabulary.md`
 - Prompt equality requirement: both SCENARIO CONTRACT prompts equal the 9-column table Exact Prompt cell in order and the root summary prompts.

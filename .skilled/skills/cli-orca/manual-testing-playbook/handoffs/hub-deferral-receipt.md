@@ -79,5 +79,5 @@ The three steps are jointly required. The deferral lines alone do not prove the 
 - Playbook ID: ORCA-003
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `handoffs/hub-deferral-receipt.md`
-- Catalog entry: `routing/orca-qualified-vocabulary.md`
+- Catalog entry: `../../feature-catalog/routing/orca-qualified-vocabulary.md`
 - Prompt equality requirement: the SCENARIO CONTRACT prompt equals the 9-column table Exact Prompt cell and the root summary prompt.

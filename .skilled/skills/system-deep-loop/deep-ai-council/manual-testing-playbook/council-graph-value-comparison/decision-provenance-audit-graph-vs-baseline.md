@@ -41,7 +41,7 @@ Operators run the exact prompt and command sequence for `DAC-028` and confirm th
 ### Recommended Orchestration Process
 
 1. Seed: SESSION + 3 ROUNDs + 3 SEATs + claims + 3 EVIDENCE (`e1`, `e2`, `e3`) + DECISION `decB` with `name: 'Plan B chosen'` + SUPPORTS edges `e{1,2,3} -> decB` + PROPOSES edge `seatB -> decB` + RECOMMENDS edge `decB -> rec1`.
-2. Run **no-graph baseline**: read `ai-council/council-report.md` + all 9 deliberation files + 3 critique files; assemble the Plan B justification narrative.
+2. Run **no-graph baseline**: read `<spec-folder>/ai-council/council-report.md` + all 9 deliberation files + 3 critique files; assemble the Plan B justification narrative.
 3. Run **with-graph workflow**: `runtime query CLI mode='decision_support' limit:10` scoped to `decB` node.
 4. Compare result quality: structured prompt-safe trace with cited node IDs vs free-form prose narrative.
 

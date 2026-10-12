@@ -20,7 +20,7 @@ The MCP path exists for structured note reads and writes when the app, Local RES
 
 - Feature ID: `MCP-H001`
 - Feature Name: Read/write round-trip
-- Scenario Objective: Read `Daily/mcp-obsidian-playbook.md`, append one marker if absent, and write the note back.
+- Scenario Objective: Read the vault-relative note `mcp-obsidian-playbook.md` in `Daily/`, append one marker if absent, and write the note back.
 - Exact Prompt: `Read Daily/mcp-obsidian-playbook.md, append the heading ## MCP playbook round-trip only if it is missing, and report the structured write result.`
 - Exact Command Sequence: `1. Code Mode: list_tools() -> 2. Code Mode: tool_info("obsidian.obsidian_get_note") -> 3. Code Mode: tool_info("obsidian.obsidian_write_note") -> 4. Code Mode: call_tool_chain({ code: "const existing = await obsidian.obsidian_get_note({ path: \"Daily/mcp-obsidian-playbook.md\" }); const marker = \"## MCP playbook round-trip\"; const content = existing.content.includes(marker) ? existing.content : existing.content + \"\\n\\n\" + marker; return await obsidian.obsidian_write_note({ path: \"Daily/mcp-obsidian-playbook.md\", content });" })`
 - Expected Signals: The live manual reports the callable names; both schemas resolve; the read returns structured note data; the write returns a structured result; a second read contains the marker once.
