@@ -1,0 +1,1641 @@
+{
+  "sessionId": "2026-10-12T07:01:58.951Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "The packet's ledger, acceptance evidence and task state are unwritten at HEAD",
+      "file": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions/implementation-summary.md",
+      "line": 48,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "verify rejects a leading-zero 4-part version that gate, apply and the format regex accept",
+      "file": ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+      "line": 305,
+      "description": "verifyVersion fails a version whose normalized tuple equals itself but whose raw string is non-canonical (leading zeros), and apply cannot normalize it.",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "Single comparison site in verifyVersion; applyVersion raw-equality check is its counterpart. No other mode compares tuples against raw strings.",
+      "affectedSurfaceHints": [
+        "verify",
+        "apply",
+        "gate"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "A valueless version key is treated as missing; bump then writes a duplicate version line",
+      "file": ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+      "line": 110,
+      "description": "An empty version value is treated as a missing key and bump synthesizes a second version key instead of reporting it as malformed.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": "Any doc where the version key exists with an empty value reaches the same insert path; the earlier malformed rule already blocks non-empty invalid values, so this is the one malformed shape that slips past it.",
+      "affectedSurfaceHints": [
+        "bump",
+        "withEdition",
+        "gate",
+        "shared frontmatter parser"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "Rename below git's similarity threshold is an add; a rewritten body raises nothing",
+      "file": ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+      "line": 346,
+      "description": "When git cannot pair a move below the similarity threshold, the body change under the moved path is never considered for a raise.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": "The same add path covers copies and any rename git declines to pair; changedDocs and the bump loop are the only consumers of the diff.",
+      "affectedSurfaceHints": [
+        "bump",
+        "changedDocs",
+        "pre-commit gate",
+        "PR check"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "A newline in a staged doc path silently skips the raise staging",
+      "file": ".skilled/scripts/git-hooks/pre-commit",
+      "line": 898,
+      "description": "A raised path containing a newline never reaches the index, and the gate cannot see it because verification runs only on the split fragments.",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "Symlinks defeat the containment checks; the bump write has no containment check at all",
+      "file": ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+      "line": 437,
+      "description": "A symlinked worktree path passes lexical containment and the write follows it outside the skills tree.",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-003",
+      "severity": "P2",
+      "title": "The CI version check executes the pull request's own engine",
+      "file": ".github/workflows/skill-doc-frontmatter.yml",
+      "line": 78,
+      "description": "The enforcing code is loaded from the untrusted change under test, so the check can be neutered by the same PR it evaluates.",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "The 22-doc frontmatter addition is not traceable to a recorded amendment of frozen D1",
+      "file": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions/goal.md",
+      "line": 44,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Three hand-synced scope copies claim to mirror one another and diverge on two classes; no parity gate binds them",
+      "file": ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
+      "line": 124,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 8
+  },
+  "openFindingsCount": 9,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0.893,
+  "graphDecision": "STOP_BLOCKED",
+  "graphBlockers": [
+    {
+      "count": 16,
+      "description": "Dimension coverage (57%) is below threshold (80%). 16 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
+      "severity": "blocking",
+      "type": "uncovered_dimensions"
+    }
+  ],
+  "graphSignals": {
+    "dimensionCoverage": 0.5714285714285714,
+    "evidenceDensity": 1.6666666666666667,
+    "findingStability": 1,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 0.893
+  },
+  "candidateCoverage": {
+    "covered": [
+      "boundary_condition",
+      "ci_trust_boundary",
+      "completion_state_mismatch",
+      "control_bypass_via_path",
+      "data_integrity",
+      "decision_record_drift",
+      "directory_class_divergence",
+      "non_md_contract_mismatch",
+      "path_injection",
+      "symlink_write_through"
+    ],
+    "ruledOut": [
+      "command_injection",
+      "count_claim_mismatch",
+      "crash_on_git_edge_state",
+      "dead_code_unreachable_branch",
+      "duplicate_state",
+      "duplicated_policy_constant",
+      "encoding_handling",
+      "enforcement_claim_mismatch",
+      "env_bypass_persistence",
+      "gate_bypass",
+      "gating_bypass",
+      "off_by_one_anchor",
+      "overlay_skill_mirror_drift",
+      "partial_staging_data_loss",
+      "path_injection",
+      "restore_value_mismatch",
+      "silent_skip",
+      "standard_engine_scope_mismatch",
+      "state_transition",
+      "temp_index_loss",
+      "test_mirrors_implementation",
+      "wrong_raise"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "boundary_condition": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "data_integrity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "state_transition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "encoding_handling": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "duplicate_state": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "gating_bypass": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "concurrency": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "path_encoding": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "path_injection": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "symlink_write_through": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "ci_trust_boundary": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "command_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "env_bypass_persistence": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "partial_staging_data_loss": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "control_bypass_via_path": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "completion_state_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "decision_record_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "count_claim_mismatch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "restore_value_mismatch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "standard_engine_scope_mismatch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "enforcement_claim_mismatch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "overlay_skill_mirror_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "directory_class_divergence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "non_md_contract_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "test_mirrors_implementation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "dead_code_unreachable_branch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "duplicated_policy_constant": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "off_by_one_anchor": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "temp_index_loss": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "gate_bypass": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "wrong_raise": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "crash_on_git_edge_state": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "silent_skip": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:407",
+        ".skilled/skills/sk-doc/scripts/tests/test-frontmatter-version-bump.mjs:1"
+      ],
+      "reason": "Invariant held across every branch exercised by read, suite and probes."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+      ],
+      "bugClass": "encoding_handling",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/scripts/tests/test-frontmatter-version-bump.mjs:78"
+      ],
+      "reason": "EOL and quoting preserved by withEdition; body comparison normalization is line-content based."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+      ],
+      "bugClass": "duplicate_state",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:410"
+      ],
+      "reason": "head-version > base-version guard skips an already-raised doc; one row per path per diff."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit",
+        ".github/workflows/skill-doc-frontmatter.yml"
+      ],
+      "bugClass": "gating_bypass",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:841",
+        ".gitignore:348",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:386"
+      ],
+      "reason": "Hook guards and the skip file is untracked; CI env does not set SKDOC_SKIP_VALIDATION."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-008",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:378"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/scripts/tests/test-frontmatter-version-bump.mjs:53",
+        ".skilled/scripts/git-hooks/pre-commit:880"
+      ],
+      "reason": "Exit-code contract matches the hook and the suite."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-001",
+      "dimension": "security",
+      "targetRefs": [
+        "frontmatter-version.mjs",
+        "pre-commit"
+      ],
+      "bugClass": "path_injection",
+      "disposition": "ruled_out",
+      "rationale": "spaces and leading dashes cannot split or re-parse a path; .. cannot survive the git index or the pathspec",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:346",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:174",
+        ".skilled/scripts/git-hooks/pre-commit:900"
+      ],
+      "reason": "NUL-delimited diff parse plus quoted git add -- plus lexical inScope plus the git pathspec confine the gate to the skills root"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows/skill-doc-frontmatter.yml"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "the env indirection is the documented safe pattern; no other github.* expression reaches a run step",
+      "evidenceRefs": [
+        ".github/workflows/skill-doc-frontmatter.yml:77",
+        ".github/workflows/skill-doc-frontmatter.yml:78"
+      ],
+      "reason": "shell variable expansion inside double quotes does not re-parse metacharacters; the job is pull_request-only with a read-only token and base_ref names a base-repository branch"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        "pre-commit",
+        "gates.tsv",
+        ".gitignore"
+      ],
+      "bugClass": "env_bypass_persistence",
+      "disposition": "ruled_out",
+      "rationale": "commit content cannot influence the process environment or local git config",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:841",
+        ".skilled/scripts/git-hooks/lib/gates.tsv:1",
+        ".gitignore:348"
+      ],
+      "reason": "every persisted source lives outside the commit stream (git config, gitignored env file); CI sets no such variable"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        "frontmatter-version.mjs",
+        "pre-commit"
+      ],
+      "bugClass": "partial_staging_data_loss",
+      "disposition": "ruled_out",
+      "rationale": "write-then-add ordering plus the pre-write equality guard closes the data-loss path",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:428",
+        ".skilled/scripts/git-hooks/pre-commit:880",
+        ".skilled/scripts/git-hooks/pre-commit:900"
+      ],
+      "reason": "the engine refuses (exit 3) before writing on mismatch, and for raised files there were no unstaged edits to lose"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-101",
+      "dimension": "traceability",
+      "targetRefs": [
+        "packet spec.md",
+        "commit 31888d05bb",
+        "commit a8d0dd7c2a",
+        "commit 3e848d1303",
+        "commit 18d3233a52"
+      ],
+      "bugClass": "count_claim_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "claim-vs-commit counting closed the count question",
+      "evidenceRefs": [
+        "commit 31888d05bb",
+        "commit a8d0dd7c2a",
+        "commit 3e848d1303",
+        "commit 18d3233a52"
+      ],
+      "reason": "every numeric claim matched the commits exactly"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-102",
+      "dimension": "traceability",
+      "targetRefs": [
+        "commit 31888d05bb",
+        "commit a8d0dd7c2a",
+        "SC-002"
+      ],
+      "bugClass": "restore_value_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "aggregate loop plus spot checks plus a live verify run",
+      "evidenceRefs": [
+        "commit 31888d05bb",
+        "commit a8d0dd7c2a",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+      ],
+      "reason": "restore completeness and value fidelity hold"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-105",
+      "dimension": "traceability",
+      "targetRefs": [
+        "frontmatter-versioning.md",
+        "frontmatter-version.mjs"
+      ],
+      "bugClass": "standard_engine_scope_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "class-for-class comparison",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:56",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:174",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:25"
+      ],
+      "reason": "scope constants and bump rule agree"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-106",
+      "dimension": "traceability",
+      "targetRefs": [
+        "changelog/v2.3.7.0.md",
+        "commit 812197ab82",
+        "commit aa89063bca"
+      ],
+      "bugClass": "enforcement_claim_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "bullet-by-bullet commit mapping",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/changelog/v2.3.7.0.md:23",
+        "commit 812197ab82",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py:212"
+      ],
+      "reason": "every changelog bullet maps to a shipped change; no overclaim found"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-107",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/SKILL.md",
+        ".hermes/skills/sk-doc/SKILL.md"
+      ],
+      "bugClass": "overlay_skill_mirror_drift",
+      "disposition": "ruled_out",
+      "rationale": "overlay consistency check",
+      "evidenceRefs": [
+        "commit aa89063bca",
+        ".skilled/skills/sk-doc/changelog/v2.3.7.0.md:10"
+      ],
+      "reason": "skill edition, changelog and Hermes mirror agree in one release commit"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "test_template_version_seed.py",
+        "test_package_skill_regressions.py",
+        "test-frontmatter-version.mjs",
+        "sk-code-post-edit-quality.test.cjs"
+      ],
+      "bugClass": "test_mirrors_implementation",
+      "disposition": "ruled_out",
+      "rationale": "tests test the change",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/scripts/tests/test_template_version_seed.py:24",
+        ".skilled/skills/sk-doc/scripts/tests/test_package_skill_regressions.py:280-291",
+        ".opencode/plugins/tests/sk-code-post-edit-quality.test.cjs:185-207"
+      ],
+      "reason": "all suites exercise fixtures, subprocess CLI runs or dispatch calls; none asserts a constant or mirrors code structure"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "init_skill.py",
+        "sk-create-readme templates",
+        "test_template_version_seed.py"
+      ],
+      "bugClass": "duplicated_policy_constant",
+      "disposition": "ruled_out",
+      "rationale": "kept as an observation in the narrative",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py:66",
+        ".skilled/skills/sk-doc/scripts/tests/test_template_version_seed.py:24"
+      ],
+      "reason": "the gate over scaffolded output binds every checked file; residual risk limited to files the engine skips"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "package_skill.py"
+      ],
+      "bugClass": "dead_code_unreachable_branch",
+      "disposition": "ruled_out",
+      "rationale": "divergence is real, only latent in effect",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:129",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:637",
+        ".skilled/skills/sk-doc/scripts/tests/test_package_skill_regressions.py:296-307"
+      ],
+      "reason": "the branch executes and is test-pinned"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-501",
+      "dimension": "traceability",
+      "targetRefs": [
+        "f60fa8adac",
+        ".skilled/skills/sk-code/manual-testing-playbook"
+      ],
+      "bugClass": "off_by_one_anchor",
+      "disposition": "ruled_out",
+      "rationale": "no missed or over-corrected citation; every living citation into the two shifted docs resolves to pre-removal numbering",
+      "evidenceRefs": [
+        "f60fa8adac",
+        ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md:15",
+        ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/obsidian-detection.md:32",
+        ".skilled/skills/sk-code/shared/references/stack-detection.md:30"
+      ],
+      "reason": "no missed or over-corrected citation; every living citation into the two shifted docs resolves to pre-removal numbering"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-502",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit",
+        ".skilled/scripts/git-hooks/tests/pre-commit.test.sh"
+      ],
+      "bugClass": "temp_index_loss",
+      "disposition": "ruled_out",
+      "rationale": "blocks instead of writing into an index git discards; no owed raise lost",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:862",
+        ".skilled/scripts/git-hooks/tests/pre-commit.test.sh:992"
+      ],
+      "reason": "blocks instead of writing into an index git discards; no owed raise lost"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-503",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit"
+      ],
+      "bugClass": "temp_index_loss",
+      "disposition": "ruled_out",
+      "rationale": "the temp index never contained a skill doc, so no raise was owed in that commit; the staged change stays visible to the next gate",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:845"
+      ],
+      "reason": "the temp index never contained a skill doc, so no raise was owed in that commit; the staged change stays visible to the next gate"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-504",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+      ],
+      "bugClass": "gate_bypass",
+      "disposition": "ruled_out",
+      "rationale": "the engine diffs the index against the amended HEAD, so the raise lands in the amended commit; an amend with nothing staged is a no-op",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:384"
+      ],
+      "reason": "the engine diffs the index against the amended HEAD, so the raise lands in the amended commit; an amend with nothing staged is a no-op"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-505",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit"
+      ],
+      "bugClass": "gate_bypass",
+      "disposition": "ruled_out",
+      "rationale": "merge content a human introduces is gated; a clean merge carries only commits that were gated or explicitly bypassed, and CI re-checks the PR diff with bump --check",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:875"
+      ],
+      "reason": "merge content a human introduces is gated; a clean merge carries only commits that were gated or explicitly bypassed, and CI re-checks the PR diff with bump --check"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-506",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+      ],
+      "bugClass": "silent_skip",
+      "disposition": "ruled_out",
+      "rationale": "deletions are excluded by --diff-filter=AMR on both sides of the gate; a doc leaving the tree owes no raise",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:346"
+      ],
+      "reason": "deletions are excluded by --diff-filter=AMR on both sides of the gate; a doc leaving the tree owes no raise"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-507",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+        ".skilled/scripts/git-hooks/tests/pre-commit.test.sh"
+      ],
+      "bugClass": "wrong_raise",
+      "disposition": "ruled_out",
+      "rationale": "the raise is monotonic against the merge base and overrides a lowered value when the body changed; a frontmatter-only change raising nothing is the pinned contract, not a missed raise",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/tests/pre-commit.test.sh:966",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:410"
+      ],
+      "reason": "the raise is monotonic against the merge base and overrides a lowered value when the body changed; a frontmatter-only change raising nothing is the pinned contract, not a missed raise"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-508",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+      ],
+      "bugClass": "crash_on_git_edge_state",
+      "disposition": "ruled_out",
+      "rationale": "the guard skips a state the engine cannot compare; the format gate and the PR check remain for this one commit",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:841",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:384"
+      ],
+      "reason": "the guard skips a state the engine cannot compare; the format gate and the PR check remain for this one commit"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-509",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit"
+      ],
+      "bugClass": "silent_skip",
+      "disposition": "ruled_out",
+      "rationale": "the same condition shape as the two sibling re-mint gates; node is a declared prerequisite of the chain and the PR check is the enforcement net; recorded as a boundary, not a defect",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:841",
+        ".skilled/scripts/git-hooks/pre-commit:691",
+        ".skilled/scripts/git-hooks/pre-commit:496"
+      ],
+      "reason": "the same condition shape as the two sibling re-mint gates; node is a declared prerequisite of the chain and the PR check is the enforcement net; recorded as a boundary, not a defect"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-510",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+      ],
+      "bugClass": "wrong_raise",
+      "disposition": "ruled_out",
+      "rationale": "every raise matches the documented arithmetic",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:315"
+      ],
+      "reason": "every raise matches the documented arithmetic"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:407",
+        ".skilled/skills/sk-doc/scripts/tests/test-frontmatter-version-bump.mjs:1"
+      ],
+      "proof": "Invariant held across every branch exercised by read, suite and probes."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+      ],
+      "bugClass": "encoding_handling",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/scripts/tests/test-frontmatter-version-bump.mjs:78"
+      ],
+      "proof": "EOL and quoting preserved by withEdition; body comparison normalization is line-content based."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+      ],
+      "bugClass": "duplicate_state",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:410"
+      ],
+      "proof": "head-version > base-version guard skips an already-raised doc; one row per path per diff."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit",
+        ".github/workflows/skill-doc-frontmatter.yml"
+      ],
+      "bugClass": "gating_bypass",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:841",
+        ".gitignore:348",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:386"
+      ],
+      "proof": "Hook guards and the skip file is untracked; CI env does not set SKDOC_SKIP_VALIDATION."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-008",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:378"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/scripts/tests/test-frontmatter-version-bump.mjs:53",
+        ".skilled/scripts/git-hooks/pre-commit:880"
+      ],
+      "proof": "Exit-code contract matches the hook and the suite."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-001",
+      "dimension": "security",
+      "targetRefs": [
+        "frontmatter-version.mjs",
+        "pre-commit"
+      ],
+      "bugClass": "path_injection",
+      "disposition": "ruled_out",
+      "rationale": "spaces and leading dashes cannot split or re-parse a path; .. cannot survive the git index or the pathspec",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:346",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:174",
+        ".skilled/scripts/git-hooks/pre-commit:900"
+      ],
+      "proof": "NUL-delimited diff parse plus quoted git add -- plus lexical inScope plus the git pathspec confine the gate to the skills root"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows/skill-doc-frontmatter.yml"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "the env indirection is the documented safe pattern; no other github.* expression reaches a run step",
+      "evidenceRefs": [
+        ".github/workflows/skill-doc-frontmatter.yml:77",
+        ".github/workflows/skill-doc-frontmatter.yml:78"
+      ],
+      "proof": "shell variable expansion inside double quotes does not re-parse metacharacters; the job is pull_request-only with a read-only token and base_ref names a base-repository branch"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        "pre-commit",
+        "gates.tsv",
+        ".gitignore"
+      ],
+      "bugClass": "env_bypass_persistence",
+      "disposition": "ruled_out",
+      "rationale": "commit content cannot influence the process environment or local git config",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:841",
+        ".skilled/scripts/git-hooks/lib/gates.tsv:1",
+        ".gitignore:348"
+      ],
+      "proof": "every persisted source lives outside the commit stream (git config, gitignored env file); CI sets no such variable"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        "frontmatter-version.mjs",
+        "pre-commit"
+      ],
+      "bugClass": "partial_staging_data_loss",
+      "disposition": "ruled_out",
+      "rationale": "write-then-add ordering plus the pre-write equality guard closes the data-loss path",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:428",
+        ".skilled/scripts/git-hooks/pre-commit:880",
+        ".skilled/scripts/git-hooks/pre-commit:900"
+      ],
+      "proof": "the engine refuses (exit 3) before writing on mismatch, and for raised files there were no unstaged edits to lose"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-101",
+      "dimension": "traceability",
+      "targetRefs": [
+        "packet spec.md",
+        "commit 31888d05bb",
+        "commit a8d0dd7c2a",
+        "commit 3e848d1303",
+        "commit 18d3233a52"
+      ],
+      "bugClass": "count_claim_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "claim-vs-commit counting closed the count question",
+      "evidenceRefs": [
+        "commit 31888d05bb",
+        "commit a8d0dd7c2a",
+        "commit 3e848d1303",
+        "commit 18d3233a52"
+      ],
+      "proof": "every numeric claim matched the commits exactly"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-102",
+      "dimension": "traceability",
+      "targetRefs": [
+        "commit 31888d05bb",
+        "commit a8d0dd7c2a",
+        "SC-002"
+      ],
+      "bugClass": "restore_value_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "aggregate loop plus spot checks plus a live verify run",
+      "evidenceRefs": [
+        "commit 31888d05bb",
+        "commit a8d0dd7c2a",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+      ],
+      "proof": "restore completeness and value fidelity hold"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-105",
+      "dimension": "traceability",
+      "targetRefs": [
+        "frontmatter-versioning.md",
+        "frontmatter-version.mjs"
+      ],
+      "bugClass": "standard_engine_scope_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "class-for-class comparison",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:56",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:174",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:25"
+      ],
+      "proof": "scope constants and bump rule agree"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-106",
+      "dimension": "traceability",
+      "targetRefs": [
+        "changelog/v2.3.7.0.md",
+        "commit 812197ab82",
+        "commit aa89063bca"
+      ],
+      "bugClass": "enforcement_claim_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "bullet-by-bullet commit mapping",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/changelog/v2.3.7.0.md:23",
+        "commit 812197ab82",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py:212"
+      ],
+      "proof": "every changelog bullet maps to a shipped change; no overclaim found"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-107",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/SKILL.md",
+        ".hermes/skills/sk-doc/SKILL.md"
+      ],
+      "bugClass": "overlay_skill_mirror_drift",
+      "disposition": "ruled_out",
+      "rationale": "overlay consistency check",
+      "evidenceRefs": [
+        "commit aa89063bca",
+        ".skilled/skills/sk-doc/changelog/v2.3.7.0.md:10"
+      ],
+      "proof": "skill edition, changelog and Hermes mirror agree in one release commit"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "test_template_version_seed.py",
+        "test_package_skill_regressions.py",
+        "test-frontmatter-version.mjs",
+        "sk-code-post-edit-quality.test.cjs"
+      ],
+      "bugClass": "test_mirrors_implementation",
+      "disposition": "ruled_out",
+      "rationale": "tests test the change",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/scripts/tests/test_template_version_seed.py:24",
+        ".skilled/skills/sk-doc/scripts/tests/test_package_skill_regressions.py:280-291",
+        ".opencode/plugins/tests/sk-code-post-edit-quality.test.cjs:185-207"
+      ],
+      "proof": "all suites exercise fixtures, subprocess CLI runs or dispatch calls; none asserts a constant or mirrors code structure"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "init_skill.py",
+        "sk-create-readme templates",
+        "test_template_version_seed.py"
+      ],
+      "bugClass": "duplicated_policy_constant",
+      "disposition": "ruled_out",
+      "rationale": "kept as an observation in the narrative",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py:66",
+        ".skilled/skills/sk-doc/scripts/tests/test_template_version_seed.py:24"
+      ],
+      "proof": "the gate over scaffolded output binds every checked file; residual risk limited to files the engine skips"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "package_skill.py"
+      ],
+      "bugClass": "dead_code_unreachable_branch",
+      "disposition": "ruled_out",
+      "rationale": "divergence is real, only latent in effect",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:129",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:637",
+        ".skilled/skills/sk-doc/scripts/tests/test_package_skill_regressions.py:296-307"
+      ],
+      "proof": "the branch executes and is test-pinned"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-501",
+      "dimension": "traceability",
+      "targetRefs": [
+        "f60fa8adac",
+        ".skilled/skills/sk-code/manual-testing-playbook"
+      ],
+      "bugClass": "off_by_one_anchor",
+      "disposition": "ruled_out",
+      "rationale": "no missed or over-corrected citation; every living citation into the two shifted docs resolves to pre-removal numbering",
+      "evidenceRefs": [
+        "f60fa8adac",
+        ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md:15",
+        ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/obsidian-detection.md:32",
+        ".skilled/skills/sk-code/shared/references/stack-detection.md:30"
+      ],
+      "proof": "no missed or over-corrected citation; every living citation into the two shifted docs resolves to pre-removal numbering"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-502",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit",
+        ".skilled/scripts/git-hooks/tests/pre-commit.test.sh"
+      ],
+      "bugClass": "temp_index_loss",
+      "disposition": "ruled_out",
+      "rationale": "blocks instead of writing into an index git discards; no owed raise lost",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:862",
+        ".skilled/scripts/git-hooks/tests/pre-commit.test.sh:992"
+      ],
+      "proof": "blocks instead of writing into an index git discards; no owed raise lost"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-503",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit"
+      ],
+      "bugClass": "temp_index_loss",
+      "disposition": "ruled_out",
+      "rationale": "the temp index never contained a skill doc, so no raise was owed in that commit; the staged change stays visible to the next gate",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:845"
+      ],
+      "proof": "the temp index never contained a skill doc, so no raise was owed in that commit; the staged change stays visible to the next gate"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-504",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+      ],
+      "bugClass": "gate_bypass",
+      "disposition": "ruled_out",
+      "rationale": "the engine diffs the index against the amended HEAD, so the raise lands in the amended commit; an amend with nothing staged is a no-op",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:384"
+      ],
+      "proof": "the engine diffs the index against the amended HEAD, so the raise lands in the amended commit; an amend with nothing staged is a no-op"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-505",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit"
+      ],
+      "bugClass": "gate_bypass",
+      "disposition": "ruled_out",
+      "rationale": "merge content a human introduces is gated; a clean merge carries only commits that were gated or explicitly bypassed, and CI re-checks the PR diff with bump --check",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:875"
+      ],
+      "proof": "merge content a human introduces is gated; a clean merge carries only commits that were gated or explicitly bypassed, and CI re-checks the PR diff with bump --check"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-506",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+      ],
+      "bugClass": "silent_skip",
+      "disposition": "ruled_out",
+      "rationale": "deletions are excluded by --diff-filter=AMR on both sides of the gate; a doc leaving the tree owes no raise",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:346"
+      ],
+      "proof": "deletions are excluded by --diff-filter=AMR on both sides of the gate; a doc leaving the tree owes no raise"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-507",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+        ".skilled/scripts/git-hooks/tests/pre-commit.test.sh"
+      ],
+      "bugClass": "wrong_raise",
+      "disposition": "ruled_out",
+      "rationale": "the raise is monotonic against the merge base and overrides a lowered value when the body changed; a frontmatter-only change raising nothing is the pinned contract, not a missed raise",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/tests/pre-commit.test.sh:966",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:410"
+      ],
+      "proof": "the raise is monotonic against the merge base and overrides a lowered value when the body changed; a frontmatter-only change raising nothing is the pinned contract, not a missed raise"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-508",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+      ],
+      "bugClass": "crash_on_git_edge_state",
+      "disposition": "ruled_out",
+      "rationale": "the guard skips a state the engine cannot compare; the format gate and the PR check remain for this one commit",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:841",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:384"
+      ],
+      "proof": "the guard skips a state the engine cannot compare; the format gate and the PR check remain for this one commit"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-509",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit"
+      ],
+      "bugClass": "silent_skip",
+      "disposition": "ruled_out",
+      "rationale": "the same condition shape as the two sibling re-mint gates; node is a declared prerequisite of the chain and the PR check is the enforcement net; recorded as a boundary, not a defect",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:841",
+        ".skilled/scripts/git-hooks/pre-commit:691",
+        ".skilled/scripts/git-hooks/pre-commit:496"
+      ],
+      "proof": "the same condition shape as the two sibling re-mint gates; node is a declared prerequisite of the chain and the PR check is the enforcement net; recorded as a boundary, not a defect"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-510",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+      ],
+      "bugClass": "wrong_raise",
+      "disposition": "ruled_out",
+      "rationale": "every raise matches the documented arithmetic",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:315"
+      ],
+      "proof": "every raise matches the documented arithmetic"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "off_by_one_anchor",
+      "temp_index_loss",
+      "gate_bypass",
+      "wrong_raise",
+      "crash_on_git_edge_state",
+      "silent_skip"
+    ],
+    "covered": [],
+    "ruledOut": [
+      "off_by_one_anchor",
+      "temp_index_loss",
+      "gate_bypass",
+      "wrong_raise",
+      "crash_on_git_edge_state",
+      "silent_skip"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}
