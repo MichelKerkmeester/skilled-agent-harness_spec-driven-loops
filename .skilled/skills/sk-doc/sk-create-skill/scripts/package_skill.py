@@ -24,6 +24,7 @@ Example:
 
 import argparse
 import json
+import os
 import re
 import sys
 import zipfile
@@ -121,12 +122,14 @@ REQUIRED_RESOURCE_FRONTMATTER_FIELDS = [
     'contextType',
 ]
 
-# Subtrees whose .md files must carry a 4-part `version` in frontmatter. Only
-# changelog entries qualify: they are the edition record. SKILL.md carries the
-# edition itself and is checked by validate_frontmatter; child docs carry none.
-VERSIONED_DOC_SUBTREES = [
-    'changelog',
-]
+# Which .md files must carry a 4-part `version` in frontmatter. Mirrors
+# frontmatter-version.mjs inScope(): every doc under the skill carries its own
+# edition except test input, generated output and spec-doc examples, and changelog
+# entries carry their release. SKILL.md is checked by validate_frontmatter.
+VERSION_SKIPPED_DIRS = {'scratch', 'node_modules', '.git', 'dist'}
+VERSION_DOC_SUBTREES = {'references', 'assets', 'feature-catalog', 'manual-testing-playbook'}
+VERSION_TEST_DIRS = {'tests', 'fixtures'}
+VERSION_CORPUS_DIRS = {'runtime', 'benchmark', 'behavior-benchmark'}
 
 # Subtrees whose .md files are reference/asset docs requiring the 5-field block.
 # README.md is a distinct doc class and is exempt.
@@ -610,6 +613,35 @@ def _iter_subtree_markdown(skill_path: Path, subtrees: List[str]):
                 yield file, subtree
 
 
+def _is_versioned_doc(dirs: Tuple[str, ...], name: str) -> bool:
+    """True when a doc at these skill-relative dirs must carry a version."""
+    if 'changelog' in dirs:
+        # The skill's own changelog entries carry their release; the engine skips every changelog folder.
+        return dirs[0] == 'changelog'
+    if name == 'SKILL.md' or any(d in VERSION_TEST_DIRS for d in dirs):
+        return False
+    if any(d in VERSION_DOC_SUBTREES for d in dirs):
+        return True
+    if any(d in VERSION_CORPUS_DIRS for d in dirs):
+        return False
+    return '/templates/examples/' not in '/' + '/'.join(dirs) + '/'
+
+
+def _iter_versioned_docs(skill_path: Path):
+    """Yield every .md file under the skill that must carry a version.
+
+    Walks with pruning so node_modules and scratch are never entered, and skips
+    symlinks, which the engine's walker does not follow either.
+    """
+    for dirpath, dirnames, filenames in os.walk(skill_path):
+        dirnames[:] = sorted(d for d in dirnames if d not in VERSION_SKIPPED_DIRS)
+        dirs = Path(dirpath).relative_to(skill_path).parts
+        for name in sorted(filenames):
+            file = Path(dirpath) / name
+            if name.endswith('.md') and not file.is_symlink() and _is_versioned_doc(dirs, name):
+                yield file
+
+
 def _has_skill_frontmatter_signature(frontmatter: str) -> bool:
     """True when a doc's frontmatter is a SKILL.md template, not a resource doc.
 
@@ -665,7 +697,7 @@ def validate_resource_frontmatter(skill_path: Path) -> Tuple[bool, str, List[str
             )
 
     # 4-part version on every versioned doc-class file that has frontmatter.
-    for file, _subtree in _iter_subtree_markdown(skill_path, VERSIONED_DOC_SUBTREES):
+    for file in _iter_versioned_docs(skill_path):
         frontmatter = _extract_frontmatter_block(file.read_text(encoding='utf-8'))
         if frontmatter is None:
             continue  # frontmatter-less docs are skipped, not failed
@@ -840,7 +872,7 @@ def validate_skill(skill_path: Path, strict: bool = False) -> Tuple[bool, str, L
         return False, message, all_warnings
 
     # Resource-doc frontmatter contract (5-field block + 4-part version) and
-    # smart-router markers. Emitted as warnings (see VERSIONED_DOC_SUBTREES
+    # smart-router markers. Emitted as warnings (see VERSION_DOC_SUBTREES
     # comment) so the hardened contract does not break validation repo-wide.
     valid, message, warnings = validate_resource_frontmatter(skill_path)
     all_warnings.extend(warnings)
