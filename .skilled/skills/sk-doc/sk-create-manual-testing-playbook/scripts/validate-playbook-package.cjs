@@ -368,7 +368,7 @@ function pathChecks(text, absPath, repoRoot, relPath) {
   return errors;
 }
 
-// Backticked repo paths in a scenario are checked report-only. A scenario that tells the
+// Backticked repo paths in a scenario or a root playbook are checked report-only. A scenario that tells the
 // operator to read a moved file fails at run time, yet the link check never sees it, because
 // it names the file in code spans rather than as a link. Placeholders, globs, absolute and
 // scratch paths and runtime output are expected not to resolve, so they are skipped.
@@ -754,6 +754,7 @@ function validatePackage({ playbookRoot, repoRoot, skillsRoot, manifest }) {
   };
   const warnings = [];
   warnings.push(...executionContractChecks(rootText, ROOT_FILENAME));
+  warnings.push(...backtickPathChecks(rootText, rootPath, playbookRoot, repoRoot, ROOT_FILENAME));
   const census = parseRootCensus(rootText);
   for (const statement of census) {
     warnings.push(issue('HAND_TYPED_CENSUS', ROOT_FILENAME, `root contains a hand-typed census (${statement.scenarios} scenarios${statement.categories === null ? '' : `, ${statement.categories} categories`}); derived census is ${derivedCensus.scenarioFiles} scenarios across ${derivedCensus.categoryDirs} categories`, 'warning'));

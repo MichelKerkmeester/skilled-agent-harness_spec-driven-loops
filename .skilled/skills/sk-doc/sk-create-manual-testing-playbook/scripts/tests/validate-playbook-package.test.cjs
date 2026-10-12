@@ -161,6 +161,8 @@ function run() {
     writeScenario(root, `${readScenario(root)}\nLoad \`scenarios/linked-plugin.js\` but not \`scenarios/unlinked-plugin.js\`.\n`);
   });
   assert.deepStrictEqual(linked.report.packages.flatMap((pkg) => pkg.warnings).filter((item) => item.code === 'BACKTICK_PATH_UNRESOLVED').map((item) => item.message.split(': ').pop()), ['scenarios/unlinked-plugin.js']);
+  const rooted = expectClean('backtick-root-file', (root) => fs.appendFileSync(rootPath(root), '\nRead `.skilled/skills/sk-doc/SKILL.md` but not `.skilled/commands/create/missing-root.md`.\n'));
+  assert.deepStrictEqual(rooted.report.packages.flatMap((pkg) => pkg.warnings).filter((item) => item.code === 'BACKTICK_PATH_UNRESOLVED').map((item) => `${item.file}: ${item.message.split(': ').pop()}`), ['manual-testing-playbook.md: .skilled/commands/create/missing-root.md']);
 
   const requiredMutations = [
     ['required-feature-id', (text) => text.replace(/id: FX-001\n/, '').replace(/FX-001/g, 'Scenario'), 'REQUIRED_FEATURE_ID'],
