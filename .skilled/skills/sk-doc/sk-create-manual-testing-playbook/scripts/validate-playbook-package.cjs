@@ -375,13 +375,25 @@ function pathChecks(text, absPath, repoRoot, relPath) {
 const BACKTICK_SPAN_RE = /`([^`\s]+)`/g;
 const BACKTICK_PATH_EXT_RE = /\.(?:md|mdx|ts|tsx|js|cjs|mjs|py|sh|json|jsonl|jsonc|ya?ml|toml|txt|css|html|svg)$/i;
 const RUNTIME_OUTPUT_SEGMENT_RE = /(?:^|\/)(?:scratch|research|review|iterations|tmp|out|dist|node_modules)\//;
+// /doctor:update records its release state under .skilled/release/ in an installed tree. The
+// source repository never holds base.json, divergence.json or a run record there, so a scenario
+// that drives the command against its fixture names files that cannot resolve here.
+const INSTALLED_RELEASE_STATE_RE = /^\.skilled\/release\//;
 
 function isExpectedUnresolved(token) {
   return /[<>{}*?$[\]|]/.test(token)
     || /(?:^|\/)(?:XXX|NNN)/.test(token)
     || token.startsWith('/')
     || token.startsWith('~')
-    || RUNTIME_OUTPUT_SEGMENT_RE.test(token);
+    || RUNTIME_OUTPUT_SEGMENT_RE.test(token)
+    || INSTALLED_RELEASE_STATE_RE.test(token);
+}
+
+// A symlink in the tree is a repository path even while its target is a build output that has
+// not been built yet, so the link itself, not what it points at, decides whether a path resolves.
+function pathPresent(candidate) {
+  if (fs.existsSync(candidate)) return true;
+  try { return fs.lstatSync(candidate).isSymbolicLink(); } catch { return false; }
 }
 
 function backtickPathChecks(text, absPath, playbookRoot, repoRoot, relPath) {
@@ -401,7 +413,7 @@ function backtickPathChecks(text, absPath, playbookRoot, repoRoot, relPath) {
     if (!token.includes('/') || !BACKTICK_PATH_EXT_RE.test(token)) continue;
     if (/^[a-z][a-z0-9+.-]*:/i.test(token) || isExpectedUnresolved(token) || seen.has(token)) continue;
     seen.add(token);
-    if (bases.some((base) => fs.existsSync(path.resolve(base, token)))) continue;
+    if (bases.some((base) => pathPresent(path.resolve(base, token)))) continue;
     warnings.push(issue('BACKTICK_PATH_UNRESOLVED', relPath,
       `backticked path resolves from no scenario, playbook, skill, hub or repository base: ${token}`,
       'warning', lineNumberAt(text, match.index)));
