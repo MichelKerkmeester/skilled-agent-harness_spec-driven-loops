@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ea9644eeb597249631870aca751a60874117e13c44596608ee6d1eb07bd97d71",
+  "corpusHash": "be1467d817d37230e94496f98d7c31659b870f99805f66af5b8c2cf2a6bae0e9",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24517,
+  "includedPathCount": 24537,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11112,6 +11112,26 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/resource-map.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/acceptance-criteria.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/deep-review-dashboard.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/deep-review-strategy.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/iterations/iteration-001.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/iterations/iteration-002.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/iterations/iteration-003.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/iterations/iteration-004.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/iterations/iteration-005.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/prompts/iteration-1.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/prompts/iteration-2.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/prompts/iteration-3.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/prompts/iteration-4.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/prompts/iteration-5.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/resource-map.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/review-report.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
@@ -24548,7 +24568,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "51b375edb0b3ce2c805d2fc485a28e8af64dc1b0adc71028211979942d617cda",
+  "manifestHash": "18d3784c4575d115282ddcfd7c6ba7a6443bb03700774d142cad9bd9193a9bcf",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26720,6 +26740,10 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "51b375edb0b3ce2c805d2fc485a28e8af64dc1b0adc71028211979942d617cda",
+  "manifestHash": "18d3784c4575d115282ddcfd7c6ba7a6443bb03700774d142cad9bd9193a9bcf",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -51251,6 +51251,9 @@
     "hub readme validation": [
       "hub readme validation"
     ],
+    "hub readme version check": [
+      "hub readme version check"
+    ],
     "hub registration": [
       "hub registration"
     ],
@@ -70841,6 +70844,9 @@
     "phase 24 plan": [
       "phase 24 plan"
     ],
+    "phase 24 readme freshness fixes": [
+      "phase 24 readme freshness fixes"
+    ],
     "phase 24 tasks": [
       "phase 24 tasks"
     ],
@@ -76498,6 +76504,24 @@
     "readme folders b01 b17": [
       "readme folders b01 b17"
     ],
+    "readme freshness fixes": [
+      "readme freshness fixes"
+    ],
+    "readme freshness fixes acceptance criteria": [
+      "readme freshness fixes acceptance criteria"
+    ],
+    "readme freshness fixes goal": [
+      "readme freshness fixes goal"
+    ],
+    "readme freshness fixes implementation summary": [
+      "readme freshness fixes implementation summary"
+    ],
+    "readme freshness fixes plan": [
+      "readme freshness fixes plan"
+    ],
+    "readme freshness fixes tasks": [
+      "readme freshness fixes tasks"
+    ],
     "readme freshness plan": [
       "readme freshness plan"
     ],
@@ -81767,6 +81791,9 @@
     ],
     "retire a rule": [
       "retire a rule"
+    ],
+    "retire check 13c": [
+      "retire check 13c"
     ],
     "retire detect changes plan": [
       "retire detect_changes plan"
