@@ -1,3 +1,9 @@
+---
+title: "mcp-notion Installation Guide"
+description: "Installation and configuration for Notion workspace operations through the official Notion MCP server and the direct API path."
+version: 1.0.0.0
+---
+
 # mcp-notion Installation Guide
 
 Complete installation and configuration for Notion workspace operations, giving AI assistants one MCP path and one direct-API path. The official Notion MCP is the primary surface: all page, block, data-source, comment, user and search CRUD, launched through Code Mode over the local stdio server. Direct Notion REST API calls are the secondary surface for the five capabilities the MCP does not expose. Notion is MCP-only — there is no headless CLI equivalent to ClickUp's `cupt`.

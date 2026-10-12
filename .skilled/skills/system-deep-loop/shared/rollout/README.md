@@ -1,3 +1,12 @@
+---
+title: "Command Injection Rollout"
+description: "The isolated rollout-mode core for command injection in the deep-loop runtime."
+trigger_phrases:
+  - "command injection rollout"
+  - "rollout mode"
+version: 1.0.0.0
+---
+
 # Command Injection Rollout
 
 ---

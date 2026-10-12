@@ -1,3 +1,9 @@
+---
+title: "mcp-refero Installation Guide"
+description: "Verify-only setup for the read-only Refero design-reference transport: plan access, authentication and the registered Code Mode manual."
+version: 1.0.0.0
+---
+
 # mcp-refero Installation Guide
 
 Verify-only setup guide for the `mcp-refero` skill, the read-only Refero design-reference transport. There is **nothing to install and no config to write**: the `refero` Code Mode manual is already registered in this repo's `.utcp_config.json` and is validated as-is. Setup means verifying the wiring, understanding the plan gating, and completing the **operator-only** authentication step. This guide never rewrites configuration.

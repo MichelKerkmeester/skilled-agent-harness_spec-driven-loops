@@ -1,3 +1,13 @@
+---
+title: "sk-code-obsidian: Note Database Plugin Evidence"
+description: "The read-only evidence base a code workflow loads for the Note Database Obsidian plugin: its measured source conventions and design system."
+trigger_phrases:
+  - "sk-code-obsidian"
+  - "note database plugin evidence"
+  - "obsidian plugin conventions"
+version: 1.0.0.0
+---
+
 # sk-code-obsidian: Note Database Plugin Evidence (sk-code surface)
 
 The read-only evidence base a code workflow loads when it works on the **Note Database** Obsidian

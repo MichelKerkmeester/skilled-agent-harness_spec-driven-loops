@@ -1,3 +1,12 @@
+---
+title: "cli-classifier shared tier"
+description: "Packet-shared, workflow-layer helpers for cli-classifier that are deliberately non-discoverable: not a packet and never in mode-registry.json."
+trigger_phrases:
+  - "cli-classifier shared tier"
+  - "classifier shared helpers"
+version: 1.0.0.0
+---
+
 # cli-classifier shared tier
 
 ## 1. OVERVIEW

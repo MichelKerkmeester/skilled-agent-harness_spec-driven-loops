@@ -1,3 +1,12 @@
+---
+title: "sk-vision host adapters"
+description: "How sk-vision reaches its runtime on each of four coding hosts, and where each host adapter source lives."
+trigger_phrases:
+  - "sk-vision host adapters"
+  - "sk-vision hooks"
+version: 1.0.0.0
+---
+
 # sk-vision host adapters
 
 ## 1. OVERVIEW

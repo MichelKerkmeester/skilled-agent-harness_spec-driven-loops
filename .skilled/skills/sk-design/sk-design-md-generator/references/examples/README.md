@@ -1,3 +1,12 @@
+---
+title: "Examples: Output Exemplars, Not Skill Reference Docs"
+description: "Gold-standard DESIGN.md outputs and their writing notes, kept as literal exemplars of the Style Reference format rather than workflow documentation."
+trigger_phrases:
+  - "design md exemplars"
+  - "style reference output examples"
+version: 1.0.0.0
+---
+
 # Examples: Output Exemplars, Not Skill Reference Docs
 
 This directory holds gold-standard `DESIGN.md` outputs (`linear/`, `stripe/`, `supabase/`, `vercel/`) plus their `writing-notes.md` companions, and a separate authoring guide, `editorial-exemplar.md`.

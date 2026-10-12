@@ -1,3 +1,9 @@
+---
+title: "md-generator Installation Guide"
+description: "Setup for the embedded extraction tool: Node.js, Playwright, Chromium and a first extraction."
+version: 1.0.0.0
+---
+
 # INSTALL_GUIDE — md-generator
 
 Setup for the embedded extraction tool: Node.js, Playwright, Chromium, and a first extraction.

@@ -1,3 +1,9 @@
+---
+title: "Chrome DevTools Installation Guide"
+description: "Installation and configuration for Chrome DevTools browser debugging through the bdg CLI and the MCP fallback."
+version: 1.0.0.0
+---
+
 # Chrome DevTools Installation Guide
 
 Complete installation and configuration guide for Chrome DevTools browser debugging, providing AI assistants with browser control through two approaches. The CLI tool (bdg) offers direct, fast, token-efficient browser debugging. The MCP fallback runs through Code Mode for multi-tool orchestration and parallel browser testing. Covers screenshot capture, DOM inspection, console evaluation, network monitoring and performance profiling.

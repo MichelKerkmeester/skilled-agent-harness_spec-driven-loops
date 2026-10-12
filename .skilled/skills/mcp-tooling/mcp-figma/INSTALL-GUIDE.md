@@ -1,3 +1,9 @@
+---
+title: "mcp-figma Installation Guide"
+description: "Installation and verification of the silships figma-ds-cli binary that drives Figma Desktop from the terminal, plus the safe MCP setup."
+version: 1.0.0.0
+---
+
 # mcp-figma Installation Guide
 
 Complete installation and configuration guide for the `mcp-figma` skill, which drives Figma Desktop from the terminal through the silships CLI. Installs and verifies the silships **`figma-ds-cli`** binary (the primary tool), sets up the safe-default plugin connection and local daemon, and optionally wires the community Framelink Figma MCP through this project's Code Mode for pulling design context the other way. The CLI works fully on its own and the MCP is opt-in. No Figma API key is needed for the CLI.

@@ -1,3 +1,9 @@
+---
+title: "mcp-mobbin Installation Guide"
+description: "Verify-only setup for the read-only Mobbin design-research transport: plan access, browser OAuth and the registered Code Mode manual."
+version: 1.0.0.0
+---
+
 # mcp-mobbin Installation Guide
 
 Verify-only setup guide for the `mcp-mobbin` skill, the read-only Mobbin design-research transport. There is **nothing to install and no config to write from this packet**: the provider is a hosted remote service, the `mobbin` Code Mode manual **is registered** in `.utcp_config.json` (operator-applied 2026-07-16), and this guide never rewrites configuration. Setup means verifying the runtime and the registered manual, understanding the plan gating and the OAuth-only auth model, and knowing exactly which steps remain the operator's (Code Mode reconnect and browser OAuth).

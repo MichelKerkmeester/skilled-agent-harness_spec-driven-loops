@@ -1,3 +1,9 @@
+---
+title: "Promotion Rule"
+description: "When a command may flip from fallback to fix: the promotion evidence that must be green and the evidence mechanism its JSON entry carries."
+version: 1.0.0.0
+---
+
 # Promotion Rule
 
 Flip a command from `fallback` to `fix` only after all promotion evidence is green:

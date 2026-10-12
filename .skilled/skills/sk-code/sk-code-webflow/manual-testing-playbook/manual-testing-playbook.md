@@ -1,3 +1,9 @@
+---
+title: "sk-code-webflow: Manual Testing Playbook"
+description: "Routing-recall corpus for the sk-code-webflow surface: scenarios that exercise its intent signals, resource map and WEBFLOW surface detection."
+version: 1.0.0.0
+---
+
 # sk-code-webflow: Manual Testing Playbook
 
 ## 1. OVERVIEW

@@ -1,3 +1,13 @@
+---
+title: "sk-doc/shared: cross-packet backbone"
+description: "The parts of sk-doc that more than one workflow packet needs: document validators and naming guards, shared standards and shared templates."
+trigger_phrases:
+  - "sk-doc shared backbone"
+  - "shared validators"
+  - "cross-packet standards"
+version: 1.0.0.0
+---
+
 # sk-doc/shared - cross-packet backbone
 
 ## 1. OVERVIEW
