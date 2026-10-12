@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research",
+  "description": "Phase 23: readme-freshness-research",
+  "keywords": [
+    "phase",
+    "readme-freshness-research"
+  ],
+  "lastUpdated": "2026-10-12T14:34:03.959Z",
+  "specId": "023",
+  "folderSlug": "readme-freshness-research",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

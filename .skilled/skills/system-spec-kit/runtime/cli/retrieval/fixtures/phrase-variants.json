@@ -1,5 +1,5 @@
 {
-  "manifestHash": "bf02a119cd29f3600c22720c5bc2b8689986214278ce49cb4f3d0e547a6ca900",
+  "manifestHash": "160d64d6440756efd890bb223bd55373068bd1584161f23d09bc0a9a86c6012e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -70832,6 +70832,9 @@
     "phase 22 tasks": [
       "phase 22 tasks"
     ],
+    "phase 23 readme freshness research": [
+      "phase 23 readme freshness research"
+    ],
     "phase 24 implementation summary": [
       "phase 24 implementation summary"
     ],
@@ -76494,6 +76497,21 @@
     ],
     "readme freshness plan": [
       "readme freshness plan"
+    ],
+    "readme freshness research": [
+      "readme freshness research"
+    ],
+    "readme freshness research goal": [
+      "readme freshness research goal"
+    ],
+    "readme freshness research implementation summary": [
+      "readme freshness research implementation summary"
+    ],
+    "readme freshness research plan": [
+      "readme freshness research plan"
+    ],
+    "readme freshness research tasks": [
+      "readme freshness research tasks"
     ],
     "readme freshness summary": [
       "readme freshness summary"
@@ -83385,6 +83403,9 @@
     ],
     "root playbook backtick check": [
       "root playbook backtick check"
+    ],
+    "root readme after v4 0 0 4": [
+      "root readme after v4.0.0.4"
     ],
     "root readme alignment": [
       "root readme alignment"
@@ -98590,6 +98611,9 @@
     ],
     "stale opencode references map": [
       "stale opencode references map"
+    ],
+    "stale readme statements": [
+      "stale readme statements"
     ],
     "stale rebase merge lost commit": [
       "stale rebase-merge lost commit"
