@@ -26,7 +26,7 @@ This scenario validates FORMS routing for `WF-011`. It confirms that a FilePond/
 
 ### Why This Matters
 
-SKILL.md §3 names focus and forms as accessibility-load-bearing. A focus trap for form errors is not a cosmetic nicety — it is the non-negotiable this scenario's `focus-management/selector-and-focus-trap.md` and `restoration-touch-and-anti-patterns.md` resources enforce alongside the FilePond upload architecture.
+SKILL.md §3 names focus and forms as accessibility-load-bearing. A focus trap for form errors is not a cosmetic nicety — it is the non-negotiable this scenario's `references/implementation/focus-management/selector-and-focus-trap.md` and `restoration-touch-and-anti-patterns.md` resources enforce alongside the FilePond upload architecture.
 
 ---
 

@@ -85,7 +85,7 @@ Capture the load-path check, default tool list, both command responses and the p
 
 | File | Role |
 |---|---|
-| `.skilled/plugins/sk-vision.js` | OpenCode load path |
+| `.opencode/plugins/sk-vision.js` | OpenCode load path |
 | `vision-runtime/src/plugin.ts` | Command hook and default registration posture |
 | `vision-runtime/src/opencode/command.ts` | `/vision` image read and teardown |
 | `vision-runtime/src/opencode/attachments.ts` | Legacy auto-inspect path |

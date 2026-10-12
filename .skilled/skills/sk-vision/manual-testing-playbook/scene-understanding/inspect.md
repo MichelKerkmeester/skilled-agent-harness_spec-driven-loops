@@ -86,7 +86,7 @@ The full NDJSON transcript (4 response lines) saved to the run evidence folder; 
 | File | Role |
 |---|---|
 | `vision-runtime/python/runtime.py` | Handlers: `handle_caption`, `handle_scene`, `handle_ocr` |
-| `pi/sk-vision.ts` | Pi tool registration for `sk_vision_inspect` |
+| `hooks/pi/sk-vision.ts` | Pi tool registration for `sk_vision_inspect` |
 | `vision-runtime/src/opencode/attachments.ts` | OpenCode paste-time preload path |
 | `vision-runtime/python/runtime.test.ts` | Analysis handler regression suite (no model load) |
 

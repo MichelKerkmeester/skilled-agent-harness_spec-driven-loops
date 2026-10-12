@@ -84,7 +84,7 @@ The crop response `path`, `width`, `height`, and `bbox_px`; verify the output fi
 | File | Role |
 |---|---|
 | `vision-runtime/python/runtime.py` | Handler: `handle_crop` + `_bbox_to_px` + `_output_path` |
-| `pi/sk-vision.ts` | Pi tool registration for `sk_vision_crop` |
+| `hooks/pi/sk-vision.ts` | Pi tool registration for `sk_vision_crop` |
 | `vision-runtime/python/runtime.test.ts` | Analysis handler regression suite (crop, bbox validation) |
 
 ---

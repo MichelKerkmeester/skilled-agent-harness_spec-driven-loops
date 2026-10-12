@@ -26,7 +26,7 @@ Operators run the exact prompt and command sequence for `CHG-001` and confirm th
 - Realistic user request: `Create the next release note for the sk-doc component from its recent changes.`
 - Prompt: `Create a global changelog for the sk-doc component from its recent changes. Discover the existing component folder, calculate a unique four-part version and validate the entry before writing.`
 - Expected execution process: `SKILL.md` sections 3 through 7 are read, the component folders are discovered, `sk-doc` is matched to a real folder and recognized as a hub, the hint resolves to `sk-doc/parent`, the latest version and bump are checked there and the global template is used.
-- Expected signals: the target is `.skilled/changelog/sk-doc/parent/vX.Y.Z.B.md`, the `parent` link exists and the version is greater than the newest entry under it. A change under `.skilled/skills/sk-doc/sk-create-changelog/` would resolve to `sk-doc/create-changelog` instead. Nested generation is not used.
+- Expected signals: the target is `.skilled/changelog/sk-doc/parent/v<version>.md`, the `parent` link exists and the version is greater than the newest entry under it. A change under `.skilled/skills/sk-doc/sk-create-changelog/` would resolve to `sk-doc/create-changelog` instead. Nested generation is not used.
 - Desired user-visible outcome: a release-facing changelog in the hub's own changelog with a unique version.
 - Pass/fail: PASS if the hub resolution, target, version and validation steps are evidenced. FAIL if a folder is invented, the entry lands in the hub folder itself, a nested path is selected or an existing version is overwritten.
 

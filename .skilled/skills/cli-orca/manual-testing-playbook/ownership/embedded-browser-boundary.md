@@ -77,5 +77,5 @@ The ownership rule lines from step 1 are the load-bearing signal for the externa
 - Playbook ID: ORCA-007
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `ownership/embedded-browser-boundary.md`
-- Catalog entry: `routing/orca-qualified-vocabulary.md`
+- Catalog entry: `../../feature-catalog/routing/orca-qualified-vocabulary.md`
 - Prompt equality requirement: the SCENARIO CONTRACT prompt equals the 9-column table Exact Prompt cell and the root summary prompt.

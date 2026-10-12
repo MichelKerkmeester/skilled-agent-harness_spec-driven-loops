@@ -197,7 +197,7 @@ Coverage is sourced from the M-007 closure suite, including JSON authority, ship
 
 ### Pass / Fail
 
-- **FAIL**: the M-007 closure matrix did not pass in this repo state. `npm run check`, MCP `npm run lint`, and `spec/validate.sh` all failed; the remaining build/test/manual save lanes could not be run under the single-file allowed-write constraint.
+- **FAIL**: the M-007 closure matrix did not pass in this repo state. `npm run check`, MCP `npm run lint`, and `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` all failed; the remaining build/test/manual save lanes could not be run under the single-file allowed-write constraint.
 
 ### Failure Triage
 

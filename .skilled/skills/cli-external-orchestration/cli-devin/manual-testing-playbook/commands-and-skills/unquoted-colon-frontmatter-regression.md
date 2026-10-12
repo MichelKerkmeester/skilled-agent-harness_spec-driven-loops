@@ -62,7 +62,7 @@ print(f"strict-parse failures: {bad}")
 PY
 ```
 2. `DV016_DIR=$(mktemp -d /tmp/cli-devin-dv016.XXXXXX); mkdir -p "$DV016_DIR/.devin/agents/bad-fixture" "$DV016_DIR/.devin/agents/good-fixture"`
-3. Write fixtures only under `$DV016_DIR`: `bad-fixture/AGENT.md` uses an unquoted colon in `description: Broken: value`; `good-fixture/AGENT.md` quotes the same value. Do not modify `.devin/agents/` in the repository.
+3. Write fixtures only under `$DV016_DIR`: `$DV016_DIR/.devin/agents/bad-fixture/AGENT.md` uses an unquoted colon in `description: Broken: value`; `$DV016_DIR/.devin/agents/good-fixture/AGENT.md` quotes the same value. Do not modify `.devin/agents/` in the repository.
 4. `cd "$DV016_DIR" && devin -p -- "Use the good-fixture subagent, then the bad-fixture subagent. Report which profiles resolved. Do not edit files." --model adaptive --permission-mode normal </dev/null > agents.txt 2>&1; echo "exit=$?" >> agents.txt`
 5. Compare Devin's resolution of each fixture with a lenient YAML parse and record both outcomes.
 

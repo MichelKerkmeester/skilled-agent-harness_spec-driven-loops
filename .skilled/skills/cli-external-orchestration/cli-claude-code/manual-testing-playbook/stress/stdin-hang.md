@@ -27,7 +27,7 @@ from a single hermetic run.
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: confirm `tests/stress/cli-adapter/cli-claude-code.vitest.ts` reports `closes stdin for the headless cli-claude-code process` as passing under the shipped stress-matrix
+- Objective: confirm `.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-claude-code.vitest.ts` reports `closes stdin for the headless cli-claude-code process` as passing under the shipped stress-matrix
   cell `cli-claude-code:EC-005`.
 - Operator prompt: `Run the manifest-indexed hermetic stress test for cli-claude-code:EC-005 and report PASS, FAIL, or SKIP with the exact blocker.`
 - Expected execution process: run the exact Vitest invocation in §3 from the repository root, capture

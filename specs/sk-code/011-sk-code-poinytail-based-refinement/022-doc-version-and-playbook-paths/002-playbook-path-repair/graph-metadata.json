@@ -35,7 +35,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -44,6 +44,10 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs",
+      ".hermes/skills/sk-doc/SKILL.md",
+      "review/review-report.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/references/codex-tools.md",
       ".skilled/skills/sk-doc/SKILL.md"
     ],
     "entities": [
@@ -90,9 +94,27 @@
         "source": "derived"
       },
       {
+        "name": "validate-playbook-package.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-doc/SKILL.md",
+        "path": ".hermes/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "codex-tools.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-codex/references/codex-tools.md",
         "source": "derived"
       },
       {
@@ -172,30 +194,12 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --strict` exits 0 and prints 258 `BACKTICKPATHUNRESOLVED` warnings from 113 distinct paths across 28 packages at the scaffold commit (the operator brief measured 252 from 110 on an earlier tree)",
     "created_at": "2026-10-12T05:21:02Z",
-    "last_save_at": "2026-10-12T05:34:31.173Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-12T08:17:40.048Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -205,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:49b02a83b505e2dd666b1a8f3fde507fedd3656fbaf6d91f4a701cf7cbcadf05",
+    "source_fingerprint": "sha256:608582d36a13f37309d031d6cd8ea8fc5624619c52c75457d0b291bc1da3a272",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4463d06d4aea9a7dcb18f92d9cb2deb7683034bbeaefcbefcf82723285ff0534",
+      "spec.md": "9576705b36bad67513b827cf0cdc2d899ee0af2d473c0723227fc39fae2ea186",
       "plan.md": "67717929cef03be8fc9d253e4296b3db7a614d71affe85391d85aedf736221dc",
-      "tasks.md": "9c0af2d1fd64330f2af0190f0d110589d5ab0f253de323330e1533bacc073286",
-      "implementation-summary.md": "431682fcff64d0183f60e23b8c95cf948fabf3e81ae2a1ad185c29b8c2c4148b"
+      "tasks.md": "369965956ce093b4d168d98116a5fe9ce8af30dca09d1846ac1816c13ea861ab",
+      "implementation-summary.md": "7a909525b3573972b3ce04f670078ca2dd3e01a46bfe522092960acc896ed093"
     },
     "last_active_at": null
   }

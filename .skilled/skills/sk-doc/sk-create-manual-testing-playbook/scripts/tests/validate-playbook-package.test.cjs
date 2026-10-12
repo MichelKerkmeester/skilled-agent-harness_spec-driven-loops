@@ -154,6 +154,13 @@ function run() {
   const backtick = expectClean('backtick-path-report-only', (root) => writeScenario(root, `${readScenario(root)}\nRead \`.skilled/commands/create/diagram.md\` and \`.skilled/skills/sk-doc/SKILL.md:1\`, then \`./clean-scenario.md\` and \`scenarios/clean-scenario.md\`; skip \`<skill>/references/x.md\`, \`/tmp/out.json\` and \`scripts/*.sh\`.\n`));
   const backtickWarnings = backtick.report.packages.flatMap((pkg) => pkg.warnings).filter((item) => item.code === 'BACKTICK_PATH_UNRESOLVED');
   assert.deepStrictEqual(backtickWarnings.map((item) => item.message.split(': ').pop()), ['.skilled/commands/create/diagram.md']);
+  const installed = expectClean('backtick-installed-release-state', (root) => writeScenario(root, `${readScenario(root)}\nRecord \`.skilled/release/base.json\` and \`.skilled/release/runs/.doctor-update.last-run.json\`, but not \`.skilled/releases/base.json\`.\n`));
+  assert.deepStrictEqual(installed.report.packages.flatMap((pkg) => pkg.warnings).filter((item) => item.code === 'BACKTICK_PATH_UNRESOLVED').map((item) => item.message.split(': ').pop()), ['.skilled/releases/base.json']);
+  const linked = expectClean('backtick-dangling-symlink', (root) => {
+    fs.symlinkSync(path.join(root, 'missing-build-output.js'), path.join(root, 'scenarios', 'linked-plugin.js'));
+    writeScenario(root, `${readScenario(root)}\nLoad \`scenarios/linked-plugin.js\` but not \`scenarios/unlinked-plugin.js\`.\n`);
+  });
+  assert.deepStrictEqual(linked.report.packages.flatMap((pkg) => pkg.warnings).filter((item) => item.code === 'BACKTICK_PATH_UNRESOLVED').map((item) => item.message.split(': ').pop()), ['scenarios/unlinked-plugin.js']);
 
   const requiredMutations = [
     ['required-feature-id', (text) => text.replace(/id: FX-001\n/, '').replace(/FX-001/g, 'Scenario'), 'REQUIRED_FEATURE_ID'],
@@ -279,11 +286,13 @@ function runPromptSyncRegressions() {
   console.log('prompt sync regressions: PASS (8 assertions)');
 }
 
-// A fleet report is larger than one pipe buffer, so the text report must arrive whole.
+// A report larger than one pipe buffer must still arrive whole. The live corpus no longer prints
+// that much, so a seeded package carries enough unresolved paths to exceed the buffer.
 function runPipedReportRegression() {
-  const fleet = spawnSync(process.execPath, [validatorPath, '--strict'], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
-  assert(fleet.stdout.length > 65536, `fleet report should exceed one pipe buffer; got ${fleet.stdout.length} bytes`);
-  assert(/\nexit=\d+\n$/.test(fleet.stdout), 'piped fleet report must end with its exit line');
+  const packageRoot = copyFixture('piped-report', (root) => writeScenario(root, `${readScenario(root)}\n${Array.from({ length: 1500 }, (_, index) => `\`missing/drift-${index}.md\``).join('\n')}\n`));
+  const seeded = runCli(packageRoot, ['--strict']);
+  assert(seeded.stdout.length > 65536, `seeded report should exceed one pipe buffer; got ${seeded.stdout.length} bytes`);
+  assert(/\nexit=\d+\n$/.test(seeded.stdout), 'piped seeded report must end with its exit line');
   console.log('piped report regression: PASS (2 assertions)');
 }
 

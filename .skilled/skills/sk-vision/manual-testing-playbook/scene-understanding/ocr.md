@@ -84,7 +84,7 @@ The transcript line containing the OCR `text` value; the expected word must appe
 | File | Role |
 |---|---|
 | `vision-runtime/python/runtime.py` | Handler: `handle_ocr` + `OCR_PROMPTS` |
-| `pi/sk-vision.ts` | Pi tool registration for `sk_vision_ocr` |
+| `hooks/pi/sk-vision.ts` | Pi tool registration for `sk_vision_ocr` |
 | `vision-runtime/python/runtime.test.ts` | Analysis handler regression suite |
 
 ---

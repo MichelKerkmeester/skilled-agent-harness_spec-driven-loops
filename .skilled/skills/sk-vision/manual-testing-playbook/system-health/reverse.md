@@ -84,7 +84,7 @@ The `scanned` count and `matches` array with the transcript
 | File | Role |
 |---|---|
 | `vision-runtime/python/runtime.py` | Handler: `handle_hash_search` (dHash) + `_iter_images` |
-| `pi/sk-vision.ts` | Pi tool registration for `sk_vision_reverse` |
+| `hooks/pi/sk-vision.ts` | Pi tool registration for `sk_vision_reverse` |
 | `vision-runtime/python/runtime.test.ts` | Analysis handler regression suite (hash_search) |
 
 ---

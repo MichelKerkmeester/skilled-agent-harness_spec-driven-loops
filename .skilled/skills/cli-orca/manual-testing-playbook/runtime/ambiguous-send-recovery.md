@@ -80,5 +80,5 @@ The read back is the load-bearing signal, not the send receipt. An accepted inpu
 - Playbook ID: ORCA-005
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `runtime/ambiguous-send-recovery.md`
-- Catalog entry: `terminal-receipts-and-liveness/terminal-receipts-and-liveness.md`
+- Catalog entry: `../../feature-catalog/safety/mutation-and-ownership-boundaries.md`
 - Prompt equality requirement: the SCENARIO CONTRACT prompt equals the 9-column table Exact Prompt cell and the root summary prompt.

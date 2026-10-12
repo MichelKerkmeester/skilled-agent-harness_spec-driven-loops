@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `SCG-002` and confirm th
 - Real user request: `My demo phase packet has two phase folders and no goals yet. Write the parent goal and a goal for each child so the bindings match the folders.`
 - Prompt: `Author the goals for the scratch phase packet at $SCRATCH/specs/demo-phase with /create:goal :auto: one phase-parent goal and one child goal per phase folder, then run the goal check on the parent and on each child.`
 - Expected execution process: the workflow compares the fixture phase map with the direct child directories before writing, fills the parent goal from the phase-parent template with one binding row per child and fills each child goal from the phase-child template with no binding anchor. The goal check runs on the parent and on each child.
-- Expected signals: the folder listing reads `001-alpha` and `002-beta`, the parent goal contains one binding anchor and one target row each naming `001-alpha/goal.md` and `002-beta/goal.md`, each child goal grep for the binding anchor prints 0 and exits 1, the parent check exits 0 with `RESULT: PASSED (5/5 checks)` and `PASS missing-binding-row findings=0`, each child check exits 0 with `RESULT: PASSED (5/5 checks)` and `PASS parent-budget findings=0`, the parent report prints `packet_nested=true` and `packet_budget=ok` and the child report prints `packet_nested=false` and `packet_budget=unknown`.
+- Expected signals: the folder listing reads `001-alpha` and `002-beta`, the parent goal contains one binding anchor and one target row each naming the `001-alpha` and `002-beta` child goals, each child goal grep for the binding anchor prints 0 and exits 1, the parent check exits 0 with `RESULT: PASSED (5/5 checks)` and `PASS missing-binding-row findings=0`, each child check exits 0 with `RESULT: PASSED (5/5 checks)` and `PASS parent-budget findings=0`, the parent report prints `packet_nested=true` and `packet_budget=ok` and the child report prints `packet_nested=false` and `packet_budget=unknown`.
 - Desired user-visible outcome: the operator sees one parent goal bound to every phase folder and one passing goal check per goal.
 - Pass/fail: PASS if the binding set equals the folder set by name and every listed signal appears. FAIL if a folder lacks a binding row, a row names a folder that does not exist, a child goal carries a binding anchor or any check exits non-zero.
 
@@ -145,7 +145,7 @@ Capture the prompt and reply text, the step 8 listing, the step 9 to 13 counts w
 
 ### Optional Supplemental Checks
 
-Delete the `002-beta` row from the parent goal and confirm the parent check fails with exactly one `missing-binding-row` finding naming `002-beta/goal.md`. Then add a third folder `003-gamma` with a spec file and no row and confirm the check names it as well, which proves the check reads the disk set rather than the fixture map.
+Delete the `002-beta` row from the parent goal and confirm the parent check fails with exactly one `missing-binding-row` finding naming the `002-beta` child goal. Then add a third folder `003-gamma` with a spec file and no row and confirm the check names it as well, which proves the check reads the disk set rather than the fixture map.
 
 ---
 

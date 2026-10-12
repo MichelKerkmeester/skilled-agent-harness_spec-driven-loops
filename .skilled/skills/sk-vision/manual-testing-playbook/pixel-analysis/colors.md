@@ -84,7 +84,7 @@ The `palette`, `buckets`, and `avg_rgb` fields with the transcript
 | File | Role |
 |---|---|
 | `vision-runtime/python/runtime.py` | Handler: `handle_colors` |
-| `pi/sk-vision.ts` | Pi tool registration for `sk_vision_colors` |
+| `hooks/pi/sk-vision.ts` | Pi tool registration for `sk_vision_colors` |
 | `vision-runtime/python/runtime.test.ts` | Analysis handler regression suite (colors) |
 
 ---

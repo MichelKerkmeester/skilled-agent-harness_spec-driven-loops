@@ -84,7 +84,7 @@ The metadata response fields (format, dimensions, EXIF brief) with the transcrip
 | File | Role |
 |---|---|
 | `vision-runtime/python/runtime.py` | Handler: `handle_metadata` + `_exif_brief` |
-| `pi/sk-vision.ts` | Pi tool registration for `sk_vision_metadata` |
+| `hooks/pi/sk-vision.ts` | Pi tool registration for `sk_vision_metadata` |
 | `vision-runtime/python/runtime.test.ts` | Analysis handler regression suite (metadata) |
 
 ---

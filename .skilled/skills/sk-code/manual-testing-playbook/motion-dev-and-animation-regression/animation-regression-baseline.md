@@ -85,8 +85,8 @@ Record baseline videos for the Motion dropdown and slider flows; compare drift, 
 | `../../sk-code-webflow/references/animation/animate-and-timelines.md` | Local `animate()` and sequence guidance |
 | `../../sk-code-webflow/references/animation/performance-and-pitfalls.md` | Local animation regression and performance risk guidance |
 | `../../sk-code-webflow/assets/animation/snippets/stagger-animation.js` | Local stagger example for list-style regression cases |
-| `../../../../../a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js` | Dropdown Motion animation anchor |
-| `../../../../../a_nobel_en_zn/2_javascript/slider/testimonial.js` | Testimonial slider Motion animation anchor |
+| `nav_dropdown.js` under `2_javascript/navigation/` in the external Webflow project `a_nobel_en_zn` (not in this repo) | Dropdown Motion animation anchor |
+| `testimonial.js` under `2_javascript/slider/` in the external Webflow project `a_nobel_en_zn` (not in this repo) | Testimonial slider Motion animation anchor |
 | `https://motion.dev/docs/animate` | Official `animate()` behavior reference |
 | `https://motion.dev/docs/quick-start` | Official Motion install and first-animation reference |
 

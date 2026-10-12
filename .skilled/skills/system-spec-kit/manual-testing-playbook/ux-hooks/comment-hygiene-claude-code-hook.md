@@ -66,7 +66,6 @@ Operators run the exact prompt and command sequence for `119-B` and confirm the 
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../../../specs/skilled-agent-orchestration/z_archive/119-comment-ref-hygiene/002-active-enforcement-layer/spec.md` | REQ-004 defines PostToolUse hook acceptance criteria |
 
 ### Implementation And Test Anchors
 
@@ -74,7 +73,6 @@ Operators run the exact prompt and command sequence for `119-B` and confirm the 
 |---|---|
 | `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs` | Primary implementation anchor — the PostToolUse hook script |
 | `.claude/settings.json` | Hook wiring config — PostToolUse `Write\|Edit` entry |
-| `.opencode/specs/skilled-agent-orchestration/z_archive/119-comment-ref-hygiene/002-active-enforcement-layer/checklist.md` | CHK-030/031/032/033 — regression checklist for this scenario |
 
 Provenance: manual only - python3 -c "import json; d=json.load(open('.claude/settings.json')); print('PostToolUse' in d['hooks'])"
 

@@ -50,11 +50,11 @@ Operators run the exact prompt and command sequence for `IMP-002` and confirm th
 
 ### Expected
 
-Step 1 prints a digest with the fenced-block list and a `source layout: none` line, and exits `0`. Step 3 keeps the flowchart meaning (decision branches, edge labels) while discarding all source styling. Step 4 produces a fresh layout. Step 5 yields a self-contained `docs/onboarding-flow.html` and a ledger naming the source count, drawn count, and every merge, collapse, or drop.
+Step 1 prints a digest with the fenced-block list and a `source layout: none` line, and exits `0`. Step 3 keeps the flowchart meaning (decision branches, edge labels) while discarding all source styling. Step 4 produces a fresh layout. Step 5 yields a self-contained `onboarding-flow.html` under `docs/` and a ledger naming the source count, drawn count, and every merge, collapse, or drop.
 
 ### Evidence
 
-Capture the digest output (block list, node/edge counts, and the layout-free note), the four dials chosen, a snippet of the output HTML showing no `classDef` or theme-derived colors, the fidelity ledger, the output path `docs/onboarding-flow.html`, and the taste-gate result.
+Capture the digest output (block list, node/edge counts, and the layout-free note), the four dials chosen, a snippet of the output HTML showing no `classDef` or theme-derived colors, the fidelity ledger, the output path `onboarding-flow.html` under `docs/`, and the taste-gate result.
 
 ### Pass / Fail
 

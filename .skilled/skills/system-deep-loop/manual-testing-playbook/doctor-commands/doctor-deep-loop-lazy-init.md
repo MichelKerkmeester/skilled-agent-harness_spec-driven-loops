@@ -13,7 +13,7 @@ expected_leaf_resources: []
 
 This scenario validates `/doctor:deep-loop` when `.skilled/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite` is empty or missing but existing spec packets already contain `research/iterations/*.md` or `review/iterations/*.md` files.
 
-The behavior is user-observable. An operator who has just completed a deep-research or deep-review run asks the doctor command about coverage graph state. The command reports that the graph is recoverable from the iteration sources and names the repair path. No whole-graph rebuild tool ships, because the coverage graph fills as loop iterations upsert their rows. The repair is resuming the loop, or a manual repair through `system-deep-loop/runtime/scripts/upsert.cjs` from the iteration records.
+The behavior is user-observable. An operator who has just completed a deep-research or deep-review run asks the doctor command about coverage graph state. The command reports that the graph is recoverable from the iteration sources and names the repair path. No whole-graph rebuild tool ships, because the coverage graph fills as loop iterations upsert their rows. The repair is resuming the loop, or a manual repair through `.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs` from the iteration records.
 
 ---
 
@@ -54,7 +54,7 @@ Initialize the deep-loop graph from current iteration folders. We just finished 
 
 ### Expected
 
-The command loads `doctor-deep-loop.yaml`, runs every status, query and convergence call with `--read-only`, and marks the empty graph as lazy-init eligible. Phase 2 recommends resuming the loop, whose iterations upsert their graph rows, or a manual repair through `system-deep-loop/runtime/scripts/upsert.cjs` from the iteration records.
+The command loads `doctor-deep-loop.yaml`, runs every status, query and convergence call with `--read-only`, and marks the empty graph as lazy-init eligible. Phase 2 recommends resuming the loop, whose iterations upsert their graph rows, or a manual repair through `.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs` from the iteration records.
 
 The final report shows the empty graph, the iteration source count and the recommended repair. The workflow writes only its packet-local state log. The graph database is unchanged.
 

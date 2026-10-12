@@ -21,7 +21,7 @@ The live MCP delete path is destructive and has no documented undo in the curren
 
 - Feature ID: `MCP-H004`
 - Feature Name: Delete the throwaway note
-- Scenario Objective: Delete `Daily/mcp-obsidian-playbook.md` only after confirming it is the disposable fixture, then verify a read returns not found.
+- Scenario Objective: Delete the vault-relative note `mcp-obsidian-playbook.md` in `Daily/` only after confirming it is the disposable fixture, then verify a read returns not found.
 - Exact Prompt: `Delete only the throwaway Daily/mcp-obsidian-playbook.md note through Obsidian MCP and verify that it is no longer readable.`
 - Exact Command Sequence: `1. Code Mode: tool_info("obsidian.obsidian_get_note") -> 2. read the exact note -> 3. Code Mode: tool_info("obsidian.obsidian_delete_note") -> 4. Code Mode: call_tool_chain({ code: "return await obsidian.obsidian_delete_note({ path: \"Daily/mcp-obsidian-playbook.md\" });" }) -> 5. read the same path and capture the not-found response`
 - Expected Signals: The note is confirmed before deletion; delete returns structured success; the follow-up read reports a not-found/404-style result.
@@ -44,7 +44,7 @@ This is a dedicated destructive scenario. It requires the live app, Local REST A
 ### Commands
 
 1. `tool_info("obsidian.obsidian_get_note")`
-2. Read `Daily/mcp-obsidian-playbook.md` and capture its content.
+2. Read the vault-relative note `mcp-obsidian-playbook.md` in `Daily/` and capture its content.
 3. `tool_info("obsidian.obsidian_delete_note")`
 4. Run the schema-confirmed delete call for the captured path.
 5. Read the same path and capture the not-found result.

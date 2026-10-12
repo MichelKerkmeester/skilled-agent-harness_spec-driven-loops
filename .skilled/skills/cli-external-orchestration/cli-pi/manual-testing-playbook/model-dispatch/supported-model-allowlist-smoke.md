@@ -66,7 +66,7 @@ An `auto` default delegates model selection outside the skill's declared contrac
 | File | Role |
 |---|---|
 | `../../../../system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | `PI_SUPPORTED_MODELS`, `PI_DEFAULT_MODEL`, and allowlist predicate |
-| `../../../../system-deep-loop/runtime/lib/deep-loop/executor-config.vitest.ts` | Automated allowlist tests when run by the owning package |
+| `../../../../system-deep-loop/runtime/tests/unit/executor-config.vitest.ts` | Automated allowlist tests when run by the owning package |
 
 ---
 

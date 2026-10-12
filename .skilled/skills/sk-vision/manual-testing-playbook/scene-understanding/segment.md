@@ -84,7 +84,7 @@ The segment response (bbox + optional mask path) with the transcript
 | File | Role |
 |---|---|
 | `vision-runtime/python/runtime.py` | Handler: `handle_segment` + `_require_task` |
-| `pi/sk-vision.ts` | Pi tool registration for `sk_vision_segment` |
+| `hooks/pi/sk-vision.ts` | Pi tool registration for `sk_vision_segment` |
 | `vision-runtime/python/runtime.test.ts` | Analysis handler regression suite |
 
 ---

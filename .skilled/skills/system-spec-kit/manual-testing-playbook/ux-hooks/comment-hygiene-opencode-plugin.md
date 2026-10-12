@@ -66,7 +66,6 @@ Operators run the exact prompt and command sequence for `119-C` and confirm the 
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../../../specs/skilled-agent-orchestration/z_archive/119-comment-ref-hygiene/002-active-enforcement-layer/decision-record.md` | ADR-001 — documents the OpenCode write-time hook gap |
 
 ### Implementation And Test Anchors
 

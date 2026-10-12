@@ -70,7 +70,7 @@ For full convergence-detection validation, re-invoke `/deep:research:auto` again
 |---|---|
 | `../../SKILL.md` §3 "OpenCode Agent Delegation" item 3 | Command-owned loop executor contract (never raw `--agent deep-research`) |
 | `../../references/agent-delegation.md` | §3 deep-research, LEAF iteration loop executor |
-| `system-deep-loop/deep-research/README.md` | Packet-local artifact layout (`research/deep-research-state.jsonl` etc.) and `/deep:research:auto` invocation shape |
+| `.skilled/skills/system-deep-loop/deep-research/README.md` | Packet-local artifact layout (`research/deep-research-state.jsonl` etc.) and `/deep:research:auto` invocation shape |
 | `.skilled/agents/deep-research.md` | Agent definition file |
 
 ---

@@ -1,8 +1,8 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 6779,
-    "ok": 14126,
+    "missing-frontmatter": 6788,
+    "ok": 14117,
     "valid-empty-list": 3500
   },
   "documentsScanned": 24452,
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "030f7a97651c1ed94ea1a76758dbec18202cdba83aa5de570ee111883d77401a",
+  "manifestHash": "f44582e42065b7ba507179029652242b594aff58eb807c6df7fa2989c30e546d",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36228,
+      "ok": 36208,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -274,6 +274,12 @@
       "line": 2,
       "path": ".skilled/skills/cli-classifier/manual-testing-playbook/measurements/pi-transport-integration.md",
       "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/cli-classifier/shared/README.md",
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -8157,9 +8163,9 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 2,
+      "line": 1,
       "path": ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md",
-      "reason": "no trigger_phrases key in frontmatter"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -8680,9 +8686,9 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 2,
+      "line": 1,
       "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/INSTALL-GUIDE.md",
-      "reason": "no trigger_phrases key in frontmatter"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -8872,9 +8878,9 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 2,
+      "line": 1,
       "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/INSTALL-GUIDE.md",
-      "reason": "no trigger_phrases key in frontmatter"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -9082,9 +9088,9 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 2,
+      "line": 1,
       "path": ".skilled/skills/mcp-tooling/mcp-click-up/INSTALL-GUIDE.md",
-      "reason": "no trigger_phrases key in frontmatter"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -9364,9 +9370,9 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 2,
+      "line": 1,
       "path": ".skilled/skills/mcp-tooling/mcp-figma/INSTALL-GUIDE.md",
-      "reason": "no trigger_phrases key in frontmatter"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -9496,9 +9502,9 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 2,
+      "line": 1,
       "path": ".skilled/skills/mcp-tooling/mcp-mobbin/INSTALL-GUIDE.md",
-      "reason": "no trigger_phrases key in frontmatter"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -9646,9 +9652,9 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 2,
+      "line": 1,
       "path": ".skilled/skills/mcp-tooling/mcp-notion/INSTALL-GUIDE.md",
-      "reason": "no trigger_phrases key in frontmatter"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -9862,9 +9868,9 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 2,
+      "line": 1,
       "path": ".skilled/skills/mcp-tooling/mcp-obsidian/INSTALL-GUIDE.md",
-      "reason": "no trigger_phrases key in frontmatter"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -10000,9 +10006,9 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 2,
+      "line": 1,
       "path": ".skilled/skills/mcp-tooling/mcp-refero/INSTALL-GUIDE.md",
-      "reason": "no trigger_phrases key in frontmatter"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -10762,6 +10768,12 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-obsidian/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -11056,9 +11068,9 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 2,
+      "line": 1,
       "path": ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/manual-testing-playbook.md",
-      "reason": "no trigger_phrases key in frontmatter"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -11567,9 +11579,9 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 2,
+      "line": 1,
       "path": ".skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/manual-testing-playbook.md",
-      "reason": "no trigger_phrases key in frontmatter"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -12239,9 +12251,9 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 2,
+      "line": 1,
       "path": ".skilled/skills/sk-design/sk-design-md-generator/INSTALL-GUIDE.md",
-      "reason": "no trigger_phrases key in frontmatter"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -12368,6 +12380,12 @@
       "line": 2,
       "path": ".skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/README.md",
       "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-design/sk-design-md-generator/references/examples/README.md",
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -28607,6 +28625,12 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-doc/shared/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-doc/shared/scripts/README.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -28898,6 +28922,12 @@
       "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-diff/manual-testing-playbook/snapshot/snapshot-status-and-cleanup.md",
       "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-doc/sk-create-diff/references/README.md",
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -30486,15 +30516,21 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-vision/hooks/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-vision/hooks/cursor/vision-rule.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
-      "line": 2,
+      "line": 1,
       "path": ".skilled/skills/sk-vision/hooks/devin/vision-rule.md",
-      "reason": "no trigger_phrases key in frontmatter"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -32812,9 +32848,15 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 2,
+      "line": 1,
+      "path": ".skilled/skills/system-deep-loop/shared/rollout/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": ".skilled/skills/system-deep-loop/shared/rollout/promotion-rule.md",
-      "reason": "no trigger_phrases key in frontmatter"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -34521,6 +34563,12 @@
       "line": 2,
       "path": ".skilled/skills/system-spec-kit/runtime/cli/pi/README.md",
       "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/references/spec-root-alias-retirement-runbook.md",
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -37678,80 +37726,86 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions/review/deep-review-dashboard.md",
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/review/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/review/deep-review-strategy.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions/review/iterations/iteration-001.md",
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/review/iterations/iteration-001.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions/review/iterations/iteration-002.md",
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/review/iterations/iteration-002.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions/review/iterations/iteration-003.md",
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/review/iterations/iteration-003.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions/review/iterations/iteration-004.md",
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/review/iterations/iteration-004.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions/review/iterations/iteration-005.md",
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/review/iterations/iteration-005.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions/review/prompts/iteration-1.md",
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/review/prompts/iteration-1.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions/review/prompts/iteration-2.md",
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/review/prompts/iteration-2.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions/review/prompts/iteration-3.md",
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/review/prompts/iteration-3.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions/review/prompts/iteration-4.md",
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/review/prompts/iteration-4.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions/review/prompts/iteration-5.md",
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/review/prompts/iteration-5.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions/review/resource-map.md",
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/review/resource-map.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions/review/review-report.md",
-      "reason": "no opening frontmatter delimiter"
+      "line": 2,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/review/review-report.md",
+      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",

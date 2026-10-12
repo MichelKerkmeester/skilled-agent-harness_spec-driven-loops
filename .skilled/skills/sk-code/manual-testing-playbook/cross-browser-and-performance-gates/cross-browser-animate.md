@@ -80,8 +80,8 @@ Test the Motion dropdown and slider in Chrome, Safari, and Firefox; return per-b
 | `../../sk-code-webflow/references/animation/quick-start.md` | Local Motion install/import reference |
 | `../../sk-code-webflow/references/animation/animate-and-timelines.md` | Local `animate()` and sequence guidance |
 | `../../sk-code-webflow/references/animation/performance-and-pitfalls.md` | Local browser/performance risk guidance |
-| `../../../../../a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js` | Dropdown behavior under browser comparison |
-| `../../../../../a_nobel_en_zn/2_javascript/slider/testimonial.js` | Slider behavior under browser comparison |
+| `nav_dropdown.js` under `2_javascript/navigation/` in the external Webflow project `a_nobel_en_zn` (not in this repo) | Dropdown behavior under browser comparison |
+| `testimonial.js` under `2_javascript/slider/` in the external Webflow project `a_nobel_en_zn` (not in this repo) | Slider behavior under browser comparison |
 | `https://motion.dev/docs/quick-start` | Official Motion install reference |
 | `https://motion.dev/docs/animate` | Official animation reference |
 | `https://motion.dev/docs/performance` | Official performance and browser-testing guidance |

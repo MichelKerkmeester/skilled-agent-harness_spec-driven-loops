@@ -53,7 +53,7 @@ Step 1 loads the style guide and the swimlane conventions. Step 3 produces a dia
 
 ### Evidence
 
-Capture the prompt used, the output path `docs/support-handoff.html`, the step-4 grep output, a manual audit of connector paths (elbow radius, shared strokes, attach-point spacing), a count of accent-colored elements (must be ≤ 2), the legend's placement, and a screenshot for the human eye-check.
+Capture the prompt used, the output path `support-handoff.html` under `docs/`, the step-4 grep output, a manual audit of connector paths (elbow radius, shared strokes, attach-point spacing), a count of accent-colored elements (must be ≤ 2), the legend's placement, and a screenshot for the human eye-check.
 
 ### Pass / Fail
 

@@ -55,7 +55,7 @@ Only `--mode rpc` shows a command envelope. Pi reports it as an `extension_ui_re
 
 Use the temporary-state procedure in the hub scenario [`goal-manage-cli.md`](../../../manual-testing-playbook/plugins-and-hooks/goal-manage-cli.md). Run `legacy-migrate` through `/goal-pi` only for the intended native session. An occupied target must return `TARGET_SCOPE_OCCUPIED`.
 
-For rollback, add `-extensions/goal-context.ts` to `.pi/settings.json`, preserve all scoped and quarantined files, and verify a new Pi session receives no `[active_goal]` block. Do not merge session files into a singleton.
+For rollback, add the string `"-extensions/goal-context.ts"` to `.pi/settings.json`, preserve all scoped and quarantined files, and verify a new Pi session receives no `[active_goal]` block. Do not merge session files into a singleton.
 
 ### Automated companion gate
 

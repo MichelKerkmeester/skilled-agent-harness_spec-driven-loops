@@ -28,7 +28,7 @@ Operators run the exact prompt and command sequence for `CMD-001` and confirm th
 - Real user request: `/design:diagram docs/order-flow.html "sequence diagram of our order placement flow" :auto — sequence diagram of the order flow, no questions.`
 - Prompt: `Run the /design:diagram command with argument docs/order-flow.html, description "sequence diagram of our order placement flow", mode :auto. Verify the router loads the presentation contract, binds diagram-auto.yaml, and the workflow produces the diagram without interactive questions.`
 - Expected execution process: the router reads `.skilled/commands/design/diagram.md`, reads the presentation contract and runs its Phase 0 verification, resolves `:auto` from the arguments, binds `diagram-auto.yaml`, and the workflow executes its steps — detect the generate shape, load the style guide and `references/types/type-sequence.md`, draw, and verify the accessible-SVG contract — before the completion display is presented from the presentation contract.
-- Expected signals: `:auto` completes without interactive questions; the omitted-mode case binds `diagram-confirm.yaml` and checkpoints; the workflow steps live in the YAML, not the router; user-facing wording comes from `diagram-presentation.txt`; the HTML lands at the argument path `docs/order-flow.html`.
+- Expected signals: `:auto` completes without interactive questions; the omitted-mode case binds `diagram-confirm.yaml` and checkpoints; the workflow steps live in the YAML, not the router; user-facing wording comes from `diagram-presentation.txt`; the HTML lands at the argument path `order-flow.html` under `docs/`.
 - Desired user-visible outcome: an HTML sequence diagram at the argument path, produced by the bound workflow, with the router never inventing prompts or dashboards.
 - Pass/fail: PASS if the mode resolves to `:auto`, the bound YAML executes, the HTML is written to the argument path, and the presentation boundary is respected; FAIL if the router binds the wrong mode, dispatches workflow behavior inline, invents user-facing wording, or the output lands anywhere other than the argument path.
 
@@ -49,11 +49,11 @@ Operators run the exact prompt and command sequence for `CMD-001` and confirm th
 
 ### Expected
 
-Step 2 shows the router owns only routing: it selects the presentation contract and the mode-bound YAML. Step 3 runs the sequence-diagram steps and writes `docs/order-flow.html`. Step 4 confirms `:auto` produced no interactive questions and that the setup/status/completion wording matches the presentation contract. Re-running with the mode omitted must bind `diagram-confirm.yaml` instead, proving the `:auto`/`:confirm` resolution is real.
+Step 2 shows the router owns only routing: it selects the presentation contract and the mode-bound YAML. Step 3 runs the sequence-diagram steps and writes `order-flow.html` under `docs/`. Step 4 confirms `:auto` produced no interactive questions and that the setup/status/completion wording matches the presentation contract. Re-running with the mode omitted must bind `diagram-confirm.yaml` instead, proving the `:auto`/`:confirm` resolution is real.
 
 ### Evidence
 
-Capture the router read, the resolved mode and bound YAML path, the argument-target path, the final `docs/order-flow.html` path, the list of workflow steps executed, and a sample of the completion wording traced back to the presentation contract.
+Capture the router read, the resolved mode and bound YAML path, the argument-target path, the final output path (`order-flow.html` under `docs/`), the list of workflow steps executed, and a sample of the completion wording traced back to the presentation contract.
 
 ### Pass / Fail
 

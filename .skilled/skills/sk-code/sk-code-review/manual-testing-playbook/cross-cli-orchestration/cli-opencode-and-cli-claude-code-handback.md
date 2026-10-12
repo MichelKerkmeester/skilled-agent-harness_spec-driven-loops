@@ -79,5 +79,5 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 - Group: Cross Cli Orchestration
 - Playbook ID: CR-018
 - Canonical root source: `manual-testing-playbook.md`
-- Feature file path: `cross-cli-orchestration/cli-opencode-and-cli-opencode-handback.md`
+- Feature file path: `cross-cli-orchestration/cli-opencode-and-cli-claude-code-handback.md`
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

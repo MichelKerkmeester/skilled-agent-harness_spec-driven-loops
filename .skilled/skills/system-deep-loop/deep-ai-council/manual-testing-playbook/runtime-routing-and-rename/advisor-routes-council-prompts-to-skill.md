@@ -48,7 +48,7 @@ The advisor must route explicit council requests to the skill instead of treatin
 
 1. `bash: cd .skilled/skills/system-spec-kit/runtime && node_modules/.bin/vitest run skill_advisor/tests/scorer/native-scorer.vitest.ts -t "deep-ai-council"`
 
-> Note: vitest must be invoked from `mcp-server/` CWD with the local `node_modules/.bin/vitest` binary. Running `npx vitest` from the workspace root fails with `Cannot find module 'vitest/config'` because the vitest config lives at `mcp-server/vitest.config.ts` and the workspace root has no top-level vitest install.
+> Note: vitest must be invoked from the `.skilled/skills/system-spec-kit/runtime/` CWD with the local `node_modules/.bin/vitest` binary. Running `npx vitest` from the workspace root fails with `Cannot find module 'vitest/config'` because the vitest config lives at `.skilled/skills/system-spec-kit/runtime/vitest.config.ts` and the workspace root has no top-level vitest install.
 
 ### Expected
 

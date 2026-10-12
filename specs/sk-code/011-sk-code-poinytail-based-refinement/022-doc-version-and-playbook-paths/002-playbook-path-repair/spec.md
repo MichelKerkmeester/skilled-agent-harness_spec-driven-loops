@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-12 |
 | **Branch** | `worktrees/117-docver-scaffold` (scaffold); the builder works in its own worktree branched from the scaffold commit |
 | **Parent Spec** | ../spec.md |

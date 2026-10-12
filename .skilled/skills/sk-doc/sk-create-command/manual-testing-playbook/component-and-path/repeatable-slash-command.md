@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CMD-001`.
 - Objective: select a command for a repeatable user-triggered workflow and resolve its path.
 - Realistic user request: `I want a repeatable /release:check command that takes a path and returns a structured status. It should run the same workflow each time.`
 - Prompt: `I want a repeatable /release:check command that takes a path and returns a structured status. It should run the same workflow each time.`
-- Expected execution process: read the component-choice rules, classify the workflow as a command and resolve `.skilled/commands/release/check.md`.
+- Expected execution process: read the component-choice rules, classify the workflow as a command and resolve the new file `check.md` under `.skilled/commands/release/`.
 - Expected signals: the command type is named, the namespace and action use lowercase hyphen-case and the invocation is `/release:check`.
 - Desired user-visible outcome: the user receives a valid command path and invocation shape.
 - Pass/fail: PASS if the request is routed to a command with a valid path. FAIL if it is routed to a skill, a root command path or a non-kebab segment.
@@ -53,7 +53,7 @@ Operators run the exact prompt and command sequence for `CMD-001`.
 
 ### Expected
 
-Step 1 identifies a repeatable user-triggered workflow. Step 2 resolves `.skilled/commands/release/check.md`. Step 3 keeps reusable rules in a skill. Step 4 checks a real command name with the shared authored-name checker.
+Step 1 identifies a repeatable user-triggered workflow. Step 2 resolves the new file `check.md` under `.skilled/commands/release/`. Step 3 keeps reusable rules in a skill. Step 4 checks a real command name with the shared authored-name checker.
 
 ### Evidence
 

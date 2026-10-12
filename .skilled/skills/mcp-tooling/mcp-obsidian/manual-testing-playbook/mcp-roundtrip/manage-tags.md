@@ -21,7 +21,7 @@ Tag management is an app-backed structured operation. The current references con
 
 - Feature ID: `MCP-H003`
 - Feature Name: Manage tags
-- Scenario Objective: Add the controlled `mcp-playbook` tag to `Daily/mcp-obsidian-playbook.md` and capture the structured result.
+- Scenario Objective: Add the controlled `mcp-playbook` tag to the vault-relative note `mcp-obsidian-playbook.md` in `Daily/` and capture the structured result.
 - Exact Prompt: `Add the tag mcp-playbook to Daily/mcp-obsidian-playbook.md through the live Obsidian MCP and report the result.`
 - Exact Command Sequence: `1. Code Mode: list_tools() -> 2. Code Mode: tool_info("obsidian.obsidian_manage_tags") -> 3. Code Mode: call_tool_chain({ code: "return await obsidian.obsidian_manage_tags({ path: \"Daily/mcp-obsidian-playbook.md\", add: [\"mcp-playbook\"] });" }) -> 4. read the note or list tags with a schema-confirmed tool`
 - Expected Signals: The tool resolves; the controlled add operation returns structured output; the tag is observable on the note or in the tool response.

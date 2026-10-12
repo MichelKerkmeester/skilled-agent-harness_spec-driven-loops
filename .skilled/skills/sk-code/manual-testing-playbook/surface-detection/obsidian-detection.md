@@ -10,7 +10,7 @@ version: 1.0.1.0
 
 This scenario verifies that sk-code identifies `OBSIDIAN` for a Note Database plugin prompt. The repository root markers in `shared/references/stack-detection.md:46-51` distinguish the plugin from a generic TypeScript project.
 
-When the prompt asks for a change in `src/views/DatabaseView.ts`, the advisor should select `sk-code` and the compiled router should select the `sk-code-obsidian` surface packet.
+When the prompt asks for a change in the plugin's `DatabaseView.ts` (under `src/views/`), the advisor should select `sk-code` and the compiled router should select the `sk-code-obsidian` surface packet.
 
 ---
 

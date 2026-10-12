@@ -16,7 +16,7 @@ This scenario validates the shared frontmatter value list for `464`. It focuses 
 
 ### Why This Matters
 
-The save CLI, the frontmatter migration and the validator read their legal `contextType` and `importance_tier` values from one file, sk-create-frontmatter's `assets/frontmatter-values.json`. The validator side is advice only: a value outside the list must warn and name what to use, an alias must pass, and neither may fail a run. A scratch copy of a real packet doc shows both outcomes without touching the packet.
+The save CLI, the frontmatter migration and the validator read their legal `contextType` and `importance_tier` values from one file, `.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json`. The validator side is advice only: a value outside the list must warn and name what to use, an alias must pass, and neither may fail a run. A scratch copy of a real packet doc shows both outcomes without touching the packet.
 
 ---
 

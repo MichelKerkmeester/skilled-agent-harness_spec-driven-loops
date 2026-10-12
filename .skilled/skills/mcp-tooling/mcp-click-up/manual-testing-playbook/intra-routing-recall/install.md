@@ -30,7 +30,7 @@ first-time setup and authentication request, and that the router loads exactly
 an `INSTALL` score above 4 wins over any other intent's raw score, but only below a `TROUBLESHOOT`
 score above 3, which wins first. `INSTALL` is also the one intent whose `RESOURCE_MAP` entry points
 outside `references/` — at `INSTALL-GUIDE.md`, directly under the skill root — so this scenario also
-guards against that path silently drifting to a `references/INSTALL-GUIDE.md` location that does not
+guards against that path silently drifting to an `INSTALL-GUIDE.md` copy under `references/` that does not
 exist.
 
 ---

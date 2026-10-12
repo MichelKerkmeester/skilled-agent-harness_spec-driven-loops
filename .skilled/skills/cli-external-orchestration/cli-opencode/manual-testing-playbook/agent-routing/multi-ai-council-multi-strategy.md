@@ -80,4 +80,4 @@ For rubric depth, ask the agent to produce a 5x5 markdown table with strategies 
 - Group: Agent Routing
 - Playbook ID: CO-017
 - Canonical root source: `manual-testing-playbook.md`
-- Feature file path: `agent-routing/005-ai-council-multi-strategy.md`
+- Feature file path: `agent-routing/multi-ai-council-multi-strategy.md`

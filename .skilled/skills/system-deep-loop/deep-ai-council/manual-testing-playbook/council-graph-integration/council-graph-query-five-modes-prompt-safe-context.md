@@ -71,7 +71,7 @@ Capture all 5 query responses showing mode name, result count, and metadata fiel
 
 ### Failure Triage
 
-If a mode errors with "unknown mode", inspect `scripts/query.cjs` mode dispatch + `schemas/tool-input-schemas.ts` mode enum. If a mode ignores `limit`, inspect `lib/council/council-graph-query.ts` per-mode query helper.
+If a mode errors with "unknown mode", inspect the `queryType` switch in `scripts/query.cjs`. If a mode ignores `limit`, inspect `lib/council/council-graph-query.ts` per-mode query helper.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|

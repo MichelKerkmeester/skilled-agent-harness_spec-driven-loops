@@ -43,7 +43,7 @@ Show me the documented environment switches and where each one is set.
 ### Commands
 
 1. `cd .worktrees/.doctor-test-environment`, run `git fetch origin` and `git merge --ff-only origin/main`, and confirm `git status --porcelain` prints nothing.
-2. In the environment, record `git status --porcelain` and the sha256 of `.skilled/hooks/hook-flags.env`, `.env` and `.claude/settings.local.json` where each exists, and record each missing one as absent.
+2. In the environment, record `git status --porcelain` and the sha256 of `.skilled/hooks/hook-flags.env`, `.env` and the local Claude settings file `settings.local.json` under `.claude/` where each exists, and record each missing one as absent.
 3. Run `/doctor:env list` through the real runtime.
 4. Capture the count line and both tables. Confirm the count matches the number of distinct variable rows, that every parsed variable has a source-state row, and that no cell carries a value. Note whether any row is classified secret, because the committed reference classifies none today.
 5. Run `/doctor:env SPECKIT_AC_COVERAGE_FLOOR`.

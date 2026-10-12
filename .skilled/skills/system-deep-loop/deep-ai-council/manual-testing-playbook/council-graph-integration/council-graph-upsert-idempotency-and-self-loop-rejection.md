@@ -72,7 +72,7 @@ Capture the four runtime CLI responses and the schema validation error message v
 
 ### Failure Triage
 
-If duplicates appear, inspect `lib/council/council-graph-db.ts` `upsertNodes`/`upsertEdges` for unique-constraint regression. If self-loop accepted, inspect `schemas/tool-input-schemas.ts` `councilGraphUpsertInputSchema` and `scripts/upsert.cjs` for validation drift.
+If duplicates appear, inspect `lib/council/council-graph-db.ts` `upsertNodes`/`upsertEdges` for unique-constraint regression. If self-loop accepted, inspect the `sourceId === targetId` check in `scripts/upsert.cjs` for validation drift.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|

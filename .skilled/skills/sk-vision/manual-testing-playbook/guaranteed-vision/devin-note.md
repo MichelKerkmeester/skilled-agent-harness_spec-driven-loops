@@ -27,7 +27,7 @@ Operators run a neutral prompt with the vision-note text supplied as guidance ag
 - Objective: with the Devin drop-in note supplied as session guidance, a text-only Devin model calls a `sk_vision_*` tool on an attached image unprompted and reports real content
 - Real user request: `GLM in Devin answers about screenshots without ever reading them.`
 - Prompt (NEUTRAL): `What is the status message in this image?` (the note text from `hooks/devin/vision-rule.md` is supplied as guidance alongside it)
-- Preconditions: the vision CLI is built (`vision-runtime/dist/vision-cli.js`); the `hooks/devin/vision-rule.md` fallback text is in the session guidance, since Devin has no repo-owned always-on rule slot; the active model is text-only (GLM); the fixture path is given; `Exec(node)` is granted in `.devin/config.local.json`.
+- Preconditions: the vision CLI is built (`vision-runtime/dist/vision-cli.js`); the `hooks/devin/vision-rule.md` fallback text is in the session guidance, since Devin has no repo-owned always-on rule slot; the active model is text-only (GLM); the fixture path is given; `Exec(node)` is granted in the operator's local Devin settings (`config.local.json` under `.devin/`).
 - Expected execution process: guided by the note, the model calls `sk_vision_inspect`/`sk_vision_ocr` on the image without an explicit "you are blind" instruction, then reports the real text.
 - Expected signals: transcript shows a namespaced sk-vision tool call the neutral prompt did not request; the quoted text matches `DEPLOY OK 7391`.
 - Desired user-visible outcome: a text-only model in Devin reports the image's true content when the vision note is present as guidance.

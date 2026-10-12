@@ -81,5 +81,5 @@ The second list is the load-bearing signal, not the restart. A zero exit status 
 - Playbook ID: ORCA-006
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `runtime/runtime-stopped-recovery.md`
-- Catalog entry: `terminal-receipts-and-liveness/terminal-receipts-and-liveness.md`
+- Catalog entry: `../../feature-catalog/runtime/preflight-and-resolution.md`
 - Prompt equality requirement: the SCENARIO CONTRACT prompt equals the 9-column table Exact Prompt cell and the root summary prompt.

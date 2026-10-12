@@ -27,7 +27,7 @@ from a single hermetic run.
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: confirm `tests/stress/cli-adapter/cli-pi.vitest.ts` reports `retains cli-pi authentication diagnostics in bounded lineage output` as passing under the shipped stress-matrix
+- Objective: confirm `.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-pi.vitest.ts` reports `retains cli-pi authentication diagnostics in bounded lineage output` as passing under the shipped stress-matrix
   cell `cli-pi:EC-001`.
 - Operator prompt: `Run the manifest-indexed hermetic stress test for cli-pi:EC-001 and report PASS, FAIL, or SKIP with the exact blocker.`
 - Expected execution process: run the exact Vitest invocation in §3 from the repository root, capture

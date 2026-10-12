@@ -61,7 +61,7 @@ All scenarios share these preconditions. Verify before starting any wave.
 2. Node.js `>=18` is on PATH (`node --version`). macOS is the supported baseline, and Linux and Windows are experimental and unverified for these scenarios.
 3. The canonical binary `figma-ds-cli` is on PATH, or `figma-cli` resolves to the silships tool (verified by `--version`/`--help`), NOT the unrelated unic/figma-cli npm package. If neither resolves to the silships tool, treat detection as the scenario result, not a blocker.
 4. For every scenario except DESKTOP-001's negative branch, Figma Desktop is open with a file, since the CLI drives the live Desktop session and has no Figma API key.
-5. For CONNECT-001, the FigCli plugin manifest (`plugin/manifest.json`) has been imported once and `Plugins → Development → FigCli` is open in Figma. Safe connect applies no patch.
+5. For CONNECT-001, the FigCli plugin manifest (`manifest.json` in figma-ds-cli's `plugin/` folder) has been imported once and `Plugins → Development → FigCli` is open in Figma. Safe connect applies no patch.
 6. For EXPORT-001, an explicit output path is chosen in a throwaway location that does not already contain a file of that name, since exports must never silently overwrite.
 7. The yolo `connect` patch (`app.asar`), `init-agent`, and any destructive verb are out of scope for the default set, so do not run them while executing this playbook.
 

@@ -161,7 +161,7 @@ Everything below is VOLATILE.
 
 ### Expected
 
-Step 5 walks the five named checks. The binding check reads the direct phase-child folders `001-alpha` and `002-beta` and the binding table rows, finds only `001-alpha` covered and reports the missing row for `002-beta/goal.md`. The other four checks stay green, so the failure is about row completeness and nothing else. Step 6 prints 1, which is the prose trap the scenario exists for: the goal names `002-beta` in its objective yet the binding table leaves the phase unbound.
+Step 5 walks the five named checks. The binding check reads the direct phase-child folders `001-alpha` and `002-beta` and the binding table rows, finds only `001-alpha` covered and reports the missing row for the `002-beta` child goal. The other four checks stay green, so the failure is about row completeness and nothing else. Step 6 prints 1, which is the prose trap the scenario exists for: the goal names `002-beta` in its objective yet the binding table leaves the phase unbound.
 
 ### Evidence
 
@@ -169,7 +169,7 @@ Capture the prompt and reply text, the complete step 5 transcript including ever
 
 ### Pass / Fail
 
-- **Pass**: the binding check fails with exactly one finding naming `002-beta/goal.md`, the other four checks pass and the phase name appears in the goal prose.
+- **Pass**: the binding check fails with exactly one finding naming the `002-beta` child goal, the other four checks pass and the phase name appears in the goal prose.
 - **Fail**: the check exits 0, the finding names `001-alpha`, more than the binding check fails without a seeded cause or the phase name is absent from the goal.
 - **SKIP**: only with a specific sandbox blocker, such as `mktemp` or Node being unavailable in the run environment.
 
@@ -181,7 +181,7 @@ Capture the prompt and reply text, the complete step 5 transcript including ever
 
 ### Optional Supplemental Checks
 
-Add the missing row `| beta | \`002-beta/goal.md\` |` to the binding table and confirm the check goes green with `PASS missing-binding-row findings=0` and exit status 0. Then point the seeded row target at `003-gamma/goal.md` and confirm the check reports two findings naming `001-alpha/goal.md` and `002-beta/goal.md`, which proves the match is by folder name rather than by row count.
+Add the missing `beta` row, whose target is the `002-beta` child goal, to the binding table and confirm the check goes green with `PASS missing-binding-row findings=0` and exit status 0. Then point the seeded row target at a `003-gamma` child goal and confirm the check reports two findings naming the `001-alpha` and `002-beta` child goals, which proves the match is by folder name rather than by row count.
 
 ---
 

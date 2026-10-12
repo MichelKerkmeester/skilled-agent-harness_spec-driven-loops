@@ -49,7 +49,7 @@ Prompt: `Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by Interse
 
 **Expected agent dispatch**: `@code` (LEAF) for the actual edit, dispatched ONLY by `@orchestrate`. If the user prompt is invoked directly without orchestration, the AI may apply the change inline using sk-code guidance without dispatching @code.
 
-**Desired user-visible outcome**: The AI applies the edit to `src/2_javascript/scroll.js`, citing webflow-specific patterns (IntersectionObserver gate from `sk-code-webflow/assets/patterns/interaction-gate-patterns.js`) and confirming the modification with a Lenis initializer + observer fence.
+**Desired user-visible outcome**: The AI applies the edit to `scroll.js` under `src/2_javascript/`, citing webflow-specific patterns (IntersectionObserver gate from `sk-code-webflow/assets/patterns/interaction-gate-patterns.js`) and confirming the modification with a Lenis initializer + observer fence.
 
 ---
 

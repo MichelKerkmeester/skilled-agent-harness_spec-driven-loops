@@ -79,5 +79,5 @@ The recorded executable is the load-bearing evidence, not a printed path. A path
 - Playbook ID: ORCA-004
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `runtime/preflight-executable-resolution.md`
-- Catalog entry: `runtime/preflight-and-resolution.md`
+- Catalog entry: `../../feature-catalog/runtime/preflight-and-resolution.md`
 - Prompt equality requirement: the SCENARIO CONTRACT prompt equals the 9-column table Exact Prompt cell and the root summary prompt.

@@ -84,7 +84,7 @@ The diff response plus both input file paths, saved with the transcript
 | File | Role |
 |---|---|
 | `vision-runtime/python/runtime.py` | Handler: `handle_diff` |
-| `pi/sk-vision.ts` | Pi tool registration for `sk_vision_diff` |
+| `hooks/pi/sk-vision.ts` | Pi tool registration for `sk_vision_diff` |
 | `vision-runtime/python/runtime.test.ts` | Analysis handler regression suite (diff) |
 
 ---

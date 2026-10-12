@@ -34,7 +34,7 @@ standard, rather than the implementation or debugging evidence a change-shaped p
 `DatabaseView` (`extends FileView`) and `DatabaseFileDashboardView` (`extends DatabaseView`) against
 their `WorkspaceLeaf` view types, and `manifest.json` declares `isDesktopOnly: false` — nothing in
 the tree may assume a desktop-only API. A question about this boundary is a stack-knowledge lookup,
-not an edit; loading `obsidian-plugin-api.md` with `standards/platform-support.md` is what keeps the
+not an edit; loading `obsidian-plugin-api.md` with `references/standards/platform-support.md` is what keeps the
 answer scoped to what the plugin's `manifest.json` and view classes actually commit to, instead of
 Obsidian's full API surface.
 
