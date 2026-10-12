@@ -8,6 +8,7 @@ trigger_phrases:
   - "javascript typescript coexistence"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.17
 ---
 
 # Formatting, Imports, Commenting & JS/TS Coexistence

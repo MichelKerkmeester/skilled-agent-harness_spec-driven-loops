@@ -16,6 +16,7 @@ expected_leaf_resources:
 blindToRouterKeywords: true
 blindExceptions:
   - "knowledge base"
+version: 1.1.0.0
 ---
 # MT-H07: Blind holdout — knowledge-base note management
 

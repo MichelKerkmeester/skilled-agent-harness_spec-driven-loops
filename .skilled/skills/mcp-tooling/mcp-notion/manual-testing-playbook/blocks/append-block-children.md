@@ -2,6 +2,7 @@
 title: "BLK-003 -- Append block children"
 description: "This scenario validates a scratch-safe block append through the confirmed notion_append-block-children tool, then archives the scratch page as cleanup."
 stage: routing
+version: 0.1.0.0
 ---
 
 # BLK-003 -- Append block children

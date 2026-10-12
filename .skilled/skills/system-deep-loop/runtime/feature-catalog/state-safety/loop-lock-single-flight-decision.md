@@ -6,6 +6,7 @@ trigger_phrases:
   - "loop-lock-single-flight-decision"
   - "loop-lock single-flight decision runtime"
   - "state safety loop-lock single-flight decision"
+version: 1.4.0.15
 ---
 
 # Loop-lock single-flight decision

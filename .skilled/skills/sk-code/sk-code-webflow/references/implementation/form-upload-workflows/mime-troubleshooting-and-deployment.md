@@ -8,6 +8,7 @@ trigger_phrases:
   - "webflow mime types"
 importance_tier: normal
 contextType: implementation
+version: 1.5.0.4
 ---
 
 # MIME Types, Troubleshooting, Deployment & Related

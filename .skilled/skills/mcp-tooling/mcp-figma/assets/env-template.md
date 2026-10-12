@@ -8,6 +8,7 @@ trigger_phrases:
   - "figma_figma_api_key env"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.2
 ---
 
 # Figma Code Mode Env Template - prefixed token line

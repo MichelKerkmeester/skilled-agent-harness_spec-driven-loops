@@ -1,6 +1,7 @@
 ---
 title: "CR-021 -- Unrequested-code removal prompt"
 description: "This scenario validates the unrequested-code removal prompt for `CR-021`. It focuses on recommending removal, not just simplification, for code that traces to no stated requirement."
+version: 1.5.0.2
 ---
 
 # CR-021 -- Unrequested-code removal prompt

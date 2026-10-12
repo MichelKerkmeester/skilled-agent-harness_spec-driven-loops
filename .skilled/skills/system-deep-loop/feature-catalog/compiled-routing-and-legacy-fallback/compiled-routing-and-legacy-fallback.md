@@ -6,6 +6,7 @@ trigger_phrases:
   - "SPECKIT_COMPILED_ROUTING"
   - "compiled route front door"
   - "system-deep-loop compiled routing"
+version: 1.0.0.0
 ---
 
 # Compiled Routing And Legacy Fallback (compiled-route.cjs)

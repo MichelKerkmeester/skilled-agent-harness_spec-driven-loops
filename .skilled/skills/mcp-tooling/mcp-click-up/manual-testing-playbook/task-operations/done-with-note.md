@@ -1,6 +1,7 @@
 ---
 title: "CU-025 -- Complete Task with Note"
 description: "This scenario validates Complete Task with Note for `CU-025`. Objective: Verify `cupt done TASK_ID --note text` marks task complete AND adds comment in o."
+version: 1.0.0.6
 ---
 
 # CU-025 -- Complete Task with Note

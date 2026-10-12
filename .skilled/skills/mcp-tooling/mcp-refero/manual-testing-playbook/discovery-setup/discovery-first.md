@@ -1,6 +1,7 @@
 ---
 title: "DISCOVER-001 -- Discovery-First Callable Confirmation"
 description: "This scenario validates discovery for `DISCOVER-001`. It focuses on confirming the doubled-prefix callables are confirmed through Code Mode list_tools and tool_info before any call, with fail-closed handling of catalog drift."
+version: 1.0.0.0
 ---
 
 # DISCOVER-001 -- Discovery-First Callable Confirmation

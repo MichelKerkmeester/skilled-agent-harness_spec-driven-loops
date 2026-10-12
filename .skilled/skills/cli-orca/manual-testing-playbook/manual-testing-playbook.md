@@ -1,6 +1,7 @@
 ---
 title: "cli-orca: Manual Testing Playbook"
 description: "Operator-facing manual validation for cli-orca routing, handoffs, runtime recovery and ownership boundaries."
+version: 1.0.0.0
 ---
 
 # cli-orca: Manual Testing Playbook

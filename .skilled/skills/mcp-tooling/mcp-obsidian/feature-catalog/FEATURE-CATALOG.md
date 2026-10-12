@@ -7,6 +7,7 @@ trigger_phrases:
   - "obsidian MCP tools"
   - "Obsidian plugin file-layer operations"
 last_updated: "2026-08-23"
+version: 0.1.2.0
 ---
 
 # mcp-obsidian: Feature Catalog

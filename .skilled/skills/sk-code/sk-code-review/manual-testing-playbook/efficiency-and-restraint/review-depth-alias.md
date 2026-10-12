@@ -1,6 +1,7 @@
 ---
 title: "CR-023 -- Review-depth alias"
 description: "This scenario validates the review-depth alias for `CR-023`. It focuses on the reviewing agent honoring SK_CODE_REVIEW_DEPTH=lite|full|ultra resolved env over config over default, without relaxing any floor or skipping a sensitive path."
+version: 1.5.0.1
 ---
 
 # CR-023 -- Review-depth alias

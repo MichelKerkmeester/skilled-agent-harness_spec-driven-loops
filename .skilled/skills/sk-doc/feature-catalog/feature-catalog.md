@@ -11,6 +11,7 @@ trigger_phrases:
   - "citation drift census across doc families"
   - "shared frontmatter value warning"
 last_updated: "2026-10-04"
+version: 2.2.0.12
 ---
 
 # sk-doc: Feature Catalog

@@ -1,6 +1,7 @@
 ---
 title: "ASD-005 -- Session continuation"
 description: "This scenario validates agent-task continuation for `ASD-005`. It focuses on continuing a prior task with `--session <id>` and confirming prior context is actually used."
+version: 1.0.0.0
 ---
 
 # ASD-005 -- Session continuation

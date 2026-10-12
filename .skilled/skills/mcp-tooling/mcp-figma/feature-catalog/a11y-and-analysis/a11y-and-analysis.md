@@ -7,6 +7,7 @@ trigger_phrases:
   - "figma analyze-url"
   - "figma gradient extract"
   - "figma verify"
+version: 1.0.0.1
 ---
 
 # A11y and analysis (figma-ds-cli a11y / analyze)

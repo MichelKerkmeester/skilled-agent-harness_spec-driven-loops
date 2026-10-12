@@ -1,6 +1,7 @@
 ---
 title: "BDG-010 -- Screenshot capture"
 description: "This scenario validates page screenshot capture for `BDG-010`. It focuses on confirming `bdg dom screenshot` writes a valid PNG file to disk with correct magic bytes."
+version: 1.0.0.7
 ---
 
 # BDG-010 -- Screenshot capture

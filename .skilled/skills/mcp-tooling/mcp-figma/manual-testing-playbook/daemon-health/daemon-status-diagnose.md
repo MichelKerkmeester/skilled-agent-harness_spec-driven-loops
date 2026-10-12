@@ -1,6 +1,7 @@
 ---
 title: "DAEMON-001 -- Daemon Status And Diagnose"
 description: "This scenario validates daemon health for `DAEMON-001`. It focuses on reporting the local HTTP daemon on 127.0.0.1:3456 read-only while never exposing the daemon token."
+version: 1.0.0.1
 ---
 
 # DAEMON-001 -- Daemon Status And Diagnose

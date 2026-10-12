@@ -7,6 +7,7 @@ trigger_phrases:
   - "cross-reference integrity"
   - "spec code alignment"
   - "traceabilityChecks"
+version: 1.11.0.6
 ---
 
 # Traceability

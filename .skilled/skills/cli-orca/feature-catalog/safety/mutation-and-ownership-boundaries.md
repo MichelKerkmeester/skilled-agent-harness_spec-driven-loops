@@ -7,6 +7,7 @@ trigger_phrases:
   - "orca archive hook gate"
   - "orca worktree all scoping"
   - "cli-orca ownership split"
+version: 1.0.0.0
 ---
 
 # Mutation and ownership boundaries (cli-orca)

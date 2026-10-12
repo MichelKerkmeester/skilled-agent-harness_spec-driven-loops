@@ -7,6 +7,7 @@ description: "Verify a runtime-parity-shaped request scores the RUNTIME_PARITY i
 expected_intent: RUNTIME_PARITY
 expected_resources:
   - references/guides/capability-matrix.md
+version: 1.1.0.0
 ---
 
 # DR-R07: Deep research runtime parity routing

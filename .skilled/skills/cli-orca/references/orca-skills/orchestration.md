@@ -9,6 +9,7 @@ trigger_phrases:
   - "orca worker done"
 importance_tier: normal
 contextType: general
+version: 1.0.0.0
 ---
 
 # Official Orca Skill - Orchestration

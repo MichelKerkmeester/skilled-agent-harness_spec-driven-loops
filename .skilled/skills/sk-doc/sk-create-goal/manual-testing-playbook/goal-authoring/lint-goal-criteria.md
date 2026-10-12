@@ -2,6 +2,7 @@
 title: "SCG-009 -- Lint goal criteria for rules 4 and 5"
 description: "This scenario validates the advisory criteria lint for `SCG-009`. It focuses on the lint flagging a dangling reference and a check that needs another document, skipping a scratch fixture goal, exiting 0 on every input and leaving the goal check green."
 stage: routing
+version: 1.3.0.0
 ---
 
 # SCG-009 -- Lint goal criteria for rules 4 and 5

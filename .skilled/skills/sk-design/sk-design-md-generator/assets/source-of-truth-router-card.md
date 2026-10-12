@@ -8,6 +8,7 @@ trigger_phrases:
   - is this value measured
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.0
 ---
 
 # Source-of-Truth Router Card

@@ -1,6 +1,7 @@
 ---
 title: "DLR-046 -- Fan-out stall watchdog"
 description: "Manual validation scenario for Fan-out stall watchdog in the runtime/ skill."
+version: 1.4.0.15
 ---
 
 # DLR-046 -- Fan-out stall watchdog

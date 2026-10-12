@@ -1,6 +1,7 @@
 ---
 title: "SP-022 -- Framework switch mid-flight"
 description: "This scenario validates framework switching for `SP-022`. It focuses on switching frameworks and restarting when the first framework underdelivers at Test."
+version: 2.3.0.5
 ---
 
 # SP-022 -- Framework switch mid-flight

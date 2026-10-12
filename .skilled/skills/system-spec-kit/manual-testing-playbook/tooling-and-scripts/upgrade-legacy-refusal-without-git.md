@@ -1,6 +1,7 @@
 ---
 title: "468 -- Upgrade-legacy refusal without git"
 description: "This scenario validates that upgrade-legacy refuses an apply when the tree is not a git repository, while the dry run still reports the failing packet. It focuses on the stderr message, the exit code and the guarantee that a refused apply writes nothing."
+version: 1.0.0.0
 id: tooling-and-scripts-upgrade-legacy-refusal-without-git
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

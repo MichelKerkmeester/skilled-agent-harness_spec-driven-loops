@@ -6,6 +6,7 @@ trigger_phrases:
   - "local vision skill"
   - "feature catalog"
 last_updated: "2026-08-16"
+version: 1.0.0.0
 ---
 
 # sk-vision: Feature Catalog

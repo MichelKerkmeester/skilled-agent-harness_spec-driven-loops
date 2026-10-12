@@ -1,6 +1,7 @@
 ---
 title: "MCP-H004 -- Delete Task via MCP (DESTRUCTIVE)"
 description: "This scenario validates Delete Task via MCP (DESTRUCTIVE) for `MCP-H004`. Objective: Verify `clickup_delete_task` removes the throwaway task from MCP-H001."
+version: 1.1.0.0
 ---
 
 # MCP-H004 -- Delete Task via MCP (DESTRUCTIVE)

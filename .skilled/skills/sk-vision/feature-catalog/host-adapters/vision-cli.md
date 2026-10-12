@@ -6,6 +6,7 @@ trigger_phrases:
   - "sk-vision cli"
   - "cursor vision command"
   - "sk-vision command entry"
+version: 1.0.0.0
 ---
 
 # Vision CLI (vision-cli.js)

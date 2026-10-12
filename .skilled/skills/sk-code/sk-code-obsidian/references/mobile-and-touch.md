@@ -10,6 +10,7 @@ trigger_phrases:
   - "platform.ismobile istablet"
 importance_tier: normal
 contextType: implementation
+version: 0.1.0.0
 ---
 
 # Mobile and Touch Support

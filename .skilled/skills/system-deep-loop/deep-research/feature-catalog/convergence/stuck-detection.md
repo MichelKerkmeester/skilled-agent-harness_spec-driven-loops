@@ -7,6 +7,7 @@ trigger_phrases:
   - "no-progress recovery"
   - "stuckCount threshold"
   - "research circling recovery"
+version: 1.14.0.10
 ---
 
 # Stuck detection

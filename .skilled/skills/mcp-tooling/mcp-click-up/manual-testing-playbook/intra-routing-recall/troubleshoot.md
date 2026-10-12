@@ -7,6 +7,7 @@ description: "This scenario validates the SKILL.md Smart Router's TROUBLESHOOT i
 expected_intent: TROUBLESHOOT
 expected_resources:
   - references/troubleshooting.md
+version: 1.1.0.0
 ---
 
 # CU-R04: Troubleshoot routing

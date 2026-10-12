@@ -1,6 +1,7 @@
 ---
 title: "ASD-021 -- Navigation + multi-tab management"
 description: "This scenario validates Chrome-DevTools page-lifecycle parity for `ASD-021`: attachActiveBrowserTab/openTab, page.goto/waitForLoadState, and tabs enumeration through the aside REPL, with the parallel-isolation gap noted and a SKIP-valid path when no bound session exists."
+version: 1.0.0.0
 ---
 
 # ASD-021 -- Navigation + multi-tab management

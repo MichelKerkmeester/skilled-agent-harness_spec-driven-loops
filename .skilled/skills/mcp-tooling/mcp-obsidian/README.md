@@ -7,6 +7,7 @@ trigger_phrases:
   - "notesmd-cli"
   - "obsidian mcp"
   - "local rest api"
+version: 0.18.0.0
 ---
 
 # mcp-obsidian

@@ -9,6 +9,7 @@ trigger_phrases:
   - "graphEvents"
 importance_tier: important
 contextType: implementation
+version: 1.4.0.3
 ---
 
 # Deep Loop Runtime State Format

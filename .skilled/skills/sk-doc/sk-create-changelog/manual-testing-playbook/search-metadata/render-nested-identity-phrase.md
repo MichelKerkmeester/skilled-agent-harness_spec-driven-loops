@@ -1,6 +1,7 @@
 ---
 title: "CHG-012 -- Render the identity phrase into a nested entry"
 description: "This scenario validates nested search metadata for CHG-012. The generator names a packet-local entry by an identity phrase built from its output path and renders no phrase that every packet shares."
+version: 1.3.0.0
 ---
 
 # CHG-012 -- Render the identity phrase into a nested entry

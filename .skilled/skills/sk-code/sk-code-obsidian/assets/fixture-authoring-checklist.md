@@ -10,6 +10,7 @@ trigger_phrases:
   - "card field renderer parameter classes"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.0
 ---
 
 # Screenshot Fixture Authoring Checklist

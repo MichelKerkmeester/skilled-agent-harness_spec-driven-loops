@@ -12,6 +12,7 @@ trigger_phrases:
   - "typed judgment transport"
 importance_tier: "important"
 contextType: "general"
+version: 0.1.0.3
 ---
 
 # cli-jev

@@ -1,6 +1,7 @@
 ---
 title: "DR-026 -- Ruled-out directions synthesized"
 description: "Verify that iteration ruledOut data is consolidated into an Eliminated Alternatives section in research/research.md."
+version: 1.14.0.15
 ---
 
 # DR-026 -- Ruled-out directions synthesized

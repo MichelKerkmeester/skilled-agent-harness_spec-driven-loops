@@ -1,6 +1,7 @@
 ---
 title: "DRV-008 -- Review iteration reads state before review"
 description: "Verify that each dispatched @deep-review iteration reads JSONL and strategy state before performing any review actions."
+version: 1.11.0.14
 ---
 
 # DRV-008 -- Review iteration reads state before review

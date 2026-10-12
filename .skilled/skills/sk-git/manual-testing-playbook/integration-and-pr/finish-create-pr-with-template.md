@@ -1,6 +1,7 @@
 ---
 title: "GIT-013 -- Finish create PR with template"
 description: "This scenario validates Finish create PR with template for `GIT-013`. It focuses on verify PR creation uses the documented title/body template and remote-operation path."
+version: 1.1.0.3
 ---
 
 # GIT-013 -- Finish create PR with template

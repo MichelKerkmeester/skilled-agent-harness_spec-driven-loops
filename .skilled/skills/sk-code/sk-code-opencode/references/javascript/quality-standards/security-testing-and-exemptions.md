@@ -8,6 +8,7 @@ trigger_phrases:
   - "javascript exemption tiers"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.15
 ---
 
 # Security, Testing, Async & Exemption Tiers

@@ -7,6 +7,7 @@ trigger_phrases:
   - "score verdict delta"
   - "jaccard delta axis flip rate"
   - "council convergence saturation score"
+version: 1.4.0.4
 ---
 
 # Adjudicator verdict scoring

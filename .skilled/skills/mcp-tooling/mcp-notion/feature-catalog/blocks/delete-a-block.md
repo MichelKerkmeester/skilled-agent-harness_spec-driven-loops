@@ -5,6 +5,7 @@ trigger_phrases:
   - "Delete a block"
   - "notion_delete-a-block"
   - "trash a Notion block"
+version: 0.1.0.0
 ---
 
 # Delete a block (`notion_delete-a-block`)

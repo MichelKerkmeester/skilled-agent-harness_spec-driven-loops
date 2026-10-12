@@ -1,6 +1,7 @@
 ---
 title: "BDG-004 -- Session stop"
 description: "This scenario validates bdg session termination for `BDG-004`. It focuses on confirming `bdg stop` cleanly terminates an active session and no Chrome processes leak."
+version: 1.0.0.6
 ---
 
 # BDG-004 -- Session stop

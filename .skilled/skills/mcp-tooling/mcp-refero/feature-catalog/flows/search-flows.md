@@ -5,6 +5,7 @@ trigger_phrases:
   - "refero search flows tool"
   - "search flows refero"
   - "flow search refero"
+version: 1.0.0.0
 ---
 
 # refero_search_flows

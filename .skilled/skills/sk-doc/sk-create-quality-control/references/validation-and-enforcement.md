@@ -8,6 +8,7 @@ trigger_phrases:
   - "doc quality troubleshooting"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.12
 ---
 
 # Validation and Enforcement Operations

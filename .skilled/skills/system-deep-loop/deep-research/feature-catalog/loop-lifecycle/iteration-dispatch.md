@@ -7,6 +7,7 @@ trigger_phrases:
   - "fresh-context iteration"
   - "reducer-owned packet state"
   - "loop body execution"
+version: 1.14.0.7
 ---
 
 # Iteration dispatch

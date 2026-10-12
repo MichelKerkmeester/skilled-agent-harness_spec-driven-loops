@@ -12,6 +12,7 @@ trigger_phrases:
   - ambiguity resolution
 importance_tier: normal
 contextType: general
+version: 1.0.0.2
 ---
 
 # Color Role Taxonomy

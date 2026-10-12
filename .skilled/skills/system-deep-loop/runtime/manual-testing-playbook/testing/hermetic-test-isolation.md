@@ -1,6 +1,7 @@
 ---
 title: "DLR-050 -- Hermetic test isolation"
 description: "Manual validation scenario for Hermetic test isolation in the runtime/ skill."
+version: 1.4.0.15
 ---
 
 # DLR-050 -- Hermetic test isolation

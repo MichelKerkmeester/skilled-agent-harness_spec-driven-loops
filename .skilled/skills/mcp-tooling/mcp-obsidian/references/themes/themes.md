@@ -12,6 +12,7 @@ trigger_phrases:
   - "minimal theme"
 importance_tier: "normal"
 contextType: "reference"
+version: "1.0.0.0"
 ---
 
 # Obsidian Theme System

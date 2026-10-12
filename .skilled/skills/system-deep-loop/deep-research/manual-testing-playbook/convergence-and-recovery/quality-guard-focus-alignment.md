@@ -1,6 +1,7 @@
 ---
 title: "DR-021 -- Quality Guard — Focus Alignment"
 description: "Verify that convergence STOP is blocked when answered questions don't map to original key questions."
+version: 1.14.0.15
 ---
 
 # DR-021 -- Quality Guard — Focus Alignment

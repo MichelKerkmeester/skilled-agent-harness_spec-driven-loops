@@ -6,6 +6,7 @@ trigger_phrases:
   - "orca versioned preflight"
   - "orca-cli guide authority"
   - "orca-ide screen reader resolution"
+version: 1.0.0.0
 ---
 
 # Executable resolution and versioned preflight (cli-orca)

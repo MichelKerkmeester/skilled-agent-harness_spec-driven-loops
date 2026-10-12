@@ -1,6 +1,7 @@
 ---
 title: "MCP-H006 -- Get Workspace Hierarchy (CRITICAL PATH)"
 description: "This scenario validates Get Workspace Hierarchy (CRITICAL PATH) for `MCP-H006`. Objective: Verify `clickup_get_workspace_hierarchy` answers, proving the MCP route and the OAuth sign-in work."
+version: 1.1.0.0
 ---
 
 # MCP-H006 -- Get Workspace Hierarchy (CRITICAL PATH)

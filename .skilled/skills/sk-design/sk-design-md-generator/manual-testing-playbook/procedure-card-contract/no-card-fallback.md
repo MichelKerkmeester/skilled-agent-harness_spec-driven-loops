@@ -1,6 +1,7 @@
 ---
 title: "PROCCARD-002 -- md-generator no-card fallback"
 description: "This scenario validates the exact md-generator no-procedure fallback line and baseline pipeline continuation."
+version: 1.0.0.0
 ---
 
 # PROCCARD-002 -- md-generator no-card fallback

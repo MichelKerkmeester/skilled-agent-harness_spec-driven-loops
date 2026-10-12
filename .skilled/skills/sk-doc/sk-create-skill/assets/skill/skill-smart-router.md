@@ -8,6 +8,7 @@ trigger_phrases:
   - "router fallback pattern"
 importance_tier: normal
 contextType: general
+version: 1.2.0.11
 ---
 
 # Skill Smart Router - Resilience Pattern

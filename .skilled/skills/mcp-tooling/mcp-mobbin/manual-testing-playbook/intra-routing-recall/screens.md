@@ -7,6 +7,7 @@ description: "This scenario validates SCREENS routing for `MB-R02`. It focuses o
 expected_intent: SCREENS
 expected_resources:
   - references/tool-surface.md
+version: 1.0.0.1
 ---
 
 # MB-R02: Screens routing

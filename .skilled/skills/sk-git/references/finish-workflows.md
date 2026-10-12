@@ -12,6 +12,7 @@ trigger_phrases:
   - "reconcile primary checkout after worktree push"
 importance_tier: normal
 contextType: implementation
+version: 1.7.0.32
 ---
 
 # Git Finish - Detailed Workflow Reference

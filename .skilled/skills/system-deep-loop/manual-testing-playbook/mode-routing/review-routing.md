@@ -17,6 +17,7 @@ expected_leaf_resources:
     leaf_resource_id: references/protocol/completion-criteria.md
   - workflow_mode: review
     leaf_resource_id: references/convergence/convergence.md
+version: "1.2.0.0"
 ---
 
 # MO-002: Review Mode Routing

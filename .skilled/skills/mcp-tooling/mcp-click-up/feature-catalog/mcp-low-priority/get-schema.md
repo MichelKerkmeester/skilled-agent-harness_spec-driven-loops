@@ -4,6 +4,7 @@ description: "Return the data model behind the enabled operators."
 trigger_phrases:
   - "clickup_get_schema"
   - "operator schema"
+version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

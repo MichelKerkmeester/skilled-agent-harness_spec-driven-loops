@@ -6,6 +6,7 @@ trigger_phrases:
   - "derived age decay"
   - "age weighted derived"
   - "lifecycle age"
+version: 0.8.0.13
 ---
 
 # Derived-Lane-Only Age Haircut

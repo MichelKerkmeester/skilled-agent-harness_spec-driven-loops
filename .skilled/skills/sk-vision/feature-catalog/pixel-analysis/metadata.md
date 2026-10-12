@@ -6,6 +6,7 @@ trigger_phrases:
   - "what are the dimensions of this image"
   - "sk_vision_metadata"
   - "verify a downloaded image"
+version: 1.0.0.0
 ---
 
 # Image metadata (sk_vision_metadata)

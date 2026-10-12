@@ -7,6 +7,7 @@ description: "This scenario validates ELEMENTS routing for `MB-R04`. It focuses 
 expected_intent: ELEMENTS
 expected_resources:
   - references/tool-surface.md
+version: 1.0.0.1
 ---
 
 # MB-R04: Elements routing

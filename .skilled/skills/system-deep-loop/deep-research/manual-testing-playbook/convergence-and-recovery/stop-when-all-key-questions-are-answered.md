@@ -1,6 +1,7 @@
 ---
 title: "DR-012 -- Stop when all key questions are answered"
 description: "Verify that the loop stops when the tracked key questions are fully answered."
+version: 1.14.0.15
 ---
 
 # DR-012 -- Stop when all key questions are answered

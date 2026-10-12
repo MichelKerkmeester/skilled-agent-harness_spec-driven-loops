@@ -2,6 +2,7 @@
 title: "BACKEND-001 -- Headless Backend Selection"
 description: "This scenario validates that headless Code Mode execution always selects the local stdio Notion backend, never the interactive remote OAuth backend."
 stage: routing
+version: 0.1.0.0
 ---
 
 # BACKEND-001 -- Headless Backend Selection

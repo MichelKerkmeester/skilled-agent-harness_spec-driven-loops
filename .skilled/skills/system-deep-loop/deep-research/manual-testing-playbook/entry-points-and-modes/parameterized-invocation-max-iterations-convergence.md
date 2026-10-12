@@ -1,6 +1,7 @@
 ---
 title: "DR-003 -- Parameterized invocation with --max-iterations and --convergence"
 description: "Verify that the command binds topic, spec folder, execution mode, max iterations, and convergence threshold before the YAML workflow starts."
+version: 1.14.0.15
 ---
 
 # DR-003 -- Parameterized invocation with --max-iterations and --convergence

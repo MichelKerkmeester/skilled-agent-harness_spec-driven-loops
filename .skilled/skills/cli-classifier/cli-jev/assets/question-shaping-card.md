@@ -9,6 +9,7 @@ trigger_phrases:
   - "score levels"
 importance_tier: "important"
 contextType: "reference"
+version: 0.1.0.1
 ---
 
 # Question Shaping Card

@@ -1,6 +1,7 @@
 ---
 title: "CC-029 -- Claude Code repository goal discovery boundary"
 description: "Validates that Claude Code cannot discover the OpenCode-only goal command through this repository."
+version: 1.6.0.0
 ---
 
 # CC-029 -- Claude Code repository goal discovery boundary

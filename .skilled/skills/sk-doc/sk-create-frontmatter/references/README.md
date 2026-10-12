@@ -7,6 +7,7 @@ trigger_phrases:
   - "frontmatter versioning reference"
 importance_tier: normal
 contextType: reference
+version: 1.0.0.4
 ---
 
 # sk-create-frontmatter References

@@ -6,6 +6,7 @@ trigger_phrases:
   - "advisor feature catalog"
   - "native advisor features"
   - "skill advisor inventory"
+version: 0.8.0.12
 ---
 
 # Skill Advisor: Feature Catalog

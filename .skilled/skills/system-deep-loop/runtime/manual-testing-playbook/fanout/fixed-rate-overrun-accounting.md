@@ -1,6 +1,7 @@
 ---
 title: "DLR-039 -- Fixed-rate overrun accounting"
 description: "Manual validation scenario for Fixed-rate overrun accounting in the runtime/ skill."
+version: 1.4.0.15
 ---
 
 # DLR-039 -- Fixed-rate overrun accounting

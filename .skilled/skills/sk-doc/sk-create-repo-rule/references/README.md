@@ -7,6 +7,7 @@ trigger_phrases:
   - "rule authoring references"
 importance_tier: normal
 contextType: reference
+version: 1.1.0.4
 ---
 
 # sk-create-repo-rule References

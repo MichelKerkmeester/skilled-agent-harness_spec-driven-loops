@@ -6,6 +6,7 @@ trigger_phrases:
   - "HERMES_RUN_BUDGET_MARGIN_SECONDS"
   - "hermes max turns"
   - "hermes reasoning level"
+version: 1.0.0.0
 ---
 
 # Run-Budget Margin And Reasoning Pin

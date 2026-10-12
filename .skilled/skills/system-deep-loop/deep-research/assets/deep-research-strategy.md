@@ -10,6 +10,7 @@ trigger_phrases:
   - "ruled out research directions"
 importance_tier: normal
 contextType: planning
+version: 1.14.0.19
 ---
 
 # Deep Research Strategy - Session Tracking Template

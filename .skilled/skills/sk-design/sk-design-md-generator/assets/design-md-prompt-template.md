@@ -8,6 +8,7 @@ trigger_phrases:
   - "design md generation prompt"
 importance_tier: "normal"
 contextType: "implementation"
+version: 1.0.0.7
 ---
 
 # DESIGN.md Write-Phase Prompt Template

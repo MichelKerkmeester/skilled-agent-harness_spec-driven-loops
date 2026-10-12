@@ -1,6 +1,7 @@
 ---
 title: "CR-005 -- Input validation injection"
 description: "This scenario validates Input validation injection for `CR-005`. It focuses on Confirm injection sinks trigger context-aware input/output safety review."
+version: 1.5.0.4
 ---
 
 # CR-005 -- Input validation injection

@@ -7,6 +7,7 @@ trigger_phrases:
   - "authenticate clickup"
   - "oauth credential setup"
   - "personal api token wizard"
+version: 1.0.0.3
 ---
 
 # Interactive Auth

@@ -9,6 +9,7 @@ trigger_phrases:
   - "aside mcp handshake failed"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.0
 ---
 
 # Aside Troubleshooting Guide

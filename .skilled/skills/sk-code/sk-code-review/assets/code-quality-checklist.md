@@ -9,6 +9,7 @@ trigger_phrases:
   - "error handling review defects"
 importance_tier: normal
 contextType: implementation
+version: 1.5.0.11
 ---
 
 # Code Quality Checklist

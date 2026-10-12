@@ -1,6 +1,7 @@
 ---
 title: "DOC-381 -- Doctor update compat"
 description: "Manual scenario validating that /doctor:update compat on a throwaway v3 fixture previews the layout move without writing, refuses a dirty spec root, asks the move and the upgrade approvals separately, and resumes an interrupted move from its move log."
+version: 1.0.0.0
 id: doctor-commands-doctor-update-compat
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

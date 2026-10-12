@@ -2,6 +2,7 @@
 title: "SCG-005 -- Refuse a leftover placeholder"
 description: "This scenario validates the placeholder refusal for `SCG-005`. It focuses on a template placeholder left in a goal decision failing the goal check on the `placeholder` check with no chat slice handed off."
 stage: routing
+version: 1.0.0.0
 ---
 
 # SCG-005 -- Refuse a leftover placeholder

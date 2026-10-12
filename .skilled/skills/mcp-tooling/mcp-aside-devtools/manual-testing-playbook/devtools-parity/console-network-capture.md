@@ -1,6 +1,7 @@
 ---
 title: "ASD-018 -- Console + network event capture"
 description: "This scenario validates Chrome-DevTools Console/Network parity for `ASD-018` through Playwright page.on() listeners in the aside REPL, with the exact repl code, the honest HAR-assembly gap, and a SKIP-valid path when no bound session exists."
+version: 1.0.0.0
 ---
 
 # ASD-018 -- Console + network event capture

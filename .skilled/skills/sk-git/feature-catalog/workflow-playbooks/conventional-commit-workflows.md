@@ -6,6 +6,7 @@ trigger_phrases:
   - "scoped staging discipline"
   - "atomic commit strategy"
   - "filter development artifacts"
+version: 1.0.0.0
 ---
 
 # Conventional commit workflows

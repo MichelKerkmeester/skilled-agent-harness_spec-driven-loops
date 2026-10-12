@@ -13,6 +13,7 @@ expected_resources:
   - references/implementation/animation-workflows/motion-dev-advanced.md
   - references/verification/verification-workflows/gate-and-automated-options.md
   - references/verification/verification-workflows/requirements-rules-and-checklist.md
+version: 1.0.0.0
 ---
 
 # WF-009: Accessibility routing

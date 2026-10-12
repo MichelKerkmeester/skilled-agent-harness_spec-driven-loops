@@ -2,6 +2,7 @@
 title: "SCG-008 -- Resend the parent after a child change"
 description: "This scenario validates the parent-first amendment and resend for `SCG-008`. It focuses on a child change that alters a parent decision amending the parent first and then printing the parent chat slice for the operator to resend."
 stage: routing
+version: 1.0.0.0
 ---
 
 # SCG-008 -- Resend the parent after a child change

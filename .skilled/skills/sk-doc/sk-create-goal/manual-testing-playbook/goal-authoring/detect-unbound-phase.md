@@ -2,6 +2,7 @@
 title: "SCG-006 -- Detect an unbound phase"
 description: "This scenario validates the unbound-phase detection for `SCG-006`. It focuses on a phase folder missing from the parent binding table failing the `missing-binding-row` check even when the phase name appears elsewhere in the goal."
 stage: routing
+version: 1.0.0.0
 ---
 
 # SCG-006 -- Detect an unbound phase

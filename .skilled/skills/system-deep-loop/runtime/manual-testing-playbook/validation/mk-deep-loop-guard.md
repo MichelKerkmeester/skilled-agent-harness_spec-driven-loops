@@ -1,6 +1,7 @@
 ---
 title: "DLR-052 -- system-deep-loop-guard"
 description: "Manual validation scenario for system-deep-loop-guard in the runtime/ skill."
+version: 1.1.0.0
 ---
 
 # DLR-052 -- system-deep-loop-guard

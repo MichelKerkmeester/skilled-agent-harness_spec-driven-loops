@@ -6,6 +6,7 @@ trigger_phrases:
   - "skill_advisor_bench.py"
   - "advisor latency bench"
   - "cache-hit uncached p95"
+version: 0.8.0.14
 ---
 
 # Python Bench Runner (skill_advisor_bench.py)

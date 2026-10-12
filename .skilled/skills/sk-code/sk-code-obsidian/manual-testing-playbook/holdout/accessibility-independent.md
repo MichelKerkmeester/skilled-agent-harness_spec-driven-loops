@@ -7,6 +7,7 @@ expected_surface: OBSIDIAN
 expected_intent: STACK_STANDARDS
 expected_resources:
   - references/accessibility.md
+version: 1.0.0.0
 ---
 
 # OB-H06: Independent probe for a keyword-blind accessibility question

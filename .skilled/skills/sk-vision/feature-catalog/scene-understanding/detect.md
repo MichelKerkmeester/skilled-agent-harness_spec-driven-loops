@@ -6,6 +6,7 @@ trigger_phrases:
   - "find the submit button in this screenshot"
   - "sk_vision_detect"
   - "locate UI elements"
+version: 1.0.0.0
 ---
 
 # Object detection (sk_vision_detect)

@@ -1,6 +1,7 @@
 ---
 title: "DR-064 -- Divergent convergence mode"
 description: "Verify eligible research STOP pivots, hard terminal boundaries, and unchanged non-divergent mode routing."
+version: 1.14.0.1
 ---
 
 # DR-064 -- Divergent convergence mode

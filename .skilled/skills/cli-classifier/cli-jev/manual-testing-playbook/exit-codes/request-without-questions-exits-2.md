@@ -1,6 +1,7 @@
 ---
 title: "JEV-016 -- A request without questions exits 2"
 description: "Confirm a batch request missing its questions object is refused at exit 2, for `JEV-016`."
+version: 0.1.0.1
 ---
 
 # JEV-016 -- A request without questions exits 2

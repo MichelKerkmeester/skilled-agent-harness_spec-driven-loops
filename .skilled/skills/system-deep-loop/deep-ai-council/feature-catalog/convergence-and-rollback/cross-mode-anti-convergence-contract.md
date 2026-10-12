@@ -7,6 +7,7 @@ trigger_phrases:
   - "minRounds"
   - "fail-closed stop policy"
   - "council convergence floor"
+version: 1.7.0.1
 ---
 
 # Cross-mode anti-convergence contract

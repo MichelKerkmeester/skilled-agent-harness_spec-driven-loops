@@ -5,6 +5,7 @@ trigger_phrases:
   - "clickup_get_current_time_entry"
   - "current timer"
   - "running timer"
+version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

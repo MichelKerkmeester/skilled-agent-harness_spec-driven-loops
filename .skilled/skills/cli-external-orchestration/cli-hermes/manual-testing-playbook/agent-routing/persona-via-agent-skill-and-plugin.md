@@ -1,6 +1,7 @@
 ---
 title: "HERMES-023 -- Persona via the agent skill mirror and the plugin binding"
 description: "Confirm a Hermes session adopts a shared agent persona when the mirrored `agent-<name>` skill is preloaded and `HERMES_AGENT_PERSONA` names it for the repo plugin, for `HERMES-023`."
+version: 1.0.0.0
 ---
 
 # HERMES-023 -- Persona via the agent skill mirror and the plugin binding

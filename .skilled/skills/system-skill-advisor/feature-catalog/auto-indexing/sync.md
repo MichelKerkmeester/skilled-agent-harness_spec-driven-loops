@@ -6,6 +6,7 @@ trigger_phrases:
   - "graph-metadata write"
   - "derived.json write"
   - "sync derived block"
+version: 0.8.0.14
 ---
 
 # Graph-Metadata Derived Sync

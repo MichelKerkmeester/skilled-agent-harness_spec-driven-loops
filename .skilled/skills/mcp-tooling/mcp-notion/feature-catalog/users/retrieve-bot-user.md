@@ -5,6 +5,7 @@ trigger_phrases:
   - "Retrieve your bot user"
   - "notion_retrieve-bot-user"
   - "check the Notion integration identity"
+version: 0.1.0.0
 ---
 
 # Retrieve your bot user (`notion_retrieve-bot-user`)

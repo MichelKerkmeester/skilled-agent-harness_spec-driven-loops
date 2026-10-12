@@ -1,6 +1,7 @@
 ---
 title: "DRV-010 -- Strategy next focus and dimension rotation"
 description: "Verify that the strategy rotates through dimensions and respects exhausted approaches."
+version: 1.11.0.15
 ---
 
 # DRV-010 -- Strategy next focus and dimension rotation

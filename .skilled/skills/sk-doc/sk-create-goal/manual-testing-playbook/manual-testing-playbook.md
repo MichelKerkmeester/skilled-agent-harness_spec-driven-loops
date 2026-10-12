@@ -1,6 +1,7 @@
 ---
 title: "sk-create-goal: Manual Testing Playbook"
 description: "Operator directory, review protocol and orchestration guide for validating the sk-create-goal mode through nine deterministic goal-authoring scenarios in one category."
+version: 1.0.0.0
 ---
 
 # sk-create-goal: Manual Testing Playbook

@@ -12,6 +12,7 @@ trigger_phrases:
   - "healthmd rollup_summary"
 importance_tier: "normal"
 contextType: "implementation"
+version: 0.5.0.0
 ---
 
 # Health.md File-Layer Data Model

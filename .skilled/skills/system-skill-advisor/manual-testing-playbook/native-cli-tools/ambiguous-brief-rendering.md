@@ -6,6 +6,7 @@ trigger_phrases:
   - "ambiguous brief rendering"
   - "ambiguous brief"
   - "ambiguous"
+version: 0.8.0.13
 id: NC-004
 category: native_cli_tools
 stage: routing

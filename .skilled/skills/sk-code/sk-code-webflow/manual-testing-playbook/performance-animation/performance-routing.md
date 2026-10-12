@@ -15,6 +15,7 @@ expected_resources:
   - references/implementation/performance-patterns/overview-and-checklist.md
   - references/implementation/performance-patterns/budgets-and-anti-patterns.md
   - references/animation/performance-and-pitfalls.md
+version: 1.0.0.0
 ---
 
 # WF-006: Performance routing

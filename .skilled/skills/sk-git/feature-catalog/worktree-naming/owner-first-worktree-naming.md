@@ -7,6 +7,7 @@ trigger_phrases:
   - "numbered branch grammar"
   - "worktree-naming.sh"
 importance_tier: "important"
+version: 1.1.0.0
 ---
 
 # Numbered worktree/branch naming grammar and allocator (worktree-naming.sh)

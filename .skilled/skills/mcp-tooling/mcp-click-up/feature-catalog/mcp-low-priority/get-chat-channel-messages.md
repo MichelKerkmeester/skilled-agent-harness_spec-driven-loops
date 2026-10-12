@@ -5,6 +5,7 @@ trigger_phrases:
   - "clickup_get_chat_channel_messages"
   - "read chat"
   - "channel messages"
+version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -1,6 +1,7 @@
 ---
 title: "DLR-025 -- Fan-out CLI lineage driver spawn and isolation"
 description: "Validate fanout-run.cjs creates per-lineage dirs with isolated .executor-state paths, saves stdout to logs/, writes orchestration summary and ledger, and returns early for native-only configs."
+version: 1.4.0.4
 ---
 
 # DLR-025 -- Fan-out CLI lineage driver spawn and isolation

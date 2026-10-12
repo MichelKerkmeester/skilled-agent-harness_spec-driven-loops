@@ -1,6 +1,7 @@
 ---
 title: "VSN-028 -- Devin prompt-time injection"
 description: "This scenario validates that the Devin hook analyzes an image named in a prompt and injects the evidence into the same turn, without the model asking."
+version: 1.0.0.0
 ---
 
 # VSN-028 -- Devin prompt-time injection

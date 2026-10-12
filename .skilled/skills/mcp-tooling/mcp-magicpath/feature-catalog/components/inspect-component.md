@@ -5,6 +5,7 @@ trigger_phrases:
   - "magicpath inspect component tool"
   - "inspect component magicpath"
   - "magicpath component source"
+version: 1.0.0.0
 ---
 
 # inspect_component

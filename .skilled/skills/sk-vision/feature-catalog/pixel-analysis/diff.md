@@ -6,6 +6,7 @@ trigger_phrases:
   - "what changed between these two screenshots"
   - "sk_vision_diff"
   - "compare two images"
+version: 1.0.0.0
 ---
 
 # Image diffing (sk_vision_diff)

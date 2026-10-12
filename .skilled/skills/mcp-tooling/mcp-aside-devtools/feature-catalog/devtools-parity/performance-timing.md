@@ -7,6 +7,7 @@ trigger_phrases:
   - "aside navigation timing"
   - "aside lighthouse"
 last_updated: "2026-07-17"
+version: 1.0.0.0
 ---
 
 # Performance Timing and Web Vitals (DevTools parity)

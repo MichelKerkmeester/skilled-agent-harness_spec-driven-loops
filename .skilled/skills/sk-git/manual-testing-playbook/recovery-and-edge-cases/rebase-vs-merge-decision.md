@@ -1,6 +1,7 @@
 ---
 title: "GIT-019 -- Rebase vs merge decision"
 description: "This scenario validates Rebase vs merge decision for `GIT-019`. It focuses on verify divergence recovery chooses rebase only for safe local/unpushed work and merge for shared history."
+version: 1.1.0.3
 ---
 
 # GIT-019 -- Rebase vs merge decision

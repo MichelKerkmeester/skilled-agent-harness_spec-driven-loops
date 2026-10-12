@@ -1,6 +1,7 @@
 ---
 title: "HERMES-013 -- Max-turns bound"
 description: "Confirm `--max-turns` caps the agent loop, ends the run at the cap with exit 0, and produces a response that states the cap was hit rather than inventing results for `HERMES-013`."
+version: 1.0.0.0
 ---
 
 # HERMES-013 -- Max-turns bound

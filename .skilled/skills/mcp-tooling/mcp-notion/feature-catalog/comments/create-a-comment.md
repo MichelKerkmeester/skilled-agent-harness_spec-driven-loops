@@ -5,6 +5,7 @@ trigger_phrases:
   - "Create a comment"
   - "notion_create-a-comment"
   - "add a comment to a Notion page"
+version: 0.1.0.0
 ---
 
 # Create a comment (`notion_create-a-comment`)

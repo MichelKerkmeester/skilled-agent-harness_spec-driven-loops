@@ -5,6 +5,7 @@ trigger_phrases:
   - "clickup_get_custom_fields"
   - "custom fields"
   - "field ids"
+version: 1.1.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

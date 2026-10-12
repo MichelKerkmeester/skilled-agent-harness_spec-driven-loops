@@ -7,6 +7,7 @@ trigger_phrases:
   - "traverse skill relationships"
   - "relationship traversals"
   - "query skill dependencies"
+version: 0.8.0.10
 ---
 
 # Skill graph query

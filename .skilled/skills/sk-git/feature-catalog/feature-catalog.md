@@ -7,6 +7,7 @@ trigger_phrases:
   - "worktree naming allocator"
   - "sk-git capability inventory"
 last_updated: "2026-10-01"
+version: 1.2.0.0
 ---
 
 # sk-git: Feature Catalog

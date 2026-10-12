@@ -10,6 +10,7 @@ trigger_phrases:
   - "obsidian default surface"
 importance_tier: "important"
 contextType: "implementation"
+version: 0.1.0.0
 ---
 
 # Official CLI versus Obsidian MCP, Measured

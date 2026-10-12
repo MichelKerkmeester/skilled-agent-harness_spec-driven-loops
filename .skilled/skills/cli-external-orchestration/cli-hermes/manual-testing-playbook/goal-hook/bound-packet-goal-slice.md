@@ -1,6 +1,7 @@
 ---
 title: "HERMES-020 -- Bound packet goal slice"
 description: "Confirm `HERMES_SPEC_FOLDER` puts the bound packet's path and its goal into the session prompt, where the model can quote them for `HERMES-020`."
+version: 1.0.0.0
 ---
 
 # HERMES-020 -- Bound packet goal slice

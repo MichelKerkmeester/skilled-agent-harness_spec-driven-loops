@@ -1,6 +1,7 @@
 ---
 title: "VSN-020 -- Vision-blind model gains sight"
 description: "This scenario validates the end-to-end value for `VSN-020`: a text-only model (such as GLM) in Devin or Cursor reads an image it cannot natively see."
+version: 1.0.0.0
 ---
 
 # VSN-020 -- Vision-blind model gains sight

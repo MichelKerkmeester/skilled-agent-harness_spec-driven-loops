@@ -1,6 +1,7 @@
 ---
 title: "DOC-331 -- Doctor deep-loop lazy init"
 description: "Manual scenario validating that /doctor:deep-loop reports lazy-init availability for an empty graph with existing iteration folders and recommends the repair path without writing the graph."
+version: 1.6.0.8
 id: doctor-commands-doctor-deep-loop-lazy-init
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

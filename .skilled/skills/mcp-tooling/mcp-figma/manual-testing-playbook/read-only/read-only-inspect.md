@@ -1,6 +1,7 @@
 ---
 title: "INSPECT-001 -- Read-Only Inspect"
 description: "This scenario validates read-only inspect for `INSPECT-001`. It focuses on returning structure or properties from the open Figma file without changing the document."
+version: 1.0.0.1
 ---
 
 # INSPECT-001 -- Read-Only Inspect

@@ -8,6 +8,7 @@ trigger_phrases:
   - "rust determinism recipes"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.0
 ---
 
 # Rust Quick Reference

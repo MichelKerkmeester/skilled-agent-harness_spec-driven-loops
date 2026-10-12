@@ -7,6 +7,7 @@ trigger_phrases:
   - "exploit paths review"
   - "vulnerability dimension"
   - "authz authn exposure"
+version: 1.11.0.6
 ---
 
 # Security

@@ -9,6 +9,7 @@ trigger_phrases:
   - "loop-like repeated dispatch detection"
   - "loop-guard state cleanup"
   - "loop-guard state retention"
+version: 1.2.0.0
 ---
 
 # system-deep-loop-guard (tool.execute.before plugin)

@@ -7,6 +7,7 @@ trigger_phrases:
   - "figma tokens"
   - "figma var delete-all"
   - "var:name binding"
+version: 1.0.0.2
 ---
 
 # Tokens and variables (figma-ds-cli var / bind / collections)

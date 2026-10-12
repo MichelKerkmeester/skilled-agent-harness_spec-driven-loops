@@ -5,6 +5,7 @@ trigger_phrases:
   - "Query a data source"
   - "notion_query-data-source"
   - "filter and sort rows in a Notion data source"
+version: 0.1.0.0
 ---
 
 # Query a data source (`notion_query-data-source`)

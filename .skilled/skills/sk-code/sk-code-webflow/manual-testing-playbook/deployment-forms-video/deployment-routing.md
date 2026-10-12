@@ -12,6 +12,7 @@ expected_resources:
   - references/deployment/minification-guide/batch-rules-and-related.md
   - references/deployment/webflow-staging-production.md
   - assets/scripts/README.md
+version: 1.0.0.0
 ---
 
 # WF-010: Deployment routing

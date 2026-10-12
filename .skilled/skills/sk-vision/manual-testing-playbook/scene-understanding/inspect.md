@@ -1,6 +1,7 @@
 ---
 title: "VSN-001 -- Image inspection"
 description: "This scenario validates Image inspection for `VSN-001`. It focuses on a combined caption, scene, and OCR readout for one image."
+version: 1.0.0.0
 ---
 
 # VSN-001 -- Image inspection

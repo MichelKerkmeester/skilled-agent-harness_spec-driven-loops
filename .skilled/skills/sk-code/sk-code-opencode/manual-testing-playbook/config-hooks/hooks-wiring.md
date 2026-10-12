@@ -7,6 +7,7 @@ expected_surface: OPENCODE
 expected_intent: HOOKS
 expected_resources:
   - references/shared/hooks.md
+version: 1.0.0.0
 ---
 
 # OC-005: Hooks wiring routing

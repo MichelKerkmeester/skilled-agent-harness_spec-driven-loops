@@ -1,6 +1,7 @@
 ---
 title: "Fan-out single-executor parity for review loop"
 description: "Validate that all three fan-out YAML steps are fully bypassed in single-executor review mode, and that the if_absent branch is byte-identical to the original resolver."
+version: 1.11.0.3
 ---
 
 # DRV-067 -- Fan-out single-executor parity for review loop

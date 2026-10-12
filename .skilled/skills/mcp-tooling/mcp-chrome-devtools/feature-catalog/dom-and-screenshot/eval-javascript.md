@@ -5,6 +5,7 @@ trigger_phrases:
   - "bdg dom eval"
   - "bdg js"
   - "run javascript in browser cli"
+version: 1.0.0.0
 ---
 
 # Eval JavaScript

@@ -1,6 +1,7 @@
 ---
 title: "BDG-022 -- Cleanup leak detection (DESTRUCTIVE)"
 description: "This scenario validates the cleanup contract for `BDG-022`. It focuses on confirming that omitting `bdg stop` leaks a Chrome process and that calling `bdg stop` returns the process count to baseline. DESTRUCTIVE: spawns and counts real Chrome processes."
+version: 1.0.0.7
 ---
 
 # BDG-022 -- Cleanup leak detection (DESTRUCTIVE)

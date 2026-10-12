@@ -1,6 +1,7 @@
 ---
 title: "ASD-020 -- Performance timing + Lighthouse gap"
 description: "This scenario validates Chrome-DevTools Performance parity for `ASD-020`: page.evaluate over the Performance API through the aside REPL, and an explicit assertion of the honest Lighthouse gap, with a SKIP-valid path when no bound session exists."
+version: 1.0.0.0
 ---
 
 # ASD-020 -- Performance timing + Lighthouse gap

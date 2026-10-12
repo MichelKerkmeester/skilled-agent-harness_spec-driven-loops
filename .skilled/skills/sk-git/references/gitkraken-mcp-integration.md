@@ -9,6 +9,7 @@ trigger_phrases:
   - "gitkraken start review"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.0
 ---
 
 # GitKraken MCP Integration - Cross-Platform Git, Issue, and PR Reference

@@ -7,6 +7,7 @@ trigger_phrases:
   - "figma import tokens"
   - "figma import design system"
   - "design tokens json"
+version: 1.0.0.2
 ---
 
 # Design-system extract and import (figma-ds-cli extract / import)

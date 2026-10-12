@@ -9,6 +9,7 @@ trigger_phrases:
   - "npx ts-node scripts/validate.ts"
   - "design md fidelity check"
 importance_tier: "normal"
+version: 1.0.0.7
 ---
 
 # Validate (validate.ts)

@@ -8,6 +8,7 @@ trigger_phrases:
   - "frontend validation snippets"
 importance_tier: normal
 contextType: implementation
+version: 1.5.0.6
 ---
 
 # Common Commands

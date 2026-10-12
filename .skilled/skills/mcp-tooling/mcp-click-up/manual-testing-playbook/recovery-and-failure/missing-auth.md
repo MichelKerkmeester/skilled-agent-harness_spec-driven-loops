@@ -1,6 +1,7 @@
 ---
 title: "FAIL-001 -- Missing Auth Recovery"
 description: "This scenario validates Missing Auth Recovery for `FAIL-001`. Objective: Verify that after `cupt logout`, commands fail with AuthError and `cupt auth` re."
+version: 1.0.0.6
 ---
 
 # FAIL-001 -- Missing Auth Recovery

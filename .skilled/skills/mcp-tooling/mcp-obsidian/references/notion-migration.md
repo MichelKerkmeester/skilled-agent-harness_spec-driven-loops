@@ -13,6 +13,7 @@ trigger_phrases:
   - "parity verification"
 importance_tier: "normal"
 contextType: "implementation"
+version: 0.1.0.0
 ---
 
 # Notion to Obsidian Migration Method (`notion-migration`)

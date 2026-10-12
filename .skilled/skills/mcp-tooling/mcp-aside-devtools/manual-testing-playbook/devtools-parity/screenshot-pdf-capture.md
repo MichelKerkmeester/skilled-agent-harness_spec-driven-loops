@@ -1,6 +1,7 @@
 ---
 title: "ASD-017 -- Full-page screenshot + PDF capture"
 description: "This scenario validates Chrome-DevTools visual-capture parity for `ASD-017`: page.screenshot({ fullPage }) and page.pdf through the aside REPL, each verified by artifact magic bytes, with a SKIP-valid path when no bound session exists."
+version: 1.0.0.0
 ---
 
 # ASD-017 -- Full-page screenshot + PDF capture

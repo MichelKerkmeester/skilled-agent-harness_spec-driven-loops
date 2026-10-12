@@ -10,6 +10,7 @@ expected_resources:
   - references/comment-grammar.md
   - assets/folder-docs-checklist.md
   - assets/comment-banner-checklist.md
+version: 1.0.0.0
 ---
 
 # OB-010: Mixed reference-and-asset load

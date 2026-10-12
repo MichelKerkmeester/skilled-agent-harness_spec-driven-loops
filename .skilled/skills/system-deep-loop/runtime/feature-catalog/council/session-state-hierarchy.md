@@ -7,6 +7,7 @@ trigger_phrases:
   - "create session topic round state"
   - "topic-nnn-slug round-nnn ids"
   - "council session shape validation"
+version: 1.4.0.4
 ---
 
 # Session state hierarchy

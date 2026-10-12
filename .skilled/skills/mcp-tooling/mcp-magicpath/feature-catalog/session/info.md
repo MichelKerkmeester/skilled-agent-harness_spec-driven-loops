@@ -5,6 +5,7 @@ trigger_phrases:
   - "magicpath info tool"
   - "magicpath reachability"
   - "magicpath cli version"
+version: 1.0.0.0
 ---
 
 # info

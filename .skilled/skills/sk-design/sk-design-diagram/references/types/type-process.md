@@ -9,6 +9,7 @@ trigger_phrases:
   - "data type chips"
 importance_tier: normal
 contextType: implementation
+version: 1.2.0.9
 ---
 
 # Process

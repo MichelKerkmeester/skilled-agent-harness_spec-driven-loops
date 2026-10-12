@@ -1,6 +1,7 @@
 ---
 title: "MCP-M017 -- Create Document Page"
 description: "This scenario validates Create Document Page for `MCP-M017`. Objective: Verify `clickup_create_document_page` adds a markdown page to the test document."
+version: 1.1.0.0
 ---
 
 # MCP-M017 -- Create Document Page

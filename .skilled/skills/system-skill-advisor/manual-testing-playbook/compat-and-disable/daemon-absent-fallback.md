@@ -6,6 +6,7 @@ trigger_phrases:
   - "daemon absent fallback"
   - "daemon absent"
   - "daemon"
+version: 0.8.0.13
 id: CP-004
 category: compat_and_disable
 stage: routing

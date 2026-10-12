@@ -7,6 +7,7 @@ description: "Verify a mode reports the registry artifact root as the destinatio
 expected_intent: ai-council
 expected_workflow_mode: ai-council
 expected_leaf_resources: []
+version: "1.2.0.0"
 ---
 
 # SC-002: Artifact Root Writes

@@ -5,6 +5,7 @@ trigger_phrases:
   - "magicpath selection tool"
   - "selection magicpath"
   - "magicpath canvas selection"
+version: 1.0.0.0
 ---
 
 # selection

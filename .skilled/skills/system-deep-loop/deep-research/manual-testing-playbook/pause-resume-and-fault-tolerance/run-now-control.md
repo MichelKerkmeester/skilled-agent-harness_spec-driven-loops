@@ -1,6 +1,7 @@
 ---
 title: "DR-061 -- Run-now control"
 description: "Verify that the `.deep-research-run-now` sentinel triggers one immediate iteration with pause precedence and audit events."
+version: 1.14.0.21
 ---
 
 # DR-061 -- Run-now control

@@ -1,6 +1,7 @@
 ---
 title: "DLR-047 -- Persisted-wait crash resume"
 description: "Manual validation scenario for Persisted-wait crash resume in the runtime/ skill."
+version: 1.4.0.15
 ---
 
 # DLR-047 -- Persisted-wait crash resume

@@ -1,6 +1,7 @@
 ---
 title: "DLR-026 -- Fan-out write-failure salvage"
 description: "Validate fanout-salvage.cjs: opencode JSON text-part extraction, raw stdout fallback, missing-md recovery with state log event, and failed-marker placeholder when no content is recoverable."
+version: 1.4.0.4
 ---
 
 # DLR-026 -- Fan-out write-failure salvage

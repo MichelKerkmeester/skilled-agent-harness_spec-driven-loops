@@ -7,6 +7,7 @@ trigger_phrases:
   - "webflow asset templates"
 importance_tier: normal
 contextType: implementation
+version: 1.5.0.5
 ---
 
 # sk code assets webflow templates

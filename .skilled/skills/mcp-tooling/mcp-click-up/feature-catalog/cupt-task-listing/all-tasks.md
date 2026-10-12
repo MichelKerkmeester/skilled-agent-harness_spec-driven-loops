@@ -7,6 +7,7 @@ trigger_phrases:
   - "list all assignees"
   - "team-wide task listing"
   - "expand to all workspace tasks"
+version: 1.0.0.3
 ---
 
 # All Tasks

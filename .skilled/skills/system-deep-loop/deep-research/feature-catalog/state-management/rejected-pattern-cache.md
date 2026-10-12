@@ -7,6 +7,7 @@ trigger_phrases:
   - "rejectedPatternIndex"
   - "suppressedCandidates"
   - "rejected idea reset"
+version: 1.14.0.13
 ---
 
 # Rejected-pattern cache

@@ -7,6 +7,7 @@ trigger_phrases:
   - "recover interrupted council run"
   - "structured council recovery context"
   - "council process killed mid-round"
+version: 1.7.0.10
 ---
 
 # Mid-run interruption recovery: graph vs baseline

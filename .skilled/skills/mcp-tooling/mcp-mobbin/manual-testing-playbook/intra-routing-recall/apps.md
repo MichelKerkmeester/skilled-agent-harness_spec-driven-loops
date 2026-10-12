@@ -7,6 +7,7 @@ description: "This scenario validates APPS routing for `MB-R01`. It focuses on c
 expected_intent: APPS
 expected_resources:
   - references/tool-surface.md
+version: 1.0.0.1
 ---
 
 # MB-R01: Apps routing

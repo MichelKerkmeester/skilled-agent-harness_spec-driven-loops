@@ -9,6 +9,7 @@ trigger_phrases:
   - "hermes repo-guards plugin"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.0
 ---
 
 # Hermes Hook Contract

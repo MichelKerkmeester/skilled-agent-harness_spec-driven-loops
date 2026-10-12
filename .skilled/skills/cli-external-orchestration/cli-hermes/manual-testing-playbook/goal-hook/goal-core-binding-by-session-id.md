@@ -1,6 +1,7 @@
 ---
 title: "HERMES-030 -- Shared goal core bound by Hermes session id"
 description: "Confirm a Hermes session binds the packet named by HERMES_SPEC_FOLDER through the shared goal core under its own session id and renders the core's goal in its prompt, for `HERMES-030`."
+version: 1.0.0.0
 ---
 
 # HERMES-030 -- Shared goal core bound by Hermes session id

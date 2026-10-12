@@ -1,6 +1,7 @@
 ---
 title: "GIT-024 -- Slug/NNN/branch/pair grammar validation"
 description: "This scenario validates Slug/NNN/branch/pair grammar validation for `GIT-024`. It focuses on prove validate-slug, validate-nnn, validate-branch, validate-backup, and validate-pair accept every legal numbered form and reject every malformed one."
+version: 1.1.0.0
 ---
 
 # GIT-024 -- Slug/NNN/branch/pair grammar validation

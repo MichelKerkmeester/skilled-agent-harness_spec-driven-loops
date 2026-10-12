@@ -7,6 +7,7 @@ trigger_phrases:
   - "check skill graph health"
   - "skill graph staleness"
   - "skill graph db availability"
+version: 0.8.0.10
 ---
 
 # Skill graph status

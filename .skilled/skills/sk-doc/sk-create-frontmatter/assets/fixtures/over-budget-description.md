@@ -8,6 +8,7 @@ trigger_phrases:
   - "drop list category example"
 importance_tier: normal
 contextType: general
+version: 1.0.0.0
 ---
 
 # Over-budget description fixture

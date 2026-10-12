@@ -7,6 +7,7 @@ trigger_phrases:
   - "default chart palette"
 importance_tier: normal
 contextType: reference
+version: 0.23.0.4
 ---
 
 # evilcharts — Style Reference

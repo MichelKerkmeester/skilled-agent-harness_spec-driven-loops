@@ -1,6 +1,7 @@
 ---
 title: "CR-016 -- Native Claude Code invocation"
 description: "This scenario validates Native Claude Code invocation for `CR-016`. It focuses on Confirm native review-agent invocation obeys read-only leaf constraints and review doctrine."
+version: 1.5.0.4
 ---
 
 # CR-016 -- Native Claude Code invocation

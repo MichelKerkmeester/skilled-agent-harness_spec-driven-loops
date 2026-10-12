@@ -7,6 +7,7 @@ trigger_phrases:
   - "tasks due today"
   - "today date filter"
   - "daily task queue"
+version: 1.0.0.3
 ---
 
 # Filter Today

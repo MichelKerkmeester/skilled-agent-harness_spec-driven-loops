@@ -8,6 +8,7 @@ trigger_phrases:
   - "import ordering rules"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.17
 ---
 
 # Code Organization - File Structure and Module Principles

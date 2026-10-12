@@ -5,6 +5,7 @@ trigger_phrases:
   - "bdg cdp --search"
   - "search cdp methods"
   - "find cdp method by keyword"
+version: 1.0.0.0
 ---
 
 # Search CDP Methods

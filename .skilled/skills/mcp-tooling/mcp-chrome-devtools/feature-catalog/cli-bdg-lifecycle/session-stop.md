@@ -5,6 +5,7 @@ trigger_phrases:
   - "bdg stop"
   - "stop browser session"
   - "session cleanup trap"
+version: 1.0.0.0
 ---
 
 # Session Stop

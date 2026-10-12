@@ -1,6 +1,7 @@
 ---
 title: "DR-004 -- Fresh initialization creates canonical state files"
 description: "Verify that a fresh session creates the canonical config, JSONL, and strategy files from the shipped assets."
+version: 1.14.0.15
 ---
 
 # DR-004 -- Fresh initialization creates canonical state files

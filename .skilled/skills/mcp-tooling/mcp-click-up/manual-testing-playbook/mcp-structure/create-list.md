@@ -1,6 +1,7 @@
 ---
 title: "MCP-M007 -- Create a List"
 description: "This scenario validates Create a List for `MCP-M007`. Objective: Verify `clickup_create_list` creates a list in SPACE_ID."
+version: 1.1.0.0
 ---
 
 # MCP-M007 -- Create a List

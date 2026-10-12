@@ -1,6 +1,7 @@
 ---
 title: "DLR-038 -- Byte-offset log regions"
 description: "Manual validation scenario for Byte-offset log regions in the runtime/ skill."
+version: 1.4.0.15
 ---
 
 # DLR-038 -- Byte-offset log regions

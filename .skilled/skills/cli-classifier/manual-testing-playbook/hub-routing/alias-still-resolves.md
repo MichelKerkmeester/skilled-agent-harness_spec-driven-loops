@@ -14,6 +14,7 @@ expected_leaf_resources:
   - workflow_mode: cli-jev
     leaf_resource_id: references/integration-patterns.md
 created: 2026-09-20
+version: 0.4.0.0
 ---
 
 # CJ-002: The cli-usage name resolves the Jev transport

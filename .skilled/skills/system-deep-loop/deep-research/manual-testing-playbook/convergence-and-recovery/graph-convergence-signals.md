@@ -1,6 +1,7 @@
 ---
 title: "DR-031 -- Graph convergence signals act as STOP-blocking guards"
 description: "Verify that low sourceDiversity blocks a STOP vote and records blocked-stop evidence for deep research."
+version: 1.14.0.14
 ---
 
 # DR-031 -- Graph convergence signals act as STOP-blocking guards

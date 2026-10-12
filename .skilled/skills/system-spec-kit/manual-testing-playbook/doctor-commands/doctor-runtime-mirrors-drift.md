@@ -1,6 +1,7 @@
 ---
 title: "DOC-353 -- Doctor runtime mirrors drift"
 description: "Manual scenario validating that /doctor:runtime-mirrors reports a drifted mirror surface with its repair command and writes nothing."
+version: 1.1.0.0
 id: doctor-commands-doctor-runtime-mirrors-drift
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

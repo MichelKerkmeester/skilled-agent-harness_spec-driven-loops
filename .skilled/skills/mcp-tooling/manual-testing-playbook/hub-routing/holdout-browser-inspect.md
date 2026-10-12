@@ -14,6 +14,7 @@ expected_leaf_resources:
   - workflow_mode: mcp-chrome-devtools
     leaf_resource_id: references/session-management.md
 blindToRouterKeywords: true
+version: 1.1.0.0
 ---
 # MT-H01: Blind holdout — browser inspection
 Prompt: The staging site throws runtime errors on load; I need to inspect its network requests and the live DOM to find the cause.

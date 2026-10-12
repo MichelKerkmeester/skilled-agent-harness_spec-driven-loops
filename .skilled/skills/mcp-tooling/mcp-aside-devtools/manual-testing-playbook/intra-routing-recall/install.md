@@ -7,6 +7,7 @@ description: "This scenario validates the SKILL.md Smart Router's INSTALL intent
 expected_intent: INSTALL
 expected_resources:
   - references/troubleshooting.md
+version: 1.1.0.0
 ---
 
 # AD-R04: Install routing

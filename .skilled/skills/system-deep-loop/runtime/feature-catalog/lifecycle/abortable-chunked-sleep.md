@@ -6,6 +6,7 @@ trigger_phrases:
   - "abortable-chunked-sleep"
   - "abortable chunked sleep runtime"
   - "lifecycle abortable chunked sleep"
+version: 1.4.0.15
 ---
 
 # Abortable chunked sleep

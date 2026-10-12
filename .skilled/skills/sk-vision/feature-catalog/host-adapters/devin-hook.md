@@ -6,6 +6,7 @@ trigger_phrases:
   - "sk-vision devin hook"
   - "devin UserPromptSubmit vision"
   - "sk-vision injection adapter"
+version: 1.0.0.0
 ---
 
 # Devin prompt-time injection hook (sk-vision.mjs)

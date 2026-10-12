@@ -1,6 +1,7 @@
 ---
 title: "DRV-059 -- Validator strict v2 with all five failure codes"
 description: "Verify DEEP_REVIEW_V2_ENFORCEMENT=strict triggers v2_missing_ledger, v2_uncited_ledger_row, v2_broken_linked_finding, v2_shallow_finding_details, and state_delta_iteration_mismatch on malformed v2 records."
+version: 1.11.0.9
 ---
 
 # DRV-059 -- Validator strict v2 with all five failure codes

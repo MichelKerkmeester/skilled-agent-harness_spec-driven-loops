@@ -1,6 +1,7 @@
 ---
 title: "DOC-352 -- Doctor runtime mirrors in sync"
 description: "Manual scenario validating that /doctor:runtime-mirrors reports every mirror checker in sync with status OK and writes nothing."
+version: 1.1.0.0
 id: doctor-commands-doctor-runtime-mirrors-in-sync
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

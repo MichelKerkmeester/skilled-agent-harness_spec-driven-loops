@@ -2,6 +2,7 @@
 title: "PAGE-006 -- Retrieve page as Markdown"
 description: "This scenario validates notion_retrieve-page-markdown by reading a known scratch page's block content as Markdown."
 stage: routing
+version: 0.1.0.0
 ---
 
 # PAGE-006 -- Retrieve page as Markdown

@@ -7,6 +7,7 @@ trigger_phrases:
   - "stop vote signals"
   - "question coverage convergence"
   - "newInfoRatio weighted vote"
+version: 1.14.0.10
 ---
 
 # Three-signal model

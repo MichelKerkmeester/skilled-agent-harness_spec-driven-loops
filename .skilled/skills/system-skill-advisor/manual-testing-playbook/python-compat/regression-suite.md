@@ -6,6 +6,7 @@ trigger_phrases:
   - "python regression suite"
   - "regression harness coverage"
   - "skill_advisor_regression.py"
+version: 0.8.0.14
 id: PC-004
 category: python_compat
 stage: routing

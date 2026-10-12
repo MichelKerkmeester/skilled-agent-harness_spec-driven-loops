@@ -9,6 +9,7 @@ trigger_phrases:
   - "iconic backup merge"
 importance_tier: "normal"
 contextType: "implementation"
+version: 0.7.0.0
 ---
 
 # Iconic File-Layer Data Model

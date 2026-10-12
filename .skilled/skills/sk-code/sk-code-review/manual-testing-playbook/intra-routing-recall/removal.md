@@ -12,6 +12,7 @@ expected_resources:
   - assets/code-quality-checklist.md
   - assets/fix-completeness-checklist.md
   - assets/removal-plan.md
+version: 1.0.0.0
 ---
 
 # CR-R06: Removal routing

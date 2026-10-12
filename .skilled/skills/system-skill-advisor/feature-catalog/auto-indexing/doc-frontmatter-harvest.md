@@ -6,6 +6,7 @@ trigger_phrases:
   - "matchedDocs"
   - "skill_docs table"
   - "doc frontmatter routing"
+version: 0.8.0.1
 ---
 
 # Doc-Frontmatter Trigger Harvest

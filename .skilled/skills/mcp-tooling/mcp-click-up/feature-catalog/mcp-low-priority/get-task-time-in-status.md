@@ -4,6 +4,7 @@ description: "Show how long a task has spent in each status."
 trigger_phrases:
   - "clickup_get_task_time_in_status"
   - "time in status"
+version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

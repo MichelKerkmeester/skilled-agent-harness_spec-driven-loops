@@ -7,6 +7,7 @@ trigger_phrases:
   - "generate-context.js"
   - "continuity artifact"
   - "preserve research packet"
+version: 1.14.0.8
 ---
 
 # Memory save

@@ -12,6 +12,7 @@ trigger_phrases:
   - information density
 importance_tier: normal
 contextType: general
+version: 1.0.0.6
 ---
 # DESIGN.md Writing Style Guide
 

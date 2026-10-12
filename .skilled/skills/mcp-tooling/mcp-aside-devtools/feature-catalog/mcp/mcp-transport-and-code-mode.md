@@ -6,6 +6,7 @@ trigger_phrases:
   - "aside code mode"
   - "aside tools list"
   - "aside utcp manual"
+version: 1.0.0.0
 ---
 
 # Mcp (stdio transport and Code Mode composition)

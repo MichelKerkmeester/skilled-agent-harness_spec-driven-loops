@@ -1,6 +1,7 @@
 ---
 title: "DLR-049 -- Unified observability event envelope"
 description: "Manual validation scenario for Unified observability event envelope in the runtime/ skill."
+version: 1.4.0.15
 ---
 
 # DLR-049 -- Unified observability event envelope

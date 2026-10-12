@@ -1,6 +1,7 @@
 ---
 title: "DR-013 -- Composite convergence stop behavior"
 description: "Verify the three-signal weighted stop model and its graceful degradation rules."
+version: 1.14.0.15
 ---
 
 # DR-013 -- Composite convergence stop behavior

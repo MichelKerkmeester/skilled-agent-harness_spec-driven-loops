@@ -5,6 +5,7 @@ trigger_phrases:
   - "notion page property item"
   - "GAP-003"
   - "notion property truncation"
+version: 0.1.0.0
 ---
 
 # Page Property Items (direct API -- GAP-003)

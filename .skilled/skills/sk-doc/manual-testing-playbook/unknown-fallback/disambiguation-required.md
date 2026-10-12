@@ -11,6 +11,7 @@ expected_workflow_mode: sk-create-feature-catalog+sk-create-manual-testing-playb
 expected_leaf_resources:
   - workflow_mode: sk-create-feature-catalog
     leaf_resource_id: references/README.md
+version: 2.1.0.20
   - workflow_mode: sk-create-manual-testing-playbook
     leaf_resource_id: references/README.md
 ---

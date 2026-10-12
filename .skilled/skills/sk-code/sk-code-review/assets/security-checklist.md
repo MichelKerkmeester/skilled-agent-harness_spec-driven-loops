@@ -10,6 +10,7 @@ trigger_phrases:
   - "dependency supply chain audit"
 importance_tier: normal
 contextType: implementation
+version: 1.5.0.9
 ---
 
 # Security and Reliability Checklist

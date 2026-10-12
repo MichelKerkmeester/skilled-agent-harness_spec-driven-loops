@@ -1,6 +1,7 @@
 ---
 title: "DOC-355 -- Doctor env save preference"
 description: "Manual scenario validating that /doctor:env saves a preference only after it shows the exact destination line and the operator answers an unambiguous yes, and that a dry run writes nothing."
+version: 1.2.0.0
 id: doctor-commands-doctor-env-save-preference
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

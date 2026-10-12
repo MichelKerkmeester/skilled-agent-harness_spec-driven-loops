@@ -8,6 +8,7 @@ trigger_phrases:
   - "hover focus active capture"
   - "interaction-capture.ts"
 importance_tier: "normal"
+version: 1.0.0.6
 ---
 
 # Interaction Capture (interaction-capture.ts)

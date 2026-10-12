@@ -1,6 +1,7 @@
 ---
 title: "ASD-011 -- Code Mode discovery"
 description: "This scenario validates post-registration Code Mode discovery for `ASD-011` against the registered aside manual and confirms the exact aside callable name."
+version: 1.0.0.0
 ---
 
 # ASD-011 -- Code Mode discovery

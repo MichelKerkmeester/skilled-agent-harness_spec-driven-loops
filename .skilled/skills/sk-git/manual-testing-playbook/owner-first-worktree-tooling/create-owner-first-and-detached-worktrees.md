@@ -1,6 +1,7 @@
 ---
 title: "GIT-025 -- Create numbered and detached worktrees"
 description: "This scenario validates Create numbered and detached worktrees for `GIT-025`. It focuses on prove create and create-detached allocate a number, create the matching branch/directory pair or a detached numbered directory, and refuse an invalid slug before touching the repository."
+version: 1.1.0.0
 ---
 
 # GIT-025 -- Create numbered and detached worktrees

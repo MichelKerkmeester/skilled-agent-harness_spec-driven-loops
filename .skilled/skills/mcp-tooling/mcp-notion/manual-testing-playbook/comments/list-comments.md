@@ -2,6 +2,7 @@
 title: "CMT-002 -- List comments"
 description: "This scenario validates a read-only comment listing through the confirmed notion_list-comments tool."
 stage: routing
+version: 0.1.0.0
 ---
 
 # CMT-002 -- List comments

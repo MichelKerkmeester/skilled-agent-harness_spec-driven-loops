@@ -1,6 +1,7 @@
 ---
 title: "CP-053 -- Three-artifact iteration contract **(SANDBOXED)**"
 description: "Validate that command-flow dispatch produces iteration markdown, state-log JSONL, and per-iteration delta JSONL."
+version: 1.11.0.10
 ---
 
 # CP-053 -- Three-artifact iteration contract **(SANDBOXED)**

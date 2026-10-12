@@ -1,6 +1,7 @@
 ---
 title: "GIT-027 -- Top-level session isolates into its own worktree, branch, and databases"
 description: "This scenario validates Top-level session isolation for `GIT-027`. It focuses on prove a top-level launch of worktree-session.sh allocates a brand-new worktree, a work/<runtime>/<slug> branch, and per-session MCP database and socket directories distinct from the main checkout."
+version: 1.0.0.0
 ---
 
 # GIT-027 -- Top-level session isolates into its own worktree, branch, and databases

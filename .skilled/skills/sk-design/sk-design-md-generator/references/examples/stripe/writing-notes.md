@@ -7,6 +7,7 @@ trigger_phrases:
   - Stripe extraction caveats
 importance_tier: normal
 contextType: general
+version: 1.0.0.0
 ---
 
 # Writing Notes: Stripe DESIGN.md

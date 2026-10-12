@@ -1,6 +1,7 @@
 ---
 title: "DR-014 -- Stuck recovery widens focus and continues"
 description: "Verify that stuck detection triggers a recovery path that widens focus before giving up."
+version: 1.14.0.15
 ---
 
 # DR-014 -- Stuck recovery widens focus and continues

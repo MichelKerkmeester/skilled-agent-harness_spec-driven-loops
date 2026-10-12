@@ -9,6 +9,7 @@ expected_resources:
   - references/troubleshooting.md
   - references/session-management.md
 blindToRouterKeywords: true
+version: 1.1.0.0
 ---
 
 # AD-H02: Blind holdout: stalled automation

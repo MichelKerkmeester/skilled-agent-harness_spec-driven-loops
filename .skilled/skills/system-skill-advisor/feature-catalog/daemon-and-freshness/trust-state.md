@@ -6,6 +6,7 @@ trigger_phrases:
   - "live stale absent unavailable"
   - "freshness vocabulary"
   - "fail open trust"
+version: 0.8.0.12
 ---
 
 # Live / Stale / Absent / Unavailable Trust State

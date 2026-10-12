@@ -8,6 +8,7 @@ trigger_phrases:
   - "path traversal prevention"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.22
 ---
 
 # File Organization, Security & Copy-Paste Alignment Examples

@@ -10,6 +10,7 @@ trigger_phrases:
   - "intake lock"
 importance_tier: important
 contextType: planning
+version: 1.6.0.17
 ---
 
 # Intake Contract Reference

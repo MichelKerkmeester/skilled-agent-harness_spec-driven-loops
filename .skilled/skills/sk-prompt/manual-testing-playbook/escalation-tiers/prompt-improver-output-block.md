@@ -1,6 +1,7 @@
 ---
 title: "SP-026 -- @prompt-improver output block"
 description: "This scenario validates the `@prompt-improver` structured output contract for `SP-026`. It focuses on FRAMEWORK, CLEAR_SCORE, RATIONALE, ENHANCED_PROMPT, and ESCALATION_NOTES."
+version: 2.3.0.7
 ---
 
 # SP-026 -- @prompt-improver output block

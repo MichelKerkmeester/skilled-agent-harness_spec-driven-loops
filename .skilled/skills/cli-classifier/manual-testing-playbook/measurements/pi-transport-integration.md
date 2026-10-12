@@ -1,6 +1,7 @@
 ---
 title: "CC-006 -- The Pi classifier transport routes, answers and skips on stubs"
 description: "This scenario validates that the Pi transport answers a choice or noul question through an injected Pi runtime when its preflight passes, falls back to the jev CLI silently by default and prints one skip line per failed gate when Pi was requested, for `CC-006`."
+version: 0.3.0.0
 ---
 
 # CC-006 -- The Pi classifier transport routes, answers and skips on stubs

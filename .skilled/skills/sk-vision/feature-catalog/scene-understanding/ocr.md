@@ -6,6 +6,7 @@ trigger_phrases:
   - "read the text in this image"
   - "sk_vision_ocr"
   - "transcribe the error message"
+version: 1.0.0.0
 ---
 
 # OCR text extraction (sk_vision_ocr)

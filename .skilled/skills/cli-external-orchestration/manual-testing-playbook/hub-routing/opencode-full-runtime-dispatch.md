@@ -14,6 +14,7 @@ expected_leaf_resources:
   - workflow_mode: cli-opencode
     leaf_resource_id: references/integration-patterns.md
 created: 2026-07-10
+version: 1.4.0.7
 ---
 
 # CE-001: Full-runtime dispatch request routes to cli-opencode

@@ -1,6 +1,7 @@
 ---
 title: "475 -- ANCHORS_VALID nested anchor"
 description: "This scenario validates the ANCHORS_VALID nesting check for `475` on a scaffolded Level 1 packet. It focuses on strict validation passing the un-nested packet, failing it once an anchor opens inside another anchor and the finding text that names the nested anchors."
+version: 1.0.0.0
 id: tooling-and-scripts-anchors-valid-nested-anchor
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

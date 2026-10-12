@@ -1,6 +1,7 @@
 ---
 title: "474 -- Template phrase lint bypass"
 description: "This scenario validates the template phrase lint bypass for `474` in a throwaway git repository. It focuses on the SPECKIT_SKIP_PHRASE_LINT variable letting one commit through the phrase gate, the linter reporting the skip and the guarantee that the bypass is limited to that one command."
+version: 1.0.0.0
 id: tooling-and-scripts-template-phrase-lint-bypass
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

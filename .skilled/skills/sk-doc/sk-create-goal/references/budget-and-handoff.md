@@ -8,6 +8,7 @@ trigger_phrases:
   - "objective slice"
 importance_tier: important
 contextType: implementation
+version: 1.1.0.0
 ---
 # Goal Budget and Handoff
 

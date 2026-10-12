@@ -6,6 +6,7 @@ trigger_phrases:
   - "magicpath search components"
   - "magicpath inspect component"
   - "magicpath list components"
+version: 1.0.0.0
 ---
 
 # Components (search_components / inspect_component / list_components)

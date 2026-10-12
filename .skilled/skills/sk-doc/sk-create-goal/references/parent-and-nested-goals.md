@@ -9,6 +9,7 @@ trigger_phrases:
   - "parent goal amendment"
 importance_tier: important
 contextType: implementation
+version: 1.2.0.0
 ---
 # Parent and Nested Goal Authoring
 

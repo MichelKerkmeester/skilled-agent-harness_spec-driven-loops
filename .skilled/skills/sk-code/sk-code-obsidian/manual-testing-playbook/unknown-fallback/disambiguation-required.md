@@ -9,6 +9,7 @@ expected_resources:
   - references/mobile-and-touch.md
   - references/view-renderer-architecture.md
   - references/data-layer.md
+version: 1.0.0.0
 ---
 
 # OB-013: Scope-collision disambiguation required

@@ -3,6 +3,7 @@ title: "SKD-002 -- Review checklist entry on a code audit"
 description: "This scenario validates Review checklist entry on a code audit for `SKD-002`. It focuses on confirm an accessibility review request produces severity-tiered findings rather than impressions."
 stage: routing
 id: "SKD-002"
+version: 1.0.0.0
 ---
 
 # SKD-002 -- Review checklist entry on a code audit

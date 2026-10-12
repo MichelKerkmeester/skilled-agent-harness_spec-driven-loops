@@ -1,6 +1,7 @@
 ---
 title: "MCP-M018 -- Append to a Document Page"
 description: "This scenario validates Append to a Document Page for `MCP-M018`. Objective: Verify `clickup_update_document_page` appends without overwriting the page."
+version: 1.0.0.0
 ---
 
 # MCP-M018 -- Append to a Document Page

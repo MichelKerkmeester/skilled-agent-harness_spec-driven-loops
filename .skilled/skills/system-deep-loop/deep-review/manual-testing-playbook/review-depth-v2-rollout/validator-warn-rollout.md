@@ -1,6 +1,7 @@
 ---
 title: "DRV-058 -- Validator warn rollout for legacy unversioned records"
 description: "Verify DEEP_REVIEW_V2_ENFORCEMENT=warn surfaces legacy_unversioned_record advisory without hard-failing legacy records."
+version: 1.11.0.6
 ---
 
 # DRV-058 -- Validator warn rollout for legacy unversioned records

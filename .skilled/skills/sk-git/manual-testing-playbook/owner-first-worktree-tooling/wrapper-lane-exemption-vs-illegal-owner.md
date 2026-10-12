@@ -1,6 +1,7 @@
 ---
 title: "GIT-026 -- Wrapper-lane exemption vs backup-lane recognition"
 description: "This scenario validates Wrapper-lane exemption vs backup-lane recognition for `GIT-026`. It focuses on prove is_wrapper_branch and is_backup_branch recognize the exempt machine-owned lanes as legal-but-non-task branches while create still rejects a malformed slug before touching the repository."
+version: 1.1.0.0
 ---
 
 # GIT-026 -- Wrapper-lane exemption vs backup-lane recognition

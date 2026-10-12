@@ -6,6 +6,7 @@ trigger_phrases:
   - "how does sk-vision integrate with Pi"
   - "sk-vision.ts"
   - "pi vision extension"
+version: 1.0.0.0
 ---
 
 # Pi extension adapter (sk-vision.ts)

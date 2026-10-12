@@ -1,6 +1,7 @@
 ---
 title: "SP-028 -- Format guide on-demand loading"
 description: "This scenario validates format-guide loading for `SP-028`. It focuses on loading `format_guide_*.md` only when format mode and ON_DEMAND keyword signals require it."
+version: 2.3.0.5
 ---
 
 # SP-028 -- Format guide on-demand loading

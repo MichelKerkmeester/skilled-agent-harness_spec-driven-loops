@@ -8,6 +8,7 @@ trigger_phrases:
   - "webflow conditional visibility"
 importance_tier: normal
 contextType: implementation
+version: 1.5.0.4
 ---
 
 # Designer Mode, Component State & Performance Patterns

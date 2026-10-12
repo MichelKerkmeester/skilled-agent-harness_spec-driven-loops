@@ -5,6 +5,7 @@ trigger_phrases:
   - "bdg screenshot"
   - "capture page screenshot cli"
   - "screenshot without puppeteer"
+version: 1.0.0.0
 ---
 
 # Screenshot Capture

@@ -9,6 +9,7 @@ trigger_phrases:
   - "readme review checklist"
 importance_tier: normal
 contextType: implementation
+version: 1.2.0.0
 ---
 
 # README Quality and Pre-Publish Checklist

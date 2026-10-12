@@ -1,6 +1,7 @@
 ---
 title: "mcp-refero: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, review and orchestration guidance, execution expectations, and per-scenario validation for the mcp-refero skill. Covers wiring verification, discovery-first callable confirmation, the read-only research funnel (single-layer and full walk), response_format discipline, quota/429 honesty, the config-mutation refusal gate, and the mandatory sk-design-md-generator pairing."
+version: 1.0.0.0
 ---
 
 # mcp-refero: Manual Testing Playbook

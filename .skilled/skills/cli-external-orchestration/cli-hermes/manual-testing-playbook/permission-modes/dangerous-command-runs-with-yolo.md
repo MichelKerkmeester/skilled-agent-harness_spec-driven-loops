@@ -1,6 +1,7 @@
 ---
 title: "HERMES-005 -- Dangerous command runs with --yolo"
 description: "Confirm that the identical flagged tool call from HERMES-004 executes when `--yolo` is present, proving the flag is the only variable for `HERMES-005`."
+version: 1.0.0.0
 ---
 
 # HERMES-005 -- Dangerous command runs with --yolo

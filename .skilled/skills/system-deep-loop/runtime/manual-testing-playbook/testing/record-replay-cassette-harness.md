@@ -1,6 +1,7 @@
 ---
 title: "DLR-051 -- Record-replay cassette harness"
 description: "Manual validation scenario for Record-replay cassette harness in the runtime/ skill."
+version: 1.4.0.15
 ---
 
 # DLR-051 -- Record-replay cassette harness

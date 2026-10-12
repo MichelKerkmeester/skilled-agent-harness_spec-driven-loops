@@ -8,6 +8,7 @@ trigger_phrases:
   - "skill readme scaffold"
 importance_tier: normal
 contextType: general
+version: 1.3.0.0
 ---
 
 # Skill README Template

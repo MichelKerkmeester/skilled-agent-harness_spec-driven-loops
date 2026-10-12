@@ -6,6 +6,7 @@ trigger_phrases:
   - "jev transport module"
   - "JEV_TRANSPORT switch"
   - "jev-transport.mjs"
+version: 0.3.0.0
 ---
 
 # Pi classifier transport integration (jev-transport.mjs)

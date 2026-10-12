@@ -7,6 +7,7 @@ trigger_phrases:
   - "convergenceMode off"
   - "min_iterations_guard_pass"
   - "premature research stop guard"
+version: 1.14.0.13
 ---
 
 # Anti-convergence floor

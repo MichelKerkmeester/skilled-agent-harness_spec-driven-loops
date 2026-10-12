@@ -5,6 +5,7 @@ trigger_phrases:
   - "browser tests in ci"
   - "ci visual regression pipeline"
   - "bdg pipeline integration"
+version: 1.0.0.0
 ---
 
 # CI Integration

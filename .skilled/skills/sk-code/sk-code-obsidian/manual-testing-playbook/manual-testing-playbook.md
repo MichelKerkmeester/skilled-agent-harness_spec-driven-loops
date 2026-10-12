@@ -1,6 +1,7 @@
 ---
 title: "sk-code-obsidian: Manual Testing Playbook"
 description: "Operator-facing directory for the sk-code-obsidian surface's routing-recall corpus: intent detection, resource-loading isolation, unknown-fallback handling, cross-CLI dispatch stability, token-cost baselines, holdout generalization, and surface-detection precision."
+version: 2.0.0.0
 ---
 
 # sk-code-obsidian: Manual Testing Playbook

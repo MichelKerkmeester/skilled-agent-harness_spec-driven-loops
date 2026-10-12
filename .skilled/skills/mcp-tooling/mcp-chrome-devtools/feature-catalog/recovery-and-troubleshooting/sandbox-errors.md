@@ -5,6 +5,7 @@ trigger_phrases:
   - "failed to move to new namespace"
   - "chrome sandbox linux"
   - "no-sandbox flag"
+version: 1.0.0.0
 ---
 
 # Linux Sandbox Errors

@@ -6,6 +6,7 @@ trigger_phrases:
   - "heal-spec-docs --anchor-repair"
   - "questions anchor un-nesting"
   - "duplicate anchor repair"
+version: 1.0.0.0
 ---
 
 # Heal spec docs anchor repair (heal-spec-docs.cjs --anchor-repair)

@@ -1,6 +1,7 @@
 ---
 title: "CHG-010 -- Skip the release for a component other than skilled"
 description: "This scenario validates the release guard for CHG-010. A component changelog written with --release keeps its file, and no tag or GitHub release is created because only the skilled release line publishes."
+version: 1.2.0.0
 ---
 
 # CHG-010 -- Skip the release for a component other than skilled

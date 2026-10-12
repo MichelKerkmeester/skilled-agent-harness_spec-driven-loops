@@ -1,6 +1,7 @@
 ---
 title: "MCP-L019 -- Set a Custom Field Value"
 description: "This scenario validates Set a Custom Field Value for `MCP-L019`. Objective: Verify a custom field value set through `clickup_update_task` reads back."
+version: 1.1.0.0
 ---
 
 # MCP-L019 -- Set a Custom Field Value

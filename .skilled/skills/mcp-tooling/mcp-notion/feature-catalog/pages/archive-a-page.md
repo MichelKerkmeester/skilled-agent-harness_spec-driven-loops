@@ -5,6 +5,7 @@ trigger_phrases:
   - "Archive a page"
   - "notion_archive-a-page"
   - "move a Notion page to trash"
+version: 0.1.0.0
 ---
 
 # Archive a page (`notion_archive-a-page`)

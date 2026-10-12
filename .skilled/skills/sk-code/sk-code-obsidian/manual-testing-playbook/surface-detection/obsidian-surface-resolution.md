@@ -7,6 +7,7 @@ expected_surface: OBSIDIAN
 expected_intent: N/A
 expected_resources:
   - references/obsidian-plugin-api.md
+version: 1.0.0.0
 ---
 
 # OB-020: OBSIDIAN surface resolution (positive control)

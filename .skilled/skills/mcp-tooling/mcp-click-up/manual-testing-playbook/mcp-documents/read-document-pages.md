@@ -1,6 +1,7 @@
 ---
 title: "MCP-M016 -- Read Document Pages"
 description: "This scenario validates Read Document Pages for `MCP-M016`. Objective: Verify `clickup_list_document_pages` and `clickup_get_document_pages` read the document from MCP-M015."
+version: 1.1.0.0
 ---
 
 # MCP-M016 -- Read Document Pages

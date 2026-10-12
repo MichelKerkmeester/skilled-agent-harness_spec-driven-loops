@@ -1,6 +1,7 @@
 ---
 title: "DLR-045 -- LLM-judge hardening"
 description: "Manual validation scenario for LLM-judge hardening in the runtime/ skill."
+version: 1.4.0.15
 ---
 
 # DLR-045 -- LLM-judge hardening

@@ -8,6 +8,7 @@ trigger_phrases:
   - "active_goal injection"
   - "goalPrompt"
   - "bind packet goal"
+version: 1.9.0.0
 ---
 
 # Goal OpenCode plugin

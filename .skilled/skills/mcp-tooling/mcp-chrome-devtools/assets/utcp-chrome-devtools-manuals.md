@@ -8,6 +8,7 @@ trigger_phrases:
   - "chrome devtools code mode snapshot"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.0
 ---
 
 # Chrome DevTools Code Mode Manuals - registered-state snapshot

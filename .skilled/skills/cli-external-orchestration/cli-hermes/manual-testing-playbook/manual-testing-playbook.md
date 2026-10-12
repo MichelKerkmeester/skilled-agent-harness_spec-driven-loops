@@ -1,6 +1,7 @@
 ---
 title: "cli-hermes: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, evidence rules, orchestration guidance, and per-scenario validation files for the cli-hermes skill."
+version: 1.4.0.0
 ---
 
 # cli-hermes: Manual Testing Playbook

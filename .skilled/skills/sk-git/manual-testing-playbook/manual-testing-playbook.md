@@ -1,6 +1,7 @@
 ---
 title: "sk-git: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the sk-git skill."
+version: 1.5.0.0
 ---
 
 # sk-git: Manual Testing Playbook

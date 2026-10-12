@@ -5,6 +5,7 @@ trigger_phrases:
   - "Retrieve block children"
   - "notion_retrieve-block-children"
   - "list a Notion page's child blocks"
+version: 0.1.0.0
 ---
 
 # Retrieve block children (`notion_retrieve-block-children`)

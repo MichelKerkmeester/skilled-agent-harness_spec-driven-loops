@@ -6,6 +6,7 @@ trigger_phrases:
   - "legacy-projection"
   - "legacy projection runtime"
   - "state safety legacy projection"
+version: 1.4.0.15
 ---
 
 # Legacy projection

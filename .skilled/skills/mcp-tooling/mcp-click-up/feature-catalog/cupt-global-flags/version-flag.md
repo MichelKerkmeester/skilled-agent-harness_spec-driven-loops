@@ -7,6 +7,7 @@ trigger_phrases:
   - "cupt version"
   - "check installed version"
   - "installation verification"
+version: 1.0.0.3
 ---
 
 # Version Flag

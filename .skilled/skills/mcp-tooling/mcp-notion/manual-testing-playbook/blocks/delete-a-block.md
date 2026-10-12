@@ -2,6 +2,7 @@
 title: "BLK-005 -- Delete a block"
 description: "This scenario validates a scratch-safe, reversible block trash through the confirmed notion_delete-a-block tool, then archives the scratch page as cleanup."
 stage: routing
+version: 0.1.0.0
 ---
 
 # BLK-005 -- Delete a block

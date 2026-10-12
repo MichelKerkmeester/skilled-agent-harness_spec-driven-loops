@@ -9,6 +9,7 @@ trigger_phrases:
   - "point cloud chart"
 importance_tier: normal
 contextType: implementation
+version: 1.2.0.8
 ---
 
 # Scatter Plot

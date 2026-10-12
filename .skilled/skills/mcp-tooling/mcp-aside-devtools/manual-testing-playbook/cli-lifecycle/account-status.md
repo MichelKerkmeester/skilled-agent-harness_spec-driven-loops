@@ -1,6 +1,7 @@
 ---
 title: "ASD-003 -- Account status"
 description: "This scenario validates read-only account inspection for `ASD-003`. It focuses on confirming `aside account list` and `aside account status` report sign-in state without mutating it."
+version: 1.0.0.0
 ---
 
 # ASD-003 -- Account status

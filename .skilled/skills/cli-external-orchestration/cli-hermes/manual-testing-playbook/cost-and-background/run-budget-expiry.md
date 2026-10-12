@@ -1,6 +1,7 @@
 ---
 title: "HERMES-012 -- Run-budget expiry"
 description: "Confirm `--run-budget` ends a long run with exit 0 and a partial answer rather than a distinct failure code, and that wall-clock overrun past the budget is expected for `HERMES-012`."
+version: 1.0.0.0
 ---
 
 # HERMES-012 -- Run-budget expiry

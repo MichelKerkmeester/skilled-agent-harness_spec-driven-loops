@@ -1,6 +1,7 @@
 ---
 title: "deep-research: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the deep-research skill."
+version: 1.14.0.22
 ---
 
 # deep-research: Manual Testing Playbook

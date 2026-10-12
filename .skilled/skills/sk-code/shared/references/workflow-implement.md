@@ -8,6 +8,7 @@ trigger_phrases:
   - "surface implementation standards"
 importance_tier: important
 contextType: general
+version: 2.1.0.2
 ---
 
 # Workflow Reference - Implementation

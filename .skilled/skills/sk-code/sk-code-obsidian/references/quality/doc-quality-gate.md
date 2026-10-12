@@ -9,6 +9,7 @@ trigger_phrases:
   - "docs change gate obsidian surface"
 importance_tier: normal
 contextType: implementation
+version: 0.1.0.0
 ---
 
 # sk-code-obsidian Doc Quality Gate

@@ -6,6 +6,7 @@ trigger_phrases:
   - "atomic-state-serialize-diff"
   - "atomic-state serialize-diff runtime"
   - "state safety atomic-state serialize-diff"
+version: 1.4.0.15
 ---
 
 # Atomic-state serialize-diff

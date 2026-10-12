@@ -7,6 +7,7 @@ trigger_phrases:
   - study Supabase design tokens
 importance_tier: normal
 contextType: general
+version: 0.22.0.3
 ---
 
 # Supabase — Style Reference

@@ -1,6 +1,7 @@
 ---
 title: "CR-004 -- Security-sensitive auth"
 description: "This scenario validates Security-sensitive auth for `CR-004`. It focuses on Confirm auth and authorization gaps are treated as mandatory baseline risks."
+version: 1.5.0.4
 ---
 
 # CR-004 -- Security-sensitive auth

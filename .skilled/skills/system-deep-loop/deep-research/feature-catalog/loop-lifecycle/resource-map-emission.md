@@ -7,6 +7,7 @@ trigger_phrases:
   - "resource-map.md"
   - "coverage ledger"
   - "delta evidence opt-out"
+version: 1.14.0.7
 ---
 
 # Resource Map Emission

@@ -4,6 +4,7 @@ description: "Read the replies in a chat thread."
 trigger_phrases:
   - "clickup_get_chat_message_replies"
   - "chat thread replies"
+version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

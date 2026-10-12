@@ -8,6 +8,7 @@ trigger_phrases:
   - "visual design preview"
   - "fidelity proof artifact"
 importance_tier: "normal"
+version: 1.0.0.7
 ---
 
 # Report and preview (report-gen.ts / preview-gen.ts / proof.ts)

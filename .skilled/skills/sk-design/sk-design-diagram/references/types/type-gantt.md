@@ -9,6 +9,7 @@ trigger_phrases:
   - "temporal overlap view"
 importance_tier: normal
 contextType: implementation
+version: 1.2.0.8
 ---
 
 # Gantt Chart

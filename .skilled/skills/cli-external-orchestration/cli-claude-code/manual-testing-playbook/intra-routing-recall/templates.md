@@ -8,6 +8,7 @@ expected_intent: TEMPLATES
 expected_resources: 
   - assets/prompt-templates.md
   - references/cli-reference.md
+version: 1.5.0.6
 ---
 
 # CC-R06: Templates routing

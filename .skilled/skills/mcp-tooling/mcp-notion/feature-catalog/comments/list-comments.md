@@ -5,6 +5,7 @@ trigger_phrases:
   - "List comments"
   - "notion_list-comments"
   - "read Notion page comments"
+version: 0.1.0.0
 ---
 
 # List comments (`notion_list-comments`)

@@ -1,6 +1,7 @@
 ---
 title: "SP-007 -- AMBIGUITY_DELTA top-2 tiebreaker"
 description: "This scenario validates AMBIGUITY_DELTA top-2 selection for `SP-007`. It focuses on confirming both intents load when scores differ by 1 or less."
+version: 2.3.0.5
 ---
 
 # SP-007 -- AMBIGUITY_DELTA top-2 tiebreaker

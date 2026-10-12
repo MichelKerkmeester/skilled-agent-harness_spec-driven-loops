@@ -4,6 +4,7 @@ description: "Deprecated alias for task comments. Use `clickup_create_comment`."
 trigger_phrases:
   - "clickup_create_task_comment"
   - "create task comment"
+version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

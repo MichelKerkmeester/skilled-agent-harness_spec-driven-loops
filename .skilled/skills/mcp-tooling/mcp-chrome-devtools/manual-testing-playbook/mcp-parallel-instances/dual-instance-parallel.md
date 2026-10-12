@@ -1,6 +1,7 @@
 ---
 title: "BDG-015 -- Dual-instance parallel"
 description: "This scenario validates parallel execution across `chrome_devtools_1` and `chrome_devtools_2` for `BDG-015`. It focuses on confirming `Promise.all` returns both navigate+screenshot results faster than sequential execution."
+version: 1.0.0.6
 ---
 
 # BDG-015 -- Dual-instance parallel

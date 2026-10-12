@@ -367,6 +367,7 @@ expected_leaf_resources:
     leaf_resource_id: references/scope-and-exemptions.md
   - workflow_mode: sk-create-with-human-voice
     leaf_resource_id: references/scoring-and-verification.md
+version: 2.1.0.14
 ---
 
 # SD-015: Max-Load Token Cost (Ceiling)

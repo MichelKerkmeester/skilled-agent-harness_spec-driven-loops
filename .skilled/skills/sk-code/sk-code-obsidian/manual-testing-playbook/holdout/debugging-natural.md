@@ -8,6 +8,7 @@ expected_intent: DEBUGGING
 expected_resources:
   - references/mobile-and-touch.md
   - references/view-renderer-architecture.md
+version: 1.0.0.0
 ---
 
 # OB-H03: DEBUGGING held out (decontaminated phrasing)

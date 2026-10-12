@@ -1,6 +1,7 @@
 ---
 title: "HERMES-003 -- Off-roster model rejection"
 description: "Confirm an off-roster model id fails fast with exit 1 and a gateway diagnostic on stdout rather than silently falling back to another model for `HERMES-003`."
+version: 1.0.0.0
 ---
 
 # HERMES-003 -- Off-roster model rejection

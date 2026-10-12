@@ -1,6 +1,7 @@
 ---
 title: "BDG-019 -- Missing browser"
 description: "This scenario validates the missing-browser error path for `BDG-019`. It focuses on confirming bdg returns a clear, actionable error when no Chrome / Chromium / Edge is resolvable."
+version: 1.0.0.7
 ---
 
 # BDG-019 -- Missing browser

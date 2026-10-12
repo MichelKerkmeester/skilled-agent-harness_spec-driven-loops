@@ -1,6 +1,7 @@
 ---
 title: "DRV-005 -- Resume classification from valid prior review state"
 description: "Verify that resume detects existing review state and continues from the last completed iteration."
+version: 1.11.0.14
 ---
 
 # DRV-005 -- Resume classification from valid prior review state

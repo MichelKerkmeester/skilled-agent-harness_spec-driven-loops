@@ -8,6 +8,7 @@ trigger_phrases:
   - "derived council graph"
 importance_tier: "normal"
 contextType: "implementation"
+version: 1.7.0.8
 ---
 
 # AI Council Graph Support

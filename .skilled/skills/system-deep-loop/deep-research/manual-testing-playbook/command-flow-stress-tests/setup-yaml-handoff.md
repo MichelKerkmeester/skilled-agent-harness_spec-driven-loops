@@ -1,6 +1,7 @@
 ---
 title: "CP-046 -- SETUP_YAML_HANDOFF command binding fidelity **(SANDBOXED)**"
 description: "Validate that /deep:research resolves setup inputs before loading the auto YAML workflow and leaves grep-checkable state evidence."
+version: 1.14.0.9
 ---
 
 # CP-046 -- SETUP_YAML_HANDOFF command binding fidelity **(SANDBOXED)**

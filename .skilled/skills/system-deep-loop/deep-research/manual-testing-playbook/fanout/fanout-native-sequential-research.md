@@ -1,6 +1,7 @@
 ---
 title: "Fan-out native sequential research dispatch"
 description: "Validate that native fan-out (count:N for the native executor) dispatches N sequential agent: deep-research runs with per-lineage isolated artifact dirs via config.fanout_lineage_artifact_dir."
+version: 1.14.0.3
 ---
 
 # DR-053 -- Fan-out native sequential research dispatch

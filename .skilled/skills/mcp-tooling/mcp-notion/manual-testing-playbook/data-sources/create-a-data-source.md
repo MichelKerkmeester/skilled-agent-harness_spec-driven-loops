@@ -2,6 +2,7 @@
 title: "DS-005 -- Create a data source"
 description: "This scenario validates a scratch data-source creation through the confirmed notion_create-a-data-source tool."
 stage: routing
+version: 0.1.0.0
 ---
 
 # DS-005 -- Create a data source

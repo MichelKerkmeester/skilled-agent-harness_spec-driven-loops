@@ -6,6 +6,7 @@ trigger_phrases:
   - "design system extraction card"
   - "design-md-generator private card"
   - "measured extraction card"
+version: 1.0.0.0
 ---
 
 # Md-Generator Procedure Card Inventory

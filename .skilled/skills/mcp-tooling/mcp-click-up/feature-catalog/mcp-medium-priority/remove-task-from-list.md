@@ -4,6 +4,7 @@ description: "Remove a task from an additional list. The home list cannot be rem
 trigger_phrases:
   - "clickup_remove_task_from_list"
   - "remove task from list"
+version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

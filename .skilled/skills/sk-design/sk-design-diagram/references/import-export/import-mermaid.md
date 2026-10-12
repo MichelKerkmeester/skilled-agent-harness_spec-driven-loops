@@ -10,6 +10,7 @@ trigger_phrases:
   - "simplify mermaid diagram"
 importance_tier: normal
 contextType: implementation
+version: 1.2.0.11
 ---
 
 # Import from Mermaid

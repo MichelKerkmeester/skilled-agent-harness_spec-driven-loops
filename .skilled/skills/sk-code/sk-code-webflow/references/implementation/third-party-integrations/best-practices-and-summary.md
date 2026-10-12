@@ -8,6 +8,7 @@ trigger_phrases:
   - "webflow best practices"
 importance_tier: normal
 contextType: implementation
+version: 1.5.0.4
 ---
 
 # Best Practices, Library Summary & Related

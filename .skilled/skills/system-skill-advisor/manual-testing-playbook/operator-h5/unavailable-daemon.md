@@ -5,6 +5,7 @@ trigger_phrases:
   - "op-003"
   - "unavailable daemon"
   - "unavailable"
+version: 0.8.0.13
 id: OP-003
 category: operator_h5
 stage: routing

@@ -1,6 +1,7 @@
 ---
 title: "DLR-054 -- Torn-tail recovery marker ordering"
 description: "Manual validation scenario for Torn-tail recovery marker ordering in the runtime/ skill."
+version: 1.4.0.15
 ---
 
 # DLR-054 -- Torn-tail recovery marker ordering

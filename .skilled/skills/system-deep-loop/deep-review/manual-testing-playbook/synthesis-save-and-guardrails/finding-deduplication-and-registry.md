@@ -1,6 +1,7 @@
 ---
 title: "DRV-028 -- Finding deduplication and registry"
 description: "Verify that finding deduplication uses adjudicated finalSeverity and produces a clean Active Finding Registry in the review report."
+version: 1.11.0.13
 ---
 
 # DRV-028 -- Finding deduplication and registry

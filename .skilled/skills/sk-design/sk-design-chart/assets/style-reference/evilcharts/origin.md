@@ -7,6 +7,7 @@ trigger_phrases:
   - "where the chart palette came from"
 importance_tier: normal
 contextType: reference
+version: 0.23.0.5
 ---
 
 # Origin of this Style Reference

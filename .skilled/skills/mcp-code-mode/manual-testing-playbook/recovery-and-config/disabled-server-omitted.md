@@ -1,6 +1,7 @@
 ---
 title: "CM-022 -- Disabled server omitted"
 description: "This scenario validates the disabled-server config flag for `CM-022`. It focuses on confirming `\"disabled\": true` for a manual removes its tools from `list_tools()` output and re-enabling restores them."
+version: 1.0.0.6
 id: CM-022
 category: recovery_and_config
 stage: routing

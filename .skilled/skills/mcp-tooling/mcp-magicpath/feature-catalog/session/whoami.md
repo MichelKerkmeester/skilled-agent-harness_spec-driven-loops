@@ -5,6 +5,7 @@ trigger_phrases:
   - "magicpath whoami tool"
   - "magicpath current user"
   - "magicpath signed in user"
+version: 1.0.0.0
 ---
 
 # whoami

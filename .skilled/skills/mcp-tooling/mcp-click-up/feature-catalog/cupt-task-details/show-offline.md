@@ -7,6 +7,7 @@ trigger_phrases:
   - "cached task detail"
   - "offline task view"
   - "task detail without network"
+version: 1.0.0.3
 ---
 
 # Show Offline

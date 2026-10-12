@@ -6,6 +6,7 @@ trigger_phrases:
   - "coverage-graph-time-decay"
   - "coverage-graph time decay runtime"
   - "coverage graph coverage-graph time decay"
+version: 1.4.0.15
 ---
 
 # Coverage-graph time decay

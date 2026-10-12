@@ -9,6 +9,7 @@ trigger_phrases:
   - "4-part version format"
 importance_tier: important
 contextType: general
+version: 1.0.0.11
 ---
 
 # Frontmatter Versioning Standard

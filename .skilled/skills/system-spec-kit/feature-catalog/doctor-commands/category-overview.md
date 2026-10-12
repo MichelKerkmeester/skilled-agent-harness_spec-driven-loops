@@ -7,6 +7,7 @@ trigger_phrases:
   - "run doctor subsystem diagnostic"
   - "skill advisor rebuild doctor"
   - "how do I diagnose and repair a spec-kit subsystem"
+version: 1.7.0.0
 ---
 
 # Doctor commands

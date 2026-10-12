@@ -5,6 +5,7 @@ trigger_phrases:
   - "Search note content"
   - "notesmd-cli search-content"
   - "search the vault body text"
+version: 0.1.0.0
 ---
 
 # Search note content (`notesmd-cli search-content`)

@@ -1,6 +1,7 @@
 ---
 title: "CR-001 -- Small PR single-file"
 description: "This scenario validates Small PR single-file for `CR-001`. It focuses on Confirm a focused one-file diff review stays findings-first without over-scoping."
+version: 1.5.0.2
 ---
 
 # CR-001 -- Small PR single-file

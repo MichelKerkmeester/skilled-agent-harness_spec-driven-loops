@@ -1,6 +1,7 @@
 ---
 title: "DLR-044 -- Fallback-router typed reroute"
 description: "Manual validation scenario for Fallback-router typed reroute in the runtime/ skill."
+version: 1.4.0.15
 ---
 
 # DLR-044 -- Fallback-router typed reroute

@@ -1,6 +1,7 @@
 ---
 title: "SP-027 -- Format mode delivery"
 description: "This scenario validates format-mode output delivery for `SP-027`. It focuses on `$json`, `$yaml`, and markdown mode producing format-correct structures."
+version: 2.3.0.5
 ---
 
 # SP-027 -- Format mode delivery

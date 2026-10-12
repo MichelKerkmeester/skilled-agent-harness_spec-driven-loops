@@ -7,6 +7,7 @@ trigger_phrases:
   - "iconic ruleset"
   - "icon color rules"
   - "folder icons"
+version: 0.7.0.0
 ---
 
 # Iconic rulebook file-layer operations (`iconic`)

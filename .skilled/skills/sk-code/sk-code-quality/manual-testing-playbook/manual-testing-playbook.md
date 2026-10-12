@@ -1,6 +1,7 @@
 ---
 title: "code-quality — Manual Testing Playbook"
 description: "Type-1 routing-recall scenarios for the code-quality skill's thin prompt-intent router."
+version: 1.0.0.0
 ---
 
 # code-quality — Manual Testing Playbook

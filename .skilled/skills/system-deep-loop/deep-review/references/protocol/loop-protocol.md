@@ -9,6 +9,7 @@ trigger_phrases:
   - "review synthesis phase"
 importance_tier: important
 contextType: implementation
+version: 1.11.0.29
 ---
 
 # Deep Review Loop Protocol

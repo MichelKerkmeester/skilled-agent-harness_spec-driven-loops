@@ -10,6 +10,7 @@ trigger_phrases:
   - "hermes query-file"
 importance_tier: important
 contextType: implementation
+version: 1.0.0.0
 ---
 
 # Hermes CLI - Complete Command Reference

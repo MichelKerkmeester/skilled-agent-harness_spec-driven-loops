@@ -2,6 +2,7 @@
 title: "DS-003 -- Query a data source"
 description: "This scenario validates a scratch data-source row query, including an empty-result outcome, through the confirmed notion_query-data-source tool."
 stage: routing
+version: 0.1.0.0
 ---
 
 # DS-003 -- Query a data source

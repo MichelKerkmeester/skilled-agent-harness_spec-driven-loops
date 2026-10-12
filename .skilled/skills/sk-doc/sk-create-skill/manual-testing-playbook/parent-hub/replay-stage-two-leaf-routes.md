@@ -1,6 +1,7 @@
 ---
 title: "SKL-008 -- Replay Stage-Two leaf routes"
 description: "This scenario validates the Stage-Two leaf-route replay for `SKL-008`. It focuses on the zero-call default, the per-hub lines and the replay stop line."
+version: 1.5.0.0
 ---
 
 # SKL-008 -- Replay Stage-Two leaf routes

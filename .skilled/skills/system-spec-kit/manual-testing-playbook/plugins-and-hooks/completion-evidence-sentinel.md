@@ -8,6 +8,7 @@ trigger_phrases:
   - "completion sentinel plugin"
   - "completion-evidence-sentinel"
   - "stop hook advisory"
+version: 1.0.0.1
 id: plugins-and-hooks-completion-evidence-sentinel
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

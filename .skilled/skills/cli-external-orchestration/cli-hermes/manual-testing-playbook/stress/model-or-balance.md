@@ -6,6 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-hermes.vitest.ts"
 test_name: "retains cli-hermes model-or-balance diagnostics in bounded lineage output"
 playbook_path: "cli-external-orchestration/cli-hermes/manual-testing-playbook/stress/model-or-balance.md"
 id: "cli-hermes-EC-002"
+version: 1.0.0.0
 ---
 
 # EC-002 -- cli-hermes model or balance failure

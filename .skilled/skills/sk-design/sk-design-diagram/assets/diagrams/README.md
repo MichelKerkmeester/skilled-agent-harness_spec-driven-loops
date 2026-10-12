@@ -7,6 +7,7 @@ trigger_phrases:
   - "which diagram to copy"
   - "skin starters"
 contextType: general
+version: 1.2.0.1
 ---
 
 # assets/diagrams

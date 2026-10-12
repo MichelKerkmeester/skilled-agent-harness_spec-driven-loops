@@ -4,6 +4,7 @@ description: "Remove a dependency between two tasks."
 trigger_phrases:
   - "clickup_remove_task_dependency"
   - "remove dependency"
+version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

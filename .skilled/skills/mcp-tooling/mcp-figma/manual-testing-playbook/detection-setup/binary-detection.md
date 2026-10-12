@@ -1,6 +1,7 @@
 ---
 title: "DETECT-001 -- Binary Detection And The Naming-Trap Refusal"
 description: "This scenario validates binary detection for `DETECT-001`. It focuses on confirming the canonical silships figma-ds-cli is detected and the unrelated figma-cli npm package is rejected by name."
+version: 1.0.0.1
 ---
 
 # DETECT-001 -- Binary Detection And The Naming-Trap Refusal

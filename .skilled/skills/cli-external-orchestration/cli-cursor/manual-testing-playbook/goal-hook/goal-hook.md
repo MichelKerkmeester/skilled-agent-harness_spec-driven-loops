@@ -1,6 +1,7 @@
 ---
 title: "CU-027 -- Session-bound Cursor goal injection"
 description: "Validates Cursor A/B injection isolation, missing-identity behavior, registration truth, and unsupported management."
+version: 1.5.0.0
 ---
 
 # CU-027 -- Session-bound Cursor goal injection

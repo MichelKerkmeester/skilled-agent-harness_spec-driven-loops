@@ -6,6 +6,7 @@ trigger_phrases:
   - "daemon lifecycle"
   - "sigterm shutdown"
   - "daemon health"
+version: 0.8.0.14
 id: AU-003
 category: auto_update_daemon
 stage: routing

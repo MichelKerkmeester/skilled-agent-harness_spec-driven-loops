@@ -15,6 +15,7 @@ expected_resources:
   - assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md
   - assets/checklists/rust-checklist/p1-required.md
   - assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md
+version: 1.0.0.0
 ---
 
 # OC-007: Code quality gate routing

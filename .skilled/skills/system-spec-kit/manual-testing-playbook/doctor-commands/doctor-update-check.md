@@ -1,6 +1,7 @@
 ---
 title: "DOC-357 -- Doctor update check"
 description: "Manual scenario validating that /doctor:update check on the shared update fixture reports the release position, upstream latest and per-unit status, keeps unavailable upstream data visible as UNKNOWN, and writes no checkout file or state log."
+version: 1.2.0.0
 id: doctor-commands-doctor-update-check
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

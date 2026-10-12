@@ -9,6 +9,7 @@ trigger_phrases:
   - "SPECKIT_ALLOW_REMOTE_PUSH"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.0
 ---
 
 # Remote Branch Push Permission Policy

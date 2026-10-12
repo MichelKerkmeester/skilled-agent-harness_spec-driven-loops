@@ -8,6 +8,7 @@ trigger_phrases:
   - "narrative readme structure"
 importance_tier: normal
 contextType: general
+version: 1.2.0.0
 ---
 
 # README Template and Selection Guide

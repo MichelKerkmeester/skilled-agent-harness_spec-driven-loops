@@ -5,6 +5,7 @@ trigger_phrases:
   - "clickup_delete_task"
   - "delete task"
   - "remove task mcp"
+version: 1.1.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

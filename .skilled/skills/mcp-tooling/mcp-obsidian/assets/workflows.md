@@ -6,6 +6,7 @@ trigger_phrases:
   - "plugin data over ui"
 importance_tier: "normal"
 contextType: "implementation"
+version: 0.1.0.0
 ---
 
 # mcp-obsidian Shared File-Layer Workflows

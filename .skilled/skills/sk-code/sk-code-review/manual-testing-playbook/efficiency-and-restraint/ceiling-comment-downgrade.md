@@ -1,6 +1,7 @@
 ---
 title: "CR-022 -- Ceiling-comment downgrade"
 description: "This scenario validates ceiling-comment downgrade for `CR-022`. It focuses on treating a concrete ceiling: comment as evidence that a too-simple KISS or YAGNI finding was intentional, while never downgrading a protected-class finding."
+version: 1.5.0.2
 ---
 
 # CR-022 -- Ceiling-comment downgrade

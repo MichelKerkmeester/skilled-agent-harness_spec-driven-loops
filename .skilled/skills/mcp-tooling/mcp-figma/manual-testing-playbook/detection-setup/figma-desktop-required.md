@@ -1,6 +1,7 @@
 ---
 title: "DESKTOP-001 -- Figma Desktop Required"
 description: "This scenario validates the Figma Desktop precondition for `DESKTOP-001`. It focuses on enforcing the Desktop-open requirement and failing the no-session path clearly with a recovery."
+version: 1.0.0.1
 ---
 
 # DESKTOP-001 -- Figma Desktop Required

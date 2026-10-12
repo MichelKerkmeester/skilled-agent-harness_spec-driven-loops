@@ -1,6 +1,7 @@
 ---
 title: "CR-007 -- P0 blocker with file:line"
 description: "This scenario validates P0 blocker with file:line for `CR-007`. It focuses on Confirm blocker findings include concrete file:line evidence and user impact."
+version: 1.5.0.4
 ---
 
 # CR-007 -- P0 blocker with file:line

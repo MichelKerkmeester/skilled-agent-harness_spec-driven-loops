@@ -6,6 +6,7 @@ trigger_phrases:
   - "is the vision model loaded"
   - "sk_vision_status"
   - "check the vision runtime health"
+version: 1.0.0.0
 ---
 
 # Runtime status (sk_vision_status)

@@ -1,6 +1,7 @@
 ---
 title: "Fan-out review with two CLI lineages"
 description: "Validate that a two-CLI-lineage fan-out review config triggers step_fanout_spawn → fanout-run.cjs pool → two isolated lineages sub-packets → step_fanout_merge with p0/p1/p2 binding → step_derive_verdict using merged counts → review-report.md."
+version: 1.11.0.3
 ---
 
 # DRV-064 -- Fan-out review with two CLI lineages

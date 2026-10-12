@@ -1,6 +1,7 @@
 ---
 title: "DLR-013 -- Coverage graph signals"
 description: "Manual validation scenario for Coverage graph signals in the runtime/ skill."
+version: 1.4.0.4
 ---
 
 # DLR-013 -- Coverage graph signals

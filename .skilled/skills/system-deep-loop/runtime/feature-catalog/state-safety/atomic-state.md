@@ -7,6 +7,7 @@ trigger_phrases:
   - "write state atomically"
   - "fsync rename temp-file"
   - "crash-safe JSON state"
+version: 1.4.0.4
 ---
 
 # Atomic state

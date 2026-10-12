@@ -1,6 +1,7 @@
 ---
 title: "DOC-363 -- Doctor skill-advisor graph freshness"
 description: "Manual scenario validating that /doctor:skill-advisor skill-graph-freshness diffs the compiled, sqlite and on-disk skill graphs, names a deliberately introduced missing identity, always exits 0 and writes nothing."
+version: 1.1.0.0
 id: doctor-commands-doctor-skill-advisor-graph-freshness
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

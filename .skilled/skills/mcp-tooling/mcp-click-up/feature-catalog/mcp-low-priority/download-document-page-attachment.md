@@ -4,6 +4,7 @@ description: "Get a short-lived download URL for a document page attachment."
 trigger_phrases:
   - "clickup_download_document_page_attachment"
   - "download doc attachment"
+version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

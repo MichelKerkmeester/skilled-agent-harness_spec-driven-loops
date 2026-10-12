@@ -26,6 +26,7 @@ evidence_manifest_digest: 82d7f3af886d3e154da2b0f4ec01302c9266fd24ef89f30244a032
 evidence_model: router-replay
 evidence_reasoning_effort: n/a
 created: 2026-07-21
+version: 1.0.0.0
 ---
 
 # system-deep-loop research mode serves compiled and matches legacy

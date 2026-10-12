@@ -9,6 +9,7 @@ trigger_phrases:
   - "component readme voice"
 importance_tier: normal
 contextType: implementation
+version: 1.2.1.0
 ---
 
 # README Types and Voice

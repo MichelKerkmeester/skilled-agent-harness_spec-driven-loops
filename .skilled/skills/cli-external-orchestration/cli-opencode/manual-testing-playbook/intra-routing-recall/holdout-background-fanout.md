@@ -9,6 +9,7 @@ expected_resources:
   - references/integration-patterns.md
   - assets/prompt-templates.md
 blindToRouterKeywords: true
+version: 1.4.0.6
 ---
 
 # CO-H02: Blind holdout: background fan-out sessions

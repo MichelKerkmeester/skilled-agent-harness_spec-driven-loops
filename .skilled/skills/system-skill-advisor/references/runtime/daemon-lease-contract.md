@@ -7,6 +7,7 @@ trigger_phrases:
   - "single writer lease"
 importance_tier: "important"
 contextType: "implementation"
+version: 0.8.0.11
 ---
 
 # Daemon Lease Contract

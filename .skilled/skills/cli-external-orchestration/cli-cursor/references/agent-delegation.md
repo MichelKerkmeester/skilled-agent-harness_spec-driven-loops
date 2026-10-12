@@ -9,6 +9,7 @@ trigger_phrases:
   - "cursor mode ask plan"
 importance_tier: normal
 contextType: implementation
+version: 1.4.0.9
 ---
 
 # Cursor Agent Delegation Reference

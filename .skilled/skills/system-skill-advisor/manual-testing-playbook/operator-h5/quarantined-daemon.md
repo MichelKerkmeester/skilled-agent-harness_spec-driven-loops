@@ -5,6 +5,7 @@ trigger_phrases:
   - "op-002"
   - "quarantined daemon"
   - "quarantined"
+version: 0.8.0.12
 id: OP-002
 category: operator_h5
 stage: routing

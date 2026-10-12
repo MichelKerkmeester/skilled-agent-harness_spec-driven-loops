@@ -6,6 +6,7 @@ trigger_phrases:
   - "official orca skills"
   - "orca discovery stub"
   - "orca skill snapshot provenance"
+version: 1.0.0.0
 ---
 
 # The official Orca skill layer (discovery stubs)

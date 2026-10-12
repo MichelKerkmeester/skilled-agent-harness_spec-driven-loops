@@ -9,6 +9,7 @@ trigger_phrases:
   - "what goes in a rule"
 importance_tier: important
 contextType: reference
+version: 1.1.0.4
 ---
 
 # Repo Rule Template

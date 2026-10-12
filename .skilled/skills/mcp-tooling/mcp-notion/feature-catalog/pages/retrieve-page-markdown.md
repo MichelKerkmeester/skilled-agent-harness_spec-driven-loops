@@ -5,6 +5,7 @@ trigger_phrases:
   - "Retrieve page as Markdown"
   - "notion_retrieve-page-markdown"
   - "read a Notion page as Markdown"
+version: 0.1.0.0
 ---
 
 # Retrieve page as Markdown (`notion_retrieve-page-markdown`)

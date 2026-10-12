@@ -6,6 +6,7 @@ trigger_phrases:
   - "create a git worktree"
   - "fast-merge worktree lifecycle"
   - "detached experiment worktree"
+version: 1.1.0.0
 ---
 
 # Numbered worktree workflows

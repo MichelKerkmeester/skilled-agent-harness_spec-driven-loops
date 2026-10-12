@@ -5,6 +5,7 @@ trigger_phrases:
   - "parallel browser testing"
   - "chrome_devtools_2"
   - "compare production staging browsers"
+version: 1.0.0.0
 ---
 
 # Dual-Instance Parallel

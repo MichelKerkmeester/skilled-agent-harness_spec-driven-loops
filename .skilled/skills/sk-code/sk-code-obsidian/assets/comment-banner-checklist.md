@@ -10,6 +10,7 @@ trigger_phrases:
   - "section grammar target state"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.0
 ---
 
 # MODULE Banner and Section-Comment Checklist

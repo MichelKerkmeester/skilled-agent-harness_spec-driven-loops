@@ -6,6 +6,7 @@ trigger_phrases:
   - "single writer lease"
   - "daemon lease heartbeat"
   - "lease reclaim stale"
+version: 0.8.0.14
 id: AU-002
 category: auto_update_daemon
 stage: routing

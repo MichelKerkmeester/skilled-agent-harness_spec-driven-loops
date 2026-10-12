@@ -2,6 +2,7 @@
 title: "RRX-002 -- Table wording run"
 description: "This scenario validates the table wording run for `RRX-002`. It focuses on a small limited run on one executor, pooled scoring that prints aggregates only, and reading the arm difference against the preregistered decision rule."
 stage: routing
+version: 1.0.0.0
 ---
 
 # RRX-002 -- Table wording run

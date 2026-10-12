@@ -7,6 +7,7 @@ description: "This scenario validates STYLES routing for `RF-R01`. It focuses on
 expected_intent: STYLES
 expected_resources:
   - references/tool-surface.md
+version: 1.0.0.1
 ---
 
 # RF-R01: Styles routing

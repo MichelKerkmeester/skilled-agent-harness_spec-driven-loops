@@ -8,6 +8,7 @@ expected_intent: STACK_STANDARDS
 expected_resources:
   - references/obsidian-plugin-api.md
   - references/standards/platform-support.md
+version: 1.0.0.0
 ---
 
 # OB-H05: STACK_STANDARDS held out (decontaminated phrasing)

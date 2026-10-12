@@ -1,6 +1,7 @@
 ---
 title: "HERMES-019 -- MCP code_mode reach"
 description: "Confirm a configured MCP server is reachable only when its name appears in the `-t` list, proving the toolset list gates MCP as well as built-in toolsets for `HERMES-019`."
+version: 1.0.0.0
 ---
 
 # HERMES-019 -- MCP code_mode reach

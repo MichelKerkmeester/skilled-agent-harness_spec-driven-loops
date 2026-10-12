@@ -7,6 +7,7 @@ trigger_phrases:
   - "daily task overview"
   - "due today overdue completed"
   - "situational awareness dashboard"
+version: 1.0.0.3
 ---
 
 # Task Summary

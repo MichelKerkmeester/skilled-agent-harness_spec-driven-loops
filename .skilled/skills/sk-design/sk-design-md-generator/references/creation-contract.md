@@ -8,6 +8,7 @@ trigger_phrases:
   - "accepted design handoff"
 importance_tier: important
 contextType: implementation
+version: 2.0.0.0
 ---
 
 # Extract Creation Contract

@@ -6,6 +6,7 @@ trigger_phrases:
   - "record-replay-cassette-harness"
   - "record-replay cassette harness runtime"
   - "testing record-replay cassette harness"
+version: 1.4.0.15
 ---
 
 # Record-replay cassette harness

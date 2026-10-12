@@ -6,6 +6,7 @@ trigger_phrases:
   - "skill_advisor.py"
   - "compat shim advisor"
   - "native first shim"
+version: 0.8.0.13
 ---
 
 # Python CLI Shim (skill_advisor.py)

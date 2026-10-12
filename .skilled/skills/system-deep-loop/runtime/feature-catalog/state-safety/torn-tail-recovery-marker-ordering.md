@@ -6,6 +6,7 @@ trigger_phrases:
   - "torn-tail-recovery-marker-ordering"
   - "torn-tail recovery marker ordering runtime"
   - "state safety torn-tail recovery marker ordering"
+version: 1.4.0.15
 ---
 
 # Torn-tail recovery marker ordering

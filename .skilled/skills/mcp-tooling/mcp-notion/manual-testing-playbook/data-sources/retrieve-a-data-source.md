@@ -2,6 +2,7 @@
 title: "DS-002 -- Retrieve a data source"
 description: "This scenario validates a scratch data-source schema read through the confirmed notion_retrieve-a-data-source tool."
 stage: routing
+version: 0.1.0.0
 ---
 
 # DS-002 -- Retrieve a data source

@@ -7,6 +7,7 @@ description: "This scenario validates the negative/out-of-domain control for `FG
 expected_intent: none
 expected_resources: []
 blindToRouterKeywords: false
+version: 1.0.0.1
 ---
 
 # FG-N01: Negative: out of domain

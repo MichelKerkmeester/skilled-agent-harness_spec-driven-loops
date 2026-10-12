@@ -6,6 +6,7 @@ trigger_phrases:
   - "sync-prompts-hermes"
   - "hermes project skills trust"
   - "hermes SYNC manifest"
+version: 1.0.0.0
 ---
 
 # Hermes Runtime Folder And Prompt Sync (sync-prompts-hermes.cjs)

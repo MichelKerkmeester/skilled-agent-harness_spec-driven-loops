@@ -8,6 +8,7 @@ expected_intent: IMPLEMENTATION
 expected_resources:
   - references/view-renderer-architecture.md
   - references/data-layer.md
+version: 1.0.0.0
 ---
 
 # OB-014: Short-prompt baseline across CLI runtimes

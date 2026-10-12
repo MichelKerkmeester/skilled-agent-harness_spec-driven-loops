@@ -7,6 +7,7 @@ trigger_phrases:
   - "initialize coverage graph"
   - "sqlite namespace scoping"
   - "node edge crud graph"
+version: 1.4.0.4
 ---
 
 # Coverage graph DB

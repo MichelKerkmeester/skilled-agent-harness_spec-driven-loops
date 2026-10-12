@@ -1,6 +1,7 @@
 ---
 title: "CP-050 -- ITERATION_CITATION_JSONL leaf output contract **(SANDBOXED)**"
 description: "Validate that the command-dispatched @deep-research body writes a cited iteration file and exactly one schema-rich JSONL iteration record."
+version: 1.14.0.9
 ---
 
 # CP-050 -- ITERATION_CITATION_JSONL leaf output contract **(SANDBOXED)**

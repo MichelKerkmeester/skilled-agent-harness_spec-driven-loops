@@ -1,6 +1,7 @@
 ---
 title: "DOC-364 -- Doctor skill-advisor router reach"
 description: "Manual scenario validating that /doctor:skill-advisor router-reach probes each declared phrase against the live advisor, prints the per-hub reach report with the literal RESULT line, and writes nothing."
+version: 1.0.0.0
 id: doctor-commands-doctor-skill-advisor-router-reach
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

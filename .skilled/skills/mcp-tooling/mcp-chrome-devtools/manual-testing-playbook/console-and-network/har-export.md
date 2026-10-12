@@ -1,6 +1,7 @@
 ---
 title: "BDG-013 -- HAR export"
 description: "This scenario validates HAR network archive export for `BDG-013`. It focuses on confirming `bdg network har` writes a valid HAR-format JSON file to disk."
+version: 1.0.0.7
 ---
 
 # BDG-013 -- HAR export

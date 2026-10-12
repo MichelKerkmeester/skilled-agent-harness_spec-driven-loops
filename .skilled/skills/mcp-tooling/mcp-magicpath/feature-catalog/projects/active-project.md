@@ -5,6 +5,7 @@ trigger_phrases:
   - "magicpath active project tool"
   - "active project magicpath"
   - "magicpath open projects"
+version: 1.0.0.0
 ---
 
 # active_project

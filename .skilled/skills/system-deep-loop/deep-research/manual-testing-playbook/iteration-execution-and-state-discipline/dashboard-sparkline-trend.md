@@ -1,6 +1,7 @@
 ---
 title: "DR-060 -- Dashboard sparkline trend"
 description: "Verify that the dashboard renders new-information and score history as sparklines with flatline advisory evidence."
+version: 1.14.0.21
 ---
 
 # DR-060 -- Dashboard sparkline trend
