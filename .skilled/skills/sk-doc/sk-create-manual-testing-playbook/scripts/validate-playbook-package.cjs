@@ -391,6 +391,8 @@ function isExpectedUnresolved(token) {
 
 // A symlink in the tree is a repository path even while its target is a build output that has
 // not been built yet, so the link itself, not what it points at, decides whether a path resolves.
+// The link check stays stricter on purpose: a markdown link has to open, so there a dangling
+// symlink is still PATH_MISSING and one that leaves the repository is still an error.
 function pathPresent(candidate) {
   if (fs.existsSync(candidate)) return true;
   try { return fs.lstatSync(candidate).isSymbolicLink(); } catch { return false; }

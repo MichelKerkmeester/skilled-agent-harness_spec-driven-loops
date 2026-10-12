@@ -447,7 +447,7 @@ Verify `sessionStart`, `preToolUse`, and `sessionEnd` fire under a real `cursor-
 
 Prompt: `In an isolated temp workspace with its own hooks.json wiring sessionStart/preToolUse/sessionEnd to a logging probe, dispatch a trivial task and confirm all three events fire.`
 
-Expected signals: The probe log shows at least one entry for `sessionStart`, at least one for `preToolUse` (fired before the dispatched tool call), and at least one for `sessionEnd` - matching phase 004's live-confirmed delivery table (`../../../../../specs/cli-external-orchestration/030-cli-cursor-creation/004-cursor-hook-adapter-layer/implementation-summary.md`).
+Expected signals: The probe log shows at least one entry for `sessionStart`, at least one for `preToolUse` (fired before the dispatched tool call), and at least one for `sessionEnd` - matching phase 004's live-confirmed delivery table (`specs/cli-external-orchestration/z_archive/030-cli-cursor-creation/004-cursor-hook-adapter-layer/implementation-summary.md`).
 
 Desired user-visible outcome: A reproduced, first-hand confirmation of the three events this repo's own hook adapters are wired to, independent of trusting the phase 004 summary alone.
 
@@ -501,7 +501,7 @@ Verify a second `preToolUse` array entry scoped with `"matcher": "Task"` (`task-
 
 Prompt: `In an isolated temp workspace with its own hooks.json wiring two preToolUse entries (one unmatched, one matcher: "Task") to a logging probe, dispatch a task that explicitly requests subagent delegation and confirm both entries fire for the same Task call.`
 
-Expected signals: The probe log shows at least one entry from the unmatched wiring AND at least one entry from the `matcher: "Task"` wiring for the same dispatched `Task` tool call - matching phase 011's live-fire dispatch 3 evidence (`preToolUse-Task-fired` and `preToolUse-unmatched-fired` for the same call, captured in `../../../../../specs/cli-external-orchestration/030-cli-cursor-creation/011-cursor-hooks-claude-parity/implementation-summary.md`).
+Expected signals: The probe log shows at least one entry from the unmatched wiring AND at least one entry from the `matcher: "Task"` wiring for the same dispatched `Task` tool call - matching phase 011's live-fire dispatch 3 evidence (`preToolUse-Task-fired` and `preToolUse-unmatched-fired` for the same call, captured in `specs/cli-external-orchestration/z_archive/030-cli-cursor-creation/009-cursor-hooks-lifecycle/003-cursor-hooks-claude-parity/implementation-summary.md`).
 
 Desired user-visible outcome: A reproduced, first-hand confirmation that Cursor's `matcher` schema field routes a second `preToolUse` entry by `tool_name` without shadowing the pre-existing unmatched entry, independent of trusting the phase 011 summary alone.
 
@@ -585,7 +585,7 @@ This category covers 2 scenario summaries while the linked feature files remain 
 
 #### Description
 
-Verify the CLEAR 5-check is applied before dispatch (via the canonical card at `sk-prompt/assets/cli-prompt-quality-card.md`, reached through the local `assets/prompt-quality-card.md` delegation) and that an under-scored prompt is escalated to a structured framework before dispatch.
+Verify the CLEAR 5-check is applied before dispatch (via the canonical card at `.skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md`, reached through the local `assets/prompt-quality-card.md` delegation) and that an under-scored prompt is escalated to a structured framework before dispatch.
 
 #### Scenario Contract
 

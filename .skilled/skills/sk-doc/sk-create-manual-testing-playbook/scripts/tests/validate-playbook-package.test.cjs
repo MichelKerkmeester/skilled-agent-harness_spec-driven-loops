@@ -290,9 +290,9 @@ function runPromptSyncRegressions() {
 // that much, so a seeded package carries enough unresolved paths to exceed the buffer.
 function runPipedReportRegression() {
   const packageRoot = copyFixture('piped-report', (root) => writeScenario(root, `${readScenario(root)}\n${Array.from({ length: 1500 }, (_, index) => `\`missing/drift-${index}.md\``).join('\n')}\n`));
-  const fleet = runCli(packageRoot, ['--strict']);
-  assert(fleet.stdout.length > 65536, `fleet report should exceed one pipe buffer; got ${fleet.stdout.length} bytes`);
-  assert(/\nexit=\d+\n$/.test(fleet.stdout), 'piped fleet report must end with its exit line');
+  const seeded = runCli(packageRoot, ['--strict']);
+  assert(seeded.stdout.length > 65536, `seeded report should exceed one pipe buffer; got ${seeded.stdout.length} bytes`);
+  assert(/\nexit=\d+\n$/.test(seeded.stdout), 'piped seeded report must end with its exit line');
   console.log('piped report regression: PASS (2 assertions)');
 }
 
