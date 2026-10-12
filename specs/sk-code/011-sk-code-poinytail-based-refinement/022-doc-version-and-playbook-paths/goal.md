@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths"
-    last_updated_at: "2026-10-12T06:00:00Z"
-    last_updated_by: "scaffold"
-    recent_action: "Scaffolded the phase parent and its two children"
-    next_safe_action: "Build each child in its own worktree branched from the scaffold commit"
+    last_updated_at: "2026-10-12T12:00:00Z"
+    last_updated_by: "integrator"
+    recent_action: "Integrated both children and raised the repaired docs"
+    next_safe_action: "Operator review of the integration branch, then merge to main"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-022-parent"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -77,11 +77,11 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `cat specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/00*/implementation-summary.md | grep -cE '^\| (PV-R[0-9]+|PP-([0-9]+|V)) \| (Fixed|Closed) \|'`, run from the repository root, prints 37.
-- [ ] `grep -l 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/00*/implementation-summary.md | wc -l | tr -d ' '`, run from the repository root, prints 2.
-- [ ] `for c in specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/00*/; do node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs $c | tail -1; done | grep -c 'RESULT: PASSED'`, run from the repository root, prints 2.
-- [ ] `node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs verify`, run from the repository root after both children merge, exits 0.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths --recursive --strict`, run from the repository root, prints `RESULT: PASSED` 3 times and `RESULT: FAILED` 0 times.
+- [x] `cat specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/00*/implementation-summary.md | grep -cE '^\| (PV-R[0-9]+|PP-([0-9]+|V)) \| (Fixed|Closed) \|'`, run from the repository root, prints 37.
+- [x] `grep -l 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/00*/implementation-summary.md | wc -l | tr -d ' '`, run from the repository root, prints 2.
+- [x] `for c in specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/00*/; do node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs $c | tail -1; done | grep -c 'RESULT: PASSED'`, run from the repository root, prints 2.
+- [x] `node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs verify`, run from the repository root after both children merge, exits 0.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths --recursive --strict`, run from the repository root, prints `RESULT: PASSED` 3 times and `RESULT: FAILED` 0 times.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -98,8 +98,9 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Scaffold | Done | Parent and two children created with create.sh phase mode, `--path`, `--level 2` and `--with-goal`; each child spec lists its ledger rows |
-| 001 per-doc versions | Pending | |
-| 002 playbook path repair | Pending | |
+| 001 per-doc versions | Done | Merged onto `worktrees/120-docver-integration`; sk-doc 2.3.7.0 |
+| 002 playbook path repair | Done | Merged onto `worktrees/120-docver-integration`; its sk-doc release renumbered 2.3.7.0 to 2.3.8.0 under D5 |
+| Integration | Done | `frontmatter-version.mjs bump --base worktrees/119-docver-per-doc` raised 227 docs 002 changed; criteria 1 to 5 run from the merged tree: 37, 2, 2, verify exit 0, 3 PASSED and 0 FAILED |
 
 ### Deviations and findings
 

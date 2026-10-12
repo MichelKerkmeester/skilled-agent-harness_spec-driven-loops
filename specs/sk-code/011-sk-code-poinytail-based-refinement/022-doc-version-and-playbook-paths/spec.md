@@ -10,17 +10,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths"
-    last_updated_at: "2026-10-12T06:00:00Z"
-    last_updated_by: "scaffold"
-    recent_action: "Scaffolded the phase parent and its two children"
-    next_safe_action: "Build each child in its own worktree branched from the scaffold commit"
+    last_updated_at: "2026-10-12T12:00:00Z"
+    last_updated_by: "integrator"
+    recent_action: "Integrated both children and raised the repaired docs"
+    next_safe_action: "Operator review of the integration branch, then merge to main"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-022-parent"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +37,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-12 |
 | **Branch** | `worktrees/117-docver-scaffold` (scaffold); each child builds in its own worktree branched from the scaffold commit |
 | **Parent Spec** | `../spec.md` |
@@ -91,8 +91,8 @@ Restore a per-doc version that is raised automatically whenever a doc's content 
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-per-doc-versions/ | Every skill doc carries its own 4-part version, raised by the pre-commit hook and checked on pull requests; the removed lines restored | Pending |
-| 2 | 002-playbook-path-repair/ | Every unresolved backticked playbook path corrected, removed or rewritten, or listed with its reason | Pending |
+| 1 | 001-per-doc-versions/ | Every skill doc carries its own 4-part version, raised by the pre-commit hook and checked on pull requests; the removed lines restored | Complete |
+| 2 | 002-playbook-path-repair/ | Every unresolved backticked playbook path corrected, removed or rewritten, or listed with its reason | Complete |
 
 ### Phase Transition Rules
 
