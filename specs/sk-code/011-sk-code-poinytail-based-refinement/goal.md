@@ -56,39 +56,40 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:binding -->
 ## 2. BINDING
 
-**Read the child goal before working a phase**; it binds as if written here.
+**Read a phase's child goal first**; it binds as if written here.
 
 | Phase | Goal document |
 |-------|---------------|
-| 001-ponytail-deep-research | `001-ponytail-deep-research/goal.md` |
-| 002-surface-contract-alignment | `002-surface-contract-alignment/goal.md` |
-| 003-doctrine-pass | `003-doctrine-pass/goal.md` |
-| 004-webflow-checker-fix | `004-webflow-checker-fix/goal.md` |
-| 005-review-output-additions | `005-review-output-additions/goal.md` |
-| 006-guard-retirement-notes | `006-guard-retirement-notes/goal.md` |
-| 007-follow-up-fixes | `007-follow-up-fixes/goal.md` |
-| 008-round-two-recommendations | `008-round-two-recommendations/goal.md` |
-| 009-round-two-follow-ups | `009-round-two-follow-ups/goal.md` |
-| 010-round-three-remediation | `010-round-three-remediation/goal.md` |
-| 011-round-four-remediation | `011-round-four-remediation/goal.md` |
-| 012-post-merge-deep-review | `012-post-merge-deep-review/goal.md` |
-| 013-root-cause-and-ux-research | `013-root-cause-and-ux-research/goal.md` |
-| 014-skill-authoring-ux-research | `014-skill-authoring-ux-research/goal.md` |
-| 015-closeout | `015-closeout/goal.md` |
-| 016-residual-closeout | `016-residual-closeout/goal.md` |
-| 017-release-changelog | `017-release-changelog/goal.md` |
-| 018-create-sh-unknown-options | `018-create-sh-unknown-options/goal.md` |
-| 019-routing-miss-fixes | `019-routing-miss-fixes/goal.md` |
-| 020-open-ends-research | `020-open-ends-research/goal.md` |
-| 021-open-ends-remediation | `021-open-ends-remediation/goal.md` |
-| 022-doc-version-and-playbook-paths | `022-doc-version-and-playbook-paths/goal.md` |
-| 025-external-surface-priority-research | `025-external-surface-priority-research/goal.md` |
+| 001 | `001-ponytail-deep-research/goal.md` |
+| 002 | `002-surface-contract-alignment/goal.md` |
+| 003 | `003-doctrine-pass/goal.md` |
+| 004 | `004-webflow-checker-fix/goal.md` |
+| 005 | `005-review-output-additions/goal.md` |
+| 006 | `006-guard-retirement-notes/goal.md` |
+| 007 | `007-follow-up-fixes/goal.md` |
+| 008 | `008-round-two-recommendations/goal.md` |
+| 009 | `009-round-two-follow-ups/goal.md` |
+| 010 | `010-round-three-remediation/goal.md` |
+| 011 | `011-round-four-remediation/goal.md` |
+| 012 | `012-post-merge-deep-review/goal.md` |
+| 013 | `013-root-cause-and-ux-research/goal.md` |
+| 014 | `014-skill-authoring-ux-research/goal.md` |
+| 015 | `015-closeout/goal.md` |
+| 016 | `016-residual-closeout/goal.md` |
+| 017 | `017-release-changelog/goal.md` |
+| 018 | `018-create-sh-unknown-options/goal.md` |
+| 019 | `019-routing-miss-fixes/goal.md` |
+| 020 | `020-open-ends-research/goal.md` |
+| 021 | `021-open-ends-remediation/goal.md` |
+| 022 | `022-doc-version-and-playbook-paths/goal.md` |
+| 023 | `023-readme-freshness-research/goal.md` |
+| 024 | `024-readme-freshness-fixes/goal.md` |
+| 025 | `025-external-surface-priority-research/goal.md` |
 
-**Precedence.** Decisions outrank child detail, which outranks any summary of
-it. Name a conflict, never resolve it silently.
+**Precedence.** Decisions outrank child detail, which outranks any summary.
+Name a conflict, never resolve it silently.
 
-**Stop.** Only the criteria below decide done; an evaluator sees only the
-objective string.
+**Stop.** Only the criteria below decide done.
 <!-- /ANCHOR:binding -->
 
 ---
@@ -96,8 +97,8 @@ objective string.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 24 times, none FAILED
-- [ ] `grep -lr --include=implementation-summary.md 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement | grep -vc /001-ponytail` prints 105
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 26 times, none FAILED
+- [ ] `grep -lr --include=implementation-summary.md 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement | grep -vc /001-ponytail` prints 107
 - [ ] `git log --format='%(trailers:key=Spec,valueonly)' | grep -c '^sk-code/011-'` prints 100+; `git status --short` is empty
 - [ ] `node .skilled/bin/compiled-route-guard.cjs` exits 0 with sk-code `fresh`; `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "code review my obsidian plugin"` prints `"action":"route"`, no `servingAuthority`
 - [ ] `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js`, `bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh` and `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` exit 0
@@ -158,7 +159,12 @@ and findings belong here.
 | Integration 2026-10-12, open ends remediation | Branches 115, 113, 114 and 112 merged on `worktrees/116-rem-integration`, with colliding skill versions renumbered in merge order. The four 021 summaries reached `completion_pct: 100`, so criterion 2 is amended from 97 to 101, as printed; criterion 1 stays 22 |
 | 022 added 2026-10-12 | Child 022 scaffolds two build phases, per-doc versions and playbook path repair; binding row added, criterion 1 amended to 23 (the parent and 22 direct children, as printed) and criterion 2 stays 101, as printed, until the two 022 summaries complete, when it becomes 103. The new row took the slice to 4,079 characters, so D7 was folded into D2, D1 lost its `Build:` prefix, D4 lost the finished 002-011 commit order, and criteria 1, 3, 4 and 5 were reworded with the same checks; the slice is 3,999 characters and no criterion was removed |
 | Integration 2026-10-12, doc version and playbook paths | Branches 119 and 118 merged on `worktrees/120-docver-integration`; 002's sk-doc release renumbered from 2.3.7.0 to 2.3.8.0. The two 022 summaries reached `completion_pct: 100`, so criterion 2 is amended from 101 to 103, as printed; criterion 1 stays 23 |
+| 023 added 2026-10-12 | Child 023 runs a read-only ten-iteration research on whether the root README and its related READMEs hold after v4.0.0.4, on cli-devin with DeepSeek V4.1 Flash max; binding row added, criterion 1 amended to 24 (the parent and 23 direct children). Criterion 2 stays 104, as printed, until the 023 summary completes, when it becomes 105. The new row took the slice to 4,075 characters, so the objective, D2, the binding, precedence and stop lines and criteria 1 and 3 were reworded with the same checks; the slice is 3,993 characters and no criterion was removed |
+| Closeout 2026-10-12, README freshness research | The 023 run finished ten iterations on cli-devin and its summary reached `completion_pct: 100`, so criterion 2 is amended from 104 to 105, as printed; criterion 1 stays 24 |
+| 024 added 2026-10-12 | Child 024 applies the 023 README fixes F1 to F23 and retires doctor check 13c, per the operator ruling that every doc keeps its own version; binding row added, criterion 1 amended to 25 (the parent and 24 direct children). Criterion 2 stays 105, as printed, until the 024 summary completes, when it becomes 106. The new row took the slice to 4,063 characters, so the binding, precedence and stop lines were reworded and the stop line lost its evaluator clause; the slice is 3,988 characters and no decision, binding row or criterion was removed |
+| Closeout 2026-10-12, README freshness fixes | The 024 summary reached `completion_pct: 100` after its five-iteration review, so criterion 2 is amended from 105 to 106, as printed; criterion 1 stays 25 |
 | 025 added 2026-10-12 | Child 025 runs a read-only research, two ten-iteration lineages on cli-devin DeepSeek V4.1 Flash max and cli-codex GPT-6 Luna max fast, on how a user's own sk-code surface should outrank sk-code-opencode once the obsidian and webflow examples are deleted. It is numbered 025 because 023 and 024 exist on `worktrees/122-readme-freshness-research`, not yet on main. Binding row added; criterion 1 amended to 24 (the parent and 23 direct children on this branch, as printed), criterion 2 stays 104 until the 025 summary completes, when it becomes 105. The row took the slice to 4,011 characters, so the objective, D2, binding, precedence and stop lines and criteria 1 and 3 were reworded with the same checks; the slice is 3,998 characters and no criterion was removed |
 | 025 complete 2026-10-12 | Both lineages ran ten iterations and the 025 summary reached `completion_pct: 100`, so criterion 2 is amended from 104 to 105, as printed on this branch; criterion 1 stays 24 |
+| Merge 2026-10-12, surface priority research | Branch 123 merged with origin/main, which carries 023 and 024; 025 keeps its number, its binding row follows 024, and criteria 1 and 2 are amended to 26 and 107, as printed after the merge. The merge took the slice to 4,082 characters, so the binding table's Phase column now names only the number |
 | Handed off, not built here | D2 Codex mirror gap (deep-improvement and git hooks) and D4 stdin deadline (hooks); recorded in the parent spec |
 <!-- /ANCHOR:log -->

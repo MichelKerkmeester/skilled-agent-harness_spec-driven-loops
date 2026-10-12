@@ -1,5 +1,5 @@
 {
-  "corpusHash": "488bfe0cf6d96ff7b13dc4900d52264efec84d40b6b35d262ab212feefacd1d2",
+  "corpusHash": "abdc2b25aad52432bf9d308e4292e4f24b9bb5d833f6880c331ca2df6c1174a9",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24496,
+  "includedPathCount": 24545,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11083,6 +11083,55 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/deep-research-dashboard.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/deep-research-strategy.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/iterations/iteration-001.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/iterations/iteration-002.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/iterations/iteration-003.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/iterations/iteration-004.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/iterations/iteration-005.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/iterations/iteration-006.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/iterations/iteration-007.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/iterations/iteration-008.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/iterations/iteration-009.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/iterations/iteration-010.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/prompts/iteration-1.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/prompts/iteration-10.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/prompts/iteration-2.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/prompts/iteration-3.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/prompts/iteration-4.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/prompts/iteration-5.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/prompts/iteration-6.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/prompts/iteration-7.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/prompts/iteration-8.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/prompts/iteration-9.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/research.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/resource-map.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/acceptance-criteria.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/deep-review-dashboard.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/deep-review-strategy.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/iterations/iteration-001.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/iterations/iteration-002.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/iterations/iteration-003.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/iterations/iteration-004.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/iterations/iteration-005.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/prompts/iteration-1.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/prompts/iteration-2.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/prompts/iteration-3.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/prompts/iteration-4.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/prompts/iteration-5.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/resource-map.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/review-report.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/025-external-surface-priority-research/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/025-external-surface-priority-research/implementation-summary.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/025-external-surface-priority-research/plan.md",
@@ -24527,7 +24576,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0fb20afa370fe80e422a5da8cbb35efba85327a9dc4b21e4e1776bd5c6fd5d52",
+  "manifestHash": "5ef573069ea64455d7a70cc3beeb1799e81488e47e1d74c7238e68cf02af219d",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26695,6 +26744,14 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch",
       "reason": "excluded directory"
     },
     {

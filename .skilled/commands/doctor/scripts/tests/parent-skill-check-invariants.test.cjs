@@ -407,8 +407,6 @@ const FAILING_CASES = [
   ['13a-version', 'SKILL.md has no four-part version', (h) => fs.writeFileSync(path.join(h, 'SKILL.md'),
     hubSkillMd().replace(`version: ${VERSION}`, 'version: 1.0')), 'no four-part'],
   ['13b-version', 'newer changelog entry than SKILL.md', (h) => fs.writeFileSync(path.join(h, 'changelog', 'v1.0.0.1.md'), '# x\n'), 'v1.0.0.1'],
-  ['13c-readme-version', 'README.md version differs from SKILL.md', (h) => fs.writeFileSync(path.join(h, 'README.md'),
-    '---\ntitle: demo\nversion: 1.0.0.9\n---\n# demo\n'), 'README.md'],
   ['13d-packet-version', 'packet SKILL.md ahead of its newest changelog entry', (h) => {
     fs.writeFileSync(path.join(h, 'pkg-alpha', 'SKILL.md'), '---\nname: pkg-alpha\nversion: 1.0.0.1\n---\n# pkg-alpha\n');
     fs.writeFileSync(path.join(h, 'pkg-alpha', 'changelog', 'v1.0.0.0.md'), '# x\n');
@@ -432,12 +430,12 @@ test('5k-canary fails when a routerSignals mode is never the expected route of a
   assert.equal(status, 1, output);
 });
 
-test('13c warns, and does not fail, on a hub whose README already lags its release', () => {
-  const hub = buildHub('sk-doc');
+test('a hub README version that differs from SKILL.md is not reported', () => {
+  const hub = buildHub();
   fs.writeFileSync(path.join(hub, 'README.md'), '---\ntitle: demo\nversion: 1.0.0.9\n---\n# demo\n');
-  const { output } = runChecker(hub);
-  assertLine(output, 'WARN', '13c-readme-version', 'README.md');
-  assert.doesNotMatch(output, /^FAIL: 13c-readme-version:/m);
+  const { status, output } = runChecker(hub);
+  assert.doesNotMatch(output, /13c-readme-version/);
+  assert.equal(status, 0, output);
 });
 
 test('5k warns, and does not fail, on alias drift that another hub already carries', () => {

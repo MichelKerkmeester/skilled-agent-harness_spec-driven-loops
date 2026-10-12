@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0fb20afa370fe80e422a5da8cbb35efba85327a9dc4b21e4e1776bd5c6fd5d52",
+  "manifestHash": "5ef573069ea64455d7a70cc3beeb1799e81488e47e1d74c7238e68cf02af219d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -51269,6 +51269,9 @@
     "hub readme validation": [
       "hub readme validation"
     ],
+    "hub readme version check": [
+      "hub readme version check"
+    ],
     "hub registration": [
       "hub registration"
     ],
@@ -70853,11 +70856,17 @@
     "phase 22 tasks": [
       "phase 22 tasks"
     ],
+    "phase 23 readme freshness research": [
+      "phase 23 readme freshness research"
+    ],
     "phase 24 implementation summary": [
       "phase 24 implementation summary"
     ],
     "phase 24 plan": [
       "phase 24 plan"
+    ],
+    "phase 24 readme freshness fixes": [
+      "phase 24 readme freshness fixes"
     ],
     "phase 24 tasks": [
       "phase 24 tasks"
@@ -76513,11 +76522,50 @@
     "readme factory cascade alignment": [
       "readme factory cascade alignment"
     ],
+    "readme fix list": [
+      "readme fix list"
+    ],
     "readme folders b01 b17": [
       "readme folders b01 b17"
     ],
+    "readme freshness fixes": [
+      "readme freshness fixes"
+    ],
+    "readme freshness fixes acceptance criteria": [
+      "readme freshness fixes acceptance criteria"
+    ],
+    "readme freshness fixes goal": [
+      "readme freshness fixes goal"
+    ],
+    "readme freshness fixes implementation summary": [
+      "readme freshness fixes implementation summary"
+    ],
+    "readme freshness fixes plan": [
+      "readme freshness fixes plan"
+    ],
+    "readme freshness fixes tasks": [
+      "readme freshness fixes tasks"
+    ],
     "readme freshness plan": [
       "readme freshness plan"
+    ],
+    "readme freshness research": [
+      "readme freshness research"
+    ],
+    "readme freshness research goal": [
+      "readme freshness research goal"
+    ],
+    "readme freshness research implementation summary": [
+      "readme freshness research implementation summary"
+    ],
+    "readme freshness research plan": [
+      "readme freshness research plan"
+    ],
+    "readme freshness research strategy": [
+      "readme freshness research strategy"
+    ],
+    "readme freshness research tasks": [
+      "readme freshness research tasks"
     ],
     "readme freshness summary": [
       "readme freshness summary"
@@ -81768,6 +81816,9 @@
     "retire a rule": [
       "retire a rule"
     ],
+    "retire check 13c": [
+      "retire check 13c"
+    ],
     "retire detect changes plan": [
       "retire detect_changes plan"
     ],
@@ -83410,6 +83461,9 @@
     "root playbook backtick check": [
       "root playbook backtick check"
     ],
+    "root readme after v4 0 0 4": [
+      "root readme after v4.0.0.4"
+    ],
     "root readme alignment": [
       "root readme alignment"
     ],
@@ -83448,6 +83502,9 @@
     ],
     "root readme sections": [
       "root readme sections"
+    ],
+    "root readme stale after v4 0 0 4": [
+      "root readme stale after v4.0.0.4"
     ],
     "root readme update": [
       "root readme update"
@@ -98617,6 +98674,9 @@
     ],
     "stale opencode references map": [
       "stale opencode references map"
+    ],
+    "stale readme statements": [
+      "stale readme statements"
     ],
     "stale rebase merge lost commit": [
       "stale rebase-merge lost commit"

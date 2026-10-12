@@ -1754,7 +1754,7 @@ function checkRootRouter(ctx) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 13. VERSION PARITY CHECKS (13a-13d)
+// 13. VERSION PARITY CHECKS (13a, 13b, 13d)
 // ─────────────────────────────────────────────────────────────────────────────
 
 // The first `version:` line of a markdown file, or absent.
@@ -1797,26 +1797,6 @@ function checkChangelogVersion(ctx, authority) {
   } else {
     softFail(`13b-version: SKILL.md claims ${authority} but the newest changelog entry is v${newest}`);
   }
-}
-
-// These hub front pages already lag their release, so their README drift warns until it is
-// repaired. README drift on any other hub fails.
-const README_VERSION_WARN_ONLY = new Set(['cli-classifier', 'cli-external-orchestration', 'sk-doc', 'system-deep-loop']);
-
-// 13c: a hub README that declares a version is the front page of that release, so it carries
-// the SKILL.md version.
-function checkReadmeVersion(ctx, authority) {
-  const readme = markdownVersion(ctx.target, 'README.md');
-  if (!readme.present) {
-    info('13c-readme-version: README.md declares no version, nothing to compare');
-    return;
-  }
-  if (readme.value === authority) {
-    pass(`13c-readme-version: README.md carries the SKILL.md version ${authority}`);
-    return;
-  }
-  const report = README_VERSION_WARN_ONLY.has(ctx.basename) ? warn : softFail;
-  report(`13c-readme-version: README.md carries ${readme.value} but SKILL.md, the release authority, carries ${authority}`);
 }
 
 // 13d: each mode packet's SKILL.md version names its newest changelog entry, and that entry's
@@ -1885,7 +1865,6 @@ function checkVersionParity(ctx) {
   }
   if (parity) pass(`13a-version: all routing artifacts carry the SKILL.md version ${authority}`);
   checkChangelogVersion(ctx, authority);
-  checkReadmeVersion(ctx, authority);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

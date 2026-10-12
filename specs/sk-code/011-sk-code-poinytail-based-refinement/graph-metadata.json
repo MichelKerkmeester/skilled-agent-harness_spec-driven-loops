@@ -26,6 +26,8 @@
     "sk-code/011-sk-code-poinytail-based-refinement/020-open-ends-research",
     "sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation",
     "sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths",
+    "sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research",
+    "sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes",
     "sk-code/011-sk-code-poinytail-based-refinement/025-external-surface-priority-research"
   ],
   "manual": {
@@ -175,19 +177,19 @@
     ],
     "causal_summary": "Ponytail is an external coding-agent plugin that teaches restraint: write the least code that meets the requirement, and still ship tests for risky logic",
     "created_at": "2026-10-09T13:20:16Z",
-    "last_save_at": "2026-10-12T18:37:29.940Z",
+    "last_save_at": "2026-10-12T18:43:36.305Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:1c2b691f8dd31c0a1c966751fed81076795cd243a9dc840d43ffee941fac739e",
+    "source_fingerprint": "sha256:913e3b6a1db0721a986186cde06a43032ce78d809af7f1d8fea01f05a5198c1e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c9bbbd87004e6a98f22c1fd6342562b664eb130cc13a3e60c029fd0e3601e8f9"
+      "spec.md": "6ec6520a8f3b4e7d373dddf5283ad6f80f0d7facbe310ab8183787b27fc4afbe"
     },
-    "last_active_child_id": "sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths",
-    "last_active_at": "2026-10-12T10:45:39.217Z"
+    "last_active_child_id": "sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research",
+    "last_active_at": "2026-10-12T15:34:36.939Z"
   }
 }

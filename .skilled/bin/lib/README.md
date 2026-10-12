@@ -69,6 +69,10 @@ lib/
 +-- sidecar-env-allowlist.cjs      # Frozen env-key allowlist for the embedding sidecar
 +-- compiled-route-manifest.cjs    # Activation-manifest library: mint, refresh, freshness, writer lease
 +-- compiled-route-layout.cjs      # Selects one coherent runtime generation, refuses a mixed root
++-- compiled-route-admission.cjs   # Scores a hub's compiled decisions against its playbook routing gold
++-- mirror-sync-verify.cjs         # Verifies each runtime's agent mirrors against their source
++-- node-engine-resolver.cjs       # Finds a Node interpreter that satisfies a package's engines range
++-- node-engine-resolver.test.cjs  # node:test suite for the resolver
 +-- compiled-routing/              # GENERATED serving closure, promoted by compiled-route-sync.cjs
 `-- README.md
 ```
@@ -90,7 +94,7 @@ lib/
 
 | Boundary | Rule |
 |---|---|
-| Imports | All three modules depend only on Node core (`fs`, `net`, `http`, `path`, `child_process`). No third-party packages. |
+| Imports | Every module here depends only on Node core (`fs`, `net`, `http`, `path`, `child_process`). No third-party packages. |
 | Exports | Each file uses `module.exports`. Launchers in `bin/` import these, and the daemon-backed CLI dist entrypoints require `launcher-ipc-bridge.cjs`. nothing here imports a launcher or a CLI. |
 | Ownership | This folder owns model-server lifecycle, IPC bridging and the sidecar env allowlist. It does not own MCP request handling or per-server build logic, which live in each launcher and skill. |
 

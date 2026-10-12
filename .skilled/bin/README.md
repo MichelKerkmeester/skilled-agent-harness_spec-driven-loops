@@ -74,6 +74,7 @@ bin/
 +-- git-sync.sh                    # Autosync helper for the git continuous-integration workflow
 +-- git-live-follow.sh             # Live-follow watcher for the same workflow
 +-- check-git-hooks.sh             # SessionStart guard warning on missing or drifted git hooks
++-- check-agent-mirror-sync.cjs    # Checks each runtime's agent mirrors against .skilled/agents
 +-- git-primary-reconcile.sh       # SessionStart reconcile: converge the primary checkout onto its live branch
 +-- relink-local-specs.sh          # Restore machine-local spec symlinks after a destructive clean
 +-- install-codex-hooks.mjs        # Removes repo-owned Codex hooks from the user-global config

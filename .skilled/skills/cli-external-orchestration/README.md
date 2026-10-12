@@ -17,7 +17,7 @@ trigger_phrases:
   - "delegate to hermes"
   - "cli dispatch"
   - "cross-ai delegation"
-version: 1.7.3.0
+version: 1.7.4.0
 ---
 
 # cli-external-orchestration
@@ -91,7 +91,7 @@ Routing reads `hub-router.json` for signals and vocabulary classes, then `mode-r
 
 Four behaviors keep dispatch honest:
 
-- `cli-codex` fails closed when the binary is absent. `cli-devin`, `cli-pi` and `cli-hermes` gate routing on `command -v`, and `cli-hermes` also reads `hermes status` for a configured provider.
+- `cli-codex` fails closed when the binary is absent. `cli-devin`, `cli-pi` and `cli-hermes` gate routing on `command -v`, and `cli-hermes` also reads `hermes config get providers.llmgateway.base_url` for a configured provider.
 - A runtime is blocked from dispatching itself, except `cli-pi`, which a Pi session may dispatch because Pi has no in-process delegation left. Every mode is still refused from inside a fan-out lineage or a repeated dispatch stack.
 - One `graph-metadata.json` carries the single advisor identity for all seven modes, unioning their intent signals, trigger phrases, domains and outward edges.
 - Each mode keeps its own `SKILL.md`, `README.md`, `references/`, `assets/`, `manual-testing-playbook/` and `changelog/`. Its `references/providers-and-models.md` is the single source for that mode's providers, model ids, effort tiers and dispatch shapes.

@@ -21,7 +21,7 @@ Built for Claude Code, Codex, Opencode, Pi Agent, Devin, Cursor and Hermes CLI
 - **Spec Memory & Search** - session context saved into each spec folder and recovered through instant keyword search, surviving resets and compactions
 - **Skill Advisor Daemon** - dynamic prompt-time skill suggestions using 5-lane fusion and a live skill graph
 - **Autonomous Deep Loops** - research and review loops that run unattended and stop only when their own evidence says done
-- **12 Specialized Agents** - focused roles for implementation, review, research, docs, git and more
+- **11 Specialized Agents** - focused roles for implementation, review, research, docs, git and more
 - **14 On-Demand Skills** - deep capabilities for code, design, docs and multi-CLI dispatch
 
 ---
@@ -63,7 +63,7 @@ Type a prompt and the matching expertise loads before any tool runs. No memorizi
 
 ### 🤖 Agent Library
 
-Twelve specialized agents own focused roles, and seven CLI bridges let a runtime dispatch other AI CLIs as sub-tools.
+Eleven specialized agents own focused roles, and seven CLI bridges let a runtime dispatch other AI CLIs as sub-tools.
 
 - A review can fan out across several models at once, with the safest verdict winning
 - The conducting AI stays in charge. Each dispatched CLI handles the part it is best at and returns
@@ -77,7 +77,7 @@ The framework extends each runtime through plugins, hooks and extensions rather 
 - **`pi-cache-optimizer` ("Cache Pi"):** our custom Pi extension package that keeps Pi-side context costs down across dispatches, alongside `pi-fast-mode-w-subagent-support` for fast mode with subagent support
 - **Plus the rest of the extension surface:** spec-gate enforcement, skill-advisor prompt briefs, post-edit quality checks, session lifecycle and cleanup, MCP route guards and git preflight advisories - thin runtime adapters over shared policy cores in `.skilled/hooks/`
 
-Behind them: 14 on-demand skills, 39 command entry points and the Code Mode MCP server, each detailed in its own section below.
+Behind them: 14 on-demand skills, 37 command entry points and the Code Mode MCP server, each detailed in its own section below.
 
 ---
 
@@ -95,7 +95,7 @@ Three building blocks carry the whole system:
 
 3. **Coordinated agents and skills**
 
-   12 specialized agents routed by a gate system that loads the right skills at the right time.
+   11 specialized agents routed by a gate system that loads the right skills at the right time.
 
 From request to documented result:
 
@@ -122,7 +122,7 @@ From request to documented result:
                  ▼                             ▼
          ┌───────────────┐          ┌──────────────────┐
          │ AGENT NETWORK │          │  SKILLS LIBRARY  │
-         │ 12 specialized│          │ 14 domain skills │
+         │ 11 specialized│          │ 14 domain skills │
          │ agents with   │◄────────►│ auto-loaded by   │
          │ routing logic │          │ task keywords    │
          └───────┬───────┘          └────────┬─────────┘
@@ -144,7 +144,7 @@ From request to documented result:
          ┌──────────────────────────────────────────┐
          │     SPEC KIT (documentation framework)   │
          │  specs/<track>/###-feature/ - scratch/   │
-         │  4 levels - template set - 42 rules      │
+         │  4 levels - template set - 41 rules      │
          │  trigger index │ ripgrep retrieval       │
          └──────────────────────────────────────────┘
 ```
@@ -418,12 +418,12 @@ specs/<track>/022-big-feature/     # Parent spec folder
 
 #### Scripts and Validation
 
-`validate.sh` runs 42 rules against a spec folder and reports what passes and what needs fixing. Rules check required files, template compliance, placeholder detection, anchor markers and cross-reference consistency. Two of them only warn and never fail a run: `FRONTMATTER_VALUES` checks each doc's `contextType` and `importance_tier` against the one value list in sk-create-frontmatter's `assets/frontmatter-values.json`, and `SOURCE_TAGS` checks that the `[SOURCE: path:line]` tags in research and review artifacts point at a file and line that exist.
+`validate.sh` runs 41 rules against a spec folder and reports what passes and what needs fixing. Rules check required files, template compliance, placeholder detection, anchor markers and cross-reference consistency. Seven of them only warn and never fail a run, among them these two: `FRONTMATTER_VALUES` checks each doc's `contextType` and `importance_tier` against the one value list in sk-create-frontmatter's `assets/frontmatter-values.json`, and `SOURCE_TAGS` checks that the `[SOURCE: path:line]` tags in research and review artifacts point at a file and line that exist.
 
 **Spec management scripts** in `.skilled/skills/system-spec-kit/runtime/cli/spec/`:
 
 - **`create.sh`** - create spec folders with level-appropriate templates. Use `--phase` for a parent with child phases
-- **`validate.sh`** - run 42 validation rules. Use `--recursive` for phase folders
+- **`validate.sh`** - run 41 validation rules. Use `--recursive` for phase folders
 - **`upgrade-level.sh`** - upgrade a spec folder to a higher level by injecting new sections
 - **`recommend-level.sh`** - analyze scope and risk to recommend the right documentation level
 - **`calculate-completeness.sh`** - calculate spec folder completeness as a percentage
@@ -782,7 +782,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 - Mandatory orchestrator for all file modifications - activates automatically for any code file change
 - Creates numbered spec folders with manifest templates rendered through Level contracts across 4 levels (1-3+)
 - Owns the packet continuity writer, the generated trigger index and the ripgrep retrieval recipes
-- Manages the manifest template source, 42 validation rules, the spec-kit script suite and the feature-catalog / testing-playbook documentation surfaces
+- Manages the manifest template source, 41 validation rules, the spec-kit script suite and the feature-catalog / testing-playbook documentation surfaces
 
 **`system-skill-advisor`**
 
@@ -878,7 +878,7 @@ When a decision needs a number rather than prose, this hub asks a classifier for
 One advisor identity routing to nine modes through `mode-registry.json`: five workflow modes (`mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, `mcp-notion`) and four design transports (`mcp-figma`, `mcp-refero`, `mcp-mobbin`, `mcp-magicpath`).
 
 - **`mcp-chrome-devtools`: drive a real browser from the assistant.** Chrome DevTools with smart 2-mode routing: CLI mode (`bdg`) runs in the terminal, supports Unix pipes and composes in CI/CD, with MCP mode as the fallback for multi-tool flows
-- **`mcp-click-up`: manage ClickUp tasks from the assistant.** Routes between `cupt` CLI (daily task ops) and the official ClickUp MCP (documents, goals, bulk ops, webhooks) with operation-based routing. Agent-safe by design: per-list status resolution, dry-run before batch completion, `--json` output, empty-queue handling. Embedded install via `mcp-servers/` directory. 96-feature catalog + 37-scenario playbook included
+- **`mcp-click-up`: manage ClickUp tasks from the assistant.** Routes between `cupt` CLI (daily task ops) and the official ClickUp MCP (task creation, documents, search, chat and reminders) with operation-based routing. Agent-safe by design: per-list status resolution, dry-run before batch completion, `--json` output, empty-queue handling. Embedded install via `mcp-servers/` directory. 111-feature catalog + 35-scenario playbook included
 - **`mcp-obsidian`: manage Obsidian notes from the assistant.** Dual CLI + MCP mode using `notesmd-cli` for headless vault operations, the official `obsidian` CLI for app-backed control, and cyanheads `obsidian-mcp-server` through the Local REST API
 - **`mcp-figma` _(transport)_: drive Figma Desktop from the terminal.** Reads, authors, modifies and exports designs, tokens and components through the silships `figma-ds-cli`, with an optional Figma MCP via Code Mode for pulling design context. CLI-primary and gated: a local daemon brokers every command, read-only inspection and exports are free, authoring or destructive verbs are gated. Needs Figma Desktop open and uses no API key. Never decides design taste on its own: pairs with `sk-design-md-generator` for the measured design reference
 
@@ -930,7 +930,7 @@ One advisor identity routing to nine modes through `mode-registry.json`: five wo
 
 ## 9. 🤖 AGENT LIBRARY
 
-12 custom specialist agents. Defined in `.skilled/agents/` (source of truth) and mirrored for Claude Code (`.claude/agents/`). OpenCode reads `.opencode/agents/`, which links to the same `.skilled/agents/` source.
+11 custom specialist agents. Defined in `.skilled/agents/` (source of truth) and mirrored for Claude Code, Codex, Cursor, Devin and Pi (`.<runtime>/agents/`). OpenCode and Hermes read `.opencode/agents/` and `.hermes/agents/`, which link to the same `.skilled/agents/` source.
 
 #### AGENT ORCHESTRATION
 
@@ -1071,7 +1071,7 @@ The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which ru
 
 ## 11. ⌨️ COMMAND LIBRARY
 
-39 command entry points: 36 across 6 command groups plus 3 root utilities. Each command is a Markdown entry point under `.skilled/commands/**/*.md`, and most are backed by a YAML execution spec. Command families keep that workflow routing separate from their Markdown presentation contracts, so the rendered dashboards stay stable while the underlying workflow evolves.
+37 command entry points: 34 across 6 command groups plus 3 root utilities. Each command is a Markdown entry point under `.skilled/commands/**/*.md`, and most are backed by a YAML execution spec. Command families keep that workflow routing separate from their Markdown presentation contracts, so the rendered dashboards stay stable while the underlying workflow evolves.
 
 #### SPEC KIT
 
@@ -1275,7 +1275,7 @@ Eight commands cover the diagnostic surface, one per owner. The six routed ones 
 - Saves a preference only after showing the exact line and destination and getting an explicit yes. `--dry-run` shows the same preview and writes nothing
 - Explains secrets and per-invocation switches without asking for or saving their values. A per-invocation switch is shown as a one-command prefix
 
-The 19 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode` block and runs in phases, and most also declare `upstream_assets`, `user_inputs` and `field_handling`. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
+The 20 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode` block and runs in phases, and most also declare `upstream_assets`, `user_inputs` and `field_handling`. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
 
 &nbsp;
 #### UTILITY
@@ -1432,7 +1432,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 
 **`mcp-tooling`** - ✅ codebase-agnostic
 
-- Parent hub for MCP tool bridges, nine modes: `mcp-chrome-devtools` (browser tooling), `mcp-click-up` (ClickUp task management via cupt CLI + official MCP, requires `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`), `mcp-obsidian` (Obsidian notes via notesmd-cli, the official obsidian CLI and cyanheads obsidian-mcp-server), `mcp-aside-devtools` and `mcp-notion`, plus the design transports `mcp-figma` (Figma Desktop via the silships `figma-ds-cli`, requires Figma Desktop open), `mcp-refero`, `mcp-mobbin` and `mcp-magicpath`. Stack-independent
+- Parent hub for MCP tool bridges, nine modes: `mcp-chrome-devtools` (browser tooling), `mcp-click-up` (ClickUp task management via cupt CLI + official MCP, cupt signs in with `cupt auth` or a `pk_` token, the MCP with one OAuth approval), `mcp-obsidian` (Obsidian notes via notesmd-cli, the official obsidian CLI and cyanheads obsidian-mcp-server), `mcp-aside-devtools` and `mcp-notion`, plus the design transports `mcp-figma` (Figma Desktop via the silships `figma-ds-cli`, requires Figma Desktop open), `mcp-refero`, `mcp-mobbin` and `mcp-magicpath`. Stack-independent
 
 &nbsp;
 #### Adding Your Own Skills

@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.0.99
+version: 2.7.1.0
 ---
 
 # System Spec Kit
@@ -46,7 +46,7 @@ Manual documentation is ad hoc and inconsistent. Basic RAG offers vector similar
 
 ### Requirements
 
-- Node.js 20.11 or newer
+- Node.js 22.12 or newer (Node 24 for a full install)
 - TypeScript 5.0 or newer
 - Bash 4.0 or newer
 

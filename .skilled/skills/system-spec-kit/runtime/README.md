@@ -23,7 +23,7 @@ This package owns three things that the rest of Spec Kit builds on.
 
 - **Spec folder validation.** `lib/validation/orchestrator.ts` decides every rule verdict for a spec folder. `cli/spec/validate.sh` is a thin front end over its compiled output and deliberately implements no rules of its own.
 - **Generated packet metadata.** `lib/graph/` and `lib/description/` derive, merge, validate, and serialize the two generated JSON files a spec folder carries, `description.json` and `graph-metadata.json`, plus the integrity and drift gates that prove they still match the documents they summarize.
-- **Runtime hook adapters.** `hooks/` holds the per-runtime adapters for Claude, Codex, Cursor, Devin, and Pi, together with the runtime-neutral Gate-3 spec-gate core they all call.
+- **Runtime hook adapters.** `hooks/` holds the per-runtime adapters for Claude, Codex, Cursor, Devin, OpenCode, and Pi, together with the runtime-neutral Gate-3 spec-gate core they all call.
 
 The package has no server process and no transport of its own. Its build artifact is a library under `dist/`, and every consumer reaches it either through the `./api` export or by naming a file under `hooks/` in a runtime hook config.
 

@@ -22,6 +22,7 @@ The public runtime surface is split between typed or CommonJS modules under `lib
 
 ```text
 runtime/
+├── changelog/
 ├── database/
 ├── feature-catalog/
 ├── lib/
