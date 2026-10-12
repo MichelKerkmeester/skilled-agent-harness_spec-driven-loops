@@ -1,5 +1,5 @@
 {
-  "corpusHash": "2a187c2b66747fc24892eea319d625013d6f3c8e2face3dfe267aa3f56bb5864",
+  "corpusHash": "fe163a310b5f1d0a50c1d628332853f6196ef84fe176b5418856f3d3a7aac135",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -24519,7 +24519,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "cab20f7b3ead63d3b4ab180699870f5ae102eef7c76277d82cb20d1b67a6eed8",
+  "manifestHash": "bf02a119cd29f3600c22720c5bc2b8689986214278ce49cb4f3d0e547a6ca900",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
