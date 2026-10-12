@@ -36,7 +36,7 @@
       "acceptance"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -44,13 +44,14 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
       ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
       ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
-      ".skilled/scripts/git-hooks/lib/gates.tsv",
+      ".github/workflows/skill-doc-frontmatter.yml",
       ".skilled/skills/sk-doc/SKILL.md",
-      ".github/workflows/skill-doc-frontmatter.yml"
+      ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+      ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+      ".skilled/scripts/git-hooks/lib/gates.tsv"
     ],
     "entities": [
       {
@@ -90,12 +91,6 @@
         "source": "derived"
       },
       {
-        "name": "frontmatter-versioning.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
-        "source": "derived"
-      },
-      {
         "name": "frontmatter-version.mjs",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
@@ -114,9 +109,9 @@
         "source": "derived"
       },
       {
-        "name": "gates.tsv",
-        "kind": "file",
-        "path": ".skilled/scripts/git-hooks/lib/gates.tsv",
+        "name": "skill-doc-frontmatter.yml",
+        "kind": "config",
+        "path": ".github/workflows/skill-doc-frontmatter.yml",
         "source": "derived"
       },
       {
@@ -126,9 +121,21 @@
         "source": "derived"
       },
       {
-        "name": "skill-doc-frontmatter.yml",
-        "kind": "config",
-        "path": ".github/workflows/skill-doc-frontmatter.yml",
+        "name": "pre-commit.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-versioning.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+        "source": "derived"
+      },
+      {
+        "name": "gates.tsv",
+        "kind": "file",
+        "path": ".skilled/scripts/git-hooks/lib/gates.tsv",
         "source": "derived"
       },
       {
@@ -190,17 +197,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Since 31888d05bb only `SKILL.md` carries a version, so a reader of a single reference, asset, playbook or catalog doc cannot tell which edition of that doc they hold",
     "created_at": "2026-10-12T05:21:01Z",
-    "last_save_at": "2026-10-12T05:34:29.642Z",
+    "last_save_at": "2026-10-12T08:08:29.028Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ceddd70cec481b707eaf8fbc3d53bda99258264b824b5ef7a3aaf07d50a027da",
+    "source_fingerprint": "sha256:f4a6fba4eca3cf201dc0043e4a421e425bdc51c8d6ab0dd9bc44eae94dc4f7d9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cf5cb9e9bd7c93fe303732eb9d014349b76884bea72836fc397cb78ed7fd7187",
+      "spec.md": "9594842923e549232d95e96649c4f688877cfc7ec5f3ad16a2cc6731ee9411bf",
       "plan.md": "d3c78dc4df0555ea022ea7c4eb83a57a38f450d7fd3e3aefaf4b7c8376e469fc",
-      "tasks.md": "4149f6a6f185aab7575ca3459112b8019fa75f1cc836601ea45a1a5400e57bc2",
-      "implementation-summary.md": "f5bd04fdf268167317c76da883ef5d4a01f9b0f35d95402ec3101d8c468c0da5"
+      "tasks.md": "2b505a087e74caf6ba7593576bf673831050f1da39a972f9df57a6f48081f940",
+      "implementation-summary.md": "3df129371c1348f62bca33f520ce07267e4a0b167f27e3ec70814c84d92db21c"
     },
     "last_active_at": null
   }

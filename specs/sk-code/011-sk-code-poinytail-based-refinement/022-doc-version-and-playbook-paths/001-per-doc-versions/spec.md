@@ -22,7 +22,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-12 |
 | **Branch** | `worktrees/117-docver-scaffold` (scaffold); the builder works in its own worktree branched from the scaffold commit |
 | **Parent Spec** | ../spec.md |
@@ -224,5 +224,5 @@ Changed behavior gets a test that fails before the change and passes after it, r
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-1. Should the 21 hand-authored docs with no frontmatter gain one, and so a version? This phase leaves them out under D1's frontmatter-less class; adding frontmatter is an operator call.
+1. Resolved: the operator ruled on 2026-10-12 that the 21 hand-authored docs with no frontmatter are in scope. Each gained minimal frontmatter and `version: 1.0.0.0`, with a 22nd doc found during the build; the amendment to D1 is recorded in `goal.md`.
 <!-- /ANCHOR:questions -->
