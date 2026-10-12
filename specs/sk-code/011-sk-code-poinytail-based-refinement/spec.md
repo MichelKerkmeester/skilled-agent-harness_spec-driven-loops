@@ -137,6 +137,7 @@ These bind every build phase, 002 to 006.
 | 21 | 021-open-ends-remediation/ | Build every recommendation the open ends research kept: typo-proof parsers, onboarding fixes, doc and catalog truth, and routing parity in CI | Complete |
 | 22 | 022-doc-version-and-playbook-paths/ | Give every skill doc its own automatically raised version again, and resolve every unresolved backticked playbook path | Complete |
 | 23 | 023-readme-freshness-research/ | Ten-iteration research into whether the root README and its related READMEs still hold after the v4.0.0.4 changes; research only | Complete |
+| 24 | 024-readme-freshness-fixes/ | Apply the README fixes F1 to F23 from the 023 research and retire doctor check 13c, so a hub README keeps its own version | In Progress |
 
 ### Phase Transition Rules
 
@@ -171,6 +172,7 @@ These bind every build phase, 002 to 006.
 | 020-open-ends-research | 021-open-ends-remediation | The five 020 syntheses merged; 021's four children build in parallel | `validate.sh --recursive --strict` on the parent |
 | 021-open-ends-remediation | 022-doc-version-and-playbook-paths | 021 merged; 022's two children build in parallel from the scaffold commit | `validate.sh --recursive --strict` on the parent |
 | 022-doc-version-and-playbook-paths | 023-readme-freshness-research | 022 on origin/main; 023 is read-only research | `validate.sh --recursive --strict` on the parent |
+| 023-readme-freshness-research | 024-readme-freshness-fixes | 023 synthesis committed; the operator approved every fix and ruled that each doc keeps its own version | `validate.sh --recursive --strict` on the parent |
 
 ### Handoffs Outside sk-code
 
