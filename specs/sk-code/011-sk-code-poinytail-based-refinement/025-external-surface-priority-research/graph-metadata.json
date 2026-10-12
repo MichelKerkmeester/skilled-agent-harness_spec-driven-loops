@@ -19,7 +19,8 @@
       "external surface priority research plan",
       "external surface priority research tasks",
       "external surface priority research goal",
-      "external surface priority research implementation summary"
+      "external surface priority research implementation summary",
+      "external surface priority research synthesis"
     ],
     "key_topics": [
       "external",
@@ -36,13 +37,15 @@
       "sk-code"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      "research/research.md",
+      "research/deep-research-config.json",
       ".skilled/repo-rules/prevent-overengineering.md"
     ],
     "entities": [
@@ -77,6 +80,18 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
         "name": "prevent-overengineering.md",
         "kind": "doc",
         "path": ".skilled/repo-rules/prevent-overengineering.md",
@@ -84,12 +99,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -114,6 +123,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -175,25 +190,13 @@
       {
         "name": "the",
         "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
+        "path": "research/research.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The v4.0.0.4 release note's \"One Surface Order Everywhere\" entry says every sk-code file that ranks the code surfaces lists OpenCode, then Obsidian, then Webflow, and that a keyword tie can be led by the session's surface through `compiled-route.cjs --surface-hint`",
     "created_at": "2026-10-12T16:19:58Z",
-    "last_save_at": "2026-10-12T16:24:34.889Z",
+    "last_save_at": "2026-10-12T18:37:28.395Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,15 +204,17 @@
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:4ac35fb6d8c33105beaccc0e6a7cf76ba6bfed877699f4861208ef321c6cefba",
+    "source_fingerprint": "sha256:405d0a0b15e44560f56666a655b1f8be50df396b74ae377b081bd5c8e22cec61",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2f318d8eae9c9c630d7e1e41d4cf91147245fe53397312ff3387999b30f4c726",
-      "plan.md": "91cb385154b3d9f4d80a1a44b619ba2a5c6e785162a914927569b4f70628f04e",
-      "tasks.md": "0886692ce501300739f357fb2c65b297ae4f89ef84f390848517b78fc961f3aa",
-      "implementation-summary.md": "dfbb5d12bb2a5f38e7f9af601d40d20b2a9603b622b2d2a6bf25a1cb713afcc8"
+      "spec.md": "7f7a65e732d2cffa4d2c3707d0dd2f0c9b6ef5ad3d545c7e0cb6ddd54c586de5",
+      "plan.md": "ccf0edf531b9b85069e63f7a2981fe841a6f980aee652e08d1a4b1988f3c5e4f",
+      "tasks.md": "e92ab31c074a7646a01db3e93f7e8d324bb2d50b16a14173007c58a444c8b911",
+      "implementation-summary.md": "84c61209f13c917dbf226cbcd70a90fae59257d705b451aab9fe9bf77a877965",
+      "research/research.md": "760dcb840d0aa638ef1576f84ff81f3cc20d71f20c3606a657842f1ed4ebcad8"
     },
     "last_active_at": null
   }

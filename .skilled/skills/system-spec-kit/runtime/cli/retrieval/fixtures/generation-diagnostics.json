@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 6807,
-    "ok": 14139,
+    "missing-frontmatter": 6809,
+    "ok": 14140,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 24493,
+  "documentsScanned": 24496,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "1bc2d3a8bb28cc6ca5e1a269b5beb28bb207743e7622dd07adafee823da7b34a",
+  "manifestHash": "0fb20afa370fe80e422a5da8cbb35efba85327a9dc4b21e4e1776bd5c6fd5d52",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36251,
+      "ok": 36252,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -37924,6 +37924,18 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/025-external-surface-priority-research/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/025-external-surface-priority-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/research/iterations/iteration-001.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -67884,6 +67896,10 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/025-external-surface-priority-research/research/lineages",
       "reason": "excluded directory"
     },
     {

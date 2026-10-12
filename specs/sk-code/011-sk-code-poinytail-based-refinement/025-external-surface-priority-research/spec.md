@@ -23,7 +23,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-12 |
 | **Branch** | `worktrees/123-surface-priority-research` |
 | **Parent Spec** | ../spec.md |
@@ -152,6 +152,16 @@ Done means:
 ## 7. OPEN QUESTIONS
 
 - None blocking the run. The research questions are in section 2.
+- Deep-research topic: how a user's own sk-code surface should outrank sk-code-opencode once the obsidian and webflow example surfaces are deleted, while the operator's repository keeps its order.
+- Research Context: deep-research is active for this topic in two lineages under research/lineages/; research/research.md is canonical.
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+Abridged from `research/research.md`, which stays canonical:
+- The surface order lives only in `hub-router.json` `tieBreak`; the compiler copies it and the doctor validates it. The shipped order already ranks the native surface ahead of the two examples.
+- A surface a user adds must go ahead of `sk-code-opencode`; nothing writes or documents that today (R1).
+- Deleting the two examples fails the doctor with 113 failures, crashes the sk-code drift guards on a hard-coded path, and leaves the front door routing to the deleted packets (R2, R3).
+- The doctor's re-mint repair leaves the guard at `authored-drift` unless the manifest is copied to its authored path (R3).
+- A rank field, a native flag, a mint-time derivation and a starter payload are rejected (X1 to X6).
+<!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 
 ---

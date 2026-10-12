@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1bc2d3a8bb28cc6ca5e1a269b5beb28bb207743e7622dd07adafee823da7b34a",
+  "manifestHash": "0fb20afa370fe80e422a5da8cbb35efba85327a9dc4b21e4e1776bd5c6fd5d52",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -41550,6 +41550,9 @@
     ],
     "external surface priority research plan": [
       "external surface priority research plan"
+    ],
+    "external surface priority research synthesis": [
+      "external surface priority research synthesis"
     ],
     "external surface priority research tasks": [
       "external surface priority research tasks"

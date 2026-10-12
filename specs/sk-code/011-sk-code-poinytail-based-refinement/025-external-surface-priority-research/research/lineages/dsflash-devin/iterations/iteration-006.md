@@ -1,0 +1,84 @@
+# Iteration 6: Q3 — how a user-added surface outranks sk-code-opencode
+
+## Focus
+Q3 as dispatched: compare the options for letting a user surface outrank `sk-code-opencode` — (a) a priority/rank field in `mode-registry.json`, (b) a native/fallback flag on opencode so it sorts last, (c) a tieBreak derived at mint instead of hand-written, (d) relying on `--surface-hint`/session surface, (e) anything better — citing the code and data each touches, its callers, tests and fixtures, and risk; then name the cheapest move that works with the sentence saying why each cheaper move fails, per `.skilled/repo-rules/prevent-overengineering.md`.
+
+Read-only iteration: no worktree file was modified, no copy probe was created this run (wall clock; the carried mint evidence is marked as such). All new citations are lines opened this iteration.
+
+## Actions Taken
+1. Read state: `deep-research-config.json` (sessionId, lineage), `deep-research-strategy.md` (Q3 text, exhausted approaches), `iteration-005.md` (Q2 cost rows).
+2. Opened the sk-code mint chain: `mode-registry.json` (116 lines), `hub-router.json` (96 lines), and the sk-code `registry-compiler.cjs` (lines 225-304 read directly; its remaining tieBreak sites captured by a scoped grep of all seven hub compilers, 70 matches).
+3. Opened the runtime hint path: `014-runtime-engine/lib/compiled-route.cjs` and `resolve.cjs`, plus `.skilled/bin/tests/compiled-route-surface-hint.test.cjs` and the sk-code `fixtures/canary-cases.v1.json`.
+4. Read `.skilled/repo-rules/prevent-overengineering.md` (§1 reversal-cost order, §2 climbing sentence, §4 options).
+5. Wrote this narrative, the delta file, and the gateway record; ran the iteration verification script.
+
+## Findings
+Format: `| class | claim | evidence | priority |`. Every row was opened in this iteration except where marked carried.
+
+| class | claim | evidence | priority |
+| --- | --- | --- | --- |
+| OK | **The sk-code compiler has no ranking logic: the authored `tieBreak` is copied verbatim into every compiled artifact at four sites.** `buildCompositionRules(destinations, tieBreak)` at :187 (called at :338 with `input.hubRouter.routerPolicy.tieBreak`), `buildBundleRules(tieBreak, destinations)` at :227 (called at :261), and the routing-model copy `tieBreak: [...hubRouter.routerPolicy.tieBreak]` at :265. Order enters as authored data and leaves as data — no code ranks surfaces. | [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs:187] [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs:227] [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs:261] [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs:265] [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs:338] | P1 |
+| OK | **A sibling hub already mints a DERIVED tieBreak — the precedent for option (c) exists in-tree.** sk-doc compiles `tieBreak: scoreTieBreakOrder(input.hubRouter)` (:357); its comment explains that legacy replay never reads `routerPolicy.tieBreak` and breaks ties by `routerSignals` key order, that the authored `tieBreak` array has drifted from that order, and that deriving keeps a scored tie resolved identically on both sides. | [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/lib/registry-compiler.cjs:188] [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/lib/registry-compiler.cjs:357] | P1 |
+| ORDER | **Insertion position decides the tie, and validation does not constrain position.** The shipped order lists opencode ahead of both examples (`tieBreak` :7), so a user surface appended after opencode is valid yet loses every tie. The sibling compilers' completeness checks compare mode SETS, not order: `TIE_BREAK_MODE_DRIFT` at cli-classifier :165-168 and `TIE_BREAK_INVALID` at sk-doc :115-120. Observed tie behavior (opencode beat webflow) carried from iteration 5. | [SOURCE: .skilled/skills/sk-code/hub-router.json:7] [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/lib/registry-compiler.cjs:165] [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/lib/registry-compiler.cjs:115] [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/025-external-surface-priority-research/research/lineages/dsflash-devin/iterations/iteration-005.md:27] | P1 |
+| OK | **`--surface-hint` is a runtime-only, matched-only reorder, not a default.** `compiled-route.cjs` applies `applySurfaceHint` after decision validation and only to surfaces the prompt already matched (:99-108); `resolve.cjs` passes `options.surfaceHint` through (:102-108). Tests prove a matched hint leads the bundle (test :68-77), an unmatched/UNKNOWN hint changes nothing (:79-83), and the front door passes the flag (:104-113). | [SOURCE: .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:99] [SOURCE: .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs:105] [SOURCE: .skilled/bin/tests/compiled-route-surface-hint.test.cjs:68] [SOURCE: .skilled/bin/tests/compiled-route-surface-hint.test.cjs:79] [SOURCE: .skilled/bin/tests/compiled-route-surface-hint.test.cjs:104] | P1 |
+| OK | **Any order change must regenerate hand-authored canary fixtures and hint-test expectations.** `canary-cases.v1.json` pins the order: `:117-127` no-hint expects `["sk-code-opencode","sk-code-webflow"]`; `:129-140` hinted expects `["sk-code-webflow","sk-code-opencode"]`; the hint test asserts orders at :65, :72, :76, :89. | [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json:117] [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json:129] [SOURCE: .skilled/bin/tests/compiled-route-surface-hint.test.cjs:65] [SOURCE: .skilled/bin/tests/compiled-route-surface-hint.test.cjs:72] | P2 |
+| BREAK (carried) | **Any authored edit without a working re-mint leaves the guard stale and the front door on the legacy stub.** Registering a surface went guard-exit-1 → four route prompts returned `{"servingAuthority":"legacy","hubId":"sk-code"}` with no packet; the shipped `compiled-route-sync.cjs` failed for all seven hubs in the copy. Carried from iteration 5 — not re-observed this iteration. | [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/025-external-surface-priority-research/research/lineages/dsflash-devin/iterations/iteration-005.md:21] [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/025-external-surface-priority-research/research/lineages/dsflash-devin/iterations/iteration-005.md:23] | P1 |
+
+### Options (Q3 comparison)
+
+| option | what it changes, path:line | cost | risk | cheaper move and why it fails |
+| --- | --- | --- | --- | --- |
+| A. Rank/priority field per surface in `mode-registry.json` | add an optional rank to surface `modes[]` entries ([SOURCE: .skilled/skills/sk-code/mode-registry.json:79] opencode, :61 webflow, :98 obsidian) and sort where the order is consumed ([SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs:261], :265, :338) | one data field + one derivation in sk-code's compiler; guard re-mint; canary + hint-test regeneration | mint dependency (authored change is hash-stale until a working re-mint, carried P1); the unranked-surface default must be defined once | "Docs-only 'insert before sk-code-opencode'": fails — the observed stale-manifest path serves the legacy stub until a working re-mint, the convention spans two lists (`tieBreak` order + `routerSignals` key order) that already drifted in a sibling hub (sk-doc :188-196), and nothing enforces insertion position |
+| B. `native`/`fallback` flag on sk-code-opencode | one boolean on the opencode entry ([SOURCE: .skilled/skills/sk-code/mode-registry.json:79]) + a compiler rule that flagged surfaces sort last | smaller schema than A | **forces the operator's repo to the same order** — the operator keeps opencode ahead of obsidian/webflow today (hub-router.json:7; Q4 open); still mint-gated | "Use a boolean where a rank would do": fails — one shared flag cannot give two repositories different orders, and the operator/external split is data today |
+| C. tieBreak derived at mint, no new field | replace the verbatim copies at registry-compiler.cjs :261, :265, :338 with a derivation from authored order; precedent sk-doc :357 | one function mirroring a sibling implementation | removes the drift class but not the priority: insertion position still decides; an appended surface still loses every tie | "Ship the derivation alone": fails — it cannot make a user surface outrank opencode, only make the legacy and compiled paths agree |
+| D. `--surface-hint` / session surface | runtime only: compiled-route.cjs :99-108, resolve.cjs :102-108; tests compiled-route-surface-hint.test.cjs :68-95, :104-113 | zero authored change; works today | opt-in per call; matched-only (:79-83); cannot be the shipped default; the stale manifest kills it (carried P1) | "Always pass the hint from every caller": fails — callers without a session-surface integration never pass it, and a surface the prompt did not match can never lead |
+| E. Ship-without-examples data edit + docs | delete obsidian/webflow entries (mode-registry.json :61-77, :98-114; hub-router.json :31-34, :42-46) and edit tieBreak :7 | coordinated data edit + re-mint + fixture regeneration | parity breakage until every artifact regenerates (carried from iterations 4-5) | "Data edit alone": fails — deleting the examples cannot express where a future user surface sorts; it must be paired with A or C |
+
+**Cheapest move that works: A delivered through C's derivation** — rank the surfaces in `mode-registry.json` and derive the compiled tieBreak at mint from that data. Climbing sentence, per prevent-overengineering §1-§2: *the docs-only convention fails because the observed stale-manifest path serves the legacy stub until a working re-mint and insertion position is unenforced, and deriving alone fails because a surface appended after the native entry still loses the tie it must win; the rank field is the smallest change that states the intended order in the data the compiler already reads.* The two-real-callers bar (§4) is met by the operator repo and external repos needing different orders today; the operator keeps its order by its own ranks, external repos ship opencode ranked last. Option (d) remains the zero-code complement that works today when the caller passes the session surface. Shared prerequisite: a working re-mint for the external tree (carried P1) — every authored-data option (A, B, C, E) is gated on it.
+
+## Questions Answered
+- **Q3** — the comparison and the cheapest-move recommendation above, conditional on the carried re-mint prerequisite.
+
+## Questions Remaining
+- Q1 (`ROUTER.md:265-618` §8–§11 only) — still open from iteration 3.
+- Q4, Q5, Q6 — untouched.
+
+## Next Focus
+Q4 (operator vs shipped: configuration versus data) with one exec probe folded in: run `compiled-route-sync.cjs` in a copy that includes the full `specs/` tree (the recipe's `--exclude specs` is why the authored closure cannot resolve), then re-run the tie prompt with a registered user surface — that settles the A/C prerequisite, the one unobserved branch.
+
+## Ruled Out
+- Docs-only insertion convention (insert before `sk-code-opencode` in `tieBreak` + `routerSignals`): two lists must agree and have already drifted in a sibling hub; insertion position is unenforced; stale-manifest stub on hand edit (carried).
+- Hardcoded native-last rule in the shared compiler or runtime: forces the operator's order to change; the Q4 split is data.
+- Confirmation, not re-entry: `--surface-hint` as the default tie fix stays blocked (strategy §9); the new evidence (matched-only test :79-83, opt-in pass-through) confirms it cannot be the shipped default.
+
+## Dead Ends
+- None newly eliminated. The full-tree re-mint observation remains the one open angle for the A/C prerequisite (named for next focus).
+
+## Edge Cases
+- Missing dependency: the successful re-mint branch is still unobserved (copy recipe excludes `specs/`; sync exit 1 carried). Fallback used: static mint-chain reading + the sk-doc derived-tieBreak precedent.
+- Ambiguous input: Q3's "derived from the registry" — read as "derived from authored data at mint" (`mode-registry.json` or `hub-router.json`); the narrower reading (derive from the `extensions.surface-axis.surfaces` array, :19) is noted in the options table.
+- Contradictory evidence: none new. Divergence recorded, not a contradiction: sk-doc derives its compiled order while sk-code copies it — a per-hub implementation difference, not conflicting claims about one fact.
+- Partial success: the option comparison is complete; the deployment prerequisite is carried. Status `complete` with the caveat named.
+
+## Sources Consulted
+- `specs/sk-code/011-sk-code-poinytail-based-refinement/025-external-surface-priority-research/research/lineages/dsflash-devin/deep-research-config.json`, `deep-research-strategy.md`, `iterations/iteration-005.md` (lineage-local)
+- [SOURCE: .skilled/skills/sk-code/mode-registry.json:19] [SOURCE: .skilled/skills/sk-code/mode-registry.json:61] [SOURCE: .skilled/skills/sk-code/mode-registry.json:79] [SOURCE: .skilled/skills/sk-code/mode-registry.json:98]
+- [SOURCE: .skilled/skills/sk-code/hub-router.json:7] [SOURCE: .skilled/skills/sk-code/hub-router.json:31] [SOURCE: .skilled/skills/sk-code/hub-router.json:36] [SOURCE: .skilled/skills/sk-code/hub-router.json:42]
+- [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs:187] [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs:227] [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs:261] [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs:265] [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs:338]
+- [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/lib/registry-compiler.cjs:115] [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/lib/registry-compiler.cjs:188] [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/lib/registry-compiler.cjs:357]
+- [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/lib/registry-compiler.cjs:165]
+- [SOURCE: .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:99] [SOURCE: .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs:105]
+- [SOURCE: .skilled/bin/tests/compiled-route-surface-hint.test.cjs:65] [SOURCE: .skilled/bin/tests/compiled-route-surface-hint.test.cjs:68] [SOURCE: .skilled/bin/tests/compiled-route-surface-hint.test.cjs:79] [SOURCE: .skilled/bin/tests/compiled-route-surface-hint.test.cjs:104]
+- [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json:117] [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json:129]
+- [SOURCE: .skilled/repo-rules/prevent-overengineering.md:53] [SOURCE: .skilled/repo-rules/prevent-overengineering.md:117]
+- Scoped grep of `.skilled/bin` for `tieBreak` (70 matches, seven hub compilers + runtimes) and `surfaceHint|surface-hint` (30 matches); overflow reads under `/var/folders/3c/.../devin-overflows-501/`.
+
+## Assessment
+- New information ratio: 0.85 — 3 of 6 findings fully new (sk-doc derived-tieBreak precedent, canary order fixtures, the A+C recommendation), 3 partially new (four-site tieBreak consumption, set-based validation and position-decides analysis, hint mechanics and tests); +0.10 simplicity bonus for answering Q3.
+- Questions addressed: Q3
+- Questions answered: Q3
+
+## Reflection
+- What worked and why: reading the mint chain and the runtime tests in three scoped batches converted "options" into exact touch-sites; the sk-doc derivation precedent was the decisive find for option (c) because it proves the derivation pattern ships in-tree today.
+- What did not work and why: the successful re-mint branch still cannot be observed — the copy recipe excludes `specs/` and this run had no wall clock left for a full-tree copy; the mint prerequisite stays carried rather than resolved.
+- What I would do differently: budget one exec for the full-tree copy re-mint at the start of the Q4 iteration, and read the sibling compilers' validation blocks up front rather than via grep context.

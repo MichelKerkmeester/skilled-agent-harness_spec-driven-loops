@@ -1,0 +1,430 @@
+{
+  "sessionId": "dr-025-luna-max-fast-2026-10-12T16:28:06.444Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-where-is-the-surface-order-opencode-obsidian-webflow-encoded-and-where-are-sk",
+      "inboxId": null,
+      "text": "Q1: Where is the surface order (opencode, obsidian, webflow) encoded, and where are sk-code-obsidian and sk-code-webflow treated as installed?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10,
+      "resolved": true
+    },
+    {
+      "id": "question-2-q2-what-breaks-when-an-external-user-deletes-sk-code-obsidian-and-sk-code-webflo",
+      "inboxId": null,
+      "text": "Q2: What breaks when an external user deletes sk-code-obsidian and sk-code-webflow, observed in a throwaway copy, and what happens when they add their own surface?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-3-q3-how-should-a-user-added-surface-outrank-sk-code-opencode-registry-priority-fi",
+      "inboxId": null,
+      "text": "Q3: How should a user-added surface outrank sk-code-opencode (registry priority field, native or fallback flag, tieBreak derived at mint time, --surface-hint, other), and which option is cheapest at acceptable risk?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-4-q4-how-does-the-operator-repository-keep-its-current-order-while-the-shipped-def",
+      "inboxId": null,
+      "text": "Q4: How does the operator repository keep its current order while the shipped default assumes the examples are gone (configuration versus data, example versus shipped)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "resolved": true
+    },
+    {
+      "id": "question-5-q5-which-doctor-and-documentation-changes-tell-external-users-the-two-surfaces-a",
+      "inboxId": null,
+      "text": "Q5: Which doctor and documentation changes tell external users the two surfaces are examples, and how do they scaffold their own surface?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8,
+      "resolved": true
+    },
+    {
+      "id": "question-6-q6-which-ideas-should-be-rejected-and-why",
+      "inboxId": null,
+      "text": "Q6: Which ideas should be rejected, and why?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-q1-where-is-the-surface-order-opencode-obsidian-webflow-encoded-and-where-are-sk",
+      "inboxId": null,
+      "text": "Q1: Where is the surface order (opencode, obsidian, webflow) encoded, and where are sk-code-obsidian and sk-code-webflow treated as installed?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10
+    },
+    {
+      "id": "question-2-q2-what-breaks-when-an-external-user-deletes-sk-code-obsidian-and-sk-code-webflo",
+      "inboxId": null,
+      "text": "Q2: What breaks when an external user deletes sk-code-obsidian and sk-code-webflow, observed in a throwaway copy, and what happens when they add their own surface?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-3-q3-how-should-a-user-added-surface-outrank-sk-code-opencode-registry-priority-fi",
+      "inboxId": null,
+      "text": "Q3: How should a user-added surface outrank sk-code-opencode (registry priority field, native or fallback flag, tieBreak derived at mint time, --surface-hint, other), and which option is cheapest at acceptable risk?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-4-q4-how-does-the-operator-repository-keep-its-current-order-while-the-shipped-def",
+      "inboxId": null,
+      "text": "Q4: How does the operator repository keep its current order while the shipped default assumes the examples are gone (configuration versus data, example versus shipped)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7
+    },
+    {
+      "id": "question-5-q5-which-doctor-and-documentation-changes-tell-external-users-the-two-surfaces-a",
+      "inboxId": null,
+      "text": "Q5: Which doctor and documentation changes tell external users the two surfaces are examples, and how do they scaffold their own surface?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8
+    },
+    {
+      "id": "question-6-q6-which-ideas-should-be-rejected-and-why",
+      "inboxId": null,
+      "text": "Q6: Which ideas should be rejected, and why?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q2 through Q6 remain open.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 remains open for compiled routing, canary fixtures, advisor scoring and batteries, doctor checks, install guides, the release note, and runtime behavior when packets are absent.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 remains open for the advisor, doctor, install guides, release note and runtime behavior when packets are absent.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 remains open for a complete occurrence inventory across advisor batteries, all doctor commands, CI/hooks, and install docs.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q6 remains open for a full rejected-ideas pass.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4 remains open: the operator repository can retain its current explicit order as local registry/router data, while an external starter omits example registrations. No packaging mechanism was found in this pass that proves how those configurations are separated.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5 remains open for a concrete doc/doctor plan. Onboarding should call Obsidian/Webflow examples and say replacement means updating packet registration, router resources/signals, tieBreak and leaf manifest together.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3 remains open. Provisional recommendation: retain explicit hub-router.json tieBreak as the single precedence source; when registering a custom surface, place it before OpenCode in the same exact permutation. This is the smallest move because the doctor already validates that list. A rank field or surface-hint policy adds machinery without evidence that editing the existing list is inadequate.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3: compare tieBreak, priority/rank, native/fallback and surface-hint policies for a user-added surface.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: establish how shipped starter data can omit examples while the operator repository retains its registrations.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q6: reject overbuilt alternatives with a concrete cheaper move and failure evidence.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1: complete occurrence inventory across the advisor, doctor checks, install guides, release note and runtime.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: specify doctor messaging, delete-or-replace guidance and the supported surface-scaffolding path.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1: complete order and presence inventory.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: prove the boundary between operator-local registrations and shipped defaults.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: finish doctor and onboarding guidance for replacement and scaffolding.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3: finish policy comparison after a fully integrated packet passes checks.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q6: complete the rejected-ideas pass.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1: complete the order and installed-presence inventory across advisor, doctor, install guides and documentation.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: verify how operator-local registrations stay separate from a shipped starter that omits example surfaces.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: specify doctor and onboarding wording, including the supported surface-scaffolding path.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Follow-up: inspect the publish/install workflow to confirm whether it selects a starter configuration outside /doctor:update.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: doctor/onboarding guidance for example replacement and surface scaffolding.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1: complete order/presence inventory across advisor, doctor, install guides, canaries, runtime, and release notes.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q6: full rejected-ideas pass across the research topic.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Follow-up: the repository evidence does not establish whether a separate publisher ships a different example-free starter; iteration 7 left that boundary open.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q6: complete the rejected-ideas pass across the whole research topic.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1: complete the order and installed-presence inventory across advisor, doctor, install guides, canaries, runtime, and release notes.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Follow-up: locate and inspect the actual external publisher. The checked-in /doctor:update path groups the hub as one unit, but does not establish what another publisher ships.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1: Complete the remaining occurrence inventory across advisor scoring and batteries, doctor checks, install guidance, canaries, compiled routing and release notes.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Actual external publisher and whether it selects a different starter remain UNKNOWN. /doctor:update unit grouping does not prove what is shipped.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2–Q6 were answered in prior iterations; this recheck did not overturn the conclusions. Route-sync remains unproven because the required resolver is excluded by the authorized copy recipe.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-03e2a79ddccb",
+      "text": "No claim is made about deletion failures. The authorized throwaway-copy experiment is deferred to the Q2 focus.",
+      "contentHash": "03e2a79ddccb",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-a4fb23e678fd",
+      "text": "No implementation or canary test execution was attempted. This pass read the canary fixtures and tests to identify their encoded expectations.",
+      "contentHash": "a4fb23e678fd",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-b6667ab24c12",
+      "text": "`compiled-route-sync.cjs --check` is an executable deletion probe under the required copy recipe: it stops before validation because `specs/` is absent. This limitation was seen previously and is not retried with a different copy shape.",
+      "contentHash": "b6667ab24c12",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-02690383ff7d",
+      "text": "Adding only a new directory is sufficient for routing: the custom prompt returned `action=defer` with no targets.",
+      "contentHash": "02690383ff7d",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-986193552aaa",
+      "text": "--surface-hint as the project default: it is conditional on each caller passing a matched surface hint.",
+      "contentHash": "986193552aaa",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-e040f36d584f",
+      "text": "A native/fallback sort flag: one flag cannot order multiple custom surfaces, while the list already can.",
+      "contentHash": "e040f36d584f",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-7b787756681b",
+      "text": "A priority/rank field: the existing ordered list expresses the requirement without another schema and ordering source.",
+      "contentHash": "7b787756681b",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-8c56ce0dce97",
+      "text": "Deriving order from registry-array position: the registry does not currently define that position as precedence.",
+      "contentHash": "8c56ce0dce97",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-290c1ab04348",
+      "text": "A new surface-scaffolding command or separate installer guide: the existing parent-skill workflow already creates surface packets. A new entry point would duplicate its contract.",
+      "contentHash": "290c1ab04348",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-a1e8dda5b0a1",
+      "text": "A README-only clarification: the hub SKILL.md is the canonical surface inventory and the doctor still needs actionable repair text.",
+      "contentHash": "a1e8dda5b0a1",
+      "addedAtIteration": 8
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 6,
+    "carriedForwardOpenQuestions": 32,
+    "keyFindings": 0,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.4,
+    "coverageBySources": {
+      "code": 130,
+      "other": 52
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/123-surface-priority-research/specs/sk-code/011-sk-code-poinytail-based-refinement/025-external-surface-priority-research/research/lineages/luna-max-fast/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

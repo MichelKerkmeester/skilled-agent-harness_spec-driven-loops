@@ -10,15 +10,15 @@ _memory:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/025-external-surface-priority-research"
     last_updated_at: "2026-10-12T16:30:00Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "Ran both lineages and wrote the checked synthesis"
+    next_safe_action: "Operator picks which proposed phases to build"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-025"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -77,10 +77,17 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet scaffolded | Done | create.sh phase mode with `--with-goal` under the 011 epic; create.sh numbered it 023, so the folder and its ids were renamed to 025 |
+| Lineage A, dsflash-devin | Done | 10 iterations on `devin -p --model deepseek-v4-1-flash-max`, all receipts exit 0, all verified first time |
+| Lineage B, luna-max-fast | Done | 10 iterations on `codex exec --model gpt-6-luna` effort max tier fast; iterations 4 and 5 ended by SIGTERM at 570 s after writing their artifacts, both verified |
+| Spot-check | Done | The orchestrator reread every anchor in `research/research.md` section 9, corrected three line citations and one lineage B citation, and reran the delete, data-removal and reorder experiments in its own full-tree copy |
+| Synthesis | Done | `research/research.md`: F1 to F33, R1 to R5, X1 to X9, P1 to P4 and the disagreement section |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Numbered 025 | Phases 023 and 024 exist on `worktrees/122-readme-freshness-research` and are not on origin/main; the orchestrator merges the two branches |
+| Hand-run YAML, sequential lineages | The fan-out runner runs a whole lineage in one long process, which does not fit the brief's foreground-only rule, so each iteration was dispatched in the foreground, A then B, through the YAML's own dispatch branches, as 023 did for one lineage |
+| Timeout 570 s | One foreground call is capped at ten minutes; luna iterations 4 and 5 reached it after writing their artifacts |
+| Throwaway-copy exception | The prompt pack bans rm and mv; the preamble allowed them only inside a copy outside the worktree, and `git status` confirmed no out-of-scope write after every iteration |
 <!-- /ANCHOR:log -->

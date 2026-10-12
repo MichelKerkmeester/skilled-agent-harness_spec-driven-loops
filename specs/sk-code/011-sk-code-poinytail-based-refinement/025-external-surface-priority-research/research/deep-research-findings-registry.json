@@ -1,0 +1,555 @@
+{
+  "mergedFrom": [
+    "dsflash-devin",
+    "luna-max-fast"
+  ],
+  "lineageExecutors": {
+    "dsflash-devin": {
+      "kind": "unknown",
+      "model": "unknown",
+      "reasoningEffort": null
+    },
+    "luna-max-fast": {
+      "kind": "unknown",
+      "model": "unknown",
+      "reasoningEffort": null
+    }
+  },
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-q1-where-is-the-surface-order-opencode-obsidian-webflow-encoded-and-where-are-sk",
+      "inboxId": null,
+      "text": "Q1: Where is the surface order (opencode, obsidian, webflow) encoded, and where are sk-code-obsidian and sk-code-webflow treated as installed?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9,
+      "_lineages": [
+        "dsflash-devin",
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "question-2-q2-what-breaks-when-an-external-user-deletes-sk-code-obsidian-and-sk-code-webflo",
+      "inboxId": null,
+      "text": "Q2: What breaks when an external user deletes sk-code-obsidian and sk-code-webflow, observed in a throwaway copy, and what happens when they add their own surface?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "_lineages": [
+        "dsflash-devin",
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "question-3-q3-how-should-a-user-added-surface-outrank-sk-code-opencode-registry-priority-fi",
+      "inboxId": null,
+      "text": "Q3: How should a user-added surface outrank sk-code-opencode (registry priority field, native or fallback flag, tieBreak derived at mint time, --surface-hint, other), and which option is cheapest at acceptable risk?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "_lineages": [
+        "dsflash-devin",
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "question-4-q4-how-does-the-operator-repository-keep-its-current-order-while-the-shipped-def",
+      "inboxId": null,
+      "text": "Q4: How does the operator repository keep its current order while the shipped default assumes the examples are gone (configuration versus data, example versus shipped)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "_lineages": [
+        "dsflash-devin",
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "question-5-q5-which-doctor-and-documentation-changes-tell-external-users-the-two-surfaces-a",
+      "inboxId": null,
+      "text": "Q5: Which doctor and documentation changes tell external users the two surfaces are examples, and how do they scaffold their own surface?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8,
+      "_lineages": [
+        "dsflash-devin",
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "question-6-q6-which-ideas-should-be-rejected-and-why",
+      "inboxId": null,
+      "text": "Q6: Which ideas should be rejected, and why?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9,
+      "_lineages": [
+        "dsflash-devin",
+        "luna-max-fast"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-9-1-phase-0-prerequisite-unobserved-full-tree-re-mint-verification-the-copy-recipe-e",
+      "text": "**Phase 0 (prerequisite, unobserved)** — full-tree re-mint verification. The copy recipe excludes `specs/`, so the authored closure cannot resolve; every authored-data move (R1, R2) is gated on it. Settle before Phase 2.",
+      "addedAtIteration": 9,
+      "sources": [
+        "Lineage files read this iteration: `deep-research-config.json`, `deep-research-strategy.md` (:49, :54), `findings-registry.json`, `deep-research-dashboard.md`, `iterations/iteration-006.md` (:22, :32, :33, :35, :37), `iteration-007.md` (:23, :25, :26, :28, :37), `iteration-008.md` (:21, :24, :33, :35, :53), `iteration-004.md` (:25, :27), `iteration-005.md` (:24)",
+        "Repo anchors re-verified: `.skilled/skills/sk-code/hub-router.json` (:7, :31-46), `.skilled/skills/sk-code/mode-registry.json` (:19, :61-77, :79-95, :98-114), `.skilled/skills/sk-code/SKILL.md` (:34-40), `.skilled/skills/sk-code/ROUTER.md` (:290, :346, :354-523, :555-558, :607), `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs` (:82, :84, :99, :103, :106-107), `.skilled/repo-rules/prevent-overengineering.md` (:45-46, :55-56, :79-84, :117-119)",
+        "Commands: `rg` order-phrase scan over ROUTER.md (0 matches, exit 0); `rg`+`awk` surface-hit scan (hits listed above); `cat -n`/`sed -n` numbered scans (exit 0)"
+      ],
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "finding-9-2-phase-1-independent-immediate-r3-doc-markers-r4-requires-no-work",
+      "text": "**Phase 1 (independent, immediate)** — R3 doc markers; R4 requires no work.",
+      "addedAtIteration": 9,
+      "sources": [
+        "Lineage files read this iteration: `deep-research-config.json`, `deep-research-strategy.md` (:49, :54), `findings-registry.json`, `deep-research-dashboard.md`, `iterations/iteration-006.md` (:22, :32, :33, :35, :37), `iteration-007.md` (:23, :25, :26, :28, :37), `iteration-008.md` (:21, :24, :33, :35, :53), `iteration-004.md` (:25, :27), `iteration-005.md` (:24)",
+        "Repo anchors re-verified: `.skilled/skills/sk-code/hub-router.json` (:7, :31-46), `.skilled/skills/sk-code/mode-registry.json` (:19, :61-77, :79-95, :98-114), `.skilled/skills/sk-code/SKILL.md` (:34-40), `.skilled/skills/sk-code/ROUTER.md` (:290, :346, :354-523, :555-558, :607), `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs` (:82, :84, :99, :103, :106-107), `.skilled/repo-rules/prevent-overengineering.md` (:45-46, :55-56, :79-84, :117-119)",
+        "Commands: `rg` order-phrase scan over ROUTER.md (0 matches, exit 0); `rg`+`awk` surface-hit scan (hits listed above); `cat -n`/`sed -n` numbered scans (exit 0)"
+      ],
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "finding-9-3-phase-2-r1-rank-field-derivation-canary-hint-fixture-regeneration-canary-cases-v",
+      "text": "**Phase 2** — R1 rank field + derivation + canary/hint fixture regeneration (`canary-cases.v1.json:117-140`, carried).",
+      "addedAtIteration": 9,
+      "sources": [
+        "Lineage files read this iteration: `deep-research-config.json`, `deep-research-strategy.md` (:49, :54), `findings-registry.json`, `deep-research-dashboard.md`, `iterations/iteration-006.md` (:22, :32, :33, :35, :37), `iteration-007.md` (:23, :25, :26, :28, :37), `iteration-008.md` (:21, :24, :33, :35, :53), `iteration-004.md` (:25, :27), `iteration-005.md` (:24)",
+        "Repo anchors re-verified: `.skilled/skills/sk-code/hub-router.json` (:7, :31-46), `.skilled/skills/sk-code/mode-registry.json` (:19, :61-77, :79-95, :98-114), `.skilled/skills/sk-code/SKILL.md` (:34-40), `.skilled/skills/sk-code/ROUTER.md` (:290, :346, :354-523, :555-558, :607), `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs` (:82, :84, :99, :103, :106-107), `.skilled/repo-rules/prevent-overengineering.md` (:45-46, :55-56, :79-84, :117-119)",
+        "Commands: `rg` order-phrase scan over ROUTER.md (0 matches, exit 0); `rg`+`awk` surface-hit scan (hits listed above); `cat -n`/`sed -n` numbered scans (exit 0)"
+      ],
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "finding-9-4-phase-3-r2-shipped-default-data-edit-the-operator-side-process-the-operator-keep",
+      "text": "**Phase 3** — R2 shipped-default data edit + the operator-side process (the operator keeps its order by its own ranks; external repos ship opencode ranked last — carried iteration-007.md:37) + R5 docs.",
+      "addedAtIteration": 9,
+      "sources": [
+        "Lineage files read this iteration: `deep-research-config.json`, `deep-research-strategy.md` (:49, :54), `findings-registry.json`, `deep-research-dashboard.md`, `iterations/iteration-006.md` (:22, :32, :33, :35, :37), `iteration-007.md` (:23, :25, :26, :28, :37), `iteration-008.md` (:21, :24, :33, :35, :53), `iteration-004.md` (:25, :27), `iteration-005.md` (:24)",
+        "Repo anchors re-verified: `.skilled/skills/sk-code/hub-router.json` (:7, :31-46), `.skilled/skills/sk-code/mode-registry.json` (:19, :61-77, :79-95, :98-114), `.skilled/skills/sk-code/SKILL.md` (:34-40), `.skilled/skills/sk-code/ROUTER.md` (:290, :346, :354-523, :555-558, :607), `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs` (:82, :84, :99, :103, :106-107), `.skilled/repo-rules/prevent-overengineering.md` (:45-46, :55-56, :79-84, :117-119)",
+        "Commands: `rg` order-phrase scan over ROUTER.md (0 matches, exit 0); `rg`+`awk` surface-hit scan (hits listed above); `cat -n`/`sed -n` numbered scans (exit 0)"
+      ],
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-9030bcffc8de",
+      "text": "None definitively eliminated. The BREAK-class observation (deleting the two packets in a throwaway copy) was intentionally not attempted: this iteration's focus is the static hub inventory; the deletion experiment is Q2's focus. No throwaway copy was created.",
+      "contentHash": "9030bcffc8de",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-9bedda2d501d",
+      "text": "Broad repo-wide order grep before reading the named hub files: the bare-basename glob matched nested packet READMEs first and the 70-hit cap exhausted before the hub-root files; targeted reads were cheaper. (Evidence: grep result counts and file paths in Actions Taken item 4.)",
+      "contentHash": "9bedda2d501d",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-cd9132f9bb50",
+      "text": "Treating `mode-registry.json:19` `surfaces` array as the ranking: it is a declaration list; the rank lives in `hub-router.json:7` tieBreak plus the `stack-detection.md:39` precedence. Conflating them would misstate the v4.0.0.4 claim's accuracy.",
+      "contentHash": "cd9132f9bb50",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-3bd3986bbe74",
+      "text": "Re-running the addition half (five new FAILs, 113 → 118): the scaffold + re-mint cycle would exceed the wall clock. Carried, not re-observed (iteration-005.md:24).",
+      "contentHash": "3bd3986bbe74",
+      "addedAtIteration": 10,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-a726dae035fd",
+      "text": "None newly eliminated. The full-tree re-mint observation remains the one open angle (Phase 0, carried from iterations 5-9).",
+      "contentHash": "a726dae035fd",
+      "addedAtIteration": 10,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-d216d5954c87",
+      "text": "Re-reading the canary fixture :117-140 line range: path confirmed; the range remains carried (time budget).",
+      "contentHash": "d216d5954c87",
+      "addedAtIteration": 10,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-fcbb42b4be04",
+      "text": "Re-asking whether the parent-skill-check failure is deletion-caused: settled directly — exit 0 at baseline with packets present, exit 1 with 113 failures after deletion.",
+      "contentHash": "fcbb42b4be04",
+      "addedAtIteration": 10,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-03e2a79ddccb",
+      "text": "No claim is made about deletion failures. The authorized throwaway-copy experiment is deferred to the Q2 focus.",
+      "contentHash": "03e2a79ddccb",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-153ea7a885c2",
+      "text": "Reading `004-compiler-n1-shadow/compiler/order.cjs` as the surface rank — it is a UTF-16 string comparator (row 5).",
+      "contentHash": "153ea7a885c2",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-4c6aadaf9ddf",
+      "text": "Running the deletion experiment now — Q2's focus; not attempted, same call as iteration 1.",
+      "contentHash": "4c6aadaf9ddf",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-a4fb23e678fd",
+      "text": "No implementation or canary test execution was attempted. This pass read the canary fixtures and tests to identify their encoded expectations.",
+      "contentHash": "a4fb23e678fd",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-d0be7a6dadec",
+      "text": "Expecting the compiled manifest to encode the surface order — it stores policy identity only (row 7).",
+      "contentHash": "d0be7a6dadec",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-f3dddb0454c9",
+      "text": "Searching the compiled-routing runtime for a hardcoded surface order: none exists. The order enters as data (hub tieBreak) and leaves as data; only the comparator and the hint reorder are code (rows 1–3, 5).",
+      "contentHash": "f3dddb0454c9",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-34f9a51cebe6",
+      "text": "`.skilled/README.md` as a documentation surface — the path does not exist (row 10).",
+      "contentHash": "34f9a51cebe6",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-4a0d7ac38d8b",
+      "text": "Treating the advisor's `webflow cms` disambiguation as surface-order evidence — it routes to mcp-code-mode and penalizes sk-code (row 3).",
+      "contentHash": "4a0d7ac38d8b",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-5eda1d7b87f4",
+      "text": "Reading the advisor as a surface ranker — it has no surface ids and its surfaceHint is a pass-through to `compiled-route.cjs` (rows 4–5).",
+      "contentHash": "5eda1d7b87f4",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-f75cfd5b5bd6",
+      "text": "None newly eliminated beyond the above; the deletion experiment remains Q2's focus and was again not attempted.",
+      "contentHash": "f75cfd5b5bd6",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-02690383ff7d",
+      "text": "Adding only a new directory is sufficient for routing: the custom prompt returned `action=defer` with no targets.",
+      "contentHash": "02690383ff7d",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-b6667ab24c12",
+      "text": "`compiled-route-sync.cjs --check` is an executable deletion probe under the required copy recipe: it stops before validation because `specs/` is absent. This limitation was seen previously and is not retried with a different copy shape.",
+      "contentHash": "b6667ab24c12",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-1895a0fbb654",
+      "text": "Docs-only registration instructions (hand-edit registry + router): observed to break routing entirely without a working mint.",
+      "contentHash": "1895a0fbb654",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-ba585cf8b7a4",
+      "text": "`--surface-hint` as the tie fix: same legacy stub under a stale manifest.",
+      "contentHash": "ba585cf8b7a4",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-c329191677bc",
+      "text": "Treating the sync failure as deletion-caused: it fails for all seven hubs with the examples present in the authored inputs.",
+      "contentHash": "c329191677bc",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-f05a4adaad87",
+      "text": "The mint path cannot be judged inside a `specs`-excluded copy; candidate for the reducer: \"re-mint verification requires a full-tree copy\" (not promoted to exhausted — one more angle remains).",
+      "contentHash": "f05a4adaad87",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-3cd2d480cb46",
+      "text": "Docs-only insertion convention (insert before `sk-code-opencode` in `tieBreak` + `routerSignals`): two lists must agree and have already drifted in a sibling hub; insertion position is unenforced; stale-manifest stub on hand edit (carried).",
+      "contentHash": "3cd2d480cb46",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-6c3c0ebeefcb",
+      "text": "Hardcoded native-last rule in the shared compiler or runtime: forces the operator's order to change; the Q4 split is data.",
+      "contentHash": "6c3c0ebeefcb",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-7b787756681b",
+      "text": "A priority/rank field: the existing ordered list expresses the requirement without another schema and ordering source.",
+      "contentHash": "7b787756681b",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-8c56ce0dce97",
+      "text": "Deriving order from registry-array position: the registry does not currently define that position as precedence.",
+      "contentHash": "8c56ce0dce97",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-986193552aaa",
+      "text": "--surface-hint as the project default: it is conditional on each caller passing a matched surface hint.",
+      "contentHash": "986193552aaa",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-ca13cfa12eca",
+      "text": "Confirmation, not re-entry: `--surface-hint` as the default tie fix stays blocked (strategy §9); the new evidence (matched-only test :79-83, opt-in pass-through) confirms it cannot be the shipped default.",
+      "contentHash": "ca13cfa12eca",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-e040f36d584f",
+      "text": "A native/fallback sort flag: one flag cannot order multiple custom surfaces, while the list already can.",
+      "contentHash": "e040f36d584f",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-e0d9ec239dc7",
+      "text": "None newly eliminated. The full-tree re-mint observation remains the one open angle for the A/C prerequisite (named for next focus).",
+      "contentHash": "e0d9ec239dc7",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-2248713eba74",
+      "text": "Treating `/doctor:update` as an operator/external split mechanism: its decisions are per-checkout and uniform; no example-unit class and no operator-specific layer exist.",
+      "contentHash": "2248713eba74",
+      "addedAtIteration": 7,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-905da8226f30",
+      "text": "Deriving surface order from the installed packet set inside `/doctor:update`: the engine's unit universe is tree+base paths and it computes file status, not routing order.",
+      "contentHash": "905da8226f30",
+      "addedAtIteration": 7,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-dbb3a4708555",
+      "text": "None newly eliminated beyond the ruled-out rows. The full-tree re-mint observation remains the one open angle for the A/C prerequisite (carried from iterations 5–6; not attempted this run — wall clock).",
+      "contentHash": "dbb3a4708555",
+      "addedAtIteration": 7,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-02a16041b748",
+      "text": "Docs-only example markers as the whole fix: leaves the shipped data referencing the examples, so the carried delete-path failures stand.",
+      "contentHash": "02a16041b748",
+      "addedAtIteration": 8,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-290c1ab04348",
+      "text": "A new surface-scaffolding command or separate installer guide: the existing parent-skill workflow already creates surface packets. A new entry point would duplicate its contract.",
+      "contentHash": "290c1ab04348",
+      "addedAtIteration": 8,
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-8285630cb1cc",
+      "text": "README-only wording: `SKILL.md:40` is the pointer target every other doc defers to; a README-only edit leaves the hub contract unmarked.",
+      "contentHash": "8285630cb1cc",
+      "addedAtIteration": 8,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-8814421567ec",
+      "text": "None newly eliminated; the full-tree re-mint observation remains the one open angle for the Q3 prerequisite (carried, not attempted — wall clock).",
+      "contentHash": "8814421567ec",
+      "addedAtIteration": 8,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-a1e8dda5b0a1",
+      "text": "A README-only clarification: the hub SKILL.md is the canonical surface inventory and the doctor still needs actionable repair text.",
+      "contentHash": "a1e8dda5b0a1",
+      "addedAtIteration": 8,
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-e25a2458c880",
+      "text": "Checker-only downgrade of absent example surfaces: no example marker exists in the engine (iteration 7) and a blanket WARN would silence 3c.",
+      "contentHash": "e25a2458c880",
+      "addedAtIteration": 8,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-70126ca9ab5d",
+      "text": "None newly eliminated this iteration; the full-tree re-mint observation remains the one open angle (Phase 0, carried).",
+      "contentHash": "70126ca9ab5d",
+      "addedAtIteration": 9,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-ae91829e967a",
+      "text": "Nine ideas rejected with reasons in the Q6 table; see the delta's `ruled_out` rows (config file, plugin system, flag, operator-repo removal, docs-only convention, hint-as-default, installed-set derivation, checker-only downgrade, examples schema).",
+      "contentHash": "ae91829e967a",
+      "addedAtIteration": 9,
+      "_lineages": [
+        "dsflash-devin"
+      ]
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 20,
+    "openQuestions": 0,
+    "resolvedQuestions": 6,
+    "keyFindings": 4,
+    "sourceFindings": 4,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.25,
+    "coverageBySources": {}
+  }
+}
