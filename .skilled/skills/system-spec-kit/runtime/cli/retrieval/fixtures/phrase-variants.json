@@ -1,5 +1,5 @@
 {
-  "manifestHash": "b1d40ce6f5a74b42e922344e00afa566dc86710961f471ab1118134318c4f855",
+  "manifestHash": "f44582e42065b7ba507179029652242b594aff58eb807c6df7fa2989c30e546d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -72811,6 +72811,9 @@
     "playbook authoring bugs": [
       "playbook-authoring bugs"
     ],
+    "playbook backticked path rules": [
+      "playbook backticked path rules"
+    ],
     "playbook catalog truth": [
       "playbook catalog truth"
     ],
@@ -91608,6 +91611,9 @@
     "sk doc 2 3 6 0": [
       "sk-doc 2.3.6.0"
     ],
+    "sk doc 2 3 7 0": [
+      "sk-doc 2.3.7.0"
+    ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
     ],
@@ -91910,6 +91916,9 @@
     ],
     "sk doc v2 3 6 0": [
       "sk-doc v2.3.6.0"
+    ],
+    "sk doc v2 3 7 0": [
+      "sk-doc v2.3.7.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"
