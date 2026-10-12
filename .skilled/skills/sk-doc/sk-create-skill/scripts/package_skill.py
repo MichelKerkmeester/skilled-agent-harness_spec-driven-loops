@@ -122,10 +122,12 @@ REQUIRED_RESOURCE_FRONTMATTER_FIELDS = [
     'contextType',
 ]
 
-# Which .md files must carry a 4-part `version` in frontmatter. Mirrors
+# Which .md files must carry a 4-part `version` in frontmatter. Follows
 # frontmatter-version.mjs inScope(): every doc under the skill carries its own
-# edition except test input, generated output and spec-doc examples, and changelog
-# entries carry their release. SKILL.md is checked by validate_frontmatter.
+# edition except test input, generated output and spec-doc examples. Two
+# differences are deliberate: the skill's top-level changelog entries are checked
+# here for their release version, which the engine skips, and SKILL.md is left to
+# validate_frontmatter, so a SKILL.md under tests/ or fixtures/ is not checked here.
 VERSION_SKIPPED_DIRS = {'scratch', 'node_modules', '.git', 'dist'}
 VERSION_DOC_SUBTREES = {'references', 'assets', 'feature-catalog', 'manual-testing-playbook'}
 VERSION_TEST_DIRS = {'tests', 'fixtures'}

@@ -131,6 +131,21 @@ const explicit = runStatus('verify', ['--paths', pathsFile]);
 ok(explicit.status !== 0 && /outside the versioned document scope/.test(explicit.stderr),
   'an explicit test-input target is refused as out of scope');
 
+// ─── 5b. a leading zero reads as its tuple, an empty key is malformed ──
+const LEAD = path.join(skill, 'references', 'ref-lead.md');
+fs.writeFileSync(LEAD, '---\ntitle: Lead\ndescription: Leading zero\nversion: 01.2.0.0\n---\n# Lead\n');
+fs.writeFileSync(pathsFile, `${LEAD}\n`);
+ok(runStatus('verify', ['--paths', pathsFile]).status === 0, 'verify accepts a leading-zero version equal to its tuple');
+runStatus('apply', ['--paths', pathsFile]);
+ok(versionOf(LEAD) === '1.2.0.0', `apply writes the canonical form (got ${versionOf(LEAD)})`);
+const EMPTY = path.join(skill, 'references', 'ref-empty.md');
+fs.writeFileSync(EMPTY, '---\ntitle: Empty\ndescription: Empty key\nversion:\n---\n# Empty\n');
+fs.writeFileSync(pathsFile, `${EMPTY}\n`);
+const emptyRun = runStatus('verify', ['--paths', pathsFile]);
+ok(emptyRun.status === 1 && /ref-empty\.md -> malformed/.test(emptyRun.stderr), `verify reports an empty version as malformed (got ${emptyRun.stderr.trim()})`);
+fs.rmSync(LEAD);
+fs.rmSync(EMPTY);
+
 // ─── 6. --help in the positional slot ──────────────────────────
 // The mode is positional, so a lone --help lands where the mode is read from.
 // It must answer as help rather than become a mode name, and it must answer

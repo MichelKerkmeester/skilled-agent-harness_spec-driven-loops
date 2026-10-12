@@ -9,7 +9,7 @@ trigger_phrases:
   - "4-part version format"
 importance_tier: important
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Frontmatter Versioning Standard
@@ -93,6 +93,10 @@ The comparison base is the merge base of the base ref and `HEAD`: `HEAD` itself 
 | A doc has no frontmatter | Skip and report (`skip-no-frontmatter`) |
 | `SKILL.md` differs from its anchor | `apply` reconciles it to the anchor |
 | A doc has no version | `apply` inserts `1.0.0.0`; a valid version is kept |
+| An empty `version:` key | Malformed, not missing: `verify`, `gate` and `bump` fail and name the doc. Set a 4-part value by hand |
+| A leading zero (`01.2.0.0`) | Read as its tuple, `1.2.0.0`. `apply` rewrites it in that canonical form |
+| A move that also rewrites most of the body | git pairs a rename only above its similarity threshold (50% by default), so such a move reads as a new doc. Its carried version is kept and nothing is raised; raise it by hand when the edition matters |
+| A staged path with a line break, or a doc that is a symlink in the working tree | `bump` refuses it and names the path, since the hook stages raised paths one per line and a raise must not write through a link |
 | Idempotency | Re-running `apply` on a reconciled tree is a byte-level no-op |
 
 ---

@@ -144,6 +144,49 @@ git('add', REF);
 git('commit', '-qm', 'raised');
 ok(bump('--check', '--base', 'main').status === 0, 'the pull-request check passes after the fix');
 
+// 11. an empty version key is malformed: bump refuses it instead of adding a second key
+const EMPTYDOC = '.skilled/skills/fixt/references/empty.md';
+const emptyKey = (body) => `---\ntitle: Fixture\ndescription: A fixture doc\nversion:\n---\n# Fixture\n\n${body}\n`;
+write(EMPTYDOC, emptyKey('Body one.'));
+git('add', EMPTYDOC);
+git('commit', '-qm', 'empty key');
+write(EMPTYDOC, emptyKey('Body two.'));
+git('add', EMPTYDOC);
+r = bump();
+ok(r.status === 1 && /empty\.md: malformed version/.test(r.stderr), `bump refuses an empty version key (got ${r.status}: ${r.stderr.trim()})`);
+ok((read(EMPTYDOC).match(/^version:/gm) || []).length === 1, 'bump leaves a single version key');
+git('reset', '-q', '--hard');
+
+// 12. a doc path with a line break is refused, since the hook reads raised paths one per line
+const NLDOC = '.skilled/skills/fixt/references/line\nbreak.md';
+write(NLDOC, doc('1.0.0.0', 'First.'));
+git('add', '-A');
+git('commit', '-qm', 'line break path');
+write(NLDOC, doc('1.0.0.0', 'Second.'));
+git('add', '-A');
+r = bump();
+ok(r.status === 1 && /line break/.test(r.stderr), `bump refuses a path with a line break (got ${r.status}: ${r.stderr.trim()})`);
+ok(/^version: 1\.0\.0\.0$/m.test(read(NLDOC)), 'the refused doc is not rewritten');
+git('reset', '-q', '--hard');
+
+// 13. a doc that is a symlink in the working tree is refused, so the raise never writes through it
+const LINKDOC = '.skilled/skills/fixt/references/link.md';
+const outside = path.join(os.tmpdir(), `fmv-outside-${process.pid}.md`);
+write(LINKDOC, doc('1.0.0.0', 'Link one.'));
+git('add', LINKDOC);
+git('commit', '-qm', 'link doc');
+write(LINKDOC, doc('1.0.0.0', 'Link two.'));
+git('add', LINKDOC);
+fs.writeFileSync(outside, doc('1.0.0.0', 'Link two.'));
+fs.rmSync(path.join(tmp, LINKDOC));
+fs.symlinkSync(outside, path.join(tmp, LINKDOC));
+r = bump();
+ok(r.status === 1 && /symlink/.test(r.stderr), `bump refuses a symlinked doc (got ${r.status}: ${r.stderr.trim()})`);
+ok(/^version: 1\.0\.0\.0$/m.test(fs.readFileSync(outside, 'utf8')), 'the file the symlink points at is not rewritten');
+fs.rmSync(path.join(tmp, LINKDOC));
+fs.rmSync(outside);
+git('reset', '-q', '--hard');
+
 fs.rmSync(tmp, { recursive: true, force: true });
 console.log(`\n${fail === 0 ? 'PASS' : 'FAIL'} - ${pass} passed, ${fail} failed`);
 process.exit(fail === 0 ? 0 : 1);

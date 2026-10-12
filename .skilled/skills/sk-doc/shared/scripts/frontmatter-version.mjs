@@ -107,7 +107,7 @@ function parseFrontmatter(content) {
   let versionLineIdx = -1;
   let versionValue = null;
   for (let i = 1; i < closeIdx; i += 1) {
-    const m = lines[i].match(/^version:\s*(.+?)\s*$/);
+    const m = lines[i].match(/^version:\s*(.*?)\s*$/);
     if (m) { versionLineIdx = i; versionValue = m[1].replace(/^["']|["']$/g, ''); break; }
   }
   return { hasFrontmatter: true, eol, lines, closeIdx, versionLineIdx, versionValue };
@@ -237,7 +237,7 @@ async function computeForFile(absFile, skillsRoot, root) {
   if (fileClass === 'doc') {
     // A child doc's version is its own edition: keep a valid one, start a missing one at 1.0.0.0.
     const fm = parseFrontmatter(fs.readFileSync(absFile, 'utf8'));
-    const own = fm.hasFrontmatter && fm.versionValue && VERSION_RE.test(fm.versionValue) ? fm.versionValue : INITIAL_VERSION;
+    const own = fm.hasFrontmatter && fm.versionValue && VERSION_RE.test(fm.versionValue) ? tupleStr(normalize4(fm.versionValue)) : INITIAL_VERSION;
     return {
       path: path.relative(root, absFile),
       fileClass,
@@ -267,7 +267,8 @@ async function computeForFile(absFile, skillsRoot, root) {
 
 function applyVersion(absFile, derivedStr, opts) {
   // Fail closed: only ever write inside the skills root, even if a --paths manifest lists a stray path.
-  if (opts.skillsRoot && !path.resolve(absFile).startsWith(path.resolve(opts.skillsRoot) + path.sep)) {
+  const real = (p) => { try { return fs.realpathSync(p); } catch { return path.resolve(p); } };
+  if (opts.skillsRoot && !real(absFile).startsWith(real(opts.skillsRoot) + path.sep)) {
     return 'skip-out-of-root';
   }
   const content = fs.readFileSync(absFile, 'utf8');
@@ -394,6 +395,7 @@ function bumpDocs({ root: givenRoot, skillsRoot: givenSkillsRoot, base, check })
   const raises = [];
   const errors = [];
   for (const r of rows) {
+    if (/[\r\n]/.test(r.path)) { errors.push(`${JSON.stringify(r.path)}: the path has a line break, which the hook cannot stage; rename the doc`); continue; }
     const text = blobs.get(r.newSha);
     if (text === undefined) { errors.push(`${r.path}: staged content is unreadable`); continue; }
     const fm = parseFrontmatter(text);
@@ -424,6 +426,11 @@ function bumpDocs({ root: givenRoot, skillsRoot: givenSkillsRoot, base, check })
     return 1;
   }
   if (errors.length > 0) return 1;
+  const linked = raises.filter((r) => { try { return fs.lstatSync(path.join(root, r.path)).isSymbolicLink(); } catch { return false; } });
+  if (linked.length > 0) {
+    for (const r of linked) console.error(`  ${r.path}: a symlink in the working tree; raise the version in its target by hand`);
+    return 1;
+  }
   // Raising writes the working tree, so a doc with unstaged edits would carry content this commit does not.
   const partial = raises.filter((r) => {
     const abs = path.join(root, r.path);
