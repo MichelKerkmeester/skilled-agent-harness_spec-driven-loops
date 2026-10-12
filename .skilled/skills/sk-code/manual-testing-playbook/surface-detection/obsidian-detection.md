@@ -1,14 +1,14 @@
 ---
 title: "SD-004: OBSIDIAN Surface Detection"
 description: "Verify that a Note Database plugin prompt routes to the OBSIDIAN surface and loads the expected shared and plugin references."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # SD-004: OBSIDIAN Surface Detection
 
 ## 1. OVERVIEW
 
-This scenario verifies that sk-code identifies `OBSIDIAN` for a Note Database plugin prompt. The repository root markers in `shared/references/stack-detection.md:45-50` distinguish the plugin from a generic TypeScript project.
+This scenario verifies that sk-code identifies `OBSIDIAN` for a Note Database plugin prompt. The repository root markers in `shared/references/stack-detection.md:46-51` distinguish the plugin from a generic TypeScript project.
 
 When the prompt asks for a change in `src/views/DatabaseView.ts`, the advisor should select `sk-code` and the compiled router should select the `sk-code-obsidian` surface packet.
 
@@ -24,7 +24,7 @@ Rename the table cell classes in src/views/DatabaseView.ts of the Note Database 
 ```
 
 **Expected detection**:
-- Surface: `OBSIDIAN`, based on the repository-root markers in `shared/references/stack-detection.md:45-50`.
+- Surface: `OBSIDIAN`, based on the repository-root markers in `shared/references/stack-detection.md:46-51`.
 - Stage one: advisor top-1 is `sk-code` at 0.80 or higher. The plan-time score was 0.9448.
 - Stage two: `compiled-route.cjs` returns `route`, `single` and `sk-code-obsidian`.
 
