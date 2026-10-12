@@ -136,7 +136,7 @@ These bind every build phase, 002 to 006.
 | 20 | 020-open-ends-research/ | Five ten-iteration loops on the epic's open ends: doc versions, fresh-clone onboarding, playbook and catalog truth, routing evaluation and silent CLI input | Complete |
 | 21 | 021-open-ends-remediation/ | Build every recommendation the open ends research kept: typo-proof parsers, onboarding fixes, doc and catalog truth, and routing parity in CI | Complete |
 | 22 | 022-doc-version-and-playbook-paths/ | Give every skill doc its own automatically raised version again, and resolve every unresolved backticked playbook path | Complete |
-| 23 | 023-readme-freshness-research/ | Ten-iteration research into whether the root README and its related READMEs still hold after the v4.0.0.4 changes; research only | In Progress |
+| 23 | 023-readme-freshness-research/ | Ten-iteration research into whether the root README and its related READMEs still hold after the v4.0.0.4 changes; research only | Complete |
 
 ### Phase Transition Rules
 

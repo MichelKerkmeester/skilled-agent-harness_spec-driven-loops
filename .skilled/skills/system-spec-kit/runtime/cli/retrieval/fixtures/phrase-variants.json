@@ -1,5 +1,5 @@
 {
-  "manifestHash": "160d64d6440756efd890bb223bd55373068bd1584161f23d09bc0a9a86c6012e",
+  "manifestHash": "51b375edb0b3ce2c805d2fc485a28e8af64dc1b0adc71028211979942d617cda",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -76492,6 +76492,9 @@
     "readme factory cascade alignment": [
       "readme factory cascade alignment"
     ],
+    "readme fix list": [
+      "readme fix list"
+    ],
     "readme folders b01 b17": [
       "readme folders b01 b17"
     ],
@@ -76509,6 +76512,9 @@
     ],
     "readme freshness research plan": [
       "readme freshness research plan"
+    ],
+    "readme freshness research strategy": [
+      "readme freshness research strategy"
     ],
     "readme freshness research tasks": [
       "readme freshness research tasks"
@@ -83445,6 +83451,9 @@
     ],
     "root readme sections": [
       "root readme sections"
+    ],
+    "root readme stale after v4 0 0 4": [
+      "root readme stale after v4.0.0.4"
     ],
     "root readme update": [
       "root readme update"

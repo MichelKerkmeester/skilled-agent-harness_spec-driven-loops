@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-12 |
 | **Branch** | `worktrees/122-readme-freshness-research` |
 | **Parent Spec** | ../spec.md |
@@ -145,6 +145,16 @@ Done means:
 ## 7. OPEN QUESTIONS
 
 - None blocking the run. The research questions are in section 2.
+- Deep-research topic: whether the root README and its related READMEs are still accurate after every change in the v4.0.0.4 release note, with the smallest wording fix for each stale, missing or wrong statement.
+- Research Context: deep-research is active for this topic; research/research.md is canonical.
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+Abridged from `research/research.md`, which stays canonical:
+- The root README install path (Node 24, build steps, `skilled.trustRepoHooks`, seven runtimes) matches v4.0.0.4.
+- Stale in the root README: the ClickUp key requirement and MCP capability list, and five counts (agents 12 to 11, commands 39 to 37, rules 42 to 41, warn-only rules two to seven, doctor workflows 19 to 20).
+- Related READMEs miss three v4.0.0.4 changes: `surfaceHint`, the skill-authoring pre-commit sub-gate and the mirror checker's new home in `.skilled/bin`.
+- Five hub README versions fail or warn on the parent-skill doctor's README check, which contradicts the per-doc version rule; that needs an operator decision.
+- Fixes F1 to F28 are in `research/research.md` Section 11.
+<!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 
 ---

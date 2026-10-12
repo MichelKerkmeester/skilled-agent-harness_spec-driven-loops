@@ -1,0 +1,712 @@
+{
+  "sessionId": "dr-023-readme-freshness-research-2026-10-12T14:40:22.000Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-10-12T15:33:16.235Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-which-readmes-are-related-to-the-root-readme-md-linked-from-it-or-documenting",
+      "inboxId": null,
+      "text": "Q1: Which READMEs are related to the root README.md (linked from it, or documenting the same setup or features, or touched by v4.0.0.4), built from links and grep rather than guesses?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-q2-do-the-root-readme-install-prerequisites-node-24-first-use-and-setup-statemen",
+      "inboxId": null,
+      "text": "Q2: Do the root README install, prerequisites (Node 24), first-use and setup statements match the v4.0.0.4 install changes and the repository?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-q3-do-the-root-readme-statements-on-features-deep-loop-modes-skill-hubs-routing-",
+      "inboxId": null,
+      "text": "Q3: Do the root README statements on features (deep-loop modes, skill hubs, routing and the advisor, hooks, code review output, scripts refusing unknown options, per-doc versions, playbook and catalog checks, CI gates) match v4.0.0.4 and the repository?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-4-q4-which-statements-in-the-related-readmes-are-stale-missing-or-wrong-against-v4",
+      "inboxId": null,
+      "text": "Q4: Which statements in the related READMEs are stale, missing or wrong against v4.0.0.4 and the repository?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9,
+      "resolved": true
+    },
+    {
+      "id": "question-5-q5-which-v4-0-0-4-user-facing-changes-do-the-readmes-leave-out-where-a-reader-wo",
+      "inboxId": null,
+      "text": "Q5: Which v4.0.0.4 user-facing changes do the READMEs leave out where a reader would need them, and which README statements were checked and found accurate?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-q1-which-readmes-are-related-to-the-root-readme-md-linked-from-it-or-documenting",
+      "inboxId": null,
+      "text": "Q1: Which READMEs are related to the root README.md (linked from it, or documenting the same setup or features, or touched by v4.0.0.4), built from links and grep rather than guesses?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-q2-do-the-root-readme-install-prerequisites-node-24-first-use-and-setup-statemen",
+      "inboxId": null,
+      "text": "Q2: Do the root README install, prerequisites (Node 24), first-use and setup statements match the v4.0.0.4 install changes and the repository?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-q3-do-the-root-readme-statements-on-features-deep-loop-modes-skill-hubs-routing-",
+      "inboxId": null,
+      "text": "Q3: Do the root README statements on features (deep-loop modes, skill hubs, routing and the advisor, hooks, code review output, scripts refusing unknown options, per-doc versions, playbook and catalog checks, CI gates) match v4.0.0.4 and the repository?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-4-q4-which-statements-in-the-related-readmes-are-stale-missing-or-wrong-against-v4",
+      "inboxId": null,
+      "text": "Q4: Which statements in the related READMEs are stale, missing or wrong against v4.0.0.4 and the repository?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9
+    },
+    {
+      "id": "question-5-q5-which-v4-0-0-4-user-facing-changes-do-the-readmes-leave-out-where-a-reader-wo",
+      "inboxId": null,
+      "text": "Q5: Which v4.0.0.4 user-facing changes do the READMEs leave out where a reader would need them, and which README statements were checked and found accurate?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q3: Do the root README statements on features (deep-loop modes, skill hubs, routing and the advisor, hooks, code review output, scripts refusing unknown options, per-doc versions, playbook and catalog checks, CI gates) match v4.0.0.4 and the repository?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: Which v4.0.0.4 user-facing changes do the READMEs leave out where a reader would need them, and which README statements were checked and found accurate?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: Do the root README install, prerequisites (Node 24), first-use and setup statements match the v4.0.0.4 install changes and the repository?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: Which statements in the related READMEs are stale, missing or wrong against v4.0.0.4 and the repository?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3 (part 2): skill hubs, routing and the advisor, hooks, code-review output, unknown-option refusal, per-doc versions, playbook and catalog checks, CI gates.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3 (part 3): code review output, scripts refusing unknown options, per-doc version model, playbook and catalog checks.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: which v4.0.0.4 user-facing changes the READMEs leave out where a reader would need them, and which statements checked out accurate — this iteration contributes five first-time verifications and one gap (row 2).",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: the remaining related READMEs (hub READMEs for sk-doc, sk-code, sk-git, system-spec-kit, system-skill-advisor, system-deep-loop, cli-pi; `.skilled/scripts/README.md`, `.skilled/hooks/README.md`, `.skilled/scripts/git-hooks/README.md`, `.skilled/skills/system-deep-loop/runtime/README.md`, `.skilled/skills/system-spec-kit/runtime/README.md`, `.skilled/bin/lib/README.md`).",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: the remaining hub READMEs (sk-doc, sk-code, system-deep-loop, cli-pi) and the inventory READMEs (`.skilled/scripts/README.md`, `.skilled/hooks/README.md`, `.skilled/scripts/git-hooks/README.md`, `.skilled/skills/system-deep-loop/runtime/README.md`, `.skilled/skills/system-spec-kit/runtime/README.md`, `.skilled/bin/lib/README.md`).",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: which v4.0.0.4 user-facing changes the READMEs leave out where a reader would need them, and which statements checked out accurate — this iteration contributes six first-time verifications (five OK rows plus the version-parity check) and six gaps.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: the inventory READMEs (`.skilled/scripts/README.md`, `.skilled/hooks/README.md`, `.skilled/scripts/git-hooks/README.md`, `.skilled/skills/system-deep-loop/runtime/README.md`, `.skilled/skills/system-spec-kit/runtime/README.md`, `.skilled/bin/lib/README.md`) and the deferred cli-devin README confirmation.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: which v4.0.0.4 user-facing changes the READMEs leave out where a reader would need them, and which statements checked out accurate — this iteration contributes four findings and six first-time verifications.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: Which v4.0.0.4 user-facing changes do the READMEs leave out where a reader would need them, and which README statements were checked and found accurate? — this iteration contributes one Q5 gap (row 1's §1 summary), two documented-change verifications and one non-implicated check; the synthesis plus two remaining candidates go to iteration 10.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None at the strategy level. Residual verification debt, each with its next evidence: `:113` option set (CLI schema), `:881` catalog/playbook totals, `:204` playbook totals, `:1435` env half (`mcp-click-up/INSTALL-GUIDE.md`), and the `:49` adjudication (v4.0.0.4 install section).",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-4-3-paths-and-doc-targets-no-longer-pull-routes-and-the-surfacehint-caller-input-hav",
+      "text": "\"Paths and doc targets no longer pull routes\" and the `surfaceHint` caller input have no counterpart claim in the root README; §7's scoring description does not contradict them.",
+      "addedAtIteration": 4,
+      "sources": [
+        "[SOURCE: README.md:66], [SOURCE: README.md:80], [SOURCE: README.md:241], [SOURCE: README.md:205], [SOURCE: README.md:210], [SOURCE: README.md:669], [SOURCE: README.md:776], [SOURCE: README.md:878], [SOURCE: README.md:902], [SOURCE: README.md:1025], [SOURCE: README.md:1278]",
+        "[SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:109], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:131], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:275], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:279], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:335], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:339], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:347], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:351], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:359], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:389], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:393], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:425]",
+        "[SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:40], [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1476], [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1531], [SOURCE: .skilled/skills/system-skill-advisor/runtime/config/route-exclusions.json], [SOURCE: .skilled/skills/sk-doc/mode-registry.json], [SOURCE: .skilled/skills/mcp-tooling/mode-registry.json], [SOURCE: .github/workflows/routing-registry-drift.yml:146], [SOURCE: .github/workflows/routing-registry-drift.yml:230], [SOURCE: .skilled/commands/doctor/scripts/route-validate.sh], [SOURCE: .skilled/commands/doctor/scripts/route-validate.py], [SOURCE: .skilled/scripts/install-git-hooks.sh:152], [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/README.md:258]",
+        "Command outputs: `ls -1d .skilled/skills/*/` → 14; `ls -1 .skilled/agents/*.md | wc -l` → 11; command groups 13/3/3/8/1/6 + 3 root = 37; `ls -1 .skilled/plugins/*.js | wc -l` → 16; sk-doc registry modes 15 / packets 14; mcp-tooling modes 9; route-exclusions `{\"excludedSkillIds\": []}`; `.github/workflows/` listing includes message-contract.yml and routing-registry-drift.yml",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/deep-research-config.json; deep-research-state.jsonl; deep-research-strategy.md; findings-registry.json; iterations/iteration-001.md; iterations/iteration-002.md; iterations/iteration-003.md"
+      ]
+    },
+    {
+      "id": "finding-4-2-the-hook-stdin-deadline-and-the-pi-dispatch-guard-exist-hook-stdin-deadline-test",
+      "text": "The hook stdin deadline and the Pi dispatch guard exist (`hook-stdin-deadline.test.mjs`; `.skilled/hooks/task-dispatch/{claude,cursor,devin,lib,opencode,pi}`), and no root README statement describes or contradicts them; README:1045's `task-dispatch-guard.ts` listing is consistent.",
+      "addedAtIteration": 4,
+      "sources": [
+        "[SOURCE: README.md:66], [SOURCE: README.md:80], [SOURCE: README.md:241], [SOURCE: README.md:205], [SOURCE: README.md:210], [SOURCE: README.md:669], [SOURCE: README.md:776], [SOURCE: README.md:878], [SOURCE: README.md:902], [SOURCE: README.md:1025], [SOURCE: README.md:1278]",
+        "[SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:109], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:131], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:275], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:279], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:335], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:339], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:347], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:351], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:359], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:389], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:393], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:425]",
+        "[SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:40], [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1476], [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1531], [SOURCE: .skilled/skills/system-skill-advisor/runtime/config/route-exclusions.json], [SOURCE: .skilled/skills/sk-doc/mode-registry.json], [SOURCE: .skilled/skills/mcp-tooling/mode-registry.json], [SOURCE: .github/workflows/routing-registry-drift.yml:146], [SOURCE: .github/workflows/routing-registry-drift.yml:230], [SOURCE: .skilled/commands/doctor/scripts/route-validate.sh], [SOURCE: .skilled/commands/doctor/scripts/route-validate.py], [SOURCE: .skilled/scripts/install-git-hooks.sh:152], [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/README.md:258]",
+        "Command outputs: `ls -1d .skilled/skills/*/` → 14; `ls -1 .skilled/agents/*.md | wc -l` → 11; command groups 13/3/3/8/1/6 + 3 root = 37; `ls -1 .skilled/plugins/*.js | wc -l` → 16; sk-doc registry modes 15 / packets 14; mcp-tooling modes 9; route-exclusions `{\"excludedSkillIds\": []}`; `.github/workflows/` listing includes message-contract.yml and routing-registry-drift.yml",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/deep-research-config.json; deep-research-state.jsonl; deep-research-strategy.md; findings-registry.json; iterations/iteration-001.md; iterations/iteration-002.md; iterations/iteration-003.md"
+      ]
+    },
+    {
+      "id": "finding-4-1-the-v4-0-0-4-advisor-agreement-ci-change-is-real-github-workflows-routing-regist",
+      "text": "The v4.0.0.4 advisor-agreement CI change is real: `.github/workflows/routing-registry-drift.yml` runs the routing-registry drift guard (\"asserts the hardcoded Python/TS routing maps equal the registry projection\") plus the parity suites and a golden-prompt gate, with the approved-divergence ledger at `runtime/tests/parity/fixtures/local-native-approved-divergences.json`. The root README makes no claim about advisor agreement in CI — nothing stale, and a Q5 candidate for the related-docs pass.",
+      "addedAtIteration": 4,
+      "sources": [
+        "[SOURCE: README.md:66], [SOURCE: README.md:80], [SOURCE: README.md:241], [SOURCE: README.md:205], [SOURCE: README.md:210], [SOURCE: README.md:669], [SOURCE: README.md:776], [SOURCE: README.md:878], [SOURCE: README.md:902], [SOURCE: README.md:1025], [SOURCE: README.md:1278]",
+        "[SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:109], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:131], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:275], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:279], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:335], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:339], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:347], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:351], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:359], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:389], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:393], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:425]",
+        "[SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:40], [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1476], [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1531], [SOURCE: .skilled/skills/system-skill-advisor/runtime/config/route-exclusions.json], [SOURCE: .skilled/skills/sk-doc/mode-registry.json], [SOURCE: .skilled/skills/mcp-tooling/mode-registry.json], [SOURCE: .github/workflows/routing-registry-drift.yml:146], [SOURCE: .github/workflows/routing-registry-drift.yml:230], [SOURCE: .skilled/commands/doctor/scripts/route-validate.sh], [SOURCE: .skilled/commands/doctor/scripts/route-validate.py], [SOURCE: .skilled/scripts/install-git-hooks.sh:152], [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/README.md:258]",
+        "Command outputs: `ls -1d .skilled/skills/*/` → 14; `ls -1 .skilled/agents/*.md | wc -l` → 11; command groups 13/3/3/8/1/6 + 3 root = 37; `ls -1 .skilled/plugins/*.js | wc -l` → 16; sk-doc registry modes 15 / packets 14; mcp-tooling modes 9; route-exclusions `{\"excludedSkillIds\": []}`; `.github/workflows/` listing includes message-contract.yml and routing-registry-drift.yml",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/deep-research-config.json; deep-research-state.jsonl; deep-research-strategy.md; findings-registry.json; iterations/iteration-001.md; iterations/iteration-002.md; iterations/iteration-003.md"
+      ]
+    },
+    {
+      "id": "finding-5-1-code-review-output-readme-37-641-644-802-and-955-957-make-no-claim-about-the-pre",
+      "text": "Code review output: README:37, 641-644, 802 and 955-957 make no claim about the pre-v4 review output shape; v4.0.0.4's \"Case\" line, status-line ending and `Not checked` line [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:161-163], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:287-289] have no counterpart claim to update.",
+      "addedAtIteration": 5,
+      "sources": [
+        "[SOURCE: README.md:325], [SOURCE: README.md:414], [SOURCE: README.md:421], [SOURCE: README.md:425], [SOURCE: README.md:426], [SOURCE: README.md:445], [SOURCE: README.md:881], [SOURCE: README.md:893], [SOURCE: README.md:1167], [SOURCE: README.md:1168], [SOURCE: README.md:1264], [SOURCE: README.md:1266], [SOURCE: README.md:1269], [SOURCE: README.md:1278], [SOURCE: README.md:1336], [SOURCE: README.md:1435], [SOURCE: README.md:1598]",
+        "[SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:38], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:81], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:95], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:139], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:151], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:161], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:275], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:279], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:281], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:287], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:377], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:387], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:389], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:395], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:421], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:429]",
+        "[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json], [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:304], [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:305], [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh], [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh]",
+        "[SOURCE: .skilled/commands/doctor/update.md], [SOURCE: .skilled/commands/doctor/mcp.md:60], [SOURCE: .skilled/commands/doctor/mcp.md:63], [SOURCE: .skilled/commands/doctor/mcp.md:74], [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:12], [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:17], [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:107], [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:108], [SOURCE: .skilled/commands/create/changelog.md]",
+        "[SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/feature-catalog/FEATURE-CATALOG.md], [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/manual-testing-playbook.md], [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md:52], [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/INSTALL-GUIDE.md:143], [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/cupt-lifecycle/session-auth.md:28]",
+        "[SOURCE: .skilled/skills/sk-design/sk-design-chart/references/catalog.md:42], [SOURCE: .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs:100], [SOURCE: .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs:3096], [SOURCE: .skilled/skills/sk-design/sk-design-chart/scripts/README.md:119]",
+        "Command outputs: validator-registry parse → `RULES: 41`; doctor assets → 21 YAML files / 20 with `operating_mode`; create.sh tokens `--phases` 9 / `--phase-names` 13 / `--with-goal` 3 / `--with-lazy-addons` 3 / `--path` 7 / `unknown option` 1 / `SPECKIT_POST_VALIDATE` 3; click-up catalog `###` headings 111; click-up playbook scenario files 42; chart tables `[{start:42,rows:31},{start:78,rows:8},{start:112,rows:8},{start:129,rows:9},{start:165,rows:5},{start:189,rows:5}]`; `FAMILY_NAMES` 49 entries; grep `v[0-9]+\\.[0-9]+` over README.md → no matches",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/deep-research-config.json; deep-research-state.jsonl; deep-research-strategy.md; findings-registry.json; iterations/iteration-003.md; iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-2-gate-3-option-c-readme-252-and-the-faq-1519-1522-name-no-gate-3-options-the-opti",
+      "text": "Gate 3 option C: README:252 and the FAQ (1519, 1522) name no Gate 3 options; the option-C wording change [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:139-141] has no README claim to fix.",
+      "addedAtIteration": 5,
+      "sources": [
+        "[SOURCE: README.md:325], [SOURCE: README.md:414], [SOURCE: README.md:421], [SOURCE: README.md:425], [SOURCE: README.md:426], [SOURCE: README.md:445], [SOURCE: README.md:881], [SOURCE: README.md:893], [SOURCE: README.md:1167], [SOURCE: README.md:1168], [SOURCE: README.md:1264], [SOURCE: README.md:1266], [SOURCE: README.md:1269], [SOURCE: README.md:1278], [SOURCE: README.md:1336], [SOURCE: README.md:1435], [SOURCE: README.md:1598]",
+        "[SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:38], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:81], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:95], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:139], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:151], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:161], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:275], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:279], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:281], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:287], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:377], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:387], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:389], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:395], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:421], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:429]",
+        "[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json], [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:304], [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:305], [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh], [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh]",
+        "[SOURCE: .skilled/commands/doctor/update.md], [SOURCE: .skilled/commands/doctor/mcp.md:60], [SOURCE: .skilled/commands/doctor/mcp.md:63], [SOURCE: .skilled/commands/doctor/mcp.md:74], [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:12], [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:17], [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:107], [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:108], [SOURCE: .skilled/commands/create/changelog.md]",
+        "[SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/feature-catalog/FEATURE-CATALOG.md], [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/manual-testing-playbook.md], [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md:52], [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/INSTALL-GUIDE.md:143], [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/cupt-lifecycle/session-auth.md:28]",
+        "[SOURCE: .skilled/skills/sk-design/sk-design-chart/references/catalog.md:42], [SOURCE: .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs:100], [SOURCE: .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs:3096], [SOURCE: .skilled/skills/sk-design/sk-design-chart/scripts/README.md:119]",
+        "Command outputs: validator-registry parse → `RULES: 41`; doctor assets → 21 YAML files / 20 with `operating_mode`; create.sh tokens `--phases` 9 / `--phase-names` 13 / `--with-goal` 3 / `--with-lazy-addons` 3 / `--path` 7 / `unknown option` 1 / `SPECKIT_POST_VALIDATE` 3; click-up catalog `###` headings 111; click-up playbook scenario files 42; chart tables `[{start:42,rows:31},{start:78,rows:8},{start:112,rows:8},{start:129,rows:9},{start:165,rows:5},{start:189,rows:5}]`; `FAMILY_NAMES` 49 entries; grep `v[0-9]+\\.[0-9]+` over README.md → no matches",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/deep-research-config.json; deep-research-state.jsonl; deep-research-strategy.md; findings-registry.json; iterations/iteration-003.md; iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-3-nested-anchors-readme-421-says-rules-check-anchor-markers-the-nested-anchor-erro",
+      "text": "Nested anchors: README:421 says rules check \"anchor markers\"; the nested-anchor error change [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:95-97] has no README claim.",
+      "addedAtIteration": 5,
+      "sources": [
+        "[SOURCE: README.md:325], [SOURCE: README.md:414], [SOURCE: README.md:421], [SOURCE: README.md:425], [SOURCE: README.md:426], [SOURCE: README.md:445], [SOURCE: README.md:881], [SOURCE: README.md:893], [SOURCE: README.md:1167], [SOURCE: README.md:1168], [SOURCE: README.md:1264], [SOURCE: README.md:1266], [SOURCE: README.md:1269], [SOURCE: README.md:1278], [SOURCE: README.md:1336], [SOURCE: README.md:1435], [SOURCE: README.md:1598]",
+        "[SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:38], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:81], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:95], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:139], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:151], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:161], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:275], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:279], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:281], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:287], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:377], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:387], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:389], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:395], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:421], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:429]",
+        "[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json], [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:304], [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:305], [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh], [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh]",
+        "[SOURCE: .skilled/commands/doctor/update.md], [SOURCE: .skilled/commands/doctor/mcp.md:60], [SOURCE: .skilled/commands/doctor/mcp.md:63], [SOURCE: .skilled/commands/doctor/mcp.md:74], [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:12], [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:17], [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:107], [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:108], [SOURCE: .skilled/commands/create/changelog.md]",
+        "[SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/feature-catalog/FEATURE-CATALOG.md], [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/manual-testing-playbook.md], [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md:52], [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/INSTALL-GUIDE.md:143], [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/cupt-lifecycle/session-auth.md:28]",
+        "[SOURCE: .skilled/skills/sk-design/sk-design-chart/references/catalog.md:42], [SOURCE: .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs:100], [SOURCE: .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs:3096], [SOURCE: .skilled/skills/sk-design/sk-design-chart/scripts/README.md:119]",
+        "Command outputs: validator-registry parse → `RULES: 41`; doctor assets → 21 YAML files / 20 with `operating_mode`; create.sh tokens `--phases` 9 / `--phase-names` 13 / `--with-goal` 3 / `--with-lazy-addons` 3 / `--path` 7 / `unknown option` 1 / `SPECKIT_POST_VALIDATE` 3; click-up catalog `###` headings 111; click-up playbook scenario files 42; chart tables `[{start:42,rows:31},{start:78,rows:8},{start:112,rows:8},{start:129,rows:9},{start:165,rows:5},{start:189,rows:5}]`; `FAMILY_NAMES` 49 entries; grep `v[0-9]+\\.[0-9]+` over README.md → no matches",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/deep-research-config.json; deep-research-state.jsonl; deep-research-strategy.md; findings-registry.json; iterations/iteration-003.md; iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-5-per-doc-versions-no-readme-statement-on-the-per-doc-version-model-shipped-docs-c",
+      "text": "Per-doc versions: no README statement on the per-doc version model; shipped docs carry 4-part versions (chart catalog `version: 0.23.0.16`, click-up catalog `version: 1.1.0.0`) per [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:387-389].",
+      "addedAtIteration": 5,
+      "sources": [
+        "[SOURCE: README.md:325], [SOURCE: README.md:414], [SOURCE: README.md:421], [SOURCE: README.md:425], [SOURCE: README.md:426], [SOURCE: README.md:445], [SOURCE: README.md:881], [SOURCE: README.md:893], [SOURCE: README.md:1167], [SOURCE: README.md:1168], [SOURCE: README.md:1264], [SOURCE: README.md:1266], [SOURCE: README.md:1269], [SOURCE: README.md:1278], [SOURCE: README.md:1336], [SOURCE: README.md:1435], [SOURCE: README.md:1598]",
+        "[SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:38], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:81], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:95], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:139], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:151], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:161], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:275], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:279], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:281], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:287], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:377], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:387], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:389], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:395], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:421], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:429]",
+        "[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json], [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:304], [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:305], [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh], [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh]",
+        "[SOURCE: .skilled/commands/doctor/update.md], [SOURCE: .skilled/commands/doctor/mcp.md:60], [SOURCE: .skilled/commands/doctor/mcp.md:63], [SOURCE: .skilled/commands/doctor/mcp.md:74], [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:12], [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:17], [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:107], [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:108], [SOURCE: .skilled/commands/create/changelog.md]",
+        "[SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/feature-catalog/FEATURE-CATALOG.md], [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/manual-testing-playbook.md], [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md:52], [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/INSTALL-GUIDE.md:143], [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/cupt-lifecycle/session-auth.md:28]",
+        "[SOURCE: .skilled/skills/sk-design/sk-design-chart/references/catalog.md:42], [SOURCE: .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs:100], [SOURCE: .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs:3096], [SOURCE: .skilled/skills/sk-design/sk-design-chart/scripts/README.md:119]",
+        "Command outputs: validator-registry parse → `RULES: 41`; doctor assets → 21 YAML files / 20 with `operating_mode`; create.sh tokens `--phases` 9 / `--phase-names` 13 / `--with-goal` 3 / `--with-lazy-addons` 3 / `--path` 7 / `unknown option` 1 / `SPECKIT_POST_VALIDATE` 3; click-up catalog `###` headings 111; click-up playbook scenario files 42; chart tables `[{start:42,rows:31},{start:78,rows:8},{start:112,rows:8},{start:129,rows:9},{start:165,rows:5},{start:189,rows:5}]`; `FAMILY_NAMES` 49 entries; grep `v[0-9]+\\.[0-9]+` over README.md → no matches",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/deep-research-config.json; deep-research-state.jsonl; deep-research-strategy.md; findings-registry.json; iterations/iteration-003.md; iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-6-the-root-readme-quotes-no-dotted-version-numbers-v-0-9-0-9-no-matches",
+      "text": "The root README quotes no dotted version numbers (`v[0-9]+\\.[0-9]+` → no matches).",
+      "addedAtIteration": 5,
+      "sources": [
+        "[SOURCE: README.md:325], [SOURCE: README.md:414], [SOURCE: README.md:421], [SOURCE: README.md:425], [SOURCE: README.md:426], [SOURCE: README.md:445], [SOURCE: README.md:881], [SOURCE: README.md:893], [SOURCE: README.md:1167], [SOURCE: README.md:1168], [SOURCE: README.md:1264], [SOURCE: README.md:1266], [SOURCE: README.md:1269], [SOURCE: README.md:1278], [SOURCE: README.md:1336], [SOURCE: README.md:1435], [SOURCE: README.md:1598]",
+        "[SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:38], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:81], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:95], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:139], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:151], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:161], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:275], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:279], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:281], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:287], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:377], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:387], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:389], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:395], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:421], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:429]",
+        "[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json], [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:304], [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:305], [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh], [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh]",
+        "[SOURCE: .skilled/commands/doctor/update.md], [SOURCE: .skilled/commands/doctor/mcp.md:60], [SOURCE: .skilled/commands/doctor/mcp.md:63], [SOURCE: .skilled/commands/doctor/mcp.md:74], [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:12], [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:17], [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:107], [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:108], [SOURCE: .skilled/commands/create/changelog.md]",
+        "[SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/feature-catalog/FEATURE-CATALOG.md], [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/manual-testing-playbook.md], [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md:52], [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/INSTALL-GUIDE.md:143], [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/cupt-lifecycle/session-auth.md:28]",
+        "[SOURCE: .skilled/skills/sk-design/sk-design-chart/references/catalog.md:42], [SOURCE: .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs:100], [SOURCE: .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs:3096], [SOURCE: .skilled/skills/sk-design/sk-design-chart/scripts/README.md:119]",
+        "Command outputs: validator-registry parse → `RULES: 41`; doctor assets → 21 YAML files / 20 with `operating_mode`; create.sh tokens `--phases` 9 / `--phase-names` 13 / `--with-goal` 3 / `--with-lazy-addons` 3 / `--path` 7 / `unknown option` 1 / `SPECKIT_POST_VALIDATE` 3; click-up catalog `###` headings 111; click-up playbook scenario files 42; chart tables `[{start:42,rows:31},{start:78,rows:8},{start:112,rows:8},{start:129,rows:9},{start:165,rows:5},{start:189,rows:5}]`; `FAMILY_NAMES` 49 entries; grep `v[0-9]+\\.[0-9]+` over README.md → no matches",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/deep-research-config.json; deep-research-state.jsonl; deep-research-strategy.md; findings-registry.json; iterations/iteration-003.md; iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-4-unknown-option-refusal-the-readme-makes-no-general-claim-that-scripts-refuse-unk",
+      "text": "Unknown-option refusal: the README makes no general claim that scripts refuse unknown options; `create.sh` carries the refusal (`unknown option` ×1) and the doctor routers reject unknown flags. Q5 candidate.",
+      "addedAtIteration": 5,
+      "sources": [
+        "[SOURCE: README.md:325], [SOURCE: README.md:414], [SOURCE: README.md:421], [SOURCE: README.md:425], [SOURCE: README.md:426], [SOURCE: README.md:445], [SOURCE: README.md:881], [SOURCE: README.md:893], [SOURCE: README.md:1167], [SOURCE: README.md:1168], [SOURCE: README.md:1264], [SOURCE: README.md:1266], [SOURCE: README.md:1269], [SOURCE: README.md:1278], [SOURCE: README.md:1336], [SOURCE: README.md:1435], [SOURCE: README.md:1598]",
+        "[SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:38], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:81], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:95], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:139], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:151], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:161], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:275], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:279], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:281], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:287], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:377], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:387], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:389], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:395], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:421], [SOURCE: .skilled/changelog/skilled/v4.0.0.4.md:429]",
+        "[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json], [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:304], [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:305], [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh], [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh]",
+        "[SOURCE: .skilled/commands/doctor/update.md], [SOURCE: .skilled/commands/doctor/mcp.md:60], [SOURCE: .skilled/commands/doctor/mcp.md:63], [SOURCE: .skilled/commands/doctor/mcp.md:74], [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:12], [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:17], [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:107], [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:108], [SOURCE: .skilled/commands/create/changelog.md]",
+        "[SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/feature-catalog/FEATURE-CATALOG.md], [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/manual-testing-playbook.md], [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md:52], [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/INSTALL-GUIDE.md:143], [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/cupt-lifecycle/session-auth.md:28]",
+        "[SOURCE: .skilled/skills/sk-design/sk-design-chart/references/catalog.md:42], [SOURCE: .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs:100], [SOURCE: .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs:3096], [SOURCE: .skilled/skills/sk-design/sk-design-chart/scripts/README.md:119]",
+        "Command outputs: validator-registry parse → `RULES: 41`; doctor assets → 21 YAML files / 20 with `operating_mode`; create.sh tokens `--phases` 9 / `--phase-names` 13 / `--with-goal` 3 / `--with-lazy-addons` 3 / `--path` 7 / `unknown option` 1 / `SPECKIT_POST_VALIDATE` 3; click-up catalog `###` headings 111; click-up playbook scenario files 42; chart tables `[{start:42,rows:31},{start:78,rows:8},{start:112,rows:8},{start:129,rows:9},{start:165,rows:5},{start:189,rows:5}]`; `FAMILY_NAMES` 49 entries; grep `v[0-9]+\\.[0-9]+` over README.md → no matches",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/deep-research-config.json; deep-research-state.jsonl; deep-research-strategy.md; findings-registry.json; iterations/iteration-003.md; iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-10-6-160-node-24-x-full-install-per-part-floors-161-npm-git-posix-shell-162-no-global",
+      "text": "`:160` Node 24.x full install + per-part floors; `:161` npm/git/POSIX shell; `:162` no global TypeScript; `:166` clone URL; `:169-173` install/build steps 2-3; `:175-179` step 4 advisor-build ordering; `:181-182` step 5 `skilled.trustRepoHooks`; `:188-189` MCP config verify list; `:191-192` advisor enumerates nine commands; `:199` pre-commit phrase lint; `:205` message-contract CI check; `:210` uninstall command; `:218-224` seven runtimes + completion spellings; `:241` \"other 13 shipped skills\"; `:325` lazy-addons/goal flags; `:414` `--phase`/`--phases`; `:425` `create.sh` usage; `:445` `SPECKIT_POST_VALIDATE`; `:562` three loop families (re-opened); `:630`/`:639`/`:648` deep-loop agents; `:669` daemon-unreachable fallback; `:776` 14 skills + no exclusions (re-opened); `:878` mcp-tooling nine modes; `:893` 29 catalog forms + 49 check families; `:902` sk-doc 15 modes / 14 packets; `:1025` thirteen plugins kill-switch; `:1264` unknown-flag refusal; `:1269` `compat` v3→v4; `:1336` `clickup_official` MCP description; `:1596-1597` catalog + playbook links; `:1598` release-notes link. (`:1278`'s route-validate sentence is accurate; only its \"19\" count is stale.)",
+      "addedAtIteration": 10,
+      "sources": [
+        "READMEs re-opened: `README.md`; `.skilled/bin/README.md`; `.skilled/bin/lib/README.md`; `.skilled/scripts/README.md`; `.skilled/scripts/git-hooks/README.md`; `.skilled/hooks/README.md`; `.skilled/skills/system-spec-kit/runtime/README.md`; `.skilled/skills/system-deep-loop/runtime/README.md`; `.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md`; `.skilled/skills/system-spec-kit/README.md`; `.skilled/skills/system-skill-advisor/README.md`; `.skilled/skills/sk-git/README.md`; `.skilled/skills/sk-doc/README.md`; `.skilled/skills/system-deep-loop/README.md`; `.skilled/skills/cli-external-orchestration/README.md`.",
+        "Evidence files: `.skilled/skills/system-spec-kit/package.json`; `.skilled/skills/mcp-code-mode/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-*/SKILL.md`; `.skilled/skills/sk-design/sk-design-chart/SKILL.md` and `README.md`; `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`; `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`; `.skilled/scripts/git-hooks/pre-commit`.",
+        "Commands (outputs quoted in Findings): `ls -1 .skilled/agents/*.md | wc -l`; `ls -1d .skilled/skills/*/ | wc -l`; `ls -1d .skilled/skills/cli-external-orchestration/cli-*/`; `ls -1 .skilled/bin/`; `ls -1 .skilled/bin/lib`; `ls -1 .skilled/skills/system-deep-loop/runtime/`; `ls -1 .skilled/skills/system-spec-kit/runtime/hooks/`; `ls -1 .skilled/commands/` + per-group `.md` counts; `ls -1 .skilled/commands/doctor/assets/`; `awk` version pairs (README vs SKILL.md); `awk` `SPECKIT_SKIP_*` scan; `awk` chart-form and playbook-section counts; `test -e` path checks; `awk` engines read."
+      ]
+    },
+    {
+      "id": "finding-10-22-skilled-bin-lib-readme-md-56-58-compiled-routing-group",
+      "text": "`.skilled/bin/lib/README.md` `:56-58` compiled-routing group.",
+      "addedAtIteration": 10,
+      "sources": [
+        "READMEs re-opened: `README.md`; `.skilled/bin/README.md`; `.skilled/bin/lib/README.md`; `.skilled/scripts/README.md`; `.skilled/scripts/git-hooks/README.md`; `.skilled/hooks/README.md`; `.skilled/skills/system-spec-kit/runtime/README.md`; `.skilled/skills/system-deep-loop/runtime/README.md`; `.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md`; `.skilled/skills/system-spec-kit/README.md`; `.skilled/skills/system-skill-advisor/README.md`; `.skilled/skills/sk-git/README.md`; `.skilled/skills/sk-doc/README.md`; `.skilled/skills/system-deep-loop/README.md`; `.skilled/skills/cli-external-orchestration/README.md`.",
+        "Evidence files: `.skilled/skills/system-spec-kit/package.json`; `.skilled/skills/mcp-code-mode/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-*/SKILL.md`; `.skilled/skills/sk-design/sk-design-chart/SKILL.md` and `README.md`; `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`; `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`; `.skilled/scripts/git-hooks/pre-commit`.",
+        "Commands (outputs quoted in Findings): `ls -1 .skilled/agents/*.md | wc -l`; `ls -1d .skilled/skills/*/ | wc -l`; `ls -1d .skilled/skills/cli-external-orchestration/cli-*/`; `ls -1 .skilled/bin/`; `ls -1 .skilled/bin/lib`; `ls -1 .skilled/skills/system-deep-loop/runtime/`; `ls -1 .skilled/skills/system-spec-kit/runtime/hooks/`; `ls -1 .skilled/commands/` + per-group `.md` counts; `ls -1 .skilled/commands/doctor/assets/`; `awk` version pairs (README vs SKILL.md); `awk` `SPECKIT_SKIP_*` scan; `awk` chart-form and playbook-section counts; `test -e` path checks; `awk` engines read."
+      ]
+    },
+    {
+      "id": "finding-10-7-skilled-bin-readme-md-22-freshness-shim-check-149-168-entrypoints-table-178-180-",
+      "text": "`.skilled/bin/README.md` `:22` freshness shim check; `:149-168` entrypoints table; `:178-180` shim exit taxonomy; `:200-226` validation commands.",
+      "addedAtIteration": 10,
+      "sources": [
+        "READMEs re-opened: `README.md`; `.skilled/bin/README.md`; `.skilled/bin/lib/README.md`; `.skilled/scripts/README.md`; `.skilled/scripts/git-hooks/README.md`; `.skilled/hooks/README.md`; `.skilled/skills/system-spec-kit/runtime/README.md`; `.skilled/skills/system-deep-loop/runtime/README.md`; `.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md`; `.skilled/skills/system-spec-kit/README.md`; `.skilled/skills/system-skill-advisor/README.md`; `.skilled/skills/sk-git/README.md`; `.skilled/skills/sk-doc/README.md`; `.skilled/skills/system-deep-loop/README.md`; `.skilled/skills/cli-external-orchestration/README.md`.",
+        "Evidence files: `.skilled/skills/system-spec-kit/package.json`; `.skilled/skills/mcp-code-mode/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-*/SKILL.md`; `.skilled/skills/sk-design/sk-design-chart/SKILL.md` and `README.md`; `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`; `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`; `.skilled/scripts/git-hooks/pre-commit`.",
+        "Commands (outputs quoted in Findings): `ls -1 .skilled/agents/*.md | wc -l`; `ls -1d .skilled/skills/*/ | wc -l`; `ls -1d .skilled/skills/cli-external-orchestration/cli-*/`; `ls -1 .skilled/bin/`; `ls -1 .skilled/bin/lib`; `ls -1 .skilled/skills/system-deep-loop/runtime/`; `ls -1 .skilled/skills/system-spec-kit/runtime/hooks/`; `ls -1 .skilled/commands/` + per-group `.md` counts; `ls -1 .skilled/commands/doctor/assets/`; `awk` version pairs (README vs SKILL.md); `awk` `SPECKIT_SKIP_*` scan; `awk` chart-form and playbook-section counts; `test -e` path checks; `awk` engines read."
+      ]
+    },
+    {
+      "id": "finding-10-18-skilled-hooks-readme-md-177-3000-ms-stdin-deadline",
+      "text": "`.skilled/hooks/README.md` `:177` 3000 ms stdin deadline.",
+      "addedAtIteration": 10,
+      "sources": [
+        "READMEs re-opened: `README.md`; `.skilled/bin/README.md`; `.skilled/bin/lib/README.md`; `.skilled/scripts/README.md`; `.skilled/scripts/git-hooks/README.md`; `.skilled/hooks/README.md`; `.skilled/skills/system-spec-kit/runtime/README.md`; `.skilled/skills/system-deep-loop/runtime/README.md`; `.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md`; `.skilled/skills/system-spec-kit/README.md`; `.skilled/skills/system-skill-advisor/README.md`; `.skilled/skills/sk-git/README.md`; `.skilled/skills/sk-doc/README.md`; `.skilled/skills/system-deep-loop/README.md`; `.skilled/skills/cli-external-orchestration/README.md`.",
+        "Evidence files: `.skilled/skills/system-spec-kit/package.json`; `.skilled/skills/mcp-code-mode/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-*/SKILL.md`; `.skilled/skills/sk-design/sk-design-chart/SKILL.md` and `README.md`; `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`; `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`; `.skilled/scripts/git-hooks/pre-commit`.",
+        "Commands (outputs quoted in Findings): `ls -1 .skilled/agents/*.md | wc -l`; `ls -1d .skilled/skills/*/ | wc -l`; `ls -1d .skilled/skills/cli-external-orchestration/cli-*/`; `ls -1 .skilled/bin/`; `ls -1 .skilled/bin/lib`; `ls -1 .skilled/skills/system-deep-loop/runtime/`; `ls -1 .skilled/skills/system-spec-kit/runtime/hooks/`; `ls -1 .skilled/commands/` + per-group `.md` counts; `ls -1 .skilled/commands/doctor/assets/`; `awk` version pairs (README vs SKILL.md); `awk` `SPECKIT_SKIP_*` scan; `awk` chart-form and playbook-section counts; `test -e` path checks; `awk` engines read."
+      ]
+    },
+    {
+      "id": "finding-10-19-skilled-scripts-git-hooks-readme-md-110-ten-sub-gates-table-re-opened-the-mirror",
+      "text": "`.skilled/scripts/git-hooks/README.md` `:110` ten sub-gates table (re-opened); the mirror-gate, phrase-lint and version-bump sentences inside `:24`.",
+      "addedAtIteration": 10,
+      "sources": [
+        "READMEs re-opened: `README.md`; `.skilled/bin/README.md`; `.skilled/bin/lib/README.md`; `.skilled/scripts/README.md`; `.skilled/scripts/git-hooks/README.md`; `.skilled/hooks/README.md`; `.skilled/skills/system-spec-kit/runtime/README.md`; `.skilled/skills/system-deep-loop/runtime/README.md`; `.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md`; `.skilled/skills/system-spec-kit/README.md`; `.skilled/skills/system-skill-advisor/README.md`; `.skilled/skills/sk-git/README.md`; `.skilled/skills/sk-doc/README.md`; `.skilled/skills/system-deep-loop/README.md`; `.skilled/skills/cli-external-orchestration/README.md`.",
+        "Evidence files: `.skilled/skills/system-spec-kit/package.json`; `.skilled/skills/mcp-code-mode/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-*/SKILL.md`; `.skilled/skills/sk-design/sk-design-chart/SKILL.md` and `README.md`; `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`; `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`; `.skilled/scripts/git-hooks/pre-commit`.",
+        "Commands (outputs quoted in Findings): `ls -1 .skilled/agents/*.md | wc -l`; `ls -1d .skilled/skills/*/ | wc -l`; `ls -1d .skilled/skills/cli-external-orchestration/cli-*/`; `ls -1 .skilled/bin/`; `ls -1 .skilled/bin/lib`; `ls -1 .skilled/skills/system-deep-loop/runtime/`; `ls -1 .skilled/skills/system-spec-kit/runtime/hooks/`; `ls -1 .skilled/commands/` + per-group `.md` counts; `ls -1 .skilled/commands/doctor/assets/`; `awk` version pairs (README vs SKILL.md); `awk` `SPECKIT_SKIP_*` scan; `awk` chart-form and playbook-section counts; `test -e` path checks; `awk` engines read."
+      ]
+    },
+    {
+      "id": "finding-10-17-skilled-scripts-readme-md-22-29-contents-table",
+      "text": "`.skilled/scripts/README.md` `:22-29` contents table.",
+      "addedAtIteration": 10,
+      "sources": [
+        "READMEs re-opened: `README.md`; `.skilled/bin/README.md`; `.skilled/bin/lib/README.md`; `.skilled/scripts/README.md`; `.skilled/scripts/git-hooks/README.md`; `.skilled/hooks/README.md`; `.skilled/skills/system-spec-kit/runtime/README.md`; `.skilled/skills/system-deep-loop/runtime/README.md`; `.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md`; `.skilled/skills/system-spec-kit/README.md`; `.skilled/skills/system-skill-advisor/README.md`; `.skilled/skills/sk-git/README.md`; `.skilled/skills/sk-doc/README.md`; `.skilled/skills/system-deep-loop/README.md`; `.skilled/skills/cli-external-orchestration/README.md`.",
+        "Evidence files: `.skilled/skills/system-spec-kit/package.json`; `.skilled/skills/mcp-code-mode/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-*/SKILL.md`; `.skilled/skills/sk-design/sk-design-chart/SKILL.md` and `README.md`; `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`; `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`; `.skilled/scripts/git-hooks/pre-commit`.",
+        "Commands (outputs quoted in Findings): `ls -1 .skilled/agents/*.md | wc -l`; `ls -1d .skilled/skills/*/ | wc -l`; `ls -1d .skilled/skills/cli-external-orchestration/cli-*/`; `ls -1 .skilled/bin/`; `ls -1 .skilled/bin/lib`; `ls -1 .skilled/skills/system-deep-loop/runtime/`; `ls -1 .skilled/skills/system-spec-kit/runtime/hooks/`; `ls -1 .skilled/commands/` + per-group `.md` counts; `ls -1 .skilled/commands/doctor/assets/`; `awk` version pairs (README vs SKILL.md); `awk` `SPECKIT_SKIP_*` scan; `awk` chart-form and playbook-section counts; `test -e` path checks; `awk` engines read."
+      ]
+    },
+    {
+      "id": "finding-10-16-skilled-skills-cli-external-orchestration-cli-pi-readme-md-10-34-own-edition-ver",
+      "text": "`.skilled/skills/cli-external-orchestration/cli-pi/README.md` `:10`,`:34` own-edition version + inventory.",
+      "addedAtIteration": 10,
+      "sources": [
+        "READMEs re-opened: `README.md`; `.skilled/bin/README.md`; `.skilled/bin/lib/README.md`; `.skilled/scripts/README.md`; `.skilled/scripts/git-hooks/README.md`; `.skilled/hooks/README.md`; `.skilled/skills/system-spec-kit/runtime/README.md`; `.skilled/skills/system-deep-loop/runtime/README.md`; `.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md`; `.skilled/skills/system-spec-kit/README.md`; `.skilled/skills/system-skill-advisor/README.md`; `.skilled/skills/sk-git/README.md`; `.skilled/skills/sk-doc/README.md`; `.skilled/skills/system-deep-loop/README.md`; `.skilled/skills/cli-external-orchestration/README.md`.",
+        "Evidence files: `.skilled/skills/system-spec-kit/package.json`; `.skilled/skills/mcp-code-mode/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-*/SKILL.md`; `.skilled/skills/sk-design/sk-design-chart/SKILL.md` and `README.md`; `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`; `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`; `.skilled/scripts/git-hooks/pre-commit`.",
+        "Commands (outputs quoted in Findings): `ls -1 .skilled/agents/*.md | wc -l`; `ls -1d .skilled/skills/*/ | wc -l`; `ls -1d .skilled/skills/cli-external-orchestration/cli-*/`; `ls -1 .skilled/bin/`; `ls -1 .skilled/bin/lib`; `ls -1 .skilled/skills/system-deep-loop/runtime/`; `ls -1 .skilled/skills/system-spec-kit/runtime/hooks/`; `ls -1 .skilled/commands/` + per-group `.md` counts; `ls -1 .skilled/commands/doctor/assets/`; `awk` version pairs (README vs SKILL.md); `awk` `SPECKIT_SKIP_*` scan; `awk` chart-form and playbook-section counts; `test -e` path checks; `awk` engines read."
+      ]
+    },
+    {
+      "id": "finding-10-14-skilled-skills-cli-external-orchestration-readme-md-33-35-88-seven-runtimes-tieb",
+      "text": "`.skilled/skills/cli-external-orchestration/README.md` `:33`,`:35`,`:88` seven runtimes + tieBreak; `:96` graph-metadata; `:97` per-mode directories.",
+      "addedAtIteration": 10,
+      "sources": [
+        "READMEs re-opened: `README.md`; `.skilled/bin/README.md`; `.skilled/bin/lib/README.md`; `.skilled/scripts/README.md`; `.skilled/scripts/git-hooks/README.md`; `.skilled/hooks/README.md`; `.skilled/skills/system-spec-kit/runtime/README.md`; `.skilled/skills/system-deep-loop/runtime/README.md`; `.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md`; `.skilled/skills/system-spec-kit/README.md`; `.skilled/skills/system-skill-advisor/README.md`; `.skilled/skills/sk-git/README.md`; `.skilled/skills/sk-doc/README.md`; `.skilled/skills/system-deep-loop/README.md`; `.skilled/skills/cli-external-orchestration/README.md`.",
+        "Evidence files: `.skilled/skills/system-spec-kit/package.json`; `.skilled/skills/mcp-code-mode/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-*/SKILL.md`; `.skilled/skills/sk-design/sk-design-chart/SKILL.md` and `README.md`; `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`; `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`; `.skilled/scripts/git-hooks/pre-commit`.",
+        "Commands (outputs quoted in Findings): `ls -1 .skilled/agents/*.md | wc -l`; `ls -1d .skilled/skills/*/ | wc -l`; `ls -1d .skilled/skills/cli-external-orchestration/cli-*/`; `ls -1 .skilled/bin/`; `ls -1 .skilled/bin/lib`; `ls -1 .skilled/skills/system-deep-loop/runtime/`; `ls -1 .skilled/skills/system-spec-kit/runtime/hooks/`; `ls -1 .skilled/commands/` + per-group `.md` counts; `ls -1 .skilled/commands/doctor/assets/`; `awk` version pairs (README vs SKILL.md); `awk` `SPECKIT_SKIP_*` scan; `awk` chart-form and playbook-section counts; `test -e` path checks; `awk` engines read."
+      ]
+    },
+    {
+      "id": "finding-10-8-skilled-skills-mcp-code-mode-install-guide-md-11-12-node-24-dependency-24-36-ai-",
+      "text": "`.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md` `:11-12` Node 24 dependency; `:24-36` AI-first prompt checks.",
+      "addedAtIteration": 10,
+      "sources": [
+        "READMEs re-opened: `README.md`; `.skilled/bin/README.md`; `.skilled/bin/lib/README.md`; `.skilled/scripts/README.md`; `.skilled/scripts/git-hooks/README.md`; `.skilled/hooks/README.md`; `.skilled/skills/system-spec-kit/runtime/README.md`; `.skilled/skills/system-deep-loop/runtime/README.md`; `.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md`; `.skilled/skills/system-spec-kit/README.md`; `.skilled/skills/system-skill-advisor/README.md`; `.skilled/skills/sk-git/README.md`; `.skilled/skills/sk-doc/README.md`; `.skilled/skills/system-deep-loop/README.md`; `.skilled/skills/cli-external-orchestration/README.md`.",
+        "Evidence files: `.skilled/skills/system-spec-kit/package.json`; `.skilled/skills/mcp-code-mode/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-*/SKILL.md`; `.skilled/skills/sk-design/sk-design-chart/SKILL.md` and `README.md`; `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`; `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`; `.skilled/scripts/git-hooks/pre-commit`.",
+        "Commands (outputs quoted in Findings): `ls -1 .skilled/agents/*.md | wc -l`; `ls -1d .skilled/skills/*/ | wc -l`; `ls -1d .skilled/skills/cli-external-orchestration/cli-*/`; `ls -1 .skilled/bin/`; `ls -1 .skilled/bin/lib`; `ls -1 .skilled/skills/system-deep-loop/runtime/`; `ls -1 .skilled/skills/system-spec-kit/runtime/hooks/`; `ls -1 .skilled/commands/` + per-group `.md` counts; `ls -1 .skilled/commands/doctor/assets/`; `awk` version pairs (README vs SKILL.md); `awk` `SPECKIT_SKIP_*` scan; `awk` chart-form and playbook-section counts; `test -e` path checks; `awk` engines read."
+      ]
+    },
+    {
+      "id": "finding-10-13-skilled-skills-sk-code-readme-md-23-38-51-106-three-surfaces",
+      "text": "`.skilled/skills/sk-code/README.md` `:23`,`:38`,`:51`,`:106` three surfaces.",
+      "addedAtIteration": 10,
+      "sources": [
+        "READMEs re-opened: `README.md`; `.skilled/bin/README.md`; `.skilled/bin/lib/README.md`; `.skilled/scripts/README.md`; `.skilled/scripts/git-hooks/README.md`; `.skilled/hooks/README.md`; `.skilled/skills/system-spec-kit/runtime/README.md`; `.skilled/skills/system-deep-loop/runtime/README.md`; `.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md`; `.skilled/skills/system-spec-kit/README.md`; `.skilled/skills/system-skill-advisor/README.md`; `.skilled/skills/sk-git/README.md`; `.skilled/skills/sk-doc/README.md`; `.skilled/skills/system-deep-loop/README.md`; `.skilled/skills/cli-external-orchestration/README.md`.",
+        "Evidence files: `.skilled/skills/system-spec-kit/package.json`; `.skilled/skills/mcp-code-mode/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-*/SKILL.md`; `.skilled/skills/sk-design/sk-design-chart/SKILL.md` and `README.md`; `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`; `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`; `.skilled/scripts/git-hooks/pre-commit`.",
+        "Commands (outputs quoted in Findings): `ls -1 .skilled/agents/*.md | wc -l`; `ls -1d .skilled/skills/*/ | wc -l`; `ls -1d .skilled/skills/cli-external-orchestration/cli-*/`; `ls -1 .skilled/bin/`; `ls -1 .skilled/bin/lib`; `ls -1 .skilled/skills/system-deep-loop/runtime/`; `ls -1 .skilled/skills/system-spec-kit/runtime/hooks/`; `ls -1 .skilled/commands/` + per-group `.md` counts; `ls -1 .skilled/commands/doctor/assets/`; `awk` version pairs (README vs SKILL.md); `awk` `SPECKIT_SKIP_*` scan; `awk` chart-form and playbook-section counts; `test -e` path checks; `awk` engines read."
+      ]
+    },
+    {
+      "id": "finding-10-15-skilled-skills-sk-doc-readme-md-134-191-193-thirteen-create-commands-validator-p",
+      "text": "`.skilled/skills/sk-doc/README.md` `:134`,`:191`,`:193` thirteen `/create:*` commands, validator path, cite-drift.",
+      "addedAtIteration": 10,
+      "sources": [
+        "READMEs re-opened: `README.md`; `.skilled/bin/README.md`; `.skilled/bin/lib/README.md`; `.skilled/scripts/README.md`; `.skilled/scripts/git-hooks/README.md`; `.skilled/hooks/README.md`; `.skilled/skills/system-spec-kit/runtime/README.md`; `.skilled/skills/system-deep-loop/runtime/README.md`; `.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md`; `.skilled/skills/system-spec-kit/README.md`; `.skilled/skills/system-skill-advisor/README.md`; `.skilled/skills/sk-git/README.md`; `.skilled/skills/sk-doc/README.md`; `.skilled/skills/system-deep-loop/README.md`; `.skilled/skills/cli-external-orchestration/README.md`.",
+        "Evidence files: `.skilled/skills/system-spec-kit/package.json`; `.skilled/skills/mcp-code-mode/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-*/SKILL.md`; `.skilled/skills/sk-design/sk-design-chart/SKILL.md` and `README.md`; `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`; `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`; `.skilled/scripts/git-hooks/pre-commit`.",
+        "Commands (outputs quoted in Findings): `ls -1 .skilled/agents/*.md | wc -l`; `ls -1d .skilled/skills/*/ | wc -l`; `ls -1d .skilled/skills/cli-external-orchestration/cli-*/`; `ls -1 .skilled/bin/`; `ls -1 .skilled/bin/lib`; `ls -1 .skilled/skills/system-deep-loop/runtime/`; `ls -1 .skilled/skills/system-spec-kit/runtime/hooks/`; `ls -1 .skilled/commands/` + per-group `.md` counts; `ls -1 .skilled/commands/doctor/assets/`; `awk` version pairs (README vs SKILL.md); `awk` `SPECKIT_SKIP_*` scan; `awk` chart-form and playbook-section counts; `test -e` path checks; `awk` engines read."
+      ]
+    },
+    {
+      "id": "finding-10-10-skilled-skills-sk-git-readme-md-60-17-state-gated-rules",
+      "text": "`.skilled/skills/sk-git/README.md` `:60` 17 state-gated rules.",
+      "addedAtIteration": 10,
+      "sources": [
+        "READMEs re-opened: `README.md`; `.skilled/bin/README.md`; `.skilled/bin/lib/README.md`; `.skilled/scripts/README.md`; `.skilled/scripts/git-hooks/README.md`; `.skilled/hooks/README.md`; `.skilled/skills/system-spec-kit/runtime/README.md`; `.skilled/skills/system-deep-loop/runtime/README.md`; `.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md`; `.skilled/skills/system-spec-kit/README.md`; `.skilled/skills/system-skill-advisor/README.md`; `.skilled/skills/sk-git/README.md`; `.skilled/skills/sk-doc/README.md`; `.skilled/skills/system-deep-loop/README.md`; `.skilled/skills/cli-external-orchestration/README.md`.",
+        "Evidence files: `.skilled/skills/system-spec-kit/package.json`; `.skilled/skills/mcp-code-mode/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-*/SKILL.md`; `.skilled/skills/sk-design/sk-design-chart/SKILL.md` and `README.md`; `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`; `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`; `.skilled/scripts/git-hooks/pre-commit`.",
+        "Commands (outputs quoted in Findings): `ls -1 .skilled/agents/*.md | wc -l`; `ls -1d .skilled/skills/*/ | wc -l`; `ls -1d .skilled/skills/cli-external-orchestration/cli-*/`; `ls -1 .skilled/bin/`; `ls -1 .skilled/bin/lib`; `ls -1 .skilled/skills/system-deep-loop/runtime/`; `ls -1 .skilled/skills/system-spec-kit/runtime/hooks/`; `ls -1 .skilled/commands/` + per-group `.md` counts; `ls -1 .skilled/commands/doctor/assets/`; `awk` version pairs (README vs SKILL.md); `awk` `SPECKIT_SKIP_*` scan; `awk` chart-form and playbook-section counts; `test -e` path checks; `awk` engines read."
+      ]
+    },
+    {
+      "id": "finding-10-20-skilled-skills-system-deep-loop-runtime-readme-md-15-three-modes-42-44-66-67-lin",
+      "text": "`.skilled/skills/system-deep-loop/runtime/README.md` `:15` three modes; `:42-44`,`:66-67` links + validation.",
+      "addedAtIteration": 10,
+      "sources": [
+        "READMEs re-opened: `README.md`; `.skilled/bin/README.md`; `.skilled/bin/lib/README.md`; `.skilled/scripts/README.md`; `.skilled/scripts/git-hooks/README.md`; `.skilled/hooks/README.md`; `.skilled/skills/system-spec-kit/runtime/README.md`; `.skilled/skills/system-deep-loop/runtime/README.md`; `.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md`; `.skilled/skills/system-spec-kit/README.md`; `.skilled/skills/system-skill-advisor/README.md`; `.skilled/skills/sk-git/README.md`; `.skilled/skills/sk-doc/README.md`; `.skilled/skills/system-deep-loop/README.md`; `.skilled/skills/cli-external-orchestration/README.md`.",
+        "Evidence files: `.skilled/skills/system-spec-kit/package.json`; `.skilled/skills/mcp-code-mode/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-*/SKILL.md`; `.skilled/skills/sk-design/sk-design-chart/SKILL.md` and `README.md`; `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`; `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`; `.skilled/scripts/git-hooks/pre-commit`.",
+        "Commands (outputs quoted in Findings): `ls -1 .skilled/agents/*.md | wc -l`; `ls -1d .skilled/skills/*/ | wc -l`; `ls -1d .skilled/skills/cli-external-orchestration/cli-*/`; `ls -1 .skilled/bin/`; `ls -1 .skilled/bin/lib`; `ls -1 .skilled/skills/system-deep-loop/runtime/`; `ls -1 .skilled/skills/system-spec-kit/runtime/hooks/`; `ls -1 .skilled/commands/` + per-group `.md` counts; `ls -1 .skilled/commands/doctor/assets/`; `awk` version pairs (README vs SKILL.md); `awk` `SPECKIT_SKIP_*` scan; `awk` chart-form and playbook-section counts; `test -e` path checks; `awk` engines read."
+      ]
+    },
+    {
+      "id": "finding-10-9-skilled-skills-system-skill-advisor-install-guide-md-1-4-9-nine-commands",
+      "text": "`.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md` `:1-4`,`:9` nine commands.",
+      "addedAtIteration": 10,
+      "sources": [
+        "READMEs re-opened: `README.md`; `.skilled/bin/README.md`; `.skilled/bin/lib/README.md`; `.skilled/scripts/README.md`; `.skilled/scripts/git-hooks/README.md`; `.skilled/hooks/README.md`; `.skilled/skills/system-spec-kit/runtime/README.md`; `.skilled/skills/system-deep-loop/runtime/README.md`; `.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md`; `.skilled/skills/system-spec-kit/README.md`; `.skilled/skills/system-skill-advisor/README.md`; `.skilled/skills/sk-git/README.md`; `.skilled/skills/sk-doc/README.md`; `.skilled/skills/system-deep-loop/README.md`; `.skilled/skills/cli-external-orchestration/README.md`.",
+        "Evidence files: `.skilled/skills/system-spec-kit/package.json`; `.skilled/skills/mcp-code-mode/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-*/SKILL.md`; `.skilled/skills/sk-design/sk-design-chart/SKILL.md` and `README.md`; `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`; `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`; `.skilled/scripts/git-hooks/pre-commit`.",
+        "Commands (outputs quoted in Findings): `ls -1 .skilled/agents/*.md | wc -l`; `ls -1d .skilled/skills/*/ | wc -l`; `ls -1d .skilled/skills/cli-external-orchestration/cli-*/`; `ls -1 .skilled/bin/`; `ls -1 .skilled/bin/lib`; `ls -1 .skilled/skills/system-deep-loop/runtime/`; `ls -1 .skilled/skills/system-spec-kit/runtime/hooks/`; `ls -1 .skilled/commands/` + per-group `.md` counts; `ls -1 .skilled/commands/doctor/assets/`; `awk` version pairs (README vs SKILL.md); `awk` `SPECKIT_SKIP_*` scan; `awk` chart-form and playbook-section counts; `test -e` path checks; `awk` engines read."
+      ]
+    },
+    {
+      "id": "finding-10-11-skilled-skills-system-skill-advisor-readme-md-194-doctor-targets",
+      "text": "`.skilled/skills/system-skill-advisor/README.md` `:194` doctor targets.",
+      "addedAtIteration": 10,
+      "sources": [
+        "READMEs re-opened: `README.md`; `.skilled/bin/README.md`; `.skilled/bin/lib/README.md`; `.skilled/scripts/README.md`; `.skilled/scripts/git-hooks/README.md`; `.skilled/hooks/README.md`; `.skilled/skills/system-spec-kit/runtime/README.md`; `.skilled/skills/system-deep-loop/runtime/README.md`; `.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md`; `.skilled/skills/system-spec-kit/README.md`; `.skilled/skills/system-skill-advisor/README.md`; `.skilled/skills/sk-git/README.md`; `.skilled/skills/sk-doc/README.md`; `.skilled/skills/system-deep-loop/README.md`; `.skilled/skills/cli-external-orchestration/README.md`.",
+        "Evidence files: `.skilled/skills/system-spec-kit/package.json`; `.skilled/skills/mcp-code-mode/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-*/SKILL.md`; `.skilled/skills/sk-design/sk-design-chart/SKILL.md` and `README.md`; `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`; `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`; `.skilled/scripts/git-hooks/pre-commit`.",
+        "Commands (outputs quoted in Findings): `ls -1 .skilled/agents/*.md | wc -l`; `ls -1d .skilled/skills/*/ | wc -l`; `ls -1d .skilled/skills/cli-external-orchestration/cli-*/`; `ls -1 .skilled/bin/`; `ls -1 .skilled/bin/lib`; `ls -1 .skilled/skills/system-deep-loop/runtime/`; `ls -1 .skilled/skills/system-spec-kit/runtime/hooks/`; `ls -1 .skilled/commands/` + per-group `.md` counts; `ls -1 .skilled/commands/doctor/assets/`; `awk` version pairs (README vs SKILL.md); `awk` `SPECKIT_SKIP_*` scan; `awk` chart-form and playbook-section counts; `test -e` path checks; `awk` engines read."
+      ]
+    },
+    {
+      "id": "finding-10-12-skilled-skills-system-spec-kit-readme-md-63-41-rule-registry-re-opened-431-433-4",
+      "text": "`.skilled/skills/system-spec-kit/README.md` `:63` 41-rule registry (re-opened); `:431-433`,`:448` module counts; `:550-557` doctor commands.",
+      "addedAtIteration": 10,
+      "sources": [
+        "READMEs re-opened: `README.md`; `.skilled/bin/README.md`; `.skilled/bin/lib/README.md`; `.skilled/scripts/README.md`; `.skilled/scripts/git-hooks/README.md`; `.skilled/hooks/README.md`; `.skilled/skills/system-spec-kit/runtime/README.md`; `.skilled/skills/system-deep-loop/runtime/README.md`; `.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md`; `.skilled/skills/system-spec-kit/README.md`; `.skilled/skills/system-skill-advisor/README.md`; `.skilled/skills/sk-git/README.md`; `.skilled/skills/sk-doc/README.md`; `.skilled/skills/system-deep-loop/README.md`; `.skilled/skills/cli-external-orchestration/README.md`.",
+        "Evidence files: `.skilled/skills/system-spec-kit/package.json`; `.skilled/skills/mcp-code-mode/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-*/SKILL.md`; `.skilled/skills/sk-design/sk-design-chart/SKILL.md` and `README.md`; `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`; `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`; `.skilled/scripts/git-hooks/pre-commit`.",
+        "Commands (outputs quoted in Findings): `ls -1 .skilled/agents/*.md | wc -l`; `ls -1d .skilled/skills/*/ | wc -l`; `ls -1d .skilled/skills/cli-external-orchestration/cli-*/`; `ls -1 .skilled/bin/`; `ls -1 .skilled/bin/lib`; `ls -1 .skilled/skills/system-deep-loop/runtime/`; `ls -1 .skilled/skills/system-spec-kit/runtime/hooks/`; `ls -1 .skilled/commands/` + per-group `.md` counts; `ls -1 .skilled/commands/doctor/assets/`; `awk` version pairs (README vs SKILL.md); `awk` `SPECKIT_SKIP_*` scan; `awk` chart-form and playbook-section counts; `test -e` path checks; `awk` engines read."
+      ]
+    },
+    {
+      "id": "finding-10-21-skilled-skills-system-spec-kit-runtime-hooks-readme-md-88-177-deadline-constants",
+      "text": "`.skilled/skills/system-spec-kit/runtime/hooks/README.md` `:88`,`:177` deadline constants.",
+      "addedAtIteration": 10,
+      "sources": [
+        "READMEs re-opened: `README.md`; `.skilled/bin/README.md`; `.skilled/bin/lib/README.md`; `.skilled/scripts/README.md`; `.skilled/scripts/git-hooks/README.md`; `.skilled/hooks/README.md`; `.skilled/skills/system-spec-kit/runtime/README.md`; `.skilled/skills/system-deep-loop/runtime/README.md`; `.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md`; `.skilled/skills/system-spec-kit/README.md`; `.skilled/skills/system-skill-advisor/README.md`; `.skilled/skills/sk-git/README.md`; `.skilled/skills/sk-doc/README.md`; `.skilled/skills/system-deep-loop/README.md`; `.skilled/skills/cli-external-orchestration/README.md`.",
+        "Evidence files: `.skilled/skills/system-spec-kit/package.json`; `.skilled/skills/mcp-code-mode/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-*/SKILL.md`; `.skilled/skills/sk-design/sk-design-chart/SKILL.md` and `README.md`; `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`; `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`; `.skilled/scripts/git-hooks/pre-commit`.",
+        "Commands (outputs quoted in Findings): `ls -1 .skilled/agents/*.md | wc -l`; `ls -1d .skilled/skills/*/ | wc -l`; `ls -1d .skilled/skills/cli-external-orchestration/cli-*/`; `ls -1 .skilled/bin/`; `ls -1 .skilled/bin/lib`; `ls -1 .skilled/skills/system-deep-loop/runtime/`; `ls -1 .skilled/skills/system-spec-kit/runtime/hooks/`; `ls -1 .skilled/commands/` + per-group `.md` counts; `ls -1 .skilled/commands/doctor/assets/`; `awk` version pairs (README vs SKILL.md); `awk` `SPECKIT_SKIP_*` scan; `awk` chart-form and playbook-section counts; `test -e` path checks; `awk` engines read."
+      ]
+    },
+    {
+      "id": "finding-10-4-contested-skilled-skills-system-spec-kit-readme-md-49-fresh-engines-probe-suppor",
+      "text": "Contested: `.skilled/skills/system-spec-kit/README.md:49` — fresh engines probe supports the README; prior verdict preserved until the v4.0.0.4 install section is re-read (see Edge Cases).",
+      "addedAtIteration": 10,
+      "sources": [
+        "READMEs re-opened: `README.md`; `.skilled/bin/README.md`; `.skilled/bin/lib/README.md`; `.skilled/scripts/README.md`; `.skilled/scripts/git-hooks/README.md`; `.skilled/hooks/README.md`; `.skilled/skills/system-spec-kit/runtime/README.md`; `.skilled/skills/system-deep-loop/runtime/README.md`; `.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md`; `.skilled/skills/system-spec-kit/README.md`; `.skilled/skills/system-skill-advisor/README.md`; `.skilled/skills/sk-git/README.md`; `.skilled/skills/sk-doc/README.md`; `.skilled/skills/system-deep-loop/README.md`; `.skilled/skills/cli-external-orchestration/README.md`.",
+        "Evidence files: `.skilled/skills/system-spec-kit/package.json`; `.skilled/skills/mcp-code-mode/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-*/SKILL.md`; `.skilled/skills/sk-design/sk-design-chart/SKILL.md` and `README.md`; `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`; `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`; `.skilled/scripts/git-hooks/pre-commit`.",
+        "Commands (outputs quoted in Findings): `ls -1 .skilled/agents/*.md | wc -l`; `ls -1d .skilled/skills/*/ | wc -l`; `ls -1d .skilled/skills/cli-external-orchestration/cli-*/`; `ls -1 .skilled/bin/`; `ls -1 .skilled/bin/lib`; `ls -1 .skilled/skills/system-deep-loop/runtime/`; `ls -1 .skilled/skills/system-spec-kit/runtime/hooks/`; `ls -1 .skilled/commands/` + per-group `.md` counts; `ls -1 .skilled/commands/doctor/assets/`; `awk` version pairs (README vs SKILL.md); `awk` `SPECKIT_SKIP_*` scan; `awk` chart-form and playbook-section counts; `test -e` path checks; `awk` engines read."
+      ]
+    },
+    {
+      "id": "finding-10-2-corrected-the-iteration-1-spec-readme-md-missing-row-resolves-the-readme-exists-",
+      "text": "Corrected: the iteration-1 `spec/README.md` MISSING row resolves — the README exists at `.skilled/skills/system-spec-kit/runtime/cli/spec/README.md`.",
+      "addedAtIteration": 10,
+      "sources": [
+        "READMEs re-opened: `README.md`; `.skilled/bin/README.md`; `.skilled/bin/lib/README.md`; `.skilled/scripts/README.md`; `.skilled/scripts/git-hooks/README.md`; `.skilled/hooks/README.md`; `.skilled/skills/system-spec-kit/runtime/README.md`; `.skilled/skills/system-deep-loop/runtime/README.md`; `.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md`; `.skilled/skills/system-spec-kit/README.md`; `.skilled/skills/system-skill-advisor/README.md`; `.skilled/skills/sk-git/README.md`; `.skilled/skills/sk-doc/README.md`; `.skilled/skills/system-deep-loop/README.md`; `.skilled/skills/cli-external-orchestration/README.md`.",
+        "Evidence files: `.skilled/skills/system-spec-kit/package.json`; `.skilled/skills/mcp-code-mode/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-*/SKILL.md`; `.skilled/skills/sk-design/sk-design-chart/SKILL.md` and `README.md`; `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`; `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`; `.skilled/scripts/git-hooks/pre-commit`.",
+        "Commands (outputs quoted in Findings): `ls -1 .skilled/agents/*.md | wc -l`; `ls -1d .skilled/skills/*/ | wc -l`; `ls -1d .skilled/skills/cli-external-orchestration/cli-*/`; `ls -1 .skilled/bin/`; `ls -1 .skilled/bin/lib`; `ls -1 .skilled/skills/system-deep-loop/runtime/`; `ls -1 .skilled/skills/system-spec-kit/runtime/hooks/`; `ls -1 .skilled/commands/` + per-group `.md` counts; `ls -1 .skilled/commands/doctor/assets/`; `awk` version pairs (README vs SKILL.md); `awk` `SPECKIT_SKIP_*` scan; `awk` chart-form and playbook-section counts; `test -e` path checks; `awk` engines read."
+      ]
+    },
+    {
+      "id": "finding-10-3-extended-the-cli-external-orchestration-readme-md-94-row-now-also-records-that-9",
+      "text": "Extended: the `cli-external-orchestration/README.md:94` row now also records that `:94` is an exact duplicate of `:93` (the \"Four behaviors\" list carries five bullets).",
+      "addedAtIteration": 10,
+      "sources": [
+        "READMEs re-opened: `README.md`; `.skilled/bin/README.md`; `.skilled/bin/lib/README.md`; `.skilled/scripts/README.md`; `.skilled/scripts/git-hooks/README.md`; `.skilled/hooks/README.md`; `.skilled/skills/system-spec-kit/runtime/README.md`; `.skilled/skills/system-deep-loop/runtime/README.md`; `.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md`; `.skilled/skills/system-spec-kit/README.md`; `.skilled/skills/system-skill-advisor/README.md`; `.skilled/skills/sk-git/README.md`; `.skilled/skills/sk-doc/README.md`; `.skilled/skills/system-deep-loop/README.md`; `.skilled/skills/cli-external-orchestration/README.md`.",
+        "Evidence files: `.skilled/skills/system-spec-kit/package.json`; `.skilled/skills/mcp-code-mode/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-*/SKILL.md`; `.skilled/skills/sk-design/sk-design-chart/SKILL.md` and `README.md`; `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`; `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`; `.skilled/scripts/git-hooks/pre-commit`.",
+        "Commands (outputs quoted in Findings): `ls -1 .skilled/agents/*.md | wc -l`; `ls -1d .skilled/skills/*/ | wc -l`; `ls -1d .skilled/skills/cli-external-orchestration/cli-*/`; `ls -1 .skilled/bin/`; `ls -1 .skilled/bin/lib`; `ls -1 .skilled/skills/system-deep-loop/runtime/`; `ls -1 .skilled/skills/system-spec-kit/runtime/hooks/`; `ls -1 .skilled/commands/` + per-group `.md` counts; `ls -1 .skilled/commands/doctor/assets/`; `awk` version pairs (README vs SKILL.md); `awk` `SPECKIT_SKIP_*` scan; `awk` chart-form and playbook-section counts; `test -e` path checks; `awk` engines read."
+      ]
+    },
+    {
+      "id": "finding-10-1-new-readme-md-24-carries-a-stale-agent-count-12-specialized-agents-vs-11-on-disk",
+      "text": "New: `README.md:24` carries a stale agent count (\"12 Specialized Agents\" vs 11 on disk) that iterations 1-9 missed; its sibling `README.md:25` (\"14 On-Demand Skills\") checks out.",
+      "addedAtIteration": 10,
+      "sources": [
+        "READMEs re-opened: `README.md`; `.skilled/bin/README.md`; `.skilled/bin/lib/README.md`; `.skilled/scripts/README.md`; `.skilled/scripts/git-hooks/README.md`; `.skilled/hooks/README.md`; `.skilled/skills/system-spec-kit/runtime/README.md`; `.skilled/skills/system-deep-loop/runtime/README.md`; `.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md`; `.skilled/skills/system-spec-kit/README.md`; `.skilled/skills/system-skill-advisor/README.md`; `.skilled/skills/sk-git/README.md`; `.skilled/skills/sk-doc/README.md`; `.skilled/skills/system-deep-loop/README.md`; `.skilled/skills/cli-external-orchestration/README.md`.",
+        "Evidence files: `.skilled/skills/system-spec-kit/package.json`; `.skilled/skills/mcp-code-mode/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-*/SKILL.md`; `.skilled/skills/sk-design/sk-design-chart/SKILL.md` and `README.md`; `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`; `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`; `.skilled/scripts/git-hooks/pre-commit`.",
+        "Commands (outputs quoted in Findings): `ls -1 .skilled/agents/*.md | wc -l`; `ls -1d .skilled/skills/*/ | wc -l`; `ls -1d .skilled/skills/cli-external-orchestration/cli-*/`; `ls -1 .skilled/bin/`; `ls -1 .skilled/bin/lib`; `ls -1 .skilled/skills/system-deep-loop/runtime/`; `ls -1 .skilled/skills/system-spec-kit/runtime/hooks/`; `ls -1 .skilled/commands/` + per-group `.md` counts; `ls -1 .skilled/commands/doctor/assets/`; `awk` version pairs (README vs SKILL.md); `awk` `SPECKIT_SKIP_*` scan; `awk` chart-form and playbook-section counts; `test -e` path checks; `awk` engines read."
+      ]
+    },
+    {
+      "id": "finding-10-5-no-row-was-dropped-as-flatly-false-four-rows-113-881-204-1435-env-half-carry-the",
+      "text": "No row was dropped as flatly false; four rows (`:113`, `:881`, `:204`, `:1435` env half) carry their prior verdict with a partial re-check, each naming its next evidence.",
+      "addedAtIteration": 10,
+      "sources": [
+        "READMEs re-opened: `README.md`; `.skilled/bin/README.md`; `.skilled/bin/lib/README.md`; `.skilled/scripts/README.md`; `.skilled/scripts/git-hooks/README.md`; `.skilled/hooks/README.md`; `.skilled/skills/system-spec-kit/runtime/README.md`; `.skilled/skills/system-deep-loop/runtime/README.md`; `.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md`; `.skilled/skills/system-spec-kit/README.md`; `.skilled/skills/system-skill-advisor/README.md`; `.skilled/skills/sk-git/README.md`; `.skilled/skills/sk-doc/README.md`; `.skilled/skills/system-deep-loop/README.md`; `.skilled/skills/cli-external-orchestration/README.md`.",
+        "Evidence files: `.skilled/skills/system-spec-kit/package.json`; `.skilled/skills/mcp-code-mode/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md`; `.skilled/skills/cli-external-orchestration/cli-*/SKILL.md`; `.skilled/skills/sk-design/sk-design-chart/SKILL.md` and `README.md`; `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`; `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`; `.skilled/scripts/git-hooks/pre-commit`.",
+        "Commands (outputs quoted in Findings): `ls -1 .skilled/agents/*.md | wc -l`; `ls -1d .skilled/skills/*/ | wc -l`; `ls -1d .skilled/skills/cli-external-orchestration/cli-*/`; `ls -1 .skilled/bin/`; `ls -1 .skilled/bin/lib`; `ls -1 .skilled/skills/system-deep-loop/runtime/`; `ls -1 .skilled/skills/system-spec-kit/runtime/hooks/`; `ls -1 .skilled/commands/` + per-group `.md` counts; `ls -1 .skilled/commands/doctor/assets/`; `awk` version pairs (README vs SKILL.md); `awk` `SPECKIT_SKIP_*` scan; `awk` chart-form and playbook-section counts; `test -e` path checks; `awk` engines read."
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-39a610cc8892",
+      "text": "None this iteration. (The retired-mode name search is not a dead end: 0 hits is the verified absence that confirms README:562.)",
+      "contentHash": "39a610cc8892",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-61ba90054631",
+      "text": "Repo-wide `**/README.md` sweep as the inventory source: the find returns more than 100 paths, dominated by benchmark-report and fixture READMEs; the related set was built from root-README links plus the topic-named hubs instead.",
+      "contentHash": "61ba90054631",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-6436d56e3c59",
+      "text": "Forcing the advisor CLI run past its freshness gate with `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1`: unnecessary; the shim's freshness check passed and `list-tools` exited 0 without any bypass, so the bypass env would have changed behavior without adding evidence.",
+      "contentHash": "6436d56e3c59",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-2ae3d025a2a5",
+      "text": "None beyond Ruled Out.",
+      "contentHash": "2ae3d025a2a5",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-4ac146d4434e",
+      "text": "Root `.nvmrc` or root `package.json` as the Node 24 enforcement source: both absent (cat probes returned not-found); the requirement is enforced per package via the four `engines` fields, so no root version file can be cited or expected.",
+      "contentHash": "4ac146d4434e",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-0ea567ade5a0",
+      "text": "None this iteration.",
+      "contentHash": "0ea567ade5a0",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-9322179dae47",
+      "text": "Running `check-corpus.cjs --families` to list the check families: unnecessary; reading `FAMILY_NAMES` (lines 100-150) yields the same list without executing a script.",
+      "contentHash": "9322179dae47",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-3a856ea2619f",
+      "text": "Running `create.sh` with an unknown option to observe the refusal: not executed; a scaffolder run risks writes, so the refusal was evidenced from the source token scan and the changelog instead.",
+      "contentHash": "3a856ea2619f",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-b5390fc1a8fe",
+      "text": "`.skilled/README.md` as a related README to audit: the file does not exist and the root README has no reference to it (awk → 0 matches). Do not chase it in later iterations.",
+      "contentHash": "b5390fc1a8fe",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-e28f271f111f",
+      "text": "Mode READMEs for the three hubs as this iteration's audit target: the root README links no per-mode README for them (0 matches for `sk-git/README`; the only nested README it links is `system-spec-kit/runtime/README.md`, which remains on the Q4 inventory). Do not chase per-mode READMEs for these hubs again.",
+      "contentHash": "e28f271f111f",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-e8ecf52d4df2",
+      "text": "cli-devin README as an audit target this iteration: not in the Q1 inventory. Its observed lines (`README.md:12` `version: 1.4.0.11`, `SKILL.md:5` `version: 1.4.6.0`, newest changelog `v1.4.6.0.md`) are consistent with the own-edition model and are deferred.",
+      "contentHash": "e8ecf52d4df2",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-aeeb53c53475",
+      "text": "Mode-packet README version parity as a drift class: closed by the frontmatter versioning standard — a mode README carries its own edition, raised by the bump rule, and only the parent-skill doctor's README check compares a hub root README with its `SKILL.md` [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:30], [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:122]. Do not re-chase cli-pi 1.5.0.8 vs 1.5.15.0.",
+      "contentHash": "aeeb53c53475",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-6b2659d872a9",
+      "text": "An unknown-option note in `.skilled/scripts/README.md`: the v4.0.0.4 refusal set names the spec-kit CLI, the skill advisor, the deep loop, sk-doc, sk-code, sk-design, sk-git and the shared `.skilled/bin` tools, not `.skilled/scripts/`; only `orphan-mcp-sweeper.sh` already refuses an unknown argument (`:87`), so no README update is implicated.",
+      "contentHash": "6b2659d872a9",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-455a4bcb27a9",
+      "text": "Per-file READMEs inside `.skilled/bin/lib/compiled-routing/`: the README itself documents the directory is generated output that carries no README on purpose [SOURCE: .skilled/bin/lib/README.md:58].",
+      "contentHash": "455a4bcb27a9",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-41e95471ae44",
+      "text": "A single multi-line awk program for the line re-print: a newline between the OR-chain pattern and its `{print}` action binds the action as an always-true rule, so it dumped whole files; per-file one-liner awks were used instead.",
+      "contentHash": "41e95471ae44",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-fb510e34fd2d",
+      "text": "None beyond Ruled Out. The `.skilled/README.md` and root `spec/README.md` absence checks confirm the topic's premise errors rather than opening new work; the real spec README sits at `.skilled/skills/system-spec-kit/runtime/cli/spec/README.md`.",
+      "contentHash": "fb510e34fd2d",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-844fdf278ed1",
+      "text": "Recovering iterations 1-5 full rows by matching the first table cell against `` | `path` ``: the rows' first cells do not match that shape; direct probes replaced the need.",
+      "contentHash": "844fdf278ed1",
+      "addedAtIteration": 10
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 14,
+    "keyFindings": 31,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.25,
+    "coverageBySources": {
+      "code": 106,
+      "other": 106
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/122-readme-freshness-research/specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

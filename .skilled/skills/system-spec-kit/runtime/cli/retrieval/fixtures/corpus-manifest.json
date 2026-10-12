@@ -1,5 +1,5 @@
 {
-  "corpusHash": "78ae398a3162ebb94677e627e0f396dbf89f00226d614f73e80325fc7b37b992",
+  "corpusHash": "ea9644eeb597249631870aca751a60874117e13c44596608ee6d1eb07bd97d71",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24493,
+  "includedPathCount": 24517,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11086,6 +11086,30 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/implementation-summary.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/deep-research-dashboard.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/deep-research-strategy.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/iterations/iteration-001.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/iterations/iteration-002.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/iterations/iteration-003.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/iterations/iteration-004.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/iterations/iteration-005.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/iterations/iteration-006.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/iterations/iteration-007.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/iterations/iteration-008.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/iterations/iteration-009.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/iterations/iteration-010.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/prompts/iteration-1.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/prompts/iteration-10.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/prompts/iteration-2.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/prompts/iteration-3.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/prompts/iteration-4.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/prompts/iteration-5.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/prompts/iteration-6.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/prompts/iteration-7.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/prompts/iteration-8.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/prompts/iteration-9.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/research.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/resource-map.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md",
@@ -24524,7 +24548,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "160d64d6440756efd890bb223bd55373068bd1584161f23d09bc0a9a86c6012e",
+  "manifestHash": "51b375edb0b3ce2c805d2fc485a28e8af64dc1b0adc71028211979942d617cda",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

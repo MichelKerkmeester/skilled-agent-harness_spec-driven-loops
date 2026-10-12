@@ -97,7 +97,7 @@ objective string.
 ## 3. COMPLETION CRITERIA
 
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 24 times, none FAILED
-- [ ] `grep -lr --include=implementation-summary.md 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement | grep -vc /001-ponytail` prints 104
+- [ ] `grep -lr --include=implementation-summary.md 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement | grep -vc /001-ponytail` prints 105
 - [ ] `git log --format='%(trailers:key=Spec,valueonly)' | grep -c '^sk-code/011-'` prints 100+; `git status --short` is empty
 - [ ] `node .skilled/bin/compiled-route-guard.cjs` exits 0 with sk-code `fresh`; `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "code review my obsidian plugin"` prints `"action":"route"`, no `servingAuthority`
 - [ ] `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js`, `bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh` and `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` exit 0
@@ -159,5 +159,6 @@ and findings belong here.
 | 022 added 2026-10-12 | Child 022 scaffolds two build phases, per-doc versions and playbook path repair; binding row added, criterion 1 amended to 23 (the parent and 22 direct children, as printed) and criterion 2 stays 101, as printed, until the two 022 summaries complete, when it becomes 103. The new row took the slice to 4,079 characters, so D7 was folded into D2, D1 lost its `Build:` prefix, D4 lost the finished 002-011 commit order, and criteria 1, 3, 4 and 5 were reworded with the same checks; the slice is 3,999 characters and no criterion was removed |
 | Integration 2026-10-12, doc version and playbook paths | Branches 119 and 118 merged on `worktrees/120-docver-integration`; 002's sk-doc release renumbered from 2.3.7.0 to 2.3.8.0. The two 022 summaries reached `completion_pct: 100`, so criterion 2 is amended from 101 to 103, as printed; criterion 1 stays 23 |
 | 023 added 2026-10-12 | Child 023 runs a read-only ten-iteration research on whether the root README and its related READMEs hold after v4.0.0.4, on cli-devin with DeepSeek V4.1 Flash max; binding row added, criterion 1 amended to 24 (the parent and 23 direct children). Criterion 2 stays 104, as printed, until the 023 summary completes, when it becomes 105. The new row took the slice to 4,075 characters, so the objective, D2, the binding, precedence and stop lines and criteria 1 and 3 were reworded with the same checks; the slice is 3,993 characters and no criterion was removed |
+| Closeout 2026-10-12, README freshness research | The 023 run finished ten iterations on cli-devin and its summary reached `completion_pct: 100`, so criterion 2 is amended from 104 to 105, as printed; criterion 1 stays 24 |
 | Handed off, not built here | D2 Codex mirror gap (deep-improvement and git hooks) and D4 stdin deadline (hooks); recorded in the parent spec |
 <!-- /ANCHOR:log -->
