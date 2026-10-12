@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`backtickPathChecks` in `validate-playbook-package.cjs` runs inside the operator scenario loop only, so a root playbook file can cite a path that no longer exists and nothing reports it",
     "created_at": "2026-10-12T09:34:39Z",
-    "last_save_at": "2026-10-12T10:47:31.937Z",
+    "last_save_at": "2026-10-12T11:01:39.393Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:843425dd53aa09221144be3c90887a2f19dd34dfa9953c568520ab40afc341df",
+    "source_fingerprint": "sha256:7f3e48d1f735802dac26e98e3517725811a3945f7d5eea5be3a993f938db83b0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0177d065f5e509b2af399fac65eaf2f236b3111fbe82da9550afdcf0486cbef4",
       "plan.md": "ec8c509c5b84b58dc4d0c52209a4615a091f05776bdb9557d66bf6000a4b4ddc",
       "tasks.md": "a097509a84a4de7203a663f52829182f044373a2cf89e69cc0e93315152a14c3",
-      "implementation-summary.md": "2c0887a46b6d21670feaac47ccdd691f058a77d47a1d56d79d180c837482100a"
+      "implementation-summary.md": "84b20aeeb2b77d0026f592ff0a7d3dcd24f0452cedcbb718043d2b3f8a5e42f7"
     },
     "last_active_at": null
   }

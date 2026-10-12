@@ -140,5 +140,5 @@ A five-iteration `/deep:review :auto` then ran over the phase commits with cli-p
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Root summaries can still drift from their scenarios in ways that are not paths.** For example the cli-opencode CO-033 summary still describes a raw `--agent deep-review` dispatch while its scenario runs `--command deep/review`. The validator compares root prompts only for lines labelled `Prompt:`.
+1. **Root summaries can still drift from their scenarios in ways that are not paths.** The cli-opencode CO-033 summary was one: it described a raw `--agent deep-review` dispatch while its scenario runs `--command deep/review`. A follow-up commit after the push rewrote that summary and also corrected `codex-tools.md:161`, which said Claude Code reads MCP servers from `opencode.json` (it reads `.mcp.json`). The validator compares root prompts only for lines labelled `Prompt:`.
 <!-- /ANCHOR:limitations -->
