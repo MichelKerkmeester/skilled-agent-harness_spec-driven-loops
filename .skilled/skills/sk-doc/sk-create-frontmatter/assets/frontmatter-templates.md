@@ -9,7 +9,7 @@ trigger_phrases:
   - "five field frontmatter block"
 importance_tier: important
 contextType: general
-version: 1.0.0.46
+version: 1.0.1.0
 ---
 
 # YAML Frontmatter Templates - Document Type Reference
@@ -54,9 +54,9 @@ allowed-tools: Read, Write, Bash
 | **Knowledge (outside skills)** | ❌ **Forbidden** | Pure content, no programmatic interface |
 | **Spec** | ✅ **Required**, and governed elsewhere | `system-spec-kit` templates emit the block and its validator fails without it |
 | **Changelog entry** | ✅ **Required**, and governed elsewhere | `sk-create-changelog` defines the five-key block and `validate_document.py` blocks an entry without it |
-| **README** | ✅ **Required** beside a `SKILL.md` | Carries title, description and trigger phrases, and no `version`. Optional for every other README |
+| **README** | ✅ **Required** beside a `SKILL.md` | Carries `version` per the versioning standard. Optional for every other README, which carries `version` too once it has a block |
 | **Feature Catalog** | ✅ **Required** | The block carries the title and the terms a reader searches the inventory on |
-| **Testing Playbook** | ✅ **Required** | Root index and scenario leaves are both addressed by title |
+| **Testing Playbook** | ✅ **Required** | Root index and scenario leaves are both addressed by title and version |
 | **Agent** | ✅ **Required** | The runtime reads the authority key, and a file without one inherits the full tool set |
 
 ### Core Characteristics
@@ -123,16 +123,16 @@ Level 3: Field Format
 |---------------|------------------|-----------------|-----------------|
 | **SKILL.md** | ✅ Always | `name`, `description`, `allowed-tools`, `version` | `tags`, `category` |
 | **Command** | ✅ Always | `description`, `argument-hint`, `allowed-tools` | `name`, `model`, `version` |
-| **Skill Reference/Asset** | ✅ Always | `title`, `description`, `trigger_phrases`, `importance_tier`, `contextType` | n/a |
+| **Skill Reference/Asset** | ✅ Always | `title`, `description`, `trigger_phrases`, `importance_tier`, `contextType`, `version` | n/a |
 | **Knowledge (outside skills)** | ❌ Never | n/a | n/a |
 | **Spec** | ✅ Always, per `system-spec-kit` | Owned by that skill, not by this contract | n/a |
-| **README** (beside a `SKILL.md`) | ✅ Always | `title`, `description`, `trigger_phrases` | `importance_tier`, `contextType` |
-| **README** (anywhere else) | ⚪ Optional | n/a | Add a block only when the doc should be discoverable |
-| **Feature Catalog** | ✅ Always | `title`, `description`, `trigger_phrases` | `importance_tier`, plus `last_updated` on the root index |
-| **Testing Playbook** | ✅ Always | `title`, `description` | Runner-specific keys only, added one at a time when a runner reads them |
+| **README** (beside a `SKILL.md`) | ✅ Always | `title`, `description`, `trigger_phrases`, `version` | `importance_tier`, `contextType` |
+| **README** (anywhere else) | ⚪ Optional | n/a | Add a block only when the doc should be discoverable, and give it `version: 1.0.0.0` |
+| **Feature Catalog** | ✅ Always | `title`, `description`, `trigger_phrases`, `version` | `importance_tier`, plus `last_updated` on the root index |
+| **Testing Playbook** | ✅ Always | `title`, `description`, `version` | Runner-specific keys only, added one at a time when a runner reads them |
 | **Agent** | ✅ Always | `name`, `description`, and the runtime's authority key: `permission:` under `.skilled/agents/`, `tools:` elsewhere | `mode`, `temperature`, `mcpServers` |
 
-> **`version` is the 4-part `X.Y.Z.W` skill edition and lives on `SKILL.md` only.** Child docs (README, references, assets, feature catalogs, testing playbooks) carry none. The contract lives in [frontmatter-versioning.md](../references/frontmatter-versioning.md). A command's `version` stays optional, and an agent carries none.
+> **`version` is the 4-part `X.Y.Z.W` field** carried by every skill doc with a frontmatter block (SKILL.md, READMEs, references, assets, feature catalogs, testing playbooks and the rest). `SKILL.md` carries the skill edition and every other doc its own, starting at `1.0.0.0`. Format, scope and the bump rule live in [frontmatter-versioning.md](../references/frontmatter-versioning.md). Commands and agents are out of scope (their `version` stays optional).
 
 ### Remove Frontmatter When
 
@@ -174,9 +174,10 @@ Is this document invoked programmatically?
     │   └─► Keep the block system-spec-kit's template emits, since that skill owns it
     │
     └─► Is it a README?
-        ├─► Beside a SKILL.md? → Add title, description, trigger_phrases
-        │                        (Section 4)
-        └─► Elsewhere? → Optional, add a block only for discoverability
+        ├─► Beside a SKILL.md? → Add title, description, trigger_phrases,
+        │                        version (Section 4)
+        └─► Elsewhere? → Optional, add a block only for discoverability,
+                         with version: 1.0.0.0
 ```
 
 ### Frontmatter Field Summary
@@ -190,7 +191,7 @@ Is this document invoked programmatically?
 | `allowed-tools` | ✅ Required | ✅ Required | ❌ N/A | ❌ N/A | ❌ Uses `permission:` or `tools:` | Comma-separated tool list |
 | `argument-hint` | ❌ N/A | ✅ Required | ❌ N/A | ❌ N/A | ❌ N/A | Syntax hint: `<required> [optional]` |
 | `model` | ❌ N/A | ⚪ Optional | ❌ N/A | ❌ N/A | ❌ N/A | Override default model (rarely used) |
-| `version` | ✅ Required | ⚪ Optional | ❌ None | ❌ None | ❌ None | 4-part `X.Y.Z.W` skill edition, on `SKILL.md` only. See [frontmatter-versioning.md](../references/frontmatter-versioning.md) |
+| `version` | ✅ Required | ⚪ Optional | ✅ Required | ✅ Required | ❌ Out of scope | 4-part `X.Y.Z.W` for skill docs. See [frontmatter-versioning.md](../references/frontmatter-versioning.md) |
 | `tags` | ⚪ Optional | ❌ N/A | ❌ N/A | ❌ N/A | ❌ N/A | Categorization keywords |
 
 Hard rules are not a frontmatter field. A skill declares them in a `hard-rules.json` file beside its `SKILL.md`, a JSON array of `{id, check, message, severity}` objects that the dispatch preflight reads.
@@ -378,6 +379,7 @@ model: opus
 | `contextType` | Enum | `planning` \| `research` \| `implementation` \| `general`. Listed aliases such as `review` or `reference` are legal |
 
 Both lists, with their aliases, live in this mode's `assets/frontmatter-values.json`, which spec docs and skill docs share. Write a canonical value in new docs. A value outside the file fails the skill-advisor checker and warns in `validate_document.py` and spec-kit's `validate.sh`.
+| `version` | `X.Y.Z.W` | Required, 4-part, inserted as the last key in the block, `1.0.0.0` on a new doc and raised on a body change per [frontmatter-versioning.md](../references/frontmatter-versioning.md) |
 
 **Trigger phrase quality**:
 ```yaml
@@ -457,6 +459,7 @@ trigger_phrases:
   - "distinctive phrase three"
 importance_tier: normal
 contextType: general
+version: 1.0.0.0
 ---
 ```
 
@@ -471,6 +474,7 @@ trigger_phrases:
   - "banned vocabulary list"
 importance_tier: important
 contextType: general
+version: 1.0.0.0
 ---
 ```
 
@@ -478,9 +482,9 @@ Verify with `.skilled/skills/system-skill-advisor/runtime/scripts/check-skill-do
 
 ### Skill README Frontmatter Template
 
-**Required Fields**: `title`, `description`, `trigger_phrases`
+**Required Fields**: `title`, `description`, `trigger_phrases`, `version`
 
-This is the `README.md` that sits beside a `SKILL.md`, and the block is required there rather than optional. It carries no `version`: under [frontmatter-versioning.md](../references/frontmatter-versioning.md) only `SKILL.md` carries the skill edition.
+This is the `README.md` that sits beside a `SKILL.md`. [frontmatter-versioning.md](../references/frontmatter-versioning.md) lists `README.md` among the classes that must carry `version`, so the block is required there rather than optional.
 
 ```yaml
 ---
@@ -490,6 +494,7 @@ trigger_phrases:
   - "distinctive phrase one"
   - "distinctive phrase two"
   - "distinctive phrase three"
+version: 1.0.0.0
 ---
 ```
 
@@ -502,17 +507,18 @@ description: "Writes a correctly versioned, correctly placed changelog entry fro
 trigger_phrases:
   - "create changelog"
   - "release notes"
+version: 1.0.0.0
 ---
 ```
 
 - `importance_tier` and `contextType` are optional here. A minority of skill READMEs carry them. No validator asks for them.
 - READMEs deeper in a skill tree are a different class. Most carry no block at all. `sk-create-readme`'s own template treats frontmatter as optional for a normal project README, so add a block to one of those only when the document should be discoverable.
-- Nothing enforces the field set. The advisor's `check-skill-doc-frontmatter.sh`, under `system-skill-advisor/runtime/scripts/`, exempts `README.md`, so no automated check reads a README block.
+- Nothing enforces the field set. The advisor's `check-skill-doc-frontmatter.sh`, under `system-skill-advisor/runtime/scripts/`, exempts `README.md`, so the version gate is the only automated check a README block faces.
 - `trigger_phrases` lengths across skill READMEs run from 2 items to 13. The 3 to 8 range in Section 3 is the reference and asset rule, not a README rule.
 
 ### Feature Catalog Frontmatter Template
 
-**Required Fields**: `title`, `description`, `trigger_phrases`
+**Required Fields**: `title`, `description`, `trigger_phrases`, `version`
 
 A catalog has two document shapes and they differ by one field. Per-feature leaf card:
 
@@ -524,6 +530,7 @@ trigger_phrases:
   - "the H3 feature heading from the root catalog"
   - "a natural-language alternate"
   - "the tool or command name"
+version: 1.0.0.0
 ---
 ```
 
@@ -537,6 +544,7 @@ trigger_phrases:
   - "<skill> feature catalog"
   - "<skill> capabilities"
 last_updated: "2026-08-23"
+version: 1.0.0.0
 ---
 ```
 
@@ -548,27 +556,29 @@ last_updated: "2026-08-23"
 
 ### Testing Playbook Frontmatter Template
 
-**Required Fields**: `title`, `description`
+**Required Fields**: `title`, `description`, `version`
 
-Those two are the whole settled block, for the root index and for a per-feature scenario alike. `trigger_phrases` is not part of this class.
+Those three are the whole settled block, for the root index and for a per-feature scenario alike. `trigger_phrases` is not part of this class.
 
 ```yaml
 ---
 title: "OBS-009 -- Register and inspect the official CLI"
 description: "This scenario validates official obsidian CLI registration and help output in an app-backed environment."
+version: 1.0.0.0
 ---
 ```
 
-Root index, same two fields with a `<skill>: Manual Testing Playbook` title:
+Root index, same three fields with a `<skill>: Manual Testing Playbook` title:
 
 ```yaml
 ---
 title: "create-frontmatter: Manual Testing Playbook"
 description: "Operator-facing reference combining the testing directory, execution expectations and the per-feature validation files for this packet."
+version: 1.0.0.0
 ---
 ```
 
-**Past those two fields this class has no settled convention.** Playbook leaves in this repository carry a long tail of runner-specific keys, among them `id`, `stage`, `category`, `expected_intent`, `expected_resources`, `expected_workflow_mode`, `expected_leaf_resources`, `matrix_cell`, `test_file`, `test_name` and `playbook_path`. No set of them is standard: the largest shape past the core covers 193 of 1,728 leaves. Each key belongs to whichever runner reads it. Add one only when a runner reads it. Never copy a set across from a neighbouring playbook.
+**Past those three fields this class has no settled convention.** Playbook leaves in this repository carry a long tail of runner-specific keys, among them `id`, `stage`, `category`, `expected_intent`, `expected_resources`, `expected_workflow_mode`, `expected_leaf_resources`, `matrix_cell`, `test_file`, `test_name` and `playbook_path`. No set of them is standard: the largest shape past the core covers 193 of 1,728 leaves. Each key belongs to whichever runner reads it. Add one only when a runner reads it. Never copy a set across from a neighbouring playbook.
 
 Two of those keys change behavior rather than describing it:
 
@@ -768,7 +778,11 @@ validation_rules:
       - trigger_phrases
       - importance_tier
       - contextType
+      - version
     field_formats:
+      version:
+        pattern: "^\\d+\\.\\d+\\.\\d+\\.\\d+$"
+        description: "4-part X.Y.Z.W, last key in the block, see frontmatter-versioning.md"
       description:
         type: "single-line"
       trigger_phrases:
@@ -807,9 +821,14 @@ validation_rules:
       - title
       - description
       - trigger_phrases
+      - version
     optional_fields:
       - importance_tier
       - contextType
+    field_formats:
+      version:
+        pattern: "^\\d+\\.\\d+\\.\\d+\\.\\d+$"
+        description: "4-part X.Y.Z.W, last key in the block"
 ```
 
 ### Validation Checklist
@@ -1033,7 +1052,7 @@ Document type detected?
 │
 └─► README
     ├─ Beside a SKILL.md? → Validate title, description,
-    │                      trigger_phrases
+    │                      trigger_phrases, version
     └─ Elsewhere? → Optional, no action when absent
 ```
 
@@ -1130,7 +1149,7 @@ Document type?
 ├─► Knowledge (outside skills) → MUST NOT have frontmatter (remove if present)
 ├─► Spec folder doc      → MUST have frontmatter (system-spec-kit owns the block)
 └─► README               → Beside a SKILL.md: title, description,
-                            trigger_phrases. Elsewhere optional
+                            trigger_phrases, version. Elsewhere optional
 ```
 
 ### Field Requirements Matrix
@@ -1148,7 +1167,7 @@ Document type?
 | **Agent** | ✅ Required | ✅ Required | ❌ N/A | ❌ N/A (uses `permission:` or `tools:`) |
 
 Skill references/assets additionally require `trigger_phrases` (3-8), `importance_tier`, and `contextType`. See Section 3.
-Changelog entries also require `trigger_phrases`, `importance_tier` and `contextType`. Feature catalogs additionally require `trigger_phrases`. Testing playbooks require `title`. Only `SKILL.md` carries `version`, and agents require the authority key their own runtime reads. Section 4 has all three.
+Changelog entries also require `trigger_phrases`, `importance_tier` and `contextType`. Feature catalogs additionally require `trigger_phrases` and `version`. Testing playbooks require `title` and `version`. Agents require the authority key their own runtime reads, and carry no `version`. Section 4 has all three.
 
 ### Common Mistakes
 

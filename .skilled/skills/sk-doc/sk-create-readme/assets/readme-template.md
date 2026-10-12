@@ -8,7 +8,7 @@ trigger_phrases:
   - "narrative readme structure"
 importance_tier: normal
 contextType: general
-version: 1.2.0.0
+version: 1.2.1.0
 ---
 
 # README Template and Selection Guide
@@ -165,6 +165,7 @@ title: "[PROJECT_OR_FEATURE_NAME]"
 description: "[One-sentence description]"
 trigger_phrases:
   - "[search phrase]"
+version: 1.0.0.0
 ---
 
 # [PROJECT_OR_FEATURE_NAME]

@@ -1,20 +1,20 @@
 ---
-title: Frontmatter Versioning Standard - Skill Edition Reference
-description: Canonical rules for the 4-part version field, which names the skill edition and lives on SKILL.md only, anchored to the changelog.
+title: Frontmatter Versioning Standard - Per-Doc Edition Reference
+description: Canonical rules for the 4-part version field: SKILL.md carries the skill edition anchored to the changelog, and every other skill doc carries its own edition, raised at commit.
 trigger_phrases:
   - "frontmatter versioning standard"
-  - "skill edition version contract"
+  - "per doc version contract"
+  - "doc version bump rule"
   - "changelog anchored version"
-  - "version on skill md only"
   - "4-part version format"
 importance_tier: important
 contextType: general
-version: 1.0.0.11
+version: 1.0.1.0
 ---
 
 # Frontmatter Versioning Standard
 
-`version` names the skill edition. It lives on `SKILL.md` only, as a 4-part `version: X.Y.Z.W` field, and it equals the highest of that frontmatter value and the skill's newest changelog entry. Child docs carry no version. This reference is the single source of truth for the format, the anchor rule and how the field is enforced.
+Every skill doc carries a 4-part `version: X.Y.Z.W` field in its frontmatter. On `SKILL.md` it names the skill edition and equals the newest changelog entry. On every other doc it names that doc's own edition: a new doc starts at `1.0.0.0`, and any change to its body raises it. This reference is the single source of truth for the format, the scope, the bump rule and how the field is enforced.
 
 ---
 
@@ -22,29 +22,37 @@ version: 1.0.0.11
 
 ### In scope (MUST carry `version`)
 
-| Doc class | Path glob |
-|-----------|-----------|
-| Skill manifest | `.skilled/skills/*/SKILL.md`, and the `SKILL.md` of every mode packet nested under a hub |
+Every Markdown doc under `.skilled/skills/**` that has a frontmatter block:
 
-### Out of scope (MUST NOT carry `version`)
+| Doc | Version it carries |
+|-----|--------------------|
+| `SKILL.md`, at a skill root or a mode-packet root | The skill edition, anchored to the changelog (Section 3) |
+| Every other doc: READMEs, references, assets, feature catalogs, testing playbooks, `ROUTER.md`, `ARCHITECTURE.md`, `INSTALL-GUIDE.md`, hook docs and the rest | Its own edition, raised by the bump rule (Section 4) |
 
-The child docs of a skill: a `README.md` beside a `SKILL.md`, and every file under `references/**`, `assets/**`, `feature-catalog/**` and `manual-testing-playbook/**`. A child doc ships inside the same package as its `SKILL.md` and its changelog, so the edition is already known to anyone who holds it, and a per-doc copy only goes stale.
+### Out of scope
 
-Other files under a skill, such as a hub's `ROUTER.md`, benchmark reports, component READMEs, examples and hook docs, sit outside this contract. A `version` on one of them is not the skill edition, and no check reads it.
+| Class | Why |
+|-------|-----|
+| Changelog entries (`changelog/**`) | They keep the version of the release they record, which `package_skill.py` checks |
+| Test input: anything under a `tests/` or `fixtures/` folder | A fixture is shaped like a doc but is input to a test, and a test may compare its bytes |
+| Generated output and runtime internals: anything under `runtime/`, `benchmark/` or `behavior-benchmark/`, unless a `references/`, `assets/`, `feature-catalog/` or `manual-testing-playbook/` folder sits above the file | Reports, corpora and code-folder notes are produced or owned by their tooling. A catalog or playbook inside a runtime folder is still authored, so it stays in |
+| Filled spec-folder examples under `templates/examples/` | They carry system-spec-kit's spec-doc frontmatter, not a skill doc's |
+| A doc with no frontmatter block, such as the style corpus | Every check skips it, and a versioning pass never synthesizes a block |
+| `.skilled/scratch/`, `node_modules/`, `dist/` | Not docs |
 
-Changelog entries keep the version of the release they record, and `package_skill.py` checks it. `.skilled/commands/*.md` and `.skilled/agents/*.md` are governed separately: a command's `version` stays optional, and an agent carries none.
+`.skilled/commands/*.md` and `.skilled/agents/*.md` are governed separately: a command's `version` stays optional, and an agent carries none.
 
 ---
 
 ## 2. FORMAT: `X.Y.Z.W`
 
-Exactly four dot-separated non-negative integers, validated by `^\d+\.\d+\.\d+\.\d+$`. The value is the skill edition the changelog records, so the segments follow the release cadence in [`sk-create-changelog`](../../sk-create-changelog/SKILL.md) rather than any per-document count.
+Exactly four dot-separated non-negative integers, validated by `^\d+\.\d+\.\d+\.\d+$`. A value may be quoted (`version: "1.2.0.0"`); the check reads the value inside the quotes, and a raise keeps them.
 
 ---
 
 ## 3. SKILL ANCHOR
 
-A skill's version is its anchor:
+A `SKILL.md` version is its skill's anchor:
 
 ```
 anchor = max( normalize4(SKILL.md frontmatter version),
@@ -55,54 +63,76 @@ anchor = max( normalize4(SKILL.md frontmatter version),
 - If the skill has no `changelog/` directory, the anchor is the frontmatter version and the engine records `anchor-source = frontmatter-only`.
 - A mode packet's `SKILL.md` resolves its own anchor from its own changelog. It is never compared against its hub's.
 
-The anchor never consults git, so no commit can make it stale. It changes only when a release adds a changelog entry above the frontmatter value, and that release is the moment to raise the `SKILL.md` version to match.
+The anchor never consults git. It changes only when a release adds a changelog entry, and that release is the moment to raise the `SKILL.md` version to match. The commit gate never touches `SKILL.md`.
 
 ---
 
-## 4. NORMALIZATION AND EDGE CASES
+## 4. BUMP RULE FOR EVERY OTHER DOC
+
+A doc's edition goes up whenever its body changes. The body is everything after the closing `---` of the frontmatter block, so a change to the frontmatter alone, the version line included, raises nothing.
+
+| Case | Result |
+|------|--------|
+| New doc with no version | `1.0.0.0` |
+| Body changed, version not raised since the base | Third segment up by one, fourth reset: `1.2.3.4` becomes `1.2.4.0` |
+| Body changed, version already raised by hand to any higher value | Left alone |
+| Only the frontmatter changed | Nothing |
+| Renamed without a content change | Nothing |
+| Malformed version, such as `1.2` | Not guessed at; the author sets a 4-part value |
+
+The comparison base is the merge base of the base ref and `HEAD`: `HEAD` itself at commit time, the target branch on a pull request. A raise rewrites the version line in place in its own quoting, or inserts `version: 1.0.0.0` as the last frontmatter key when the doc has none.
+
+---
+
+## 5. NORMALIZATION AND EDGE CASES
 
 | Case | Rule |
 |------|------|
-| 3-part version (`1.4.0`) | Append `.0` exactly once, giving `1.4.0.0`. Never shift segments. |
-| No `changelog/` dir | Anchor = frontmatter version, `anchor-source = frontmatter-only`. |
-| `SKILL.md` has no frontmatter | Skip and report (`skip-no-frontmatter`). A versioning pass never synthesizes a block. |
-| `SKILL.md` differs from its anchor | `apply` reconciles it to the anchor. |
-| Idempotency | Re-running `apply` on a reconciled tree is a byte-level no-op. |
+| 3-part version (`1.4.0`) | `apply` appends `.0` exactly once, giving `1.4.0.0`. Never shift segments. `verify` fails a 3-part value on a doc that is not `SKILL.md` |
+| No `changelog/` dir | Anchor = frontmatter version, `anchor-source = frontmatter-only` |
+| A doc has no frontmatter | Skip and report (`skip-no-frontmatter`) |
+| `SKILL.md` differs from its anchor | `apply` reconciles it to the anchor |
+| A doc has no version | `apply` inserts `1.0.0.0`; a valid version is kept |
+| Idempotency | Re-running `apply` on a reconciled tree is a byte-level no-op |
 
 ---
 
-## 5. INSERTION RULE
+## 6. INSERTION RULE
 
-When `apply` adds a missing `version`, it inserts `version: X.Y.Z.W` as the last key of the frontmatter block, immediately before the closing `---`. Edit line-wise. Never run a YAML re-serializer, because it reflows multi-line values such as a block list.
+When `apply` or `bump` adds a missing `version`, it inserts `version: X.Y.Z.W` as the last key of the frontmatter block, immediately before the closing `---`. Edit line-wise. Never run a YAML re-serializer, because it reflows multi-line values such as a block list.
 
 ---
 
-## 6. ENFORCEMENT
+## 7. ENFORCEMENT
 
-Three checks read the field, and each one is git-free:
-
-1. **Post-edit gate:** editing a `SKILL.md` runs `shared/scripts/check-frontmatter-versions.sh`, a wrapper for `frontmatter-version.mjs gate`, which fails a missing or malformed `version`.
-2. **Validators:** `quick_validate.py` and `package_skill.py` require a 4-part `version` on `SKILL.md`, and `package_skill.py` also checks the version on changelog entries.
-3. **Reconciliation:** `frontmatter-version.mjs verify` compares each `SKILL.md` version with its anchor and exits 0 when they agree. It is run by hand after a release, and no workflow or git hook calls it.
+| Check | When it runs | What it does |
+|-------|--------------|--------------|
+| Pre-commit gate `[gate:doc-version-bump]` | Every commit that stages a doc in scope | Runs `frontmatter-version.mjs bump`, raises each doc whose body changed and re-stages it. It blocks on a doc staged and unstaged at once, a malformed version, or a pathspec-narrowed commit that needs a raise. Bypass: `SPECKIT_SKIP_DOC_VERSION_BUMP=1`, or `git config speckit.hooks.docVersionBump off` to keep it off |
+| Pull-request check | `doc-version-raise` in `skill-doc-frontmatter.yml` | Runs `bump --check --base origin/<base>` and fails on a changed doc whose body changed and whose version did not go up. The fix is the command it prints: `node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs bump --base origin/<base>`, then commit |
+| `verify` | By hand | Each `SKILL.md` equals its anchor, and every other doc in scope carries a valid 4-part version |
+| `gate` | The post-edit hook, through `check-frontmatter-versions.sh` | Presence and format on every doc in scope, git-free |
+| Validators | `quick_validate.py`, `package_skill.py` | A 4-part version on `SKILL.md`; `package_skill.py --strict` also on every doc in scope and on changelog entries |
 
 ### What nothing enforces
 
-Every check above is per-document. No gate compares a hub's routing artifacts against each other, so nothing fails when `SKILL.md`, `ROUTER.md`, `description.json`, `hub-router.json` and `mode-registry.json` state different values. Version parity across a hub's own artifacts is upheld by convention and review, which is why the shared value is restated in each hub's `SKILL.md`.
+No gate compares a hub's routing artifacts against each other, so nothing fails when `SKILL.md`, `ROUTER.md`, `description.json`, `hub-router.json` and `mode-registry.json` state different values, except the parent-skill doctor's README check. Hub-root artifacts carry the hub release, restated in each hub's `SKILL.md`.
 
 ---
 
-## 7. EXAMPLES
+## 8. EXAMPLES
 
-| File | Frontmatter | Highest changelog | Version |
-|------|-------------|-------------------|---------|
-| `system-spec-kit/SKILL.md` | `2.7.11.0` | `v2.7.11.0.md` | `2.7.11.0` |
-| A `SKILL.md` that lags its newest entry | `1.2.0.0` | `v1.3.0.0.md` | `1.3.0.0` after `apply` |
-| `sk-code/references/...` | none | n/a | none, a child doc |
+| File | Before | Change | After |
+|------|--------|--------|-------|
+| `system-spec-kit/SKILL.md` | `2.7.11.0`, newest entry `v2.7.11.0.md` | none | `2.7.11.0` |
+| A `SKILL.md` that lags its newest entry | `1.2.0.0`, newest entry `v1.3.0.0.md` | `apply` | `1.3.0.0` |
+| `sk-code/references/stack-detection.md` | `1.5.0.6` | body edit | `1.5.1.0` |
+| A new `assets/guide.md` | none | added | `1.0.0.0` |
+| `references/guide.md` | `1.0.1.0` | description edit only | `1.0.1.0` |
 
 ---
 
-## 8. RELATED RESOURCES
+## 9. RELATED RESOURCES
 
-- [frontmatter-templates.md](../assets/frontmatter-templates.md): frontmatter by document type, with `version` on the `SKILL.md` template only
-- Engine: [`frontmatter-version.mjs`](../../shared/scripts/frontmatter-version.mjs), the deterministic compute, apply, verify and gate tool that implements this standard
+- [frontmatter-templates.md](../assets/frontmatter-templates.md): frontmatter by document type, each in-scope template seeding `version: 1.0.0.0`
+- Engine: [`frontmatter-version.mjs`](../../shared/scripts/frontmatter-version.mjs), the compute, apply, verify, gate and bump tool that implements this standard
 - Gate wrapper: [`check-frontmatter-versions.sh`](../../shared/scripts/check-frontmatter-versions.sh), which the post-edit hook runs in `gate` mode
