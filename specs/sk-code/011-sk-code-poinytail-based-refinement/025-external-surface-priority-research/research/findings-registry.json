@@ -1,7 +1,9 @@
 {
   "mergedFrom": [
     "dsflash-devin",
-    "luna-max-fast"
+    "luna-max-fast",
+    "luna-max-fast-r2",
+    "swe2max-devin"
   ],
   "lineageExecutors": {
     "dsflash-devin": {
@@ -13,9 +15,48 @@
       "kind": "unknown",
       "model": "unknown",
       "reasoningEffort": null
+    },
+    "luna-max-fast-r2": {
+      "kind": "unknown",
+      "model": "unknown",
+      "reasoningEffort": null
+    },
+    "swe2max-devin": {
+      "kind": "unknown",
+      "model": "unknown",
+      "reasoningEffort": null
     }
   },
-  "openQuestions": [],
+  "openQuestions": [
+    {
+      "id": "question-4-q10-r1-r4-stress-test-what-exact-edit-text-and-which-files-does-each-touch-what-",
+      "inboxId": null,
+      "text": "Q10: R1-R4 stress test, what exact edit text and which files does each touch, what can still break, and is each the smallest correct fix?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "_lineages": [
+        "luna-max-fast-r2"
+      ]
+    },
+    {
+      "id": "question-5-q11-what-other-hubs-tooling-ci-mirrors-catalogs-playbooks-batteries-or-release-e",
+      "inboxId": null,
+      "text": "Q11: What other hubs, tooling, CI, mirrors, catalogs, playbooks, batteries or release-engine rules assume the obsidian and webflow examples, and what does the end-to-end external-user flow hit?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "_lineages": [
+        "luna-max-fast-r2"
+      ]
+    }
+  ],
   "resolvedQuestions": [
     {
       "id": "question-1-q1-where-is-the-surface-order-opencode-obsidian-webflow-encoded-and-where-are-sk",
@@ -30,6 +71,21 @@
       "_lineages": [
         "dsflash-devin",
         "luna-max-fast"
+      ]
+    },
+    {
+      "id": "question-1-q7-f10-which-shared-or-sk-code-opencode-leaves-could-serve-the-stack-agnostic-ro",
+      "inboxId": null,
+      "text": "Q7: F10, which shared/ or sk-code-opencode leaves could serve the stack-agnostic ROUTER.md intents once webflow is deleted, and what is the smallest fix (R6)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "_lineages": [
+        "luna-max-fast-r2",
+        "swe2max-devin"
       ]
     },
     {
@@ -48,6 +104,21 @@
       ]
     },
     {
+      "id": "question-2-q8-f20-what-does-fixing-the-compiled-routing-re-mint-dependency-on-specs-sk-doc-",
+      "inboxId": null,
+      "text": "Q8: F20, what does fixing the compiled-routing re-mint dependency on specs/sk-doc/z_archive/019-skill-routing-refactor/ cost across every hub, versus documenting it (R7 or a reasoned no)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "_lineages": [
+        "luna-max-fast-r2",
+        "swe2max-devin"
+      ]
+    },
+    {
       "id": "question-3-q3-how-should-a-user-added-surface-outrank-sk-code-opencode-registry-priority-fi",
       "inboxId": null,
       "text": "Q3: How should a user-added surface outrank sk-code-opencode (registry priority field, native or fallback flag, tieBreak derived at mint time, --surface-hint, other), and which option is cheapest at acceptable risk?",
@@ -60,6 +131,35 @@
       "_lineages": [
         "dsflash-devin",
         "luna-max-fast"
+      ]
+    },
+    {
+      "id": "question-3-q9-f18-does-create-skill-parent-update-surfaces-perform-the-five-steps-a-hand-ad",
+      "inboxId": null,
+      "text": "Q9: F18, does /create:skill-parent update --surfaces perform the five steps a hand-added surface misses (3d-files, 6b, 5k-alias, 5k-packet, 5k-canary), observed in a throwaway full-tree copy?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "_lineages": [
+        "luna-max-fast-r2",
+        "swe2max-devin"
+      ]
+    },
+    {
+      "id": "question-4-q10-r1-r4-stress-test-what-exact-edit-text-and-which-files-does-each-touch-what-",
+      "inboxId": null,
+      "text": "Q10: R1-R4 stress test, what exact edit text and which files does each touch, what can still break, and is each the smallest correct fix?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "_lineages": [
+        "swe2max-devin"
       ]
     },
     {
@@ -78,6 +178,20 @@
       ]
     },
     {
+      "id": "question-5-q11-what-other-hubs-tooling-ci-mirrors-catalogs-playbooks-batteries-or-release-e",
+      "inboxId": null,
+      "text": "Q11: What other hubs, tooling, CI, mirrors, catalogs, playbooks, batteries or release-engine rules assume the obsidian and webflow examples, and what does the end-to-end external-user flow hit?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "_lineages": [
+        "swe2max-devin"
+      ]
+    },
+    {
       "id": "question-5-q5-which-doctor-and-documentation-changes-tell-external-users-the-two-surfaces-a",
       "inboxId": null,
       "text": "Q5: Which doctor and documentation changes tell external users the two surfaces are examples, and how do they scaffold their own surface?",
@@ -90,6 +204,21 @@
       "_lineages": [
         "dsflash-devin",
         "luna-max-fast"
+      ]
+    },
+    {
+      "id": "question-6-q12-do-the-rejected-ideas-x1-x9-still-hold-and-which-new-ideas-should-be-rejecte",
+      "inboxId": null,
+      "text": "Q12: Do the rejected ideas X1-X9 still hold, and which new ideas should be rejected?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9,
+      "_lineages": [
+        "luna-max-fast-r2",
+        "swe2max-devin"
       ]
     },
     {
@@ -164,6 +293,24 @@
   ],
   "ruledOutDirections": [
     {
+      "id": "ruled-out-640a86b2cc47",
+      "text": "Hand-editing §11 rows to remove webflow paths — defeats the generated-projection contract (ROUTER.md:41) and the re-mint already does it.",
+      "contentHash": "640a86b2cc47",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "swe2max-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-81c843dbc860",
+      "text": "No per-surface `ROUTER.md`/map file found at `find -maxdepth 2` inside the surface packets — the per-packet maps ROUTER.md:41 describes live deeper or are generated; a later iteration (Q9/Q11) can locate the authored source the re-mint reads.",
+      "contentHash": "81c843dbc860",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "swe2max-devin"
+      ]
+    },
+    {
       "id": "ruled-out-9030bcffc8de",
       "text": "None definitively eliminated. The BREAK-class observation (deleting the two packets in a throwaway copy) was intentionally not attempted: this iteration's focus is the static hub inventory; the deletion experiment is Q2's focus. No throwaway copy was created.",
       "contentHash": "9030bcffc8de",
@@ -188,6 +335,15 @@
       "addedAtIteration": 1,
       "_lineages": [
         "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-f66d164acf33",
+      "text": "Treating `routeSkillResources` `resources` output as a bug — it faithfully emits the map; the map itself is stale until re-mint.",
+      "contentHash": "f66d164acf33",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "swe2max-devin"
       ]
     },
     {
@@ -245,12 +401,39 @@
       ]
     },
     {
+      "id": "ruled-out-23507492de9c",
+      "text": "Hand-editing `tieBreak` as part of the command's normal result — the YAML has no placement rule; natural execution appends at end.",
+      "contentHash": "23507492de9c",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "swe2max-devin"
+      ]
+    },
+    {
       "id": "ruled-out-4c6aadaf9ddf",
       "text": "Running the deletion experiment now — Q2's focus; not attempted, same call as iteration 1.",
       "contentHash": "4c6aadaf9ddf",
       "addedAtIteration": 2,
       "_lineages": [
         "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-9b69a588f805",
+      "text": "`/create:skill-parent update --surfaces` alone as the complete \"add your own surface\" path — observed gate exit 1 (5k-canary) and tieBreak-last placement.",
+      "contentHash": "9b69a588f805",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "swe2max-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-9ea4a5976417",
+      "text": "Treating `--surfaces` as a complete compiled-routing re-mint: the YAML names package generation and leaf-manifest generation, while the doctor's second-copy output remains the decisive check for missing legs.",
+      "contentHash": "9ea4a5976417",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "luna-max-fast-r2"
       ]
     },
     {
@@ -263,6 +446,24 @@
       ]
     },
     {
+      "id": "ruled-out-bd23b4886b89",
+      "text": "No source approach exhausted. The full command-runtime invocation was unavailable in the throwaway copy; the prompt expressly directs hand execution of model-driven YAML writes.",
+      "contentHash": "bd23b4886b89",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "luna-max-fast-r2"
+      ]
+    },
+    {
+      "id": "ruled-out-c9d3269630ef",
+      "text": "None new; `compiled-route-sync --check` verified inapplicable to the surface-add gap (it is a served-copy check, not a map-coverage check).",
+      "contentHash": "c9d3269630ef",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "swe2max-devin"
+      ]
+    },
+    {
       "id": "ruled-out-d0be7a6dadec",
       "text": "Expecting the compiled manifest to encode the surface order — it stores policy identity only (row 7).",
       "contentHash": "d0be7a6dadec",
@@ -272,12 +473,48 @@
       ]
     },
     {
+      "id": "ruled-out-e17592afe079",
+      "text": "Treating the minimal hand-copy failures as only five: the probe also exposed failures from duplicate aliases, absent vocabulary classes, and the intentionally stale manifest.",
+      "contentHash": "e17592afe079",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "luna-max-fast-r2"
+      ]
+    },
+    {
       "id": "ruled-out-f3dddb0454c9",
       "text": "Searching the compiled-routing runtime for a hardcoded surface order: none exists. The order enters as data (hub tieBreak) and leaves as data; only the comparator and the hint reorder are code (rows 1–3, 5).",
       "contentHash": "f3dddb0454c9",
       "addedAtIteration": 2,
       "_lineages": [
         "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-0b53199f5e6b",
+      "text": "None new for the strategy list beyond the two ruled-out rows above.",
+      "contentHash": "0b53199f5e6b",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "swe2max-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-169bc226c7a9",
+      "text": "\"Move the whole 019 packet into `.skilled/`\" — 73MB of spec history/research/real-model logs has no serving role; only the traced closure subset is consumed, and moving a subset splits the archival packet.",
+      "contentHash": "169bc226c7a9",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "swe2max-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-31a8679662c2",
+      "text": "\"`compiled-route-manifest mint` requires the authored tree\" — contradicted by observation: mint targets the runtime root and ran (exit 1 `already-exists`) with `specs/` absent.",
+      "contentHash": "31a8679662c2",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "swe2max-devin"
       ]
     },
     {
@@ -308,12 +545,30 @@
       ]
     },
     {
+      "id": "ruled-out-c0b5fc393c1e",
+      "text": "Treating `compiled-route-guard.cjs` as a re-mintability check: it returned exit 0 with `specs/` absent and checks served-runtime freshness instead.",
+      "contentHash": "c0b5fc393c1e",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "luna-max-fast-r2"
+      ]
+    },
+    {
       "id": "ruled-out-f75cfd5b5bd6",
       "text": "None newly eliminated beyond the above; the deletion experiment remains Q2's focus and was again not attempted.",
       "contentHash": "f75cfd5b5bd6",
       "addedAtIteration": 3,
       "_lineages": [
         "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-007fdb0d494f",
+      "text": "None.",
+      "contentHash": "007fdb0d494f",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "luna-max-fast-r2"
       ]
     },
     {
@@ -326,6 +581,33 @@
       ]
     },
     {
+      "id": "ruled-out-346b4769b4a0",
+      "text": "A README-only R1 edit: the scaffold and parent-skill checklist still omit insertion position.",
+      "contentHash": "346b4769b4a0",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "luna-max-fast-r2"
+      ]
+    },
+    {
+      "id": "ruled-out-938eca4bdac5",
+      "text": "\"No re-mint step needed after editing hub-router.json\" — contradicted: route output collapsed to `servingAuthority:\"legacy\"` until `refresh` ran.",
+      "contentHash": "938eca4bdac5",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "swe2max-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-9614ef3aec82",
+      "text": "None new beyond the ruled-out rows.",
+      "contentHash": "9614ef3aec82",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "swe2max-devin"
+      ]
+    },
+    {
       "id": "ruled-out-b6667ab24c12",
       "text": "`compiled-route-sync.cjs --check` is an executable deletion probe under the required copy recipe: it stops before validation because `specs/` is absent. This limitation was seen previously and is not retried with a different copy shape.",
       "contentHash": "b6667ab24c12",
@@ -335,12 +617,57 @@
       ]
     },
     {
+      "id": "ruled-out-c8999396292d",
+      "text": "A new doctor order rule as part of minimal R1: 5e/5i have no user/native classification, so enforcing it requires a broader contract.",
+      "contentHash": "c8999396292d",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "luna-max-fast-r2"
+      ]
+    },
+    {
+      "id": "ruled-out-d19ba144f7ae",
+      "text": "\"R1 = insert surface first in tieBreak\" — illegal: 5i enforces workflow-before-surface; correct phrase is \"ahead of the default surface\" (observed `PASS: 5i` only with that placement shape).",
+      "contentHash": "d19ba144f7ae",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "swe2max-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-f1aac7f930be",
+      "text": "\"sync --check catches post-refresh manifest drift\" — contradicted: exit 0 while authored and runtime manifests differed (`cmp` exit 1); the guard, not sync, owns that leg.",
+      "contentHash": "f1aac7f930be",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "swe2max-devin"
+      ]
+    },
+    {
       "id": "ruled-out-1895a0fbb654",
       "text": "Docs-only registration instructions (hand-edit registry + router): observed to break routing entirely without a working mint.",
       "contentHash": "1895a0fbb654",
       "addedAtIteration": 5,
       "_lineages": [
         "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-1afa5d646a66",
+      "text": "mode-registry.json `backendKind`/`packetKind`/`aliases`/`toolSurface` — all identical",
+      "contentHash": "1afa5d646a66",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "swe2max-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-220f6bea18e5",
+      "text": "\"Just read surfaces from mode-registry.json\" (the change the focus suggested as the",
+      "contentHash": "220f6bea18e5",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "swe2max-devin"
       ]
     },
     {
@@ -371,12 +698,39 @@
       ]
     },
     {
+      "id": "ruled-out-f4f570ff7051",
+      "text": "Treating canary-cases.v1.json as R2 scope: it is generated closure data; re-mint owns it.",
+      "contentHash": "f4f570ff7051",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "swe2max-devin"
+      ]
+    },
+    {
       "id": "ruled-out-3cd2d480cb46",
       "text": "Docs-only insertion convention (insert before `sk-code-opencode` in `tieBreak` + `routerSignals`): two lists must agree and have already drifted in a sibling hub; insertion position is unenforced; stale-manifest stub on hand edit (carried).",
       "contentHash": "3cd2d480cb46",
       "addedAtIteration": 6,
       "_lineages": [
         "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-494c92d366de",
+      "text": "Treating the failed COPY_A harness as a successful deletion or full-checklist test.",
+      "contentHash": "494c92d366de",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "luna-max-fast-r2"
+      ]
+    },
+    {
+      "id": "ruled-out-4c72b8f7719d",
+      "text": "None established. The complete R3 migration remains untested.",
+      "contentHash": "4c72b8f7719d",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "luna-max-fast-r2"
       ]
     },
     {
@@ -389,12 +743,30 @@
       ]
     },
     {
+      "id": "ruled-out-799efc5094da",
+      "text": "\"sync --check's printed remediation is sufficient\" — the command it names is the one that fails (MOVE-SIMULATION); only the manual authored-path copy-back unblocks it.",
+      "contentHash": "799efc5094da",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "swe2max-devin"
+      ]
+    },
+    {
       "id": "ruled-out-7b787756681b",
       "text": "A priority/rank field: the existing ordered list expresses the requirement without another schema and ordering source.",
       "contentHash": "7b787756681b",
       "addedAtIteration": 6,
       "_lineages": [
         "luna-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-88f6b9b20512",
+      "text": "\"leaf-manifest.json needs hand-editing\" — `generate-leaf-manifest.cjs --check` returned `OK` on the scrubbed file, i.e. `--write` produces it.",
+      "contentHash": "88f6b9b20512",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "swe2max-devin"
       ]
     },
     {
@@ -413,6 +785,24 @@
       "addedAtIteration": 6,
       "_lineages": [
         "luna-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-aa69abb0f372",
+      "text": "Treating the current `/create:skill-parent update --surfaces` command as a complete removal path; its command contract has no removal option, and the earlier simulations did not clear all doctor legs.",
+      "contentHash": "aa69abb0f372",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "luna-max-fast-r2"
+      ]
+    },
+    {
+      "id": "ruled-out-abd43b46000c",
+      "text": "None new beyond the violation forensics: whether the clone carried the writes or the shell cwd reverted could not be settled in budget; the end-state is recorded either way.",
+      "contentHash": "abd43b46000c",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "swe2max-devin"
       ]
     },
     {
@@ -443,12 +833,48 @@
       ]
     },
     {
+      "id": "ruled-out-08cdb64f14af",
+      "text": "None established. Deletion-dependent manual and quality paths still need a bounded throwaway-copy check.",
+      "contentHash": "08cdb64f14af",
+      "addedAtIteration": 7,
+      "_lineages": [
+        "luna-max-fast-r2"
+      ]
+    },
+    {
       "id": "ruled-out-2248713eba74",
       "text": "Treating `/doctor:update` as an operator/external split mechanism: its decisions are per-checkout and uniform; no example-unit class and no operator-specific layer exist.",
       "contentHash": "2248713eba74",
       "addedAtIteration": 7,
       "_lineages": [
         "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-30265e73d491",
+      "text": "Broad `rg 'webflow|obsidian'` as the dependent set — ~150 hits dominated by `mcp-obsidian` (a different product), the `sk-design` webflow brand bundle, and changelogs; the operative signal is the precise `sk-code-obsidian|sk-code-webflow` pattern.",
+      "contentHash": "30265e73d491",
+      "addedAtIteration": 7,
+      "_lineages": [
+        "swe2max-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-52793d6a589d",
+      "text": "Treating advisor Obsidian/Webflow marker fixtures as dependencies on installed sk-code packets: the test builds temporary workspaces and asserts the hint value directly.",
+      "contentHash": "52793d6a589d",
+      "addedAtIteration": 7,
+      "_lineages": [
+        "luna-max-fast-r2"
+      ]
+    },
+    {
+      "id": "ruled-out-7319ef3e56e5",
+      "text": "Treating the archived benchmark PASS as a deletion-test result: its own report has zero eligible/scored rows and routes gold to the Webflow example.",
+      "contentHash": "7319ef3e56e5",
+      "addedAtIteration": 7,
+      "_lineages": [
+        "luna-max-fast-r2"
       ]
     },
     {
@@ -467,6 +893,24 @@
       "addedAtIteration": 7,
       "_lineages": [
         "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-fa4bc26232cb",
+      "text": "Searching `.github/`, `.devin/`, `.cursor/`, `.codex/`, `.claude/` for surface names — zero hits; CI and those mirror folders are clean by name (the CI coupling is indirect, via repo-walking tests and the drift guard).",
+      "contentHash": "fa4bc26232cb",
+      "addedAtIteration": 7,
+      "_lineages": [
+        "swe2max-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-015c70242a28",
+      "text": "`compiled-route.cjs --json` — not an option; correct form is `--hub <id> --prompt <text>` (usage line observed). Not a repo defect, just CLI shape.",
+      "contentHash": "015c70242a28",
+      "addedAtIteration": 8,
+      "_lineages": [
+        "swe2max-devin"
       ]
     },
     {
@@ -524,12 +968,48 @@
       ]
     },
     {
+      "id": "ruled-out-e96063a7e624",
+      "text": "Bare `compiled-route-manifest.cjs refresh` — exits 2 usage; requires `--hub` + `--skill-root`.",
+      "contentHash": "e96063a7e624",
+      "addedAtIteration": 8,
+      "_lineages": [
+        "swe2max-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-32bba0c7f478",
+      "text": "`/doctor:update` as the removal path — wrong tool class (release alignment, not checklist execution); carried F25.",
+      "contentHash": "32bba0c7f478",
+      "addedAtIteration": 9,
+      "_lineages": [
+        "swe2max-devin"
+      ]
+    },
+    {
       "id": "ruled-out-70126ca9ab5d",
       "text": "None newly eliminated this iteration; the full-tree re-mint observation remains the one open angle (Phase 0, carried).",
       "contentHash": "70126ca9ab5d",
       "addedAtIteration": 9,
       "_lineages": [
         "dsflash-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-842d5a30983c",
+      "text": "Re-running copy probes for contract coverage: reading the workflow YAML settles which steps exist; a copy run would re-observe what iteration 2 already measured (5k-canary exit 1, tieBreak-last).",
+      "contentHash": "842d5a30983c",
+      "addedAtIteration": 9,
+      "_lineages": [
+        "swe2max-devin"
+      ]
+    },
+    {
+      "id": "ruled-out-9ad220eb0a53",
+      "text": "Broad `rg` for automation hooks: strategy marks the broad surface-name sweep BLOCKED (strategy:156-159); the targeted grep on the confirm YAML was sufficient.",
+      "contentHash": "9ad220eb0a53",
+      "addedAtIteration": 9,
+      "_lineages": [
+        "swe2max-devin"
       ]
     },
     {
@@ -540,16 +1020,25 @@
       "_lineages": [
         "dsflash-devin"
       ]
+    },
+    {
+      "id": "ruled-out-d440b10ae975",
+      "text": "`compiled-route-sync --check` as a coverage check — already BLOCKED (served-copy check, not map-coverage; strategy:196-199).",
+      "contentHash": "d440b10ae975",
+      "addedAtIteration": 9,
+      "_lineages": [
+        "swe2max-devin"
+      ]
     }
   ],
   "metrics": {
-    "iterationsCompleted": 20,
-    "openQuestions": 0,
-    "resolvedQuestions": 6,
+    "iterationsCompleted": 40,
+    "openQuestions": 2,
+    "resolvedQuestions": 12,
     "keyFindings": 4,
     "sourceFindings": 4,
     "reconstructionGaps": 0,
-    "convergenceScore": 0.25,
+    "convergenceScore": 0.388,
     "coverageBySources": {}
   }
 }

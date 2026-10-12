@@ -1,0 +1,422 @@
+{
+  "sessionId": "dr-025r2-luna-max-fast-r2-2026-10-12T18:58:06.247Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q7-f10-which-shared-or-sk-code-opencode-leaves-could-serve-the-stack-agnostic-ro",
+      "inboxId": null,
+      "text": "Q7: F10, which shared/ or sk-code-opencode leaves could serve the stack-agnostic ROUTER.md intents once webflow is deleted, and what is the smallest fix (R6)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-q8-f20-what-does-fixing-the-compiled-routing-re-mint-dependency-on-specs-sk-doc-",
+      "inboxId": null,
+      "text": "Q8: F20, what does fixing the compiled-routing re-mint dependency on specs/sk-doc/z_archive/019-skill-routing-refactor/ cost across every hub, versus documenting it (R7 or a reasoned no)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-3-q9-f18-does-create-skill-parent-update-surfaces-perform-the-five-steps-a-hand-ad",
+      "inboxId": null,
+      "text": "Q9: F18, does /create:skill-parent update --surfaces perform the five steps a hand-added surface misses (3d-files, 6b, 5k-alias, 5k-packet, 5k-canary), observed in a throwaway full-tree copy?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-4-q10-r1-r4-stress-test-what-exact-edit-text-and-which-files-does-each-touch-what-",
+      "inboxId": null,
+      "text": "Q10: R1-R4 stress test, what exact edit text and which files does each touch, what can still break, and is each the smallest correct fix?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-q11-what-other-hubs-tooling-ci-mirrors-catalogs-playbooks-batteries-or-release-e",
+      "inboxId": null,
+      "text": "Q11: What other hubs, tooling, CI, mirrors, catalogs, playbooks, batteries or release-engine rules assume the obsidian and webflow examples, and what does the end-to-end external-user flow hit?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-6-q12-do-the-rejected-ideas-x1-x9-still-hold-and-which-new-ideas-should-be-rejecte",
+      "inboxId": null,
+      "text": "Q12: Do the rejected ideas X1-X9 still hold, and which new ideas should be rejected?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-4-q10-r1-r4-stress-test-what-exact-edit-text-and-which-files-does-each-touch-what-",
+      "inboxId": null,
+      "text": "Q10: R1-R4 stress test, what exact edit text and which files does each touch, what can still break, and is each the smallest correct fix?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-q11-what-other-hubs-tooling-ci-mirrors-catalogs-playbooks-batteries-or-release-e",
+      "inboxId": null,
+      "text": "Q11: What other hubs, tooling, CI, mirrors, catalogs, playbooks, batteries or release-engine rules assume the obsidian and webflow examples, and what does the end-to-end external-user flow hit?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-q7-f10-which-shared-or-sk-code-opencode-leaves-could-serve-the-stack-agnostic-ro",
+      "inboxId": null,
+      "text": "Q7: F10, which shared/ or sk-code-opencode leaves could serve the stack-agnostic ROUTER.md intents once webflow is deleted, and what is the smallest fix (R6)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-q8-f20-what-does-fixing-the-compiled-routing-re-mint-dependency-on-specs-sk-doc-",
+      "inboxId": null,
+      "text": "Q8: F20, what does fixing the compiled-routing re-mint dependency on specs/sk-doc/z_archive/019-skill-routing-refactor/ cost across every hub, versus documenting it (R7 or a reasoned no)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-3-q9-f18-does-create-skill-parent-update-surfaces-perform-the-five-steps-a-hand-ad",
+      "inboxId": null,
+      "text": "Q9: F18, does /create:skill-parent update --surfaces perform the five steps a hand-added surface misses (3d-files, 6b, 5k-alias, 5k-packet, 5k-canary), observed in a throwaway full-tree copy?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-6-q12-do-the-rejected-ideas-x1-x9-still-hold-and-which-new-ideas-should-be-rejecte",
+      "inboxId": null,
+      "text": "Q12: Do the rejected ideas X1-X9 still hold, and which new ideas should be rejected?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q8–Q12 remain for later iterations: re-mint dependency; surface-add workflow; R1–R4 stress test; other example assumptions and end-to-end flow; rejected ideas.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q8: re-mint source dependency and repair cost.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q10: exact R1-R4 edits and minimum scope.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q12: challenge X1-X9 and identify new rejections.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q11: other example assumptions and end-to-end external-user flow.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q10: exact R1-R4 edits, touched files, residual breakage, and minimum scope.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q11: other example assumptions and the complete external-user flow.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q11: inspect other example assumptions and the complete external-user flow.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q10: validate exact R2-R4 edits, all touched files, and their minimum scope; reconcile the prepared base with the checked-out tree.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q10: exact R1–R4 edits, touched files, residual failures and minimum correct scope, including R3 and R4.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q11: other example assumptions and full external-user flow.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q12: challenge rejected ideas X1–X9 and identify new rejections.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q11: survey other tooling assumptions and the complete external-user flow.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q12: challenge X1-X9 and identify additional rejected options.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q10: run all R3 edits in a fresh copy and adjudicate each required check and routing prompt.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q10: exact R1-R4 edit set and minimum scope.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q11: verify which located tooling actually fails after deletion, inspect any remaining runtime/release-engine hits and complete the clone-delete-add-doctor-route flow.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q12: Rejected ideas X1-X9 and new rejections were not revisited.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q10: Exact R1-R4 edits, all touched files, and smallest correct fix remain open.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q11: The Rails add step, post-add doctor, prompt routing, full CI and remaining mirrors/release-engine consumers remain untested.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q10: exact R1-R4 file set and wording still need reconciliation against the current complete repo tree, especially both YAML twins, the README tables and sk-code README.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The --surfaces workflow was not run in a throwaway copy. Static YAML is not proof that the five F18 doctor legs pass.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q11: benchmarks, playbooks, feature catalog, CI, runtime mirrors, install guides and full clone-delete-add-doctor-route flow were not exercised in this iteration.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q11 remains open: no complete survey of benchmarks, playbooks, feature catalogs, advisor fixtures, runtime mirrors, CI, install guides, release-engine keep-local rules, or clone-delete-add-doctor-route flow was performed.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The prior X1–X9 rejection evidence was not independently re-run in this pass. Iterations 1–4 were not fully re-opened, and the five F18 doctor legs were not observed after a real slash-workflow update.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q10 remains partial: exact locations and candidate wording for R1/R4 were checked, but the complete file-by-file R1–R4 diff and residual validation matrix were not re-opened end to end.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Q10: R1-R4 stress test, what exact edit text and which files does each touch, what can still break, and is each the smallest correct fix?",
+    "Q11: What other hubs, tooling, CI, mirrors, catalogs, playbooks, batteries or release-engine rules assume the obsidian and webflow examples, and what does the end-to-end external-user flow hit?"
+  ],
+  "keyFindings": [],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-bd23b4886b89",
+      "text": "No source approach exhausted. The full command-runtime invocation was unavailable in the throwaway copy; the prompt expressly directs hand execution of model-driven YAML writes.",
+      "contentHash": "bd23b4886b89",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-9ea4a5976417",
+      "text": "Treating `--surfaces` as a complete compiled-routing re-mint: the YAML names package generation and leaf-manifest generation, while the doctor's second-copy output remains the decisive check for missing legs.",
+      "contentHash": "9ea4a5976417",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-e17592afe079",
+      "text": "Treating the minimal hand-copy failures as only five: the probe also exposed failures from duplicate aliases, absent vocabulary classes, and the intentionally stale manifest.",
+      "contentHash": "e17592afe079",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-c0b5fc393c1e",
+      "text": "Treating `compiled-route-guard.cjs` as a re-mintability check: it returned exit 0 with `specs/` absent and checks served-runtime freshness instead.",
+      "contentHash": "c0b5fc393c1e",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-c8999396292d",
+      "text": "A new doctor order rule as part of minimal R1: 5e/5i have no user/native classification, so enforcing it requires a broader contract.",
+      "contentHash": "c8999396292d",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-346b4769b4a0",
+      "text": "A README-only R1 edit: the scaffold and parent-skill checklist still omit insertion position.",
+      "contentHash": "346b4769b4a0",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-007fdb0d494f",
+      "text": "None.",
+      "contentHash": "007fdb0d494f",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-4c72b8f7719d",
+      "text": "None established. The complete R3 migration remains untested.",
+      "contentHash": "4c72b8f7719d",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-aa69abb0f372",
+      "text": "Treating the current `/create:skill-parent update --surfaces` command as a complete removal path; its command contract has no removal option, and the earlier simulations did not clear all doctor legs.",
+      "contentHash": "aa69abb0f372",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-494c92d366de",
+      "text": "Treating the failed COPY_A harness as a successful deletion or full-checklist test.",
+      "contentHash": "494c92d366de",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-08cdb64f14af",
+      "text": "None established. Deletion-dependent manual and quality paths still need a bounded throwaway-copy check.",
+      "contentHash": "08cdb64f14af",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-52793d6a589d",
+      "text": "Treating advisor Obsidian/Webflow marker fixtures as dependencies on installed sk-code packets: the test builds temporary workspaces and asserts the hint value directly.",
+      "contentHash": "52793d6a589d",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-7319ef3e56e5",
+      "text": "Treating the archived benchmark PASS as a deletion-test result: its own report has zero eligible/scored rows and routes gold to the Webflow example.",
+      "contentHash": "7319ef3e56e5",
+      "addedAtIteration": 7
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 2,
+    "resolvedQuestions": 4,
+    "carriedForwardOpenQuestions": 26,
+    "keyFindings": 0,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.3,
+    "coverageBySources": {
+      "code": 103,
+      "other": 55
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/124-surface-priority-round-two/specs/sk-code/011-sk-code-poinytail-based-refinement/025-external-surface-priority-research/research/lineages/luna-max-fast-r2/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

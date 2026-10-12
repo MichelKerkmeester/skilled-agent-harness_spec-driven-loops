@@ -23,9 +23,9 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-10-12 |
-| **Branch** | `worktrees/123-surface-priority-research` |
+| **Branch** | `worktrees/123-surface-priority-research` (round one), `worktrees/124-surface-priority-round-two` (round two) |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 25 of 25 |
 | **Predecessor** | 022-doc-version-and-playbook-paths |
@@ -45,7 +45,8 @@ This is **Phase 25** of the sk-code Ponytail refinement epic. It is numbered 025
 **Dependencies**:
 - The `/deep:research` auto workflow as a two-lineage fan-out, 10 iterations each, stop policy `max-iterations`.
 - Lineage A: `cli-devin` with model `deepseek-v4-1-flash-max`. Lineage B: `cli-codex` with model `gpt-6-luna`, reasoning effort `max`, service tier `fast`.
-- `devin`, `codex` and `node` on the PATH.
+- Round two, lineage C (`swe2max-devin`): `cli-devin` with model `swe-2-max`. Lineage D (`luna-max-fast-r2`): `cli-codex` with `gpt-6-luna`, effort `max`, tier `fast` for iterations 1 to 4, then, by operator change, `cli-pi` with `openai/gpt-6-luna`, `--thinking xhigh` and the fast-mode extension for iterations 5 to 10.
+- `devin`, `codex`, `pi` and `node` on the PATH.
 
 **Deliverables**:
 - `research/research.md`, the merged synthesis with findings, a ranked recommendation, where the lineages agree and disagree, rejected ideas and proposed implementation phases.
@@ -74,6 +75,15 @@ Find every place that encodes the surface order or assumes the two example surfa
 4. How does the operator's repository keep its current order while the shipped default assumes the examples are gone: what is configuration, what is data, what is example and what is shipped?
 5. Which doctor and documentation changes tell external users the two surfaces are examples to delete or replace, and how to scaffold their own surface?
 6. Which ideas should be rejected, and why?
+
+Round two adds:
+
+7. Which shared or opencode leaves could serve the stack-agnostic ROUTER.md intents once webflow is deleted?
+8. What does fixing the re-mint dependency on the authored closure under `specs/sk-doc/z_archive/019-skill-routing-refactor/` cost, against documenting it?
+9. Does `/create:skill-parent update --surfaces` perform the steps a hand-added surface misses?
+10. What exact edits do R1 to R4 need, what still breaks, and is each the smallest correct fix?
+11. What else assumes the examples, and where does the end-to-end external-user journey stall (UX), what could be one existing command (automation), and which guide should tell the user (guides)?
+12. Do the rejected ideas still hold?
 <!-- /ANCHOR:problem -->
 
 ---
@@ -94,7 +104,7 @@ Find every place that encodes the surface order or assumes the two example surfa
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `research/` | Create | Lineage configs, state, iterations and the merged synthesis |
+| `research/` | Create | Lineage configs, state, iterations and the merged synthesis; round two adds `research/lineages/swe2max-devin/` and `research/lineages/luna-max-fast-r2/` and refreshes the merged registry, attribution and resource map |
 | `implementation-summary.md`, `goal.md`, `plan.md`, `tasks.md` | Modify | Outcome and log once the run ends |
 <!-- /ANCHOR:scope -->
 
@@ -120,6 +130,8 @@ Find every place that encodes the surface order or assumes the two example surfa
 | REQ-006 | Spot-check every cited path:line and rerun every quoted command before it reaches the synthesis | The goal log records the spot-check |
 | REQ-007 | Pass every recommendation through `.skilled/repo-rules/prevent-overengineering.md` | Each R row names the cheaper move it rejects and why |
 | REQ-008 | Propose implementation phases | `research/research.md` lists rows `\| P<n> \| ... \|` |
+| REQ-009 | Round two runs 10 more iterations in each of two new lineages, concurrently per iteration where both have one left, and keeps round one's files intact | Each round-two lineage's `deep-research-state.jsonl` holds 10 iteration records |
+| REQ-010 | The merged synthesis of both rounds keeps F, R and X ids stable and appends new ids | Written by the orchestrator's synthesis pass after round two |
 <!-- /ANCHOR:requirements -->
 
 ---

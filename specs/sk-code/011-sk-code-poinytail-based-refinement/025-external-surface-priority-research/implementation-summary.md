@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/025-external-surface-priority-research"
-    last_updated_at: "2026-10-12T19:10:00Z"
+    last_updated_at: "2026-10-12T21:30:00Z"
     last_updated_by: "deep-research-orchestrator"
-    recent_action: "Ran two ten-iteration lineages and wrote the checked synthesis"
-    next_safe_action: "Operator picks which of P1 to P3 to build, and decides R5"
+    recent_action: "Ran round two: two more ten-iteration lineages, merged all four"
+    next_safe_action: "Orchestrator writes the merged two-round synthesis over all 40 iterations"
     blockers: []
     key_files:
       - "research/research.md"
@@ -19,7 +19,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "dr-025-external-surface-priority-research"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 85
     open_questions:
       - "R5: should sk-code-opencode keep generic language keywords"
     answered_questions:
@@ -54,6 +54,12 @@ You now have a checked answer to how Skilled should treat the sk-code surfaces f
 
 `research/research.md` holds 33 checked findings (F1 to F33), five ranked recommendations (R1 to R5), nine rejected ideas (X1 to X9) and four proposed phases (P1 to P4), plus a section on where the two lineages disagreed and how each point was settled. No skill, script, command or README changed.
 
+### Round two
+
+Round two ran two more ten-iteration lineages, `swe2max-devin` and `luna-max-fast-r2`, on the gaps round one left (F10, F18, F20, R1 to R4) plus the operator's added focus on the external user's journey, automation and guides. Both lineages' iterations, deltas and registries are on disk, `fanout-merge.cjs` merged all four lineages and the fan-out resource map was regenerated from 40 delta sources. The merged synthesis of both rounds is not written yet: the orchestrator's synthesis and verification passes write it, and round one's `research/research.md` is unchanged until then.
+
+The orchestrator's own copy run confirmed two round-two claims. A hand-added surface fails seven parent-skill-check legs, the five round one named minus 5k-alias (which passes when the aliases are class keywords) plus 10b and 10d; the `update --surfaces` writes clear all but 5k-canary; and a surface inserted ahead of `sk-code-opencode` in `tieBreak` leads a tie with it after refresh, once both the activation manifest and the canary fixture are copied to their authored paths.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -63,6 +69,8 @@ You now have a checked answer to how Skilled should treat the sk-code surfaces f
 | `research/deep-research-config.json`, `findings-registry.json`, `deep-research-findings-registry.json`, `fanout-attribution.md`, `resource-map.md` | Created | Fan-out config and the merge outputs |
 | `spec.md` | Modified | Status, pre-init research context and the findings fence |
 | `implementation-summary.md`, `goal.md`, `tasks.md`, `plan.md` | Modified | Outcome, log and task state |
+| `research/lineages/swe2max-devin/`, `research/lineages/luna-max-fast-r2/` | Created | Round two loop state and ten iterations each |
+| `research/findings-registry.json`, `deep-research-findings-registry.json`, `fanout-attribution.md`, `resource-map.md` | Modified | Round two merge over four lineages |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -98,6 +106,8 @@ The orchestrator executed the `/deep:research` auto YAML step by step, as the 02
 | Dispatch receipts | Lineage A: `devin --model deepseek-v4-1-flash-max`, all exit 0. Lineage B: `codex --model gpt-6-luna`, effort max, tier fast; iterations 4 and 5 ended by SIGTERM at 570 s after writing their artifacts |
 | Out-of-scope writes | `git status` after every iteration showed no change outside this folder |
 | Orchestrator copy runs | Control green; deletion 113 doctor failures and routes to deleted packets; drift guards exit 1 on ENOENT; reorder plus re-mint routes webflow first with guard, sync and doctor green |
+| Round two iteration records | 10 and 10 `"type":"iteration"` records in `swe2max-devin` and `luna-max-fast-r2` |
+| Round two out-of-scope writes | One breach, in lineage C iteration 6, restored by the orchestrator; every later dispatch left 0 out-of-scope entries (see `goal.md` log) |
 | Goal criteria and strict validation | See `goal.md` log |
 <!-- /ANCHOR:verification -->
 
@@ -106,9 +116,10 @@ The orchestrator executed the `/deep:research` auto YAML step by step, as the 02
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The add-surface failure list is carried, not rerun.** F18 rests on both lineages' copy runs.
-2. **R5 waits on the operator.** Whether sk-code-opencode keeps generic language keywords is a product decision.
-3. **Two workflow steps were simplified.** The single-loop status-ledger rows were not written and the executor block was not patched into the state projection, matching the 023 precedent; no gate reads them. Lineage A's graph upsert for iteration 5 failed on a foreign key and was skipped; lineage B emitted no graph events.
+1. **The two-round synthesis is pending.** `research/research.md` still holds round one only.
+2. **Lineage D changed executor at iteration 5.** Iterations 1 to 4 ran on cli-codex at max, 5 to 10 on cli-pi at xhigh; each dispatch receipt records the executor that ran.
+3. **R5 stays as is.** The operator ruled that sk-code-opencode keeps its generic language keywords.
+4. **Two workflow steps were simplified.** The single-loop status-ledger rows were not written and the executor block was not patched into the state projection, matching the 023 precedent; no gate reads them. Lineage A's graph upsert for iteration 5 failed on a foreign key and was skipped; lineage B emitted no graph events.
 <!-- /ANCHOR:limitations -->
 
 ---

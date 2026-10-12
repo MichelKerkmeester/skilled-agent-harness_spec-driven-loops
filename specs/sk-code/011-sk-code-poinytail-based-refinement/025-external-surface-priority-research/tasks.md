@@ -58,10 +58,23 @@ contextType: "general"
 
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Round two
+
+- [x] T010 Create the round-two worktree from origin/main and a pristine full-tree base copy outside it (only the compiled-routing closure kept under `specs/`)
+- [x] T011 [P] Run 10 iterations in lineage C, `cli-devin` with `swe-2-max` (`research/lineages/swe2max-devin/`)
+- [x] T012 [P] Run 10 iterations in lineage D, `cli-codex` `gpt-6-luna` max fast for 1 to 4, then `cli-pi` `openai/gpt-6-luna` xhigh with fast mode for 5 to 10 (`research/lineages/luna-max-fast-r2/`)
+- [x] T013 Run the orchestrator's own add-surface copy run (F18 and R1)
+- [x] T014 Run `fanout-merge.cjs` over all four lineages and regenerate the fan-out resource map
+- [ ] T015 Merged synthesis of both rounds, written by the orchestrator's synthesis and verification passes (`research/research.md`)
+<!-- /ANCHOR:phase-4 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All tasks marked `[x]`
+- [ ] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Every criterion in `goal.md` passes
 <!-- /ANCHOR:completion -->
