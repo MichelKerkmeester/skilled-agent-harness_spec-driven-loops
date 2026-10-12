@@ -1,6 +1,7 @@
 ---
 title: "DR-034 -- Insight status prevents false stuck detection"
 description: "Verify that an iteration with status insight does not increment stuck count despite low newInfoRatio."
+version: 1.14.0.16
 ---
 
 # DR-034 -- Insight status prevents false stuck detection

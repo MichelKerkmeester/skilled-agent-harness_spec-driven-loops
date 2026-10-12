@@ -11,6 +11,7 @@ trigger_phrases:
   - "degrade ladder"
 importance_tier: normal
 contextType: implementation
+version: 1.2.0.7
 ---
 
 # Output Spec — format × size × detail × audience

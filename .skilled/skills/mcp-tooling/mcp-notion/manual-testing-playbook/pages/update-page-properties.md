@@ -2,6 +2,7 @@
 title: "PAGE-003 -- Update page properties"
 description: "This scenario validates notion_update-page-properties by patching a property on a disposable scratch page, then archiving it as cleanup."
 stage: routing
+version: 0.1.0.0
 ---
 
 # PAGE-003 -- Update page properties

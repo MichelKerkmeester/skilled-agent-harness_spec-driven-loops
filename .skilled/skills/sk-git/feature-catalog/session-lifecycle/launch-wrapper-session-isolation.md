@@ -7,6 +7,7 @@ trigger_phrases:
   - "per-session isolated MCP databases"
   - "top-level session worktree wrapper"
 importance_tier: "important"
+version: 1.0.0.0
 ---
 
 # Launch-wrapper session isolation (worktree-session.sh)

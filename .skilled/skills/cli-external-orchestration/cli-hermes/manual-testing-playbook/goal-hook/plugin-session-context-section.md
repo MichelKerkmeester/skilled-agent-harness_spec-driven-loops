@@ -1,6 +1,7 @@
 ---
 title: "HERMES-015 -- Plugin session-context section"
 description: "Confirm the `repo-guards` plugin freezes a session-context section into the Hermes system prompt, that the section is logged, and that the session can quote it back for `HERMES-015`."
+version: 1.0.0.0
 ---
 
 # HERMES-015 -- Plugin session-context section

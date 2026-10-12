@@ -7,6 +7,7 @@ trigger_phrases:
   - "native recommend"
   - "skill recommendation tool"
   - "compiledRoute enrichment"
+version: 0.9.0.0
 ---
 
 # advisor_recommend Command

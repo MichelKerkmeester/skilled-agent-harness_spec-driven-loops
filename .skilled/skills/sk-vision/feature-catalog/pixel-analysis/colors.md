@@ -6,6 +6,7 @@ trigger_phrases:
   - "what colors are in this design"
   - "sk_vision_colors"
   - "palette and luminance check"
+version: 1.0.0.0
 ---
 
 # Color analysis (sk_vision_colors)

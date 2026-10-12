@@ -8,6 +8,7 @@ trigger_phrases:
   - "jsdoc template pattern"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.11
 ---
 
 # JavaScript Quick Reference

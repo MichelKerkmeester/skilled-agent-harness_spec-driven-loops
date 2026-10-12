@@ -8,6 +8,7 @@ trigger_phrases:
   - "aesthetic-usability effect"
 importance_tier: normal
 contextType: general
+version: 1.0.0.0
 ---
 
 # Cognitive Laws for Interface Design

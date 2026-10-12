@@ -6,6 +6,7 @@ trigger_phrases:
   - "tokens.json pipeline modules"
   - "design-md generator backend scripts"
   - "extract cluster validate pipeline"
+version: 1.0.0.0
 ---
 
 # scripts/: Design Extraction Pipeline Modules

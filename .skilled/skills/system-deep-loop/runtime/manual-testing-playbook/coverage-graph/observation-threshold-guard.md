@@ -1,6 +1,7 @@
 ---
 title: "DLR-041 -- Observation-threshold guard"
 description: "Manual validation scenario for Observation-threshold guard in the runtime/ skill."
+version: 1.4.0.15
 ---
 
 # DLR-041 -- Observation-threshold guard

@@ -1,6 +1,7 @@
 ---
 title: "DLR-028 -- Fan-out merge: review strongest-restriction"
 description: "Validate mergeReviewRegistries strongest-restriction: clean A + P0 B → FAIL; duplicate findingId escalates to highest severity; non-active findings excluded; P1-only → CONDITIONAL; all clean → PASS."
+version: 1.4.0.4
 ---
 
 # DLR-028 -- Fan-out merge: review strongest-restriction

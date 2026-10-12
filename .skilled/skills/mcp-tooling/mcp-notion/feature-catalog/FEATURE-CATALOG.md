@@ -7,6 +7,7 @@ trigger_phrases:
   - "notion 24 tools by domain"
   - "notion api gap fills"
 last_updated: "2026-08-21"
+version: 0.1.0.0
 ---
 
 # mcp-notion: Feature Catalog

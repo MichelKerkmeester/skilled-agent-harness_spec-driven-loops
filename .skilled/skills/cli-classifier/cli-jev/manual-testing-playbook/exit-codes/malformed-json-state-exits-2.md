@@ -1,6 +1,7 @@
 ---
 title: "JEV-006 -- Malformed JSON state exits 2"
 description: "Confirm `--json-state` refuses a non-JSON value at exit 2, for `JEV-006`."
+version: 0.1.0.1
 ---
 
 # JEV-006 -- Malformed JSON state exits 2

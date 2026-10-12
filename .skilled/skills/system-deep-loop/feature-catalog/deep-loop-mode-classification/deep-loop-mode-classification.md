@@ -6,6 +6,7 @@ trigger_phrases:
   - "system-deep-loop three-tier discriminator"
   - "workflowMode runtimeLoopType backendKind"
   - "system-deep-loop smart routing"
+version: 1.0.0.0
 ---
 
 # Registry-Driven Deep-Loop Mode Classification (system-deep-loop)

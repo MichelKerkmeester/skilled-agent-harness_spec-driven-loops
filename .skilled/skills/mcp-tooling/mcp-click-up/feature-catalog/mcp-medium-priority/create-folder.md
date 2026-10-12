@@ -4,6 +4,7 @@ description: "Create a folder in a space, optionally with its own statuses."
 trigger_phrases:
   - "clickup_create_folder"
   - "create folder"
+version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -1,3 +1,9 @@
+---
+title: "mcp-click-up Installation Guide"
+description: "Installation and configuration for ClickUp task management through the cupt CLI and the ClickUp MCP path."
+version: 1.0.0.0
+---
+
 # mcp-click-up Installation Guide
 
 Complete installation and configuration for ClickUp task management, providing AI assistants with two complementary surfaces. The cupt CLI is the primary tool: daily task operations (list, complete, note, time, tag) with per-list status resolution, dry-run safety, and `--json` output. The official ClickUp MCP is the secondary surface, launched through Code Mode for task creation, documents and workspace search.

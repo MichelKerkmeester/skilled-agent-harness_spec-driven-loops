@@ -1,6 +1,7 @@
 ---
 title: "DLR-037 -- Loop-lock single-flight decision"
 description: "Manual validation scenario for Loop-lock single-flight decision in the runtime/ skill."
+version: 1.4.0.15
 ---
 
 # DLR-037 -- Loop-lock single-flight decision

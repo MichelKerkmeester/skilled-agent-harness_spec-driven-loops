@@ -6,6 +6,7 @@ trigger_phrases:
   - "goal conformance checker"
   - "goal template parity test"
   - "goal criteria lint"
+version: 1.0.0.0
 ---
 
 # sk-create-goal scripts: goal checker and criteria lint

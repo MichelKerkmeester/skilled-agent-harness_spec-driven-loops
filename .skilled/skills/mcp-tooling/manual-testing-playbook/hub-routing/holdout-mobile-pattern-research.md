@@ -16,6 +16,7 @@ expected_leaf_resources:
 blindToRouterKeywords: true
 blindExceptions:
   - "phone apps"
+version: 1.1.0.0
 ---
 # MT-H06: Blind holdout — mobile app pattern research
 

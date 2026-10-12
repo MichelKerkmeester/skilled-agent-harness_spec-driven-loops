@@ -8,6 +8,7 @@ trigger_phrases:
   - "council report path"
 importance_tier: "important"
 contextType: "implementation"
+version: 1.7.0.16
 ---
 
 # AI Council Folder Layout

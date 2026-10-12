@@ -1,6 +1,7 @@
 ---
 title: "DRV-014 -- Severity classification in JSONL"
 description: "Verify that findingsSummary and findingsNew fields in JSONL include P0/P1/P2 counts for every iteration record."
+version: 1.11.0.15
 ---
 
 # DRV-014 -- Severity classification in JSONL

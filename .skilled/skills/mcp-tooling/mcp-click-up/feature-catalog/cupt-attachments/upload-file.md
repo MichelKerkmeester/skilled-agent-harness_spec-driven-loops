@@ -7,6 +7,7 @@ trigger_phrases:
   - "attach file to task"
   - "upload attachment"
   - "multipart file upload"
+version: 1.0.0.3
 ---
 
 # Upload File

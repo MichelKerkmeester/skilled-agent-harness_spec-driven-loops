@@ -5,6 +5,7 @@ trigger_phrases:
   - "List all users"
   - "notion_list-all-users"
   - "list Notion workspace users"
+version: 0.1.0.0
 ---
 
 # List all users (`notion_list-all-users`)

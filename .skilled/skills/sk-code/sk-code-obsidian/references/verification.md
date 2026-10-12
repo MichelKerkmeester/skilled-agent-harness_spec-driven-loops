@@ -9,6 +9,7 @@ trigger_phrases:
   - "completion claim proof plugin"
 importance_tier: normal
 contextType: implementation
+version: 0.1.0.0
 ---
 
 # The Plugin Verification Gate

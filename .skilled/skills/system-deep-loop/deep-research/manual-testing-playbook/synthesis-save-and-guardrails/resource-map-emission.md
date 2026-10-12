@@ -1,6 +1,7 @@
 ---
 title: "DR-035 -- Research resource-map emission"
 description: "Verify synthesis emits research/resource-map.md from converged deltas and honors the opt-out path."
+version: 1.14.0.14
 ---
 
 # DR-035 -- Research resource-map emission

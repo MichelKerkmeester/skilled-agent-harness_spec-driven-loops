@@ -9,6 +9,7 @@ trigger_phrases:
   - "magicpath who decides"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.0
 ---
 
 # MagicPath Design Authority

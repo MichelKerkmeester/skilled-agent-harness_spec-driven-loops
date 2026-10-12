@@ -6,6 +6,7 @@ trigger_phrases:
   - "doc harvest smoke"
   - "matchedDocs validation"
   - "doc trigger flag"
+version: 0.8.0.1
 id: AI-006
 category: auto_indexing
 stage: routing

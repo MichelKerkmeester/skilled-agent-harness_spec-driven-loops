@@ -1,6 +1,7 @@
 ---
 title: "HERMES-001 -- Sanctioned headless smoke"
 description: "Confirm the sanctioned headless dispatch shape reaches the llmgateway provider, answers on stdout, and emits `session_id:` on stderr with exit 0 for `HERMES-001`."
+version: 1.0.0.0
 ---
 
 # HERMES-001 -- Sanctioned headless smoke

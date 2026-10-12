@@ -5,6 +5,7 @@ trigger_phrases:
   - "magicpath list projects tool"
   - "list projects magicpath"
   - "magicpath projects inventory"
+version: 1.0.0.0
 ---
 
 # list_projects

@@ -6,6 +6,7 @@ trigger_phrases:
   - "fallback-router-typed-reroute"
   - "fallback-router typed reroute runtime"
   - "executor fallback-router typed reroute"
+version: 1.4.0.15
 ---
 
 # Fallback-router typed reroute

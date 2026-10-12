@@ -1,6 +1,7 @@
 ---
 title: "DR-033 -- Research graph-aware stop gate surfaces convergence verdict and workflow hooks"
 description: "Verify that graph_convergence reducer fields render in registry and dashboard, and that the research auto workflow calls graph upsert plus convergence before the inline stop vote."
+version: 1.14.0.14
 ---
 
 # DR-033 -- Research graph-aware stop gate surfaces convergence verdict and workflow hooks

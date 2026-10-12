@@ -8,6 +8,7 @@ expected_intent: PARALLEL_DETACHED
 expected_resources: 
   - references/integration-patterns.md
   - assets/prompt-templates.md
+version: 1.4.0.6
 ---
 
 # CO-R02: Parallel detached routing

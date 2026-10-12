@@ -10,6 +10,7 @@ trigger_phrases:
   - "iconic rules companion markdown"
 importance_tier: "normal"
 contextType: "implementation"
+version: 0.7.0.0
 ---
 
 # Iconic Full Rulebook — Usage Guide

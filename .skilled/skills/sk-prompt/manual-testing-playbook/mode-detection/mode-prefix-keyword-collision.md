@@ -1,6 +1,7 @@
 ---
 title: "SP-004 -- Mode prefix wins over keyword scoring"
 description: "This scenario validates prefix-vs-keyword precedence for `SP-004`. It focuses on confirming an explicit `$` prefix overrides keyword-weighted INTENT_MODEL scoring even when keyword density is high."
+version: 2.3.0.4
 ---
 
 # SP-004 -- Mode prefix wins over keyword scoring

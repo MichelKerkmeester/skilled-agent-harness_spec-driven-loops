@@ -7,6 +7,7 @@ trigger_phrases:
   - "list status schema"
   - "status discovery by list id"
   - "query statuses for list"
+version: 1.0.0.3
 ---
 
 # Status Schema by List

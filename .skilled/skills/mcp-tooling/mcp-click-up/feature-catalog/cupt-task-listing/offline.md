@@ -7,6 +7,7 @@ trigger_phrases:
   - "cache-backed task listing"
   - "no network task fetch"
   - "offline task query"
+version: 1.0.0.3
 ---
 
 # Offline Listing

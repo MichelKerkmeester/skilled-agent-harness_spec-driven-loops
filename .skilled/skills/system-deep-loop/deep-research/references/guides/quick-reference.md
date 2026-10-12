@@ -10,6 +10,7 @@ trigger_phrases:
   - "research progress visualization"
 importance_tier: normal
 contextType: general
+version: 1.14.0.26
 ---
 
 # Deep Research Quick Reference

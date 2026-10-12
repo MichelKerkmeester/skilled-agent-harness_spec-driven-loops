@@ -9,6 +9,7 @@ trigger_phrases:
   - "how much white space"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.0
 ---
 
 # Build Procedure

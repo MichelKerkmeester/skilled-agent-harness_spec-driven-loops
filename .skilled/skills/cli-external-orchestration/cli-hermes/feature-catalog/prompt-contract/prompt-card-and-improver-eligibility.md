@@ -6,6 +6,7 @@ trigger_phrases:
   - "check-prompt-quality-card-sync"
   - "cli-hermes prompt card"
   - "prompt-improver hermes eligibility row"
+version: 1.0.0.0
 ---
 
 # Prompt-Quality Card Sync And Prompt-Improver Eligibility

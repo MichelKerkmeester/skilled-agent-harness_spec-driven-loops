@@ -8,6 +8,7 @@ expected_intent: TASK
 expected_resources:
   - references/aside-cli-reference.md
   - references/session-management.md
+version: 1.1.0.0
 ---
 
 # AD-R01: Task routing

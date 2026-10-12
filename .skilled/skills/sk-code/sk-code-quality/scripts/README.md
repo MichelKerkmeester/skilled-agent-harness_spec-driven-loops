@@ -1,6 +1,7 @@
 ---
 title: "Scripts: comment-hygiene, dist-staleness and ceiling-report checkers"
 description: "The sk-code-quality skill's standalone checkers, including the ceiling-marker report, and pointers to the hook adapters and shared dispatch table that wire them into editor tool calls."
+version: 1.0.0.0
 ---
 
 # Scripts

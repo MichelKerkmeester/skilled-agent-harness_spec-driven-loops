@@ -1,6 +1,7 @@
 ---
 title: "DOC-362 -- Doctor skill-advisor tune"
 description: "Manual scenario validating that /doctor:skill-advisor tune re-tunes the scoring lanes only after a per-skill review, rebuilds the graph, verifies the result and leaves a working per-run rollback script."
+version: 1.1.0.0
 id: doctor-commands-doctor-skill-advisor-tune
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

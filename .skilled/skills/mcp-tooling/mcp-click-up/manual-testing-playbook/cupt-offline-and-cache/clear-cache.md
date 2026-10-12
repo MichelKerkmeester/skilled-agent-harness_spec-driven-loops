@@ -1,6 +1,7 @@
 ---
 title: "CU-031 -- Clear Cache"
 description: "This scenario validates Clear Cache for `CU-031`. Objective: Verify `cupt config --clear-cache` removes cached data, forcing fresh API fetch."
+version: 1.0.0.5
 ---
 
 # CU-031 -- Clear Cache

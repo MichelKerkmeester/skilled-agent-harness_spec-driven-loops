@@ -6,6 +6,7 @@ trigger_phrases:
   - "python shim stdin"
   - "skill_advisor.py stdin"
   - "compat shim stdin"
+version: 0.8.0.13
 id: PC-001
 category: python_compat
 stage: routing

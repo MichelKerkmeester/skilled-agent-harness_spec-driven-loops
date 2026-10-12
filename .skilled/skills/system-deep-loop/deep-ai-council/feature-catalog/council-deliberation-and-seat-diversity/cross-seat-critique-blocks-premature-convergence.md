@@ -7,6 +7,7 @@ trigger_phrases:
   - "require critique before convergence"
   - "premature agreement prevention"
   - "pressure-test plan with council"
+version: 1.7.0.9
 ---
 
 # Cross-seat critique blocks premature convergence

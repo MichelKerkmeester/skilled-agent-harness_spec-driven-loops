@@ -7,6 +7,7 @@ trigger_phrases:
   - "notion workspace"
   - "notion database"
   - "notion page"
+version: 0.1.0.0
 ---
 
 # mcp-notion

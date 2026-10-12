@@ -6,6 +6,7 @@ trigger_phrases:
   - "cli-cursor hook adapters"
   - "Cursor preToolUse spec gate"
   - "Cursor hooks.json shared configuration"
+version: 1.4.0.11
 ---
 
 # Cursor CLI Hooks And Spec-Gate Integration (cli-cursor)

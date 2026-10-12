@@ -9,6 +9,7 @@ trigger_phrases:
   - "github release changelog option"
 importance_tier: normal
 contextType: implementation
+version: 1.1.0.9
 ---
 
 # create-changelog References. Overflow Map

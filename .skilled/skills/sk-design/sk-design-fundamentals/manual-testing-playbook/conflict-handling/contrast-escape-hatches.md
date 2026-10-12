@@ -3,6 +3,7 @@ title: "SKD-021 -- Contrast failure offers both escape hatches"
 description: "This scenario validates Contrast failure offers both escape hatches for `SKD-021`. It focuses on confirm a brand color that cannot reach its ratio produces two options and an escalation, not a silent recolor."
 stage: routing
 id: "SKD-021"
+version: 1.0.0.0
 ---
 
 # SKD-021 -- Contrast failure offers both escape hatches

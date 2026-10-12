@@ -5,6 +5,7 @@ trigger_phrases:
   - "Add a vault"
   - "notesmd-cli add-vault"
   - "register an Obsidian vault"
+version: 0.1.0.0
 ---
 
 # Add a vault (`notesmd-cli add-vault`)

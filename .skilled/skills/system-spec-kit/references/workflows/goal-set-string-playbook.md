@@ -12,6 +12,7 @@ trigger_phrases:
   - "durable slice"
 importance_tier: normal
 contextType: implementation
+version: 1.12.0.0
 ---
 
 # Goal Set-String Playbook

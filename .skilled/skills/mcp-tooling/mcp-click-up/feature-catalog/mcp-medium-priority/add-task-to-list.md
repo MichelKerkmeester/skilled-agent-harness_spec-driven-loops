@@ -5,6 +5,7 @@ trigger_phrases:
   - "clickup_add_task_to_list"
   - "add task to another list"
   - "tasks in multiple lists"
+version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

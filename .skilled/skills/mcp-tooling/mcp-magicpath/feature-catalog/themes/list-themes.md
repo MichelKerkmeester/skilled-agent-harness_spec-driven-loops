@@ -5,6 +5,7 @@ trigger_phrases:
   - "magicpath list themes tool"
   - "list themes magicpath"
   - "magicpath design systems"
+version: 1.0.0.0
 ---
 
 # list_themes

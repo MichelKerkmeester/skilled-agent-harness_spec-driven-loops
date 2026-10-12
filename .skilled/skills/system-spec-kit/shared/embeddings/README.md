@@ -6,6 +6,7 @@ trigger_phrases:
   - "embedding provider selection"
   - "embedding profile"
   - "embedder auto-select"
+version: 1.0.0.0
 ---
 
 # Embeddings

@@ -5,6 +5,7 @@ trigger_phrases:
   - "List data source templates"
   - "notion_list-data-source-templates"
   - "see the page templates on a Notion data source"
+version: 0.1.0.0
 ---
 
 # List data source templates (`notion_list-data-source-templates`)

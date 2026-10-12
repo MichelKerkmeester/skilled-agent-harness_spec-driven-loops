@@ -1,6 +1,7 @@
 ---
 title: "DRV-034 -- Review reducer fails closed on corruption and missing anchors"
 description: "Verify that malformed JSONL exits 2 unless --lenient is passed, and missing machine-owned anchors block reducer writes unless --create-missing-anchors is used."
+version: 1.11.0.14
 ---
 
 # DRV-034 -- Review reducer fails closed on corruption and missing anchors

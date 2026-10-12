@@ -1,6 +1,7 @@
 ---
 title: "285 -- Skill graph validate"
 description: "Manual scenario for validating skill_graph_validate diagnostics."
+version: 0.8.0.7
 id: NC-009
 category: native_cli_tools
 stage: routing

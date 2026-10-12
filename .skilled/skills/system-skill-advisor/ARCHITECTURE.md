@@ -8,6 +8,7 @@ trigger_phrases:
   - "advisor daemon"
   - "skill graph"
 importance_tier: "important"
+version: 1.0.0.0
 ---
 
 # Architecture: system-skill-advisor

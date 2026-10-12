@@ -15,6 +15,7 @@ expected_resources:
   - assets/checklists/command-authoring.md
   - assets/checklists/skill-authoring.md
   - assets/checklists/mcp-server-authoring.md
+version: 1.0.0.0
 ---
 
 # OC-006: Implementation authoring routing

@@ -1,6 +1,7 @@
 ---
 title: "Fan-out native sequential review dispatch"
 description: "Validate that native fan-out dispatches sequential agent: deep-review runs (not deep-research) with per-lineage isolated artifact dirs."
+version: 1.11.0.3
 ---
 
 # DRV-066 -- Fan-out native sequential review dispatch

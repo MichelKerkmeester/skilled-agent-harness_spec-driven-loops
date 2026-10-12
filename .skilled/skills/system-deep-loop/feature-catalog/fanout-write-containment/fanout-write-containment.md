@@ -6,6 +6,7 @@ trigger_phrases:
   - "preserve rather than revert out-of-scope writes"
   - "unattributed out-of-scope writes"
   - "shared checkout churn detection"
+version: 1.0.0.0
 ---
 
 # Fan-Out Write Containment (system-deep-loop)

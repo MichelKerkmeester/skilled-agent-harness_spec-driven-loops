@@ -7,6 +7,7 @@ trigger_phrases:
   - "repair corrupted jsonl"
   - "corrupt-tail truncation"
   - "append after repair"
+version: 1.4.0.4
 ---
 
 # JSONL repair

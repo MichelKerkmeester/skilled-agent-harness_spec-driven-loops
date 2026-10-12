@@ -7,6 +7,7 @@ trigger_phrases:
   - "rust style guidance"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.0
 ---
 
 # Rust/TypeScript Interop — Model & Boundary Types

@@ -8,6 +8,7 @@ trigger_phrases:
   - "mobbin registered manual"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.0
 ---
 
 # Mobbin Code Mode Manual - registered reference shape

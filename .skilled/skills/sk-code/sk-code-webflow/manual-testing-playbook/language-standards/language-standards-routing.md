@@ -27,6 +27,7 @@ expected_resources:
   - references/javascript/quality-standards/shared-listener-and-weakmap.md
   - references/javascript/quality-standards/enforcement-and-quick-reference.md
   - references/javascript/quick-reference.md
+version: 1.0.0.0
 ---
 
 # WF-013: Language standards routing

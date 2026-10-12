@@ -5,6 +5,7 @@ trigger_phrases:
   - "Retrieve a page"
   - "notion_retrieve-a-page"
   - "read a Notion page's properties"
+version: 0.1.0.0
 ---
 
 # Retrieve a page (`notion_retrieve-a-page`)

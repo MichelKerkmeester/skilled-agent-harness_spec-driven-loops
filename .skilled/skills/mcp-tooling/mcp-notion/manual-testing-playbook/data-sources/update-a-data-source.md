@@ -2,6 +2,7 @@
 title: "DS-004 -- Update a data source"
 description: "This scenario validates a scratch data-source schema edit through the confirmed notion_update-a-data-source tool."
 stage: routing
+version: 0.1.0.0
 ---
 
 # DS-004 -- Update a data source

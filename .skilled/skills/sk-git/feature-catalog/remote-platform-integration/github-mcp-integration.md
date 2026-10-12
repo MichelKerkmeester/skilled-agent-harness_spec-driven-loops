@@ -6,6 +6,7 @@ trigger_phrases:
   - "remote github operations"
   - "create pull request programmatically"
   - "github issue management tools"
+version: 1.0.0.0
 ---
 
 # GitHub MCP integration (github.github_*)

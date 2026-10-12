@@ -5,6 +5,7 @@ trigger_phrases:
   - "notion async task poll"
   - "GAP-004"
   - "poll a notion async task"
+version: 0.1.0.0
 ---
 
 # Async-Task Polling (direct API -- GAP-004)

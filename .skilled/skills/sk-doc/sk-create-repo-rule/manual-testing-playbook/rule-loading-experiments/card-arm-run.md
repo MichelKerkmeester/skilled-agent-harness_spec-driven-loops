@@ -2,6 +2,7 @@
 title: "RRX-003 -- Card arm run"
 description: "This scenario validates the card arm run for `RRX-003`. It focuses on scoring write tasks against the full-rule and card arms for Gate 5 miss, reply-rule miss, card fallback and delivered rule bytes, and on why a resident-card arm is not built."
 stage: routing
+version: 1.0.0.0
 ---
 
 # RRX-003 -- Card arm run

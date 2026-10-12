@@ -1,6 +1,7 @@
 ---
 title: "BDG-001 -- Install + version"
 description: "This scenario validates the bdg CLI install + version surface for `BDG-001`. It focuses on confirming bdg is on PATH and reports a version string."
+version: 1.0.0.6
 ---
 
 # BDG-001 -- Install + version

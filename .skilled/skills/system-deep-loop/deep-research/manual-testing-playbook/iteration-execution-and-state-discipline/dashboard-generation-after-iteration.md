@@ -1,6 +1,7 @@
 ---
 title: "DR-024 -- Dashboard generation after iteration"
 description: "Verify dashboard.md is auto-generated after iteration evaluation with correct content."
+version: 1.14.0.17
 ---
 
 # DR-024 -- Dashboard generation after iteration

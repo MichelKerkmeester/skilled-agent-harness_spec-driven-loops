@@ -209,6 +209,7 @@ def scaffold_playbook_tree(skill_dir: Path, skill_name: str) -> None:
         f'  - "{skill_name} playbook"',
         'importance_tier: "important"',
         'contextType: "general"',
+        f'version: {INITIAL_SKILL_VERSION}',
         '---',
         '',
         f'# {skill_name} Manual Testing Playbook',

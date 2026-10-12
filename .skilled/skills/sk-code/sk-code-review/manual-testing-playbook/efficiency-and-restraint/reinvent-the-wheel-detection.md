@@ -1,6 +1,7 @@
 ---
 title: "CR-020 -- Reinvent-the-wheel detection"
 description: "This scenario validates reinvent-the-wheel detection for `CR-020`. It focuses on flagging hand-rolled code that duplicates a standard-library or native platform capability and recommending the built-in."
+version: 1.5.0.2
 ---
 
 # CR-020 -- Reinvent-the-wheel detection

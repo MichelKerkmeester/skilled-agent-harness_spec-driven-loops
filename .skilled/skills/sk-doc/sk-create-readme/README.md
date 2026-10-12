@@ -4,6 +4,7 @@ description: "Author current-state folder READMEs from real files, for anyone wr
 trigger_phrases:
   - "create readme"
   - "write a readme"
+version: 1.1.0.13
 ---
 
 # create-readme

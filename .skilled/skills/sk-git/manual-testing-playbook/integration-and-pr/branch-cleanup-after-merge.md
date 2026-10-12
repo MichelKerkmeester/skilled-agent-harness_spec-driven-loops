@@ -1,6 +1,7 @@
 ---
 title: "GIT-015 -- Branch cleanup after merge"
 description: "This scenario validates Branch cleanup after merge for `GIT-015`. It focuses on verify worktree and branch cleanup happens after successful merge."
+version: 1.1.0.3
 ---
 
 # GIT-015 -- Branch cleanup after merge

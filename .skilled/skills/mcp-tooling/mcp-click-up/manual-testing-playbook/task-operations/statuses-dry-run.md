@@ -1,6 +1,7 @@
 ---
 title: "CU-023 -- Status Schema + Dry-Run — CRITICAL PATH"
 description: "This scenario validates Status Schema + Dry-Run — CRITICAL PATH for `CU-023`. Objective: Verify `cupt statuses TASK_ID` lists statuses and `cupt done TASK_ID --dry-run` ."
+version: 1.0.0.6
 ---
 
 # CU-023 -- Status Schema + Dry-Run — CRITICAL PATH

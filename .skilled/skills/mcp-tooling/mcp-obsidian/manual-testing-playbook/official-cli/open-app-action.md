@@ -2,6 +2,7 @@
 title: "OBS-010 -- Open an app-backed target"
 description: "This scenario validates a local-help-confirmed official obsidian CLI app action and records URI syntax as VERIFY."
 stage: routing
+version: 0.1.0.0
 ---
 
 # OBS-010 -- Open an app-backed target

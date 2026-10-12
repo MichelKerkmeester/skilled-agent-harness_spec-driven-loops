@@ -5,6 +5,7 @@ trigger_phrases:
   - "mcp session cleanup"
   - "close browser pages finally"
   - "chrome mcp cleanup"
+version: 1.0.0.0
 ---
 
 # Session Cleanup (MCP)

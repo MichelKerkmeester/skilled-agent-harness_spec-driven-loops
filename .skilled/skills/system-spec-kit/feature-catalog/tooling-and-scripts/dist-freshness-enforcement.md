@@ -7,6 +7,7 @@ trigger_phrases:
   - "checkPackageFreshness"
   - "compiled validation orchestrator is stale"
   - "STALE DIST WARNING"
+version: 1.0.0.0
 ---
 
 # Dist-freshness enforcement

@@ -7,6 +7,7 @@ trigger_phrases:
   - "list task statuses"
   - "closed status discovery"
   - "valid status names for list"
+version: 1.0.0.3
 ---
 
 # Status Schema by Task

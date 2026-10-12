@@ -1,6 +1,7 @@
 ---
 title: "BDG-011 -- Console list"
 description: "This scenario validates console message retrieval for `BDG-011`. It focuses on confirming `bdg console --list` returns a JSON array containing a message logged from the active page."
+version: 1.0.0.7
 ---
 
 # BDG-011 -- Console list

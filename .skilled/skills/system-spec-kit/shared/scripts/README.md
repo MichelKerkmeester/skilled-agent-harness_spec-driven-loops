@@ -5,6 +5,7 @@ trigger_phrases:
   - "shared scripts"
   - "env reader table"
   - "configuration table drift"
+version: 1.0.0.0
 ---
 
 # shared/scripts: README Configuration Table Derivation

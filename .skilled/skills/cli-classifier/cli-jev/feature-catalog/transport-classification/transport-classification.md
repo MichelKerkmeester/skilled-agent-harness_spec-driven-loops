@@ -7,6 +7,7 @@ trigger_phrases:
   - "jev packetKind"
 importance_tier: "important"
 contextType: "reference"
+version: 0.1.0.3
 ---
 
 # Transport classification

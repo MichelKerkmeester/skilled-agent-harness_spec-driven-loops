@@ -1,6 +1,7 @@
 ---
 title: "CU-029 -- Timer Lifecycle — start, status, stop"
 description: "This scenario validates Timer Lifecycle — start, status, stop for `CU-029`. Objective: Verify timer start/status/stop lifecycle: start exits 0, status shows running ti."
+version: 1.0.0.6
 ---
 
 # CU-029 -- Timer Lifecycle — start, status, stop

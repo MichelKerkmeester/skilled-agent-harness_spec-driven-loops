@@ -5,6 +5,7 @@ trigger_phrases:
   - "create-diff scripts"
   - "diff engine"
   - "report validator"
+version: 1.0.0.0
 ---
 
 # create-diff scripts

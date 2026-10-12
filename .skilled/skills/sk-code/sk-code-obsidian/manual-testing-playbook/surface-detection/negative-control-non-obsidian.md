@@ -6,6 +6,7 @@ description: "This scenario validates that a target carrying no Obsidian markers
 expected_surface: UNKNOWN
 expected_intent: "N/A — no surface resolves"
 expected_resources: []
+version: 1.0.0.0
 ---
 
 # OB-021: Negative control -- non-OBSIDIAN target resolves no surface

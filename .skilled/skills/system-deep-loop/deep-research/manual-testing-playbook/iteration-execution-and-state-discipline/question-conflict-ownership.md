@@ -1,6 +1,7 @@
 ---
 title: "DR-057 -- Question conflict ownership"
 description: "Verify that inbox and registry question disagreements emit conflict events instead of overwriting strategy markdown."
+version: 1.14.0.21
 ---
 
 # DR-057 -- Question conflict ownership

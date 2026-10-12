@@ -6,6 +6,7 @@ trigger_phrases:
   - "generation tied cache"
   - "prompt cache invalidation"
   - "targeted invalidation"
+version: 0.8.0.13
 ---
 
 # Generation-Tied Cache Invalidation

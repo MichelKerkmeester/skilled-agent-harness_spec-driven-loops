@@ -7,6 +7,7 @@ trigger_phrases:
   - "salvage fanout lineage"
   - "recover iteration from stdout"
   - "salvaged_from_stdout event"
+version: 1.4.0.3
 ---
 
 # Fan-out write-failure salvage

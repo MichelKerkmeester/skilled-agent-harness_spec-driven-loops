@@ -1,6 +1,7 @@
 ---
 title: "DOC-375 -- Doctor mcp install"
 description: "Manual scenario validating that /doctor:mcp install builds Code Mode, updates .utcp_config.json and registers the selected runtime, with an explicit approval requested before each write."
+version: 1.2.0.0
 id: doctor-commands-doctor-mcp-install
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

@@ -8,6 +8,7 @@ trigger_phrases:
   - "registered aside manual"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.0
 ---
 
 # Aside Code Mode Manual - registered snapshot

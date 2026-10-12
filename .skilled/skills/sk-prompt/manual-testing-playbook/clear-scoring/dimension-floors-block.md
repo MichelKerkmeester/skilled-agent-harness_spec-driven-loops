@@ -1,6 +1,7 @@
 ---
 title: "SP-016 -- CLEAR dimension floors trigger re-score"
 description: "This scenario validates CLEAR dimension-floor enforcement for `SP-016`. It focuses on re-iteration when any dimension falls below its floor."
+version: 2.3.0.5
 ---
 
 # SP-016 -- CLEAR dimension floors trigger re-score

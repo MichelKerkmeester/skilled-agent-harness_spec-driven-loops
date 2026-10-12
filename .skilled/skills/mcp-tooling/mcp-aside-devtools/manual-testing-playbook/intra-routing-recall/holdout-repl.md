@@ -9,6 +9,7 @@ expected_resources:
   - references/aside-cli-reference.md
   - references/session-management.md
 blindToRouterKeywords: true
+version: 1.1.0.0
 ---
 
 # AD-H01: Blind holdout: scripted evidence

@@ -28,6 +28,7 @@ expected_resources:
   - assets/integrations/README.md
   - assets/patterns/README.md
   - assets/templates/README.md
+version: 1.0.0.0
 ---
 
 # WF-001: Implementation routing

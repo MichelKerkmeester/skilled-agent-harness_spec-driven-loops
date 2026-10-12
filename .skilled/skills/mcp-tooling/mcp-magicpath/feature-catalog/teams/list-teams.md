@@ -5,6 +5,7 @@ trigger_phrases:
   - "magicpath list teams tool"
   - "list teams magicpath"
   - "magicpath teams role"
+version: 1.0.0.0
 ---
 
 # list_teams

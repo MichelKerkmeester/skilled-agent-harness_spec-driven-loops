@@ -8,6 +8,7 @@ trigger_phrases:
   - "orca simulator evidence"
 importance_tier: normal
 contextType: general
+version: 1.0.0.0
 ---
 
 # Official Orca Skill - Orca Emulator (iOS)

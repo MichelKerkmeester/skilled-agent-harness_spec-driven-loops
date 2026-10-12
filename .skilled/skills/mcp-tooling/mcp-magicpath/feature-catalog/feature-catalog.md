@@ -6,6 +6,7 @@ trigger_phrases:
   - "magicpath feature catalog"
   - "magicpath capabilities"
 last_updated: "2026-08-29"
+version: 1.0.0.0
 ---
 
 # mcp-magicpath: Feature Catalog

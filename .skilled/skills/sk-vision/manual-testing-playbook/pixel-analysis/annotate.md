@@ -1,6 +1,7 @@
 ---
 title: "VSN-011 -- Annotation"
 description: "This scenario validates Annotation for `VSN-011`. It focuses on boxes or points drawn onto an image."
+version: 1.0.0.0
 ---
 
 # VSN-011 -- Annotation

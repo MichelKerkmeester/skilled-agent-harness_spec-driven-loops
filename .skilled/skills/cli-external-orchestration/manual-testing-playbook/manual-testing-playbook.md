@@ -1,6 +1,7 @@
 ---
 title: "cli-external-orchestration: Manual Testing Playbook"
 description: "Operator-facing index for cli-external-orchestration hub-routing validation: does the advisor resolve cli-opencode vs cli-claude-code correctly through mode-registry.json and hub-router.json."
+version: 1.4.0.12
 ---
 
 # cli-external-orchestration: Manual Testing Playbook

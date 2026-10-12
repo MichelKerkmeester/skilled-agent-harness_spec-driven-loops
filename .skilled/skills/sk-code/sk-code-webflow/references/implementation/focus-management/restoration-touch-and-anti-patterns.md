@@ -8,6 +8,7 @@ trigger_phrases:
   - "webflow focus restoration"
 importance_tier: normal
 contextType: implementation
+version: 1.5.0.4
 ---
 
 # Focus Restoration, Touch Detection, Anti-Patterns & Checklist

@@ -11,6 +11,7 @@ trigger_phrases:
   - "council strategy count"
 importance_tier: "normal"
 contextType: "planning"
+version: 1.7.0.10
 ---
 
 # AI Council Seat Diversity Patterns

@@ -1,3 +1,9 @@
+---
+title: "sk-vision on Devin"
+description: "Devin gets image evidence from the UserPromptSubmit hook automatically; this note is the optional Knowledge fallback for when the hook stays silent."
+version: 1.0.0.0
+---
+
 # sk-vision on Devin: automatic injection, with a manual fallback
 
 Devin needs no standing instruction for the common case. `hooks/devin/sk-vision.mjs` is

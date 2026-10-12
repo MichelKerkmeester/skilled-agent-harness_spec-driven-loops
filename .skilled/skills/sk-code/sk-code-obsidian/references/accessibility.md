@@ -10,6 +10,7 @@ trigger_phrases:
   - "urgency glyph deuteranope"
 importance_tier: normal
 contextType: implementation
+version: 0.1.0.0
 ---
 
 # Accessibility — Source-Verified, Not Session-Verified

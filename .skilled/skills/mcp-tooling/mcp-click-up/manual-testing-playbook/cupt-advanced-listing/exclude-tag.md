@@ -1,6 +1,7 @@
 ---
 title: "CU-013 -- Exclude by Tag — --no-tag"
 description: "This scenario validates Exclude by Tag — --no-tag for `CU-013`. Objective: Verify `cupt list --no-tag <name> --json` excludes tasks with that tag."
+version: 1.0.0.5
 ---
 
 # CU-013 -- Exclude by Tag — --no-tag

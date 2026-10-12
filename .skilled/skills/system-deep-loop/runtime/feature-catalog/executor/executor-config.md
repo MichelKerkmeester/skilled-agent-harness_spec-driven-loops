@@ -7,6 +7,7 @@ trigger_phrases:
   - "configure executor"
   - "permission-mode normalization"
   - "deep-loop dispatch configuration"
+version: 1.4.0.4
 ---
 
 # Executor config

@@ -9,6 +9,7 @@ trigger_phrases:
   - "subagent delegation"
   - "second opinion"
   - "cross-validate"
+version: 1.4.0.11
 ---
 
 # cli-devin

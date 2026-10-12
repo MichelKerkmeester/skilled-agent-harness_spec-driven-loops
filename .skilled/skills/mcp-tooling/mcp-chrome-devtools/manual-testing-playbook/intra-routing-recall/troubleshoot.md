@@ -7,6 +7,7 @@ description: "This scenario validates TROUBLESHOOT routing for `CD-R04`. It focu
 expected_intent: TROUBLESHOOT
 expected_resources:
   - references/troubleshooting.md
+version: 1.0.0.1
 ---
 
 # CD-R04: Troubleshoot routing

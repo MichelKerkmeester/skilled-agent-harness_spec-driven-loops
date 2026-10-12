@@ -6,6 +6,7 @@ trigger_phrases:
   - "gitlens launchpad"
   - "gitlens commit composer"
   - "cross-platform pull request"
+version: 1.0.0.0
 ---
 
 # GitKraken MCP integration (gitkraken.gitkraken_*)

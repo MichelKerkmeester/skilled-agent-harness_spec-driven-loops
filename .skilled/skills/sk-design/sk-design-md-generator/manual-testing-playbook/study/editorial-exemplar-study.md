@@ -2,6 +2,7 @@
 title: "STUDY-015 -- Editorial Exemplar Study"
 description: "This scenario validates exemplar study for `STUDY-015`. It focuses on confirming a non-SaaS editorial or ecommerce exemplar is studied for role naming and section treatment rather than copied as a style preset."
 id: "STUDY-015"
+version: 1.0.1.0
 expected_intent: STUDY
 expected_resources:
   - references/design-md-format.md

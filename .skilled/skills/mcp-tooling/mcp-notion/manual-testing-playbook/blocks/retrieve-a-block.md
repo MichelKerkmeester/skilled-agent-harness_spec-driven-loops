@@ -2,6 +2,7 @@
 title: "BLK-001 -- Retrieve a block"
 description: "This scenario validates a read-only single-block fetch through the confirmed notion_retrieve-a-block tool against a scratch page's own block."
 stage: routing
+version: 0.1.0.0
 ---
 
 # BLK-001 -- Retrieve a block

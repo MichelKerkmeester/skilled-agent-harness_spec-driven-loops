@@ -8,6 +8,7 @@ trigger_phrases:
   - "coverage_edges table"
 importance_tier: normal
 contextType: implementation
+version: 1.4.0.4
 ---
 
 # Deep Loop Runtime Coverage Graph Schema

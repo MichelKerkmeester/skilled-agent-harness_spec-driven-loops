@@ -7,6 +7,7 @@ trigger_phrases:
   - "cache-backed offline operation"
   - "no api call mode"
   - "offline flag for cupt"
+version: 1.0.0.3
 ---
 
 # Offline Mode Flag

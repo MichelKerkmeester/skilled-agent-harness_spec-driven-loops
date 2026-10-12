@@ -8,6 +8,7 @@ expected_intent: AGENT_DISPATCH
 expected_resources: 
   - references/agent-delegation.md
   - assets/prompt-templates.md
+version: 1.4.0.6
 ---
 
 # CO-R04: Agent dispatch routing

@@ -7,6 +7,7 @@ trigger_phrases:
   - "workflow vs transport routing"
   - "mcp-tooling compiled routing"
 last_updated: "2026-09-20"
+version: 1.2.0.0
 ---
 
 # mcp-tooling: Feature Catalog

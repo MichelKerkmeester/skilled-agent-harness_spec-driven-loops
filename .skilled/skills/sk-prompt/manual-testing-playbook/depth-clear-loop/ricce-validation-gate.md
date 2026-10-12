@@ -1,6 +1,7 @@
 ---
 title: "SP-012 -- RICCE validation gate"
 description: "This scenario validates RICCE completeness for `SP-012`. It focuses on ensuring Role, Instructions, Context, Constraints, and Examples are present or justified."
+version: 2.3.0.5
 ---
 
 # SP-012 -- RICCE validation gate

@@ -8,6 +8,7 @@ trigger_phrases:
   - "design intent vs slop"
 importance_tier: normal
 contextType: general
+version: 1.0.0.0
 ---
 
 # Design Principles Digest

@@ -7,6 +7,7 @@ trigger_phrases:
   - "set up research session"
   - "canonical state files"
   - "lineage mode"
+version: 1.14.0.8
 ---
 
 # Initialization

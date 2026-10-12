@@ -5,6 +5,7 @@ trigger_phrases:
   - "clickup_create_document_page"
   - "create doc page"
   - "add page to document"
+version: 1.1.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

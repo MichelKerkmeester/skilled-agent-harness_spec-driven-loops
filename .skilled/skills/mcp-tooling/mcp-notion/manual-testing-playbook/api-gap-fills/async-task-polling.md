@@ -2,6 +2,7 @@
 title: "GAP-004 -- Async-Task Polling"
 description: "This scenario validates polling the direct async-tasks endpoint to completion for a long-running local-backend operation, or documents the named SKIP blocker when no task id is available."
 stage: routing
+version: 0.1.0.0
 ---
 
 # GAP-004 -- Async-Task Polling

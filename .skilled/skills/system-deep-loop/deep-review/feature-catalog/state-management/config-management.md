@@ -7,6 +7,7 @@ trigger_phrases:
   - "review packet contract"
   - "immutable lineage config"
   - "file-protection map"
+version: 1.11.0.6
 ---
 
 # Config management

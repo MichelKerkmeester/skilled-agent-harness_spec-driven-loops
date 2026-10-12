@@ -5,6 +5,7 @@ trigger_phrases:
   - "refero search screens tool"
   - "search screens refero"
   - "screen search refero"
+version: 1.0.0.0
 ---
 
 # refero_search_screens

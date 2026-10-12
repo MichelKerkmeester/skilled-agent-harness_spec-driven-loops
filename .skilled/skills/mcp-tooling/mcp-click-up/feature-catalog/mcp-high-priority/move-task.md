@@ -5,6 +5,7 @@ trigger_phrases:
   - "clickup_move_task"
   - "move task"
   - "change task list"
+version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -4,6 +4,7 @@ description: "Code-facing README for .skilled/skills/system-deep-loop/deep-ai-co
 trigger_phrases:
   - "deep-ai-council scripts"
   - "code README"
+version: 1.0.0.0
 ---
 
 # deep ai council scripts

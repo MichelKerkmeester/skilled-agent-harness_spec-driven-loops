@@ -7,6 +7,7 @@ trigger_phrases:
   - "validate skill graph schema"
   - "broken edges dependency cycles"
   - "reciprocal symmetry drift"
+version: 0.8.0.11
 ---
 
 # Skill graph validate

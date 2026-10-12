@@ -1,6 +1,7 @@
 ---
 title: "DR-010 -- Progressive synthesis behavior for research/research.md"
 description: "Verify that `research/research.md` remains workflow-owned while progressive updates are allowed when `progressiveSynthesis` is enabled."
+version: 1.14.0.16
 ---
 
 # DR-010 -- Progressive synthesis behavior for research/research.md

@@ -1,6 +1,7 @@
 ---
 title: "GIT-034 -- Reaper dry-run changes nothing"
 description: "This scenario validates dry-run safety for `GIT-034`. It focuses on prove --dry-run prints the exact prune, remove, and branch-delete actions it would take without mutating any worktree, branch, or marker."
+version: 1.0.0.0
 ---
 
 # GIT-034 -- Reaper dry-run changes nothing

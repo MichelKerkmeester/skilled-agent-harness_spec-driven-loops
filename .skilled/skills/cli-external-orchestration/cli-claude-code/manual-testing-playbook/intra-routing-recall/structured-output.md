@@ -8,6 +8,7 @@ expected_intent: STRUCTURED_OUTPUT
 expected_resources: 
   - references/cli-reference.md
   - references/claude-tools.md
+version: 1.5.0.6
 ---
 
 # CC-R03: Structured output routing

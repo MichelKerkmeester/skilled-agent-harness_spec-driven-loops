@@ -7,6 +7,7 @@ trigger_phrases:
   - "reap only proven inactive worktrees"
   - "stale worktree socket cleanup"
 importance_tier: "important"
+version: 1.0.0.0
 ---
 
 # Worktree reaper (worktree-reaper.sh)

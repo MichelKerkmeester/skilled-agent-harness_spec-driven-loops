@@ -5,6 +5,7 @@ trigger_phrases:
   - "Register the official CLI"
   - "enable the obsidian CLI"
   - "Obsidian command line interface settings"
+version: 0.1.0.0
 ---
 
 # Register the official CLI (`obsidian`)

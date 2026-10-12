@@ -7,6 +7,7 @@ description: "This scenario validates the negative/out-of-domain control for `CD
 expected_intent: none
 expected_resources: []
 blindToRouterKeywords: false
+version: 1.0.0.1
 ---
 
 # CD-N01: Negative: out of domain

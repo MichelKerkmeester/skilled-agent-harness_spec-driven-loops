@@ -6,6 +6,7 @@ trigger_phrases:
   - "all_dimensions_clean pivot"
   - "read-only review pivot"
   - "review pivot council"
+version: 1.11.0.1
 ---
 
 # Divergent convergence mode

@@ -1,6 +1,7 @@
 ---
 title: "VSN-024 -- Text-only classifier and env overrides"
 description: "This scenario validates the shared classifier's identification rules and that a multimodal/unlisted model keeps the non-blocking 2-second grace so submission never stalls."
+version: 1.0.0.0
 ---
 
 # VSN-024 -- Text-only classifier and env overrides

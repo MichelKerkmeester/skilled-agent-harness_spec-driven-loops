@@ -1,6 +1,7 @@
 ---
 title: "DLR-027 -- Fan-out merge: research dedup and attribution"
 description: "Validate mergeResearchRegistries: deduplication by findingId, cross-lineage attribution array, total iteration count aggregation, and convergence score averaging."
+version: 1.4.0.4
 ---
 
 # DLR-027 -- Fan-out merge: research dedup and attribution

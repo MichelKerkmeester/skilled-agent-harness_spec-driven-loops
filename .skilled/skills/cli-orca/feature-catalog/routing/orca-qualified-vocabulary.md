@@ -6,6 +6,7 @@ trigger_phrases:
   - "cli-orca trigger signals"
   - "orca bare token routing"
   - "cli-orca negative holdouts"
+version: 1.0.0.0
 ---
 
 # Orca-qualified routing vocabulary (SKILL.md activation triggers)

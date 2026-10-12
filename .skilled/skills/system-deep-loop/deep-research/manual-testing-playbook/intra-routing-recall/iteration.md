@@ -9,6 +9,7 @@ expected_resources:
   - references/protocol/loop-protocol.md
   - references/state/state-outputs.md
   - references/convergence/convergence-signals.md
+version: 1.1.0.0
 ---
 
 # DR-R02: Deep research iteration routing

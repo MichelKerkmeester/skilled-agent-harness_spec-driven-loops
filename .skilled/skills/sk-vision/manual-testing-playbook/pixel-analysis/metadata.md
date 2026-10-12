@@ -1,6 +1,7 @@
 ---
 title: "VSN-008 -- Metadata extraction"
 description: "This scenario validates Metadata extraction for `VSN-008`. It focuses on format, dimensions, and EXIF summary."
+version: 1.0.0.0
 ---
 
 # VSN-008 -- Metadata extraction

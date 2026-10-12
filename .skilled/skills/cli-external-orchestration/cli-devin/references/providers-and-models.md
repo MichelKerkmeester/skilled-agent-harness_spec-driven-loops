@@ -10,6 +10,7 @@ trigger_phrases:
   - "devin model alias reference"
 importance_tier: normal
 contextType: implementation
+version: 1.4.0.18
 ---
 
 # cli-devin Providers, Models & Invocation

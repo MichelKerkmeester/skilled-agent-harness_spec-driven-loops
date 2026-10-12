@@ -8,6 +8,7 @@ trigger_phrases:
   - "hermes code mode server"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.0
 ---
 
 # Hermes MCP Policy

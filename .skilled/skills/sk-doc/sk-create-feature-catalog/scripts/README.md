@@ -1,6 +1,7 @@
 ---
 title: "Create Feature Catalog Scripts: cross-file catalog package validator"
 description: "Strict package-level validator that checks root-to-leaf bijection, source-file existence and validation-type taxonomy across a feature catalog."
+version: 1.0.0.0
 ---
 
 # Create Feature Catalog Scripts

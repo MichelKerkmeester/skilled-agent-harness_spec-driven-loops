@@ -1,6 +1,7 @@
 ---
 title: "GIT-029 -- Runtime identity validation"
 description: "This scenario validates Runtime identity validation for `GIT-029`. It focuses on prove the wrapper rejects a path-bearing or non-conforming runtime identity before allocating any worktree, and accepts a normal runtime name found on PATH."
+version: 1.0.0.0
 ---
 
 # GIT-029 -- Runtime identity validation

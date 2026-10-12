@@ -7,6 +7,7 @@ trigger_phrases:
   - "task details"
   - "full task record"
   - "inspect clickup task"
+version: 1.0.0.3
 ---
 
 # Show Task

@@ -6,6 +6,7 @@ trigger_phrases:
   - "magicpath whoami"
   - "magicpath session"
   - "magicpath reachability"
+version: 1.0.0.0
 ---
 
 # Session (info / whoami)

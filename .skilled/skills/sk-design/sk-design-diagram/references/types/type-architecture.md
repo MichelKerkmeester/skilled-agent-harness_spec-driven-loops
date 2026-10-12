@@ -10,6 +10,7 @@ trigger_phrases:
   - "bridge hop crossings"
 importance_tier: normal
 contextType: implementation
+version: 1.2.0.8
 ---
 
 # Architecture

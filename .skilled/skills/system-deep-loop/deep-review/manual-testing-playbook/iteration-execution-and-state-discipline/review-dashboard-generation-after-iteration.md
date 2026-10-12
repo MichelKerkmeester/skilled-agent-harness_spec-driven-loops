@@ -1,6 +1,7 @@
 ---
 title: "DRV-013 -- Review dashboard generation after iteration"
 description: "Verify that the review dashboard with Findings Summary, Progress Table, Coverage, and Trend is generated after each iteration."
+version: 1.11.0.14
 ---
 
 # DRV-013 -- Review dashboard generation after iteration

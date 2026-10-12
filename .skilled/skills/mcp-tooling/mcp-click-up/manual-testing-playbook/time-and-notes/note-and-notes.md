@@ -1,6 +1,7 @@
 ---
 title: "CU-027 -- Add Comment + List Comments"
 description: "This scenario validates Add Comment + List Comments for `CU-027`. Objective: Verify `cupt note TASK_ID text` adds a comment and `cupt notes TASK_ID` lists it."
+version: 1.0.0.6
 ---
 
 # CU-027 -- Add Comment + List Comments

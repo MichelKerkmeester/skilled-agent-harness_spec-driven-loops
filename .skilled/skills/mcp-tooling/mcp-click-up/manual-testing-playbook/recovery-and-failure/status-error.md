@@ -1,6 +1,7 @@
 ---
 title: "FAIL-003 -- Status Resolution Error"
 description: "This scenario validates Status Resolution Error for `FAIL-003`. Objective: Verify cupt provides a clear error when a list has no closed status defined."
+version: 1.0.0.6
 ---
 
 # FAIL-003 -- Status Resolution Error

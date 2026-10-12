@@ -8,6 +8,7 @@ trigger_phrases:
   - "content visibility optimization"
 importance_tier: normal
 contextType: implementation
+version: 1.5.0.2
 ---
 
 # Fluid Typography, Autofill, Color-Mix & Content-Visibility

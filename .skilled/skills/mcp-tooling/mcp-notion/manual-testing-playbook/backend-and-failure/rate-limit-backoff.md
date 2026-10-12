@@ -2,6 +2,7 @@
 title: "FAIL-003 -- Rate-Limit Backoff"
 description: "This scenario validates that the mode honors Notion's ~3 requests/second limit and backs off on 429 per Retry-After plus jitter, instead of a tight retry loop."
 stage: routing
+version: 0.1.0.0
 ---
 
 # FAIL-003 -- Rate-Limit Backoff

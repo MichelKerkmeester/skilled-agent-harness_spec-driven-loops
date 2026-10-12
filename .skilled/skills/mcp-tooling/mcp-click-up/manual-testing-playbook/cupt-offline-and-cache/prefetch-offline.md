@@ -1,6 +1,7 @@
 ---
 title: "CU-020 -- Prefetch + Offline Mode"
 description: "This scenario validates Prefetch + Offline Mode for `CU-020`. Objective: Verify `cupt prefetch` populates cache and `cupt show TASK_ID --offline` succeed."
+version: 1.0.0.5
 ---
 
 # CU-020 -- Prefetch + Offline Mode

@@ -5,6 +5,7 @@ trigger_phrases:
   - "figma-ds-cli"
   - "figma cli install"
   - "figma cli naming trap"
+version: 1.0.0.0
 ---
 
 # figma-cli

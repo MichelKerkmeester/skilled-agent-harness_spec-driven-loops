@@ -10,6 +10,7 @@ trigger_phrases:
   - "mass deletion guard blocked commit"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.0
 ---
 
 # Unsticking a Dirty or Behind Worktree

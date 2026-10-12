@@ -7,6 +7,7 @@ trigger_phrases:
   - "two-axis registry routing"
   - "sk-code compiled routing"
 last_updated: "2026-10-10"
+version: 1.0.0.0
 ---
 
 # sk-code: Feature Catalog

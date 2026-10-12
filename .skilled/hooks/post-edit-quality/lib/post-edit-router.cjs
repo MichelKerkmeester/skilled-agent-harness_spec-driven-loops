@@ -45,6 +45,13 @@ const SOURCE_EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.mjs', '.cjs', '.py', 
 const EXCLUDED_DIR_SEGMENTS = new Set(['dist', 'node_modules', '.git']);
 const SPEC_DOC_BASENAMES = new Set(['spec.md', 'plan.md', 'tasks.md', 'checklist.md', 'decision-record.md']);
 const WIKILINKS_ENABLE_ENV = 'SPECKIT_VALIDATE_LINKS';
+// Mirror frontmatter-version.mjs inScope(), so the version gate fires on exactly the
+// docs the checker validates: every doc under a skill except changelog entries, test
+// input, generated output and spec-doc examples.
+const VERSION_SKIPPED_DIRS = new Set(['changelog', 'scratch', 'node_modules', '.git', 'dist']);
+const VERSION_DOC_SUBTREES = new Set(['references', 'assets', 'feature-catalog', 'manual-testing-playbook']);
+const VERSION_TEST_DIRS = new Set(['tests', 'fixtures']);
+const VERSION_CORPUS_DIRS = new Set(['runtime', 'benchmark', 'behavior-benchmark']);
 
 const DEFAULT_MAX_FINDING_CHARS = 2000;
 const DEFAULT_MAX_FINDINGS = 20;
@@ -109,14 +116,19 @@ function isFlowchartCandidate(basename, segments) {
 }
 
 /**
- * Resolve the versioned-skill-doc scope for frontmatter-versions: true only
- * for a SKILL.md under a skill dir, because the version is the skill edition
- * and child docs carry none. Mirrors frontmatter-version.mjs's own
- * isSkillMd() so the router's match stays aligned with what the
- * checker itself actually validates.
+ * Resolve the versioned-skill-doc scope for frontmatter-versions. segments is the
+ * project-relative path, so the dirs inside the skills root start at index 2. Mirrors
+ * frontmatter-version.mjs's own inScope() so the router's match stays aligned with
+ * what the checker itself actually validates.
  */
-function isVersionedSkillDoc(basename) {
-  return basename === 'SKILL.md';
+function isVersionedSkillDoc(basename, segments) {
+  const dirs = segments.slice(2, -1);
+  if (dirs.some((d) => VERSION_SKIPPED_DIRS.has(d))) return false;
+  if (basename === 'SKILL.md') return true;
+  if (dirs.some((d) => VERSION_TEST_DIRS.has(d))) return false;
+  if (dirs.some((d) => VERSION_DOC_SUBTREES.has(d))) return true;
+  if (dirs.some((d) => VERSION_CORPUS_DIRS.has(d))) return false;
+  return !`/${dirs.join('/')}/`.includes('/templates/examples/');
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -179,9 +191,12 @@ function resolveDispatch(absFilePath, projectDir, opts = {}) {
     const underSkillsRoot = ['.skilled', '.opencode'].includes(segments[0]) && segments[1] === 'skills' && segments.length >= 4;
 
     // Row 3: frontmatter-versions -- versioned skill doc, scoped by --skill.
-    if (underSkillsRoot) {
+    // Nearly every skill doc is versioned, so an operator who opts into the wikilinks
+    // check gets it on every doc but SKILL.md; the pre-commit gate still raises versions.
+    const wikilinksOptIn = String(environment[WIKILINKS_ENABLE_ENV]).toLowerCase() === 'true';
+    if (underSkillsRoot && !(wikilinksOptIn && basename !== 'SKILL.md')) {
       const skillName = segments[2];
-      if (isVersionedSkillDoc(basename)) {
+      if (isVersionedSkillDoc(basename, segments)) {
         return [{
           label: 'frontmatter-versions',
           checkerPath: path.join(projectDir, CHECKER_RELATIVE_PATHS.frontmatterVersions),

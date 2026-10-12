@@ -1,6 +1,7 @@
 ---
 title: "DRV-060 -- Reducer search-debt registry + dashboard + report persistence"
 description: "Verify reducer registry exposes candidateCoverage / searchDebt / ruledOutCandidates / cleanSearchProof / searchCoverage. Dashboard renders ## Search Debt. Report renders ## Search Ledger."
+version: 1.11.0.7
 ---
 
 # DRV-060 -- Reducer search-debt registry + dashboard + report persistence

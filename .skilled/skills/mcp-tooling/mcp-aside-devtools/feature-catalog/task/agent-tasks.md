@@ -6,6 +6,7 @@ trigger_phrases:
   - "aside browser task"
   - "aside exec"
   - "aside session continuation"
+version: 1.0.0.0
 ---
 
 # Task (agent-task lane over the aside CLI)

@@ -1,6 +1,7 @@
 ---
 title: "DRV-063 -- Ledger-led graph vocabulary upserts (BUG_CLASS / INVARIANT / PRODUCER / CONSUMER / TEST)"
 description: "Verify the review-loop coverage-graph allow-list accepts and persists BUG_CLASS, INVARIANT, PRODUCER, CONSUMER, and TEST node kinds without dropping them."
+version: 1.11.0.8
 ---
 
 # DRV-063 -- Ledger-led graph vocabulary upserts

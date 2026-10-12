@@ -8,6 +8,7 @@ trigger_phrases:
   - "hermes clear check"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.0
 ---
 
 # Hermes CLI - Prompt Quality Card

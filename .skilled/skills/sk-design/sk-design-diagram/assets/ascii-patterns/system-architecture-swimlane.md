@@ -7,6 +7,7 @@ trigger_phrases:
   - "microservices data flow diagram"
 importance_tier: normal
 contextType: general
+version: 1.2.0.14
 ---
 
 # System Architecture Flow (Swimlane) - Multi-Tier System Interaction

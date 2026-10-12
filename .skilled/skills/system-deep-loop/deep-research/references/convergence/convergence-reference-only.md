@@ -9,6 +9,7 @@ trigger_phrases:
   - "optimizer managed convergence fields"
 importance_tier: normal
 contextType: planning
+version: 1.14.0.3
 ---
 
 # Convergence Reference-Only Models

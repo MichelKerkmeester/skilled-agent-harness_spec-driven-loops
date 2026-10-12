@@ -1,6 +1,7 @@
 ---
 title: "CR-009 -- Cross-consumer affected surface"
 description: "This scenario validates Cross-consumer affected surface for `CR-009`. It focuses on Confirm public helper or schema changes inventory consumers before declaring review complete."
+version: 1.5.0.4
 ---
 
 # CR-009 -- Cross-consumer affected surface

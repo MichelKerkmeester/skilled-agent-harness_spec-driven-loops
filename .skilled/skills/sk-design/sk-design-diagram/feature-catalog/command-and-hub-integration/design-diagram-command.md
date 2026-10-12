@@ -7,6 +7,7 @@ trigger_phrases:
   - "diagram command router"
   - "create diagram auto confirm mode"
   - "presentation contract"
+version: 1.0.0.4
 ---
 
 # create-diagram command (/design:diagram)

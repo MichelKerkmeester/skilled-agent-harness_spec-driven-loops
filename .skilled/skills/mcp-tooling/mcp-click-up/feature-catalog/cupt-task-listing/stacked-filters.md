@@ -7,6 +7,7 @@ trigger_phrases:
   - "stack multiple filters"
   - "filter combination logic"
   - "and or filter stacking"
+version: 1.0.0.3
 ---
 
 # Stacked Filters

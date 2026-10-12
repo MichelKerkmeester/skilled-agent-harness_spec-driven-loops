@@ -5,6 +5,7 @@ trigger_phrases:
   - "create-skill scripts"
   - "leaf manifest generator"
   - "skill package validation"
+version: 1.0.0.0
 ---
 
 # Create-skill scripts

@@ -8,6 +8,7 @@ trigger_phrases:
   - "webflow testing debugging"
 importance_tier: normal
 contextType: implementation
+version: 1.5.0.9
 ---
 
 # Testing/Debugging Procedures & Common Issues

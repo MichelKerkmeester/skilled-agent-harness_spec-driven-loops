@@ -1,6 +1,7 @@
 ---
 title: "469 -- Heal spec-docs anchor repair dry run"
 description: "This scenario validates the heal-spec-docs anchor repair dry run for `469`. It focuses on the duplicate-anchor rename, the questions opener move, the refusal for a questions pair inside another anchor and the guarantee that a dry run writes nothing."
+version: 1.0.0.0
 id: tooling-and-scripts-heal-spec-docs-anchor-repair-dry-run
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

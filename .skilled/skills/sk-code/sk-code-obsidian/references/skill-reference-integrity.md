@@ -9,6 +9,7 @@ trigger_phrases:
   - "broken zero"
 importance_tier: important
 contextType: implementation
+version: 1.0.0.0
 ---
 
 # Skill Reference Integrity

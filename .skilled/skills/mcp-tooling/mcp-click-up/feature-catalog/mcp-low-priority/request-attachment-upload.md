@@ -5,6 +5,7 @@ trigger_phrases:
   - "clickup_request_attachment_upload"
   - "upload local file"
   - "large attachment"
+version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

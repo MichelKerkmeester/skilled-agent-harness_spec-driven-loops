@@ -7,6 +7,7 @@ trigger_phrases:
   - "aside sessionStorage"
   - "aside context cookies"
 last_updated: "2026-07-17"
+version: 1.0.0.0
 ---
 
 # Cookies and Web Storage (DevTools parity)

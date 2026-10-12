@@ -1,6 +1,7 @@
 ---
 title: "Scripts: System Skill Advisor Doctor"
 description: "Read-only health check script for the system-skill-advisor runtime build and its native runtime dependencies."
+version: 1.0.0.0
 ---
 
 # Scripts: System Skill Advisor Doctor

@@ -8,6 +8,7 @@ trigger_phrases:
   - "design-md chart delivery"
 importance_tier: normal
 contextType: reference
+version: 0.23.0.9
 ---
 
 # Theming a chart from DESIGN.md

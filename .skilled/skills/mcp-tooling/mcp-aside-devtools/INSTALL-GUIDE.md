@@ -1,3 +1,9 @@
+---
+title: "Aside CLI Installation Guide"
+description: "Install the Aside AI-browser CLI on macOS, sign in, understand the permission tiers and verify the Aside MCP wiring for Code Mode."
+version: 1.0.0.0
+---
+
 # Aside CLI Installation Guide
 
 > Install the Aside AI-browser CLI on macOS, sign in, understand the permission tiers, and verify the registered Aside MCP wiring for Code Mode.

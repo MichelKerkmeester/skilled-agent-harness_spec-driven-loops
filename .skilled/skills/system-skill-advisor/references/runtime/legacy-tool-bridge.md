@@ -7,6 +7,7 @@ trigger_phrases:
   - "stable advisor tool ids"
 importance_tier: "important"
 contextType: "implementation"
+version: 0.8.0.11
 ---
 
 # Legacy Tool Bridge

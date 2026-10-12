@@ -5,6 +5,7 @@ trigger_phrases:
   - "notion file upload"
   - "GAP-001"
   - "upload a file to notion"
+version: 0.1.0.0
 ---
 
 # File Uploads (direct API -- GAP-001)

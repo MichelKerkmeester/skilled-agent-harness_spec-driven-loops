@@ -1,3 +1,9 @@
+---
+title: "sk-code-opencode: Manual Testing Playbook"
+description: "Routing-recall corpus for the sk-code-opencode surface: scenarios that exercise its intent signals, resource map and OPENCODE surface detection."
+version: 1.0.0.0
+---
+
 # sk-code-opencode: Manual Testing Playbook
 
 Routing-recall corpus for the `sk-code-opencode` surface. These scenarios exercise the machine-readable

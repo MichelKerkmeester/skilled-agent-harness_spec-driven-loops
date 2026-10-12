@@ -6,6 +6,7 @@ trigger_phrases:
   - "research pivot council"
   - "composite_converged pivot"
   - "all_questions_answered pivot"
+version: 1.14.0.1
 ---
 
 # Divergent convergence mode

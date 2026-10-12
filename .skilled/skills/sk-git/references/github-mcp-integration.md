@@ -9,6 +9,7 @@ trigger_phrases:
   - "pr status checks via mcp"
 importance_tier: normal
 contextType: implementation
+version: 1.1.0.4
 ---
 
 # GitHub MCP Integration - Remote Operations Reference

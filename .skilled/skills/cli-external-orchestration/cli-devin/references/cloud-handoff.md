@@ -10,6 +10,7 @@ trigger_phrases:
   - "devin browser workflow"
 importance_tier: normal
 contextType: implementation
+version: 1.4.0.1
 ---
 
 # Devin Cloud Handoff Reference

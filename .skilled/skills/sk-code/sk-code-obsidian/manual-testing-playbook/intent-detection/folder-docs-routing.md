@@ -11,6 +11,7 @@ expected_resources:
   - references/comment-grammar.md
   - assets/comment-banner-checklist.md
   - references/standards/code-standards.md
+version: 1.0.0.0
 ---
 
 # OB-004: Folder docs routing

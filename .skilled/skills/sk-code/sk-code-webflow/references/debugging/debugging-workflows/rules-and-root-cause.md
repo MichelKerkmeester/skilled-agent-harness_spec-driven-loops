@@ -7,6 +7,7 @@ trigger_phrases:
   - "rules and root cause reference"
 importance_tier: normal
 contextType: implementation
+version: 1.5.0.18
 ---
 
 

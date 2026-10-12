@@ -8,6 +8,7 @@ trigger_phrases:
   - "figma yolo connect"
   - "figma unpatch"
 importance_tier: "important"
+version: 1.0.0.2
 ---
 
 # Connect and daemon (figma-ds-cli connect / daemon)

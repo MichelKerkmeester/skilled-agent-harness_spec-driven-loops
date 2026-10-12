@@ -8,6 +8,7 @@ trigger_phrases:
   - "shell output formatting"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.14
 ---
 
 # Variables, Conditionals, Args, Functions, Errors & Output

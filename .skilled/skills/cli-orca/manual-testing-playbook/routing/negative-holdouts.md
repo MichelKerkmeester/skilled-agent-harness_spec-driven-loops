@@ -2,6 +2,7 @@
 title: "ORCA-002 -- Negative holdouts stay out of the Orca route"
 description: "This scenario validates that OpenOrca model traffic and generic git worktree requests never route to cli-orca."
 catalog_applicable: true
+version: 1.0.0.0
 ---
 
 # ORCA-002 -- Negative holdouts stay out of the Orca route

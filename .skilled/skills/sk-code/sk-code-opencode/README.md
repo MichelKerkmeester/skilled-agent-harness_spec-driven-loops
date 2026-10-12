@@ -5,6 +5,7 @@ trigger_phrases:
   - "opencode system code"
   - "opencode authoring"
   - "system code standards"
+version: 1.0.0.5
 ---
 
 # opencode

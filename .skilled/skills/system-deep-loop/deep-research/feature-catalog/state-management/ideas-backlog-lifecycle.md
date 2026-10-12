@@ -7,6 +7,7 @@ trigger_phrases:
   - "idea_promoted"
   - "minIdeaObservations"
   - "reducer-promoted ideas"
+version: 1.14.0.13
 ---
 
 # Ideas backlog lifecycle

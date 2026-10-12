@@ -8,6 +8,7 @@ trigger_phrases:
   - "cursor clear check"
 importance_tier: normal
 contextType: implementation
+version: 1.4.0.7
 ---
 
 # Cursor CLI — Prompt Quality Card

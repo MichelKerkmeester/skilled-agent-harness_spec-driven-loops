@@ -1,6 +1,7 @@
 ---
 title: "SP-005 -- INTENT_MODEL keyword scoring routes between TEXT_ENHANCE and FRAMEWORK"
 description: "This scenario validates INTENT_MODEL routing for `SP-005`. It focuses on confirming weighted keyword scoring picks TEXT_ENHANCE for improve-heavy input and FRAMEWORK for framework-named input."
+version: 2.3.0.5
 ---
 
 # SP-005 -- INTENT_MODEL keyword scoring routes between TEXT_ENHANCE and FRAMEWORK

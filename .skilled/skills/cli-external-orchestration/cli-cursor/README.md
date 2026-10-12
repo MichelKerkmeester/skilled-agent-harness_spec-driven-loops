@@ -8,6 +8,7 @@ trigger_phrases:
   - "composer"
   - "delegate to cursor"
   - "second opinion"
+version: 1.4.0.16
 ---
 
 # cli-cursor

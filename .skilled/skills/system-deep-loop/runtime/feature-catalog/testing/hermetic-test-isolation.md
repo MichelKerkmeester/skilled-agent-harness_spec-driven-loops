@@ -6,6 +6,7 @@ trigger_phrases:
   - "hermetic-test-isolation"
   - "hermetic test isolation runtime"
   - "testing hermetic test isolation"
+version: 1.4.0.15
 ---
 
 # Hermetic test isolation

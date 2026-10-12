@@ -5,6 +5,7 @@ trigger_phrases:
   - "bdg console"
   - "get console logs cli"
   - "browser console errors"
+version: 1.0.0.0
 ---
 
 # Console Logs

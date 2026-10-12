@@ -1,6 +1,7 @@
 ---
 title: "HERMES-025 -- Task-dispatch guard blocks a mismatched delegation"
 description: "Confirm the repo's task-dispatch guard evaluates every task of a Hermes delegate_task call and blocks a Deep Route mode mismatch under the guard's reject switch, for `HERMES-025`."
+version: 1.0.0.0
 ---
 
 # HERMES-025 -- Task-dispatch guard blocks a mismatched delegation

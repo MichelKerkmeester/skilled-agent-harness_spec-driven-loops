@@ -8,6 +8,7 @@ trigger_phrases:
   - "projection layer"
   - "workflowMode publication"
   - "routing registry drift guard"
+version: 0.8.0.12
 ---
 
 # Registry Projection Drift Guard and workflowMode Publication

@@ -6,6 +6,7 @@ trigger_phrases:
   - "ablation protocol"
   - "lane ablation"
   - "scorer ablation"
+version: 0.8.0.16
 id: SC-005
 category: scorer_fusion
 stage: routing

@@ -1,6 +1,7 @@
 ---
 title: "DR-008 -- Iteration writes iteration-NNN.md, JSONL record, and reducer refresh"
 description: "Verify that each completed iteration writes the detailed iteration file, appends JSONL, and provides the reducer enough evidence to refresh synchronized packet state."
+version: 1.14.0.16
 ---
 
 # DR-008 -- Iteration writes iteration-NNN.md, JSONL record, and reducer refresh

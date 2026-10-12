@@ -1,6 +1,7 @@
 ---
 title: "DLR-030 -- Atomic-state serialize-diff"
 description: "Manual validation scenario for Atomic-state serialize-diff in the runtime/ skill."
+version: 1.4.0.15
 ---
 
 # DLR-030 -- Atomic-state serialize-diff

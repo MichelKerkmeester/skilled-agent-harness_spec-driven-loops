@@ -6,6 +6,7 @@ trigger_phrases:
   - "aside not working"
   - "aside troubleshoot"
   - "aside unbound profile"
+version: 1.0.0.0
 ---
 
 # Troubleshoot (failure classification and recovery)

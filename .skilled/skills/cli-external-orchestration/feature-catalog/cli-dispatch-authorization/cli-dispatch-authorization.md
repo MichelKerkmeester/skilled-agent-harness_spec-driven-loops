@@ -6,6 +6,7 @@ trigger_phrases:
   - "dispatch inspector classification"
   - "quote-safe executor normalization"
   - "shouldDenyPiDispatch pi authorization gate"
+version: 1.4.0.1
 ---
 
 # CLI Dispatch Authorization And Inspection (cli-external-orchestration)

@@ -70,11 +70,11 @@ function frontmatterClass(rootName) {
 // their lane. The remaining consumers are the ones that still exist; a replacement for the
 // retired pair has to arrive with a replacement lane, not by re-adding dead paths here.
 function run() {
-  check('post-edit router keys the version check on SKILL.md, not on a catalog or playbook root name', () => {
+  check('post-edit router fires the version check on a skill doc whatever its catalog or playbook root is named', () => {
     assert.equal('canonicalSkillScopeSubtree' in postRouter, false);
     assert.equal('SKILL_SCOPE_SUBTREES' in postRouter, false);
     for (const root of ['feature-catalog', 'feature_catalog', 'manual-testing-playbook', 'manual_testing_playbook', 'feature_catalog_v2']) {
-      assert.deepEqual(postRouter.resolveDispatch(`.skilled/skills/sk-doc/${root}/a.md`, '/tmp/proj'), []);
+      assert.equal(postRouter.resolveDispatch(`.skilled/skills/sk-doc/${root}/a.md`, '/tmp/proj')[0].label, 'frontmatter-versions');
     }
     assert.equal(postRouter.resolveDispatch('.skilled/skills/sk-doc/SKILL.md', '/tmp/proj')[0].label, 'frontmatter-versions');
   });
@@ -109,8 +109,8 @@ function run() {
     assert.doesNotThrow(() => topology.assertPlaybookBoundary('/tmp/manual-testing-playbook'));
     assert.doesNotThrow(() => topology.assertPlaybookBoundary('/tmp/manual-testing-playbook'));
   });
-  check('frontmatter engine keeps a canonical-root leaf out of the versioned scope', () => {
-    assert.throws(() => frontmatterClass('feature-catalog'), /outside the versioned document scope/);
+  check('frontmatter engine versions a canonical-root leaf as a child doc', () => {
+    assert.equal(frontmatterClass('feature-catalog'), 'doc');
   });
   check('frontmatter engine refuses an unsupported explicit root', () => {
     const fixture = tempDir('root-matrix-frontmatter-bad-');

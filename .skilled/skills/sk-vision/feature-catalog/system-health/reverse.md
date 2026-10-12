@@ -6,6 +6,7 @@ trigger_phrases:
   - "where does this image come from"
   - "sk_vision_reverse"
   - "find similar images locally"
+version: 1.0.0.0
 ---
 
 # Reverse image search (sk_vision_reverse)

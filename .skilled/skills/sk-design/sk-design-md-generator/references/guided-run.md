@@ -7,6 +7,7 @@ trigger_phrases:
   - "preflight extract write prompt validate"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.0
 ---
 
 # Guided Run Wrapper

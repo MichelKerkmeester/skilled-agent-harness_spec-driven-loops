@@ -8,6 +8,7 @@ trigger_phrases:
   - "review release readiness validation"
 importance_tier: important
 contextType: implementation
+version: 1.11.0.0
 ---
 
 # Deep Review Completion Criteria

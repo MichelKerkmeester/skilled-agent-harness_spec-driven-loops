@@ -8,6 +8,7 @@ trigger_phrases:
   - "completion claim gate"
 importance_tier: important
 contextType: general
+version: 2.1.0.2
 ---
 
 # Workflow Reference - Verification

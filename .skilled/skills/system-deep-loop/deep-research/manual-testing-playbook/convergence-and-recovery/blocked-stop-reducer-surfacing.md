@@ -1,6 +1,7 @@
 ---
 title: "DR-032 -- Research reducer surfaces blocked-stop history across registry, dashboard, and next-focus"
 description: "Verify that blocked_stop events become reducer-owned blockedStopHistory, render in the dashboard, and rewrite the strategy next-focus anchor with recovery guidance."
+version: 1.14.0.13
 ---
 
 # DR-032 -- Research reducer surfaces blocked-stop history across registry, dashboard, and next-focus

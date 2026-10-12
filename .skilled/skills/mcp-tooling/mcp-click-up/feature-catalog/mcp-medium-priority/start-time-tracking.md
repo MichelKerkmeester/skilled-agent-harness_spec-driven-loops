@@ -4,6 +4,7 @@ description: "Start a timer on a task."
 trigger_phrases:
   - "clickup_start_time_tracking"
   - "start timer mcp"
+version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -19,6 +19,7 @@ expected_leaf_resources:
   - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/evergreen-packet-id-rule.md
 stage: negative
+version: 2.1.0.7
 ---
 
 # SD-H02: DOC_QUALITY Held-Out (decontaminated phrasing)

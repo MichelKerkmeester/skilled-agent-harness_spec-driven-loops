@@ -5,6 +5,7 @@ trigger_phrases:
   - "bdg status"
   - "check browser session state"
   - "session health check"
+version: 1.0.0.0
 ---
 
 # Session Status

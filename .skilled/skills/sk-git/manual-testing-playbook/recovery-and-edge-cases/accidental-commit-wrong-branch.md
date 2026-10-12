@@ -1,6 +1,7 @@
 ---
 title: "GIT-017 -- Accidental commit wrong branch"
 description: "This scenario validates Accidental commit wrong branch for `GIT-017`. It focuses on verify a commit made on the wrong branch is recovered without destructive history rewrite."
+version: 1.1.0.3
 ---
 
 # GIT-017 -- Accidental commit wrong branch

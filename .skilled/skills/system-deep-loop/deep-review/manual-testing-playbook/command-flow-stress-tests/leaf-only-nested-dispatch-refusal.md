@@ -1,6 +1,7 @@
 ---
 title: "CP-056 -- LEAF-only nested dispatch refusal **(SANDBOXED)**"
 description: "Validate that the @deep-review body refuses nested agent dispatch requests instead of delegating."
+version: 1.11.0.11
 ---
 
 # CP-056 -- LEAF-only nested dispatch refusal **(SANDBOXED)**

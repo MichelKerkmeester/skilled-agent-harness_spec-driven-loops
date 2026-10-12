@@ -6,6 +6,7 @@ trigger_phrases:
   - "magicpath list themes"
   - "magicpath get theme"
   - "magicpath design system"
+version: 1.0.0.0
 ---
 
 # Themes (list_themes / get_theme)

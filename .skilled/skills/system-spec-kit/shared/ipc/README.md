@@ -1,6 +1,7 @@
 ---
 title: "IPC: canonical daemon socket-server bridge"
 description: "Shared bind, reclaim and multi-client serve logic for every MCP daemon's Unix-socket IPC bridge."
+version: 1.0.0.0
 ---
 
 # IPC

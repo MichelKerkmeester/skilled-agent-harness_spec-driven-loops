@@ -1,6 +1,7 @@
 ---
 title: "SP-003 -- $short mode runs 3-round DEPTH (D-P-H)"
 description: "This scenario validates `$short` mode for `SP-003`. It focuses on confirming DEPTH runs only Discover, Prototype, and Harmonize for a 3-round total, omitting Engineer and Test."
+version: 2.3.0.4
 ---
 
 # SP-003 -- $short mode runs 3-round DEPTH (D-P-H)

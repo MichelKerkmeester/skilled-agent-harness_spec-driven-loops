@@ -1,6 +1,7 @@
 ---
 title: "BDG-009 -- Eval JavaScript"
 description: "This scenario validates JavaScript evaluation in the active page for `BDG-009`. It focuses on confirming `bdg dom eval \"document.title\"` returns the page title string."
+version: 1.0.0.7
 ---
 
 # BDG-009 -- Eval JavaScript

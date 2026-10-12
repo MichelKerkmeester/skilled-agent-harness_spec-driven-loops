@@ -8,6 +8,7 @@ trigger_phrases:
   - "when to use a procedure card"
 importance_tier: normal
 contextType: general
+version: 1.2.0.8
 ---
 
 # Skill Procedure Card Templates - Creation Guidelines

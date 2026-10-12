@@ -7,6 +7,7 @@ expected_surface: OBSIDIAN
 expected_intent: VERIFICATION
 expected_resources:
   - assets/verification-checklist.md
+version: 1.0.0.0
 ---
 
 # OB-009: Assets-only isolation

@@ -1,6 +1,7 @@
 ---
 title: "DOC-371 -- Doctor git standards copy once"
 description: "Manual scenario validating that /doctor:git standards copies the shipped sk-git templates into .sk-git once and never overwrites the repository's own copies."
+version: 1.2.0.0
 id: doctor-commands-doctor-git-standards-copy-once
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

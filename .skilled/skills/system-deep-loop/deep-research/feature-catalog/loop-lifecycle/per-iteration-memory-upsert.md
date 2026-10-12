@@ -7,6 +7,7 @@ trigger_phrases:
   - "lineage context prompt line"
   - "iteration evidence persistence"
   - "incremental research context"
+version: 1.14.0.14
 ---
 
 # Per-iteration lineage context refresh

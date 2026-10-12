@@ -1,6 +1,7 @@
 ---
 title: "DLR-035 -- JSONL lock-held merge"
 description: "Manual validation scenario for JSONL lock-held merge in the runtime/ skill."
+version: 1.4.0.15
 ---
 
 # DLR-035 -- JSONL lock-held merge

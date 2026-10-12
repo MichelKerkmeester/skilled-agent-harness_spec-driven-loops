@@ -1,6 +1,7 @@
 ---
 title: "Scripts: rule-copy canary"
 description: "Locks load-bearing rule wording (review-status vocabulary, the Iron Law, the restraint ladder's never-cut items) so it cannot silently drift across skill docs."
+version: 1.0.0.0
 ---
 
 # Scripts

@@ -9,6 +9,7 @@ trigger_phrases:
   - "aside mcp handshake"
 importance_tier: normal
 contextType: reference
+version: 1.0.0.0
 ---
 
 # Aside MCP Wiring

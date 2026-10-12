@@ -9,6 +9,7 @@ trigger_phrases:
   - "change gate obsidian plugin"
 importance_tier: normal
 contextType: implementation
+version: 0.1.0.0
 ---
 
 # Applied Code Standards (Current State + Target)

@@ -8,6 +8,7 @@ expected_intent: WIRING_AUTH
 expected_resources:
   - references/mcp-wiring.md
   - assets/utcp-mobbin-manual.md
+version: 1.0.0.1
 ---
 
 # MB-R05: Wiring routing

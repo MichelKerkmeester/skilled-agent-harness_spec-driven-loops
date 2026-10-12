@@ -1,6 +1,7 @@
 ---
 title: "DR-058 -- Rejected-pattern cache"
 description: "Verify that rejected ideas and patterns are suppressed from future focus candidates until removed or reset."
+version: 1.14.0.21
 ---
 
 # DR-058 -- Rejected-pattern cache

@@ -1,6 +1,7 @@
 ---
 title: "HERMES-014 -- Git preflight advisory reaches the tool result"
 description: "Confirm the sk-git preflight advisory is appended to a Hermes terminal tool result for a git command that violates a named sk-git rule, for `HERMES-014`."
+version: 1.0.0.0
 ---
 
 # HERMES-014 -- Git preflight advisory reaches the tool result

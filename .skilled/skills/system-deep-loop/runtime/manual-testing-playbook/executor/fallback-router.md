@@ -1,6 +1,7 @@
 ---
 title: "DLR-003 -- Fallback router"
 description: "Manual validation scenario for Fallback router in the runtime/ skill."
+version: 1.4.0.5
 ---
 
 # DLR-003 -- Fallback router

@@ -1,6 +1,7 @@
 ---
 title: "MANUAL-001 -- Manual Verified Read-Only"
 description: "This scenario validates wiring verification for `MANUAL-001`. It focuses on confirming the refero manual is verified present in .utcp_config.json strictly read-only, with the plan and auth gates surfaced and nothing edited."
+version: 1.0.0.0
 ---
 
 # MANUAL-001 -- Manual Verified Read-Only

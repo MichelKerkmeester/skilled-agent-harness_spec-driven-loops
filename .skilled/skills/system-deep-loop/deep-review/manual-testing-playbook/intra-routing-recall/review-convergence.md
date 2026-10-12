@@ -13,6 +13,7 @@ expected_resources:
   - references/protocol/completion-criteria.md
   - references/protocol/loop-state-and-gates.md
   - references/convergence/convergence-recovery.md
+version: 1.1.0.0
 ---
 
 # DV-R03: Deep review convergence routing

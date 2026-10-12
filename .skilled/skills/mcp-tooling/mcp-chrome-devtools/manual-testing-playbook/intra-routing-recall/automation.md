@@ -8,6 +8,7 @@ expected_intent: AUTOMATION
 expected_resources:
   - references/cdp-patterns.md
   - references/session-management.md
+version: 1.0.0.1
 ---
 
 # CD-R05: Automation routing

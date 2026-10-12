@@ -6,6 +6,7 @@ trigger_phrases:
   - "repo root sentinel"
   - "package root markers"
   - "findRepoRoot"
+version: 1.0.0.0
 ---
 
 # Workspace: Root Resolution Helpers

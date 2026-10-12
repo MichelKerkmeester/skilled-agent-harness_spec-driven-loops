@@ -9,6 +9,7 @@ trigger_phrases:
   - "aside concurrency"
 importance_tier: normal
 contextType: reference
+version: 1.0.0.0
 ---
 
 # Aside Session Management

@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths",
+  "description": "Doc version and playbook paths",
+  "keywords": [
+    "doc",
+    "version",
+    "playbook",
+    "paths"
+  ],
+  "lastUpdated": "2026-10-12T05:21:01.435Z",
+  "specId": "022",
+  "folderSlug": "doc-version-and-playbook-paths",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

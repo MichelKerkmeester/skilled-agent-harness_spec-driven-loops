@@ -4,6 +4,7 @@ description: "Create a list inside a folder."
 trigger_phrases:
   - "clickup_create_list_in_folder"
   - "create list in folder"
+version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

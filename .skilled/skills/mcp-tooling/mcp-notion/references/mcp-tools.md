@@ -10,6 +10,7 @@ trigger_phrases:
   - "notion markdown"
 importance_tier: "normal"
 contextType: "implementation"
+version: 0.1.0.0
 ---
 
 # Official Notion MCP Tools Reference

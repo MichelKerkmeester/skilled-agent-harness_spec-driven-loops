@@ -6,6 +6,7 @@ trigger_phrases:
   - "four integration options"
   - "discard failed experiment branch"
   - "create github release tag"
+version: 1.0.0.0
 ---
 
 # Finish and integration workflows

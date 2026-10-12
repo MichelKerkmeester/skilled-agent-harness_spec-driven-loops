@@ -9,6 +9,7 @@ expected_resources:
   - references/verification/verification-workflows/gate-and-automated-options.md
   - references/verification/verification-workflows/requirements-rules-and-checklist.md
   - assets/webflow-verification-checklist.md
+version: 1.0.0.0
 ---
 
 # WF-004: Verification routing

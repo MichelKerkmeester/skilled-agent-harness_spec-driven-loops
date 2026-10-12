@@ -1,6 +1,7 @@
 ---
 title: "HERMES-006 -- Ordinary write without --yolo"
 description: "Confirm an ordinary, unflagged file write succeeds in single-query mode with no `--yolo`, so the flag is not treated as a general write switch for `HERMES-006`."
+version: 1.0.0.0
 ---
 
 # HERMES-006 -- Ordinary write without --yolo

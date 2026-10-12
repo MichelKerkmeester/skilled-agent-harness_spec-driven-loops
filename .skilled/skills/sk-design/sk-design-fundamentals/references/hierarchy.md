@@ -9,6 +9,7 @@ trigger_phrases:
   - "how to style a destructive button"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.0
 ---
 
 # Visual Hierarchy

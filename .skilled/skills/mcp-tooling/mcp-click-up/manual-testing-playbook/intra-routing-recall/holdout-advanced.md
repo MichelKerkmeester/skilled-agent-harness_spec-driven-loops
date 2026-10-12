@@ -11,6 +11,7 @@ blindExceptions:
   - "quarterly objective"
   - "objective"
   - "write-up page"
+version: 1.1.0.0
 ---
 
 # CU-H02: Blind holdout — advanced feature

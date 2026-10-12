@@ -2,6 +2,7 @@
 title: "RRX-005 -- Executor failure triage"
 description: "This scenario validates executor failure triage for `RRX-005`. It focuses on recognizing fast-failing runs by their recorded exit and error tail, removing them before resuming because resume skips every recorded job, and knowing how the scorer treats them."
 stage: routing
+version: 1.0.0.0
 ---
 
 # RRX-005 -- Executor failure triage

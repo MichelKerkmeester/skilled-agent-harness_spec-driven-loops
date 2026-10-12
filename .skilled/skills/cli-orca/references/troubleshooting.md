@@ -9,6 +9,7 @@ trigger_phrases:
   - "orca terminal receipt"
 importance_tier: normal
 contextType: general
+version: 1.0.0.0
 ---
 
 # Orca CLI Troubleshooting

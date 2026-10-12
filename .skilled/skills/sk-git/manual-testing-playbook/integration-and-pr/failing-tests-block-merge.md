@@ -1,6 +1,7 @@
 ---
 title: "GIT-014 -- Failing tests block merge"
 description: "This scenario validates Failing tests block merge for `GIT-014`. It focuses on verify failing tests stop merge or PR completion."
+version: 1.1.0.3
 ---
 
 # GIT-014 -- Failing tests block merge

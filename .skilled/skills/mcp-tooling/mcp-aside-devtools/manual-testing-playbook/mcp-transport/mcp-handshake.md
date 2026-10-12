@@ -1,6 +1,7 @@
 ---
 title: "ASD-008 -- MCP stdio handshake"
 description: "This scenario validates the MCP transport for `ASD-008`. It focuses on completing a JSON-RPC initialize against a spawned `aside mcp` process and closing it cleanly."
+version: 1.0.0.0
 ---
 
 # ASD-008 -- MCP stdio handshake

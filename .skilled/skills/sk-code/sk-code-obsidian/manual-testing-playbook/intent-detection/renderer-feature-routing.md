@@ -10,6 +10,7 @@ expected_resources:
   - references/data-layer.md
   - references/db-class-naming.md
   - references/stylesheet-ownership.md
+version: 1.0.0.0
 ---
 
 # OB-001: Renderer feature routing

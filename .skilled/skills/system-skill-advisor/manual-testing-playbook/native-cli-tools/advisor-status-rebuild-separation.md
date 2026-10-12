@@ -6,6 +6,7 @@ trigger_phrases:
   - "advisor_status diagnostic only"
   - "advisor_rebuild explicit repair"
   - "skill advisor stale rebuild"
+version: 0.8.0.9
 id: NC-006
 category: native_cli_tools
 stage: routing

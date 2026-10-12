@@ -1,6 +1,7 @@
 ---
 title: "GIT-011 -- Amend published commit refused"
 description: "This scenario validates Amend published commit refused for `GIT-011`. It focuses on verify amending a pushed/shared commit is refused and redirected to a follow-up commit."
+version: 1.1.0.3
 ---
 
 # GIT-011 -- Amend published commit refused

@@ -1,6 +1,7 @@
 ---
 title: "SP-018 -- CLEAR dimension rationale included"
 description: "This scenario validates per-dimension CLEAR rationale for `SP-018`. It focuses on explaining why each score was assigned."
+version: 2.3.0.5
 ---
 
 # SP-018 -- CLEAR dimension rationale included

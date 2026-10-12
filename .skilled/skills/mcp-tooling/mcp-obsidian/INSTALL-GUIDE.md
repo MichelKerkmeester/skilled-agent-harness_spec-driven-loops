@@ -1,3 +1,9 @@
+---
+title: "mcp-obsidian Installation Guide"
+description: "Installation and configuration for Obsidian vault work through notesmd-cli, the official obsidian CLI and the MCP path."
+version: 1.0.0.0
+---
+
 # mcp-obsidian Installation Guide
 
 Complete installation and configuration for Obsidian vault work through three routed surfaces. `notesmd-cli` is the primary headless CLI for filesystem operations. The official `obsidian` CLI is the optional app-backed profile. Cyanheads' `obsidian-mcp-server@3.5.0` is the structured live-app MCP path through Code Mode and Local REST API.

@@ -1,6 +1,7 @@
 ---
 title: "FLOWS-001 -- Numeric-ID Flow Detail"
 description: "This scenario validates flow research for `FLOWS-001`: platform-scoped flow search, numeric-ID detail retrieval, ordered steps, and sparse-flow reconstruction honestly reported as inference."
+version: 1.0.0.0
 ---
 
 # FLOWS-001 -- Numeric-ID Flow Detail

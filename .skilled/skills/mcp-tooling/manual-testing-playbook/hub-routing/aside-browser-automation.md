@@ -14,6 +14,7 @@ expected_leaf_resources:
   - workflow_mode: mcp-aside-devtools
     leaf_resource_id: references/mcp-wiring.md
 created: 2026-07-16
+version: 1.0.0.0
 ---
 
 # MT-007: Agentic Aside browser task routes to mcp-aside-devtools

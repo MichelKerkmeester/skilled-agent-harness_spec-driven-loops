@@ -5,6 +5,7 @@ trigger_phrases:
   - "system spec kit config"
   - "continuity writer configuration"
   - "content filter settings"
+version: 1.0.0.0
 ---
 
 # Config: System Spec Kit Runtime Settings

@@ -1,6 +1,7 @@
 ---
 title: "DR-063 -- Loop-wide dry-run"
 description: "Verify that `--dry-run` performs safe preflight reads and halts before dispatch, state mutation, reducer refresh, or child spawn."
+version: 1.14.0.21
 ---
 
 # DR-063 -- Loop-wide dry-run

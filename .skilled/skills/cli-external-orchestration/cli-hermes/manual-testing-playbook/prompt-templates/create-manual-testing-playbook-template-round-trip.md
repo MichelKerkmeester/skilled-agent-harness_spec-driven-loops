@@ -1,6 +1,7 @@
 ---
 title: "HERMES-009 -- Second template round trip"
 description: "Confirm a second generated prompt template, one whose canonical command file is large, also carries a Hermes session to its named contract and returns a non-empty answer for `HERMES-009`."
+version: 1.0.0.0
 ---
 
 # HERMES-009 -- Second template round trip

@@ -8,6 +8,7 @@ trigger_phrases:
   - "which review checklist to load"
 importance_tier: normal
 contextType: general
+version: 1.5.0.15
 ---
 
 # Code Review Quick Reference

@@ -1,6 +1,7 @@
 ---
 title: "DLR-055 -- append-mode-event.cjs"
 description: "Manual validation scenario for append-mode-event.cjs in the runtime/ skill."
+version: 1.4.0.4
 ---
 
 # DLR-055 -- append-mode-event.cjs

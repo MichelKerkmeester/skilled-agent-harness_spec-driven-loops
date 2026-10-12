@@ -9,6 +9,7 @@ trigger_phrases:
   - "refero code mode"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.0
 ---
 
 # Refero MCP Wiring (via Code Mode)

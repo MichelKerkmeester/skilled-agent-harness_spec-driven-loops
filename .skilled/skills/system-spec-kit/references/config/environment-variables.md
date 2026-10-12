@@ -8,6 +8,7 @@ trigger_phrases:
   - "script execution configuration"
 importance_tier: normal
 contextType: general
+version: 2.7.0.81
 ---
 
 # Environment Variables Reference

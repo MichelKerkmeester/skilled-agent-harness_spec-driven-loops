@@ -1,6 +1,7 @@
 ---
 title: "DR-005 -- Resume classification from valid prior state"
 description: "Verify that the workflow classifies an existing valid scratch state as resumable before writing new files."
+version: 1.14.0.15
 ---
 
 # DR-005 -- Resume classification from valid prior state

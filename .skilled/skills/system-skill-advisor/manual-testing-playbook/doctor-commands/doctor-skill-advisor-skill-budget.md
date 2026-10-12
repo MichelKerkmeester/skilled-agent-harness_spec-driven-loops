@@ -1,6 +1,7 @@
 ---
 title: "DOC-365 -- Doctor skill-advisor skill budget"
 description: "Manual scenario validating that /doctor:skill-advisor skill-budget audits description character counts read-only, offers the fail-over checkpoint, and prints the documented OK and exceeded-threshold statuses."
+version: 1.0.0.0
 id: doctor-commands-doctor-skill-advisor-skill-budget
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

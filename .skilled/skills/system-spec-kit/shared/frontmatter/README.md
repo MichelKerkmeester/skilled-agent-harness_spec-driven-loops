@@ -5,6 +5,7 @@ trigger_phrases:
   - "frontmatter parser"
   - "markdown frontmatter"
   - "parse yaml frontmatter"
+version: 1.0.0.0
 ---
 
 # frontmatter: Markdown Frontmatter Parsing

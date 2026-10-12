@@ -7,6 +7,7 @@ trigger_phrases:
   - "extended task table"
   - "time estimate columns"
   - "show assignee and time tracked"
+version: 1.0.0.3
 ---
 
 # Verbose Output

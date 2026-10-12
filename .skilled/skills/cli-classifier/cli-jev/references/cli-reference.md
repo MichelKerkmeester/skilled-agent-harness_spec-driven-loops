@@ -9,6 +9,7 @@ trigger_phrases:
   - "jev state input"
 importance_tier: "important"
 contextType: "reference"
+version: 0.1.0.2
 ---
 
 # Jev CLI Reference

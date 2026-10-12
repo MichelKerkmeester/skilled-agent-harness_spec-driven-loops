@@ -9,6 +9,7 @@ trigger_phrases:
   - "skill installation steps"
 importance_tier: normal
 contextType: implementation
+version: 1.2.0.11
 ---
 
 # Skill Validation and Packaging

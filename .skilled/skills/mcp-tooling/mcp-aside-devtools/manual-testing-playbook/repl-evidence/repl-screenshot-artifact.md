@@ -1,6 +1,7 @@
 ---
 title: "ASD-007 -- Screenshot artifact verification"
 description: "This scenario validates REPL screenshot evidence for `ASD-007`. It focuses on writing a real PNG via `page.screenshot` and verifying it by existence, size, and magic bytes."
+version: 1.0.0.0
 ---
 
 # ASD-007 -- Screenshot artifact verification

@@ -4,6 +4,7 @@ description: "Show time in status for up to 100 tasks at once."
 trigger_phrases:
   - "clickup_get_bulk_tasks_time_in_status"
   - "bulk time in status"
+version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

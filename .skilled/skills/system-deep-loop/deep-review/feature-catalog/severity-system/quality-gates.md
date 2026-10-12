@@ -7,6 +7,7 @@ trigger_phrases:
   - "premature stop prevention"
   - "dimensionCoverageGate"
   - "blocked-stop event"
+version: 1.11.0.9
 ---
 
 # Quality gates

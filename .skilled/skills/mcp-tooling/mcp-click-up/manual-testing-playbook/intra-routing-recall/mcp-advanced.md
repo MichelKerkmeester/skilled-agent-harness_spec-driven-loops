@@ -7,6 +7,7 @@ description: "This scenario validates the SKILL.md Smart Router's MCP_ADVANCED i
 expected_intent: MCP_ADVANCED
 expected_resources:
   - references/mcp-tools.md
+version: 1.1.0.1
 ---
 
 # CU-R02: MCP advanced routing

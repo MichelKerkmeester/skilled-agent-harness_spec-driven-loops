@@ -1,6 +1,7 @@
 ---
 title: "CU-002 -- cupt Authentication"
 description: "This scenario validates cupt Authentication for `CU-002`. It focuses on Verify `cupt config --api-token pk_xxx` stores credentials and `cupt status` con."
+version: 1.0.0.5
 ---
 
 # CU-002 -- cupt Authentication

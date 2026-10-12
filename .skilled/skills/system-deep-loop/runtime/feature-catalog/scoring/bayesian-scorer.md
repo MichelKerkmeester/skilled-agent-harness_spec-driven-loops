@@ -7,6 +7,7 @@ trigger_phrases:
   - "score executor reliability"
   - "laplace smoothing success probability"
   - "demotion threshold check"
+version: 1.4.0.5
 ---
 
 # Bayesian scorer

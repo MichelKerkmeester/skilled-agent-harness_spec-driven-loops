@@ -5,6 +5,7 @@ trigger_phrases:
   - "clickup_send_chat_message"
   - "send chat message"
   - "post to channel"
+version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

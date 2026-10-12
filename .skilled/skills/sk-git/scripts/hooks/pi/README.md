@@ -5,6 +5,7 @@ trigger_phrases:
   - "pi git preflight"
   - "pi git advisory"
   - "pi git message gate"
+version: 1.0.0.0
 ---
 
 # Pi Hooks: Git Preflight Advisory and Message Gate

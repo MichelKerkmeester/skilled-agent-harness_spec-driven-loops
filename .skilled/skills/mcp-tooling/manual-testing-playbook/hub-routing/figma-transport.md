@@ -14,6 +14,7 @@ expected_leaf_resources:
   - workflow_mode: mcp-figma
     leaf_resource_id: references/mcp-wiring.md
 created: 2026-07-10
+version: 1.0.0.0
 ---
 
 # MT-003: Figma render/export request routes to the mcp-figma transport

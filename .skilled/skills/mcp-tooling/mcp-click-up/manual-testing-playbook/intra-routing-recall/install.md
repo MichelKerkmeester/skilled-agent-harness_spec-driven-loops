@@ -8,6 +8,7 @@ expected_intent: INSTALL
 expected_resources:
   - INSTALL-GUIDE.md
   - references/troubleshooting.md
+version: 1.1.0.0
 ---
 
 # CU-R03: Install routing

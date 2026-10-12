@@ -1,6 +1,7 @@
 ---
 title: "CHG-011 -- Write search metadata into a global entry"
 description: "This scenario validates the frontmatter contract for CHG-011. A global entry opens with the five-key block, both identity phrases for its path and a topic phrase from its own words."
+version: 1.3.0.0
 ---
 
 # CHG-011 -- Write search metadata into a global entry

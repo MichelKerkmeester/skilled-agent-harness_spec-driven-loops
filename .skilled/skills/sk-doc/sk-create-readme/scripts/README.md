@@ -1,6 +1,7 @@
 ---
 title: "Create Readme Scripts: README conformance auditor"
 description: "Python script that audits every in-scope README for sk-doc template alignment and freshness drift, then reports findings as JSON and markdown."
+version: 1.0.0.0
 ---
 
 # Create Readme Scripts

@@ -8,6 +8,7 @@ trigger_phrases:
   - "shell quality checklist"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.10
 ---
 
 # Functions, Args, Strings, Common Patterns & Checklist

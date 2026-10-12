@@ -11,10 +11,13 @@
 //   node frontmatter-version.mjs compute [--skill <name>] [--manifest-out <path>]
 //   node frontmatter-version.mjs apply   [--skill <name>] [--paths <file>] [--update]
 //   node frontmatter-version.mjs verify  [--skill <name>] [--paths <file>]
+//   node frontmatter-version.mjs bump    [--base <ref>] [--check]
 //
 // compute  : dry-run; writes nothing. Emits a CSV + JSON manifest and a summary.
 // apply    : inserts/updates `version` per the idempotency rules.
-// verify   : checks every in-scope file's version == computed and frontmatter is intact.
+// verify   : checks SKILL.md against its anchor and every other in-scope doc for a valid version.
+// bump     : raises the version of each staged doc whose body changed against the merge
+//            base of <ref> (default HEAD) and HEAD; --check only reports and fails.
 //
 // Determinism: same git state + same selection => identical manifest and identical bytes.
 // ───────────────────────────────────────────────────────────────
@@ -23,6 +26,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import process from 'node:process';
+import { fileURLToPath } from 'node:url';
 // One shared fence parser for every skill: leading-fence position, closing-fence
 // and CRLF rules stay identical across readers of the same documents.
 import { parseFrontmatter as parseFencedFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter.js';
@@ -47,9 +51,16 @@ async function mapPool(items, limit, fn) {
 
 const VERSION_RE = /^\d+\.\d+\.\d+\.\d+$/;
 const EXCLUDED_DIRS = new Set(['changelog', 'scratch', 'node_modules', '.git', 'dist']);
-// Catalog and playbook root names the explicit-target guard recognizes, so an
-// unsupported root such as feature_catalog_v2 is refused by name.
+// Doc subtrees: a doc under one is always in scope, even inside a runtime folder,
+// and the explicit-target guard refuses an unsupported root such as feature_catalog_v2 by name.
 const SCOPE_SUBTREES = ['references', 'assets', 'feature-catalog', 'manual-testing-playbook'];
+// Test input wins over a doc subtree, so a fixture shaped like a reference stays out.
+const TEST_DIRS = new Set(['tests', 'fixtures']);
+// Generated output and runtime internals, out unless a doc subtree sits above the file.
+const CORPUS_DIRS = new Set(['runtime', 'benchmark', 'behavior-benchmark']);
+// Filled spec-folder examples carry system-spec-kit's spec-doc frontmatter, not a skill doc's.
+const SPEC_EXAMPLES_DIR = '/templates/examples/';
+const INITIAL_VERSION = '1.0.0.0';
 
 // ─── git helpers ───────────────────────────────────────────────
 
@@ -96,7 +107,7 @@ function parseFrontmatter(content) {
   let versionLineIdx = -1;
   let versionValue = null;
   for (let i = 1; i < closeIdx; i += 1) {
-    const m = lines[i].match(/^version:\s*(.+?)\s*$/);
+    const m = lines[i].match(/^version:\s*(.*?)\s*$/);
     if (m) { versionLineIdx = i; versionValue = m[1].replace(/^["']|["']$/g, ''); break; }
   }
   return { hasFrontmatter: true, eol, lines, closeIdx, versionLineIdx, versionValue };
@@ -152,14 +163,29 @@ function resolveAnchor(skillDir) {
 
 // ─── file classification + scope discovery ─────────────────────
 
-/** Only SKILL.md carries a version: it is the skill edition, at a skill root or a
- *  mode-packet root. Child docs (references, assets, catalogs, playbooks, READMEs) carry none. */
+/** SKILL.md carries the skill edition, at a skill root or a mode-packet root. */
 function isSkillMd(absFile) {
   return path.basename(absFile) === 'SKILL.md';
 }
 
+/** Every markdown doc under a skill carries its own edition, except changelog entries,
+ *  test input, generated output and spec-doc examples. A doc with no frontmatter is
+ *  skipped by every mode, so it needs no rule here. */
+function inScope(absFile, skillsRoot) {
+  if (!absFile.endsWith('.md')) return false;
+  const segments = path.relative(skillsRoot, absFile).split(path.sep);
+  if (segments[0] === '..' || path.isAbsolute(segments[0])) return false;
+  const dirs = segments.slice(0, -1);
+  if (dirs.some((d) => EXCLUDED_DIRS.has(d))) return false;
+  if (isSkillMd(absFile)) return true;
+  if (dirs.some((d) => TEST_DIRS.has(d))) return false;
+  if (dirs.some((d) => SCOPE_SUBTREES.includes(d))) return true;
+  if (dirs.some((d) => CORPUS_DIRS.has(d))) return false;
+  return !`/${dirs.join('/')}/`.includes(SPEC_EXAMPLES_DIR);
+}
+
 function classify(absFile) {
-  return isSkillMd(absFile) ? 'skill-md' : null;
+  return isSkillMd(absFile) ? 'skill-md' : 'doc';
 }
 
 function assertExplicitTargets(targets, skillsRoot) {
@@ -174,7 +200,7 @@ function assertExplicitTargets(targets, skillsRoot) {
         && !SCOPE_SUBTREES.includes(segment);
     });
     if (unsupported) throw new Error(`unsupported catalog/playbook root: ${unsupported}`);
-    if (!isSkillMd(target)) {
+    if (!inScope(target, skillsRoot)) {
       throw new Error(`explicit frontmatter target is outside the versioned document scope: ${target}`);
     }
   }
@@ -199,7 +225,7 @@ function discoverInScope(skillsRoot, onlySkill) {
     .map((e) => path.join(skillsRoot, e.name));
   const all = [];
   for (const s of skills) walkAllMd(s, all);
-  return [...new Set(all.filter(isSkillMd))].sort();
+  return [...new Set(all.filter((f) => inScope(f, skillsRoot)))].sort();
 }
 
 // ─── compute one file ───────────────────────────────────────────
@@ -208,6 +234,21 @@ async function computeForFile(absFile, skillsRoot, root) {
   const skillDir = findSkillDir(absFile, skillsRoot);
   const skill = skillDir ? path.relative(skillsRoot, skillDir) : 'UNKNOWN';
   const fileClass = classify(absFile);
+  if (fileClass === 'doc') {
+    // A child doc's version is its own edition: keep a valid one, start a missing one at 1.0.0.0.
+    const fm = parseFrontmatter(fs.readFileSync(absFile, 'utf8'));
+    const own = fm.hasFrontmatter && fm.versionValue && VERSION_RE.test(fm.versionValue) ? tupleStr(normalize4(fm.versionValue)) : INITIAL_VERSION;
+    return {
+      path: path.relative(root, absFile),
+      fileClass,
+      skill,
+      anchor: own,
+      anchorSource: 'doc-edition',
+      derivedVersion: own,
+      derivedTuple: normalize4(own),
+      absFile,
+    };
+  }
   const { anchor, source } = skillDir ? resolveAnchor(skillDir) : { anchor: [1, 0, 0, 0], source: 'default' };
   const derived = anchor;
   return {
@@ -226,7 +267,8 @@ async function computeForFile(absFile, skillsRoot, root) {
 
 function applyVersion(absFile, derivedStr, opts) {
   // Fail closed: only ever write inside the skills root, even if a --paths manifest lists a stray path.
-  if (opts.skillsRoot && !path.resolve(absFile).startsWith(path.resolve(opts.skillsRoot) + path.sep)) {
+  const real = (p) => { try { return fs.realpathSync(p); } catch { return path.resolve(p); } };
+  if (opts.skillsRoot && !real(absFile).startsWith(real(opts.skillsRoot) + path.sep)) {
     return 'skip-out-of-root';
   }
   const content = fs.readFileSync(absFile, 'utf8');
@@ -252,11 +294,13 @@ function applyVersion(absFile, derivedStr, opts) {
   return fm.versionLineIdx !== -1 ? 'update' : 'insert';
 }
 
-function verifyVersion(absFile, derivedStr) {
+function verifyVersion(absFile, derivedStr, strict) {
   const content = fs.readFileSync(absFile, 'utf8');
   const fm = parseFrontmatter(content);
   if (!fm.hasFrontmatter) return { ok: false, reason: 'no-frontmatter' };
   if (fm.versionLineIdx === -1) return { ok: false, reason: 'missing-version' };
+  // A child doc has no anchor to normalize toward, so its value must already be 4-part.
+  if (strict && !VERSION_RE.test(fm.versionValue)) return { ok: false, reason: `malformed:${fm.versionValue}` };
   const existing = normalize4(fm.versionValue);
   if (!existing) return { ok: false, reason: `malformed:${fm.versionValue}` };
   if (tupleStr(existing) !== derivedStr) return { ok: false, reason: `mismatch:${tupleStr(existing)}!=${derivedStr}` };
@@ -264,6 +308,144 @@ function verifyVersion(absFile, derivedStr) {
   // pre-existing version elsewhere in the block is valid — position is an
   // insertion convention, not a correctness invariant. Verify checks value only.
   return { ok: true };
+}
+
+// ─── bump: raise a changed doc's edition ───────────────────────
+
+/** The edition after a body change: the third segment goes up and the fourth resets. */
+function nextEdition(tuple) {
+  return tupleStr([tuple[0], tuple[1], tuple[2] + 1, 0]);
+}
+
+/** Everything after the frontmatter block, so a frontmatter-only edit is no body change. */
+function bodyOf(fm) {
+  return (fm.hasFrontmatter ? fm.lines.slice(fm.closeIdx + 1) : fm.lines).join('\n');
+}
+
+/** Read many blobs through one git process, so a commit staging thousands of docs pays one spawn. */
+function readBlobs(shas, root) {
+  const wanted = [...new Set(shas.filter((s) => s && !/^0+$/.test(s)))];
+  const blobs = new Map();
+  if (wanted.length === 0) return blobs;
+  const buf = execFileSync('git', ['cat-file', '--batch'], { cwd: root, input: `${wanted.join('\n')}\n`, maxBuffer: 1 << 30 });
+  let pos = 0;
+  for (const sha of wanted) {
+    const nl = buf.indexOf(10, pos);
+    const header = buf.subarray(pos, nl).toString('utf8').split(' ');
+    pos = nl + 1;
+    if (header[1] === 'missing') continue;
+    const size = Number(header[2]);
+    blobs.set(sha, buf.subarray(pos, pos + size).toString('utf8'));
+    pos += size + 1;
+  }
+  return blobs;
+}
+
+/** Docs the index changes against the merge base, with the blob on each side; a rename keeps its old blob. */
+function changedDocs(root, mergeBase, skillsRoot) {
+  const rel = path.relative(root, skillsRoot).split(path.sep).join('/');
+  const raw = execFileSync('git', ['diff', '--cached', '--raw', '-z', '-M', '--no-abbrev', '--diff-filter=AMR',
+    mergeBase, '--', `:(glob)${rel}/**/*.md`], { cwd: root, maxBuffer: 1 << 30 }).toString('utf8');
+  const parts = raw.split('\0');
+  const rows = [];
+  for (let i = 0; i + 1 < parts.length;) {
+    const [, , oldSha, newSha, status] = parts[i].replace(/^:/, '').split(' ');
+    const renamed = status.startsWith('R');
+    rows.push({ oldSha, newSha, path: parts[renamed ? i + 2 : i + 1] });
+    i += renamed ? 3 : 2;
+  }
+  return rows;
+}
+
+/** Set `version` in a parsed doc: rewrite the line in its own quoting, or insert it as the last key. */
+function withEdition(fm, next) {
+  const lines = [...fm.lines];
+  if (fm.versionLineIdx !== -1) {
+    const quote = (lines[fm.versionLineIdx].match(/^version:\s*(["'])/) || [])[1] || '';
+    lines[fm.versionLineIdx] = `version: ${quote}${next}${quote}`;
+  } else {
+    lines.splice(fm.closeIdx, 0, `version: ${next}`);
+  }
+  return lines.join(fm.eol);
+}
+
+/**
+ * Raise the version of every staged in-scope doc whose body changed against the merge base
+ * and whose version did not go up. SKILL.md is the skill edition and is left to the changelog.
+ * Returns the exit code: 0 when nothing is left to raise, 1 for a doc it cannot raise or, with
+ * check, one that needs raising, 3 when a doc to raise also has unstaged edits. Each raised
+ * path prints to stdout on its own line so the caller can stage it.
+ */
+function bumpDocs({ root: givenRoot, skillsRoot: givenSkillsRoot, base, check }) {
+  // git reports paths under the real directory, so both roots compare through their real paths.
+  const root = fs.realpathSync(givenRoot);
+  const skillsRoot = fs.realpathSync(givenSkillsRoot);
+  let mergeBase;
+  try {
+    mergeBase = execFileSync('git', ['merge-base', base, 'HEAD'], { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
+  } catch {
+    console.error(`frontmatter-version.mjs: cannot find the merge base of ${base} and HEAD`);
+    return 1;
+  }
+  const rows = changedDocs(root, mergeBase, skillsRoot).filter((r) => {
+    const abs = path.join(root, r.path);
+    return inScope(abs, skillsRoot) && !isSkillMd(abs);
+  });
+  const blobs = readBlobs(rows.flatMap((r) => [r.oldSha, r.newSha]), root);
+  const raises = [];
+  const errors = [];
+  for (const r of rows) {
+    if (/[\r\n]/.test(r.path)) { errors.push(`${JSON.stringify(r.path)}: the path has a line break, which the hook cannot stage; rename the doc`); continue; }
+    const text = blobs.get(r.newSha);
+    if (text === undefined) { errors.push(`${r.path}: staged content is unreadable`); continue; }
+    const fm = parseFrontmatter(text);
+    if (!fm.hasFrontmatter) continue;
+    if (fm.versionLineIdx !== -1 && !VERSION_RE.test(fm.versionValue)) {
+      errors.push(`${r.path}: malformed version '${fm.versionValue}', set a 4-part value by hand`);
+      continue;
+    }
+    const baseText = blobs.get(r.oldSha);
+    const baseFm = baseText === undefined ? null : parseFrontmatter(baseText);
+    if (baseFm && bodyOf(baseFm) === bodyOf(fm)) continue;
+    const baseVersion = baseFm && baseFm.versionValue && VERSION_RE.test(baseFm.versionValue) ? normalize4(baseFm.versionValue) : null;
+    const headVersion = fm.versionLineIdx === -1 ? null : normalize4(fm.versionValue);
+    if (headVersion && (!baseVersion || cmpTuple(headVersion, baseVersion) > 0)) continue;
+    const next = baseVersion ? nextEdition(baseVersion) : INITIAL_VERSION;
+    raises.push({ path: r.path, text, fm, from: headVersion ? tupleStr(headVersion) : 'none', next });
+  }
+  for (const e of errors) console.error(`  ${e}`);
+  if (check) {
+    for (const r of raises) console.error(`  NOT RAISED ${r.path}: body changed, version ${r.from} did not go up (next ${r.next})`);
+    if (raises.length === 0 && errors.length === 0) {
+      console.log(`[bump] ${rows.length} changed docs | every changed body raised its version`);
+      return 0;
+    }
+    const engine = path.relative(root, fileURLToPath(import.meta.url));
+    console.error(`Fix: node ${engine} bump --base ${base}`);
+    console.error('     then commit the raised versions.');
+    return 1;
+  }
+  if (errors.length > 0) return 1;
+  const linked = raises.filter((r) => { try { return fs.lstatSync(path.join(root, r.path)).isSymbolicLink(); } catch { return false; } });
+  if (linked.length > 0) {
+    for (const r of linked) console.error(`  ${r.path}: a symlink in the working tree; raise the version in its target by hand`);
+    return 1;
+  }
+  // Raising writes the working tree, so a doc with unstaged edits would carry content this commit does not.
+  const partial = raises.filter((r) => {
+    const abs = path.join(root, r.path);
+    return !fs.existsSync(abs) || fs.readFileSync(abs, 'utf8') !== r.text;
+  });
+  if (partial.length > 0) {
+    for (const r of partial) console.error(`  STAGED AND UNSTAGED ${r.path}`);
+    return 3;
+  }
+  for (const r of raises) {
+    fs.writeFileSync(path.join(root, r.path), withEdition(r.fm, r.next));
+    console.error(`  raised ${r.path}: ${r.from} -> ${r.next}`);
+    console.log(r.path);
+  }
+  return 0;
 }
 
 // ─── manifest emit ──────────────────────────────────────────────
@@ -293,7 +475,7 @@ function parseArgs(argv) {
   // the whole argv for the flag first, so help is answered from any position and
   // before any mode is derived — a help request must never reach git discovery.
   const helpRequested = argv.some((a) => a === '--help' || a === '-h');
-  const args = { mode: helpRequested ? 'help' : argv[0], skill: null, paths: null, manifestOut: null, update: false, skillsRoot: null, fromManifest: null, classes: null };
+  const args = { mode: helpRequested ? 'help' : argv[0], skill: null, paths: null, manifestOut: null, update: false, skillsRoot: null, fromManifest: null, classes: null, base: 'HEAD', check: false };
   for (let i = 1; i < argv.length; i += 1) {
     const a = argv[i];
     if (a === '--skill') args.skill = argv[++i];
@@ -303,6 +485,8 @@ function parseArgs(argv) {
     else if (a === '--from-manifest') args.fromManifest = argv[++i];
     else if (a === '--classes') args.classes = argv[++i];
     else if (a === '--update') args.update = true;
+    else if (a === '--base') args.base = argv[++i];
+    else if (a === '--check') args.check = true;
     else if (a.startsWith('-') && a !== '--help' && a !== '-h') {
       console.error(`frontmatter-version.mjs: unknown option: ${a}`);
       process.exit(64);
@@ -313,8 +497,8 @@ function parseArgs(argv) {
 
 function helpText() {
   return `frontmatter-version.mjs — 4-part version compute/apply/verify/gate
-Modes: compute (dry-run), apply, verify, gate (git-free format check over every in-scope doc; the mode the post-edit hook runs)
-Options: --skill <name>  --paths <file-list>  --manifest-out <base>  --update
+Modes: compute (dry-run), apply, verify, gate (git-free format check over every in-scope doc; the mode the post-edit hook runs), bump (raise the version of each staged doc whose body changed; the pre-commit gate runs it, and --check is the pull-request check)
+Options: --skill <name>  --paths <file-list>  --manifest-out <base>  --update  --base <ref>  --check
 Standard: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md`;
 }
 
@@ -322,9 +506,11 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
   if (!args.mode || args.mode === 'help') { console.log(helpText()); process.exit(0); }
   // compute and apply write versions rather than judge them, so they keep running.
-  if (args.mode === 'gate' || args.mode === 'verify') exitIfValidationOff('frontmatter-version.mjs');
+  if (args.mode === 'gate' || args.mode === 'verify' || (args.mode === 'bump' && args.check)) exitIfValidationOff('frontmatter-version.mjs');
   const root = repoRoot();
   const skillsRoot = args.skillsRoot ? path.resolve(args.skillsRoot) : path.join(root, '.skilled', 'skills');
+
+  if (args.mode === 'bump') process.exit(bumpDocs({ root, skillsRoot, base: args.base, check: args.check }));
 
   if (args.mode === 'gate') {
     // Enforcement gate: every in-scope file must carry a 4-part version.
@@ -383,7 +569,7 @@ async function main() {
   } else if (args.mode === 'verify') {
     let failures = 0;
     for (const r of rows) {
-      const v = verifyVersion(r.absFile, r.derivedVersion);
+      const v = verifyVersion(r.absFile, r.derivedVersion, r.fileClass === 'doc');
       if (v.reason === 'no-frontmatter') { r.action = 'skip-no-frontmatter'; continue; }
       r.action = v.ok ? 'ok' : `FAIL:${v.reason}`;
       if (!v.ok) { failures += 1; console.error(`  FAIL ${r.path} -> ${v.reason} (expected ${r.derivedVersion})`); }

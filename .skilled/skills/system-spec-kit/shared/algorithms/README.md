@@ -5,6 +5,7 @@ trigger_phrases:
   - "RRF fusion"
   - "rank fusion primitives"
   - "shared algorithms"
+version: 1.0.0.0
 ---
 
 # Algorithms

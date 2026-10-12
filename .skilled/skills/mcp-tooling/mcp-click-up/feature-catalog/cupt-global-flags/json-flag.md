@@ -7,6 +7,7 @@ trigger_phrases:
   - "structured output mode"
   - "parseable json format"
   - "agent-safe output flag"
+version: 1.0.0.3
 ---
 
 # JSON Output Flag

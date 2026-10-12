@@ -1,6 +1,7 @@
 ---
 title: "CU-022 -- Cursor agent roster enumeration"
 description: "Verify Cursor can enumerate and dispatch all 11 mirrored repository agents discovered through file convention."
+version: 1.4.0.5
 ---
 
 # CU-022 -- Cursor agent roster enumeration

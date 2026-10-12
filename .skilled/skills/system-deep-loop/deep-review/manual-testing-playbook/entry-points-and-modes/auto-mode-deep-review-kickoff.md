@@ -1,6 +1,7 @@
 ---
 title: "DRV-001 -- Auto mode deep-review kickoff"
 description: "Verify that autonomous mode is exposed consistently across the README, quick reference, command entrypoint, and auto YAML workflow."
+version: 1.11.0.14
 ---
 
 # DRV-001 -- Auto mode deep-review kickoff

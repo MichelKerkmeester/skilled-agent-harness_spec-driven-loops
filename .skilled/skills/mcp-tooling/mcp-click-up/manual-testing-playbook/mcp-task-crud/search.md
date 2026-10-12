@@ -1,6 +1,7 @@
 ---
 title: "MCP-H009 -- Search the Workspace via MCP"
 description: "This scenario validates Search the Workspace via MCP for `MCP-H009`. Objective: Verify `clickup_search` finds the test task by keyword."
+version: 1.0.0.0
 ---
 
 # MCP-H009 -- Search the Workspace via MCP

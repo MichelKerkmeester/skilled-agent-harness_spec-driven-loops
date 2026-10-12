@@ -6,6 +6,7 @@ trigger_phrases:
   - "cut out the logo from this image"
   - "sk_vision_segment"
   - "isolate an element"
+version: 1.0.0.0
 ---
 
 # Object segmentation (sk_vision_segment)

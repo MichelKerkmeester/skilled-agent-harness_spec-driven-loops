@@ -9,6 +9,7 @@ trigger_phrases:
   - "progressive disclosure skills"
 importance_tier: normal
 contextType: implementation
+version: 1.2.0.50
 ---
 
 # Skill Creation Workflow - Complete Development Guide

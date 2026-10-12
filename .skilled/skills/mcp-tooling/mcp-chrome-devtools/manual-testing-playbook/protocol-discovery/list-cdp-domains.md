@@ -1,6 +1,7 @@
 ---
 title: "BDG-005 -- List CDP domains"
 description: "This scenario validates CDP domain enumeration for `BDG-005`. It focuses on confirming `bdg cdp --list` returns a non-empty catalog containing common Chrome DevTools Protocol domains."
+version: 1.0.0.7
 ---
 
 # BDG-005 -- List CDP domains

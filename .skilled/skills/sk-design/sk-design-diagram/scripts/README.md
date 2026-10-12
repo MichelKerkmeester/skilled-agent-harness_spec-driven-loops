@@ -6,6 +6,7 @@ trigger_phrases:
   - "drawio extractor"
   - "mermaid extractor"
   - "flowchart validator"
+version: 1.0.0.0
 ---
 
 # sk-design-diagram scripts

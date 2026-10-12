@@ -5,6 +5,7 @@ trigger_phrases:
   - "op-001"
   - "degraded daemon"
   - "degraded"
+version: 0.8.0.12
 id: OP-001
 category: operator_h5
 stage: routing

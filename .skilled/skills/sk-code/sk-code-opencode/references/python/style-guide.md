@@ -8,6 +8,7 @@ trigger_phrases:
   - "python naming conventions"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.16
 ---
 
 # Python Style Guide

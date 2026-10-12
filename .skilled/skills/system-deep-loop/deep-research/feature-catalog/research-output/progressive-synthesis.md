@@ -7,6 +7,7 @@ trigger_phrases:
   - "progressiveSynthesis flag"
   - "incremental research document"
   - "iteration-time synthesis writes"
+version: 1.14.0.11
 ---
 
 # Progressive synthesis

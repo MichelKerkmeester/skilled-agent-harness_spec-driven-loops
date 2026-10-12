@@ -4,6 +4,7 @@ description: "Browsability symlinks to the two sk-git OpenCode plugins, the warn
 trigger_phrases:
   - "opencode git preflight"
   - "opencode git message gate"
+version: 1.0.0.0
 ---
 
 # OpenCode Hooks: sk-git Plugin Mirrors

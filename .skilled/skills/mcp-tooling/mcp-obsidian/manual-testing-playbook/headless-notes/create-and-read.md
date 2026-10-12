@@ -2,6 +2,7 @@
 title: "OBS-003 -- Create and read a note"
 description: "This scenario validates headless note creation and read-back with notesmd-cli in a throwaway vault."
 stage: routing
+version: 0.1.0.0
 ---
 
 # OBS-003 -- Create and read a note

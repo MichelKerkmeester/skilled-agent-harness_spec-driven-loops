@@ -9,6 +9,7 @@ trigger_phrases:
   - "first rule in a repository"
 importance_tier: important
 contextType: reference
+version: 1.1.0.4
 ---
 
 # Repo Rules Router Template

@@ -1,6 +1,7 @@
 ---
 title: "RD-001: Mixed-Marker Ambiguity"
 description: "Verify sk-code asks for clarification (or applies a documented precedence rule) when WEBFLOW library markers and OPENCODE path markers co-occur in the same prompt."
+version: 1.5.1.0
 ---
 
 # RD-001: Mixed-Marker Ambiguity
@@ -30,7 +31,7 @@ Add Lenis smooth-scroll to .skilled/skills/sk-doc/scripts/preview-server.js for 
 Prompt: `Add Lenis smooth-scroll to .skilled/skills/sk-doc/scripts/preview-server.js for the local preview index page.`
 
 **Markers present**:
-- WEBFLOW library marker: `Lenis` (matches `shared/references/stack-detection.md:29-36`)
+- WEBFLOW library marker: `Lenis` (matches `shared/references/stack-detection.md:30-37`)
 - OPENCODE path marker: `.skilled/skills/sk-doc/scripts/preview-server.js`
 
 **Expected behavior** (one of two acceptable outcomes):

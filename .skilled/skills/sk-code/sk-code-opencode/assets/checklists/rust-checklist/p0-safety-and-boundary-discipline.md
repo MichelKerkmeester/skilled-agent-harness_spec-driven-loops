@@ -7,6 +7,7 @@ trigger_phrases:
   - "rust adapter boundary review"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.0
 ---
 
 # P0 — Safety & Boundary Discipline

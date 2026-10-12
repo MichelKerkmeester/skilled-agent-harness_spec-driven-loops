@@ -9,6 +9,7 @@ trigger_phrases:
   - "orca untrusted content"
 importance_tier: normal
 contextType: general
+version: 1.0.0.0
 ---
 
 # Orca Mutation and Browser Boundaries

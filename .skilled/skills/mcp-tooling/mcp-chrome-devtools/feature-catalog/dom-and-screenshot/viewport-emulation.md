@@ -5,6 +5,7 @@ trigger_phrases:
   - "viewport emulation"
   - "device metrics override"
   - "mobile viewport testing cli"
+version: 1.0.0.0
 ---
 
 # Viewport Emulation

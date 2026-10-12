@@ -1,6 +1,7 @@
 ---
 title: "ASD-019 -- Cookies + web storage read"
 description: "This scenario validates Chrome-DevTools Application-panel parity for `ASD-019`: page.context().cookies() and localStorage/sessionStorage key reads via page.evaluate through the aside REPL, redacted, with a SKIP-valid path when no bound session exists."
+version: 1.0.0.0
 ---
 
 # ASD-019 -- Cookies + web storage read

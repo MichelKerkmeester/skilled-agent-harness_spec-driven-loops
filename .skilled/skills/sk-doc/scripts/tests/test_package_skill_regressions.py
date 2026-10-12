@@ -272,20 +272,25 @@ def test_resource_frontmatter_flags_missing_five_fields(tmp_path):
     assert "contextType" in joined
 
 
-def test_child_doc_without_version_passes_strict(tmp_path):
-    # Only SKILL.md carries the version (the skill edition); a child doc carries none.
+def test_child_doc_without_version_fails_strict(tmp_path):
+    # Every in-scope child doc carries its own edition, so one with no version fails strict.
     module = _load_module()
     skill_path = _write_valid_skill(tmp_path / "demo-skill", with_recommended_sections=True)
     no_version = _VALID_RESOURCE_FM.replace("version: 1.0.0.0\n", "")
-    for subtree in ("assets", "references", "feature-catalog", "manual-testing-playbook"):
+    in_scope = ("assets", "references", "feature-catalog", "manual-testing-playbook", "scripts")
+    for subtree in in_scope:
         (skill_path / subtree).mkdir()
         (skill_path / subtree / "no-version.md").write_text(no_version, encoding="utf-8")
+    # Test input and generated output stay out of scope.
+    for out in ("scripts/tests/fixtures", "benchmark", "runtime/lib"):
+        (skill_path / out).mkdir(parents=True, exist_ok=True)
+        (skill_path / out / "out-of-scope.md").write_text(no_version, encoding="utf-8")
 
     _valid, _message, warnings = module.validate_resource_frontmatter(skill_path)
-    assert not any("version" in w for w in warnings), warnings
-    valid, message, strict_warnings = module.validate_skill(skill_path, strict=True)
-    assert valid is True, message
-    assert not any("version" in w for w in strict_warnings), strict_warnings
+    flagged = sorted(w.split("'")[1] for w in warnings if "missing 'version'" in w)
+    assert flagged == sorted(f"{s}/no-version.md" for s in in_scope), flagged
+    valid, message, _strict_warnings = module.validate_skill(skill_path, strict=True)
+    assert valid is False, message
 
 
 def test_changelog_entry_flags_non_four_part_version(tmp_path):

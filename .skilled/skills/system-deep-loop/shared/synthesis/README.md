@@ -1,6 +1,7 @@
 ---
 title: "Synthesis: shared resource-map render seam"
 description: "Re-export seam for the resource-map markdown renderer shared deep-loop research and review reducers consume."
+version: 1.0.0.0
 ---
 
 # Synthesis

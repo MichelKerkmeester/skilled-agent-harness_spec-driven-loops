@@ -5,6 +5,7 @@ trigger_phrases:
   - "chrome devtools examples"
   - "bdg example scripts"
   - "browser automation scripts"
+version: 1.0.0.0
 ---
 
 # CLI Chrome DevTools - Example Scripts

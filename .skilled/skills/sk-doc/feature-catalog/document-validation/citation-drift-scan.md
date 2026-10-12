@@ -7,6 +7,7 @@ trigger_phrases:
   - "citation drift advisory"
   - "cite-drift-scan.mjs"
   - "cite-drift-labels.jsonl"
+version: 2.3.0.6
 ---
 
 # Citation Drift Scan (cite-drift-scan.mjs)

@@ -5,6 +5,7 @@ trigger_phrases:
   - "clickup_get_operators"
   - "clickup operators"
   - "unified api operators"
+version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

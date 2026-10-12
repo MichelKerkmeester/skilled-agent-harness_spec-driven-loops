@@ -1,6 +1,7 @@
 ---
 title: "SP-014 -- Phase exit gates block advancement"
 description: "This scenario validates DEPTH phase exit criteria for `SP-014`. It focuses on named gates that block advancement until met."
+version: 2.3.0.5
 ---
 
 # SP-014 -- Phase exit gates block advancement

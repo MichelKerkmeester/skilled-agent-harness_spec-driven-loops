@@ -1,6 +1,7 @@
 ---
 title: "466 -- Upgrade-legacy dry run"
 description: "This scenario validates the upgrade-legacy dry run for `466`. It focuses on the failing-packet report, the Downgrades section, the grouped detail, the repository era block and the guarantee that a dry run writes nothing."
+version: 1.0.0.0
 id: tooling-and-scripts-upgrade-legacy-dry-run
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

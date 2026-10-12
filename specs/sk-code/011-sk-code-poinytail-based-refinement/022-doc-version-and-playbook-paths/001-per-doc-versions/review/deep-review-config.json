@@ -1,0 +1,179 @@
+{
+  "topic": "Review: The per-doc version commits 41302e72be..HEAD on branch worktrees/119-docver-per-doc: the frontmatter-version engine scope, verify and bump mode, the packager and post-edit router scope mirrors, the pre-commit doc-version-bump gate and gates.tsv row, the pull-request bump --check job, the versioning standard and templates, the 2,845-line version restore, the 22 docs given frontmatter, the 68 docs started at 1.0.0.0, the sk-code citation re-anchor and the sk-doc 2.3.7.0 release",
+  "sessionId": "2026-10-12T07:01:58.951Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions",
+  "createdAt": "2026-10-12T07:01:58.951Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "The per-doc version commits 41302e72be..HEAD on branch worktrees/119-docver-per-doc: the frontmatter-version engine scope, verify and bump mode, the packager and post-edit router scope mirrors, the pre-commit doc-version-bump gate and gates.tsv row, the pull-request bump --check job, the versioning standard and templates, the 2,845-line version restore, the 22 docs given frontmatter, the 68 docs started at 1.0.0.0, the sk-code citation re-anchor and the sk-doc 2.3.7.0 release",
+  "reviewTargetType": "files",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    ".github/workflows/skill-doc-frontmatter.yml",
+    ".hermes/skills/sk-doc/SKILL.md",
+    ".opencode/plugins/tests/sk-code-post-edit-quality.test.cjs",
+    ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json",
+    ".skilled/commands/doctor/scripts/tests/git-hook-gates.test.cjs",
+    ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
+    ".skilled/hooks/post-edit-quality/README.md",
+    ".skilled/scripts/git-hooks/lib/gates.tsv",
+    ".skilled/scripts/git-hooks/pre-commit",
+    ".skilled/scripts/git-hooks/README.md",
+    ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+    ".skilled/skills/cli-classifier/shared/README.md",
+    ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md",
+    ".skilled/skills/mcp-tooling/mcp-aside-devtools/INSTALL-GUIDE.md",
+    ".skilled/skills/mcp-tooling/mcp-chrome-devtools/INSTALL-GUIDE.md",
+    ".skilled/skills/mcp-tooling/mcp-click-up/INSTALL-GUIDE.md",
+    ".skilled/skills/mcp-tooling/mcp-figma/INSTALL-GUIDE.md",
+    ".skilled/skills/mcp-tooling/mcp-mobbin/INSTALL-GUIDE.md",
+    ".skilled/skills/mcp-tooling/mcp-notion/INSTALL-GUIDE.md",
+    ".skilled/skills/mcp-tooling/mcp-obsidian/INSTALL-GUIDE.md",
+    ".skilled/skills/mcp-tooling/mcp-refero/INSTALL-GUIDE.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/opencode-typescript.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/mixed-marker-ambiguity.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/obsidian-detection.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/webflow-detection.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/tooling-and-hooks/comment-hygiene-hook.md",
+    ".skilled/skills/sk-code/sk-code-obsidian/README.md",
+    ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/INSTALL-GUIDE.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/references/examples/README.md",
+    ".skilled/skills/sk-doc/changelog/v2.3.7.0.md",
+    ".skilled/skills/sk-doc/description.json",
+    ".skilled/skills/sk-doc/hub-router.json",
+    ".skilled/skills/sk-doc/mode-registry.json",
+    ".skilled/skills/sk-doc/ROUTER.md",
+    ".skilled/skills/sk-doc/scripts/tests/test_package_skill_regressions.py",
+    ".skilled/skills/sk-doc/scripts/tests/test_template_version_seed.py",
+    ".skilled/skills/sk-doc/scripts/tests/test-frontmatter-version-bump.mjs",
+    ".skilled/skills/sk-doc/scripts/tests/test-frontmatter-version.mjs",
+    ".skilled/skills/sk-doc/scripts/tests/test-root-name-consumer-matrix.cjs",
+    ".skilled/skills/sk-doc/shared/README.md",
+    ".skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh",
+    ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+    ".skilled/skills/sk-doc/sk-create-diff/references/README.md",
+    ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md",
+    ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+    ".skilled/skills/sk-doc/sk-create-readme/assets/architecture-template.md",
+    ".skilled/skills/sk-doc/sk-create-readme/assets/readme-code-template.md",
+    ".skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md",
+    ".skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py",
+    ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+    ".skilled/skills/sk-doc/SKILL.md",
+    ".skilled/skills/sk-vision/hooks/devin/vision-rule.md",
+    ".skilled/skills/sk-vision/hooks/README.md",
+    ".skilled/skills/system-deep-loop/shared/rollout/promotion-rule.md",
+    ".skilled/skills/system-deep-loop/shared/rollout/README.md",
+    ".skilled/skills/system-spec-kit/runtime/cli/references/spec-root-alias-retirement-runbook.md",
+    "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-doc/manifest.json"
+  ],
+  "stopPolicy": "max-iterations",
+  "resource_map": {
+    "emit": true
+  }
+}

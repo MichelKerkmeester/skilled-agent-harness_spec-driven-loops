@@ -1,6 +1,7 @@
 ---
 title: "DRV-025 -- Review report synthesis has all 9 sections"
 description: "Verify that review-report.md contains all 9 required sections: Executive Summary, Planning Trigger, Active Finding Registry, Remediation Workstreams, Spec Seed, Plan Seed, Traceability Status, Deferred Items, Audit Appendix."
+version: 1.11.0.13
 ---
 
 # DRV-025 -- Review report synthesis has all 9 sections

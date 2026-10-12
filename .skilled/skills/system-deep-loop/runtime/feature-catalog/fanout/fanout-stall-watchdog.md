@@ -6,6 +6,7 @@ trigger_phrases:
   - "fanout-stall-watchdog"
   - "fan-out stall watchdog runtime"
   - "fan-out fan-out stall watchdog"
+version: 1.4.0.15
 ---
 
 # Fan-out stall watchdog

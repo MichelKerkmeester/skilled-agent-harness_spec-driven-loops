@@ -12,6 +12,7 @@ expected_resources:
   - references/shell/quality-standards/validation-security-and-shellcheck.md
   - references/shell/quick-reference/template-variables-and-loops.md
   - references/shell/quick-reference/functions-strings-and-checklist.md
+version: 1.0.0.0
 ---
 
 # OC-003: Shell standards routing

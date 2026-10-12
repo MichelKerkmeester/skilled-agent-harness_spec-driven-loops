@@ -8,6 +8,7 @@ trigger_phrases:
   - "lease env-var override"
 importance_tier: normal
 contextType: implementation
+version: 1.6.0.6
 ---
 
 # Launcher Lease

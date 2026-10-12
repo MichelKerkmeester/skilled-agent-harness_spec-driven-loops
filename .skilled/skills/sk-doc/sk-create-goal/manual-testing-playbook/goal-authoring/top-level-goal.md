@@ -2,6 +2,7 @@
 title: "SCG-001 -- Top-level goal"
 description: "This scenario validates the top-level goal for `SCG-001`. It focuses on authoring a goal for a single-folder packet that passes the goal check and fits the durable budget."
 stage: routing
+version: 1.0.0.0
 ---
 
 # SCG-001 -- Top-level goal

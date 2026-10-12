@@ -6,6 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-hermes.vitest.ts"
 test_name: "preserves independent worktree node_modules boundaries during cli-hermes dispatch"
 playbook_path: "cli-external-orchestration/cli-hermes/manual-testing-playbook/stress/node-modules-integrity.md"
 id: "cli-hermes-EC-013"
+version: 1.0.0.0
 ---
 
 # EC-013 -- cli-hermes node modules integrity

@@ -8,6 +8,7 @@ trigger_phrases:
   - "parallel detached"
   - "cross-ai handback"
   - "share url"
+version: 1.4.0.44
 ---
 
 # cli-opencode

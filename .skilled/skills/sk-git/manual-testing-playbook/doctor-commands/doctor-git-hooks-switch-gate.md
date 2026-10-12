@@ -1,6 +1,7 @@
 ---
 title: "DOC-370 -- Doctor git hooks switch gate"
 description: "Manual scenario validating that /doctor:git hooks switches one gate only after showing the exact git config command and getting an approval."
+version: 1.1.0.0
 id: doctor-commands-doctor-git-hooks-switch-gate
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

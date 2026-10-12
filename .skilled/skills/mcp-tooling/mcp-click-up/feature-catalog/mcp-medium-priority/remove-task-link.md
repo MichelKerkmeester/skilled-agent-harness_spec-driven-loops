@@ -4,6 +4,7 @@ description: "Remove a link between two tasks."
 trigger_phrases:
   - "clickup_remove_task_link"
   - "unlink tasks"
+version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

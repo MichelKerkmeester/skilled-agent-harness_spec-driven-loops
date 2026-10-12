@@ -8,6 +8,7 @@ expected_intent: TROUBLESHOOT
 expected_resources:
   - references/troubleshooting.md
   - references/figma-cli-reference.md
+version: 1.0.0.1
 ---
 
 # FG-R06: Troubleshoot routing

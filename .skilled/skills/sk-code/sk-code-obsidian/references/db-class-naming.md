@@ -10,6 +10,7 @@ trigger_phrases:
   - "status class prefix"
 importance_tier: normal
 contextType: implementation
+version: 0.1.0.0
 ---
 
 # The `.db-*` Class Grammar

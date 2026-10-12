@@ -5,6 +5,7 @@ trigger_phrases:
   - "chrome mcp new page"
   - "select page close page"
   - "multi tab single instance"
+version: 1.0.0.0
 ---
 
 # Page Management

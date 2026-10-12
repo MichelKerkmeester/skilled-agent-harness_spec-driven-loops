@@ -1,6 +1,7 @@
 ---
 title: "DOC-369 -- Doctor git hooks list"
 description: "Manual scenario validating that /doctor:git hooks lists every shipped hook gate with its local, global and effective setting and reports the hook install state."
+version: 1.0.0.0
 id: doctor-commands-doctor-git-hooks-list
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

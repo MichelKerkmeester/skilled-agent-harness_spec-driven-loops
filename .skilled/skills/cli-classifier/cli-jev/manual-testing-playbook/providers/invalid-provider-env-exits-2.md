@@ -1,6 +1,7 @@
 ---
 title: "JEV-014 -- An invalid provider environment exits 2"
 description: "Confirm a typo in `JEV_PROVIDER` fails loudly instead of falling back, for `JEV-014`."
+version: 0.1.0.1
 ---
 
 # JEV-014 -- An invalid provider environment exits 2

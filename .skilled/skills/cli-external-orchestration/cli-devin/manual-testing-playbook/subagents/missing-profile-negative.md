@@ -1,6 +1,7 @@
 ---
 title: "DV-013 -- Missing subagent profile negative case"
 description: "Verify that a nonexistent custom subagent profile fails clearly instead of silently falling back to another profile."
+version: 1.4.0.3
 ---
 
 # DV-013 -- Missing subagent profile negative case

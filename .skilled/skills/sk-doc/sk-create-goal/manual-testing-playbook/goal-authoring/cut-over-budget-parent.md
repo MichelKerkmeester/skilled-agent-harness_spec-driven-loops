@@ -2,6 +2,7 @@
 title: "SCG-004 -- Cut an over-budget parent"
 description: "This scenario validates the ordered budget cut for `SCG-004`. It focuses on bringing an over-budget parent goal to `packet_budget=ok` through the documented cut order with the completion criterion count unchanged."
 stage: routing
+version: 1.0.0.0
 ---
 
 # SCG-004 -- Cut an over-budget parent

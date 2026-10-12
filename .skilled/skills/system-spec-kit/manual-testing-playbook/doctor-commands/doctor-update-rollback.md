@@ -1,6 +1,7 @@
 ---
 title: "DOC-360 -- Doctor update rollback"
 description: "Manual scenario validating that /doctor:update rollback on the shared update fixture previews the paths recorded by an apply, asks before restoring, restores paths that still match the applied release, and leaves later edits untouched."
+version: 1.1.0.0
 id: doctor-commands-doctor-update-rollback
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

@@ -1,6 +1,7 @@
 ---
 title: "GIT-044 -- Find commits by packet and identifier"
 description: "This scenario validates Find commits by packet and identifier for `GIT-044`. It focuses on verify the three queries resolve a commit after a stamped commit exists."
+version: 1.0.0.0
 ---
 
 # GIT-044 -- Find commits by packet and identifier

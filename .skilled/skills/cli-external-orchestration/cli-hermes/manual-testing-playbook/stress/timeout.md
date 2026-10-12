@@ -6,6 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-hermes.vitest.ts"
 test_name: "times out and terminates the captured cli-hermes process"
 playbook_path: "cli-external-orchestration/cli-hermes/manual-testing-playbook/stress/timeout.md"
 id: "cli-hermes-EC-004"
+version: 1.0.0.0
 ---
 
 # EC-004 -- cli-hermes timeout

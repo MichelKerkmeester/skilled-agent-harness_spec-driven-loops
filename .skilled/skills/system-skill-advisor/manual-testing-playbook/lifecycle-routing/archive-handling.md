@@ -6,6 +6,7 @@ trigger_phrases:
   - "z_archive skills"
   - "z_future skills"
   - "indexed not routed"
+version: 0.8.0.14
 id: LC-003
 category: lifecycle_routing
 stage: routing

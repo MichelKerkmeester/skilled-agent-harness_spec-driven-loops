@@ -7,6 +7,7 @@ trigger_phrases:
   - "doctor deep-loop"
 importance_tier: normal
 contextType: implementation
+version: 1.4.0.12
 ---
 
 # Deep Loop Runtime Integration Points

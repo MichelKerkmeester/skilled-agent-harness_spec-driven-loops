@@ -8,6 +8,7 @@ expected_intent: RECOVERY
 expected_resources:
   - references/convergence/convergence-recovery.md
   - references/state/state-reducer-registry.md
+version: 1.1.0.0
 ---
 
 # DR-R04: Deep research recovery routing

@@ -10,6 +10,7 @@ trigger_phrases:
   - "cross role handoff"
 importance_tier: normal
 contextType: implementation
+version: 1.2.0.9
 ---
 
 # Data Flow

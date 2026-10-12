@@ -2,6 +2,7 @@
 title: "PAGE-005 -- Move a page"
 description: "This scenario validates notion_move-page by creating a scratch page, moving it to a second scratch parent, then archiving it as cleanup."
 stage: routing
+version: 0.1.0.0
 ---
 
 # PAGE-005 -- Move a page

@@ -2,6 +2,7 @@
 title: "CMT-001 -- Create a comment"
 description: "This scenario validates a scratch-page create-comment-list-archive cycle through the confirmed notion_create-a-comment tool."
 stage: routing
+version: 0.1.0.0
 ---
 
 # CMT-001 -- Create a comment

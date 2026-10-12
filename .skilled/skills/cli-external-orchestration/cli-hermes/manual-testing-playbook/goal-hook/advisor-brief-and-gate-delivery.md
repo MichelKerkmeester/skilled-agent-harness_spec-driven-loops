@@ -1,6 +1,7 @@
 ---
 title: "HERMES-028 -- Prompt-time advisor brief and mutation-time gate delivery"
 description: "Confirm a Hermes session's user turn carries the skill-advisor brief and never the spec-folder question, and that the question is delivered once, on the first write's own tool result, for `HERMES-028`."
+version: 1.0.1.0
 ---
 
 # HERMES-028 -- Prompt-time advisor brief and mutation-time gate delivery

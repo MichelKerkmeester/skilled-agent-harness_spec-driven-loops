@@ -7,6 +7,7 @@ trigger_phrases:
   - "aside element screenshot"
   - "aside pdf"
 last_updated: "2026-07-17"
+version: 1.0.0.0
 ---
 
 # Screenshots, Element Captures, and PDF (DevTools parity)

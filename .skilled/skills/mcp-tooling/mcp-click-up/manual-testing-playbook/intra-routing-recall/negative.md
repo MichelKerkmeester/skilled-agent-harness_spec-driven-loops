@@ -6,6 +6,7 @@ title: 'Negative — out of domain'
 description: "This scenario validates the SKILL.md Smart Router's UNKNOWN_FALLBACK path for `CU-N01`. It confirms an out-of-domain prompt scores zero on every intent and loads no resources, only the disambiguation checklist and a suggested (not loaded) fallback."
 expected_intent: none
 expected_resources: []
+version: 1.1.0.0
 ---
 
 # CU-N01: Negative — out of domain

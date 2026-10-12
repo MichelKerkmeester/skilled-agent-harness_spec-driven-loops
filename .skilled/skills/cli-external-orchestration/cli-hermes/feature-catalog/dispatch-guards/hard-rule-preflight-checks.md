@@ -6,6 +6,7 @@ trigger_phrases:
   - "hermes-explicit-toolsets-required"
   - "hermes-yolo-required-for-writes"
   - "dispatch rule checks hermes"
+version: 1.0.0.0
 ---
 
 # Hermes Hard-Rule Preflight Checks (dispatch-rule-checks)

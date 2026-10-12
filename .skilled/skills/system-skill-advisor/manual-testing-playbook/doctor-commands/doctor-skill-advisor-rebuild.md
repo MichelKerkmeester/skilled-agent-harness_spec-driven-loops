@@ -1,6 +1,7 @@
 ---
 title: "DOC-348 -- Doctor skill-advisor rebuild"
 description: "Manual scenario validating that /doctor:skill-advisor rebuild backs up the skill graph, rebuilds it through the advisor CLI, and restores the backup when the rebuild fails."
+version: 1.7.0.0
 id: doctor-commands-doctor-skill-advisor-rebuild
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

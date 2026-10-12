@@ -7,6 +7,7 @@ trigger_phrases:
   - "laneBreakdown"
   - "attribution metadata"
   - "why_recommended"
+version: 0.8.0.15
 ---
 
 # Lane Contribution Attribution

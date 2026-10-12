@@ -8,6 +8,7 @@ trigger_phrases:
   - "architecture zones readme"
 importance_tier: normal
 contextType: general
+version: 1.1.1.0
 ---
 
 # Code Folder README Template
@@ -185,6 +186,7 @@ title: "[Folder Name]: [Responsibility]"
 description: "[One-sentence current responsibility.]"
 trigger_phrases:
   - "[folder concept]"
+version: 1.0.0.0
 ---
 
 # [Folder Name]: [Responsibility]

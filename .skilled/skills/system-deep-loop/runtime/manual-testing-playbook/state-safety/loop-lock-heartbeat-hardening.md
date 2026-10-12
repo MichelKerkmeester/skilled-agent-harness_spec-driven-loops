@@ -1,6 +1,7 @@
 ---
 title: "DLR-036 -- Loop-lock heartbeat hardening"
 description: "Manual validation scenario for Loop-lock heartbeat hardening in the runtime/ skill."
+version: 1.4.0.15
 ---
 
 # DLR-036 -- Loop-lock heartbeat hardening

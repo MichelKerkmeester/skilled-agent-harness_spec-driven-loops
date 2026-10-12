@@ -10,6 +10,7 @@ expected_resources:
 blindToRouterKeywords: true
 blindExceptions:
   - "first open"
+version: 1.0.0.1
 ---
 
 # MB-H01: Blind holdout: real-app pattern evidence

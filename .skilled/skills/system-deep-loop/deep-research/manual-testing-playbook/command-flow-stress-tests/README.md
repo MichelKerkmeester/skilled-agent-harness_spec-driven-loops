@@ -1,6 +1,7 @@
 ---
 title: "Command-Flow Stress Tests: deep-research CP-04x/05x scenarios"
 description: "Sandboxed scenarios validating the /deep:research command-level entrypoint separately from the leaf iteration body."
+version: 1.15.0.1
 ---
 
 # Command-Flow Stress Tests

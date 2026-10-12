@@ -2,6 +2,7 @@
 title: "GAP-002 -- Views"
 description: "This scenario validates creating, listing, querying, and deleting a saved database view via the direct Notion REST views API."
 stage: routing
+version: 0.1.0.0
 ---
 
 # GAP-002 -- Views

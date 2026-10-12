@@ -7,6 +7,7 @@ description: "Verify the ai-council mode resolves to backendKind runtime-loop-ty
 expected_intent: ai-council
 expected_workflow_mode: ai-council
 expected_leaf_resources: []
+version: "1.2.0.0"
 ---
 
 # RB-002: Runtime Loop Council Backend

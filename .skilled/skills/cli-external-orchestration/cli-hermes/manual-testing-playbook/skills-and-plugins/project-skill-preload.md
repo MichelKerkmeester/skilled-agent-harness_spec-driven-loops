@@ -1,6 +1,7 @@
 ---
 title: "HERMES-016 -- Project skill preload"
 description: "Confirm `-s cli-hermes` preloads the generated project skill copy into a session, and that the content is attributable to the preload rather than to a search for `HERMES-016`."
+version: 1.0.0.0
 ---
 
 # HERMES-016 -- Project skill preload

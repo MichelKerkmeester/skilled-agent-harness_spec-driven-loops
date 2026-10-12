@@ -9,6 +9,7 @@ expected_resources:
   - references/figma-cli-reference.md
   - references/tool-surface.md
 blindToRouterKeywords: true
+version: 1.0.0.1
 ---
 
 # FG-H02: Blind holdout: measurements

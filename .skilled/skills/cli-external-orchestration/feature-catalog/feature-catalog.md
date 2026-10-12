@@ -11,6 +11,7 @@ trigger_phrases:
   - "cross-runtime goal isolation"
   - "cli-hermes dispatch"
 last_updated: "2026-09-20"
+version: 1.6.0.0
 ---
 
 # cli-external-orchestration: Feature Catalog

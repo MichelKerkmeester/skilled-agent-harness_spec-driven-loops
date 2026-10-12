@@ -10,6 +10,7 @@ trigger_phrases:
   - "cjk comment preamble"
 importance_tier: normal
 contextType: implementation
+version: 0.1.0.0
 ---
 
 # Stylesheet Ownership

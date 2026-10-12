@@ -1,6 +1,7 @@
 ---
 title: "DLR-024 -- Fan-out worker pool concurrency cap"
 description: "Validate runCappedPool respects the concurrency cap, isolates per-item failures from the pool, returns ordered results, emits ledger events, and reports all_failed when every item fails."
+version: 1.4.0.4
 ---
 
 # DLR-024 -- Fan-out worker pool concurrency cap

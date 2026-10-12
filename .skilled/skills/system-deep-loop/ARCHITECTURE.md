@@ -7,6 +7,7 @@ trigger_phrases:
   - "mode append gateway flow"
   - "deep-loop package topology"
 importance_tier: "important"
+version: 1.0.0.0
 ---
 
 # Architecture: system-deep-loop

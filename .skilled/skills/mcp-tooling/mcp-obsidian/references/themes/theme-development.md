@@ -11,6 +11,7 @@ trigger_phrases:
   - "obsidian theme dark light"
 importance_tier: "normal"
 contextType: "reference"
+version: "1.0.0.0"
 ---
 
 # Obsidian Theme Development

@@ -8,6 +8,7 @@ expected_intent: none
 expected_resources: []
 expected_workflow_mode: none
 expected_leaf_resources: []
+version: 0.4.0.0
 ---
 
 # CC-003 -- An out-of-domain request resolves nothing here

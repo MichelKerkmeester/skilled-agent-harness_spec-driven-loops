@@ -7,6 +7,7 @@ expected_surface: WEBFLOW
 expected_intent: TESTING
 expected_resources:
   - assets/animation/playbook-entries.md
+version: 1.0.0.0
 ---
 
 # WF-005: Testing routing

@@ -9,6 +9,7 @@ trigger_phrases:
   - "chart color roles"
 importance_tier: normal
 contextType: reference
+version: 0.23.0.19
 ---
 
 # Chart Colour Systems

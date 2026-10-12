@@ -10,6 +10,7 @@ trigger_phrases:
   - "folder icon colors"
 importance_tier: "normal"
 contextType: "implementation"
+version: 0.7.0.0
 ---
 
 # Iconic Plugin Index (`iconic`)

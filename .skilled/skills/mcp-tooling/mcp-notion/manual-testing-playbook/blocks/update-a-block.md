@@ -2,6 +2,7 @@
 title: "BLK-004 -- Update a block"
 description: "This scenario validates a scratch-safe block edit through the confirmed notion_update-a-block tool, then archives the scratch page as cleanup."
 stage: routing
+version: 0.1.0.0
 ---
 
 # BLK-004 -- Update a block

@@ -7,6 +7,7 @@ trigger_phrases:
   - "cite-drift-redirects.json"
   - "cite moved lines"
   - "moved citation redirect table"
+version: 2.3.0.2
 ---
 
 # Citation Drift Census Across Doc Families (cite-drift-scan.mjs --corpus)

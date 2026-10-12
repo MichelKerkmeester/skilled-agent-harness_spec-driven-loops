@@ -1,6 +1,7 @@
 ---
 title: "BDG-002 -- Session start"
 description: "This scenario validates bdg session startup for `BDG-002`. It focuses on confirming `bdg <url>` starts a CDP session against the given URL and bdg status reports active state."
+version: 1.0.0.6
 ---
 
 # BDG-002 -- Session start

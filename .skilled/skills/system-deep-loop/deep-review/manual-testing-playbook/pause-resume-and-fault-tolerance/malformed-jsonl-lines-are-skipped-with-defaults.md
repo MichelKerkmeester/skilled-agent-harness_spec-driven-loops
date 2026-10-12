@@ -1,6 +1,7 @@
 ---
 title: "DRV-023 -- Malformed JSONL lines are skipped with defaults"
 description: "Verify that malformed JSONL lines in the review state log are skipped gracefully with sensible defaults applied."
+version: 1.11.0.14
 ---
 
 # DRV-023 -- Malformed JSONL lines are skipped with defaults

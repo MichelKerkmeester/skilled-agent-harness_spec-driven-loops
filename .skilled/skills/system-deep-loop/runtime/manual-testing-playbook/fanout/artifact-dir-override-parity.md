@@ -1,6 +1,7 @@
 ---
 title: "DLR-029 -- Artifact-dir override and single-executor parity"
 description: "Validate the YAML artifact-dir override branch is byte-identical to the original resolver in single-executor mode, and that step_fanout_spawn + step_fanout_merge are fully skipped when config.fanout is absent."
+version: 1.4.0.4
 ---
 
 # DLR-029 -- Artifact-dir override and single-executor parity

@@ -1,6 +1,7 @@
 ---
 title: "HERMES-010 -- Cross-model validation pair"
 description: "Confirm both roster models answer an identical factual question through the same dispatch shape, so a disagreement would be a model signal rather than a transport artefact for `HERMES-010`."
+version: 1.0.0.0
 ---
 
 # HERMES-010 -- Cross-model validation pair

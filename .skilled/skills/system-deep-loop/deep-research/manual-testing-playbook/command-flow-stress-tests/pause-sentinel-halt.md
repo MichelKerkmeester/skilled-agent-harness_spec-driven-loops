@@ -1,6 +1,7 @@
 ---
 title: "CP-049 -- PAUSE_SENTINEL_HALT command lifecycle stop **(SANDBOXED)**"
 description: "Validate that a packet-local .deep-research-pause sentinel halts the command between lifecycle turns and records userPaused without writing an iteration."
+version: 1.14.0.9
 ---
 
 # CP-049 -- PAUSE_SENTINEL_HALT command lifecycle stop **(SANDBOXED)**

@@ -8,6 +8,7 @@ trigger_phrases:
   - "shared design tokens"
 importance_tier: normal
 contextType: general
+version: 1.0.0.0
 ---
 
 # Design Token Vocabulary

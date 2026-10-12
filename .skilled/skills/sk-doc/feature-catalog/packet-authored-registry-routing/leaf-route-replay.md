@@ -6,6 +6,7 @@ trigger_phrases:
   - "leaf-route-replay.cjs"
   - "stage-two keyword replay"
   - "router read recount"
+version: 2.2.0.1
 ---
 
 # Leaf Route Replay (leaf-route-replay.cjs)

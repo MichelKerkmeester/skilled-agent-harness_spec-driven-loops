@@ -17,6 +17,7 @@ blindToRouterKeywords: true
 blindExceptions:
   - "click through"
   - "on its own"
+version: 1.1.0.0
 ---
 # MT-H04: Blind holdout — autonomous browser task
 

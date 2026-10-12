@@ -7,6 +7,7 @@ description: "Verify convergence detection is documented as a legal stop path ow
 expected_intent: research
 expected_workflow_mode: research
 expected_leaf_resources: []
+version: "1.2.0.0"
 ---
 
 # SC-003: Convergence Stop Discipline

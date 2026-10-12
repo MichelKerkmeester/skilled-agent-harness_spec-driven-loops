@@ -6,6 +6,7 @@ trigger_phrases:
   - "magicpath list projects"
   - "magicpath active project"
   - "magicpath share link"
+version: 1.0.0.0
 ---
 
 # Projects (list_projects / active_project / share_link)

@@ -1,6 +1,7 @@
 ---
 title: "GIT-046 -- Scope aliases, length target and breaking sections"
 description: "This scenario validates Scope aliases, length target and breaking sections for `GIT-046`. It focuses on verify the commit-msg gate refuses an alias scope, warns past the subject length target, and requires every breaking-change body section."
+version: 1.0.0.0
 ---
 
 # GIT-046 -- Scope aliases, length target and breaking sections

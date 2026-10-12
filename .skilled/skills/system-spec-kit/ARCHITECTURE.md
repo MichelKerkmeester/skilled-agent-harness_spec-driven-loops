@@ -8,6 +8,7 @@ trigger_phrases:
   - "resume ladder"
   - "spec-kit runtime subsystems"
 importance_tier: "important"
+version: 1.0.0.0
 ---
 
 # Architecture: system-spec-kit

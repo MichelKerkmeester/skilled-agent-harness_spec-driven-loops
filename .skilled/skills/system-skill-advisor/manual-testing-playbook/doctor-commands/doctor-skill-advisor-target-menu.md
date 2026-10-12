@@ -1,6 +1,7 @@
 ---
 title: "DOC-367 -- Doctor skill-advisor target menu"
 description: "Manual scenario validating that /doctor:skill-advisor with no target shows the presentation contract menu and waits, and never infers a target from history, open files, earlier runs or repository state."
+version: 1.0.0.0
 id: doctor-commands-doctor-skill-advisor-target-menu
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

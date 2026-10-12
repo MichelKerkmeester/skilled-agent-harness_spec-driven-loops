@@ -6,6 +6,7 @@ trigger_phrases:
   - "persisted-wait-crash-resume"
   - "persisted-wait crash resume runtime"
   - "fan-out persisted-wait crash resume"
+version: 1.4.0.15
 ---
 
 # Persisted-wait crash resume

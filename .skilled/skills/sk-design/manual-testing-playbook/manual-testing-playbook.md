@@ -1,6 +1,7 @@
 ---
 title: "sk-design: Manual Testing Playbook"
 description: "Operator-facing index for sk-design smart-router validation: the canvas modes' resource loading, holdout generalization probes, and cross-canvas ambiguity."
+version: 1.0.0.0
 ---
 
 # sk-design: Manual Testing Playbook

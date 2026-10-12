@@ -6,6 +6,7 @@ trigger_phrases:
   - "get task"
   - "task details mcp"
   - "read task"
+version: 1.1.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

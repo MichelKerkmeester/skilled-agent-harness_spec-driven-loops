@@ -8,6 +8,7 @@ trigger_phrases:
   - "webflow defense in"
 importance_tier: normal
 contextType: implementation
+version: 1.5.0.10
 ---
 
 # Defense-in-Depth Validation, Minification & CDN Deployment

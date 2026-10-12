@@ -7,6 +7,7 @@ trigger_phrases:
   - "trend_flatline"
   - "dashboard TREND section"
   - "newInfoRatio sparkline"
+version: 1.14.0.13
 ---
 
 # Dashboard sparkline trend

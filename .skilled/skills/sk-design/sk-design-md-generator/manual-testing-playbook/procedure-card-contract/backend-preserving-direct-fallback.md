@@ -1,6 +1,7 @@
 ---
 title: "PROCCARD-003 -- md-generator backend-preserving direct fallback"
 description: "This scenario validates that md-generator direct fallback keeps its normal backend boundary and dedicated pipeline entrypoints when subagents are unavailable."
+version: 1.0.0.0
 ---
 
 # PROCCARD-003 -- md-generator backend-preserving direct fallback

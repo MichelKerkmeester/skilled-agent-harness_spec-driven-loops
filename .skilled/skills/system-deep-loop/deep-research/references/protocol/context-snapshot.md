@@ -8,6 +8,7 @@ trigger_phrases:
   - "bounded context snapshot"
 importance_tier: normal
 contextType: implementation
+version: 1.14.0.0
 ---
 
 # Codebase Context Snapshot Reference

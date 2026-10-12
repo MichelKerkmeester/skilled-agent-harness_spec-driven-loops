@@ -1,6 +1,7 @@
 ---
 title: "HERMES-021 -- Provider preflight probe"
 description: "Confirm `hermes config get providers.llmgateway.base_url` is a usable provider preflight, and record that `hermes status` is not for `HERMES-021`."
+version: 1.0.0.0
 ---
 
 # HERMES-021 -- Provider preflight probe

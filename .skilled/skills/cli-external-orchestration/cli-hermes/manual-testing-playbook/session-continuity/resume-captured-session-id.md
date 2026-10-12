@@ -1,6 +1,7 @@
 ---
 title: "HERMES-011 -- Resume a captured session id"
 description: "Confirm `--resume <id>` reattaches a headless dispatch to a prior session with its history intact and reuses the same session id for `HERMES-011`."
+version: 1.0.0.0
 ---
 
 # HERMES-011 -- Resume a captured session id

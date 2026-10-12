@@ -1,6 +1,7 @@
 ---
 title: "CU-010 -- Filter Today — cupt list --today --json"
 description: "This scenario validates Filter Today — cupt list --today --json for `CU-010`. Objective: Verify `cupt list --today --json` returns valid JSON array of today's tasks."
+version: 1.0.0.6
 ---
 
 # CU-010 -- Filter Today — cupt list --today --json

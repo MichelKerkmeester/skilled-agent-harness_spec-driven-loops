@@ -1,6 +1,7 @@
 ---
 title: "ASD-001 -- Install + version check"
 description: "This scenario validates aside CLI presence for `ASD-001`. It focuses on confirming `command -v aside` resolves and `aside --version` returns a non-empty version string."
+version: 1.0.0.0
 ---
 
 # ASD-001 -- Install + version check

@@ -6,6 +6,7 @@ trigger_phrases:
   - "git advisory runtime matrix"
   - "SKGIT_ADVISORY"
   - "git hook fail open"
+version: 1.0.0.0
 ---
 
 # hooks: Git Preflight Advisory Runtime Adapters

@@ -5,6 +5,7 @@ trigger_phrases:
   - "clickup_add_task_link"
   - "link tasks"
   - "related task"
+version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

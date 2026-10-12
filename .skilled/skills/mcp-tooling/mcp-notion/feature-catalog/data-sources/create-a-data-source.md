@@ -5,6 +5,7 @@ trigger_phrases:
   - "Create a data source"
   - "notion_create-a-data-source"
   - "define a new Notion data source schema"
+version: 0.1.0.0
 ---
 
 # Create a data source (`notion_create-a-data-source`)

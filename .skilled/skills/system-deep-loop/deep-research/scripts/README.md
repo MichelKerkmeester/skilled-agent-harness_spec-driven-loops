@@ -4,6 +4,7 @@ description: "Code-facing entrypoints for research pivots, state reduction, runt
 trigger_phrases:
   - "deep-research scripts"
   - "research script entrypoints"
+version: 1.0.0.0
 ---
 
 # Deep-research scripts

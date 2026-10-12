@@ -44,11 +44,10 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Build: codex 002-6, haiku 007-8, sonnet 009; 010-11 Opus plan, DeepSeek build, sonnet verify |
-| D2 | A report is a claim; rerun criteria |
+| D1 | codex 002-6, haiku 007-8, sonnet 009; 010-11 Opus plan, DeepSeek build, sonnet verify |
+| D2 | Reports are claims: rerun criteria; halt after three failed repairs |
 | D3 | One sk-git worktree, no raw git; edit packet copy |
-| D4 | Commit 002-006, then 007-011 children, one per phase or round; no push |
-| D7 | Halt and report after three failed repairs |
+| D4 | Commit per phase or round; no push |
 
 <!-- /ANCHOR:directive -->
 
@@ -83,6 +82,7 @@ phase and binds as if written here.
 | 019-routing-miss-fixes | `019-routing-miss-fixes/goal.md` |
 | 020-open-ends-research | `020-open-ends-research/goal.md` |
 | 021-open-ends-remediation | `021-open-ends-remediation/goal.md` |
+| 022-doc-version-and-playbook-paths | `022-doc-version-and-playbook-paths/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -96,11 +96,11 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 22 times and no `RESULT: FAILED`
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 23 times, no `RESULT: FAILED`
 - [ ] `grep -lr --include=implementation-summary.md 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement | grep -vc /001-ponytail` prints 101
-- [ ] `git log --format='%(trailers:key=Spec,valueonly)' | grep -c '^sk-code/011-'` prints 100 or more; `git status --short` prints nothing
-- [ ] `node .skilled/bin/compiled-route-guard.cjs` exits 0 listing sk-code `fresh`; `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "code review my obsidian plugin"` prints `"action":"route"`, no `servingAuthority`
-- [ ] `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js`, `bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh` and `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` all exit 0
+- [ ] `git log --format='%(trailers:key=Spec,valueonly)' | grep -c '^sk-code/011-'` prints 100+; `git status --short` prints nothing
+- [ ] `node .skilled/bin/compiled-route-guard.cjs` exits 0 with sk-code `fresh`; `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "code review my obsidian plugin"` prints `"action":"route"`, no `servingAuthority`
+- [ ] `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js`, `bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh` and `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` exit 0
 - [ ] `node .skilled/bin/check-agent-mirror-sync.cjs --all` and `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` exit 0
 <!-- /ANCHOR:completion -->
 
@@ -156,5 +156,6 @@ and findings belong here.
 | Integration 2026-10-11, open ends | Branches 110, 105, 106, 108 and 109 merged on one integration branch, keeping both the 019 and 020 rows. Criterion 1 amended to 21 (the parent and 20 direct children) and criterion 2 to 97, both as printed. The slice was 4,037 characters, so the objective was shortened, D5 was dropped because the stop paragraph and criteria 1 and 2 already decide done, D6 was folded into D4, D7 was shortened, criterion 3 drops the default `HEAD` and criterion 4 joins its checks with a semicolon; no criterion was removed |
 | 021 added 2026-10-11 | Child 021 scaffolds four build phases for every open ends recommendation; binding row added, criterion 1 amended to 22 (the parent and 21 direct children, as printed) and criterion 2 stays 97, as printed, until the four 021 summaries complete. The new row took the slice to 4,011 characters, so D3, D4 and criteria 1 and 6 were shortened with the same checks; no criterion was removed |
 | Integration 2026-10-12, open ends remediation | Branches 115, 113, 114 and 112 merged on `worktrees/116-rem-integration`, with colliding skill versions renumbered in merge order. The four 021 summaries reached `completion_pct: 100`, so criterion 2 is amended from 97 to 101, as printed; criterion 1 stays 22 |
+| 022 added 2026-10-12 | Child 022 scaffolds two build phases, per-doc versions and playbook path repair; binding row added, criterion 1 amended to 23 (the parent and 22 direct children, as printed) and criterion 2 stays 101, as printed, until the two 022 summaries complete, when it becomes 103. The new row took the slice to 4,079 characters, so D7 was folded into D2, D1 lost its `Build:` prefix, D4 lost the finished 002-011 commit order, and criteria 1, 3, 4 and 5 were reworded with the same checks; the slice is 3,999 characters and no criterion was removed |
 | Handed off, not built here | D2 Codex mirror gap (deep-improvement and git hooks) and D4 stdin deadline (hooks); recorded in the parent spec |
 <!-- /ANCHOR:log -->

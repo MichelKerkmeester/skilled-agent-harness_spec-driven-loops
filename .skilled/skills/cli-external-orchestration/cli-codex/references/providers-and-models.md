@@ -11,6 +11,7 @@ trigger_phrases:
   - "codex exec model reasoning effort"
 importance_tier: normal
 contextType: implementation
+version: 1.9.0.5
 ---
 
 # cli-codex Providers, Models & Invocation

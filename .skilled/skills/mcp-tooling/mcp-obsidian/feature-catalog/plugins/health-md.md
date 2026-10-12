@@ -8,6 +8,7 @@ trigger_phrases:
   - "health chart block"
   - "health data folder"
   - "health-viz render block"
+version: 0.5.0.0
 ---
 
 # Health.md file-layer data operations (`health-md`)

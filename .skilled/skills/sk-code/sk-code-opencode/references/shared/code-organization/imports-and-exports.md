@@ -8,6 +8,7 @@ trigger_phrases:
   - "python public api exports"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.17
 ---
 
 # Import Ordering & Export Patterns

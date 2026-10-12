@@ -1,6 +1,7 @@
 ---
 title: "BDG-006 -- Describe Page domain"
 description: "This scenario validates CDP domain introspection for `BDG-006`. It focuses on confirming `bdg cdp --describe Page` returns method signatures including the core navigate and reload methods."
+version: 1.0.0.7
 ---
 
 # BDG-006 -- Describe Page domain

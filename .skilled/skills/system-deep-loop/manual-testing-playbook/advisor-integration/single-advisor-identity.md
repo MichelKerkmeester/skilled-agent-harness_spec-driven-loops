@@ -7,6 +7,7 @@ description: "Verify positive deep-loop controls surface system-deep-loop as the
 expected_intent: research
 expected_workflow_mode: research
 expected_leaf_resources: []
+version: "1.2.0.0"
 ---
 
 # AI-001: Single Advisor Identity

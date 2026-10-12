@@ -5,6 +5,7 @@ trigger_phrases:
   - "clickup_add_time_entry"
   - "log time mcp"
   - "manual time entry"
+version: 1.0.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---

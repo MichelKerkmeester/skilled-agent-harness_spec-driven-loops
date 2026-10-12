@@ -8,6 +8,7 @@ trigger_phrases:
   - "repeatable drift verifier"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.18
 ---
 
 # Alignment Verification Automation

@@ -8,6 +8,7 @@ trigger_phrases:
   - "cli-orca safety boundaries"
   - "official orca skill layer"
 last_updated: "2026-09-20"
+version: 1.0.0.0
 ---
 
 # cli-orca: Feature Catalog

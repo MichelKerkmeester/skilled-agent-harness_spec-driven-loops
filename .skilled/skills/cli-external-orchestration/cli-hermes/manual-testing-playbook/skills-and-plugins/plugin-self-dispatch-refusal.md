@@ -1,6 +1,7 @@
 ---
 title: "HERMES-018 -- Plugin self-dispatch refusal"
 description: "Confirm the `repo-guards` plugin blocks a nested `hermes chat` issued from inside a Hermes session, returning the packet's refusal message as the tool result for `HERMES-018`."
+version: 1.0.0.0
 ---
 
 # HERMES-018 -- Plugin self-dispatch refusal

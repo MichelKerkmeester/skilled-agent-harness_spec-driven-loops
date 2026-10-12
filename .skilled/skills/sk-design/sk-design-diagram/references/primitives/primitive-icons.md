@@ -10,6 +10,7 @@ trigger_phrases:
   - "brand logo icons"
 importance_tier: normal
 contextType: implementation
+version: 1.2.0.7
 ---
 
 # Icons (primitive)

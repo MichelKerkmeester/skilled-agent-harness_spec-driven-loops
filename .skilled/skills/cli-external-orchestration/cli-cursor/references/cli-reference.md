@@ -10,6 +10,7 @@ trigger_phrases:
   - "cursor session resume"
 importance_tier: important
 contextType: implementation
+version: 1.4.0.13
 ---
 
 # Cursor CLI - Complete Command Reference

@@ -28,7 +28,8 @@ PASS=0; FAIL=0
 export GIT_CONFIG_GLOBAL=/dev/null
 export SPECKIT_SKIP_COMMENT_HYGIENE=1 SPECKIT_SKIP_MIRROR_PARITY=1 \
        SPECKIT_SKIP_CARD_SYNC=1 SPECKIT_SKIP_MCP_MUTATION_CLASS=1 \
-       SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 SPECKIT_SKIP_SKILL_AUTHORING=1
+       SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 SPECKIT_SKIP_SKILL_AUTHORING=1 \
+       SPECKIT_SKIP_DOC_VERSION_BUMP=1
 
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
@@ -924,6 +925,75 @@ stage_new ".opencode/agents/probe.md" "agent"
 run_legacy; RC=$?
 check "the helper warns and skips a not-checkable mirror checker" 0 "$RC" "agent mirror-sync is not checkable"
 check "the helper's warning names the build" 0 "$RC" "npm --prefix .skilled/skills/system-spec-kit run build"
+
+# ── 67-73. doc-version bump: a staged skill doc whose body changed gets its version raised ──
+# The real engine is linked into the fixture, so these cases exercise the gate and the
+# engine together. Node resolves the link to its real path, which is how the engine still
+# finds its parser package.
+DOCV_ENGINE_REAL="$REPO_ROOT/.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+DOCV_REF=".opencode/skills/fixt/references/ref.md"
+docv_doc() { printf -- '---\ntitle: Ref\ndescription: A fixture doc\nversion: %s\n---\n# Ref\n\n%s\n' "$1" "$2"; }
+setup_docv_fixture() {
+  rm -rf "$TMP"; mkdir -p "$TMP"
+  git -C "$TMP" init -q
+  git -C "$TMP" config core.hooksPath /dev/null
+  git -C "$TMP" config skilled.trustRepoHooks true
+  git -C "$TMP" config user.email t@example.com
+  git -C "$TMP" config user.name test
+  mkdir -p "$TMP/.opencode/skills/sk-doc/shared/scripts" "$TMP/.opencode/skills/fixt/references"
+  ln -s "$DOCV_ENGINE_REAL" "$TMP/.opencode/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+  docv_doc 1.2.0.0 "Original body." > "$TMP/$DOCV_REF"
+  git -C "$TMP" add -A >/dev/null
+  git -C "$TMP" commit -qm init
+}
+docv_staged_version() { git -C "$TMP" show ":$DOCV_REF" | sed -n 's/^version: //p'; }
+
+setup_docv_fixture
+docv_doc 1.2.0.0 "Changed body." > "$TMP/$DOCV_REF"; git -C "$TMP" add "$DOCV_REF"
+SPECKIT_SKIP_DOC_VERSION_BUMP=0 run_hook; RC=$?
+check "a changed doc body has its version raised" 0 "$RC" "raised $DOCV_REF"
+if [[ "$(docv_staged_version)" == "1.2.1.0" ]]; then echo "PASS  the raised version reached the index"; PASS=$((PASS + 1))
+else echo "FAIL  expected staged version 1.2.1.0, got $(docv_staged_version)"; FAIL=$((FAIL + 1)); fi
+
+setup_docv_fixture
+docv_doc 1.2.0.0 "Changed body." > "$TMP/$DOCV_REF"; git -C "$TMP" add "$DOCV_REF"
+SPECKIT_SKIP_DOC_VERSION_BUMP=1 run_hook; RC=$?
+check "the bypass leaves the version alone" 0 "$RC"
+if [[ "$(docv_staged_version)" == "1.2.0.0" ]]; then echo "PASS  the bypassed commit keeps its version"; PASS=$((PASS + 1))
+else echo "FAIL  bypass still raised to $(docv_staged_version)"; FAIL=$((FAIL + 1)); fi
+
+setup_docv_fixture
+printf -- '---\ntitle: Ref\ndescription: A new description\nversion: 1.2.0.0\n---\n# Ref\n\nOriginal body.\n' > "$TMP/$DOCV_REF"
+git -C "$TMP" add "$DOCV_REF"
+SPECKIT_SKIP_DOC_VERSION_BUMP=0 run_hook; RC=$?
+check "a frontmatter-only change passes" 0 "$RC"
+if [[ "$(docv_staged_version)" == "1.2.0.0" ]]; then echo "PASS  a frontmatter-only change raises nothing"; PASS=$((PASS + 1))
+else echo "FAIL  frontmatter-only change raised to $(docv_staged_version)"; FAIL=$((FAIL + 1)); fi
+
+setup_docv_fixture
+docv_doc 1.2.0.0 "Staged body." > "$TMP/$DOCV_REF"; git -C "$TMP" add "$DOCV_REF"
+docv_doc 1.2.0.0 "Unstaged body." > "$TMP/$DOCV_REF"
+SPECKIT_SKIP_DOC_VERSION_BUMP=0 run_hook; RC=$?
+check "a doc staged and unstaged at once is refused" 1 "$RC" "staged and unstaged at once"
+check "the refusal names its bypass" 1 "$RC" "SPECKIT_SKIP_DOC_VERSION_BUMP=1"
+
+setup_docv_fixture
+docv_doc 1.2 "Changed body." > "$TMP/$DOCV_REF"; git -C "$TMP" add "$DOCV_REF"
+SPECKIT_SKIP_DOC_VERSION_BUMP=0 run_hook; RC=$?
+check "a malformed version blocks instead of being guessed" 1 "$RC" "malformed version"
+
+setup_docv_fixture
+docv_doc 1.2.0.0 "Changed body." > "$TMP/$DOCV_REF"; git -C "$TMP" add "$DOCV_REF"
+( cd "$TMP" && cp .git/index "$TMP/.git/next-index-1234.lock"
+  SPECKIT_SKIP_DOC_VERSION_BUMP=0 GIT_INDEX_FILE="$TMP/.git/next-index-1234.lock" bash "$HOOK" >"$TMP/out.log" 2>&1 )
+RC=$?
+check "a pathspec-narrowed commit that needs a raise is refused" 1 "$RC" "narrows its"
+
+setup_docv_fixture
+echo "unrelated" > "$TMP/notes.md"; git -C "$TMP" add notes.md
+SPECKIT_SKIP_DOC_VERSION_BUMP=0 run_hook; RC=$?
+check "no staged skill doc is a silent no-op" 0 "$RC"
+grep -q 'doc-version-bump' "$TMP/out.log" && { echo "FAIL  doc-version gate spoke on an unrelated commit"; FAIL=$((FAIL + 1)); }
 
 echo ""
 echo "pre-commit gates: $PASS passed, $FAIL failed"

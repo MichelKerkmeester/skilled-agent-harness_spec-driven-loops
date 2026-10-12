@@ -6,6 +6,7 @@ trigger_phrases:
   - "lifecycle-taxonomy-guards"
   - "lifecycle taxonomy guards runtime"
   - "lifecycle lifecycle taxonomy guards"
+version: 1.4.0.15
 ---
 
 # Lifecycle taxonomy guards

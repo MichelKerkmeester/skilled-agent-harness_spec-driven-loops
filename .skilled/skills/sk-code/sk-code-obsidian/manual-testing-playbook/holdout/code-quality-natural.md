@@ -8,6 +8,7 @@ expected_intent: CODE_QUALITY
 expected_resources:
   - references/db-class-naming.md
   - references/stylesheet-ownership.md
+version: 1.0.0.0
 ---
 
 # OB-H02: CODE_QUALITY held out (decontaminated phrasing)

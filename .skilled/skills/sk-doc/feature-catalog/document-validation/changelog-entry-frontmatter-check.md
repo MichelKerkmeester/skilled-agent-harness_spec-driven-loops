@@ -6,6 +6,7 @@ trigger_phrases:
   - "changelog search metadata validation"
   - "validate_document.py changelog"
   - "changelog trigger phrases required"
+version: 2.2.0.0
 ---
 
 # Changelog Entry Frontmatter Check (validate_document.py)

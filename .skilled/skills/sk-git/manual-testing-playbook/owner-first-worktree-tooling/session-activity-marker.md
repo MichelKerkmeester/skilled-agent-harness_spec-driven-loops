@@ -1,6 +1,7 @@
 ---
 title: "GIT-030 -- Session-activity marker recorded and read"
 description: "This scenario validates Session-activity marker recorded and read for `GIT-030`. It focuses on prove a launched top-level session records a PID marker under the common git dir that the reaper later uses to prove liveness or death."
+version: 1.0.0.0
 ---
 
 # GIT-030 -- Session-activity marker recorded and read

@@ -6,6 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-hermes.vitest.ts"
 test_name: "closes stdin for the headless cli-hermes process"
 playbook_path: "cli-external-orchestration/cli-hermes/manual-testing-playbook/stress/stdin-hang.md"
 id: "cli-hermes-EC-005"
+version: 1.0.0.0
 ---
 
 # EC-005 -- cli-hermes stdin closure

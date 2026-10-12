@@ -9,6 +9,7 @@ trigger_phrases:
   - "delegate from hermes"
 importance_tier: important
 contextType: implementation
+version: 1.0.0.0
 ---
 
 # Hermes Agent Delegation Reference

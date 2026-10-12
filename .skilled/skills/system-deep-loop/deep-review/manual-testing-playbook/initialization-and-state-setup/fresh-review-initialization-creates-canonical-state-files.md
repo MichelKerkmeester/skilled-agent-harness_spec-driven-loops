@@ -1,6 +1,7 @@
 ---
 title: "DRV-004 -- Fresh review initialization creates canonical state files"
 description: "Verify that a fresh review session creates the canonical config, JSONL, strategy, and iteration directory from the shipped assets."
+version: 1.11.0.15
 ---
 
 # DRV-004 -- Fresh review initialization creates canonical state files

@@ -10,6 +10,7 @@ trigger_phrases:
   - "ide always shows current work"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.0
 ---
 
 # Continuous Integration - Always-Current Live Branch

@@ -7,6 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
+version: 1.4.0.4
 ---
 
 # Fan-out CLI lineage driver

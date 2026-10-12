@@ -8,6 +8,7 @@ trigger_phrases:
   - "runtime architecture doc"
 importance_tier: normal
 contextType: general
+version: 1.2.1.0
 ---
 
 # Skill ARCHITECTURE.md Template
@@ -63,6 +64,7 @@ trigger_phrases:
   - "[skill-name] architecture"
   - "[main subsystem]"
 importance_tier: "important"
+version: 1.0.0.0
 ---
 
 # Architecture: [skill-name]

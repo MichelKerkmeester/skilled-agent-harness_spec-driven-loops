@@ -6,6 +6,7 @@ trigger_phrases:
   - "template system"
   - "spec kit templates"
   - "template manifest"
+version: 1.0.0.0
 ---
 
 # Templates
