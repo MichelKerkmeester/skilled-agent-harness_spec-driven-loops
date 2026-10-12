@@ -55,11 +55,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --strict >/dev/null 2>&1 && n=$(node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --strict 2>&1 | grep -c BACKTICK_PATH_UNRESOLVED); r=$(grep -cE '^\| RM-[0-9]+ \| .+ \| .+ \|$' specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/implementation-summary.md); [ "$n" = "$r" ] && echo ok`, run from the repository root, prints ok.
-- [ ] `grep -cE '^\| PP-([0-9]+|V) \| (Fixed|Closed) \|' specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/implementation-summary.md`, run from the repository root, prints 29.
-- [ ] `grep -E '^\| PP-([0-9]+|V) \| Fixed \|' specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/implementation-summary.md | grep -vcF "$(printf '\140')"` prints 0, and `grep -E '^\| PP-([0-9]+|V) \| Closed \|' specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/implementation-summary.md | grep -vcE 'prevent-overengineering|operator decision'` prints 0, both run from the repository root.
-- [ ] `G='^Spec: sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair$'; c=$(git log --no-merges --format= --name-only --diff-filter=A --grep="$G" -- .skilled/skills | grep -c '/changelog/'); s=$(git log --no-merges --format= --name-only --diff-filter=A --grep="$G" -- .skilled/skills/sk-doc/changelog | grep -c .); v=$(git log --no-merges --format= --name-only --grep="$G" -- .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs | grep -c .); e=$(git log --no-merges --format= -p --grep="$G" -- '.skilled/skills/*/manual-testing-playbook/*' | grep -cE '^[-+]version:'); [ "$c" = "$s" ] && [ "$s" = "$((v > 0))" ] && [ "$e" = 0 ] && echo ok`, run from the repository root, prints ok.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair --strict`, run from the repository root, prints `RESULT: PASSED`.
+- [x] `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --strict >/dev/null 2>&1 && n=$(node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --strict 2>&1 | grep -c BACKTICK_PATH_UNRESOLVED); r=$(grep -cE '^\| RM-[0-9]+ \| .+ \| .+ \|$' specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/implementation-summary.md); [ "$n" = "$r" ] && echo ok`, run from the repository root, prints ok.
+- [x] `grep -cE '^\| PP-([0-9]+|V) \| (Fixed|Closed) \|' specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/implementation-summary.md`, run from the repository root, prints 29.
+- [x] `grep -E '^\| PP-([0-9]+|V) \| Fixed \|' specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/implementation-summary.md | grep -vcF "$(printf '\140')"` prints 0, and `grep -E '^\| PP-([0-9]+|V) \| Closed \|' specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/implementation-summary.md | grep -vcE 'prevent-overengineering|operator decision'` prints 0, both run from the repository root.
+- [x] `G='^Spec: sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair$'; c=$(git log --no-merges --format= --name-only --diff-filter=A --grep="$G" -- .skilled/skills | grep -c '/changelog/'); s=$(git log --no-merges --format= --name-only --diff-filter=A --grep="$G" -- .skilled/skills/sk-doc/changelog | grep -c .); v=$(git log --no-merges --format= --name-only --grep="$G" -- .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs | grep -c .); e=$(git log --no-merges --format= -p --grep="$G" -- '.skilled/skills/*/manual-testing-playbook/*' | grep -cE '^[-+]version:'); [ "$c" = "$s" ] && [ "$s" = "$((v > 0))" ] && [ "$e" = 0 ] && echo ok`, run from the repository root, prints ok.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair --strict`, run from the repository root, prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -76,11 +76,16 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet scaffolded | Done | create.sh phase mode with `--level 2` and `--with-goal`; spec.md lists one ledger row per package and the validator row |
-| Build | Pending | |
+| Build | Done | Commits `82c90e85b7`, `f30918f94b`, `3be9030128`, `cd34e1fbbe`: 258 warnings to 1, the one left recorded as RM-1 |
+| Review | Done | `/deep:review :auto`, 5 iterations, commit `05aaffc3b9`: CONDITIONAL with 1 P1 and 6 P2 |
+| Review fixes | Done | Commit `ed9a3d48e9` fixed four P2. The P1 closed with RM-1 in `implementation-summary.md`, and two P2 were rejected with reasons |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Baseline count | The operator brief measured 252 warnings from 110 paths. The validator at the scaffold commit prints 258 from 113 across 28 packages; the ledger uses the scaffold numbers |
+| Two validator rules | Installed release state under `.skilled/release/` and symlinks whose build-output target is missing could not be fixed in the docs, so each got a narrow rule with a test. That bumped sk-doc to 2.3.7.0 |
+| Root playbook blind spot | The validator backtick-checks scenario files only. The review found root files still citing paths their scenarios had corrected, and those were fixed with the same replacements |
+| Review model id | The cli-pi allowlist accepts `deepseek-v4.1-flash`, which routes to `llmgateway/deepseek-v4.1-flash`. The prefixed id is refused |
 <!-- /ANCHOR:log -->

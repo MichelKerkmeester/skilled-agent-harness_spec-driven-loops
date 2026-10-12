@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-10-12
 <!-- /ANCHOR:metadata -->
 
@@ -51,11 +51,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the built phase, When the playbook validator runs with `--strict`, Then it exits 0 and its `BACKTICK_PATH_UNRESOLVED` count equals the number of Remaining rows | The count command in `goal.md` prints ok | Unmet | - |
-| AC-002 | REQ-002 | Given the ledger in `implementation-summary.md`, When its rows are counted, Then all 29 are Fixed with a backticked proof or Closed with a reason | `grep -cE` over the ledger prints 29 | Unmet | - |
-| AC-003 | REQ-003 | Given this phase's commits, found by their Spec trailer, When their diffs are read, Then no `version:` line changes and a changelog entry is added only for sk-doc, only when the validator changed | The bump command in `goal.md` prints ok | Unmet | - |
-| AC-004 | REQ-004 | Given a validator change, When its test runs, Then it fails before the change and passes after | PP-V ledger line | Unmet | - |
-| AC-005 | REQ-005 | Given the Remaining table, When each row is read, Then it names the path, the citing file and line, and a reason | The Remaining rows in `implementation-summary.md` | Unmet | - |
+| AC-001 | REQ-001 | Given the built phase, When the playbook validator runs with `--strict`, Then it exits 0 and its `BACKTICK_PATH_UNRESOLVED` count equals the number of Remaining rows | The count command in `goal.md` prints ok: the validator exits 0 with 1 warning and there is 1 Remaining row | Met | - |
+| AC-002 | REQ-002 | Given the ledger in `implementation-summary.md`, When its rows are counted, Then all 29 are Fixed with a backticked proof or Closed with a reason | `grep -cE` over the ledger prints 29 | Met | - |
+| AC-003 | REQ-003 | Given this phase's commits, found by their Spec trailer, When their diffs are read, Then no `version:` line changes and a changelog entry is added only for sk-doc, only when the validator changed | The bump command in `goal.md` prints ok: one sk-doc changelog, the validator changed, 0 `version:` lines changed in playbooks | Met | - |
+| AC-004 | REQ-004 | Given a validator change, When its test runs, Then it fails before the change and passes after | PP-V ledger line: both new cases failed with their rule reverted and pass with it | Met | - |
+| AC-005 | REQ-005 | Given the Remaining table, When each row is read, Then it names the path, the citing file and line, and a reason | RM-1 in `implementation-summary.md` names the path, the file and line, and the reason | Met | - |
 
 ### Status values
 
@@ -80,7 +80,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-The phase is scaffolded and not built. The builder writes this statement when the packet closes.
+All five criteria are Met. The validator prints one `BACKTICK_PATH_UNRESOLVED` line, which matches the one Remaining row. The ledger holds all 29 rows. sk-doc is the only skill bumped, once, because the validator changed, and no `version:` line changed.
 <!-- /ANCHOR:closure -->
