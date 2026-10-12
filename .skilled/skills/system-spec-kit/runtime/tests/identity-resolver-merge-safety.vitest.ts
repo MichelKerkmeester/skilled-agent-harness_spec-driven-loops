@@ -190,6 +190,42 @@ describe('mergeGraphMetadata lineage safety', () => {
     expect(merged.parent_id_review_required).toBeUndefined();
   });
 
+  it('treats a stored text-null parent id as no parent instead of preserving it for review', () => {
+    process.env[FLAG] = 'true';
+    const refreshed: GraphMetadata = { ...deriveRefreshed(), parent_id: null };
+
+    for (const storedParentId of ['null', ' NULL ']) {
+      const existing: GraphMetadata = { ...refreshed, parent_id: storedParentId };
+
+      const merged = mergeGraphMetadata(existing, refreshed);
+
+      expect(merged.parent_id).toBeNull();
+      expect(merged.parent_id_review_required).toBeUndefined();
+    }
+  });
+
+  it('keeps a fresh real parent authoritative over a stored text-null parent id without the review flag', () => {
+    process.env[FLAG] = 'true';
+    const refreshed: GraphMetadata = { ...deriveRefreshed(), parent_id: 'system-spec-kit/099-new-parent' };
+    const existing: GraphMetadata = { ...refreshed, parent_id: 'null' };
+
+    const merged = mergeGraphMetadata(existing, refreshed);
+
+    expect(merged.parent_id).toBe('system-spec-kit/099-new-parent');
+    expect(merged.parent_id_review_required).toBeUndefined();
+  });
+
+  it('still preserves a stored real parent over a null re-derive and flags it for review', () => {
+    process.env[FLAG] = 'true';
+    const refreshed: GraphMetadata = { ...deriveRefreshed(), parent_id: null };
+    const existing: GraphMetadata = { ...refreshed, parent_id: 'system-speckit' };
+
+    const merged = mergeGraphMetadata(existing, refreshed);
+
+    expect(merged.parent_id).toBe('system-speckit');
+    expect(merged.parent_id_review_required).toBe(true);
+  });
+
   it('unions children so a scoped scan missing a child never deletes it, with a stable order', () => {
     process.env[FLAG] = 'true';
     const base = deriveRefreshed();

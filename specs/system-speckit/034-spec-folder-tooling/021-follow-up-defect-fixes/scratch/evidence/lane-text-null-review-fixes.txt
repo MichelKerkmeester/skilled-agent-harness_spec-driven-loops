@@ -1,0 +1,23 @@
+LANE 32: Review fixes for the text-null parent work
+
+Review
+- A fresh Opus high read-only review of the REQ-036 work found no P0 or P1 finding and three P2 findings. The operator chose to fix all three. All three sit in the uncommitted diff.
+- The three P2s were the spaced and capitalised case, the unquoted value in the path-check detail and the schema parse path.
+
+P2-1, the spaced and capitalised case
+- `runtime/tests/identity-resolver-merge-safety.vitest.ts` also covers a stored parent id of `" NULL "`, with spaces and capitals. The merge clears it like the lowercase text.
+
+P2-2, the quoted value in the path-check detail
+- `runtime/cli/rules/check-metadata-disk-consistency-helper.cjs` prints the stored parent with `JSON.stringify`, so the detail line shows the text as `"null"` in quotes.
+- Probe on a temp fixture. The before line read `graph-metadata.parent_id=null expected=system-speckit/042-parent`. The after line reads `graph-metadata.parent_id="null" expected=system-speckit/042-parent`. The quotes tell a stored text apart from JSON null.
+
+P2-3, the schema normalization
+- `runtime/lib/graph/graph-metadata-schema.ts` normalizes a stored parent_id text of `null`, trimmed and case-insensitive, to JSON null when it parses. Every reader then sees no parent, not just the merge.
+- A new case in `runtime/tests/graph-metadata-schema.vitest.ts` is named "normalizes a stored text-null parent id to JSON null on parse and keeps a real parent unchanged".
+
+Results
+- The merge-safety file together with the schema file passed 72 tests at exit 0.
+- The red control before the schema fix failed 1 of 72 and passed 71.
+- `cli/tests/repair-derived.vitest.ts` passed 36 tests at exit 0.
+- `cli/tests/validation-gate-hardening.vitest.ts` passed 7 tests at exit 0.
+- `npm run typecheck` and `npm run build` in `runtime/` exited 0.

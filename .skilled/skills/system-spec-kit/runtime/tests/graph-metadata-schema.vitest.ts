@@ -217,6 +217,16 @@ describe('graph metadata schema and parser', () => {
     );
   });
 
+  it('normalizes a stored text-null parent id to JSON null on parse and keeps a real parent unchanged', () => {
+    const specFolder = createSpecFolder();
+    const base = deriveGraphMetadata(specFolder, null, { now: '2026-04-12T12:00:00.000Z' });
+
+    for (const storedParentId of ['null', ' NULL ']) {
+      expect(graphMetadataSchema.parse({ ...base, parent_id: storedParentId }).parent_id).toBeNull();
+    }
+    expect(graphMetadataSchema.parse({ ...base, parent_id: 'system-spec-kit/001-base' }).parent_id).toBe('system-spec-kit/001-base');
+  });
+
   it('preserves manual relationships while regenerating derived fields', () => {
     const specFolder = createSpecFolder();
     const existing: GraphMetadata = {

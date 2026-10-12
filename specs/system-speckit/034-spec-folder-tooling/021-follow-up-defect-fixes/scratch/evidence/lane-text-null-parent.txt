@@ -1,0 +1,20 @@
+LANE 31: Stored text-null parent id in the merge
+
+Case
+- Three cases were added to `runtime/tests/identity-resolver-merge-safety.vitest.ts`. A stored parent id of the text "null" with a null re-derive expects JSON null and no review flag. The same stored text with a fresh real parent expects the fresh parent. A stored real parent with a null re-derive still expects the stored parent with the review flag.
+- The first case fails on the unfixed code. `mergeGraphMetadata` keeps "null" as a real parent and sets `parent_id_review_required`, so `METADATA_DISK_PATH_CONSISTENCY` fails and the legacy upgrade leaves that packet for manual review.
+- The fix treats a stored parent id whose trimmed text is "null", case-insensitive, as JSON null. A stored real parent is still kept and flagged when the re-derive finds none.
+
+Targeted runs
+- Before the fix: `cd .skilled/skills/system-spec-kit/runtime && npx vitest run tests/identity-resolver-merge-safety.vitest.ts` exited 1 with 1 failed and 17 passed.
+- After the fix: the same command with `tests/graph-metadata-schema.vitest.ts` added exited 0 with 2 files and 71 passed. Rerun by the orchestrator and by this doc lane.
+- `cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run --config ../../vitest.config.ts --project cli tests/repair-derived.vitest.ts` exited 0 with 36 passed.
+- `npm run typecheck` and `npm run build` in `runtime/` exited 0.
+
+End-to-end probe
+- Target packet `specs/system-speckit/027-xce-research-based-refinement`. The orchestrator restored the file afterwards.
+- With `parent_id` set to the text "null", the old parser's `repair-derived --folder <packet> --apply` kept "null" and set `parent_id_review_required` true, and `validate.sh <packet> --strict` printed `RESULT: FAILED`.
+- With the fixed parser the same steps wrote JSON null. Validation reported `METADATA_DISK_PATH_CONSISTENCY` passing and `RESULT: PASSED`.
+
+Why
+- On a v3 repository copy, 3 of 2048 packets stayed failing after the upgrade. Two showed `parent_id` null in the log, and one of those (027) is known to have held the text "null". The third named a stale real parent, which stays a manual fix by design.

@@ -1727,10 +1727,16 @@ export function mergeGraphMetadata(
     });
   }
 
-  const preservedNonNullParent = refreshed.parent_id === null && existing.parent_id !== null;
+  // A stored parent id is sometimes the literal text "null" rather than JSON null.
+  // Treat it as absent so the merge neither keeps a phantom parent nor flags review.
+  const storedParentId =
+    existing.parent_id !== null && existing.parent_id.trim().toLowerCase() === 'null'
+      ? null
+      : existing.parent_id;
+  const preservedNonNullParent = refreshed.parent_id === null && storedParentId !== null;
   return graphMetadataSchema.parse({
     ...base,
-    parent_id: refreshed.parent_id ?? existing.parent_id ?? null,
+    parent_id: refreshed.parent_id ?? storedParentId ?? null,
     parent_id_review_required: preservedNonNullParent ? true : undefined,
     children_ids: unionChildrenIds(
       ownIdentityChildrenIds(existing.children_ids, refreshed.spec_folder),

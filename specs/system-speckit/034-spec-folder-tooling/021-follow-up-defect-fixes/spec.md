@@ -70,7 +70,7 @@ Close each defect with a test that fails on the code at `7a0f0b4375` and passes 
 ## 3. SCOPE
 
 ### In Scope
-- The defects behind REQ-001 to REQ-017 and REQ-018 to REQ-035 in section 4, grouped into the original code lanes, follow-up lanes, review fixes, the 016 child-box work and closeout gates in plan.md section 3.
+- The defects behind REQ-001 to REQ-017 and REQ-018 to REQ-036 in section 4, grouped into the original code lanes, follow-up lanes, review fixes, the 016 child-box work and closeout gates in plan.md section 3.
 - One red, green and mutant record for each changed guard, with any missing red or load run left open in the evidence status.
 - The documentation lines that describe changed behavior, including the healer usage and the leaf-manifest script row.
 - The deleted deprecated specs/sk-communication track and its impact check under REQ-030.
@@ -173,6 +173,7 @@ Each requirement names its source evidence, finding class and lane. Decision-dep
 | REQ-033 | G5 | scratch/evidence/lane-26-import-policy.txt:4 and scratch/evidence/lane-26-import-policy.txt:63 | class-of-bug | 26, fixL | The backfill CLI imports `getSpecsBasePaths` through `@spec-kit/runtime/api`, so the CLI check's import policy passes without an allowlist entry |
 | REQ-034 | D31 | scratch/evidence/lane-27-root-scratch.txt:18, scratch/evidence/lane-27-root-scratch.txt:25 and scratch/evidence/lane-27-root-scratch.txt:52 | test-isolation | 27, fixM | `validation-gate-hardening.vitest.ts` and `strict-pass-freshness.vitest.ts` remove only a repository-root `scratch/` folder the test run created. Both runs leave no root `scratch/` after the fix |
 | REQ-035 | D32 | scratch/evidence/lane-28-dangling-manifest.txt:4, scratch/evidence/lane-28-dangling-manifest.txt:10 and scratch/evidence/lane-28-dangling-manifest.txt:22 | instance-only | 28, fixN | `upgrade-legacy` refuses a dangling reversibility-manifest link in dry run and apply. It leaves the link target absent |
+| REQ-036 | Upgrade | scratch/evidence/lane-text-null-parent.txt:9, scratch/evidence/lane-text-null-parent.txt:10, scratch/evidence/lane-text-null-parent.txt:16, scratch/evidence/lane-text-null-parent.txt:17, scratch/evidence/lane-text-null-review-fixes.txt:4, scratch/evidence/lane-text-null-review-fixes.txt:8, scratch/evidence/lane-text-null-review-fixes.txt:11, scratch/evidence/lane-text-null-review-fixes.txt:12, scratch/evidence/lane-text-null-review-fixes.txt:15, scratch/evidence/lane-text-null-review-fixes.txt:16, scratch/evidence/lane-text-null-review-fixes.txt:19 and scratch/evidence/lane-text-null-review-fixes.txt:21 | class-of-bug | 8 R4, fixR | `mergeGraphMetadata` treats a stored parent_id whose trimmed text is "null" as JSON null, so the next re-derive clears it and METADATA_DISK_PATH_CONSISTENCY passes. A stored real parent is still kept and flagged for review when the re-derive finds none. The review fixes extend the merge test to a stored " NULL " with spaces and capitals, print the stored parent through `JSON.stringify` in the path-check detail so a text "null" shows quoted and normalize the text at parse in `graph-metadata-schema.ts`, so every reader sees no parent. A fresh Opus high read-only review found no P0 or P1 and three P2s, and the operator chose to fix all three |
 <!-- /ANCHOR:requirements -->
 
 ---

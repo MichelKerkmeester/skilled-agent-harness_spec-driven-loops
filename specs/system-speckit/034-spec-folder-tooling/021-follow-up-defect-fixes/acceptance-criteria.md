@@ -10,7 +10,7 @@ _memory:
     packet_pointer: "system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes"
     last_updated_at: "2026-10-11T12:13:52Z"
     last_updated_by: "closeout"
-    recent_action: "All 35 rows Met. Pushed as 01db8367c3, CI green except main's corpus pin"
+    recent_action: "All 36 rows Met. Pushed as 01db8367c3, CI green except main's corpus pin"
     next_safe_action: "Monitor main CI and reopen only for a new tooling defect"
     blockers: []
     key_files: []
@@ -86,6 +86,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-033 | REQ-033 | Given the backfill CLI imports `getSpecsBasePaths` through `@spec-kit/runtime/api`, When the CLI check runs, Then the import policy passes without an allowlist entry | scratch/evidence/lane-26-import-policy.txt:4 and scratch/evidence/lane-26-import-policy.txt:63 | Met | - |
 | AC-034 | REQ-034 | Given the two tests run in a repository without a pre-existing root `scratch/`, When both tests finish, Then neither leaves a root `scratch/` folder that it created | scratch/evidence/lane-27-root-scratch.txt:18, scratch/evidence/lane-27-root-scratch.txt:25 and scratch/evidence/lane-27-root-scratch.txt:52 | Met | - |
 | AC-035 | REQ-035 | Given `upgrade-legacy` encounters a dangling reversibility-manifest link, When it runs in dry-run or apply mode, Then it refuses the link and creates nothing at its target | scratch/evidence/lane-28-dangling-manifest.txt:4, scratch/evidence/lane-28-dangling-manifest.txt:10 and scratch/evidence/lane-28-dangling-manifest.txt:22 | Met | - |
+| AC-036 | REQ-036 | Given a stored parent_id of the text "null" and a re-derive with no parent, When `mergeGraphMetadata` runs, Then the merged parent_id is JSON null with no review flag, and When a stored real parent meets a null re-derive, Then the stored parent is kept and flagged for review. Given a stored text of " NULL " with spaces and capitals, When the merge runs, Then it clears the value like the lowercase text. Given a stored text-null parent_id, When the schema parses it or the path-check detail reports it, Then the parsed parent_id is JSON null and the detail prints the stored value in quotes. A fresh Opus high read-only review found no P0 or P1 and three P2s, and the operator chose to fix all three | scratch/evidence/lane-text-null-parent.txt:5, scratch/evidence/lane-text-null-parent.txt:6, scratch/evidence/lane-text-null-parent.txt:16, scratch/evidence/lane-text-null-parent.txt:17, scratch/evidence/lane-text-null-review-fixes.txt:4, scratch/evidence/lane-text-null-review-fixes.txt:8, scratch/evidence/lane-text-null-review-fixes.txt:11, scratch/evidence/lane-text-null-review-fixes.txt:12, scratch/evidence/lane-text-null-review-fixes.txt:15, scratch/evidence/lane-text-null-review-fixes.txt:16 and scratch/evidence/lane-text-null-review-fixes.txt:19 | Met | - |
 
 ### Status values
 
@@ -112,5 +113,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-AC-001 to AC-035 are Met. The packet was pushed as 01db8367c3. Post-push CI passed 13 of 14 workflows. Routing Registry Drift Guard failed because main's pinned corpus changed before this push.
+AC-001 to AC-036 are Met. The packet was pushed as 01db8367c3. Post-push CI passed 13 of 14 workflows. Routing Registry Drift Guard failed because main's pinned corpus changed before this push.
 <!-- /ANCHOR:closure -->
