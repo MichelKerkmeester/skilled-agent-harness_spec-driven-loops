@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement",
+  "children_ids": [
+    "sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions",
+    "sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doc version and playbook paths phase parent spec",
+      "doc version and playbook paths",
+      "per doc versions and playbook path repair",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "doc",
+      "version",
+      "playbook",
+      "paths",
+      "phase",
+      "parent",
+      "spec",
+      "per",
+      "versions",
+      "path",
+      "repair",
+      "packet"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+      "001-per-doc-versions/goal.md",
+      "002-playbook-path-repair/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-version.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Restore",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. BINDING",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. COMPLETION CRITERIA",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase `021-open-ends-remediation/003-doc-and-catalog-truth` kept `version` on `SKILL.md` only and removed the line from 2,845 child docs in commit 31888d05bb",
+    "created_at": "2026-10-12T05:21:01Z",
+    "last_save_at": "2026-10-12T05:34:28.044Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:822c4b6550cabf2f90ef46fdee75ebc30616c62c5f46081fdc1b44194cbdd650",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d81d60674735aa8e50888444f8fdd2684b964eda4c7067d47931adf431a22dfe"
+    },
+    "last_active_at": null
+  }
+}

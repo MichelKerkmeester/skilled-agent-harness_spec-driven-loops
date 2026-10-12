@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "per doc versions",
+      "phase 1 per doc versions",
+      "doc version auto bump",
+      "restore child doc versions",
+      "per doc versions plan",
+      "per doc versions tasks",
+      "per doc versions acceptance criteria",
+      "per doc versions goal",
+      "per doc versions implementation summary"
+    ],
+    "key_topics": [
+      "per",
+      "doc",
+      "versions",
+      "phase",
+      "version",
+      "auto",
+      "bump",
+      "restore",
+      "child",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+      ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+      ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
+      ".skilled/scripts/git-hooks/lib/gates.tsv",
+      ".skilled/skills/sk-doc/SKILL.md",
+      ".github/workflows/skill-doc-frontmatter.yml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-versioning.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-version.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "package_skill.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "post-edit-router.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "gates.tsv",
+        "kind": "file",
+        "path": ".skilled/scripts/git-hooks/lib/gates.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-doc-frontmatter.yml",
+        "kind": "config",
+        "path": ".github/workflows/skill-doc-frontmatter.yml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Since",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Since 31888d05bb only `SKILL.md` carries a version, so a reader of a single reference, asset, playbook or catalog doc cannot tell which edition of that doc they hold",
+    "created_at": "2026-10-12T05:21:01Z",
+    "last_save_at": "2026-10-12T05:34:29.642Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ceddd70cec481b707eaf8fbc3d53bda99258264b824b5ef7a3aaf07d50a027da",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "cf5cb9e9bd7c93fe303732eb9d014349b76884bea72836fc397cb78ed7fd7187",
+      "plan.md": "d3c78dc4df0555ea022ea7c4eb83a57a38f450d7fd3e3aefaf4b7c8376e469fc",
+      "tasks.md": "4149f6a6f185aab7575ca3459112b8019fa75f1cc836601ea45a1a5400e57bc2",
+      "implementation-summary.md": "f5bd04fdf268167317c76da883ef5d4a01f9b0f35d95402ec3101d8c468c0da5"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "600d4f3e777976efc74124b635c6ed76e4e25ba8157903b5e664b6edf42f32eb",
+  "manifestHash": "b1d40ce6f5a74b42e922344e00afa566dc86710961f471ab1118134318c4f855",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -12743,6 +12743,9 @@
     ],
     "backlog gauge shipped pending": [
       "backlog gauge shipped pending"
+    ],
+    "backtick path unresolved": [
+      "backtick path unresolved"
     ],
     "backticked playbook path check": [
       "backticked playbook path check"
@@ -36821,6 +36824,15 @@
     ],
     "doc validation off switches summary": [
       "doc validation off switches summary"
+    ],
+    "doc version and playbook paths": [
+      "doc version and playbook paths"
+    ],
+    "doc version and playbook paths phase parent spec": [
+      "doc version and playbook paths phase parent spec"
+    ],
+    "doc version auto bump": [
+      "doc version auto bump"
     ],
     "doc version contract": [
       "doc version contract"
@@ -69643,6 +69655,27 @@
     "per doc version removal": [
       "per-doc version removal"
     ],
+    "per doc versions": [
+      "per doc versions"
+    ],
+    "per doc versions acceptance criteria": [
+      "per doc versions acceptance criteria"
+    ],
+    "per doc versions and playbook path repair": [
+      "per doc versions and playbook path repair"
+    ],
+    "per doc versions goal": [
+      "per doc versions goal"
+    ],
+    "per doc versions implementation summary": [
+      "per doc versions implementation summary"
+    ],
+    "per doc versions plan": [
+      "per doc versions plan"
+    ],
+    "per doc versions tasks": [
+      "per doc versions tasks"
+    ],
     "per edge embedding causal graph": [
       "per edge embedding causal graph"
     ],
@@ -70411,6 +70444,9 @@
     "phase 1 package strict": [
       "phase 1 package strict"
     ],
+    "phase 1 per doc versions": [
+      "phase 1 per doc versions"
+    ],
     "phase 1 ponytail deep research": [
       "phase 1 ponytail deep research"
     ],
@@ -70677,6 +70713,9 @@
     ],
     "phase 2 path extraction regex fix": [
       "phase 2 path extraction regex fix"
+    ],
+    "phase 2 playbook path repair": [
+      "phase 2 playbook path repair"
     ],
     "phase 2 quality report listing": [
       "phase 2 quality report listing"
@@ -72900,6 +72939,24 @@
     ],
     "playbook path existence evidence": [
       "playbook path existence evidence"
+    ],
+    "playbook path repair": [
+      "playbook path repair"
+    ],
+    "playbook path repair acceptance criteria": [
+      "playbook path repair acceptance criteria"
+    ],
+    "playbook path repair goal": [
+      "playbook path repair goal"
+    ],
+    "playbook path repair implementation summary": [
+      "playbook path repair implementation summary"
+    ],
+    "playbook path repair plan": [
+      "playbook path repair plan"
+    ],
+    "playbook path repair tasks": [
+      "playbook path repair tasks"
     ],
     "playbook persistence design": [
       "playbook persistence design"
@@ -81379,6 +81436,9 @@
     ],
     "restore by count verification": [
       "restore by count verification"
+    ],
+    "restore child doc versions": [
+      "restore child doc versions"
     ],
     "restore crash window fix plan": [
       "restore crash window fix plan"

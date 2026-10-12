@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 6774,
-    "ok": 14102,
+    "ok": 14116,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 24423,
+  "documentsScanned": 24437,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "600d4f3e777976efc74124b635c6ed76e4e25ba8157903b5e664b6edf42f32eb",
+  "manifestHash": "b1d40ce6f5a74b42e922344e00afa566dc86710961f471ab1118134318c4f855",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36185,
+      "ok": 36205,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -67674,6 +67674,14 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/004-routing-parity-ci/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "a1401f3bc34947399f2bc185499e244d650449ea1283711a5c1941b240f1e5a9",
+  "corpusHash": "e4a4bee0b1691b8c0bd9fdd93dcd90936c6a9f9c3b7806c324c5a351b5849c6e",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24423,
+  "includedPathCount": 24437,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11018,6 +11018,20 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/changelog/changelog-021-004-routing-parity-ci.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions/acceptance-criteria.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/acceptance-criteria.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
@@ -24454,7 +24468,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "600d4f3e777976efc74124b635c6ed76e4e25ba8157903b5e664b6edf42f32eb",
+  "manifestHash": "b1d40ce6f5a74b42e922344e00afa566dc86710961f471ab1118134318c4f855",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26610,6 +26624,14 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/004-routing-parity-ci/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/scratch",
       "reason": "excluded directory"
     },
     {
