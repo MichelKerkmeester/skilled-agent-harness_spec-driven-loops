@@ -102,5 +102,5 @@ Provenance: manual only - /doctor:git
 - Feature name: Doctor git standards change rule
 - Command mode: `/doctor:git standards`
 - YAML asset: `doctor-git-standards.yaml`
-- Mutation boundary: the rules block and the named prose lines in `.sk-git/commit-message-template.md` inside the environment. The rules block changes only through `git-standards.cjs` after an approved plan, and the shipped assets stay untouched. The environment is restored after the run.
+- Mutation boundary: the rules block and the named prose lines in the `.sk-git/` copy of `commit-message-template.md` inside the environment. The rules block changes only through `git-standards.cjs` after an approved plan, and the shipped assets stay untouched. The environment is restored after the run.
 - Feature file path: `doctor-commands/doctor-git-standards-change-rule.md`

@@ -83,7 +83,7 @@ The `objects` array from the detect response (labels + bboxes) saved with the tr
 | File | Role |
 |---|---|
 | `vision-runtime/python/runtime.py` | Handler: `handle_detect` + `_normalize_detect_objects` |
-| `pi/sk-vision.ts` | Pi tool registration for `sk_vision_detect` |
+| `hooks/pi/sk-vision.ts` | Pi tool registration for `sk_vision_detect` |
 | `vision-runtime/python/runtime.test.ts` | Analysis handler regression suite |
 
 ---

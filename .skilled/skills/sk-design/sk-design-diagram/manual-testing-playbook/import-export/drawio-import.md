@@ -50,11 +50,11 @@ Operators run the exact prompt and command sequence for `IMP-001` and confirm th
 
 ### Expected
 
-Step 2 prints a Markdown digest with node/edge tables, hub degrees, container structure, and a `budget:` line, and exits `0`. Step 4 discards source coordinates and colors in favor of fresh layout and semantic treatments. Step 5 produces a self-contained `docs/system-redrawn.html` and a ledger stating the source count, drawn count, and every merge/collapse/drop. Step 6 shows identical checksums, proving the source was never mutated.
+Step 2 prints a Markdown digest with node/edge tables, hub degrees, container structure, and a `budget:` line, and exits `0`. Step 4 discards source coordinates and colors in favor of fresh layout and semantic treatments. Step 5 produces a self-contained `system-redrawn.html` under `docs/` and a ledger stating the source count, drawn count, and every merge/collapse/drop. Step 6 shows identical checksums, proving the source was never mutated.
 
 ### Evidence
 
-Capture the before/after checksums, the digest output (header and a node/edge excerpt), the four dials chosen, the fidelity ledger (source count → drawn count, with each drop named), the output path `docs/system-redrawn.html`, and the taste-gate result.
+Capture the before/after checksums, the digest output (header and a node/edge excerpt), the four dials chosen, the fidelity ledger (source count → drawn count, with each drop named), the output path `system-redrawn.html` under `docs/`, and the taste-gate result.
 
 ### Pass / Fail
 

@@ -55,7 +55,7 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 **Failure triage**:
 1. If Webflow performance refs are missing, inspect the `PERFORMANCE` map in `ROUTER.md`.
 2. If Motion performance refs are missing, inspect the `MOTION_DEV` map in the same file.
-3. If surface is wrong, verify `src/2_javascript/hero.js` is present in the prompt.
+3. If surface is wrong, verify the prompt still names `hero.js` under `src/2_javascript/`.
 
 ---
 
@@ -89,7 +89,7 @@ Evidence: `/tmp/skc-CS-006-<cli>.txt` (raw per-runtime transcript) and `results/
 
 1. If Webflow performance refs are missing, inspect the `PERFORMANCE` map in `ROUTER.md`.
 2. If Motion performance refs are missing, inspect the `MOTION_DEV` map in the same file.
-3. If surface is wrong, verify `src/2_javascript/hero.js` is present in the prompt.
+3. If surface is wrong, verify the prompt still names `hero.js` under `src/2_javascript/`.
 
 ---
 

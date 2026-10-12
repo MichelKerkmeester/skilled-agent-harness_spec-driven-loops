@@ -84,7 +84,7 @@ Load-path output, the default tool list, both command responses and the process 
 
 | File | Role |
 |---|---|
-| `.skilled/plugins/sk-vision.js` | Load-path re-export of the built runtime |
+| `.opencode/plugins/sk-vision.js` | Load-path re-export of the built runtime |
 | `vision-runtime/src/plugin.ts` | Command hook and legacy activation path |
 | `vision-runtime/src/opencode/command.ts` | `/vision` image read and teardown |
 | `vision-runtime/src/opencode/attachments.ts` | Legacy auto-inspect injector |

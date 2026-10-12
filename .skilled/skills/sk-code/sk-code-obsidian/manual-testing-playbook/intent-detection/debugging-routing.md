@@ -28,7 +28,7 @@ before touching any renderer code.
 
 ### Why This Matters
 
-`manifest.json` declares `isDesktopOnly: false`, and `src/data/touch-environment.ts` is the one
+`manifest.json` declares `isDesktopOnly: false`, and the plugin's `touch-environment.ts` (under `src/data/`) is the one
 module that decides mobile layout — three signals combined with OR, not just Obsidian's own
 platform flag. A renderer that overflows its frame only under `is-phone` is a missing or
 misapplied mobile-layout branch, not a general rendering bug; loading `mobile-and-touch.md` gives

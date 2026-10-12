@@ -83,7 +83,7 @@ The `points` array (normalized x/y) plus the transcript line
 | File | Role |
 |---|---|
 | `vision-runtime/python/runtime.py` | Handler: `handle_point` + `_normalize_points` |
-| `pi/sk-vision.ts` | Pi tool registration for `sk_vision_point` |
+| `hooks/pi/sk-vision.ts` | Pi tool registration for `sk_vision_point` |
 | `vision-runtime/python/runtime.test.ts` | Analysis handler regression suite |
 
 ---

@@ -86,8 +86,8 @@ Measure LCP, CLS, and INP on the Motion-heavy page; return PASS/FAIL against CWV
 | `../manual-testing-playbook.md` | Root directory page and scenario summary |
 | `../../sk-code-webflow/references/animation/performance-and-pitfalls.md` | Local Motion performance and reduced-jank guidance |
 | `../../sk-code-webflow/references/animation/animate-and-timelines.md` | Local animation property and sequence guidance |
-| `../../../../../a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js` | Dropdown interaction and height animation anchor |
-| `../../../../../a_nobel_en_zn/2_javascript/slider/testimonial.js` | Slider interaction and transform animation anchor |
+| `nav_dropdown.js` under `2_javascript/navigation/` in the external Webflow project `a_nobel_en_zn` (not in this repo) | Dropdown interaction and height animation anchor |
+| `testimonial.js` under `2_javascript/slider/` in the external Webflow project `a_nobel_en_zn` (not in this repo) | Slider interaction and transform animation anchor |
 | `https://motion.dev/docs/performance` | Official Motion performance guidance |
 | `https://web.dev/articles/vitals` | Core Web Vitals metric definitions and thresholds reference |
 

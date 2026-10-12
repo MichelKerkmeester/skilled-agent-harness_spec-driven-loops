@@ -53,7 +53,7 @@ Step 3 produces a `<g filter="url(#sketchy)">` containing only shapes, with ever
 
 ### Evidence
 
-Capture the prompt used, the output path `docs/compounding-loop.html`, an excerpt of the SVG showing the `<g filter="url(#sketchy)">` group boundaries with no `<text>` inside, the callout count and their leader `stroke-dasharray`, a grep for `JetBrains Mono` (must be absent), and a screenshot. For the terminal variant, capture the token swap audit and the titlebar dot colors.
+Capture the prompt used, the output path `compounding-loop.html` under `docs/`, an excerpt of the SVG showing the `<g filter="url(#sketchy)">` group boundaries with no `<text>` inside, the callout count and their leader `stroke-dasharray`, a grep for `JetBrains Mono` (must be absent), and a screenshot. For the terminal variant, capture the token swap audit and the titlebar dot colors.
 
 ### Pass / Fail
 

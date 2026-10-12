@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `CHG-008` and confirm th
 - Realistic user request: `Write the release entry for the next Skilled release from the changes since the last tag.`
 - Prompt: `Create a global changelog for the skilled component. Confirm that skilled is the framework release line, read the latest version from the folder and its generation folders, and calculate a unique four-part version before writing.`
 - Expected execution process: `SKILL.md` section 6 is read for rules 1 and 7, the component folders are listed, `skilled` is matched exactly from the hint, the step 3 reader lists the top level and the generation folders, the bump is chosen and the next version is calculated.
-- Expected signals: the target is `.skilled/changelog/skilled/vX.Y.Z.B.md` at the top level of the folder, the version is strictly greater than the reader's last line and no generation folder is written to.
+- Expected signals: the target is `.skilled/changelog/skilled/v<version>.md` at the top level of the folder, the version is strictly greater than the reader's last line and no generation folder is written to.
 - Desired user-visible outcome: a release entry in the release line with a version that no existing entry holds.
 - Pass/fail: PASS if the target, the reader output and the version comparison are evidenced. FAIL if the entry lands in a generation folder or another component folder, or if its version is not above the latest entry.
 

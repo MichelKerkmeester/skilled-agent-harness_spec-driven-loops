@@ -86,7 +86,7 @@ Capture the symlink output, registration count, hidden-tool view, both command r
 | File | Role |
 |---|---|
 | `.pi/extensions/sk-vision.ts` | Pi load path |
-| `.skilled/skills/sk-vision/pi/sk-vision.ts` | Hidden tool registration and command path |
+| `.skilled/skills/sk-vision/hooks/pi/sk-vision.ts` | Hidden tool registration and command path |
 | `.pi/prompts/vision.md` | Pi `/vision` prompt |
 | `vision-runtime/python/runtime.test.ts` | Runtime behavior the hidden tool proxies |
 

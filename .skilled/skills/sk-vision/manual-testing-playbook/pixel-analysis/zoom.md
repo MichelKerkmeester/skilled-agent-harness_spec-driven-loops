@@ -83,7 +83,7 @@ The zoom response `path` and `scale`; verify the output file exists and is ~2x t
 | File | Role |
 |---|---|
 | `vision-runtime/python/runtime.py` | Handler: `handle_zoom` (LANCZOS upscale) |
-| `pi/sk-vision.ts` | Pi tool registration for `sk_vision_zoom` |
+| `hooks/pi/sk-vision.ts` | Pi tool registration for `sk_vision_zoom` |
 | `vision-runtime/python/runtime.test.ts` | Analysis handler regression suite (zoom) |
 
 ---

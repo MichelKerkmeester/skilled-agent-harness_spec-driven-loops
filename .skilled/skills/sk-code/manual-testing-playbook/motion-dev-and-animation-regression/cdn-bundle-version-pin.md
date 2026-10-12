@@ -43,7 +43,7 @@ Audit Motion CDN URLs for @latest, record pinned versions, and verify animate, i
 
 ### Expected
 
-- `a_nobel_en_zn/2_javascript/slider/testimonial.js` reports `https://cdn.jsdelivr.net/npm/motion@12.15.0/+esm`.
+- `testimonial.js` under `2_javascript/slider/` in the external `a_nobel_en_zn` project reports `https://cdn.jsdelivr.net/npm/motion@12.15.0/+esm`.
 - No production runtime file uses `motion@latest`.
 - Probe output records `animate`, `inView`, `scroll`, and `motionValue` as functions for the pinned ESM bundle used by the testimonial slider.
 
@@ -74,8 +74,8 @@ Audit Motion CDN URLs for @latest, record pinned versions, and verify animate, i
 | `../../sk-code-webflow/references/animation/quick-start.md` | Local Motion install and version-pin reference |
 | `../../sk-code-webflow/references/animation/integration-patterns.md` | Local CDN/global/ESM integration guidance |
 | `../../sk-code-webflow/assets/animation/install-card.md` | Local install card with pinned-version notes |
-| `../../../../../a_nobel_en_zn/2_javascript/slider/testimonial.js` | Pinned ESM CDN import and required exports |
-| `../../../../../a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js` | `window.Motion.animate` runtime guard |
+| `testimonial.js` under `2_javascript/slider/` in the external Webflow project `a_nobel_en_zn` (not in this repo) | Pinned ESM CDN import and required exports |
+| `nav_dropdown.js` under `2_javascript/navigation/` in the external Webflow project `a_nobel_en_zn` (not in this repo) | `window.Motion.animate` runtime guard |
 | `https://motion.dev/docs/quick-start` | Official CDN install and version-pin guidance |
 
 ---

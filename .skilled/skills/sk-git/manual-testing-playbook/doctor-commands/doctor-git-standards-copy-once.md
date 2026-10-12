@@ -47,9 +47,9 @@ Copy the shipped sk-git templates into .sk-git so this repository can own its ru
 4. Run `/doctor:git standards` through the real runtime.
 5. Capture the status phase, including the `WHERE THE RULES COME FROM` block and the source it names.
 6. At the init prompt, approve the copy and capture the `init --apply --json` output.
-7. Confirm the three files exist under `.sk-git/` and record the hash of `.sk-git/commit-message-template.md`.
+7. Confirm the three files exist under `.sk-git/` and record the hash of the `.sk-git/` copy of `commit-message-template.md`.
 8. At the change menu, reply `D` to finish and capture the result block.
-9. Add a marker comment to `.sk-git/commit-message-template.md`, then repeat the init call the workflow used: `node .skilled/commands/doctor/scripts/git-standards.cjs init --apply --json`.
+9. Add a marker comment to the `.sk-git/` copy of `commit-message-template.md`, then repeat the init call the workflow used: `node .skilled/commands/doctor/scripts/git-standards.cjs init --apply --json`.
 10. Confirm every `plan` entry in the JSON payload reports `action` `keep (already present)`, and confirm the marker comment survives.
 11. Restore every file the scenario changed with `git checkout -- <path>`, remove any file it added, and confirm `git status --porcelain` prints nothing.
 

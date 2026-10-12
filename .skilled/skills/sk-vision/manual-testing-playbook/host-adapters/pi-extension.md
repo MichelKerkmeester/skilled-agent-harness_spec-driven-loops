@@ -86,7 +86,7 @@ Symlink output, grep count, hidden-tool view, both command responses and the pro
 | File | Role |
 |---|---|
 | `.pi/extensions/sk-vision.ts` | Load-path symlink to the owned factory |
-| `.skilled/skills/sk-vision/pi/sk-vision.ts` | ExtensionFactory registering the 13 hidden tools and command path |
+| `.skilled/skills/sk-vision/hooks/pi/sk-vision.ts` | ExtensionFactory registering the 13 hidden tools and command path |
 | `.pi/prompts/vision.md` | Pi `/vision` prompt |
 | `vision-runtime/python/runtime.test.ts` | Runtime behavior the factory proxies |
 

@@ -64,7 +64,7 @@ Capture the before/after checksums, the Playwright detection result (or the surf
 
 ### Failure Triage
 
-1. Confirm the source file is a generated diagram from a current template — it must contain the Google Fonts `<link>` in `<head>` and a single `<svg>`; the gallery (`assets/index.html`) must be refused, not exported.
+1. Confirm the source file is a generated diagram from a current template — it must contain the Google Fonts `<link>` in `<head>` and a single `<svg>`; a multi-SVG gallery file must be refused, not exported.
 2. If the SVG shows duplicate `<defs>` or the font import missing, re-extract the first `<svg>` block and merge the `<style>` into the existing `<defs>` rather than adding a second one.
 3. If the PNG is not transparent, re-run step 5 with `omit_background=True` and confirm the screenshot targets the `svg` locator, not the whole page.
 

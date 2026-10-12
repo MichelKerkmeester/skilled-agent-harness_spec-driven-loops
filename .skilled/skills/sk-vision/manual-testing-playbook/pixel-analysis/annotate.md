@@ -83,7 +83,7 @@ The annotate response `path`; verify the output file exists and visually shows t
 | File | Role |
 |---|---|
 | `vision-runtime/python/runtime.py` | Handler: `handle_annotate` |
-| `pi/sk-vision.ts` | Pi tool registration for `sk_vision_annotate` |
+| `hooks/pi/sk-vision.ts` | Pi tool registration for `sk_vision_annotate` |
 | `vision-runtime/python/runtime.test.ts` | Analysis handler regression suite (annotate) |
 
 ---

@@ -96,8 +96,8 @@ Create a Webflow-style Motion smoke page using pinned CDN animate, inView, and s
 
 | File | Role |
 |---|---|
-| `../../../../../a_nobel_en_zn/2_javascript/slider/testimonial.js` | In-repo pinned ESM import pattern |
-| `../../../../../a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js` | In-repo `window.Motion` runtime availability pattern |
+| `testimonial.js` under `2_javascript/slider/` in the external Webflow project `a_nobel_en_zn` (not in this repo) | In-repo pinned ESM import pattern |
+| `nav_dropdown.js` under `2_javascript/navigation/` in the external Webflow project `a_nobel_en_zn` (not in this repo) | In-repo `window.Motion` runtime availability pattern |
 
 ---
 

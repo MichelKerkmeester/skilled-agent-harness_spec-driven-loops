@@ -84,7 +84,7 @@ The status response (device, capabilities, request_count, uptime_s) with the tra
 | File | Role |
 |---|---|
 | `vision-runtime/python/runtime.py` | Handler: `handle_status` + `_device_of` |
-| `pi/sk-vision.ts` | Pi tool registration for `sk_vision_status` |
+| `hooks/pi/sk-vision.ts` | Pi tool registration for `sk_vision_status` |
 | `vision-runtime/python/runtime.test.ts` | Analysis handler regression suite (status in lifecycle assertions) |
 
 ---

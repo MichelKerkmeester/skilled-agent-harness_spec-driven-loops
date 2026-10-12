@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `BMR-003` and confirm th
 - Realistic user request: `Create a behavior benchmark for this deep-loop mode. Cover the bare command and a vague natural-language ask.`
 - Prompt: `Author a behavior-benchmark package for this mode. Cover its real entry surfaces and clarity levels. Keep fixtures, transcripts and scorecards with the executing packet.`
 - Expected execution process: the behavior guide and framework are read, the mode entry surfaces and adjacent boundaries are identified, the matrix is designed, the index and scenario files are synchronized and the baseline uses pending cells when no Claude leg exists.
-- Expected signals: the package shape is `behavior-benchmark.md`, `scenarios/` and `baselines/claude-baseline.md`. Under-specified cells use `question_halt`. Run evidence is excluded.
+- Expected signals: the package shape is `behavior-benchmark.md`, `scenarios/` and a `baselines/` folder holding `claude-baseline.md`. Under-specified cells use `question_halt`. Run evidence is excluded.
 - Desired user-visible outcome: a package another lane can execute without confusing its contract with its evidence.
 - Pass/fail: PASS if the package shape, matrix axes and lane boundary are all stated with source evidence. FAIL if fixtures or scorecards are added to the package or the framework is redefined.
 

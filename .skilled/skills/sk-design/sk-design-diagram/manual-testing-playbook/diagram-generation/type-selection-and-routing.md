@@ -28,7 +28,7 @@ Operators run the exact prompt and command sequence for `DIA-001` and confirm th
 - Prompt: `Create an architecture diagram as a self-contained HTML file showing our checkout service, the auth service it calls, and the Postgres store behind it. Load the right type conventions, apply the style guide, and save it to docs/checkout-architecture.html.`
 - Expected execution process: the router classifies the request as GENERATE, the selection guide maps "components + connections in a system" to Architecture, and the agent reads `references/foundations/style-guide.md` (always) plus `references/types/type-architecture.md` before copying a template and drawing within the complexity budget.
 - Expected signals: `references/types/type-architecture.md` appears in the loaded references (not a flowchart or other mismatched type); the output HTML contains a self-contained `<svg>` with `role="img"` and prefixed `aria-labelledby`; the diagram stays within 9 nodes and 12 arrows.
-- Desired user-visible outcome: a correct-typed, self-contained HTML diagram at `docs/checkout-architecture.html`.
+- Desired user-visible outcome: a correct-typed, self-contained HTML diagram at `checkout-architecture.html` under `docs/`.
 - Pass/fail: PASS if the correct type reference is loaded, the HTML is self-contained with the accessible-SVG contract satisfied, and the diagram is within the complexity budget; FAIL if a mismatched type reference is loaded, the HTML is missing or not self-contained, or the accessibility contract is violated.
 
 ---
@@ -48,15 +48,15 @@ Operators run the exact prompt and command sequence for `DIA-001` and confirm th
 
 ### Expected
 
-Step 1 loads `references/types/type-architecture.md` (the selection guide maps components + connections to Architecture). Step 2 produces `docs/checkout-architecture.html`. Step 3 yields a diagram with 3 nodes and 2 arrows — inside the 9-node / 12-arrow budget — with a single accent on the focal element. Step 4 reports the taste gate clean: `<svg>` has `role="img"`, `aria-labelledby` resolves to prefixed `<title>` / `<desc>`, and `<title>` is the first child of `<svg>`.
+Step 1 loads `references/types/type-architecture.md` (the selection guide maps components + connections to Architecture). Step 2 produces `checkout-architecture.html` under `docs/`. Step 3 yields a diagram with 3 nodes and 2 arrows — inside the 9-node / 12-arrow budget — with a single accent on the focal element. Step 4 reports the taste gate clean: `<svg>` has `role="img"`, `aria-labelledby` resolves to prefixed `<title>` / `<desc>`, and `<title>` is the first child of `<svg>`.
 
 ### Evidence
 
-Capture the prompt used, the list of references the agent reported loading (must include `references/types/type-architecture.md`), the output path `docs/checkout-architecture.html`, and a grep of the HTML showing `role="img"`, `aria-labelledby="checkout-architecture-title checkout-architecture-desc"`, and the first-child `<title>`. Record the node/arrow counts and the accent count (must be at most 2).
+Capture the prompt used, the list of references the agent reported loading (must include `references/types/type-architecture.md`), the output path `checkout-architecture.html` under `docs/`, and a grep of the HTML showing `role="img"`, `aria-labelledby="checkout-architecture-title checkout-architecture-desc"`, and the first-child `<title>`. Record the node/arrow counts and the accent count (must be at most 2).
 
 ### Pass / Fail
 
-- **Pass**: `references/types/type-architecture.md` was loaded, `docs/checkout-architecture.html` exists as a single self-contained file, the accessible-SVG contract holds, and the diagram is within the complexity budget.
+- **Pass**: `references/types/type-architecture.md` was loaded, `checkout-architecture.html` under `docs/` exists as a single self-contained file, the accessible-SVG contract holds, and the diagram is within the complexity budget.
 - **Fail**: a mismatched type reference was loaded (e.g. `type-flowchart.md`), the HTML is missing or references external resources, or the accessibility contract is broken.
 
 ### Failure Triage
