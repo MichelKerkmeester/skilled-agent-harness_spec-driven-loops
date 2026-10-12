@@ -103,9 +103,9 @@ try {
 
   const graphParent = normalizePacketId(graph?.parent_id);
   if (graphParent && expectedParent && graphParent !== expectedParent) {
-    mismatches.push(`graph-metadata.parent_id=${graphParent} expected=${expectedParent}`);
+    mismatches.push(`graph-metadata.parent_id=${JSON.stringify(graphParent)} expected=${expectedParent}`);
   } else if (graphParent && !expectedParent) {
-    mismatches.push(`graph-metadata.parent_id=${graphParent} expected=<none>`);
+    mismatches.push(`graph-metadata.parent_id=${JSON.stringify(graphParent)} expected=<none>`);
   }
 
   process.stdout.write(JSON.stringify({ actualPacketId, expectedParent, mismatches, parseErrors }));
