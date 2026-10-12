@@ -237,7 +237,7 @@ expected_leaf_resources:
   assert.strictEqual(routingReport.derivedCensus.routingGoldFilesExcluded, 2, 'manifest and signature exclusions should be visible in derived census');
   assert.strictEqual(routingReport.derivedCensus.operatorScenarioFiles, 1, 'signature-bearing file should be skipped from operator audit');
 
-  console.log(`fixture suite: PASS (${required.length + 26} negative/positive assertions)`);
+  console.log(`fixture suite: PASS (${required.length + 28} negative/positive assertions)`);
   console.log(`clean: ${positive.report.packages[0].status}; section-order: ${sectionOrder.report.packages[0].status}`);
   console.log('strict default: rc=1 on seeded violation; --no-strict: rc=0; boundary: rc=2');
 }

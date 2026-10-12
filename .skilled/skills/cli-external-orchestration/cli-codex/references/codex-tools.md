@@ -10,7 +10,7 @@ trigger_phrases:
   - "codex image input"
 importance_tier: normal
 contextType: implementation
-version: 1.9.1.0
+version: 1.9.2.0
 ---
 
 # Codex CLI Built-in Tools Reference
@@ -135,7 +135,7 @@ codex --search exec "Compare zod vs yup for TypeScript validation as of 2026. Se
 **Configuration:**
 
 ```toml
-# .codex/config.toml (or ~/.codex/config.toml)
+# ~/.codex/config.toml: keep a real key out of the committed project .codex/config.toml
 [mcp_servers.my-server]
 command = "node"
 args = ["./mcp-server.js"]

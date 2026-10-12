@@ -1,7 +1,7 @@
 ---
 title: "sk-code-obsidian: Manual Testing Playbook"
 description: "Operator-facing directory for the sk-code-obsidian surface's routing-recall corpus: intent detection, resource-loading isolation, unknown-fallback handling, cross-CLI dispatch stability, token-cost baselines, holdout generalization, and surface-detection precision."
-version: 2.0.1.0
+version: 2.0.2.0
 ---
 
 # sk-code-obsidian: Manual Testing Playbook
@@ -177,8 +177,8 @@ different kind of drift: `references/accessibility.md`, `references/theme-variab
 `references/operations/operations.md`, `references/setup/setup.md`,
 `references/quality/doc-quality-gate.md`, and `references/skill-reference-integrity.md` were real,
 shipped files that no intent group in `SKILL.md` §2b carried. §2b now carries all six:
-`accessibility.md` and `theme-variables.md` under `STACK_STANDARDS`, `references/setup/setup.md`,
-`references/operations/operations.md` and `skill-reference-integrity.md` under `VERIFICATION`, and
+`references/accessibility.md` and `references/theme-variables.md` under `STACK_STANDARDS`, `references/setup/setup.md`,
+`references/operations/operations.md` and `references/skill-reference-integrity.md` under `VERIFICATION`, and
 `references/quality/doc-quality-gate.md` under `CODE_QUALITY`. Check 1b of `verify-router-sync.cjs` runs by
 default and fails when a reference or asset doc is left unrouted again.
 Every `expected_resources` path in every scenario in
