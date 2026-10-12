@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths"
-    last_updated_at: "2026-10-12T12:00:00Z"
-    last_updated_by: "integrator"
-    recent_action: "Integrated both children and raised the repaired docs"
-    next_safe_action: "Operator review of the integration branch, then merge to main"
+    last_updated_at: "2026-10-12T13:00:00Z"
+    last_updated_by: "builder"
+    recent_action: "Closed phase 003: root playbook paths checked and corrected, six stale references fixed"
+    next_safe_action: "Orchestrator merges worktrees/121-playbook-root-refs to main"
     blockers: []
     key_files: []
     session_dedup:
@@ -37,7 +37,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-12 |
 | **Branch** | `worktrees/117-docver-scaffold` (scaffold); each child builds in its own worktree branched from the scaffold commit |
 | **Parent Spec** | `../spec.md` |
@@ -56,7 +56,7 @@ _memory:
 Phase `021-open-ends-remediation/003-doc-and-catalog-truth` kept `version` on `SKILL.md` only and removed the line from 2,845 child docs in commit 31888d05bb. On 2026-10-12 the operator decided the opposite: every doc carries its own version, as that doc's own edition. Separately, the playbook validator that phase built prints 258 `BACKTICK_PATH_UNRESOLVED` warnings from 113 distinct paths across 28 playbook packages at the scaffold commit, and none of them has been corrected.
 
 ### Purpose
-Restore a per-doc version that is raised automatically whenever a doc's content changes, and correct or explain every unresolved backticked playbook path, across two phases that two builders can run in parallel.
+Restore a per-doc version that is raised automatically whenever a doc's content changes, and correct or explain every unresolved backticked playbook path, across two phases that two builders can run in parallel, then check root playbook files the same way in a third phase built from main.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->
@@ -94,7 +94,7 @@ Restore a per-doc version that is raised automatically whenever a doc's content 
 |-------|--------|-------|--------|
 | 1 | 001-per-doc-versions/ | Every skill doc carries its own 4-part version, raised by the pre-commit hook and checked on pull requests; the removed lines restored | Complete |
 | 2 | 002-playbook-path-repair/ | Every unresolved backticked playbook path corrected, removed or rewritten, or listed with its reason | Complete |
-| 3 | 003-playbook-root-and-stale-refs/ | The validator checks root playbook files too, their unresolved paths corrected or explained, and six stale references fixed | In Progress |
+| 3 | 003-playbook-root-and-stale-refs/ | The validator checks root playbook files too, their unresolved paths corrected or explained, and six stale references fixed | Complete |
 
 ### Phase Transition Rules
 

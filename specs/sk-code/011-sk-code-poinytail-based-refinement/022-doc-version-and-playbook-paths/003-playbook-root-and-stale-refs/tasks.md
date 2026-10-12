@@ -51,8 +51,8 @@ contextType: "implementation"
 ## Phase 3: Verification
 
 - [x] T006 Rerun the validator: exit 0, scenario count 1, root count equal to the Remaining rows Evidence: exit 0, 1 root and 1 scenario line, 1 Remaining row
-- [ ] T007 Run the five-iteration `/deep:review :auto` and fix confirmed P0 to P2 findings
-- [ ] T008 Fill the ledger and Remaining table, then run the goal criteria, `check-goal.cjs` and strict `validate.sh`
+- [x] T007 Run the five-iteration `/deep:review :auto` and fix confirmed P0 to P2 findings Evidence: `review/review-report.md`, 0 P0, 0 P1, 5 P2: four fixed in `3c808f6d55` and the closeout, one rejected
+- [x] T008 Fill the ledger and Remaining table, then run the goal criteria, `check-goal.cjs` and strict `validate.sh` Evidence: goal criteria 1 to 7 print what they claim; `check-goal.cjs` RESULT: PASSED; `validate.sh --strict` RESULT: PASSED
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -60,9 +60,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -103,10 +103,10 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No warnings beyond the Remaining rows and the scenario row
-- [ ] CHK-012 [P1] Error handling implemented: not applicable, the check is report-only
-- [ ] CHK-013 [P1] Code follows project patterns
+- [x] CHK-010 [P0] Code passes lint/format checks. Evidence: `node --check` on the validator and its test exits 0
+- [x] CHK-011 [P0] No warnings beyond the Remaining rows and the scenario row. Evidence: 1 root and 1 scenario `BACKTICK_PATH_UNRESOLVED` line
+- [x] CHK-012 [P1] Error handling implemented: not applicable, the check is report-only
+- [x] CHK-013 [P1] Code follows project patterns. Evidence: the root call mirrors the scenario call one line below it
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -114,10 +114,10 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met (REQ-001 to REQ-005)
-- [ ] CHK-021 [P0] Root count equals the Remaining rows, scenario count 1
-- [ ] CHK-022 [P1] Edge cases checked: external project test module, missing prefix, deleted file with no successor, file checked for absence
-- [ ] CHK-023 [P1] Each successor read and confirmed to cover the same subject
+- [x] CHK-020 [P0] All acceptance criteria met (REQ-001 to REQ-005). Evidence: `acceptance-criteria.md`, five rows Met
+- [x] CHK-021 [P0] Root count equals the Remaining rows, scenario count 1
+- [x] CHK-022 [P1] Edge cases checked: external project test module, missing prefix, deleted file with no successor, file checked for absence
+- [x] CHK-023 [P1] Each successor read and confirmed to cover the same subject
 <!-- /ANCHOR:testing -->
 
 ---
@@ -125,13 +125,13 @@ contextType: "implementation"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. Evidence: `review/review-report.md` section 2
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. Evidence: the full validator run is the inventory for the root class; each stale token was grepped repo-wide before its fix
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. Evidence: not applicable; the change adds no parsing rule, and the root case pins one resolving and one missing path
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. Evidence: not applicable, the validator reads no environment variables for this check
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. Evidence: commits named by SHA
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -140,7 +140,7 @@ contextType: "implementation"
 ## Security
 
 - [x] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented: not applicable to a report-only check
+- [x] CHK-031 [P0] Input validation implemented: not applicable to a report-only check
 - [x] CHK-032 [P1] Auth/authz working correctly: not applicable, no auth surface
 <!-- /ANCHOR:security -->
 
@@ -149,9 +149,9 @@ contextType: "implementation"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] README updated (if applicable)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized
+- [x] CHK-041 [P1] Code comments adequate
+- [x] CHK-042 [P2] README updated (if applicable): not applicable
 <!-- /ANCHOR:docs -->
 
 ---
@@ -159,8 +159,8 @@ contextType: "implementation"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only
+- [x] CHK-051 [P1] scratch/ cleaned before completion
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -170,9 +170,9 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 13 | 3/13 |
-| P1 Items | 13 | 2/13 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 13 | 13/13 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-10-12
 <!-- /ANCHOR:summary -->

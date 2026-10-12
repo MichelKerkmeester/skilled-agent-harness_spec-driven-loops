@@ -1,0 +1,174 @@
+{
+  "topic": "Review: The playbook root and stale reference commits b4d4e90192..HEAD on branch worktrees/121-playbook-root-refs: the validator's root-file backticked path check and its test, the sk-doc 2.3.9.0 release, the path corrections in 13 root manual-testing-playbook files, six stale reference fixes, and the phase's spec docs",
+  "sessionId": "2026-10-12T10:01:23.529Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs",
+  "createdAt": "2026-10-12T10:01:23.529Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "The playbook root and stale reference commits b4d4e90192..HEAD on branch worktrees/121-playbook-root-refs: the validator's root-file backticked path check and its test, the sk-doc 2.3.9.0 release, the path corrections in 13 root manual-testing-playbook files, six stale reference fixes, and the phase's spec docs",
+  "reviewTargetType": "files",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    ".hermes/skills/sk-doc/SKILL.md",
+    ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json",
+    ".skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/cli-external-orchestration/cli-codex/references/codex-tools.md",
+    ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/confirmed-fires-smoke-test.md",
+    ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/task-dispatch-guard-live-fire.md",
+    ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/cli-external-orchestration/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/sk-design/sk-design-chart/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/sk-design/sk-design-diagram/references/import-export/export.md",
+    ".skilled/skills/sk-doc/ROUTER.md",
+    ".skilled/skills/sk-doc/SKILL.md",
+    ".skilled/skills/sk-doc/changelog/v2.3.9.0.md",
+    ".skilled/skills/sk-doc/description.json",
+    ".skilled/skills/sk-doc/hub-router.json",
+    ".skilled/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/sk-doc/mode-registry.json",
+    ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs",
+    ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+    ".skilled/skills/sk-vision/feature-catalog/host-adapters/pi-extension.md",
+    ".skilled/skills/sk-vision/feature-catalog/pixel-analysis/annotate.md",
+    ".skilled/skills/sk-vision/feature-catalog/pixel-analysis/colors.md",
+    ".skilled/skills/sk-vision/feature-catalog/pixel-analysis/crop.md",
+    ".skilled/skills/sk-vision/feature-catalog/pixel-analysis/diff.md",
+    ".skilled/skills/sk-vision/feature-catalog/pixel-analysis/metadata.md",
+    ".skilled/skills/sk-vision/feature-catalog/pixel-analysis/zoom.md",
+    ".skilled/skills/sk-vision/feature-catalog/scene-understanding/detect.md",
+    ".skilled/skills/sk-vision/feature-catalog/scene-understanding/inspect.md",
+    ".skilled/skills/sk-vision/feature-catalog/scene-understanding/ocr.md",
+    ".skilled/skills/sk-vision/feature-catalog/scene-understanding/point.md",
+    ".skilled/skills/sk-vision/feature-catalog/scene-understanding/segment.md",
+    ".skilled/skills/sk-vision/feature-catalog/system-health/reverse.md",
+    ".skilled/skills/sk-vision/feature-catalog/system-health/status.md",
+    ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/runtime-routing-and-rename/advisor-routes-council-prompts-to-skill.md",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-test-environment.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/acceptance-criteria.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/description.json",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/graph-metadata.json",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/scratch/.gitkeep",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/graph-metadata.json",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/spec.md",
+    "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-doc/manifest.json"
+  ],
+  "stopPolicy": "max-iterations",
+  "resource_map": {
+    "emit": true
+  }
+}

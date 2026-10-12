@@ -1,0 +1,1384 @@
+{
+  "sessionId": "2026-10-12T10:01:23.529Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "Anchored backticked paths are invisible to BACKTICK_PATH_UNRESOLVED",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+      "line": 376,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "sk-code-obsidian section 2b sentence still mixes prefixed and bare file names",
+      "file": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 180,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Parent continuity claims completion while its own criteria are unchecked and pending",
+      "file": "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/goal.md",
+      "line": 24,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Codex MCP config snippet puts a literal key slot in a tracked project config file",
+      "file": ".skilled/skills/cli-external-orchestration/cli-codex/references/codex-tools.md",
+      "line": 142,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "The fixture-suite summary count is stale after the root backtick case",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs",
+      "line": 240,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 5
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0.871,
+  "graphDecision": "STOP_BLOCKED",
+  "graphBlockers": [
+    {
+      "count": 64,
+      "description": "Dimension coverage (75%) is below threshold (80%). 64 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
+      "severity": "blocking",
+      "type": "uncovered_dimensions"
+    },
+    {
+      "count": 4,
+      "description": "4 contradiction(s) are lowering finding stability below threshold",
+      "severity": "blocking",
+      "type": "unstable_findings"
+    }
+  ],
+  "graphSignals": {
+    "dimensionCoverage": 0.75,
+    "evidenceDensity": 1.3333333333333333,
+    "findingStability": 0.6666666666666666,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 0.871
+  },
+  "candidateCoverage": {
+    "covered": [
+      "base_resolution",
+      "completion_metadata_contradiction",
+      "duplicate_reporting",
+      "exit_code_side_effect",
+      "false_green_criterion",
+      "incomplete_path_normalization",
+      "missed_path_class",
+      "proof_command_drift",
+      "residual_warning_policy",
+      "secret_inlined_in_committed_config",
+      "test_effectiveness",
+      "test_output_drift",
+      "unledgered_change",
+      "version_consistency"
+    ],
+    "ruledOut": [
+      "base_resolution",
+      "comment_convention",
+      "count_drift",
+      "credential_or_personal_path_leak",
+      "destructive_or_privileged_command_drift",
+      "duplicate_reporting",
+      "exit_code_side_effect",
+      "false_green_criterion",
+      "ledger_row_without_change",
+      "path_resolution_escape",
+      "path_subject_mismatch",
+      "playbook_scenario_mismatch",
+      "proof_command_drift",
+      "residual_warning_policy",
+      "rm_row_unjustified",
+      "stale_changelog_claim",
+      "stale_reference_successor",
+      "test_effectiveness",
+      "unledgered_change",
+      "unledgered_edit",
+      "version_consistency",
+      "wrong_resolution_base"
+    ],
+    "deferred": [
+      "proof_command_drift"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "base_resolution": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "duplicate_reporting": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "missed_path_class": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "exit_code_side_effect": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "test_effectiveness": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "version_consistency": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "residual_warning_policy": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "SR-1..SR-6 full re-execution (D3/D4)": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "sk-doc mirror/manifest JSON diffs (D3)": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "incomplete_path_normalization": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "path_subject_mismatch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "stale_reference_successor": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "unledgered_edit": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "wrong_resolution_base": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "playbook_scenario_mismatch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "proof_command_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "false_green_criterion": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "unledgered_change": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "completion_metadata_contradiction": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "ledger_row_without_change": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "count_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "rm_row_unjustified": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "rr1_revert_counterfactual": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "secret_inlined_in_committed_config": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "path_resolution_escape": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "destructive_or_privileged_command_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "credential_or_personal_path_leak": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "test_output_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "comment_convention": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "stale_changelog_claim": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 3,
+      "id": "SL-008",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/implementation-summary.md:81"
+      ],
+      "bugClass": "proof_command_drift",
+      "disposition": "deferred",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/review/iterations/iteration-001.md:53"
+      ],
+      "reason": "re-running the revert would modify the frozen review target; read-only iteration constraint"
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+      ],
+      "bugClass": "base_resolution",
+      "disposition": "ruled_out",
+      "rationale": "all bases shared with the scenario scan resolve correctly; duplicate base changes no result",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:408",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:757",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md:361"
+      ],
+      "reason": "duplicate base inert; no wrong-base case found in code or run output"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs"
+      ],
+      "bugClass": "duplicate_reporting",
+      "disposition": "ruled_out",
+      "rationale": "single pass over root text, seen-set dedupe, observed single warning per citation",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:744",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:757",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs:164",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:757"
+      ],
+      "reason": "verified by direct read and observed run"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+      ],
+      "bugClass": "exit_code_side_effect",
+      "disposition": "ruled_out",
+      "rationale": "report-only confirmed in code and by observed exit status",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:797",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:835",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:899",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:899"
+      ],
+      "reason": "warnings excluded from status and exit computation; exit 0 observed"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs"
+      ],
+      "bugClass": "test_effectiveness",
+      "disposition": "ruled_out",
+      "rationale": "without the change the appended path is never checked, so the assertion fails; builder RR-1 revert run consistent (not independently repeated)",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:744",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs:164"
+      ],
+      "reason": "parent call-site grep plus exclusion filter is decisive"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc"
+      ],
+      "bugClass": "version_consistency",
+      "disposition": "ruled_out",
+      "rationale": "bump complete at every scanned site",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/description.json",
+        ".skilled/skills/sk-doc/SKILL.md"
+      ],
+      "reason": "zero stale version refs found"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook"
+      ],
+      "bugClass": "residual_warning_policy",
+      "disposition": "ruled_out",
+      "rationale": "intentional absence probe, documented remaining row; goal criterion counts it as expected",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/worktree-isolation/worktree-dry-run-inspection.md:15",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/implementation-summary.md:106",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/goal.md:57"
+      ],
+      "reason": "documented RM-1 plus scenario pass/fail text"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        "the 13 root playbook files"
+      ],
+      "bugClass": "path_subject_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "no rewritten path points at a subject-mismatched file",
+      "evidenceRefs": [
+        "git diff b4d4e90192..HEAD",
+        ".skilled/skills/mcp-tooling/mcp-click-up/feature-catalog",
+        ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md"
+      ],
+      "reason": "all rewritten targets exist and sampled subjects match the citing text"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md:313-315"
+      ],
+      "bugClass": "stale_reference_successor",
+      "disposition": "ruled_out",
+      "rationale": "successor covers the same subject; its duplicated opencode runtime entry (line 25) is an out-of-diff observation",
+      "evidenceRefs": [
+        "git:7a987e8827",
+        "git:b4d4e90192",
+        ".skilled/skills/system-skill-advisor/runtime/tests/hooks/runtime-parity.vitest.ts:25"
+      ],
+      "reason": "same subject established from old file content, parent-tree check and successor read"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md:313-315"
+      ],
+      "bugClass": "stale_reference_successor",
+      "disposition": "ruled_out",
+      "rationale": "subject deleted with the memory engine; no successor exists",
+      "evidenceRefs": [
+        "git:3095cadc0f",
+        "git:3095cadc0f^:schemas/tool-input-schemas.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/schemas/advisor-tool-schemas.vitest.ts"
+      ],
+      "reason": "deletion commit and schema keys prove the subject is gone"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "bugClass": "stale_reference_successor",
+      "disposition": "ruled_out",
+      "rationale": "removed row named a file that never existed; the scenarios it referenced remain",
+      "evidenceRefs": [
+        "git log --all -- '*manual_namespace.test.js'",
+        "git:b052f329a7",
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/manual-namespace-contract/list-tools-dot-vs-underscore.md"
+      ],
+      "reason": "empty test-file history plus surviving scenario IDs"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        "the 56-file diff"
+      ],
+      "bugClass": "unledgered_edit",
+      "disposition": "ruled_out",
+      "rationale": "no hunk outside the ledger rows was found",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md:223",
+        ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/manual-testing-playbook.md:826",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-test-environment.md:19"
+      ],
+      "reason": "line-by-line mapping plus count probes all match"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md:366-372"
+      ],
+      "bugClass": "playbook_scenario_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "rewrite matches scenario objective, expected signals and contract",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/general-agent-default.md:19",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:159"
+      ],
+      "reason": "scenario and SKILL.md agree with the rewritten summary"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/implementation-summary.md:79-100"
+      ],
+      "bugClass": "ledger_row_without_change",
+      "disposition": "ruled_out",
+      "rationale": "every row's target file is present in the changed set",
+      "evidenceRefs": [
+        "git diff --name-only b4d4e90192..HEAD"
+      ],
+      "reason": "file-level mapping complete; iteration 2's hunk-level mapping carries"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        "the 13 root playbook packages",
+        "SR-1..SR-6 target files"
+      ],
+      "bugClass": "proof_command_drift",
+      "disposition": "ruled_out",
+      "rationale": "all replayable proof commands match their rows",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md:361",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-test-environment.md:19"
+      ],
+      "reason": "package and SR proof outputs reproduce the ledger claims"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/goal.md:57-63"
+      ],
+      "bugClass": "false_green_criterion",
+      "disposition": "ruled_out",
+      "rationale": "all seven criteria print their claimed output",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/goal.md:57"
+      ],
+      "reason": "no false-green criterion among the child goal criteria"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/goal.md:81-85"
+      ],
+      "bugClass": "count_drift",
+      "disposition": "ruled_out",
+      "rationale": "criterion 2 printing 2 is the honest pending state of 003 (completion_pct 90); the contradiction it exposes is filed via SL-005",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/goal.md:81"
+      ],
+      "reason": "no criterion defect; pending closure explains the sole mismatch"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-006",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md:361"
+      ],
+      "bugClass": "rm_row_unjustified",
+      "disposition": "ruled_out",
+      "rationale": "RM-1 is justified: the path is intentionally absent and the scenario checks presence/absence honestly",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/worktree-isolation/worktree-dry-run-inspection.md:15",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/implementation-summary.md:117"
+      ],
+      "reason": "the row's narrowest-change reasoning holds"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-007",
+      "dimension": "traceability",
+      "targetRefs": [
+        "git diff b4d4e90192..HEAD"
+      ],
+      "bugClass": "unledgered_change",
+      "disposition": "ruled_out",
+      "rationale": "no orphan hunk; iteration 2's hunk mapping plus this iteration's line arithmetic agree",
+      "evidenceRefs": [
+        "git diff --name-only b4d4e90192..HEAD"
+      ],
+      "reason": "all changes are ledgered or declared"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-001",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:757"
+      ],
+      "bugClass": "path_resolution_escape",
+      "disposition": "ruled_out",
+      "rationale": "escape and symlink acceptance predate the change and apply identically to scenarios; no content read, no write, link checks stay strict on purpose",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:416",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:418",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:396",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:757"
+      ],
+      "reason": "pre-existing documented report-only semantics; the root call adds no new capability"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/runtime-routing-and-rename/advisor-routes-council-prompts-to-skill.md:49"
+      ],
+      "bugClass": "destructive_or_privileged_command_drift",
+      "disposition": "ruled_out",
+      "rationale": "CWD and filter moved only; same local tool class; no destructive or privileged flag introduced",
+      "evidenceRefs": [
+        "git diff b4d4e90192..HEAD",
+        ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/runtime-routing-and-rename/advisor-routes-council-prompts-to-skill.md:49"
+      ],
+      "reason": "observed command surface is non-destructive and repo-local"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        "git diff b4d4e90192..HEAD"
+      ],
+      "bugClass": "credential_or_personal_path_leak",
+      "disposition": "ruled_out",
+      "rationale": "both scans clean; the one credential-shaped match is the spec's own checklist claim, which holds",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/tasks.md:142",
+        "git diff b4d4e90192..HEAD"
+      ],
+      "reason": "observed clean on the full diff"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-M1",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/SKILL.md:5",
+        ".skilled/skills/sk-doc/ROUTER.md:11",
+        ".skilled/skills/sk-doc/description.json:4",
+        ".skilled/skills/sk-doc/hub-router.json:3",
+        ".skilled/skills/sk-doc/mode-registry.json:3",
+        ".skilled/skills/sk-doc/changelog/v2.3.9.0.md:10"
+      ],
+      "bugClass": "version_consistency",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/SKILL.md:5",
+        ".skilled/skills/sk-doc/changelog/v2.3.9.0.md:10",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+      ],
+      "reason": "all five files, the changelog, the mirror and both manifests agree; the bump check is green over the whole range"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-M3",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:371"
+      ],
+      "bugClass": "comment_convention",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:371"
+      ],
+      "reason": "the edited comment keeps the durable WHY only"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-M4",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/changelog/v2.3.9.0.md:15"
+      ],
+      "bugClass": "stale_changelog_claim",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/changelog/v2.3.9.0.md:15",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:371"
+      ],
+      "reason": "every changelog claim maps to the shipped change; the new case exits 0 while warning"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+      ],
+      "bugClass": "base_resolution",
+      "disposition": "ruled_out",
+      "rationale": "all bases shared with the scenario scan resolve correctly; duplicate base changes no result",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:408",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:757",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md:361"
+      ],
+      "proof": "duplicate base inert; no wrong-base case found in code or run output"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs"
+      ],
+      "bugClass": "duplicate_reporting",
+      "disposition": "ruled_out",
+      "rationale": "single pass over root text, seen-set dedupe, observed single warning per citation",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:744",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:757",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs:164",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:757"
+      ],
+      "proof": "verified by direct read and observed run"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+      ],
+      "bugClass": "exit_code_side_effect",
+      "disposition": "ruled_out",
+      "rationale": "report-only confirmed in code and by observed exit status",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:797",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:835",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:899",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:899"
+      ],
+      "proof": "warnings excluded from status and exit computation; exit 0 observed"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs"
+      ],
+      "bugClass": "test_effectiveness",
+      "disposition": "ruled_out",
+      "rationale": "without the change the appended path is never checked, so the assertion fails; builder RR-1 revert run consistent (not independently repeated)",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:744",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs:164"
+      ],
+      "proof": "parent call-site grep plus exclusion filter is decisive"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc"
+      ],
+      "bugClass": "version_consistency",
+      "disposition": "ruled_out",
+      "rationale": "bump complete at every scanned site",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/description.json",
+        ".skilled/skills/sk-doc/SKILL.md"
+      ],
+      "proof": "zero stale version refs found"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook"
+      ],
+      "bugClass": "residual_warning_policy",
+      "disposition": "ruled_out",
+      "rationale": "intentional absence probe, documented remaining row; goal criterion counts it as expected",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/worktree-isolation/worktree-dry-run-inspection.md:15",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/implementation-summary.md:106",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/goal.md:57"
+      ],
+      "proof": "documented RM-1 plus scenario pass/fail text"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        "the 13 root playbook files"
+      ],
+      "bugClass": "path_subject_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "no rewritten path points at a subject-mismatched file",
+      "evidenceRefs": [
+        "git diff b4d4e90192..HEAD",
+        ".skilled/skills/mcp-tooling/mcp-click-up/feature-catalog",
+        ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md"
+      ],
+      "proof": "all rewritten targets exist and sampled subjects match the citing text"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md:313-315"
+      ],
+      "bugClass": "stale_reference_successor",
+      "disposition": "ruled_out",
+      "rationale": "successor covers the same subject; its duplicated opencode runtime entry (line 25) is an out-of-diff observation",
+      "evidenceRefs": [
+        "git:7a987e8827",
+        "git:b4d4e90192",
+        ".skilled/skills/system-skill-advisor/runtime/tests/hooks/runtime-parity.vitest.ts:25"
+      ],
+      "proof": "same subject established from old file content, parent-tree check and successor read"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md:313-315"
+      ],
+      "bugClass": "stale_reference_successor",
+      "disposition": "ruled_out",
+      "rationale": "subject deleted with the memory engine; no successor exists",
+      "evidenceRefs": [
+        "git:3095cadc0f",
+        "git:3095cadc0f^:schemas/tool-input-schemas.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/schemas/advisor-tool-schemas.vitest.ts"
+      ],
+      "proof": "deletion commit and schema keys prove the subject is gone"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "bugClass": "stale_reference_successor",
+      "disposition": "ruled_out",
+      "rationale": "removed row named a file that never existed; the scenarios it referenced remain",
+      "evidenceRefs": [
+        "git log --all -- '*manual_namespace.test.js'",
+        "git:b052f329a7",
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/manual-namespace-contract/list-tools-dot-vs-underscore.md"
+      ],
+      "proof": "empty test-file history plus surviving scenario IDs"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        "the 56-file diff"
+      ],
+      "bugClass": "unledgered_edit",
+      "disposition": "ruled_out",
+      "rationale": "no hunk outside the ledger rows was found",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md:223",
+        ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/manual-testing-playbook.md:826",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-test-environment.md:19"
+      ],
+      "proof": "line-by-line mapping plus count probes all match"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md:366-372"
+      ],
+      "bugClass": "playbook_scenario_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "rewrite matches scenario objective, expected signals and contract",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/general-agent-default.md:19",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:159"
+      ],
+      "proof": "scenario and SKILL.md agree with the rewritten summary"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/implementation-summary.md:79-100"
+      ],
+      "bugClass": "ledger_row_without_change",
+      "disposition": "ruled_out",
+      "rationale": "every row's target file is present in the changed set",
+      "evidenceRefs": [
+        "git diff --name-only b4d4e90192..HEAD"
+      ],
+      "proof": "file-level mapping complete; iteration 2's hunk-level mapping carries"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        "the 13 root playbook packages",
+        "SR-1..SR-6 target files"
+      ],
+      "bugClass": "proof_command_drift",
+      "disposition": "ruled_out",
+      "rationale": "all replayable proof commands match their rows",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md:361",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-test-environment.md:19"
+      ],
+      "proof": "package and SR proof outputs reproduce the ledger claims"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/goal.md:57-63"
+      ],
+      "bugClass": "false_green_criterion",
+      "disposition": "ruled_out",
+      "rationale": "all seven criteria print their claimed output",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/goal.md:57"
+      ],
+      "proof": "no false-green criterion among the child goal criteria"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/goal.md:81-85"
+      ],
+      "bugClass": "count_drift",
+      "disposition": "ruled_out",
+      "rationale": "criterion 2 printing 2 is the honest pending state of 003 (completion_pct 90); the contradiction it exposes is filed via SL-005",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/goal.md:81"
+      ],
+      "proof": "no criterion defect; pending closure explains the sole mismatch"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-006",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md:361"
+      ],
+      "bugClass": "rm_row_unjustified",
+      "disposition": "ruled_out",
+      "rationale": "RM-1 is justified: the path is intentionally absent and the scenario checks presence/absence honestly",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/worktree-isolation/worktree-dry-run-inspection.md:15",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair/implementation-summary.md:117"
+      ],
+      "proof": "the row's narrowest-change reasoning holds"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-007",
+      "dimension": "traceability",
+      "targetRefs": [
+        "git diff b4d4e90192..HEAD"
+      ],
+      "bugClass": "unledgered_change",
+      "disposition": "ruled_out",
+      "rationale": "no orphan hunk; iteration 2's hunk mapping plus this iteration's line arithmetic agree",
+      "evidenceRefs": [
+        "git diff --name-only b4d4e90192..HEAD"
+      ],
+      "proof": "all changes are ledgered or declared"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-001",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:757"
+      ],
+      "bugClass": "path_resolution_escape",
+      "disposition": "ruled_out",
+      "rationale": "escape and symlink acceptance predate the change and apply identically to scenarios; no content read, no write, link checks stay strict on purpose",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:416",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:418",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:396",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:757"
+      ],
+      "proof": "pre-existing documented report-only semantics; the root call adds no new capability"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/runtime-routing-and-rename/advisor-routes-council-prompts-to-skill.md:49"
+      ],
+      "bugClass": "destructive_or_privileged_command_drift",
+      "disposition": "ruled_out",
+      "rationale": "CWD and filter moved only; same local tool class; no destructive or privileged flag introduced",
+      "evidenceRefs": [
+        "git diff b4d4e90192..HEAD",
+        ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/runtime-routing-and-rename/advisor-routes-council-prompts-to-skill.md:49"
+      ],
+      "proof": "observed command surface is non-destructive and repo-local"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        "git diff b4d4e90192..HEAD"
+      ],
+      "bugClass": "credential_or_personal_path_leak",
+      "disposition": "ruled_out",
+      "rationale": "both scans clean; the one credential-shaped match is the spec's own checklist claim, which holds",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs/tasks.md:142",
+        "git diff b4d4e90192..HEAD"
+      ],
+      "proof": "observed clean on the full diff"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-M1",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/SKILL.md:5",
+        ".skilled/skills/sk-doc/ROUTER.md:11",
+        ".skilled/skills/sk-doc/description.json:4",
+        ".skilled/skills/sk-doc/hub-router.json:3",
+        ".skilled/skills/sk-doc/mode-registry.json:3",
+        ".skilled/skills/sk-doc/changelog/v2.3.9.0.md:10"
+      ],
+      "bugClass": "version_consistency",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/SKILL.md:5",
+        ".skilled/skills/sk-doc/changelog/v2.3.9.0.md:10",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+      ],
+      "proof": "all five files, the changelog, the mirror and both manifests agree; the bump check is green over the whole range"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-M3",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:371"
+      ],
+      "bugClass": "comment_convention",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:371"
+      ],
+      "proof": "the edited comment keeps the durable WHY only"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-M4",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/changelog/v2.3.9.0.md:15"
+      ],
+      "bugClass": "stale_changelog_claim",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/changelog/v2.3.9.0.md:15",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:371"
+      ],
+      "proof": "every changelog claim maps to the shipped change; the new case exits 0 while warning"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "version_consistency",
+      "test_output_drift",
+      "comment_convention",
+      "stale_changelog_claim"
+    ],
+    "covered": [
+      "test_output_drift"
+    ],
+    "ruledOut": [
+      "version_consistency",
+      "comment_convention",
+      "stale_changelog_claim"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

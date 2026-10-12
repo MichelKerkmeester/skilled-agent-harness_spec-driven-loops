@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths"
-    last_updated_at: "2026-10-12T12:00:00Z"
-    last_updated_by: "integrator"
-    recent_action: "Integrated both children and raised the repaired docs"
-    next_safe_action: "Operator review of the integration branch, then merge to main"
+    last_updated_at: "2026-10-12T13:00:00Z"
+    last_updated_by: "builder"
+    recent_action: "Closed phase 003: root playbook paths checked and corrected, six stale references fixed"
+    next_safe_action: "Orchestrator merges worktrees/121-playbook-root-refs to main"
     blockers: []
     key_files: []
     session_dedup:
@@ -45,7 +45,7 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | Every doc carries its own version (operator decision, 2026-10-12), reversing 021/003's `SKILL.md`-only rule for child docs |
-| D2 | The two children are independent; each builds in its own worktree branched from the scaffold commit |
+| D2 | 001 and 002 are independent; each builds in its own worktree branched from the scaffold commit. 003 builds from main after both merged |
 | D3 | 002 never edits a version; after both merge, the integrator runs 001's bump over 002's changed docs |
 | D4 | A Closed row's reason cites prevent-overengineering or an operator decision |
 | D5 | sk-doc is bumped once by 001, and once more by 002 only if the validator changes; colliding numbers are renumbered at integration |
@@ -78,11 +78,11 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `cat specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/00*/implementation-summary.md | grep -cE '^\| (PV-R[0-9]+|PP-([0-9]+|V)|RR-(1|2\.[0-9]{2})|SR-[1-6]) \| (Fixed|Closed) \|'`, run from the repository root, prints 57.
-- [ ] `grep -l 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/00*/implementation-summary.md | wc -l | tr -d ' '`, run from the repository root, prints 3.
-- [ ] `for c in specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/00*/; do node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs $c | tail -1; done | grep -c 'RESULT: PASSED'`, run from the repository root, prints 3.
-- [ ] `node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs verify`, run from the repository root after both children merge, exits 0.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths --recursive --strict`, run from the repository root, prints `RESULT: PASSED` 4 times and `RESULT: FAILED` 0 times.
+- [x] `cat specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/00*/implementation-summary.md | grep -cE '^\| (PV-R[0-9]+|PP-([0-9]+|V)|RR-(1|2\.[0-9]{2})|SR-[1-6]) \| (Fixed|Closed) \|'`, run from the repository root, prints 57.
+- [x] `grep -l 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/00*/implementation-summary.md | wc -l | tr -d ' '`, run from the repository root, prints 3.
+- [x] `for c in specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/00*/; do node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs $c | tail -1; done | grep -c 'RESULT: PASSED'`, run from the repository root, prints 3.
+- [x] `node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs verify`, run from the repository root after the children merge, exits 0.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths --recursive --strict`, run from the repository root, prints `RESULT: PASSED` 4 times and `RESULT: FAILED` 0 times.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -101,6 +101,7 @@ and findings belong here.
 | Scaffold | Done | Parent and two children created with create.sh phase mode, `--path`, `--level 2` and `--with-goal`; each child spec lists its ledger rows |
 | 001 per-doc versions | Done | Merged onto `worktrees/120-docver-integration`; sk-doc 2.3.7.0 |
 | 002 playbook path repair | Done | Merged onto `worktrees/120-docver-integration`; its sk-doc release renumbered 2.3.7.0 to 2.3.8.0 under D5 |
+| 003 playbook root and stale refs | Done | Built on `worktrees/121-playbook-root-refs` from origin/main; sk-doc 2.3.9.0; root warnings 70 to 1 (RM-1) |
 | Integration | Done | `frontmatter-version.mjs bump --base worktrees/119-docver-per-doc` raised 227 docs 002 changed; criteria 1 to 5 run from the merged tree: 37, 2, 2, verify exit 0, 3 PASSED and 0 FAILED |
 
 ### Deviations and findings

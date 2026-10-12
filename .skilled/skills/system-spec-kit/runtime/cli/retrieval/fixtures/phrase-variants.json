@@ -1,5 +1,5 @@
 {
-  "manifestHash": "bf4fb7670e0f81e4906c457cb9f124a6aa8368257b21180ebf3077c9a3a433f7",
+  "manifestHash": "98e3f0bc2cd12ac280b61e942fe840c7fbe8aac0eb9322902dce0a259aa0b946",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -70883,6 +70883,9 @@
     "phase 3 playbook catalog truth": [
       "phase 3 playbook catalog truth"
     ],
+    "phase 3 playbook root and stale refs": [
+      "phase 3 playbook root and stale refs"
+    ],
     "phase 3 quality mode": [
       "phase 3 quality mode"
     ],
@@ -73060,6 +73063,27 @@
     ],
     "playbook rollback procedure": [
       "playbook rollback procedure"
+    ],
+    "playbook root and stale refs": [
+      "playbook root and stale refs"
+    ],
+    "playbook root and stale refs acceptance criteria": [
+      "playbook root and stale refs acceptance criteria"
+    ],
+    "playbook root and stale refs goal": [
+      "playbook root and stale refs goal"
+    ],
+    "playbook root and stale refs implementation summary": [
+      "playbook root and stale refs implementation summary"
+    ],
+    "playbook root and stale refs plan": [
+      "playbook root and stale refs plan"
+    ],
+    "playbook root and stale refs tasks": [
+      "playbook root and stale refs tasks"
+    ],
+    "playbook root backticked paths": [
+      "playbook root backticked paths"
     ],
     "playbook root structure": [
       "playbook root structure"
@@ -83359,6 +83383,9 @@
     "root phase changelog": [
       "root phase changelog"
     ],
+    "root playbook backtick check": [
+      "root playbook backtick check"
+    ],
     "root readme alignment": [
       "root readme alignment"
     ],
@@ -91660,6 +91687,9 @@
     "sk doc 2 3 8 0": [
       "sk-doc 2.3.8.0"
     ],
+    "sk doc 2 3 9 0": [
+      "sk-doc 2.3.9.0"
+    ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
     ],
@@ -91971,6 +92001,9 @@
     ],
     "sk doc v2 3 8 0": [
       "sk-doc v2.3.8.0"
+    ],
+    "sk doc v2 3 9 0": [
+      "sk-doc v2.3.9.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"

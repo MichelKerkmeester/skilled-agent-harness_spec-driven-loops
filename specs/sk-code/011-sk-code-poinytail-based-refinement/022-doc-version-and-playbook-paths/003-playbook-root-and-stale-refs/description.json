@@ -1,11 +1,12 @@
 {
+  "level": "2",
   "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs",
   "description": "Phase 3: playbook-root-and-stale-refs",
   "keywords": [
     "phase",
     "playbook-root-and-stale-refs"
   ],
-  "lastUpdated": "2026-10-12T09:34:41.198Z",
+  "lastUpdated": "2026-10-12T10:45:39.190Z",
   "specId": "003",
   "folderSlug": "playbook-root-and-stale-refs",
   "parentChain": [
@@ -13,7 +14,8 @@
     "011-sk-code-poinytail-based-refinement",
     "022-doc-version-and-playbook-paths"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "12-10-26_11-45__five-iteration-deep-review-of-the-playbook-root.md"
+  ]
 }

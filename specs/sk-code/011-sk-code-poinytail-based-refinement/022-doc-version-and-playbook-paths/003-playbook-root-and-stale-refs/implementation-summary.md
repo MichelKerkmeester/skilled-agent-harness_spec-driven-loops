@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs"
-    last_updated_at: "2026-10-12T11:00:00Z"
+    last_updated_at: "2026-10-12T12:00:00Z"
     last_updated_by: "builder"
-    recent_action: "Built the validator change and the doc fixes"
-    next_safe_action: "Run the five-iteration deep review"
+    recent_action: "Built the phase, ran a five-iteration review and applied its fixes"
+    next_safe_action: "Orchestrator merges the branch and writes the v4.0.0.4 changelog"
     blockers: []
     key_files:
       - ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "build-022-003"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -72,7 +72,9 @@ The six stale references 002 left as found are fixed. The DAC-002 scorer command
 
 DeepSeek V4.1 Flash, through cli-pi on DevPass at max thinking, made every code and doc edit outside this spec folder. The builder read each target first, chose the correction, and dispatched it as a literal old-to-new replacement, one ledger row per brief. A checker then compared every changed file byte for byte against HEAD plus the specified replacements: 41 files, 0 mismatches, no other file touched.
 
-Commits: `d8188fdf35` scaffold, `0099d2c6d7` validator and sk-doc 2.3.9.0, `45d7fca7fd` root and stale reference fixes. The pre-commit hook raised each changed doc's own version.
+Commits: `d8188fdf35` scaffold, `0099d2c6d7` validator and sk-doc 2.3.9.0, `45d7fca7fd` root and stale reference fixes, `d20d841f06` ledger, `3c808f6d55` review fixes. The pre-commit hook raised each changed doc's own version.
+
+A five-iteration `/deep:review :auto` then ran over the phase commits with cli-pi and DeepSeek V4.1 Flash at max effort. It found no P0 or P1 and five P2. Each was reproduced before it was fixed: three went through the same literal-replacement path, one was the parent's continuity, and one was rejected with the reason in Key Decisions. The reducer recorded one search-debt item, the RR-1 revert the read-only iteration could not rerun, so the report's verdict is CONDITIONAL; the revert was rerun afterwards and exits 1, then 0 with the change restored. Its artifacts are in `review/`.
 
 ### Ledger
 
@@ -113,6 +115,7 @@ Commits: `d8188fdf35` scaffold, `0099d2c6d7` validator and sk-doc 2.3.9.0, `45d7
 
 | Decision | Why |
 |----------|-----|
+| Review finding R1-P2-001 rejected: a backticked path with a `#fragment` stays outside the check | The root check reuses the scenario check's token rules unchanged, and no playbook file writes an anchored backticked path, so a rule for that form would cover nothing that exists |
 | One validator line, no new rule | `backtickPathChecks` already resolves from the file, playbook, skill, hub and repository bases; the root file only needed to be passed in |
 | cupt test modules reworded, not skipped by a rule | One package names them, and phase 002 handled the external Webflow project the same way |
 | CO-013's root summary aligned with its scenario | The cited agent file does not exist because `general` is an OpenCode built-in that the contract forbids passing; fixing the path alone would have left the section contradicting its scenario |
@@ -127,7 +130,8 @@ Commits: `d8188fdf35` scaffold, `0099d2c6d7` validator and sk-doc 2.3.9.0, `45d7
 | Check | Result |
 |-------|--------|
 | `validate-playbook-package.cjs --strict` | Exit 0, 2 `BACKTICK_PATH_UNRESOLVED` lines: 1 root (RM-1) and 1 scenario (002's RM-1) |
-| Validator tests | Exit 0; exit 1 with the validator line reverted |
+| Validator tests | Exit 0, 35 assertions; exit 1 with the validator line reverted |
+| `/deep:review :auto`, 5 iterations | CONDITIONAL from one search-debt item, 0 P0, 0 P1, 5 P2: four fixed, one rejected. See `review/review-report.md` |
 | Byte-for-byte check of every dispatched edit | 41 files match HEAD plus the specified replacements, no other file changed |
 <!-- /ANCHOR:verification -->
 
