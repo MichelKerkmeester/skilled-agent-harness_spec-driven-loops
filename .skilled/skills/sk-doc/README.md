@@ -19,7 +19,7 @@ trigger_phrases:
   - "repo rule"
   - "frontmatter contract"
   - "document diff"
-version: 2.3.4.0
+version: 2.3.5.0
 ---
 
 # sk-doc
@@ -217,7 +217,7 @@ The skill ships the checks that prove a document is ready.
 | [`sk-create-benchmark/README.md`](sk-create-benchmark/README.md) | Benchmark family registry, including conformance authoring triggers and package boundaries |
 | [`sk-create-diff/README.md`](sk-create-diff/README.md) | Git-free before/after document diff: snapshot lifecycle, comparison engine and the self-contained HTML report |
 | [`sk-create-diff/references/workflow.md`](sk-create-diff/references/workflow.md) | The sk-create-diff capture/compare workflow and CLI reference |
-| [`sk-design-chart/README.md`](../sk-design/sk-design-chart/README.md) | Standalone HTML data charts: twenty-one forms across six families, the colour system and the corpus validator |
+| [`sk-design-chart/README.md`](../sk-design/sk-design-chart/README.md) | Standalone HTML data charts: twenty-nine forms across six families, the colour system and the corpus validator |
 | [`sk-create-frontmatter/README.md`](sk-create-frontmatter/README.md) | Frontmatter field contracts by document class, the description budget and the 4-part version standard |
 | [`sk-create-repo-rule/README.md`](sk-create-repo-rule/README.md) | Creating, revising and retiring a repository rule, and the router that indexes them |
 | [`sk-create-changelog/README.md`](sk-create-changelog/README.md) | Changelog entries and the version story a skill tells about itself |

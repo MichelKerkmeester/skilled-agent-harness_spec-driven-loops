@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor_recommend"
   - "which skill should handle this"
   - "route this request"
-version: 0.12.0.54
+version: 0.12.1.0
 ---
 
 # system-skill-advisor
@@ -110,7 +110,7 @@ The lane weights live in `runtime/lib/scorer/lane-registry.ts`. The scorer reads
 
 Deep-loop routing modes are projected from `mode-registry.json` into generated constants in `lib/scorer/aliases.ts` and the Python compatibility script. A SHA-256 projection hash is folded into the recommend cache signature and checked by the routing-registry drift guard. When a generated deep-loop alias resolves to the merged workflow skill, `advisor_recommend` publishes an optional `workflowMode` field for downstream routing.
 
-`advisor_recommend` accepts six options: `topK` sets how many candidates to return (1 to 10), `includeAttribution` adds per-lane score breakdowns, `includeAbstainReasons` surfaces why lower-ranked candidates were not selected, `confidenceThreshold` overrides the minimum surfaced confidence, `uncertaintyThreshold` overrides the maximum surfaced uncertainty and `includeCompiledRoute` is an optional boolean that defaults to true. Passing `false` skips the compiled-route enrichment so no compiled-route subprocess starts. The prompt hooks send `false`. `advisor_validate` requires `confirmHeavyRun: true` because it executes the full validation bundle (corpus, holdout, parity, safety, latency).
+`advisor_recommend` accepts seven options: `topK` sets how many candidates to return (1 to 10), `includeAttribution` adds per-lane score breakdowns, `includeAbstainReasons` surfaces why lower-ranked candidates were not selected, `confidenceThreshold` overrides the minimum surfaced confidence, `uncertaintyThreshold` overrides the maximum surfaced uncertainty and `includeCompiledRoute` is an optional boolean that defaults to true. Passing `false` skips the compiled-route enrichment so no compiled-route subprocess starts. The prompt hooks send `false`. `surfaceHint` forwards a code surface the caller already knows, such as `WEBFLOW` (1 to 64 characters), to the compiled-route front door, which ignores an unknown one. `advisor_validate` requires `confirmHeavyRun: true` because it executes the full validation bundle (corpus, holdout, parity, safety, latency).
 
 ### Prompt-Safe Attribution
 
@@ -151,7 +151,7 @@ The CLI exposes nine commands, each accepting snake case, kebab case and camel c
 
 | Command | Purpose |
 |---|---|
-| `advisor_recommend` | Recommend skills for a prompt (`topK`, `includeAttribution`, `includeAbstainReasons`, `confidenceThreshold`, `uncertaintyThreshold`, `includeCompiledRoute`) |
+| `advisor_recommend` | Recommend skills for a prompt (`topK`, `includeAttribution`, `includeAbstainReasons`, `confidenceThreshold`, `uncertaintyThreshold`, `includeCompiledRoute`, `surfaceHint`) |
 | `advisor_rebuild` | Rebuild the advisor index from checked-in metadata |
 | `advisor_status` | Report freshness, generation, lane weights, skill count, scan times and a trust state that reads `unavailable` when the daemon is down |
 | `advisor_validate` | Run the corpus, holdout, parity, safety and latency bundle (`confirmHeavyRun: true` required) |

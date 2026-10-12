@@ -21,7 +21,7 @@ trigger_phrases:
 
 Current state:
 
-- `pre-commit` runs nine blocking sub-gates: comment hygiene, agent-mirror sync, mirror parity, prompt-card sync, MCP mutation-class, template phrase lint, compiled-routing re-mint, spec derived-metadata re-mint and doc version bump. Eight carry their own bypass flag. The doc version bump raises the version of each staged skill doc whose body changed and stages it, and a frontmatter-only change raises nothing. Template phrase lint blocks staged template defaults and editor fallbacks, and warns on other negative classes. Agent-mirror sync has none of its own, and `SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1` (or `SYSTEM_HOOKS_DISABLED=1`) turns off the whole pre-commit chain, that gate included. When its checker exits 3 because the built frontmatter parser is missing or fails to load, the gate warns, names `npm --prefix .skilled/skills/system-spec-kit run build` and skips instead of reporting drift. Comment hygiene checks the staged content, not the working tree, in one checker run. Every block from the two re-mint gates prints its bypass flag, and a packet dirty only in the gate's own derived files re-derives instead of blocking.
+- `pre-commit` runs ten blocking sub-gates: comment hygiene, agent-mirror sync, mirror parity, skill authoring, prompt-card sync, MCP mutation-class, template phrase lint, compiled-routing re-mint, spec derived-metadata re-mint and doc version bump. Nine carry their own bypass flag. The doc version bump raises the version of each staged skill doc whose body changed and stages it, and a frontmatter-only change raises nothing. Template phrase lint blocks staged template defaults and editor fallbacks, and warns on other negative classes. Agent-mirror sync has none of its own, and `SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1` (or `SYSTEM_HOOKS_DISABLED=1`) turns off the whole pre-commit chain, that gate included. When its checker exits 3 because the built frontmatter parser is missing or fails to load, the gate warns, names `npm --prefix .skilled/skills/system-spec-kit run build` and skips instead of reporting drift. Comment hygiene checks the staged content, not the working tree, in one checker run. Every block from the two re-mint gates prints its bypass flag, and a packet dirty only in the gate's own derived files re-derives instead of blocking.
 - `prepare-commit-msg` stamps the machine trailer paragraph: it mints a `Commit-Id:` through the sk-git ordinal allocator whenever one is absent, re-mints a fresh one on every cherry-pick (clean or continued after a conflict), keeps the existing id on amend, and appends `Spec:` only when `SPECKIT_COMMIT_SPEC` supplies the packet. It removes `Co-Authored-By:` and `Claude-Session:` lines, never the subject, and names each line it removed. Any other line naming a vendor stays for `commit-msg` to report. It identifies this repository by the allocator's path, separates the block from prose with one blank line, keeps trailing comment lines (and a `git commit -v` scissors/diff tail) below the block when git will strip them, and exits untouched anywhere else. `SPECKIT_SKIP_PREPARE_COMMIT_MSG=1` skips it.
 - `commit-msg` blocks a message that breaks the repository's own commit rules: the "Enforced rules" JSON block in its sk-git `commit-message-template.md`, read by `skills/sk-git/scripts/validate-message.mjs`. The validator is found beside the real hook script, so the machine-wide install enforces each repository's own template, and a repository with no rules block is not checked. There is no bypass. `--no-verify` only defers the block to `pre-push` and CI.
 - `post-commit` publishes the just-completed commit to the shared live branch, and only from a linked worktree in a launch-wrapper session that exports both `SPECKIT_AUTOSYNC=1` and `SPECKIT_LIVE_BRANCH`.
@@ -41,7 +41,7 @@ Current state:
 ╰──────────────────────────────────────────────────────────────────╯
 
 ┌──────────────┐      ┌──────────────────┐      ┌──────────────────┐
-│ git commit   │ ───▶ │ pre-commit       │ ───▶ │ 8 blocking       │
+│ git commit   │ ───▶ │ pre-commit       │ ───▶ │ 10 blocking      │
 │              │      │                  │      │ gates            │
 └──────────────┘      └──────────────────┘      └──────────────────┘
 
@@ -70,7 +70,7 @@ Dependency direction: git lifecycle event ───▶ hook script ───▶ 
 ```text
 git-hooks/
 +-- commit-msg                     # Template-contract gate (blocking, no bypass)
-+-- pre-commit                   # 8 blocking sub-gates
++-- pre-commit                   # 10 blocking sub-gates
 +-- post-commit                     # Autosync publish + autostash orphan guard
 +-- post-merge                      # Autostash orphan guard after merge
 +-- post-rewrite                    # Autostash orphan guard after amend/rebase
@@ -121,7 +121,7 @@ hooks here → hard-fail without a bypass env var on their primary check (the me
 
 | Boundary | Rule |
 |---|---|
-| Blocking vs advisory | `commit-msg`, `pre-commit`'s nine named sub-gates and `pre-push`'s six gates may fail their git operation. Every other check in this folder is advisory or best-effort (`\|\| true` on the guard call). |
+| Blocking vs advisory | `commit-msg`, `pre-commit`'s ten named sub-gates and `pre-push`'s six gates may fail their git operation. Every other check in this folder is advisory or best-effort (`\|\| true` on the guard call). |
 | Missing gate scripts | Where the toolchain ships, a blocking gate whose script is missing exits 1 naming the path. The exception is the `pre-commit` template phrase lint, which warns and lets the commit through when its linter or `node` is missing. `prepare-commit-msg`, `post-commit`, `post-merge` and `post-rewrite` warn instead, because git ignores their exit status or they never block by contract. Elsewhere a missing script adds no new output and no new block. |
 | Autostash ownership | Only `lib/autostash-orphan-guard.sh` writes `refs/autostash-rescue/*` and the alert log. Hooks source it rather than duplicating the anchor-and-alert logic. |
 | Autosync scope | `post-commit` publishes only from a linked worktree in a launch-wrapper session. The primary checkout never auto-publishes, and a blocked publish stays local. |

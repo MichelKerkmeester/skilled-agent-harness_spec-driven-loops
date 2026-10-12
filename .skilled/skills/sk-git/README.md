@@ -8,7 +8,7 @@ trigger_phrases:
   - "git workspace commit finish"
   - "pull request commit hygiene"
   - "commit id trailer"
-version: 1.8.4.0
+version: 1.8.5.0
 ---
 
 # sk-git
@@ -201,7 +201,7 @@ sk-git/
 +-- references/                    # Phase workflows loaded by the router
 +-- assets/                        # PR template, commit template, worktree checklist
 +-- feature-catalog/               # Capability catalog by category
-+-- manual-testing-playbook/       # 38 manual scenarios across 8 categories
++-- manual-testing-playbook/       # manual scenarios across 9 categories
 `-- changelog/                     # Versioned change history
 ```
 
@@ -264,7 +264,7 @@ A: Grep the `Spec:` trailer with the packet query: `git log -E --grep='^Spec: sk
 
 ## 8. VERIFICATION
 
-The skill ships a manual testing playbook with scenarios across 8 categories and a feature catalog covering worktree, commit, the template-driven message contract, finish, GitKraken and numbered worktree tooling.
+The skill ships a manual testing playbook with scenarios across 9 categories and a feature catalog covering worktree, commit, the template-driven message contract, finish, GitKraken and numbered worktree tooling.
 
 | Check | How to run it |
 |---|---|
@@ -285,7 +285,7 @@ The skill ships a manual testing playbook with scenarios across 8 categories and
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full rule set |
 | [`scripts/README.md`](./scripts/README.md) | The allocator and validator surface |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Catalog of every capability and its entry point |
-| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual validation scenarios across 8 categories |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual validation scenarios across 9 categories |
 | [`references/worktree-workflows.md`](./references/worktree-workflows.md) | Workspace creation, directory and branch strategy |
 | [`references/commit-workflows.md`](./references/commit-workflows.md) | Commit flow with artifact filtering and scoped staging |
 | [`references/finish-workflows.md`](./references/finish-workflows.md) | Completion: PR, merge, cleanup and release-note handling |
