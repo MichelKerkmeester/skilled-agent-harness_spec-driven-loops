@@ -9,6 +9,9 @@ on:
       - '.skilled/skills/**/references/**'
       - '.opencode/skills/**/assets/**'
       - '.skilled/skills/**/assets/**'
+      # Any changed skill doc must raise its version, which the doc-version-raise job checks.
+      - '.opencode/skills/**/*.md'
+      - '.skilled/skills/**/*.md'
   push:
     branches: [main, 'skilled/**']
     paths:
@@ -41,3 +44,35 @@ jobs:
           # born conformant.
           bash "$GUARD" . --coverage
           echo "All clear — skill doc frontmatter matches the contract."
+
+  doc-version-raise:
+    name: Changed skill docs raise their version
+    # Only a pull request has a base to compare against. This is what catches a
+    # commit made with SPECKIT_SKIP_DOC_VERSION_BUMP set, or one that never ran the hook.
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      # The comparison needs the base branch, so the full history is fetched.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '22'
+
+      # The engine reads frontmatter through @spec-kit/shared, so that package is built.
+      - name: Install the packages the engine loads
+        run: |
+          set -euo pipefail
+          npm --prefix .skilled/skills/system-spec-kit ci
+          ( cd .skilled/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+          npm --prefix .skilled/skills/sk-doc ci
+
+      # Fails on a changed doc whose body changed while its version did not go up, and
+      # prints the one command that raises them against the same base.
+      - name: Check every changed doc body raised its version
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs bump --check --base "origin/$BASE_REF"

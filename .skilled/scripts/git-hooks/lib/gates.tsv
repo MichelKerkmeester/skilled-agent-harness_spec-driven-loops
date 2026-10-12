@@ -12,6 +12,7 @@ pre-commit	cardSync	SPECKIT_SKIP_CARD_SYNC	yes	Blocks a staged CLI skill or prom
 pre-commit	mcpMutationClass	SPECKIT_SKIP_MCP_MUTATION_CLASS	yes	Blocks a staged MCP doctor or install script that breaks its read-only or mutating label
 pre-commit	routeRemint	SPECKIT_SKIP_ROUTE_REMINT	yes	Re-mints and stages compiled routing manifests when a hub's sources change
 pre-commit	specRemint	SPECKIT_SKIP_SPEC_REMINT	yes	Re-mints and stages a spec folder's derived metadata when its docs change
+pre-commit	docVersionBump	SPECKIT_SKIP_DOC_VERSION_BUMP	yes	Raises and stages the version of a staged skill doc whose body changed
 prepare-commit-msg	prepareCommitMsg	SPECKIT_SKIP_PREPARE_COMMIT_MSG	yes	Stamps the Commit-Id trailer and strips runtime attribution lines; commit-msg rules may require the trailer
 pre-push	prepushSkillGate	SPECKIT_SKIP_PREPUSH_SKILL_GATE	yes	Warns, never blocks, when a push carries stale skill-root metadata
 pre-push	prepushRouteGate	SPECKIT_SKIP_PREPUSH_ROUTE_GATE	yes	Blocks a push whose compiled routing manifests are stale

@@ -830,6 +830,92 @@ if [[ "${SPECKIT_SKIP_SPEC_REMINT:-0}" != "1" ]] && command -v node >/dev/null 2
   fi
 fi
 
+# --- Doc version bump (blocking only when it cannot raise) ---
+# Every skill doc carries its own 4-part edition, and a change to its body has to raise
+# it. Same shape as the two re-mint gates above: the new version follows from the staged
+# change with no judgment call, so this raises and stages it rather than printing a
+# command. The engine reads only the staged .md files under the skills tree, through one
+# git diff and one cat-file process, so a commit staging thousands of docs pays one node
+# start. A frontmatter-only change is no body change and raises nothing.
+# Bypass: SPECKIT_SKIP_DOC_VERSION_BUMP=1 git commit ...
+if [[ "${SPECKIT_SKIP_DOC_VERSION_BUMP:-0}" != "1" ]] && command -v node >/dev/null 2>&1 \
+   && git rev-parse --verify -q HEAD >/dev/null 2>&1; then
+  # Git-only pre-filter, so a commit with no staged skill doc never starts node. SKILL.md
+  # carries the skill edition and a changelog entry its release, so neither counts here.
+  DOCV_STAGED="$(git diff --cached --name-only --diff-filter=AMR -- \
+      '.skilled/skills/**/*.md' '.opencode/skills/**/*.md' 2>/dev/null \
+    | grep -v '/changelog/' | grep -v '/SKILL\.md$' || true)"
+  DOCV_ENGINE="$SOURCE_ROOT/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+  if [[ -n "$DOCV_STAGED" ]] && { [[ -f "$DOCV_ENGINE" ]] || _in_toolchain_repo; }; then
+    if [[ ! -f "$DOCV_ENGINE" ]]; then
+      echo "" >&2
+      echo "BLOCKED [gate:doc-version-bump]: version engine is missing: $DOCV_ENGINE" >&2
+      echo "Bypass: SPECKIT_SKIP_DOC_VERSION_BUMP=1 git commit ..." >&2
+      exit 1
+    fi
+    # git stages under the real directory, so the skills root goes in through its real path.
+    DOCV_SKILLS="$(cd -P "$SOURCE_ROOT/skills" && pwd)"
+
+    # A pathspec-narrowed commit runs against a throwaway index (next-index-<pid>.lock),
+    # so a raise staged there would be discarded. Check instead, and block only when a
+    # raise is due.
+    if [[ "$(basename "${GIT_INDEX_FILE:-index}")" == next-index-* ]]; then
+      if ! DOCV_OUT="$(node "$DOCV_ENGINE" bump --check --skills-root "$DOCV_SKILLS" 2>&1)"; then
+        echo "" >&2
+        echo "BLOCKED [gate:doc-version-bump]: staged docs need a version raise, and this commit narrows its" >&2
+        echo "pathspec, so a raise staged now would be discarded with the temporary index." >&2
+        printf '%s\n' "$DOCV_OUT" | sed 's/^/  /' >&2
+        echo "Bypass: SPECKIT_SKIP_DOC_VERSION_BUMP=1 git commit ..." >&2
+        exit 1
+      fi
+    else
+      # stdout carries the raised paths and stderr the report, so they are kept apart.
+      DOCV_ERR_FILE="$(mktemp)"
+      DOCV_RC=0
+      DOCV_RAISED="$(node "$DOCV_ENGINE" bump --skills-root "$DOCV_SKILLS" 2>"$DOCV_ERR_FILE")" || DOCV_RC=$?
+      DOCV_ERR="$(cat "$DOCV_ERR_FILE")"
+      rm -f "$DOCV_ERR_FILE"
+
+      # The engine writes nothing when it refuses, so either refusal leaves the tree as it was.
+      if [[ "$DOCV_RC" -eq 3 ]]; then
+        echo "" >&2
+        echo "BLOCKED [gate:doc-version-bump]: docs that need a version raise are staged and unstaged at once:" >&2
+        printf '%s\n' "$DOCV_ERR" | sed 's/^/  /' >&2
+        echo "A version raised now would describe content this commit does not contain." >&2
+        echo "Fix: stage the rest, or unstage the partial edit, then re-commit." >&2
+        echo "Bypass: SPECKIT_SKIP_DOC_VERSION_BUMP=1 git commit ..." >&2
+        exit 1
+      elif [[ "$DOCV_RC" -ne 0 ]]; then
+        echo "" >&2
+        echo "BLOCKED [gate:doc-version-bump]: could not raise the version of the staged docs:" >&2
+        printf '%s\n' "$DOCV_ERR" | sed 's/^/  /' >&2
+        echo "Bypass: SPECKIT_SKIP_DOC_VERSION_BUMP=1 git commit ..." >&2
+        exit 1
+      fi
+
+      if [[ -n "$DOCV_RAISED" ]]; then
+        DOCV_LEFT=""
+        while IFS= read -r DOCV_PATH; do
+          [[ -z "$DOCV_PATH" ]] && continue
+          git add -- "$DOCV_PATH" 2>/dev/null || true
+          # Prove it. A raise that missed the index leaves the commit carrying the old
+          # version, and no later local gate can see that.
+          git diff --quiet -- "$DOCV_PATH" 2>/dev/null || DOCV_LEFT+="$DOCV_PATH"$'\n'
+        done <<< "$DOCV_RAISED"
+        if [[ -n "$DOCV_LEFT" ]]; then
+          echo "" >&2
+          echo "BLOCKED [gate:doc-version-bump]: raised these versions but they did not reach the index:" >&2
+          printf '%s' "$DOCV_LEFT" | sed 's/^/  /' >&2
+          echo "Fix: git add those paths, then re-commit." >&2
+          echo "Bypass: SPECKIT_SKIP_DOC_VERSION_BUMP=1 git commit ..." >&2
+          exit 1
+        fi
+        printf '%s\n' "$DOCV_ERR" | sed -n 's/^  raised /[gate:doc-version-bump] raised /p' >&2
+      fi
+    fi
+  fi
+fi
+
 # --- Tool ownership map gate (blocking) ---
 # Blocks commits when the committed generated map no longer matches TOOL_DEFINITIONS.
 # Manual-testing-playbook operator contract: enforced by CI only (pull request,
