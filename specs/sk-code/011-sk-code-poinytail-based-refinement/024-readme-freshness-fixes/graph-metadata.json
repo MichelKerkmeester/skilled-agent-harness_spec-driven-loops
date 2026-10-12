@@ -36,7 +36,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -133,12 +133,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -158,6 +152,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -205,9 +205,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The root README and twelve related READMEs still carry counts and setup lines from before v4.0.0.4: 12 agents where 11 exist, 39 commands where 37 exist, a ClickUp key requirement that no longer applies, and more",
+    "causal_summary": "The root README and eleven related docs still carry counts and setup lines from before v4.0.0.4: 12 agents where 11 exist, 39 commands where 37 exist, a ClickUp key requirement that no longer applies, and more",
     "created_at": "2026-10-12T15:52:27Z",
-    "last_save_at": "2026-10-12T16:16:58.461Z",
+    "last_save_at": "2026-10-12T16:52:55.669Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:691c0777133517068c5f9be61343215ccb10b97d2088dfd5cb2f22a124edecd3",
+    "source_fingerprint": "sha256:5d174a6aca1cd93141ea590fac0f533b7e8c6810eabcde73f1835b38d5493781",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d2b5fd360ca37a1fc3e46aa13833ea4fc5c9fac30a7c8aedd133e1a162528004",
+      "spec.md": "7e86382755c0c4843c012867c4ce4a5ffa7c2cb490f6df09a40c134959e52fae",
       "plan.md": "f25795a966e883c2b8812cb511fdc058471a05e5ed77ed300c7bc54fac4d4911",
-      "tasks.md": "f6390e54dec943e11f7a3b5d947fbfa6a62333148e825df99f9087e49d06c0b2",
-      "implementation-summary.md": "e8f1233d55f9928b90f11ec0c8a611b18309b1eb864ed73b085ea319f3cbdbd9"
+      "tasks.md": "b4999de31b27a8e6b5987561039ae4f43215829f038ed39004c8891c0daeb252",
+      "implementation-summary.md": "59f75e64183de6adb196797b35efc42059930c5413100bd787927d146a061d8d"
     },
     "last_active_at": null
   }

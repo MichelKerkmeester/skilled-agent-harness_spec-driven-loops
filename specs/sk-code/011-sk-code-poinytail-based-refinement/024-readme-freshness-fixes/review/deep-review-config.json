@@ -1,0 +1,145 @@
+{
+  "topic": "Review: The README freshness fix commits 0725425d46..HEAD on branch worktrees/122-readme-freshness-research: wording fixes F1 to F23 in the root README and eleven related docs, the removal of parent-skill doctor check 13c with its tests, the frontmatter versioning standard line, and the phase's spec docs",
+  "sessionId": "2026-10-12T16:20:15.273Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes",
+  "createdAt": "2026-10-12T16:20:15.273Z",
+  "status": "initialized",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-devin",
+    "model": "deepseek-v4-1-flash-max",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 590
+  },
+  "mode": "review",
+  "reviewTarget": "The README freshness fix commits 0725425d46..HEAD on branch worktrees/122-readme-freshness-research: wording fixes F1 to F23 in the root README and eleven related docs, the removal of parent-skill doctor check 13c with its tests, the frontmatter versioning standard line, and the phase's spec docs",
+  "reviewTargetType": "files",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    ".skilled/bin/README.md",
+    ".skilled/bin/lib/README.md",
+    ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+    ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs",
+    ".skilled/scripts/git-hooks/README.md",
+    ".skilled/skills/cli-external-orchestration/README.md",
+    ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md",
+    ".skilled/skills/sk-doc/README.md",
+    ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+    ".skilled/skills/sk-git/README.md",
+    ".skilled/skills/system-deep-loop/runtime/README.md",
+    ".skilled/skills/system-skill-advisor/README.md",
+    ".skilled/skills/system-spec-kit/README.md",
+    ".skilled/skills/system-spec-kit/runtime/README.md",
+    "README.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/acceptance-criteria.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/description.json",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/graph-metadata.json",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/.gitkeep",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/graph-metadata.json",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/spec.md"
+  ],
+  "stopPolicy": "max-iterations",
+  "resource_map": {
+    "emit": true
+  }
+}

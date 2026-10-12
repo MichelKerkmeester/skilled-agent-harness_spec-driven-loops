@@ -22,7 +22,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-12 |
 | **Branch** | `worktrees/122-readme-freshness-research` |
 | **Parent Spec** | ../spec.md |
@@ -60,7 +60,7 @@ This is **Phase 24** of the sk-code Ponytail refinement epic. Phase 023 listed 2
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The root README and twelve related READMEs still carry counts and setup lines from before v4.0.0.4: 12 agents where 11 exist, 39 commands where 37 exist, a ClickUp key requirement that no longer applies, and more. Separately, doctor check 13c fails or warns on five hubs because their README version differs from SKILL.md, while the per-doc version rule says a README carries its own version.
+The root README and eleven related docs still carry counts and setup lines from before v4.0.0.4: 12 agents where 11 exist, 39 commands where 37 exist, a ClickUp key requirement that no longer applies, and more. Separately, doctor check 13c fails or warns on five hubs because their README version differs from SKILL.md, while the per-doc version rule says a README carries its own version.
 
 ### Purpose
 Every README line the research flagged states what the repository does today, and the doctor no longer reports a README version that follows the per-doc rule.

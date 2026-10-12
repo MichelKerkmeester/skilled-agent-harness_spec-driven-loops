@@ -51,8 +51,8 @@ contextType: "implementation"
 ## Phase 3: Verification
 
 - [x] T006 Doctor suite, five hubs, byte-for-byte dispatch check Evidence: 97 of 97, no 13c line, 15 files match
-- [ ] T007 Run the five-iteration `/deep:review :auto` and fix confirmed P0 to P2 findings
-- [ ] T008 Run the goal criteria, `check-goal.cjs` and strict `validate.sh`
+- [x] T007 Run the five-iteration `/deep:review :auto` and fix confirmed P0 to P2 findings Evidence: `review/review-report.md`, 0 P0, 0 P1, 2 P2, both fixed
+- [x] T008 Run the goal criteria, `check-goal.cjs` and strict `validate.sh` Evidence: goal log; `check-goal.cjs` RESULT: PASSED; `validate.sh --strict` RESULT: PASSED
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -114,7 +114,7 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met (REQ-001 to REQ-006)
+- [x] CHK-020 [P0] All acceptance criteria met (REQ-001 to REQ-006). Evidence: `acceptance-criteria.md`, six rows Met
 - [x] CHK-021 [P0] Doctor suite passes and the new test fails with 13c restored
 - [x] CHK-022 [P1] Edge cases checked: a count inside an ASCII box keeps its width; a source that disagrees with itself drops the number
 - [x] CHK-023 [P1] Each research claim rerun before its edit, with three proposals corrected (F11, F16, F13's extra lines)
@@ -160,7 +160,7 @@ contextType: "implementation"
 ## File Organization
 
 - [x] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-051 [P1] scratch/ cleaned before completion. Evidence: the review diff file was removed; only `.gitkeep` remains
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -170,8 +170,8 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 13 | 12/13 |
-| P1 Items | 13 | 12/13 |
+| P0 Items | 13 | 13/13 |
+| P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-10-12

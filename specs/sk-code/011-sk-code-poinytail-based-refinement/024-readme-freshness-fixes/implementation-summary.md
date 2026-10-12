@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes"
     last_updated_at: "2026-10-12T17:00:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Built the phase and recorded the ledger"
-    next_safe_action: "Run the five-iteration review and fix its confirmed findings"
+    recent_action: "Built the phase, ran a five-iteration review and fixed its findings"
+    next_safe_action: "Orchestrator merges the branch and writes the release notes"
     blockers: []
     key_files:
       - ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "build-024"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -78,7 +78,9 @@ The parent-skill doctor no longer compares a hub README's version with SKILL.md.
 
 The orchestrator reran every research claim against the tree, then wrote each fix as an exact old and new string. DeepSeek V4.1 Flash at max effort, through cli-devin as `deepseek-v4-1-flash-max`, applied each group. A checker then compared every touched file byte for byte with HEAD plus the briefed replacements: 15 files across six dispatches, all matching, with no other file changed.
 
-Commits: `6e8564ff92` README fixes, `0e2b905e9f` doctor change, `0861a11c6f` git hooks overview line, `3ec902274c` versioning standard line. The pre-commit hook raised each changed skill doc's own version.
+Commits: `6e8564ff92` README fixes, `0e2b905e9f` doctor change, `0861a11c6f` git hooks overview line, `3ec902274c` versioning standard line, `bcbf72fc4d` ledger, then the review and closeout commit. The pre-commit hook raised each changed skill doc's own version.
+
+A five-iteration `/deep:review :auto` then ran over `0725425d46..bcbf72fc4d` on cli-devin with `deepseek-v4-1-flash-max`. It found no P0 or P1 and two P2, both in this phase's spec docs, and both reproduced and fixed. The reducer recorded two search-debt items, so the report's verdict is CONDITIONAL; the orchestrator closed both with observed runs after synthesis. Its artifacts are in `review/`.
 
 ### Ledger
 
@@ -115,6 +117,8 @@ Commits: `6e8564ff92` README fixes, `0e2b905e9f` doctor change, `0861a11c6f` git
 | DC-1 | Fixed | `for h in system-spec-kit system-skill-advisor sk-git sk-doc system-deep-loop; do node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/$h; done 2>&1 \| grep -c 13c-readme-version` prints 0 (baseline: 3 FAIL, 2 WARN). Each hub's other lines are unchanged, and its failure count drops by exactly one |
 | DC-2 | Fixed | `node --test .skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs` passes 97 of 97 (baseline 98, minus two 13c tests, plus one); with the check restored the new test fails |
 | DC-3 | Fixed | `bash .skilled/commands/doctor/scripts/tests/run-all.sh` prints 7 suites passed, 0 failed |
+| R4-P2-001 | Fixed | `grep -c 'eleven related docs' spec.md` prints 1 in this folder; the research's twelve included the deep-loop hub README, whose only row was a version row this phase leaves alone |
+| R4-P2-002 | Fixed | `grep -c '^- \[ \] T' tasks.md` prints 0 in this folder; T007 and T008 carry evidence before the completion block is ticked |
 | DC-4 | Fixed | `frontmatter-versioning.md:122` named "the parent-skill doctor's README check"; it now names the remaining version check |
 
 ### Remaining
@@ -150,6 +154,7 @@ Commits: `6e8564ff92` README fixes, `0e2b905e9f` doctor change, `0861a11c6f` git
 | `parent-skill-check-invariants.test.cjs` | 97 of 97 pass; the new test fails with 13c restored |
 | Doctor `run-all.sh` | 7 suites passed, 0 failed |
 | Five hubs | No `13c-readme-version` line |
+| `/deep:review :auto`, 5 iterations | CONDITIONAL from two search-debt items closed afterwards; 0 P0, 0 P1, 2 P2, both fixed. See `review/review-report.md` |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -1,0 +1,1356 @@
+{
+  "sessionId": "2026-10-12T16:20:15.273Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Phase problem statement counts twelve related READMEs where the packet's own fix set is eleven",
+      "file": "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/spec.md",
+      "line": 63,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "tasks.md marks 'All tasks marked [x]' while T007 and T008 remain open",
+      "file": "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/tasks.md",
+      "line": 63,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 2
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "ascii_box_misalignment",
+      "dead_code",
+      "doc_code_drift",
+      "doc_wording_regression",
+      "false_import_claim",
+      "incomplete_removal",
+      "orphan_reference",
+      "private_path_leak",
+      "protection_loss",
+      "secret_or_token_leak",
+      "stale_auth_claim",
+      "stale_claim",
+      "stale_comment",
+      "stale_count",
+      "test_guard_gap",
+      "version_line_drift",
+      "wrong_cross_reference"
+    ],
+    "ruledOut": [
+      "ascii_box_misalignment",
+      "dead_code",
+      "doc_code_drift",
+      "doc_wording_regression",
+      "false_import_claim",
+      "incomplete_removal",
+      "orphan_reference",
+      "private_path_leak",
+      "protection_loss",
+      "secret_or_token_leak",
+      "stale_auth_claim",
+      "stale_claim",
+      "stale_comment",
+      "stale_count",
+      "test_guard_gap",
+      "version_line_drift",
+      "wrong_cross_reference"
+    ],
+    "deferred": [
+      "version_line_drift"
+    ],
+    "blocked": [
+      "stale_mirror_claim"
+    ],
+    "byBugClass": {
+      "stale_count": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          4
+        ]
+      },
+      "wrong_cross_reference": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          4
+        ]
+      },
+      "ascii_box_misalignment": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "stale_auth_claim": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "stale_mirror_claim": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          1,
+          4
+        ]
+      },
+      "stale_claim": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          4
+        ]
+      },
+      "false_import_claim": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "doc_code_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          4
+        ]
+      },
+      "orphan_reference": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          3,
+          4
+        ]
+      },
+      "incomplete_removal": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          3
+        ]
+      },
+      "remaining F12-F23 re-derivations (sk-git 9 categories, sk-design-chart 29 forms, deep-loop runtime changelog/ tree, INSTALL-GUIDE header, system-spec-kit Node engines and hooks adapters, spec docs)": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "test_guard_gap": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "protection_loss": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "dead_code": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "stale_comment": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "secret_or_token_leak": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "private_path_leak": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "version_line_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "doc_wording_regression": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "version_line_drift sub-case: the five changed docs without version hunks were not re-read": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 4,
+      "id": "SL-i4-006",
+      "dimension": "traceability",
+      "targetRefs": [
+        "README.md:933"
+      ],
+      "bugClass": "stale_mirror_claim",
+      "disposition": "blocked",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "README.md:933"
+      ],
+      "reason": "Mirror trees absent in this worktree; closure depends on the orchestrator's readlink evidence recorded in the ledger F11 row."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-i5-006",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/README.md",
+        ".skilled/bin/lib/README.md",
+        ".skilled/scripts/git-hooks/README.md",
+        ".skilled/skills/system-deep-loop/runtime/README.md",
+        ".skilled/skills/system-spec-kit/runtime/README.md"
+      ],
+      "bugClass": "version_line_drift",
+      "disposition": "deferred",
+      "rationale": "Coverage limit, not a finding: no evidence any of the five carries a version field",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch:1"
+      ],
+      "reason": "read budget and no shell in this dispatch; recorded as an edge case"
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        "README.md:24",
+        "README.md:66",
+        "README.md:98",
+        "README.md:933"
+      ],
+      "bugClass": "stale_count",
+      "disposition": "ruled_out",
+      "rationale": "Agent count is consistent across all four changed occurrences",
+      "evidenceRefs": [
+        ".skilled/agents/review.md",
+        ".claude/agents/Explore.md",
+        ".pi/agents/review.md"
+      ],
+      "reason": "count re-derived from the source tree and matches 11"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        "README.md:80",
+        "README.md:1074"
+      ],
+      "bugClass": "stale_count",
+      "disposition": "ruled_out",
+      "rationale": "Both changed occurrences of the command count verified",
+      "evidenceRefs": [
+        ".skilled/commands/speckit/plan.md",
+        ".skilled/commands/agent-router.md",
+        ".skilled/commands/vision.md"
+      ],
+      "reason": "arithmetic and tree recount match exactly"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "README.md:421",
+        "README.md:426",
+        "README.md:785"
+      ],
+      "bugClass": "stale_count",
+      "disposition": "ruled_out",
+      "rationale": "Both the count and the two example rules verified at source",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:220",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:231",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:433"
+      ],
+      "reason": "registry read confirms 41 rules and 7 warn, both named rules included"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "README.md"
+      ],
+      "bugClass": "stale_count",
+      "disposition": "ruled_out",
+      "rationale": "Closes the iteration question about stale counts elsewhere in README.md",
+      "evidenceRefs": [
+        "README.md:24",
+        "README.md:1336",
+        "README.md:1435"
+      ],
+      "reason": "no residual stale value remains anywhere in the file"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        "README.md:125",
+        "README.md:147"
+      ],
+      "bugClass": "ascii_box_misalignment",
+      "disposition": "ruled_out",
+      "rationale": "Explicit iteration question answered with line evidence",
+      "evidenceRefs": [
+        "README.md:125",
+        "README.md:147"
+      ],
+      "reason": "right edges verified column-consistent on every box line"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        "README.md:881",
+        "README.md:1435"
+      ],
+      "bugClass": "stale_auth_claim",
+      "disposition": "ruled_out",
+      "rationale": "Both ClickUp lines verified; the :881 counts are corroborated at filesystem level",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-tooling/mcp-click-up/references/cupt-commands.md:61",
+        ".skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md:52",
+        "README.md:1336"
+      ],
+      "reason": "auth wording matches the skill's own references and the removed env-var claim is contradicted nowhere"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/README.md",
+        ".skilled/scripts/git-hooks/pre-commit"
+      ],
+      "bugClass": "stale_count",
+      "disposition": "ruled_out",
+      "rationale": "counts re-derived from pre-commit directly; no residual nine/eight counts in the README",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:93",
+        ".skilled/scripts/git-hooks/pre-commit:919",
+        ".skilled/scripts/git-hooks/README.md:24"
+      ],
+      "reason": "counted directly in pre-commit: ten implemented gates and nine bypass flags, matching the README's named set"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/lib/README.md",
+        ".skilled/bin/lib"
+      ],
+      "bugClass": "false_import_claim",
+      "disposition": "ruled_out",
+      "rationale": "bare-specifier scan complete and core-only; no third-party specifier",
+      "evidenceRefs": [
+        ".skilled/bin/lib/README.md:97",
+        ".skilled/bin/lib/mirror-sync-verify.cjs:10",
+        ".skilled/bin/lib/compiled-route-admission.cjs:27"
+      ],
+      "reason": "every observed require resolves to Node core or an intra-folder relative"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/README.md",
+        ".skilled/skills/system-skill-advisor/runtime"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "all three sentence claims verified against the runtime",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:251",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:381"
+      ],
+      "reason": "schema bounds, argv forwarding and unknown-surface handling all match the sentence"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "sentence matches the implemented check exactly",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1849"
+      ],
+      "reason": "checkVersionParity compares exactly ROUTER.md and the three JSON files with SKILL.md"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs"
+      ],
+      "bugClass": "incomplete_removal",
+      "disposition": "ruled_out",
+      "rationale": "removal complete in code, tests and docs",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1754",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:433"
+      ],
+      "reason": "no residual 13c reporting anywhere in .skilled"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/cli-external-orchestration/README.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes"
+      ],
+      "bugClass": "stale_claim",
+      "disposition": "ruled_out",
+      "rationale": "the changed line matches the mode's own probe documentation",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-hermes/references/integration-patterns.md:30"
+      ],
+      "reason": "exact command corroborated by the mode's integration-patterns probe step"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-i3-001",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch"
+      ],
+      "bugClass": "incomplete_removal",
+      "disposition": "ruled_out",
+      "rationale": "The removal is complete and surgical; nothing else changed in the checker.",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch:41-47",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch:50-72",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch:77-82"
+      ],
+      "reason": "diff read shows three surgical hunks and no other change in the file"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-i3-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch"
+      ],
+      "bugClass": "orphan_reference",
+      "disposition": "ruled_out",
+      "rationale": "No live reference to the removed check remains in the product surface.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:437",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/prompts/iteration-3.md:61"
+      ],
+      "reason": "identifier-precise scans clean; remaining hits are the intentional negative assertion and unrelated token collisions"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-i3-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs"
+      ],
+      "bugClass": "test_guard_gap",
+      "disposition": "ruled_out",
+      "rationale": "A negative assertion that flips under the pre-removal checker is a true guard, not a tautology.",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch:102-113",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:437"
+      ],
+      "reason": "the assertion is falsified by the restored check; the test proves the removal"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-i3-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+      ],
+      "bugClass": "protection_loss",
+      "disposition": "ruled_out",
+      "rationale": "Removal aligns enforcement with the standard instead of dropping a needed protection.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:17",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:30",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch:54-56"
+      ],
+      "reason": "the per-doc rule needs no README==SKILL parity; the removed check contradicted it"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-i3-005",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+      ],
+      "bugClass": "dead_code",
+      "disposition": "ruled_out",
+      "rationale": "No dead code left by the removal.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:178",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:188",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:596",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:997",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1252",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1812",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1826",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1843",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1850"
+      ],
+      "reason": "both symbols keep live call sites"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-i3-006",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+      ],
+      "bugClass": "stale_comment",
+      "disposition": "ruled_out",
+      "rationale": "Comment accuracy confirmed against the section body.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1757",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1783",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1804",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1842"
+      ],
+      "reason": "the comment names exactly the checks present"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-i4-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:919",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1842",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:30",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:409"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:919",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1849",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:409"
+      ],
+      "reason": "All three rows' operative claims bear out; RM-1's exact printed string is unverifiable without execution but its code path and README silence are confirmed."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-i4-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        "README.md:24",
+        "README.md:881",
+        "README.md:933",
+        "README.md:1074",
+        "README.md:1278",
+        "README.md:1435"
+      ],
+      "bugClass": "stale_count",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "README.md:24",
+        "README.md:881",
+        "README.md:1278"
+      ],
+      "reason": "Counts and anchors match the ledger exactly; no stale value remains."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-i4-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/research.md:119-198",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/implementation-summary.md:85"
+      ],
+      "bugClass": "orphan_reference",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/research.md:170"
+      ],
+      "reason": "Complete row set and clean repeat scans."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-i5-001",
+      "dimension": "security",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch"
+      ],
+      "bugClass": "secret_or_token_leak",
+      "disposition": "ruled_out",
+      "rationale": "Every changed line read; credential-adjacent text names a command, a prefix and a flow, never a value",
+      "evidenceRefs": [
+        "README.md:1435"
+      ],
+      "reason": "full direct read of the changed-line set found no secret or token value"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-i5-002",
+      "dimension": "security",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch"
+      ],
+      "bugClass": "private_path_leak",
+      "disposition": "ruled_out",
+      "rationale": "No absolute user or machine path appears in any changed line",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/README.md:94"
+      ],
+      "reason": "every changed path mention is repo-relative"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-i5-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch"
+      ],
+      "bugClass": "version_line_drift",
+      "disposition": "ruled_out",
+      "rationale": "Uniform one-step third-segment raises, consistent with the bump engine raise path recorded in iteration 4",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch:169-170",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch:191-192",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch:211-212",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch:233-234",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch:255-256",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch:307-308",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch:338-339"
+      ],
+      "reason": "all seven raises are single-step third-segment raises"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-i5-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "README.md",
+        ".skilled/scripts/git-hooks/README.md",
+        ".skilled/bin/lib/README.md",
+        ".skilled/skills/system-deep-loop/runtime/README.md"
+      ],
+      "bugClass": "ascii_box_misalignment",
+      "disposition": "ruled_out",
+      "rationale": "Same-width swaps (12 to 11, 42 to 41) and a padding-adjusted diagram; trees keep their comment columns",
+      "evidenceRefs": [
+        "README.md:122-125",
+        "README.md:144-147",
+        ".skilled/scripts/git-hooks/README.md:137-141"
+      ],
+      "reason": "edges and columns verified on every changed block"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-i5-005",
+      "dimension": "security",
+      "targetRefs": [
+        "README.md"
+      ],
+      "bugClass": "stale_auth_claim",
+      "disposition": "ruled_out",
+      "rationale": "No value in the line; the removal aligns with the skill reference that the MCP route reads no API key (iteration 1 evidence)",
+      "evidenceRefs": [
+        "README.md:1435"
+      ],
+      "reason": "no credential value and no contradiction"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        "README.md:24",
+        "README.md:66",
+        "README.md:98",
+        "README.md:933"
+      ],
+      "bugClass": "stale_count",
+      "disposition": "ruled_out",
+      "rationale": "Agent count is consistent across all four changed occurrences",
+      "evidenceRefs": [
+        ".skilled/agents/review.md",
+        ".claude/agents/Explore.md",
+        ".pi/agents/review.md"
+      ],
+      "proof": "count re-derived from the source tree and matches 11"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        "README.md:80",
+        "README.md:1074"
+      ],
+      "bugClass": "stale_count",
+      "disposition": "ruled_out",
+      "rationale": "Both changed occurrences of the command count verified",
+      "evidenceRefs": [
+        ".skilled/commands/speckit/plan.md",
+        ".skilled/commands/agent-router.md",
+        ".skilled/commands/vision.md"
+      ],
+      "proof": "arithmetic and tree recount match exactly"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "README.md:421",
+        "README.md:426",
+        "README.md:785"
+      ],
+      "bugClass": "stale_count",
+      "disposition": "ruled_out",
+      "rationale": "Both the count and the two example rules verified at source",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:220",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:231",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:433"
+      ],
+      "proof": "registry read confirms 41 rules and 7 warn, both named rules included"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "README.md"
+      ],
+      "bugClass": "stale_count",
+      "disposition": "ruled_out",
+      "rationale": "Closes the iteration question about stale counts elsewhere in README.md",
+      "evidenceRefs": [
+        "README.md:24",
+        "README.md:1336",
+        "README.md:1435"
+      ],
+      "proof": "no residual stale value remains anywhere in the file"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        "README.md:125",
+        "README.md:147"
+      ],
+      "bugClass": "ascii_box_misalignment",
+      "disposition": "ruled_out",
+      "rationale": "Explicit iteration question answered with line evidence",
+      "evidenceRefs": [
+        "README.md:125",
+        "README.md:147"
+      ],
+      "proof": "right edges verified column-consistent on every box line"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        "README.md:881",
+        "README.md:1435"
+      ],
+      "bugClass": "stale_auth_claim",
+      "disposition": "ruled_out",
+      "rationale": "Both ClickUp lines verified; the :881 counts are corroborated at filesystem level",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-tooling/mcp-click-up/references/cupt-commands.md:61",
+        ".skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md:52",
+        "README.md:1336"
+      ],
+      "proof": "auth wording matches the skill's own references and the removed env-var claim is contradicted nowhere"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/README.md",
+        ".skilled/scripts/git-hooks/pre-commit"
+      ],
+      "bugClass": "stale_count",
+      "disposition": "ruled_out",
+      "rationale": "counts re-derived from pre-commit directly; no residual nine/eight counts in the README",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:93",
+        ".skilled/scripts/git-hooks/pre-commit:919",
+        ".skilled/scripts/git-hooks/README.md:24"
+      ],
+      "proof": "counted directly in pre-commit: ten implemented gates and nine bypass flags, matching the README's named set"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/lib/README.md",
+        ".skilled/bin/lib"
+      ],
+      "bugClass": "false_import_claim",
+      "disposition": "ruled_out",
+      "rationale": "bare-specifier scan complete and core-only; no third-party specifier",
+      "evidenceRefs": [
+        ".skilled/bin/lib/README.md:97",
+        ".skilled/bin/lib/mirror-sync-verify.cjs:10",
+        ".skilled/bin/lib/compiled-route-admission.cjs:27"
+      ],
+      "proof": "every observed require resolves to Node core or an intra-folder relative"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/README.md",
+        ".skilled/skills/system-skill-advisor/runtime"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "all three sentence claims verified against the runtime",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:251",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:381"
+      ],
+      "proof": "schema bounds, argv forwarding and unknown-surface handling all match the sentence"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "sentence matches the implemented check exactly",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1849"
+      ],
+      "proof": "checkVersionParity compares exactly ROUTER.md and the three JSON files with SKILL.md"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs"
+      ],
+      "bugClass": "incomplete_removal",
+      "disposition": "ruled_out",
+      "rationale": "removal complete in code, tests and docs",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1754",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:433"
+      ],
+      "proof": "no residual 13c reporting anywhere in .skilled"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/cli-external-orchestration/README.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes"
+      ],
+      "bugClass": "stale_claim",
+      "disposition": "ruled_out",
+      "rationale": "the changed line matches the mode's own probe documentation",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-hermes/references/integration-patterns.md:30"
+      ],
+      "proof": "exact command corroborated by the mode's integration-patterns probe step"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-i3-001",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch"
+      ],
+      "bugClass": "incomplete_removal",
+      "disposition": "ruled_out",
+      "rationale": "The removal is complete and surgical; nothing else changed in the checker.",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch:41-47",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch:50-72",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch:77-82"
+      ],
+      "proof": "diff read shows three surgical hunks and no other change in the file"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-i3-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch"
+      ],
+      "bugClass": "orphan_reference",
+      "disposition": "ruled_out",
+      "rationale": "No live reference to the removed check remains in the product surface.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:437",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/review/prompts/iteration-3.md:61"
+      ],
+      "proof": "identifier-precise scans clean; remaining hits are the intentional negative assertion and unrelated token collisions"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-i3-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs"
+      ],
+      "bugClass": "test_guard_gap",
+      "disposition": "ruled_out",
+      "rationale": "A negative assertion that flips under the pre-removal checker is a true guard, not a tautology.",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch:102-113",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:437"
+      ],
+      "proof": "the assertion is falsified by the restored check; the test proves the removal"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-i3-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+      ],
+      "bugClass": "protection_loss",
+      "disposition": "ruled_out",
+      "rationale": "Removal aligns enforcement with the standard instead of dropping a needed protection.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:17",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:30",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch:54-56"
+      ],
+      "proof": "the per-doc rule needs no README==SKILL parity; the removed check contradicted it"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-i3-005",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+      ],
+      "bugClass": "dead_code",
+      "disposition": "ruled_out",
+      "rationale": "No dead code left by the removal.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:178",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:188",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:596",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:997",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1252",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1812",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1826",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1843",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1850"
+      ],
+      "proof": "both symbols keep live call sites"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-i3-006",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+      ],
+      "bugClass": "stale_comment",
+      "disposition": "ruled_out",
+      "rationale": "Comment accuracy confirmed against the section body.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1757",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1783",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1804",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1842"
+      ],
+      "proof": "the comment names exactly the checks present"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-i4-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:919",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1842",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:30",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:409"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:919",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1849",
+        ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs:409"
+      ],
+      "proof": "All three rows' operative claims bear out; RM-1's exact printed string is unverifiable without execution but its code path and README silence are confirmed."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-i4-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        "README.md:24",
+        "README.md:881",
+        "README.md:933",
+        "README.md:1074",
+        "README.md:1278",
+        "README.md:1435"
+      ],
+      "bugClass": "stale_count",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "README.md:24",
+        "README.md:881",
+        "README.md:1278"
+      ],
+      "proof": "Counts and anchors match the ledger exactly; no stale value remains."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-i4-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/research.md:119-198",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/implementation-summary.md:85"
+      ],
+      "bugClass": "orphan_reference",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research/research/research.md:170"
+      ],
+      "proof": "Complete row set and clean repeat scans."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-i5-001",
+      "dimension": "security",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch"
+      ],
+      "bugClass": "secret_or_token_leak",
+      "disposition": "ruled_out",
+      "rationale": "Every changed line read; credential-adjacent text names a command, a prefix and a flow, never a value",
+      "evidenceRefs": [
+        "README.md:1435"
+      ],
+      "proof": "full direct read of the changed-line set found no secret or token value"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-i5-002",
+      "dimension": "security",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch"
+      ],
+      "bugClass": "private_path_leak",
+      "disposition": "ruled_out",
+      "rationale": "No absolute user or machine path appears in any changed line",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/README.md:94"
+      ],
+      "proof": "every changed path mention is repo-relative"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-i5-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch"
+      ],
+      "bugClass": "version_line_drift",
+      "disposition": "ruled_out",
+      "rationale": "Uniform one-step third-segment raises, consistent with the bump engine raise path recorded in iteration 4",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch:169-170",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch:191-192",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch:211-212",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch:233-234",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch:255-256",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch:307-308",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/scratch/review-diff.patch:338-339"
+      ],
+      "proof": "all seven raises are single-step third-segment raises"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-i5-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "README.md",
+        ".skilled/scripts/git-hooks/README.md",
+        ".skilled/bin/lib/README.md",
+        ".skilled/skills/system-deep-loop/runtime/README.md"
+      ],
+      "bugClass": "ascii_box_misalignment",
+      "disposition": "ruled_out",
+      "rationale": "Same-width swaps (12 to 11, 42 to 41) and a padding-adjusted diagram; trees keep their comment columns",
+      "evidenceRefs": [
+        "README.md:122-125",
+        "README.md:144-147",
+        ".skilled/scripts/git-hooks/README.md:137-141"
+      ],
+      "proof": "edges and columns verified on every changed block"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-i5-005",
+      "dimension": "security",
+      "targetRefs": [
+        "README.md"
+      ],
+      "bugClass": "stale_auth_claim",
+      "disposition": "ruled_out",
+      "rationale": "No value in the line; the removal aligns with the skill reference that the MCP route reads no API key (iteration 1 evidence)",
+      "evidenceRefs": [
+        "README.md:1435"
+      ],
+      "proof": "no credential value and no contradiction"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "secret_or_token_leak",
+      "private_path_leak",
+      "version_line_drift",
+      "doc_wording_regression",
+      "ascii_box_misalignment",
+      "stale_auth_claim"
+    ],
+    "covered": [
+      "secret_or_token_leak",
+      "private_path_leak",
+      "version_line_drift",
+      "doc_wording_regression",
+      "ascii_box_misalignment",
+      "stale_auth_claim"
+    ],
+    "ruledOut": [
+      "secret_or_token_leak",
+      "private_path_leak",
+      "version_line_drift",
+      "doc_wording_regression",
+      "ascii_box_misalignment",
+      "stale_auth_claim"
+    ],
+    "deferred": [
+      "version_line_drift sub-case: the five changed docs without version hunks were not re-read"
+    ],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

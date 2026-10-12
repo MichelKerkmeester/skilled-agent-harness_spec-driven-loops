@@ -137,7 +137,7 @@ These bind every build phase, 002 to 006.
 | 21 | 021-open-ends-remediation/ | Build every recommendation the open ends research kept: typo-proof parsers, onboarding fixes, doc and catalog truth, and routing parity in CI | Complete |
 | 22 | 022-doc-version-and-playbook-paths/ | Give every skill doc its own automatically raised version again, and resolve every unresolved backticked playbook path | Complete |
 | 23 | 023-readme-freshness-research/ | Ten-iteration research into whether the root README and its related READMEs still hold after the v4.0.0.4 changes; research only | Complete |
-| 24 | 024-readme-freshness-fixes/ | Apply the README fixes F1 to F23 from the 023 research and retire doctor check 13c, so a hub README keeps its own version | In Progress |
+| 24 | 024-readme-freshness-fixes/ | Apply the README fixes F1 to F23 from the 023 research and retire doctor check 13c, so a hub README keeps its own version | Complete |
 
 ### Phase Transition Rules
 
