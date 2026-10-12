@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-codex.vitest.ts"
 test_name: "passes the non-interactive child gate environment to codex"
 playbook_path: "cli-external-orchestration/cli-codex/manual-testing-playbook/stress/child-spec-gate.md"
 id: "cli-codex-EC-006"
-version: 1.9.0.6
+version: 1.9.1.0
 ---
 
 # EC-006 -- cli-codex child spec gate

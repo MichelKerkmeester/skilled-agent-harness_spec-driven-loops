@@ -11,7 +11,7 @@ expected_resources:
   - references/implementation/form-upload-workflows/mime-troubleshooting-and-deployment.md
   - references/implementation/focus-management/selector-and-focus-trap.md
   - references/implementation/focus-management/restoration-touch-and-anti-patterns.md
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # WF-011: Forms routing

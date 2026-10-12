@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-hermes.vitest.ts"
 test_name: "reports a signal-killed cli-hermes lineage as failed"
 playbook_path: "cli-external-orchestration/cli-hermes/manual-testing-playbook/stress/partial-lineage-death.md"
 id: "cli-hermes-EC-010"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # EC-010 -- cli-hermes partial lineage death

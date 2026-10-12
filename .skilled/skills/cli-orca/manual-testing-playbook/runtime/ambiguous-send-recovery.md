@@ -2,7 +2,7 @@
 title: "ORCA-005 -- Ambiguous send resolved by terminal read back"
 description: "This scenario validates that an ambiguous terminal send is resolved by reading the terminal back rather than by sending the instruction twice."
 catalog_applicable: true
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # ORCA-005 -- Ambiguous send resolved by terminal read back

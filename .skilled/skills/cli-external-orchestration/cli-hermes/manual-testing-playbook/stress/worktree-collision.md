@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-hermes.vitest.ts"
 test_name: "runs cli-hermes from each isolated worktree cwd"
 playbook_path: "cli-external-orchestration/cli-hermes/manual-testing-playbook/stress/worktree-collision.md"
 id: "cli-hermes-EC-012"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # EC-012 -- cli-hermes worktree collision

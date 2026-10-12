@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-hermes.vitest.ts"
 test_name: "forwards the asserted cli-hermes sandbox and permission flags"
 playbook_path: "cli-external-orchestration/cli-hermes/manual-testing-playbook/stress/sandbox-permission.md"
 id: "cli-hermes-EC-007"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # EC-007 -- cli-hermes sandbox or permission

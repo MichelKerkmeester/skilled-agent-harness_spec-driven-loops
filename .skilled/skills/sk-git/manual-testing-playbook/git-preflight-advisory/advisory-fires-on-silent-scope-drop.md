@@ -1,7 +1,7 @@
 ---
 title: "GIT-042 -- Advisory fires on silent scope drop"
 description: "This scenario validates the sk-git preflight advisory for `GIT-042`. It focuses on the advisory firing when a directory-scoped commit would silently exclude untracked files, staying silent on an ordinary commit, and being suppressible."
-version: 1.1.0.8
+version: 1.1.1.0
 ---
 
 # GIT-042 -- Advisory fires on silent scope drop

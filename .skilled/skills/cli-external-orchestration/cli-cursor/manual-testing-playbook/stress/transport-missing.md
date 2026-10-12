@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-cursor.vitest.ts"
 test_name: "fails before cli-cursor execution when its transport is unavailable"
 playbook_path: "cli-external-orchestration/cli-cursor/manual-testing-playbook/stress/transport-missing.md"
 id: "cli-cursor-EC-008"
-version: 1.4.0.5
+version: 1.4.1.0
 ---
 
 # EC-008 -- cli-cursor missing transport

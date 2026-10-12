@@ -1,7 +1,7 @@
 ---
 title: "GIT-031 -- Shared-artifact symlinks stay contained to the worktree"
 description: "This scenario validates Shared-artifact symlink containment for `GIT-031`. It focuses on prove the wrapper's shared-path symlinking refuses any path that would traverse outside the new worktree or outside the main checkout."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # GIT-031 -- Shared-artifact symlinks stay contained to the worktree

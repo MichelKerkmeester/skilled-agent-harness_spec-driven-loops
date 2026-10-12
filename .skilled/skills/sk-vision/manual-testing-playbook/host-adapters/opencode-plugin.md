@@ -1,7 +1,7 @@
 ---
 title: "VSN-014 -- OpenCode plugin"
 description: "This scenario validates the OpenCode plugin load path, default tool silence, `/vision` activation and runtime teardown."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VSN-014 -- OpenCode plugin

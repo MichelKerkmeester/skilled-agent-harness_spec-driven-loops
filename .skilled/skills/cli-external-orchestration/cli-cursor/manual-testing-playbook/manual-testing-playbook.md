@@ -1,7 +1,7 @@
 ---
 title: "cli-cursor: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-scenario validation files for the cli-cursor skill."
-version: 1.4.0.25
+version: 1.4.1.0
 ---
 
 # cli-cursor: Manual Testing Playbook

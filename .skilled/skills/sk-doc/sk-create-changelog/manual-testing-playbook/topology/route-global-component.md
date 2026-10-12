@@ -1,7 +1,7 @@
 ---
 title: "CHG-001 -- Route a global component changelog"
 description: "This scenario validates global component routing for CHG-001. A component or git-history source maps to an existing component folder or a hub folder's link, with a unique four-part version."
-version: 1.3.0.4
+version: 1.3.1.0
 ---
 
 # CHG-001 -- Route a global component changelog

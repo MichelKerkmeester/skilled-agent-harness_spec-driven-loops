@@ -1,7 +1,7 @@
 ---
 title: "DOC-379 -- Doctor update test environment"
 description: "Manual scenario validating that the long-lived /doctor:update fixture worktree classifies its four fixture units as customized, local, conflict and removed, and returns to its committed state after an apply and rollback."
-version: 1.0.0.0
+version: 1.0.1.0
 id: doctor-commands-doctor-update-test-environment
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

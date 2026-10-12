@@ -1,7 +1,7 @@
 ---
 title: "CX-025 -- codex mcp server registration"
 description: "This scenario validates codex mcp server registration for `CX-025`. It focuses on confirming a registered MCP server is listed and surfaces a usable tool inside an exec session."
-version: 1.9.0.12
+version: 1.9.1.0
 ---
 
 # CX-025 -- codex mcp server registration

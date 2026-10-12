@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-devin.vitest.ts"
 test_name: "passes child gate variables through the full cli-devin runtime"
 playbook_path: "cli-external-orchestration/cli-devin/manual-testing-playbook/stress/child-spec-gate.md"
 id: "cli-devin-EC-006"
-version: 1.4.0.6
+version: 1.4.1.0
 ---
 
 # EC-006 -- cli-devin child spec gate

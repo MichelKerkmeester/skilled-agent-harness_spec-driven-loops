@@ -7,7 +7,7 @@ trigger_phrases:
   - "sk-vision release validation"
 importance_tier: "important"
 contextType: "general"
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # sk-vision: Manual Testing Playbook

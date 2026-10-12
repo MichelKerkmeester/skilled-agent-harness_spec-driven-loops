@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-codex.vitest.ts"
 test_name: "passes through authentication stderr and exit status"
 playbook_path: "cli-external-orchestration/cli-codex/manual-testing-playbook/stress/auth-failure.md"
 id: "cli-codex-EC-001"
-version: 1.9.0.5
+version: 1.9.1.0
 ---
 
 # EC-001 -- cli-codex authentication failure

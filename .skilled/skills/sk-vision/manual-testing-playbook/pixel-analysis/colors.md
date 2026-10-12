@@ -1,7 +1,7 @@
 ---
 title: "VSN-006 -- Color analysis"
 description: "This scenario validates Color analysis for `VSN-006`. It focuses on a dominant palette and average RGB."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VSN-006 -- Color analysis

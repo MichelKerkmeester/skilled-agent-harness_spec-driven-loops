@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-hermes.vitest.ts"
 test_name: "retains cli-hermes authentication diagnostics in bounded lineage output"
 playbook_path: "cli-external-orchestration/cli-hermes/manual-testing-playbook/stress/auth-failure.md"
 id: "cli-hermes-EC-001"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # EC-001 -- cli-hermes authentication failure

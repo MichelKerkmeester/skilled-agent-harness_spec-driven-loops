@@ -1,7 +1,7 @@
 ---
 title: "DOC-373 -- Doctor git standards refuse invalid"
 description: "Manual scenario validating that /doctor:git standards refuses a rule change the hooks would reject and returns the operator to the change menu."
-version: 1.2.0.0
+version: 1.2.1.0
 id: doctor-commands-doctor-git-standards-refuse-invalid
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

@@ -2,7 +2,7 @@
 title: "ORCA-006 -- Stopped runtime recovered deliberately with state re-verified"
 description: "This scenario validates that a stopped Orca runtime is recognized and restarted deliberately, with pre-stop state claims re-verified by a read back before work continues."
 catalog_applicable: true
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # ORCA-006 -- Stopped runtime recovered deliberately with state re-verified

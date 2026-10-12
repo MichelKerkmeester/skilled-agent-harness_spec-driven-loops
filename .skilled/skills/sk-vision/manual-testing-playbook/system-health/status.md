@@ -1,7 +1,7 @@
 ---
 title: "VSN-012 -- Runtime status"
 description: "This scenario validates Runtime status for `VSN-012`. It focuses on model load state, device, and capabilities."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VSN-012 -- Runtime status

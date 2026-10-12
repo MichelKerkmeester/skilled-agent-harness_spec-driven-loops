@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-hermes.vitest.ts"
 test_name: "terminates the captured detached cli-hermes process group after timeout"
 playbook_path: "cli-external-orchestration/cli-hermes/manual-testing-playbook/stress/orphan-cleanup.md"
 id: "cli-hermes-EC-011"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # EC-011 -- cli-hermes orphan cleanup

@@ -1,7 +1,7 @@
 ---
 title: "CR-018 -- cli-opencode and cli-claude-code handback"
 description: "This scenario validates cli-opencode and cli-claude-code handback for `CR-018`. It focuses on Confirm alternate CLI reviewers can hand back findings that preserve severity, evidence, and uncertainty."
-version: 1.5.0.4
+version: 1.5.1.0
 ---
 
 # CR-018 -- cli-opencode and cli-claude-code handback

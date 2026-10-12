@@ -1,7 +1,7 @@
 ---
 title: "CC-014 -- Ultra-think multi-strategy planning"
 description: "This scenario validates Ultra-think multi-strategy planning for `CC-014`. It focuses on confirming `--agent ai-council --model claude-sonnet-5-5 --permission-mode plan` produces multiple distinct scored strategies."
-version: 1.5.0.8
+version: 1.5.1.0
 ---
 
 # CC-014 -- Ultra-think multi-strategy planning

@@ -2,7 +2,7 @@
 title: "ORCA-001 -- Advisor routes an Orca-qualified request"
 description: "This scenario validates that an Orca-qualified worktree handoff request routes to cli-orca ahead of any generic git skill."
 catalog_applicable: true
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # ORCA-001 -- Advisor routes an Orca-qualified request

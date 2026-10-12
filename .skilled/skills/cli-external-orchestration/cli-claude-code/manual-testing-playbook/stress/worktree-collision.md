@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-claude-code.vitest.ts"
 test_name: "runs cli-claude-code from each isolated worktree cwd"
 playbook_path: "cli-external-orchestration/cli-claude-code/manual-testing-playbook/stress/worktree-collision.md"
 id: "cli-claude-code-EC-012"
-version: 1.5.0.5
+version: 1.5.1.0
 ---
 
 # EC-012 -- cli-claude-code worktree collision

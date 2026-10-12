@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-pi.vitest.ts"
 test_name: "times out and terminates the captured cli-pi process"
 playbook_path: "cli-external-orchestration/cli-pi/manual-testing-playbook/stress/timeout.md"
 id: "cli-pi-EC-004"
-version: 1.5.0.5
+version: 1.5.1.0
 ---
 
 # EC-004 -- cli-pi timeout

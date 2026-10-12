@@ -1,7 +1,7 @@
 ---
 title: "CX-022 -- CLEAR scoring via prompt-quality-card.md"
 description: "This scenario validates the CLEAR 5-check from prompt-quality-card.md for `CX-022`. It focuses on confirming an under-scored prompt is escalated to a structured framework before dispatch."
-version: 1.9.0.20
+version: 1.9.1.0
 ---
 
 # CX-022 -- CLEAR scoring via prompt-quality-card.md

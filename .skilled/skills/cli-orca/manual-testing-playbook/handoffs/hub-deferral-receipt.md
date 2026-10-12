@@ -2,7 +2,7 @@
 title: "ORCA-003 -- Retired hub Orca routing defers to the standalone skill"
 description: "This scenario validates that the mcp-tooling hub no longer routes Orca CLI work, hands it to the standalone cli-orca skill and preserves the retired hub routing evidence."
 catalog_applicable: true
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # ORCA-003 -- Retired hub Orca routing defers to the standalone skill

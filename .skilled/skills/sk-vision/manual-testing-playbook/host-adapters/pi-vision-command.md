@@ -1,7 +1,7 @@
 ---
 title: "VSN-027 -- Pi /vision command"
 description: "This scenario validates the Pi `/vision` command, hidden tool registration and runtime teardown."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VSN-027 -- Pi /vision command

@@ -1,7 +1,7 @@
 ---
 title: "473 -- Template phrase lint blocked commit"
 description: "This scenario validates the template phrase lint gate for `473` in a throwaway git repository. It focuses on the gate refusing a commit that stages an editor-fallback trigger phrase, the message it prints and the guarantee that a refused commit leaves history unchanged."
-version: 1.0.0.0
+version: 1.0.1.0
 id: tooling-and-scripts-template-phrase-lint-blocked-commit
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

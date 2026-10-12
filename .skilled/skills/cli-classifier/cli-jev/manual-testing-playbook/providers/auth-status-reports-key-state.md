@@ -1,7 +1,7 @@
 ---
 title: "JEV-021 -- Auth status reports the key state without printing it"
 description: "Confirm `auth status` reports whether a key is stored, and `auth test` proves acceptance, for `JEV-021`."
-version: 0.1.0.1
+version: 0.1.1.0
 ---
 
 # JEV-021 -- Auth status reports the key state without printing it

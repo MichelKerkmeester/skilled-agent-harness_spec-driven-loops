@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-devin.vitest.ts"
 test_name: "closes stdin for the headless cli-devin process"
 playbook_path: "cli-external-orchestration/cli-devin/manual-testing-playbook/stress/stdin-hang.md"
 id: "cli-devin-EC-005"
-version: 1.4.0.5
+version: 1.4.1.0
 ---
 
 # EC-005 -- cli-devin stdin closure

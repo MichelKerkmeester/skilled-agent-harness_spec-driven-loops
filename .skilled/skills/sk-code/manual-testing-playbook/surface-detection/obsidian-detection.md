@@ -1,7 +1,7 @@
 ---
 title: "SD-004: OBSIDIAN Surface Detection"
 description: "Verify that a Note Database plugin prompt routes to the OBSIDIAN surface and loads the expected shared and plugin references."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # SD-004: OBSIDIAN Surface Detection

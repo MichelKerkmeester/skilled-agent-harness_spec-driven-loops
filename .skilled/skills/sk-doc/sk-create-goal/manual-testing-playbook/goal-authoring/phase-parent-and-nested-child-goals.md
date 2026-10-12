@@ -2,7 +2,7 @@
 title: "SCG-002 -- Phase parent and nested child goals"
 description: "This scenario validates the phase parent and nested child goals for `SCG-002`. It focuses on one binding row per phase folder plus one child goal per phase folder with the binding set equal to the folder set by name."
 stage: routing
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # SCG-002 -- Phase parent and nested child goals

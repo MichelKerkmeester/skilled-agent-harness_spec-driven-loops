@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-claude-code.vitest.ts"
 test_name: "retains cli-claude-code model-or-balance diagnostics in bounded lineage output"
 playbook_path: "cli-external-orchestration/cli-claude-code/manual-testing-playbook/stress/model-or-balance.md"
 id: "cli-claude-code-EC-002"
-version: 1.5.0.5
+version: 1.5.1.0
 ---
 
 # EC-002 -- cli-claude-code model or balance failure

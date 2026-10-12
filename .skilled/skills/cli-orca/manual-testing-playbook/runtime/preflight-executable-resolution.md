@@ -2,7 +2,7 @@
 title: "ORCA-004 -- Executable resolution and versioned preflight before any Orca operation"
 description: "This scenario validates that the skill resolves one Orca executable in the documented order, captures version evidence and loads the version matched guide before any Orca operation runs."
 catalog_applicable: true
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # ORCA-004 -- Executable resolution and versioned preflight before any Orca operation

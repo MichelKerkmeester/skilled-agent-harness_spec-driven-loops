@@ -1,7 +1,7 @@
 ---
 title: "DOC-356 -- Doctor env secret and per-invocation"
 description: "Manual scenario validating that /doctor:env never asks for or saves a secret switch value and that a per-invocation switch is shown only as a one-command prefix."
-version: 1.1.0.0
+version: 1.1.1.0
 id: doctor-commands-doctor-env-secret-and-per-invocation
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

@@ -1,7 +1,7 @@
 ---
 title: "VSN-015 -- Pi extension"
 description: "This scenario validates the Pi extension symlink, hidden tool registration, `/vision` activation and runtime teardown."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VSN-015 -- Pi extension

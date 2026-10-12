@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-codex.vitest.ts"
 test_name: "reports a signal-killed codex process as non-success"
 playbook_path: "cli-external-orchestration/cli-codex/manual-testing-playbook/stress/partial-lineage-death.md"
 id: "cli-codex-EC-010"
-version: 1.9.0.5
+version: 1.9.1.0
 ---
 
 # EC-010 -- cli-codex partial lineage death

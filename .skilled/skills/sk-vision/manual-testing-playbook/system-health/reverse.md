@@ -1,7 +1,7 @@
 ---
 title: "VSN-013 -- Reverse image search"
 description: "This scenario validates Reverse image search for `VSN-013`. It focuses on a local perceptual-hash similarity search."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VSN-013 -- Reverse image search

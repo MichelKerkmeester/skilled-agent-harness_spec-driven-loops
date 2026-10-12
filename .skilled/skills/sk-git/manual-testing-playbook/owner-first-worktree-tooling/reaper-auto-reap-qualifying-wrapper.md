@@ -1,7 +1,7 @@
 ---
 title: "GIT-032 -- Auto-reap a clean, merged, marker-dead wrapper pair"
 description: "This scenario validates auto-reap of a qualifying wrapper pair for `GIT-032`. It focuses on prove the reaper removes a wrapper worktree/branch pair only when the tree is clean, the branch is merged into the live integration tip, and the session marker proves the recorded PID is dead."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # GIT-032 -- Auto-reap a clean, merged, marker-dead wrapper pair
