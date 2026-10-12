@@ -1,6 +1,7 @@
 ---
 title: "Skill Advisor Install + Setup Guide"
 description: "Bootstrap, verification, runtime hooks, local scorer, rollback, operator notes and reference commands for the daemon-backed skill advisor CLI."
+version: 1.0.0.0
 ---
 
 # Skill Advisor Install + Setup Guide

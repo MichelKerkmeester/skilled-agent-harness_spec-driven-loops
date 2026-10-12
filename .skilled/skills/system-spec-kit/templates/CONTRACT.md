@@ -5,6 +5,7 @@ trigger_phrases:
   - "template manifest"
   - "level contract manifest"
   - "spec-kit-docs json"
+version: 1.0.0.0
 ---
 
 # Template Manifest

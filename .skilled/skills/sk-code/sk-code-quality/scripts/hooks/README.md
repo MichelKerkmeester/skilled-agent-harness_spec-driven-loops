@@ -4,6 +4,7 @@ description: "Holds only the legacy, unregistered claude-posttooluse.sh predeces
 trigger_phrases:
   - "legacy post edit hook"
   - "claude posttooluse sh"
+version: 1.0.0.0
 ---
 
 # Hooks: Legacy Post-Edit Quality Predecessor

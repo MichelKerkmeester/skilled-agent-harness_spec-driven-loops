@@ -5,6 +5,7 @@ trigger_phrases:
   - "mobbin mcp server"
   - "mobbin mcp-remote"
   - "mobbin code mode"
+version: 1.0.0.0
 ---
 
 # mobbin-mcp

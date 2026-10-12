@@ -5,6 +5,7 @@ trigger_phrases:
   - "shared utilities"
   - "path validation helpers"
   - "retry utilities"
+version: 1.0.0.0
 ---
 
 # Shared Utilities

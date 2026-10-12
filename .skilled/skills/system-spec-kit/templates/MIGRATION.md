@@ -8,6 +8,7 @@ trigger_phrases:
   - template compatibility policy
 importance_tier: normal
 contextType: reference
+version: 1.0.0.0
 ---
 
 # SpecKit Template Migration Guide

@@ -1,6 +1,7 @@
 ---
 title: "Progress: shared progress-record type and pair validator"
 description: "Shared additive progress_record JSONL event type, completion reducer allowlist and started/completed pair validator for the research, review and ai-council reducers."
+version: 1.0.0.0
 ---
 
 # Progress

@@ -4,6 +4,7 @@ description: "Pi extension factory that injects the skill-advisor recommendation
 trigger_phrases:
   - "pi prompt advisor"
   - "pi skill advisor hook"
+version: 1.0.0.0
 ---
 
 # Pi Hooks: Skill-Advisor Prompt Bridge

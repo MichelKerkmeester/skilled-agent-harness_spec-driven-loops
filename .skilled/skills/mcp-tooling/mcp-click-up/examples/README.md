@@ -6,6 +6,7 @@ trigger_phrases:
   - "cupt example scripts"
   - "task queue workflow"
   - "time tracking script"
+version: 1.0.0.0
 ---
 
 # mcp-click-up - Example Scripts

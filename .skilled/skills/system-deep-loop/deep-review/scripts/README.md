@@ -4,6 +4,7 @@ description: "Code-facing entrypoints for review pivots, contract snapshots, run
 trigger_phrases:
   - "deep-review scripts"
   - "review script entrypoints"
+version: 1.0.0.0
 ---
 
 # Deep-review scripts

@@ -5,6 +5,7 @@ trigger_phrases:
   - "refero mcp server"
   - "refero mcp-remote"
   - "refero code mode"
+version: 1.0.0.0
 ---
 
 # refero-mcp

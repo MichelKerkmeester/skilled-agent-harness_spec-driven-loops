@@ -1,6 +1,7 @@
 ---
 title: "Shared Scripts: cross-command sk-doc validators and naming guards"
 description: "Python and Node utilities shared across every /create:* command: the document template validator, naming guards, frontmatter versioning and the semantic rename/reference toolchain."
+version: 1.0.0.0
 ---
 
 # Shared Scripts

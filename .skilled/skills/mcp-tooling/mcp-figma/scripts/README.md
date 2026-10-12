@@ -1,6 +1,7 @@
 ---
 title: "scripts: Figma MCP Setup, Connect, and Diagnostics"
 description: "Install, connect, daemon, and read-only diagnostic scripts for the mcp-figma transport, the Figma mode of the mcp-tooling hub."
+version: 1.0.0.0
 ---
 
 # scripts: Figma MCP Setup, Connect, and Diagnostics

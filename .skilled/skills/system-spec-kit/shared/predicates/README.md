@@ -7,6 +7,7 @@ trigger_phrases:
   - "YAML predicate grammar"
   - "typed predicates"
   - "parse when field"
+version: 1.0.0.0
 ---
 
 # Predicates: Typed YAML predicate grammar

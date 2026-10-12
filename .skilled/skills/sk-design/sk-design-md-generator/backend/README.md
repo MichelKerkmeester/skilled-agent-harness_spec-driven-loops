@@ -7,6 +7,7 @@ trigger_phrases:
   - "extract.ts flags"
   - "design-system-extractor cli"
   - "ts-node design extraction"
+version: 1.0.0.0
 ---
 
 # Design System Extractor Backend

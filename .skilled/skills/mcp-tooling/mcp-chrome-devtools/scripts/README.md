@@ -1,6 +1,7 @@
 ---
 title: "scripts: Chrome DevTools MCP Setup and Diagnostics"
 description: "Install and read-only diagnostic scripts for the mcp-chrome-devtools transport, the Chrome DevTools mode of the mcp-tooling hub."
+version: 1.0.0.0
 ---
 
 # scripts: Chrome DevTools MCP Setup and Diagnostics

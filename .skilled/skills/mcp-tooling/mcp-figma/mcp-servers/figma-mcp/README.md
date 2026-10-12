@@ -5,6 +5,7 @@ trigger_phrases:
   - "figma mcp code mode"
   - "figma-developer-mcp"
   - "framelink figma"
+version: 1.0.0.0
 ---
 
 # figma-mcp

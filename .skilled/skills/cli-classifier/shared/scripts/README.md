@@ -5,6 +5,7 @@ trigger_phrases:
   - "jev transport"
   - "pi classifier transport"
   - "cli-classifier shared scripts"
+version: 1.0.0.0
 ---
 
 # Jev transport scripts

@@ -1,5 +1,6 @@
 ---
 alwaysApply: true
+version: 1.0.0.0
 ---
 
 # sk-vision: read images through the local CLI before answering

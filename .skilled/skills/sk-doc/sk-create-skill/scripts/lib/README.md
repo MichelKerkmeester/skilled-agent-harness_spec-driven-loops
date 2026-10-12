@@ -5,6 +5,7 @@ trigger_phrases:
   - "create-skill library"
   - "leaf-resource contract"
   - "skill-root metadata contract"
+version: 1.0.0.0
 ---
 
 # Create-skill scripts lib

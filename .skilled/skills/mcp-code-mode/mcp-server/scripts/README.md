@@ -1,6 +1,7 @@
 ---
 title: "MCP Server Scripts: Node ABI Check"
 description: "Install-time Node ABI check that warns when the active Node ABI does not match mcp-code-mode's Node 24 requirement."
+version: 1.0.0.0
 ---
 
 # MCP Server Scripts: Node ABI Check

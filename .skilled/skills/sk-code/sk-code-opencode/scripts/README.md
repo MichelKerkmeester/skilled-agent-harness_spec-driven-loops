@@ -1,6 +1,7 @@
 ---
 title: "Scripts: drift-guard gate runner"
 description: "Single entry point that runs all sk-code drift guards as one completion gate."
+version: 1.0.0.0
 ---
 
 # Scripts

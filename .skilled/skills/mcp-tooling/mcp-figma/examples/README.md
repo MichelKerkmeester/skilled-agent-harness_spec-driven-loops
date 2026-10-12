@@ -6,6 +6,7 @@ trigger_phrases:
   - "figma-ds-cli example scripts"
   - "figma safe connect example"
   - "figma export walkthrough"
+version: 1.0.0.0
 ---
 
 # mcp-figma - Example Walkthroughs

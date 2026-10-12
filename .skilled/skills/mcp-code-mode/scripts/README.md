@@ -4,6 +4,7 @@ description: "Code-facing README for .skilled/skills/mcp-code-mode/scripts."
 trigger_phrases:
   - "mcp-code-mode scripts"
   - "code README"
+version: 1.0.0.0
 ---
 
 # mcp code mode scripts

@@ -6,6 +6,7 @@ trigger_phrases:
   - "spec kit shared package"
   - "shared TypeScript modules"
   - "embedding provider stack"
+version: 1.0.0.0
 ---
 
 # Shared Library Modules

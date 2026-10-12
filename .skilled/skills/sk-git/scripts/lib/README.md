@@ -6,6 +6,7 @@ trigger_phrases:
   - "git rule checks"
   - "git advisory context"
   - "git advisory noise audit"
+version: 1.0.0.0
 ---
 
 # lib: Git Preflight Advisory Cores

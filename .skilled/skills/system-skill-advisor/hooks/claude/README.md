@@ -4,6 +4,7 @@ description: "Code-facing README for .skilled/skills/system-skill-advisor/hooks/
 trigger_phrases:
   - "system-skill-advisor hooks/claude"
   - "code README"
+version: 1.0.0.0
 ---
 
 # system skill advisor hooks claude

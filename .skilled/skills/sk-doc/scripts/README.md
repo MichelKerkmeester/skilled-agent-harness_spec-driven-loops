@@ -4,6 +4,7 @@ description: "Code-facing README for .skilled/skills/sk-doc/scripts."
 trigger_phrases:
   - "sk-doc scripts"
   - "code README"
+version: 1.0.0.0
 ---
 
 # sk doc scripts

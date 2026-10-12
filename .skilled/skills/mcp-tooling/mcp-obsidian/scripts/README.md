@@ -1,6 +1,7 @@
 ---
 title: "scripts: Obsidian MCP Setup and Diagnostics"
 description: "Install and read-only diagnostic scripts for the mcp-obsidian transport, the Obsidian mode of the mcp-tooling hub."
+version: 1.0.0.0
 ---
 
 # scripts: Obsidian MCP Setup and Diagnostics

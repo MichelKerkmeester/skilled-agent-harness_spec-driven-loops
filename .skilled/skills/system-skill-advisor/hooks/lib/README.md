@@ -1,6 +1,7 @@
 ---
 title: "Hooks Lib: Skill Advisor CLI Fallback"
 description: "Warm-daemon CLI fallback that the skill-advisor prompt hook falls back to when the in-process advisor brief comes back empty."
+version: 1.0.0.0
 ---
 
 # Hooks Lib: Skill Advisor CLI Fallback

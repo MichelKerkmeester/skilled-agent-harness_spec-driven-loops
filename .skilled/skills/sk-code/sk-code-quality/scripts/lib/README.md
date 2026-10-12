@@ -1,6 +1,7 @@
 ---
 title: "Lib: shared post-edit dispatch table"
 description: "Runtime-neutral policy deciding which quality checker runs for an edited file, shared by the Claude and Codex hook adapters."
+version: 1.0.0.0
 ---
 
 # Lib

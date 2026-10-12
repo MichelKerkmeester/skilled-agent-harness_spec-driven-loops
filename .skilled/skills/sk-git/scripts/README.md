@@ -5,6 +5,7 @@ trigger_phrases:
   - "worktree naming allocator"
   - "numbered worktree branch validators"
   - "sk-git scripts folder"
+version: 1.0.0.0
 ---
 
 # sk-git scripts: worktree/branch naming allocator and validators

@@ -7,6 +7,7 @@ trigger_phrases:
   - "hf local provider"
   - "openai embeddings"
   - "voyage embeddings"
+version: 1.0.0.0
 ---
 
 # Embedding Providers

@@ -5,6 +5,7 @@ trigger_phrases:
   - "shared embedder adapters"
   - "canonical ollama adapter"
   - "embedding adapter contract"
+version: 1.0.0.0
 ---
 
 # Shared Embedder Adapters

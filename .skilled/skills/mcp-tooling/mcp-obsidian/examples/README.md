@@ -5,6 +5,7 @@ trigger_phrases:
   - "obsidian examples"
   - "notesmd-cli workflow"
   - "obsidian mcp roundtrip"
+version: 1.0.0.0
 ---
 
 # mcp-obsidian - Example Scripts

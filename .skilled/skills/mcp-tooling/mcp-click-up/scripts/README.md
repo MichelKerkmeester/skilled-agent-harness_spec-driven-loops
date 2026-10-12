@@ -1,6 +1,7 @@
 ---
 title: "scripts: ClickUp MCP Setup and Diagnostics"
 description: "Install and read-only diagnostic scripts for the mcp-click-up transport, the ClickUp mode of the mcp-tooling hub."
+version: 1.0.0.0
 ---
 
 # scripts: ClickUp MCP Setup and Diagnostics

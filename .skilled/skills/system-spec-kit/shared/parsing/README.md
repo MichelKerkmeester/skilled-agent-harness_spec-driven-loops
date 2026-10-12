@@ -7,6 +7,7 @@ trigger_phrases:
   - "spec doc health checks"
   - "spec doc health"
   - "memory sufficiency"
+version: 1.0.0.0
 ---
 
 # Parsing
