@@ -1,7 +1,7 @@
 ---
 title: "cli-opencode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-opencode CLI orchestrator skill."
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # cli-opencode: Manual Testing Playbook
@@ -440,17 +440,17 @@ Expected signals: Exit 0. JSON parseable. >= 2 findings or hypotheses. Zero Task
 
 > **Feature File:** [CO-032](../manual-testing-playbook/agent-routing/deep-research-agent-iterations.md)
 
-### CO-033 | Deep-review agent audit loop
+### CO-033 | Deep-review command-owned audit loop
 
 #### Description
 
-Verify `--agent deep-review` executes a single review iteration that surfaces at least one severity-tagged finding (P0, P1, or P2) with file or line citation, AND respects the LEAF constraint (no nested Task-tool dispatches).
+Verify `/deep:review:auto` against a pre-bound scratch spec packet runs at least one real iteration that writes a severity-tagged finding (P0, P1 or P2) with a file or line citation under the packet's `review/` folder, never through a raw `--agent deep-review` dispatch.
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor (or `/deep:review` simulator) running a single audit iteration, dispatch `opencode run --agent deep-review --variant high --format json --dir <repo-root>` against `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` (attached as an `@./` file reference) with state externalized at `/tmp/co-033-state.jsonl`. Verify the dispatch exits 0, the JSON event stream contains a session.completed event with severity-tagged findings, and that no Task or sub-agent tool.call events appear. Return a verdict naming the highest-severity finding and confirming LEAF compliance.
+Prompt summary: As an external-AI conductor exercising the production deep-review loop, dispatch `opencode run --command deep/review` against a pre-bound scratch spec packet targeting `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` (attached as an `@./` file reference), with a tight iteration cap. Verify the dispatch exits 0, a new iteration file with a P0, P1 or P2 finding appears under `<packet>/review/iterations/` and `<packet>/review/deep-review-state.jsonl` gained at least one record. Return a verdict naming the highest-severity finding and the state-file record count delta.
 
-Expected signals: Exit 0. JSON parseable. >= 1 severity tag (P0, P1, or P2). >= 1 file or line citation. Zero Task tool.call events. Zero nested `opencode run` invocations. Dispatch line includes `--agent deep-review`.
+Expected signals: Exit 0. >= 1 new iteration file under `<packet>/review/iterations/` with a severity tag (P0, P1 or P2) and a file or line citation. State JSONL line count increased. No raw `--agent deep-review` or `--agent orchestrate` simulation dispatch. Scratch packet removed afterwards.
 
 #### Test Execution
 
@@ -816,7 +816,7 @@ Validator support: the shared `validate_document.py` validates this root playboo
 - CO-015: [Review agent security audit](../manual-testing-playbook/agent-routing/review-agent-security-audit.md)
 - CO-017: [Ultra-think multi-strategy planning](../manual-testing-playbook/agent-routing/multi-ai-council-multi-strategy.md)
 - CO-032: [Deep-research agent iteration loop](../manual-testing-playbook/agent-routing/deep-research-agent-iterations.md)
-- CO-033: [Deep-review agent audit loop](../manual-testing-playbook/agent-routing/deep-review-agent-audit.md)
+- CO-033: [Deep-review command-owned audit loop](../manual-testing-playbook/agent-routing/deep-review-agent-audit.md)
 - CO-034: [Orchestrate agent multi-agent coordination](../manual-testing-playbook/agent-routing/orchestrate-agent-multi-agent.md)
 
 ### SESSION CONTINUITY

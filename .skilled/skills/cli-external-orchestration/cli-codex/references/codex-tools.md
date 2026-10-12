@@ -10,7 +10,7 @@ trigger_phrases:
   - "codex image input"
 importance_tier: normal
 contextType: implementation
-version: 1.9.2.0
+version: 1.9.3.0
 ---
 
 # Codex CLI Built-in Tools Reference
@@ -158,7 +158,7 @@ codex exec "Use the database MCP tool to query user records" \
 - Extending Codex with domain-specific tools
 - Connecting to internal APIs or databases via MCP
 
-**Compared to Claude Code:** Claude Code supports MCP natively via `opencode.json` configuration. Codex CLI's MCP support follows the same protocol but is configured separately, under `mcp_servers` in `.codex/config.toml`.
+**Compared to Claude Code:** Claude Code supports MCP natively, configured in the project `.mcp.json`. Codex CLI's MCP support follows the same protocol but is configured separately, under `mcp_servers` in `.codex/config.toml`.
 
 ---
 
