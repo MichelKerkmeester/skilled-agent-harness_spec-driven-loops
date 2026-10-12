@@ -1,7 +1,7 @@
 ---
 title: "cli-opencode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-opencode CLI orchestrator skill."
-version: 1.4.0.63
+version: 1.4.1.0
 ---
 
 # cli-opencode: Manual Testing Playbook
@@ -363,13 +363,13 @@ This category covers 8 scenario summaries while the linked feature files remain 
 
 #### Description
 
-Verify `--agent general` loads the project's general agent definition from `.skilled/agents/general.md` and the dispatched session demonstrates implementation-style behavior with full read/write/dispatch tool permissions.
+Verify an `opencode run` dispatch with `--agent` omitted loads the default agent and the dispatched session demonstrates implementation-style behavior with full read/write/dispatch tool permissions. `general` is an OpenCode built-in with no project-local agent file, and the cli-opencode contract forbids passing `--agent general` at the top level.
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor verifying the general-agent default route, dispatch --agent general with a prompt that requires a Read tool call against a small project file and a multi-step reasoning summary. Verify the JSON event stream shows a tool.call for Read, the response references content from the file and the agent slug general is identified in the session metadata.
+Prompt summary: As an external-AI conductor verifying the unflagged default-agent route, dispatch opencode run WITHOUT any --agent flag, with a prompt that requires a Read tool call against a small project file and a multi-step reasoning summary. Verify the JSON event stream shows a tool.call for Read and the response references content from the file.
 
-Expected signals: Exit 0. Read tool.call appears. Agent slug `general` in session metadata. Response references the read file's content.
+Expected signals: Exit 0. Read tool.call appears. The dispatched command line contains no `--agent` flag. Response references the read file's content.
 
 #### Test Execution
 
@@ -448,7 +448,7 @@ Verify `--agent deep-review` executes a single review iteration that surfaces at
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor (or `/deep:review` simulator) running a single audit iteration, dispatch `opencode run --agent deep-review --variant high --format json --dir <repo-root>` against `@./.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` with state externalized at `/tmp/co-033-state.jsonl`. Verify the dispatch exits 0, the JSON event stream contains a session.completed event with severity-tagged findings, and that no Task or sub-agent tool.call events appear. Return a verdict naming the highest-severity finding and confirming LEAF compliance.
+Prompt summary: As an external-AI conductor (or `/deep:review` simulator) running a single audit iteration, dispatch `opencode run --agent deep-review --variant high --format json --dir <repo-root>` against `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` (attached as an `@./` file reference) with state externalized at `/tmp/co-033-state.jsonl`. Verify the dispatch exits 0, the JSON event stream contains a session.completed event with severity-tagged findings, and that no Task or sub-agent tool.call events appear. Return a verdict naming the highest-severity finding and confirming LEAF compliance.
 
 Expected signals: Exit 0. JSON parseable. >= 1 severity tag (P0, P1, or P2). >= 1 file or line citation. Zero Task tool.call events. Zero nested `opencode run` invocations. Dispatch line includes `--agent deep-review`.
 
@@ -628,7 +628,7 @@ Verify a MiniMax-M3 design/UI build dispatch is not sent with thin generic conte
 
 Prompt: `Use MiniMax-M3 to build a SaaS onboarding UI against a measured Style Reference. Dispatch it with the sk-design-md-generator Style Reference manifest (measured DESIGN.md tokens), the build-against-measured requirements, and the validate + sk-code-handoff proof requirements.`
 
-Expected signals: The composed prompt uses TIDD-EC plus dense pre-plan, names `sk-design-md-generator/references/creation-contract.md`, carries the measured-token manifest and fidelity-proof requirements, and blocks ready or handoff claims when the validate result or locked-value trace is incomplete.
+Expected signals: The composed prompt uses TIDD-EC plus dense pre-plan, names `../../../sk-design/sk-design-md-generator/references/creation-contract.md`, carries the measured-token manifest and fidelity-proof requirements, and blocks ready or handoff claims when the validate result or locked-value trace is incomplete.
 
 Desired user-visible outcome: A MiniMax dispatch packet whose child output can echo the loaded measured tokens and the fidelity/validation proof, rather than a generic design prompt that omits the Style Reference.
 

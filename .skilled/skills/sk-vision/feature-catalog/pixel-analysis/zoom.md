@@ -6,7 +6,7 @@ trigger_phrases:
   - "zoom into this part of the image"
   - "sk_vision_zoom"
   - "enlarge small text"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Region zoom (sk_vision_zoom)
@@ -39,7 +39,7 @@ With `analyze`, the upscaled crop is re-run through the model: `ocr` transcribes
 |---|---|---|
 | `vision-runtime/src/providers/photon.ts` | Handler | Provider `zoom` method |
 | `vision-runtime/python/runtime.py` | Script | `handle_zoom` resampling, pixel cap, and re-analysis |
-| `pi/sk-vision.ts` | Handler | `sk_vision_zoom` registration and argument parsing |
+| `hooks/pi/sk-vision.ts` | Handler | `sk_vision_zoom` registration and argument parsing |
 
 ### Validation And Tests
 

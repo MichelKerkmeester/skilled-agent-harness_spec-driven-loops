@@ -1,7 +1,7 @@
 ---
 title: "cli-classifier: Manual Testing Playbook"
 description: "Operator-facing validation for the cli-classifier hub: Jev requests resolve to cli-jev, the current only mode, while out-of-domain requests stay out."
-version: 0.4.0.0
+version: 0.4.1.0
 ---
 
 # cli-classifier: Manual Testing Playbook
@@ -30,7 +30,7 @@ The `CJ-` scenarios came from the retired `cli-jev` hub with the Jev transport. 
 ### Package Boundaries
 
 - The hub-routing scenarios validate routing only. `CC-004` runs the injection screen scorer on stub binaries. No scenario sends a judgment to the hosted classifier.
-- The hub serves compiled routes. The front door answers from the policy pinned in `013-live-activation/activation/cli-classifier/manifest.json`, not from the legacy sentinel.
+- The hub serves compiled routes. The front door answers from the policy pinned in `.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-classifier/manifest.json`, not from the legacy sentinel.
 
 ---
 

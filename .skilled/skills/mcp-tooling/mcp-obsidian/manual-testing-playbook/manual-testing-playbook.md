@@ -1,7 +1,7 @@
 ---
 title: "mcp-obsidian: Manual Testing Playbook"
 description: "Operator-facing scenarios for headless notesmd-cli operations, the official app-backed obsidian CLI, cyanheads MCP round-trips, and file-layer tie-ins for two community plugins and the Obsidian theme system."
-version: 0.2.0.0
+version: 0.2.1.0
 ---
 
 # mcp-obsidian: Manual Testing Playbook
@@ -168,7 +168,7 @@ Prompt: `Before changing any notes, confirm my registered vaults and set TEST_VA
 #### Test Execution
 
 > **Feature File:** [`headless-vaults/vault-preflight.md`](headless-vaults/vault-preflight.md)
-> **Catalog:** [`cli/list-vaults.md`](../feature-catalog/cli/list-vaults.md) and [`cli/set-default-vault.md`](../feature-catalog/cli/set-default-vault.md)
+> **Catalog:** [`../feature-catalog/cli/list-vaults.md`](../feature-catalog/cli/list-vaults.md) and [`../feature-catalog/cli/set-default-vault.md`](../feature-catalog/cli/set-default-vault.md)
 
 ### OBS-002 | Vault registration lifecycle
 
@@ -183,7 +183,7 @@ Prompt: `Register my throwaway vault for headless Obsidian work, verify it appea
 #### Test Execution
 
 > **Feature File:** [`headless-vaults/vault-registration.md`](headless-vaults/vault-registration.md)
-> **Catalog:** [`cli/add-vault.md`](../feature-catalog/cli/add-vault.md) and [`cli/remove-vault.md`](../feature-catalog/cli/remove-vault.md)
+> **Catalog:** [`../feature-catalog/cli/add-vault.md`](../feature-catalog/cli/add-vault.md) and [`../feature-catalog/cli/remove-vault.md`](../feature-catalog/cli/remove-vault.md)
 
 ---
 

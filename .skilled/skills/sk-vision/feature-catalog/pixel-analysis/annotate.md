@@ -6,7 +6,7 @@ trigger_phrases:
   - "draw the detected boxes on this image"
   - "sk_vision_annotate"
   - "save an annotated screenshot"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Annotation overlay (sk_vision_annotate)
@@ -39,7 +39,7 @@ Annotating with no boxes and no points simply saves a copy. Malformed JSON argum
 |---|---|---|
 | `vision-runtime/src/providers/photon.ts` | Handler | Provider `annotate` method |
 | `vision-runtime/python/runtime.py` | Script | `handle_annotate` drawing logic |
-| `pi/sk-vision.ts` | Handler | `sk_vision_annotate` registration and JSON parsing |
+| `hooks/pi/sk-vision.ts` | Handler | `sk_vision_annotate` registration and JSON parsing |
 
 ### Validation And Tests
 

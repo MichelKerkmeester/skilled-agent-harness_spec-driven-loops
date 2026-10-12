@@ -6,7 +6,7 @@ trigger_phrases:
   - "find the submit button in this screenshot"
   - "sk_vision_detect"
   - "locate UI elements"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Object detection (sk_vision_detect)
@@ -39,7 +39,7 @@ Detection requires the model to support the task; a missing target argument is r
 |---|---|---|
 | `vision-runtime/src/providers/photon.ts` | Handler | Provider `detect` method and result typing |
 | `vision-runtime/python/runtime.py` | Script | `handle_detect` and `_normalize_detect_objects` |
-| `pi/sk-vision.ts` | Handler | `sk_vision_detect` registration and rendering |
+| `hooks/pi/sk-vision.ts` | Handler | `sk_vision_detect` registration and rendering |
 | `vision-runtime/src/opencode/tools.ts` | Handler | OpenCode `sk_vision_detect` registration |
 
 ### Validation And Tests

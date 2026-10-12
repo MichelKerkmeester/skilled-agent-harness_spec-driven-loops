@@ -1,7 +1,7 @@
 ---
 title: "cli-external-orchestration: Manual Testing Playbook"
 description: "Operator-facing index for cli-external-orchestration hub-routing validation: does the advisor resolve cli-opencode vs cli-claude-code correctly through mode-registry.json and hub-router.json."
-version: 1.4.0.12
+version: 1.4.1.0
 ---
 
 # cli-external-orchestration: Manual Testing Playbook
@@ -52,7 +52,7 @@ Scenarios live as per-file YAML-frontmatter typed gold under `hub-routing/`. Eac
 | CE-002 | `hub-routing/claude-code-second-opinion.md` | `cli-claude-code` (Anthropic-backed / deep-reasoning signal) |
 | CE-003 | `hub-routing/ambiguous-defer.md` | `defer` (no strong executor signal — router asks, does not silently default) |
 
-A separate, non-scored functional check: the executor-delegation scorer (`system-skill-advisor/runtime/lib/scorer/executor-delegation.ts`) must resolve a direct-alias or orchestrator-cue delegation prompt to the executor-kind string `cli-opencode` or `cli-claude-code`, never to the non-executor hub identity `cli-external-orchestration` — verified by `tests/scorer/executor-delegation.vitest.ts` and `tests/parity/fixtures/executor-delegation-cases.json`, not part of this scored corpus.
+A separate, non-scored functional check: the executor-delegation scorer (`.skilled/skills/system-skill-advisor/runtime/lib/scorer/executor-delegation.ts`) must resolve a direct-alias or orchestrator-cue delegation prompt to the executor-kind string `cli-opencode` or `cli-claude-code`, never to the non-executor hub identity `cli-external-orchestration` — verified by `.skilled/skills/system-skill-advisor/runtime/tests/scorer/executor-delegation.vitest.ts` and `.skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/executor-delegation-cases.json`, not part of this scored corpus.
 
 ### Plugins And Hooks
 

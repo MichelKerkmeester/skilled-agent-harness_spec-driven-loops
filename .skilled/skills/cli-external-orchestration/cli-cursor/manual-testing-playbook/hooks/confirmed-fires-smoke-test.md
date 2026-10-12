@@ -1,7 +1,7 @@
 ---
 title: "CU-013 -- Confirmed-fires smoke test"
 description: "This scenario validates that sessionStart, preToolUse, and sessionEnd fire under a real cursor-agent -p dispatch for `CU-013`, reproducing phase 004's live event-delivery evidence in an isolated temp workspace."
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # CU-013 -- Confirmed-fires smoke test
@@ -62,7 +62,7 @@ Operators run the exact prompt and command sequence for `CU-013` and confirm the
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
 | `../../references/hook-contract.md` (§4 Documented Agent Events) | Documents the full agent-event roster |
-| `specs/cli-external-orchestration/z_archive/030-cli-cursor-creation/004-cursor-hook-adapter-layer/implementation-summary.md` | Phase 004's live-verified confirmed-fires delivery table |
+| `specs/cli-external-orchestration/z_archive/030-cli-cursor-creation/004-cursor-hook-adapter-layer/implementation-summary.md` | Archived live-verified confirmed-fires delivery table |
 
 ### Implementation And Test Anchors
 

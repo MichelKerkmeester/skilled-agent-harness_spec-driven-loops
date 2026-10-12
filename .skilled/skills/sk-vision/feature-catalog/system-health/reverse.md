@@ -6,7 +6,7 @@ trigger_phrases:
   - "where does this image come from"
   - "sk_vision_reverse"
   - "find similar images locally"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Reverse image search (sk_vision_reverse)
@@ -39,7 +39,7 @@ Yandex can hit captcha or rate limits; those failures are returned gracefully wi
 |---|---|---|
 | `vision-runtime/src/providers/photon.ts` | Handler | Provider `reverse` and `hashSearch` methods |
 | `vision-runtime/python/runtime.py` | Script | `handle_reverse`, `handle_hash_search`, `_dhash64`, `_hamming`, `_yandex_reverse` |
-| `pi/sk-vision.ts` | Handler | `sk_vision_reverse` registration and provider parsing |
+| `hooks/pi/sk-vision.ts` | Handler | `sk_vision_reverse` registration and provider parsing |
 
 ### Validation And Tests
 

@@ -10,7 +10,7 @@ trigger_phrases:
   - "codex image input"
 importance_tier: normal
 contextType: implementation
-version: 1.9.0.12
+version: 1.9.1.0
 ---
 
 # Codex CLI Built-in Tools Reference
@@ -129,24 +129,17 @@ codex --search exec "Compare zod vs yup for TypeScript validation as of 2026. Se
 **Capabilities:**
 - Connect to any MCP-compatible server
 - Use MCP tools during `exec` sessions
-- Configure MCP servers in `.codex/settings.json`
+- Configure MCP servers under `mcp_servers` in `.codex/config.toml` (or `~/.codex/config.toml`)
 - Access custom data sources and APIs via MCP protocol
 
 **Configuration:**
 
-```json
-// .codex/settings.json
-{
-  "mcpServers": {
-    "my-server": {
-      "command": "node",
-      "args": ["./mcp-server.js"],
-      "env": {
-        "MY_API_KEY": "${MY_API_KEY}"
-      }
-    }
-  }
-}
+```toml
+# .codex/config.toml (or ~/.codex/config.toml)
+[mcp_servers.my-server]
+command = "node"
+args = ["./mcp-server.js"]
+env = { MY_API_KEY = "<your key>" }
 ```
 
 **Usage:**
@@ -165,7 +158,7 @@ codex exec "Use the database MCP tool to query user records" \
 - Extending Codex with domain-specific tools
 - Connecting to internal APIs or databases via MCP
 
-**Compared to Claude Code:** Claude Code supports MCP natively via `opencode.json` configuration. Codex CLI's MCP support follows the same protocol but is configured separately in `.codex/settings.json`.
+**Compared to Claude Code:** Claude Code supports MCP natively via `opencode.json` configuration. Codex CLI's MCP support follows the same protocol but is configured separately, under `mcp_servers` in `.codex/config.toml`.
 
 ---
 
@@ -324,7 +317,7 @@ These capabilities provide functionality comparable to Claude Code's built-in to
 | **Memory/persistence** | External (Spec Kit spec folders) | Session resume/fork | Different approaches; Spec Kit is more structured |
 | **Task tracking** | External (TodoWrite) | Internal session context | Codex tracks within session |
 | **Browser automation** | External MCP | Not built-in | Both need external tools |
-| **MCP integration** | Native + Code Mode | `.codex/settings.json` | Both support MCP protocol |
+| **MCP integration** | Native + Code Mode | `.codex/config.toml` (`mcp_servers`) | Both support MCP protocol |
 | **Multi-file read** | Multiple `Read` calls | `@glob` pattern | Codex batches natively |
 | **Image analysis** | `Read` (multimodal) | `--image` / `-i` flag | Both support image input |
 | **Code review (diff)** | Manual diff + Read | `/review` command | Codex `/review` is diff-aware |

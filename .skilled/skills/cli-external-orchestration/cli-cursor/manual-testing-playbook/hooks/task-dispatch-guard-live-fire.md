@@ -1,7 +1,7 @@
 ---
 title: "CU-021 -- Task-matcher preToolUse dispatch guard live-fire"
 description: "This scenario validates that a second preToolUse array entry with \"matcher\": \"Task\" fires alongside the existing unmatched preToolUse entry for a real Task tool call for `CU-021`, reproducing phase 011's live subagent-delegation dispatch evidence in an isolated temp workspace."
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # CU-021 -- Task-matcher preToolUse dispatch guard live-fire
@@ -62,7 +62,7 @@ Operators run the exact prompt and command sequence for `CU-021` and confirm the
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
 | `../../references/hook-contract.md` (§2 Schema, §4 Documented Agent Events) | Documents the `matcher` schema field and the full agent-event roster |
-| `specs/cli-external-orchestration/z_archive/030-cli-cursor-creation/009-cursor-hooks-lifecycle/003-cursor-hooks-claude-parity/implementation-summary.md` | Phase 011's live-fire dispatch-3 evidence: `preToolUse-Task-fired` and `preToolUse-unmatched-fired` for the same Task call |
+| `specs/cli-external-orchestration/z_archive/030-cli-cursor-creation/009-cursor-hooks-lifecycle/003-cursor-hooks-claude-parity/implementation-summary.md` | Archived live-fire dispatch-3 evidence: `preToolUse-Task-fired` and `preToolUse-unmatched-fired` for the same Task call |
 
 ### Implementation And Test Anchors
 

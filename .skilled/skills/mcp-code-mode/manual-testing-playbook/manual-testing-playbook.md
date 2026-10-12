@@ -1,7 +1,7 @@
 ---
 title: "MCP Code Mode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the mcp-code-mode skill."
-version: 1.0.0.9
+version: 1.0.1.0
 ---
 
 # MCP Code Mode: Manual Testing Playbook
@@ -573,7 +573,6 @@ Expected signals: `/doctor:mcp install --server` renders ``Flag '--server' is no
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
 | `.skilled/skills/mcp-code-mode/scripts/validate_config.py` | `.utcp_config.json` schema + env-var presence | CM-010 |
-| `.skilled/skills/mcp-code-mode/scripts/test/manual_namespace.test.js` (if present) | Manual-namespace contract | CM-005, CM-006, CM-007 |
 | `.skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs` | Shared route-guard core + Claude-hook unit assertions | mcp-route-guard |
 
 > Note: most Code Mode behavior is exercised through the live MCP servers it wraps, not through dedicated unit tests in the skill itself. The playbook scenarios serve as the primary regression surface.

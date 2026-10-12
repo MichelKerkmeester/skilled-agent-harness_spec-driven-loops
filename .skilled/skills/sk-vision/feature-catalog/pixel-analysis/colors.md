@@ -6,7 +6,7 @@ trigger_phrases:
   - "what colors are in this design"
   - "sk_vision_colors"
   - "palette and luminance check"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Color analysis (sk_vision_colors)
@@ -35,7 +35,7 @@ Because the analysis is purely computational, the same input always produces the
 |---|---|---|
 | `vision-runtime/src/providers/photon.ts` | Handler | Provider `colors` method |
 | `vision-runtime/python/runtime.py` | Script | `handle_colors` palette, buckets, and average computation |
-| `pi/sk-vision.ts` | Handler | `sk_vision_colors` registration and region parsing |
+| `hooks/pi/sk-vision.ts` | Handler | `sk_vision_colors` registration and region parsing |
 
 ### Validation And Tests
 

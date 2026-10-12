@@ -6,7 +6,7 @@ trigger_phrases:
   - "read the text in this image"
   - "sk_vision_ocr"
   - "transcribe the error message"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # OCR text extraction (sk_vision_ocr)
@@ -39,7 +39,7 @@ An unrecognized `kind` falls back to `all`. A missing image file produces the st
 |---|---|---|
 | `vision-runtime/src/providers/photon.ts` | Handler | Provider `ocr` method and source resolution |
 | `vision-runtime/python/runtime.py` | Script | `OCR_PROMPTS` table and `handle_ocr` |
-| `pi/sk-vision.ts` | Handler | `sk_vision_ocr` registration and kind argument parsing |
+| `hooks/pi/sk-vision.ts` | Handler | `sk_vision_ocr` registration and kind argument parsing |
 
 ### Validation And Tests
 

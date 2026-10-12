@@ -6,7 +6,7 @@ trigger_phrases:
   - "how does sk-vision integrate with Pi"
   - "sk-vision.ts"
   - "pi vision extension"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Pi extension adapter (sk-vision.ts)
@@ -34,7 +34,7 @@ Bare `/vision` asks for a question in the conversation or returns a full read be
 | File | Layer | Role |
 |---|---|---|
 | `.pi/extensions/sk-vision.ts` | Script | Pi load path (relative symlink to the skill factory) |
-| `pi/sk-vision.ts` | Handler | Extension factory: 13 hidden tool registrations, `/vision` prompt path and session shutdown |
+| `hooks/pi/sk-vision.ts` | Handler | Extension factory: 13 hidden tool registrations, `/vision` prompt path and session shutdown |
 | `vision-runtime/src/providers/photon.ts` | Handler | The provider the factory's tools share |
 | `vision-runtime/src/core/context-builder.ts` | Shared | Renders the `<SK-VISION>` evidence envelopes |
 

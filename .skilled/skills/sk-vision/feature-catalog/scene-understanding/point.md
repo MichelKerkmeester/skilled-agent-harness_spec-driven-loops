@@ -6,7 +6,7 @@ trigger_phrases:
   - "where is the search bar in this screenshot"
   - "sk_vision_point"
   - "locate a click target"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Point location (sk_vision_point)
@@ -39,7 +39,7 @@ A missing target is rejected, and analysis failures render as `SK_VISION_ERROR` 
 |---|---|---|
 | `vision-runtime/src/providers/photon.ts` | Handler | Provider `point` method and result typing |
 | `vision-runtime/python/runtime.py` | Script | `handle_point` and `_normalize_points` |
-| `pi/sk-vision.ts` | Handler | `sk_vision_point` registration and rendering |
+| `hooks/pi/sk-vision.ts` | Handler | `sk_vision_point` registration and rendering |
 
 ### Validation And Tests
 

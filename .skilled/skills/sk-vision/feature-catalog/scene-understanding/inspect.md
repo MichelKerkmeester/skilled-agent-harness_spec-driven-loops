@@ -6,7 +6,7 @@ trigger_phrases:
   - "inspect a screenshot"
   - "sk_vision_inspect"
   - "describe this image"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Image inspection (sk_vision_inspect)
@@ -39,7 +39,7 @@ A missing file raises a structured `INVALID_INPUT` error, and any analysis failu
 |---|---|---|
 | `vision-runtime/src/providers/photon.ts` | Handler | Provider methods `caption`, `scene`, `ocr`, `query` and URL fetch-to-cache |
 | `vision-runtime/python/runtime.py` | Script | Handlers `query`, `caption`, `scene`, `ocr` over NDJSON |
-| `pi/sk-vision.ts` | Handler | `sk_vision_inspect` registration and evidence rendering |
+| `hooks/pi/sk-vision.ts` | Handler | `sk_vision_inspect` registration and evidence rendering |
 | `vision-runtime/src/opencode/tools.ts` | Handler | OpenCode `sk_vision_inspect` registration |
 
 ### Validation And Tests

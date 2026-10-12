@@ -1,7 +1,7 @@
 ---
 title: "sk-doc: Manual Testing Playbook"
 description: "Operator-facing index for sk-doc smart-router validation: intent detection, resource loading, unknown-fallback, cross-CLI dispatch, and token-cost baselines."
-version: 2.1.0.27
+version: 2.1.1.0
 ---
 
 # sk-doc: Manual Testing Playbook
@@ -44,7 +44,7 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 - **SD-016** — `intent-detection/optimization.md` — OPTIMIZATION: rewrite for token efficiency + llms.txt generation. (added in 076)
 
 ### 02 — Resource Loading
-- **SD-004** — `resource-loading/references-global-only.md` — HVR loads only `references/hvr-rules.md`.
+- **SD-004** — `resource-loading/references-global-only.md` — HVR loads only `sk-create-with-human-voice/references/hvr-rules.md`.
 - **SD-006** — `resource-loading/mixed-references-assets.md` — README_CREATION loads mixed references + assets.
 
 ### 03 — Unknown Fallback
@@ -95,7 +95,7 @@ All 10 carry `stage: holdout`: excluded from the fitted routing aggregate, score
 ## Global Preconditions
 
 1. `.skilled/skills/sk-doc/SKILL.md` is at HEAD-of-main and contains the §2 Smart Routing block resolved through `mode-registry.json` / `hub-router.json` (UNKNOWN_FALLBACK_CHECKLIST, AMBIGUITY_DELTA, ON_DEMAND_KEYWORDS), and both `mode-registry.json` and `hub-router.json` resolve on disk.
-2. All `references/*.md`, `references/*.md`, `assets/skill/*.md`, `assets/readme/*.md`, `assets/flowcharts/*.md`, `assets/command/*.md`, and `assets/agent-template.md` resolve on disk.
+2. All `references/*.md`, `references/*.md`, `assets/skill/*.md`, `assets/readme/*.md`, `assets/flowcharts/*.md`, `assets/command/*.md`, and `sk-create-agent/assets/agent-template.md` resolve on disk.
 3. Skill advisor binary callable: `python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --help` exits 0.
 4. Each of the 2 CLI runtimes (cli-opencode, cli-claude-code) is installed and authenticated.
 5. Token-cost baselines (SD-013 → SD-014 → SD-015) MUST run in order on the same CLI to keep the floor/median/ceiling comparable.

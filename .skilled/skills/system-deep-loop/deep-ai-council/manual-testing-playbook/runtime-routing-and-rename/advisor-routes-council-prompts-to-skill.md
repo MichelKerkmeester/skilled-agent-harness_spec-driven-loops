@@ -1,7 +1,7 @@
 ---
 title: "DAC-002 -- Advisor routes council prompts to skill"
 description: "This scenario validates advisor routing for explicit AI Council prompts."
-version: 1.7.1.0
+version: 1.7.2.0
 ---
 
 # DAC-002 -- Advisor routes council prompts to skill
@@ -26,7 +26,7 @@ The advisor must route explicit council requests to the skill instead of treatin
 - Real user request: Run an AI council deliberation to compare implementation plans and persist council artifacts.
 - Prompt: `As a routing-system validator, run the council advisor regression. Verify deep-ai-council is selected. Return command evidence.`
 - Expected execution process: Run the targeted scorer test and capture the filtered vitest result.
-- Expected signals: Test output includes the named deep-ai-council case and exits successfully.
+- Expected signals: Test output includes the named council deliberation case and exits successfully.
 - Desired user-visible outcome: The user gets evidence that natural council prompts route to the skill.
 - Pass/fail: PASS if targeted vitest exits 0; FAIL if the test misses or selects another skill.
 
@@ -46,9 +46,9 @@ The advisor must route explicit council requests to the skill instead of treatin
 
 ### Commands
 
-1. `bash: cd .skilled/skills/system-spec-kit/runtime && node_modules/.bin/vitest run skill_advisor/tests/scorer/native-scorer.vitest.ts -t "deep-ai-council"`
+1. `bash: cd .skilled/skills/system-skill-advisor/runtime && node_modules/.bin/vitest run tests/scorer/native-scorer.vitest.ts -t "council deliberation"`
 
-> Note: vitest must be invoked from the `.skilled/skills/system-spec-kit/runtime/` CWD with the local `node_modules/.bin/vitest` binary. Running `npx vitest` from the workspace root fails with `Cannot find module 'vitest/config'` because the vitest config lives at `.skilled/skills/system-spec-kit/runtime/vitest.config.ts` and the workspace root has no top-level vitest install.
+> Note: vitest must be invoked from the `.skilled/skills/system-skill-advisor/runtime/` CWD with the local `node_modules/.bin/vitest` binary. Running `npx vitest` from the workspace root fails with `Cannot find module 'vitest/config'` because the vitest config lives at `.skilled/skills/system-skill-advisor/runtime/vitest.config.ts` and the workspace root has no top-level vitest install.
 
 ### Expected
 
@@ -69,7 +69,7 @@ Check advisor aliases, explicit scorer lane, and native scorer fixtures.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-002 | Advisor routing | Verify council prompt routing | `As a routing-system validator, run the council advisor regression. Verify deep-ai-council is selected. Return command evidence.` | `bash: cd .skilled/skills/system-spec-kit/runtime && node_modules/.bin/vitest run skill_advisor/tests/scorer/native-scorer.vitest.ts -t "deep-ai-council"` | Targeted test passes | Vitest transcript | PASS if exit 0 | Inspect scorer lanes |
+| DAC-002 | Advisor routing | Verify council prompt routing | `As a routing-system validator, run the council advisor regression. Verify deep-ai-council is selected. Return command evidence.` | `bash: cd .skilled/skills/system-skill-advisor/runtime && node_modules/.bin/vitest run tests/scorer/native-scorer.vitest.ts -t "council deliberation"` | Targeted test passes | Vitest transcript | PASS if exit 0 | Inspect scorer lanes |
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "sk-design-chart: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, the review protocol, the orchestration guide and the per-feature validation files for the sk-design-chart sk-doc workflow packet."
-version: 0.23.0.5
+version: 0.23.1.0
 ---
 
 # sk-design-chart: Manual Testing Playbook
@@ -371,7 +371,7 @@ Desired user-visible outcome: the reader opens the file and gets a chart that be
 |---|---|---|
 | `scripts/check-corpus.cjs` | The structural subset: document shape, identity, both palette blocks, colour literals, external resources, script parsing, data block, unique ids, accessibility, card parts, determinism, motion, the palette source gated once per theme, and the two-way index | Direct. `CHT-005` and `CHT-006` execute individual checks as negative controls, and `CHT-004` executes the render mode |
 | `scripts/check-corpus.cjs --render` | Whether the figure region holds real elements after the script ran, whether two opens settle to the same picture, and whether a dark colour scheme paints a different one | Direct. `CHT-004` is the operator-facing form of the first, and `CHT-009` of the third |
-| `sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs` | This playbook package's own operator-scenario contract | None directly. It validates the playbook, not the workflow the playbook tests |
+| `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs` | This playbook package's own operator-scenario contract | None directly. It validates the playbook, not the workflow the playbook tests |
 
 The packet ships no automated test for a headline, an axis ladder or a clipped label, and none is possible with the checks it has. `CHT-001`, `CHT-002` and `CHT-003` are the operator-facing equivalent for that half of the surface and do not claim to be more.
 

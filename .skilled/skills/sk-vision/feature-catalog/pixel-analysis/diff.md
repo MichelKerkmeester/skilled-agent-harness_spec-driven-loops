@@ -6,7 +6,7 @@ trigger_phrases:
   - "what changed between these two screenshots"
   - "sk_vision_diff"
   - "compare two images"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Image diffing (sk_vision_diff)
@@ -39,7 +39,7 @@ Identical images report zero percent changed. A missing file on either side rais
 |---|---|---|
 | `vision-runtime/src/providers/photon.ts` | Handler | Provider `diff` method and dual-source resolution |
 | `vision-runtime/python/runtime.py` | Script | `handle_diff` band-scan, composite, and description |
-| `pi/sk-vision.ts` | Handler | `sk_vision_diff` registration and `otherPath`/`otherImage` parsing |
+| `hooks/pi/sk-vision.ts` | Handler | `sk_vision_diff` registration and `otherPath`/`otherImage` parsing |
 
 ### Validation And Tests
 

@@ -6,7 +6,7 @@ trigger_phrases:
   - "is the vision model loaded"
   - "sk_vision_status"
   - "check the vision runtime health"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Runtime status (sk_vision_status)
@@ -35,7 +35,7 @@ Because status never loads the model, it is cheap to call and safe to run at any
 |---|---|---|
 | `vision-runtime/src/providers/photon.ts` | Handler | Provider `health` method |
 | `vision-runtime/python/runtime.py` | Script | `handle_status` model state, device, and GPU collection |
-| `pi/sk-vision.ts` | Handler | `sk_vision_status` registration and rendering |
+| `hooks/pi/sk-vision.ts` | Handler | `sk_vision_status` registration and rendering |
 
 ### Validation And Tests
 

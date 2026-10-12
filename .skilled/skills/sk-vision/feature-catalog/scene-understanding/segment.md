@@ -6,7 +6,7 @@ trigger_phrases:
   - "cut out the logo from this image"
   - "sk_vision_segment"
   - "isolate an element"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Object segmentation (sk_vision_segment)
@@ -39,7 +39,7 @@ The task gate catches unsupported models early, and analysis failures render as 
 |---|---|---|
 | `vision-runtime/src/providers/photon.ts` | Handler | Provider `segment` method |
 | `vision-runtime/python/runtime.py` | Script | `handle_segment` with the `_require_task` gate |
-| `pi/sk-vision.ts` | Handler | `sk_vision_segment` registration and rendering |
+| `hooks/pi/sk-vision.ts` | Handler | `sk_vision_segment` registration and rendering |
 
 ### Validation And Tests
 

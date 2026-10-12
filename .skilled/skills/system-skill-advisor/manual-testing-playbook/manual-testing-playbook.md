@@ -1,7 +1,7 @@
 ---
 title: "Skill Advisor: Manual Testing Playbook"
 description: "Canonical sk-doc manual testing playbook for the Skill Advisor manual scenario corpus across the native command surface, runtime hooks, compatibility, daemon state, indexing, lifecycle, scorer and Python compatibility workflows."
-version: 0.8.0.16
+version: 0.8.1.0
 ---
 
 # Skill Advisor: Manual Testing Playbook
@@ -310,9 +310,9 @@ The active inventory check lives at `.skilled/skills/system-skill-advisor/runtim
 
 | Area | Automated test anchors |
 |---|---|
-| Native command surface | `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts`; `.skilled/skills/system-spec-kit/runtime/tests/advisor-rebuild.vitest.ts` |
-| Hooks and plugin | `.skilled/skills/system-skill-advisor/runtime/tests/hooks/settings-driven-invocation-parity.vitest.ts`; `.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-runtime-parity.vitest.ts`; `.skilled/plugins/tests/opencode-goal-state.test.cjs`; `.skilled/plugins/tests/opencode-goal-continuation.test.cjs` |
-| Compatibility and Python entrypoints | `.skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts`; `.skilled/skills/system-spec-kit/runtime/tests/tool-input-schema.vitest.ts` |
+| Native command surface | `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts`; `.skilled/skills/system-skill-advisor/runtime/tests/advisor-rebuild.vitest.ts` |
+| Hooks and plugin | `.skilled/skills/system-skill-advisor/runtime/tests/hooks/settings-driven-invocation-parity.vitest.ts`; `.skilled/skills/system-skill-advisor/runtime/tests/hooks/runtime-parity.vitest.ts`; `.skilled/plugins/tests/opencode-goal-state.test.cjs`; `.skilled/plugins/tests/opencode-goal-continuation.test.cjs` |
+| Compatibility and Python entrypoints | `.skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts` |
 | Scoring, lifecycle, indexing and daemon state | `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts`; `.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-privacy.vitest.ts` |
 
 Validator limitation: `validate_document.py` validates this root document and per-feature documents individually, but it does not prove that every command can execute in the current sandbox. Operators must capture execution evidence during release review.

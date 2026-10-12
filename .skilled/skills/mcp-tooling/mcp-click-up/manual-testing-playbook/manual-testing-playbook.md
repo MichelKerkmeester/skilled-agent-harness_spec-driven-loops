@@ -1,7 +1,7 @@
 ---
 title: "mcp-click-up: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the mcp-click-up skill. Covers all 111 features across cupt CLI and the official ClickUp MCP."
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # mcp-click-up: Manual Testing Playbook
@@ -823,15 +823,15 @@ must route to `UNKNOWN_FALLBACK` with no loaded resource.
 
 | Test Module | Coverage |
 |-------------|---------|
-| `cupt/test_tasks.py` | Task listing, filtering, show, done, statuses |
-| `cupt/test_auth.py` | Auth flow, token handling, logout |
-| `cupt/test_time_tracker.py` | Timer start/stop/add/status |
-| `cupt/test_notes.py` | Note add, notes list |
-| `cupt/test_tags.py` | Tag add/remove |
-| `cupt/test_config.py` | Config show, workspace/list defaults, clear-cache |
-| `cupt/test_attachments.py` | Attach list, add, get |
+| `test_tasks.py` | Task listing, filtering, show, done, statuses |
+| `test_auth.py` | Auth flow, token handling, logout |
+| `test_time_tracker.py` | Timer start/stop/add/status |
+| `test_notes.py` | Note add, notes list |
+| `test_tags.py` | Tag add/remove |
+| `test_config.py` | Config show, workspace/list defaults, clear-cache |
+| `test_attachments.py` | Attach list, add, get |
 
-All test modules are at 86% coverage per the cupt upstream repo.
+These test modules live under `cupt/` in the upstream [cupt repository](https://github.com/newz2000/cupt), not in this repo. All of them are at 86% coverage per that repository.
 
 ---
 
@@ -839,41 +839,41 @@ All test modules are at 86% coverage per the cupt upstream repo.
 
 | ID | Feature | Category | Catalog File |
 |----|---------|---------|-------------|
-| CU-001 | Version check | cupt Auth | `cupt-global-flags/version-flag.md` |
-| CU-002 | Interactive auth | cupt Auth | `cupt-authentication/interactive-auth.md` |
-| CU-007 | Auth status | cupt Auth | `cupt-authentication/auth-status.md` |
-| CU-008 | Logout | cupt Auth | `cupt-authentication/logout.md` |
-| CU-009 | List assigned | cupt Listing | `cupt-task-listing/list-assigned.md` |
-| CU-010 | Filter today | cupt Listing | `cupt-task-listing/filter-today.md` |
-| CU-011 | Filter tag | cupt Listing | `cupt-task-listing/filter-tag.md` |
-| CU-012 | JSON output | cupt Listing | `cupt-task-listing/json-output.md` |
-| CU-013 | Exclude tag | cupt Listing | `cupt-task-listing/exclude-tag.md` |
-| CU-014 | Cap results | cupt Listing | `cupt-task-listing/cap-results.md` |
-| CU-015 | Verbose output | cupt Listing | `cupt-task-listing/verbose.md` |
-| CU-016 | Stacked filters | cupt Listing | `cupt-task-listing/stacked-filters.md` |
-| CU-017 | Show task | cupt Details | `cupt-task-details/show-task.md` |
-| CU-019 | Task context | cupt Details | `cupt-task-details/task-context.md` |
-| CU-021 | Status schema | cupt Details | `cupt-task-details/status-schema.md` |
-| CU-022 | Status by list | cupt Details | `cupt-task-details/status-by-list.md` |
-| CU-023 | Dry-run | cupt Completion | `cupt-task-completion/dry-run.md` |
-| CU-024 | Mark complete | cupt Completion | `cupt-task-completion/mark-complete.md` |
-| CU-025 | Complete+note | cupt Completion | `cupt-task-completion/complete-with-note.md` |
-| CU-027 | Add comment | cupt Notes | `cupt-notes-comments/add-comment.md` |
-| CU-029 | Timer lifecycle | cupt Time | `cupt-time-tracking/start-timer.md` |
-| CU-030 | Log time | cupt Time | `cupt-time-tracking/log-manual.md` |
-| CU-031 | Clear cache | cupt Config | `cupt-authentication/clear-cache.md` |
-| CU-034 | Empty queue | Recovery | `cupt-task-listing/list-assigned.md` |
-| MCP-H001 | Create Task via MCP | MCP Task CRUD | `mcp-high-priority/create-task.md` |
-| MCP-H002 | Get Task via MCP | MCP Task CRUD | `mcp-high-priority/get-task.md` |
-| MCP-H003 | Update Task via MCP | MCP Task CRUD | `mcp-high-priority/update-task.md` |
-| MCP-H004 | Delete Task via MCP (DESTRUCTIVE) | MCP Task CRUD | `mcp-high-priority/delete-task.md` |
-| MCP-H005 | Filter Tasks via MCP | MCP Task CRUD | `mcp-high-priority/filter-tasks.md` |
-| MCP-H006 | Get Workspace Hierarchy (CRITICAL PATH) | MCP Task CRUD | `mcp-high-priority/get-workspace-hierarchy.md` |
-| MCP-H007 | Task Comments via MCP | MCP Task CRUD | `mcp-high-priority/create-comment.md` |
-| MCP-H009 | Search the Workspace via MCP | MCP Task CRUD | `mcp-high-priority/search.md` |
-| MCP-M015 | Create Document (CRITICAL PATH) | MCP Documents | `mcp-medium-priority/create-document.md` |
-| MCP-M016 | Read Document Pages | MCP Documents | `mcp-low-priority/list-document-pages.md` |
-| MCP-M017 | Create Document Page | MCP Documents | `mcp-low-priority/create-doc-page.md` |
-| MCP-M018 | Append to a Document Page | MCP Documents | `mcp-low-priority/update-doc-page.md` |
-| MCP-M007 | Create a List | MCP Structure | `mcp-medium-priority/create-list.md` |
-| MCP-L019 | Set a Custom Field Value | MCP Structure | `mcp-low-priority/get-custom-fields.md` |
+| CU-001 | Version check | cupt Auth | `../feature-catalog/cupt-global-flags/version-flag.md` |
+| CU-002 | Interactive auth | cupt Auth | `../feature-catalog/cupt-authentication/interactive-auth.md` |
+| CU-007 | Auth status | cupt Auth | `../feature-catalog/cupt-authentication/auth-status.md` |
+| CU-008 | Logout | cupt Auth | `../feature-catalog/cupt-authentication/logout.md` |
+| CU-009 | List assigned | cupt Listing | `../feature-catalog/cupt-task-listing/list-assigned.md` |
+| CU-010 | Filter today | cupt Listing | `../feature-catalog/cupt-task-listing/filter-today.md` |
+| CU-011 | Filter tag | cupt Listing | `../feature-catalog/cupt-task-listing/filter-tag.md` |
+| CU-012 | JSON output | cupt Listing | `../feature-catalog/cupt-task-listing/json-output.md` |
+| CU-013 | Exclude tag | cupt Listing | `../feature-catalog/cupt-task-listing/exclude-tag.md` |
+| CU-014 | Cap results | cupt Listing | `../feature-catalog/cupt-task-listing/cap-results.md` |
+| CU-015 | Verbose output | cupt Listing | `../feature-catalog/cupt-task-listing/verbose.md` |
+| CU-016 | Stacked filters | cupt Listing | `../feature-catalog/cupt-task-listing/stacked-filters.md` |
+| CU-017 | Show task | cupt Details | `../feature-catalog/cupt-task-details/show-task.md` |
+| CU-019 | Task context | cupt Details | `../feature-catalog/cupt-task-details/task-context.md` |
+| CU-021 | Status schema | cupt Details | `../feature-catalog/cupt-task-details/status-schema.md` |
+| CU-022 | Status by list | cupt Details | `../feature-catalog/cupt-task-details/status-by-list.md` |
+| CU-023 | Dry-run | cupt Completion | `../feature-catalog/cupt-task-completion/dry-run.md` |
+| CU-024 | Mark complete | cupt Completion | `../feature-catalog/cupt-task-completion/mark-complete.md` |
+| CU-025 | Complete+note | cupt Completion | `../feature-catalog/cupt-task-completion/complete-with-note.md` |
+| CU-027 | Add comment | cupt Notes | `../feature-catalog/cupt-notes-comments/add-comment.md` |
+| CU-029 | Timer lifecycle | cupt Time | `../feature-catalog/cupt-time-tracking/start-timer.md` |
+| CU-030 | Log time | cupt Time | `../feature-catalog/cupt-time-tracking/log-manual.md` |
+| CU-031 | Clear cache | cupt Config | `../feature-catalog/cupt-authentication/clear-cache.md` |
+| CU-034 | Empty queue | Recovery | `../feature-catalog/cupt-task-listing/list-assigned.md` |
+| MCP-H001 | Create Task via MCP | MCP Task CRUD | `../feature-catalog/mcp-high-priority/create-task.md` |
+| MCP-H002 | Get Task via MCP | MCP Task CRUD | `../feature-catalog/mcp-high-priority/get-task.md` |
+| MCP-H003 | Update Task via MCP | MCP Task CRUD | `../feature-catalog/mcp-high-priority/update-task.md` |
+| MCP-H004 | Delete Task via MCP (DESTRUCTIVE) | MCP Task CRUD | `../feature-catalog/mcp-high-priority/delete-task.md` |
+| MCP-H005 | Filter Tasks via MCP | MCP Task CRUD | `../feature-catalog/mcp-high-priority/filter-tasks.md` |
+| MCP-H006 | Get Workspace Hierarchy (CRITICAL PATH) | MCP Task CRUD | `../feature-catalog/mcp-high-priority/get-workspace-hierarchy.md` |
+| MCP-H007 | Task Comments via MCP | MCP Task CRUD | `../feature-catalog/mcp-high-priority/create-comment.md` |
+| MCP-H009 | Search the Workspace via MCP | MCP Task CRUD | `../feature-catalog/mcp-high-priority/search.md` |
+| MCP-M015 | Create Document (CRITICAL PATH) | MCP Documents | `../feature-catalog/mcp-medium-priority/create-document.md` |
+| MCP-M016 | Read Document Pages | MCP Documents | `../feature-catalog/mcp-low-priority/list-document-pages.md` |
+| MCP-M017 | Create Document Page | MCP Documents | `../feature-catalog/mcp-low-priority/create-doc-page.md` |
+| MCP-M018 | Append to a Document Page | MCP Documents | `../feature-catalog/mcp-low-priority/update-doc-page.md` |
+| MCP-M007 | Create a List | MCP Structure | `../feature-catalog/mcp-medium-priority/create-list.md` |
+| MCP-L019 | Set a Custom Field Value | MCP Structure | `../feature-catalog/mcp-low-priority/get-custom-fields.md` |

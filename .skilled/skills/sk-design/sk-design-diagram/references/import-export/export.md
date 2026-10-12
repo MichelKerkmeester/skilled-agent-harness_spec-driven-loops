@@ -10,7 +10,7 @@ trigger_phrases:
   - "manual export never automatic"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.9
+version: 1.2.1.0
 ---
 
 # Export to PNG / SVG
@@ -149,7 +149,7 @@ If the target aspect ratio doesn't match the `viewBox` aspect ratio, say so and 
 
 ## 6. EDGE CASES
 
-- **Source is `assets/index.html`** (the gallery, multiple SVGs in one file): refuse the export and ask the user which specific diagram file they meant. Don't guess.
+- **Source holds more than one `<svg>` block** (a gallery page with several diagrams in one file): refuse the export and ask the user which specific diagram file they meant. Don't guess.
 - **No `<svg>` block found**: the source isn't a diagram file. Tell the user; don't write anything.
 - **Surrounding HTML matters to the user**: they want cards/header in the image. Tell them this skill exports diagrams only, and recommend a browser-based full-page screenshot (or a separate PDF print).
 - **Source is missing fonts at runtime**: Playwright will substitute, the screenshot will look off. Check that the source HTML has the `<link href="...fonts.googleapis.com...">` tag in `<head>`. If absent, the file isn't from a current template — fix the source rather than working around it in export.

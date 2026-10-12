@@ -1,7 +1,7 @@
 ---
 title: "sk-design-diagram: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the sk-design-diagram workflow packet in the sk-design hub."
-version: 1.0.0.5
+version: 1.0.1.0
 ---
 
 # sk-design-diagram: Manual Testing Playbook
@@ -357,7 +357,7 @@ Prompt: `Capture assets/diagrams/swimlane.html at scale 1 and review the settled
 |---|---|---|
 | `scripts/drawio_extract.py` | draw.io IR extraction, digest, budget flags | IMP-001 |
 | `scripts/mermaid_extract.py` | Mermaid IR extraction, digest, supported kinds | IMP-002 |
-| `sk-create-skill/scripts/validate_skill_package.py` | Packet structure and metadata invariants | CMD-002 |
+| `.skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py` | Packet structure and metadata invariants | CMD-002 |
 
 Note: `sk-design-diagram` ships no committed automated feature test suite. The two extraction scripts are executable tooling exercised directly by the import scenarios, and the packet-structure validator is a packaging gate, not a feature test. This playbook is the operator-facing manual equivalent and does not claim otherwise.
 

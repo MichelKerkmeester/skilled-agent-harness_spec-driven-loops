@@ -1,7 +1,7 @@
 ---
 title: "cli-cursor: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-scenario validation files for the cli-cursor skill."
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # cli-cursor: Manual Testing Playbook
@@ -220,7 +220,7 @@ Verify the guard checks `cursor-agent about` output text for auth state, never t
 
 Prompt: `Confirm the cli-cursor auth guard keys on cursor-agent about output text, not exit code, citing the historical live-verified auth-fail-exit-0 evidence and the current session's authenticated state.`
 
-Expected signals: Phase 001's `implementation-summary.md` shows the historical live evidence on this same machine (`cursor-agent about` → `User Email: Not logged in`; `cursor-agent -p` → `Error: Authentication required...`; exit code `0`). The current `cursor-agent about` shows a real email (Pro tier), demonstrating the guard's positive branch. SKILL.md's Provider Auth Pre-Flight block great checks output text (`grep -qi "not logged in"`), never exit code.
+Expected signals: The retained historical evidence from this same machine shows (`cursor-agent about` → `User Email: Not logged in`; `cursor-agent -p` → `Error: Authentication required...`; exit code `0`). The current `cursor-agent about` shows a real email (Pro tier), demonstrating the guard's positive branch. SKILL.md's Provider Auth Pre-Flight block great checks output text (`grep -qi "not logged in"`), never exit code.
 
 Desired user-visible outcome: An auditable trail proving the guard is text-based, not exit-code-based, without requiring a destructive `cursor-agent logout` on the operator's authenticated machine.
 
@@ -466,7 +466,7 @@ Verify `beforeSubmitPrompt` and `stop` do NOT fire under `cursor-agent -p`, and 
 
 Prompt: `In the same isolated temp workspace, wire beforeSubmitPrompt and stop to the logging probe alongside a full dispatch round trip, and confirm neither event fires.`
 
-Expected signals: The probe log shows zero entries for `beforeSubmitPrompt` and zero for `stop` across the full session. `../../../../system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs` exists and its `README.md` documents it as dormant. `../../../../system-spec-kit/runtime/hooks/cursor/README.md` states the non-delivery finding explicitly.
+Expected signals: The probe log shows zero entries for `beforeSubmitPrompt` and zero for `stop` across the full session. `../../../system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs` exists and its `README.md` documents it as dormant. `../../../system-spec-kit/runtime/hooks/cursor/README.md` states the non-delivery finding explicitly.
 
 Desired user-visible outcome: A reproduced confirmation of the documented gap, so no future adapter silently assumes advisory Gate-3 classification is reachable via `beforeSubmitPrompt` when it is not.
 

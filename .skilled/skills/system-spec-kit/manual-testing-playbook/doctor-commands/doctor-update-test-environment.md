@@ -1,7 +1,7 @@
 ---
 title: "DOC-379 -- Doctor update test environment"
 description: "Manual scenario validating that the long-lived /doctor:update fixture worktree classifies its four fixture units as customized, local, conflict and removed, and returns to its committed state after an apply and rollback."
-version: 1.0.1.0
+version: 1.0.2.0
 id: doctor-commands-doctor-update-test-environment
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -16,7 +16,7 @@ This scenario validates the shared fixture that DOC-357 to DOC-361 run against. 
 When the fixture is missing, rebuild it from the main checkout before running this scenario:
 
 1. `bash .skilled/skills/sk-git/scripts/worktree-naming.sh create doctor-update-test-environment v4.0.0.0 --no-provision`, then `ln -s <numbered directory> .worktrees/.doctor-update-test-environment`.
-2. Copy the current `.skilled/commands/doctor/update.md`, `.skilled/commands/doctor/_routes.yaml`, `.skilled/commands/doctor/scripts/release-update.cjs`, `.skilled/commands/doctor/assets/doctor-update-presentation.txt` and the five `.skilled/commands/doctor/assets/doctor-update-*.yaml` files from the checkout into the fixture at the same paths, plus `.skilled/release/.gitignore`, and commit.
+2. Copy the current `.skilled/commands/doctor/update.md`, `.skilled/commands/doctor/_routes.yaml`, `.skilled/commands/doctor/scripts/release-update.cjs`, `.skilled/commands/doctor/assets/doctor-update-presentation.txt` and the six `.skilled/commands/doctor/assets/doctor-update-*.yaml` files from the checkout into the fixture at the same paths, plus `.skilled/release/.gitignore`, and commit.
 3. Add a line to `.skilled/skills/sk-code/sk-code-webflow/SKILL.md`, create a `SKILL.md` in a new `.skilled/skills/sk-code/sk-code-web-dev/` folder, and commit.
 4. Replace `.skilled/skills/sk-git/` with the 10 files of the Barter sk-git snapshot from the main checkout's `barter/ai-speckit/coder-backup/ai-speckit-main/coder/.opencode/skills/sk-git/`, and commit.
 5. Run `node .skilled/commands/doctor/scripts/release-update.cjs record-base --repo . --release v4.0.0.0 --offline --trust-release --json` and commit `.skilled/release/base.json`.
