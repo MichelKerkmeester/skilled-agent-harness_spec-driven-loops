@@ -1,5 +1,5 @@
 {
-  "manifestHash": "b1d40ce6f5a74b42e922344e00afa566dc86710961f471ab1118134318c4f855",
+  "manifestHash": "030f7a97651c1ed94ea1a76758dbec18202cdba83aa5de570ee111883d77401a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -18063,6 +18063,9 @@
     "classifier rpc summary": [
       "classifier RPC summary"
     ],
+    "classifier shared helpers": [
+      "classifier shared helpers"
+    ],
     "classifier surface router": [
       "classifier surface router"
     ],
@@ -18611,6 +18614,9 @@
     ],
     "cli classifier shared scripts": [
       "cli-classifier shared scripts"
+    ],
+    "cli classifier shared tier": [
+      "cli-classifier shared tier"
     ],
     "cli classifier two modes": [
       "cli-classifier two modes"
@@ -24159,6 +24165,9 @@
     "command frontmatter tips": [
       "command frontmatter tips"
     ],
+    "command injection rollout": [
+      "command injection rollout"
+    ],
     "command md yaml alignment": [
       "command md yaml alignment"
     ],
@@ -27706,8 +27715,14 @@
     "create diff readme layout": [
       "create-diff readme layout"
     ],
+    "create diff references": [
+      "create-diff references"
+    ],
     "create diff report accessibility": [
       "create-diff report accessibility"
+    ],
+    "create diff route map": [
+      "create-diff route map"
     ],
     "create diff scripts": [
       "create-diff scripts"
@@ -28330,6 +28345,9 @@
     ],
     "cross packet reconciliation session": [
       "cross packet reconciliation session"
+    ],
+    "cross packet standards": [
+      "cross-packet standards"
     ],
     "cross platform embedding backend": [
       "cross-platform embedding backend"
@@ -35131,6 +35149,9 @@
     "design md diagram delivery": [
       "design-md diagram delivery"
     ],
+    "design md exemplars": [
+      "design md exemplars"
+    ],
     "design md feature catalog": [
       "design md feature catalog"
     ],
@@ -36833,6 +36854,9 @@
     ],
     "doc version auto bump": [
       "doc version auto bump"
+    ],
+    "doc version bump rule": [
+      "doc version bump rule"
     ],
     "doc version contract": [
       "doc version contract"
@@ -65137,6 +65161,9 @@
     "note database container root inheritance": [
       "note-database-container root inheritance"
     ],
+    "note database plugin evidence": [
+      "note database plugin evidence"
+    ],
     "note database plugin gate baseline": [
       "note database plugin gate baseline"
     ],
@@ -65895,6 +65922,9 @@
     ],
     "obsidian plugin code standards summary": [
       "obsidian plugin code standards summary"
+    ],
+    "obsidian plugin conventions": [
+      "obsidian plugin conventions"
     ],
     "obsidian plugin coverage remediation": [
       "obsidian plugin coverage remediation"
@@ -69649,7 +69679,11 @@
     "per doc quality sla tasks": [
       "per doc quality sla tasks"
     ],
+    "per doc version": [
+      "per-doc version"
+    ],
     "per doc version contract": [
+      "per doc version contract",
       "per-doc version contract"
     ],
     "per doc version removal": [
@@ -83223,6 +83257,9 @@
     "rollout flip tooling tasks": [
       "rollout flip tooling tasks"
     ],
+    "rollout mode": [
+      "rollout mode"
+    ],
     "rollout policy dead module": [
       "rollout policy dead module"
     ],
@@ -88583,6 +88620,9 @@
     "shared utilities": [
       "shared utilities"
     ],
+    "shared validators": [
+      "shared validators"
+    ],
     "shared vs handler local readiness vocabulary": [
       "shared vs handler-local readiness vocabulary"
     ],
@@ -89750,6 +89790,9 @@
     ],
     "sk code no ephemeral pointers": [
       "sk-code no ephemeral pointers"
+    ],
+    "sk code obsidian": [
+      "sk-code-obsidian"
     ],
     "sk code obsidian 0 1 0 0": [
       "sk-code-obsidian 0.1.0.0"
@@ -91608,6 +91651,9 @@
     "sk doc 2 3 6 0": [
       "sk-doc 2.3.6.0"
     ],
+    "sk doc 2 3 7 0": [
+      "sk-doc 2.3.7.0"
+    ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
     ],
@@ -91788,6 +91834,9 @@
     "sk doc section dividers": [
       "sk-doc section dividers"
     ],
+    "sk doc shared backbone": [
+      "sk-doc shared backbone"
+    ],
     "sk doc sk code drift findings": [
       "sk-doc sk-code drift findings"
     ],
@@ -91910,6 +91959,9 @@
     ],
     "sk doc v2 3 6 0": [
       "sk-doc v2.3.6.0"
+    ],
+    "sk doc v2 3 7 0": [
+      "sk-doc v2.3.7.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"
@@ -92823,6 +92875,9 @@
     "sk vision hook adapter tasks": [
       "sk-vision hook adapter tasks"
     ],
+    "sk vision hooks": [
+      "sk-vision hooks"
+    ],
     "sk vision hooks four hosts": [
       "sk-vision hooks four hosts"
     ],
@@ -92843,6 +92898,9 @@
     ],
     "sk vision host adapter findings fixes tasks": [
       "sk-vision host-adapter findings fixes tasks"
+    ],
+    "sk vision host adapters": [
+      "sk-vision host adapters"
     ],
     "sk vision host registration scope": [
       "sk-vision host registration scope"
@@ -97263,6 +97321,9 @@
     "spec residue cleanup": [
       "spec residue cleanup"
     ],
+    "spec root alias retirement": [
+      "spec root alias retirement"
+    ],
     "spec root collision guard": [
       "spec root collision guard"
     ],
@@ -97946,6 +98007,9 @@
     ],
     "speckit worktreebase config": [
       "speckit worktreeBase config"
+    ],
+    "specs alias runbook": [
+      "specs alias runbook"
     ],
     "specs folder outside opencode": [
       "specs folder outside opencode"
@@ -99649,6 +99713,9 @@
     "style reference chart": [
       "style reference chart"
     ],
+    "style reference output examples": [
+      "style reference output examples"
+    ],
     "style reference owns its colour": [
       "style reference owns its colour"
     ],
@@ -99981,6 +100048,9 @@
     ],
     "superseded bge promotion arc": [
       "superseded BGE promotion arc"
+    ],
+    "superseded runbook": [
+      "superseded runbook"
     ],
     "supersedes burst auto cap": [
       "supersedes burst auto cap"
