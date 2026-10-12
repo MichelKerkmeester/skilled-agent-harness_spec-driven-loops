@@ -5,7 +5,8 @@
   "parent_id": "sk-code/011-sk-code-poinytail-based-refinement",
   "children_ids": [
     "sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions",
-    "sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair"
+    "sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair",
+    "sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs"
   ],
   "manual": {
     "depends_on": [],
@@ -37,13 +38,14 @@
       "packet"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md",
       ".skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
       "001-per-doc-versions/goal.md",
-      "002-playbook-path-repair/goal.md"
+      "002-playbook-path-repair/goal.md",
+      "003-playbook-root-and-stale-refs/goal.md"
     ],
     "entities": [
       {
@@ -71,6 +73,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -90,12 +98,6 @@
       },
       {
         "name": "Problem Statement Phase",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Restore",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -139,17 +141,17 @@
     ],
     "causal_summary": "Phase `021-open-ends-remediation/003-doc-and-catalog-truth` kept `version` on `SKILL.md` only and removed the line from 2,845 child docs in commit 31888d05bb",
     "created_at": "2026-10-12T05:21:01Z",
-    "last_save_at": "2026-10-12T08:21:47.525Z",
+    "last_save_at": "2026-10-12T09:46:03.626Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:e743bf7f5f331532b6dc24ae725bd418757d928b9052d36e03f9a045e0f6186f",
+    "source_fingerprint": "sha256:9ac5a79588f8a86b4c50f434bd32c9236a6a3b4d6a1b932ba711085cb554e16d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8c496e30124d75df7f7f324dff603629e353b71ad8c0e8f8fcbe487ba9c61ba7"
+      "spec.md": "ade1286d209dd0ff1195bee34ecb58074c2c9a2381a8a3b653e8b24c0a9d302b"
     },
     "last_active_child_id": "sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair",
     "last_active_at": "2026-10-12T07:16:11.032Z"

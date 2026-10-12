@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Doc version and playbook paths"
-description: "Phase parent for two build phases: every skill doc carries its own version again, raised automatically, and every unresolved backticked playbook path is corrected or explained."
+description: "Phase parent for three build phases: every skill doc carries its own version again, raised automatically, every unresolved backticked playbook path is corrected or explained, and root playbook files are checked too."
 trigger_phrases:
   - "doc version and playbook paths phase parent spec"
   - "doc version and playbook paths"
@@ -37,7 +37,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-10-12 |
 | **Branch** | `worktrees/117-docver-scaffold` (scaffold); each child builds in its own worktree branched from the scaffold commit |
 | **Parent Spec** | `../spec.md` |
@@ -69,6 +69,7 @@ Restore a per-doc version that is raised automatically whenever a doc's content 
 ### In Scope
 - 001: the per-doc version contract, its engine, a pre-commit auto-bump, a pull-request check, the template seeds and the restore of the removed lines, 8 ledger rows.
 - 002: every `BACKTICK_PATH_UNRESOLVED` warning the playbook validator prints, one ledger row per playbook package plus a validator row, 29 ledger rows.
+- 003: the validator checks root playbook files too, the 70 root warnings that finds, and six stale references 002 left as found, 20 ledger rows.
 
 ### Out of Scope
 - Making the backticked path warnings blocking. They stay report-only, as decision D2 of `021-open-ends-remediation/003-doc-and-catalog-truth/goal.md` says.
@@ -93,6 +94,7 @@ Restore a per-doc version that is raised automatically whenever a doc's content 
 |-------|--------|-------|--------|
 | 1 | 001-per-doc-versions/ | Every skill doc carries its own 4-part version, raised by the pre-commit hook and checked on pull requests; the removed lines restored | Complete |
 | 2 | 002-playbook-path-repair/ | Every unresolved backticked playbook path corrected, removed or rewritten, or listed with its reason | Complete |
+| 3 | 003-playbook-root-and-stale-refs/ | The validator checks root playbook files too, their unresolved paths corrected or explained, and six stale references fixed | In Progress |
 
 ### Phase Transition Rules
 
@@ -106,6 +108,7 @@ Restore a per-doc version that is raised automatically whenever a doc's content 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | 001-per-doc-versions | 002-playbook-path-repair | None for the build; the two children are independent and build in parallel. After both merge, the integrator runs 001's bump over the docs 002 changed | Each child's goal criteria |
+| 002-playbook-path-repair | 003-playbook-root-and-stale-refs | 002 merged on main; 003 builds from origin/main in its own worktree | 003 `goal.md` criteria |
 <!-- /ANCHOR:phase-map -->
 
 ---

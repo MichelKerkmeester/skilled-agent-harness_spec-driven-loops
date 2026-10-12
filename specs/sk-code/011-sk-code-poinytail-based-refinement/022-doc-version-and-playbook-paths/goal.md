@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Give every skill doc its own automatically raised version again, and resolve or explain every unresolved backticked playbook path.
+**Objective:** Give every skill doc its own automatically raised version again, and resolve or explain every unresolved backticked playbook path, root files included.
 
 ### Decisions
 
@@ -64,6 +64,7 @@ phase and binds as if written here.
 |-------|---------------|
 | 001-per-doc-versions | `001-per-doc-versions/goal.md` |
 | 002-playbook-path-repair | `002-playbook-path-repair/goal.md` |
+| 003-playbook-root-and-stale-refs | `003-playbook-root-and-stale-refs/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -77,11 +78,11 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] `cat specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/00*/implementation-summary.md | grep -cE '^\| (PV-R[0-9]+|PP-([0-9]+|V)) \| (Fixed|Closed) \|'`, run from the repository root, prints 37.
-- [x] `grep -l 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/00*/implementation-summary.md | wc -l | tr -d ' '`, run from the repository root, prints 2.
-- [x] `for c in specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/00*/; do node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs $c | tail -1; done | grep -c 'RESULT: PASSED'`, run from the repository root, prints 2.
-- [x] `node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs verify`, run from the repository root after both children merge, exits 0.
-- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths --recursive --strict`, run from the repository root, prints `RESULT: PASSED` 3 times and `RESULT: FAILED` 0 times.
+- [ ] `cat specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/00*/implementation-summary.md | grep -cE '^\| (PV-R[0-9]+|PP-([0-9]+|V)|RR-(1|2\.[0-9]{2})|SR-[1-6]) \| (Fixed|Closed) \|'`, run from the repository root, prints 57.
+- [ ] `grep -l 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/00*/implementation-summary.md | wc -l | tr -d ' '`, run from the repository root, prints 3.
+- [ ] `for c in specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/00*/; do node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs $c | tail -1; done | grep -c 'RESULT: PASSED'`, run from the repository root, prints 3.
+- [ ] `node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs verify`, run from the repository root after both children merge, exits 0.
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths --recursive --strict`, run from the repository root, prints `RESULT: PASSED` 4 times and `RESULT: FAILED` 0 times.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -106,5 +107,5 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
-| Ledger total 37 | 001 has 8 rows (PV-R1 to PV-R8); 002 has 28 package rows and the validator row PP-V |
+| Ledger total 57 | 001 has 8 rows (PV-R1 to PV-R8); 002 has 28 package rows and the validator row PP-V; 003 has RR-1, RR-2.01 to RR-2.13 and SR-1 to SR-6 |
 <!-- /ANCHOR:log -->
