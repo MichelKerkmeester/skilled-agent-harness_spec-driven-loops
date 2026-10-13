@@ -1484,6 +1484,8 @@ bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
 node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<a prompt about your stack>"
 ```
 
+`/doctor:sk-code setup` runs these legs in one read-only pass, adds the derived-metadata freshness check CI runs and a provisioning precheck, fails the route probe when it returns the legacy stub, and prints one repair command for each failing leg. Outside an AI runtime, run `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs`.
+
 The other shipped skills keep working unchanged: `sk-doc` still validates your markdown, `sk-git` still manages your branches, `system-spec-kit` still specs your work. `sk-code`'s `code-review` mode auto-adapts to your customized surfaces at review time.
 
 &nbsp;

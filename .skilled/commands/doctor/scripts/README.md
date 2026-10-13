@@ -38,6 +38,7 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 +-- route-validate.py
 +-- route-validate.sh
 +-- release-update.cjs
++-- sk-code-setup-check.cjs
 +-- skill-graph-freshness.cjs
 +-- tests/            # one suite per script, plus run-all.sh
 `-- README.md
@@ -57,6 +58,7 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 | `parent-skill-check.cjs` | Audits parent skill hubs against structural and routing invariants. |
 | `release-update.cjs` | Plans, aligns, applies, rolls back and records framework release bases for the five `/doctor:update` workflows. |
 | `skill-graph-freshness.cjs` | Compares compiled, SQLite and on-disk skill graph representations without writing. |
+| `sk-code-setup-check.cjs` | Runs the sk-code setup battery from a repository root: one verdict per setup leg, one repair command per failing leg, and no writes. |
 | `audit_descriptions.py` | Audits description lengths across skills, commands and agents. |
 | `agent-roster-mirror-check.cjs` | Verifies every canonical agent reaches all five runtime surfaces, and that mirror surfaces stay symlinked rather than forked. |
 | `git-hook-gates.cjs` | Lists the shipped hook gates from `scripts/git-hooks/lib/gates.tsv` with their saved `speckit.hooks.<key>` values, and sets or unsets one in local or global git config for `/doctor:git hooks`. Refuses the per-push approvals. |
