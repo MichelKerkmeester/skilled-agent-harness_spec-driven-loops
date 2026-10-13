@@ -1,0 +1,124 @@
+{
+  "topic": "Review: Commit 17bb342b1c on branch worktrees/125-surface-placement: the tieBreak insertion rule in the step_4 hub-router.json activity of both create-skill-parent YAML twins, the two step_6_completion follow-up lines (canary case plus fixture copy; commit with hooks or manual refresh and manifest copy), the same rule in parent-hub-router-schema.md and parent-skills-nested-packets.md, and the sk-create-skill v1.5.4.0 release (SKILL.md version, changelog entry, Hermes copy)",
+  "sessionId": "2026-10-13T05:59:30.000Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement",
+  "createdAt": "2026-10-13T05:59:30.000Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 570
+  },
+  "mode": "review",
+  "reviewTarget": "Commit 17bb342b1c on branch worktrees/125-surface-placement: the tieBreak insertion rule in the step_4 hub-router.json activity of both create-skill-parent YAML twins, the two step_6_completion follow-up lines (canary case plus fixture copy; commit with hooks or manual refresh and manifest copy), the same rule in parent-hub-router-schema.md and parent-skills-nested-packets.md, and the sk-create-skill v1.5.4.0 release (SKILL.md version, changelog entry, Hermes copy)",
+  "reviewTargetType": "files",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "stopPolicy": "max-iterations",
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    ".skilled/commands/create/assets/create-skill-parent-confirm.yaml",
+    ".skilled/commands/create/assets/create-skill-parent-auto.yaml",
+    ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md",
+    ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
+    ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
+    ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.4.0.md"
+  ],
+  "resource_map": {
+    "emit": true
+  }
+}
