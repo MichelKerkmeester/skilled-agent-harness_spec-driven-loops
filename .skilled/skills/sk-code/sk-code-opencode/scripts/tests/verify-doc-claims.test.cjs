@@ -237,3 +237,13 @@ test('a registry with two surface modes accepts two-surface wording and reports 
   assert.equal(fail.status, 1, fail.out);
   assert.match(fail.out, /count\.md:1: surface count "three surfaces" says 3, but mode-registry\.json declares 2 surface modes/);
 });
+
+test('a mode-registry.json that does not parse fails the surfaces check with a named problem', (t) => {
+  const hub = buildHub(t);
+  write(path.join(hub, 'mode-registry.json'), '{ "modes": [ \n');
+  const { status, out } = run(hub, 'surfaces');
+  assert.equal(status, 1, out);
+  assert.match(out, /FAIL check surfaces/);
+  assert.match(out, /mode-registry\.json does not parse/);
+  assert.match(out, /doc-claims: 0\/1 checks passed/);
+});

@@ -321,7 +321,14 @@ function checkNames(hub, docs) {
 function checkSurfaces(hub, docs) {
   const registryPath = path.join(hub, 'mode-registry.json');
   if (!fs.existsSync(registryPath)) return ['mode-registry.json not found, so the surface count is unknown'];
-  const declared = (JSON.parse(fs.readFileSync(registryPath, 'utf8')).modes || []).filter((m) => m && m.packetKind === 'surface').length;
+  let modes;
+  try {
+    modes = JSON.parse(fs.readFileSync(registryPath, 'utf8')).modes;
+  } catch (err) {
+    return [`mode-registry.json does not parse (${String(err.message).split('\n')[0]}), so the surface count is unknown`];
+  }
+  if (!Array.isArray(modes)) return ['mode-registry.json has no modes array, so the surface count is unknown'];
+  const declared = modes.filter((m) => m && m.packetKind === 'surface').length;
   const problems = [];
   for (const doc of docs) {
     for (const line of docLines(doc)) {
