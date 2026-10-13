@@ -23,7 +23,7 @@ contextType: "implementation"
 | **Priority** | P2 |
 | **Status** | Planned |
 | **Created** | 2026-10-13 |
-| **Branch** | Its own worktree branched from phase 002's finished branch, created as `goal.md` says |
+| **Branch** | Its own worktree from origin/main once phase 002 is on it, created as `goal.md` says |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 4 of 5 |
 | **Predecessor** | 003-example-tolerant-drift-guards |
@@ -41,7 +41,7 @@ This is **Phase 4** of the external surface priority build. It is the operator-a
 **Scope Boundary**: The 13a follower list and its test, the global version-copy list in both create-changelog YAML twins, and the enforcement paragraph of `frontmatter-versioning.md`.
 
 **Dependencies**:
-- Phase 002 edits `parent-skill-check.cjs` and `parent-skill-check-invariants.test.cjs` too, so this phase branches from 002's finished branch.
+- Phase 002 edits `parent-skill-check.cjs` and `parent-skill-check-invariants.test.cjs` too, so this phase starts from origin/main only after phase 002 is on it.
 
 **Deliverables**:
 - 13a compares only `description.json`, `hub-router.json` and `mode-registry.json` with `SKILL.md`.
@@ -136,7 +136,7 @@ The builder records `| VP-<n> | Fixed or Closed | <backticked proof, or the reas
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Risk | A doc still tells authors to sync `ROUTER.md` to the release | Low | The same-class inventory in task T002 |
-| Dependency | Phase 002's edits to the same two files | Med | Branch from 002's finished branch |
+| Dependency | Phase 002's edits to the same two files | Med | Start from origin/main after 002 is on it |
 <!-- /ANCHOR:risks -->
 
 ---

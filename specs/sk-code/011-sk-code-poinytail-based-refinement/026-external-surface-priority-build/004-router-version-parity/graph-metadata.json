@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`checkVersionParity` in `.skilled/commands/doctor/scripts/parent-skill-check.cjs` (around line 1839) lists `ROUTER.md` among the routing artifacts that must carry the `SKILL.md` version, and soft-fails 13a when it differs",
     "created_at": "2026-10-13T04:45:54Z",
-    "last_save_at": "2026-10-13T05:14:09.760Z",
+    "last_save_at": "2026-10-13T05:25:06.183Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:572ba545048333cff11b3f4ddaec99b5ac89f51222e88d3ae51cd49123d67b8e",
+    "source_fingerprint": "sha256:de21e2b61a1e042831699b83363c48a19fc82e2022e58cb941096124df916ced",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f9e9598caaa0f9057cf95d1598205a95eb1069eaef69378559540b45808a31dd",
+      "spec.md": "90b2650e7da0aa0cc1aaf2c6d65e219efba8744423e9ccba9897a683fe9ec73c",
       "plan.md": "372ae2fe7913bc1805775021a7471c90a1df0cb9e0c49b63c29173d68724b81a",
-      "tasks.md": "3053df3f6c393bd44b95416c96d200de684be66b080973b5f796f660c80f28cb",
+      "tasks.md": "f7d6f3aaf9234e5d1a8e485bcf02e93e705518c252306b3d73aa7ac1a8df601e",
       "implementation-summary.md": "4a1076dd3aacf2c97be158da4288ff78ca0b32d0b205c8233bea1b73637d5262"
     },
     "last_active_at": null

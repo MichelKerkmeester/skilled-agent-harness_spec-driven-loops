@@ -23,7 +23,7 @@ contextType: "implementation"
 | **Priority** | P1 |
 | **Status** | Planned |
 | **Created** | 2026-10-13 |
-| **Branch** | An integration worktree from origin/main that merges 001 to 004, created as `goal.md` says |
+| **Branch** | A worktree from origin/main once 001 to 004 are on it, created as `goal.md` says |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 5 of 5 |
 | **Predecessor** | 004-router-version-parity |
@@ -41,7 +41,7 @@ This is **Phase 5** of the external surface priority build. It builds research r
 **Scope Boundary**: The README adaptation block (`README.md:1445-1452`), the R4 lines (`README.md:800`, `:1384`, `.skilled/skills/sk-code/SKILL.md:40`, `.skilled/skills/sk-code/README.md:23`, `:55-57`, `:90`) and one new Skilled release note.
 
 **Dependencies**:
-- Phases 001 to 004 finished; this phase merges their branches into its integration worktree in number order.
+- Phases 001 to 004 finished and on origin/main; this phase starts from there.
 
 **Deliverables**:
 - The guide, the example markers and the release note.
@@ -77,7 +77,7 @@ A user who reads only the README adaptation block can remove the two examples, a
   4. Removal: delete the packet; drop the mode from `mode-registry.json` (its `modes` entry and `extensions.surface-axis.surfaces`) and from `hub-router.json` (`tieBreak`, `routerSignals`, its two vocabulary classes); run `generate-leaf-manifest.cjs --write .skilled/skills/sk-code`; remove its paths from ROUTER.md section 11 `RESOURCE_MAP`, which is hand-maintained, drop any key left empty from both `RESOURCE_MAP` and `INTENT_SIGNALS`, and trim the matching prose map rows; update the `SKILL.md` table and `shared/references/stack-detection.md`; fix the dead links `verify-doc-claims.cjs` lists; delete or adjust the example-bound files (the cross-stack and surface-detection playbook scenarios, sk-code-quality's Obsidian and Webflow checklist pointers, the surface-hint test, canary cases that name the mode); run `python3 .skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py --write`; commit.
   5. Add: run `/create:skill-parent update --surfaces <name>`, which places it ahead of OpenCode; link the three `shared/references/workflow-*.md` files into its `references/`; add its ROUTER.md map rows and stack-detection markers; add a canary case and copy the fixture to its authored twin; commit.
   6. Verify with parent-skill-check, `ci-skill-root-metadata.cjs`, the compiled-route guard, sync `--check`, `run-all-drift-guards.sh` and one route prompt.
-- **Release note.** The next Skilled note under `.skilled/changelog/skilled/`: `v4.0.0.5.md`, unless a note newer than v4.0.0.4 already exists on the integration base, in which case that note. It states R4's rule and the user-visible changes 001 to 004 shipped. v4.0.0.4 is not edited.
+- **Release note.** The next Skilled note under `.skilled/changelog/skilled/`: `v4.0.0.5.md`, unless a note newer than v4.0.0.4 already exists on origin/main, in which case that note. It states R4's rule and the user-visible changes 001 to 004 shipped. v4.0.0.4 is not edited.
 
 ### Out of Scope
 - A standalone guide or manual (F82) and a removal command (X11).
@@ -113,7 +113,7 @@ A user who reads only the README adaptation block can remove the two examples, a
 
 | ID | Requirement |
 |----|-------------|
-| REQ-006 | The integration branch carries all four earlier phases and its live gates exit 0 |
+| REQ-006 | The phase's base carries all four earlier phases and its live gates exit 0 |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

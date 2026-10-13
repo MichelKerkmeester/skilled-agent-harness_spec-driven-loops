@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: External user guide"
-description: "Merge phases 001 to 004 into an integration worktree, rewrite the README adaptation block as the guide, mark OpenCode native in the canonical inventories, write the next release note, and prove the guide with a fresh agent in a fresh full-tree copy."
+description: "Start from origin/main with phases 001 to 004 on it, rewrite the README adaptation block as the guide, mark OpenCode native in the canonical inventories, write the next release note, and prove the guide with a fresh agent in a fresh full-tree copy."
 trigger_phrases:
   - "external user guide plan"
 importance_tier: "normal"

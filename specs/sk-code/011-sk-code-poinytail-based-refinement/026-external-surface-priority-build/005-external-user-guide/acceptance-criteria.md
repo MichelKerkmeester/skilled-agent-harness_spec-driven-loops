@@ -56,7 +56,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-003 | REQ-003 | Given that copy, When the tie prompt routes, Then the result is `[sk-code-acme, sk-code-opencode]` | Ledger row P11-3 | Unmet | - |
 | AC-004 | REQ-004 | Given the adaptation block, When it is searched, Then it names the nested path, the hooks, the keep-rule, the add command, the two ROUTER.md maps and the drift wrapper | `goal.md` criterion 2 | Unmet | - |
 | AC-005 | REQ-005 | Given `.skilled/changelog/skilled/`, When the newest note is read, Then it is newer than v4.0.0.4, states the rule and passes `validate_document.py`, and v4.0.0.4 is unchanged | `goal.md` criterion 3 | Unmet | - |
-| AC-006 | REQ-006 | Given the integration branch, When the live gates run, Then each exits 0 and the history carries all four earlier phases | `goal.md` criterion 5; ledger row P11-6 | Unmet | - |
+| AC-006 | REQ-006 | Given the phase's base on origin/main, When the live gates run, Then each exits 0 and the history carries all four earlier phases | `goal.md` criterion 5; ledger row P11-6 | Unmet | - |
 
 ### Status values
 

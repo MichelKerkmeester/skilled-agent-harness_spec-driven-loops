@@ -126,7 +126,7 @@ Nine items, nine rows, five children. No item is unmapped and none is mapped twi
 - Parent spec tracks aggregate progress via this map
 - Use `/spec_kit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
 - Run `validate.sh --recursive` on parent to validate all phases as integrated unit
-- 001, 002 and 003 are independent and may build in parallel; 004 branches from 002's finished branch; 005 builds last, on an integration branch that merges 001 to 004
+- 001, 002 and 003 are independent and may build in parallel; each finished phase goes to main after the operator's go-ahead; 004 starts from origin/main once 002 is on it; 005 builds last, from origin/main once 001 to 004 are on it
 
 ### Phase Handoff Criteria
 
@@ -135,7 +135,7 @@ Nine items, nine rows, five children. No item is unmapped and none is mapped twi
 | 001-scaffold-surface-placement | 002-doctor-guard-sync-messages | None for the build; 001, 002 and 003 build in parallel from origin/main | Each child's goal criteria |
 | 002-doctor-guard-sync-messages | 003-example-tolerant-drift-guards | None for the build; parallel | Each child's goal criteria |
 | 003-example-tolerant-drift-guards | 004-router-version-parity | 002's goal criteria pass on its branch; 004 branches from it because both edit `parent-skill-check.cjs` and its invariants test | 002 `goal.md` criteria |
-| 004-router-version-parity | 005-external-user-guide | 001 to 004 goal criteria pass; 005's integration branch merges them in number order | 005 `goal.md` criteria |
+| 004-router-version-parity | 005-external-user-guide | 001 to 004 goal criteria pass; all four are on origin/main | 005 `goal.md` criteria |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -143,7 +143,7 @@ Nine items, nine rows, five children. No item is unmapped and none is mapped twi
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- None blocking. The release-note version and the integration branch are recorded as decisions in `goal.md`; each child's questions are in its own spec.md.
+- None blocking. The release-note version and the merge order are recorded as decisions in `goal.md`; each child's questions are in its own spec.md.
 <!-- /ANCHOR:questions -->
 
 ---

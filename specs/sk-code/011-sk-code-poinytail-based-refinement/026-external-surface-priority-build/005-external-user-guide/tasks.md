@@ -31,7 +31,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create the integration worktree from origin/main and merge the finished branches of 001, 002, 003 and 004 in that order; resolve nothing silently
+- [ ] T001 Create the worktree from origin/main once 001, 002, 003 and 004 are all on it; confirm each has its Spec-trailer commit there
 - [ ] T002 Run the live gates on the merged tree and record them: drift wrapper, sk-code doctor, guard, sync `--check`, `ci-skill-root-metadata.cjs`
 - [ ] T003 Confirm the anchors `README.md:800`, `:1384`, `:1445-1452`, `SKILL.md:40`, the sk-code README `:23`, `:55-57`, `:90`, and look for a release note newer than v4.0.0.4
 <!-- /ANCHOR:phase-1 -->

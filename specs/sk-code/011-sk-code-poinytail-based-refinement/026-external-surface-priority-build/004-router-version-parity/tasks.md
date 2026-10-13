@@ -31,7 +31,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create the worktree from 002's finished branch; confirm `checkVersionParity` near `parent-skill-check.cjs:1839` and the `ROUTER.md frontmatter version:` lines in both create-changelog twins
+- [ ] T001 Create the worktree from origin/main after phase 002 is on it; confirm `checkVersionParity` near `parent-skill-check.cjs:1839` and the `ROUTER.md frontmatter version:` lines in both create-changelog twins
 - [ ] T002 Inventory every claim that a hub `ROUTER.md` carries the `SKILL.md` version: `grep -rnE` over `.skilled/commands`, `.skilled/skills/sk-doc` and `.skilled/skills/system-skill-advisor`
 <!-- /ANCHOR:phase-1 -->
 

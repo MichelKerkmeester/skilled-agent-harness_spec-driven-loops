@@ -44,7 +44,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | 001, 002 and 003 build in parallel from origin/main once this plan is on it; 004 branches from 002's finished branch; 005 builds last, merging 001 to 004 locally |
+| D1 | 001, 002 and 003 build in parallel from origin/main once this plan is on it; each finished phase goes to main after the operator's go-ahead; 004 starts from origin/main once 002 is on it; 005 starts from origin/main once 001 to 004 are on it |
 | D2 | Never push and never merge into main; the operator merges |
 | D3 | Only 005 writes the next Skilled release note; v4.0.0.4 stays as shipped |
 | D4 | Out: R5 (operator ruling), R6, R10, X11, X20, X23, X24 |
@@ -116,6 +116,6 @@ and findings belong here.
 | Level 2 for every child | `recommend-level.sh` scores the children 0 or 1 alone (7 to 35 of 100), and the build as a whole 46, Level 2. Level 2 is used because the whole build scores it, sk-create-goal's phase-parent workflow requires each child's `acceptance-criteria.md`, which Level 2 scaffolds, and 022 set the same precedent |
 | No phased grandchildren | No phase meets both thresholds of `phase-definitions.md` section 2 (phase score 0 to 10 of 50, levels below 3), so every child is a plain child |
 | 004 scope beyond 13a | The changelog twins' version-copy line and `frontmatter-versioning.md:122` also tie `ROUTER.md` to the release version, so 004 drops both with 13a |
-| 005 integration branch | D1 needs one local merge of 001 to 004 for R9's end-to-end run. It is never main and never pushed; if the operator wants to merge first, 005 starts from origin/main instead |
+| 005 base, operator ruling 2026-10-13 | The operator chose to merge 001 to 004 into main first, each after its own go-ahead; 005 starts from origin/main with all four on it, and no local integration branch is made |
 | Builds wait on this plan reaching origin/main | Child worktrees start from origin/main, which lacks this folder until the operator merges `worktrees/124-surface-priority-round-two` |
 <!-- /ANCHOR:log -->
