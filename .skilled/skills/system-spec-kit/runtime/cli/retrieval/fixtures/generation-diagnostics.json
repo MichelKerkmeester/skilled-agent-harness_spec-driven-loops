@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 6939,
-    "ok": 14236,
+    "ok": 14241,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 24722,
+  "documentsScanned": 24727,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "0645a66a909bdca9831d2474e401f96e0447a48bef683f05ad953f3f53c9b5d7",
+  "manifestHash": "3004689a4e806663a965d805918448b84993ad4dfae3735ea6c96ff1f4910605",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -38,14 +38,14 @@
       "prose-sentence": 10,
       "single-token": 366,
       "stop-word-only": 9,
-      "template-default": 22
+      "template-default": 26
     },
     "phrases": {
       "editor-fallback": 1,
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36391,
+      "ok": 36395,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -69040,6 +69040,10 @@
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/013-fix-sk-design-for-compiled-routing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/014-typed-handoff-shadow-pilot/scratch",
       "reason": "excluded directory"
     },
     {

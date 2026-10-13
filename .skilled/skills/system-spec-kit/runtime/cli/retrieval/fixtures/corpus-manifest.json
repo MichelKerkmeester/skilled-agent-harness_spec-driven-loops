@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ecd3af0a623d8c4c26c756ecb446fdb4ce42f1a7ed8005c501f183c5fd7d8903",
+  "corpusHash": "32f8117dbec11379186e03115c17429bf24c5823dc94078da94dad8a0bdc7da4",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24722,
+  "includedPathCount": 24727,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11747,6 +11747,11 @@
     "specs/sk-design/018-sk-design-parent-v2/013-fix-sk-design-for-compiled-routing/plan.md",
     "specs/sk-design/018-sk-design-parent-v2/013-fix-sk-design-for-compiled-routing/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/013-fix-sk-design-for-compiled-routing/tasks.md",
+    "specs/sk-design/018-sk-design-parent-v2/014-typed-handoff-shadow-pilot/acceptance-criteria.md",
+    "specs/sk-design/018-sk-design-parent-v2/014-typed-handoff-shadow-pilot/implementation-summary.md",
+    "specs/sk-design/018-sk-design-parent-v2/014-typed-handoff-shadow-pilot/plan.md",
+    "specs/sk-design/018-sk-design-parent-v2/014-typed-handoff-shadow-pilot/spec.md",
+    "specs/sk-design/018-sk-design-parent-v2/014-typed-handoff-shadow-pilot/tasks.md",
     "specs/sk-design/018-sk-design-parent-v2/goal.md",
     "specs/sk-design/018-sk-design-parent-v2/roadmap.md",
     "specs/sk-design/018-sk-design-parent-v2/spec.md",
@@ -24753,7 +24758,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0645a66a909bdca9831d2474e401f96e0447a48bef683f05ad953f3f53c9b5d7",
+  "manifestHash": "3004689a4e806663a965d805918448b84993ad4dfae3735ea6c96ff1f4910605",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27285,6 +27290,10 @@
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/013-fix-sk-design-for-compiled-routing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/014-typed-handoff-shadow-pilot/scratch",
       "reason": "excluded directory"
     },
     {

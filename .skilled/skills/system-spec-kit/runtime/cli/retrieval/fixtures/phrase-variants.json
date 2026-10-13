@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0645a66a909bdca9831d2474e401f96e0447a48bef683f05ad953f3f53c9b5d7",
+  "manifestHash": "3004689a4e806663a965d805918448b84993ad4dfae3735ea6c96ff1f4910605",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -24802,6 +24802,9 @@
     ],
     "compare two images": [
       "compare two images"
+    ],
+    "comparetext crash fix": [
+      "compareText crash fix"
     ],
     "compat entrypoint": [
       "compat entrypoint"
@@ -91934,6 +91937,9 @@
     "sk design routing replay plan": [
       "sk-design routing replay plan"
     ],
+    "sk design rule 6 compiled routing": [
+      "sk-design rule 6 compiled routing"
+    ],
     "sk design rule 6 rewrite plan": [
       "sk-design rule 6 rewrite plan"
     ],
@@ -91954,6 +91960,9 @@
     ],
     "sk design transform verbs": [
       "sk-design transform verbs"
+    ],
+    "sk design typed handoff": [
+      "sk-design typed handoff"
     ],
     "sk design unknown option": [
       "sk-design unknown option"
@@ -105423,6 +105432,9 @@
     ],
     "typed event policy ratification evidence": [
       "typed event policy ratification evidence"
+    ],
+    "typed handoff shadow pilot": [
+      "typed-handoff shadow pilot"
     ],
     "typed jev judgments": [
       "typed jev judgments"

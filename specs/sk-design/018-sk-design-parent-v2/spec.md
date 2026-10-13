@@ -179,6 +179,8 @@ path and matches by exact blob hash.
 | 10 | `010-readme-human-voice/` | Authored READMEs follow the Em Dash Ban the Human Voice Rules already carry | Complete |
 | 11 | `011-router-vocabulary-repair/` | Eleven phrases the router advertises that reached nobody, and the chart vocabulary sk-doc kept | Complete |
 | 12 | `012-template-screenshots/` | A rendered picture of every form the two canvas modes ship | Complete |
+| 13 | `013-fix-sk-design-for-compiled-routing/` | sk-design becomes the seventh compiled-routing hub, compiled from the live four-mode registry | Complete |
+| 14 | `014-typed-handoff-shadow-pilot/` | Two live routing defects fixed, then a shadow-only typed-handoff pilot measured against a frozen baseline | Draft |
 
 ### Two constraints this packet reversed on operator instruction
 
@@ -193,7 +195,7 @@ legibility is worth the cost.
 The numbering reads in a sensible order; the work runs in another, because each step must land on a
 tree the previous one left green.
 
-**002, 003, 004, 001, 005, 006, 007, 008, 009, 010, 011, 012.**
+**002, 003, 004, 001, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014.**
 
 `002` first because it is the smallest possible hub, assembled from content the root already holds,
 which makes every later step "add a mode to a shipped hub" rather than "author a hub while moving
@@ -220,6 +222,7 @@ moved yet.
 | 009-router-conformance | 010-readme-human-voice | [Criteria TBD] | [Verification TBD] |
 | 010-readme-human-voice | 011-router-vocabulary-repair | [Criteria TBD] | [Verification TBD] |
 | 011-router-vocabulary-repair | 012-template-screenshots | [Criteria TBD] | [Verification TBD] |
+| `013` | `014` | sk-design serves compiled on the post-fix identity and the compareText tie prompt routes | Status probe 7 of 7 compiled-serving, tie-prompt front door, kill-switch sentinel |
 <!-- /ANCHOR:phase-map -->
 
 ---

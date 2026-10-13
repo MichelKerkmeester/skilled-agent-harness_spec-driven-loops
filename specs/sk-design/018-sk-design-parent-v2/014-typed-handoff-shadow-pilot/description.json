@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-design/018-sk-design-parent-v2/014-typed-handoff-shadow-pilot",
+  "description": "Two live defects sit under the compiled sk-design hub: rule 6 in the sk-design SKILL.md contradicts the hub's own contract, and canary-router.cjs calls an undefined compareText so a VALUES/REVIEW tie throws and silently falls back to legacy",
+  "keywords": [
+    "live",
+    "defects",
+    "sit",
+    "under",
+    "compiled",
+    "sk-design",
+    "hub",
+    "rule",
+    "6",
+    "skill",
+    "md",
+    "contradicts",
+    "s",
+    "own"
+  ],
+  "lastUpdated": "2026-10-13T20:53:31.000Z",
+  "specId": "014",
+  "folderSlug": "typed-handoff-shadow-pilot",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

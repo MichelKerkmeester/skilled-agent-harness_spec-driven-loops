@@ -16,7 +16,8 @@
     "sk-design/018-sk-design-parent-v2/010-readme-human-voice",
     "sk-design/018-sk-design-parent-v2/011-router-vocabulary-repair",
     "sk-design/018-sk-design-parent-v2/012-template-screenshots",
-    "sk-design/018-sk-design-parent-v2/013-fix-sk-design-for-compiled-routing"
+    "sk-design/018-sk-design-parent-v2/013-fix-sk-design-for-compiled-routing",
+    "sk-design/018-sk-design-parent-v2/014-typed-handoff-shadow-pilot"
   ],
   "manual": {
     "depends_on": [],
@@ -150,17 +151,17 @@
     ],
     "causal_summary": "`sk-design` is a hub of four coherent modes, every request that reached a mode before still reaches",
     "created_at": "2026-09-06T13:52:15Z",
-    "last_save_at": "2026-10-03T15:43:58.713Z",
+    "last_save_at": "2026-10-13T20:50:01.019Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:b5580f2e8618f7715267cc9018c818a75ab184a487fc2e03ff7a566469b95a12",
+    "source_fingerprint": "sha256:9ebb3d7af9299a59c519ff7a980e4d801711e755a3fb6eaeef50e64e7a357162",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "262bac3c49d4837b5644bd02c35ae2cc11aa526d833f3d0085c054275ab5f552"
+      "spec.md": "d362d625972599bbfc8e646ce9c56b51a40f8f49a669af2e25e9faefc54db2ed"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-09-07T16:02:27.763Z"
