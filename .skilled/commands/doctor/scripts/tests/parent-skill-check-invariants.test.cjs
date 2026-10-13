@@ -653,6 +653,14 @@ test('3c fails for a packet of "." and for a nested packet path', () => {
   }
 });
 
+test('3c names the README adaptation block when a packet directory is missing', () => {
+  const hub = buildHub();
+  fs.rmSync(path.join(hub, 'pkg-beta'), { recursive: true });
+  const { status, output } = runChecker(hub);
+  assertLine(output, 'FAIL', '3c', 'What Adapting `sk-code` Looks Like');
+  assert.equal(status, 1, output);
+});
+
 test('6c checks the row owned by the mode, not the first row that mentions it', () => {
   const hub = buildHub();
   editJson(hub, 'mode-registry.json', (r) => { r.modes[1].command = '/demo:beta'; });

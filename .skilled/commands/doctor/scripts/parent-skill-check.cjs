@@ -493,7 +493,7 @@ function checkModePacket(ctx, mode, label, state) {
   }
   ctx.registeredPackets.add(packet.replace(/[\\/]+$/, ''));
   if (!isDirectory(path.join(ctx.target, packet))) {
-    fail(`3c: mode "${label}" packet "${packet}" is not an existing sub-directory`);
+    fail(`3c: mode "${label}" packet "${packet}" is not an existing sub-directory; if this surface packet was removed on purpose, finish the removal with the README.md block "What Adapting \`sk-code\` Looks Like"`);
     state.packetOk = false;
     return false;
   }
