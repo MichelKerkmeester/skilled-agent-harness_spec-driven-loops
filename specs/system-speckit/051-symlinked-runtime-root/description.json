@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-speckit/051-symlinked-runtime-root",
+  "description": "Symlinked runtime: entry guard, project root and empty saves",
+  "keywords": [
+    "symlinked",
+    "runtime",
+    "entry",
+    "guard",
+    "project",
+    "root",
+    "empty",
+    "saves"
+  ],
+  "lastUpdated": "2026-10-12T09:25:17.896Z",
+  "specId": "051",
+  "folderSlug": "symlinked-runtime-root",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/051-symlinked-runtime-root",
+  "spec_folder": "system-speckit/051-symlinked-runtime-root",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "symlinked runtime root",
+      "symlinked runtime entry guard project root and empty",
+      "preserve-symlinks-main silent exit 0",
+      "project root resolves to code environment",
+      "divergent-duplicate save block linked skilled",
+      "empty exchanges save succeeds",
+      "symlinked runtime root plan",
+      "symlinked runtime root tasks",
+      "symlinked runtime root acceptance criteria",
+      "symlinked runtime root implementation summary"
+    ],
+    "key_topics": [
+      "symlinked",
+      "runtime",
+      "root",
+      "entry",
+      "guard",
+      "project",
+      "empty",
+      "preserve-symlinks-main",
+      "silent",
+      "exit",
+      "resolves",
+      "code"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/lib/esm-entry.ts",
+      ".skilled/skills/system-spec-kit/runtime/lib/esm-entry.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/lib/esm-entry.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/core/config.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/esm-entry-symlink.vitest.ts",
+      "runtime/tests/esm-entry-symlink.vitest.ts",
+      "runtime/cli/lib/esm-entry.ts",
+      "runtime/lib/esm-entry.ts",
+      "runtime/cli/lib/esm-entry.mjs",
+      "runtime/cli/core/config.ts",
+      "runtime/cli/continuity/generate-context.ts",
+      "runtime/cli/core/workflow.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "esm-entry.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/esm-entry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "esm-entry.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/esm-entry.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/core/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+        "source": "derived"
+      },
+      {
+        "name": "esm-entry-symlink.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/esm-entry-symlink.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Consuming",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Boundaries",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Consuming repositories reach the spec-kit runtime through a `.skilled` symlink into the shared runtime repository",
+    "created_at": "2026-10-12T09:25:17Z",
+    "last_save_at": "2026-10-12T09:38:21.987Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1923ce9b1881bc20a956325deba431c27901ddf510793b7bc5cc123406926cdc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4d4c53f7397df0b540f853a315a3e5b3f397afbd09e1fcbb467fed18ec897031",
+      "plan.md": "fa40797f980bfa5ed3356ec559f2e4675a9d3302e3f4dced1e038f7d6c86770e",
+      "tasks.md": "7155a7400247279f99c2d1b411df67ccc5256c18dff150df558d2835aba54447",
+      "implementation-summary.md": "a8163bddc92055df7bc7675368d837dac448145b127ee7724a67126891840602"
+    },
+    "last_active_at": null
+  }
+}
