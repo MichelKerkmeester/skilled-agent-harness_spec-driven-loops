@@ -569,14 +569,17 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
       const variants = [() => {}, () => fs.mkdirSync(path.join(sandbox, 'specs', 'sk-doc'), { recursive: true })];
       for (const prepare of variants) {
         prepare();
-        const result = spawnSync(process.execPath, [path.join(binDir, 'compiled-route-sync.cjs'), '--check'], {
-          cwd: sandbox,
-          encoding: 'utf8',
-        });
-        assert.equal(result.status, 1, result.stderr);
-        assert.ok(result.stderr.includes(expected), result.stderr);
-        assert.doesNotMatch(result.stderr, /^\s+at /m);
-        assert.equal(result.stderr.trim().split('\n').length, 1, result.stderr);
+        // Both modes that read the authored closure: --check, and the build with no arguments.
+        for (const modeArgs of [['--check'], []]) {
+          const result = spawnSync(process.execPath, [path.join(binDir, 'compiled-route-sync.cjs'), ...modeArgs], {
+            cwd: sandbox,
+            encoding: 'utf8',
+          });
+          assert.equal(result.status, 1, result.stderr);
+          assert.ok(result.stderr.includes(expected), result.stderr);
+          assert.doesNotMatch(result.stderr, /^\s+at /m);
+          assert.equal(result.stderr.trim().split('\n').length, 1, result.stderr);
+        }
       }
     } finally {
       fs.rmSync(sandbox, { recursive: true, force: true });
@@ -586,9 +589,10 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
   test('guard authored-drift names the runtime manifest, its authored twin and the copy', () => {
     const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-guard-drift-'));
     try {
-      const runtimeManifest = path.join(runtimeLayout.activationRootFor(promotedRuntimeRoot), 'sk-code', 'manifest.json');
+      const suffix = path.join('013-live-activation', 'activation', 'sk-code', 'manifest.json');
+      const runtimeManifest = path.join(promotedRuntimeRoot, suffix);
       const authoredRoot = path.join(sandbox, 'authored');
-      const twin = path.join(authoredRoot, path.relative(promotedRuntimeRoot, runtimeManifest));
+      const twin = path.join(authoredRoot, suffix);
       fs.mkdirSync(path.dirname(twin), { recursive: true });
       fs.writeFileSync(twin, '{}\n');
       const drift = guard.authoredDrift('sk-code', promotedRuntimeRoot, authoredRoot);
@@ -604,9 +608,10 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
   test('guard reports a missing authored manifest by path instead of passing', () => {
     const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-guard-missing-'));
     try {
-      const runtimeManifest = path.join(runtimeLayout.activationRootFor(promotedRuntimeRoot), 'sk-code', 'manifest.json');
+      const suffix = path.join('013-live-activation', 'activation', 'sk-code', 'manifest.json');
+      const runtimeManifest = path.join(promotedRuntimeRoot, suffix);
       const authoredRoot = path.join(sandbox, 'authored-pruned');
-      const twin = path.join(authoredRoot, path.relative(promotedRuntimeRoot, runtimeManifest));
+      const twin = path.join(authoredRoot, suffix);
       const drift = guard.authoredDrift('sk-code', promotedRuntimeRoot, authoredRoot);
       assert.equal(drift.reason, 'authored-missing');
       assert.ok(drift.fix.includes(path.relative(REPO_ROOT, twin)), drift.fix);

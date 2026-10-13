@@ -10,13 +10,15 @@
 // The freshness comparison already exists in the manifest library; this only gives
 // it an exit code so a gate can use it.
 //
-// Two divergences are reported, because they fail differently:
+// Three divergences are reported, because they fail differently:
 //
 //   stale manifest  — the runtime manifest no longer matches what the hub's current
 //                     inputs compile to. That hub is serving legacy right now.
 //   authored drift  — the promoted runtime manifest and its authored counterpart
 //                     disagree. Serving is fine; reproducing it from source is not,
 //                     because a rebuild would reinstate the authored copy.
+//   authored missing - the authored counterpart is gone, so the runtime cannot be
+//                      rebuilt from source; the guard names the file to restore.
 //
 // Usage:
 //   compiled-route-guard.cjs              report and exit non-zero on any staleness

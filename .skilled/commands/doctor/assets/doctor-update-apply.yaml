@@ -157,7 +157,7 @@ workflow:
       - name: compiled_routes
         when: "followUps.regenerate names compiled-route-manifest.cjs"
         command: "node .skilled/bin/compiled-route-guard.cjs"
-        repair: "With approval, for each hub the guard reports stale, run node .skilled/bin/compiled-route-manifest.cjs refresh --hub <hub> --skill-root .skilled/skills/<hub>, then copy .skilled/bin/lib/compiled-routing/013-live-activation/activation/<hub>/manifest.json over specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/<hub>/manifest.json (or commit with the hooks installed, so the pre-commit gate copies it), then rerun the guard."
+        repair: "With approval, for each hub the guard reports stale, run node .skilled/bin/compiled-route-manifest.cjs refresh --hub <hub> --skill-root .skilled/skills/<hub>. Then, for each hub you refreshed and each hub the guard reports as differing from its authored source, copy .skilled/bin/lib/compiled-routing/013-live-activation/activation/<hub>/manifest.json over specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/<hub>/manifest.json (or commit with the hooks installed, so the pre-commit gate copies it), then rerun the guard."
       - name: skill_derived_metadata
         when: "Always."
         command: "node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --all --dry-run"
