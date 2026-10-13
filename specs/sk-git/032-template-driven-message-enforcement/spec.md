@@ -326,6 +326,7 @@ The follow-up remains in this Level 3 packet. Its planning artifacts are `spec.m
 | 1 | 001-git-hook-review-fixes/ | Fix the nineteen git hook review findings (untrusted source root, pre-push range, Commit-Id rules, foreign-repo gates, doc drift) | Complete |
 | 2 | 002-git-hook-review-residuals/ | Fix the ten P2 findings a five-iteration deep review left (checker crash, hardcoded routing path, rules probe parity, regex backtracking, attribution key drift, doc drift) | Complete |
 | 3 | 003-hook-docs-and-standards-alignment/ | Align the hook docs, code READMEs and env reference with the hooks, and close three standards gaps a read-only audit found (unreadable staged blob, temp cleanup, Spec path containment) | Complete |
+| 4 | 004-commit-id-in-every-toolchain-repo/ | Stamp and require a Commit-Id in every repository that uses sk-git, trusted or not, with a local opt-in and opt-out | Complete |
 
 ### Phase Transition Rules
 
@@ -340,4 +341,5 @@ The follow-up remains in this Level 3 packet. Its planning artifacts are `spec.m
 |------|-----|----------|--------------|
 | 001-git-hook-review-fixes | 002-git-hook-review-residuals | Phase 1 fixes verified; a deep review of the live hooks reports what is left | `001-git-hook-review-fixes/review/review-report.md` |
 | 002-git-hook-review-residuals | 003-hook-docs-and-standards-alignment | Phase 2 residuals closed; a read-only audit of the hook changes reports what docs and code still disagree | `003-hook-docs-and-standards-alignment/scratch/audit-report.md` |
+| 003-hook-docs-and-standards-alignment | 004-commit-id-in-every-toolchain-repo | 52 Barter commits and three public repositories found without a Commit-Id after the trust gate | `004-commit-id-in-every-toolchain-repo/implementation-summary.md` |
 <!-- /ANCHOR:phase-map -->

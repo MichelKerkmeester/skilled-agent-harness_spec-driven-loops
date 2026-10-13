@@ -5,8 +5,8 @@
 # Mints a repository-wide ordinal through the sk-git allocator and appends the
 # machine trailer paragraph: `Commit-Id:` always, and `Spec:` only when the
 # environment supplies the packet. An amend keeps its existing id, a
-# cherry-pick re-mints a fresh one, and a repository that does not ship the
-# allocator is left alone.
+# cherry-pick re-mints a fresh one, and lib/commit-id-policy.sh decides which
+# repositories are stamped; every other repository is left alone.
 #
 # The hook never blocks a commit: every failure path exits 0, and the commit-msg
 # hook still validates whatever the message contains.
@@ -90,27 +90,48 @@ if _in_toolchain_repo && [[ -r "$_gate_config" ]]; then
   fi
 fi
 
+HOOK_DIR="$(cd "$(dirname "$_trust_self")" && pwd -P)"
+if [[ ! -r "$HOOK_DIR/lib/commit-id-policy.sh" ]]; then
+  printf 'prepare-commit-msg: helpers are missing at %s/lib; leaving the message unstamped.\n' "$HOOK_DIR" >&2
+  exit 0
+fi
+# shellcheck source=lib/commit-id-policy.sh
+. "$HOOK_DIR/lib/commit-id-policy.sh"
+WANT_ID=0
+if cip_repo_wants_ids "$REPO_ROOT"; then
+  WANT_ID=1
+fi
+
+# A trusted toolchain mints through its own allocator. Any other repository the
+# policy covers mints through the allocator beside these hooks, so neither the
+# trust gate nor a repository without the toolchain leaves a commit unstamped.
 ALLOCATOR="$SOURCE_ROOT/skills/sk-git/scripts/commit-id-naming.sh"
 if [[ ! -f "$ALLOCATOR" ]]; then
-  if _in_toolchain_repo; then
+  (( WANT_ID == 1 )) || exit 0
+  ALLOCATOR="$(cip_own_allocator "$HOOK_DIR")"
+  if [[ ! -f "$ALLOCATOR" ]]; then
     printf 'prepare-commit-msg: allocator is missing: %s; leaving the message unstamped.\n' "$ALLOCATOR" >&2
+    exit 0
   fi
-  exit 0
 fi
 
 # A cherry-pick copies an id that already belongs to the picked commit. git keeps
 # CHERRY_PICK_HEAD while a pick is pending, and passes source "message" for a clean
 # pick and "merge" when a conflicted pick is continued, so it is checked first.
 CHERRY_PICK=0
-if git rev-parse -q --verify CHERRY_PICK_HEAD >/dev/null 2>&1; then
+if (( WANT_ID == 1 )) && git rev-parse -q --verify CHERRY_PICK_HEAD >/dev/null 2>&1; then
   CHERRY_PICK=1
 fi
 
-# Git generates merge and squash messages itself; they stay untouched. A continued
-# cherry-pick also arrives as "merge" and is re-addressed below.
+# Only a real merge, the one commit with MERGE_HEAD pending, stays untouched. git
+# also passes "merge" when a conflicted revert or cherry-pick is continued, and
+# "squash" for a squash commit, and each of those is a single-parent commit that
+# needs its own id.
 case "$SOURCE" in
   merge|squash)
-    (( CHERRY_PICK == 1 )) || exit 0
+    if git rev-parse -q --verify MERGE_HEAD >/dev/null 2>&1; then
+      exit 0
+    fi
     ;;
 esac
 
@@ -259,7 +280,7 @@ while (( index < REAL_COUNT )); do
 done
 
 REQUIRE_ID=0
-if (( CHERRY_PICK == 1 || HAS_COMMIT_ID == 0 )); then
+if (( WANT_ID == 1 )) && (( CHERRY_PICK == 1 || HAS_COMMIT_ID == 0 )); then
   REQUIRE_ID=1
 fi
 

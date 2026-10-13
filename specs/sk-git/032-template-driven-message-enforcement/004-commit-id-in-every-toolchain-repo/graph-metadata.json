@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/032-template-driven-message-enforcement/004-commit-id-in-every-toolchain-repo",
+  "spec_folder": "sk-git/032-template-driven-message-enforcement/004-commit-id-in-every-toolchain-repo",
+  "parent_id": "sk-git/032-template-driven-message-enforcement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "commit id in every toolchain repo",
+      "phase 4 commit id in every toolchain repo",
+      "commit id policy",
+      "skilled.commitId",
+      "commit id in every toolchain repo plan",
+      "commit id in every toolchain repo tasks",
+      "commit id in every toolchain repo acceptance criteria",
+      "commit id in every toolchain repo implementation summary"
+    ],
+    "key_topics": [
+      "commit",
+      "every",
+      "toolchain",
+      "repo",
+      "phase",
+      "policy",
+      "skilled",
+      "commitid",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/scripts/git-hooks/lib/commit-id-policy.sh",
+      ".skilled/scripts/git-hooks/README.md",
+      "lib/README.md",
+      "tests/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "commit-id-policy.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/lib/commit-id-policy.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/scripts/git-hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The stamper minted ids only through the allocator in the repository's own toolchain",
+    "created_at": "2026-10-13T20:07:10Z",
+    "last_save_at": "2026-10-13T20:19:37.214Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:043a8991cc8709b5119c3c4b11819f8a110833a306577ee286598531db617136",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "67514c5eef3be7be33e420aa25e8dbab52cf668e6c957cd322fc69fa496f43cb",
+      "plan.md": "c23478955f75c6544d008810f2ee4dbf464ca6321f924f7885b2eb2a419f08e3",
+      "tasks.md": "45af1fec41b477767fa16b291f242f5f6ab3767d46ad60631aa715d869695696",
+      "implementation-summary.md": "a65329261d6b9d5623f24fce9d25e9fb3328a23592e920d4f82b8bfc0ef9ec00"
+    },
+    "last_active_at": null
+  }
+}

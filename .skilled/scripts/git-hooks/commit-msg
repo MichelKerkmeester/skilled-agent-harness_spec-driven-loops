@@ -57,6 +57,24 @@ fi
 . "$HOOK_DIR/lib/message-contract-gate.sh"
 VALIDATOR="$(mcg_validator_path "$HOOK_DIR" "$REPO_ROOT")"
 
+# The stamper never blocks, so a failed or skipped stamp would otherwise reach
+# history unnoticed. A real merge, the one commit git leaves MERGE_HEAD for, is
+# exempt as the stamper leaves it alone.
+if [[ ! -f "$HOOK_DIR/lib/commit-id-policy.sh" ]]; then
+  printf 'BLOCKED: commit-msg helpers are missing at %s/lib; re-run: bash .opencode/scripts/install-git-hooks.sh\n' "$HOOK_DIR" >&2
+  exit 1
+fi
+# shellcheck source=lib/commit-id-policy.sh
+. "$HOOK_DIR/lib/commit-id-policy.sh"
+if cip_repo_wants_ids "$REPO_ROOT" \
+   && ! git rev-parse -q --verify MERGE_HEAD >/dev/null 2>&1 \
+   && ! cip_message_has_id "$MESSAGE_FILE"; then
+  printf 'BLOCKED: this repository requires a Commit-Id trailer, and the prepare-commit-msg hook did not stamp one.\n' >&2
+  printf 'Its message above says why. Commit again once that is fixed; never type the id by hand.\n' >&2
+  printf 'To exempt this repository: git config --local skilled.commitId false\n' >&2
+  exit 1
+fi
+
 # Without node or the validator the rules cannot be read. That only matters in a
 # repository that declares rules, so the block is limited to those.
 UNAVAILABLE="$(mcg_unavailable_reason "$VALIDATOR")"

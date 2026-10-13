@@ -24,6 +24,10 @@
 #                      must meet the rules the repository's own templates
 #                      declare. This is what catches a commit made with
 #                      --no-verify, and it has no bypass.
+#   Commit-Id:         in every repository lib/commit-id-policy.sh covers,
+#                      each non-merge commit the push adds must carry a
+#                      Commit-Id; no bypass, but git config --local
+#                      skilled.commitId false exempts the repository.
 #
 # The gates are independently bypassable; skipping one never skips another.
 # The hooks are installed machine-wide. Scripts from a repository's own tree run
@@ -164,6 +168,20 @@ elif _in_toolchain_repo; then
   CONTRACT_GATE_BROKEN="the hook helpers are missing at $HOOK_DIR/lib"
 fi
 
+# --- Commit-Id presence: the policy comes from beside this hook, never from the ---
+# --- pushed repository, so the trust gate cannot switch it off ---
+COMMIT_ID_GATE=0
+COMMIT_ID_BROKEN=0
+if [[ -f "$HOOK_DIR/lib/commit-id-policy.sh" ]]; then
+  # shellcheck source=lib/commit-id-policy.sh
+  . "$HOOK_DIR/lib/commit-id-policy.sh"
+  if cip_repo_wants_ids "$REPO_ROOT"; then
+    COMMIT_ID_GATE=1
+  fi
+elif _in_toolchain_repo; then
+  COMMIT_ID_BROKEN=1
+fi
+
 REJECTED=0
 AUTOSYNC_LIVE_PUSH=0
 SKILL_CHANGES_PUSHED=0
@@ -258,6 +276,46 @@ while read -r _ local_sha remote_ref remote_sha; do
       fi
       if [[ "$is_new" -eq 1 ]] && ! node "$CONTRACT_VALIDATOR" --repo "$REPO_ROOT" --branch "$branch_name"; then
         echo "BLOCKED [gate:message-contract]: new branch '$branch_name' breaks the naming rules above." >&2
+        REJECTED=1
+        continue
+      fi
+    fi
+  fi
+
+  # ── Gate 7: Commit-Id presence, every branch, no bypass ──
+  # Catches what commit-msg cannot: a commit made with --no-verify or by a tool
+  # that runs no hooks. The range is Gate 6's, and merges are exempt as in the
+  # stamper. git config --local skilled.commitId false exempts the repository.
+  if [[ ! "$local_sha" =~ ^0+$ ]]; then
+    if [[ "$COMMIT_ID_BROKEN" -eq 1 ]]; then
+      echo "BLOCKED [gate:commit-id]: the hook helpers are missing at $HOOK_DIR/lib; re-run: bash .skilled/scripts/install-git-hooks.sh" >&2
+      REJECTED=1
+      continue
+    fi
+    # git only offers a local sha it holds, so one that does not resolve has nothing to check.
+    if [[ "$COMMIT_ID_GATE" -eq 1 ]] && git -C "$REPO_ROOT" cat-file -e "${local_sha}^{commit}" 2>/dev/null; then
+      _id_range=("$local_sha" --not --remotes)
+      if [[ "$is_new" -eq 0 ]] && git -C "$REPO_ROOT" cat-file -e "${remote_sha}^{commit}" 2>/dev/null; then
+        _id_range=("$local_sha" --not "$remote_sha" --remotes)
+      fi
+      _id_log=""
+      if ! _id_log="$(git -C "$REPO_ROOT" log --no-merges \
+           --format='%h%x09%(trailers:key=Commit-Id,valueonly,separator=%x2C)%x09%s' "${_id_range[@]}")"; then
+        echo "BLOCKED [gate:commit-id]: the commits pushed to '$branch_name' could not be read; git's error is above." >&2
+        REJECTED=1
+        continue
+      fi
+      _id_missing="$(printf '%s\n' "$_id_log" \
+        | awk -F'\t' 'NF && $2 !~ /^[0-9][0-9][0-9][0-9][0-9][0-9][0-9]$/ { print "   " $1 " " $3 }')"
+      if [[ -n "$_id_missing" ]]; then
+        {
+          echo "BLOCKED [gate:commit-id]: commits pushed to '$branch_name' carry no Commit-Id trailer:"
+          printf '%s\n' "$_id_missing" | head -n 5
+          echo "   ($(printf '%s\n' "$_id_missing" | wc -l | tr -d ' ') in all)"
+          echo "   Stamp them by re-committing each, which runs the stamper:"
+          echo "     git rebase -x 'git commit --amend --no-edit' <the commit before the first one>"
+          echo "   To exempt this repository: git config --local skilled.commitId false"
+        } >&2
         REJECTED=1
         continue
       fi

@@ -198,7 +198,9 @@ git -C "$TMP" log -1 --format=%B > "$TMP/message.txt"
 check_count "a continued cherry-pick stamps one fresh id" '^Commit-Id: [0-9]{7}$' 1 "$TMP/message.txt"
 check_absent "a continued cherry-pick drops the copied id" '0009124' "$TMP/message.txt"
 
-# ── 6. a merge source is left untouched ─────────────────────────────────────
+# ── 6. a real merge is left untouched, a merge source without one is stamped ──
+# git passes "merge" for a real merge, with MERGE_HEAD pending, and also when a
+# conflicted revert is continued, which is a single-parent commit.
 setup_repo
 cat > "$TMP/message.txt" <<'MSG'
 Merge branch 'feature/x'
@@ -206,9 +208,19 @@ Merge branch 'feature/x'
 Context: merge body without a key
 MSG
 cp "$TMP/message.txt" "$TMP/before.txt"
+git -C "$TMP" rev-parse HEAD > "$TMP/.git/MERGE_HEAD"
 run_hook merge; RC=$?
 check_rc "merge source exits 0" 0 "$RC"
 check_same "merge message is untouched" "$TMP/before.txt" "$TMP/message.txt"
+rm -f "$TMP/.git/MERGE_HEAD"
+printf 'Revert "feat(sk-git): a thing"\n\nThis reverts commit abc.\n' > "$TMP/message.txt"
+run_hook merge; RC=$?
+check_rc "a merge source with no merge pending exits 0" 0 "$RC"
+check_count "a merge source with no merge pending mints one id" '^Commit-Id: [0-9]{7}$' 1 "$TMP/message.txt"
+printf 'Squashed commit of the following:\n\nBody text.\n' > "$TMP/message.txt"
+run_hook squash; RC=$?
+check_rc "a squash source exits 0" 0 "$RC"
+check_count "a squash source mints one id" '^Commit-Id: [0-9]{7}$' 1 "$TMP/message.txt"
 
 # ── 7. a second run changes nothing ─────────────────────────────────────────
 setup_repo
@@ -386,17 +398,60 @@ run_hook message; RC=$?
 check_rc "a hash body line exits 0" 0 "$RC"
 check_before "the hash line stays in the body, above the id" '^#43 was the cause\.$' '^Commit-Id:' "$TMP/message.txt"
 
-# ── 16. a missing allocator warns where the toolchain ships, and never blocks ──
+# ── 16. a toolchain without its allocator mints through the hooks' own ───────
 setup_repo
 rm -rf "$TMP/.opencode/skills/sk-git/scripts"
 mkdir -p "$TMP/.opencode/skills/system-spec-kit"
 echo sentinel > "$TMP/.opencode/skills/system-spec-kit/SKILL.md"
 printf 'feat(sk-git): stamp without an allocator\n\nBody text.\n' > "$TMP/message.txt"
+run_hook message; RC=$?
+check_rc "a missing repository allocator still exits 0" 0 "$RC"
+check_absent "a missing repository allocator does not warn" 'allocator is missing' "$TMP/out.log"
+check_count "a missing repository allocator mints through the hooks' own" '^Commit-Id: [0-9]{7}$' 1 "$TMP/message.txt"
+
+# ── 16b. an untrusted clone that ships the allocator is still stamped ────────
+# The trust gate hides the clone's own scripts, so the id comes from the
+# allocator beside the hooks, and none of the clone's code runs.
+setup_repo
+git -C "$TMP" config --unset skilled.trustRepoHooks
+printf '#!/usr/bin/env bash\necho CLONE CODE RAN >&2\nexit 3\n' > "$TMP/.opencode/skills/sk-git/scripts/commit-id-naming.sh"
+printf 'feat(sk-git): stamp an untrusted clone\n\nBody text.\n' > "$TMP/message.txt"
+run_hook message; RC=$?
+check_rc "an untrusted clone exits 0" 0 "$RC"
+check_count "an untrusted clone mints one id" '^Commit-Id: [0-9]{7}$' 1 "$TMP/message.txt"
+check_absent "an untrusted clone's allocator never runs" 'CLONE CODE RAN' "$TMP/out.log"
+
+# ── 16c. history and local config decide for a repository without the toolchain ──
+rm -rf "$TMP"
+mkdir -p "$TMP"
+git -C "$TMP" init -q
+git -C "$TMP" config core.hooksPath /dev/null
+git -C "$TMP" config user.email t@example.com
+git -C "$TMP" config user.name test
+git -C "$TMP" commit -q --allow-empty -m "chore(x): adopted" -m "Body." -m "Commit-Id: 0000007"
+printf 'feat(x): follow the history\n\nBody text.\n' > "$TMP/message.txt"
+run_hook message; RC=$?
+check_rc "a history with ids exits 0" 0 "$RC"
+check_count "a history with ids mints the next id" '^Commit-Id: 0000008$' 1 "$TMP/message.txt"
+git -C "$TMP" config skilled.commitId false
+printf 'feat(x): opted out\n\nBody text.\n' > "$TMP/message.txt"
 cp "$TMP/message.txt" "$TMP/before.txt"
 run_hook message; RC=$?
-check_rc "a missing allocator still exits 0" 0 "$RC"
-check_count "a missing allocator warns once" 'allocator is missing' 1 "$TMP/out.log"
-check_same "a missing allocator leaves the message unstamped" "$TMP/before.txt" "$TMP/message.txt"
+check_same "skilled.commitId false leaves the message unstamped" "$TMP/before.txt" "$TMP/message.txt"
+rm -rf "$TMP"
+mkdir -p "$TMP"
+git -C "$TMP" init -q
+git -C "$TMP" config core.hooksPath /dev/null
+git -C "$TMP" config skilled.commitId true
+printf 'feat(x): opted in\n\nBody text.\n' > "$TMP/message.txt"
+run_hook message; RC=$?
+check_count "skilled.commitId true stamps a plain repository" '^Commit-Id: 0000001$' 1 "$TMP/message.txt"
+printf 'feat(x): command scope\n\nBody text.\n' > "$TMP/message.txt"
+cp "$TMP/message.txt" "$TMP/before.txt"
+git -C "$TMP" config --unset skilled.commitId
+( cd "$TMP" && GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=skilled.commitId GIT_CONFIG_VALUE_0=true \
+    bash "$HOOK" "$TMP/message.txt" message >"$TMP/out.log" 2>&1 )
+check_same "a command-scope skilled.commitId does not opt a repository in" "$TMP/before.txt" "$TMP/message.txt"
 
 # ── 17. an allocator under a linked source root still stamps ──
 setup_repo

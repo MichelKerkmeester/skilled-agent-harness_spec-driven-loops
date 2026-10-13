@@ -34,6 +34,8 @@ mkdir -p "$TMP/.nohooks"
 git -C "$TMP" config core.hooksPath "$TMP/.nohooks"
 # The hooks run tree scripts only for their own checkout or a repo that opts in locally.
 git -C "$TMP" config skilled.trustRepoHooks true
+# This fixture ships the toolchain, so the Commit-Id gate would cover it; that gate has its own section.
+git -C "$TMP" config skilled.commitId false
 git -C "$TMP" config user.email t@t.t
 git -C "$TMP" config user.name t
 git -C "$TMP" commit -q --allow-empty -m init
@@ -320,6 +322,43 @@ else FAIL=$((FAIL+1)); echo "FAIL: a real push from a worktree with matching tra
 rc=0; push_from_worktree "$TRACK_DRIFT_SHA" || rc=$?
 if [ "$rc" -ne 0 ] && grep -qF "BLOCKED [gate:track-roots]" "$TMP/last.err"; then PASS=$((PASS+1))
 else FAIL=$((FAIL+1)); echo "FAIL: a real push from a worktree with an unlisted packet was not blocked (rc=$rc)"; sed 's/^/    err> /' "$TMP/last.err" >&2; fi
+
+# ── Commit-Id gate: every non-merge commit a push adds carries an id ──────
+CID="$TMP-cid"; rm -rf "$CID"
+git -C "$TMP" init -q "$CID"
+git -C "$CID" config core.hooksPath "$TMP/.nohooks"
+git -C "$CID" config user.email t@t.t
+git -C "$CID" config user.name t
+git -C "$CID" config skilled.commitId true
+cid_rc() { # cid_rc <stdin-line>; the hook's exit code, stderr in last.err
+  local rc=0
+  printf '%s\n' "$1" | ( cd "$CID" && bash "$HOOK" ) >"$TMP/last.out" 2>"$TMP/last.err" || rc=$?
+  return $rc
+}
+cid_expect() { # cid_expect <desc> <expected-rc> <stdin-line> [<stderr substring>]
+  local rc=0
+  cid_rc "$3" || rc=$?
+  if [ "$rc" = "$2" ] && { [ -z "${4:-}" ] || grep -qF "$4" "$TMP/last.err"; }; then PASS=$((PASS+1))
+  else FAIL=$((FAIL+1)); echo "FAIL: $1 (rc=$rc exp=$2)"; sed 's/^/    err> /' "$TMP/last.err" >&2; fi
+}
+git -C "$CID" commit -q --allow-empty -m "chore(x): unstamped base" -m "Body."
+CID_BASE="$(git -C "$CID" rev-parse HEAD)"
+cid_expect "a pushed commit without a Commit-Id is blocked" 1 \
+  "refs/heads/main $CID_BASE refs/heads/main $ZERO_SHA" "[gate:commit-id]"
+git -C "$CID" commit -q --allow-empty -m "chore(x): stamped" -m "Body." -m "Commit-Id: 0000001"
+CID_STAMPED="$(git -C "$CID" rev-parse HEAD)"
+cid_expect "an update adding only stamped commits passes" 0 \
+  "refs/heads/main $CID_STAMPED refs/heads/main $CID_BASE"
+git -C "$CID" checkout -q -b side "$CID_BASE"
+git -C "$CID" commit -q --allow-empty -m "chore(x): side" -m "Body." -m "Commit-Id: 0000002"
+git -C "$CID" checkout -q main
+git -C "$CID" merge -q --no-ff --no-edit side
+cid_expect "a merge commit needs no Commit-Id" 0 \
+  "refs/heads/main $(git -C "$CID" rev-parse HEAD) refs/heads/main $CID_STAMPED"
+git -C "$CID" config skilled.commitId false
+cid_expect "skilled.commitId false exempts the repository" 0 \
+  "refs/heads/main $CID_BASE refs/heads/main $ZERO_SHA"
+rm -rf "$CID"
 
 # ── report ──────────────────────────────────────────────────────
 echo "pre-push tests: PASS=$PASS FAIL=$FAIL"

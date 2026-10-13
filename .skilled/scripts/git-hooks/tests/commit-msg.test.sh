@@ -503,7 +503,8 @@ printf '%s\n' "$STUB" > "$WT/.skilled/skills/sk-git/scripts/validate-message.mjs
 mkdir -p "$FOREIGN/.skilled/skills/sk-git/scripts"
 git -C "$FOREIGN" init -q
 printf '%s\n' "$STUB" > "$FOREIGN/.skilled/skills/sk-git/scripts/validate-message.mjs"
-printf 'feat(sk-git): add a thing\n\nWhy it changed.\n' > "$TMP/message.txt"
+# The hook repository ships the allocator, so the message carries the id its stamper would add.
+printf 'feat(sk-git): add a thing\n\nWhy it changed.\n\nCommit-Id: 0000001\n' > "$TMP/message.txt"
 ( cd "$WT" && bash "$HOOKREPO/.skilled/scripts/git-hooks/commit-msg" "$TMP/message.txt" >"$TMP/out.log" 2>&1 ); RC=$?
 check "a linked worktree of the hook's repository runs its own validator" 0 "$RC" "LOCAL VALIDATOR RAN"
 ( cd "$FOREIGN" && bash "$HOOKREPO/.skilled/scripts/git-hooks/commit-msg" "$TMP/message.txt" >"$TMP/out.log" 2>&1 ); RC=$?
@@ -546,6 +547,31 @@ probe_check "an existing .sk-git without the template shadows the skill assets" 
 setup_repo
 git -C "$TMP" config skgit.contractDir "$TMP/missing-dir"
 probe_check "a contractDir that points nowhere counts as declared" declared
+
+# ── 27. a repository the Commit-Id policy covers refuses a message without one ──
+# The stamper never blocks, so this is where a failed or skipped stamp stops.
+setup_repo
+git -C "$TMP" config skilled.commitId true
+printf 'feat(sk-git): add a thing\n\nWhy it changed.\n' > "$TMP/message.txt"
+run_hook; RC=$?
+check "a covered repository blocks a message without a Commit-Id" 1 "$RC" "requires a Commit-Id"
+printf 'feat(sk-git): add a thing\n\nWhy it changed.\n\nCommit-Id: 0000001\n' > "$TMP/message.txt"
+run_hook; RC=$?
+check "a covered repository passes a message with a Commit-Id" 0 "$RC"
+printf "Merge branch 'feature/x'\n" > "$TMP/message.txt"
+git -C "$TMP" rev-parse HEAD > "$TMP/.git/MERGE_HEAD"
+run_hook; RC=$?
+check "a real merge is exempt" 0 "$RC"
+rm -f "$TMP/.git/MERGE_HEAD"
+git -C "$TMP" config skilled.commitId false
+mkdir -p "$TMP/.skilled/skills/sk-git/scripts"
+: > "$TMP/.skilled/skills/sk-git/scripts/commit-id-naming.sh"
+printf 'feat(sk-git): add a thing\n\nWhy it changed.\n' > "$TMP/message.txt"
+run_hook; RC=$?
+check "skilled.commitId false exempts a repository that ships the allocator" 0 "$RC"
+git -C "$TMP" config --unset skilled.commitId
+run_hook; RC=$?
+check "a repository that ships the allocator is covered without config" 1 "$RC" "requires a Commit-Id"
 
 echo ""
 echo "PASS=$PASS FAIL=$FAIL"
