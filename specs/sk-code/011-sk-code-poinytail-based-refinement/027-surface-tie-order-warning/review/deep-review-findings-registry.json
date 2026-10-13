@@ -1,0 +1,1052 @@
+{
+  "sessionId": "2026-10-13T15:53:35.000Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "No test pins 5l silence on non-sk-code hubs",
+      "file": ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs",
+      "line": 311,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "The 5l FAIL message's two named fixes are not pinned by the tests",
+      "file": ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs",
+      "line": 478,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "5l interpolates raw routerPolicy.tieBreak entries into the doctor report",
+      "file": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+      "line": 1173,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "The spec's 5l edge-case silence statements are unpinned by the shipped tests",
+      "file": ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs",
+      "line": 315,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "5l re-derives the mode-to-packetKind map that 5i already builds in the same call chain",
+      "file": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+      "line": 1169,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "addNamedSurfaces leaves the 5l fixtures non-canon-clean",
+      "file": ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs",
+      "line": 243,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 6
+  },
+  "openFindingsCount": 6,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.83,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "boundary_condition",
+      "doc_code_drift",
+      "duplicate_entries",
+      "duplicate_logic",
+      "evidence_gap",
+      "hub_scoping",
+      "injection",
+      "malformed_input",
+      "mirror_parity",
+      "regression_pinning",
+      "spec_mismatch",
+      "stale_reference"
+    ],
+    "ruledOut": [
+      "authz_bypass",
+      "boundary_condition",
+      "check_bypass",
+      "doc_code_drift",
+      "duplicate_entries",
+      "evidence_gap",
+      "hub_scoping",
+      "malformed_input",
+      "mirror_parity",
+      "path_traversal",
+      "resource_exhaustion",
+      "secret_exposure",
+      "spec_mismatch",
+      "stale_reference",
+      "unsafe_deserialization"
+    ],
+    "deferred": [
+      "duplicate_logic",
+      "live_integration"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "boundary_condition": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "malformed_input": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "duplicate_entries": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "hub_scoping": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "spec_mismatch": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          3,
+          5
+        ]
+      },
+      "regression_pinning": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "live_integration": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "mirror_parity": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          4
+        ]
+      },
+      "injection": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "unsafe_deserialization": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "path_traversal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "authz_bypass": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "secret_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "resource_exhaustion": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "check_bypass": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "doc_code_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "evidence_gap": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          5
+        ]
+      },
+      "stale_reference": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          4
+        ]
+      },
+      "duplicate_logic": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 1,
+      "id": "SL-008",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-code/hub-router.json"
+      ],
+      "bugClass": "live_integration",
+      "disposition": "deferred",
+      "rationale": "Fixture test plus recorded repo state cover the claim; live-hub read or doctor run is the confirmation.",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/review/deep-review-strategy.md:140",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:487-493"
+      ],
+      "reason": "iteration tool-call budget; live-hub confirmation deferred to the traceability iteration"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs"
+      ],
+      "bugClass": "duplicate_logic",
+      "disposition": "deferred",
+      "rationale": "No observed duplication at call-site level; body-level comparison carried.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:243"
+      ],
+      "reason": "call budget; pre-existing helper body not re-opened"
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1159-1177"
+      ],
+      "bugClass": "boundary_condition",
+      "disposition": "ruled_out",
+      "rationale": "All four real-world tieBreak configurations evaluated by hand; slice and index semantics correct.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1167",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1170"
+      ],
+      "reason": "verified by direct read against shipped, user-added, examples-removed and examples-reordered orders"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1165-1177"
+      ],
+      "bugClass": "malformed_input",
+      "disposition": "ruled_out",
+      "rationale": "No crash path reachable from malformed router input.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1329",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1166"
+      ],
+      "reason": "normalization precedes the call site; early returns cover absent values"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1167-1171"
+      ],
+      "bugClass": "duplicate_entries",
+      "disposition": "ruled_out",
+      "rationale": "Pathological input class already covered by 5e; message oddity only, same fix area.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1082"
+      ],
+      "reason": "duplicate tieBreak entries are reported by 5e before 5l's line appears"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1166"
+      ],
+      "bugClass": "hub_scoping",
+      "disposition": "ruled_out",
+      "rationale": "Gate convention-consistent; other hubs are out of scope per spec.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1211",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1311"
+      ],
+      "reason": "same scoping pattern used by existing hub-specific checks"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1173"
+      ],
+      "bugClass": "spec_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Shipped message satisfies REQ-001's two-fixes clause.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1173",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/spec.md:103"
+      ],
+      "reason": "verified by direct read of the message template"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1165-1177"
+      ],
+      "bugClass": "unsafe_deserialization",
+      "disposition": "ruled_out",
+      "rationale": "5l adds no parse or merge step; values arrive parsed",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1329"
+      ],
+      "reason": "no new parse, merge, or prototype-touching site"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1165-1177"
+      ],
+      "bugClass": "resource_exhaustion",
+      "disposition": "ruled_out",
+      "rationale": "no regex; one bounded pass over tieBreak",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1167-1171"
+      ],
+      "reason": "O(n) single pass bounded by registry size"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1159-1177"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "no filesystem calls in the body",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1165-1177"
+      ],
+      "reason": "no filesystem or write effect in the check"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1173-1176"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "only mode names and a constant are printed",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1173"
+      ],
+      "reason": "no secret-bearing source is read"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1076-1089"
+      ],
+      "bugClass": "check_bypass",
+      "disposition": "ruled_out",
+      "rationale": "5e/5i/5l layers cover the plausible evasions; a lint's own repo is its trust domain",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1080-1087"
+      ],
+      "reason": "evasion needs coherent edits to the repo's own registry and router; the exit status stays operator-visible"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/spec.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/decision-record.md"
+      ],
+      "bugClass": "spec_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Every REQ maps to shipped code and at least one shipped test; ADR-001 names and ADR-002 severity appear verbatim.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1166",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1173",
+        "README.md:1468"
+      ],
+      "reason": "Verified by direct read of the target diff and both authority documents."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-001",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+      ],
+      "bugClass": "mirror_parity",
+      "disposition": "ruled_out",
+      "rationale": "The check and its helper have exactly one home in the tree.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1165",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:243"
+      ],
+      "reason": "repo-wide sweep found no duplicate producer"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/spec.md",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+      ],
+      "bugClass": "stale_reference",
+      "disposition": "ruled_out",
+      "rationale": "The only stale mentions are intentional history.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1019",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/spec.md:77"
+      ],
+      "reason": "no live stale citation remains"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1159-1177",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/spec.md:156-158"
+      ],
+      "bugClass": "spec_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "No mismatch remains in the final pass.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1166",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1168",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1170-1171"
+      ],
+      "reason": "every edge-case clause is realized in code"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1159-1177"
+      ],
+      "bugClass": "boundary_condition",
+      "disposition": "ruled_out",
+      "rationale": "Matches the spec's never-double-reports clause.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1152",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1171"
+      ],
+      "reason": "filter proves the non-overlap"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:478-501"
+      ],
+      "bugClass": "evidence_gap",
+      "disposition": "ruled_out",
+      "rationale": "No new evidence gap beyond the recorded P2s.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:482-483",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:491-492",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:499-500"
+      ],
+      "reason": "the pins exist; the residual message-wording gap is already R1-P2-002"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1159-1177"
+      ],
+      "bugClass": "boundary_condition",
+      "disposition": "ruled_out",
+      "rationale": "All four real-world tieBreak configurations evaluated by hand; slice and index semantics correct.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1167",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1170"
+      ],
+      "proof": "verified by direct read against shipped, user-added, examples-removed and examples-reordered orders"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1165-1177"
+      ],
+      "bugClass": "malformed_input",
+      "disposition": "ruled_out",
+      "rationale": "No crash path reachable from malformed router input.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1329",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1166"
+      ],
+      "proof": "normalization precedes the call site; early returns cover absent values"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1167-1171"
+      ],
+      "bugClass": "duplicate_entries",
+      "disposition": "ruled_out",
+      "rationale": "Pathological input class already covered by 5e; message oddity only, same fix area.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1082"
+      ],
+      "proof": "duplicate tieBreak entries are reported by 5e before 5l's line appears"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1166"
+      ],
+      "bugClass": "hub_scoping",
+      "disposition": "ruled_out",
+      "rationale": "Gate convention-consistent; other hubs are out of scope per spec.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1211",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1311"
+      ],
+      "proof": "same scoping pattern used by existing hub-specific checks"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1173"
+      ],
+      "bugClass": "spec_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Shipped message satisfies REQ-001's two-fixes clause.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1173",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/spec.md:103"
+      ],
+      "proof": "verified by direct read of the message template"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1165-1177"
+      ],
+      "bugClass": "unsafe_deserialization",
+      "disposition": "ruled_out",
+      "rationale": "5l adds no parse or merge step; values arrive parsed",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1329"
+      ],
+      "proof": "no new parse, merge, or prototype-touching site"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1165-1177"
+      ],
+      "bugClass": "resource_exhaustion",
+      "disposition": "ruled_out",
+      "rationale": "no regex; one bounded pass over tieBreak",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1167-1171"
+      ],
+      "proof": "O(n) single pass bounded by registry size"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1159-1177"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "no filesystem calls in the body",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1165-1177"
+      ],
+      "proof": "no filesystem or write effect in the check"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1173-1176"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "only mode names and a constant are printed",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1173"
+      ],
+      "proof": "no secret-bearing source is read"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+      ],
+      "bugClass": "authz_bypass",
+      "disposition": "not_applicable",
+      "rationale": "no auth surface to bypass",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:154"
+      ],
+      "proof": "no auth/authz surface exists in the doctor (CHK-032)"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1076-1089"
+      ],
+      "bugClass": "check_bypass",
+      "disposition": "ruled_out",
+      "rationale": "5e/5i/5l layers cover the plausible evasions; a lint's own repo is its trust domain",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1080-1087"
+      ],
+      "proof": "evasion needs coherent edits to the repo's own registry and router; the exit status stays operator-visible"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/spec.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/decision-record.md"
+      ],
+      "bugClass": "spec_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Every REQ maps to shipped code and at least one shipped test; ADR-001 names and ADR-002 severity appear verbatim.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1166",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1173",
+        "README.md:1468"
+      ],
+      "proof": "Verified by direct read of the target diff and both authority documents."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-006",
+      "dimension": "traceability",
+      "targetRefs": [
+        "commit c62d7d1399..a682c06d3d"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "not_applicable",
+      "rationale": "Overlay protocols have no artifact in the change set; a repo-wide parity sweep is not this commit's obligation.",
+      "evidenceRefs": [
+        "commit c62d7d1399..a682c06d3d"
+      ],
+      "proof": "No overlay artifact in the diff."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-001",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+      ],
+      "bugClass": "mirror_parity",
+      "disposition": "ruled_out",
+      "rationale": "The check and its helper have exactly one home in the tree.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1165",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:243"
+      ],
+      "proof": "repo-wide sweep found no duplicate producer"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/spec.md",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+      ],
+      "bugClass": "stale_reference",
+      "disposition": "ruled_out",
+      "rationale": "The only stale mentions are intentional history.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1019",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/spec.md:77"
+      ],
+      "proof": "no live stale citation remains"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1159-1177",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/spec.md:156-158"
+      ],
+      "bugClass": "spec_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "No mismatch remains in the final pass.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1166",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1168",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1170-1171"
+      ],
+      "proof": "every edge-case clause is realized in code"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1159-1177"
+      ],
+      "bugClass": "boundary_condition",
+      "disposition": "ruled_out",
+      "rationale": "Matches the spec's never-double-reports clause.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1152",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1171"
+      ],
+      "proof": "filter proves the non-overlap"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:478-501"
+      ],
+      "bugClass": "evidence_gap",
+      "disposition": "ruled_out",
+      "rationale": "No new evidence gap beyond the recorded P2s.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:482-483",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:491-492",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:499-500"
+      ],
+      "proof": "the pins exist; the residual message-wording gap is already R1-P2-002"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "regression_pinning",
+      "spec_mismatch",
+      "boundary_condition",
+      "evidence_gap"
+    ],
+    "covered": [
+      "regression_pinning"
+    ],
+    "ruledOut": [
+      "spec_mismatch",
+      "boundary_condition"
+    ],
+    "deferred": [
+      "live_integration"
+    ],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

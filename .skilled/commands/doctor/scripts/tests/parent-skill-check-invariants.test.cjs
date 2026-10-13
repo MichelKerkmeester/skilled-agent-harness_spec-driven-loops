@@ -479,7 +479,7 @@ test('5l fails when a hand-added sk-code surface sorts after sk-code-opencode', 
   const hub = buildHub('sk-code');
   addNamedSurfaces(hub, ['sk-code-opencode', 'sk-code-obsidian', 'sk-code-webflow', 'sk-code-acme']);
   const { status, output } = runChecker(hub);
-  assertLine(output, 'FAIL', '5l', 'sk-code-acme');
+  assertLine(output, 'FAIL', '5l', 'sk-code-acme.*move them ahead of "sk-code-opencode".*/create:skill-parent update --surfaces');
   assert.doesNotMatch(output, /^FAIL: 5l:.*sk-code-(obsidian|webflow)/m);
   assert.equal(status, 1, output);
 });
@@ -498,6 +498,13 @@ test('5l passes when the examples are removed and an added surface sorts ahead o
   const { output } = runChecker(hub);
   assertLine(output, 'PASS', '5l');
   assert.doesNotMatch(output, /^(FAIL|WARN): 5l:/m);
+});
+
+test('5l prints nothing on an sk-code tree whose tieBreak has no sk-code-opencode', () => {
+  const hub = buildHub('sk-code');
+  addNamedSurfaces(hub, ['sk-code-acme']);
+  const { output } = runChecker(hub);
+  assert.doesNotMatch(output, /^\w+: 5l:/m);
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
