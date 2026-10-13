@@ -18,6 +18,10 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const assert = require('node:assert/strict');
+const { spawnSync } = require('node:child_process');
+const fs = require('node:fs');
+const os = require('node:os');
+const path = require('node:path');
 const routerContract = require('../lib/root-router-contract.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -711,4 +715,88 @@ function testMissingProseSectionRaisesRRC009() {
   );
 }
 testMissingProseSectionRaisesRRC009();
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. UNPROVISIONED-TREE LOAD FAILURE
+// ─────────────────────────────────────────────────────────────────────────────
+
+// The shared frontmatter parser is built, not committed, so a tree that has
+// never been provisioned fails to load the library. A temp directory has no
+// ancestor node_modules, which reproduces that fresh-clone resolution failure.
+
+/** Stage the library and its one local require outside the repository. */
+function stageLibraryCopy(dir) {
+  const libDir = path.join(dir, 'lib');
+  fs.mkdirSync(libDir);
+  for (const name of ['root-router-contract.cjs', 'leaf-resource-contract.cjs']) {
+    fs.copyFileSync(path.join(__dirname, '..', 'lib', name), path.join(libDir, name));
+  }
+  return path.join(libDir, 'root-router-contract.cjs');
+}
+
+// Require the staged library in a child process and surface only the thrown
+// message, so a stack frame in stderr can only come from the message itself.
+function requireStagedLibrary(libPath) {
+  const script = [
+    'try {',
+    `  require(${JSON.stringify(libPath)});`,
+    '  process.exit(3);',
+    '} catch (err) {',
+    '  process.stderr.write(String(err && err.message));',
+    '  process.exit(1);',
+    '}',
+  ].join('\n');
+  const env = { ...process.env };
+  delete env.NODE_PATH;
+  return spawnSync(process.execPath, ['-e', script], { encoding: 'utf8', env });
+}
+
+function testUnprovisionedTreeNamesProvisionCommand() {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'root-router-contract-'));
+  try {
+    const child = requireStagedLibrary(stageLibraryCopy(dir));
+    assert.equal(child.status, 1, `expected the load to fail, got ${child.status}: ${child.stderr}`);
+    const message = child.stderr.trim();
+    assert.match(
+      message,
+      /worktree-naming\.sh provision/,
+      `the failure must name the provision command: ${message}`,
+    );
+    assert.equal(message.split('\n').length, 1, `the failure must be one line: ${message}`);
+    assert.ok(!/^[ \t]+at /m.test(message), `the failure must carry no stack frame: ${message}`);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+}
+
+// Only the shared package's own resolution failure is relabeled: a different
+// missing module keeps its own name even when the shared package is present.
+function testUnrelatedMissingModuleKeepsItsOwnError() {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'root-router-contract-'));
+  try {
+    const libPath = stageLibraryCopy(dir);
+    const fakeParser = path.join(
+      dir, 'node_modules', '@spec-kit', 'shared', 'frontmatter', 'parse-frontmatter.js',
+    );
+    fs.mkdirSync(path.dirname(fakeParser), { recursive: true });
+    fs.writeFileSync(fakeParser, "require('a-different-missing-module');\n");
+
+    const child = requireStagedLibrary(libPath);
+    assert.equal(child.status, 1, `expected the load to fail, got ${child.status}: ${child.stderr}`);
+    assert.match(
+      child.stderr,
+      /a-different-missing-module/,
+      `the original error must surface unchanged: ${child.stderr}`,
+    );
+    assert.ok(
+      !/worktree-naming\.sh provision/.test(child.stderr),
+      `an unrelated missing module must not be relabeled: ${child.stderr}`,
+    );
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+}
+
+testUnprovisionedTreeNamesProvisionCommand();
+testUnrelatedMissingModuleKeepsItsOwnError();
 console.log('[root-router-contract] all positive and negative fixtures passed');

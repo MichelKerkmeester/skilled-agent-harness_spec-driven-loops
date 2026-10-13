@@ -51,7 +51,20 @@ const path = require('path');
 const { buildManifestBytes } = require('./generate-leaf-manifest.cjs');
 const leafContract = require('./lib/leaf-resource-contract.cjs');
 const rootContract = require('./lib/skill-root-metadata-contract.cjs');
-const rootRouterContract = require('./lib/root-router-contract.cjs');
+
+// The root-router contract library loads the built shared frontmatter parser,
+// so an unprovisioned tree fails that load. Report its one-line provision
+// instruction instead of a raw module stack; any other load error still
+// surfaces as the throw it is.
+let rootRouterContract;
+try {
+  rootRouterContract = require('./lib/root-router-contract.cjs');
+} catch (err) {
+  if (!err || err.code !== 'SHARED_NOT_BUILT') throw err;
+  process.stderr.write(`${err.message}\n`);
+  process.exit(1);
+}
+
 const commandSchema = require('./lib/command-metadata-schema.cjs');
 
 // Keep this closed: an ignored top-level block hid authored routing data for

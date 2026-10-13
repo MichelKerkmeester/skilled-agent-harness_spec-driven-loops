@@ -60,9 +60,34 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const leafContract = require('./leaf-resource-contract.cjs');
+
+// The shared frontmatter parser is built, not committed, so a tree that has
+// never been provisioned fails to resolve it. Only that exact failure is
+// relabeled with the provision command; every other load error keeps its name.
+const SHARED_FRONTMATTER_MODULE = '@spec-kit/shared/frontmatter/parse-frontmatter.js';
+const PROVISION_COMMAND = 'bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision .';
+
+// Load the shared frontmatter parser, naming the provision command when the
+// shared package is not built here.
+function loadSharedFrontmatterParser() {
+  try {
+    return require(SHARED_FRONTMATTER_MODULE);
+  } catch (err) {
+    const isMissingSharedPackage = err && err.code === 'MODULE_NOT_FOUND'
+      && typeof err.message === 'string'
+      && err.message.includes(`'${SHARED_FRONTMATTER_MODULE}'`);
+    if (!isMissingSharedPackage) throw err;
+    const failure = new Error(
+      `${SHARED_FRONTMATTER_MODULE} is not built here; run ${PROVISION_COMMAND} from the repository root`,
+    );
+    failure.code = 'SHARED_NOT_BUILT';
+    throw failure;
+  }
+}
+
 // One shared fence parser for every skill: leading-fence position, closing-fence
 // and CRLF rules stay identical across readers of the same documents.
-const { parseFrontmatter } = require('@spec-kit/shared/frontmatter/parse-frontmatter.js');
+const { parseFrontmatter } = loadSharedFrontmatterParser();
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
