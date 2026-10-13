@@ -95,5 +95,6 @@ and findings belong here.
 | Inventory widened | The planned grep missed six live lines (four hub SKILL.md version-authority notes, sk-create-changelog step 6, examples-and-maintenance.md); the review caught them and they were corrected in `695335c9b7`, with the Hermes copies regenerated and four route manifests re-minted by the pre-commit gate |
 | sk-code note | Its version-authority sentence also dropped `README.md` as a release copy, since the standard and the 13c retirement already contradict it |
 | Executor | Devin's quota was out; every dispatch ran on cli-pi with `--no-extensions` |
+| Rebase pending | origin/main was force-pushed after the branch was cut: old tip `455f2a2d8c` became `0efd5a12b5` with the same tree. Until the branch is rebased with `git rebase --onto origin/main 455f2a2d8c`, criterion 6's `bump --base origin/main --check` diffs from an older merge base and reports docs this branch never touched; `bump --base 455f2a2d8c --check` reports 2 changed docs, both raised |
 | Baselines at planning | Commit a71f719ae4: all six hubs carry a `ROUTER.md` version equal to `SKILL.md` and pass the doctor; the invariants test 97 of 97 |
 <!-- /ANCHOR:log -->
