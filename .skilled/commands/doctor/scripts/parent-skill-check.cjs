@@ -1836,9 +1836,10 @@ function checkPacketChangelogVersions(ctx) {
   }
 }
 
-// 13a: SKILL.md is the release authority; every routing artifact that declares
+// 13a: SKILL.md is the release authority; every JSON routing file that declares
 // a version must carry exactly that four-part version. A declared version that
-// does not parse is a mismatch, never a pass.
+// does not parse is a mismatch, never a pass. ROUTER.md is not compared: like
+// every doc but SKILL.md it keeps its own version, raised by the per-doc bump.
 function checkVersionParity(ctx) {
   const authorityField = markdownVersion(ctx.target, 'SKILL.md');
   const authority = authorityField.present && FOUR_PART_VERSION.test(authorityField.value) ? authorityField.value : null;
@@ -1847,7 +1848,6 @@ function checkVersionParity(ctx) {
     return;
   }
   const followers = [
-    { file: 'ROUTER.md', ...markdownVersion(ctx.target, 'ROUTER.md') },
     { file: 'description.json', ...jsonVersion(ctx.description) },
     { file: 'hub-router.json', ...jsonVersion(ctx.hubRouter.value) },
     { file: 'mode-registry.json', ...jsonVersion(ctx.registry) },
@@ -1863,7 +1863,7 @@ function checkVersionParity(ctx) {
       parity = false;
     }
   }
-  if (parity) pass(`13a-version: all routing artifacts carry the SKILL.md version ${authority}`);
+  if (parity) pass(`13a-version: all JSON routing files carry the SKILL.md version ${authority}`);
   checkChangelogVersion(ctx, authority);
 }
 

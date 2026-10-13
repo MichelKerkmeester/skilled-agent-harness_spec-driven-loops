@@ -438,6 +438,16 @@ test('a hub README version that differs from SKILL.md is not reported', () => {
   assert.equal(status, 0, output);
 });
 
+test('a hub ROUTER.md version that differs from SKILL.md is not reported by 13a', () => {
+  const hub = buildHub();
+  const routerPath = path.join(hub, 'ROUTER.md');
+  fs.writeFileSync(routerPath, fs.readFileSync(routerPath, 'utf8').replace(`version: ${VERSION}`, 'version: 1.0.0.9'));
+  const { status, output } = runChecker(hub);
+  assert.doesNotMatch(output, /^FAIL: 13a-version/m);
+  assertLine(output, 'PASS', '13a-version');
+  assert.equal(status, 0, output);
+});
+
 test('5k warns, and does not fail, on alias drift that another hub already carries', () => {
   const hub = buildHub('sk-design');
   editJson(hub, 'mode-registry.json', (r) => { r.modes[0].aliases.push('yagni'); });
