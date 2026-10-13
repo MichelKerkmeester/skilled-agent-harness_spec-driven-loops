@@ -10,7 +10,8 @@
     "system-deep-loop/038-review-and-cli-lineage/004-read-only-and-research-bookkeeping",
     "system-deep-loop/038-review-and-cli-lineage/005-cli-lineage-findings-contract",
     "system-deep-loop/038-review-and-cli-lineage/006-research-lineage-reducer-path",
-    "system-deep-loop/038-review-and-cli-lineage/007-lineage-reducer-compliance"
+    "system-deep-loop/038-review-and-cli-lineage/007-lineage-reducer-compliance",
+    "system-deep-loop/038-review-and-cli-lineage/008-lineage-proof-enforcement"
   ],
   "manual": {
     "depends_on": [],
@@ -58,6 +59,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -80,26 +87,20 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Purpose Make",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The deep-review and deep-research loops disagreed with their own gateway",
     "created_at": "2026-10-02T00:00:00Z",
-    "last_save_at": "2026-10-11T19:56:47.470Z",
+    "last_save_at": "2026-10-12T09:35:07.731Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:6c64dc92bf150d1cac8f57b38457d3ccfd3a99887005ebe62595894df507807d",
+    "source_fingerprint": "sha256:bc42df1b67eba885a2bc1747337ff7fde6975b48dd86958a43d327726fe8cc82",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4702df3a5795815a40c5f9993e65ea77deb41449fd83bac425b1a581674ff31e"
+      "spec.md": "db95cb11a25931543f0a7f60220adf68c4c7c00cad8e667a3fdb6336421378cd"
     },
     "last_active_child_id": "system-deep-loop/038-review-and-cli-lineage/007-lineage-reducer-compliance",
     "last_active_at": "2026-10-11T19:55:33.803Z"

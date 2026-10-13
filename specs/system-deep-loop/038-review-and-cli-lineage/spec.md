@@ -14,15 +14,15 @@ _memory:
     packet_pointer: "system-deep-loop/038-review-and-cli-lineage"
     last_updated_at: "2026-10-11T00:00:00Z"
     last_updated_by: "deepseek-v4.1-flash"
-    recent_action: "All seven children complete. Parent closed out"
-    next_safe_action: "None for this phase parent"
+    recent_action: "Opened phase 8, lineage proof enforcement"
+    next_safe_action: "Implement 008-lineage-proof-enforcement"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 88
     open_questions: []
     answered_questions: []
 ---
@@ -49,7 +49,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-10-02 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -117,6 +117,7 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | 5 | `005-cli-lineage-findings-contract/` | Stop a lineage undercounting findings at closeout | Complete |
 | 6 | 006-research-lineage-reducer-path/ | Point the research reducer at the lineage folder during fan-out | Complete |
 | 7 | 007-lineage-reducer-compliance/ | Detect a CLI research lineage that skips the reducer | Complete |
+| 8 | 008-lineage-proof-enforcement/ | Refuse a CLI lineage without route proof, reducer output, one state row per iteration or in-bounds citations | Planned |
 
 ### Phase Transition Rules
 
@@ -135,6 +136,7 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | `004-read-only-and-research-bookkeeping` | `005-cli-lineage-findings-contract` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
 | 005-cli-lineage-findings-contract | 006-research-lineage-reducer-path | 005 complete | `validate.sh --strict` on 005 |
 | 006-research-lineage-reducer-path | 007-lineage-reducer-compliance | Reducer writes into the lineage folder | Live proof run, `006/implementation-summary.md` |
+| 007-lineage-reducer-compliance | 008-lineage-proof-enforcement | 007 complete, its stamp check in place | `validate.sh --strict` on 007 |
 <!-- /ANCHOR:phase-map -->
 
 ---
