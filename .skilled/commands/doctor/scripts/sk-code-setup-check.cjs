@@ -12,11 +12,12 @@
 // sk-code drift guards pass, the derived metadata is fresh, and a probe prompt
 // actually routes through the compiled router.
 //
-// Every leg runs as a child process from the repository root, so the battery
-// reports the tree a caller would see. Nothing is written: each failing leg
-// prints the command that repairs it and the operator decides. The probe is the
-// one leg whose exit code proves nothing, because the legacy stub exits 0 too,
-// so it passes only on a parsed `action: "route"` decision.
+// Every leg except the provisioning precheck runs as a child process from the
+// repository root, and the precheck resolves the shared package in-process, so
+// the battery reports the tree a caller would see. Nothing is written: each
+// failing leg prints the command that repairs it and the operator decides. The
+// probe is the one leg whose exit code proves nothing, because the legacy stub
+// exits 0 too, so it passes only on a parsed `action: "route"` decision.
 //
 // Usage: sk-code-setup-check.cjs [--prompt=<text>]
 // Environment override, so the battery can be pointed at a fixture tree:
@@ -147,12 +148,17 @@ const LEGS = [
 const pass = () => ({ ok: true, details: [], repairs: [] });
 const fail = (details, repairs) => ({ ok: false, details, repairs });
 
-// Only the FAIL-prefixed lines are surfaced: a leg's other output is noise, and
-// a crashing leg would otherwise print a stack trace into the report.
-const failLines = (output) => output
-  .split('\n')
-  .filter((line) => line.startsWith('FAIL'))
-  .slice(0, DETAIL_LIMIT);
+// Only the FAIL-prefixed lines are surfaced, plus a count when the cap drops
+// the rest: a leg's other output is noise, and a crashing leg would otherwise
+// print a stack trace into the report.
+const failLines = (output) => {
+  const lines = output.split('\n').filter((line) => line.startsWith('FAIL'));
+  if (lines.length <= DETAIL_LIMIT) return lines;
+  return [
+    ...lines.slice(0, DETAIL_LIMIT),
+    `... ${lines.length - DETAIL_LIMIT} more FAIL lines; rerun the command above for the full list`,
+  ];
+};
 
 function parseJson(text) {
   try {
@@ -239,7 +245,10 @@ const JUDGES = {
   probe: (result, ctx) => {
     const decision = probeDecision(result);
     if (!decision) {
-      return fail(['the probe printed no route decision'], [
+      const detail = result.status !== 0
+        ? `the probe exited ${result.status}`
+        : 'the probe printed no route decision';
+      return fail([detail], [
         `rerun node ${ROUTE_PROBE} --hub ${HUB} --prompt "${ctx.prompt}"`,
       ]);
     }

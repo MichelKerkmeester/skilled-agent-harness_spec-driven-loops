@@ -133,6 +133,14 @@ test('the legacy stub exits 0 but fails the probe with the guard repair', () => 
   assert.match(out, /^STATUS=FAIL failed=1 skipped=0$/m);
 });
 
+test('a probe that exits non-zero is reported by its exit status', () => {
+  const probe = { out: '', code: 3 };
+  const { status, out } = run(buildRoot({ probe }));
+  assert.equal(status, 1, out);
+  assert.match(out, /^ {6}the probe exited 3$/m);
+  assert.doesNotMatch(out, /the probe printed no route decision/);
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. A FAILING LEG PRINTS ITS FILTERED DETAIL AND ITS REPAIR
 // ─────────────────────────────────────────────────────────────────────────────
@@ -178,6 +186,30 @@ test('a failing drift guard shows only its FAIL lines, never the raw output', ()
   assert.match(out, /^ {6}FAIL: 1a: router path missing$/m);
   assert.match(out, /^ {6}repair: fix each FAIL guard above, then rerun bash \.skilled\/skills\/sk-code\/sk-code-opencode\/scripts\/run-all-drift-guards\.sh$/m);
   assert.doesNotMatch(out, /^ {6}noise line$/m);
+});
+
+test('more than ten FAIL lines are cut with a count of the rest', () => {
+  const lines = Array.from({ length: 12 }, (_, index) => `FAIL: guard ${index + 1}`);
+  const driftGuards = { code: 1, out: `${lines.join('\n')}\n` };
+  const { status, out } = run(buildRoot({ driftGuards }));
+  assert.equal(status, 1, out);
+  assert.match(out, /^ {6}FAIL: guard 1$/m);
+  assert.match(out, /^ {6}FAIL: guard 10$/m);
+  assert.doesNotMatch(out, /^ {6}FAIL: guard 11$/m);
+  assert.match(out, /^ {6}\.\.\. 2 more FAIL lines; rerun the command above for the full list$/m);
+});
+
+test('an unbuilt shared package in the root metadata leg names the provision command', () => {
+  const rootMetadata = {
+    code: 1,
+    err: '@spec-kit/shared/frontmatter/parse-frontmatter.js is not built here; '
+      + 'run bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision . '
+      + 'from the repository root\n',
+  };
+  const { status, out } = run(buildRoot({ rootMetadata }));
+  assert.equal(status, 1, out);
+  assert.match(out, /^FAIL {2}root-metadata +node /m);
+  assert.match(out, /^ {6}repair: bash \.skilled\/skills\/sk-git\/scripts\/worktree-naming\.sh provision \.$/m);
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
