@@ -35,7 +35,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -44,7 +44,9 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/skills/sk-code/SKILL.md",
-      ".skilled/skills/sk-code/README.md"
+      ".skilled/skills/sk-code/README.md",
+      ".skilled/changelog/skilled/v4.0.0.5.md",
+      ".hermes/skills/sk-code/SKILL.md"
     ],
     "entities": [
       {
@@ -93,6 +95,12 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.5.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.5.md",
         "source": "derived"
       },
       {
@@ -184,18 +192,12 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The first thing a user reads, `README.md:800`, presents three equal surfaces, and the adaptation block (`README.md:1384`, `:1447`) tells them to replace all three, the native OpenCode packet included, with paths that do not name where the packets nest (F28, F75, F77)",
     "created_at": "2026-10-13T04:45:55Z",
-    "last_save_at": "2026-10-13T05:25:07.754Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-13T10:13:32.959Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -205,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2c7025980291a8971306c9fe9e3d3189b2a730feae90699fe0a94991cfcea264",
+    "source_fingerprint": "sha256:449957cd395fbed70b647c7318bd57d5dcf123101234d7f075288ead5593e325",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0813678a2ff7cf12dce328b2cac8041e1dd5ea45cec76e3ae19824de9144eb51",
+      "spec.md": "0c49e8d63b557118bc3ebb1e69913d943b21c96127075a2edfab422f588f451c",
       "plan.md": "8782f4e1f87e85d58813196bfd4fe50720d90085da5d50a6eda934af8658c41d",
-      "tasks.md": "b4e6ef80e3a6beb0c9899ca1ac410c4bac8e56842642bd57f94731056b7bb1d5",
-      "implementation-summary.md": "b7f9e18d80dc54ca360c4b1d9f2f9fdd8280258c7bbc579a08e3efb7a9ed3f93"
+      "tasks.md": "2a5d52e6b4a8702c4d0d6d965cf9efe6a65f35632e9ae65644fc5903c11f3345",
+      "implementation-summary.md": "8d7cd280507cb6063ea77513a082ce2b8fdddf384b29301d653d43a25fd4e970"
     },
     "last_active_at": null
   }

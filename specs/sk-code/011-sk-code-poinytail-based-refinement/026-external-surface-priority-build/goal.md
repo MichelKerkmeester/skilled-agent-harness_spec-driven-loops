@@ -103,11 +103,11 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Planned 2026-10-13 | Done | create.sh phase mode, `--path`, `--level 2`, `--with-goal`, five children; traceability table in `spec.md` maps R1, R2, R3, R4, R7, R8, R9 and 13a to exactly one child each |
-| 001 scaffold surface placement | Pending | |
-| 002 doctor guard and sync messages | Pending | |
-| 003 example-tolerant drift guards | Pending | |
-| 004 router version parity | Pending | |
-| 005 external user guide | Pending | |
+| 001 scaffold surface placement | Done | On origin/main (its `Spec:` commits end at `c0831d5c1c`); goal criteria passed on its branch |
+| 002 doctor guard and sync messages | Done | On origin/main (its `Spec:` commits end at `0efd5a12b5`); goal criteria passed on its branch |
+| 003 example-tolerant drift guards | Done | On origin/main (its `Spec:` commits end at `dd949ccbeb`); goal criteria passed on its branch |
+| 004 router version parity | Done | On origin/main (its `Spec:` commits end at `d99ddaff7d`); goal criteria passed after the rebase |
+| 005 external user guide | Done | Branch `worktrees/129-surface-guide`, not merged; guide, R4 markers and v4.0.0.5, reader test green, review PASS with advisories; this parent closed on the same branch |
 
 ### Deviations and findings
 

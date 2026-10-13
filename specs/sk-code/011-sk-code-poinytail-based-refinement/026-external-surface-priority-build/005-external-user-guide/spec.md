@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-13 |
 | **Branch** | A worktree from origin/main once 001 to 004 are on it, created as `goal.md` says |
 | **Parent Spec** | ../spec.md |
@@ -92,6 +92,7 @@ A user who reads only the README adaptation block can remove the two examples, a
 | `.skilled/skills/sk-code/SKILL.md` | Modify | `:40` canonical sentence |
 | `.skilled/skills/sk-code/README.md` | Modify | `:23`, `:55-57`, `:90` |
 | `.skilled/changelog/skilled/v4.0.0.5.md`, or the newer note that exists | Create or Modify | Release note |
+| `.hermes/skills/sk-code/SKILL.md`, the sk-code activation manifest and its authored twin | Regenerated | Written by `sync-skills-hermes.cjs` and the pre-commit route gate after the `SKILL.md` edit, never by hand |
 <!-- /ANCHOR:scope -->
 
 ---

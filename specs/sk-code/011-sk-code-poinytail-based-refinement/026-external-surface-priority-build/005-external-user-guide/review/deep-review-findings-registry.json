@@ -1,0 +1,1025 @@
+{
+  "sessionId": "2026-10-13T09:30:10.618Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "Removal/add recipes leave .hermes runtime mirror packets untouched; only the pre-commit mirror gate catches it",
+      "file": "README.md",
+      "line": 1461,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "Root README R4 lines go stale after example removal and the hub-rooted sweep cannot flag them",
+      "file": "README.md",
+      "line": 1384,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "Removal recipe deletes the example folder without a work-loss preflight",
+      "file": "README.md",
+      "line": 1456,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Spec Files to Change does not authorize the generated artifacts the diff carries",
+      "file": "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md",
+      "line": 91,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 4
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0.65,
+  "graphDecision": "CONTINUE",
+  "graphBlockers": [],
+  "graphSignals": {
+    "dimensionCoverage": 1,
+    "evidenceDensity": 0,
+    "findingStability": 0,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 0.65
+  },
+  "candidateCoverage": {
+    "covered": [
+      "destructive_data_loss",
+      "missing_instruction_step",
+      "spec_scope_mismatch",
+      "stale_reference"
+    ],
+    "ruledOut": [
+      "anchor_integrity",
+      "copy_direction_inversion",
+      "documentation_consistency",
+      "documentation_duplication",
+      "missing_instruction_step",
+      "registry_doc_mismatch",
+      "release_note_behavioral_claim",
+      "secret_exposure",
+      "stale_reference",
+      "style_violation",
+      "template_nonconformance",
+      "untrusted_execution",
+      "upstream_req_traceability_gap",
+      "wrong_path_or_command"
+    ],
+    "deferred": [
+      "acceptance_ledger_evidence"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "missing_instruction_step": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "stale_reference": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          4
+        ]
+      },
+      "wrong_path_or_command": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "registry_doc_mismatch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "release_note_behavioral_claim": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          3
+        ]
+      },
+      "destructive_data_loss": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "untrusted_execution": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "secret_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "copy_direction_inversion": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "spec_scope_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "upstream_req_traceability_gap": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "acceptance_ledger_evidence": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3,
+          5
+        ]
+      },
+      "style_violation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "documentation_duplication": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "template_nonconformance": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "anchor_integrity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "documentation_consistency": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 5,
+      "id": "SL-506",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/acceptance-criteria.md"
+      ],
+      "bugClass": "acceptance_ledger_evidence",
+      "disposition": "deferred",
+      "rationale": "deferred, not failed",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:87"
+      ],
+      "reason": "ledger rows P11-1 to P11-6 are written at closeout per goal C3; review runs before closeout"
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        "README.md:1445",
+        ".skilled/skills/sk-code/SKILL.md:40",
+        ".skilled/skills/sk-code/README.md:23"
+      ],
+      "bugClass": "wrong_path_or_command",
+      "disposition": "ruled_out",
+      "rationale": "existence and usage verified for every referenced path and command",
+      "evidenceRefs": [
+        "README.md:1451",
+        "README.md:1474",
+        ".skilled/bin/compiled-route-manifest.cjs:30",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:12"
+      ],
+      "reason": "all referenced paths resolve and all command lines match their scripts usage"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        "README.md:800",
+        "README.md:1384",
+        ".skilled/skills/sk-code/SKILL.md:40",
+        ".skilled/skills/sk-code/README.md:23"
+      ],
+      "bugClass": "registry_doc_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "registry and docs agree on the three-surface set and the native/optional roles",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/mode-registry.json:1",
+        ".skilled/skills/sk-code/hub-router.json:1",
+        "README.md:800"
+      ],
+      "reason": "verified against both registries"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "README.md:1454",
+        "README.md:1474"
+      ],
+      "bugClass": "missing_instruction_step",
+      "disposition": "ruled_out",
+      "rationale": "no battery command depends on an artifact the recipe leaves untouched inside the hub",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:496",
+        ".skilled/scripts/git-hooks/pre-commit:480"
+      ],
+      "reason": "battery-relevant artifacts covered by recipe steps plus the commit gate"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/scripts/install-git-hooks.sh",
+        ".skilled/scripts/git-hooks/pre-commit"
+      ],
+      "bugClass": "untrusted_execution",
+      "disposition": "ruled_out",
+      "rationale": "bare installer invocation installs; own checkout is trusted; other clones documented in README.md:203",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:44"
+      ],
+      "reason": "bare installer invocation installs; own checkout is trusted; other clones documented in README.md:203"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        "README.md:1451",
+        "README.md:1452",
+        ".skilled/scripts/git-hooks/pre-commit:640"
+      ],
+      "bugClass": "copy_direction_inversion",
+      "disposition": "ruled_out",
+      "rationale": "guide's manual fallback matches the gate; authored is a mirror; no edit instruction exists",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:640"
+      ],
+      "reason": "guide's manual fallback matches the gate; authored is a mirror; no edit instruction exists"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/changelog/skilled/v4.0.0.5.md:1"
+      ],
+      "bugClass": "release_note_behavioral_claim",
+      "disposition": "ruled_out",
+      "rationale": "closes the deferred release-note direction SL-006",
+      "evidenceRefs": [
+        ".skilled/changelog/skilled/v4.0.0.5.md:1",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity/implementation-summary.md:1"
+      ],
+      "reason": "all six bullets trace to phases 001-004 recorded ledgers (P8-4, P8-5, P9-1..P9-6, P10-1..P10-4, VP-1..VP-4)"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:72"
+      ],
+      "bugClass": "upstream_req_traceability_gap",
+      "disposition": "ruled_out",
+      "rationale": "no gap found in the audited requirement set",
+      "evidenceRefs": [
+        "README.md:1445",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/goal.md:1"
+      ],
+      "reason": "REQ-001, REQ-004 and REQ-005 map and the block carries all six parts; REQ-002 and REQ-003 rest on closeout ledger rows, tracked separately"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-401",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "README.md:1445",
+        ".skilled/changelog/skilled/v4.0.0.5.md:1"
+      ],
+      "bugClass": "style_violation",
+      "disposition": "ruled_out",
+      "rationale": "HVR violation ruled out for every changed line",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/scratch/review-diff.patch:1",
+        "README.md:800",
+        "README.md:1384"
+      ],
+      "reason": "added prose carries none of the three banned punctuation patterns"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "README.md:800",
+        "README.md:1384",
+        ".skilled/skills/sk-code/SKILL.md:40",
+        ".skilled/skills/sk-code/README.md:23",
+        ".skilled/changelog/skilled/v4.0.0.5.md:1"
+      ],
+      "bugClass": "documentation_duplication",
+      "disposition": "ruled_out",
+      "rationale": "no contradictory or drifting statement found",
+      "evidenceRefs": [
+        "README.md:800",
+        "README.md:1384",
+        "README.md:1445",
+        ".skilled/skills/sk-code/SKILL.md:40",
+        ".skilled/skills/sk-code/README.md:23",
+        ".hermes/skills/sk-code/SKILL.md:45",
+        ".skilled/changelog/skilled/v4.0.0.5.md:1"
+      ],
+      "reason": "roles and ranking are consistent across every changed document"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/changelog/skilled/v4.0.0.5.md:1",
+        ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md:1"
+      ],
+      "bugClass": "template_nonconformance",
+      "disposition": "ruled_out",
+      "rationale": "template shape conformant",
+      "evidenceRefs": [
+        ".skilled/changelog/skilled/v4.0.0.5.md:1",
+        ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md:1"
+      ],
+      "reason": "compact shape matches the template and the validator passes"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "README.md:800",
+        "README.md:1384",
+        ".skilled/skills/sk-code/README.md"
+      ],
+      "bugClass": "stale_reference",
+      "disposition": "ruled_out",
+      "rationale": "stale-reference sweep clean for the changed surface set",
+      "evidenceRefs": [
+        "README.md:1384",
+        ".skilled/changelog/skilled/v4.0.0.5.md:22",
+        ".skilled/skills/sk-code/shared/references/phase-detection.md:16"
+      ],
+      "reason": "no canonical line replaces OpenCode or presents the three surfaces as peers; the remaining replace-example wording is the active R2-P2-001 subject"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-405",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/shared/references/phase-detection.md:16",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:46"
+      ],
+      "bugClass": "stale_reference",
+      "disposition": "ruled_out",
+      "rationale": "recipe gap ruled out",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:46",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:320"
+      ],
+      "reason": "the verify battery flags the stale count on the next removal run"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-406",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "README.md:244",
+        "README.md:1376",
+        "README.md:1445"
+      ],
+      "bugClass": "anchor_integrity",
+      "disposition": "ruled_out",
+      "rationale": "anchor integrity verified",
+      "evidenceRefs": [
+        "README.md:244",
+        "README.md:1445",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/scratch/review-diff.patch:147"
+      ],
+      "reason": "heading and anchor are unchanged and resolve"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-407",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/SKILL.md:40",
+        ".skilled/skills/sk-code/README.md:23"
+      ],
+      "bugClass": "documentation_consistency",
+      "disposition": "ruled_out",
+      "rationale": "designed duplication, not an unmet claim",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/README.md:23",
+        ".skilled/skills/sk-code/SKILL.md:40"
+      ],
+      "reason": "the hub README defers to the SKILL.md list at :23 and the role restatements are spec-mandated, not a competing count"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-505",
+      "dimension": "correctness",
+      "targetRefs": [
+        "README.md:1454",
+        "README.md:1466",
+        ".opencode/skills",
+        "README.md:1473"
+      ],
+      "bugClass": "wrong_path_or_command",
+      "disposition": "ruled_out",
+      "rationale": "walkthrough probe of the guide's path and order set",
+      "evidenceRefs": [
+        "README.md:1454",
+        "README.md:1466",
+        "README.md:1445",
+        "README.md:1473"
+      ],
+      "reason": "no new path, order or red-check trip found beyond the four carried P2 advisories"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        "README.md:1445",
+        ".skilled/skills/sk-code/SKILL.md:40",
+        ".skilled/skills/sk-code/README.md:23"
+      ],
+      "bugClass": "wrong_path_or_command",
+      "disposition": "ruled_out",
+      "rationale": "existence and usage verified for every referenced path and command",
+      "evidenceRefs": [
+        "README.md:1451",
+        "README.md:1474",
+        ".skilled/bin/compiled-route-manifest.cjs:30",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:12"
+      ],
+      "proof": "all referenced paths resolve and all command lines match their scripts usage"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        "README.md:800",
+        "README.md:1384",
+        ".skilled/skills/sk-code/SKILL.md:40",
+        ".skilled/skills/sk-code/README.md:23"
+      ],
+      "bugClass": "registry_doc_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "registry and docs agree on the three-surface set and the native/optional roles",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/mode-registry.json:1",
+        ".skilled/skills/sk-code/hub-router.json:1",
+        "README.md:800"
+      ],
+      "proof": "verified against both registries"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "README.md:1454",
+        "README.md:1474"
+      ],
+      "bugClass": "missing_instruction_step",
+      "disposition": "ruled_out",
+      "rationale": "no battery command depends on an artifact the recipe leaves untouched inside the hub",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:496",
+        ".skilled/scripts/git-hooks/pre-commit:480"
+      ],
+      "proof": "battery-relevant artifacts covered by recipe steps plus the commit gate"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/scripts/install-git-hooks.sh",
+        ".skilled/scripts/git-hooks/pre-commit"
+      ],
+      "bugClass": "untrusted_execution",
+      "disposition": "ruled_out",
+      "rationale": "bare installer invocation installs; own checkout is trusted; other clones documented in README.md:203",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:44"
+      ],
+      "proof": "bare installer invocation installs; own checkout is trusted; other clones documented in README.md:203"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        "README.md:1451",
+        "README.md:1452",
+        ".skilled/scripts/git-hooks/pre-commit:640"
+      ],
+      "bugClass": "copy_direction_inversion",
+      "disposition": "ruled_out",
+      "rationale": "guide's manual fallback matches the gate; authored is a mirror; no edit instruction exists",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:640"
+      ],
+      "proof": "guide's manual fallback matches the gate; authored is a mirror; no edit instruction exists"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/changelog/skilled/v4.0.0.5.md:1"
+      ],
+      "bugClass": "release_note_behavioral_claim",
+      "disposition": "ruled_out",
+      "rationale": "closes the deferred release-note direction SL-006",
+      "evidenceRefs": [
+        ".skilled/changelog/skilled/v4.0.0.5.md:1",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity/implementation-summary.md:1"
+      ],
+      "proof": "all six bullets trace to phases 001-004 recorded ledgers (P8-4, P8-5, P9-1..P9-6, P10-1..P10-4, VP-1..VP-4)"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:72"
+      ],
+      "bugClass": "upstream_req_traceability_gap",
+      "disposition": "ruled_out",
+      "rationale": "no gap found in the audited requirement set",
+      "evidenceRefs": [
+        "README.md:1445",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/goal.md:1"
+      ],
+      "proof": "REQ-001, REQ-004 and REQ-005 map and the block carries all six parts; REQ-002 and REQ-003 rest on closeout ledger rows, tracked separately"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-401",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "README.md:1445",
+        ".skilled/changelog/skilled/v4.0.0.5.md:1"
+      ],
+      "bugClass": "style_violation",
+      "disposition": "ruled_out",
+      "rationale": "HVR violation ruled out for every changed line",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/scratch/review-diff.patch:1",
+        "README.md:800",
+        "README.md:1384"
+      ],
+      "proof": "added prose carries none of the three banned punctuation patterns"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "README.md:800",
+        "README.md:1384",
+        ".skilled/skills/sk-code/SKILL.md:40",
+        ".skilled/skills/sk-code/README.md:23",
+        ".skilled/changelog/skilled/v4.0.0.5.md:1"
+      ],
+      "bugClass": "documentation_duplication",
+      "disposition": "ruled_out",
+      "rationale": "no contradictory or drifting statement found",
+      "evidenceRefs": [
+        "README.md:800",
+        "README.md:1384",
+        "README.md:1445",
+        ".skilled/skills/sk-code/SKILL.md:40",
+        ".skilled/skills/sk-code/README.md:23",
+        ".hermes/skills/sk-code/SKILL.md:45",
+        ".skilled/changelog/skilled/v4.0.0.5.md:1"
+      ],
+      "proof": "roles and ranking are consistent across every changed document"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/changelog/skilled/v4.0.0.5.md:1",
+        ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md:1"
+      ],
+      "bugClass": "template_nonconformance",
+      "disposition": "ruled_out",
+      "rationale": "template shape conformant",
+      "evidenceRefs": [
+        ".skilled/changelog/skilled/v4.0.0.5.md:1",
+        ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md:1"
+      ],
+      "proof": "compact shape matches the template and the validator passes"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "README.md:800",
+        "README.md:1384",
+        ".skilled/skills/sk-code/README.md"
+      ],
+      "bugClass": "stale_reference",
+      "disposition": "ruled_out",
+      "rationale": "stale-reference sweep clean for the changed surface set",
+      "evidenceRefs": [
+        "README.md:1384",
+        ".skilled/changelog/skilled/v4.0.0.5.md:22",
+        ".skilled/skills/sk-code/shared/references/phase-detection.md:16"
+      ],
+      "proof": "no canonical line replaces OpenCode or presents the three surfaces as peers; the remaining replace-example wording is the active R2-P2-001 subject"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-405",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/shared/references/phase-detection.md:16",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:46"
+      ],
+      "bugClass": "stale_reference",
+      "disposition": "ruled_out",
+      "rationale": "recipe gap ruled out",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:46",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:320"
+      ],
+      "proof": "the verify battery flags the stale count on the next removal run"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-406",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "README.md:244",
+        "README.md:1376",
+        "README.md:1445"
+      ],
+      "bugClass": "anchor_integrity",
+      "disposition": "ruled_out",
+      "rationale": "anchor integrity verified",
+      "evidenceRefs": [
+        "README.md:244",
+        "README.md:1445",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/scratch/review-diff.patch:147"
+      ],
+      "proof": "heading and anchor are unchanged and resolve"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-407",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/SKILL.md:40",
+        ".skilled/skills/sk-code/README.md:23"
+      ],
+      "bugClass": "documentation_consistency",
+      "disposition": "ruled_out",
+      "rationale": "designed duplication, not an unmet claim",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/README.md:23",
+        ".skilled/skills/sk-code/SKILL.md:40"
+      ],
+      "proof": "the hub README defers to the SKILL.md list at :23 and the role restatements are spec-mandated, not a competing count"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-501",
+      "dimension": "correctness",
+      "targetRefs": [
+        "README.md:1461",
+        ".hermes/skills/sk-code-webflow",
+        ".hermes/skills/sk-code-obsidian"
+      ],
+      "bugClass": "missing_instruction_step",
+      "disposition": "not_applicable",
+      "rationale": "advisory re-confirmed at cited lines",
+      "evidenceRefs": [
+        "README.md:1461",
+        "README.md:1461",
+        ".skilled/scripts/git-hooks/pre-commit:233"
+      ],
+      "proof": "carried P2 R1-P2-001 re-verified and still holds; no new finding claimed this terminal iteration"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-502",
+      "dimension": "correctness",
+      "targetRefs": [
+        "README.md:1384",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:86"
+      ],
+      "bugClass": "stale_reference",
+      "disposition": "not_applicable",
+      "rationale": "advisory re-confirmed at cited lines",
+      "evidenceRefs": [
+        "README.md:1384",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:86"
+      ],
+      "proof": "carried P2 R1-P2-002 re-verified and still holds; no new finding claimed"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-503",
+      "dimension": "security",
+      "targetRefs": [
+        "README.md:1456",
+        "README.md:1384"
+      ],
+      "bugClass": "destructive_data_loss",
+      "disposition": "not_applicable",
+      "rationale": "advisory re-confirmed at cited lines",
+      "evidenceRefs": [
+        "README.md:1456",
+        "README.md:1384"
+      ],
+      "proof": "carried P2 R2-P2-001 re-verified and still holds; no new finding claimed"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-504",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:87"
+      ],
+      "bugClass": "spec_scope_mismatch",
+      "disposition": "not_applicable",
+      "rationale": "advisory re-confirmed at cited lines",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:87"
+      ],
+      "proof": "carried P2 R3-P2-001 re-verified and still holds; no new finding claimed"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-505",
+      "dimension": "correctness",
+      "targetRefs": [
+        "README.md:1454",
+        "README.md:1466",
+        ".opencode/skills",
+        "README.md:1473"
+      ],
+      "bugClass": "wrong_path_or_command",
+      "disposition": "ruled_out",
+      "rationale": "walkthrough probe of the guide's path and order set",
+      "evidenceRefs": [
+        "README.md:1454",
+        "README.md:1466",
+        "README.md:1445",
+        "README.md:1473"
+      ],
+      "proof": "no new path, order or red-check trip found beyond the four carried P2 advisories"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "missing_instruction_step",
+      "stale_reference",
+      "destructive_data_loss",
+      "spec_scope_mismatch",
+      "wrong_path_or_command"
+    ],
+    "covered": [],
+    "ruledOut": [
+      "wrong_path_or_command"
+    ],
+    "deferred": [
+      "acceptance_ledger_evidence"
+    ],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

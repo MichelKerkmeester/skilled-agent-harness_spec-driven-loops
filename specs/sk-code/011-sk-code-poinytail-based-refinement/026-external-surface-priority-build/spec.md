@@ -37,7 +37,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-13 |
 | **Branch** | `worktrees/124-surface-priority-round-two` (planning); each child builds in its own worktree as its goal says |
 | **Parent Spec** | `../spec.md` |
@@ -114,11 +114,11 @@ Nine items, nine rows, five children. No item is unmapped and none is mapped twi
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-scaffold-surface-placement/ | R1 and R8: the scaffold places a new surface after the workflow modes and ahead of the existing surfaces, and its completion report names the canary and commit follow-ups | Planned |
-| 2 | 002-doctor-guard-sync-messages/ | R3 and R7: the doctor, guard and sync messages point at the fix, and a missing authored closure is a named failure | Planned |
-| 3 | 003-example-tolerant-drift-guards/ | R2: the sk-code drift guards tolerate a removed example surface | Planned |
-| 4 | 004-router-version-parity/ | Doctor check 13a stops requiring `ROUTER.md` to carry the `SKILL.md` version | Planned |
-| 5 | 005-external-user-guide/ | R4 and R9: the README adaptation block becomes the external-user guide, OpenCode is marked native, and the next release note states the rule | Planned |
+| 1 | 001-scaffold-surface-placement/ | R1 and R8: the scaffold places a new surface after the workflow modes and ahead of the existing surfaces, and its completion report names the canary and commit follow-ups | Complete |
+| 2 | 002-doctor-guard-sync-messages/ | R3 and R7: the doctor, guard and sync messages point at the fix, and a missing authored closure is a named failure | Complete |
+| 3 | 003-example-tolerant-drift-guards/ | R2: the sk-code drift guards tolerate a removed example surface | Complete |
+| 4 | 004-router-version-parity/ | Doctor check 13a stops requiring `ROUTER.md` to carry the `SKILL.md` version | Complete |
+| 5 | 005-external-user-guide/ | R4 and R9: the README adaptation block becomes the external-user guide, OpenCode is marked native, and the next release note states the rule | Complete |
 
 ### Phase Transition Rules
 
