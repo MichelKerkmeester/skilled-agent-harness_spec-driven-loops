@@ -9,16 +9,16 @@ _memory:
   continuity:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement"
     last_updated_at: "2026-10-13T06:00:00Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_by: "builder"
+    recent_action: "Built, proved, reviewed and closed the phase"
+    next_safe_action: "Operator merges worktrees/125-surface-placement to main"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-026-001"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -61,13 +61,13 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `A=.skilled/commands/create/assets; R=.skilled/skills/sk-doc/sk-create-skill/references/parent-skill; P='ahead of the existing surface modes'; grep -qF "$P" $A/create-skill-parent-confirm.yaml && [ "$(grep -F "$P" $A/create-skill-parent-confirm.yaml | sed 's/^ *//')" = "$(grep -F "$P" $A/create-skill-parent-auto.yaml | sed 's/^ *//')" ] && grep -qF "$P" $R/parent-hub-router-schema.md && grep -qF "$P" $R/parent-skills-nested-packets.md && echo ok`, run from the repository root, prints ok.
-- [ ] `n=0; for f in .skilled/commands/create/assets/create-skill-parent-confirm.yaml .skilled/commands/create/assets/create-skill-parent-auto.yaml; do s=$(awk '/step_6_completion:/,/outputs:/' "$f"); case "$s" in *canary-cases.v1.json*) case "$s" in *install-git-hooks.sh*) n=$((n+1));; esac;; esac; done; echo $n`, run from the repository root, prints 2.
-- [ ] `F=specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/implementation-summary.md; [ "$(grep -cE '^\| P8-[1-6] \| Pass \|' $F)" = 6 ] && [ "$(grep -E '^\| P8-[1-6] \| Pass \|' $F | grep -vcF "$(printf '\140')")" = 0 ] && echo ok`, run from the repository root, prints ok.
-- [ ] `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code >/dev/null 2>&1 && node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-doc >/dev/null 2>&1 && bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh >/dev/null 2>&1 && python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md >/dev/null 2>&1 && python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md >/dev/null 2>&1 && echo ok`, run from the repository root, prints ok.
-- [ ] `C=specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement; [ "$(find $C/review/iterations -name 'iteration-*.md' 2>/dev/null | wc -l | tr -d ' ')" = 5 ] && [ "$(grep -E '^\| RV-' $C/implementation-summary.md | grep -vcE '^\| RV-[0-9]+ \| P[0-2] \| (Fixed|Rejected) \|')" = 0 ] && echo ok`, run from the repository root, prints ok.
-- [ ] `G='^Spec: sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement$'; [ -n "$(git log --no-merges --grep="$G" --format=%h)" ] && [ "$(git log --no-merges --grep="$G" --format=%B | grep -cE '^(Co-Authored-By|Claude-Session):')" = 0 ] && [ "$(git log --no-merges --format= --name-only --diff-filter=A --grep="$G" -- .skilled/skills | grep -c /changelog/)" = 1 ] && [ "$(git log --no-merges --format= --name-only --diff-filter=A --grep="$G" -- .skilled/skills/sk-doc/sk-create-skill/changelog | grep -c .)" = 1 ] && node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs bump --base origin/main --check >/dev/null 2>&1 && echo ok`, run from the repository root, prints ok.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement --strict`, run from the repository root, prints `RESULT: PASSED`.
+- [x] `A=.skilled/commands/create/assets; R=.skilled/skills/sk-doc/sk-create-skill/references/parent-skill; P='ahead of the existing surface modes'; grep -qF "$P" $A/create-skill-parent-confirm.yaml && [ "$(grep -F "$P" $A/create-skill-parent-confirm.yaml | sed 's/^ *//')" = "$(grep -F "$P" $A/create-skill-parent-auto.yaml | sed 's/^ *//')" ] && grep -qF "$P" $R/parent-hub-router-schema.md && grep -qF "$P" $R/parent-skills-nested-packets.md && echo ok`, run from the repository root, prints ok.
+- [x] `n=0; for f in .skilled/commands/create/assets/create-skill-parent-confirm.yaml .skilled/commands/create/assets/create-skill-parent-auto.yaml; do s=$(awk '/step_6_completion:/,/outputs:/' "$f"); case "$s" in *canary-cases.v1.json*) case "$s" in *install-git-hooks.sh*) n=$((n+1));; esac;; esac; done; echo $n`, run from the repository root, prints 2.
+- [x] `F=specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/implementation-summary.md; [ "$(grep -cE '^\| P8-[1-6] \| Pass \|' $F)" = 6 ] && [ "$(grep -E '^\| P8-[1-6] \| Pass \|' $F | grep -vcF "$(printf '\140')")" = 0 ] && echo ok`, run from the repository root, prints ok.
+- [x] `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code >/dev/null 2>&1 && node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-doc >/dev/null 2>&1 && bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh >/dev/null 2>&1 && python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md >/dev/null 2>&1 && python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md >/dev/null 2>&1 && echo ok`, run from the repository root, prints ok.
+- [x] `C=specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement; [ "$(find $C/review/iterations -name 'iteration-*.md' 2>/dev/null | wc -l | tr -d ' ')" = 5 ] && [ "$(grep -E '^\| RV-' $C/implementation-summary.md | grep -vcE '^\| RV-[0-9]+ \| P[0-2] \| (Fixed|Rejected) \|')" = 0 ] && echo ok`, run from the repository root, prints ok.
+- [x] `G='^Spec: sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement$'; [ -n "$(git log --no-merges --grep="$G" --format=%h)" ] && [ "$(git log --no-merges --grep="$G" --format=%B | grep -cE '^(Co-Authored-By|Claude-Session):')" = 0 ] && [ "$(git log --no-merges --format= --name-only --diff-filter=A --grep="$G" -- .skilled/skills | grep -c /changelog/)" = 1 ] && [ "$(git log --no-merges --format= --name-only --diff-filter=A --grep="$G" -- .skilled/skills/sk-doc/sk-create-skill/changelog | grep -c .)" = 1 ] && node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs bump --base origin/main --check >/dev/null 2>&1 && echo ok`, run from the repository root, prints ok.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement --strict`, run from the repository root, prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -84,7 +84,10 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet scaffolded | Done | create.sh phase mode with `--level 2` and `--with-goal`; spec.md lists ledger rows P8-1 to P8-6 |
-| Build | Pending | |
+| Build | Done | `17bb342b1c` build and sk-create-skill 1.5.4.0; `d500377abc` review fix and review packet; closeout commit carries the docs |
+| Copy proof | Done | P8-1 to P8-6 in `implementation-summary.md`; copy deleted after |
+| Deep review | Done | 5 iterations, cli-pi DeepSeek V4.1 Flash max, verdict PASS, P2 2: RV-1 Fixed, RV-2 Rejected |
+| Criteria rerun | Done | 2026-10-13 from the final state: 1 ok, 2 printed 2, 3 ok, 4 ok, 5 ok, 6 ok, 7 `RESULT: PASSED` |
 
 ### Deviations and findings
 
@@ -92,4 +95,11 @@ and findings belong here.
 |------|------|
 | Line anchors | Planned against commit a71f719ae4: the confirm twin's `hub-router.json` activity is line 462 and its step_6_completion starts at line 542; the auto twin's are lines 423 and 495. Re-anchor if they moved |
 | Review executor name | 022's review recorded that the cli-pi allowlist accepts `deepseek-v4.1-flash` and resolves it to `llmgateway/deepseek-v4.1-flash` |
+| Line anchors, rechecked | Unchanged at 4b9bf840b0: 462 and 542 (confirm), 423 and 495 (auto) |
+| Executor | Devin answered `resource_exhausted` (daily quota), so every build and review dispatch ran on cli-pi `llmgateway/deepseek-v4.1-flash --thinking max`, as C2 allows |
+| pi in a linked worktree | The global extension symlink points at the main checkout's `.pi/extensions` and the worktree carries its own copy; both register `--fast`, so pi refuses to start. Build dispatches used `-ne`; the review's cli-pi branch was run with `--no-extensions` added after `-p`, the only change to the workflow's dispatch script. The shared builder adds the flag only for read-only leaves, which is worth a fix there |
+| Canary path in step_6 | Written as `009-parent-hub-rollout/<NNN>-<hub>/` instead of the literal `001-sk-code` path, because the scaffold serves every hub; the checked file name is unchanged |
+| Review graph event | The first `graph_convergence_evaluated` row was refused for its shape; it was rebuilt to the schema's six signal fields and accepted from iteration 1 on |
+| Save side effect | The continuity save stamped the parent and epic `graph-metadata.json`; those two hunks were reversed so this branch touches no file outside the phase but its scope |
+| Phase changelog | `spec.md` asks to refresh the matching file in `../changelog/`; the parent has no `changelog/` folder, so there was nothing to refresh |
 <!-- /ANCHOR:log -->
