@@ -47,7 +47,17 @@
       "research/research.md",
       "research/deep-research-config.json",
       "research/findings-registry.json",
-      ".skilled/repo-rules/prevent-overengineering.md"
+      ".skilled/repo-rules/prevent-overengineering.md",
+      "research/lineages/dsflash-devin/iterations/iteration-001.md",
+      "research/lineages/luna-max-fast/iterations/iteration-001.md",
+      "research/lineages/swe2max-devin/iterations/iteration-001.md",
+      "research/lineages/luna-max-fast-r2/iterations/iteration-001.md",
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+      ".skilled/bin/compiled-route-sync.cjs",
+      "shared/README.md",
+      ".opencode/plugins/system-skill-advisor.js",
+      ".skilled/bin/compiled-route.cjs"
     ],
     "entities": [
       {
@@ -105,6 +115,48 @@
         "source": "derived"
       },
       {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/lineages/dsflash-devin/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "canary-cases.v1.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "shared/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -151,53 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Other",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Each",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The v4.0.0.4 release note's \"One Surface Order Everywhere\" entry says every sk-code file that ranks the code surfaces lists OpenCode, then Obsidian, then Webflow, and that a keyword tie can be led by the session's surface through `compiled-route.cjs --surface-hint`",
     "created_at": "2026-10-12T16:19:58Z",
-    "last_save_at": "2026-10-12T21:28:18.671Z",
+    "last_save_at": "2026-10-13T04:07:29.242Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +218,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:25496bc3eed2b4691e10d1b79202fb14a646177fe06a22ce74567bf1593a9a44",
+    "source_fingerprint": "sha256:2337f783f5caf82582dd347810143a08986cbaeed87422d6b666517f75d43181",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "54f1318d397a3f6e0b4f46a56dd7810d55a4e2c9f232d50751698adf6bff8bd9",
       "plan.md": "ccf0edf531b9b85069e63f7a2981fe841a6f980aee652e08d1a4b1988f3c5e4f",
       "tasks.md": "446a4ac37193b4325b6c5cffc2c154bf02328399e49e24d84dd05c7e194b8546",
       "implementation-summary.md": "17605808f4307787e6c05e60a691da59a439f212c07b7c2f8d0aeb2bcd142951",
-      "research/research.md": "760dcb840d0aa638ef1576f84ff81f3cc20d71f20c3606a657842f1ed4ebcad8"
+      "research/research.md": "24ace9f4462b2a3be673497773a59cef5b8485c323e8a103ead5aebdc2654405"
     },
     "last_active_at": null
   }
