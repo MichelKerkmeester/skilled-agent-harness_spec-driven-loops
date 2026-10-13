@@ -797,7 +797,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 
 - Loads surface-aware patterns, checklists and verification recipes per surface, and detects the active stack from paths and library markers
 - Unsupported stacks (Go, React/Next.js, generic Node.js, React Native, Swift) trigger a quick disambiguation question
-- Three ready surfaces: WEBFLOW (Webflow and vanilla HTML/CSS/JS animation, CDN deploy, Lighthouse/TBT/INP targets), OPENCODE (`.skilled/` system code across JS/TS/Python/Shell/JSON, MCP servers, agents, commands, skills) and OBSIDIAN (read-only design-system and source-convention evidence for the Note Database Obsidian plugin)
+- One native surface and two optional examples: OPENCODE, the native surface (`.skilled/` system code across JS/TS/Python/Shell/JSON, MCP servers, agents, commands, skills), plus the optional example surfaces WEBFLOW (Webflow and vanilla HTML/CSS/JS animation, CDN deploy, Lighthouse/TBT/INP targets) and OBSIDIAN (read-only design-system and source-convention evidence for the Note Database Obsidian plugin)
 - Verifies before it claims done: three mandatory phases run implementation, then testing and debugging, then verification
 - Reviews before you ship (`code-review` mode): a stack-agnostic findings-first review baseline that reuses the surface evidence above. The security, correctness, SOLID and threat-model checklists always run first and their minimums are never relaxed, and findings come ranked P0/P1/P2
 
@@ -1381,7 +1381,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 **`sk-code`** - 🎨 stack-specific, the customization point
 
 - Surface-aware code-quality patterns
-- Replace the shipped Webflow + OpenCode + Obsidian surfaces with your own (Next.js + Tailwind + Postgres, React Native + Reanimated, Go + sqlc, etc.)
+- Keep the native OpenCode surface, and remove or replace the optional example Webflow and Obsidian surfaces with your own (Next.js + Tailwind + Postgres, React Native + Reanimated, Go + sqlc, etc.)
 - Motion.dev is an animation overlay inside the Webflow surface, not a surface of its own
 - Includes the findings-first `code-review` mode that reuses these surfaces as review evidence
 
@@ -1444,11 +1444,43 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 &nbsp;
 #### What Adapting `sk-code` Looks Like
 
-1. Replace the surface packets (`sk-code-webflow/`, `sk-code-opencode/`, `sk-code-obsidian/`) with packets for your stack. Each one owns its own `references/` and `assets/`
-2. Register your packets in `mode-registry.json` and `hub-router.json`, and update the mode table in `SKILL.md` §1
-3. Update `shared/references/stack-detection.md` to match your stack's marker files and CWD signals
-4. Update the `RESOURCE_MAP` in `ROUTER.md` §11 so each intent key points at your renamed packet resources
-5. Bump the `sk-code` version and ship a changelog. Use `sk-code-opencode/assets/checklists/skill-authoring.md` as your guide
+`sk-code` ships one native surface and two optional examples. OpenCode, at `.skilled/skills/sk-code/sk-code-opencode/`, is native: it holds the standards for this framework's own code, so keep it. Webflow, at `.skilled/skills/sk-code/sk-code-webflow/`, and Obsidian, at `.skilled/skills/sk-code/sk-code-obsidian/`, are optional examples. You can remove them or keep them as models, and a surface you add for your own stack ranks ahead of OpenCode. Run every command from the repository root.
+
+**Before you start**
+
+1. Install the git hooks with `bash .skilled/scripts/install-git-hooks.sh`. A commit that stages the hub's routing files then re-mints its activation manifest and copies the manifest to its authored path. Without the hooks, do both by hand after each routing change: run `node .skilled/bin/compiled-route-manifest.cjs refresh --hub sk-code --skill-root .skilled/skills/sk-code`, then copy `.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json` over `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json`.
+2. If you prune `specs/`, keep `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/`, the authored source of compiled routing, and keep the `.opencode/skills` link. Without either one the guard and sync checks fail.
+
+**Remove an example surface.** Repeat these steps for each surface you drop. `<mode>` is `sk-code-webflow` or `sk-code-obsidian`.
+
+1. Delete the folder `.skilled/skills/sk-code/<mode>/`.
+2. In `.skilled/skills/sk-code/mode-registry.json`, delete the mode's `modes` entry and its name in `extensions.surface-axis.surfaces`. In `.skilled/skills/sk-code/hub-router.json`, delete it from `routerPolicy.tieBreak`, delete its `routerSignals` entry and delete the two `vocabularyClasses` that entry names.
+3. Regenerate the leaf manifest with `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --write .skilled/skills/sk-code`.
+4. Edit section 11 of `.skilled/skills/sk-code/ROUTER.md` by hand, because no command writes it. Delete every `RESOURCE_MAP` path under `<mode>/`, then delete each key left with no paths from both `RESOURCE_MAP` and `INTENT_SIGNALS`. Trim the prose map rows and sections above section 11 that point at the removed packet.
+5. Update the surface table and the surface list sentence in `.skilled/skills/sk-code/SKILL.md`, and the surface markers in `.skilled/skills/sk-code/shared/references/stack-detection.md`.
+6. Delete or adjust the files written for the example. These are its scenarios under `.skilled/skills/sk-code/manual-testing-playbook/`, with their rows in `manual-testing-playbook.md`, the Obsidian and Webflow checklist pointers in `.skilled/skills/sk-code/sk-code-quality/`, the cases in `.skilled/bin/tests/compiled-route-surface-hint.test.cjs` and the canary cases that name the mode in `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json`. After a canary edit, copy that fixture over its authored twin at `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json`.
+7. Run `node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs` and fix every dead path and stale surface count it lists, including the hub's `README.md` and `graph-metadata.json`.
+8. Refresh the README manifest with `python3 .skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py --write`.
+9. Commit with the hooks installed, or refresh and copy the manifest by hand as above.
+
+**Add your own surface**
+
+1. Run `/create:skill-parent update --surfaces <name>` in your AI runtime. Its steps live in `.skilled/commands/create/assets/create-skill-parent-auto.yaml`. It scaffolds the packet, registers it and places it ahead of OpenCode in `tieBreak`, so your surface wins a keyword tie.
+2. Link the three shared workflow docs into the new packet the way `sk-code-opencode/references/` does: in `.skilled/skills/sk-code/<name>/references/`, symlink `workflow-implement.md`, `workflow-debug.md` and `workflow-verify.md` to `../../shared/references/`.
+3. Add the packet's paths to the `ROUTER.md` maps and section 11, and its markers to `stack-detection.md`.
+4. Add a canary case that routes to the new surface in the canary fixture above, and copy the fixture over its authored twin. The completion report of the update command names both follow-ups.
+5. Commit with the hooks installed, or refresh and copy the manifest by hand.
+
+**Verify.** Each of these must exit 0. Then route a prompt that names your stack, and check that your surface comes first.
+
+```bash
+node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code
+node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
+node .skilled/bin/compiled-route-guard.cjs
+node .skilled/bin/compiled-route-sync.cjs --check
+bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
+node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<a prompt about your stack>"
+```
 
 The other shipped skills keep working unchanged: `sk-doc` still validates your markdown, `sk-git` still manages your branches, `system-spec-kit` still specs your work. `sk-code`'s `code-review` mode auto-adapts to your customized surfaces at review time.
 
