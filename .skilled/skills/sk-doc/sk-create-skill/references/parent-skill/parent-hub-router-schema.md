@@ -9,7 +9,7 @@ trigger_phrases:
   - "vocabulary class ownership"
 importance_tier: important
 contextType: implementation
-version: 1.2.0.21
+version: 1.2.1.0
 ---
 
 # Parent Hub Router Schema
@@ -287,7 +287,7 @@ If the next-ranked mode is within `routerPolicy.ambiguityDelta` of the winner, t
 
 ### Tie-break ordering
 
-`tieBreak` is the deterministic final sorter. It also encodes policy: workflow modes appear before surface packets, so a surface cannot outrank a workflow when both are selected for one bundle.
+`tieBreak` is the deterministic final sorter. It also encodes policy: workflow modes appear before surface packets, so a surface cannot outrank a workflow when both are selected for one bundle. A surface mode added to an existing hub goes after the workflow modes and ahead of the existing surface modes, so it leads a keyword tie against a surface that was already there; modes already listed keep their position.
 
 ---
 
