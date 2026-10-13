@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research",
+  "description": "Phase 28: surface-setup-hardening-research",
+  "keywords": [
+    "phase",
+    "surface-setup-hardening-research"
+  ],
+  "lastUpdated": "2026-10-13T18:32:19.408Z",
+  "specId": "028",
+  "folderSlug": "surface-setup-hardening-research",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "13-10-26_19-32__deep-research-complete-two-five-iteration-cli.md"
+  ]
+}

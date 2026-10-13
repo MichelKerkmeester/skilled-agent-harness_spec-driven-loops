@@ -1,0 +1,366 @@
+{
+  "sessionId": "dr-028-deepseek-max-2026-10-13T17:31:23.657Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-where-can-the-assumption-still-break-hand-edits-to-tiebreak-or-the-registries",
+      "inboxId": null,
+      "text": "Q1: Where can the assumption still break (hand edits to tieBreak or the registries, skill-advisor routing, compiled routing, Hermes copies, runtime mirrors, playbooks, benchmarks, canaries, feature catalogs, fresh clones)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-q2-what-does-an-external-user-do-from-clone-to-a-green-battery-and-where-is-each",
+      "inboxId": null,
+      "text": "Q2: What does an external user do from clone to a green battery, and where is each friction point?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-q3-which-manual-steps-can-existing-automation-absorb-without-a-judgment-call",
+      "inboxId": null,
+      "text": "Q3: Which manual steps can existing automation absorb without a judgment call?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-4-q4-should-the-setup-be-a-new-doctor-command-or-a-new-sk-code-hub-mode-what-shoul",
+      "inboxId": null,
+      "text": "Q4: Should the setup be a new doctor command or a new sk-code hub mode, what should it be called, where would it be referenced and what does each cost?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-5-q5-which-ideas-should-be-rejected-and-why",
+      "inboxId": null,
+      "text": "Q5: Which ideas should be rejected, and why?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-6-q6-which-findings-are-new-and-which-are-already-covered-by-025-026-or-027",
+      "inboxId": null,
+      "text": "Q6: Which findings are NEW and which are ALREADY-COVERED by 025, 026 or 027?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-q1-where-can-the-assumption-still-break-hand-edits-to-tiebreak-or-the-registries",
+      "inboxId": null,
+      "text": "Q1: Where can the assumption still break (hand edits to tieBreak or the registries, skill-advisor routing, compiled routing, Hermes copies, runtime mirrors, playbooks, benchmarks, canaries, feature catalogs, fresh clones)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-q2-what-does-an-external-user-do-from-clone-to-a-green-battery-and-where-is-each",
+      "inboxId": null,
+      "text": "Q2: What does an external user do from clone to a green battery, and where is each friction point?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-3-q3-which-manual-steps-can-existing-automation-absorb-without-a-judgment-call",
+      "inboxId": null,
+      "text": "Q3: Which manual steps can existing automation absorb without a judgment call?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-4-q4-should-the-setup-be-a-new-doctor-command-or-a-new-sk-code-hub-mode-what-shoul",
+      "inboxId": null,
+      "text": "Q4: Should the setup be a new doctor command or a new sk-code hub mode, what should it be called, where would it be referenced and what does each cost?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-5-q5-which-ideas-should-be-rejected-and-why",
+      "inboxId": null,
+      "text": "Q5: Which ideas should be rejected, and why?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-6-q6-which-findings-are-new-and-which-are-already-covered-by-025-026-or-027",
+      "inboxId": null,
+      "text": "Q6: Which findings are NEW and which are ALREADY-COVERED by 025, 026 or 027?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q1 remainder: `.skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/*` (5-9 example-name hits each), benchmarks, feature catalogs, hand-edit tolerance of registries, fresh clone.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2-Q6 untouched.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 remainder: fresh clone from `git clone` to a green battery; scaffolded-removal re-mint behavior (canary fixture, compiled manifest) — not probed this iteration.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2-Q6 untouched (the copy journey probes above are raw material for Q2/Q3).",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Detail left uncaptured: the identity of the second failed guard in the umbrella run (the captured tail names doc-claims; the full log is in the exec overflow file).",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 remainder: fresh clone from `git clone` to a green battery; scaffolded-removal re-mint behavior (canary fixture, compiled manifest) — not probed.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3, Q5, Q6 untouched.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Detail left uncaptured (iteration 2): the identity of the second failed guard in the umbrella run.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: the clone-to-battery journey — partially informed here (the battery is README:1476-1483) but the fresh-clone probe is not done.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 remainder: fresh clone from `git clone` to a green battery; scaffolded-removal re-mint behavior — not probed.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: the clone-to-battery journey — timing and friction now captured, but the fresh-clone probe is not done.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Detail left uncaptured (iteration 2): the identity of the second failed guard in the earlier umbrella run — this iteration's copy shows the failure set directly (doc-claims + check paths).",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5, Q6 untouched (classification rows above are input).",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Unsettled detail: whether the routing re-mint gate copies a re-minted manifest to its authored path after the mirror-parity gate passes (my commit was blocked before that point; settle by running `sync-skills-hermes.cjs`, `git add`, and re-committing).",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 remainder: fresh clone from `git clone` to a green battery; playbooks/benchmarks/feature-catalog mentions; Hermes copies beyond the mirror-parity gate.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: the clone-to-battery journey — battery timing and friction captured (iterations 3-4), fresh-clone probe still not done.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Q1: Where can the assumption still break (hand edits to tieBreak or the registries, skill-advisor routing, compiled routing, Hermes copies, runtime mirrors, playbooks, benchmarks, canaries, feature catalogs, fresh clones)?",
+    "Q2: What does an external user do from clone to a green battery, and where is each friction point?"
+  ],
+  "keyFindings": [],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-2717eec63acc",
+      "text": "None definitive this iteration; the deferred copy probe (below) is the candidate for a later iteration, not a dead end.",
+      "contentHash": "2717eec63acc",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-31fe51138d77",
+      "text": "Row-by-row reading of all 025 F-rows: budget; used sections 7, 8, 14 and targeted F-row greps instead.",
+      "contentHash": "31fe51138d77",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-a4c041c0602d",
+      "text": "Whole-repo name grep as the classification instrument: 849/925 matching files, dominated by spec archives; narrowed to `.skilled/` and the runtime mirrors.",
+      "contentHash": "a4c041c0602d",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-4b55f17604e5",
+      "text": "None definitive. The bare-delete wall is a finding, not a dead end; the copy probes are reproducible (copy `deepseek-max-i2-wGIE`, or re-run the recipes above).",
+      "contentHash": "4b55f17604e5",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-b1a9ed3a5632",
+      "text": "Running the Hermes sync from a shell whose `$X` variable did not persist: an intermediate invocation fell back to the default cwd (the original worktree) and reported `Wrote 0 of 68 ... pruned 0`. Verified harmless — `git status --porcelain -- .hermes` is empty and the original `.hermes/skills` still holds both example copies — and the probe was re-run with a hardcoded copy path. All later commands used the hardcoded path.",
+      "contentHash": "b1a9ed3a5632",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-90d3c8939083",
+      "text": "Copy probes for Q4: unnecessary — the doctor family's registration, validation and mirroring contracts are all committed files, and every claim above is a path:line read. The recipes remain for the Q2 fresh-clone journey.",
+      "contentHash": "90d3c8939083",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-b5fe14552438",
+      "text": "None definitive.",
+      "contentHash": "b5fe14552438",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-f2cb66ae50ee",
+      "text": "None definitive. The stand-in's `check paths` noise is a probe artifact and not a candidate for \"Exhausted Approaches\".",
+      "contentHash": "f2cb66ae50ee",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-88dd0b037f9e",
+      "text": "Re-running the 5l failing direction (surface placed after OpenCode): the message text is a committed-file read ([SOURCE: .skilled/commands/doctor/scripts/parent-skill-check.cjs:1173]) and 027 already shipped the check; budget spent on the un-run directions instead.",
+      "contentHash": "88dd0b037f9e",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-d30639eb4015",
+      "text": "Reproducing the `check paths` dead-reference lines as a product finding: they came from my rename shortcut (content rewritten, filenames not), so they are probe noise, not a product defect. The decisive stand-in guard failures are `check surfaces` and doc-claims.",
+      "contentHash": "d30639eb4015",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-206346009ab7",
+      "text": "None definitive. The commit-path repair question is a named remaining uncertainty, not a dead end.",
+      "contentHash": "206346009ab7",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-cb64107048e5",
+      "text": "Re-running the swe-max failure sequence with their exact edit order to force `MOVE-SIMULATION`: budget; the README path's end-to-end green (sync, guard, route) is the decisive answer, and the non-reproduction is recorded as a BREAK row.",
+      "contentHash": "cb64107048e5",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 2,
+    "resolvedQuestions": 4,
+    "carriedForwardOpenQuestions": 16,
+    "keyFindings": 0,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.79,
+    "coverageBySources": {
+      "code": 40,
+      "other": 30
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/132-surface-setup-research/specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/lineages/deepseek-max/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

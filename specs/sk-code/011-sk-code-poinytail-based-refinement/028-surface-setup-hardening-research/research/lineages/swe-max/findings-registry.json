@@ -1,0 +1,293 @@
+{
+  "sessionId": "dr-028-swe-max-2026-10-13T17:31:25.170Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-where-can-the-assumption-still-break-hand-edits-to-tiebreak-or-the-registries",
+      "inboxId": null,
+      "text": "Q1: Where can the assumption still break (hand edits to tieBreak or the registries, skill-advisor routing, compiled routing, Hermes copies, runtime mirrors, playbooks, benchmarks, canaries, feature catalogs, fresh clones)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-q2-what-does-an-external-user-do-from-clone-to-a-green-battery-and-where-is-each",
+      "inboxId": null,
+      "text": "Q2: What does an external user do from clone to a green battery, and where is each friction point?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-3-q3-which-manual-steps-can-existing-automation-absorb-without-a-judgment-call",
+      "inboxId": null,
+      "text": "Q3: Which manual steps can existing automation absorb without a judgment call?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-4-q4-should-the-setup-be-a-new-doctor-command-or-a-new-sk-code-hub-mode-what-shoul",
+      "inboxId": null,
+      "text": "Q4: Should the setup be a new doctor command or a new sk-code hub mode, what should it be called, where would it be referenced and what does each cost?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-5-q5-which-ideas-should-be-rejected-and-why",
+      "inboxId": null,
+      "text": "Q5: Which ideas should be rejected, and why?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-6-q6-which-findings-are-new-and-which-are-already-covered-by-025-026-or-027",
+      "inboxId": null,
+      "text": "Q6: Which findings are NEW and which are ALREADY-COVERED by 025, 026 or 027?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-q1-where-can-the-assumption-still-break-hand-edits-to-tiebreak-or-the-registries",
+      "inboxId": null,
+      "text": "Q1: Where can the assumption still break (hand edits to tieBreak or the registries, skill-advisor routing, compiled routing, Hermes copies, runtime mirrors, playbooks, benchmarks, canaries, feature catalogs, fresh clones)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-2-q2-what-does-an-external-user-do-from-clone-to-a-green-battery-and-where-is-each",
+      "inboxId": null,
+      "text": "Q2: What does an external user do from clone to a green battery, and where is each friction point?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-3-q3-which-manual-steps-can-existing-automation-absorb-without-a-judgment-call",
+      "inboxId": null,
+      "text": "Q3: Which manual steps can existing automation absorb without a judgment call?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-4-q4-should-the-setup-be-a-new-doctor-command-or-a-new-sk-code-hub-mode-what-shoul",
+      "inboxId": null,
+      "text": "Q4: Should the setup be a new doctor command or a new sk-code hub mode, what should it be called, where would it be referenced and what does each cost?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-5-q5-which-ideas-should-be-rejected-and-why",
+      "inboxId": null,
+      "text": "Q5: Which ideas should be rejected, and why?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-6-q6-which-findings-are-new-and-which-are-already-covered-by-025-026-or-027",
+      "inboxId": null,
+      "text": "Q6: Which findings are NEW and which are ALREADY-COVERED by 025, 026 or 027?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Whether the `.` and `.skilled` provision roots are individually required for the failing checks, or only for test/conformance paths (the battery passed after full provision; the subset was not isolated).",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "`sync-skills-hermes.cjs` / `test_readme_manifest.py` behavior on the add leg (carried from iteration 2's dead end — not retried, still unobserved).",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 legs unprobed this iteration: skill-advisor graph metadata/scorer boosts, Hermes copies, runtime mirrors, canary/benchmark/catalog surfaces under hand edits.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 tail stays open by deferral, not exhaustion: whether `.` and `.skilled` provision roots are individually required (subset never isolated); `sync-skills-hermes.cjs`/`test_readme_manifest.py` add-leg behavior (never observed). Consolidation consumed the budget; both are recorded for the packet's open questions.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Q1: Where can the assumption still break (hand edits to tieBreak or the registries, skill-advisor routing, compiled routing, Hermes copies, runtime mirrors, playbooks, benchmarks, canaries, feature catalogs, fresh clones)?"
+  ],
+  "keyFindings": [],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-5466d5ea1614",
+      "text": "None definitively; the add-surface leg (slash command requires an AI runtime) is deferred, not dead.",
+      "contentHash": "5466d5ea1614",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-ec5b1029768f",
+      "text": "Re-running the provisioned-copy recipe (APFS clone with node_modules): the dispatch's control-run is already green there and it cannot reproduce the external user's clone path — it masks the provisioning gap (same masking 025 V0 had via symlinked node_modules).",
+      "contentHash": "ec5b1029768f",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-aa1242590c0d",
+      "text": "None new. Iteration 1's BLOCKED directions respected: I used the provisioned copy only for the *add* leg (which needs node_modules for the generators), not to re-test the clone journey.",
+      "contentHash": "aa1242590c0d",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-1937fc346fc9",
+      "text": "Testing `sync-skills-hermes.cjs` and `test_readme_manifest.py` on the add leg: not run (clock). What would settle it: run `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check` (or its --check equivalent) in `$X` and observe whether a new packet produces a named drift line.",
+      "contentHash": "1937fc346fc9",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-446366cf7d0a",
+      "text": "`compiled-route-admission.cjs` is not the mint entry point (rejects `--help`, interface undetermined in budget). What would settle it: find the generator of `013-live-activation/activation/*/manifest.json` — likely the admission pipeline under `.skilled/bin/lib/compiled-routing/` — and check whether `update --surfaces` calls it.",
+      "contentHash": "446366cf7d0a",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-17637139c618",
+      "text": "Hand-editing `leaf-manifest.json`: generator-owned; `10b` byte-drift fires on same entries/different bytes. `generate-leaf-manifest.cjs --write` is the only writer.",
+      "contentHash": "17637139c618",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-ff656d556020",
+      "text": "Probing which single invariant blocks `resolve hubs`: exhausted 3 sync attempts with distinct fixes applied; the blocker is upstream of doctor's invariant set (activation manifest mint), not a missing packet field (frontmatter completed to match `sk-code-obsidian`'s shape and sync still failed).",
+      "contentHash": "ff656d556020",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-553f8b00c36f",
+      "text": "New copy probes this iteration: consolidation focus; the two open Q1 tails need a copy and are deferred, not dead.",
+      "contentHash": "553f8b00c36f",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-dd0fa8a284b1",
+      "text": "None new.",
+      "contentHash": "dd0fa8a284b1",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-e1ad833b6e10",
+      "text": "Re-reading individual 025 F-rows: sections 5-9/13-14 carry the verified rulings; row-level detail unchanged by this pass.",
+      "contentHash": "e1ad833b6e10",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 1,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 4,
+    "keyFindings": 0,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.4,
+    "coverageBySources": {
+      "code": 36,
+      "other": 25
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/132-surface-setup-research/specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/lineages/swe-max/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 6924,
-    "ok": 14200,
+    "missing-frontmatter": 6926,
+    "ok": 14206,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 24671,
+  "documentsScanned": 24679,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "c34f8ce8b0c12c32b1b3d03b626a3aaaf3ecd136bb8fa470f572581de51b5c48",
+  "manifestHash": "34f4089b38f0bd29f5a466e423b3a1704f0416285e1d11632dd29618a2d33634",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36334,
+      "ok": 36344,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -38626,6 +38626,18 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/research/iterations/iteration-001.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -68626,6 +68638,14 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/scratch",
       "reason": "excluded directory"
     },
     {

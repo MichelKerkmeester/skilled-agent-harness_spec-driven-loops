@@ -1,0 +1,336 @@
+{
+  "mergedFrom": [
+    "deepseek-max",
+    "swe-max"
+  ],
+  "lineageExecutors": {
+    "deepseek-max": {
+      "kind": "unknown",
+      "model": "unknown",
+      "reasoningEffort": null
+    },
+    "swe-max": {
+      "kind": "unknown",
+      "model": "unknown",
+      "reasoningEffort": null
+    }
+  },
+  "openQuestions": [
+    {
+      "id": "question-1-q1-where-can-the-assumption-still-break-hand-edits-to-tiebreak-or-the-registries",
+      "inboxId": null,
+      "text": "Q1: Where can the assumption still break (hand edits to tieBreak or the registries, skill-advisor routing, compiled routing, Hermes copies, runtime mirrors, playbooks, benchmarks, canaries, feature catalogs, fresh clones)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "_lineages": [
+        "deepseek-max",
+        "swe-max"
+      ]
+    },
+    {
+      "id": "question-2-q2-what-does-an-external-user-do-from-clone-to-a-green-battery-and-where-is-each",
+      "inboxId": null,
+      "text": "Q2: What does an external user do from clone to a green battery, and where is each friction point?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "_lineages": [
+        "deepseek-max"
+      ]
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-2-q2-what-does-an-external-user-do-from-clone-to-a-green-battery-and-where-is-each",
+      "inboxId": null,
+      "text": "Q2: What does an external user do from clone to a green battery, and where is each friction point?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "_lineages": [
+        "swe-max"
+      ]
+    },
+    {
+      "id": "question-3-q3-which-manual-steps-can-existing-automation-absorb-without-a-judgment-call",
+      "inboxId": null,
+      "text": "Q3: Which manual steps can existing automation absorb without a judgment call?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "_lineages": [
+        "deepseek-max",
+        "swe-max"
+      ]
+    },
+    {
+      "id": "question-4-q4-should-the-setup-be-a-new-doctor-command-or-a-new-sk-code-hub-mode-what-shoul",
+      "inboxId": null,
+      "text": "Q4: Should the setup be a new doctor command or a new sk-code hub mode, what should it be called, where would it be referenced and what does each cost?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "_lineages": [
+        "deepseek-max",
+        "swe-max"
+      ]
+    },
+    {
+      "id": "question-5-q5-which-ideas-should-be-rejected-and-why",
+      "inboxId": null,
+      "text": "Q5: Which ideas should be rejected, and why?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "_lineages": [
+        "deepseek-max",
+        "swe-max"
+      ]
+    },
+    {
+      "id": "question-6-q6-which-findings-are-new-and-which-are-already-covered-by-025-026-or-027",
+      "inboxId": null,
+      "text": "Q6: Which findings are NEW and which are ALREADY-COVERED by 025, 026 or 027?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "_lineages": [
+        "deepseek-max",
+        "swe-max"
+      ]
+    }
+  ],
+  "keyFindings": [],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-2717eec63acc",
+      "text": "None definitive this iteration; the deferred copy probe (below) is the candidate for a later iteration, not a dead end.",
+      "contentHash": "2717eec63acc",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "deepseek-max"
+      ]
+    },
+    {
+      "id": "ruled-out-31fe51138d77",
+      "text": "Row-by-row reading of all 025 F-rows: budget; used sections 7, 8, 14 and targeted F-row greps instead.",
+      "contentHash": "31fe51138d77",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "deepseek-max"
+      ]
+    },
+    {
+      "id": "ruled-out-5466d5ea1614",
+      "text": "None definitively; the add-surface leg (slash command requires an AI runtime) is deferred, not dead.",
+      "contentHash": "5466d5ea1614",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "swe-max"
+      ]
+    },
+    {
+      "id": "ruled-out-a4c041c0602d",
+      "text": "Whole-repo name grep as the classification instrument: 849/925 matching files, dominated by spec archives; narrowed to `.skilled/` and the runtime mirrors.",
+      "contentHash": "a4c041c0602d",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "deepseek-max"
+      ]
+    },
+    {
+      "id": "ruled-out-ec5b1029768f",
+      "text": "Re-running the provisioned-copy recipe (APFS clone with node_modules): the dispatch's control-run is already green there and it cannot reproduce the external user's clone path — it masks the provisioning gap (same masking 025 V0 had via symlinked node_modules).",
+      "contentHash": "ec5b1029768f",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "swe-max"
+      ]
+    },
+    {
+      "id": "ruled-out-1937fc346fc9",
+      "text": "Testing `sync-skills-hermes.cjs` and `test_readme_manifest.py` on the add leg: not run (clock). What would settle it: run `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check` (or its --check equivalent) in `$X` and observe whether a new packet produces a named drift line.",
+      "contentHash": "1937fc346fc9",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "swe-max"
+      ]
+    },
+    {
+      "id": "ruled-out-4b55f17604e5",
+      "text": "None definitive. The bare-delete wall is a finding, not a dead end; the copy probes are reproducible (copy `deepseek-max-i2-wGIE`, or re-run the recipes above).",
+      "contentHash": "4b55f17604e5",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "deepseek-max"
+      ]
+    },
+    {
+      "id": "ruled-out-aa1242590c0d",
+      "text": "None new. Iteration 1's BLOCKED directions respected: I used the provisioned copy only for the *add* leg (which needs node_modules for the generators), not to re-test the clone journey.",
+      "contentHash": "aa1242590c0d",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "swe-max"
+      ]
+    },
+    {
+      "id": "ruled-out-b1a9ed3a5632",
+      "text": "Running the Hermes sync from a shell whose `$X` variable did not persist: an intermediate invocation fell back to the default cwd (the original worktree) and reported `Wrote 0 of 68 ... pruned 0`. Verified harmless — `git status --porcelain -- .hermes` is empty and the original `.hermes/skills` still holds both example copies — and the probe was re-run with a hardcoded copy path. All later commands used the hardcoded path.",
+      "contentHash": "b1a9ed3a5632",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "deepseek-max"
+      ]
+    },
+    {
+      "id": "ruled-out-90d3c8939083",
+      "text": "Copy probes for Q4: unnecessary — the doctor family's registration, validation and mirroring contracts are all committed files, and every claim above is a path:line read. The recipes remain for the Q2 fresh-clone journey.",
+      "contentHash": "90d3c8939083",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "deepseek-max"
+      ]
+    },
+    {
+      "id": "ruled-out-b5fe14552438",
+      "text": "None definitive.",
+      "contentHash": "b5fe14552438",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "deepseek-max"
+      ]
+    },
+    {
+      "id": "ruled-out-17637139c618",
+      "text": "Hand-editing `leaf-manifest.json`: generator-owned; `10b` byte-drift fires on same entries/different bytes. `generate-leaf-manifest.cjs --write` is the only writer.",
+      "contentHash": "17637139c618",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "swe-max"
+      ]
+    },
+    {
+      "id": "ruled-out-446366cf7d0a",
+      "text": "`compiled-route-admission.cjs` is not the mint entry point (rejects `--help`, interface undetermined in budget). What would settle it: find the generator of `013-live-activation/activation/*/manifest.json` — likely the admission pipeline under `.skilled/bin/lib/compiled-routing/` — and check whether `update --surfaces` calls it.",
+      "contentHash": "446366cf7d0a",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "swe-max"
+      ]
+    },
+    {
+      "id": "ruled-out-88dd0b037f9e",
+      "text": "Re-running the 5l failing direction (surface placed after OpenCode): the message text is a committed-file read ([SOURCE: .skilled/commands/doctor/scripts/parent-skill-check.cjs:1173]) and 027 already shipped the check; budget spent on the un-run directions instead.",
+      "contentHash": "88dd0b037f9e",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "deepseek-max"
+      ]
+    },
+    {
+      "id": "ruled-out-d30639eb4015",
+      "text": "Reproducing the `check paths` dead-reference lines as a product finding: they came from my rename shortcut (content rewritten, filenames not), so they are probe noise, not a product defect. The decisive stand-in guard failures are `check surfaces` and doc-claims.",
+      "contentHash": "d30639eb4015",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "deepseek-max"
+      ]
+    },
+    {
+      "id": "ruled-out-f2cb66ae50ee",
+      "text": "None definitive. The stand-in's `check paths` noise is a probe artifact and not a candidate for \"Exhausted Approaches\".",
+      "contentHash": "f2cb66ae50ee",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "deepseek-max"
+      ]
+    },
+    {
+      "id": "ruled-out-ff656d556020",
+      "text": "Probing which single invariant blocks `resolve hubs`: exhausted 3 sync attempts with distinct fixes applied; the blocker is upstream of doctor's invariant set (activation manifest mint), not a missing packet field (frontmatter completed to match `sk-code-obsidian`'s shape and sync still failed).",
+      "contentHash": "ff656d556020",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "swe-max"
+      ]
+    },
+    {
+      "id": "ruled-out-206346009ab7",
+      "text": "None definitive. The commit-path repair question is a named remaining uncertainty, not a dead end.",
+      "contentHash": "206346009ab7",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "deepseek-max"
+      ]
+    },
+    {
+      "id": "ruled-out-553f8b00c36f",
+      "text": "New copy probes this iteration: consolidation focus; the two open Q1 tails need a copy and are deferred, not dead.",
+      "contentHash": "553f8b00c36f",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "swe-max"
+      ]
+    },
+    {
+      "id": "ruled-out-cb64107048e5",
+      "text": "Re-running the swe-max failure sequence with their exact edit order to force `MOVE-SIMULATION`: budget; the README path's end-to-end green (sync, guard, route) is the decisive answer, and the non-reproduction is recorded as a BREAK row.",
+      "contentHash": "cb64107048e5",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "deepseek-max"
+      ]
+    },
+    {
+      "id": "ruled-out-dd0fa8a284b1",
+      "text": "None new.",
+      "contentHash": "dd0fa8a284b1",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "swe-max"
+      ]
+    },
+    {
+      "id": "ruled-out-e1ad833b6e10",
+      "text": "Re-reading individual 025 F-rows: sections 5-9/13-14 carry the verified rulings; row-level detail unchanged by this pass.",
+      "contentHash": "e1ad833b6e10",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "swe-max"
+      ]
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 2,
+    "resolvedQuestions": 5,
+    "keyFindings": 0,
+    "sourceFindings": 0,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.595,
+    "coverageBySources": {}
+  }
+}

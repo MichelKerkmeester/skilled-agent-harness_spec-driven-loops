@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c34f8ce8b0c12c32b1b3d03b626a3aaaf3ecd136bb8fa470f572581de51b5c48",
+  "manifestHash": "34f4089b38f0bd29f5a466e423b3a1704f0416285e1d11632dd29618a2d33634",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -37802,6 +37802,12 @@
     "doctor signals summary": [
       "doctor signals summary"
     ],
+    "doctor sk code setup": [
+      "doctor sk-code setup"
+    ],
+    "doctor sk code setup versus hub mode": [
+      "doctor sk-code-setup versus hub mode"
+    ],
     "doctor skill advisor": [
       "/doctor:skill-advisor"
     ],
@@ -41641,6 +41647,9 @@
     ],
     "external user guide tasks": [
       "external user guide tasks"
+    ],
+    "external user sk code surface journey": [
+      "external user sk-code surface journey"
     ],
     "external vs mcp search comparison": [
       "external vs MCP search comparison"
@@ -70961,6 +70970,9 @@
     ],
     "phase 25 external surface priority research": [
       "phase 25 external surface priority research"
+    ],
+    "phase 28 surface setup hardening research": [
+      "phase 28 surface setup hardening research"
     ],
     "phase 3 admission gold": [
       "phase 3 admission gold"
@@ -100505,6 +100517,24 @@
     ],
     "surface router pattern": [
       "surface router pattern"
+    ],
+    "surface setup hardening research": [
+      "surface setup hardening research"
+    ],
+    "surface setup hardening research goal": [
+      "surface setup hardening research goal"
+    ],
+    "surface setup hardening research implementation summary": [
+      "surface setup hardening research implementation summary"
+    ],
+    "surface setup hardening research plan": [
+      "surface setup hardening research plan"
+    ],
+    "surface setup hardening research synthesis": [
+      "surface setup hardening research synthesis"
+    ],
+    "surface setup hardening research tasks": [
+      "surface setup hardening research tasks"
     ],
     "surface tie order warning": [
       "surface tie order warning"
