@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 6926,
-    "ok": 14220,
+    "missing-frontmatter": 6939,
+    "ok": 14221,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 24693,
+  "documentsScanned": 24707,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "1a87e0e271fcc98a74aebc7a7298dc1d7eb93057c78e2c6bfd52fc6348d014d0",
+  "manifestHash": "5b05edcab95bc4b58450bd23f47ac37bb261fa575e3520c4910cfcd06e1e1d39",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -38634,6 +38634,84 @@
       "line": 2,
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/resource-map.md",
       "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "bae6c58148d39721311e83e478d061749367fc26d88653984d9b113015e3c4cf",
+  "corpusHash": "b4348e3b5532e9ca82a16c8c5ed093b0009ac4458ad2508f0a1818713093e519",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24693,
+  "includedPathCount": 24707,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11278,6 +11278,20 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/implementation-summary.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/deep-review-dashboard.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/deep-review-strategy.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/iterations/iteration-001.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/iterations/iteration-002.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/iterations/iteration-003.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/iterations/iteration-004.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/iterations/iteration-005.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/prompts/iteration-1.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/prompts/iteration-2.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/prompts/iteration-3.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/prompts/iteration-4.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/prompts/iteration-5.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/resource-map.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/review/review-report.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/acceptance-criteria.md",
@@ -24724,7 +24738,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "1a87e0e271fcc98a74aebc7a7298dc1d7eb93057c78e2c6bfd52fc6348d014d0",
+  "manifestHash": "5b05edcab95bc4b58450bd23f47ac37bb261fa575e3520c4910cfcd06e1e1d39",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
