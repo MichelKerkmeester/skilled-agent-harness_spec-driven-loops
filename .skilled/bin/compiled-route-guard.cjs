@@ -60,14 +60,26 @@ function manifestPathIn(root, hubId) {
 // Byte comparison is deliberate: these are generated artifacts that are supposed to
 // be copies of each other, so any difference at all means a rebuild would change
 // what is being served.
-function authoredDrift(hubId) {
-  const runtimeManifest = manifestPathIn(RUNTIME_ROOT, hubId);
-  const authoredManifest = manifestPathIn(AUTHORED_ROOT, hubId);
-  if (!runtimeManifest || !authoredManifest) return null;
-  if (!fs.existsSync(runtimeManifest) || !fs.existsSync(authoredManifest)) return null;
-  return fs.readFileSync(runtimeManifest).equals(fs.readFileSync(authoredManifest))
-    ? null
-    : 'authored-drift';
+function authoredDrift(hubId, runtimeRoot = RUNTIME_ROOT, authoredRoot = AUTHORED_ROOT) {
+  const runtimeManifest = manifestPathIn(runtimeRoot, hubId);
+  // A missing runtime manifest is already reported by the freshness check above.
+  if (!runtimeManifest || !fs.existsSync(runtimeManifest)) return null;
+  // The authored copy mirrors the runtime tree, so it sits at the same relative path
+  // under the authored root. Deriving it this way still names it when the authored
+  // tree is gone and no layout can be detected there.
+  const authoredManifest = path.join(authoredRoot, path.relative(runtimeRoot, runtimeManifest));
+  const runtimeRel = path.relative(REPO_ROOT, runtimeManifest);
+  const authoredRel = path.relative(REPO_ROOT, authoredManifest);
+  // A missing authored copy is not a pass: the runtime can no longer be rebuilt from
+  // source, and a rebuild would have nothing to reinstate.
+  if (!fs.existsSync(authoredManifest)) {
+    return { reason: 'authored-missing', fix: `restore ${authoredRel}` };
+  }
+  if (fs.readFileSync(runtimeManifest).equals(fs.readFileSync(authoredManifest))) return null;
+  return {
+    reason: 'authored-drift',
+    fix: `copy ${runtimeRel} over ${authoredRel}, or commit with the hooks installed so the pre-commit gate copies it`,
+  };
 }
 
 // A hub can be legitimately uncompilable for hours while someone restructures its
@@ -112,7 +124,7 @@ function inspect(hubId) {
     return { hubId, ok: false, reason };
   }
   const drift = authoredDrift(hubId);
-  if (drift) return { hubId, ok: false, reason: drift };
+  if (drift) return { hubId, ok: false, ...drift };
   return { hubId, ok: true, reason: 'fresh' };
 }
 
@@ -162,6 +174,12 @@ function main() {
       const drifted = failures.filter((f) => f.reason === 'authored-drift');
       if (drifted.length > 0) {
         process.stdout.write(`Runtime differs from its authored source (a rebuild would revert it): ${drifted.map((f) => f.hubId).join(', ')}\n`);
+        drifted.forEach((f) => process.stdout.write(`  ${f.hubId}: ${f.fix}\n`));
+      }
+      const missing = failures.filter((f) => f.reason === 'authored-missing');
+      if (missing.length > 0) {
+        process.stdout.write(`Authored manifest missing, so the runtime cannot be rebuilt from source: ${missing.map((f) => f.hubId).join(', ')}\n`);
+        missing.forEach((f) => process.stdout.write(`  ${f.hubId}: ${f.fix}\n`));
       }
       const broken = failures.filter((f) => f.reason === 'inputs-do-not-compile');
       if (broken.length > 0) {
@@ -175,4 +193,4 @@ function main() {
 
 if (require.main === module) main();
 
-module.exports = { inspect, HUBS };
+module.exports = { authoredDrift, inspect, HUBS };

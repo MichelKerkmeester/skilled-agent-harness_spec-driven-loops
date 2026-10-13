@@ -25,6 +25,7 @@ fs.mkdirSync(SANDBOX_ROOT, { recursive: true });
 const manifestContract = require('../lib/compiled-route-manifest.cjs');
 const status = require('../compiled-route-status.cjs');
 const sync = require('../compiled-route-sync.cjs');
+const guard = require('../compiled-route-guard.cjs');
 const runtimeLayout = require('../lib/compiled-route-layout.cjs');
 const promotedRuntimeRoot = path.join(__dirname, '..', 'lib', 'compiled-routing');
 const runtimeEnginePath = runtimeLayout.enginePathFor(promotedRuntimeRoot);
@@ -577,6 +578,38 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
         assert.doesNotMatch(result.stderr, /^\s+at /m);
         assert.equal(result.stderr.trim().split('\n').length, 1, result.stderr);
       }
+    } finally {
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  });
+
+  test('guard authored-drift names the runtime manifest, its authored twin and the copy', () => {
+    const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-guard-drift-'));
+    try {
+      const runtimeManifest = path.join(runtimeLayout.activationRootFor(promotedRuntimeRoot), 'sk-code', 'manifest.json');
+      const authoredRoot = path.join(sandbox, 'authored');
+      const twin = path.join(authoredRoot, path.relative(promotedRuntimeRoot, runtimeManifest));
+      fs.mkdirSync(path.dirname(twin), { recursive: true });
+      fs.writeFileSync(twin, '{}\n');
+      const drift = guard.authoredDrift('sk-code', promotedRuntimeRoot, authoredRoot);
+      assert.equal(drift.reason, 'authored-drift');
+      assert.match(drift.fix, /^copy /);
+      assert.ok(drift.fix.includes(path.relative(REPO_ROOT, runtimeManifest)), drift.fix);
+      assert.ok(drift.fix.includes(path.relative(REPO_ROOT, twin)), drift.fix);
+    } finally {
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  });
+
+  test('guard reports a missing authored manifest by path instead of passing', () => {
+    const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-guard-missing-'));
+    try {
+      const runtimeManifest = path.join(runtimeLayout.activationRootFor(promotedRuntimeRoot), 'sk-code', 'manifest.json');
+      const authoredRoot = path.join(sandbox, 'authored-pruned');
+      const twin = path.join(authoredRoot, path.relative(promotedRuntimeRoot, runtimeManifest));
+      const drift = guard.authoredDrift('sk-code', promotedRuntimeRoot, authoredRoot);
+      assert.equal(drift.reason, 'authored-missing');
+      assert.ok(drift.fix.includes(path.relative(REPO_ROOT, twin)), drift.fix);
     } finally {
       fs.rmSync(sandbox, { recursive: true, force: true });
     }
