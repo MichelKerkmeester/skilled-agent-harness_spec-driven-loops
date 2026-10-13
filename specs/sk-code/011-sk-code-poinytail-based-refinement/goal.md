@@ -88,6 +88,7 @@ Frozen choices. Changing one is an amendment.
 | 026 | `026-external-surface-priority-build/goal.md` |
 | 027 | `027-surface-tie-order-warning/goal.md` |
 | 028 | `028-surface-setup-hardening-research/goal.md` |
+| 029 | `029-surface-setup-build/goal.md` |
 
 **Precedence.** Decisions outrank child detail, which outranks any summary.
 Name a conflict, never resolve it silently.
@@ -100,7 +101,7 @@ Name a conflict, never resolve it silently.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 29 times, none FAILED
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 30 times, none FAILED
 - [ ] `grep -lr --include=implementation-summary.md 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement | grep -vc /001-ponytail` prints 114
 - [ ] `git log --format='%(trailers:key=Spec,valueonly)' | grep -c '^sk-code/011-'` prints 100+; `git status --short` is empty
 - [ ] `node .skilled/bin/compiled-route-guard.cjs` exits 0 with sk-code `fresh`; `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "code review my obsidian plugin"` prints `"action":"route"`, no `servingAuthority`
@@ -176,5 +177,6 @@ and findings belong here.
 | 027 added and complete 2026-10-13 | Child 027 adds doctor check 5l, which reports a sk-code surface placed by hand after `sk-code-opencode` in `tieBreak` except the two shipped examples, with tests and one README sentence. Binding row added; criterion 1 amended from 27 to 28 (the parent and 27 direct children), and criterion 2 recounted with its own command after the 027 summary reached `completion_pct: 100`: it prints 113, so it is amended from 112 to 113 |
 | 028 added 2026-10-13 | Child 028 runs a read-only research, two five-iteration lineages on cli-devin DeepSeek V4.1 Flash max and SWE-2 max, on what still breaks the rule that only sk-code-opencode and sk-code-review matter to an external user, the setup journey and whether the setup belongs in a doctor command or a sk-code mode. Binding row added; criterion 1 amended from 28 to 29 (the parent and 28 direct children). Criterion 2 was recounted with its own command and prints 113, so it stays 113 until the 028 summary completes |
 | 028 complete 2026-10-13 | Both lineages ran five iterations, five DeepSeek verifiers and the orchestrator checked every finding, and the 028 summary reached `completion_pct: 100`; criterion 2 recounted with its own command prints 114, so it is amended from 113 to 114. Criterion 1 stays 29 |
+| 029 added 2026-10-13 | Child 029 builds the 028 recommendations as a phase parent with two Level 2 children and goals: 001 clone path and messages (R1, R2, R4, R5) and 002 `/doctor:sk-code setup` (R3), which starts from origin/main once 001 is on it. Binding row added; criterion 1 amended from 29 to 30 (the parent and 29 direct children). Criterion 2 was recounted with its own command and prints 114, so it stays 114 until the two 029 summaries complete, when it becomes 116 |
 | Handed off, not built here | D2 Codex mirror gap (deep-improvement and git hooks) and D4 stdin deadline (hooks); recorded in the parent spec |
 <!-- /ANCHOR:log -->

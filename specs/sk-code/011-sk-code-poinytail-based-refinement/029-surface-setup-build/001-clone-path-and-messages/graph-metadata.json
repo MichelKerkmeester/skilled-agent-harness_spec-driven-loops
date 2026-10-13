@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "clone path and messages",
+      "phase 1 clone path and messages",
+      "guard stale manifest repair line",
+      "unprovisioned checker named failure",
+      "clone path and messages plan",
+      "clone path and messages tasks",
+      "clone path and messages acceptance criteria",
+      "clone path and messages goal",
+      "clone path and messages implementation summary"
+    ],
+    "key_topics": [
+      "clone",
+      "path",
+      "messages",
+      "phase",
+      "guard",
+      "stale",
+      "manifest",
+      "repair",
+      "line",
+      "unprovisioned",
+      "checker",
+      "named"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/bin/compiled-route-guard.cjs",
+      ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs",
+      ".github/workflows/routing-registry-drift.yml",
+      ".skilled/skills/sk-code/hub-router.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-guard.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-manifest.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "root-router-contract.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ci-skill-root-metadata.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "root-router-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fail",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "In a fresh clone, `parent-skill-check.cjs` and `ci-skill-root-metadata.cjs` exit 1 on a missing `@spec-kit/shared` build, the second with a raw `MODULENOTFOUND` stack (`root-router-contract.cjs:65`; research F1)",
+    "created_at": "2026-10-13T18:45:42Z",
+    "last_save_at": "2026-10-13T19:00:08.777Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:aa5368af8b96a5f4ba2a92240870de50bf6609660a22f0f3be2156e8087d0262",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "374d0fae916fa34132fba420dabe7b6aaf748e196be9714e339d1546f62e59d9",
+      "plan.md": "14e73fee6916a87a5c406988813bffb6857f257d84ab1c3516e1c9f37507eac4",
+      "tasks.md": "5728de45504c9ab84f6a6ea91890cb16bb8cff6e699319b962bd7f761372374e",
+      "implementation-summary.md": "0937adbafbed95b401fad781b510f87d99110f96e485995301c4dd4ce74aadaa"
+    },
+    "last_active_at": null
+  }
+}

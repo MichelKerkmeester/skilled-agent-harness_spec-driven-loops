@@ -1,5 +1,5 @@
 {
-  "manifestHash": "34f4089b38f0bd29f5a466e423b3a1704f0416285e1d11632dd29618a2d33634",
+  "manifestHash": "1a87e0e271fcc98a74aebc7a7298dc1d7eb93057c78e2c6bfd52fc6348d014d0",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -21332,6 +21332,24 @@
     "clipped register versus a plan": [
       "clipped register versus a plan"
     ],
+    "clone path and messages": [
+      "clone path and messages"
+    ],
+    "clone path and messages acceptance criteria": [
+      "clone path and messages acceptance criteria"
+    ],
+    "clone path and messages goal": [
+      "clone path and messages goal"
+    ],
+    "clone path and messages implementation summary": [
+      "clone path and messages implementation summary"
+    ],
+    "clone path and messages plan": [
+      "clone path and messages plan"
+    ],
+    "clone path and messages tasks": [
+      "clone path and messages tasks"
+    ],
     "clone wide allocation": [
       "clone-wide allocation"
     ],
@@ -37805,6 +37823,24 @@
     "doctor sk code setup": [
       "doctor sk-code setup"
     ],
+    "doctor sk code setup acceptance criteria": [
+      "doctor sk-code setup acceptance criteria"
+    ],
+    "doctor sk code setup build": [
+      "doctor sk-code setup build"
+    ],
+    "doctor sk code setup goal": [
+      "doctor sk-code setup goal"
+    ],
+    "doctor sk code setup implementation summary": [
+      "doctor sk-code setup implementation summary"
+    ],
+    "doctor sk code setup plan": [
+      "doctor sk-code setup plan"
+    ],
+    "doctor sk code setup tasks": [
+      "doctor sk-code setup tasks"
+    ],
     "doctor sk code setup versus hub mode": [
       "doctor sk-code-setup versus hub mode"
     ],
@@ -49338,6 +49374,9 @@
     ],
     "guard retirement notes tasks": [
       "guard retirement notes tasks"
+    ],
+    "guard stale manifest repair line": [
+      "guard stale manifest repair line"
     ],
     "guarded apply path process sweep": [
       "guarded apply path process-sweep"
@@ -70575,6 +70614,9 @@
     "phase 053 tasks": [
       "phase 053 tasks"
     ],
+    "phase 1 clone path and messages": [
+      "phase 1 clone path and messages"
+    ],
     "phase 1 compiled route manifest suite": [
       "phase 1 compiled route manifest suite"
     ],
@@ -70844,6 +70886,9 @@
     ],
     "phase 2 doctor guard sync messages": [
       "phase 2 doctor guard sync messages"
+    ],
+    "phase 2 doctor sk code setup": [
+      "phase 2 doctor sk-code setup"
     ],
     "phase 2 fresh clone onboarding": [
       "phase 2 fresh clone onboarding"
@@ -90608,6 +90653,9 @@
     "sk code script kebab names tasks": [
       "sk code script kebab names tasks"
     ],
+    "sk code setup battery doctor": [
+      "sk-code setup battery doctor"
+    ],
     "sk code shared assets references research": [
       "sk-code shared assets references research"
     ],
@@ -100518,6 +100566,12 @@
     "surface router pattern": [
       "surface router pattern"
     ],
+    "surface setup build": [
+      "surface setup build"
+    ],
+    "surface setup build phase parent spec": [
+      "surface setup build phase parent spec"
+    ],
     "surface setup hardening research": [
       "surface setup hardening research"
     ],
@@ -105699,6 +105753,9 @@
     ],
     "unproven jev feature proof": [
       "unproven jev feature proof"
+    ],
+    "unprovisioned checker named failure": [
+      "unprovisioned checker named failure"
     ],
     "unreachable authority flip": [
       "unreachable authority flip"

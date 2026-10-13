@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement",
+  "children_ids": [
+    "sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages",
+    "sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "surface setup build phase parent spec",
+      "surface setup build",
+      "doctor sk-code setup build",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "surface",
+      "setup",
+      "phase",
+      "parent",
+      "spec",
+      "doctor",
+      "sk-code",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".skilled/bin/compiled-route-guard.cjs",
+      ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+      ".skilled/commands/README.txt",
+      "001-clone-path-and-messages/goal.md",
+      "002-doctor-sk-code-setup/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-guard.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-manifest.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "root-router-contract.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. BINDING",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. COMPLETION CRITERIA",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An external user who clones the repository and follows the README block \"What Adapting `sk-code` Looks Like\" cannot reach a green check battery",
+    "created_at": "2026-10-13T18:45:41Z",
+    "last_save_at": "2026-10-13T19:00:07.202Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:9a3cb22c29c7f4cedb1841cace2c4026603d300a611dd0e7f9a4b9389d1e74f8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "316eed3c7e85eab0c57617b431e5f5ee27322d7d2f22f77673beb315ca7c5999"
+    },
+    "last_active_at": null
+  }
+}

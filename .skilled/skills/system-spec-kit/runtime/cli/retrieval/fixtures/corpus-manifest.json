@@ -1,5 +1,5 @@
 {
-  "corpusHash": "be08b9380f4cff5ac296b05d35e2b099ace4c72d8693607f2704e2ca758db880",
+  "corpusHash": "bae6c58148d39721311e83e478d061749367fc26d88653984d9b113015e3c4cf",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24679,
+  "includedPathCount": 24693,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11274,6 +11274,20 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/resource-map.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/acceptance-criteria.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/acceptance-criteria.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
@@ -24710,7 +24724,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "34f4089b38f0bd29f5a466e423b3a1704f0416285e1d11632dd29618a2d33634",
+  "manifestHash": "1a87e0e271fcc98a74aebc7a7298dc1d7eb93057c78e2c6bfd52fc6348d014d0",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26926,6 +26940,14 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/scratch",
       "reason": "excluded directory"
     },
     {
