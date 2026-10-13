@@ -9,16 +9,16 @@ _memory:
   continuity:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity"
     last_updated_at: "2026-10-13T06:00:00Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_by: "builder"
+    recent_action: "Built, reviewed and closed the phase"
+    next_safe_action: "Operator review and merge"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-026-004"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -60,13 +60,13 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `[ "$(grep -c "file: 'ROUTER.md'" .skilled/commands/doctor/scripts/parent-skill-check.cjs)" = 0 ] && [ "$(cat .skilled/commands/create/assets/create-changelog-confirm.yaml .skilled/commands/create/assets/create-changelog-auto.yaml | grep -c 'ROUTER.md frontmatter version')" = 0 ] && echo ok`, run from the repository root, prints ok.
-- [ ] `F=.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md; grep -q 'parent-skill doctor' $F && [ "$(grep 'parent-skill doctor' $F | grep -c 'ROUTER.md')" = 0 ] && python3 .skilled/skills/sk-doc/scripts/validate_document.py $F >/dev/null 2>&1 && echo ok`, run from the repository root, prints ok.
-- [ ] `node --test .skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs >/dev/null 2>&1 && bash .skilled/commands/doctor/scripts/tests/run-all.sh >/dev/null 2>&1 && for h in sk-code sk-doc sk-design mcp-tooling system-deep-loop cli-external-orchestration; do node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/$h >/dev/null 2>&1 || echo "$h"; done | grep -c .`, run from the repository root, prints 0.
-- [ ] `F=specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity/implementation-summary.md; [ "$(grep -cE '^\| VP-[1-4] \| (Fixed|Closed) \|' $F)" = 4 ] && [ "$(grep -cE '^\| T1 \| .+ \| before: exit [1-9][0-9]* \| after: exit 0 \|$' $F)" = 1 ] && echo ok`, run from the repository root, prints ok.
-- [ ] `C=specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity; [ "$(find $C/review/iterations -name 'iteration-*.md' 2>/dev/null | wc -l | tr -d ' ')" = 5 ] && [ "$(grep -E '^\| RV-' $C/implementation-summary.md | grep -vcE '^\| RV-[0-9]+ \| P[0-2] \| (Fixed|Rejected) \|')" = 0 ] && echo ok`, run from the repository root, prints ok.
-- [ ] `G='^Spec: sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity$'; [ -n "$(git log --no-merges --grep="$G" --format=%h)" ] && [ "$(git log --no-merges --grep="$G" --format=%B | grep -cE '^(Co-Authored-By|Claude-Session):')" = 0 ] && [ "$(git log --no-merges --format= --name-only --diff-filter=A --grep="$G" -- .skilled/skills | grep -c /changelog/)" = 0 ] && node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs bump --base origin/main --check >/dev/null 2>&1 && echo ok`, run from the repository root, prints ok.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity --strict`, run from the repository root, prints `RESULT: PASSED`.
+- [x] `[ "$(grep -c "file: 'ROUTER.md'" .skilled/commands/doctor/scripts/parent-skill-check.cjs)" = 0 ] && [ "$(cat .skilled/commands/create/assets/create-changelog-confirm.yaml .skilled/commands/create/assets/create-changelog-auto.yaml | grep -c 'ROUTER.md frontmatter version')" = 0 ] && echo ok`, run from the repository root, prints ok.
+- [x] `F=.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md; grep -q 'parent-skill doctor' $F && [ "$(grep 'parent-skill doctor' $F | grep -c 'ROUTER.md')" = 0 ] && python3 .skilled/skills/sk-doc/scripts/validate_document.py $F >/dev/null 2>&1 && echo ok`, run from the repository root, prints ok.
+- [x] `node --test .skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs >/dev/null 2>&1 && bash .skilled/commands/doctor/scripts/tests/run-all.sh >/dev/null 2>&1 && for h in sk-code sk-doc sk-design mcp-tooling system-deep-loop cli-external-orchestration; do node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/$h >/dev/null 2>&1 || echo "$h"; done | grep -c .`, run from the repository root, prints 0.
+- [x] `F=specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity/implementation-summary.md; [ "$(grep -cE '^\| VP-[1-4] \| (Fixed|Closed) \|' $F)" = 4 ] && [ "$(grep -cE '^\| T1 \| .+ \| before: exit [1-9][0-9]* \| after: exit 0 \|$' $F)" = 1 ] && echo ok`, run from the repository root, prints ok.
+- [x] `C=specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity; [ "$(find $C/review/iterations -name 'iteration-*.md' 2>/dev/null | wc -l | tr -d ' ')" = 5 ] && [ "$(grep -E '^\| RV-' $C/implementation-summary.md | grep -vcE '^\| RV-[0-9]+ \| P[0-2] \| (Fixed|Rejected) \|')" = 0 ] && echo ok`, run from the repository root, prints ok.
+- [x] `G='^Spec: sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity$'; [ -n "$(git log --no-merges --grep="$G" --format=%h)" ] && [ "$(git log --no-merges --grep="$G" --format=%B | grep -cE '^(Co-Authored-By|Claude-Session):')" = 0 ] && [ "$(git log --no-merges --format= --name-only --diff-filter=A --grep="$G" -- .skilled/skills | grep -c /changelog/)" = 0 ] && node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs bump --base origin/main --check >/dev/null 2>&1 && echo ok`, run from the repository root, prints ok.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity --strict`, run from the repository root, prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -83,12 +83,17 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet scaffolded | Done | create.sh phase mode with `--level 2` and `--with-goal`; spec.md lists ledger rows VP-1 to VP-4 and test T1 |
-| Build | Pending | |
+| Build | Done | `9d1168bf3a` doctor 13a and T1 (before exit 1, after exit 0), `95698b591b` changelog twins and standard; cli-pi DeepSeek V4.1 Flash at max |
+| Review | Done | Five iterations, CONDITIONAL: 0 P0, 2 P1 of one class, 0 P2; both fixed in `695335c9b7` (RV-1, RV-2) |
+| Closeout | Done | Ledger VP-1 to VP-4, T1, RV-1 and RV-2 in `implementation-summary.md`; every criterion rerun from the final state |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Scope beyond 13a | The operator asked to drop `ROUTER.md` from 13a. The planner added the changelog twins' version-copy line and the standard's paragraph, because both still tie `ROUTER.md` to the release version and would contradict the ruling the moment 13a stops checking it |
+| Inventory widened | The planned grep missed six live lines (four hub SKILL.md version-authority notes, sk-create-changelog step 6, examples-and-maintenance.md); the review caught them and they were corrected in `695335c9b7`, with the Hermes copies regenerated and four route manifests re-minted by the pre-commit gate |
+| sk-code note | Its version-authority sentence also dropped `README.md` as a release copy, since the standard and the 13c retirement already contradict it |
+| Executor | Devin's quota was out; every dispatch ran on cli-pi with `--no-extensions` |
 | Baselines at planning | Commit a71f719ae4: all six hubs carry a `ROUTER.md` version equal to `SKILL.md` and pass the doctor; the invariants test 97 of 97 |
 <!-- /ANCHOR:log -->

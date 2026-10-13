@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity",
   "description": "Router version parity",
   "keywords": [
@@ -6,7 +7,7 @@
     "version",
     "parity"
   ],
-  "lastUpdated": "2026-10-13T04:45:55.523Z",
+  "lastUpdated": "2026-10-13T07:44:55.955Z",
   "specId": "004",
   "folderSlug": "router-version-parity",
   "parentChain": [
@@ -14,7 +15,8 @@
     "011-sk-code-poinytail-based-refinement",
     "026-external-surface-priority-build"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "13-10-26_08-44__phase-built-reviewed-and-closed-doctor-check-13a.md"
+  ]
 }

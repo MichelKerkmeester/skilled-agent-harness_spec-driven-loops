@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity
 **Level:** 2
-**Status:** Draft
+**Status:** Closed
 **Date:** 2026-10-13
 <!-- /ANCHOR:metadata -->
 
@@ -51,11 +51,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a hub whose `ROUTER.md` version differs from `SKILL.md`, When the doctor runs, Then 13a reports no failure for it | Ledger row T1; `goal.md` criterion 1 | Unmet | - |
-| AC-002 | REQ-002 | Given a hub whose `description.json` version differs, When the doctor runs, Then 13a still fails | The existing invariants case at `:406` passes; `goal.md` criterion 3 | Unmet | - |
-| AC-003 | REQ-003 | Given a global changelog run on a hub, When it moves version copies, Then it no longer writes `ROUTER.md` | `goal.md` criterion 1 | Unmet | - |
-| AC-004 | REQ-004 | Given `frontmatter-versioning.md`, When its enforcement paragraph is read, Then the doctor's version check names only the JSON files | `goal.md` criterion 2 | Unmet | - |
-| AC-005 | REQ-005 | Given the six hubs with a ROUTER.md, When the doctor runs on each, Then each exits 0 | `goal.md` criterion 3 | Unmet | - |
+| AC-001 | REQ-001 | Given a hub whose `ROUTER.md` version differs from `SKILL.md`, When the doctor runs, Then 13a reports no failure for it | Ledger row T1; `goal.md` criterion 1 | Met | - |
+| AC-002 | REQ-002 | Given a hub whose `description.json` version differs, When the doctor runs, Then 13a still fails | The existing invariants case at `:406` passes; `goal.md` criterion 3 | Met | - |
+| AC-003 | REQ-003 | Given a global changelog run on a hub, When it moves version copies, Then it no longer writes `ROUTER.md` | `goal.md` criterion 1 | Met | - |
+| AC-004 | REQ-004 | Given `frontmatter-versioning.md`, When its enforcement paragraph is read, Then the doctor's version check names only the JSON files | `goal.md` criterion 2 | Met | - |
+| AC-005 | REQ-005 | Given the six hubs with a ROUTER.md, When the doctor runs on each, Then each exits 0 | `goal.md` criterion 3 | Met | - |
 
 ### Status values
 
@@ -80,7 +80,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-The phase is planned and not built. The builder writes this statement when the packet closes.
+Every row is Met. AC-001: ledger row T1, before exit 1 and after exit 0. AC-002: the `description.json` 13a case passes in the invariants suite, 99 of 99. AC-003 and AC-004: `goal.md` criteria 1 and 2 print ok. AC-005: the six hub doctors exit 0.
 <!-- /ANCHOR:closure -->

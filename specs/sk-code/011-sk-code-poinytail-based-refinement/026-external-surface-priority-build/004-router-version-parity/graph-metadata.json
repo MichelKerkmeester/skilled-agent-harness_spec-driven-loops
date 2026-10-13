@@ -35,7 +35,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -46,7 +46,10 @@
       ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
       ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs",
       ".skilled/commands/create/assets/create-changelog-confirm.yaml",
-      ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md"
+      ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-skill/references/skill/examples-and-maintenance.md",
+      "review/review-report.md"
     ],
     "entities": [
       {
@@ -107,6 +110,24 @@
         "name": "frontmatter-versioning.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "examples-and-maintenance.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/skill/examples-and-maintenance.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -174,30 +195,12 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`checkVersionParity` in `.skilled/commands/doctor/scripts/parent-skill-check.cjs` (around line 1839) lists `ROUTER.md` among the routing artifacts that must carry the `SKILL.md` version, and soft-fails 13a when it differs",
     "created_at": "2026-10-13T04:45:54Z",
-    "last_save_at": "2026-10-13T05:25:06.183Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-13T07:45:36.232Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -207,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de21e2b61a1e042831699b83363c48a19fc82e2022e58cb941096124df916ced",
+    "source_fingerprint": "sha256:3ba765cc32d52b49eb202fe2d28987f3b3578c57a478fa7e6511085a10d9c228",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "90b2650e7da0aa0cc1aaf2c6d65e219efba8744423e9ccba9897a683fe9ec73c",
-      "plan.md": "372ae2fe7913bc1805775021a7471c90a1df0cb9e0c49b63c29173d68724b81a",
-      "tasks.md": "f7d6f3aaf9234e5d1a8e485bcf02e93e705518c252306b3d73aa7ac1a8df601e",
-      "implementation-summary.md": "4a1076dd3aacf2c97be158da4288ff78ca0b32d0b205c8233bea1b73637d5262"
+      "spec.md": "228c9b28c6624104abc8d94b6af724c13f9ef1f3fde973fe1b563c71ed5754ac",
+      "plan.md": "3c551e2a253fbf8da6643e1a7f3c9b97fb850aabdb1822b3398d6cffcd1d8e5e",
+      "tasks.md": "d08d79930dfe14157a0e5f38674b00e183836afebd709700c8a0d3c8a35f0bce",
+      "implementation-summary.md": "d270453ec74f96f769545dae2357f8e1573da5af6b0ad7009d0a6a7c6a9a98ed"
     },
     "last_active_at": null
   }

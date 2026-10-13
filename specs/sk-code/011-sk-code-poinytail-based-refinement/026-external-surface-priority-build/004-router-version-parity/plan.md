@@ -40,9 +40,9 @@ One line leaves the 13a follower list, one test pins the new behavior, one line 
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -147,7 +147,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] The six hub doctor results recorded before the change
+- [x] The six hub doctor results recorded before the change
 
 ### Rollback Procedure
 1. Revert the phase commits.

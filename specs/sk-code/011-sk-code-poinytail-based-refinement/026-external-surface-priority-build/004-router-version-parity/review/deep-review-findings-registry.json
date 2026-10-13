@@ -1,0 +1,1331 @@
+{
+  "sessionId": "2026-10-13T07:13:05.484Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Same-class inventory incomplete: three live docs still state a hub ROUTER.md carries the SKILL.md/release version",
+      "file": ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+      "line": 261,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Live sk-doc instruction docs still list ROUTER.md as a release version carrier",
+      "file": ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+      "line": 261,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "Same-class inventory undercount: three more hub SKILL.md files still claim a hub ROUTER.md carries the release version (extends R1-P1-001)",
+      "file": ".skilled/skills/sk-code/SKILL.md",
+      "line": 17,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "Four hub SKILL.md version-authority paragraphs still claim ROUTER.md carries the release version",
+      "file": ".skilled/skills/sk-code/SKILL.md",
+      "line": 17,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 4,
+    "P2": 0
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0.875,
+  "graphDecision": "STOP_BLOCKED",
+  "graphBlockers": [
+    {
+      "count": 11,
+      "description": "Dimension coverage (50%) is below threshold (80%). 11 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
+      "severity": "blocking",
+      "type": "uncovered_dimensions"
+    }
+  ],
+  "graphSignals": {
+    "dimensionCoverage": 0.5,
+    "evidenceDensity": 2,
+    "findingStability": 1,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 0.875
+  },
+  "candidateCoverage": {
+    "covered": [
+      "checklist_evidence_gap",
+      "spec_mismatch",
+      "stale_documentation"
+    ],
+    "ruledOut": [
+      "auth_bypass",
+      "checklist_evidence_gap",
+      "comment_drift",
+      "dead_code",
+      "doc_code_drift",
+      "injection",
+      "json_parity_regression",
+      "path_traversal",
+      "plan_code_divergence",
+      "redos",
+      "secret_exposure",
+      "security_impact",
+      "silent_omission",
+      "spec_mismatch",
+      "stale_documentation",
+      "stale_message",
+      "stale_test_assertion",
+      "supply_chain",
+      "tamper_detection_regression",
+      "test_fixture_alignment",
+      "test_isolation",
+      "test_vacuity",
+      "twin_divergence",
+      "version_bump_conformance"
+    ],
+    "deferred": [
+      "unverified_runtime_claim"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "stale_documentation": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          3,
+          5
+        ]
+      },
+      "spec_mismatch": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          3,
+          5
+        ]
+      },
+      "test_vacuity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "json_parity_regression": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "security_impact": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "unverified_runtime_claim": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1,
+          3,
+          4,
+          5
+        ]
+      },
+      "silent_omission": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "twin_divergence": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "auth_bypass": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "redos": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "path_traversal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "secret_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "supply_chain": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "tamper_detection_regression": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "test_isolation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "checklist_evidence_gap": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "plan_code_divergence": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "comment_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "dead_code": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "stale_message": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "test_fixture_alignment": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "stale_test_assertion": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "doc_code_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          5
+        ]
+      },
+      "version_bump_conformance": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 5,
+      "id": "SL-505",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:441"
+      ],
+      "bugClass": "unverified_runtime_claim",
+      "disposition": "deferred",
+      "rationale": "runtime acceptance belongs to the closure gate",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity/goal.md:65"
+      ],
+      "reason": "read-only iteration; goal criterion 3 executes the suite at closure"
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:441"
+      ],
+      "bugClass": "test_vacuity",
+      "disposition": "ruled_out",
+      "rationale": "The fixture contains the replaced string, so the mutation is effective and the test is live.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:107",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:441"
+      ],
+      "reason": "fixture emits the replaced version line; replace is effective"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1844"
+      ],
+      "bugClass": "json_parity_regression",
+      "disposition": "ruled_out",
+      "rationale": "The JSON follower set and both failure branches are unchanged and still covered.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1848",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1862",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:406",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:515"
+      ],
+      "reason": "direct read shows JSON followers retained with mismatch and format softFails"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-changelog-auto.yaml:665",
+        ".skilled/commands/create/assets/create-changelog-confirm.yaml:600"
+      ],
+      "bugClass": "silent_omission",
+      "disposition": "ruled_out",
+      "rationale": "Spec VP-3 asks only to drop the line and C4 installs a smallest-change rule; the durable fix for the ambiguity is correcting the three live docs (R1-P1-001).",
+      "evidenceRefs": [
+        ".skilled/commands/create/assets/create-changelog-auto.yaml:665"
+      ],
+      "reason": "no defect in the changed files; spec-scoped minimal change, addressed by the R1-P1-001 recommendation"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-changelog-confirm.yaml:600"
+      ],
+      "bugClass": "twin_divergence",
+      "disposition": "ruled_out",
+      "rationale": "The twins are byte-consistent in the changed activity.",
+      "evidenceRefs": [
+        ".skilled/commands/create/assets/create-changelog-confirm.yaml:600",
+        ".skilled/commands/create/assets/create-changelog-auto.yaml:665"
+      ],
+      "reason": "direct diff shows identical removals and aligned lists"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1843"
+      ],
+      "bugClass": "auth_bypass",
+      "disposition": "ruled_out",
+      "rationale": "13a is a diagnostic parity check over release metadata, not an auth or mutation control, so no security guard is removed.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1850",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1859"
+      ],
+      "reason": "diagnostic metadata comparison; no guard role, no enforcement path"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1859"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "All interpolated values are validated or escaped; no new interpolation was added.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1845",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1859"
+      ],
+      "reason": "validated authority plus JSON.stringify-escaped values; hardcoded file labels"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-010",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:150"
+      ],
+      "bugClass": "redos",
+      "disposition": "ruled_out",
+      "rationale": "Linear pattern; the change applies it to one fewer input.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:150"
+      ],
+      "reason": "linear anchored regex, no catastrophic backtracking"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-011",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1761"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "No new path construction; the diff reduces the read surface by one file.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1761",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:441"
+      ],
+      "reason": "fixed relative names under the target root; one read removed, none added"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-012",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-changelog-auto.yaml:666"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "Version metadata and prose only.",
+      "evidenceRefs": [
+        ".skilled/commands/create/assets/create-changelog-auto.yaml:666",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:124"
+      ],
+      "reason": "no secret or PII content in changed lines"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-014",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:124"
+      ],
+      "bugClass": "tamper_detection_regression",
+      "disposition": "ruled_out",
+      "rationale": "No security control is downgraded; version parity is release hygiene, not integrity enforcement.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:124",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity/spec.md:84"
+      ],
+      "reason": "advisory diagnostic, no enforcement consumer; own-edition semantics are the declared contract"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-015",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:441"
+      ],
+      "bugClass": "test_isolation",
+      "disposition": "ruled_out",
+      "rationale": "Per-test temp hubs with suite-end cleanup; no shared or persistent state touched.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:441",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:265"
+      ],
+      "reason": "private temp copy per test with after() cleanup"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-017",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor"
+      ],
+      "bugClass": "stale_documentation",
+      "disposition": "ruled_out",
+      "rationale": "No claim of the class exists in that directory.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-skill-advisor-router-reach.md:14"
+      ],
+      "reason": "exact search found no ROUTER.md version claim there"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-018",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity/goal.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity/tasks.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity/implementation-summary.md"
+      ],
+      "bugClass": "checklist_evidence_gap",
+      "disposition": "ruled_out",
+      "rationale": "Pre-closure bookkeeping is tracked by the packet's own verification tasks; the phase is mid-review at iteration 3 of 5.",
+      "evidenceRefs": [
+        "goal.md",
+        "tasks.md:35",
+        "implementation-summary.md"
+      ],
+      "reason": "expected mid-flight state owned by tasks T007-T009"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-020",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity/plan.md"
+      ],
+      "bugClass": "plan_code_divergence",
+      "disposition": "ruled_out",
+      "rationale": "Plan documents planning-time intent; the spec Files to Change does not name plan.md and CHK-040/T009 own plan-doc sync at closure.",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity/plan.md"
+      ],
+      "reason": "planning-time artifact, out of the spec's file list; closure sync owned by T009"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-021",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1850",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:441",
+        ".skilled/commands/create/assets/create-changelog-auto.yaml:665",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:122"
+      ],
+      "bugClass": "spec_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "No static spec mismatch remains; the open item is the inventory scope, tracked as R3-P1-001.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1850",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:441",
+        ".skilled/commands/create/assets/create-changelog-auto.yaml:665",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:122"
+      ],
+      "reason": "spec-to-code mapping verified for the four static requirements"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-401",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1839"
+      ],
+      "bugClass": "comment_drift",
+      "disposition": "ruled_out",
+      "rationale": "every clause of the comment is implemented by the follower loop",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1839",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1850",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1866"
+      ],
+      "reason": "comment and implementation agree on scope, failure semantics and the ROUTER.md exclusion"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1844",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1850"
+      ],
+      "bugClass": "dead_code",
+      "disposition": "ruled_out",
+      "rationale": "the only symbol the removed entry used is still required by the authority read",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1844"
+      ],
+      "reason": "no dead code left by the follower removal"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1866"
+      ],
+      "bugClass": "stale_message",
+      "disposition": "ruled_out",
+      "rationale": "message scope equals the follower set in every PASS context",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1866",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:394"
+      ],
+      "reason": "no overclaim or stale wording in the changed pass message"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:441"
+      ],
+      "bugClass": "test_fixture_alignment",
+      "disposition": "ruled_out",
+      "rationale": "test aligns with VP-2/T1 and with the suite's established negative-test shape",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:441",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:107",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity/spec.md:74",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity/goal.md:47"
+      ],
+      "reason": "no name, fixture or assertion drift in the new test"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-405",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs"
+      ],
+      "bugClass": "stale_test_assertion",
+      "disposition": "ruled_out",
+      "rationale": "no assertion preserves the removed comparison",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:441",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:406",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:405"
+      ],
+      "reason": "exact search shows no stale 13a ROUTER.md failure expectation"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-406",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:122"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "doc and code agree on the JSON-only comparison",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:122",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:124",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:30",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1850"
+      ],
+      "reason": "no doc/code drift after the paragraph rewrite"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-407",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:12"
+      ],
+      "bugClass": "version_bump_conformance",
+      "disposition": "ruled_out",
+      "rationale": "raise follows the Section 4 rule for a body change",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:12",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:77"
+      ],
+      "reason": "version raise conforms to the standard's own bump rule"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-501",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1850"
+      ],
+      "bugClass": "json_parity_regression",
+      "disposition": "ruled_out",
+      "rationale": "no second version-comparison consumer exists; root-router presence/format is out of scope per spec",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1713",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1841"
+      ],
+      "reason": "exact search found no other ROUTER.md version comparison"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-502",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:441"
+      ],
+      "bugClass": "test_vacuity",
+      "disposition": "ruled_out",
+      "rationale": "mutation is effective and four-part, so 12a stays green",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:39",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:107",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:441"
+      ],
+      "reason": "fixture emits the replaced line and the replacement differs"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:441"
+      ],
+      "bugClass": "test_vacuity",
+      "disposition": "ruled_out",
+      "rationale": "The fixture contains the replaced string, so the mutation is effective and the test is live.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:107",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:441"
+      ],
+      "proof": "fixture emits the replaced version line; replace is effective"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1844"
+      ],
+      "bugClass": "json_parity_regression",
+      "disposition": "ruled_out",
+      "rationale": "The JSON follower set and both failure branches are unchanged and still covered.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1848",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1862",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:406",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:515"
+      ],
+      "proof": "direct read shows JSON followers retained with mismatch and format softFails"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1839"
+      ],
+      "bugClass": "security_impact",
+      "disposition": "not_applicable",
+      "rationale": "Version metadata comparison has no security surface; the diff touches no runtime enforcement path.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1855"
+      ],
+      "proof": "no security-relevant guard removed; version strings are non-executable metadata"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-changelog-auto.yaml:665",
+        ".skilled/commands/create/assets/create-changelog-confirm.yaml:600"
+      ],
+      "bugClass": "silent_omission",
+      "disposition": "ruled_out",
+      "rationale": "Spec VP-3 asks only to drop the line and C4 installs a smallest-change rule; the durable fix for the ambiguity is correcting the three live docs (R1-P1-001).",
+      "evidenceRefs": [
+        ".skilled/commands/create/assets/create-changelog-auto.yaml:665"
+      ],
+      "proof": "no defect in the changed files; spec-scoped minimal change, addressed by the R1-P1-001 recommendation"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-changelog-confirm.yaml:600"
+      ],
+      "bugClass": "twin_divergence",
+      "disposition": "ruled_out",
+      "rationale": "The twins are byte-consistent in the changed activity.",
+      "evidenceRefs": [
+        ".skilled/commands/create/assets/create-changelog-confirm.yaml:600",
+        ".skilled/commands/create/assets/create-changelog-auto.yaml:665"
+      ],
+      "proof": "direct diff shows identical removals and aligned lists"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1843"
+      ],
+      "bugClass": "auth_bypass",
+      "disposition": "ruled_out",
+      "rationale": "13a is a diagnostic parity check over release metadata, not an auth or mutation control, so no security guard is removed.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1850",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1859"
+      ],
+      "proof": "diagnostic metadata comparison; no guard role, no enforcement path"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1859"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "All interpolated values are validated or escaped; no new interpolation was added.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1845",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1859"
+      ],
+      "proof": "validated authority plus JSON.stringify-escaped values; hardcoded file labels"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-010",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:150"
+      ],
+      "bugClass": "redos",
+      "disposition": "ruled_out",
+      "rationale": "Linear pattern; the change applies it to one fewer input.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:150"
+      ],
+      "proof": "linear anchored regex, no catastrophic backtracking"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-011",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1761"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "No new path construction; the diff reduces the read surface by one file.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1761",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:441"
+      ],
+      "proof": "fixed relative names under the target root; one read removed, none added"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-012",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-changelog-auto.yaml:666"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "Version metadata and prose only.",
+      "evidenceRefs": [
+        ".skilled/commands/create/assets/create-changelog-auto.yaml:666",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:124"
+      ],
+      "proof": "no secret or PII content in changed lines"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-013",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1843"
+      ],
+      "bugClass": "supply_chain",
+      "disposition": "not_applicable",
+      "rationale": "No dependency resolution surface is touched.",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity/scratch/review-diff.patch"
+      ],
+      "proof": "no dependency, manifest, lockfile or install-script change"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-014",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:124"
+      ],
+      "bugClass": "tamper_detection_regression",
+      "disposition": "ruled_out",
+      "rationale": "No security control is downgraded; version parity is release hygiene, not integrity enforcement.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:124",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity/spec.md:84"
+      ],
+      "proof": "advisory diagnostic, no enforcement consumer; own-edition semantics are the declared contract"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-015",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:441"
+      ],
+      "bugClass": "test_isolation",
+      "disposition": "ruled_out",
+      "rationale": "Per-test temp hubs with suite-end cleanup; no shared or persistent state touched.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:441",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:265"
+      ],
+      "proof": "private temp copy per test with after() cleanup"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-017",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor"
+      ],
+      "bugClass": "stale_documentation",
+      "disposition": "ruled_out",
+      "rationale": "No claim of the class exists in that directory.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-skill-advisor-router-reach.md:14"
+      ],
+      "proof": "exact search found no ROUTER.md version claim there"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-018",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity/goal.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity/tasks.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity/implementation-summary.md"
+      ],
+      "bugClass": "checklist_evidence_gap",
+      "disposition": "ruled_out",
+      "rationale": "Pre-closure bookkeeping is tracked by the packet's own verification tasks; the phase is mid-review at iteration 3 of 5.",
+      "evidenceRefs": [
+        "goal.md",
+        "tasks.md:35",
+        "implementation-summary.md"
+      ],
+      "proof": "expected mid-flight state owned by tasks T007-T009"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-020",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity/plan.md"
+      ],
+      "bugClass": "plan_code_divergence",
+      "disposition": "ruled_out",
+      "rationale": "Plan documents planning-time intent; the spec Files to Change does not name plan.md and CHK-040/T009 own plan-doc sync at closure.",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity/plan.md"
+      ],
+      "proof": "planning-time artifact, out of the spec's file list; closure sync owned by T009"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-021",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1850",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:441",
+        ".skilled/commands/create/assets/create-changelog-auto.yaml:665",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:122"
+      ],
+      "bugClass": "spec_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "No static spec mismatch remains; the open item is the inventory scope, tracked as R3-P1-001.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1850",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:441",
+        ".skilled/commands/create/assets/create-changelog-auto.yaml:665",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:122"
+      ],
+      "proof": "spec-to-code mapping verified for the four static requirements"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-401",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1839"
+      ],
+      "bugClass": "comment_drift",
+      "disposition": "ruled_out",
+      "rationale": "every clause of the comment is implemented by the follower loop",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1839",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1850",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1866"
+      ],
+      "proof": "comment and implementation agree on scope, failure semantics and the ROUTER.md exclusion"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1844",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1850"
+      ],
+      "bugClass": "dead_code",
+      "disposition": "ruled_out",
+      "rationale": "the only symbol the removed entry used is still required by the authority read",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1844"
+      ],
+      "proof": "no dead code left by the follower removal"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1866"
+      ],
+      "bugClass": "stale_message",
+      "disposition": "ruled_out",
+      "rationale": "message scope equals the follower set in every PASS context",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1866",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:394"
+      ],
+      "proof": "no overclaim or stale wording in the changed pass message"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:441"
+      ],
+      "bugClass": "test_fixture_alignment",
+      "disposition": "ruled_out",
+      "rationale": "test aligns with VP-2/T1 and with the suite's established negative-test shape",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:441",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:107",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity/spec.md:74",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity/goal.md:47"
+      ],
+      "proof": "no name, fixture or assertion drift in the new test"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-405",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs"
+      ],
+      "bugClass": "stale_test_assertion",
+      "disposition": "ruled_out",
+      "rationale": "no assertion preserves the removed comparison",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:441",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:406",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:405"
+      ],
+      "proof": "exact search shows no stale 13a ROUTER.md failure expectation"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-406",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:122"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "doc and code agree on the JSON-only comparison",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:122",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:124",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:30",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1850"
+      ],
+      "proof": "no doc/code drift after the paragraph rewrite"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-407",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:12"
+      ],
+      "bugClass": "version_bump_conformance",
+      "disposition": "ruled_out",
+      "rationale": "raise follows the Section 4 rule for a body change",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:12",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:77"
+      ],
+      "proof": "version raise conforms to the standard's own bump rule"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-501",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1850"
+      ],
+      "bugClass": "json_parity_regression",
+      "disposition": "ruled_out",
+      "rationale": "no second version-comparison consumer exists; root-router presence/format is out of scope per spec",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1713",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1841"
+      ],
+      "proof": "exact search found no other ROUTER.md version comparison"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-502",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:441"
+      ],
+      "bugClass": "test_vacuity",
+      "disposition": "ruled_out",
+      "rationale": "mutation is effective and four-part, so 12a stays green",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:39",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:107",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:441"
+      ],
+      "proof": "fixture emits the replaced line and the replacement differs"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "stale_documentation",
+      "spec_mismatch",
+      "test_vacuity",
+      "doc_code_drift",
+      "unverified_runtime_claim"
+    ],
+    "covered": [
+      "stale_documentation",
+      "spec_mismatch"
+    ],
+    "ruledOut": [
+      "test_vacuity",
+      "doc_code_drift"
+    ],
+    "deferred": [
+      "unverified_runtime_claim"
+    ],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}
