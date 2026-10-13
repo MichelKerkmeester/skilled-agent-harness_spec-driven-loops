@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages"
     last_updated_at: "2026-10-13T19:30:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Built R1, R2, R4 and R5 on three concurrent DeepSeek dispatches"
-    next_safe_action: "Run the clone and copy ledger rows, then the five-iteration review"
+    recent_action: "Built, reviewed and closed the phase"
+    next_safe_action: "Operator pushes the branch; 002 then builds from origin/main"
     blockers: []
     key_files:
       - "README.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "build-029-001"
       parent_session_id: null
-    completion_pct: 60
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,8 +40,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-clone-path-and-messages |
-| **Status** | In Progress |
-| **Completed** | Not yet |
+| **Status** | Complete |
+| **Completed** | 2026-10-13 |
 | **Level** | 2 |
 | **Branch** | `worktrees/133-surface-setup-build`, from origin/main `732f9e9d30` |
 <!-- /ANCHOR:metadata -->
@@ -76,7 +76,23 @@ A user who clones the repository now finds the setup steps the checks need in th
 
 Three cli-devin dispatches ran at once on `deepseek-v4-1-flash-max` with `--permission-mode dangerous`, each with `AI_SESSION_CHILD=1`, `</dev/null` and a 1,500 s alarm: README (R1 and R4 together, since both edit the block), guard (R2) and contract library (R5). Each exited 0 and stayed inside its named files. The orchestrator read each diff, reran the battery and both test files, and proved each test against the origin/main source.
 
-The ledger rows follow once the build is committed.
+Commits on `worktrees/133-surface-setup-build`: `a98004816d` plan, `17e465512a` README, `dae07e6286` guard, `d6c30ebdf5` contract library, `ae8777eaa8` review-round README fix, then the closeout commit with these docs and the review packet.
+
+A five-iteration `/deep:review :auto` then ran over `a98004816d..d6c30ebdf5` on cli-devin `deepseek-v4-1-flash-max`, single executor, stop policy `max-iterations`: correctness, security, traceability, maintainability, then a correctness recheck. Each iteration passed `verify-iteration.cjs`. It found no P0 or P1 and one P2, rejected with an observed run. The reducer recorded three search-debt items, so the report's verdict at synthesis is CONDITIONAL; all three were closed by observed runs afterwards. Artifacts are in `review/`.
+
+### Acceptance Ledger
+
+L-1 to L-4 ran in `git clone` of the worktree at `d6c30ebdf5` under the session scratchpad, with `pwd -P` checked after each `cd`; L-3 and L-4 reused that clone once provisioned. L-5 and L-6 ran in the worktree.
+
+| ID | Result | Evidence |
+|----|--------|----------|
+| L-1 | Pass | `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` in the fresh clone (no `node_modules`): exit 1, one line `@spec-kit/shared/frontmatter/parse-frontmatter.js is not built here; run bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision . from the repository root`, 0 stack lines. The doctor there printed `FAIL: 12-lib: failed to load the root-router contract library:` with the same line |
+| L-2 | Pass | `bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision .` exit 0 (`provisioned: 6 installed, 3 built, 3 already present, 0 failed`), then `ci-skill-root-metadata.cjs` exit 0 (`checked=14 passed=14 failed=0 fixed=0`) and `parent-skill-check.cjs .skilled/skills/sk-code` exit 0 (`all hard invariants passed`) |
+| L-3 | Pass | After a hand edit adding a keyword to a sk-code vocabulary class in `hub-router.json`, `node .skilled/bin/compiled-route-guard.cjs` exit 1, printing `Re-mint: sk-code` and `sk-code: run node .skilled/bin/compiled-route-manifest.cjs refresh --hub sk-code --skill-root .skilled/skills/sk-code, then copy .skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json over specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json, or commit with the hooks installed so the pre-commit gate does both` |
+| L-4 | Pass | The printed refresh run verbatim (exit 0) and `cp .skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json`, then `node .skilled/bin/compiled-route-guard.cjs` exit 0 (`All hubs fresh or excused`) and `node .skilled/bin/compiled-route-sync.cjs --check` exit 0 (`all 55 served copies match their authored files`) |
+| L-5 | Pass | `goal.md` criterion 3 printed `6`; `python3 .skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py` exit 0 |
+| L-6 | Pass | `goal.md` criterion 2 printed `ok`: `compiled-route-manifest.test.cjs` 48 of 48, `root-router-contract.test.cjs`, the guard, sync `--check` and `run-all-drift-guards.sh` (4 guards passed) each exit 0 |
+
 
 | ID | Test | Before | After |
 |----|------|--------|-------|
@@ -86,6 +102,13 @@ The ledger rows follow once the build is committed.
 | T4 | an unrelated missing module keeps its own error | before: exit 0 | after: exit 0 |
 
 T1 and T2 ran alone with `--test-name-pattern` against `git show origin/main:.skilled/bin/compiled-route-guard.cjs`, then against the final file. T3 and T4 ran from temporary copies of the test file with the other call removed, against `git show origin/main:` of the library, then against the final library; the copies were deleted. T4 passes before because it guards behavior the old library already had.
+
+### Review Findings
+
+| ID | Severity | Disposition | Proof or reason |
+|----|----------|-------------|-----------------|
+| RV-1 | P2 | Rejected | R1-P2-001, doctor edge case uncovered: its downgrade trigger holds. `loadModule` in `parent-skill-check.cjs:360-368` catches every error and the 12-lib line prints `lib.error.message` with no code check; ledger L-1 shows the doctor printing the provision command in a fresh clone |
+| RV-2 | P2 | Fixed | Raised by the orchestrator while verifying the README dispatch, not by the review: removal step 7 narrowed `verify-doc-claims` to the hub README; `ae8777eaa8` restores the hub-wide wording, and `run-all-drift-guards.sh` exits 0 |
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -108,7 +131,9 @@ T1 and T2 ran alone with `--test-name-pattern` against `git show origin/main:.sk
 | Check | Result |
 |-------|--------|
 | Baseline at `732f9e9d30` | Battery all exit 0; `compiled-route-manifest.test.cjs` 46 of 46; `root-router-contract.test.cjs` exit 0; drift guards 4 passed, 278 warnings |
-| After the build | Battery all exit 0; `compiled-route-manifest.test.cjs` 48 of 48; `root-router-contract.test.cjs` exit 0; drift guards 4 passed, 278 warnings; `node --check` on the three scripts |
+| After the build and the review fix | Battery all exit 0; `compiled-route-manifest.test.cjs` 48 of 48; `root-router-contract.test.cjs` exit 0; drift guards 4 passed, 278 warnings; `node --check` on the three scripts |
+| `/deep:review :auto`, 5 iterations | CONDITIONAL at synthesis from three search-debt items, each closed afterwards; 0 P0, 0 P1, 1 P2, rejected. See `review/review-report.md` |
+| `validate.sh --strict` and the goal criteria | Rerun at closeout; results in the orchestrator's report |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,4 +142,5 @@ T1 and T2 ran alone with `--test-name-pattern` against `git show origin/main:.sk
 ## Known Limitations
 
 1. **A half-provisioned tree still prints Node's error.** When the `@spec-kit/shared` link exists but its `dist` was never built, the require fails on the absolute `dist` path, which the relabel does not match. The contract builder observed it; a fresh clone has no link at all, so it gets the named line.
+2. **The review loop was driven by hand.** The single-executor cli-devin path of the auto workflow was followed step by step from scratch scripts: run-open through the gateway, per-iteration lock refresh, graph convergence as telemetry, the shared prompt pack, the workflow's own cli-devin dispatch block, `verify-iteration.cjs`, claim adjudication, the reducer and graph upserts, then synthesis closeout. The continuity save of phase_save was not run; this file was written directly, as 026 did. The graph upserts for iterations 2 to 5 failed with a module-loader error when run from a background shell and succeeded when rerun in the foreground.
 <!-- /ANCHOR:limitations -->

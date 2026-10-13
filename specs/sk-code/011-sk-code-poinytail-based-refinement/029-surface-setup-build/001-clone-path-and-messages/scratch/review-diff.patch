@@ -1,0 +1,333 @@
+diff --git a/.skilled/bin/compiled-route-guard.cjs b/.skilled/bin/compiled-route-guard.cjs
+index 05d5c9f942..f09ca3890f 100644
+--- a/.skilled/bin/compiled-route-guard.cjs
++++ b/.skilled/bin/compiled-route-guard.cjs
+@@ -59,31 +59,50 @@ function manifestPathIn(root, hubId) {
+   }
+ }
+ 
++// The authored copy mirrors the runtime tree, so it sits at the same relative path
++// under the authored root. Deriving it this way still names it when the authored
++// tree is gone and no layout can be detected there.
++function manifestPair(hubId, runtimeRoot, authoredRoot) {
++  const runtimeManifest = manifestPathIn(runtimeRoot, hubId);
++  if (!runtimeManifest) return null;
++  const authoredManifest = path.join(authoredRoot, path.relative(runtimeRoot, runtimeManifest));
++  return {
++    runtimeManifest,
++    authoredManifest,
++    runtimeRel: path.relative(REPO_ROOT, runtimeManifest),
++    authoredRel: path.relative(REPO_ROOT, authoredManifest),
++  };
++}
++
+ // Byte comparison is deliberate: these are generated artifacts that are supposed to
+ // be copies of each other, so any difference at all means a rebuild would change
+ // what is being served.
+ function authoredDrift(hubId, runtimeRoot = RUNTIME_ROOT, authoredRoot = AUTHORED_ROOT) {
+-  const runtimeManifest = manifestPathIn(runtimeRoot, hubId);
++  const pair = manifestPair(hubId, runtimeRoot, authoredRoot);
+   // A missing runtime manifest is already reported by the freshness check above.
+-  if (!runtimeManifest || !fs.existsSync(runtimeManifest)) return null;
+-  // The authored copy mirrors the runtime tree, so it sits at the same relative path
+-  // under the authored root. Deriving it this way still names it when the authored
+-  // tree is gone and no layout can be detected there.
+-  const authoredManifest = path.join(authoredRoot, path.relative(runtimeRoot, runtimeManifest));
+-  const runtimeRel = path.relative(REPO_ROOT, runtimeManifest);
+-  const authoredRel = path.relative(REPO_ROOT, authoredManifest);
++  if (!pair || !fs.existsSync(pair.runtimeManifest)) return null;
+   // A missing authored copy is not a pass: the runtime can no longer be rebuilt from
+   // source, and a rebuild would have nothing to reinstate.
+-  if (!fs.existsSync(authoredManifest)) {
+-    return { reason: 'authored-missing', fix: `restore ${authoredRel}` };
++  if (!fs.existsSync(pair.authoredManifest)) {
++    return { reason: 'authored-missing', fix: `restore ${pair.authoredRel}` };
+   }
+-  if (fs.readFileSync(runtimeManifest).equals(fs.readFileSync(authoredManifest))) return null;
++  if (fs.readFileSync(pair.runtimeManifest).equals(fs.readFileSync(pair.authoredManifest))) return null;
+   return {
+     reason: 'authored-drift',
+-    fix: `copy ${runtimeRel} over ${authoredRel}, or commit with the hooks installed so the pre-commit gate copies it`,
++    fix: `copy ${pair.runtimeRel} over ${pair.authoredRel}, or commit with the hooks installed so the pre-commit gate copies it`,
+   };
+ }
+ 
++// Stale is the one failure a command clears: re-mint the hub, then copy the result
++// back to the authored tree. The line names both writes with both paths, because
++// doing only the first leaves the runtime un-rebuildable.
++function staleFix(hubId, runtimeRoot = RUNTIME_ROOT, authoredRoot = AUTHORED_ROOT) {
++  const pair = manifestPair(hubId, runtimeRoot, authoredRoot);
++  if (!pair) return null;
++  const skillRootRel = path.relative(REPO_ROOT, path.join(SKILLS_ROOT, hubId));
++  return `run node .skilled/bin/compiled-route-manifest.cjs refresh --hub ${hubId} --skill-root ${skillRootRel}, then copy ${pair.runtimeRel} over ${pair.authoredRel}, or commit with the hooks installed so the pre-commit gate does both`;
++}
++
+ // A hub can be legitimately uncompilable for hours while someone restructures its
+ // modes. Without a way to excuse that one hub, a blocking gate stops every unrelated
+ // commit in the repository. Exemptions are deliberately narrow: they excuse ONLY an
+@@ -123,6 +142,7 @@ function inspect(hubId) {
+     // A hub whose inputs no longer compile cannot be re-minted at all, which is a
+     // different problem from an input edit that simply needs a refresh.
+     const reason = freshness.causeCode === 'compile-error' ? 'inputs-do-not-compile' : 'stale-manifest';
++    if (reason === 'stale-manifest') return { hubId, ok: false, reason, fix: staleFix(hubId) };
+     return { hubId, ok: false, reason };
+   }
+   const drift = authoredDrift(hubId);
+@@ -172,6 +192,7 @@ function main() {
+       const stale = failures.filter((f) => f.reason === 'stale-manifest');
+       if (stale.length > 0) {
+         process.stdout.write(`Re-mint: ${stale.map((f) => f.hubId).join(', ')}\n`);
++        stale.forEach((f) => process.stdout.write(`  ${f.hubId}: ${f.fix}\n`));
+       }
+       const drifted = failures.filter((f) => f.reason === 'authored-drift');
+       if (drifted.length > 0) {
+@@ -195,4 +216,4 @@ function main() {
+ 
+ if (require.main === module) main();
+ 
+-module.exports = { authoredDrift, inspect, HUBS };
++module.exports = { authoredDrift, inspect, staleFix, HUBS };
+diff --git a/.skilled/bin/tests/compiled-route-manifest.test.cjs b/.skilled/bin/tests/compiled-route-manifest.test.cjs
+index 1074d80492..fb242ea21f 100644
+--- a/.skilled/bin/tests/compiled-route-manifest.test.cjs
++++ b/.skilled/bin/tests/compiled-route-manifest.test.cjs
+@@ -620,6 +620,32 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
+     }
+   });
+ 
++  test('guard stale fix names the refresh command, the skill root and both manifest paths', () => {
++    const suffix = path.join('013-live-activation', 'activation', 'sk-code', 'manifest.json');
++    const runtimeManifest = path.join(promotedRuntimeRoot, suffix);
++    const authoredRoot = path.join(REPO_ROOT, runtimeLayout.AUTHORED_PROGRAM_DIR);
++    const authoredManifest = path.join(authoredRoot, suffix);
++    const fix = guard.staleFix('sk-code', promotedRuntimeRoot, authoredRoot);
++    assert.ok(
++      fix.includes('compiled-route-manifest.cjs refresh --hub sk-code --skill-root .skilled/skills/sk-code'),
++      fix,
++    );
++    assert.ok(fix.includes(path.relative(REPO_ROOT, runtimeManifest)), fix);
++    assert.ok(fix.includes(path.relative(REPO_ROOT, authoredManifest)), fix);
++  });
++
++  test('guard stale fix gives a second hub its own skill root and manifest', () => {
++    const suffix = path.join('013-live-activation', 'activation', 'sk-doc', 'manifest.json');
++    const runtimeManifest = path.join(promotedRuntimeRoot, suffix);
++    const authoredRoot = path.join(REPO_ROOT, runtimeLayout.AUTHORED_PROGRAM_DIR);
++    const authoredManifest = path.join(authoredRoot, suffix);
++    const fix = guard.staleFix('sk-doc', promotedRuntimeRoot, authoredRoot);
++    assert.ok(fix.includes('--skill-root .skilled/skills/sk-doc'), fix);
++    assert.ok(fix.includes(path.relative(REPO_ROOT, runtimeManifest)), fix);
++    assert.ok(fix.includes(path.relative(REPO_ROOT, authoredManifest)), fix);
++    assert.ok(!fix.includes('sk-code'), fix);
++  });
++
+   test('refuses to replace an existing root that is not a verified closure', () => {
+     const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-sync-invalid-prior-'));
+     const runtimeRoot = path.join(sandbox, 'compiled-routing');
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs b/.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
+index d95f18dcfe..9805bbfd37 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
++++ b/.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
+@@ -51,7 +51,20 @@ const path = require('path');
+ const { buildManifestBytes } = require('./generate-leaf-manifest.cjs');
+ const leafContract = require('./lib/leaf-resource-contract.cjs');
+ const rootContract = require('./lib/skill-root-metadata-contract.cjs');
+-const rootRouterContract = require('./lib/root-router-contract.cjs');
++
++// The root-router contract library loads the built shared frontmatter parser,
++// so an unprovisioned tree fails that load. Report its one-line provision
++// instruction instead of a raw module stack; any other load error still
++// surfaces as the throw it is.
++let rootRouterContract;
++try {
++  rootRouterContract = require('./lib/root-router-contract.cjs');
++} catch (err) {
++  if (!err || err.code !== 'SHARED_NOT_BUILT') throw err;
++  process.stderr.write(`${err.message}\n`);
++  process.exit(1);
++}
++
+ const commandSchema = require('./lib/command-metadata-schema.cjs');
+ 
+ // Keep this closed: an ignored top-level block hid authored routing data for
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs b/.skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs
+index 26c4a9c89e..8835250b71 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs
++++ b/.skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs
+@@ -60,9 +60,34 @@
+ // ─────────────────────────────────────────────────────────────────────────────
+ 
+ const leafContract = require('./leaf-resource-contract.cjs');
++
++// The shared frontmatter parser is built, not committed, so a tree that has
++// never been provisioned fails to resolve it. Only that exact failure is
++// relabeled with the provision command; every other load error keeps its name.
++const SHARED_FRONTMATTER_MODULE = '@spec-kit/shared/frontmatter/parse-frontmatter.js';
++const PROVISION_COMMAND = 'bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision .';
++
++// Load the shared frontmatter parser, naming the provision command when the
++// shared package is not built here.
++function loadSharedFrontmatterParser() {
++  try {
++    return require(SHARED_FRONTMATTER_MODULE);
++  } catch (err) {
++    const isMissingSharedPackage = err && err.code === 'MODULE_NOT_FOUND'
++      && typeof err.message === 'string'
++      && err.message.includes(`'${SHARED_FRONTMATTER_MODULE}'`);
++    if (!isMissingSharedPackage) throw err;
++    const failure = new Error(
++      `${SHARED_FRONTMATTER_MODULE} is not built here; run ${PROVISION_COMMAND} from the repository root`,
++    );
++    failure.code = 'SHARED_NOT_BUILT';
++    throw failure;
++  }
++}
++
+ // One shared fence parser for every skill: leading-fence position, closing-fence
+ // and CRLF rules stay identical across readers of the same documents.
+-const { parseFrontmatter } = require('@spec-kit/shared/frontmatter/parse-frontmatter.js');
++const { parseFrontmatter } = loadSharedFrontmatterParser();
+ 
+ // ─────────────────────────────────────────────────────────────────────────────
+ // 2. CONSTANTS
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs b/.skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs
+index 5558a06dd2..0d215d0374 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs
++++ b/.skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs
+@@ -18,6 +18,10 @@
+ // ─────────────────────────────────────────────────────────────────────────────
+ 
+ const assert = require('node:assert/strict');
++const { spawnSync } = require('node:child_process');
++const fs = require('node:fs');
++const os = require('node:os');
++const path = require('node:path');
+ const routerContract = require('../lib/root-router-contract.cjs');
+ 
+ // ─────────────────────────────────────────────────────────────────────────────
+@@ -711,4 +715,88 @@ function testMissingProseSectionRaisesRRC009() {
+   );
+ }
+ testMissingProseSectionRaisesRRC009();
++
++// ─────────────────────────────────────────────────────────────────────────────
++// 7. UNPROVISIONED-TREE LOAD FAILURE
++// ─────────────────────────────────────────────────────────────────────────────
++
++// The shared frontmatter parser is built, not committed, so a tree that has
++// never been provisioned fails to load the library. A temp directory has no
++// ancestor node_modules, which reproduces that fresh-clone resolution failure.
++
++/** Stage the library and its one local require outside the repository. */
++function stageLibraryCopy(dir) {
++  const libDir = path.join(dir, 'lib');
++  fs.mkdirSync(libDir);
++  for (const name of ['root-router-contract.cjs', 'leaf-resource-contract.cjs']) {
++    fs.copyFileSync(path.join(__dirname, '..', 'lib', name), path.join(libDir, name));
++  }
++  return path.join(libDir, 'root-router-contract.cjs');
++}
++
++// Require the staged library in a child process and surface only the thrown
++// message, so a stack frame in stderr can only come from the message itself.
++function requireStagedLibrary(libPath) {
++  const script = [
++    'try {',
++    `  require(${JSON.stringify(libPath)});`,
++    '  process.exit(3);',
++    '} catch (err) {',
++    '  process.stderr.write(String(err && err.message));',
++    '  process.exit(1);',
++    '}',
++  ].join('\n');
++  const env = { ...process.env };
++  delete env.NODE_PATH;
++  return spawnSync(process.execPath, ['-e', script], { encoding: 'utf8', env });
++}
++
++function testUnprovisionedTreeNamesProvisionCommand() {
++  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'root-router-contract-'));
++  try {
++    const child = requireStagedLibrary(stageLibraryCopy(dir));
++    assert.equal(child.status, 1, `expected the load to fail, got ${child.status}: ${child.stderr}`);
++    const message = child.stderr.trim();
++    assert.match(
++      message,
++      /worktree-naming\.sh provision/,
++      `the failure must name the provision command: ${message}`,
++    );
++    assert.equal(message.split('\n').length, 1, `the failure must be one line: ${message}`);
++    assert.ok(!/^[ \t]+at /m.test(message), `the failure must carry no stack frame: ${message}`);
++  } finally {
++    fs.rmSync(dir, { recursive: true, force: true });
++  }
++}
++
++// Only the shared package's own resolution failure is relabeled: a different
++// missing module keeps its own name even when the shared package is present.
++function testUnrelatedMissingModuleKeepsItsOwnError() {
++  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'root-router-contract-'));
++  try {
++    const libPath = stageLibraryCopy(dir);
++    const fakeParser = path.join(
++      dir, 'node_modules', '@spec-kit', 'shared', 'frontmatter', 'parse-frontmatter.js',
++    );
++    fs.mkdirSync(path.dirname(fakeParser), { recursive: true });
++    fs.writeFileSync(fakeParser, "require('a-different-missing-module');\n");
++
++    const child = requireStagedLibrary(libPath);
++    assert.equal(child.status, 1, `expected the load to fail, got ${child.status}: ${child.stderr}`);
++    assert.match(
++      child.stderr,
++      /a-different-missing-module/,
++      `the original error must surface unchanged: ${child.stderr}`,
++    );
++    assert.ok(
++      !/worktree-naming\.sh provision/.test(child.stderr),
++      `an unrelated missing module must not be relabeled: ${child.stderr}`,
++    );
++  } finally {
++    fs.rmSync(dir, { recursive: true, force: true });
++  }
++}
++
++testUnprovisionedTreeNamesProvisionCommand();
++testUnrelatedMissingModuleKeepsItsOwnError();
+ console.log('[root-router-contract] all positive and negative fixtures passed');
+diff --git a/README.md b/README.md
+index df4600a9f3..bfe39a9fd5 100644
+--- a/README.md
++++ b/README.md
+@@ -1448,8 +1448,10 @@ This repo ships as a **public template**. Of the skills it ships with, only one
+ 
+ **Before you start**
+ 
+-1. Install the git hooks with `bash .skilled/scripts/install-git-hooks.sh`. A commit that stages the hub's routing files then re-mints its activation manifest and copies the manifest to its authored path. Without the hooks, do both by hand after each routing change: run `node .skilled/bin/compiled-route-manifest.cjs refresh --hub sk-code --skill-root .skilled/skills/sk-code`, then copy `.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json` over `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json`.
+-2. If you prune `specs/`, keep `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/`, the authored source of compiled routing, and keep the `.opencode/skills` link. Without either one the guard and sync checks fail.
++1. In a fresh clone, run `bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision .` first. It installs the dependencies and builds the spec-kit outputs the checks below load. Without it, `parent-skill-check.cjs` and `ci-skill-root-metadata.cjs` fail on a missing `@spec-kit/shared` build.
++2. In a clone, run `git config --local skilled.trustRepoHooks true` before you install the hooks. The hooks run this repository's scripts only in a trusted clone, so without it the commit-time re-mint never fires.
++3. Install the git hooks with `bash .skilled/scripts/install-git-hooks.sh`. A commit that stages the hub's routing files then re-mints its activation manifest and copies the manifest to its authored path. Without the hooks, do both by hand after each routing change: run `node .skilled/bin/compiled-route-manifest.cjs refresh --hub sk-code --skill-root .skilled/skills/sk-code`, then copy `.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json` over `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json`.
++4. If you prune `specs/`, keep `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/`, the authored source of compiled routing, and keep the `.opencode/skills` link. Without either one the guard and sync checks fail.
+ 
+ **Remove an example surface.** Repeat these steps for each surface you drop. `<mode>` is `sk-code-webflow` or `sk-code-obsidian`.
+ 
+@@ -1458,8 +1460,8 @@ This repo ships as a **public template**. Of the skills it ships with, only one
+ 3. Regenerate the leaf manifest with `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --write .skilled/skills/sk-code`.
+ 4. Edit section 11 of `.skilled/skills/sk-code/ROUTER.md` by hand, because no command writes it. Delete every `RESOURCE_MAP` path under `<mode>/`, then delete each key left with no paths from both `RESOURCE_MAP` and `INTENT_SIGNALS`. Trim the prose map rows and sections above section 11 that point at the removed packet.
+ 5. Update the surface table and the surface list sentence in `.skilled/skills/sk-code/SKILL.md`, the surface markers in `.skilled/skills/sk-code/shared/references/stack-detection.md` and the surface lines in this `README.md`.
+-6. Delete or adjust the files written for the example. These are its scenarios under `.skilled/skills/sk-code/manual-testing-playbook/`, with their rows in `manual-testing-playbook.md`, the Obsidian and Webflow checklist pointers in `.skilled/skills/sk-code/sk-code-quality/`, the cases in `.skilled/bin/tests/compiled-route-surface-hint.test.cjs` and the canary cases that name the mode in `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json`. After a canary edit, copy that fixture over its authored twin at `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json`.
+-7. Run `node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs` and fix every dead path and stale surface count it lists, including the hub's `README.md` and `graph-metadata.json`.
++6. Delete or adjust the files written for the example. These are its scenarios under `.skilled/skills/sk-code/manual-testing-playbook/`, with their rows in `manual-testing-playbook.md`, the Obsidian and Webflow checklist pointers in `.skilled/skills/sk-code/sk-code-quality/`, the entries in `.skilled/skills/sk-code/feature-catalog/feature-catalog.md` and `.skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`, which present the examples as live surfaces, the cases in `.skilled/bin/tests/compiled-route-surface-hint.test.cjs` and the canary cases that name the mode in `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json`. After a canary edit, copy that fixture over its authored twin at `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json`.
++7. Run `node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs` and fix every dead path and stale surface count it lists in the hub's `README.md`. Then run `node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --root .skilled/skills/sk-code --write`, which prunes the dead `key_files`, `source_docs` and entities from the hub's `graph-metadata.json`. The only hand edit left in that file is its `causal_summary`, which still names the examples.
+ 8. Refresh the README manifest with `python3 .skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py --write`, and the Hermes skill copies with `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs`, which drops the removed packet's copy.
+ 9. Commit with the hooks installed, or refresh and copy the manifest by hand as above.
+ 
+@@ -1467,7 +1469,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one
+ 
+ 1. Run `/create:skill-parent update --surfaces <name>` in your AI runtime. Its steps live in `.skilled/commands/create/assets/create-skill-parent-auto.yaml`. It scaffolds the packet, registers it and places it ahead of OpenCode in `tieBreak`, so your surface wins a keyword tie. If you edit `tieBreak` by hand instead, keep your surface ahead of `sk-code-opencode`, because the doctor's check 5l fails a surface placed after it.
+ 2. Link the three shared workflow docs into the new packet the way `sk-code-opencode/references/` does: in `.skilled/skills/sk-code/<name>/references/`, symlink `workflow-implement.md`, `workflow-debug.md` and `workflow-verify.md` to `../../shared/references/`.
+-3. Add the packet's paths to the `ROUTER.md` maps and section 11, and its markers to `stack-detection.md`.
++3. Add the packet's paths to the `ROUTER.md` maps and section 11, and its markers to `stack-detection.md`. Update the surface-count lines `verify-doc-claims.cjs` checks: the count in `.skilled/skills/sk-code/shared/references/phase-detection.md`, and the counts in the hub's `README.md` and `SKILL.md`. A packet copied from an example has the same leaf set as that example, so `generate-leaf-manifest.cjs --write` stops with `MODE_LEAF_SET_COLLISION`; give each of the two modes its own `leafScopes` in `.skilled/skills/sk-code/leaf-scopes.json` (the format is the array in `.skilled/skills/sk-doc/leaf-scopes.json`), or change the copy until its files differ.
+ 4. Add a canary case that routes to the new surface in the canary fixture above, and copy the fixture over its authored twin. The completion report of the update command names both follow-ups.
+ 5. Refresh the Hermes skill copies the same way, then commit with the hooks installed, or refresh and copy the manifest by hand.
+ 

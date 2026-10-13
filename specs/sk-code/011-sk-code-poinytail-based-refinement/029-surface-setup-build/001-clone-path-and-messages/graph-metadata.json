@@ -36,7 +36,7 @@
       "named"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -49,6 +49,7 @@
       ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs",
+      "review/review-report.md",
       ".github/workflows/routing-registry-drift.yml",
       ".skilled/skills/sk-code/hub-router.json"
     ],
@@ -120,6 +121,12 @@
         "source": "derived"
       },
       {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
         "name": "routing-registry-drift.yml",
         "kind": "config",
         "path": ".github/workflows/routing-registry-drift.yml",
@@ -133,12 +140,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -168,6 +169,12 @@
         "source": "derived"
       },
       {
+        "name": "What Adapting",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -190,17 +197,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "In a fresh clone, `parent-skill-check.cjs` and `ci-skill-root-metadata.cjs` exit 1 on a missing `@spec-kit/shared` build, the second with a raw `MODULENOTFOUND` stack (`root-router-contract.cjs:65`; research F1)",
     "created_at": "2026-10-13T18:45:42Z",
-    "last_save_at": "2026-10-13T19:00:08.777Z",
+    "last_save_at": "2026-10-13T19:51:56.196Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aa5368af8b96a5f4ba2a92240870de50bf6609660a22f0f3be2156e8087d0262",
+    "source_fingerprint": "sha256:917abec7efcefdf55ea308e86be46b59f5b1328af7d29ecf2b04a00101f7c2d9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "374d0fae916fa34132fba420dabe7b6aaf748e196be9714e339d1546f62e59d9",
-      "plan.md": "14e73fee6916a87a5c406988813bffb6857f257d84ab1c3516e1c9f37507eac4",
-      "tasks.md": "5728de45504c9ab84f6a6ea91890cb16bb8cff6e699319b962bd7f761372374e",
-      "implementation-summary.md": "0937adbafbed95b401fad781b510f87d99110f96e485995301c4dd4ce74aadaa"
+      "spec.md": "4b96b5626ad3937b58aa623a28c775f3ad715c1e5ce778a411eaf45e06d8be1d",
+      "plan.md": "9ac078081c00d4029d638d93abedf7423826441b7a1e57dd91c17e7ababdd7a7",
+      "tasks.md": "619e1a4633e2a8cc842b1e43841460c43debe7bc77e4bf41e9c402ee889315b7",
+      "implementation-summary.md": "aac90ee1f09bd8df2526aa1f34ced9ad6c7688653bd541f517c13b2778f005e1"
     },
     "last_active_at": null
   }

@@ -150,21 +150,27 @@
         "kind": "heading",
         "path": "goal.md",
         "source": "derived"
+      },
+      {
+        "name": "4. LOG",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "An external user who clones the repository and follows the README block \"What Adapting `sk-code` Looks Like\" cannot reach a green check battery",
     "created_at": "2026-10-13T18:45:41Z",
-    "last_save_at": "2026-10-13T19:00:07.202Z",
+    "last_save_at": "2026-10-13T19:51:53.412Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:9a3cb22c29c7f4cedb1841cace2c4026603d300a611dd0e7f9a4b9389d1e74f8",
+    "source_fingerprint": "sha256:8d914d70482653dd3e27d8ffecc8124e65e637c3ab1e593ef1bffe67bcf1280b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "316eed3c7e85eab0c57617b431e5f5ee27322d7d2f22f77673beb315ca7c5999"
+      "spec.md": "5e1dae426aea1a9521c113c49dfa9fbcbf90a6eb19bf49bd0f93e1bd4424fdec"
     },
     "last_active_at": null
   }

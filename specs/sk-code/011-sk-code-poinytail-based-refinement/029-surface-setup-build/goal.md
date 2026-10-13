@@ -98,7 +98,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Planned 2026-10-13 | Done | create.sh phase mode, `--path`, `--level 2`, `--with-goal`, two children; traceability table in `spec.md` maps R1 to R5 to exactly one child each |
-| 001 clone path and messages | In Progress | Branch `worktrees/133-surface-setup-build` |
+| 001 clone path and messages | Done | Branch `worktrees/133-surface-setup-build`; all seven child criteria rerun by the orchestrator and passing; awaits the operator push |
 | 002 doctor sk-code setup | Pending | Starts from origin/main once 001 is on it |
 
 ### Deviations and findings

@@ -22,7 +22,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-13 |
 | **Branch** | `worktrees/133-surface-setup-build` |
 | **Parent Spec** | ../spec.md |

@@ -1,0 +1,1146 @@
+{
+  "sessionId": "2026-10-13T19:08:04.000Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "Only the gate catches the relabeled load failure; the spec's doctor edge case has no coverage",
+      "file": ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+      "line": 83,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "change_without_requirement",
+      "checklist_evidence_gap",
+      "command_injection_printed_fix",
+      "comment_drift",
+      "dead_code",
+      "doc_claim_drift",
+      "duplication",
+      "edge_case_unmapped",
+      "error_handling_consistency",
+      "error_taxonomy_consumer_break",
+      "export_surface",
+      "info_disclosure_error_path",
+      "message_consistency",
+      "message_path_accuracy",
+      "null_propagation",
+      "requirement_without_change",
+      "secret_exposure",
+      "test_fidelity",
+      "test_harness_injection",
+      "test_maintainability",
+      "trust_gate_privilege"
+    ],
+    "ruledOut": [
+      "change_without_requirement",
+      "command_injection_printed_fix",
+      "comment_drift",
+      "dead_code",
+      "doc_artifact_existence",
+      "doc_claim_drift",
+      "duplication",
+      "error_handling_consistency",
+      "export_surface",
+      "info_disclosure_error_path",
+      "message_consistency",
+      "message_path_accuracy",
+      "null_propagation",
+      "requirement_without_change",
+      "secret_exposure",
+      "test_fidelity",
+      "test_harness_injection",
+      "test_maintainability",
+      "trust_gate_privilege"
+    ],
+    "deferred": [
+      "doc_named_command_blast_radius",
+      "edge_case_unmapped"
+    ],
+    "blocked": [
+      "checklist_evidence_gap"
+    ],
+    "byBugClass": {
+      "message_path_accuracy": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "test_fidelity": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "doc_artifact_existence": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "error_taxonomy_consumer_break": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "command_injection_printed_fix": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "trust_gate_privilege": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "info_disclosure_error_path": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "test_harness_injection": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "secret_exposure": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "doc_named_command_blast_radius": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "requirement_without_change": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "change_without_requirement": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "edge_case_unmapped": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3,
+          5
+        ]
+      },
+      "doc_claim_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "checklist_evidence_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          3,
+          5
+        ]
+      },
+      "duplication": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "dead_code": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "export_surface": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "message_consistency": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "error_handling_consistency": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "test_maintainability": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "comment_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "null_propagation": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 2,
+      "id": "SL-010",
+      "dimension": "security",
+      "targetRefs": [
+        "README.md"
+      ],
+      "bugClass": "doc_named_command_blast_radius",
+      "disposition": "deferred",
+      "rationale": "verifying --write confinement and provision side effects needs the unchanged scripts read, which this security pass did not do",
+      "evidenceRefs": [
+        "README.md:1451"
+      ],
+      "reason": "the two scripts are unchanged and outside the review scope; a follow-up outside this security pass"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/spec.md"
+      ],
+      "bugClass": "edge_case_unmapped",
+      "disposition": "deferred",
+      "rationale": "the doctor edge case is already tracked as open R1-P2-001 (correctness) with a named downgrade trigger",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/spec.md:184",
+        ".skilled/bin/compiled-route-guard.cjs:192",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs:718"
+      ],
+      "reason": "no new finding filed; R1-P2-001 stays the single advisory until its downgrade trigger is run"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-015",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/implementation-summary.md"
+      ],
+      "bugClass": "checklist_evidence_gap",
+      "disposition": "blocked",
+      "rationale": "implementation-summary.md is outside the review scope; a read-only iteration cannot execute the clone and copy ledger runs",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/goal.md:64"
+      ],
+      "reason": "ledger file not in review scope files"
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "message_path_accuracy",
+      "disposition": "ruled_out",
+      "rationale": "message verified against the spec text and the tests",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:99",
+        ".skilled/bin/compiled-route-guard.cjs:103",
+        ".skilled/bin/compiled-route-guard.cjs:145",
+        ".skilled/bin/compiled-route-guard.cjs:195"
+      ],
+      "reason": "the line matches spec R2 and is pinned by T1/T2 in compiled-route-manifest.test.cjs"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "README.md"
+      ],
+      "bugClass": "doc_artifact_existence",
+      "disposition": "ruled_out",
+      "rationale": "no dead command or path found",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-derived-regenerator.test.cjs:11",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs:69",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json:2717",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-phrase-lint-bypass.md:67"
+      ],
+      "reason": "every named artifact resolves to a live script, config key or committed file; sk-code's own catalog/leaf-scopes file existence is a stated coverage limit"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs"
+      ],
+      "bugClass": "test_fidelity",
+      "disposition": "ruled_out",
+      "rationale": "tests verified to exist and assert on the changed behavior",
+      "evidenceRefs": [
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs:628",
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs:642",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs:718"
+      ],
+      "reason": "four tests exist and target the changed lines; the before-fails half is the phase ledger's job and was not executed in this read-only review"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "command_injection_printed_fix",
+      "disposition": "ruled_out",
+      "rationale": "hub ids are static and paths are repo-rooted; no execution path exists in the guard",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:44",
+        ".skilled/bin/compiled-route-guard.cjs:99",
+        ".skilled/bin/compiled-route-guard.cjs:99"
+      ],
+      "reason": "static HUBS literal plus REPO_ROOT-joined paths; no process-execution primitives in the file"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        "README.md",
+        ".skilled/scripts/git-hooks/pre-commit",
+        ".skilled/scripts/install-git-hooks.sh"
+      ],
+      "bugClass": "trust_gate_privilege",
+      "disposition": "ruled_out",
+      "rationale": "the gate is fail-closed and local-config scoped; the README text is accurate and uses the sanctioned mechanism",
+      "evidenceRefs": [
+        "README.md:1452",
+        ".skilled/scripts/git-hooks/pre-commit:44",
+        ".skilled/scripts/install-git-hooks.sh:188",
+        ".skilled/scripts/git-hooks/tests/pre-commit.test.sh:800"
+      ],
+      "reason": "untrusted clone skips without blocking; git -c and GIT_CONFIG_* do not grant trust; the hook prints the same instruction"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs"
+      ],
+      "bugClass": "info_disclosure_error_path",
+      "disposition": "ruled_out",
+      "rationale": "no stack, path or environment detail is disclosed, and no unrelated failure is relabeled",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs:80",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs:63"
+      ],
+      "reason": "literal-only message; exact-match condition pinned by the unrelated-module test"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs"
+      ],
+      "bugClass": "test_harness_injection",
+      "disposition": "ruled_out",
+      "rationale": "quoting is the standard safe pattern and cleanup is confined to the created temp directory",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs:718"
+      ],
+      "reason": "argv-array spawn plus JSON.stringify quoting; scoped rmSync"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "no credential, token or environment read in the changed lines",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:33"
+      ],
+      "reason": "no process.env usage; error strings carry only source literals"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-011",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/spec.md",
+        "README.md",
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs"
+      ],
+      "bugClass": "requirement_without_change",
+      "disposition": "ruled_out",
+      "rationale": "all five REQ rows and all four scope bullets map to changed lines",
+      "evidenceRefs": [
+        "README.md:1451",
+        "README.md:1463",
+        ".skilled/bin/compiled-route-guard.cjs:104",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs:83"
+      ],
+      "reason": "complete requirement-to-line map over the six-file diff; no requirement is unimplemented"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-012",
+      "dimension": "traceability",
+      "targetRefs": [
+        "README.md",
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs"
+      ],
+      "bugClass": "change_without_requirement",
+      "disposition": "ruled_out",
+      "rationale": "bidirectional map complete; no extra file and no orphan hunk",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:65",
+        "README.md:1472",
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs:623"
+      ],
+      "reason": "spec table and diff file sets are identical (6/6)"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-014",
+      "dimension": "traceability",
+      "targetRefs": [
+        "README.md"
+      ],
+      "bugClass": "doc_claim_drift",
+      "disposition": "ruled_out",
+      "rationale": "no dead artifact in the changed block; iteration 2 closed the catalog/leaf-scopes coverage limit",
+      "evidenceRefs": [
+        "README.md:1451",
+        "README.md:1452",
+        "README.md:1463",
+        "README.md:1464",
+        "README.md:1472"
+      ],
+      "reason": "every named artifact resolves to a live script, config key or committed file"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-016",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/goal.md"
+      ],
+      "bugClass": "requirement_without_change",
+      "disposition": "ruled_out",
+      "rationale": "each decision maps to changed lines or a declared ledger/test row",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/goal.md:44",
+        "README.md:1452",
+        ".skilled/bin/compiled-route-guard.cjs:104"
+      ],
+      "reason": "no decision is contradicted by the diff"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-016",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+        "README.md"
+      ],
+      "bugClass": "duplication",
+      "disposition": "ruled_out",
+      "rationale": "each command string has exactly one code literal; docs and tests restate them by design",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:103",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs:83",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs:64",
+        ".skilled/bin/compiled-route-guard.cjs:103"
+      ],
+      "reason": "single literal per command in code; no drift pair exists"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-017",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "dead_code",
+      "disposition": "ruled_out",
+      "rationale": "every new function has at least one caller; nothing became dead",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:65",
+        ".skilled/bin/compiled-route-guard.cjs:100",
+        ".skilled/bin/compiled-route-guard.cjs:145",
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs:623"
+      ],
+      "reason": "call graph closed over the full guard file and the new tests"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-018",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "export_surface",
+      "disposition": "ruled_out",
+      "rationale": "one added name in the existing pattern; consumed by the test file",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:219"
+      ],
+      "reason": "surface change is additive and consistent"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-019",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs",
+        "README.md"
+      ],
+      "bugClass": "message_consistency",
+      "disposition": "ruled_out",
+      "rationale": "differences are deliberate and each sentence names the writes it clears",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:92",
+        ".skilled/bin/compiled-route-guard.cjs:103",
+        "README.md:1451",
+        "README.md:1463"
+      ],
+      "reason": "no drift; deliberate single-vs-double write phrasing"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-020",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs"
+      ],
+      "bugClass": "error_handling_consistency",
+      "disposition": "ruled_out",
+      "rationale": "both handlers are exact-match gated and rethrow everything else; the negative path is pinned",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs:79",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs:64",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs:718"
+      ],
+      "reason": "verified by direct read plus the T4 fixture"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-021",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs",
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs"
+      ],
+      "bugClass": "test_maintainability",
+      "disposition": "ruled_out",
+      "rationale": "tests are deterministic and self-cleaning; the suite already runs concurrency:false",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs:718",
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs:623"
+      ],
+      "reason": "no flake or leak vector found"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-022",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs"
+      ],
+      "bugClass": "comment_drift",
+      "disposition": "ruled_out",
+      "rationale": "comment hygiene holds; the durable WHY is preserved",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:96",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs:67"
+      ],
+      "reason": "no ephemeral labels and no restatement found"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-023",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/bin/lib/compiled-route-layout.cjs"
+      ],
+      "bugClass": "null_propagation",
+      "disposition": "ruled_out",
+      "rationale": "manifestPathIn's catch is unreachable, so manifestPair and staleFix always return a value in the stale-manifest branch",
+      "evidenceRefs": [
+        ".skilled/bin/lib/compiled-route-layout.cjs:139",
+        ".skilled/bin/compiled-route-guard.cjs:54"
+      ],
+      "reason": "layout resolution fails closed to a legacy path instead of throwing"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "message_path_accuracy",
+      "disposition": "ruled_out",
+      "rationale": "message verified against the spec text and the tests",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:99",
+        ".skilled/bin/compiled-route-guard.cjs:103",
+        ".skilled/bin/compiled-route-guard.cjs:145",
+        ".skilled/bin/compiled-route-guard.cjs:195"
+      ],
+      "proof": "the line matches spec R2 and is pinned by T1/T2 in compiled-route-manifest.test.cjs"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "README.md"
+      ],
+      "bugClass": "doc_artifact_existence",
+      "disposition": "ruled_out",
+      "rationale": "no dead command or path found",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-derived-regenerator.test.cjs:11",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs:69",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json:2717",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-phrase-lint-bypass.md:67"
+      ],
+      "proof": "every named artifact resolves to a live script, config key or committed file; sk-code's own catalog/leaf-scopes file existence is a stated coverage limit"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs"
+      ],
+      "bugClass": "test_fidelity",
+      "disposition": "ruled_out",
+      "rationale": "tests verified to exist and assert on the changed behavior",
+      "evidenceRefs": [
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs:628",
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs:642",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs:718"
+      ],
+      "proof": "four tests exist and target the changed lines; the before-fails half is the phase ledger's job and was not executed in this read-only review"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "command_injection_printed_fix",
+      "disposition": "ruled_out",
+      "rationale": "hub ids are static and paths are repo-rooted; no execution path exists in the guard",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:44",
+        ".skilled/bin/compiled-route-guard.cjs:99",
+        ".skilled/bin/compiled-route-guard.cjs:99"
+      ],
+      "proof": "static HUBS literal plus REPO_ROOT-joined paths; no process-execution primitives in the file"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        "README.md",
+        ".skilled/scripts/git-hooks/pre-commit",
+        ".skilled/scripts/install-git-hooks.sh"
+      ],
+      "bugClass": "trust_gate_privilege",
+      "disposition": "ruled_out",
+      "rationale": "the gate is fail-closed and local-config scoped; the README text is accurate and uses the sanctioned mechanism",
+      "evidenceRefs": [
+        "README.md:1452",
+        ".skilled/scripts/git-hooks/pre-commit:44",
+        ".skilled/scripts/install-git-hooks.sh:188",
+        ".skilled/scripts/git-hooks/tests/pre-commit.test.sh:800"
+      ],
+      "proof": "untrusted clone skips without blocking; git -c and GIT_CONFIG_* do not grant trust; the hook prints the same instruction"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs"
+      ],
+      "bugClass": "info_disclosure_error_path",
+      "disposition": "ruled_out",
+      "rationale": "no stack, path or environment detail is disclosed, and no unrelated failure is relabeled",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs:80",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs:63"
+      ],
+      "proof": "literal-only message; exact-match condition pinned by the unrelated-module test"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs"
+      ],
+      "bugClass": "test_harness_injection",
+      "disposition": "ruled_out",
+      "rationale": "quoting is the standard safe pattern and cleanup is confined to the created temp directory",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs:718"
+      ],
+      "proof": "argv-array spawn plus JSON.stringify quoting; scoped rmSync"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "no credential, token or environment read in the changed lines",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:33"
+      ],
+      "proof": "no process.env usage; error strings carry only source literals"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-011",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/spec.md",
+        "README.md",
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs"
+      ],
+      "bugClass": "requirement_without_change",
+      "disposition": "ruled_out",
+      "rationale": "all five REQ rows and all four scope bullets map to changed lines",
+      "evidenceRefs": [
+        "README.md:1451",
+        "README.md:1463",
+        ".skilled/bin/compiled-route-guard.cjs:104",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs:83"
+      ],
+      "proof": "complete requirement-to-line map over the six-file diff; no requirement is unimplemented"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-012",
+      "dimension": "traceability",
+      "targetRefs": [
+        "README.md",
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs"
+      ],
+      "bugClass": "change_without_requirement",
+      "disposition": "ruled_out",
+      "rationale": "bidirectional map complete; no extra file and no orphan hunk",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:65",
+        "README.md:1472",
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs:623"
+      ],
+      "proof": "spec table and diff file sets are identical (6/6)"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-014",
+      "dimension": "traceability",
+      "targetRefs": [
+        "README.md"
+      ],
+      "bugClass": "doc_claim_drift",
+      "disposition": "ruled_out",
+      "rationale": "no dead artifact in the changed block; iteration 2 closed the catalog/leaf-scopes coverage limit",
+      "evidenceRefs": [
+        "README.md:1451",
+        "README.md:1452",
+        "README.md:1463",
+        "README.md:1464",
+        "README.md:1472"
+      ],
+      "proof": "every named artifact resolves to a live script, config key or committed file"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-016",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/goal.md"
+      ],
+      "bugClass": "requirement_without_change",
+      "disposition": "ruled_out",
+      "rationale": "each decision maps to changed lines or a declared ledger/test row",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/goal.md:44",
+        "README.md:1452",
+        ".skilled/bin/compiled-route-guard.cjs:104"
+      ],
+      "proof": "no decision is contradicted by the diff"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-016",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+        "README.md"
+      ],
+      "bugClass": "duplication",
+      "disposition": "ruled_out",
+      "rationale": "each command string has exactly one code literal; docs and tests restate them by design",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:103",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs:83",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs:64",
+        ".skilled/bin/compiled-route-guard.cjs:103"
+      ],
+      "proof": "single literal per command in code; no drift pair exists"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-017",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "dead_code",
+      "disposition": "ruled_out",
+      "rationale": "every new function has at least one caller; nothing became dead",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:65",
+        ".skilled/bin/compiled-route-guard.cjs:100",
+        ".skilled/bin/compiled-route-guard.cjs:145",
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs:623"
+      ],
+      "proof": "call graph closed over the full guard file and the new tests"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-018",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "export_surface",
+      "disposition": "ruled_out",
+      "rationale": "one added name in the existing pattern; consumed by the test file",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:219"
+      ],
+      "proof": "surface change is additive and consistent"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-019",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs",
+        "README.md"
+      ],
+      "bugClass": "message_consistency",
+      "disposition": "ruled_out",
+      "rationale": "differences are deliberate and each sentence names the writes it clears",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:92",
+        ".skilled/bin/compiled-route-guard.cjs:103",
+        "README.md:1451",
+        "README.md:1463"
+      ],
+      "proof": "no drift; deliberate single-vs-double write phrasing"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-020",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs"
+      ],
+      "bugClass": "error_handling_consistency",
+      "disposition": "ruled_out",
+      "rationale": "both handlers are exact-match gated and rethrow everything else; the negative path is pinned",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs:79",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs:64",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs:718"
+      ],
+      "proof": "verified by direct read plus the T4 fixture"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-021",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs",
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs"
+      ],
+      "bugClass": "test_maintainability",
+      "disposition": "ruled_out",
+      "rationale": "tests are deterministic and self-cleaning; the suite already runs concurrency:false",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs:718",
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs:623"
+      ],
+      "proof": "no flake or leak vector found"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-022",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs"
+      ],
+      "bugClass": "comment_drift",
+      "disposition": "ruled_out",
+      "rationale": "comment hygiene holds; the durable WHY is preserved",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:96",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs:67"
+      ],
+      "proof": "no ephemeral labels and no restatement found"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-023",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/bin/lib/compiled-route-layout.cjs"
+      ],
+      "bugClass": "null_propagation",
+      "disposition": "ruled_out",
+      "rationale": "manifestPathIn's catch is unreachable, so manifestPair and staleFix always return a value in the stale-manifest branch",
+      "evidenceRefs": [
+        ".skilled/bin/lib/compiled-route-layout.cjs:139",
+        ".skilled/bin/compiled-route-guard.cjs:54"
+      ],
+      "proof": "layout resolution fails closed to a legacy path instead of throwing"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "null_propagation"
+    ],
+    "covered": [
+      "null_propagation"
+    ],
+    "ruledOut": [
+      "null_propagation"
+    ],
+    "deferred": [
+      "edge_case_unmapped"
+    ],
+    "blocked": [
+      "checklist_evidence_gap"
+    ],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

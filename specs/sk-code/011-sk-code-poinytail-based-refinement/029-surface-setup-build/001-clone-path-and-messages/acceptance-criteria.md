@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-029-001-ac"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-10-13
 <!-- /ANCHOR:metadata -->
 
@@ -51,12 +51,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a fresh clone with no `node_modules`, When `ci-skill-root-metadata.cjs` runs, Then it exits 1 with a line naming `worktree-naming.sh provision` and no stack line | Ledger row L-1; `goal.md` criterion 1 | Unmet | - |
-| AC-002 | REQ-002 | Given that clone, When the provision command the README names runs, Then it exits 0 and the doctor on sk-code and `ci-skill-root-metadata.cjs` exit 0 | Ledger row L-2; `goal.md` criterion 1 | Unmet | - |
-| AC-003 | REQ-003 | Given a copy with stale sk-code routing, When the guard runs, Then it exits 1 and prints the refresh command and both manifest paths | Ledger row L-3 | Unmet | - |
-| AC-004 | REQ-004 | Given that copy, When the printed refresh and copy run verbatim, Then the guard and sync `--check` exit 0 | Ledger row L-4 | Unmet | - |
-| AC-005 | REQ-005 | Given the README adapting block, When it is searched, Then it names `skilled.trustRepoHooks`, `regenerate-skill-derived.cjs`, the feature catalog, `leaf-scopes.json` and `phase-detection.md` | Ledger row L-5; `goal.md` criterion 3 | Unmet | - |
-| AC-006 | REQ-006 | Given the changed scripts, When both test files, the README battery and the drift guards run, Then all exit 0, and T1 and T3 fail against the origin/main source | Ledger rows L-6 and T1 to T4; `goal.md` criteria 2 and 4 | Unmet | - |
+| AC-001 | REQ-001 | Given a fresh clone with no `node_modules`, When `ci-skill-root-metadata.cjs` runs, Then it exits 1 with a line naming `worktree-naming.sh provision` and no stack line | Ledger row L-1 at `implementation-summary.md:89`; `goal.md` criterion 1 | Met | - |
+| AC-002 | REQ-002 | Given that clone, When the provision command the README names runs, Then it exits 0 and the doctor on sk-code and `ci-skill-root-metadata.cjs` exit 0 | Ledger row L-2 at `implementation-summary.md:90`; `goal.md` criterion 1 | Met | - |
+| AC-003 | REQ-003 | Given a copy with stale sk-code routing, When the guard runs, Then it exits 1 and prints the refresh command and both manifest paths | Ledger row L-3 at `implementation-summary.md:91` | Met | - |
+| AC-004 | REQ-004 | Given that copy, When the printed refresh and copy run verbatim, Then the guard and sync `--check` exit 0 | Ledger row L-4 at `implementation-summary.md:92` | Met | - |
+| AC-005 | REQ-005 | Given the README adapting block, When it is searched, Then it names `skilled.trustRepoHooks`, `regenerate-skill-derived.cjs`, the feature catalog, `leaf-scopes.json` and `phase-detection.md` | Ledger row L-5 at `implementation-summary.md:93`; `goal.md` criterion 3 | Met | - |
+| AC-006 | REQ-006 | Given the changed scripts, When both test files, the README battery and the drift guards run, Then all exit 0, and T1 and T3 fail against the origin/main source | Ledger rows L-6 and T1 to T4 at `implementation-summary.md:94` and `implementation-summary.md:99`; `goal.md` criteria 2 and 4 | Met | - |
 
 ### Status values
 
@@ -81,7 +81,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Every criterion is open until the build, the ledger and the review land.
+Every criterion is Met. Evidence is the ledger, the T rows and the RV rows in `implementation-summary.md`, from runs on the build commit, and `review/review-report.md`.
 <!-- /ANCHOR:closure -->

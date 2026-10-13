@@ -105,7 +105,7 @@ Five items, five rows, two children. No item is unmapped and none is mapped twic
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-clone-path-and-messages/ | R1, R2, R4 and R5: the README block reaches a green battery from a fresh clone, the guard's stale line names its commands, and an unprovisioned checker names the provision command | In Progress |
+| 1 | 001-clone-path-and-messages/ | R1, R2, R4 and R5: the README block reaches a green battery from a fresh clone, the guard's stale line names its commands, and an unprovisioned checker names the provision command | Complete |
 | 2 | 002-doctor-sk-code-setup/ | R3: a read-only `/doctor:sk-code setup` that runs the battery and prints one repair command per failing leg | Pending |
 
 ### Phase Transition Rules

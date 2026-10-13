@@ -1,0 +1,126 @@
+{
+  "topic": "Review: commits 17e465512a, dae07e6286 and d6c30ebdf5 on branch worktrees/133-surface-setup-build (diff a98004816d..d6c30ebdf5): the README sk-code adapting block gains the provision command and skilled.trustRepoHooks under Before you start, the feature catalog in removal step 6, regenerate-skill-derived.cjs in removal step 7, and the surface-count files and leaf-scopes.json in add step 3; compiled-route-guard.cjs prints the refresh command and both manifest paths per stale hub through a shared manifestPair derivation and an exported staleFix; root-router-contract.cjs relabels an unresolvable @spec-kit/shared as SHARED_NOT_BUILT naming the provision command, and ci-skill-root-metadata.cjs prints it with no stack; four tests pin the two code changes",
+  "sessionId": "2026-10-13T19:08:04.000Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages",
+  "createdAt": "2026-10-13T19:08:04.000Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-devin",
+    "model": "deepseek-v4-1-flash-max",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 1200
+  },
+  "mode": "review",
+  "reviewTarget": "commits 17e465512a, dae07e6286 and d6c30ebdf5 on branch worktrees/133-surface-setup-build (diff a98004816d..d6c30ebdf5): the README sk-code adapting block gains the provision command and skilled.trustRepoHooks under Before you start, the feature catalog in removal step 6, regenerate-skill-derived.cjs in removal step 7, and the surface-count files and leaf-scopes.json in add step 3; compiled-route-guard.cjs prints the refresh command and both manifest paths per stale hub through a shared manifestPair derivation and an exported staleFix; root-router-contract.cjs relabels an unresolvable @spec-kit/shared as SHARED_NOT_BUILT naming the provision command, and ci-skill-root-metadata.cjs prints it with no stack; four tests pin the two code changes",
+  "reviewTargetType": "files",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    "README.md",
+    ".skilled/bin/compiled-route-guard.cjs",
+    ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+    ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+    ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+    ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/goal.md"
+  ],
+  "stopPolicy": "max-iterations",
+  "resource_map": {
+    "emit": true
+  }
+}

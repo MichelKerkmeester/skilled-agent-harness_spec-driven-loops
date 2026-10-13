@@ -10,15 +10,15 @@ _memory:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages"
     last_updated_at: "2026-10-13T19:00:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "Built, reviewed and closed the phase"
+    next_safe_action: "Operator pushes the branch to main"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-029-001"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -58,13 +58,13 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `T=$(mktemp -d); git clone -q . "$T/c"; (cd "$T/c" && O=$(node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs 2>&1); R=$?; [ $R = 1 ] && echo "$O" | grep -q 'worktree-naming.sh provision' && ! echo "$O" | grep -qE '^ +at ' && bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision . >/dev/null 2>&1 && node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs >/dev/null 2>&1 && node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code >/dev/null 2>&1 && echo ok); rm -rf "$T"`, run from the repository root, prints ok.
-- [ ] `node --test .skilled/bin/tests/compiled-route-manifest.test.cjs >/dev/null 2>&1 && node .skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs >/dev/null 2>&1 && node .skilled/bin/compiled-route-guard.cjs >/dev/null 2>&1 && node .skilled/bin/compiled-route-sync.cjs --check >/dev/null 2>&1 && bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh >/dev/null 2>&1 && grep -q 'compiled-route-manifest.cjs refresh --hub' .skilled/bin/compiled-route-guard.cjs && echo ok`, run from the repository root, prints ok.
-- [ ] `A=$(awk '/^#### What Adapting/,/^### Core Configuration/' README.md); n=0; for p in 'worktree-naming.sh provision \.' 'skilled.trustRepoHooks' 'regenerate-skill-derived.cjs --root .skilled/skills/sk-code --write' 'leaf-scopes.json' 'feature-catalog/feature-catalog.md' 'phase-detection.md'; do echo "$A" | grep -q -- "$p" && n=$((n+1)); done; echo $n`, run from the repository root, prints 6.
-- [ ] `F=specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/implementation-summary.md; [ "$(grep -cE '^\| L-[1-6] \| Pass \|' $F)" = 6 ] && [ "$(grep -E '^\| L-[1-6] \| Pass \|' $F | grep -vcF "$(printf '\140')")" = 0 ] && [ "$(grep -cE '^\| T[13] \| .+ \| before: exit [1-9][0-9]* \| after: exit 0 \|$' $F)" = 2 ] && [ "$(grep -cE '^\| T[24] \| .+ \| before: exit [0-9]+ \| after: exit 0 \|$' $F)" = 2 ] && echo ok`, run from the repository root, prints ok.
-- [ ] `C=specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages; [ "$(find $C/review/iterations -name 'iteration-*.md' 2>/dev/null | wc -l | tr -d ' ')" = 5 ] && [ "$(grep -E '^\| RV-' $C/implementation-summary.md | grep -vcE '^\| RV-[0-9]+ \| P[0-2] \| (Fixed|Rejected) \|')" = 0 ] && echo ok`, run from the repository root, prints ok.
-- [ ] `G='^Spec: sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages$'; [ -n "$(git log --no-merges --grep="$G" --format=%h)" ] && [ "$(git log --no-merges --grep="$G" --format=%B | grep -cE '^(Co-Authored-By|Claude-Session):')" = 0 ] && [ "$(git log --no-merges --format= --name-only --diff-filter=A --grep="$G" -- .skilled/skills | grep -c /changelog/)" = 0 ] && node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs bump --base origin/main --check >/dev/null 2>&1 && echo ok`, run from the repository root, prints ok.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages --strict`, run from the repository root, prints `RESULT: PASSED`.
+- [x] `T=$(mktemp -d); git clone -q . "$T/c"; (cd "$T/c" && O=$(node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs 2>&1); R=$?; [ $R = 1 ] && echo "$O" | grep -q 'worktree-naming.sh provision' && ! echo "$O" | grep -qE '^ +at ' && bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision . >/dev/null 2>&1 && node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs >/dev/null 2>&1 && node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code >/dev/null 2>&1 && echo ok); rm -rf "$T"`, run from the repository root, prints ok.
+- [x] `node --test .skilled/bin/tests/compiled-route-manifest.test.cjs >/dev/null 2>&1 && node .skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs >/dev/null 2>&1 && node .skilled/bin/compiled-route-guard.cjs >/dev/null 2>&1 && node .skilled/bin/compiled-route-sync.cjs --check >/dev/null 2>&1 && bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh >/dev/null 2>&1 && grep -q 'compiled-route-manifest.cjs refresh --hub' .skilled/bin/compiled-route-guard.cjs && echo ok`, run from the repository root, prints ok.
+- [x] `A=$(awk '/^#### What Adapting/,/^### Core Configuration/' README.md); n=0; for p in 'worktree-naming.sh provision \.' 'skilled.trustRepoHooks' 'regenerate-skill-derived.cjs --root .skilled/skills/sk-code --write' 'leaf-scopes.json' 'feature-catalog/feature-catalog.md' 'phase-detection.md'; do echo "$A" | grep -q -- "$p" && n=$((n+1)); done; echo $n`, run from the repository root, prints 6.
+- [x] `F=specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/implementation-summary.md; [ "$(grep -cE '^\| L-[1-6] \| Pass \|' $F)" = 6 ] && [ "$(grep -E '^\| L-[1-6] \| Pass \|' $F | grep -vcF "$(printf '\140')")" = 0 ] && [ "$(grep -cE '^\| T[13] \| .+ \| before: exit [1-9][0-9]* \| after: exit 0 \|$' $F)" = 2 ] && [ "$(grep -cE '^\| T[24] \| .+ \| before: exit [0-9]+ \| after: exit 0 \|$' $F)" = 2 ] && echo ok`, run from the repository root, prints ok.
+- [x] `C=specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages; [ "$(find $C/review/iterations -name 'iteration-*.md' 2>/dev/null | wc -l | tr -d ' ')" = 5 ] && [ "$(grep -E '^\| RV-' $C/implementation-summary.md | grep -vcE '^\| RV-[0-9]+ \| P[0-2] \| (Fixed|Rejected) \|')" = 0 ] && echo ok`, run from the repository root, prints ok.
+- [x] `G='^Spec: sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages$'; [ -n "$(git log --no-merges --grep="$G" --format=%h)" ] && [ "$(git log --no-merges --grep="$G" --format=%B | grep -cE '^(Co-Authored-By|Claude-Session):')" = 0 ] && [ "$(git log --no-merges --format= --name-only --diff-filter=A --grep="$G" -- .skilled/skills | grep -c /changelog/)" = 0 ] && node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs bump --base origin/main --check >/dev/null 2>&1 && echo ok`, run from the repository root, prints ok.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages --strict`, run from the repository root, prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -81,11 +81,14 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet scaffolded | Done | create.sh phase mode with `--level 2` and `--with-goal`; spec.md lists ledger rows L-1 to L-6 and tests T1 to T4 |
-| Build | In Progress | Three concurrent cli-devin DeepSeek V4.1 Flash max dispatches: README (R1, R4), guard (R2), contract library (R5) |
+| Build | Done | Three concurrent cli-devin DeepSeek V4.1 Flash max dispatches: README (R1, R4), guard (R2), contract library (R5); commits `17e465512a`, `dae07e6286`, `d6c30ebdf5` |
+| Review | Done | Five iterations on cli-devin DeepSeek V4.1 Flash max; 0 P0, 0 P1, 1 P2 rejected (RV-1); one orchestrator-raised README wording fix `ae8777eaa8` (RV-2) |
+| Criteria | Done | All seven rerun from the final state: 1, 2, 4, 5 and 6 print ok, 3 prints 6, 7 prints RESULT: PASSED |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Baselines at planning | Commit 732f9e9d30: doctor on sk-code exit 0, `ci-skill-root-metadata.cjs` `checked=14 passed=14`, guard `All hubs fresh or excused`, sync `--check` `all 55 served copies match`, drift guards 4 passed with 278 warnings, `compiled-route-manifest.test.cjs` 46 of 46, `root-router-contract.test.cjs` exit 0 |
+| Review loop driven by hand | The orchestrator followed the auto workflow's single-executor cli-devin path from scratch scripts; the phase_save continuity save was not run, as in 026 |
 <!-- /ANCHOR:log -->
