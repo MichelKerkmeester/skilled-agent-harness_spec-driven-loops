@@ -179,17 +179,17 @@
     ],
     "causal_summary": "Ponytail is an external coding-agent plugin that teaches restraint: write the least code that meets the requirement, and still ship tests for risky logic",
     "created_at": "2026-10-09T13:20:16Z",
-    "last_save_at": "2026-10-13T15:47:44.076Z",
+    "last_save_at": "2026-10-13T16:34:24.347Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:b523b0f5f8c07fba2010fdd6488a64358907d8b27ff706cdfa3f2bbb05eb2b0a",
+    "source_fingerprint": "sha256:7c2797ab6670f7fb5ea470bf2e4cbd68579168aae618b374fed2aca4f27cc4f1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8ce70c1be06f94e08e48591b124e31f8d9da6f2ae217facc403c92defb5ef381"
+      "spec.md": "b23236ce993aae4df742d0f69dbbc1ac513eb695e40c43342ce2616f74e53df4"
     },
     "last_active_child_id": "sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning",
     "last_active_at": "2026-10-13T10:09:54.862Z"

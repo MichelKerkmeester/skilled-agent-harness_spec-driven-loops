@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f449b5de8968ce7c29fad55b3fc35287602e1a99c829f7ba57e6c0f57ffdb478",
+  "manifestHash": "c34f8ce8b0c12c32b1b3d03b626a3aaaf3ecd136bb8fa470f572581de51b5c48",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -37078,6 +37078,9 @@
     "doctor changelog research": [
       "doctor changelog research"
     ],
+    "doctor check 5l": [
+      "doctor check 5l"
+    ],
     "doctor cocoindex": [
       "/doctor cocoindex",
       "doctor cocoindex"
@@ -49485,6 +49488,9 @@
     ],
     "hallucination grader tasks": [
       "hallucination grader tasks"
+    ],
+    "hand added surface after sk code opencode": [
+      "hand-added surface after sk-code-opencode"
     ],
     "hand drawn diagram variant": [
       "hand drawn diagram variant"
@@ -64488,6 +64494,9 @@
     ],
     "native scorer vitest ts": [
       "native-scorer.vitest.ts"
+    ],
+    "native surface last in tiebreak": [
+      "native surface last in tiebreak"
     ],
     "native trial log 13 rows": [
       "native trial log 13 rows"
@@ -100496,6 +100505,27 @@
     ],
     "surface router pattern": [
       "surface router pattern"
+    ],
+    "surface tie order warning": [
+      "surface tie order warning"
+    ],
+    "surface tie order warning acceptance criteria": [
+      "surface tie order warning acceptance criteria"
+    ],
+    "surface tie order warning decision record": [
+      "surface tie order warning decision record"
+    ],
+    "surface tie order warning goal": [
+      "surface tie order warning goal"
+    ],
+    "surface tie order warning implementation summary": [
+      "surface tie order warning implementation summary"
+    ],
+    "surface tie order warning plan": [
+      "surface tie order warning plan"
+    ],
+    "surface tie order warning tasks": [
+      "surface tie order warning tasks"
     ],
     "surface verification commands": [
       "surface verification commands"

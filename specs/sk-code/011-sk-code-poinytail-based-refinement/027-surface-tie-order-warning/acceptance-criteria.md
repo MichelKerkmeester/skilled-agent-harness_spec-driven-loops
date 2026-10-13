@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "ac-027"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning
 **Level:** 2
-**Status:** In Progress
+**Status:** Closed
 **Date:** 2026-10-13
 <!-- /ANCHOR:metadata -->
 
@@ -51,10 +51,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a sk-code tieBreak with a user surface after `sk-code-opencode`, When the doctor runs, Then it prints `FAIL: 5l:` naming that surface and both fixes, and exits 1 | Ledger row T1; `goal.md` criterion 2 | Unmet | - |
-| AC-002 | REQ-002 | Given the shipped order quality, review, opencode, obsidian, webflow, When the doctor runs, Then 5l prints PASS | Ledger row T2; `goal.md` criterion 1 | Unmet | - |
-| AC-003 | REQ-003 | Given a tree without the two examples and a user surface ahead of opencode, When the doctor runs, Then 5l prints PASS | Ledger row T3; `goal.md` criterion 2 | Unmet | - |
-| AC-004 | REQ-004 | Given the seven parent hubs, When the doctor runs on each, Then each exits 0 | `goal.md` criterion 3 | Unmet | - |
+| AC-001 | REQ-001 | Given a sk-code tieBreak with a user surface after `sk-code-opencode`, When the doctor runs, Then it prints `FAIL: 5l:` naming that surface and both fixes, and exits 1 | Ledger row T1; `goal.md` criterion 2 | Met | - |
+| AC-002 | REQ-002 | Given the shipped order quality, review, opencode, obsidian, webflow, When the doctor runs, Then 5l prints PASS | Ledger row T2; `goal.md` criterion 1 | Met | - |
+| AC-003 | REQ-003 | Given a tree without the two examples and a user surface ahead of opencode, When the doctor runs, Then 5l prints PASS | Ledger row T3; `goal.md` criterion 2 | Met | - |
+| AC-004 | REQ-004 | Given the seven parent hubs, When the doctor runs on each, Then each exits 0 | `goal.md` criterion 3 | Met | - |
 
 ### Status values
 
@@ -79,7 +79,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Written at closeout.
+Every row is Met. AC-001: ledger row T1, and the tightened assertion also holds both fixes. AC-002: `PASS: 5l` on the live sk-code doctor and ledger row T2. AC-003: ledger row T3. AC-004: the seven hub doctors exit 0. Nothing was left out.
 <!-- /ANCHOR:closure -->

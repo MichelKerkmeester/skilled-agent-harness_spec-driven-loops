@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "scaffold/027-surface-tie-order-warning"
+    packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning"
     last_updated_at: "2026-10-13T15:21:05Z"
     last_updated_by: "orchestrator"
     recent_action: "Recorded the source-of-truth and severity decisions"

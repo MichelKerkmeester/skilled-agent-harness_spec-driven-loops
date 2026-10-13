@@ -51,9 +51,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T007 Run the three tests against the old and new checker; record T1 to T3
-- [ ] T008 Run `/deep:review :auto` for 5 iterations; fix and record each finding as an RV row
-- [ ] T009 Fill the ledger, run `check-goal.cjs`, strict `validate.sh` and the gate battery
+- [x] T007 Run the three tests against the old and new checker; record T1 to T3
+- [x] T008 Run `/deep:review :auto` for 5 iterations; fix and record each finding as an RV row
+- [x] T009 Fill the ledger, run `check-goal.cjs`, strict `validate.sh` and the gate battery
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -61,9 +61,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Every criterion in `goal.md` rerun and passing
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every criterion in `goal.md` rerun and passing
 <!-- /ANCHOR:completion -->
 
 ---
@@ -106,10 +106,10 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Changed scripts pass `node --check`
-- [ ] CHK-011 [P0] No new console errors or warnings in the live gates
-- [ ] CHK-012 [P1] The 5l message names the misplaced surface and both fixes
-- [ ] CHK-013 [P1] Code follows project patterns
+- [x] CHK-010 [P0] Changed scripts pass `node --check`
+- [x] CHK-011 [P0] No new console errors or warnings in the live gates
+- [x] CHK-012 [P1] The 5l message names the misplaced surface and both fixes
+- [x] CHK-013 [P1] Code follows project patterns
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -117,10 +117,10 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Ledger rows T1 to T3 recorded with before and after verdicts
-- [ ] CHK-022 [P1] Edge cases in `spec.md` checked
-- [ ] CHK-023 [P1] The before-change run restored the new checker afterwards
+- [x] CHK-020 [P0] All acceptance criteria met
+- [x] CHK-021 [P0] Ledger rows T1 to T3 recorded with before and after verdicts
+- [x] CHK-022 [P1] Edge cases in `spec.md` checked
+- [x] CHK-023 [P1] The before-change run restored the new checker afterwards
 <!-- /ANCHOR:testing -->
 
 ---
@@ -128,13 +128,13 @@ contextType: "implementation"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases: not applicable, no such fix; the one security advisory (RV-4) was rejected with a reason
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed: hub (sk-code or other) by opencode present by surface after it (user, example, none); four tests cover the sk-code rows
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state: the runner strips `PARENT_HUB_CHECK_STRICT`, so every case sees the default severity
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range: `c62d7d1399..a682c06d3d` reviewed, fixes in `c69ada168f`
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -142,9 +142,9 @@ contextType: "implementation"
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] The check reads two JSON files it already parses and executes nothing new
-- [ ] CHK-032 [P1] Auth/authz working correctly: not applicable, no auth surface
+- [x] CHK-030 [P0] No hardcoded secrets
+- [x] CHK-031 [P0] The check reads two JSON files it already parses and executes nothing new
+- [x] CHK-032 [P1] Auth/authz working correctly: not applicable, no auth surface
 <!-- /ANCHOR:security -->
 
 ---
@@ -152,9 +152,9 @@ contextType: "implementation"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments keep the durable why and no packet labels
-- [ ] CHK-042 [P2] README updated: one sentence in the sk-code guide
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized
+- [x] CHK-041 [P1] Code comments keep the durable why and no packet labels
+- [x] CHK-042 [P2] README updated: one sentence in the sk-code guide
 <!-- /ANCHOR:docs -->
 
 ---
@@ -162,8 +162,8 @@ contextType: "implementation"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only
+- [x] CHK-051 [P1] scratch/ cleaned before completion
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -173,9 +173,9 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 2/12 |
-| P1 Items | 13 | 1/13 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-10-13
 <!-- /ANCHOR:summary -->

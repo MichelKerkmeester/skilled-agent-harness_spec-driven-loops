@@ -1,5 +1,5 @@
 {
-  "corpusHash": "5e32fc91c686e0130814993a3ad2c037c2c22b82aa7e38985e3df7faf91e9e41",
+  "corpusHash": "758bef224bd5c04e040cca3454e4bbd92eb0da2d98fc2f738f5fc1c88779a1d0",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24650,
+  "includedPathCount": 24671,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11245,6 +11245,27 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/acceptance-criteria.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/decision-record.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/review/deep-review-dashboard.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/review/deep-review-strategy.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/review/iterations/iteration-001.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/review/iterations/iteration-002.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/review/iterations/iteration-003.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/review/iterations/iteration-004.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/review/iterations/iteration-005.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/review/prompts/iteration-1.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/review/prompts/iteration-2.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/review/prompts/iteration-3.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/review/prompts/iteration-4.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/review/prompts/iteration-5.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/review/resource-map.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/review/review-report.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
@@ -24681,7 +24702,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f449b5de8968ce7c29fad55b3fc35287602e1a99c829f7ba57e6c0f57ffdb478",
+  "manifestHash": "c34f8ce8b0c12c32b1b3d03b626a3aaaf3ecd136bb8fa470f572581de51b5c48",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26885,6 +26906,10 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/scratch",
       "reason": "excluded directory"
     },
     {
