@@ -36,7 +36,10 @@ const {
 const layout = require('./lib/compiled-route-layout.cjs');
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
-const SPECS_ROOT = fs.realpathSync(path.join(REPO_ROOT, 'specs'));
+// realpath throws a raw stack when specs/ is missing, before any message can be
+// printed, so resolve it only when it exists; main() names the folder to restore.
+const SPECS_DIR = path.join(REPO_ROOT, 'specs');
+const SPECS_ROOT = fs.existsSync(SPECS_DIR) ? fs.realpathSync(SPECS_DIR) : SPECS_DIR;
 const IMPL_ROOT = path.join(SPECS_ROOT, path.relative('specs', layout.AUTHORED_PROGRAM_DIR));
 const CURRENT_LAYOUT = Object.freeze({
   activation: '013-live-activation',
@@ -1052,6 +1055,15 @@ Modes:
   --help, -h                show this usage message and exit (no build)
 `;
 
+// The build and --check modes read the authored closure under the router program
+// packet. A pruned specs/ tree must fail naming the folder to restore, not with a
+// filesystem stack.
+function requireAuthoredRoot() {
+  if (!fs.existsSync(path.join(REPO_ROOT, layout.AUTHORED_PROGRAM_DIR))) {
+    throw new Error(`authored compiled-routing source is missing; restore ${layout.AUTHORED_PROGRAM_DIR}`);
+  }
+}
+
 function main() {
   const args = process.argv.slice(2);
   if (args.includes('--help') || args.includes('-h')) {
@@ -1070,6 +1082,7 @@ function main() {
   }
   if (args.includes('--check')) {
     if (args.length !== 1) { process.stderr.write('usage: compiled-route-sync.cjs --check\n'); process.exit(2); }
+    requireAuthoredRoot();
     return check();
   }
   const finalizeIdx = args.indexOf('--finalize');
@@ -1094,6 +1107,7 @@ function main() {
     process.stderr.write(`unknown argument(s): ${args.join(' ')}\n\n${USAGE}`);
     process.exit(2);
   }
+  requireAuthoredRoot();
   return build();
 }
 

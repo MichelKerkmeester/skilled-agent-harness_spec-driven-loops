@@ -554,6 +554,34 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
     }
   });
 
+  test('sync --check names the authored folder to restore when it is missing, with no stack', () => {
+    const sandbox = fs.mkdtempSync(path.join(os.tmpdir(), 'compiled-route-sync-no-authored-'));
+    try {
+      const binDir = path.join(sandbox, '.skilled', 'bin');
+      fs.mkdirSync(path.join(binDir, 'lib'), { recursive: true });
+      fs.copyFileSync(SYNC_PATH, path.join(binDir, 'compiled-route-sync.cjs'));
+      for (const name of ['compiled-route-layout.cjs', 'compiled-route-manifest.cjs']) {
+        fs.copyFileSync(path.join(REPO_ROOT, '.skilled', 'bin', 'lib', name), path.join(binDir, 'lib', name));
+      }
+      const expected = `restore ${runtimeLayout.AUTHORED_PROGRAM_DIR}`;
+      // First with no specs/ at all, then with specs/ present but no router program packet.
+      const variants = [() => {}, () => fs.mkdirSync(path.join(sandbox, 'specs', 'sk-doc'), { recursive: true })];
+      for (const prepare of variants) {
+        prepare();
+        const result = spawnSync(process.execPath, [path.join(binDir, 'compiled-route-sync.cjs'), '--check'], {
+          cwd: sandbox,
+          encoding: 'utf8',
+        });
+        assert.equal(result.status, 1, result.stderr);
+        assert.ok(result.stderr.includes(expected), result.stderr);
+        assert.doesNotMatch(result.stderr, /^\s+at /m);
+        assert.equal(result.stderr.trim().split('\n').length, 1, result.stderr);
+      }
+    } finally {
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  });
+
   test('refuses to replace an existing root that is not a verified closure', () => {
     const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-sync-invalid-prior-'));
     const runtimeRoot = path.join(sandbox, 'compiled-routing');
