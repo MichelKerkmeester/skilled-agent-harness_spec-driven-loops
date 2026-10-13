@@ -1,0 +1,1338 @@
+{
+  "sessionId": "2026-10-13T06:01:53.622Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "The CLI build path's authored-root guard is not covered",
+      "file": ".skilled/bin/compiled-route-manifest.test.cjs",
+      "line": 572,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "Authored twin derived from the runtime layout under generation divergence",
+      "file": ".skilled/bin/compiled-route-guard.cjs",
+      "line": 70,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "Doctor compiled_routes repair hardcodes the authored destination path, duplicating layout.AUTHORED_PROGRAM_DIR",
+      "file": ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+      "line": 160,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "The CLI catalog still describes two guard failure classes and no sync authored-root precondition",
+      "file": ".skilled/bin/README.md",
+      "line": 25,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "T2/T4 pin the helper record, not the guard failure line that REQ-002/REQ-004 and the ledger name",
+      "file": ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+      "line": 587,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Guard header comment still declares two divergences after a third failure class was added",
+      "file": ".skilled/bin/compiled-route-guard.cjs",
+      "line": 13,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "Guard drift/missing tests reuse the implementation's twin formula so the path assertions cannot catch a wrong authored twin",
+      "file": ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+      "line": 591,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "Doctor compiled_routes repair binds its new copy-back to hubs the guard reports stale, not to the authored-drift and authored-missing hubs it clears",
+      "file": ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+      "line": 160,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 8
+  },
+  "openFindingsCount": 8,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.875,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "destructive_remediation",
+      "doc_code_drift",
+      "layout_derivation",
+      "missing_guard",
+      "output_test_gap",
+      "wrong_remediation_path"
+    ],
+    "ruledOut": [
+      "command_injection",
+      "cross_runtime_drift",
+      "error_path_maintenance",
+      "exemption_abuse",
+      "fail_open",
+      "false_pass",
+      "output_consumer_break",
+      "output_test_gap",
+      "path_traversal",
+      "playbook_gap",
+      "raw_stack",
+      "single_source_of_truth",
+      "skill_doc_drift",
+      "source_duplication",
+      "spec_code_drift",
+      "symlink_bypass",
+      "toctou",
+      "wrong_remediation_path"
+    ],
+    "deferred": [
+      "checklist_evidence_gap",
+      "read_failure_robustness"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "missing_guard": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "layout_derivation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "false_pass": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "wrong_remediation_path": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "output_consumer_break": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "raw_stack": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "destructive_remediation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "command_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "path_traversal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "symlink_bypass": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "toctou": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "fail_open": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "exemption_abuse": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "read_failure_robustness": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "doc_code_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          4
+        ]
+      },
+      "output_test_gap": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          4,
+          5
+        ]
+      },
+      "spec_code_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          5
+        ]
+      },
+      "cross_runtime_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "skill_doc_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "playbook_gap": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "checklist_evidence_gap": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "error_path_maintenance": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "source_duplication": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "single_source_of_truth": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 2,
+      "id": "SL-108",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "read_failure_robustness",
+      "disposition": "deferred",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:78",
+        ".skilled/bin/compiled-route-guard.cjs:194"
+      ],
+      "reason": "Fail-closed (non-zero), so not a security bypass; robustness and the --warn-only contract belong to the maintainability dimension."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-304",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs",
+        "spec.md",
+        "goal.md",
+        "tasks.md",
+        "acceptance-criteria.md",
+        "implementation-summary.md"
+      ],
+      "bugClass": "checklist_evidence_gap",
+      "disposition": "deferred",
+      "rationale": "T012 (post-review closure task) owns the ledger fill; the before/after evidence is preserved in commit bodies.",
+      "evidenceRefs": [
+        "tasks.md",
+        "implementation-summary.md",
+        "acceptance-criteria.md"
+      ],
+      "reason": "scheduled closure task T012; copy-run rows P9-1..5 must be re-run and recorded there"
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "false_pass",
+      "disposition": "ruled_out",
+      "rationale": "The missing case returns a failure record and is printed per hub.",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:76",
+        ".skilled/bin/compiled-route-guard.cjs:179"
+      ],
+      "reason": "verified by direct read of authoredDrift and main"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml"
+      ],
+      "bugClass": "wrong_remediation_path",
+      "disposition": "ruled_out",
+      "rationale": "Hook implements the claimed copy-back.",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:642",
+        ".skilled/scripts/git-hooks/pre-commit:676"
+      ],
+      "reason": "observed in pre-commit source"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "README.md"
+      ],
+      "bugClass": "wrong_remediation_path",
+      "disposition": "ruled_out",
+      "rationale": "Pointer target exists and is tested.",
+      "evidenceRefs": [
+        "README.md:1445",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:660"
+      ],
+      "reason": "verified by grep and test read"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-sync.cjs"
+      ],
+      "bugClass": "raw_stack",
+      "disposition": "ruled_out",
+      "rationale": "Both stack sources are guarded on the CLI surfaces.",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-sync.cjs:42",
+        ".skilled/bin/compiled-route-sync.cjs:1115"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "output_consumer_break",
+      "disposition": "ruled_out",
+      "rationale": "No output parser consumes the guard text.",
+      "evidenceRefs": [
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs:586"
+      ],
+      "reason": "search found only exit-code/test consumers"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-101",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:81"
+      ],
+      "reason": "No exec/eval/shell sink; all path components originate from frozen constants."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-102",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:70"
+      ],
+      "reason": "No untrusted input reaches the parameters; production call sites derive the manifest under the root they pass."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-103",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/bin/compiled-route-sync.cjs"
+      ],
+      "bugClass": "symlink_bypass",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:78",
+        ".skilled/bin/compiled-route-sync.cjs:774"
+      ],
+      "reason": "Gate and rebuild read through the same link, so byte identity is preserved; the gate is anti-accident, not anti-tamper."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-104",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/bin/compiled-route-sync.cjs"
+      ],
+      "bugClass": "toctou",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:75",
+        ".skilled/bin/compiled-route-sync.cjs:1114"
+      ],
+      "reason": "Race outcome is fail-closed (non-zero exit or named failure); no bypass."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-105",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "fail_open",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:124",
+        ".skilled/bin/compiled-route-guard.cjs:75"
+      ],
+      "reason": "No path from an absent manifest to ok:true; the change flips the previous fail-open to a named failure."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-107",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "exemption_abuse",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:90",
+        ".skilled/bin/compiled-route-guard.cjs:105"
+      ],
+      "reason": "authored-missing and authored-drift never match EXCUSABLE; an actor who can edit exemptions can edit the gate itself."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-301",
+      "dimension": "traceability",
+      "targetRefs": [
+        "spec.md",
+        "goal.md",
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/bin/compiled-route-sync.cjs",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs"
+      ],
+      "bugClass": "spec_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "Mapped each requirement to code, test and commit-body evidence by direct read.",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:76",
+        ".skilled/bin/compiled-route-sync.cjs:1061",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:496",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml:160"
+      ],
+      "reason": "full REQ-to-line mapping holds, including the closed set of guarded sync entry points"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-305",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/agents",
+        ".claude/agents",
+        ".codex/agents",
+        ".pi/agents",
+        ".cursor/agents",
+        ".devin/agents",
+        ".hermes/agents"
+      ],
+      "bugClass": "cross_runtime_drift",
+      "disposition": "ruled_out",
+      "rationale": "No agent definition references the changed behavior.",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:76"
+      ],
+      "reason": "empty search across all seven runtime agent directories"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-306",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills"
+      ],
+      "bugClass": "skill_doc_drift",
+      "disposition": "ruled_out",
+      "rationale": "No skill owns these files (spec D6); no skill doc describes the changed messages.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml:160"
+      ],
+      "reason": "exact search found no skill documentation of the changed behavior"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-307",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/*/references",
+        ".skilled/skills/*/assets"
+      ],
+      "bugClass": "playbook_gap",
+      "disposition": "ruled_out",
+      "rationale": "No playbook covers this capability.",
+      "evidenceRefs": [
+        ".skilled/bin/README.md:25"
+      ],
+      "reason": "empty playbook search"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-sync.cjs"
+      ],
+      "bugClass": "error_path_maintenance",
+      "disposition": "ruled_out",
+      "rationale": "no concrete failure path today",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-sync.cjs:1085",
+        ".skilled/bin/compiled-route-sync.cjs:1110"
+      ],
+      "reason": "mode contract verified: every authored-reading path carries the guard and the other modes do not read the authored closure"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "source_duplication",
+      "disposition": "ruled_out",
+      "rationale": "restraint: no defect to fix",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:174",
+        ".skilled/bin/compiled-route-guard.cjs:179"
+      ],
+      "reason": "cosmetic; the blocks differ in message and per-hub detail and have no shared failure mode"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-405",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml"
+      ],
+      "bugClass": "single_source_of_truth",
+      "disposition": "ruled_out",
+      "rationale": "not re-reported to avoid duplicate findings",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:70",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml:160"
+      ],
+      "reason": "the two concrete instances are already recorded as open findings R1-P2-002 and R2-P2-001; no new instance this iteration"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-502",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "false_pass",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:66",
+        ".skilled/bin/compiled-route-guard.cjs:75",
+        ".skilled/bin/compiled-route-guard.cjs:126",
+        ".skilled/bin/compiled-route-guard.cjs:191"
+      ],
+      "reason": "direct read shows fail-closed for the new class; the spec's both-missing edge case reports the existing compile failure first"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-503",
+      "dimension": "correctness",
+      "targetRefs": [
+        "spec.md",
+        "goal.md",
+        ".skilled/bin/compiled-route-sync.cjs",
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml"
+      ],
+      "bugClass": "spec_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "README.md:1445",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:496",
+        ".skilled/bin/compiled-route-guard.cjs:76",
+        ".skilled/bin/compiled-route-sync.cjs:1061"
+      ],
+      "reason": "full requirement-to-line mapping holds this iteration; the only drift is the repair referent, recorded as R5-P2-001"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-504",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs"
+      ],
+      "bugClass": "output_test_gap",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs:586",
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs:604",
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs:558"
+      ],
+      "reason": "already tracked as open R3-P2-002 and R4-P2-002; no new test-surface instance this iteration; T3's copied sandbox was checked complete against the sync require chain (sync.cjs:27-36, manifest lib:10-14, layout lib:19-20)"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "false_pass",
+      "disposition": "ruled_out",
+      "rationale": "The missing case returns a failure record and is printed per hub.",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:76",
+        ".skilled/bin/compiled-route-guard.cjs:179"
+      ],
+      "proof": "verified by direct read of authoredDrift and main"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml"
+      ],
+      "bugClass": "wrong_remediation_path",
+      "disposition": "ruled_out",
+      "rationale": "Hook implements the claimed copy-back.",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:642",
+        ".skilled/scripts/git-hooks/pre-commit:676"
+      ],
+      "proof": "observed in pre-commit source"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "README.md"
+      ],
+      "bugClass": "wrong_remediation_path",
+      "disposition": "ruled_out",
+      "rationale": "Pointer target exists and is tested.",
+      "evidenceRefs": [
+        "README.md:1445",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:660"
+      ],
+      "proof": "verified by grep and test read"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-sync.cjs"
+      ],
+      "bugClass": "raw_stack",
+      "disposition": "ruled_out",
+      "rationale": "Both stack sources are guarded on the CLI surfaces.",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-sync.cjs:42",
+        ".skilled/bin/compiled-route-sync.cjs:1115"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "output_consumer_break",
+      "disposition": "ruled_out",
+      "rationale": "No output parser consumes the guard text.",
+      "evidenceRefs": [
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs:586"
+      ],
+      "proof": "search found only exit-code/test consumers"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-101",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:81"
+      ],
+      "proof": "No exec/eval/shell sink; all path components originate from frozen constants."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-102",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:70"
+      ],
+      "proof": "No untrusted input reaches the parameters; production call sites derive the manifest under the root they pass."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-103",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/bin/compiled-route-sync.cjs"
+      ],
+      "bugClass": "symlink_bypass",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:78",
+        ".skilled/bin/compiled-route-sync.cjs:774"
+      ],
+      "proof": "Gate and rebuild read through the same link, so byte identity is preserved; the gate is anti-accident, not anti-tamper."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-104",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/bin/compiled-route-sync.cjs"
+      ],
+      "bugClass": "toctou",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:75",
+        ".skilled/bin/compiled-route-sync.cjs:1114"
+      ],
+      "proof": "Race outcome is fail-closed (non-zero exit or named failure); no bypass."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-105",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "fail_open",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:124",
+        ".skilled/bin/compiled-route-guard.cjs:75"
+      ],
+      "proof": "No path from an absent manifest to ok:true; the change flips the previous fail-open to a named failure."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-107",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "exemption_abuse",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:90",
+        ".skilled/bin/compiled-route-guard.cjs:105"
+      ],
+      "proof": "authored-missing and authored-drift never match EXCUSABLE; an actor who can edit exemptions can edit the gate itself."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-301",
+      "dimension": "traceability",
+      "targetRefs": [
+        "spec.md",
+        "goal.md",
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/bin/compiled-route-sync.cjs",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs"
+      ],
+      "bugClass": "spec_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "Mapped each requirement to code, test and commit-body evidence by direct read.",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:76",
+        ".skilled/bin/compiled-route-sync.cjs:1061",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:496",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml:160"
+      ],
+      "proof": "full REQ-to-line mapping holds, including the closed set of guarded sync entry points"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-305",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/agents",
+        ".claude/agents",
+        ".codex/agents",
+        ".pi/agents",
+        ".cursor/agents",
+        ".devin/agents",
+        ".hermes/agents"
+      ],
+      "bugClass": "cross_runtime_drift",
+      "disposition": "ruled_out",
+      "rationale": "No agent definition references the changed behavior.",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:76"
+      ],
+      "proof": "empty search across all seven runtime agent directories"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-306",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills"
+      ],
+      "bugClass": "skill_doc_drift",
+      "disposition": "ruled_out",
+      "rationale": "No skill owns these files (spec D6); no skill doc describes the changed messages.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml:160"
+      ],
+      "proof": "exact search found no skill documentation of the changed behavior"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-307",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/*/references",
+        ".skilled/skills/*/assets"
+      ],
+      "bugClass": "playbook_gap",
+      "disposition": "ruled_out",
+      "rationale": "No playbook covers this capability.",
+      "evidenceRefs": [
+        ".skilled/bin/README.md:25"
+      ],
+      "proof": "empty playbook search"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-sync.cjs"
+      ],
+      "bugClass": "error_path_maintenance",
+      "disposition": "ruled_out",
+      "rationale": "no concrete failure path today",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-sync.cjs:1085",
+        ".skilled/bin/compiled-route-sync.cjs:1110"
+      ],
+      "proof": "mode contract verified: every authored-reading path carries the guard and the other modes do not read the authored closure"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "source_duplication",
+      "disposition": "ruled_out",
+      "rationale": "restraint: no defect to fix",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:174",
+        ".skilled/bin/compiled-route-guard.cjs:179"
+      ],
+      "proof": "cosmetic; the blocks differ in message and per-hub detail and have no shared failure mode"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-405",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml"
+      ],
+      "bugClass": "single_source_of_truth",
+      "disposition": "ruled_out",
+      "rationale": "not re-reported to avoid duplicate findings",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:70",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml:160"
+      ],
+      "proof": "the two concrete instances are already recorded as open findings R1-P2-002 and R2-P2-001; no new instance this iteration"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-502",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "false_pass",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:66",
+        ".skilled/bin/compiled-route-guard.cjs:75",
+        ".skilled/bin/compiled-route-guard.cjs:126",
+        ".skilled/bin/compiled-route-guard.cjs:191"
+      ],
+      "proof": "direct read shows fail-closed for the new class; the spec's both-missing edge case reports the existing compile failure first"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-503",
+      "dimension": "correctness",
+      "targetRefs": [
+        "spec.md",
+        "goal.md",
+        ".skilled/bin/compiled-route-sync.cjs",
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml"
+      ],
+      "bugClass": "spec_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "README.md:1445",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:496",
+        ".skilled/bin/compiled-route-guard.cjs:76",
+        ".skilled/bin/compiled-route-sync.cjs:1061"
+      ],
+      "proof": "full requirement-to-line mapping holds this iteration; the only drift is the repair referent, recorded as R5-P2-001"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-504",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs"
+      ],
+      "bugClass": "output_test_gap",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs:586",
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs:604",
+        ".skilled/bin/tests/compiled-route-manifest.test.cjs:558"
+      ],
+      "proof": "already tracked as open R3-P2-002 and R4-P2-002; no new test-surface instance this iteration; T3's copied sandbox was checked complete against the sync require chain (sync.cjs:27-36, manifest lib:10-14, layout lib:19-20)"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "false_pass",
+      "wrong_remediation_path",
+      "spec_code_drift",
+      "output_test_gap"
+    ],
+    "covered": [
+      "wrong_remediation_path"
+    ],
+    "ruledOut": [
+      "false_pass",
+      "spec_code_drift",
+      "output_test_gap"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

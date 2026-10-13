@@ -1,0 +1,124 @@
+{
+  "topic": "Review: The three build commits 4b9bf840b0..HEAD on branch worktrees/127-surface-messages: compiled-route-sync.cjs names the authored folder to restore when specs/ or the router program packet is missing; compiled-route-guard.cjs names the runtime manifest, its authored twin and the copy on authored drift, and fails with authored-missing when the authored manifest is gone; the doctor 3c line points at the README.md block \"What Adapting `sk-code` Looks Like\"; the compiled_routes repair string adds the copy-back; and the tests T1 to T4",
+  "sessionId": "2026-10-13T06:01:53.622Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages",
+  "createdAt": "2026-10-13T06:01:53.622Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 590
+  },
+  "mode": "review",
+  "reviewTarget": "The three build commits 4b9bf840b0..HEAD on branch worktrees/127-surface-messages: compiled-route-sync.cjs names the authored folder to restore when specs/ or the router program packet is missing; compiled-route-guard.cjs names the runtime manifest, its authored twin and the copy on authored drift, and fails with authored-missing when the authored manifest is gone; the doctor 3c line points at the README.md block \"What Adapting `sk-code` Looks Like\"; the compiled_routes repair string adds the copy-back; and the tests T1 to T4",
+  "reviewTargetType": "files",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "reviewScopeFiles": [
+    ".skilled/bin/compiled-route-sync.cjs",
+    ".skilled/bin/compiled-route-guard.cjs",
+    ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+    ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+    ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs",
+    ".skilled/commands/doctor/assets/doctor-update-apply.yaml"
+  ],
+  "resource_map_present": false,
+  "stopPolicy": "max-iterations",
+  "resource_map": {
+    "emit": true
+  }
+}

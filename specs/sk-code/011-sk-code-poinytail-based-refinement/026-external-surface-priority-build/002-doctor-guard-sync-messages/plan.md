@@ -40,9 +40,9 @@ Three message edits and two failure classes. The guard and sync changes are in p
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -152,7 +152,7 @@ Copy recipe, from research run V0: under the session scratchpad, copy `.skilled`
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Baseline counts of the three suites recorded
+- [x] Baseline counts of the three suites recorded
 
 ### Rollback Procedure
 1. Revert the phase commits.

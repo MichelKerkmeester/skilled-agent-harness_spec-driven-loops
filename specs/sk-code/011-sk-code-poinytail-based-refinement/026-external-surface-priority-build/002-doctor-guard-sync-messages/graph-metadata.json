@@ -35,7 +35,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -43,12 +43,14 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/bin/compiled-route-sync.cjs",
+      ".skilled/bin/compiled-route-guard.cjs",
       ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
       ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
-      ".skilled/bin/compiled-route-guard.cjs",
-      ".skilled/bin/compiled-route-sync.cjs",
-      ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs",
       ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs",
+      ".skilled/bin/README.md",
+      "review/review-report.md",
       ".github/workflows/routing-registry-drift.yml"
     ],
     "entities": [
@@ -89,6 +91,18 @@
         "source": "derived"
       },
       {
+        "name": "compiled-route-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-guard.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-guard.cjs",
+        "source": "derived"
+      },
+      {
         "name": "parent-skill-check.cjs",
         "kind": "file",
         "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
@@ -101,15 +115,9 @@
         "source": "derived"
       },
       {
-        "name": "compiled-route-guard.cjs",
+        "name": "compiled-route-manifest.test.cjs",
         "kind": "file",
-        "path": ".skilled/bin/compiled-route-guard.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "compiled-route-sync.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/compiled-route-sync.cjs",
+        "path": ".skilled/bin/tests/compiled-route-manifest.test.cjs",
         "source": "derived"
       },
       {
@@ -119,9 +127,15 @@
         "source": "derived"
       },
       {
-        "name": "compiled-route-manifest.test.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/bin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -183,23 +197,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Fail",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A user who deletes an example packet sees `3c: mode \"...\" packet \"...\" is not an existing sub-directory` (`parent-skill-check.cjs:496`) with no pointer to the steps that fix it",
     "created_at": "2026-10-13T04:45:52Z",
-    "last_save_at": "2026-10-13T05:14:09.759Z",
+    "last_save_at": "2026-10-13T06:44:45.549Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cf52608b1039433ea92ffffdf6c055044f786ba4f14d3232101d6462523b1672",
+    "source_fingerprint": "sha256:fbc115e9ee30bf4951120287a5e059b44608506801e3e2760936aea4ecbffb50",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "92cc428adb30dc79c8557235e242bcd54960182576ebaff4460b947bb5e54dd7",
-      "plan.md": "b5af78b23e57f5d4e407f8f7b65b703be07af49ce03c12f048eedf8305bd428b",
-      "tasks.md": "999fce79c72b2eee7008f30835da75b94882211a6ff0ffc6e4b7e476ee84e1e2",
-      "implementation-summary.md": "4c90405dbf75862ce04934f23bea68c554f95f48a803943249d46557dc64020d"
+      "spec.md": "acbc135d3eb198f4cf4b839ddf2f176f57c0fc48b6c6515e57d2d580f9416d75",
+      "plan.md": "a1296a1b70c530601538ee799420cbaaa6bf28bc1db5568f9884b53994d80b4f",
+      "tasks.md": "d6825b114dfa2d021d9ade7b5fd86b756b53ffb81a2c8cd7c7b0f264bb3f71ba",
+      "implementation-summary.md": "82237c2b5d7c49a985a28e341b79352364a821e93093835b8fcd0100ebb9d75c"
     },
     "last_active_at": null
   }

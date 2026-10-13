@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-13 |
 | **Branch** | Its own worktree from origin/main, created as `goal.md` says |
 | **Parent Spec** | ../spec.md |
