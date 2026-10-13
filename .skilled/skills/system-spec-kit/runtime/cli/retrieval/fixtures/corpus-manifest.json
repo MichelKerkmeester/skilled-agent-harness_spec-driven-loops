@@ -1,5 +1,5 @@
 {
-  "corpusHash": "b4348e3b5532e9ca82a16c8c5ed093b0009ac4458ad2508f0a1818713093e519",
+  "corpusHash": "54e45db2b596b2b99bad2a0618aeaf5038fc13414046cc9208e8424111bb2fc0",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24707,
+  "includedPathCount": 24712,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12415,6 +12415,11 @@
     "specs/sk-git/032-template-driven-message-enforcement/003-hook-docs-and-standards-alignment/plan.md",
     "specs/sk-git/032-template-driven-message-enforcement/003-hook-docs-and-standards-alignment/spec.md",
     "specs/sk-git/032-template-driven-message-enforcement/003-hook-docs-and-standards-alignment/tasks.md",
+    "specs/sk-git/032-template-driven-message-enforcement/004-commit-id-in-every-toolchain-repo/acceptance-criteria.md",
+    "specs/sk-git/032-template-driven-message-enforcement/004-commit-id-in-every-toolchain-repo/implementation-summary.md",
+    "specs/sk-git/032-template-driven-message-enforcement/004-commit-id-in-every-toolchain-repo/plan.md",
+    "specs/sk-git/032-template-driven-message-enforcement/004-commit-id-in-every-toolchain-repo/spec.md",
+    "specs/sk-git/032-template-driven-message-enforcement/004-commit-id-in-every-toolchain-repo/tasks.md",
     "specs/sk-git/032-template-driven-message-enforcement/acceptance-criteria.md",
     "specs/sk-git/032-template-driven-message-enforcement/decision-record.md",
     "specs/sk-git/032-template-driven-message-enforcement/implementation-summary.md",
@@ -24738,7 +24743,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5b05edcab95bc4b58450bd23f47ac37bb261fa575e3520c4910cfcd06e1e1d39",
+  "manifestHash": "768587e1bdb8f18bb1f5ee571b71ac5689e52243a0bf9196c5cfe1ae616e2ff5",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27726,6 +27731,10 @@
     },
     {
       "path": "specs/sk-git/032-template-driven-message-enforcement/003-hook-docs-and-standards-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/032-template-driven-message-enforcement/004-commit-id-in-every-toolchain-repo/scratch",
       "reason": "excluded directory"
     },
     {

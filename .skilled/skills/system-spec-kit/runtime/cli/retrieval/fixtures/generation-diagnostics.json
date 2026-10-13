@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 6939,
-    "ok": 14221,
+    "ok": 14226,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 24707,
+  "documentsScanned": 24712,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "5b05edcab95bc4b58450bd23f47ac37bb261fa575e3520c4910cfcd06e1e1d39",
+  "manifestHash": "768587e1bdb8f18bb1f5ee571b71ac5689e52243a0bf9196c5cfe1ae616e2ff5",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36363,
+      "ok": 36371,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -69496,6 +69496,10 @@
     },
     {
       "path": "specs/sk-git/032-template-driven-message-enforcement/003-hook-docs-and-standards-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/032-template-driven-message-enforcement/004-commit-id-in-every-toolchain-repo/scratch",
       "reason": "excluded directory"
     },
     {
