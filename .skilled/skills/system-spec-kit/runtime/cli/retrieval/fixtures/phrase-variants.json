@@ -1,5 +1,5 @@
 {
-  "manifestHash": "768587e1bdb8f18bb1f5ee571b71ac5689e52243a0bf9196c5cfe1ae616e2ff5",
+  "manifestHash": "0645a66a909bdca9831d2474e401f96e0447a48bef683f05ad953f3f53c9b5d7",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -17798,6 +17798,9 @@
     ],
     "citation ledger refine verdict": [
       "citation ledger REFINE verdict"
+    ],
+    "citation past end of file lineage": [
+      "citation past end of file lineage"
     ],
     "citation resolver reuse": [
       "citation resolver reuse"
@@ -36681,6 +36684,9 @@
     "divergent duplicate resolution": [
       "divergent duplicate resolution"
     ],
+    "divergent duplicate save block linked skilled": [
+      "divergent-duplicate save block linked skilled"
+    ],
     "divergent mode decision": [
       "divergent mode decision"
     ],
@@ -38864,6 +38870,9 @@
     "duplicate row on retried save": [
       "duplicate row on retried save"
     ],
+    "duplicate state log rows lineage": [
+      "duplicate state log rows lineage"
+    ],
     "duplicated status enum drift": [
       "duplicated status enum drift"
     ],
@@ -40010,6 +40019,9 @@
     ],
     "empty diff upsert handling": [
       "empty diff upsert handling"
+    ],
+    "empty exchanges save succeeds": [
+      "empty exchanges save succeeds"
     ],
     "empty folder audit system spec kit": [
       "empty folder audit system-spec-kit"
@@ -42770,6 +42782,9 @@
     ],
     "fanout fix gated follow on": [
       "fanout fix gated follow-on"
+    ],
+    "fanout fulfilled without route proof": [
+      "fanout fulfilled without route proof"
     ],
     "fanout fulfillment artifact contract": [
       "fanout fulfillment artifact contract"
@@ -56212,6 +56227,9 @@
     "lineage metadata repair tasks": [
       "lineage metadata repair tasks"
     ],
+    "lineage missing dashboard merged": [
+      "lineage missing dashboard merged"
+    ],
     "lineage mode": [
       "lineage mode"
     ],
@@ -56220,6 +56238,21 @@
     ],
     "lineage prompt fix plan": [
       "lineage prompt fix plan"
+    ],
+    "lineage proof enforcement": [
+      "lineage proof enforcement"
+    ],
+    "lineage proof enforcement acceptance criteria": [
+      "lineage proof enforcement acceptance criteria"
+    ],
+    "lineage proof enforcement implementation summary": [
+      "lineage proof enforcement implementation summary"
+    ],
+    "lineage proof enforcement plan": [
+      "lineage proof enforcement plan"
+    ],
+    "lineage proof enforcement tasks": [
+      "lineage proof enforcement tasks"
     ],
     "lineage pruning rule plan": [
       "lineage pruning rule plan"
@@ -71322,6 +71355,9 @@
     "phase 8 legacy era report": [
       "phase 8 legacy era report"
     ],
+    "phase 8 lineage proof enforcement": [
+      "phase 8 lineage proof enforcement"
+    ],
     "phase 8 remediation deep review": [
       "phase 8 remediation deep review"
     ],
@@ -74526,6 +74562,9 @@
     "preserve set": [
       "preserve set"
     ],
+    "preserve symlinks main silent exit 0": [
+      "preserve-symlinks-main silent exit 0"
+    ],
     "preserve untracked containment fix": [
       "preserve untracked containment fix"
     ],
@@ -74912,6 +74951,9 @@
     ],
     "project readme template": [
       "project readme template"
+    ],
+    "project root resolves to code environment": [
+      "project root resolves to code environment"
     ],
     "projection contract build": [
       "projection contract build"
@@ -100796,6 +100838,24 @@
     ],
     "symlinked parent escape": [
       "symlinked parent escape"
+    ],
+    "symlinked runtime entry guard project root and empty": [
+      "symlinked runtime entry guard project root and empty"
+    ],
+    "symlinked runtime root": [
+      "symlinked runtime root"
+    ],
+    "symlinked runtime root acceptance criteria": [
+      "symlinked runtime root acceptance criteria"
+    ],
+    "symlinked runtime root implementation summary": [
+      "symlinked runtime root implementation summary"
+    ],
+    "symlinked runtime root plan": [
+      "symlinked runtime root plan"
+    ],
+    "symlinked runtime root tasks": [
+      "symlinked runtime root tasks"
     ],
     "symlinked specs tracks": [
       "symlinked specs tracks"

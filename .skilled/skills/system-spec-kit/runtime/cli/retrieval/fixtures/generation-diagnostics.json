@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 6939,
-    "ok": 14226,
+    "ok": 14236,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 24712,
+  "documentsScanned": 24722,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "768587e1bdb8f18bb1f5ee571b71ac5689e52243a0bf9196c5cfe1ae616e2ff5",
+  "manifestHash": "0645a66a909bdca9831d2474e401f96e0447a48bef683f05ad953f3f53c9b5d7",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36371,
+      "ok": 36391,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -70083,6 +70083,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-deep-loop/038-review-and-cli-lineage/008-lineage-proof-enforcement/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-deep-loop/039-deprecate-improvement-modes/001-removal-research/001-model-benchmark-inventory/research/lineages",
       "reason": "excluded directory"
     },
@@ -72864,6 +72868,10 @@
     },
     {
       "path": "specs/system-speckit/050-open-knowledge-format-adoption/012-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/051-symlinked-runtime-root/scratch",
       "reason": "excluded directory"
     },
     {

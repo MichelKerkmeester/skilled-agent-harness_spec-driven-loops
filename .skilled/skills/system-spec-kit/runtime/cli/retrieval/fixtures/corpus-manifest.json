@@ -1,5 +1,5 @@
 {
-  "corpusHash": "54e45db2b596b2b99bad2a0618aeaf5038fc13414046cc9208e8424111bb2fc0",
+  "corpusHash": "ecd3af0a623d8c4c26c756ecb446fdb4ce42f1a7ed8005c501f183c5fd7d8903",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24712,
+  "includedPathCount": 24722,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -14408,6 +14408,11 @@
     "specs/system-deep-loop/038-review-and-cli-lineage/007-lineage-reducer-compliance/plan.md",
     "specs/system-deep-loop/038-review-and-cli-lineage/007-lineage-reducer-compliance/spec.md",
     "specs/system-deep-loop/038-review-and-cli-lineage/007-lineage-reducer-compliance/tasks.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/008-lineage-proof-enforcement/acceptance-criteria.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/008-lineage-proof-enforcement/implementation-summary.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/008-lineage-proof-enforcement/plan.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/008-lineage-proof-enforcement/spec.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/008-lineage-proof-enforcement/tasks.md",
     "specs/system-deep-loop/038-review-and-cli-lineage/spec.md",
     "specs/system-deep-loop/038-review-and-cli-lineage/timeline.md",
     "specs/system-deep-loop/039-deprecate-improvement-modes/001-removal-research/001-model-benchmark-inventory/implementation-summary.md",
@@ -24740,10 +24745,15 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/review/prompts/iteration-5.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/review/resource-map.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/review/review-report.md",
-    "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
+    "specs/system-speckit/050-open-knowledge-format-adoption/spec.md",
+    "specs/system-speckit/051-symlinked-runtime-root/acceptance-criteria.md",
+    "specs/system-speckit/051-symlinked-runtime-root/implementation-summary.md",
+    "specs/system-speckit/051-symlinked-runtime-root/plan.md",
+    "specs/system-speckit/051-symlinked-runtime-root/spec.md",
+    "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "768587e1bdb8f18bb1f5ee571b71ac5689e52243a0bf9196c5cfe1ae616e2ff5",
+  "manifestHash": "0645a66a909bdca9831d2474e401f96e0447a48bef683f05ad953f3f53c9b5d7",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28318,6 +28328,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-deep-loop/038-review-and-cli-lineage/008-lineage-proof-enforcement/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-deep-loop/039-deprecate-improvement-modes/001-removal-research/001-model-benchmark-inventory/research/lineages",
       "reason": "excluded directory"
     },
@@ -31099,6 +31113,10 @@
     },
     {
       "path": "specs/system-speckit/050-open-knowledge-format-adoption/012-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/051-symlinked-runtime-root/scratch",
       "reason": "excluded directory"
     },
     {
