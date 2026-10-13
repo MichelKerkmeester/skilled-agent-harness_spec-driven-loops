@@ -1,5 +1,5 @@
 {
-  "corpusHash": "60b1348b06a9f330e96119ddc638cb4f31c729f77efbf2d50bfe4179772786a1",
+  "corpusHash": "29ebd3a3aaa809985639c9ea73a6fab057d7612ac05f46d36472d5cee83cfc31",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24607,
+  "includedPathCount": 24621,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11166,6 +11166,20 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages/implementation-summary.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages/review/deep-review-dashboard.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages/review/deep-review-strategy.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages/review/iterations/iteration-001.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages/review/iterations/iteration-002.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages/review/iterations/iteration-003.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages/review/iterations/iteration-004.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages/review/iterations/iteration-005.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages/review/prompts/iteration-1.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages/review/prompts/iteration-2.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages/review/prompts/iteration-3.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages/review/prompts/iteration-4.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages/review/prompts/iteration-5.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages/review/resource-map.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages/review/review-report.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/003-example-tolerant-drift-guards/acceptance-criteria.md",
@@ -24638,7 +24652,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "47ae66c157e0624a63a74aed91ad9a091d15b928f9c11dc11dab627b39998765",
+  "manifestHash": "d7e550900f9f0564ccdcd52b00a3363b3dcb6bd2a5a730e88fb90495ac1e02a9",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
