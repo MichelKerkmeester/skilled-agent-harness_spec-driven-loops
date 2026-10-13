@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/003-example-tolerant-drift-guards",
   "description": "Example-tolerant drift guards",
   "keywords": [
@@ -7,7 +8,7 @@
     "drift",
     "guards"
   ],
-  "lastUpdated": "2026-10-13T04:45:54.309Z",
+  "lastUpdated": "2026-10-13T06:33:07.037Z",
   "specId": "003",
   "folderSlug": "example-tolerant-drift-guards",
   "parentChain": [
@@ -15,7 +16,8 @@
     "011-sk-code-poinytail-based-refinement",
     "026-external-surface-priority-build"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "13-10-26_07-33__deep-review-of-commit-b6eef4ebbb-completed-on-cli.md"
+  ]
 }
