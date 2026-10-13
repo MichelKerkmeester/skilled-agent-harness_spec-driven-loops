@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3004689a4e806663a965d805918448b84993ad4dfae3735ea6c96ff1f4910605",
+  "manifestHash": "940836084d71bdac74a7be7ffc1211d92504325f8edc885ef8a3768410e947f2",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -105435,6 +105435,18 @@
     ],
     "typed handoff shadow pilot": [
       "typed-handoff shadow pilot"
+    ],
+    "typed handoff shadow pilot acceptance criteria": [
+      "typed handoff shadow pilot acceptance criteria"
+    ],
+    "typed handoff shadow pilot implementation summary": [
+      "typed handoff shadow pilot implementation summary"
+    ],
+    "typed handoff shadow pilot plan": [
+      "typed handoff shadow pilot plan"
+    ],
+    "typed handoff shadow pilot tasks": [
+      "typed handoff shadow pilot tasks"
     ],
     "typed jev judgments": [
       "typed jev judgments"

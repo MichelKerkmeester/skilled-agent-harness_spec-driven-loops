@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3004689a4e806663a965d805918448b84993ad4dfae3735ea6c96ff1f4910605",
+  "manifestHash": "940836084d71bdac74a7be7ffc1211d92504325f8edc885ef8a3768410e947f2",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -22333,8 +22333,7 @@
     "ac traceability": [
       2553,
       2558,
-      2564,
-      5331
+      2564
     ],
     "ac traceability table": [
       11102,
@@ -22378,8 +22377,7 @@
     "acceptance criteria": [
       2553,
       2558,
-      2564,
-      5331
+      2564
     ],
     "acceptance criteria closure gate": [
       12843,
@@ -26294,8 +26292,7 @@
       5975
     ],
     "architecture decisions": [
-      2766,
-      5333
+      2766
     ],
     "architecture diagram": [
       1193,
@@ -36789,8 +36786,7 @@
     "closure gate": [
       2553,
       2558,
-      2564,
-      5331
+      2564
     ],
     "closure gate blocks evidence": [
       12783
@@ -42285,8 +42281,7 @@
       11944
     ],
     "continuation notes": [
-      2765,
-      5332
+      2765
     ],
     "continue post review closeout": [
       3530
@@ -70423,16 +70418,14 @@
       2555,
       2561,
       2567,
-      2766,
-      5333
+      2766
     ],
     "implementation summary": [
       2549,
       2554,
       2560,
       2566,
-      2765,
-      5332
+      2765
     ],
     "implementation summary attestation point": [
       13028
@@ -70475,8 +70468,7 @@
       2557,
       2563,
       2569,
-      2769,
-      5335
+      2769
     ],
     "implementation testing verification phases": [
       904
@@ -123816,8 +123808,7 @@
       2557,
       2563,
       2569,
-      2769,
-      5335
+      2769
     ],
     "task cache removal": [
       540
@@ -123826,8 +123817,7 @@
       564
     ],
     "task dependencies": [
-      2769,
-      5335
+      2769
     ],
     "task dependency": [
       623
@@ -124115,8 +124105,7 @@
       2555,
       2561,
       2567,
-      2766,
-      5333
+      2766
     ],
     "telemetry and process verification harness": [
       9495,
@@ -125193,8 +125182,7 @@
       2555,
       2561,
       2567,
-      2766,
-      5333
+      2766
     ],
     "tests that cannot fail": [
       1040
@@ -127404,6 +127392,18 @@
     "typed handoff shadow pilot": [
       5334
     ],
+    "typed handoff shadow pilot acceptance criteria": [
+      5331
+    ],
+    "typed handoff shadow pilot implementation summary": [
+      5332
+    ],
+    "typed handoff shadow pilot plan": [
+      5333
+    ],
+    "typed handoff shadow pilot tasks": [
+      5335
+    ],
     "typed jev judgments": [
       105
     ],
@@ -129023,8 +129023,7 @@
       2554,
       2560,
       2566,
-      2765,
-      5332
+      2765
     ],
     "validation first workflow": [
       1528
@@ -129678,8 +129677,7 @@
       2557,
       2563,
       2569,
-      2769,
-      5335
+      2769
     ],
     "verification class blind to failure class": [
       7746
@@ -130390,8 +130388,7 @@
     "waiver adr": [
       2553,
       2558,
-      2564,
-      5331
+      2564
     ],
     "wal autocheckpoint 256": [
       10041,
@@ -131070,8 +131067,7 @@
       2554,
       2560,
       2566,
-      2765,
-      5332
+      2765
     ],
     "what shipped acceptance closure": [
       13224
