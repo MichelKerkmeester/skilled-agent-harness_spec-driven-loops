@@ -620,6 +620,32 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
     }
   });
 
+  test('guard stale fix names the refresh command, the skill root and both manifest paths', () => {
+    const suffix = path.join('013-live-activation', 'activation', 'sk-code', 'manifest.json');
+    const runtimeManifest = path.join(promotedRuntimeRoot, suffix);
+    const authoredRoot = path.join(REPO_ROOT, runtimeLayout.AUTHORED_PROGRAM_DIR);
+    const authoredManifest = path.join(authoredRoot, suffix);
+    const fix = guard.staleFix('sk-code', promotedRuntimeRoot, authoredRoot);
+    assert.ok(
+      fix.includes('compiled-route-manifest.cjs refresh --hub sk-code --skill-root .skilled/skills/sk-code'),
+      fix,
+    );
+    assert.ok(fix.includes(path.relative(REPO_ROOT, runtimeManifest)), fix);
+    assert.ok(fix.includes(path.relative(REPO_ROOT, authoredManifest)), fix);
+  });
+
+  test('guard stale fix gives a second hub its own skill root and manifest', () => {
+    const suffix = path.join('013-live-activation', 'activation', 'sk-doc', 'manifest.json');
+    const runtimeManifest = path.join(promotedRuntimeRoot, suffix);
+    const authoredRoot = path.join(REPO_ROOT, runtimeLayout.AUTHORED_PROGRAM_DIR);
+    const authoredManifest = path.join(authoredRoot, suffix);
+    const fix = guard.staleFix('sk-doc', promotedRuntimeRoot, authoredRoot);
+    assert.ok(fix.includes('--skill-root .skilled/skills/sk-doc'), fix);
+    assert.ok(fix.includes(path.relative(REPO_ROOT, runtimeManifest)), fix);
+    assert.ok(fix.includes(path.relative(REPO_ROOT, authoredManifest)), fix);
+    assert.ok(!fix.includes('sk-code'), fix);
+  });
+
   test('refuses to replace an existing root that is not a verified closure', () => {
     const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-sync-invalid-prior-'));
     const runtimeRoot = path.join(sandbox, 'compiled-routing');

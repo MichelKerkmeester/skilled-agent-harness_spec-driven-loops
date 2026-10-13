@@ -59,29 +59,48 @@ function manifestPathIn(root, hubId) {
   }
 }
 
+// The authored copy mirrors the runtime tree, so it sits at the same relative path
+// under the authored root. Deriving it this way still names it when the authored
+// tree is gone and no layout can be detected there.
+function manifestPair(hubId, runtimeRoot, authoredRoot) {
+  const runtimeManifest = manifestPathIn(runtimeRoot, hubId);
+  if (!runtimeManifest) return null;
+  const authoredManifest = path.join(authoredRoot, path.relative(runtimeRoot, runtimeManifest));
+  return {
+    runtimeManifest,
+    authoredManifest,
+    runtimeRel: path.relative(REPO_ROOT, runtimeManifest),
+    authoredRel: path.relative(REPO_ROOT, authoredManifest),
+  };
+}
+
 // Byte comparison is deliberate: these are generated artifacts that are supposed to
 // be copies of each other, so any difference at all means a rebuild would change
 // what is being served.
 function authoredDrift(hubId, runtimeRoot = RUNTIME_ROOT, authoredRoot = AUTHORED_ROOT) {
-  const runtimeManifest = manifestPathIn(runtimeRoot, hubId);
+  const pair = manifestPair(hubId, runtimeRoot, authoredRoot);
   // A missing runtime manifest is already reported by the freshness check above.
-  if (!runtimeManifest || !fs.existsSync(runtimeManifest)) return null;
-  // The authored copy mirrors the runtime tree, so it sits at the same relative path
-  // under the authored root. Deriving it this way still names it when the authored
-  // tree is gone and no layout can be detected there.
-  const authoredManifest = path.join(authoredRoot, path.relative(runtimeRoot, runtimeManifest));
-  const runtimeRel = path.relative(REPO_ROOT, runtimeManifest);
-  const authoredRel = path.relative(REPO_ROOT, authoredManifest);
+  if (!pair || !fs.existsSync(pair.runtimeManifest)) return null;
   // A missing authored copy is not a pass: the runtime can no longer be rebuilt from
   // source, and a rebuild would have nothing to reinstate.
-  if (!fs.existsSync(authoredManifest)) {
-    return { reason: 'authored-missing', fix: `restore ${authoredRel}` };
+  if (!fs.existsSync(pair.authoredManifest)) {
+    return { reason: 'authored-missing', fix: `restore ${pair.authoredRel}` };
   }
-  if (fs.readFileSync(runtimeManifest).equals(fs.readFileSync(authoredManifest))) return null;
+  if (fs.readFileSync(pair.runtimeManifest).equals(fs.readFileSync(pair.authoredManifest))) return null;
   return {
     reason: 'authored-drift',
-    fix: `copy ${runtimeRel} over ${authoredRel}, or commit with the hooks installed so the pre-commit gate copies it`,
+    fix: `copy ${pair.runtimeRel} over ${pair.authoredRel}, or commit with the hooks installed so the pre-commit gate copies it`,
   };
+}
+
+// Stale is the one failure a command clears: re-mint the hub, then copy the result
+// back to the authored tree. The line names both writes with both paths, because
+// doing only the first leaves the runtime un-rebuildable.
+function staleFix(hubId, runtimeRoot = RUNTIME_ROOT, authoredRoot = AUTHORED_ROOT) {
+  const pair = manifestPair(hubId, runtimeRoot, authoredRoot);
+  if (!pair) return null;
+  const skillRootRel = path.relative(REPO_ROOT, path.join(SKILLS_ROOT, hubId));
+  return `run node .skilled/bin/compiled-route-manifest.cjs refresh --hub ${hubId} --skill-root ${skillRootRel}, then copy ${pair.runtimeRel} over ${pair.authoredRel}, or commit with the hooks installed so the pre-commit gate does both`;
 }
 
 // A hub can be legitimately uncompilable for hours while someone restructures its
@@ -123,6 +142,7 @@ function inspect(hubId) {
     // A hub whose inputs no longer compile cannot be re-minted at all, which is a
     // different problem from an input edit that simply needs a refresh.
     const reason = freshness.causeCode === 'compile-error' ? 'inputs-do-not-compile' : 'stale-manifest';
+    if (reason === 'stale-manifest') return { hubId, ok: false, reason, fix: staleFix(hubId) };
     return { hubId, ok: false, reason };
   }
   const drift = authoredDrift(hubId);
@@ -172,6 +192,7 @@ function main() {
       const stale = failures.filter((f) => f.reason === 'stale-manifest');
       if (stale.length > 0) {
         process.stdout.write(`Re-mint: ${stale.map((f) => f.hubId).join(', ')}\n`);
+        stale.forEach((f) => process.stdout.write(`  ${f.hubId}: ${f.fix}\n`));
       }
       const drifted = failures.filter((f) => f.reason === 'authored-drift');
       if (drifted.length > 0) {
@@ -195,4 +216,4 @@ function main() {
 
 if (require.main === module) main();
 
-module.exports = { authoredDrift, inspect, HUBS };
+module.exports = { authoredDrift, inspect, staleFix, HUBS };
