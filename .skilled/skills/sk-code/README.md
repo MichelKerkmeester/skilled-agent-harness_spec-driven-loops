@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.13.0
+version: 2.2.14.0
 ---
 
 # sk-code
@@ -119,6 +119,7 @@ A: The request stays at the hub. The hub orders the routing and asks for disambi
 |---|---|
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-code/README.md --type readme` reports zero issues |
 | Routing scenarios | The manual testing playbook runs every routing and disambiguation scenario behind the hub |
+| Setup battery | `/doctor:sk-code setup` runs the adaptation battery read-only and names the repair command for each failing leg |
 
 ---
 

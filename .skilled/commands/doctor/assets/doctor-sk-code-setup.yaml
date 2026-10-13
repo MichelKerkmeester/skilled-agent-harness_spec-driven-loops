@@ -1,0 +1,60 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: SK-CODE SETUP BATTERY (READ-ONLY DIAGNOSTIC)
+# ─────────────────────────────────────────────────────────────────
+role: Diagnostic Operator reporting whether the sk-code surface passes its setup battery end to end
+purpose: Run the external user's verify battery for the sk-code hub plus its provisioning precheck, derived-metadata freshness gate and route probe, and name the repair command for each failing leg
+action: Run .skilled/commands/doctor/scripts/sk-code-setup-check.cjs once -> render its per-leg PASS/FAIL/SKIP verdict and repair lines through the presentation contract
+skill_owner: ".skilled/skills/sk-code/"
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: single-step
+  compliance: MANDATORY
+  execution: read_only
+  approvals: none
+  tracking: single_run
+  validation: read_only_assertion
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES (READ-ONLY)
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  read_only: true
+  allowed_targets: []
+  forbidden_targets:
+    - "**/*"
+  invariant: "Every leg runs in its check-only form and the battery prints a repair command instead of applying one. This route MUST NOT provision the tree, refresh or copy a compiled manifest, regenerate derived metadata, or run any generator in write mode. Repair is an explicit operator action, never a side effect of a diagnostic."
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  setup_battery: ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+
+# ─────────────────────────────────────────────────────────────────
+# INPUTS
+# ─────────────────────────────────────────────────────────────────
+inputs:
+  target: "setup is the route's only target and its default: /doctor:sk-code and /doctor:sk-code setup both run it. Any other positional fails before this YAML loads."
+  prompt: "--prompt=<text> is the only accepted flag; the battery passes it to the route probe so the probe runs against the operator's own prompt."
+
+# ─────────────────────────────────────────────────────────────────
+# EXECUTION
+# ─────────────────────────────────────────────────────────────────
+execution:
+  steps:
+    - "Run .skilled/commands/doctor/scripts/sk-code-setup-check.cjs once, adding --prompt=<text> when the operator passed one."
+    - "The battery runs eight legs in order: provisioning (the @spec-kit/shared build resolves), parent-skill (parent-skill-check.cjs on sk-code), root-metadata (ci-skill-root-metadata.cjs), guard (compiled-route-guard.cjs), sync (compiled-route-sync.cjs --check), drift-guards (run-all-drift-guards.sh), derived-freshness (ci-skill-derived-freshness.cjs), and the probe (compiled-route.cjs --hub sk-code must print \"action\":\"route\"; the legacy stub fails)."
+    - "The battery prints one PASS|FAIL|SKIP line per leg with the command it ran, a repair: <command> line under each failure, and a last line STATUS=OK legs=8 or STATUS=FAIL failed=<n> skipped=<n>. When provisioning fails, parent-skill and root-metadata are reported as SKIP."
+    - "Render the battery's verdict through .skilled/commands/doctor/assets/doctor-sk-code-presentation.txt: the per-leg table, the DOCTOR DIAGNOSTIC RESULT summary, and the troubleshooting table."
+    - "Map the battery's exit code to the route status: 0 all legs pass, 1 any failure, 2 bad argument."
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+output: |
+  STATUS=OK when the battery exits 0 and its last line is STATUS=OK legs=8.
+  STATUS=FAIL when the battery exits 1; list each failing leg with the repair command its repair: line printed, and each skipped leg.
+  STATUS=ERROR when the battery exits 2 (bad argument) or crashes, or when its output cannot be read; report the message and the accepted invocation (/doctor:sk-code setup [--prompt=<text>]).

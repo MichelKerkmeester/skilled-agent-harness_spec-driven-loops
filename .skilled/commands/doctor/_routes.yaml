@@ -7,8 +7,9 @@
 #   /doctor:skill-advisor   .skilled/commands/doctor/skill-advisor.md
 #   /doctor:deep-loop       .skilled/commands/doctor/deep-loop.md
 #   /doctor:runtime-mirrors .skilled/commands/doctor/runtime-mirrors.md
+#   /doctor:sk-code         .skilled/commands/doctor/sk-code.md
 #   /doctor:git             .skilled/commands/doctor/git.md
-# A command that owns one route takes no positional target.
+# A command that owns one route needs no positional target.
 # Validated by: .skilled/commands/doctor/scripts/route-validate.sh
 # Consumed by: NOT currently harvested by either Skill Advisor implementation.
 #   Both harvesters (Python skill_advisor.py:810-871 _DOC_HARVEST_SUBDIRS =
@@ -215,6 +216,22 @@ routes:
       - "command catalog drift"
       - "cursor devin codex sync check"
       - "discovery mirror out of sync"
+
+  - command: /doctor:sk-code
+    target: setup
+    yaml: doctor-sk-code-setup.yaml
+    setup_vars: [execution_mode, prompt]
+    allowed_flags: ["--prompt=<text>"]
+    mutating: read-only
+    gate3_location: "n/a (read-only setup battery; runs each check in its check-only form and prints repair commands, writes nothing)"
+    mcp_tools: []   # script-only battery; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs  # the workflow adds --prompt=<text> when the operator passed one'
+    trigger_phrases:
+      - "sk-code setup check"
+      - "verify my sk-code surface"
+      - "sk-code battery fails"
+      - "does my sk-code surface route"
 
   - command: /doctor:git
     target: hooks
