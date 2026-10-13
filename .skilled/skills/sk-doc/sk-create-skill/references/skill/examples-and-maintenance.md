@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill update triggers"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.11
+version: 1.2.1.0
 ---
 
 # Skill Examples and Maintenance
@@ -178,7 +178,7 @@ pdf-editor/
 
 **Bump the release version**:
 
-Bump with `/create:changelog`, which writes the changelog entry and sets the new version in every carrier the skill root already has: SKILL.md, and for a hub ROUTER.md, description.json, hub-router.json and mode-registry.json. README.md keeps its own document version. For a hub, `node .skilled/commands/doctor/scripts/parent-skill-check.cjs <hub-root>` then confirms every copy matches.
+Bump with `/create:changelog`, which writes the changelog entry and sets the new version in every carrier the skill root already has: SKILL.md, and for a hub description.json, hub-router.json and mode-registry.json. README.md and a hub ROUTER.md keep their own document versions. For a hub, `node .skilled/commands/doctor/scripts/parent-skill-check.cjs <hub-root>` then confirms every copy matches.
 
 ```yaml
 ---
