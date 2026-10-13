@@ -1,0 +1,21 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages",
+  "description": "Doctor guard and sync messages",
+  "keywords": [
+    "doctor",
+    "guard",
+    "sync",
+    "messages"
+  ],
+  "lastUpdated": "2026-10-13T04:45:53.069Z",
+  "specId": "002",
+  "folderSlug": "doctor-guard-sync-messages",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "026-external-surface-priority-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

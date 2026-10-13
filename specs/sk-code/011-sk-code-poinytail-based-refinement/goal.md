@@ -85,6 +85,7 @@ Frozen choices. Changing one is an amendment.
 | 023 | `023-readme-freshness-research/goal.md` |
 | 024 | `024-readme-freshness-fixes/goal.md` |
 | 025 | `025-external-surface-priority-research/goal.md` |
+| 026 | `026-external-surface-priority-build/goal.md` |
 
 **Precedence.** Decisions outrank child detail, which outranks any summary.
 Name a conflict, never resolve it silently.
@@ -97,7 +98,7 @@ Name a conflict, never resolve it silently.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 26 times, none FAILED
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 27 times, none FAILED
 - [ ] `grep -lr --include=implementation-summary.md 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement | grep -vc /001-ponytail` prints 107
 - [ ] `git log --format='%(trailers:key=Spec,valueonly)' | grep -c '^sk-code/011-'` prints 100+; `git status --short` is empty
 - [ ] `node .skilled/bin/compiled-route-guard.cjs` exits 0 with sk-code `fresh`; `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "code review my obsidian plugin"` prints `"action":"route"`, no `servingAuthority`
@@ -168,5 +169,6 @@ and findings belong here.
 | Merge 2026-10-12, surface priority research | Branch 123 merged with origin/main, which carries 023 and 024; 025 keeps its number, its binding row follows 024, and criteria 1 and 2 are amended to 26 and 107, as printed after the merge. The merge took the slice to 4,082 characters, so the binding table's Phase column now names only the number |
 | 025 round two 2026-10-12 | 025 reopened for a second round: two more ten-iteration lineages, cli-devin SWE 2 Max and GPT-6 Luna (cli-codex max fast for iterations 1 to 4, then cli-pi xhigh fast by operator change), merged with round one; the merged synthesis follows. The 025 summary drops to `completion_pct: 85`, so criterion 2 is amended from 107 to 106, as printed; it returns to 107 when the synthesis lands. Criterion 1 stays 26 |
 | 025 verified 2026-10-13 | A fresh verifier checked the merged synthesis against the 40 iterations and the repository and set the final recommendations; the 025 summary returns to `completion_pct: 100`, so criterion 2 is amended from 106 to 107, as printed. Criterion 1 stays 26 |
+| 026 added 2026-10-13 | Child 026 plans the build of the 025 final recommendations R1, R2, R3, R4, R7, R8 and R9 and the drop of `ROUTER.md` from doctor check 13a, as five Level 2 children with goals; binding row added, criterion 1 amended from 26 to 27 (the parent and 26 direct children, as printed). Criterion 2 was recounted and stays 107, as printed, because 026 is planned and its five summaries sit at `completion_pct: 0`; it becomes 112 when they complete. The slice is 3,573 characters with the new row, so nothing was cut |
 | Handed off, not built here | D2 Codex mirror gap (deep-improvement and git hooks) and D4 stdin deadline (hooks); recorded in the parent spec |
 <!-- /ANCHOR:log -->

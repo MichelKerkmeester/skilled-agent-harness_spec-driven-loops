@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide",
+  "description": "External user guide",
+  "keywords": [
+    "external",
+    "user",
+    "guide"
+  ],
+  "lastUpdated": "2026-10-13T04:45:56.734Z",
+  "specId": "005",
+  "folderSlug": "external-user-guide",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "026-external-surface-priority-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

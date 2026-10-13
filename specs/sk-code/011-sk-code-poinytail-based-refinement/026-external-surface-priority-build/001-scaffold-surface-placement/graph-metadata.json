@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "scaffold surface placement",
+      "phase 1 scaffold surface placement",
+      "tiebreak insertion rule",
+      "scaffold surface placement plan",
+      "scaffold surface placement tasks",
+      "scaffold surface placement acceptance criteria",
+      "scaffold surface placement goal",
+      "scaffold surface placement implementation summary"
+    ],
+    "key_topics": [
+      "scaffold",
+      "surface",
+      "placement",
+      "phase",
+      "tiebreak",
+      "insertion",
+      "rule",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/hub-router.json",
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+      ".skilled/commands/create/assets/create-skill-parent-confirm.yaml",
+      ".skilled/commands/create/assets/create-skill-parent-auto.yaml",
+      ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md",
+      ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
+      ".skilled/skills/sk-doc/sk-create-skill/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "canary-cases.v1.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "create-skill-parent-confirm.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/create/assets/create-skill-parent-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create-skill-parent-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/create/assets/create-skill-parent-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "parent-hub-router-schema.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skills-nested-packets.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/create:skill-parent update --surfaces` writes `hub-router.json`, and its step4 activity (`create-skill-parent-confirm.yaml:462`, `create-skill-parent-auto.yaml:423`) only says the `tieBreak` must cover all modes",
+    "created_at": "2026-10-13T04:45:50Z",
+    "last_save_at": "2026-10-13T05:14:09.760Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:65e65b0588ec95937c51ca6b949ce62c4b23edef0de07bd2b75e6c74e0feb8f0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "42ed25a71d4c57cb727f35ce1caaf65ba44c71ced446cc1186617efd07dde769",
+      "plan.md": "a5690310e22d487e40fd331f2a5850ee7e761c7e8dbf7aa0a0ee43621d56cae8",
+      "tasks.md": "7c6b380d1a9ecf3b201f44097aef4e667e0c70debe19de0c9aaa0bda517a4bc5",
+      "implementation-summary.md": "190577894bcde1c923a85b64d6c6e10038865baf9ac9e70cee8e7c93f056e48b"
+    },
+    "last_active_at": null
+  }
+}

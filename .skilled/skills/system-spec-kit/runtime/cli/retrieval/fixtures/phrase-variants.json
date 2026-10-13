@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5ef573069ea64455d7a70cc3beeb1799e81488e47e1d74c7238e68cf02af219d",
+  "manifestHash": "d5b50966c7b3042e4e75b716488ffea9e7597a9e63fe467747f6fda71e6969e7",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -16855,6 +16855,9 @@
     ],
     "cheapest next check": [
       "cheapest next check"
+    ],
+    "check 13a router version": [
+      "check 13a router version"
     ],
     "check ac coverage": [
       "check-ac-coverage"
@@ -37372,6 +37375,24 @@
     "doctor git tasks": [
       "doctor git tasks"
     ],
+    "doctor guard and sync messages acceptance criteria": [
+      "doctor guard and sync messages acceptance criteria"
+    ],
+    "doctor guard and sync messages implementation summary": [
+      "doctor guard and sync messages implementation summary"
+    ],
+    "doctor guard and sync messages tasks": [
+      "doctor guard and sync messages tasks"
+    ],
+    "doctor guard sync messages": [
+      "doctor guard sync messages"
+    ],
+    "doctor guard sync messages goal": [
+      "doctor guard sync messages goal"
+    ],
+    "doctor guard sync messages plan": [
+      "doctor guard sync messages plan"
+    ],
     "doctor hard cutover": [
       "doctor hard cutover"
     ],
@@ -41023,6 +41044,24 @@
     "example skills directory structure": [
       "example skills directory structure"
     ],
+    "example tolerant drift guards": [
+      "example tolerant drift guards"
+    ],
+    "example tolerant drift guards acceptance criteria": [
+      "example-tolerant drift guards acceptance criteria"
+    ],
+    "example tolerant drift guards goal": [
+      "example tolerant drift guards goal"
+    ],
+    "example tolerant drift guards implementation summary": [
+      "example-tolerant drift guards implementation summary"
+    ],
+    "example tolerant drift guards plan": [
+      "example tolerant drift guards plan"
+    ],
+    "example tolerant drift guards tasks": [
+      "example-tolerant drift guards tasks"
+    ],
     "excalidraw project manager deprecation": [
       "excalidraw project manager deprecation"
     ],
@@ -41539,6 +41578,12 @@
     "external scanner reset bash": [
       "external_scanner_reset bash"
     ],
+    "external surface priority build": [
+      "external surface priority build"
+    ],
+    "external surface priority build phase parent spec": [
+      "external surface priority build phase parent spec"
+    ],
     "external surface priority research": [
       "external surface priority research"
     ],
@@ -41568,6 +41613,24 @@
     ],
     "external user first run": [
       "external user first run"
+    ],
+    "external user guide": [
+      "external user guide"
+    ],
+    "external user guide acceptance criteria": [
+      "external user guide acceptance criteria"
+    ],
+    "external user guide goal": [
+      "external user guide goal"
+    ],
+    "external user guide implementation summary": [
+      "external user guide implementation summary"
+    ],
+    "external user guide plan": [
+      "external user guide plan"
+    ],
+    "external user guide tasks": [
+      "external user guide tasks"
     ],
     "external vs mcp search comparison": [
       "external vs MCP search comparison"
@@ -62661,6 +62724,9 @@
     "missing active vector success": [
       "missing active vector success"
     ],
+    "missing authored closure named failure": [
+      "missing authored closure named failure"
+    ],
     "missing code readme": [
       "missing code readme"
     ],
@@ -70523,6 +70589,9 @@
     "phase 1 router orphan docs": [
       "phase 1 router orphan docs"
     ],
+    "phase 1 scaffold surface placement": [
+      "phase 1 scaffold surface placement"
+    ],
     "phase 1 shared and hub docs": [
       "phase 1 shared and hub docs"
     ],
@@ -70748,6 +70817,9 @@
     "phase 2 budget check": [
       "phase 2 budget check"
     ],
+    "phase 2 doctor guard sync messages": [
+      "phase 2 doctor guard sync messages"
+    ],
     "phase 2 fresh clone onboarding": [
       "phase 2 fresh clone onboarding"
     ],
@@ -70901,6 +70973,9 @@
     "phase 3 drift guard warning count": [
       "phase 3 drift guard warning count"
     ],
+    "phase 3 example tolerant drift guards": [
+      "phase 3 example tolerant drift guards"
+    ],
     "phase 3 feature catalog findings": [
       "phase 3 feature catalog findings"
     ],
@@ -70967,6 +71042,9 @@
     "phase 4 quality obsidian coverage": [
       "phase 4 quality obsidian coverage"
     ],
+    "phase 4 router version parity": [
+      "phase 4 router version parity"
+    ],
     "phase 4 routing evaluation": [
       "phase 4 routing evaluation"
     ],
@@ -70996,6 +71074,9 @@
     ],
     "phase 5 doc claims hardening": [
       "phase 5 doc claims hardening"
+    ],
+    "phase 5 external user guide": [
+      "phase 5 external user guide"
     ],
     "phase 5 healer phrase seeding": [
       "phase 5 healer phrase seeding"
@@ -83864,6 +83945,24 @@
     "router triad summary": [
       "router triad summary"
     ],
+    "router version parity": [
+      "router version parity"
+    ],
+    "router version parity acceptance criteria": [
+      "router version parity acceptance criteria"
+    ],
+    "router version parity goal": [
+      "router version parity goal"
+    ],
+    "router version parity implementation summary": [
+      "router version parity implementation summary"
+    ],
+    "router version parity plan": [
+      "router version parity plan"
+    ],
+    "router version parity tasks": [
+      "router version parity tasks"
+    ],
     "router vocabulary classes": [
       "router vocabulary classes"
     ],
@@ -85678,6 +85777,24 @@
     ],
     "scaffold stopped rendering": [
       "scaffold stopped rendering"
+    ],
+    "scaffold surface placement": [
+      "scaffold surface placement"
+    ],
+    "scaffold surface placement acceptance criteria": [
+      "scaffold surface placement acceptance criteria"
+    ],
+    "scaffold surface placement goal": [
+      "scaffold surface placement goal"
+    ],
+    "scaffold surface placement implementation summary": [
+      "scaffold surface placement implementation summary"
+    ],
+    "scaffold surface placement plan": [
+      "scaffold surface placement plan"
+    ],
+    "scaffold surface placement tasks": [
+      "scaffold surface placement tasks"
     ],
     "scaffold validation counts block": [
       "scaffold validation counts block"
@@ -90468,6 +90585,9 @@
     ],
     "sk code surface detection": [
       "sk-code surface detection"
+    ],
+    "sk code surface insertion rule build": [
+      "sk-code surface insertion rule build"
     ],
     "sk code surface order for external users": [
       "sk-code surface order for external users"
@@ -103435,6 +103555,9 @@
     "tie break arm tasks": [
       "tie-break arm tasks"
     ],
+    "tiebreak insertion rule": [
+      "tiebreak insertion rule"
+    ],
     "tier 1 research and remediation": [
       "tier 1 research and remediation"
     ],
@@ -107422,6 +107545,9 @@
     "verify rollout tasks": [
       "verify rollout tasks"
     ],
+    "verify router sync existence filter": [
+      "verify router sync existence filter"
+    ],
     "verify the remaining obsidian tools": [
       "verify the remaining obsidian tools"
     ],
@@ -108512,6 +108638,9 @@
     ],
     "well formed but thin": [
       "well formed but thin"
+    ],
+    "what adapting sk code looks like": [
+      "what adapting sk-code looks like"
     ],
     "what are the dimensions of this image": [
       "what are the dimensions of this image"

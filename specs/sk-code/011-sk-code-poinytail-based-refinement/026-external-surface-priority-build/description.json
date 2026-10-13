@@ -1,0 +1,28 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build",
+  "description": "External surface priority build",
+  "keywords": [
+    "external",
+    "surface",
+    "priority",
+    "implement",
+    "verified",
+    "final",
+    "recommendations",
+    "drop",
+    "router",
+    "doctor",
+    "check",
+    "13a"
+  ],
+  "lastUpdated": "2026-10-13T04:45:50.762Z",
+  "specId": "026",
+  "folderSlug": "external-surface-priority-build",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
