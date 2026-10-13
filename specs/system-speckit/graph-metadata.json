@@ -19,7 +19,8 @@
     "system-speckit/047-plugin-scanner-readiness",
     "system-speckit/048-doctor-command-audit",
     "system-speckit/049-doctor-audit-followups",
-    "system-speckit/050-open-knowledge-format-adoption"
+    "system-speckit/050-open-knowledge-format-adoption",
+    "system-speckit/051-symlinked-runtime-root"
   ],
   "manual": {
     "depends_on": [],
