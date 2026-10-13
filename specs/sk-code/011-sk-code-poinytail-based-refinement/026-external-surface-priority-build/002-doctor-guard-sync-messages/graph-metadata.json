@@ -201,7 +201,7 @@
     ],
     "causal_summary": "A user who deletes an example packet sees `3c: mode \"...\" packet \"...\" is not an existing sub-directory` (`parent-skill-check.cjs:496`) with no pointer to the steps that fix it",
     "created_at": "2026-10-13T04:45:52Z",
-    "last_save_at": "2026-10-13T06:44:45.549Z",
+    "last_save_at": "2026-10-13T06:48:20.296Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +212,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fbc115e9ee30bf4951120287a5e059b44608506801e3e2760936aea4ecbffb50",
+    "source_fingerprint": "sha256:3032a56d1e61def9a040af09cc6c6de7aee1d1bfff50333ac5305506e55b89c3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "acbc135d3eb198f4cf4b839ddf2f176f57c0fc48b6c6515e57d2d580f9416d75",

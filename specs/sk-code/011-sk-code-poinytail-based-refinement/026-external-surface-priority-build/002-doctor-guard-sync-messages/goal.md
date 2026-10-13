@@ -9,16 +9,16 @@ _memory:
   continuity:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages"
     last_updated_at: "2026-10-13T06:00:00Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_by: "orchestrator"
+    recent_action: "Built, reviewed and closed the phase"
+    next_safe_action: "Operator merges the branch to main"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-026-002"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -62,13 +62,13 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node --test .skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs >/dev/null 2>&1 && bash .skilled/commands/doctor/scripts/tests/run-all.sh >/dev/null 2>&1 && node --test .skilled/bin/tests/compiled-route-manifest.test.cjs >/dev/null 2>&1 && echo ok`, run from the repository root, prints ok.
-- [ ] `grep -q 'What Adapting' .skilled/commands/doctor/scripts/parent-skill-check.cjs && awk '/name: compiled_routes/,/name: skill_derived_metadata/' .skilled/commands/doctor/assets/doctor-update-apply.yaml | grep -q '015-router-unification-program/013-live-activation' && echo ok`, run from the repository root, prints ok.
-- [ ] `node .skilled/bin/compiled-route-guard.cjs >/dev/null 2>&1 && node .skilled/bin/compiled-route-sync.cjs --check >/dev/null 2>&1 && node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code >/dev/null 2>&1 && echo ok`, run from the repository root, prints ok.
-- [ ] `F=specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages/implementation-summary.md; [ "$(grep -cE '^\| P9-[1-7] \| Pass \|' $F)" = 7 ] && [ "$(grep -E '^\| P9-[1-7] \| Pass \|' $F | grep -vcF "$(printf '\140')")" = 0 ] && [ "$(grep -cE '^\| T[1-4] \| .+ \| before: exit [1-9][0-9]* \| after: exit 0 \|$' $F)" = 4 ] && echo ok`, run from the repository root, prints ok.
-- [ ] `C=specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages; [ "$(find $C/review/iterations -name 'iteration-*.md' 2>/dev/null | wc -l | tr -d ' ')" = 5 ] && [ "$(grep -E '^\| RV-' $C/implementation-summary.md | grep -vcE '^\| RV-[0-9]+ \| P[0-2] \| (Fixed|Rejected) \|')" = 0 ] && echo ok`, run from the repository root, prints ok.
-- [ ] `G='^Spec: sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages$'; [ -n "$(git log --no-merges --grep="$G" --format=%h)" ] && [ "$(git log --no-merges --grep="$G" --format=%B | grep -cE '^(Co-Authored-By|Claude-Session):')" = 0 ] && [ "$(git log --no-merges --format= --name-only --diff-filter=A --grep="$G" -- .skilled/skills | grep -c /changelog/)" = 0 ] && node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs bump --base origin/main --check >/dev/null 2>&1 && echo ok`, run from the repository root, prints ok.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages --strict`, run from the repository root, prints `RESULT: PASSED`.
+- [x] `node --test .skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs >/dev/null 2>&1 && bash .skilled/commands/doctor/scripts/tests/run-all.sh >/dev/null 2>&1 && node --test .skilled/bin/tests/compiled-route-manifest.test.cjs >/dev/null 2>&1 && echo ok`, run from the repository root, prints ok.
+- [x] `grep -q 'What Adapting' .skilled/commands/doctor/scripts/parent-skill-check.cjs && awk '/name: compiled_routes/,/name: skill_derived_metadata/' .skilled/commands/doctor/assets/doctor-update-apply.yaml | grep -q '015-router-unification-program/013-live-activation' && echo ok`, run from the repository root, prints ok.
+- [x] `node .skilled/bin/compiled-route-guard.cjs >/dev/null 2>&1 && node .skilled/bin/compiled-route-sync.cjs --check >/dev/null 2>&1 && node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code >/dev/null 2>&1 && echo ok`, run from the repository root, prints ok.
+- [x] `F=specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages/implementation-summary.md; [ "$(grep -cE '^\| P9-[1-7] \| Pass \|' $F)" = 7 ] && [ "$(grep -E '^\| P9-[1-7] \| Pass \|' $F | grep -vcF "$(printf '\140')")" = 0 ] && [ "$(grep -cE '^\| T[1-4] \| .+ \| before: exit [1-9][0-9]* \| after: exit 0 \|$' $F)" = 4 ] && echo ok`, run from the repository root, prints ok.
+- [x] `C=specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages; [ "$(find $C/review/iterations -name 'iteration-*.md' 2>/dev/null | wc -l | tr -d ' ')" = 5 ] && [ "$(grep -E '^\| RV-' $C/implementation-summary.md | grep -vcE '^\| RV-[0-9]+ \| P[0-2] \| (Fixed|Rejected) \|')" = 0 ] && echo ok`, run from the repository root, prints ok.
+- [x] `G='^Spec: sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages$'; [ -n "$(git log --no-merges --grep="$G" --format=%h)" ] && [ "$(git log --no-merges --grep="$G" --format=%B | grep -cE '^(Co-Authored-By|Claude-Session):')" = 0 ] && [ "$(git log --no-merges --format= --name-only --diff-filter=A --grep="$G" -- .skilled/skills | grep -c /changelog/)" = 0 ] && node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs bump --base origin/main --check >/dev/null 2>&1 && echo ok`, run from the repository root, prints ok.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages --strict`, run from the repository root, prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -85,7 +85,9 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet scaffolded | Done | create.sh phase mode with `--level 2` and `--with-goal`; spec.md lists ledger rows P9-1 to P9-7 and tests T1 to T4 |
-| Build | Pending | |
+| Build | Done | Branch `worktrees/127-surface-messages`: `36cef9db0a`, `ed10d1f294`, `f9eb84c4fe`, review fixes `015d7ea3d0`, closeout `6124743239`; builder cli-pi DeepSeek V4.1 Flash at `--thinking max` (Devin quota exhausted) |
+| Review | Done | Five iterations on cli-pi; 0 P0, 0 P1, 8 P2: five fixed, three rejected (RV-1 to RV-8) |
+| Criteria | Done | All seven rerun from the final state: criteria 1 to 6 print ok, criterion 7 prints RESULT: PASSED |
 
 ### Deviations and findings
 
@@ -93,4 +95,7 @@ and findings belong here.
 |------|------|
 | Baselines at planning | Commit a71f719ae4: the invariants test 97 of 97, `run-all.sh` 7 suites passed, `compiled-route-manifest.test.cjs` 43 of 43; guard `All hubs fresh or excused`, sync `--check` `all 55 served copies match`, sk-code doctor exit 0 |
 | Review executor name | 022's review recorded that the cli-pi allowlist accepts `deepseek-v4.1-flash` and resolves it to `llmgateway/deepseek-v4.1-flash` |
+| pi needs `--no-extensions` | The tracked `.pi/extensions/pi-fast-mode-w-subagent-support` and its global copy register the same `--fast` flag, so `pi` refuses to start; every build dispatch and review iteration added `--no-extensions` |
+| No changelog file | 026 has no `changelog/` folder and D6 rules out a release; phase 005 writes the release note |
+| Review phase save skipped | The workflow continuity save was not run; `implementation-summary.md` was written directly |
 <!-- /ANCHOR:log -->
