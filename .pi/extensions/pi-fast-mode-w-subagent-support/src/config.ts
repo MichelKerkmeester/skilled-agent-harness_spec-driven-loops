@@ -51,7 +51,7 @@ export type LoadedConfig = ResolvedConfigPath & {
 
 /** Default Fast Mode settings used when no persisted configuration exists. */
 export const DEFAULT_CONFIG: FastModeConfig = {
-  enabled: false,
+  enabled: true,
   targets: [
     { provider: "openai", model: "gpt-5.4", serviceTier: DEFAULT_SERVICE_TIER },
     { provider: "openai", model: "gpt-5.5", serviceTier: DEFAULT_SERVICE_TIER },

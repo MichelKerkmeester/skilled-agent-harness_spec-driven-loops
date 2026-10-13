@@ -44,9 +44,9 @@ afterEach(async () => {
 });
 
 describe("DEFAULT_CONFIG", () => {
-  it("starts disabled with exact OpenAI and OpenAI-Codex GPT-5.4/GPT-5.5/GPT-5.6 targets", () => {
+  it("starts enabled with exact OpenAI and OpenAI-Codex GPT-5.4/GPT-5.5/GPT-5.6 targets", () => {
     expect(DEFAULT_CONFIG).toEqual({
-      enabled: false,
+      enabled: true,
       targets: [
         { provider: "openai", model: "gpt-5.4", serviceTier: "priority" },
         { provider: "openai", model: "gpt-5.5", serviceTier: "priority" },
@@ -78,10 +78,10 @@ describe("DEFAULT_CONFIG", () => {
 
   it("cloneConfig returns independent copies", () => {
     const copy = cloneConfig();
-    copy.enabled = true;
+    copy.enabled = false;
     copy.targets[0]!.model = "changed";
 
-    expect(DEFAULT_CONFIG.enabled).toBe(false);
+    expect(DEFAULT_CONFIG.enabled).toBe(true);
     expect(DEFAULT_CONFIG.targets[0]!.model).toBe("gpt-5.4");
   });
 });

@@ -10,7 +10,7 @@
 
 This Pi extension injects the OpenAI `service_tier: "priority"` hint into matching model requests so Fast Mode responses use priority processing. It targets developers running Pi against OpenAI or OpenAI-Codex providers who want a per-session speed toggle that also carries into spawned subagents.
 
-Fast Mode is off by default and only affects the exact provider/model pairs listed in the configuration. It never changes a request whose model is not a configured target.
+Fast Mode is on by default and only affects the exact provider/model pairs listed in the configuration. It never changes a request whose model is not a configured target.
 
 ---
 
@@ -56,11 +56,11 @@ pi --fast
 
 ## 5. CONFIGURATION
 
-Fast Mode starts disabled and only applies to exact configured provider/model pairs:
+Fast Mode starts enabled and only applies to exact configured provider/model pairs:
 
 ```json
 {
-  "enabled": false,
+  "enabled": true,
   "targets": [
     { "provider": "openai", "model": "gpt-5.4", "serviceTier": "priority" },
     { "provider": "openai", "model": "gpt-5.5", "serviceTier": "priority" },
@@ -119,7 +119,7 @@ Expected output:
 
 ```text
 Test Files  7 passed (7)
-     Tests  76 passed (76)
+     Tests  77 passed (77)
 ```
 
 Run the extension directly from source:

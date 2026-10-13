@@ -1,5 +1,5 @@
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 import { tmpdir } from "node:os";
 import { mkdtemp } from "node:fs/promises";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -237,6 +237,12 @@ describe("piFastModeExtension runtime behavior", () => {
     const cwd = join(root, "project");
     const agentDir = join(root, "agent");
     await mkdir(cwd, { recursive: true });
+    // Fast Mode is on by default, so the toggle cycle starts from a saved off state.
+    await mkdir(dirname(getUserConfigPath(agentDir)), { recursive: true });
+    await writeFile(
+      getUserConfigPath(agentDir),
+      JSON.stringify({ ...DEFAULT_CONFIG, enabled: false }),
+    );
 
     const { pi, handlers, commands } = createFakePi(false);
     createPiFastModeExtension({
@@ -374,7 +380,8 @@ describe("piFastModeExtension runtime behavior", () => {
       "Usage: /fast [on|off|toggle]",
       "error",
     );
-    expectFastIndicatorHidden(ctx);
+    // The default is on, so an unchanged state keeps the indicator.
+    expectFastIndicatorShown(ctx);
   });
 
   it("project-local package installs persist to project state instead of user state", async () => {

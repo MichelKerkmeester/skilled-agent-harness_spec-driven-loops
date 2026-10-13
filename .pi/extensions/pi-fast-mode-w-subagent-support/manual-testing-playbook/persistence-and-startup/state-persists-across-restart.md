@@ -28,7 +28,7 @@ Operators run the exact prompt and command sequence for `FAST-009` and confirm t
 - Objective: confirm Fast Mode state survives a restart.
 - Real user request: `I turned fast mode on earlier. It should still be on when I reopen Pi here.`
 - Prompt: `/fast on`
-- Expected execution process: enable Fast Mode, quit Pi, relaunch on the same target model in the same project, and read the initial state.
+- Expected execution process: start from a state file that reads `enabled: false`, because Fast Mode is on by default and only persistence can then explain an enabled relaunch. Enable Fast Mode, quit Pi, relaunch on the same target model in the same project, and read the initial state.
 - Expected signals: after relaunch the `fast` indicator is visible and the state file reads enabled, with no manual toggle.
 - Desired user-visible outcome: the last state is remembered on the next session.
 - Pass/fail: PASS if the relaunched session shows the indicator and the state file reads enabled; FAIL if the relaunch starts disabled.
@@ -40,7 +40,7 @@ Operators run the exact prompt and command sequence for `FAST-009` and confirm t
 ### Recommended Orchestration Process
 
 1. Restate the user request: keep the mode across restarts.
-2. Enable Fast Mode on a LUNA session.
+2. Set `.pi/pi-fast-mode-w-subagent-support-config.json` to `enabled: false`, then enable Fast Mode on a LUNA session.
 3. Quit Pi.
 4. Relaunch on the same model and project without the `--fast` flag.
 5. Confirm the initial state and record it.
@@ -51,7 +51,7 @@ Operators run the exact prompt and command sequence for `FAST-009` and confirm t
 
 ### Optional Supplemental Checks
 
-Disable Fast Mode, quit, and relaunch to confirm the disabled state also persists, proving persistence is not one-directional.
+Disable Fast Mode, quit and relaunch to confirm the disabled state also persists. With Fast Mode on by default this is the stronger proof, because a relaunch that ignored the state file would come back enabled.
 
 ---
 
