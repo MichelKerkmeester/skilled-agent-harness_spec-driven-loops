@@ -238,6 +238,25 @@ function addTransportMode(hubRoot) {
   regenerateManifest(hubRoot);
 }
 
+// Registers each named surface packet on an sk-code fixture and appends it to
+// tieBreak in the given order, so 5l sees the shipped and hand-added orders.
+function addNamedSurfaces(hubRoot, names) {
+  editJson(hubRoot, 'mode-registry.json', (r) => {
+    for (const name of names) {
+      const surface = makeMode(name, name, `${name} thing`);
+      surface.packetKind = 'surface';
+      surface.backendKind = 'evidence-base';
+      r.modes.push(surface);
+    }
+    r.extensions = { 'surface-axis': {} };
+  });
+  editJson(hubRoot, 'hub-router.json', (r) => {
+    for (const name of names) r.routerSignals[name] = { classes: ['demo'], resources: [] };
+    r.routerPolicy.tieBreak.push(...names);
+  });
+  for (const name of names) writePacket(hubRoot, name, `${name}.md`);
+}
+
 // A python3 stand-in on PATH so the advisor cross-check runs against a known
 // answer instead of the live advisor. The script argument is ignored.
 function python3Stub(body) {
@@ -454,6 +473,31 @@ test('5k warns, and does not fail, on alias drift that another hub already carri
   const { output } = runChecker(hub);
   assertLine(output, 'WARN', '5k-alias', 'yagni');
   assert.doesNotMatch(output, /^FAIL: 5k-alias:/m);
+});
+
+test('5l fails when a hand-added sk-code surface sorts after sk-code-opencode', () => {
+  const hub = buildHub('sk-code');
+  addNamedSurfaces(hub, ['sk-code-opencode', 'sk-code-obsidian', 'sk-code-webflow', 'sk-code-acme']);
+  const { status, output } = runChecker(hub);
+  assertLine(output, 'FAIL', '5l', 'sk-code-acme');
+  assert.doesNotMatch(output, /^FAIL: 5l:.*sk-code-(obsidian|webflow)/m);
+  assert.equal(status, 1, output);
+});
+
+test('5l passes on the shipped sk-code order, with both examples after sk-code-opencode', () => {
+  const hub = buildHub('sk-code');
+  addNamedSurfaces(hub, ['sk-code-opencode', 'sk-code-obsidian', 'sk-code-webflow']);
+  const { output } = runChecker(hub);
+  assertLine(output, 'PASS', '5l');
+  assert.doesNotMatch(output, /^(FAIL|WARN): 5l:/m);
+});
+
+test('5l passes when the examples are removed and an added surface sorts ahead of sk-code-opencode', () => {
+  const hub = buildHub('sk-code');
+  addNamedSurfaces(hub, ['sk-code-acme', 'sk-code-opencode']);
+  const { output } = runChecker(hub);
+  assertLine(output, 'PASS', '5l');
+  assert.doesNotMatch(output, /^(FAIL|WARN): 5l:/m);
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

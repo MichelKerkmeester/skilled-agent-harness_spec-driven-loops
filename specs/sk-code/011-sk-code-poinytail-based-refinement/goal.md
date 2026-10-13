@@ -86,6 +86,7 @@ Frozen choices. Changing one is an amendment.
 | 024 | `024-readme-freshness-fixes/goal.md` |
 | 025 | `025-external-surface-priority-research/goal.md` |
 | 026 | `026-external-surface-priority-build/goal.md` |
+| 027 | `027-surface-tie-order-warning/goal.md` |
 
 **Precedence.** Decisions outrank child detail, which outranks any summary.
 Name a conflict, never resolve it silently.
@@ -98,7 +99,7 @@ Name a conflict, never resolve it silently.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 27 times, none FAILED
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 28 times, none FAILED
 - [ ] `grep -lr --include=implementation-summary.md 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement | grep -vc /001-ponytail` prints 112
 - [ ] `git log --format='%(trailers:key=Spec,valueonly)' | grep -c '^sk-code/011-'` prints 100+; `git status --short` is empty
 - [ ] `node .skilled/bin/compiled-route-guard.cjs` exits 0 with sk-code `fresh`; `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "code review my obsidian plugin"` prints `"action":"route"`, no `servingAuthority`

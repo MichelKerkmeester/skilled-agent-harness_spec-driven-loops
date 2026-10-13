@@ -140,6 +140,7 @@ These bind every build phase, 002 to 006.
 | 24 | 024-readme-freshness-fixes/ | Apply the README fixes F1 to F23 from the 023 research and retire doctor check 13c, so a hub README keeps its own version | Complete |
 | 25 | 025-external-surface-priority-research/ | Two-lineage ten-iteration research into how a user's own sk-code surface outranks sk-code-opencode once the obsidian and webflow examples are deleted; research only; round two adds two more lineages | Complete |
 | 26 | 026-external-surface-priority-build/ | Build the 025 final recommendations R1, R2, R3, R4, R7, R8 and R9 and drop `ROUTER.md` from doctor check 13a, in five children; 001 to 003 build in parallel, 004 after 002, 005 last | Complete |
+| 27 | 027-surface-tie-order-warning/ | Doctor check 5l reports a sk-code surface a user placed by hand after `sk-code-opencode` in `tieBreak`, except the two shipped examples; one README sentence | In Progress |
 
 ### Phase Transition Rules
 
@@ -177,6 +178,7 @@ These bind every build phase, 002 to 006.
 | 023-readme-freshness-research | 024-readme-freshness-fixes | 023 synthesis committed; the operator approved every fix and ruled that each doc keeps its own version | `validate.sh --recursive --strict` on the parent |
 | 024-readme-freshness-fixes | 025-external-surface-priority-research | 024 on origin/main; 025 is read-only research | `validate.sh --recursive --strict` on the parent |
 | 025-external-surface-priority-research | 026-external-surface-priority-build | 025 verified and its final recommendations set; 026 builds them from origin/main once its plan is merged | `validate.sh --recursive --strict` on the parent |
+| 026-external-surface-priority-build | 027-surface-tie-order-warning | 026 on origin/main; 027 closes the hand-edit gap the scaffold placement leaves | `validate.sh --recursive --strict` on the parent |
 
 ### Handoffs Outside sk-code
 

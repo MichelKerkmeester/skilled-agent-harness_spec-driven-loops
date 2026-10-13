@@ -1465,7 +1465,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 
 **Add your own surface**
 
-1. Run `/create:skill-parent update --surfaces <name>` in your AI runtime. Its steps live in `.skilled/commands/create/assets/create-skill-parent-auto.yaml`. It scaffolds the packet, registers it and places it ahead of OpenCode in `tieBreak`, so your surface wins a keyword tie.
+1. Run `/create:skill-parent update --surfaces <name>` in your AI runtime. Its steps live in `.skilled/commands/create/assets/create-skill-parent-auto.yaml`. It scaffolds the packet, registers it and places it ahead of OpenCode in `tieBreak`, so your surface wins a keyword tie. If you edit `tieBreak` by hand instead, keep your surface ahead of `sk-code-opencode`, because the doctor's check 5l fails a surface placed after it.
 2. Link the three shared workflow docs into the new packet the way `sk-code-opencode/references/` does: in `.skilled/skills/sk-code/<name>/references/`, symlink `workflow-implement.md`, `workflow-debug.md` and `workflow-verify.md` to `../../shared/references/`.
 3. Add the packet's paths to the `ROUTER.md` maps and section 11, and its markers to `stack-detection.md`.
 4. Add a canary case that routes to the new surface in the canary fixture above, and copy the fixture over its authored twin. The completion report of the update command names both follow-ups.

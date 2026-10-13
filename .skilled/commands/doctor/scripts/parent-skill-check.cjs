@@ -1016,7 +1016,7 @@ function checkAdvisorProjection(ctx) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 8. HUB-ROUTER CHECKS (5a-5j)
+// 8. HUB-ROUTER CHECKS (5a-5l)
 // ─────────────────────────────────────────────────────────────────────────────
 
 function loadHubRouter(target) {
@@ -1154,6 +1154,26 @@ function checkTieBreakOrder(ctx, tieBreak) {
     }
   }
   if (tieBreak.length > 0) pass('5i: tieBreak orders workflow modes before surface/transport modes');
+}
+
+// 5l: in sk-code, sk-code-opencode is the framework's native surface and takes
+// the last keyword tie. Only the two shipped example surfaces, which a user may
+// delete, may sort after it. A surface added by hand after it loses every tie
+// to the native surface; the update command never places one there.
+const SK_CODE_NATIVE_SURFACE = 'sk-code-opencode';
+const SK_CODE_EXAMPLE_SURFACES = ['sk-code-obsidian', 'sk-code-webflow'];
+function checkNativeSurfaceLast(ctx, tieBreak) {
+  if (ctx.basename !== 'sk-code') return;
+  const nativeAt = tieBreak.indexOf(SK_CODE_NATIVE_SURFACE);
+  if (nativeAt < 0) return;
+  const kindByMode = new Map(ctx.modes.map((m) => [m.workflowMode, m.packetKind]));
+  const late = tieBreak.slice(nativeAt + 1)
+    .filter((m) => kindByMode.get(m) === 'surface' && !SK_CODE_EXAMPLE_SURFACES.includes(m));
+  if (late.length > 0) {
+    softFail(`5l: tieBreak places surface(s) [${late.join(', ')}] after the native surface "${SK_CODE_NATIVE_SURFACE}", so they lose every keyword tie to it; move them ahead of "${SK_CODE_NATIVE_SURFACE}" in routerPolicy.tieBreak, or re-add them with /create:skill-parent update --surfaces`);
+    return;
+  }
+  pass(`5l: tieBreak places no added surface after the native surface "${SK_CODE_NATIVE_SURFACE}"`);
 }
 
 // 5j: command-subworkflow router signals exactly mirror their registry declarations.
@@ -1317,6 +1337,7 @@ function checkHubRouter(ctx) {
   checkBaseOutcomes(outcomes);
   checkDefaultMode(ctx, policy);
   checkTieBreakOrder(ctx, tieBreak);
+  checkNativeSurfaceLast(ctx, tieBreak);
   checkSubworkflowSignals(ctx, subworkflowSignals);
 }
 

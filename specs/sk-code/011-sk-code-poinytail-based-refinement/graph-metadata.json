@@ -29,7 +29,8 @@
     "sk-code/011-sk-code-poinytail-based-refinement/023-readme-freshness-research",
     "sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes",
     "sk-code/011-sk-code-poinytail-based-refinement/025-external-surface-priority-research",
-    "sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build"
+    "sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build",
+    "sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning"
   ],
   "manual": {
     "depends_on": [],
@@ -178,19 +179,19 @@
     ],
     "causal_summary": "Ponytail is an external coding-agent plugin that teaches restraint: write the least code that meets the requirement, and still ship tests for risky logic",
     "created_at": "2026-10-09T13:20:16Z",
-    "last_save_at": "2026-10-13T10:13:35.743Z",
+    "last_save_at": "2026-10-13T15:47:44.076Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:a652ed73bb8dedc530811260bdc2335455666413a5d31c127b3f29d1de9d712f",
+    "source_fingerprint": "sha256:b523b0f5f8c07fba2010fdd6488a64358907d8b27ff706cdfa3f2bbb05eb2b0a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5c2066cc688f7f8dbbc2f108e454f1382b4f3700687080e378e3cb65d5e428df"
+      "spec.md": "8ce70c1be06f94e08e48591b124e31f8d9da6f2ae217facc403c92defb5ef381"
     },
-    "last_active_child_id": "sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build",
+    "last_active_child_id": "sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning",
     "last_active_at": "2026-10-13T10:09:54.862Z"
   }
 }
