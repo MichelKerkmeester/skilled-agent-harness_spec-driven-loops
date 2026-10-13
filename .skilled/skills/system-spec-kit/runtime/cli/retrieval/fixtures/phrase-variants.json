@@ -1,5 +1,5 @@
 {
-  "manifestHash": "b5f318bad2232695067a550682905d27a813d79065a2aed219c140c5a2559e79",
+  "manifestHash": "ba9c34759bd80ce42f9e9931939c74c896f6654b8ac110282ba7aac134165d56",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8041,6 +8041,9 @@
     ],
     "add union alpha": [
       "add union alpha"
+    ],
+    "add your own sk code surface": [
+      "add your own sk-code surface"
     ],
     "adding new mcp server": [
       "adding new mcp server"
@@ -79652,6 +79655,9 @@
     "remove task mcp": [
       "remove task mcp"
     ],
+    "remove the example sk code surfaces": [
+      "remove the example sk-code surfaces"
+    ],
     "remove track narrowing scorer": [
       "remove track narrowing scorer"
     ],
@@ -95422,6 +95428,9 @@
     "skilled v4 0 0 4": [
       "skilled v4.0.0.4"
     ],
+    "skilled v4 0 0 5": [
+      "skilled v4.0.0.5"
+    ],
     "skilled verification phase goal": [
       "skilled verification phase goal"
     ],
@@ -106404,6 +106413,9 @@
     ],
     "v4 0 0 4 release notes": [
       "v4.0.0.4 release notes"
+    ],
+    "v4 0 0 5 release notes": [
+      "v4.0.0.5 release notes"
     ],
     "v4 changelog": [
       "v4 changelog"
