@@ -1,5 +1,5 @@
 {
-  "corpusHash": "bd0262ae25cdf344fcf5830382118765eac8c8e8d5b6d39a8af5e96a9e31a37c",
+  "corpusHash": "75effdb802071f13c002e80eb4fcd70ae78c8b76c4ad828574749421f569b56f",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24727,
+  "includedPathCount": 24741,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11298,6 +11298,20 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/implementation-summary.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/review/deep-review-dashboard.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/review/deep-review-strategy.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/review/iterations/iteration-001.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/review/iterations/iteration-002.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/review/iterations/iteration-003.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/review/iterations/iteration-004.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/review/iterations/iteration-005.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/review/prompts/iteration-1.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/review/prompts/iteration-2.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/review/prompts/iteration-3.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/review/prompts/iteration-4.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/review/prompts/iteration-5.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/review/resource-map.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/review/review-report.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/goal.md",
@@ -24758,7 +24772,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "940836084d71bdac74a7be7ffc1211d92504325f8edc885ef8a3768410e947f2",
+  "manifestHash": "c7324f73b8216bde5ec7bc847942c4d2aeedfbc9406976a0002755e31ae91f9b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
