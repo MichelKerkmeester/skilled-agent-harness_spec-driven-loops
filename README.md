@@ -1457,10 +1457,10 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 2. In `.skilled/skills/sk-code/mode-registry.json`, delete the mode's `modes` entry and its name in `extensions.surface-axis.surfaces`. In `.skilled/skills/sk-code/hub-router.json`, delete it from `routerPolicy.tieBreak`, delete its `routerSignals` entry and delete the two `vocabularyClasses` that entry names.
 3. Regenerate the leaf manifest with `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --write .skilled/skills/sk-code`.
 4. Edit section 11 of `.skilled/skills/sk-code/ROUTER.md` by hand, because no command writes it. Delete every `RESOURCE_MAP` path under `<mode>/`, then delete each key left with no paths from both `RESOURCE_MAP` and `INTENT_SIGNALS`. Trim the prose map rows and sections above section 11 that point at the removed packet.
-5. Update the surface table and the surface list sentence in `.skilled/skills/sk-code/SKILL.md`, and the surface markers in `.skilled/skills/sk-code/shared/references/stack-detection.md`.
+5. Update the surface table and the surface list sentence in `.skilled/skills/sk-code/SKILL.md`, the surface markers in `.skilled/skills/sk-code/shared/references/stack-detection.md` and the surface lines in this `README.md`.
 6. Delete or adjust the files written for the example. These are its scenarios under `.skilled/skills/sk-code/manual-testing-playbook/`, with their rows in `manual-testing-playbook.md`, the Obsidian and Webflow checklist pointers in `.skilled/skills/sk-code/sk-code-quality/`, the cases in `.skilled/bin/tests/compiled-route-surface-hint.test.cjs` and the canary cases that name the mode in `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json`. After a canary edit, copy that fixture over its authored twin at `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json`.
 7. Run `node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs` and fix every dead path and stale surface count it lists, including the hub's `README.md` and `graph-metadata.json`.
-8. Refresh the README manifest with `python3 .skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py --write`.
+8. Refresh the README manifest with `python3 .skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py --write`, and the Hermes skill copies with `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs`, which drops the removed packet's copy.
 9. Commit with the hooks installed, or refresh and copy the manifest by hand as above.
 
 **Add your own surface**
@@ -1469,7 +1469,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 2. Link the three shared workflow docs into the new packet the way `sk-code-opencode/references/` does: in `.skilled/skills/sk-code/<name>/references/`, symlink `workflow-implement.md`, `workflow-debug.md` and `workflow-verify.md` to `../../shared/references/`.
 3. Add the packet's paths to the `ROUTER.md` maps and section 11, and its markers to `stack-detection.md`.
 4. Add a canary case that routes to the new surface in the canary fixture above, and copy the fixture over its authored twin. The completion report of the update command names both follow-ups.
-5. Commit with the hooks installed, or refresh and copy the manifest by hand.
+5. Refresh the Hermes skill copies the same way, then commit with the hooks installed, or refresh and copy the manifest by hand.
 
 **Verify.** Each of these must exit 0. Then route a prompt that names your stack, and check that your surface comes first.
 
