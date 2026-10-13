@@ -9,7 +9,7 @@ trigger_phrases:
   - "4-part version format"
 importance_tier: important
 contextType: general
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Frontmatter Versioning Standard
@@ -119,7 +119,9 @@ When `apply` or `bump` adds a missing `version`, it inserts `version: X.Y.Z.W` a
 
 ### What nothing enforces
 
-No gate compares a hub's routing artifacts against each other, so nothing fails when `SKILL.md`, `ROUTER.md`, `description.json`, `hub-router.json` and `mode-registry.json` state different values, except the parent-skill doctor's version check, which compares `ROUTER.md` and the three JSON files with `SKILL.md`. Hub-root artifacts carry the hub release, restated in each hub's `SKILL.md`.
+No gate compares a hub's routing artifacts against each other, so nothing fails when `SKILL.md`, `description.json`, `hub-router.json` and `mode-registry.json` state different values, except the parent-skill doctor's version check, which compares the three JSON files with `SKILL.md`. Those JSON files carry the hub release, restated in each hub's `SKILL.md`.
+
+A hub `ROUTER.md` is not a release copy. It keeps its own edition under the bump rule (Section 4), and no gate compares it with `SKILL.md`.
 
 ---
 

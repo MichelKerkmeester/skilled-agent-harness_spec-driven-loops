@@ -600,7 +600,6 @@ workflow:
             IF SKILL_ROOT has no SKILL.md (for example the skilled component): skip this activity
             ELSE in SKILL_ROOT, set the version to next_version in each of these files that ALREADY carries a version, and never add a field that is absent:
               SKILL.md frontmatter version:
-              ROUTER.md frontmatter version:
               description.json "version"
               hub-router.json "version"
               mode-registry.json "version"
