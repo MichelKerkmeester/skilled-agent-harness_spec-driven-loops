@@ -66,7 +66,7 @@ contextType: "general"
 - [x] T012 [P] Run 10 iterations in lineage D, `cli-codex` `gpt-6-luna` max fast for 1 to 4, then `cli-pi` `openai/gpt-6-luna` xhigh with fast mode for 5 to 10 (`research/lineages/luna-max-fast-r2/`)
 - [x] T013 Run the orchestrator's own add-surface copy run (F18 and R1)
 - [x] T014 Run `fanout-merge.cjs` over all four lineages and regenerate the fan-out resource map
-- [ ] T015 Merged synthesis of both rounds, written by the orchestrator's synthesis and verification passes (`research/research.md`)
+- [x] T015 Merged synthesis of both rounds, written by the orchestrator's synthesis and verification passes (`research/research.md`)
 <!-- /ANCHOR:phase-4 -->
 
 ---
@@ -74,7 +74,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Every criterion in `goal.md` passes
 <!-- /ANCHOR:completion -->

@@ -8,10 +8,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/025-external-surface-priority-research"
-    last_updated_at: "2026-10-12T16:30:00Z"
-    last_updated_by: "scaffold"
-    recent_action: "Ran both lineages and wrote the checked synthesis"
-    next_safe_action: "Operator picks which proposed phases to build"
+    last_updated_at: "2026-10-13T12:00:00Z"
+    last_updated_by: "verification-pass"
+    recent_action: "Verified the merged two-round synthesis and set the final recommendations"
+    next_safe_action: "Operator picks which of phases P8 to P11 to build"
     blockers: []
     key_files: []
     session_dedup:
@@ -84,7 +84,9 @@ and findings belong here.
 | Round two, lineage C, swe2max-devin | Done | 10 iterations on `devin -p --model swe-2-max --permission-mode dangerous`, all receipts exit 0, all verified on the first dispatch |
 | Round two, lineage D, luna-max-fast-r2 | Done | Iterations 1 to 4 on `codex exec --model gpt-6-luna` effort max tier fast; 5 to 10 on `pi -p --fast --offline --model openai/gpt-6-luna --thinking xhigh` |
 | Round two merge | Done | `fanout-merge.cjs` merged 4 lineages; fan-out resource map regenerated from 40 delta sources |
-| Round two synthesis | Pending | The orchestrator's synthesis and verification passes rewrite `research/research.md`; round one's file is untouched until then |
+| Round two synthesis | Done | A fresh synthesizer merged both rounds into `research/research.md` (F1 to F82, R1 to R10, X1 to X19, P1 to P7) |
+| Verification pass | Done | A fresh verifier checked 105 claims against the iterations and the repo in six throwaway copies (V0 to V7), corrected 13 findings, added F83 to F96 and X20 to X24, and wrote section 13 (Verification pass) and section 14 (Final recommendations: R1, R9, R3, R2, R7, R4, R8 in phases P8 to P11) |
+| Criteria rerun 2026-10-13 | Done | Criterion 1 prints 10 and 10; criterion 2 prints 10 and 10; criterion 3 prints 0 with 96 F rows counted; criterion 4 prints 0 and `R1` once; criterion 5 counts 24 X rows, 11 P rows and 1 disagreement heading; criterion 6 prints `RESULT: PASSED` (0 errors, 1 warning: the five recorded SOURCE_TAGS in lineage D iterations 6 and 7) |
 
 ### Deviations and findings
 

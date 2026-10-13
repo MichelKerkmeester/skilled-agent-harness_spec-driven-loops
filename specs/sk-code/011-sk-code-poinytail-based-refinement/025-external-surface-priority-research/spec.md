@@ -23,7 +23,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-12 |
 | **Branch** | `worktrees/123-surface-priority-research` (round one), `worktrees/124-surface-priority-round-two` (round two) |
 | **Parent Spec** | ../spec.md |

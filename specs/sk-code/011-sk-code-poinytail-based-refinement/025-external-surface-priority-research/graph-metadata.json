@@ -37,7 +37,7 @@
       "sk-code"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -57,7 +57,8 @@
       ".skilled/bin/compiled-route-sync.cjs",
       "shared/README.md",
       ".opencode/plugins/system-skill-advisor.js",
-      ".skilled/bin/compiled-route.cjs"
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs"
     ],
     "entities": [
       {
@@ -151,19 +152,19 @@
         "source": "derived"
       },
       {
-        "name": "compiled-route.cjs",
+        "name": "run-all-drift-guards.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        "source": "derived"
+      },
+      {
+        "name": "sync-skills-hermes.cjs",
         "kind": "file",
-        "path": ".skilled/bin/compiled-route.cjs",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs",
         "source": "derived"
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -193,13 +194,13 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -207,7 +208,7 @@
     ],
     "causal_summary": "The v4.0.0.4 release note's \"One Surface Order Everywhere\" entry says every sk-code file that ranks the code surfaces lists OpenCode, then Obsidian, then Webflow, and that a keyword tie can be led by the session's surface through `compiled-route.cjs --surface-hint`",
     "created_at": "2026-10-12T16:19:58Z",
-    "last_save_at": "2026-10-13T04:07:29.242Z",
+    "last_save_at": "2026-10-13T04:36:49.990Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +219,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:2337f783f5caf82582dd347810143a08986cbaeed87422d6b666517f75d43181",
+    "source_fingerprint": "sha256:b4e486b323d752d8346b33b540e12bd3b2e8413a6fb7e7126da7eb2ed696c3ac",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "54f1318d397a3f6e0b4f46a56dd7810d55a4e2c9f232d50751698adf6bff8bd9",
+      "spec.md": "fdca7a3c271c51ab5c3c504009752a72f20ccce16b5186ad50153bec72156c77",
       "plan.md": "ccf0edf531b9b85069e63f7a2981fe841a6f980aee652e08d1a4b1988f3c5e4f",
-      "tasks.md": "446a4ac37193b4325b6c5cffc2c154bf02328399e49e24d84dd05c7e194b8546",
-      "implementation-summary.md": "17605808f4307787e6c05e60a691da59a439f212c07b7c2f8d0aeb2bcd142951",
-      "research/research.md": "24ace9f4462b2a3be673497773a59cef5b8485c323e8a103ead5aebdc2654405"
+      "tasks.md": "40083cd0e6f235d8fbd2f9201967758a5266d29e5c80833ef9a6f5b0d477074e",
+      "implementation-summary.md": "2b895d8edd08ac134e924bd3b74a6b4b6e4c03df6134576489def6aa338e5c18",
+      "research/research.md": "50360f4429974128885af8822555ad484b252cdb8f886a9251323706a579246e"
     },
     "last_active_at": null
   }
