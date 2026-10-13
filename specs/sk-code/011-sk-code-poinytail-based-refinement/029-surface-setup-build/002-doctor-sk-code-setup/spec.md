@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-13 |
 | **Branch** | Its own worktree from origin/main, created as `goal.md` says |
 | **Parent Spec** | ../spec.md |
@@ -89,6 +89,8 @@ One read-only command runs the external user's verify battery and names the repa
 | `.skilled/commands/doctor/assets/doctor-sk-code-setup.yaml`, `doctor-sk-code-presentation.txt` | Create | Workflow and presentation |
 | `.skilled/commands/doctor/scripts/sk-code-setup-check.cjs` and a test under `scripts/tests/` | Create | The read-only battery |
 | `.skilled/commands/README.txt` | Modify | Doctor index rows |
+| `.skilled/commands/doctor/scripts/README.md`, `.skilled/commands/doctor/scripts/tests/README.md` | Modify | The script and test index rows |
+| `.skilled/skills/sk-doc/sk-create-command/assets/command-contract.json` | Modify | The doctor family's router list names the new command |
 | `README.md`, `.skilled/skills/sk-code/README.md`, `.skilled/skills/sk-code/SKILL.md` | Modify | One reference line each |
 | Runtime command mirrors | Generated | By the sync script |
 <!-- /ANCHOR:scope -->
@@ -180,5 +182,5 @@ Copy runs are ledger rows `| S-<n> | Pass | <backticked command and what it prin
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Whether the target also runs `test_readme_manifest.py` in check mode (research section 12); decide while building and record the decision in `goal.md`.
+- None. The target does not run `test_readme_manifest.py`; `goal.md` records why.
 <!-- /ANCHOR:questions -->

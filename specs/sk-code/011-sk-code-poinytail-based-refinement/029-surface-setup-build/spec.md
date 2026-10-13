@@ -12,15 +12,15 @@ _memory:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build"
     last_updated_at: "2026-10-13T19:00:00Z"
     last_updated_by: "planner"
-    recent_action: "Planned two build phases from the 028 final recommendations"
-    next_safe_action: "Build 001, then build 002 from origin/main once 001 is on it"
+    recent_action: "Closed both build phases"
+    next_safe_action: "Operator merges worktrees/137-doctor-sk-code-closeout"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-029-parent"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,9 +37,9 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-13 |
-| **Branch** | `worktrees/133-surface-setup-build` for planning and 001; 002 builds in its own worktree from origin/main |
+| **Branch** | `worktrees/133-surface-setup-build` for planning and 001; 002 built in worktree 134 from origin/main and closed on `worktrees/137-doctor-sk-code-closeout` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | sk-code/011-sk-code-poinytail-based-refinement |
 | **Predecessor** | 028-surface-setup-hardening-research |
@@ -106,7 +106,7 @@ Five items, five rows, two children. No item is unmapped and none is mapped twic
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-clone-path-and-messages/ | R1, R2, R4 and R5: the README block reaches a green battery from a fresh clone, the guard's stale line names its commands, and an unprovisioned checker names the provision command | Complete |
-| 2 | 002-doctor-sk-code-setup/ | R3: a read-only `/doctor:sk-code setup` that runs the battery and prints one repair command per failing leg | Pending |
+| 2 | 002-doctor-sk-code-setup/ | R3: a read-only `/doctor:sk-code setup` that runs the battery and prints one repair command per failing leg | Complete |
 
 ### Phase Transition Rules
 
@@ -128,7 +128,7 @@ Five items, five rows, two children. No item is unmapped and none is mapped twic
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- Whether `/doctor:sk-code setup` also runs `test_readme_manifest.py` in check mode (research section 12); 002 decides while building.
+- None. `/doctor:sk-code setup` does not run `test_readme_manifest.py`; `002-doctor-sk-code-setup/goal.md` records why.
 <!-- /ANCHOR:questions -->
 
 ---

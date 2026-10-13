@@ -37,12 +37,12 @@ Follow the add recipe in `.skilled/commands/doctor/_routes.yaml`: append the rou
 ### Definition of Ready
 - [x] Problem statement clear and scope documented
 - [x] Success criteria measurable
-- [ ] Dependencies identified: 001 on origin/main
+- [x] Dependencies identified: 001 on origin/main
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -105,7 +105,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 001 on origin/main | Internal | Waits on the operator's push | The repair texts the script prints do not exist yet |
+| 001 on origin/main | Internal | Met: 001 is on origin/main | The repair texts the script prints do not exist yet |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -147,7 +147,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Baselines of `route-validate.sh`, `run-all.sh` and the mirror checks recorded
+- [x] Baselines of `route-validate.sh`, `run-all.sh` and the mirror checks recorded
 
 ### Rollback Procedure
 1. Revert the phase commits.

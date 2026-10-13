@@ -37,16 +37,17 @@
       "completion"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
       ".skilled/bin/compiled-route-guard.cjs",
       ".skilled/bin/tests/compiled-route-manifest.test.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+      ".skilled/commands/doctor/sk-code.md",
       ".skilled/commands/README.txt",
-      "001-clone-path-and-messages/goal.md",
-      "002-doctor-sk-code-setup/goal.md"
+      "002-doctor-sk-code-setup/goal.md",
+      "001-clone-path-and-messages/goal.md"
     ],
     "entities": [
       {
@@ -80,6 +81,12 @@
         "source": "derived"
       },
       {
+        "name": "sk-code.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/sk-code.md",
+        "source": "derived"
+      },
+      {
         "name": "README.txt",
         "kind": "file",
         "path": ".skilled/commands/README.txt",
@@ -87,12 +94,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -117,6 +118,12 @@
       },
       {
         "name": "Problem Statement An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Adapting",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -160,17 +167,17 @@
     ],
     "causal_summary": "An external user who clones the repository and follows the README block \"What Adapting `sk-code` Looks Like\" cannot reach a green check battery",
     "created_at": "2026-10-13T18:45:41Z",
-    "last_save_at": "2026-10-13T19:51:53.412Z",
+    "last_save_at": "2026-10-13T21:54:10.504Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:8d914d70482653dd3e27d8ffecc8124e65e637c3ab1e593ef1bffe67bcf1280b",
+    "source_fingerprint": "sha256:c62f4c20921843fbe7d19b9d0f08cd94c864691288a52b5a64ee2182514bcb55",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5e1dae426aea1a9521c113c49dfa9fbcbf90a6eb19bf49bd0f93e1bd4424fdec"
+      "spec.md": "76fe6bf99f2861d22a6a42b892ee383c56ca2978a3256e08c6fa1e8a87575ddb"
     },
     "last_active_at": null
   }

@@ -1,0 +1,134 @@
+{
+  "topic": "Review: commit 79f5dacc52 on origin/main (diff 49cfd5c89f..79f5dacc52), merged in c5b3bd9355: a new read-only /doctor:sk-code command with one target, setup. sk-code-setup-check.cjs runs eight legs from the repository root (provisioning precheck via require.resolve of @spec-kit/shared, parent-skill-check on sk-code, ci-skill-root-metadata, compiled-route-guard --json, compiled-route-sync --check, the sk-code drift guards, ci-skill-derived-freshness --format json, and a compiled-route probe that passes only on a parsed action route), prints one repair line per failing leg, skips the two provision-dependent legs when the precheck fails, and writes nothing; a nine-case node:test suite drives it against stub roots; the command doc, its _routes.yaml route (mutating read-only), workflow YAML and presentation; the command-contract router list; index rows and one reference line each in the root README, the sk-code README and SKILL.md; regenerated runtime mirrors",
+  "sessionId": "2026-10-13T21:11:31.000Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup",
+  "createdAt": "2026-10-13T21:11:31.000Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-devin",
+    "model": "deepseek-v4-1-flash-max",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 1200
+  },
+  "mode": "review",
+  "reviewTarget": "commit 79f5dacc52 on origin/main (diff 49cfd5c89f..79f5dacc52), merged in c5b3bd9355: a new read-only /doctor:sk-code command with one target, setup. sk-code-setup-check.cjs runs eight legs from the repository root (provisioning precheck via require.resolve of @spec-kit/shared, parent-skill-check on sk-code, ci-skill-root-metadata, compiled-route-guard --json, compiled-route-sync --check, the sk-code drift guards, ci-skill-derived-freshness --format json, and a compiled-route probe that passes only on a parsed action route), prints one repair line per failing leg, skips the two provision-dependent legs when the precheck fails, and writes nothing; a nine-case node:test suite drives it against stub roots; the command doc, its _routes.yaml route (mutating read-only), workflow YAML and presentation; the command-contract router list; index rows and one reference line each in the root README, the sk-code README and SKILL.md; regenerated runtime mirrors",
+  "reviewTargetType": "files",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+    ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs",
+    ".skilled/commands/doctor/sk-code.md",
+    ".skilled/commands/doctor/_routes.yaml",
+    ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml",
+    ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt",
+    ".skilled/commands/doctor/scripts/README.md",
+    ".skilled/commands/doctor/scripts/tests/README.md",
+    ".skilled/commands/README.txt",
+    ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+    "README.md",
+    ".skilled/skills/sk-code/README.md",
+    ".skilled/skills/sk-code/SKILL.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/acceptance-criteria.md"
+  ],
+  "stopPolicy": "max-iterations",
+  "resource_map": {
+    "emit": true
+  }
+}

@@ -1,0 +1,1714 @@
+{
+  "sessionId": "2026-10-13T21:11:31.000Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "A hung leg blocks the battery forever",
+      "file": ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+      "line": 76,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "A nonzero probe exit is reported as printed no route decision",
+      "file": ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+      "line": 177,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "The detail cap truncates FAIL lines while the repair says each",
+      "file": ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+      "line": 155,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-004",
+      "severity": "P2",
+      "title": "Repair and diagnostic branches lack test cases",
+      "file": ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs",
+      "line": 107,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "Caller-supplied --prompt is rendered into report lines unsanitized",
+      "file": ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+      "line": 138,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "Raw leg output is admitted into report lines without control-character filtering",
+      "file": ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+      "line": 152,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Spec Files to Change omits three files the change modifies",
+      "file": "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md",
+      "line": 83,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Leg wiring invariants are implicit; a missing JUDGES entry crashes instead of reporting",
+      "file": ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+      "line": 319,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "Header comment calls every leg a child process; the provisioning leg resolves in-process",
+      "file": ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+      "line": 15,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "Legacy-stub repair crashes the battery when the guard module is unavailable",
+      "file": ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+      "line": 171,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-002",
+      "severity": "P2",
+      "title": "Probe passes on any hub's route decision; the served hubId is never checked",
+      "file": ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+      "line": 246,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 11
+  },
+  "openFindingsCount": 11,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.8,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "catalog_registration",
+      "change_surface_drift",
+      "comment_accuracy",
+      "cross_reference_break",
+      "diagnostic_message_accuracy",
+      "doc_asset_drift",
+      "error_handling",
+      "exit_code_contract",
+      "hang_timeout",
+      "input_validation",
+      "output_injection",
+      "output_truncation",
+      "path_resolution",
+      "probe_false_pass",
+      "repair_generation_crash",
+      "requirement_without_artifact",
+      "route_metadata_mismatch",
+      "state_transition",
+      "terminal_escape_injection",
+      "test_coverage",
+      "wiring_invariant_completeness"
+    ],
+    "ruledOut": [
+      "broken_leg_path",
+      "catalog_registration",
+      "cli_argument_handling",
+      "command_injection",
+      "comment_hygiene",
+      "cross_reference_break",
+      "dead_code",
+      "doc_asset_drift",
+      "duplicated_leg_path_constants",
+      "duplicated_root_walk",
+      "error_handling",
+      "exit_code_contract",
+      "input_validation",
+      "path_resolution",
+      "privilege_escalation",
+      "read_only_claim",
+      "read_only_test_coverage",
+      "repair_command_trust",
+      "requirement_without_artifact",
+      "resource_exhaustion",
+      "route_metadata_mismatch",
+      "secrets_exposure",
+      "state_transition",
+      "status_line_shape",
+      "test_maintainability",
+      "trust_boundary_env"
+    ],
+    "deferred": [
+      "goal_criteria_chain",
+      "mirror_sync",
+      "reference_line_root_readme"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "exit_code_contract": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "state_transition": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "error_handling": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "path_resolution": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "input_validation": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "diagnostic_message_accuracy": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "hang_timeout": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "output_truncation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "test_coverage": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "output_injection": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "terminal_escape_injection": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "command_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "secrets_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "privilege_escalation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "resource_exhaustion": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "trust_boundary_env": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "repair_command_trust": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "read_only_claim": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "requirement_without_artifact": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "change_surface_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "doc_asset_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "route_metadata_mismatch": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "cross_reference_break": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "catalog_registration": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "mirror_sync": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "root_readme_reference_line": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "goal_criteria_chain": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "reference_line_root_readme": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "wiring_invariant_completeness": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "comment_accuracy": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "duplicated_leg_path_constants": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "status_line_shape": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "dead_code": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "test_maintainability": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "comment_hygiene": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "duplicated_root_walk": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "cli_argument_handling": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "read_only_test_coverage": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "repair_generation_crash": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "probe_false_pass": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "broken_leg_path": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 3,
+      "id": "SL-007",
+      "dimension": "traceability",
+      "targetRefs": [
+        "Runtime command mirrors"
+      ],
+      "bugClass": "mirror_sync",
+      "disposition": "deferred",
+      "rationale": "not enumerated this iteration",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:93"
+      ],
+      "reason": "iteration budget; mirrors are regenerated by tooling and gated by AC-005"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-008",
+      "dimension": "traceability",
+      "targetRefs": [
+        "README.md"
+      ],
+      "bugClass": "reference_line_root_readme",
+      "disposition": "deferred",
+      "rationale": "root README reference line unverified this iteration",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:92"
+      ],
+      "reason": "not re-read; AC-005 remains pending"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-009",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/goal.md"
+      ],
+      "bugClass": "goal_criteria_chain",
+      "disposition": "deferred",
+      "rationale": "chain check deferred",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/acceptance-criteria.md:54"
+      ],
+      "reason": "goal.md criteria not cross-read this iteration"
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "exit_code_contract",
+      "disposition": "ruled_out",
+      "rationale": "Mapping matches the workflow exit-code contract and is asserted by the happy-path and bad-argument cases.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:305",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:325"
+      ],
+      "reason": "Verified by direct read and test assertions."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "Gate order and membership match the spec edge case and the unprovisioned-tree test.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:315",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:61"
+      ],
+      "reason": "Asserted by the unprovisioned-tree case (two SKIP rows, failed=1 skipped=2)."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "error_handling",
+      "disposition": "ruled_out",
+      "rationale": "No crash path found in the spawn or parse layers; the no-stack assertion covers the provisioning path.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:82",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:157"
+      ],
+      "reason": "Verified by direct read."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "path_resolution",
+      "disposition": "ruled_out",
+      "rationale": "Default and fixture roots both resolve as documented and as exercised by the suite.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:37",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:97"
+      ],
+      "reason": "Verified by direct read against the test fixtures."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "input_validation",
+      "disposition": "ruled_out",
+      "rationale": "Behavior matches the usage string and the bad-argument case.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:294",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:297"
+      ],
+      "reason": "Asserted by the bad-argument case."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-001",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "the only argv producer is parsePrompt, which returns one plain string passed as one argv element",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:76",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:139"
+      ],
+      "reason": "full-file read shows argv-array spawns and no shell invocation anywhere"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "trust_boundary_env",
+      "disposition": "ruled_out",
+      "rationale": "the override is the documented test seam and the production caller does not set it",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:37",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:76"
+      ],
+      "reason": "env control of the invocation already implies equivalent capability; the seam adds no exposure beyond the default repo-execution design"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "privilege_escalation",
+      "disposition": "ruled_out",
+      "rationale": "hardening nicety only, not a finding",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:129"
+      ],
+      "reason": "PATH control already implies code-execution-equivalent capability; no elevation exists"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "secrets_exposure",
+      "disposition": "ruled_out",
+      "rationale": "children inherit the environment unchanged, standard for a repo-local doctor",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:37"
+      ],
+      "reason": "full read finds no secret access or secret-bearing output"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "repair_command_trust",
+      "disposition": "ruled_out",
+      "rationale": "no escalation path beyond the trust already granted to the legs",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:210",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:234"
+      ],
+      "reason": "the legs already execute with the operator's privileges, so their output strings add no capability; the residual risk is a wrong command, covered as correctness in iteration 1"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "read_only_claim",
+      "disposition": "ruled_out",
+      "rationale": "the read-only classification holds for the battery's own code",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:30",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:324"
+      ],
+      "reason": "no write path exists inside the battery; the residual assumption is the in-process guard require, a pre-existing non-goal leg"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md"
+      ],
+      "bugClass": "requirement_without_artifact",
+      "disposition": "ruled_out",
+      "rationale": "all five REQs map to artifacts; no orphan requirement found",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:105",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:89",
+        ".skilled/commands/doctor/_routes.yaml:220",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json:201"
+      ],
+      "reason": "mapping verified by direct read and exact search"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/sk-code.md",
+        ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml",
+        ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "doc_asset_drift",
+      "disposition": "ruled_out",
+      "rationale": "no drift between command doc, workflow asset, presentation and battery",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/sk-code.md:61",
+        ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:34",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:89"
+      ],
+      "reason": "leg ids and flags agree across all four artifacts"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/_routes.yaml"
+      ],
+      "bugClass": "route_metadata_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "REQ-001 route metadata verified",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/_routes.yaml:220",
+        ".skilled/commands/doctor/_routes.yaml:225"
+      ],
+      "reason": "row fields match the doc, YAML and presentation"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/README.txt",
+        ".skilled/commands/doctor/scripts/README.md",
+        ".skilled/commands/doctor/scripts/tests/README.md",
+        ".skilled/skills/sk-code/README.md",
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json"
+      ],
+      "bugClass": "cross_reference_break",
+      "disposition": "ruled_out",
+      "rationale": "every .skilled-side registration exists",
+      "evidenceRefs": [
+        ".skilled/commands/README.txt:166",
+        ".skilled/commands/doctor/scripts/README.md:61",
+        ".skilled/commands/doctor/scripts/tests/README.md:32",
+        ".skilled/skills/sk-code/README.md:122",
+        ".skilled/skills/sk-code/SKILL.md:40",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json:262"
+      ],
+      "reason": "all searched references resolve; root README reference line deferred"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-M3",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+        ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs"
+      ],
+      "bugClass": "duplicated_leg_path_constants",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs:24",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:47"
+      ],
+      "reason": "self-checking duplication: drift surfaces as a failing stub leg"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-M4",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "status_line_shape",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:282",
+        ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs:113"
+      ],
+      "reason": "asymmetry is structural, not a consumer hazard"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-M5",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "dead_code",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:53",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:234"
+      ],
+      "reason": "full read finds no unused wiring"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-M6",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs"
+      ],
+      "bugClass": "test_maintainability",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs:99",
+        ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs:61"
+      ],
+      "reason": "cleanup and isolation are sound"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-M7",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+        ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs"
+      ],
+      "bugClass": "comment_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:2",
+        ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs:2"
+      ],
+      "reason": "the repository comment-hygiene rule holds across both files"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-M8",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "duplicated_root_walk",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:39",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:168"
+      ],
+      "reason": "a shared helper would conflate the two bases; cosmetic only"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-M9",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "cli_argument_handling",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:294"
+      ],
+      "reason": "within the documented single-flag contract"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-M10",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs"
+      ],
+      "bugClass": "read_only_test_coverage",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:76"
+      ],
+      "reason": "claim verified by read; avoids double-count with R1-P2-004"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-010",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "broken_leg_path",
+      "disposition": "ruled_out",
+      "rationale": "every spawned script and repair binary resolved in the reviewed tree",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+      ],
+      "reason": "existence sweep resolved all ten referenced binaries"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "exit_code_contract",
+      "disposition": "ruled_out",
+      "rationale": "Mapping matches the workflow exit-code contract and is asserted by the happy-path and bad-argument cases.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:305",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:325"
+      ],
+      "proof": "Verified by direct read and test assertions."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "Gate order and membership match the spec edge case and the unprovisioned-tree test.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:315",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:61"
+      ],
+      "proof": "Asserted by the unprovisioned-tree case (two SKIP rows, failed=1 skipped=2)."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "error_handling",
+      "disposition": "ruled_out",
+      "rationale": "No crash path found in the spawn or parse layers; the no-stack assertion covers the provisioning path.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:82",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:157"
+      ],
+      "proof": "Verified by direct read."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "path_resolution",
+      "disposition": "ruled_out",
+      "rationale": "Default and fixture roots both resolve as documented and as exercised by the suite.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:37",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:97"
+      ],
+      "proof": "Verified by direct read against the test fixtures."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "input_validation",
+      "disposition": "ruled_out",
+      "rationale": "Behavior matches the usage string and the bad-argument case.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:294",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:297"
+      ],
+      "proof": "Asserted by the bad-argument case."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-001",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "the only argv producer is parsePrompt, which returns one plain string passed as one argv element",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:76",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:139"
+      ],
+      "proof": "full-file read shows argv-array spawns and no shell invocation anywhere"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "trust_boundary_env",
+      "disposition": "ruled_out",
+      "rationale": "the override is the documented test seam and the production caller does not set it",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:37",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:76"
+      ],
+      "proof": "env control of the invocation already implies equivalent capability; the seam adds no exposure beyond the default repo-execution design"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "privilege_escalation",
+      "disposition": "ruled_out",
+      "rationale": "hardening nicety only, not a finding",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:129"
+      ],
+      "proof": "PATH control already implies code-execution-equivalent capability; no elevation exists"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "secrets_exposure",
+      "disposition": "ruled_out",
+      "rationale": "children inherit the environment unchanged, standard for a repo-local doctor",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:37"
+      ],
+      "proof": "full read finds no secret access or secret-bearing output"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "resource_exhaustion",
+      "disposition": "not_applicable",
+      "rationale": "security framing of the same defect adds no new information",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:76"
+      ],
+      "proof": "already registered as R1-P2-001 in the correctness iteration; re-reporting would double-count"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "repair_command_trust",
+      "disposition": "ruled_out",
+      "rationale": "no escalation path beyond the trust already granted to the legs",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:210",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:234"
+      ],
+      "proof": "the legs already execute with the operator's privileges, so their output strings add no capability; the residual risk is a wrong command, covered as correctness in iteration 1"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "read_only_claim",
+      "disposition": "ruled_out",
+      "rationale": "the read-only classification holds for the battery's own code",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:30",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:324"
+      ],
+      "proof": "no write path exists inside the battery; the residual assumption is the in-process guard require, a pre-existing non-goal leg"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md"
+      ],
+      "bugClass": "requirement_without_artifact",
+      "disposition": "ruled_out",
+      "rationale": "all five REQs map to artifacts; no orphan requirement found",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:105",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:89",
+        ".skilled/commands/doctor/_routes.yaml:220",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json:201"
+      ],
+      "proof": "mapping verified by direct read and exact search"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/sk-code.md",
+        ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml",
+        ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "doc_asset_drift",
+      "disposition": "ruled_out",
+      "rationale": "no drift between command doc, workflow asset, presentation and battery",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/sk-code.md:61",
+        ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:34",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:89"
+      ],
+      "proof": "leg ids and flags agree across all four artifacts"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/_routes.yaml"
+      ],
+      "bugClass": "route_metadata_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "REQ-001 route metadata verified",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/_routes.yaml:220",
+        ".skilled/commands/doctor/_routes.yaml:225"
+      ],
+      "proof": "row fields match the doc, YAML and presentation"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/README.txt",
+        ".skilled/commands/doctor/scripts/README.md",
+        ".skilled/commands/doctor/scripts/tests/README.md",
+        ".skilled/skills/sk-code/README.md",
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json"
+      ],
+      "bugClass": "cross_reference_break",
+      "disposition": "ruled_out",
+      "rationale": "every .skilled-side registration exists",
+      "evidenceRefs": [
+        ".skilled/commands/README.txt:166",
+        ".skilled/commands/doctor/scripts/README.md:61",
+        ".skilled/commands/doctor/scripts/tests/README.md:32",
+        ".skilled/skills/sk-code/README.md:122",
+        ".skilled/skills/sk-code/SKILL.md:40",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json:262"
+      ],
+      "proof": "all searched references resolve; root README reference line deferred"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-006",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/acceptance-criteria.md"
+      ],
+      "bugClass": "checklist_evidence_gap",
+      "disposition": "not_applicable",
+      "rationale": "nothing actionable while the packet is open",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/acceptance-criteria.md:52"
+      ],
+      "proof": "closure gate runs after review; AC rows are Unmet by design and the ledger rows accrue pre-close"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-010",
+      "dimension": "traceability",
+      "targetRefs": [
+        "reviewed surface"
+      ],
+      "bugClass": "playbook_capability_link",
+      "disposition": "not_applicable",
+      "rationale": "overlay protocol has no target here",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/sk-code.md:1"
+      ],
+      "proof": "no playbook asset in the reviewed surface"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-M3",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+        ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs"
+      ],
+      "bugClass": "duplicated_leg_path_constants",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs:24",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:47"
+      ],
+      "proof": "self-checking duplication: drift surfaces as a failing stub leg"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-M4",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "status_line_shape",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:282",
+        ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs:113"
+      ],
+      "proof": "asymmetry is structural, not a consumer hazard"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-M5",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "dead_code",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:53",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:234"
+      ],
+      "proof": "full read finds no unused wiring"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-M6",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs"
+      ],
+      "bugClass": "test_maintainability",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs:99",
+        ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs:61"
+      ],
+      "proof": "cleanup and isolation are sound"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-M7",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+        ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs"
+      ],
+      "bugClass": "comment_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:2",
+        ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs:2"
+      ],
+      "proof": "the repository comment-hygiene rule holds across both files"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-M8",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "duplicated_root_walk",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:39",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:168"
+      ],
+      "proof": "a shared helper would conflate the two bases; cosmetic only"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-M9",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "cli_argument_handling",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:294"
+      ],
+      "proof": "within the documented single-flag contract"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-M10",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs"
+      ],
+      "bugClass": "read_only_test_coverage",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:76"
+      ],
+      "proof": "claim verified by read; avoids double-count with R1-P2-004"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-010",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "broken_leg_path",
+      "disposition": "ruled_out",
+      "rationale": "every spawned script and repair binary resolved in the reviewed tree",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+      ],
+      "proof": "existence sweep resolved all ten referenced binaries"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "broken_leg_path",
+      "repair_generation_crash",
+      "probe_false_pass"
+    ],
+    "covered": [
+      "repair_generation_crash",
+      "probe_false_pass"
+    ],
+    "ruledOut": [
+      "broken_leg_path"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

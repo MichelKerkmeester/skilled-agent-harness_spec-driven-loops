@@ -142,7 +142,7 @@ These bind every build phase, 002 to 006.
 | 26 | 026-external-surface-priority-build/ | Build the 025 final recommendations R1, R2, R3, R4, R7, R8 and R9 and drop `ROUTER.md` from doctor check 13a, in five children; 001 to 003 build in parallel, 004 after 002, 005 last | Complete |
 | 27 | 027-surface-tie-order-warning/ | Doctor check 5l reports a sk-code surface a user placed by hand after `sk-code-opencode` in `tieBreak`, except the two shipped examples; one README sentence | Complete |
 | 28 | 028-surface-setup-hardening-research/ | Two-lineage five-iteration research into what still breaks the rule that only sk-code-opencode and sk-code-review matter to an external user, the setup journey from clone to a green battery, and whether the setup belongs in a doctor command or a sk-code mode; research only | Complete |
-| 29 | 029-surface-setup-build/ | Build the 028 recommendations in two children: 001 fixes the clone path and the guard and contract-library messages (R1, R2, R4, R5), 002 adds a read-only `/doctor:sk-code setup` (R3) from origin/main once 001 is on it | In Progress |
+| 29 | 029-surface-setup-build/ | Build the 028 recommendations in two children: 001 fixes the clone path and the guard and contract-library messages (R1, R2, R4, R5), 002 adds a read-only `/doctor:sk-code setup` (R3) from origin/main once 001 is on it | Complete |
 
 ### Phase Transition Rules
 

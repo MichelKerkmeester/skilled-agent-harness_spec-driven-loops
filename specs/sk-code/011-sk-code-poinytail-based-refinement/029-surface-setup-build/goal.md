@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build"
     last_updated_at: "2026-10-13T19:00:00Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "Closed both phases; all four criteria pass"
+    next_safe_action: "Operator merges worktrees/137-doctor-sk-code-closeout"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-029-parent"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -76,10 +76,10 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `P=specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build; [ "$(cat $P/00*/goal.md | grep -c '^- \[ \] ')" = 0 ] && [ "$(grep -l 'completion_pct: 100' $P/00*/implementation-summary.md | wc -l | tr -d ' ')" = 2 ] && echo ok` prints ok.
-- [ ] `P=specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build; for c in $P $P/00*/; do node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs $c | tail -1; done | grep -c 'RESULT: PASSED'` prints 3.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build --recursive --strict` prints `RESULT: PASSED` 3 times and `RESULT: FAILED` 0 times.
-- [ ] `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code >/dev/null 2>&1 && node .skilled/bin/compiled-route-guard.cjs >/dev/null 2>&1 && node .skilled/bin/compiled-route-sync.cjs --check >/dev/null 2>&1 && bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh >/dev/null 2>&1 && node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs >/dev/null 2>&1 && echo ok`, run on 002's branch, prints ok.
+- [x] `P=specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build; [ "$(cat $P/00*/goal.md | grep -c '^- \[ \] ')" = 0 ] && [ "$(grep -l 'completion_pct: 100' $P/00*/implementation-summary.md | wc -l | tr -d ' ')" = 2 ] && echo ok` prints ok.
+- [x] `P=specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build; for c in $P $P/00*/; do node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs $c | tail -1; done | grep -c 'RESULT: PASSED'` prints 3.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build --recursive --strict` prints `RESULT: PASSED` 3 times and `RESULT: FAILED` 0 times.
+- [x] `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code >/dev/null 2>&1 && node .skilled/bin/compiled-route-guard.cjs >/dev/null 2>&1 && node .skilled/bin/compiled-route-sync.cjs --check >/dev/null 2>&1 && bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh >/dev/null 2>&1 && node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs >/dev/null 2>&1 && echo ok`, run on 002's branch, prints ok.
 
 All commands run from the repository root.
 <!-- /ANCHOR:completion -->
@@ -99,7 +99,8 @@ and findings belong here.
 |------|-------|----------|
 | Planned 2026-10-13 | Done | create.sh phase mode, `--path`, `--level 2`, `--with-goal`, two children; traceability table in `spec.md` maps R1 to R5 to exactly one child each |
 | 001 clone path and messages | Done | Branch `worktrees/133-surface-setup-build`; all seven child criteria rerun by the orchestrator and passing; awaits the operator push |
-| 002 doctor sk-code setup | Pending | Starts from origin/main once 001 is on it |
+| 002 doctor sk-code setup | Done | Build `79f5dacc52` on origin/main; review fixes `49554a1672` and closeout on `worktrees/137-doctor-sk-code-closeout`; all seven child criteria rerun by the orchestrator and passing |
+| Criteria | Done | All four rerun on `worktrees/137-doctor-sk-code-closeout`: 1 prints ok, 2 prints 3, 3 prints `RESULT: PASSED` 3 times and `RESULT: FAILED` 0 times, 4 prints ok |
 
 ### Deviations and findings
 

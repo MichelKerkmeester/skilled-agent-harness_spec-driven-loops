@@ -10,15 +10,15 @@ _memory:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup"
     last_updated_at: "2026-10-13T19:00:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Build from origin/main once 001 is on it"
+    recent_action: "Reviewed, fixed and closed the phase"
+    next_safe_action: "Operator merges worktrees/137-doctor-sk-code-closeout"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-029-002"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -57,13 +57,13 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/commands/doctor/scripts/route-validate.sh >/dev/null 2>&1 && grep -A8 'command: /doctor:sk-code' .skilled/commands/doctor/_routes.yaml | grep -q 'target: setup' && grep -A8 'command: /doctor:sk-code' .skilled/commands/doctor/_routes.yaml | grep -q 'mutating: read-only' && echo ok`, run from the repository root, prints ok.
-- [ ] `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs >/dev/null 2>&1 && bash .skilled/commands/doctor/scripts/tests/run-all.sh >/dev/null 2>&1 && echo ok`, run from the repository root, prints ok.
-- [ ] `F=specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/implementation-summary.md; [ "$(grep -cE '^\| S-[1-3] \| Pass \|' $F)" = 3 ] && [ "$(grep -E '^\| S-[1-3] \| Pass \|' $F | grep -vcF "$(printf '\140')")" = 0 ] && echo ok`, run from the repository root, prints ok.
-- [ ] `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check >/dev/null 2>&1 && node .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs >/dev/null 2>&1 && grep -c '/doctor:sk-code' README.md .skilled/skills/sk-code/README.md .skilled/skills/sk-code/SKILL.md | grep -vc ':0$'`, run from the repository root, prints 3.
-- [ ] `C=specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup; [ "$(find $C/review/iterations -name 'iteration-*.md' 2>/dev/null | wc -l | tr -d ' ')" = 5 ] && [ "$(grep -E '^\| RV-' $C/implementation-summary.md | grep -vcE '^\| RV-[0-9]+ \| P[0-2] \| (Fixed|Rejected) \|')" = 0 ] && echo ok`, run from the repository root, prints ok.
-- [ ] `G='^Spec: sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup$'; [ -n "$(git log --no-merges --grep="$G" --format=%h)" ] && [ "$(git log --no-merges --grep="$G" --format=%B | grep -cE '^(Co-Authored-By|Claude-Session):')" = 0 ] && node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs bump --base origin/main --check >/dev/null 2>&1 && echo ok`, run from the repository root, prints ok.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup --strict`, run from the repository root, prints `RESULT: PASSED`.
+- [x] `bash .skilled/commands/doctor/scripts/route-validate.sh >/dev/null 2>&1 && grep -A8 'command: /doctor:sk-code' .skilled/commands/doctor/_routes.yaml | grep -q 'target: setup' && grep -A8 'command: /doctor:sk-code' .skilled/commands/doctor/_routes.yaml | grep -q 'mutating: read-only' && echo ok`, run from the repository root, prints ok.
+- [x] `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs >/dev/null 2>&1 && bash .skilled/commands/doctor/scripts/tests/run-all.sh >/dev/null 2>&1 && echo ok`, run from the repository root, prints ok.
+- [x] `F=specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/implementation-summary.md; [ "$(grep -cE '^\| S-[1-3] \| Pass \|' $F)" = 3 ] && [ "$(grep -E '^\| S-[1-3] \| Pass \|' $F | grep -vcF "$(printf '\140')")" = 0 ] && echo ok`, run from the repository root, prints ok.
+- [x] `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check >/dev/null 2>&1 && node .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs >/dev/null 2>&1 && grep -c '/doctor:sk-code' README.md .skilled/skills/sk-code/README.md .skilled/skills/sk-code/SKILL.md | grep -vc ':0$'`, run from the repository root, prints 3.
+- [x] `C=specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup; [ "$(find $C/review/iterations -name 'iteration-*.md' 2>/dev/null | wc -l | tr -d ' ')" = 5 ] && [ "$(grep -E '^\| RV-' $C/implementation-summary.md | grep -vcE '^\| RV-[0-9]+ \| P[0-2] \| (Fixed|Rejected) \|')" = 0 ] && echo ok`, run from the repository root, prints ok.
+- [x] `G='^Spec: sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup$'; [ -n "$(git log --no-merges --grep="$G" --format=%h)" ] && [ "$(git log --no-merges --grep="$G" --format=%B | grep -cE '^(Co-Authored-By|Claude-Session):')" = 0 ] && node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs bump --base origin/main --check >/dev/null 2>&1 && echo ok`, run from the repository root, prints ok.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup --strict`, run from the repository root, prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -80,10 +80,16 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet scaffolded | Done | create.sh phase mode with `--level 2` and `--with-goal`; build waits on 001 reaching origin/main |
+| Build | Done | cli-devin DeepSeek V4.1 Flash max dispatches; `79f5dacc52`, merged to origin/main in `c5b3bd9355` |
+| Review | Done | Five iterations on cli-devin DeepSeek V4.1 Flash max over `49cfd5c89f..79f5dacc52`; 0 P0, 0 P1, 11 P2: five fixed (`49554a1672` and the spec amendment), six rejected (RV-1 to RV-11) |
+| Ledger and tests | Done | S-1 to S-3 on `49554a1672`; T1 to T12 each fail with the script absent, and T4 and T9 fail against the merged script |
+| Criteria | Done | All seven rerun from the final state on `worktrees/137-doctor-sk-code-closeout`: 1, 2, 3, 5 and 6 print ok, 4 prints 3, 7 prints RESULT: PASSED |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
+| `test_readme_manifest.py` stays out of the battery | The spec left open whether the target runs it in check mode. It does not: the test checks the README manifest, which the doc gates own, and the battery keeps to the legs the README tells an adapting user to run plus the freshness gate CI runs |
+| Review and closeout ran after the merge | The build reached origin/main before its review, so the review covered the merged diff and its fixes landed as `49554a1672` on a closeout worktree |
 | D2 adds a script the research file list does not name | Research section 8 lists the command doc, route, YAML and presentation. A YAML-only route leaves the probe verdict to an agent reading JSON, which is F7 itself and which no criterion can check, so one read-only script in `doctor/scripts/` carries the legs, as `parent-skill-check.cjs` and `git-standards.cjs` do for their routes |
 <!-- /ANCHOR:log -->

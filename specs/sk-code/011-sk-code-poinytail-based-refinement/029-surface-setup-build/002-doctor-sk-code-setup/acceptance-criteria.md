@@ -10,15 +10,15 @@ _memory:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup"
     last_updated_at: "2026-10-13T19:00:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    recent_action: "Met every criterion with the ledger and the goal criteria"
+    next_safe_action: "None; the packet is closeable"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-029-002-ac"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-10-13
 <!-- /ANCHOR:metadata -->
 
@@ -51,11 +51,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the doctor routes, When `route-validate.sh` runs, Then it exits 0 and lists `/doctor:sk-code` with target `setup` and `mutating: read-only` | `goal.md` criterion 1 | Unmet | - |
-| AC-002 | REQ-002 | Given the live tree and a pristine copy, When `sk-code-setup-check.cjs` runs, Then every leg passes and it exits 0 | Ledger row S-1; `goal.md` criterion 2 | Unmet | - |
-| AC-003 | REQ-003 | Given a copy with a hand edit to sk-code routing and no refresh, When the script runs, Then it exits 1, names the guard leg with the refresh command and fails the probe leg | Ledger row S-2 | Unmet | - |
-| AC-004 | REQ-004 | Given an unprovisioned clone, When the script runs, Then the precheck names the provision command with no stack | Ledger row S-3 | Unmet | - |
-| AC-005 | REQ-005 | Given the mirrors and the three reference files, When the mirror checks and a grep run, Then both checks exit 0 and each file names `/doctor:sk-code` | `goal.md` criterion 4 | Unmet | - |
+| AC-001 | REQ-001 | Given the doctor routes, When `route-validate.sh` runs, Then it exits 0 and lists `/doctor:sk-code` with target `setup` and `mutating: read-only` | `goal.md:60` criterion 1 printed ok; ledger row S-1 at `implementation-summary.md:91` | Met | - |
+| AC-002 | REQ-002 | Given the live tree and a pristine copy, When `sk-code-setup-check.cjs` runs, Then every leg passes and it exits 0 | Ledger row S-1 at `implementation-summary.md:91`; `goal.md:61` criterion 2 printed ok | Met | - |
+| AC-003 | REQ-003 | Given a copy with a hand edit to sk-code routing and no refresh, When the script runs, Then it exits 1, names the guard leg with the refresh command and fails the probe leg | Ledger row S-2 at `implementation-summary.md:92` | Met | - |
+| AC-004 | REQ-004 | Given an unprovisioned clone, When the script runs, Then the precheck names the provision command with no stack | Ledger row S-3 at `implementation-summary.md:93` | Met | - |
+| AC-005 | REQ-005 | Given the mirrors and the three reference files, When the mirror checks and a grep run, Then both checks exit 0 and each file names `/doctor:sk-code` | `goal.md:63` criterion 4 printed 3 | Met | - |
 
 ### Status values
 
@@ -80,7 +80,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Every criterion is open until 001 is on origin/main and this phase is built, reviewed and its ledger recorded.
+Every criterion is Met. Evidence is the S rows, the T rows and the RV rows in `implementation-summary.md`, from runs on the fix commit `49554a1672`, and `review/review-report.md`.
 <!-- /ANCHOR:closure -->

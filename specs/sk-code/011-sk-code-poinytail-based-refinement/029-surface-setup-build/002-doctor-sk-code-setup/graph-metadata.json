@@ -35,7 +35,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -43,10 +43,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/commands/doctor/sk-code.md",
       ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml",
+      ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs",
       ".skilled/commands/README.txt",
+      "scripts/README.md",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
       ".skilled/skills/sk-code/README.md",
-      ".skilled/skills/sk-code/SKILL.md"
+      ".skilled/skills/sk-code/SKILL.md",
+      ".hermes/skills/sk-code/SKILL.md",
+      ".skilled/repo-rules/prevent-overengineering.md",
+      "review/review-report.md",
+      ".skilled/commands/doctor/scripts/README.md"
     ],
     "entities": [
       {
@@ -86,9 +96,33 @@
         "source": "derived"
       },
       {
+        "name": "sk-code.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/sk-code.md",
+        "source": "derived"
+      },
+      {
         "name": "_routes.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-sk-code-setup.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-setup-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-setup-check.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs",
         "source": "derived"
       },
       {
@@ -100,13 +134,31 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/README.md",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "prevent-overengineering.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/prevent-overengineering.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -150,53 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Follow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Read",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The README battery is six commands to copy by hand",
     "created_at": "2026-10-13T18:45:43Z",
-    "last_save_at": "2026-10-13T19:02:57.785Z",
+    "last_save_at": "2026-10-13T21:51:41.389Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8883981db24747d730912817e0f7215ed7928cb3179f55c4c8d9c47d265679b6",
+    "source_fingerprint": "sha256:66fbfc04a80f1709adfeef75e0815951bc2efabf419a469d282ffa345a20e88f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8a241519c301379d292a6f99c0c1917129dd86d2a8602c4f4d581428394d6e24",
-      "plan.md": "85caaab11e0367b8a483d8b754ff68fd9c0494c4d74692ef3282b9b2495aa111",
-      "tasks.md": "551d4f5fe28b1806762f8f74e99eef3b85b29f29cbd0fc14ad8c5a07012ee81d",
-      "implementation-summary.md": "19062f963aa7dcd0fc9f376a5a194a168eb316003242057408d3fa803c65e043"
+      "spec.md": "c5cabfe3cd2de3675216a653057307de1c397ea4c7be04f1f4564e9ad9bce871",
+      "plan.md": "c9befb6707a0c87cd98a24b4fdfe9f66bb74dd921b1fdcd64f47930d36a90920",
+      "tasks.md": "18157183578df5c01702118fc9cc1e85f57c811a1477247a9210707dbbdcd290",
+      "implementation-summary.md": "4b6d8e0149c99725960391157f325ded039b90a25e7fb1674814ba499387904b"
     },
     "last_active_at": null
   }
