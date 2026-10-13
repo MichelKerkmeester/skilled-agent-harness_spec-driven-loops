@@ -9,16 +9,16 @@ _memory:
   continuity:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement"
     last_updated_at: "2026-10-13T06:00:00Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    last_updated_by: "builder"
+    recent_action: "Marked all six criteria Met with evidence"
+    next_safe_action: "Operator merges the branch to main"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-026-001-ac"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-10-13
 <!-- /ANCHOR:metadata -->
 
@@ -51,12 +51,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the built phase, When the rule phrase is searched, Then it sits on identical lines in both twins and in both references | `goal.md` criterion 1 prints ok | Unmet | - |
-| AC-002 | REQ-002 | Given a full-tree copy, When the update workflow adds a stand-in surface, Then `tieBreak` is `[sk-code-quality, sk-code-review, sk-code-acme, sk-code-opencode, sk-code-obsidian, sk-code-webflow]` and the doctor passes 5e and 5i | Ledger rows P8-2 and P8-3 | Unmet | - |
-| AC-003 | REQ-003 | Given that copy after the re-mint, When the tie prompt routes, Then the result is `[sk-code-acme, sk-code-opencode]` | Ledger row P8-4 | Unmet | - |
-| AC-004 | REQ-004 | Given a `--surfaces` run, When its completion report is read and followed, Then it names both follow-ups and the doctor, guard and sync `--check` end at exit 0 | `goal.md` criterion 2; ledger rows P8-5 and P8-6 | Unmet | - |
-| AC-005 | REQ-005 | Given the live tree after the build, When the doctors, drift guards and doc validator run, Then each exits 0 | `goal.md` criterion 4 prints ok | Unmet | - |
-| AC-006 | REQ-006 | Given this phase's commits, When their added changelog files are listed, Then there is exactly one, under `sk-create-skill/changelog/` | `goal.md` criterion 6 prints ok | Unmet | - |
+| AC-001 | REQ-001 | Given the built phase, When the rule phrase is searched, Then it sits on identical lines in both twins and in both references | `goal.md` criterion 1 printed ok; ledger P8-1 | Met | - |
+| AC-002 | REQ-002 | Given a full-tree copy, When the update workflow adds a stand-in surface, Then `tieBreak` is `[sk-code-quality, sk-code-review, sk-code-acme, sk-code-opencode, sk-code-obsidian, sk-code-webflow]` and the doctor passes 5e and 5i | Ledger P8-2 (tieBreak `[quality, review, acme, opencode, obsidian, webflow]`) and P8-3 (5e and 5i PASS) | Met | - |
+| AC-003 | REQ-003 | Given that copy after the re-mint, When the tie prompt routes, Then the result is `[sk-code-acme, sk-code-opencode]` | Ledger P8-4: `[sk-code-acme, sk-code-opencode]`, and `[sk-code-opencode, sk-code-acme]` with acme appended last | Met | - |
+| AC-004 | REQ-004 | Given a `--surfaces` run, When its completion report is read and followed, Then it names both follow-ups and the doctor, guard and sync `--check` end at exit 0 | `goal.md` criterion 2 printed 2; ledger P8-5 and P8-6 (doctor, guard and sync `--check` exit 0) | Met | - |
+| AC-005 | REQ-005 | Given the live tree after the build, When the doctors, drift guards and doc validator run, Then each exits 0 | `goal.md` criterion 4 printed ok | Met | - |
+| AC-006 | REQ-006 | Given this phase's commits, When their added changelog files are listed, Then there is exactly one, under `sk-create-skill/changelog/` | `goal.md` criterion 6 printed ok; one entry, `sk-create-skill/changelog/v1.5.4.0.md` | Met | - |
 
 ### Status values
 
@@ -81,7 +81,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-The phase is planned and not built. The builder writes this statement when the packet closes.
+All six criteria are Met, each with evidence observed from the final state of `worktrees/125-surface-placement`. No row is waived.
 <!-- /ANCHOR:closure -->

@@ -9,7 +9,7 @@ trigger_phrases:
   - "surface packet workflow packet"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.28
+version: 1.2.2.0
 ---
 
 # Parent Skills with Nested Mode Packets
@@ -221,7 +221,7 @@ Check `advisorRouting.routingClass` first. Most modes are `metadata` and skip ro
 |---|---------|------|-------------------------------|
 | 1 | Packet registration | `mode-registry.json` | Nothing routes at all |
 | 2 | Stage-one signals | `hub-router.json` `routerSignals` | The hub never selects the mode |
-| 3 | Stage-one tie-break | `hub-router.json` `routerPolicy.tieBreak` | `parent-skill-check` 5e fails: tieBreak must be an exact permutation of the registry |
+| 3 | Stage-one tie-break | `hub-router.json` `routerPolicy.tieBreak` | `parent-skill-check` 5e fails: tieBreak must be an exact permutation of the registry. Place a new surface mode after the workflow modes and ahead of the existing surface modes (several new surfaces in the order given), or it loses every keyword tie to them |
 | 4 | Stage-two intent | root `ROUTER.md` `INTENT_SIGNALS` + `RESOURCE_MAP` | The mode is selected but loads no leaves. Keys must stay equal |
 | 5 | Stage-two inventory | root `ROUTER.md` `FULL_INVENTORY`, **where the hub defines one** | The full-toolkit intent silently omits the mode. Only `sk-doc` carries this block today; skip it on a hub without one |
 | 6 | Advisor vocabulary | hub `graph-metadata.json` | **The advisor never surfaces the hub for this mode's requests.** The only path in, since the mode gets no advisor entry of its own |

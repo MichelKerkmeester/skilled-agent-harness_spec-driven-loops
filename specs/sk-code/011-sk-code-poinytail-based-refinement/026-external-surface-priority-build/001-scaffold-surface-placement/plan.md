@@ -40,9 +40,9 @@ The edit is prose inside the scaffold contract: one rule phrase at the step_4 `h
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -152,7 +152,7 @@ Stand-in: a surface named `sk-code-acme` whose vocabulary class holds `acme`. Ti
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Control run in the copy recorded before any edit
+- [x] Control run in the copy recorded before any edit
 
 ### Rollback Procedure
 1. Revert the phase commits.

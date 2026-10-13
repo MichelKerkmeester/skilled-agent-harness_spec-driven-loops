@@ -1,0 +1,1081 @@
+{
+  "sessionId": "2026-10-13T05:59:30.000Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "tieBreak insertion rule leaves the order among multiple new surfaces undefined",
+      "file": ".skilled/commands/create/assets/create-skill-parent-auto.yaml",
+      "line": 423,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "New twin line groups have no parity guard, unlike the root_router_contract block",
+      "file": ".skilled/commands/create/assets/tests/test_skill_parent_router_parity.py",
+      "line": 7,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 2
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0.65,
+  "graphDecision": "CONTINUE",
+  "graphBlockers": [],
+  "graphSignals": {
+    "dimensionCoverage": 1,
+    "evidenceDensity": 0,
+    "findingStability": 0,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 0.65
+  },
+  "candidateCoverage": {
+    "covered": [
+      "regression_guard_gap",
+      "undefined_ordering"
+    ],
+    "ruledOut": [
+      "changelog_convention_drift",
+      "command_executability",
+      "cross_file_parity",
+      "fail_open_gate",
+      "generated_copy_drift",
+      "hardcoded_layout_constant",
+      "injection_exposure",
+      "path_traversal",
+      "reference_doc_version_drift",
+      "release_artifact_inventory",
+      "release_surface_staleness",
+      "routing_precedence_misuse",
+      "secrets_exposure",
+      "spec_code_mismatch",
+      "stale_reference",
+      "template_instruction_drift"
+    ],
+    "deferred": [
+      "checklist_evidence_gap"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "undefined_ordering": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "cross_file_parity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "stale_reference": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "command_executability": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "generated_copy_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "injection_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "path_traversal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "routing_precedence_misuse": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "fail_open_gate": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "secrets_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "spec_code_mismatch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          5
+        ]
+      },
+      "release_artifact_inventory": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "checklist_evidence_gap": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "regression_guard_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "changelog_convention_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "hardcoded_layout_constant": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "reference_doc_version_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "template_instruction_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "release_surface_staleness": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 3,
+      "id": "SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/implementation-summary.md:48-62",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/acceptance-criteria.md:54-59",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/tasks.md:55-60"
+      ],
+      "bugClass": "checklist_evidence_gap",
+      "disposition": "deferred",
+      "rationale": "premature at iteration 3: the packet's own task order runs T011 (this review) before T012 fills the ledger and runs strict validate; no completion claim is blocked",
+      "evidenceRefs": [
+        "implementation-summary.md:48",
+        "acceptance-criteria.md:84",
+        "tasks.md:58-59"
+      ],
+      "reason": "T011/T012 own ledger fill and closure; review runs before T012"
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:423",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:462"
+      ],
+      "bugClass": "cross_file_parity",
+      "disposition": "ruled_out",
+      "rationale": "diff and grep show one identical phrase in every required site",
+      "evidenceRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:423",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:462",
+        ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md:290"
+      ],
+      "reason": "byte-identical and single-grep-findable"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml"
+      ],
+      "bugClass": "command_executability",
+      "disposition": "ruled_out",
+      "rationale": "every path, verb, and flag in the two follow-up lines resolves",
+      "evidenceRefs": [
+        ".skilled/scripts/install-git-hooks.sh:12",
+        ".skilled/bin/compiled-route-manifest.cjs:29",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1189",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1271"
+      ],
+      "reason": "scripts, verbs, and fixture paths all exist"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".hermes/skills/sk-create-skill/SKILL.md",
+        ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json"
+      ],
+      "bugClass": "generated_copy_drift",
+      "disposition": "ruled_out",
+      "rationale": "generated copies are in step with their canonical sources",
+      "evidenceRefs": [
+        ".hermes/skills/sk-create-skill/SKILL.md:5",
+        ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json"
+      ],
+      "reason": "no drift detected"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:250",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:283"
+      ],
+      "bugClass": "stale_reference",
+      "disposition": "ruled_out",
+      "rationale": "no producer or current-version reference left stale",
+      "evidenceRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:423",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:462",
+        ".skilled/skills/sk-doc/sk-create-skill/README.md:7"
+      ],
+      "reason": "writer inventory complete; version references current"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/spec.md:73",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/spec.md:74"
+      ],
+      "bugClass": "cross_file_parity",
+      "disposition": "ruled_out",
+      "rationale": "spec text matches implementation",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/spec.md:73",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/plan.md:62"
+      ],
+      "reason": "requirement/implementation alignment verified"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:500",
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:501",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:547",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:548"
+      ],
+      "bugClass": "injection_exposure",
+      "disposition": "ruled_out",
+      "rationale": "values are pattern-validated or argument-free; no shell interpolation path exists",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-manifest.cjs:49-63",
+        ".skilled/bin/lib/compiled-route-manifest.cjs:199-200",
+        ".skilled/bin/lib/compiled-route-manifest.cjs:423-427",
+        ".skilled/scripts/install-git-hooks.sh:12"
+      ],
+      "reason": "hubId pattern guard fails closed before any path or argv use"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:501"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "both the id and the realpath are constrained; non-canonical values never resolve to a path",
+      "evidenceRefs": [
+        ".skilled/bin/lib/compiled-route-manifest.cjs:350-368",
+        ".skilled/bin/lib/compiled-route-manifest.cjs:423-427"
+      ],
+      "reason": "pattern guard plus realpath-basename equality check"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:423",
+        ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md:290",
+        ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:223"
+      ],
+      "bugClass": "routing_precedence_misuse",
+      "disposition": "ruled_out",
+      "rationale": "the precedence change stays within the surface tier and inside one authoring trust domain; no auth boundary is crossed",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md:290",
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:423"
+      ],
+      "reason": "workflow-over-surface precedence and default-only catch-all intact"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-010",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:500",
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:501"
+      ],
+      "bugClass": "fail_open_gate",
+      "disposition": "ruled_out",
+      "rationale": "both follow-ups have external enforcement backstops; the change does not introduce an unenforced security-relevant step",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:490-530",
+        ".skilled/scripts/git-hooks/pre-commit:575-600",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1273-1285"
+      ],
+      "reason": "blocking hook gate plus doctor canary leg"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-012",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/spec.md:73",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/spec.md:84-92",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/acceptance-criteria.md:54-59",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/tasks.md:44-59"
+      ],
+      "bugClass": "spec_code_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "no orphan row and all line anchors resolve",
+      "evidenceRefs": [
+        "spec.md:73",
+        "spec.md:104-115",
+        "acceptance-criteria.md:54-59",
+        "tasks.md:44-59"
+      ],
+      "reason": "REQ<->AC<->task<->ledger matrix verified complete and spec citation anchors resolved"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-014",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".hermes/skills/sk-create-skill/SKILL.md:5",
+        ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/spec.md:84-92"
+      ],
+      "bugClass": "release_artifact_inventory",
+      "disposition": "ruled_out",
+      "rationale": "the manifests are traced by R8's follow-up text and the Hermes copy is governed by the generated-copy/drift-guard convention; nothing in the commit-to-spec mapping is wrong",
+      "evidenceRefs": [
+        "spec.md:84-92",
+        "spec.md:74",
+        "plan.md:62"
+      ],
+      "reason": "inventory gap resolved to the generated-artifact convention, no defect"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-016",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.4.0.md:1-31"
+      ],
+      "bugClass": "changelog_convention_drift",
+      "disposition": "ruled_out",
+      "rationale": "no convention drift in the release entry",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.3.0.md:1-33"
+      ],
+      "reason": "v1.5.4.0.md matches the sibling changelog structure and frontmatter shape"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-017",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:500-501",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:547-548"
+      ],
+      "bugClass": "hardcoded_layout_constant",
+      "disposition": "ruled_out",
+      "rationale": "not an unowned duplication",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:541-548",
+        ".skilled/bin/lib/compiled-route-layout.cjs"
+      ],
+      "reason": "the literal is the repo layout constant owned by compiled-route-layout.cjs and prose must name a concrete path to stay executable; no divergence found between prose and tooling"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-018",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md:12",
+        ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:12"
+      ],
+      "bugClass": "reference_doc_version_drift",
+      "disposition": "ruled_out",
+      "rationale": "version convention respected",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md:12",
+        ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:12"
+      ],
+      "reason": "both edited references carry a fresh minor bump; no edited doc left stale"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-019",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-router-template.json:12",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md:188"
+      ],
+      "bugClass": "template_instruction_drift",
+      "disposition": "ruled_out",
+      "rationale": "no template drift introduced",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md:188",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md:301"
+      ],
+      "reason": "template placeholder order and checklist instruction do not contradict the insertion rule; the rule is an update-time policy"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-020",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/SKILL.md:5",
+        ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.4.0.md:1",
+        ".hermes/skills/sk-create-skill/SKILL.md:5"
+      ],
+      "bugClass": "release_surface_staleness",
+      "disposition": "ruled_out",
+      "rationale": "release surface consistent",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/SKILL.md:5",
+        ".hermes/skills/sk-create-skill/SKILL.md:5"
+      ],
+      "reason": "carried from iteration 1: no current-version reference left stale on the release surface"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-021",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/spec.md:73-74",
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:423",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:462",
+        ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md:290",
+        ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:224"
+      ],
+      "bugClass": "spec_code_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "R1 and R8 fully implemented",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/spec.md:73-74",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/spec.md:104-107",
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:423",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:462"
+      ],
+      "reason": "all four sites carry the exact phrase and both completion lines carry the required literals"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-022",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:423",
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:500-501",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:462",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:547-548"
+      ],
+      "bugClass": "cross_file_parity",
+      "disposition": "ruled_out",
+      "rationale": "twin parity holds today",
+      "evidenceRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:423",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:462",
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:500-501",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:547-548"
+      ],
+      "reason": "all three changed line groups are identical across the twins; R4-P2-001 records only the missing automated guard, not a live divergence"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-023",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:501",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:548"
+      ],
+      "bugClass": "command_executability",
+      "disposition": "ruled_out",
+      "rationale": "fallback instruction executable and correctly directed",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-manifest.cjs:29-30",
+        ".skilled/bin/compiled-route-manifest.cjs:788-799",
+        ".skilled/scripts/git-hooks/pre-commit:589-593",
+        ".skilled/bin/lib/compiled-route-layout.cjs:50-53"
+      ],
+      "reason": "verb, flags, and copy direction all match the tooling's own printed fix"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:423",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:462"
+      ],
+      "bugClass": "cross_file_parity",
+      "disposition": "ruled_out",
+      "rationale": "diff and grep show one identical phrase in every required site",
+      "evidenceRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:423",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:462",
+        ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md:290"
+      ],
+      "proof": "byte-identical and single-grep-findable"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml"
+      ],
+      "bugClass": "command_executability",
+      "disposition": "ruled_out",
+      "rationale": "every path, verb, and flag in the two follow-up lines resolves",
+      "evidenceRefs": [
+        ".skilled/scripts/install-git-hooks.sh:12",
+        ".skilled/bin/compiled-route-manifest.cjs:29",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1189",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1271"
+      ],
+      "proof": "scripts, verbs, and fixture paths all exist"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".hermes/skills/sk-create-skill/SKILL.md",
+        ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json"
+      ],
+      "bugClass": "generated_copy_drift",
+      "disposition": "ruled_out",
+      "rationale": "generated copies are in step with their canonical sources",
+      "evidenceRefs": [
+        ".hermes/skills/sk-create-skill/SKILL.md:5",
+        ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json"
+      ],
+      "proof": "no drift detected"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:250",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:283"
+      ],
+      "bugClass": "stale_reference",
+      "disposition": "ruled_out",
+      "rationale": "no producer or current-version reference left stale",
+      "evidenceRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:423",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:462",
+        ".skilled/skills/sk-doc/sk-create-skill/README.md:7"
+      ],
+      "proof": "writer inventory complete; version references current"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/spec.md:73",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/spec.md:74"
+      ],
+      "bugClass": "cross_file_parity",
+      "disposition": "ruled_out",
+      "rationale": "spec text matches implementation",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/spec.md:73",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/plan.md:62"
+      ],
+      "proof": "requirement/implementation alignment verified"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:500",
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:501",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:547",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:548"
+      ],
+      "bugClass": "injection_exposure",
+      "disposition": "ruled_out",
+      "rationale": "values are pattern-validated or argument-free; no shell interpolation path exists",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-manifest.cjs:49-63",
+        ".skilled/bin/lib/compiled-route-manifest.cjs:199-200",
+        ".skilled/bin/lib/compiled-route-manifest.cjs:423-427",
+        ".skilled/scripts/install-git-hooks.sh:12"
+      ],
+      "proof": "hubId pattern guard fails closed before any path or argv use"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:501"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "both the id and the realpath are constrained; non-canonical values never resolve to a path",
+      "evidenceRefs": [
+        ".skilled/bin/lib/compiled-route-manifest.cjs:350-368",
+        ".skilled/bin/lib/compiled-route-manifest.cjs:423-427"
+      ],
+      "proof": "pattern guard plus realpath-basename equality check"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:423",
+        ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md:290",
+        ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:223"
+      ],
+      "bugClass": "routing_precedence_misuse",
+      "disposition": "ruled_out",
+      "rationale": "the precedence change stays within the surface tier and inside one authoring trust domain; no auth boundary is crossed",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md:290",
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:423"
+      ],
+      "proof": "workflow-over-surface precedence and default-only catch-all intact"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-010",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:500",
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:501"
+      ],
+      "bugClass": "fail_open_gate",
+      "disposition": "ruled_out",
+      "rationale": "both follow-ups have external enforcement backstops; the change does not introduce an unenforced security-relevant step",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:490-530",
+        ".skilled/scripts/git-hooks/pre-commit:575-600",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1273-1285"
+      ],
+      "proof": "blocking hook gate plus doctor canary leg"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-011",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.4.0.md:1",
+        ".hermes/skills/sk-create-skill/SKILL.md:5"
+      ],
+      "bugClass": "secrets_exposure",
+      "disposition": "not_applicable",
+      "rationale": "no secret-bearing value exists in the change surface",
+      "evidenceRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:500-501",
+        ".hermes/skills/sk-create-skill/SKILL.md:5"
+      ],
+      "proof": "no credentials or sensitive values introduced"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-012",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/spec.md:73",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/spec.md:84-92",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/acceptance-criteria.md:54-59",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/tasks.md:44-59"
+      ],
+      "bugClass": "spec_code_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "no orphan row and all line anchors resolve",
+      "evidenceRefs": [
+        "spec.md:73",
+        "spec.md:104-115",
+        "acceptance-criteria.md:54-59",
+        "tasks.md:44-59"
+      ],
+      "proof": "REQ<->AC<->task<->ledger matrix verified complete and spec citation anchors resolved"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-014",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".hermes/skills/sk-create-skill/SKILL.md:5",
+        ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/spec.md:84-92"
+      ],
+      "bugClass": "release_artifact_inventory",
+      "disposition": "ruled_out",
+      "rationale": "the manifests are traced by R8's follow-up text and the Hermes copy is governed by the generated-copy/drift-guard convention; nothing in the commit-to-spec mapping is wrong",
+      "evidenceRefs": [
+        "spec.md:84-92",
+        "spec.md:74",
+        "plan.md:62"
+      ],
+      "proof": "inventory gap resolved to the generated-artifact convention, no defect"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-016",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.4.0.md:1-31"
+      ],
+      "bugClass": "changelog_convention_drift",
+      "disposition": "ruled_out",
+      "rationale": "no convention drift in the release entry",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.3.0.md:1-33"
+      ],
+      "proof": "v1.5.4.0.md matches the sibling changelog structure and frontmatter shape"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-017",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:500-501",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:547-548"
+      ],
+      "bugClass": "hardcoded_layout_constant",
+      "disposition": "ruled_out",
+      "rationale": "not an unowned duplication",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:541-548",
+        ".skilled/bin/lib/compiled-route-layout.cjs"
+      ],
+      "proof": "the literal is the repo layout constant owned by compiled-route-layout.cjs and prose must name a concrete path to stay executable; no divergence found between prose and tooling"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-018",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md:12",
+        ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:12"
+      ],
+      "bugClass": "reference_doc_version_drift",
+      "disposition": "ruled_out",
+      "rationale": "version convention respected",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md:12",
+        ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:12"
+      ],
+      "proof": "both edited references carry a fresh minor bump; no edited doc left stale"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-019",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-router-template.json:12",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md:188"
+      ],
+      "bugClass": "template_instruction_drift",
+      "disposition": "ruled_out",
+      "rationale": "no template drift introduced",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md:188",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md:301"
+      ],
+      "proof": "template placeholder order and checklist instruction do not contradict the insertion rule; the rule is an update-time policy"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-020",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/SKILL.md:5",
+        ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.4.0.md:1",
+        ".hermes/skills/sk-create-skill/SKILL.md:5"
+      ],
+      "bugClass": "release_surface_staleness",
+      "disposition": "ruled_out",
+      "rationale": "release surface consistent",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/SKILL.md:5",
+        ".hermes/skills/sk-create-skill/SKILL.md:5"
+      ],
+      "proof": "carried from iteration 1: no current-version reference left stale on the release surface"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-021",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/spec.md:73-74",
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:423",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:462",
+        ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md:290",
+        ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:224"
+      ],
+      "bugClass": "spec_code_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "R1 and R8 fully implemented",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/spec.md:73-74",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/spec.md:104-107",
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:423",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:462"
+      ],
+      "proof": "all four sites carry the exact phrase and both completion lines carry the required literals"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-022",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:423",
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:500-501",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:462",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:547-548"
+      ],
+      "bugClass": "cross_file_parity",
+      "disposition": "ruled_out",
+      "rationale": "twin parity holds today",
+      "evidenceRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:423",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:462",
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:500-501",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:547-548"
+      ],
+      "proof": "all three changed line groups are identical across the twins; R4-P2-001 records only the missing automated guard, not a live divergence"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-023",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:501",
+        ".skilled/commands/create/assets/create-skill-parent-confirm.yaml:548"
+      ],
+      "bugClass": "command_executability",
+      "disposition": "ruled_out",
+      "rationale": "fallback instruction executable and correctly directed",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-manifest.cjs:29-30",
+        ".skilled/bin/compiled-route-manifest.cjs:788-799",
+        ".skilled/scripts/git-hooks/pre-commit:589-593",
+        ".skilled/bin/lib/compiled-route-layout.cjs:50-53"
+      ],
+      "proof": "verb, flags, and copy direction all match the tooling's own printed fix"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "spec_code_mismatch",
+      "cross_file_parity",
+      "command_executability"
+    ],
+    "covered": [],
+    "ruledOut": [
+      "spec_code_mismatch",
+      "cross_file_parity",
+      "command_executability"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}
