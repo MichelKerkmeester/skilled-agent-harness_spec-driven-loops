@@ -80,11 +80,11 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `P=specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build; [ "$(cat $P/00*/goal.md | grep -c '^- \[ \] ')" = 0 ] && [ "$(grep -l 'completion_pct: 100' $P/00*/implementation-summary.md | wc -l | tr -d ' ')" = 5 ] && echo ok` prints ok.
-- [ ] `P=specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build; for c in $P $P/00*/; do node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs $c | tail -1; done | grep -c 'RESULT: PASSED'` prints 6.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build --recursive --strict` prints `RESULT: PASSED` 6 times and `RESULT: FAILED` 0 times.
-- [ ] `f=$(ls .skilled/changelog/skilled/v*.md | sort -V | tail -1); [ "$f" != .skilled/changelog/skilled/v4.0.0.4.md ] && grep -qi 'optional example' "$f" && grep -q 'ROUTER.md' "$f" && echo ok` prints ok.
-- [ ] `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh >/dev/null 2>&1 && node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code >/dev/null 2>&1 && node .skilled/bin/compiled-route-guard.cjs >/dev/null 2>&1 && node .skilled/bin/compiled-route-sync.cjs --check >/dev/null 2>&1 && node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs >/dev/null 2>&1 && echo ok`, run on 005's branch, prints ok.
+- [x] `P=specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build; [ "$(cat $P/00*/goal.md | grep -c '^- \[ \] ')" = 0 ] && [ "$(grep -l 'completion_pct: 100' $P/00*/implementation-summary.md | wc -l | tr -d ' ')" = 5 ] && echo ok` prints ok.
+- [x] `P=specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build; for c in $P $P/00*/; do node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs $c | tail -1; done | grep -c 'RESULT: PASSED'` prints 6.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build --recursive --strict` prints `RESULT: PASSED` 6 times and `RESULT: FAILED` 0 times.
+- [x] `f=$(ls .skilled/changelog/skilled/v*.md | sort -V | tail -1); [ "$f" != .skilled/changelog/skilled/v4.0.0.4.md ] && grep -qi 'optional example' "$f" && grep -q 'ROUTER.md' "$f" && echo ok` prints ok.
+- [x] `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh >/dev/null 2>&1 && node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code >/dev/null 2>&1 && node .skilled/bin/compiled-route-guard.cjs >/dev/null 2>&1 && node .skilled/bin/compiled-route-sync.cjs --check >/dev/null 2>&1 && node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs >/dev/null 2>&1 && echo ok`, run on 005's branch, prints ok.
 
 All commands run from the repository root.
 <!-- /ANCHOR:completion -->
@@ -107,7 +107,8 @@ and findings belong here.
 | 002 doctor guard and sync messages | Done | On origin/main (its `Spec:` commits end at `0efd5a12b5`); goal criteria passed on its branch |
 | 003 example-tolerant drift guards | Done | On origin/main (its `Spec:` commits end at `dd949ccbeb`); goal criteria passed on its branch |
 | 004 router version parity | Done | On origin/main (its `Spec:` commits end at `d99ddaff7d`); goal criteria passed after the rebase |
-| 005 external user guide | Done | Branch `worktrees/129-surface-guide`, not merged; guide, R4 markers and v4.0.0.5, reader test green, review PASS with advisories; this parent closed on the same branch |
+| 005 external user guide | Done | On origin/main (merge `4898a8ee0b`); guide, R4 markers and v4.0.0.5, reader test green, review PASS with advisories |
+| Parent criteria 2026-10-13 | Done | All five rerun by the orchestrator on origin/main `4898a8ee0b`: 1 ok, 2 printed 6, 3 printed 6 PASSED and 0 FAILED, 4 ok, 5 ok |
 
 ### Deviations and findings
 
