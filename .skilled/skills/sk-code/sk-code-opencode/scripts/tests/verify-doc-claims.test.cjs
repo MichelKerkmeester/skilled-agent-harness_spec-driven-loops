@@ -48,6 +48,7 @@ function buildHub(t) {
   const hub = fs.mkdtempSync(path.join(os.tmpdir(), 'doc-claims-'));
   t.after(() => fs.rmSync(hub, { recursive: true, force: true }));
   write(path.join(hub, 'ROUTER.md'), ROUTER);
+  write(path.join(hub, 'mode-registry.json'), JSON.stringify({ modes: [{ packetKind: 'surface' }, { packetKind: 'surface' }, { packetKind: 'surface' }] }));
   write(path.join(hub, 'shared', 'references', 'universal', 'alpha.md'), '# alpha\n');
   write(path.join(hub, 'shared', 'references', 'universal', 'beta.md'), '# beta\n');
   write(path.join(hub, 'sk-code-demo', 'references', 'local.md'), '# local\n');
@@ -114,7 +115,7 @@ test('known-bad surfaces: two-surface wording is reported', (t) => {
   write(path.join(hub, 'sk-code-demo', 'references', 'bad.md'), 'Both supported surfaces follow the same lifecycle.\n');
   const { status, out } = run(hub, 'surfaces');
   assert.equal(status, 1, out);
-  assert.match(out, /bad\.md:1: two-surface wording "Both supported surfaces"/);
+  assert.match(out, /bad\.md:1: surface count "Both supported surfaces" says 2, but mode-registry\.json declares 3 surface modes/);
 });
 
 test('a missing --root directory prints one usage line and exits 2', () => {
@@ -221,4 +222,18 @@ test('known-bad tiers: a file the prose says always loads but DEFAULT_RESOURCE o
   assert.match(out, /ROUTER\.md:3: claims shared\/references\/universal\/beta\.md loads on every route/);
   assert.match(out, /ROUTER\.md:13: claims shared\/references\/universal\/beta\.md loads on every route/);
   assert.doesNotMatch(out, /ROUTER\.md:14:/);
+});
+
+test('a registry with two surface modes accepts two-surface wording and reports three', (t) => {
+  const hub = buildHub(t);
+  const modes = [{ packetKind: 'workflow' }, { packetKind: 'surface' }, { packetKind: 'surface' }];
+  write(path.join(hub, 'mode-registry.json'), JSON.stringify({ modes }));
+  write(path.join(hub, 'sk-code-demo', 'references', 'count.md'), 'The hub has two surfaces.\n');
+  const pass = run(hub, 'surfaces');
+  assert.equal(pass.status, 0, pass.out);
+  assert.match(pass.out, /PASS check surfaces/);
+  write(path.join(hub, 'sk-code-demo', 'references', 'count.md'), 'The hub has three surfaces.\n');
+  const fail = run(hub, 'surfaces');
+  assert.equal(fail.status, 1, fail.out);
+  assert.match(fail.out, /count\.md:1: surface count "three surfaces" says 3, but mode-registry\.json declares 2 surface modes/);
 });
