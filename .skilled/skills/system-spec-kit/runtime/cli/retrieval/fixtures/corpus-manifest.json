@@ -1,5 +1,5 @@
 {
-  "corpusHash": "732b85431411c818ea39ca1458c8c38fab704c7c4dd7b6f6e59276e3c6ae7e60",
+  "corpusHash": "3d48c46d8a3ba86c885a6238108ab53da8dceb8bce75a0e83a44f9a43d2ca3a8",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24577,
+  "includedPathCount": 24592,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6485,6 +6485,7 @@
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.1.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.2.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.3.0.md",
+    ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.4.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/author-a-two-axis-parent-hub.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/keep-one-parent-identity.md",
@@ -11144,6 +11145,20 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/implementation-summary.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/review/deep-review-dashboard.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/review/deep-review-strategy.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/review/iterations/iteration-001.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/review/iterations/iteration-002.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/review/iterations/iteration-003.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/review/iterations/iteration-004.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/review/iterations/iteration-005.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/review/prompts/iteration-1.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/review/prompts/iteration-2.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/review/prompts/iteration-3.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/review/prompts/iteration-4.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/review/prompts/iteration-5.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/review/resource-map.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/review/review-report.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages/acceptance-criteria.md",
@@ -24608,7 +24623,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "786d4792d596cdee46bf2fcaa5a4d85636178b7da2b4492f3c53dc27ef95475f",
+  "manifestHash": "68f8fd20371f79cd335396a1b4d12e6ea7d966e4074a0f798b713042a1024149",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
