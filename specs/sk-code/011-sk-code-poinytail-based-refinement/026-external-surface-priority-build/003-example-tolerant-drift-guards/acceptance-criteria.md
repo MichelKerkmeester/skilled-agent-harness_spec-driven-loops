@@ -51,12 +51,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the live tree, When `run-all-drift-guards.sh` runs, Then it exits 0 with the same per-check results as before the change | Ledger row P10-1; `goal.md` criterion 1 | Met | - |
-| AC-002 | REQ-002 | Given a copy after the removal recipe, When router-sync runs, Then checks 1a, 1b, 2, 3 and 4 pass | Ledger row P10-2 | Met | - |
-| AC-003 | REQ-003 | Given that copy with ROUTER.md's Webflow prose section removed, When router-sync runs, Then the same checks still pass | Ledger row P10-3; `goal.md` criterion 2 | Met | - |
-| AC-004 | REQ-004 | Given a registry with two surfaces, When doc-claims runs, Then 'two surfaces' wording passes the `surfaces` rule | Ledger row P10-4; `goal.md` criterion 2 | Met | - |
-| AC-005 | REQ-005 | Given the pristine copy, When router-sync check 2 runs, Then it reports no new problem | Ledger row P10-5 | Met | - |
-| AC-006 | REQ-006 | Given the four changes, When their tests run, Then each fails before its change and passes after, one sk-code-opencode release is added and the sk-code doctor's 13d passes | Ledger rows T1 to T4; `goal.md` criteria 1, 3 and 5 | Met | - |
+| AC-001 | REQ-001 | Given the live tree, When `run-all-drift-guards.sh` runs, Then it exits 0 with the same per-check results as before the change | Ledger row P10-1 (`implementation-summary.md:82`); `goal.md` criterion 1 | Met | - |
+| AC-002 | REQ-002 | Given a copy after the removal recipe, When router-sync runs, Then checks 1a, 1b, 2, 3 and 4 pass | Ledger row P10-2 (`implementation-summary.md:83`) | Met | - |
+| AC-003 | REQ-003 | Given that copy with ROUTER.md's Webflow prose section removed, When router-sync runs, Then the same checks still pass | Ledger row P10-3 (`implementation-summary.md:84`); `goal.md` criterion 2 | Met | - |
+| AC-004 | REQ-004 | Given a registry with two surfaces, When doc-claims runs, Then 'two surfaces' wording passes the `surfaces` rule | Ledger row P10-4 (`implementation-summary.md:85`); `goal.md` criterion 2 | Met | - |
+| AC-005 | REQ-005 | Given the pristine copy, When router-sync check 2 runs, Then it reports no new problem | Ledger row P10-5 (`implementation-summary.md:86`) | Met | - |
+| AC-006 | REQ-006 | Given the four changes, When their tests run, Then each fails before its change and passes after, one sk-code-opencode release is added and the sk-code doctor's 13d passes | Ledger rows T1 to T4 (`implementation-summary.md:92`); `goal.md` criteria 1, 3 and 5 | Met | - |
 
 ### Status values
 
