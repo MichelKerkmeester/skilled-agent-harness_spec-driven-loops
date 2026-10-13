@@ -39,9 +39,11 @@ const RETIRED_NAMES = [
   /`code-(?:quality|review)`/g,
   /(?<![\w-])sk-code:code-(?:quality|review)(?![\w-])/g,
 ];
-// The hub has three surfaces (WEBFLOW, OPENCODE, OBSIDIAN), so a claim that counts two is stale.
-// A list that names two surface packets is not a count claim and is not matched.
-const TWO_SURFACE_WORDING = [/\btwo (?:supported )?surfaces\b/gi, /\bboth supported surfaces\b/gi];
+// The surface count is the number of packetKind "surface" modes in the hub's mode-registry.json, so
+// wording that counts another number is stale. A list that names surface packets is not a count
+// claim and is not matched.
+const COUNT_WORDS = { two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10 };
+const SURFACE_COUNT_WORDING = [/\b(two|three|four|five|six|seven|eight|nine|ten) (?:supported )?surfaces\b/gi, /\bboth supported surfaces\b/gi];
 // A Surface-aware loading bullet that states a condition describes a load that depends on the
 // route, so the files and globs it names are not every-route claims.
 const CONDITIONAL_WORDING = /\b(?:when|if|unless|only|matched)\b/i;
@@ -60,6 +62,12 @@ const ALLOWED = [
     file: 'sk-code-quality/SKILL.md',
     line: '<!-- Keywords:',
     reason: 'search vocabulary that keeps the old names findable',
+  },
+  {
+    check: 'surfaces',
+    file: 'sk-code-opencode/assets/checklists/agent-authoring.md',
+    line: 'mirror it across all three surfaces',
+    reason: 'counts the runtime agent directories, not the hub surfaces',
   },
 ];
 
@@ -309,14 +317,27 @@ function checkNames(hub, docs) {
   return problems;
 }
 
-// Check surfaces: no wording that counts two surfaces.
+// Check surfaces: wording that counts surfaces states the count mode-registry.json declares.
 function checkSurfaces(hub, docs) {
+  const registryPath = path.join(hub, 'mode-registry.json');
+  if (!fs.existsSync(registryPath)) return ['mode-registry.json not found, so the surface count is unknown'];
+  let modes;
+  try {
+    modes = JSON.parse(fs.readFileSync(registryPath, 'utf8')).modes;
+  } catch (err) {
+    return [`mode-registry.json does not parse (${String(err.message).split('\n')[0]}), so the surface count is unknown`];
+  }
+  if (!Array.isArray(modes)) return ['mode-registry.json has no modes array, so the surface count is unknown'];
+  const declared = modes.filter((m) => m && m.packetKind === 'surface').length;
   const problems = [];
   for (const doc of docs) {
     for (const line of docLines(doc)) {
       if (isAllowed('surfaces', doc.rel, line.text)) continue;
-      for (const re of TWO_SURFACE_WORDING) {
-        for (const m of line.text.matchAll(re)) problems.push(`${doc.rel}:${line.no}: two-surface wording "${m[0]}", the hub has three surfaces`);
+      for (const re of SURFACE_COUNT_WORDING) {
+        for (const m of line.text.matchAll(re)) {
+          const stated = m[1] ? COUNT_WORDS[m[1].toLowerCase()] : 2;
+          if (stated !== declared) problems.push(`${doc.rel}:${line.no}: surface count "${m[0]}" says ${stated}, but mode-registry.json declares ${declared} surface modes`);
+        }
       }
     }
   }
@@ -366,7 +387,7 @@ function checkTiers(hub) {
 const CHECKS = [
   ['paths', 'path references in the hub docs resolve on disk', checkPaths],
   ['names', 'no retired packet names remain', checkNames],
-  ['surfaces', 'no two-surface wording remains', checkSurfaces],
+  ['surfaces', 'surface counts match mode-registry.json', checkSurfaces],
   ['tiers', 'ROUTER.md load-tier claims match DEFAULT_RESOURCE', checkTiers],
 ];
 

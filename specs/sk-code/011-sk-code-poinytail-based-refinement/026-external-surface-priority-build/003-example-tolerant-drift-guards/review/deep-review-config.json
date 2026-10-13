@@ -1,0 +1,131 @@
+{
+  "topic": "Review: commit b6eef4ebbb on branch worktrees/126-drift-guard-tolerance: the router-sync existence filter, archived-gold skip and first-map anchor, the registry-derived doc-claims surface count with its allowlist row, their four tests, the scripts README row, the sk-code-opencode 1.2.4.0 release with its Hermes copy, and the phase spec docs",
+  "sessionId": "2026-10-13T05:58:44.591Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/003-example-tolerant-drift-guards",
+  "createdAt": "2026-10-13T05:58:44.591Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 580
+  },
+  "mode": "review",
+  "reviewTarget": "commit b6eef4ebbb (worktrees/126-drift-guard-tolerance): example-tolerant sk-code drift guards",
+  "reviewTargetType": "files",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    ".hermes/skills/sk-code-opencode/SKILL.md",
+    ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+    ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md",
+    ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs",
+    ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs",
+    ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.4.0.md",
+    ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs",
+    ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/003-example-tolerant-drift-guards/acceptance-criteria.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/003-example-tolerant-drift-guards/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/003-example-tolerant-drift-guards/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/003-example-tolerant-drift-guards/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/003-example-tolerant-drift-guards/tasks.md"
+  ],
+  "stopPolicy": "max-iterations",
+  "resource_map": {
+    "emit": true
+  }
+}

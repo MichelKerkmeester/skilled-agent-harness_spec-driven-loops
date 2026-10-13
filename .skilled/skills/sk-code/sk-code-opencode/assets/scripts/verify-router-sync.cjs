@@ -28,8 +28,10 @@ const NON_ROUTED_ALLOWLIST = new Set([
   'shared/references/workflow-debug.md',
   'shared/references/workflow-verify.md',
 ]);
-const SURFACES = ['sk-code-webflow', 'sk-code-opencode'];
-const SURFACE_PACKETS = new Set([...SURFACES, 'sk-code-obsidian']);
+// A hub may ship without an example surface, so each list keeps only the packets present on disk.
+const onDisk = (packet) => fs.existsSync(path.join(SKCODE, packet));
+const SURFACES = ['sk-code-webflow', 'sk-code-opencode'].filter(onDisk);
+const SURFACE_PACKETS = new Set([...SURFACES, ...['sk-code-obsidian'].filter(onDisk)]);
 // The hub-level shared controls are declared once in ROUTER.md: its SHARED_CONTROL_RESOURCES
 // list plus its DEFAULT_RESOURCE preamble, and leg 2 reads both. A parent-map path under a
 // workflow mode packet is that packet's own leaf in leaf-manifest.json, not a shared control.
@@ -123,7 +125,8 @@ function machineRouterPaths() {
 
 function proseExplicitPaths(problems) {
   const md = fs.readFileSync(path.join(SKCODE, 'ROUTER.md'), 'utf8');
-  const start = md.indexOf('## 4. WEBFLOW MAP');
+  // The prose maps start at the first `## N. <NAME> MAP` heading, so a hub without one example's map still scans the rest.
+  const start = md.search(/^## \d+\. [A-Z][A-Z0-9_ -]* MAP$/m);
   const end = md.indexOf('## 7. VERIFICATION COMMANDS');
   if (start < 0 || end <= start) {
     problems.push(`ROUTER.md section anchors not found (start=${start}, end=${end}), so the prose scan would be empty`);
@@ -248,7 +251,12 @@ function legBijection() {
     const gold = JSON.parse(fs.readFileSync(goldPath, 'utf8'));
     const ids = new Set();
     for (const c of gold.cases || []) for (const id of c.targetQualifiedIds || []) ids.add(id);
-    for (const id of ids) if (!LEAF_CONTRACT.qualifiedIdToLeaf(id, { modeIndex }).ok) problems.push(`compiled destination resolves to no leaf-owning mode: ${id}`);
+    // A destination whose mode the manifest no longer declares belongs to a removed surface, so it
+    // is skipped; a declared mode that still fails to resolve is drift and is reported.
+    for (const id of ids) {
+      const resolved = LEAF_CONTRACT.qualifiedIdToLeaf(id, { modeIndex });
+      if (!resolved.ok && resolved.code !== 'ORPHAN_WORKFLOW_MODE') problems.push(`compiled destination resolves to no leaf-owning mode: ${id}`);
+    }
   }
   const codeOpencode = modeIndex['sk-code-opencode'];
   if (!codeOpencode) {

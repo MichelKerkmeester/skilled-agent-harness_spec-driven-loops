@@ -35,7 +35,7 @@
       "example-tolerant"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,7 +47,11 @@
       ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs",
       ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs",
       ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs",
-      ".skilled/skills/sk-code/sk-code-opencode/SKILL.md"
+      ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md",
+      "scripts/README.md",
+      ".hermes/skills/sk-code-opencode/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md"
     ],
     "entities": [
       {
@@ -114,6 +118,12 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md",
         "source": "derived"
       },
       {
@@ -187,17 +197,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`run-all-drift-guards.sh` is the completion gate for system-code changes (`sk-code-opencode/SKILL.md:175`)",
     "created_at": "2026-10-13T04:45:53Z",
-    "last_save_at": "2026-10-13T05:14:09.760Z",
+    "last_save_at": "2026-10-13T06:38:25.045Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:07fa14fed99baf449772c55880bed4d6d42dd455aad182aadc9c45e0e59a2980",
+    "source_fingerprint": "sha256:0870dd095c01ce8fc63267acd5c5723868852f60529816c948cf8045847ee624",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "28f61f18541e02b65c250ab6b9eff3a949a4706aae286dfc7c807ae03398d4b5",
-      "plan.md": "87a3460f74ca8a5b81d9386cdc7087cf8a94ffb1765824b92671831c310019c0",
-      "tasks.md": "0fbf5ea32506f8393d55fdb21c7f541ad19db5dc4f274551d3905c159a998d9f",
-      "implementation-summary.md": "99c3c675934858e51c6aadf51fbbc409e7aac49db35341049b39db7cc1e570b6"
+      "spec.md": "f9cf12091e8efe2d30e4fe3bfd28d25806f8fc05fda7912235a104b3a1f82e42",
+      "plan.md": "4def39a33e2a304b756d5481008826e74568e9f04c365c2616928979df966682",
+      "tasks.md": "46c36716867090636b282c10b1cd72abf098cf152ba31b90a744d8e6e9d672ab",
+      "implementation-summary.md": "1249363b87eeb1be4a511b4a972c3c4df9eb68823f896da78d5f6dddff734230"
     },
     "last_active_at": null
   }

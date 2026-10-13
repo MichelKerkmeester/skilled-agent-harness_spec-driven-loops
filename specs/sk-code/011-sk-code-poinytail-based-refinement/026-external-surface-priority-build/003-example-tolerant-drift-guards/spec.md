@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-13 |
 | **Branch** | Its own worktree from origin/main, created as `goal.md` says |
 | **Parent Spec** | ../spec.md |
@@ -91,7 +91,9 @@ The guards describe whatever surfaces the tree ships, so an adopter who removed 
 | `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs` | Modify | Registry-derived surface count |
 | `.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs` | Modify | T1 to T3 |
 | `.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs` | Modify | T4 |
-| `.skilled/skills/sk-code/sk-code-opencode/SKILL.md`, `.skilled/skills/sk-code/sk-code-opencode/changelog/` | Modify, Create | One release |
+| `.skilled/skills/sk-code/sk-code-opencode/SKILL.md`, `.skilled/skills/sk-code/sk-code-opencode/changelog/` | Modify, Create | One release, and the surfaces sentence |
+| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md`, `.skilled/skills/sk-code/sk-code-opencode/scripts/README.md` | Modify | The surfaces rule described by the registry |
+| `.hermes/skills/sk-code-opencode/SKILL.md` | Regenerate | Hermes copy of the released SKILL.md, written by `sync-skills-hermes.cjs` |
 <!-- /ANCHOR:scope -->
 
 ---

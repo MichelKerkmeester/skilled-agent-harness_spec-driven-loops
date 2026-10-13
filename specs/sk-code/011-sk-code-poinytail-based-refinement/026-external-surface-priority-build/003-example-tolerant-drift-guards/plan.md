@@ -40,9 +40,9 @@ Four in-place edits to two guard scripts. Each reads data the tree already has: 
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -151,7 +151,7 @@ Removal recipe for the copy, research F84: delete both example packets; drop bot
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Baseline per-check output of the live wrapper saved in scratch
+- [x] Baseline per-check output of the live wrapper saved in scratch
 
 ### Rollback Procedure
 1. Revert the phase commits.

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "786d4792d596cdee46bf2fcaa5a4d85636178b7da2b4492f3c53dc27ef95475f",
+  "manifestHash": "47ae66c157e0624a63a74aed91ad9a091d15b928f9c11dc11dab627b39998765",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7450,6 +7450,9 @@
     ],
     "a incremental bm25 decision": [
       "A-incremental BM25 decision"
+    ],
+    "a new surface leads its tie": [
+      "a new surface leads its tie"
     ],
     "a packet that no routing surface names": [
       "a packet that no routing surface names"
@@ -41045,7 +41048,8 @@
       "example skills directory structure"
     ],
     "example tolerant drift guards": [
-      "example tolerant drift guards"
+      "example tolerant drift guards",
+      "example-tolerant drift guards"
     ],
     "example tolerant drift guards acceptance criteria": [
       "example-tolerant drift guards acceptance criteria"
@@ -90205,6 +90209,9 @@
     "sk code opencode 1 2 3 0": [
       "sk-code-opencode 1.2.3.0"
     ],
+    "sk code opencode 1 2 4 0": [
+      "sk-code-opencode 1.2.4.0"
+    ],
     "sk code opencode alignment": [
       "sk-code opencode alignment"
     ],
@@ -90267,6 +90274,9 @@
     ],
     "sk code opencode v1 2 3 0": [
       "sk-code-opencode v1.2.3.0"
+    ],
+    "sk code opencode v1 2 4 0": [
+      "sk-code-opencode v1.2.4.0"
     ],
     "sk code overlay hardcoded replacement": [
       "sk-code overlay hardcoded replacement"
@@ -91351,6 +91361,9 @@
     "sk create skill 1 5 3 0": [
       "sk-create-skill 1.5.3.0"
     ],
+    "sk create skill 1 5 4 0": [
+      "sk-create-skill 1.5.4.0"
+    ],
     "sk create skill authoring errors": [
       "sk-create-skill authoring errors"
     ],
@@ -91383,6 +91396,9 @@
     ],
     "sk create skill v1 5 3 0": [
       "sk-create-skill v1.5.3.0"
+    ],
+    "sk create skill v1 5 4 0": [
+      "sk-create-skill v1.5.4.0"
     ],
     "sk create with human voice 1 0 0 0": [
       "sk-create-with-human-voice 1.0.0.0"

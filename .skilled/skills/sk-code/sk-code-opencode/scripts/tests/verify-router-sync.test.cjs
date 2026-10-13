@@ -30,7 +30,7 @@ function write(file, text) {
 function buildHub(t) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'router-sync-'));
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
-  const skills = path.join(root, 'skills');
+  const skills = path.join(root, '.skilled', 'skills');
   const hub = path.join(skills, 'sk-code');
   const scripts = path.join(hub, 'sk-code-opencode', 'assets', 'scripts');
   fs.mkdirSync(scripts, { recursive: true });
@@ -129,4 +129,52 @@ test('leg 2 reports a shared parent-map path ROUTER.md does not declare', (t) =>
   assert.match(out, /parent map DEMO cites shared\/references\/undeclared\.md, outside the parent tier/);
   assert.doesNotMatch(out, /control\.md/);
   assert.doesNotMatch(out, /sk-code-review\/assets\/leaf\.md/);
+});
+
+test('leg 2 passes when an example surface packet is not on disk', (t) => {
+  const { hub, guard } = buildHub(t);
+  const router = 'DEFAULT_RESOURCE = [\n]\nRESOURCE_MAP = {\n  "DEMO": ["sk-code-opencode/references/o.md", "shared/references/control.md"],\n}\n';
+  write(path.join(hub, 'ROUTER.md'), `${router}SHARED_CONTROL_RESOURCES = [\n    "shared/references/control.md",\n]\n`);
+  write(path.join(hub, 'sk-code-opencode', 'SKILL.md'), 'RESOURCE_MAP = {\n  "DEMO": ["references/o.md"],\n}\n');
+  write(path.join(hub, 'sk-code-opencode', 'references', 'o.md'), '# o.md\n');
+  write(path.join(hub, 'leaf-manifest.json'), JSON.stringify({ modes: [] }));
+  const { status, out } = runGuard(guard, ['--checks', '2']);
+  assert.equal(status, 0, out);
+  assert.match(out, /PASS check 2/);
+});
+
+test('leg 3 skips archived gold for a mode the manifest no longer declares', (t) => {
+  const { root, hub, guard } = buildHub(t);
+  write(path.join(hub, 'sk-code-opencode', 'SKILL.md'), 'RESOURCE_MAP = {\n  "DEMO": ["references/o.md"],\n}\n');
+  const manifest = { modes: [{ workflowMode: 'sk-code-opencode', packet: 'sk-code-opencode', leaves: ['references/o.md'] }] };
+  write(path.join(hub, 'leaf-manifest.json'), JSON.stringify(manifest));
+  const gold = path.join(root, 'specs', 'sk-doc', 'z_archive', '019-skill-routing-refactor', '015-router-unification-program',
+    '009-parent-hub-rollout', '001-sk-code', 'compiled', 'route-gold.typed.json');
+  const ids = ['sk-code/sk-code-opencode/sk-code-opencode/surface/evidence-base', 'sk-code/sk-code-webflow/sk-code-webflow/surface/evidence-base'];
+  write(gold, JSON.stringify({ cases: [{ targetQualifiedIds: ids }] }));
+  const pass = runGuard(guard, ['--checks', '3']);
+  assert.equal(pass.status, 0, pass.out);
+  assert.match(pass.out, /PASS check 3/);
+  write(gold, JSON.stringify({ cases: [{ targetQualifiedIds: [...ids, 'sk-code/sk-code-opencode/not-the-packet/surface/evidence-base'] }] }));
+  const fail = runGuard(guard, ['--checks', '3']);
+  assert.equal(fail.status, 1, fail.out);
+  assert.match(fail.out, /compiled destination resolves to no leaf-owning mode: sk-code\/sk-code-opencode\/not-the-packet\//);
+  assert.doesNotMatch(fail.out, /sk-code-webflow/);
+});
+
+test('leg 1a scans the prose maps from the first map heading when the Webflow map is gone', (t) => {
+  const { hub, guard } = buildHub(t);
+  write(path.join(hub, 'ROUTER.md'), [
+    '## 3. LOAD TIERS',
+    '',
+    '## 5. OPENCODE MAP',
+    '',
+    '- `references/unrouted.md`',
+    '',
+    '## 7. VERIFICATION COMMANDS',
+    '',
+  ].join('\n'));
+  const { out } = runGuard(guard, ['--checks', '1a']);
+  assert.doesNotMatch(out, /section anchors not found/);
+  assert.match(out, /prose path not routed: references\/unrouted\.md/);
 });
