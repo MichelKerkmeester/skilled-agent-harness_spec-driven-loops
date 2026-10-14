@@ -4,6 +4,6 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@opencode-ai/plugin": "1.18.34"
+    "@opencode-ai/plugin": "1.19.0"
   }
 }
