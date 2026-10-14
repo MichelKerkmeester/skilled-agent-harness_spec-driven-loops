@@ -43,6 +43,7 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/skills/sk-code/SKILL.md",
       ".skilled/commands/doctor/sk-code.md",
       ".skilled/commands/doctor/_routes.yaml",
       ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml",
@@ -52,7 +53,6 @@
       "scripts/README.md",
       ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
       ".skilled/skills/sk-code/README.md",
-      ".skilled/skills/sk-code/SKILL.md",
       ".hermes/skills/sk-code/SKILL.md",
       ".skilled/repo-rules/prevent-overengineering.md",
       "review/review-report.md",
@@ -93,6 +93,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/SKILL.md",
         "source": "derived"
       },
       {
@@ -141,12 +147,6 @@
         "name": "command-contract.json",
         "kind": "config",
         "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/SKILL.md",
         "source": "derived"
       },
       {
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The README battery is six commands to copy by hand",
     "created_at": "2026-10-13T18:45:43Z",
-    "last_save_at": "2026-10-14T07:39:35.290Z",
+    "last_save_at": "2026-10-14T08:15:53.261Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:402fd536c8daf8246db5e7eb66438ca2ddf0b86c6170f28516c137507c164954",
+    "source_fingerprint": "sha256:2e106ff01712f2720a7930aed53ae3e523de7bbf775f6efd32ae382c9448c15b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c5cabfe3cd2de3675216a653057307de1c397ea4c7be04f1f4564e9ad9bce871",
       "plan.md": "c9befb6707a0c87cd98a24b4fdfe9f66bb74dd921b1fdcd64f47930d36a90920",
-      "tasks.md": "c831459ca31bf94948b9554c7ff944ca8dfd524029d7fe2b18e45f1be9573320",
-      "implementation-summary.md": "120c17d9c1a1dab497c96ac7312cb3d4bdbb3a2a918e5f43c2609753fd3f18de"
+      "tasks.md": "128c3b335c03e69cf27d85ade640647b79b9d46fff8973a8d10fee9df67f8483",
+      "implementation-summary.md": "89ec46c81cfc23260fbfdcfad1982e143fc2c32602d0c99a1ded063f1631cbb4"
     },
     "last_active_at": null
   }

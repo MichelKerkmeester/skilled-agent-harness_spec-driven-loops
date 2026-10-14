@@ -56,6 +56,8 @@ contextType: "implementation"
 - [x] T009 Fill the ledger, run `check-goal.cjs` and strict `validate.sh`, delete the copies
 - [x] T010 Add the manual playbook scenario DOC-382 for `/doctor:sk-code setup` in the sk-code playbook and list it in the doctor scenario index
 - [x] T011 Make the probe leg name `SPECKIT_COMPILED_ROUTING` when that switch, not a stale manifest, serves the legacy stub, with one test that fails on the old script
+- [x] T012 Run DOC-382 in a fresh GitHub clone of main and the real slash command through a headless runtime, then run the battery in a shallow clone of release v3.6.0.0
+- [x] T013 Make a checkout without `.skilled/skills/sk-code/SKILL.md` fail provisioning with the v4-layout repair and skip the other seven legs, and add scenario DOC-383 for it
 <!-- /ANCHOR:phase-3 -->
 
 ---

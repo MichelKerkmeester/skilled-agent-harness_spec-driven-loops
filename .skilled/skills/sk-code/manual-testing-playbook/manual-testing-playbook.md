@@ -1,7 +1,7 @@
 ---
 title: "sk-code: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the sk-code skill."
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # sk-code: Manual Testing Playbook
@@ -52,7 +52,7 @@ Coverage note (2026-05-04): the playbook covers sk-code's two-axis routing (Code
 - Design restraint scenarios (added 2026-06-13, v3.4.0.0): the pre-write Design Restraint Ladder rung selection, the implementer anti-stall rule, the `ceiling:` intentional-simplification convention, and the STACK_FOLDERS-to-disk validator.
 - Tooling and hooks: the two warn-only banner branches of the legacy `claude-posttooluse.sh` PostToolUse hook, kept for direct tests and registered in no runtime — dist-staleness wiring (`check-dist-staleness.sh`; TH-001, added 2026-07-02, v3.5.0.16) and comment-hygiene wiring (`check-comment-hygiene.sh`; TH-002, added 2026-07-07) — each a deterministic stdout/exit-code check independent of skill routing.
 - Plugins and hooks: the runtime-neutral `sk-code-post-edit-quality` post-edit quality router shared by the OpenCode plugin adapter (`tool.execute.before`/`tool.execute.after`/`experimental.chat.system.transform`) and the Claude Code `PostToolUse(Write|Edit)` hook (`post-edit-quality-router`, added 2026-07-11) — a live dual-runtime dispatch/checker check independent of skill routing.
-- Doctor commands: the `/doctor:sk-code setup` read-only battery, covering its eight legs (provisioning, parent-skill, root-metadata, guard, sync, drift-guards, derived-freshness and the route probe), its exit-code-to-status mapping (0 to `STATUS=OK`, 1 to `STATUS=FAIL` and 2 to `STATUS=ERROR`) and its write-nothing guarantee.
+- Doctor commands: the `/doctor:sk-code setup` read-only battery, covering its eight legs (provisioning, parent-skill, root-metadata, guard, sync, drift-guards, derived-freshness and the route probe), its exit-code-to-status mapping (0 to `STATUS=OK`, 1 to `STATUS=FAIL` and 2 to `STATUS=ERROR`), its write-nothing guarantee and the pre-v4 checkout where the battery runs no leg and fails provisioning with the v4-layout repair.
 
 ### Realistic Test Model
 
@@ -151,7 +151,7 @@ Hard rule: any critical-path scenario FAIL forces feature verdict to FAIL. Criti
 Release is READY only when:
 1. No feature verdict is FAIL.
 2. All critical scenarios (SD-001, SD-002, SD-003, RD-002, SA-001) are PASS.
-3. Coverage is 100% of playbook scenarios (33 / 33).
+3. Coverage is 100% of playbook scenarios (34 / 34).
 4. No unresolved blocking triage item remains.
 
 ### Root-vs-Feature Rule
@@ -324,13 +324,14 @@ Per-feature files: see `plugins-and-hooks/`.
 
 ---
 
-## 17. DOCTOR COMMANDS (`DOC-382`)
+## 17. DOCTOR COMMANDS (`DOC-382..DOC-383`)
 
-This category validates the `/doctor:sk-code setup` battery, the read-only check that reports whether the sk-code surface can route end to end. The scenario here is a deterministic check against the battery's real stdout and exit-code contract, not a routing decision. Category notes: [doctor-commands/README.md](doctor-commands/README.md).
+This category validates the `/doctor:sk-code setup` battery, the read-only check that reports whether the sk-code surface can route end to end. The two scenarios here are deterministic checks against the battery's real stdout and exit-code contract, not routing decisions. Category notes: [doctor-commands/README.md](doctor-commands/README.md).
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
 | `DOC-382` | Doctor sk-code setup | Verify the setup battery maps its exit codes to the documented statuses and writes nothing | `Run the doctor sk-code setup check and tell me whether the sk-code surface passes its setup battery.` | run `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs` in the current-code environment → repeat with `--prompt=<text>` → run with `--bogus` → add a nested graph-metadata.json and rerun → remove the probe file → run with `SPECKIT_COMPILED_ROUTING=0` | exit 0 prints eight PASS lines and `STATUS=OK legs=8`, the prompt flag reaches the probe line, `--bogus` prints the usage line and exits 2, and both failure runs exit 1 with `STATUS=FAIL failed=1 skipped=0` and a `repair:` line | `/tmp/skc-DOC382-clean.txt`, `/tmp/skc-DOC382-prompt.txt`, `/tmp/skc-DOC382-usage.txt`, `/tmp/skc-DOC382-probe-fail.txt`, `/tmp/skc-DOC382-kill-switch.txt` | PASS iff the clean run exits 0 with `STATUS=OK legs=8`, the prompt flag reaches the probe line, the bad argument exits 2 with the usage line, both failure runs exit 1 with their named repair lines, and no file is written | If a leg fails on a clean tree, run the `repair:` line the battery printed under that leg. If the probe serves the legacy stub with the flag unset, run the manifest refresh and copy commands the repair line names |
+| `DOC-383` | Doctor sk-code on a pre-v4 checkout | Verify the battery on a checkout without the v4 tree runs no leg and fails provisioning with the v4-layout repair | `Run the doctor sk-code setup check in a checkout that predates the v4 layout and tell me what it reports.` | shallow-clone `v3.6.0.0` into a `mktemp -d` dir → confirm `.skilled` is absent → copy the command, assets and script into `.opencode/commands/doctor/` → commit the baseline with a throwaway identity → run `node .opencode/commands/doctor/scripts/sk-code-setup-check.cjs` → confirm `git status --porcelain` is empty → rerun with `SPECKIT_COMPILED_ROUTING=0` → confirm the tree is clean → `rm -rf` the temp dir | both runs exit 1 printing the provisioning FAIL with its v4-layout repair, seven SKIP lines reading `needs the v4 layout` and `STATUS=FAIL failed=1 skipped=7`, in well under a second | `/tmp/skc-DOC383-run.txt`, `/tmp/skc-DOC383-kill-switch.txt` | PASS iff both runs exit 1 with `STATUS=FAIL failed=1 skipped=7`, no leg runs and no file is written | If a leg runs, confirm the fixture lacks `.skilled/skills/sk-code/SKILL.md`. If the clone cannot reach GitHub, record `SKIP` |
 
 Per-feature files: see `doctor-commands/`.
 
@@ -399,7 +400,8 @@ Tests NOT covered by automation (manual playbook is the only validation):
 | Tooling And Hooks | TH-002 | [tooling-and-hooks/comment-hygiene-hook.md](tooling-and-hooks/comment-hygiene-hook.md) | No |
 | Plugins And Hooks | `post-edit-quality-router` | [plugins-and-hooks/post-edit-quality-router.md](plugins-and-hooks/post-edit-quality-router.md) | No |
 | Doctor Commands | DOC-382 | [doctor-commands/doctor-sk-code-setup.md](doctor-commands/doctor-sk-code-setup.md) | No |
+| Doctor Commands | DOC-383 | [doctor-commands/doctor-sk-code-pre-v4-checkout.md](doctor-commands/doctor-sk-code-pre-v4-checkout.md) | No |
 
-**Total scenarios**: 33
+**Total scenarios**: 34
 **Critical-path scenarios**: approximately 15 (SD-001, SD-002, SD-003, RD-002, SA-001, MR-001, MR-002, MR-003, MR-004, CB-001, CB-002, CB-003, CS-001, CS-002, CS-003)
 **Categories**: 11
