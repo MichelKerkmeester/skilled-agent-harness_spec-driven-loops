@@ -53,6 +53,8 @@ A second pass on 2026-10-11 aligned the whole entry with the current tree for ex
 
 A third pass on 2026-10-14 folded in everything that landed after the entry was last edited. The operator chose one release over two, so the separate v4.0.0.5 note, which covered the external surface build, was merged in and deleted. A new Adapting the Code Skill section covers OpenCode as the native surface, the fresh-clone guide, new surfaces ranked ahead of OpenCode, check 5l, examples that can be removed, failures that name their fix and `/doctor:sk-code setup`. Commit and Pull Request Checks gained the Commit-Id hooks, Tooling Changes gained Pi Fast Mode on by default and Upgrade Notes gained four actions. The glance list went from 14 bullets back to the template's 12, and the topic phrases back to two.
 
+A fourth pass on 2026-10-14 ordered the entry by impact for someone using the framework in their own repository. Sections now run from spec upgrades, undo and validation through commit checks, the retired deep-loop modes and the code skill, down to authoring validators and session settings, and the glance list and upgrade notes follow the same order. Tooling Changes, the commit and pull request checks, the code skill and skill authoring were split so no section runs past six items, and the Follow-Up Fixes and Deep Review Fixes headings, which named internal review rounds, gave their items to the matching topical sections. Two internal prompt fixes, a citation fix for a path only this repository has, an internal Pi variable, a CI build detail and two items that repeated others were cut, the trigger index job entry went from three paragraphs to one, and the upgrade notes went from 34 to 31 by merging the six linked-path notes and the two unknown-option notes. A script confirmed every moved item matches its earlier text apart from the five edited on purpose.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -103,6 +105,8 @@ The inventory came from the bodies of the 92 non-spec commits whose Spec trailer
 | hvr_scan.py after the third pass | 0 hard blockers, 95/100, the same as before it |
 | validate_document.py after the third pass | VALID, 0 issues |
 | generate-trigger-index.mjs --check after the rebuild | exit 0 |
+| hvr_scan.py after the fourth pass | 0 hard blockers, 95/100 |
+| validate_document.py after the fourth pass | VALID, 0 issues |
 | validate.sh parent --recursive --strict | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 

@@ -53,6 +53,7 @@ contextType: "implementation"
 - [x] T006 Validate the parent recursively and commit
 - [x] T007 Fold the v4.0.0.5 note and the later surface, setup doctor, Commit-Id and Pi Fast Mode changes into v4.0.0.4, delete v4.0.0.5.md and trim the glance list to 12 bullets
 - [x] T008 Rerun the voice scan, the document validator and the trigger index rebuild
+- [x] T009 Order the sections, glance bullets and upgrade notes from most to least impact for outside users, split long sections and cut entries only this repository's maintainers would notice (`.skilled/changelog/skilled/v4.0.0.4.md`)
 <!-- /ANCHOR:phase-3 -->
 
 ---
