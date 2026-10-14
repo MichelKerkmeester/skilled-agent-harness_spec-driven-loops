@@ -152,6 +152,22 @@ git -C "$T/victim" config skilled.trustRepoHooks true
 ( cd "$T/victim" && bash "$SOURCE/scripts/git-hooks/post-commit" ) >/dev/null 2>&1
 chk "$([[ -e "$T/planted-ran" ]] && echo ran || echo blocked)" "ran" "the same library runs once the repository opts in"
 
+# A clone cannot plant code under the untrusted root itself.
+git init -q "$T/planter"
+sentinel "$T/planter/.skilled"
+mkdir -p "$T/planter/.skilled-untrusted/scripts/git-hooks/lib" "$T/planter/.skilled-untrusted/skills/sk-git/scripts"
+printf 'autostash_orphan_guard() { : > "%s"; }\n' "$T/untrusted-guard-ran" \
+  > "$T/planter/.skilled-untrusted/scripts/git-hooks/lib/autostash-orphan-guard.sh"
+printf ': > "%s"\necho 0000001\n' "$T/untrusted-allocator-ran" \
+  > "$T/planter/.skilled-untrusted/skills/sk-git/scripts/commit-id-naming.sh"
+printf 'x\n' > "$T/planter/file.txt"
+git -C "$T/planter" add file.txt
+git -C "$T/planter" -c core.hooksPath=/dev/null -c user.email=t@example.com -c user.name=test commit -q -m seed
+( cd "$T/planter" && bash "$SOURCE/scripts/git-hooks/post-commit" ) >/dev/null 2>&1
+chk "$([[ -e "$T/untrusted-guard-ran" ]] && echo ran || echo blocked)" "blocked" "a guard planted under .skilled-untrusted does not run"
+printf 'subject\n' > "$T/planter-msg"
+( cd "$T/planter" && bash "$SOURCE/scripts/git-hooks/prepare-commit-msg" "$T/planter-msg" message ) >/dev/null 2>&1
+chk "$([[ -e "$T/untrusted-allocator-ran" ]] && echo ran || echo blocked)" "blocked" "an allocator planted under .skilled-untrusted does not run"
 echo ""
 echo "--- source-root-selection: $pass passed, $fail failed ---"
 [[ "$fail" -eq 0 ]]

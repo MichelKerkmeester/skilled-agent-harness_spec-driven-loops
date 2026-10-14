@@ -81,7 +81,8 @@ _hook_common="$(cd "$(dirname "$_trust_self")" 2>/dev/null && env -u GIT_DIR -u 
 _repo_common="$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null || true)"
 if [[ -n "$REPO_ROOT" && ( -z "$_hook_common" || "$_hook_common" != "$_repo_common" ) ]] \
   && [[ "$(git config --local --bool skilled.trustRepoHooks 2>/dev/null || true)" != "true" ]]; then
-  SOURCE_ROOT="$REPO_ROOT/.skilled-untrusted"
+  # /dev/null is never a directory, so no repository can ship files under this root.
+  SOURCE_ROOT="/dev/null/.skilled-untrusted"
 fi
 # <<< hook trust
 
@@ -308,7 +309,7 @@ while read -r _ local_sha remote_ref remote_sha; do
         continue
       fi
       _id_missing="$(printf '%s\n' "$_id_log" \
-        | awk -F'\t' 'NF && $2 !~ /^[0-9][0-9][0-9][0-9][0-9][0-9][0-9]$/ { print "   " $1 " " $3 }')"
+        | awk -F'\t' 'NF && ($2 !~ /^[0-9][0-9][0-9][0-9][0-9][0-9][0-9]$/ || $2 == "0000000") { print "   " $1 " " $3 }')"
       if [[ -n "$_id_missing" ]]; then
         {
           echo "BLOCKED [gate:commit-id]: commits pushed to '$branch_name' carry no Commit-Id trailer:"

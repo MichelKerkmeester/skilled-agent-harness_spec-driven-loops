@@ -145,6 +145,8 @@ These bind every build phase, 002 to 006.
 | 29 | 029-surface-setup-build/ | Build the 028 recommendations in two children: 001 fixes the clone path and the guard and contract-library messages (R1, R2, R4, R5), 002 adds a read-only `/doctor:sk-code setup` (R3) from origin/main once 001 is on it | Complete |
 | 30 | 030-epic-deep-review/ | Five-iteration cli-codex deep review of the epic's shipped work and the v4.0.0.4 changelog; review only, verdict CONDITIONAL with three P2 advisories | Complete |
 | 31 | 031-epic-review-fixes/ | Fix the three P2 advisories of the 030 review: create.sh lone dash, the setup probe line quoting and the hook trust wording | Complete |
+| 32 | 032-epic-follow-up-review/ | Five-iteration cli-codex follow-up review of Commit-Id, Pi Fast Mode and the v4.0.0.4 changelog; review only, verdict FAIL on one P0 hook trust hole | Complete |
+| 33 | 033-follow-up-review-fixes/ | Close the 032 P0 by moving the untrusted hook root under /dev/null, refuse Commit-Id 0000000 and fix the catalog enrollment sentence | Complete |
 
 ### Phase Transition Rules
 
@@ -187,6 +189,8 @@ These bind every build phase, 002 to 006.
 | 028-surface-setup-hardening-research | 029-surface-setup-build | 028 verified and its recommendations ranked; 029 builds them from origin/main | `validate.sh --recursive --strict` on the parent |
 | 029-surface-setup-build | 030-epic-deep-review | 029 on origin/main; 030 reviews the whole epic and changes no file outside its folder | `validate.sh --recursive --strict` on the parent |
 | 030-epic-deep-review | 031-epic-review-fixes | 030 report adjudicated; 031 fixes its three advisories | `validate.sh --recursive --strict` on the parent |
+| 031-epic-review-fixes | 032-epic-follow-up-review | 031 on origin/main; 032 reviews what 030 left unread | `validate.sh --recursive --strict` on the parent |
+| 032-epic-follow-up-review | 033-follow-up-review-fixes | 032 report adjudicated; 033 fixes its three findings | `validate.sh --recursive --strict` on the parent |
 
 ### Handoffs Outside sk-code
 

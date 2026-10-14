@@ -49,5 +49,5 @@ cip_own_allocator() {
 
 # True when the message file $1 carries a Commit-Id trailer line.
 cip_message_has_id() {
-  grep -qE '^Commit-Id: [0-9]{7}$' "$1"
+  grep -E '^Commit-Id: [0-9]{7}$' "$1" | grep -qv '^Commit-Id: 0000000$'
 }

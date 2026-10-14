@@ -558,6 +558,9 @@ check "a covered repository blocks a message without a Commit-Id" 1 "$RC" "requi
 printf 'feat(sk-git): add a thing\n\nWhy it changed.\n\nCommit-Id: 0000001\n' > "$TMP/message.txt"
 run_hook; RC=$?
 check "a covered repository passes a message with a Commit-Id" 0 "$RC"
+printf 'feat(sk-git): add a thing\n\nWhy it changed.\n\nCommit-Id: 0000000\n' > "$TMP/message.txt"
+run_hook; RC=$?
+check "a covered repository refuses the reserved all-zero Commit-Id" 1 "$RC" "requires a Commit-Id"
 printf "Merge branch 'feature/x'\n" > "$TMP/message.txt"
 git -C "$TMP" rev-parse HEAD > "$TMP/.git/MERGE_HEAD"
 run_hook; RC=$?

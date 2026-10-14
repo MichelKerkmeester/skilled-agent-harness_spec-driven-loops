@@ -153,6 +153,7 @@ test('body, trailer and attribution rules each fire on their own case', () => {
   assert.ok(v('feat(sk-git): add a thing\n\nCommit-Id: 0001234').includes('body.required'));
   assert.ok(v('feat(sk-git): add a thing\n\nCommit-Id: 0001234\n\nProse below.').includes('trailer.final-paragraph'));
   assert.ok(v('feat(sk-git): add a thing\n\nWhy.\n\nCommit-Id: 12').includes('trailer.commit-id-format'));
+  assert.ok(v('feat(sk-git): add a thing\n\nWhy.\n\nCommit-Id: 0000000').includes('trailer.commit-id-format'));
   assert.ok(v('feat(sk-git): add a thing\n\nWhy.\n\nCommit-Id: 0001234', { commitIdOwner: () => 'abc1234' }).includes('trailer.commit-id-unique'));
   assert.ok(v('feat(sk-git): add a thing\n\nWhy.\n\nSpec: specs/sk-git/001-x').includes('trailer.spec-prefix'));
   assert.ok(v('feat(sk-git): add a thing\n\nWhy.\n\nSpec: sk-git/001-x', { specExists: () => false }).includes('trailer.spec-exists'));

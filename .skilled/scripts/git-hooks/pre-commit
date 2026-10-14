@@ -44,12 +44,13 @@ _hook_common="$(cd "$(dirname "$_trust_self")" 2>/dev/null && env -u GIT_DIR -u 
 _repo_common="$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null || true)"
 if [[ -n "$REPO_ROOT" && ( -z "$_hook_common" || "$_hook_common" != "$_repo_common" ) ]] \
   && [[ "$(git config --local --bool skilled.trustRepoHooks 2>/dev/null || true)" != "true" ]]; then
-  SOURCE_ROOT="$REPO_ROOT/.skilled-untrusted"
+  # /dev/null is never a directory, so no repository can ship files under this root.
+  SOURCE_ROOT="/dev/null/.skilled-untrusted"
 fi
 # <<< hook trust
 # An untrusted repository skips these checks, and a skip that stays silent reads
 # as a pass. Say so where the checks would have run.
-if [[ "$SOURCE_ROOT" == "$REPO_ROOT/.skilled-untrusted" ]] \
+if [[ "$SOURCE_ROOT" == "/dev/null/.skilled-untrusted" ]] \
   && [[ -f "$REPO_ROOT/.skilled/skills/system-spec-kit/SKILL.md" || -f "$REPO_ROOT/.opencode/skills/system-spec-kit/SKILL.md" ]]; then
   echo "NOTICE [gate:hook-trust]: this clone is not trusted, so the pre-commit checks were skipped." >&2
   echo "Enable them: git config --local skilled.trustRepoHooks true" >&2

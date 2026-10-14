@@ -9,7 +9,7 @@ trigger_phrases:
   - "commit subject length rules"
 importance_tier: normal
 contextType: implementation
-version: 1.3.0.0
+version: 1.3.1.0
 ---
 
 # Commit Message Template - Repository-Specific Contract
@@ -204,7 +204,7 @@ Each rule has an id, and every block message names the id it failed:
 | `body.line-length` | Warning only: a prose line is longer than `warnLineLength` |
 | `body.breaking-sections` | Error: a breaking body is missing one of the configured section labels |
 | `trailer.final-paragraph` | `Spec:` and `Commit-Id:` sit in the last paragraph with no prose beside them |
-| `trailer.commit-id-format` | `Commit-Id:` holds exactly seven digits |
+| `trailer.commit-id-format` | `Commit-Id:` holds exactly seven digits, never 0000000 |
 | `trailer.commit-id-unique` | No other commit already carries the same `Commit-Id:`. A commit with the same author email and author date is an earlier copy of this one, left by a rebase, and does not count |
 | `trailer.spec-prefix` | `Spec:` omits the `specs/` prefix, so `git log --grep='^Spec: <track>/<packet>'` finds it |
 | `trailer.spec-exists` | `Spec:` names a packet folder that exists under `specs/` |
@@ -259,7 +259,7 @@ Git-generated subjects listed in `passthroughSubjects` skip every rule.
     "strictKeys": ["Spec", "Commit-Id"],
     "machineKeys": ["Spec", "Commit-Id"],
     "machineKeysInFinalParagraph": true,
-    "commitId": { "key": "Commit-Id", "pattern": "^[0-9]{7}$", "hint": "exactly seven digits", "unique": true },
+    "commitId": { "key": "Commit-Id", "pattern": "^(?!0{7})[0-9]{7}$", "hint": "exactly seven digits, not 0000000", "unique": true },
     "spec": { "key": "Spec", "root": "specs", "forbiddenPrefix": "specs/", "mustExist": true }
   },
   "attribution": {

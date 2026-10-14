@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/033-follow-up-review-fixes",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/033-follow-up-review-fixes",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "follow up review fixes",
+      "phase 33 follow up review fixes",
+      "follow up review fixes plan",
+      "follow up review fixes tasks",
+      "follow up review fixes goal",
+      "follow up review fixes implementation summary"
+    ],
+    "key_topics": [
+      "follow",
+      "review",
+      "phase",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "every",
+      "global",
+      "hook",
+      "pointed"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-git/assets/commit-message-template.md",
+      ".skilled/skills/sk-git/scripts/lib/message-contract.test.mjs",
+      ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/conventional-commit-workflows.md",
+      ".skilled/scripts/git-hooks/tests/source-root-selection.test.sh",
+      ".skilled/scripts/git-hooks/lib/commit-id-policy.sh",
+      ".skilled/scripts/git-hooks/tests/commit-msg.test.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "commit-message-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/assets/commit-message-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "message-contract.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/lib/message-contract.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "conventional-commit-workflows.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/conventional-commit-workflows.md",
+        "source": "derived"
+      },
+      {
+        "name": "source-root-selection.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/source-root-selection.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "commit-id-policy.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/lib/commit-id-policy.sh",
+        "source": "derived"
+      },
+      {
+        "name": "commit-msg.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/commit-msg.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Local",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every global hook pointed an untrusted repository at `$REPOROOT/.skilled-untrusted`, a folder inside that repository, so any clone could run its own code on commit or push",
+    "created_at": "2026-10-14T19:32:45Z",
+    "last_save_at": "2026-10-14T19:45:01.125Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8a647338f6dac072764469a5eab94cc8add4205a08e179a8717615bad90b1559",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "95500d323979d8d1146a5761078bf8a48bbda369f147d06ae398c05da5bbfa00",
+      "plan.md": "5582da1afdfb84dcec8f637e69e14668a542df6bc144ab0e22529227090ae5d3",
+      "tasks.md": "9b5861de60a9ef242123c17d34019eea94494620b186a43dc19b063688cd45f8",
+      "implementation-summary.md": "63c72a4cbf8932713596d72f94a90b020df135e06c4401d0e2f0f907ebdb38b5"
+    },
+    "last_active_at": null
+  }
+}
