@@ -1,7 +1,7 @@
 ---
 title: "sk-code: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the sk-code skill."
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # sk-code: Manual Testing Playbook
@@ -31,12 +31,13 @@ Canonical package artifacts:
 - `design-restraint/`
 - `tooling-and-hooks/`
 - `plugins-and-hooks/`
+- `doctor-commands/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides deterministic operator scenarios validating the `sk-code` skill surface, plus one `compiled-routing/` category that is excluded as routing-gold (see the corpus manifest). Each feature keeps a stable ID (numbered `{PREFIX}-NNN` for legacy categories, or a descriptive kebab-slug for newer non-numbered categories) and links to a dedicated feature file with the full execution contract. §18 FEATURE CATALOG CROSS-REFERENCE INDEX carries the authoritative per-scenario listing and derived counts.
+This playbook provides deterministic operator scenarios validating the `sk-code` skill surface, plus one `compiled-routing/` category that is excluded as routing-gold (see the corpus manifest). Each feature keeps a stable ID (numbered `{PREFIX}-NNN` for legacy categories, or a descriptive kebab-slug for newer non-numbered categories) and links to a dedicated feature file with the full execution contract. §19 FEATURE CATALOG CROSS-REFERENCE INDEX carries the authoritative per-scenario listing and derived counts.
 
 Coverage note (2026-05-04): the playbook covers sk-code's two-axis routing (Code Surface → Intent → Resource Loading) at SKILL.md head-of-main. It exercises:
 - WEBFLOW surface detection (vanilla HTML/CSS/JS frontend with motion.dev / GSAP / Lenis / HLS / Swiper / FilePond markers, `wrangler.toml`, `src/2_javascript/`).
@@ -51,6 +52,7 @@ Coverage note (2026-05-04): the playbook covers sk-code's two-axis routing (Code
 - Design restraint scenarios (added 2026-06-13, v3.4.0.0): the pre-write Design Restraint Ladder rung selection, the implementer anti-stall rule, the `ceiling:` intentional-simplification convention, and the STACK_FOLDERS-to-disk validator.
 - Tooling and hooks: the two warn-only banner branches of the legacy `claude-posttooluse.sh` PostToolUse hook, kept for direct tests and registered in no runtime — dist-staleness wiring (`check-dist-staleness.sh`; TH-001, added 2026-07-02, v3.5.0.16) and comment-hygiene wiring (`check-comment-hygiene.sh`; TH-002, added 2026-07-07) — each a deterministic stdout/exit-code check independent of skill routing.
 - Plugins and hooks: the runtime-neutral `sk-code-post-edit-quality` post-edit quality router shared by the OpenCode plugin adapter (`tool.execute.before`/`tool.execute.after`/`experimental.chat.system.transform`) and the Claude Code `PostToolUse(Write|Edit)` hook (`post-edit-quality-router`, added 2026-07-11) — a live dual-runtime dispatch/checker check independent of skill routing.
+- Doctor commands: the `/doctor:sk-code setup` read-only battery, covering its eight legs (provisioning, parent-skill, root-metadata, guard, sync, drift-guards, derived-freshness and the route probe), its exit-code-to-status mapping (0 to `STATUS=OK`, 1 to `STATUS=FAIL` and 2 to `STATUS=ERROR`) and its write-nothing guarantee.
 
 ### Realistic Test Model
 
@@ -115,7 +117,7 @@ Motion peer-resource folders must be present before MR/CB scenarios run: `sk-cod
 1. `manual-testing-playbook.md` (this file).
 2. Per-feature files under `manual-testing-playbook/{NN--category-name}/`.
 3. Scenario execution evidence (advisor outputs, surface-detection logs, resource-loading transcripts).
-4. Feature-to-scenario coverage map (§15 FEATURE CATALOG CROSS-REFERENCE INDEX).
+4. Feature-to-scenario coverage map (§19 FEATURE CATALOG CROSS-REFERENCE INDEX).
 5. Triage notes for all PARTIAL / FAIL outcomes.
 
 ### Scenario Acceptance Rules
@@ -149,7 +151,7 @@ Hard rule: any critical-path scenario FAIL forces feature verdict to FAIL. Criti
 Release is READY only when:
 1. No feature verdict is FAIL.
 2. All critical scenarios (SD-001, SD-002, SD-003, RD-002, SA-001) are PASS.
-3. Coverage is 100% of playbook scenarios (30 / 30).
+3. Coverage is 100% of playbook scenarios (33 / 33).
 4. No unresolved blocking triage item remains.
 
 ### Root-vs-Feature Rule
@@ -322,7 +324,19 @@ Per-feature files: see `plugins-and-hooks/`.
 
 ---
 
-## 17. AUTOMATED TEST CROSS-REFERENCE
+## 17. DOCTOR COMMANDS (`DOC-382`)
+
+This category validates the `/doctor:sk-code setup` battery, the read-only check that reports whether the sk-code surface can route end to end. The scenario here is a deterministic check against the battery's real stdout and exit-code contract, not a routing decision. Category notes: [doctor-commands/README.md](doctor-commands/README.md).
+
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| `DOC-382` | Doctor sk-code setup | Verify the setup battery maps its exit codes to the documented statuses and writes nothing | `Run the doctor sk-code setup check and tell me whether the sk-code surface passes its setup battery.` | run `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs` in the current-code environment → repeat with `--prompt=<text>` → run with `--bogus` → add a nested graph-metadata.json and rerun → remove the probe file → run with `SPECKIT_COMPILED_ROUTING=0` | exit 0 prints eight PASS lines and `STATUS=OK legs=8`, the prompt flag reaches the probe line, `--bogus` prints the usage line and exits 2, and both failure runs exit 1 with `STATUS=FAIL failed=1 skipped=0` and a `repair:` line | `/tmp/skc-DOC382-clean.txt`, `/tmp/skc-DOC382-prompt.txt`, `/tmp/skc-DOC382-usage.txt`, `/tmp/skc-DOC382-probe-fail.txt`, `/tmp/skc-DOC382-kill-switch.txt` | PASS iff the clean run exits 0 with `STATUS=OK legs=8`, the prompt flag reaches the probe line, the bad argument exits 2 with the usage line, both failure runs exit 1 with their named repair lines, and no file is written | If a leg fails on a clean tree, run the `repair:` line the battery printed under that leg. If the probe serves the legacy stub with the flag unset, run the manifest refresh and copy commands the repair line names |
+
+Per-feature files: see `doctor-commands/`.
+
+---
+
+## 18. AUTOMATED TEST CROSS-REFERENCE
 
 The sk-code skill currently has these automated tests:
 
@@ -348,7 +362,7 @@ Tests NOT covered by automation (manual playbook is the only validation):
 
 ---
 
-## 18. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 19. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Category | Feature ID | Per-Feature File | Critical Path |
 |---|---|---|---|
@@ -384,7 +398,8 @@ Tests NOT covered by automation (manual playbook is the only validation):
 | Tooling And Hooks | TH-001 | [tooling-and-hooks/check-dist-staleness-hook.md](tooling-and-hooks/check-dist-staleness-hook.md) | No |
 | Tooling And Hooks | TH-002 | [tooling-and-hooks/comment-hygiene-hook.md](tooling-and-hooks/comment-hygiene-hook.md) | No |
 | Plugins And Hooks | `post-edit-quality-router` | [plugins-and-hooks/post-edit-quality-router.md](plugins-and-hooks/post-edit-quality-router.md) | No |
+| Doctor Commands | DOC-382 | [doctor-commands/doctor-sk-code-setup.md](doctor-commands/doctor-sk-code-setup.md) | No |
 
-**Total scenarios**: 32
+**Total scenarios**: 33
 **Critical-path scenarios**: approximately 15 (SD-001, SD-002, SD-003, RD-002, SA-001, MR-001, MR-002, MR-003, MR-004, CB-001, CB-002, CB-003, CS-001, CS-002, CS-003)
-**Categories**: 10
+**Categories**: 11

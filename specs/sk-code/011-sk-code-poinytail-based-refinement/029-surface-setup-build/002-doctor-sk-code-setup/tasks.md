@@ -54,6 +54,8 @@ contextType: "implementation"
 - [x] T007 Run S-1 to S-3 in throwaway copies and record them
 - [x] T008 Run `/deep:review :auto` for 5 iterations; fix and record each confirmed finding as an RV row
 - [x] T009 Fill the ledger, run `check-goal.cjs` and strict `validate.sh`, delete the copies
+- [x] T010 Add the manual playbook scenario DOC-382 for `/doctor:sk-code setup` in the sk-code playbook and list it in the doctor scenario index
+- [x] T011 Make the probe leg name `SPECKIT_COMPILED_ROUTING` when that switch, not a stale manifest, serves the legacy stub, with one test that fails on the old script
 <!-- /ANCHOR:phase-3 -->
 
 ---

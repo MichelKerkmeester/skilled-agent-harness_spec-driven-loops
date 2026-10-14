@@ -2,7 +2,7 @@
 id: doctor-commands-readme
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
-version: 2.3.0.0
+version: 2.3.1.0
 ---
 
 # Doctor Commands
@@ -23,7 +23,7 @@ Manual testing scenarios for the doctor command surface.
 - `/doctor:update`: 6 scenarios (DOC-357 to DOC-361 and DOC-381): `check`, `align`, `apply`, `rollback`, `record-base` and `compat`
 - The `/doctor:update` test fixture: 1 scenario (DOC-379): building, checking and resetting it
 
-The other doctor commands are tested in the playbook of the skill they check: `/doctor:skill-advisor` in system-skill-advisor (DOC-348 and DOC-362 to DOC-367), `/doctor:deep-loop` in system-deep-loop (DOC-331 to DOC-333 and DOC-368), `/doctor:git` in sk-git (DOC-369 to DOC-374) and `/doctor:mcp` in mcp-code-mode (DOC-375 to DOC-378 and DOC-380). DOC- numbers are shared across those playbooks, so a new doctor scenario takes the next free number in the whole series.
+The other doctor commands are tested in the playbook of the skill they check: `/doctor:skill-advisor` in system-skill-advisor (DOC-348 and DOC-362 to DOC-367), `/doctor:deep-loop` in system-deep-loop (DOC-331 to DOC-333 and DOC-368), `/doctor:git` in sk-git (DOC-369 to DOC-374), `/doctor:mcp` in mcp-code-mode (DOC-375 to DOC-378 and DOC-380) and `/doctor:sk-code` in sk-code (DOC-382). DOC- numbers are shared across those playbooks, so a new doctor scenario takes the next free number in the whole series.
 
 The memory and causal-graph doctor scenarios were removed with the memory server they diagnosed. Their former IDs (DOC-323 to DOC-330) are retired and must not be reused. The standalone rebuild-orchestrator and version-migration scenarios were removed with that command, and their former IDs (DOC-338 to DOC-342 and DOC-344 to DOC-347) are retired as well.
 
@@ -44,8 +44,8 @@ Scenarios that change state run in one of two long-lived local worktrees instead
 | Field | Value |
 |---|---|
 | Path | `.worktrees/.doctor-test-environment`, a symlink to the numbered worktree directory |
-| Branch | `worktrees/088-doctor-test-environment`, following `origin/main` |
-| Used by | DOC-349, DOC-350, DOC-352 to DOC-356 here, and the stateful doctor scenarios in system-skill-advisor, system-deep-loop, sk-git and mcp-code-mode |
+| Branch | `worktrees/<NNN>-doctor-test-environment`, the number the recreate step allocated, following `origin/main` |
+| Used by | DOC-349, DOC-350, DOC-352 to DOC-356 here, and the stateful doctor scenarios in system-skill-advisor, system-deep-loop, sk-git, mcp-code-mode and sk-code |
 
 - **Before a scenario:** run `git -C .worktrees/.doctor-test-environment fetch origin` and `git -C .worktrees/.doctor-test-environment merge --ff-only origin/main`, then confirm `git status --porcelain` prints nothing.
 - **Dependencies:** the worktree is created without dependencies. A scenario that needs a built runtime runs `bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision .worktrees/.doctor-test-environment` once first.

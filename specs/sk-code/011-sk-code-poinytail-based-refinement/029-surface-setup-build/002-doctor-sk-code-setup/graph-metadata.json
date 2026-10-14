@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The README battery is six commands to copy by hand",
     "created_at": "2026-10-13T18:45:43Z",
-    "last_save_at": "2026-10-13T21:51:41.389Z",
+    "last_save_at": "2026-10-14T07:39:35.290Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:66fbfc04a80f1709adfeef75e0815951bc2efabf419a469d282ffa345a20e88f",
+    "source_fingerprint": "sha256:402fd536c8daf8246db5e7eb66438ca2ddf0b86c6170f28516c137507c164954",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c5cabfe3cd2de3675216a653057307de1c397ea4c7be04f1f4564e9ad9bce871",
       "plan.md": "c9befb6707a0c87cd98a24b4fdfe9f66bb74dd921b1fdcd64f47930d36a90920",
-      "tasks.md": "18157183578df5c01702118fc9cc1e85f57c811a1477247a9210707dbbdcd290",
-      "implementation-summary.md": "4b6d8e0149c99725960391157f325ded039b90a25e7fb1674814ba499387904b"
+      "tasks.md": "c831459ca31bf94948b9554c7ff944ca8dfd524029d7fe2b18e45f1be9573320",
+      "implementation-summary.md": "120c17d9c1a1dab497c96ac7312cb3d4bdbb3a2a918e5f43c2609753fd3f18de"
     },
     "last_active_at": null
   }
