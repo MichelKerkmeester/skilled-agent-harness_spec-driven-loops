@@ -120,6 +120,13 @@ while IFS= read -r file; do
         */.backup-*) continue ;;
         */memory/*) continue ;;
         */scratch/*) continue ;;
+        # research/ and review/ hold the deep loops' own output: iteration files,
+        # dashboards and syntheses their workflow writes and regenerates, where
+        # bracketed status text such as [None yet] is the reducer's format rather
+        # than an unfilled template. The validator's placeholder rule reads only
+        # the authored docs, so this scan matches it.
+        */research/*) continue ;;
+        */review/*) continue ;;
     esac
 
     line_num=0
@@ -154,6 +161,7 @@ while IFS= read -r file; do
                 -e 's/\[NEEDS CLARIFICATION\]//g' \
                 -e 's/\[W:[^]]*\]//g' \
                 -e 's/`[^`]*`//g' \
+                -e 's/\[[^]]*\]\(//g' \
             )
 
             # Check if any placeholder-like patterns remain after cleanup
