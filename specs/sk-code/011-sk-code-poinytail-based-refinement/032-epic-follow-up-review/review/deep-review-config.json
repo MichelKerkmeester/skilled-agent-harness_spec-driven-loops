@@ -1,0 +1,150 @@
+{
+  "topic": "Review: Scoped follow-up to the 030 epic review, covering what it left unread: the sk-git Commit-Id hooks (prepare-commit-msg stamping, commit-msg and pre-push refusal, lib/commit-id-policy.sh enrollment and the shipped allocator fallback in an untrusted clone), the Pi Fast Mode extension (default-on, saved state, --fast flag and subagent handoff precedence) and a line-by-line audit of every claim in .skilled/changelog/skilled/v4.0.0.4.md against the tree. Scope: the 32 files in review/scope-files.txt; for the changelog audit you may open any path the changelog itself names.",
+  "sessionId": "2026-10-14T18:34:14.000Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 300,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/sk-code/011-sk-code-poinytail-based-refinement/032-epic-follow-up-review",
+  "createdAt": "2026-10-14T18:34:14.000Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 2700
+  },
+  "mode": "review",
+  "reviewTarget": "Scoped follow-up to the 030 epic review, covering what it left unread: the sk-git Commit-Id hooks (prepare-commit-msg stamping, commit-msg and pre-push refusal, lib/commit-id-policy.sh enrollment and the shipped allocator fallback in an untrusted clone), the Pi Fast Mode extension (default-on, saved state, --fast flag and subagent handoff precedence) and a line-by-line audit of every claim in .skilled/changelog/skilled/v4.0.0.4.md against the tree. Scope: the 32 files in review/scope-files.txt; for the changelog audit you may open any path the changelog itself names.",
+  "reviewTargetType": "files",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "reviewScopeFiles": [
+    ".pi/extensions/pi-fast-mode-w-subagent-support/package.json",
+    ".pi/extensions/pi-fast-mode-w-subagent-support/README.md",
+    ".pi/extensions/pi-fast-mode-w-subagent-support/src/commands.ts",
+    ".pi/extensions/pi-fast-mode-w-subagent-support/src/config.ts",
+    ".pi/extensions/pi-fast-mode-w-subagent-support/src/handoff.ts",
+    ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts",
+    ".pi/extensions/pi-fast-mode-w-subagent-support/src/payload.ts",
+    ".pi/extensions/pi-fast-mode-w-subagent-support/src/README.md",
+    ".pi/extensions/pi-fast-mode-w-subagent-support/src/status.ts",
+    ".pi/extensions/pi-fast-mode-w-subagent-support/src/types.ts",
+    ".pi/extensions/pi-fast-mode-w-subagent-support/tests/commands.test.ts",
+    ".pi/extensions/pi-fast-mode-w-subagent-support/tests/config.test.ts",
+    ".pi/extensions/pi-fast-mode-w-subagent-support/tests/extension.test.ts",
+    ".pi/extensions/pi-fast-mode-w-subagent-support/tests/handoff.test.ts",
+    ".pi/extensions/pi-fast-mode-w-subagent-support/tests/payload-status.test.ts",
+    ".pi/extensions/pi-fast-mode-w-subagent-support/tests/precedence.test.ts",
+    ".pi/extensions/pi-fast-mode-w-subagent-support/tests/propagation.test.ts",
+    ".pi/extensions/pi-fast-mode-w-subagent-support/tests/README.md",
+    ".pi/extensions/pi-fast-mode-w-subagent-support/tsconfig.json",
+    ".skilled/changelog/skilled/v4.0.0.4.md",
+    ".skilled/scripts/git-hooks/commit-msg",
+    ".skilled/scripts/git-hooks/lib/commit-id-policy.sh",
+    ".skilled/scripts/git-hooks/pre-push",
+    ".skilled/scripts/git-hooks/prepare-commit-msg",
+    ".skilled/scripts/git-hooks/tests/commit-msg.test.sh",
+    ".skilled/scripts/git-hooks/tests/pre-push-message-contract.test.sh",
+    ".skilled/scripts/git-hooks/tests/pre-push.test.sh",
+    ".skilled/scripts/git-hooks/tests/prepare-commit-msg.test.sh",
+    ".skilled/skills/sk-git/scripts/commit-id-naming.sh",
+    ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+    ".skilled/skills/sk-git/scripts/stamp-branch.sh",
+    ".skilled/skills/sk-git/scripts/tests/commit-id-naming.test.sh"
+  ],
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "stopPolicy": "max-iterations"
+}

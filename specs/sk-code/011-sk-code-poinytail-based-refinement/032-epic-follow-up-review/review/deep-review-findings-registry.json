@@ -1,0 +1,921 @@
+{
+  "sessionId": "2026-10-14T18:34:14.000Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R2-P0-001",
+      "severity": "P0",
+      "title": "Hook trust gate executes clone-controlled .skilled-untrusted helpers",
+      "file": ".skilled/scripts/git-hooks/prepare-commit-msg",
+      "line": 78,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "Commit-Id gates accept the reserved all-zero ordinal",
+      "file": ".skilled/scripts/git-hooks/pre-push",
+      "line": 311,
+      "description": "The Commit-Id message and push gates reject every value the allocator considers invalid.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "The hook helper and pre-push gate use seven-digit-only checks, while the allocator is stricter. Existing commit-msg coverage tests a short malformed value but not zero; the push test exercises a positive value only.",
+      "affectedSurfaceHints": [
+        "commit-msg validation",
+        "pre-push Gate 7",
+        "Commit-Id allocator contract"
+      ],
+      "contentHash": "4b0ac615dc108593d98e4eb6050ebd0b5652937d3e7d83ccf4d26da9b5b94db9",
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Commit-Id catalog misstates enrollment for repositories without an allocator",
+      "file": ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/conventional-commit-workflows.md",
+      "line": 32,
+      "description": "Describe config and history-based enrollment in the catalog and link the policy helper.",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 1,
+    "P1": 1,
+    "P2": 1
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "changelog_claim_mismatch",
+      "commit_id_changelog_mismatch",
+      "commit_id_policy_documentation_drift",
+      "feature_agent_cross_runtime_gap",
+      "invalid_commit_id_acceptance",
+      "pi_fast_mode_cross_reference_drift",
+      "Pi_payload_scope_or_override",
+      "Pi_state_and_handoff_precedence",
+      "playbook_capability_gap",
+      "state_ownership",
+      "state_precedence",
+      "untrusted_allocator_execution",
+      "untrusted_hook_helper_execution"
+    ],
+    "ruledOut": [
+      "allocator_collision_or_race",
+      "feature_agent_cross_runtime_gap",
+      "hook_policy_enrollment_spoofing",
+      "pi_fast_mode_cross_reference_drift",
+      "Pi_payload_scope_or_override",
+      "Pi_state_and_handoff_precedence",
+      "playbook_capability_gap",
+      "state_ownership",
+      "state_precedence"
+    ],
+    "deferred": [
+      "non_target_changelog_claim_semantics",
+      "project_config_path_boundary",
+      "release_note_claim_drift"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "untrusted_hook_helper_execution": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "Pi_state_and_handoff_precedence": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          3
+        ]
+      },
+      "Pi_payload_scope_or_override": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          3
+        ]
+      },
+      "hook_policy_enrollment_spoofing": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "allocator_collision_or_race": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "invalid_commit_id_acceptance": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          3
+        ]
+      },
+      "project_config_path_boundary": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "non-target_changelog_claim_semantics": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "changelog_claim_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          3
+        ]
+      },
+      "non_target_changelog_claim_semantics": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          2,
+          3,
+          4
+        ]
+      },
+      "commit_id_changelog_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "commit_id_policy_documentation_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "pi_fast_mode_cross_reference_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "feature_agent_cross_runtime_gap": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "playbook_capability_gap": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "state_ownership": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "state_precedence": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "untrusted_allocator_execution": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "release_note_claim_drift": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 2,
+      "id": "SL-SEC-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/config.ts"
+      ],
+      "bugClass": "project_config_path_boundary",
+      "disposition": "deferred",
+      "rationale": "The path is fixed but the symlinked parent boundary was not verified; defer to a later security pass.",
+      "evidenceRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/config.ts:235",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/config.ts:338"
+      ],
+      "reason": "The path is fixed but the symlinked parent boundary was not verified; defer to a later security pass."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-TR-006",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/changelog/skilled/v4.0.0.4.md"
+      ],
+      "bugClass": "non_target_changelog_claim_semantics",
+      "disposition": "deferred",
+      "rationale": "The remaining claims span source areas outside this feature cluster and were not fully inspected in this iteration.",
+      "evidenceRefs": [
+        ".skilled/changelog/skilled/v4.0.0.4.md:49",
+        ".skilled/changelog/skilled/v4.0.0.4.md:363",
+        ".skilled/changelog/skilled/v4.0.0.4.md:407",
+        ".skilled/changelog/skilled/v4.0.0.4.md:445",
+        ".skilled/changelog/skilled/v4.0.0.4.md:475"
+      ],
+      "reason": "Carry the remaining release-note behavior audit forward; do not treat the path-token scan as semantic confirmation."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-04",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/changelog/skilled/v4.0.0.4.md"
+      ],
+      "bugClass": "release_note_claim_drift",
+      "disposition": "deferred",
+      "rationale": "Semantic source verification is incomplete for the unrelated release-note sections.",
+      "evidenceRefs": [
+        ".skilled/changelog/skilled/v4.0.0.4.md:34",
+        ".skilled/changelog/skilled/v4.0.0.4.md:135",
+        ".skilled/changelog/skilled/v4.0.0.4.md:427",
+        ".skilled/changelog/skilled/v4.0.0.4.md:475"
+      ],
+      "reason": "The remaining claims span subsystems not semantically checked in this iteration; retain this as explicit audit debt rather than asserting coverage."
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 2,
+      "id": "SL-SEC-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh",
+        ".skilled/scripts/git-hooks/commit-msg"
+      ],
+      "bugClass": "hook_policy_enrollment_spoofing",
+      "disposition": "ruled_out",
+      "rationale": "The examined decision path is local-config-only and does not execute repository code.",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh:23",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh:38",
+        ".skilled/scripts/git-hooks/tests/prepare-commit-msg.test.sh:452"
+      ],
+      "reason": "The examined decision path is local-config-only and does not execute repository code."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-git/scripts/commit-id-naming.sh",
+        ".skilled/scripts/git-hooks/prepare-commit-msg"
+      ],
+      "bugClass": "allocator_collision_or_race",
+      "disposition": "ruled_out",
+      "rationale": "Static lock and persistence paths align with the documented common-directory allocation contract; the test was inspected, not run.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/scripts/commit-id-naming.sh:95",
+        ".skilled/skills/sk-git/scripts/commit-id-naming.sh:171",
+        ".skilled/skills/sk-git/scripts/commit-id-naming.sh:190",
+        ".skilled/skills/sk-git/scripts/tests/commit-id-naming.test.sh:81"
+      ],
+      "reason": "Static lock and persistence paths align with the documented common-directory allocation contract; the test was inspected, not run."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/handoff.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/tests/precedence.test.ts"
+      ],
+      "bugClass": "Pi_state_and_handoff_precedence",
+      "disposition": "ruled_out",
+      "rationale": "Observed resolution order matches the README contract and the test source covers each precedence branch.",
+      "evidenceRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts:183",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts:185",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/handoff.ts:20",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/handoff.ts:35",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/tests/precedence.test.ts:98"
+      ],
+      "reason": "Observed resolution order matches the README contract and the test source covers each precedence branch."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/payload.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/config.ts"
+      ],
+      "bugClass": "Pi_payload_scope_or_override",
+      "disposition": "ruled_out",
+      "rationale": "The request gate limits changes to configured exact targets and does not replace an explicit tier.",
+      "evidenceRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/payload.ts:83",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/payload.ts:94",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/payload.ts:103",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/config.ts:203"
+      ],
+      "reason": "The request gate limits changes to configured exact targets and does not replace an explicit tier."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-COR-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/handoff.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/tests/precedence.test.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/tests/propagation.test.ts"
+      ],
+      "bugClass": "Pi_state_and_handoff_precedence",
+      "disposition": "ruled_out",
+      "rationale": "Observed source order and test cases match the documented precedence.",
+      "evidenceRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts:183",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts:192",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/tests/precedence.test.ts:98",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/tests/precedence.test.ts:129"
+      ],
+      "reason": "No contradictory branch or parent-to-child handoff defect was found."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-COR-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/config.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/payload.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/tests/config.test.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/tests/payload-status.test.ts"
+      ],
+      "bugClass": "Pi_payload_scope_or_override",
+      "disposition": "ruled_out",
+      "rationale": "The request gate preserves explicit provider settings and limits changes to configured target pairs.",
+      "evidenceRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/config.ts:53",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/payload.ts:83",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/payload.ts:93",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/payload.ts:103",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/tests/payload-status.test.ts:199",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/tests/payload-status.test.ts:206"
+      ],
+      "reason": "Source guards return without mutation for non-target or already-tiered payloads."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-TR-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/README.md",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/handoff.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/manual-testing-playbook/subagent-handoff/child-inherits-preference.md"
+      ],
+      "bugClass": "pi_fast_mode_cross_reference_drift",
+      "disposition": "ruled_out",
+      "rationale": "The scoped Pi behavior and its documentation are aligned.",
+      "evidenceRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/README.md:88",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts:183",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/handoff.ts:20",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/manual-testing-playbook/subagent-handoff/child-inherits-preference.md:20"
+      ],
+      "reason": "No mismatch was found in the requested Pi state and precedence claims."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-TR-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-git/manual-testing-playbook/commit-formation/find-commits-by-packet-and-id.md",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/manual-testing-playbook"
+      ],
+      "bugClass": "playbook_capability_gap",
+      "disposition": "ruled_out",
+      "rationale": "The playbooks provide evidence for the scoped Pi claims; the GIT-044 scenario's narrower lookup purpose is not a contradictory claim.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/manual-testing-playbook/commit-formation/find-commits-by-packet-and-id.md:28",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/manual-testing-playbook/persistence-and-startup/fast-startup-flag.md:16",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/manual-testing-playbook/persistence-and-startup/state-persists-across-restart.md:16",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/manual-testing-playbook/subagent-handoff/child-inherits-preference.md:20"
+      ],
+      "reason": "No playbook claim contradicts the code, though fallback-specific capability coverage is absent."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-01",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/README.md",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/config.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/handoff.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/payload.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/status.ts"
+      ],
+      "bugClass": "state_ownership",
+      "disposition": "ruled_out",
+      "rationale": "The source boundaries match the documented responsibilities and no current cross-module ownership split was found.",
+      "evidenceRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/README.md:11",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts:107",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/config.ts:332"
+      ],
+      "reason": "Direct source reads show a single owner for each reviewed concern."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-02",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/handoff.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/config.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/tests/precedence.test.ts"
+      ],
+      "bugClass": "state_precedence",
+      "disposition": "ruled_out",
+      "rationale": "Implementation, README, and focused test cases agree on the precedence order.",
+      "evidenceRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts:178",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/tests/precedence.test.ts:98",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/README.md:92"
+      ],
+      "reason": "No precedence drift found in the inspected startup flow."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 2,
+      "id": "SL-SEC-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh",
+        ".skilled/scripts/git-hooks/commit-msg"
+      ],
+      "bugClass": "hook_policy_enrollment_spoofing",
+      "disposition": "ruled_out",
+      "rationale": "The examined decision path is local-config-only and does not execute repository code.",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh:23",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh:38",
+        ".skilled/scripts/git-hooks/tests/prepare-commit-msg.test.sh:452"
+      ],
+      "proof": "The examined decision path is local-config-only and does not execute repository code."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-git/scripts/commit-id-naming.sh",
+        ".skilled/scripts/git-hooks/prepare-commit-msg"
+      ],
+      "bugClass": "allocator_collision_or_race",
+      "disposition": "ruled_out",
+      "rationale": "Static lock and persistence paths align with the documented common-directory allocation contract; the test was inspected, not run.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/scripts/commit-id-naming.sh:95",
+        ".skilled/skills/sk-git/scripts/commit-id-naming.sh:171",
+        ".skilled/skills/sk-git/scripts/commit-id-naming.sh:190",
+        ".skilled/skills/sk-git/scripts/tests/commit-id-naming.test.sh:81"
+      ],
+      "proof": "Static lock and persistence paths align with the documented common-directory allocation contract; the test was inspected, not run."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/handoff.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/tests/precedence.test.ts"
+      ],
+      "bugClass": "Pi_state_and_handoff_precedence",
+      "disposition": "ruled_out",
+      "rationale": "Observed resolution order matches the README contract and the test source covers each precedence branch.",
+      "evidenceRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts:183",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts:185",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/handoff.ts:20",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/handoff.ts:35",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/tests/precedence.test.ts:98"
+      ],
+      "proof": "Observed resolution order matches the README contract and the test source covers each precedence branch."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/payload.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/config.ts"
+      ],
+      "bugClass": "Pi_payload_scope_or_override",
+      "disposition": "ruled_out",
+      "rationale": "The request gate limits changes to configured exact targets and does not replace an explicit tier.",
+      "evidenceRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/payload.ts:83",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/payload.ts:94",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/payload.ts:103",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/config.ts:203"
+      ],
+      "proof": "The request gate limits changes to configured exact targets and does not replace an explicit tier."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-COR-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/handoff.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/tests/precedence.test.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/tests/propagation.test.ts"
+      ],
+      "bugClass": "Pi_state_and_handoff_precedence",
+      "disposition": "ruled_out",
+      "rationale": "Observed source order and test cases match the documented precedence.",
+      "evidenceRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts:183",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts:192",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/tests/precedence.test.ts:98",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/tests/precedence.test.ts:129"
+      ],
+      "proof": "No contradictory branch or parent-to-child handoff defect was found."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-COR-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/config.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/payload.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/tests/config.test.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/tests/payload-status.test.ts"
+      ],
+      "bugClass": "Pi_payload_scope_or_override",
+      "disposition": "ruled_out",
+      "rationale": "The request gate preserves explicit provider settings and limits changes to configured target pairs.",
+      "evidenceRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/config.ts:53",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/payload.ts:83",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/payload.ts:93",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/payload.ts:103",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/tests/payload-status.test.ts:199",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/tests/payload-status.test.ts:206"
+      ],
+      "proof": "Source guards return without mutation for non-target or already-tiered payloads."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-COR-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/changelog/skilled/v4.0.0.4.md"
+      ],
+      "bugClass": "changelog_claim_mismatch",
+      "disposition": "not_applicable",
+      "rationale": "This claim is already represented by the active P0 finding from iteration 2.",
+      "evidenceRefs": [
+        ".skilled/changelog/skilled/v4.0.0.4.md:135",
+        ".skilled/scripts/git-hooks/prepare-commit-msg:78"
+      ],
+      "proof": "Do not create a duplicate entry for R2-P0-001."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-TR-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/changelog/skilled/v4.0.0.4.md",
+        ".skilled/scripts/git-hooks/prepare-commit-msg"
+      ],
+      "bugClass": "commit_id_changelog_mismatch",
+      "disposition": "not_applicable",
+      "rationale": "The known mismatch already has an active P0 finding.",
+      "evidenceRefs": [
+        ".skilled/changelog/skilled/v4.0.0.4.md:135",
+        ".skilled/scripts/git-hooks/prepare-commit-msg:78"
+      ],
+      "proof": "Do not duplicate R2-P0-001."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-TR-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/README.md",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/handoff.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/manual-testing-playbook/subagent-handoff/child-inherits-preference.md"
+      ],
+      "bugClass": "pi_fast_mode_cross_reference_drift",
+      "disposition": "ruled_out",
+      "rationale": "The scoped Pi behavior and its documentation are aligned.",
+      "evidenceRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/README.md:88",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts:183",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/handoff.ts:20",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/manual-testing-playbook/subagent-handoff/child-inherits-preference.md:20"
+      ],
+      "proof": "No mismatch was found in the requested Pi state and precedence claims."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-TR-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".codex/agents",
+        ".opencode/agents",
+        ".claude/agents",
+        ".pi/agents"
+      ],
+      "bugClass": "feature_agent_cross_runtime_gap",
+      "disposition": "not_applicable",
+      "rationale": "The reviewed components do not have feature-owner agent mirrors.",
+      "evidenceRefs": [
+        ".codex/agents/deep-review.toml:1",
+        ".opencode/agents/deep-review.md:1",
+        ".claude/agents/deep-review.md:1",
+        ".pi/agents/deep-review.md:1"
+      ],
+      "proof": "No target-specific agent contract exists to compare."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-TR-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-git/manual-testing-playbook/commit-formation/find-commits-by-packet-and-id.md",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/manual-testing-playbook"
+      ],
+      "bugClass": "playbook_capability_gap",
+      "disposition": "ruled_out",
+      "rationale": "The playbooks provide evidence for the scoped Pi claims; the GIT-044 scenario's narrower lookup purpose is not a contradictory claim.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/manual-testing-playbook/commit-formation/find-commits-by-packet-and-id.md:28",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/manual-testing-playbook/persistence-and-startup/fast-startup-flag.md:16",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/manual-testing-playbook/persistence-and-startup/state-persists-across-restart.md:16",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/manual-testing-playbook/subagent-handoff/child-inherits-preference.md:20"
+      ],
+      "proof": "No playbook claim contradicts the code, though fallback-specific capability coverage is absent."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-01",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/README.md",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/config.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/handoff.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/payload.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/status.ts"
+      ],
+      "bugClass": "state_ownership",
+      "disposition": "ruled_out",
+      "rationale": "The source boundaries match the documented responsibilities and no current cross-module ownership split was found.",
+      "evidenceRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/README.md:11",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts:107",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/config.ts:332"
+      ],
+      "proof": "Direct source reads show a single owner for each reviewed concern."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-02",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/handoff.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/config.ts",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/tests/precedence.test.ts"
+      ],
+      "bugClass": "state_precedence",
+      "disposition": "ruled_out",
+      "rationale": "Implementation, README, and focused test cases agree on the precedence order.",
+      "evidenceRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts:178",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/tests/precedence.test.ts:98",
+        ".pi/extensions/pi-fast-mode-w-subagent-support/README.md:92"
+      ],
+      "proof": "No precedence drift found in the inspected startup flow."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-03",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh",
+        ".skilled/scripts/git-hooks/prepare-commit-msg"
+      ],
+      "bugClass": "untrusted_allocator_execution",
+      "disposition": "not_applicable",
+      "rationale": "This is an existing active security finding rather than a new maintainability finding.",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/prepare-commit-msg:76",
+        ".skilled/scripts/git-hooks/prepare-commit-msg:110",
+        ".skilled/scripts/git-hooks/prepare-commit-msg:308"
+      ],
+      "proof": "Already tracked as R2-P0-001; the iteration avoids creating a duplicate finding."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "state_ownership",
+      "state_precedence",
+      "untrusted_allocator_execution",
+      "release_note_claim_drift"
+    ],
+    "covered": [
+      "state_ownership",
+      "state_precedence",
+      "untrusted_allocator_execution"
+    ],
+    "ruledOut": [
+      "state_ownership",
+      "state_precedence"
+    ],
+    "deferred": [
+      "release_note_claim_drift"
+    ],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

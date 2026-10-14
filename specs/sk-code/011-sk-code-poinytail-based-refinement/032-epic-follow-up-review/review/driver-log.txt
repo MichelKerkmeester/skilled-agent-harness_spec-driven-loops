@@ -1,0 +1,49 @@
+[18:34:20] iter 1: lock refresh exit 0: {"command":"refresh","refreshed":true}
+[18:34:20] iter 1: graph convergence telemetry exit 0: lse,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.4,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[18:34:21] iter 1: dispatch start attempt 1 (model gpt-6-luna, effort max, tier fast, dimension correctness)
+[18:41:10] iter 1: dispatch exit 0
+[18:41:10] iter 1: verify exit 1: iteration_file_missing no iterations/iteration-001*.md under specs/sk-code/011-sk-code-poinytail-based-refinement/032-epic-follow-up-review/review
+[18:41:12] iter 1: dispatch start attempt 2 (model gpt-6-luna, effort max, tier fast, dimension correctness)
+[18:49:37] iter 1: dispatch exit 0
+[18:49:37] iter 1: verify exit 1: iteration_file_missing no iterations/iteration-001*.md under specs/sk-code/011-sk-code-poinytail-based-refinement/032-epic-follow-up-review/review
+[18:49:37] iter 1: verification failed twice; recording the iteration as error
+[18:49:38] iter 1: claim adjudication append exit 0 passed=true newP0P1=0
+[18:49:38] iter 1: reducer exit 0:  
+[18:49:38] iter 1: graph upsert exit 0
+[18:49:38] iter 1: done: findings P0=? P1=? P2=? ratio=?
+[18:49:39] iter 2: lock refresh exit 0: {"command":"refresh","refreshed":true}
+[18:49:39] iter 2: graph convergence telemetry exit 0: lse,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.4,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[18:49:40] iter 2: dispatch start attempt 1 (model gpt-6-luna, effort max, tier fast, dimension security)
+[18:58:17] iter 2: dispatch exit 0
+[18:58:17] iter 2: verify exit 0: OK iteration 2 complete: narrative + route-proof + delta
+[18:58:18] iter 2: claim adjudication append exit 0 passed=false newP0P1=1
+[18:58:18] iter 2: reducer exit 0:  
+[18:58:18] iter 2: graph upsert exit 0
+[18:58:18] iter 2: done: findings P0=1 P1=0 P2=0 ratio=1
+[18:58:19] iter 3: lock refresh exit 0: {"command":"refresh","refreshed":true}
+[18:58:19] iter 3: graph convergence telemetry exit 0: e,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.463,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[18:58:20] iter 3: dispatch start attempt 1 (model gpt-6-luna, effort max, tier fast, dimension correctness)
+[19:07:36] iter 3: dispatch exit 0
+[19:07:37] iter 3: verify exit 0: OK iteration 3 complete: narrative + route-proof + delta
+[19:07:38] iter 3: claim adjudication append exit 0 passed=false newP0P1=1
+[19:07:38] iter 3: reducer exit 0:  
+[19:07:38] iter 3: graph upsert exit 0
+[19:07:38] iter 3: done: findings P0=0 P1=1 P2=0 ratio=0.3333333333
+[19:07:38] iter 4: lock refresh exit 0: {"command":"refresh","refreshed":true}
+[19:07:39] iter 4: graph convergence telemetry exit 0: e,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.525,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[19:07:40] iter 4: dispatch start attempt 1 (model gpt-6-luna, effort max, tier fast, dimension traceability)
+[19:16:07] iter 4: dispatch exit 0
+[19:16:07] iter 4: verify exit 0: OK iteration 4 complete: narrative + route-proof + delta
+[19:16:09] iter 4: claim adjudication append exit 0 passed=true newP0P1=0
+[19:16:09] iter 4: reducer exit 0:  
+[19:16:09] iter 4: graph upsert exit 0
+[19:16:09] iter 4: done: findings P0=0 P1=0 P2=1 ratio=0.3333333333
+[19:16:09] iter 5: lock refresh exit 0: {"command":"refresh","refreshed":true}
+[19:16:09] iter 5: graph convergence telemetry exit 0: e,"role":"weighted"},{"signal":"hotspotSaturation","value":1,"threshold":0.6,"passed":true,"role":"weighted"}],"graph_convergence_score":0.588,"graph_score_delta":null,"graph_score_delta_json":"null"}
+[19:16:11] iter 5: dispatch start attempt 1 (model gpt-6-luna, effort max, tier fast, dimension maintainability)
+[19:32:00] iter 5: dispatch exit 0
+[19:32:00] iter 5: verify exit 0: OK iteration 5 complete: narrative + route-proof + delta
+[19:32:02] iter 5: claim adjudication append exit 0 passed=true newP0P1=0
+[19:32:02] iter 5: reducer exit 0:  
+[19:32:02] iter 5: graph upsert exit 0
+[19:32:02] iter 5: done: findings P0=0 P1=0 P2=0 ratio=0
