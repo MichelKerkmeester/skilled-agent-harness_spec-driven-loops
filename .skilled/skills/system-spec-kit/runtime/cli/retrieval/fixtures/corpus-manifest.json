@@ -1,5 +1,5 @@
 {
-  "corpusHash": "75effdb802071f13c002e80eb4fcd70ae78c8b76c4ad828574749421f569b56f",
+  "corpusHash": "e69d483704068984e6342035e988d20af7aa5376c358cea17d38a38a89a8d58b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24741,
+  "includedPathCount": 24744,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2693,6 +2693,9 @@
     ".skilled/skills/sk-code/manual-testing-playbook/design-restraint/design-restraint-ladder.md",
     ".skilled/skills/sk-code/manual-testing-playbook/design-restraint/implementer-anti-stall.md",
     ".skilled/skills/sk-code/manual-testing-playbook/design-restraint/stack-folders-validator.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/README.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/doctor-sk-code-pre-v4-checkout.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/doctor-sk-code-setup.md",
     ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/opencode-config.md",
     ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/opencode-python.md",
     ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/opencode-shell.md",
@@ -24772,7 +24775,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "c7324f73b8216bde5ec7bc847942c4d2aeedfbc9406976a0002755e31ae91f9b",
+  "manifestHash": "5337874f8909f74d02c3d30b4e14afcab2bc0e374ba69d2148a94ee16a289d72",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

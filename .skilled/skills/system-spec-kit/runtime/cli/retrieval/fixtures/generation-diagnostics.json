@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 6952,
+    "missing-frontmatter": 6955,
     "ok": 14242,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 24741,
+  "documentsScanned": 24744,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "c7324f73b8216bde5ec7bc847942c4d2aeedfbc9406976a0002755e31ae91f9b",
+  "manifestHash": "5337874f8909f74d02c3d30b4e14afcab2bc0e374ba69d2148a94ee16a289d72",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -10644,6 +10644,24 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/manual-testing-playbook/design-restraint/stack-folders-validator.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/README.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/doctor-sk-code-pre-v4-checkout.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/doctor-sk-code-setup.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
