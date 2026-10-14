@@ -29,6 +29,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const { spawnSync } = require('node:child_process');
+const fs = require('node:fs');
 const path = require('node:path');
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -286,7 +287,7 @@ function report(rows, ctx) {
   for (const row of rows) {
     if (row.skip) {
       skipped += 1;
-      lines.push(verdictLine('SKIP', row.leg.id, 'needs the provision step'));
+      lines.push(verdictLine('SKIP', row.leg.id, row.reason));
       continue;
     }
     if (row.ok) {
@@ -329,15 +330,30 @@ function main(argv) {
   }
   const ctx = { prompt };
   const rows = [];
-  let provisioned = true;
-  for (const leg of LEGS) {
-    if (!provisioned && PROVISION_DEPENDENTS.has(leg.id)) {
-      rows.push({ leg, skip: true });
-      continue;
+  if (!fs.existsSync(path.join(ROOT, SKILL_DIR, 'SKILL.md'))) {
+    // Without the v4 tree every leg's repair would name files this checkout does not have.
+    rows.push({
+      leg: LEGS.find((leg) => leg.id === 'provisioning'),
+      ...fail(
+        [`${SKILL_DIR}/SKILL.md is missing, so this checkout predates the v4 layout or never installed sk-code`],
+        ['install the .skilled/ tree from a v4 release, run /doctor:update compat, then rerun this check'],
+      ),
+    });
+    for (const leg of LEGS) {
+      if (leg.id === 'provisioning') continue;
+      rows.push({ leg, skip: true, reason: 'needs the v4 layout' });
     }
-    const judged = JUDGES[leg.id](leg.run(ctx), ctx);
-    if (leg.id === 'provisioning') provisioned = judged.ok;
-    rows.push({ leg, ...judged });
+  } else {
+    let provisioned = true;
+    for (const leg of LEGS) {
+      if (!provisioned && PROVISION_DEPENDENTS.has(leg.id)) {
+        rows.push({ leg, skip: true, reason: 'needs the provision step' });
+        continue;
+      }
+      const judged = JUDGES[leg.id](leg.run(ctx), ctx);
+      if (leg.id === 'provisioning') provisioned = judged.ok;
+      rows.push({ leg, ...judged });
+    }
   }
   const { lines, failed } = report(rows, ctx);
   process.stdout.write(`${lines.join('\n')}\n`);

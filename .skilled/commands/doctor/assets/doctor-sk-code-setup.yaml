@@ -47,7 +47,7 @@ execution:
   steps:
     - "Run .skilled/commands/doctor/scripts/sk-code-setup-check.cjs once, adding --prompt=<text> when the operator passed one."
     - "The battery runs eight legs in order: provisioning (the @spec-kit/shared build resolves), parent-skill (parent-skill-check.cjs on sk-code), root-metadata (ci-skill-root-metadata.cjs), guard (compiled-route-guard.cjs), sync (compiled-route-sync.cjs --check), drift-guards (run-all-drift-guards.sh), derived-freshness (ci-skill-derived-freshness.cjs), and the probe (compiled-route.cjs --hub sk-code must print \"action\":\"route\"; the legacy stub fails)."
-    - "The battery prints one PASS|FAIL|SKIP line per leg with the command it ran, a repair: <command> line under each failure, and a last line STATUS=OK legs=8 or STATUS=FAIL failed=<n> skipped=<n>. When provisioning fails, parent-skill and root-metadata are reported as SKIP."
+    - "The battery prints one PASS|FAIL|SKIP line per leg with the command it ran, a repair: <command> line under each failure, and a last line STATUS=OK legs=8 or STATUS=FAIL failed=<n> skipped=<n>. When provisioning fails, parent-skill and root-metadata are reported as SKIP. When .skilled/skills/sk-code/SKILL.md is missing, the battery runs no leg: it fails provisioning with the v4-layout repair and reports the other seven legs as SKIP."
     - "Render the battery's verdict through .skilled/commands/doctor/assets/doctor-sk-code-presentation.txt: the per-leg table, the DOCTOR DIAGNOSTIC RESULT summary, and the troubleshooting table."
     - "Map the battery's exit code to the route status: 0 all legs pass, 1 any failure, 2 bad argument."
 

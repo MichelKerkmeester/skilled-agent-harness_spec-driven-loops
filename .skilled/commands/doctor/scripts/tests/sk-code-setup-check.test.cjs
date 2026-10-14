@@ -21,6 +21,7 @@ const test = require('node:test');
 
 const SCRIPT = path.resolve(__dirname, '..', 'sk-code-setup-check.cjs');
 
+const SKILL_FILE = '.skilled/skills/sk-code/SKILL.md';
 const PARENT_SKILL_CHECK = '.skilled/commands/doctor/scripts/parent-skill-check.cjs';
 const ROOT_METADATA = '.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs';
 const ROUTE_GUARD = '.skilled/bin/compiled-route-guard.cjs';
@@ -70,6 +71,8 @@ function buildRoot({
 } = {}) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'sk-code-setup-check-'));
   fixtures.push(root);
+  // The battery's v4-layout gate reads this file, so the default fixture ships it.
+  writeFile(root, SKILL_FILE, '# sk-code\n');
   if (provisioned) {
     writeFile(root, SHARED_FRONTMATTER, 'module.exports = { parseFrontmatter: () => ({}) };\n');
   }
@@ -241,7 +244,24 @@ test('an unprovisioned tree fails provisioning, skips its two dependents, and le
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 6. BAD ARGUMENTS
+// 6. A CHECKOUT WITHOUT THE V4 TREE FAILS FAST
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('a checkout missing the sk-code SKILL.md fails provisioning and skips the other seven legs', () => {
+  const root = buildRoot();
+  fs.rmSync(path.join(root, SKILL_FILE));
+  const { status, out } = run(root);
+  assert.equal(status, 1, out);
+  assert.match(out, /^FAIL {2}provisioning /m);
+  assert.match(out, /^ {6}\.skilled\/skills\/sk-code\/SKILL\.md is missing, so this checkout predates the v4 layout or never installed sk-code$/m);
+  assert.match(out, /^ {6}repair: install the \.skilled\/ tree from a v4 release, run \/doctor:update compat, then rerun this check$/m);
+  assert.equal((out.match(/^SKIP .*needs the v4 layout$/gm) || []).length, 7);
+  const lines = out.trimEnd().split('\n');
+  assert.equal(lines[lines.length - 1], 'STATUS=FAIL failed=1 skipped=7');
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. BAD ARGUMENTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 test('an unknown argument prints usage on stderr and exits 2', () => {

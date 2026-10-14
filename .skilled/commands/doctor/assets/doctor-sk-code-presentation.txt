@@ -49,9 +49,10 @@ STATUS=ERROR ERROR="[message]"
 |-----------|------------------|
 | A leg reports FAIL | Run the `repair:` command printed under that leg, then rerun `/doctor:sk-code setup` |
 | The provisioning leg fails | Run `bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision .` |
+| The provisioning leg says the checkout predates the v4 layout | Install the `.skilled/` tree from a v4 release, run `/doctor:update compat`, then rerun `/doctor:sk-code setup` |
 | The guard leg fails after a routing edit | Run the refresh and copy commands the guard leg's `repair:` line names, or commit with the hooks installed so the pre-commit gate does both |
 | The probe leg fails on the legacy stub | The hub serves no compiled route; run the `repair:` command printed under the probe leg |
-| A leg reports SKIP | The skipped legs wait on provisioning; run the provisioning leg's `repair:` command and rerun |
+| A leg reports SKIP | The skipped legs wait on the provision step or the v4 layout, so run the provisioning leg's `repair:` command and rerun |
 | Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
 
 End interactive presentations with: `What would you like to do next?`
