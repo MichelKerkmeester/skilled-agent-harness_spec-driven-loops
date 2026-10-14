@@ -1,5 +1,5 @@
 {
-  "manifestHash": "cf97348e240104146ae37b6a95ecf997b28b3e3fcc5df88df018c7ea403230c5",
+  "manifestHash": "75d5b21bb6f8831c94c2bc1ca22951dc7e96ba6ba9eb6ef758c5da8b656c90b3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -40662,6 +40662,21 @@
     "epic follow up fixes tasks": [
       "epic follow up fixes tasks"
     ],
+    "epic follow up review": [
+      "epic follow up review"
+    ],
+    "epic follow up review goal": [
+      "epic follow up review goal"
+    ],
+    "epic follow up review implementation summary": [
+      "epic follow up review implementation summary"
+    ],
+    "epic follow up review plan": [
+      "epic follow up review plan"
+    ],
+    "epic follow up review tasks": [
+      "epic follow up review tasks"
+    ],
     "epic review fixes": [
       "epic review fixes"
     ],
@@ -45071,6 +45086,21 @@
     ],
     "follow up quality pass": [
       "follow-up quality pass"
+    ],
+    "follow up review fixes": [
+      "follow up review fixes"
+    ],
+    "follow up review fixes goal": [
+      "follow up review fixes goal"
+    ],
+    "follow up review fixes implementation summary": [
+      "follow up review fixes implementation summary"
+    ],
+    "follow up review fixes plan": [
+      "follow up review fixes plan"
+    ],
+    "follow up review fixes tasks": [
+      "follow up review fixes tasks"
     ],
     "follower auto start": [
       "follower auto start"
@@ -71162,6 +71192,12 @@
     ],
     "phase 31 epic review fixes": [
       "phase 31 epic review fixes"
+    ],
+    "phase 32 epic follow up review": [
+      "phase 32 epic follow up review"
+    ],
+    "phase 33 follow up review fixes": [
+      "phase 33 follow up review fixes"
     ],
     "phase 4 agents md pointers": [
       "phase 4 agents md pointers"

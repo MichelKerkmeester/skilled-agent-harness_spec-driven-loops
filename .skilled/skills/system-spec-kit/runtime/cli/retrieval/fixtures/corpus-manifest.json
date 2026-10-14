@@ -1,5 +1,5 @@
 {
-  "corpusHash": "2f974166a2c2f8f40368fc74da4f63c13e7d75d7bf342988c1cdbbc944bf9698",
+  "corpusHash": "2aec84a0646ca976f8e12f5430a429ed1e9a5ce68010a2bea305f44e323822f1",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24767,
+  "includedPathCount": 24790,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11342,6 +11342,29 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/031-epic-review-fixes/plan.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/031-epic-review-fixes/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/031-epic-review-fixes/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/032-epic-follow-up-review/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/032-epic-follow-up-review/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/032-epic-follow-up-review/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/032-epic-follow-up-review/review/deep-review-dashboard.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/032-epic-follow-up-review/review/deep-review-strategy.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/032-epic-follow-up-review/review/iterations/iteration-002.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/032-epic-follow-up-review/review/iterations/iteration-003.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/032-epic-follow-up-review/review/iterations/iteration-004.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/032-epic-follow-up-review/review/iterations/iteration-005.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/032-epic-follow-up-review/review/prompts/iteration-1.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/032-epic-follow-up-review/review/prompts/iteration-2.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/032-epic-follow-up-review/review/prompts/iteration-3.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/032-epic-follow-up-review/review/prompts/iteration-4.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/032-epic-follow-up-review/review/prompts/iteration-5.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/032-epic-follow-up-review/review/resource-map.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/032-epic-follow-up-review/review/review-report.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/032-epic-follow-up-review/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/032-epic-follow-up-review/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/033-follow-up-review-fixes/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/033-follow-up-review-fixes/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/033-follow-up-review-fixes/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/033-follow-up-review-fixes/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/033-follow-up-review-fixes/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
@@ -24798,7 +24821,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "cf97348e240104146ae37b6a95ecf997b28b3e3fcc5df88df018c7ea403230c5",
+  "manifestHash": "75d5b21bb6f8831c94c2bc1ca22951dc7e96ba6ba9eb6ef758c5da8b656c90b3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27033,7 +27056,23 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/032-epic-follow-up-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/033-follow-up-review-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-code/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
       "reason": "excluded directory"
     },
     {
