@@ -68,6 +68,16 @@ describe('create.sh option parsing', () => {
     expect(specsEntries()).toEqual(before);
   });
 
+  it('rejects a lone dash and writes nothing', () => {
+    const before = specsEntries();
+    const result = run(['-', 'Lone dash title']);
+
+    expect(result.status).toBe(1);
+    expect(result.stdout).toBe('');
+    expect(result.stderr).toContain("Error: unknown option '-'");
+    expect(specsEntries()).toEqual(before);
+  });
+
   it('still writes goal.md for --with-goal', () => {
     const result = run(['--level', '1', '--with-goal', 'Goal flag title']);
     expect(result.status, result.stderr).toBe(0);

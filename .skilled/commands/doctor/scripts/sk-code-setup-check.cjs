@@ -41,6 +41,12 @@ const ROOT = process.env.SK_CODE_SETUP_ROOT
   : path.resolve(__dirname, '..', '..', '..', '..');
 
 const DEFAULT_PROMPT = 'fix a typescript bug in the opencode plugin';
+
+// Prints the prompt the way a shell reads it back, so a pasted probe line reruns the same prompt.
+function shellQuote(text) {
+  return `"${text.replace(/[\\"$`]/g, '\\$&')}"`;
+}
+
 const USAGE = 'Usage: node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs [--prompt=<text>]';
 
 const HUB = 'sk-code';
@@ -137,7 +143,7 @@ const LEGS = [
   },
   {
     id: 'probe',
-    command: (ctx) => `node ${ROUTE_PROBE} --hub ${HUB} --prompt "${ctx.prompt}"`,
+    command: (ctx) => `node ${ROUTE_PROBE} --hub ${HUB} --prompt ${shellQuote(ctx.prompt)}`,
     run: (ctx) => spawnLeg([process.execPath, ROUTE_PROBE, '--hub', HUB, '--prompt', ctx.prompt]),
   },
 ];
@@ -250,7 +256,7 @@ const JUDGES = {
         ? `the probe exited ${result.status}`
         : 'the probe printed no route decision';
       return fail([detail], [
-        `rerun node ${ROUTE_PROBE} --hub ${HUB} --prompt "${ctx.prompt}"`,
+        `rerun node ${ROUTE_PROBE} --hub ${HUB} --prompt ${shellQuote(ctx.prompt)}`,
       ]);
     }
     if (decision.action === 'route') return pass();

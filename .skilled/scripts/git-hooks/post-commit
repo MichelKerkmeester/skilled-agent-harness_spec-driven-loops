@@ -32,8 +32,10 @@ _in_toolchain_repo() {
 # controls that tree, so its scripts run only when it shares a git common dir with the
 # checkout these hooks live in (that checkout or one of its worktrees), or when its local
 # config sets skilled.trustRepoHooks=true. Local config is never cloned, and command-line
-# or environment config does not count, so a repository cannot opt itself in. An
-# untrusted repository is treated as one without the toolchain.
+# or environment config does not count, so a repository cannot opt itself in. Trust
+# covers the repository, not a branch: any branch checked out in a trusted checkout or
+# its worktrees runs its own tree's scripts, so review an untrusted branch in a separate
+# clone. An untrusted repository is treated as one without the toolchain.
 _trust_self="${BASH_SOURCE[0]}"
 while [[ -L "$_trust_self" ]]; do
   _trust_link="$(readlink "$_trust_self")"

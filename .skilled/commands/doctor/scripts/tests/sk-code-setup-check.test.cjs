@@ -125,6 +125,12 @@ test('a custom prompt replaces the default on the probe command line', () => {
   assert.match(out, /^PASS {2}probe +node \S+ --hub sk-code --prompt "wire a new mcp tool"$/m);
 });
 
+test('a custom prompt with shell characters prints as a pasteable probe line', () => {
+  const { status, out } = run(buildRoot(), ['--prompt=say "hi" to $HOME']);
+  assert.equal(status, 0, out);
+  assert.match(out, /^PASS {2}probe +node \S+ --hub sk-code --prompt "say \\"hi\\" to \\\$HOME"$/m);
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. THE PROBE PASSES ONLY ON A PARSED ROUTE DECISION
 // ─────────────────────────────────────────────────────────────────────────────

@@ -143,6 +143,8 @@ These bind every build phase, 002 to 006.
 | 27 | 027-surface-tie-order-warning/ | Doctor check 5l reports a sk-code surface a user placed by hand after `sk-code-opencode` in `tieBreak`, except the two shipped examples; one README sentence | Complete |
 | 28 | 028-surface-setup-hardening-research/ | Two-lineage five-iteration research into what still breaks the rule that only sk-code-opencode and sk-code-review matter to an external user, the setup journey from clone to a green battery, and whether the setup belongs in a doctor command or a sk-code mode; research only | Complete |
 | 29 | 029-surface-setup-build/ | Build the 028 recommendations in two children: 001 fixes the clone path and the guard and contract-library messages (R1, R2, R4, R5), 002 adds a read-only `/doctor:sk-code setup` (R3) from origin/main once 001 is on it | Complete |
+| 30 | 030-epic-deep-review/ | Five-iteration cli-codex deep review of the epic's shipped work and the v4.0.0.4 changelog; review only, verdict CONDITIONAL with three P2 advisories | Complete |
+| 31 | 031-epic-review-fixes/ | Fix the three P2 advisories of the 030 review: create.sh lone dash, the setup probe line quoting and the hook trust wording | Complete |
 
 ### Phase Transition Rules
 
@@ -183,6 +185,8 @@ These bind every build phase, 002 to 006.
 | 026-external-surface-priority-build | 027-surface-tie-order-warning | 026 on origin/main; 027 closes the hand-edit gap the scaffold placement leaves | `validate.sh --recursive --strict` on the parent |
 | 027-surface-tie-order-warning | 028-surface-setup-hardening-research | 027 on origin/main; 028 is read-only research | `validate.sh --recursive --strict` on the parent |
 | 028-surface-setup-hardening-research | 029-surface-setup-build | 028 verified and its recommendations ranked; 029 builds them from origin/main | `validate.sh --recursive --strict` on the parent |
+| 029-surface-setup-build | 030-epic-deep-review | 029 on origin/main; 030 reviews the whole epic and changes no file outside its folder | `validate.sh --recursive --strict` on the parent |
+| 030-epic-deep-review | 031-epic-review-fixes | 030 report adjudicated; 031 fixes its three advisories | `validate.sh --recursive --strict` on the parent |
 
 ### Handoffs Outside sk-code
 

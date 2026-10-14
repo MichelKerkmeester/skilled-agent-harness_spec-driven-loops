@@ -348,7 +348,7 @@ while [[ $i -le $# ]]; do
             echo "           specs/042-oauth2-flow/003-integration/"
             exit 0
             ;;
-        -?*)
+        -|-?*)
             echo "Error: unknown option '$arg'" >&2
             echo "Run '$0 --help' for the list of options." >&2
             exit 1

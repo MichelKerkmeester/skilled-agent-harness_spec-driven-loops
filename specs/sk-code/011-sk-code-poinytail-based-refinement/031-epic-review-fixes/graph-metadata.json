@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/031-epic-review-fixes",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/031-epic-review-fixes",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "epic review fixes",
+      "phase 31 epic review fixes",
+      "epic review fixes plan",
+      "epic review fixes tasks",
+      "epic review fixes goal",
+      "epic review fixes implementation summary"
+    ],
+    "key_topics": [
+      "epic",
+      "review",
+      "phase",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "deep",
+      "confirmed",
+      "three",
+      "small"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/create-unknown-options.vitest.ts",
+      ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs",
+      ".skilled/scripts/git-hooks/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "create-unknown-options.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/create-unknown-options.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-setup-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-setup-check.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/scripts/git-hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Local",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The epic deep review confirmed three small defects",
+    "created_at": "2026-10-14T18:04:50Z",
+    "last_save_at": "2026-10-14T18:17:31.126Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f5fa23d7321398653b7b5c92b9f5ba41391ebc390d9496b7f01adf97da6f829c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7cd9d14d94fd5c06431d235269de1ae3b913e74c222ed5c79fd8085d6263dccd",
+      "plan.md": "e3d8069a9e852b58d62a3bda662cec6a88a34e1558568414707f6f467faa43a6",
+      "tasks.md": "00e322ebc044092f7574295e7b95fc46e3b97194f503dc99b67d6bdba289c861",
+      "implementation-summary.md": "c7db132a80bef6cd1dfc72497d7802e551a1b6f96a0cfa36f5cea82d46498bc5"
+    },
+    "last_active_at": null
+  }
+}
