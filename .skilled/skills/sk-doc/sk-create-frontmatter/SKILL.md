@@ -2,7 +2,7 @@
 name: sk-create-frontmatter
 description: Own the YAML frontmatter contract: which fields a document class carries, the description budget, and the 4-part version field.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 <!-- Keywords: create-frontmatter, frontmatter, YAML frontmatter, frontmatter block, trigger_phrases, importance_tier, contextType, description budget, 4-part version, X.Y.Z.W, frontmatter versioning, document class, frontmatter validation -->

@@ -1,7 +1,7 @@
 {
   "name": "cli-classifier",
   "description": "cli-classifier is the single public skill identity for typed classifier judgments. It routes Jev requests to the cli-jev transport through mode-registry.json and hub-router.json. The hub holds cli-jev today, and future classifiers can join as new modes with their own packets.",
-  "version": "0.8.1.0",
+  "version": "0.8.2.0",
   "importance_tier": "high",
   "keywords": [
     "cli-classifier",

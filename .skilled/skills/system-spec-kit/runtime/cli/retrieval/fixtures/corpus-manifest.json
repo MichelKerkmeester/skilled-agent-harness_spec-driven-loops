@@ -1,5 +1,5 @@
 {
-  "corpusHash": "48b0d3f9ecba95a79c1e84110dd8c8afd9cd892659094504472079fb6cfb2be8",
+  "corpusHash": "266dbd71523bf49b61b57a302429f776556794616a440a3365fca1fcc14c034e",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24790,
+  "includedPathCount": 24809,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -74,9 +74,15 @@
     ".skilled/changelog/skilled/v3+/v3.6.0.0.md",
     ".skilled/changelog/skilled/v4.0.0.0.md",
     ".skilled/changelog/skilled/v4.0.0.1.md",
+    ".skilled/changelog/skilled/v4.0.0.10.md",
     ".skilled/changelog/skilled/v4.0.0.2.md",
     ".skilled/changelog/skilled/v4.0.0.3.md",
     ".skilled/changelog/skilled/v4.0.0.4.md",
+    ".skilled/changelog/skilled/v4.0.0.5.md",
+    ".skilled/changelog/skilled/v4.0.0.6.md",
+    ".skilled/changelog/skilled/v4.0.0.7.md",
+    ".skilled/changelog/skilled/v4.0.0.8.md",
+    ".skilled/changelog/skilled/v4.0.0.9.md",
     ".skilled/hooks/README.md",
     ".skilled/hooks/classifier-injection-screen/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -131,6 +137,7 @@
     ".skilled/skills/cli-classifier/changelog/v0.7.0.0.md",
     ".skilled/skills/cli-classifier/changelog/v0.8.0.0.md",
     ".skilled/skills/cli-classifier/changelog/v0.8.1.0.md",
+    ".skilled/skills/cli-classifier/changelog/v0.8.2.0.md",
     ".skilled/skills/cli-classifier/cli-jev/README.md",
     ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
     ".skilled/skills/cli-classifier/cli-jev/assets/question-shaping-card.md",
@@ -1021,6 +1028,7 @@
     ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.4.0.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.5.0.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.6.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.7.0.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/cli-invocation/availability-probe.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/cli-invocation/default-invocation.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/cli-invocation/hallucination-fixture-fabricated-flag.md",
@@ -2674,6 +2682,7 @@
     ".skilled/skills/sk-code/changelog/v2.2.7.0.md",
     ".skilled/skills/sk-code/changelog/v2.2.8.0.md",
     ".skilled/skills/sk-code/changelog/v2.2.9.0.md",
+    ".skilled/skills/sk-code/changelog/v2.3.0.0.md",
     ".skilled/skills/sk-code/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md",
@@ -2826,6 +2835,7 @@
     ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.2.0.md",
     ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.3.0.md",
     ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.4.0.md",
+    ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.5.0.md",
     ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/code-quality-gate.md",
     ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/implementation-authoring.md",
     ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/verification-alignment.md",
@@ -6227,6 +6237,7 @@
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.2.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.3.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.4.0.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.5.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/prepare-release-notes.md",
@@ -6331,6 +6342,7 @@
     ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md",
     ".skilled/skills/sk-doc/sk-create-frontmatter/changelog/v1.0.0.0.md",
     ".skilled/skills/sk-doc/sk-create-frontmatter/changelog/v1.0.1.0.md",
+    ".skilled/skills/sk-doc/sk-create-frontmatter/changelog/v1.0.2.0.md",
     ".skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/description-budget/silent-discovery-drop.md",
     ".skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/description-budget/trim-an-over-budget-description.md",
     ".skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/description-budget/trim-that-loses-routing-tokens.md",
@@ -6382,6 +6394,7 @@
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.0.1.1.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.0.1.2.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.0.2.0.md",
+    ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.0.3.0.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/operator-contract/keep-operator-scenarios-in-scope.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/operator-contract/persist-scenario-result.md",
@@ -6437,6 +6450,7 @@
     ".skilled/skills/sk-doc/sk-create-repo-rule/assets/repo-rules-router-template.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/changelog/v1.0.0.0.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/changelog/v1.1.0.0.md",
+    ".skilled/skills/sk-doc/sk-create-repo-rule/changelog/v1.1.1.0.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/lifecycle-and-wiring/router-bootstrap.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/lifecycle-and-wiring/rule-retirement.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/lifecycle-and-wiring/scope-boundary-halt.md",
@@ -6490,6 +6504,7 @@
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.2.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.3.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.4.0.md",
+    ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.5.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/author-a-two-axis-parent-hub.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/keep-one-parent-identity.md",
@@ -6583,6 +6598,7 @@
     ".skilled/skills/sk-git/changelog/v1.8.3.0.md",
     ".skilled/skills/sk-git/changelog/v1.8.4.0.md",
     ".skilled/skills/sk-git/changelog/v1.8.5.0.md",
+    ".skilled/skills/sk-git/changelog/v1.8.6.0.md",
     ".skilled/skills/sk-git/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/github-mcp-integration.md",
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/gitkraken-mcp-integration.md",
@@ -7034,6 +7050,7 @@
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.4.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.5.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.6.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.7.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.2.0.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.2.1.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.2.2.0.md",
@@ -7340,6 +7357,7 @@
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.6.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.7.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.8.0.md",
+    ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.9.0.md",
     ".skilled/skills/system-deep-loop/runtime/database/README.md",
     ".skilled/skills/system-deep-loop/runtime/feature-catalog/council/adjudicator-verdict-scoring.md",
     ".skilled/skills/system-deep-loop/runtime/feature-catalog/council/cost-guards.md",
@@ -7968,6 +7986,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.7.11.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.12.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.13.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.7.14.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.2.1.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.3.0.md",
@@ -24821,7 +24840,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "78859a07d1a0157abc1ae2b500271031d9ad172a4eb74b35da6dfd0301b94206",
+  "manifestHash": "8d1dc769a03fa7049c1f2fcce24464be658e21f8763cf31487b9317d1da75f11",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27065,6 +27084,14 @@
     },
     {
       "path": "specs/sk-code/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
       "reason": "excluded directory"
     },
     {

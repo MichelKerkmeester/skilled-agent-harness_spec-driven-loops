@@ -1,5 +1,5 @@
 {
-  "manifestHash": "78859a07d1a0157abc1ae2b500271031d9ad172a4eb74b35da6dfd0301b94206",
+  "manifestHash": "8d1dc769a03fa7049c1f2fcce24464be658e21f8763cf31487b9317d1da75f11",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -14343,6 +14343,9 @@
     "bundled resources directories": [
       "bundled resources directories"
     ],
+    "bundled runtime security patches": [
+      "bundled runtime security patches"
+    ],
     "bundlerules canon reconciled": [
       "bundleRules canon reconciled"
     ],
@@ -18504,6 +18507,9 @@
     "cli classifier 0 8 1 0": [
       "cli-classifier 0.8.1.0"
     ],
+    "cli classifier 0 8 2 0": [
+      "cli-classifier 0.8.2.0"
+    ],
     "cli classifier audit findings": [
       "cli-classifier audit findings"
     ],
@@ -18650,6 +18656,9 @@
     ],
     "cli classifier v0 8 1 0": [
       "cli-classifier v0.8.1.0"
+    ],
+    "cli classifier v0 8 2 0": [
+      "cli-classifier v0.8.2.0"
     ],
     "cli claude code 1 0 0 0": [
       "cli-claude-code 1.0.0.0"
@@ -19320,6 +19329,9 @@
     "cli devin 1 4 6 0": [
       "cli-devin 1.4.6.0"
     ],
+    "cli devin 1 4 7 0": [
+      "cli-devin 1.4.7.0"
+    ],
     "cli devin 17 skill audit": [
       "cli-devin 17-skill audit"
     ],
@@ -19436,6 +19448,9 @@
     ],
     "cli devin v1 4 6 0": [
       "cli-devin v1.4.6.0"
+    ],
+    "cli devin v1 4 7 0": [
+      "cli-devin v1.4.7.0"
     ],
     "cli devin wiring plan": [
       "cli-devin wiring plan"
@@ -23438,6 +23453,9 @@
     "code review quick reference": [
       "code review quick reference"
     ],
+    "code reviews say what they skipped": [
+      "code reviews say what they skipped"
+    ],
     "code sk code remediation": [
       "code sk-code remediation"
     ],
@@ -24522,6 +24540,9 @@
     ],
     "commit id allocator": [
       "commit-id allocator"
+    ],
+    "commit id in every repository": [
+      "commit id in every repository"
     ],
     "commit id in every toolchain repo": [
       "commit id in every toolchain repo"
@@ -32070,6 +32091,9 @@
     "deep loop phase 017 tasks": [
       "deep-loop phase 017 tasks"
     ],
+    "deep loop placeholder check": [
+      "deep-loop placeholder check"
+    ],
     "deep loop plan": [
       "deep loop plan"
     ],
@@ -32178,6 +32202,9 @@
     "deep loop rollback rehearsal runner": [
       "deep-loop rollback rehearsal runner"
     ],
+    "deep loop runs three modes": [
+      "deep loop runs three modes"
+    ],
     "deep loop runtime 1 0 0 0": [
       "deep-loop-runtime 1.0.0.0"
     ],
@@ -32228,6 +32255,9 @@
     ],
     "deep loop runtime 1 9 8 0": [
       "deep-loop-runtime 1.9.8.0"
+    ],
+    "deep loop runtime 1 9 9 0": [
+      "deep-loop-runtime 1.9.9.0"
     ],
     "deep loop runtime alignment": [
       "deep loop runtime alignment"
@@ -32330,6 +32360,9 @@
     ],
     "deep loop runtime v1 9 8 0": [
       "deep-loop-runtime v1.9.8.0"
+    ],
+    "deep loop runtime v1 9 9 0": [
+      "deep-loop-runtime v1.9.9.0"
     ],
     "deep loop safe now gated split": [
       "deep-loop safe-now gated split"
@@ -32651,6 +32684,9 @@
     ],
     "deep research 1 15 6 0": [
       "deep-research 1.15.6.0"
+    ],
+    "deep research 1 15 7 0": [
+      "deep-research 1.15.7.0"
     ],
     "deep research 1 2 0 0": [
       "deep-research 1.2.0.0"
@@ -33319,6 +33355,9 @@
     ],
     "deep research v1 15 6 0": [
       "deep-research v1.15.6.0"
+    ],
+    "deep research v1 15 7 0": [
+      "deep-research v1.15.7.0"
     ],
     "deep research v1 2 0 0": [
       "deep-research v1.2.0.0"
@@ -37838,6 +37877,9 @@
     "doctor sequential thinking removal": [
       "doctor sequential thinking removal"
     ],
+    "doctor setup check": [
+      "doctor setup check"
+    ],
     "doctor signal criteria": [
       "doctor signal criteria"
     ],
@@ -38581,6 +38623,9 @@
     ],
     "drift guard warning count tasks": [
       "drift guard warning count tasks"
+    ],
+    "drift guard warnings": [
+      "drift guard warnings"
     ],
     "drift guard wired into ci": [
       "drift guard wired into CI"
@@ -40932,6 +40977,9 @@
     "every defect the earlier phases closed shares one": [
       "every defect the earlier phases closed shares one"
     ],
+    "every doc carries its own version": [
+      "every doc carries its own version"
+    ],
     "every executor reachable fanout": [
       "every executor reachable fanout"
     ],
@@ -40952,6 +41000,9 @@
     ],
     "every remaining direct state log append": [
       "every remaining direct state log append"
+    ],
+    "every skill doc carries its own version": [
+      "every skill doc carries its own version"
     ],
     "every turn injection": [
       "every-turn injection"
@@ -42638,6 +42689,9 @@
     ],
     "fan out fixed rate overrun accounting": [
       "fan-out fixed-rate overrun accounting"
+    ],
+    "fan out lineage reducer path": [
+      "fan-out lineage reducer path"
     ],
     "fan out live tools implementation": [
       "fan-out live-tools implementation"
@@ -45542,6 +45596,9 @@
     ],
     "fresh clone bootstrap tasks": [
       "fresh clone bootstrap tasks"
+    ],
+    "fresh clone install steps": [
+      "fresh clone install steps"
     ],
     "fresh clone onboarding": [
       "fresh clone onboarding"
@@ -49156,6 +49213,9 @@
     "graph metadata migration summary": [
       "graph metadata migration summary"
     ],
+    "graph metadata null parent": [
+      "graph metadata null parent"
+    ],
     "graph metadata parser plan": [
       "graph metadata parser plan"
     ],
@@ -49644,6 +49704,9 @@
     ],
     "hand written continuity blocks rejected": [
       "hand written continuity blocks rejected"
+    ],
+    "hand written dashboard refused": [
+      "hand-written dashboard refused"
     ],
     "handback save gates": [
       "handback save gates"
@@ -64792,6 +64855,9 @@
     "nested anchors fail validation": [
       "nested anchors fail validation"
     ],
+    "nested anchors now fail validation": [
+      "nested anchors now fail validation"
+    ],
     "nested changelog backfill": [
       "nested changelog backfill"
     ],
@@ -75575,6 +75641,9 @@
     "provision builds missing outputs evidence": [
       "provision builds missing outputs evidence"
     ],
+    "provision command for a fresh clone": [
+      "provision command for a fresh clone"
+    ],
     "provisional benchmark promotion": [
       "provisional benchmark promotion"
     ],
@@ -77704,6 +77773,9 @@
     ],
     "reducer promoted ideas": [
       "reducer-promoted ideas"
+    ],
+    "reducer provenance": [
+      "reducer provenance"
     ],
     "reducer records terminal stop metadata": [
       "reducer records terminal stop metadata"
@@ -82192,6 +82264,9 @@
     "retired checklist fixture": [
       "retired checklist fixture"
     ],
+    "retired jev features removed": [
+      "retired jev features removed"
+    ],
     "retired prefix criterion restated": [
       "retired prefix criterion restated"
     ],
@@ -83696,6 +83771,9 @@
     "root cause investigation": [
       "root cause investigation"
     ],
+    "root claude md claim corrected": [
+      "root claude.md claim corrected"
+    ],
     "root contract manifest": [
       "root contract manifest"
     ],
@@ -84032,6 +84110,9 @@
     "router final report": [
       "router-final report"
     ],
+    "router keeps its own version": [
+      "router keeps its own version"
+    ],
     "router md leaf replay": [
       "router.md leaf replay"
     ],
@@ -84312,6 +84393,9 @@
     "routing hit rate 180": [
       "routing hit rate 180"
     ],
+    "routing ignores skill names in paths": [
+      "routing ignores skill names in paths"
+    ],
     "routing integration acceptance": [
       "routing integration acceptance"
     ],
@@ -84563,6 +84647,9 @@
     ],
     "rule delivery instrumentation tasks": [
       "rule delivery instrumentation tasks"
+    ],
+    "rule delivery needs the rule text": [
+      "rule delivery needs the rule text"
     ],
     "rule delivery trace": [
       "rule delivery trace"
@@ -86895,6 +86982,9 @@
     "scripts ownership tasks": [
       "scripts ownership tasks"
     ],
+    "scripts refuse unknown options": [
+      "scripts refuse unknown options"
+    ],
     "scripts workspace resolution": [
       "scripts workspace resolution"
     ],
@@ -87797,6 +87887,9 @@
     ],
     "series parent hardening research tasks": [
       "series parent hardening research tasks"
+    ],
+    "series parent packets": [
+      "series parent packets"
     ],
     "series parent review and hardening research": [
       "series parent review and hardening research"
@@ -89842,6 +89935,9 @@
     "sk code 2 2 9 0": [
       "sk-code 2.2.9.0"
     ],
+    "sk code 2 3 0 0": [
+      "sk-code 2.3.0.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -90416,6 +90512,9 @@
     "sk code opencode 1 2 4 0": [
       "sk-code-opencode 1.2.4.0"
     ],
+    "sk code opencode 1 2 5 0": [
+      "sk-code-opencode 1.2.5.0"
+    ],
     "sk code opencode alignment": [
       "sk-code opencode alignment"
     ],
@@ -90481,6 +90580,9 @@
     ],
     "sk code opencode v1 2 4 0": [
       "sk-code-opencode v1.2.4.0"
+    ],
+    "sk code opencode v1 2 5 0": [
+      "sk-code-opencode v1.2.5.0"
     ],
     "sk code overlay hardcoded replacement": [
       "sk-code overlay hardcoded replacement"
@@ -90914,6 +91016,9 @@
     "sk code v2 2 9 0": [
       "sk-code v2.2.9.0"
     ],
+    "sk code v2 3 0 0": [
+      "sk-code v2.3.0.0"
+    ],
     "sk code verification workflow": [
       "sk-code verification workflow"
     ],
@@ -91085,6 +91190,9 @@
     "sk create changelog 1 3 4 0": [
       "sk-create-changelog 1.3.4.0"
     ],
+    "sk create changelog 1 3 5 0": [
+      "sk-create-changelog 1.3.5.0"
+    ],
     "sk create changelog playbook": [
       "sk-create-changelog playbook"
     ],
@@ -91126,6 +91234,9 @@
     ],
     "sk create changelog v1 3 4 0": [
       "sk-create-changelog v1.3.4.0"
+    ],
+    "sk create changelog v1 3 5 0": [
+      "sk-create-changelog v1.3.5.0"
     ],
     "sk create changelog v4 style changelog": [
       "sk create changelog v4 style changelog"
@@ -91307,6 +91418,9 @@
     "sk create frontmatter 1 0 1 0": [
       "sk-create-frontmatter 1.0.1.0"
     ],
+    "sk create frontmatter 1 0 2 0": [
+      "sk-create-frontmatter 1.0.2.0"
+    ],
     "sk create frontmatter mode": [
       "sk-create-frontmatter mode"
     ],
@@ -91321,6 +91435,9 @@
     ],
     "sk create frontmatter v1 0 1 0": [
       "sk-create-frontmatter v1.0.1.0"
+    ],
+    "sk create frontmatter v1 0 2 0": [
+      "sk-create-frontmatter v1.0.2.0"
     ],
     "sk create frontmatter value list": [
       "sk-create-frontmatter value list"
@@ -91436,6 +91553,9 @@
     "sk create manual testing playbook 1 0 2 0": [
       "sk-create-manual-testing-playbook 1.0.2.0"
     ],
+    "sk create manual testing playbook 1 0 3 0": [
+      "sk-create-manual-testing-playbook 1.0.3.0"
+    ],
     "sk create manual testing playbook playbook": [
       "sk-create-manual-testing-playbook playbook"
     ],
@@ -91453,6 +91573,9 @@
     ],
     "sk create manual testing playbook v1 0 2 0": [
       "sk-create-manual-testing-playbook v1.0.2.0"
+    ],
+    "sk create manual testing playbook v1 0 3 0": [
+      "sk-create-manual-testing-playbook v1.0.3.0"
     ],
     "sk create quality control 1 0 0 0": [
       "sk-create-quality-control 1.0.0.0"
@@ -91535,6 +91658,9 @@
     "sk create repo rule 1 1 0 0": [
       "sk-create-repo-rule 1.1.0.0"
     ],
+    "sk create repo rule 1 1 1 0": [
+      "sk-create-repo-rule 1.1.1.0"
+    ],
     "sk create repo rule shape parity": [
       "sk-create-repo-rule shape parity"
     ],
@@ -91543,6 +91669,9 @@
     ],
     "sk create repo rule v1 1 0 0": [
       "sk-create-repo-rule v1.1.0.0"
+    ],
+    "sk create repo rule v1 1 1 0": [
+      "sk-create-repo-rule v1.1.1.0"
     ],
     "sk create skill 1 0 0 0": [
       "sk-create-skill 1.0.0.0"
@@ -91570,6 +91699,9 @@
     ],
     "sk create skill 1 5 4 0": [
       "sk-create-skill 1.5.4.0"
+    ],
+    "sk create skill 1 5 5 0": [
+      "sk-create-skill 1.5.5.0"
     ],
     "sk create skill authoring errors": [
       "sk-create-skill authoring errors"
@@ -91606,6 +91738,9 @@
     ],
     "sk create skill v1 5 4 0": [
       "sk-create-skill v1.5.4.0"
+    ],
+    "sk create skill v1 5 5 0": [
+      "sk-create-skill v1.5.5.0"
     ],
     "sk create with human voice 1 0 0 0": [
       "sk-create-with-human-voice 1.0.0.0"
@@ -92549,6 +92684,9 @@
     "sk git 1 8 5 0": [
       "sk-git 1.8.5.0"
     ],
+    "sk git 1 8 6 0": [
+      "sk-git 1.8.6.0"
+    ],
     "sk git benchmark": [
       "sk-git benchmark"
     ],
@@ -92719,6 +92857,9 @@
     ],
     "sk git v1 8 5 0": [
       "sk-git v1.8.5.0"
+    ],
+    "sk git v1 8 6 0": [
+      "sk-git v1.8.6.0"
     ],
     "sk git workflow support": [
       "sk-git workflow support"
@@ -94289,6 +94430,9 @@
     "skill authoring checklist": [
       "skill authoring checklist"
     ],
+    "skill authoring checks": [
+      "skill authoring checks"
+    ],
     "skill authoring contract": [
       "skill authoring contract"
     ],
@@ -95629,6 +95773,9 @@
     "skilled v4 0 0 1": [
       "skilled v4.0.0.1"
     ],
+    "skilled v4 0 0 10": [
+      "skilled v4.0.0.10"
+    ],
     "skilled v4 0 0 2": [
       "skilled v4.0.0.2"
     ],
@@ -95637,6 +95784,21 @@
     ],
     "skilled v4 0 0 4": [
       "skilled v4.0.0.4"
+    ],
+    "skilled v4 0 0 5": [
+      "skilled v4.0.0.5"
+    ],
+    "skilled v4 0 0 6": [
+      "skilled v4.0.0.6"
+    ],
+    "skilled v4 0 0 7": [
+      "skilled v4.0.0.7"
+    ],
+    "skilled v4 0 0 8": [
+      "skilled v4.0.0.8"
+    ],
+    "skilled v4 0 0 9": [
+      "skilled v4.0.0.9"
     ],
     "skilled verification phase goal": [
       "skilled verification phase goal"
@@ -101808,6 +101970,9 @@
     "system spec kit 2 7 13 0": [
       "system-spec-kit 2.7.13.0"
     ],
+    "system spec kit 2 7 14 0": [
+      "system-spec-kit 2.7.14.0"
+    ],
     "system spec kit 2 7 2 0": [
       "system-spec-kit 2.7.2.0"
     ],
@@ -102221,6 +102386,9 @@
     ],
     "system spec kit v2 7 13 0": [
       "system-spec-kit v2.7.13.0"
+    ],
+    "system spec kit v2 7 14 0": [
+      "system-spec-kit v2.7.14.0"
     ],
     "system spec kit v2 7 2 0": [
       "system-spec-kit v2.7.2.0"
@@ -103627,6 +103795,9 @@
     ],
     "the two hubs that phase 003 recorded out": [
       "the two hubs that phase 003 recorded out"
+    ],
+    "the validator checks backticked paths": [
+      "the validator checks backticked paths"
     ],
     "the webflow surface is established": [
       "The Webflow Surface Is Established"
@@ -105946,6 +106117,9 @@
     "unread version fields tasks": [
       "unread version fields tasks"
     ],
+    "unreadable registry": [
+      "unreadable registry"
+    ],
     "unrecognized event format review": [
       "unrecognized event format review"
     ],
@@ -106008,6 +106182,9 @@
     ],
     "untrack packet context": [
       "untrack packet context"
+    ],
+    "untrusted clones cannot run hook code": [
+      "untrusted clones cannot run hook code"
     ],
     "untrusted output boundary source kind render escaper": [
       "untrusted output boundary source_kind render escaper"
@@ -106624,6 +106801,9 @@
     "v4 0 0 1 release notes": [
       "v4.0.0.1 release notes"
     ],
+    "v4 0 0 10 release notes": [
+      "v4.0.0.10 release notes"
+    ],
     "v4 0 0 2 release notes": [
       "v4.0.0.2 release notes"
     ],
@@ -106701,6 +106881,21 @@
     ],
     "v4 0 0 4 release notes": [
       "v4.0.0.4 release notes"
+    ],
+    "v4 0 0 5 release notes": [
+      "v4.0.0.5 release notes"
+    ],
+    "v4 0 0 6 release notes": [
+      "v4.0.0.6 release notes"
+    ],
+    "v4 0 0 7 release notes": [
+      "v4.0.0.7 release notes"
+    ],
+    "v4 0 0 8 release notes": [
+      "v4.0.0.8 release notes"
+    ],
+    "v4 0 0 9 release notes": [
+      "v4.0.0.9 release notes"
     ],
     "v4 changelog": [
       "v4 changelog"

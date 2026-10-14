@@ -2,7 +2,7 @@
 name: cli-classifier
 description: "Routes typed classifier judgment requests to the hosted Jev transport via mode-registry.json; future classifiers join as modes."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 0.8.1.0
+version: 0.8.2.0
 ---
 
 <!-- Keywords: cli-classifier, cli-jev, cli-usage, jev, typed judgment, jev-mcp, hosted classifier, noul, jev choice, jev score -->
@@ -147,7 +147,7 @@ cli-classifier/
 - Root router: [`ROUTER.md`](./ROUTER.md).
 - Mode `cli-jev`: [`cli-jev/SKILL.md`](./cli-jev/SKILL.md), [`cli-jev/references/cli-reference.md`](./cli-jev/references/cli-reference.md), [`cli-jev/references/providers-and-models.md`](./cli-jev/references/providers-and-models.md), [`cli-jev/references/integration-patterns.md`](./cli-jev/references/integration-patterns.md), [`cli-jev/references/mcp-server.md`](./cli-jev/references/mcp-server.md).
 - Hub metadata: [`description.json`](./description.json), [`graph-metadata.json`](./graph-metadata.json), [`leaf-manifest.json`](./leaf-manifest.json).
-- Hub changelog: [`changelog/v0.8.1.0.md`](./changelog/v0.8.1.0.md).
+- Hub changelog: [`changelog/v0.8.2.0.md`](./changelog/v0.8.2.0.md).
 
 ---
 
