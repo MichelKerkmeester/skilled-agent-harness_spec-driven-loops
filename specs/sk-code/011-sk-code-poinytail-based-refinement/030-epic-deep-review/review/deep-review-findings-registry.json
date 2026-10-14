@@ -1,0 +1,1171 @@
+{
+  "sessionId": "2026-10-14T16:51:44.000Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "Shared Git common-directory trust admits branch-controlled hook code",
+      "file": ".skilled/scripts/git-hooks/pre-commit",
+      "line": 43,
+      "description": "The common-directory equality check is insufficient to establish that the hook scripts in the checked-out worktree are trusted, allowing branch-controlled shell code to execute at commit time.",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P1-001",
+      "severity": "P1",
+      "title": "A lone dash bypasses create.sh's unknown-option refusal",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      "line": 351,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Doctor probe output does not preserve custom prompts as a replayable command",
+      "file": ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+      "line": 139,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 1
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "compiled_route_hub_path_traversal",
+      "diagnostic_command_round_trip",
+      "doctor_probe_false_positive",
+      "hook_trust_boundary_bypass",
+      "native_bridge_input_or_environment_leak",
+      "scope_manifest_duplicate_target",
+      "setup_probe_command_injection",
+      "surface_tie_order_false_negative",
+      "unknown_option_fail_open",
+      "unknown_option_single_dash"
+    ],
+    "ruledOut": [
+      "compiled_route_hub_path_traversal",
+      "doctor_probe_false_positive",
+      "native_bridge_input_or_environment_leak",
+      "probe_input_shell_execution",
+      "scope_manifest_duplicate_target",
+      "setup_probe_command_injection",
+      "sk-code_mode_surface_projection",
+      "surface_tie_order_false_negative",
+      "unknown_option_fail_open",
+      "unknown_option_multichar_refusal",
+      "valid_option_preservation"
+    ],
+    "deferred": [
+      "checklist_evidence_gap",
+      "commit_id_hook_enrollment",
+      "commit_id_policy_validation",
+      "compiled_route_surface_parity",
+      "cross_surface_projection_maintenance",
+      "feature_catalog_code_drift",
+      "model_default_coverage",
+      "pi_fast_mode_context_boundary",
+      "pi_fast_mode_model_default",
+      "playbook_capability_route_gap",
+      "release_changelog_tree_drift",
+      "release_claim_tree_accuracy",
+      "release_claim_tree_drift",
+      "skill_agent_route_drift",
+      "spec_code_child_claim_drift"
+    ],
+    "blocked": [
+      "commit_id_hook_traceability",
+      "pi_fast_mode_traceability"
+    ],
+    "byBugClass": {
+      "unknown_option_fail_open": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "doctor_probe_false_positive": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "surface_tie_order_false_negative": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "commit_id_hook_enrollment": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "model_default_coverage": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "release_claim_tree_drift": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "compiled_route_surface_parity": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "hook_trust_boundary_bypass": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "compiled_route_hub_path_traversal": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "setup_probe_command_injection": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "native_bridge_input_or_environment_leak": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "commit_id_policy_validation": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          2,
+          5
+        ]
+      },
+      "pi_fast_mode_context_boundary": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "scope_manifest_duplicate_target": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "sk-code_mode_surface_projection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "spec_code_child_claim_drift": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "checklist_evidence_gap": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "skill_agent_route_drift": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "agent_cross_runtime_mirror_drift": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "feature_catalog_code_drift": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "playbook_capability_route_gap": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "release_changelog_tree_drift": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "commit_id_hook_traceability": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          3
+        ]
+      },
+      "pi_fast_mode_traceability": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          3
+        ]
+      },
+      "diagnostic_command_round_trip": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "probe_input_shell_execution": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "cross_surface_projection_maintenance": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "unknown_option_single_dash": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "unknown_option_multichar_refusal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "valid_option_preservation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "release_claim_tree_accuracy": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "pi_fast_mode_model_default": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh"
+      ],
+      "bugClass": "commit_id_hook_enrollment",
+      "disposition": "deferred",
+      "rationale": "The named feature warrants a full hook flow review across repository types.",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh:23"
+      ],
+      "reason": "This iteration did not inspect all callers, installation paths, and first-commit cases."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/config.ts"
+      ],
+      "bugClass": "model_default_coverage",
+      "disposition": "deferred",
+      "rationale": "The review packet's file manifest does not enumerate this implementation path.",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/scope-files.txt:1"
+      ],
+      "reason": "No code finding is made from a source path outside the enumerated review file set; the named feature needs an explicit scope entry or later scoped pass."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/changelog/skilled/v4.0.0.4.md"
+      ],
+      "bugClass": "release_claim_tree_drift",
+      "disposition": "deferred",
+      "rationale": "The changelog aggregates changes well beyond the code paths inspected in this iteration.",
+      "evidenceRefs": [
+        ".skilled/changelog/skilled/v4.0.0.4.md:18"
+      ],
+      "reason": "A line-by-line claim-to-tree audit remains for a later review pass."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/compiled-route.cjs",
+        ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs"
+      ],
+      "bugClass": "compiled_route_surface_parity",
+      "disposition": "deferred",
+      "rationale": "The route engine is a high-risk producer behind the setup probe.",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/scope-files.txt:441"
+      ],
+      "reason": "Full front-door, manifest, and engine parity analysis is reserved for a later correctness pass."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/config.ts"
+      ],
+      "bugClass": "pi_fast_mode_context_boundary",
+      "disposition": "deferred",
+      "rationale": "The review target is frozen to the supplied scope file list.",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/scope-files.txt:478"
+      ],
+      "reason": "The Pi Fast Mode implementation is outside the supplied review scope and was not inspected."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-TR-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity/acceptance-criteria.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/acceptance-criteria.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md"
+      ],
+      "bugClass": "spec_code_child_claim_drift",
+      "disposition": "deferred",
+      "rationale": "The selected claims align with named surfaces, but the remaining phase claims were not read.",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity/acceptance-criteria.md:54",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/acceptance-criteria.md:54",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:90"
+      ],
+      "reason": "A full child-by-child spec-to-code pass remains outside the selected target subset for this iteration."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-TR-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/acceptance-criteria.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/tasks.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/acceptance-criteria.md"
+      ],
+      "bugClass": "checklist_evidence_gap",
+      "disposition": "deferred",
+      "rationale": "Selected completion evidence is linked; packet-wide completion evidence remains unknown.",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/024-readme-freshness-fixes/acceptance-criteria.md:54",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/tasks.md:54",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/acceptance-criteria.md:54"
+      ],
+      "reason": "Not every shipped child tasks.md, acceptance-criteria.md, and implementation-summary.md was checked."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-TR-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/SKILL.md",
+        ".codex/agents/deep-review.toml",
+        ".opencode/agents/deep-review.md",
+        ".claude/agents/deep-review.md",
+        ".pi/agents/deep-review.md",
+        ".hermes/skills/agent-deep-review/SKILL.md"
+      ],
+      "bugClass": "skill_agent_route_drift",
+      "disposition": "deferred",
+      "rationale": "Presence is established for the selected agent family, but behavior parity is not.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/SKILL.md:23",
+        ".codex/agents/deep-review.toml:1",
+        ".opencode/agents/deep-review.md:1",
+        ".claude/agents/deep-review.md:1",
+        ".pi/agents/deep-review.md:1",
+        ".hermes/skills/agent-deep-review/SKILL.md:1"
+      ],
+      "reason": "A full skill-to-agent contract comparison across supported runtime surfaces remains."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-TR-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "feature_catalog_code_drift",
+      "disposition": "deferred",
+      "rationale": "The catalog-to-code map was not fully traversed.",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages/acceptance-criteria.md:58",
+        ".skilled/skills/sk-code/SKILL.md:160"
+      ],
+      "reason": "A complete feature-catalog entry audit needs a dedicated pass over catalog rows and source targets."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-TR-006",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "playbook_capability_route_gap",
+      "disposition": "deferred",
+      "rationale": "Package presence is checked, but scenario-to-capability coverage was not.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:14",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1487",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:52"
+      ],
+      "reason": "A full playbook scenario expected-resource reconciliation remains."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-TR-007",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/changelog/skilled/v4.0.0.4.md",
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/skills/sk-code/hub-router.json"
+      ],
+      "bugClass": "release_changelog_tree_drift",
+      "disposition": "deferred",
+      "rationale": "A narrow routing claim was checked but the release note contains many unrelated claims.",
+      "evidenceRefs": [
+        ".skilled/changelog/skilled/v4.0.0.4.md:295",
+        ".skilled/skills/sk-code/SKILL.md:40",
+        ".skilled/skills/sk-code/hub-router.json:1"
+      ],
+      "reason": "The full v4.0.0.4 changelog-to-tree audit remains."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-TR-008",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh"
+      ],
+      "bugClass": "commit_id_hook_traceability",
+      "disposition": "blocked",
+      "rationale": "The end-to-end helper path is outside the frozen scope manifest.",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/scope-files.txt:1",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/deep-review-state.jsonl:4"
+      ],
+      "reason": "The source helper is not in the current review file manifest and the prompt forbids widening the target."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-TR-009",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/config.ts"
+      ],
+      "bugClass": "pi_fast_mode_traceability",
+      "disposition": "blocked",
+      "rationale": "The feature implementation path is outside the frozen scope manifest.",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/scope-files.txt:1",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/deep-review-state.jsonl:2"
+      ],
+      "reason": "The source is not in the current review file manifest and the prompt forbids widening the target."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/skills/sk-code/ROUTER.md"
+      ],
+      "bugClass": "cross_surface_projection_maintenance",
+      "disposition": "deferred",
+      "rationale": "This pass kept its maintainability focus on doctor probe diagnostics.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/SKILL.md:55",
+        ".skilled/skills/sk-code/ROUTER.md:309"
+      ],
+      "reason": "A separate pass should trace all surface maps and their drift guards before judging maintenance cost."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-504",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/changelog/skilled/v4.0.0.4.md"
+      ],
+      "bugClass": "release_claim_tree_accuracy",
+      "disposition": "deferred",
+      "rationale": "Iteration focus was the selected correctness edge; the full changelog claim audit remains open.",
+      "evidenceRefs": [
+        ".skilled/changelog/skilled/v4.0.0.4.md:277",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/018-create-sh-unknown-options/spec.md:99"
+      ],
+      "reason": "Requires a separate claim-to-tree pass across the release entry."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-505",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh"
+      ],
+      "bugClass": "commit_id_policy_validation",
+      "disposition": "deferred",
+      "rationale": "The strategy prohibits retrying this blocked source-path direction in the current scoped packet.",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/deep-review-strategy.md:118",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/deep-review-strategy.md:121"
+      ],
+      "reason": "A separately scoped manifest is required before reading the helper."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-506",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".pi/extensions/pi-fast-mode-w-subagent-support/src/config.ts"
+      ],
+      "bugClass": "pi_fast_mode_model_default",
+      "disposition": "deferred",
+      "rationale": "The direction is out of the supplied file boundary and must not be re-entered here.",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/deep-review-strategy.md:153",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/deep-review-strategy.md:161"
+      ],
+      "reason": "A separately scoped manifest is required before reviewing the source."
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh"
+      ],
+      "bugClass": "unknown_option_fail_open",
+      "disposition": "ruled_out",
+      "rationale": "The parser has an explicit refusal branch for unknown dash-prefixed options.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:351"
+      ],
+      "reason": "The inspected branch exits before any later scaffold handling."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "doctor_probe_false_positive",
+      "disposition": "ruled_out",
+      "rationale": "The reviewed path does not treat a zero exit code alone as a successful route.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:182",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:245"
+      ],
+      "reason": "The setup judge verifies the parsed decision and explicitly rejects legacy serving."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+      ],
+      "bugClass": "surface_tie_order_false_negative",
+      "disposition": "ruled_out",
+      "rationale": "The inspected check covers the stated user-added-after-native case.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1165"
+      ],
+      "reason": "No false-negative was found for the check's declared ordering case; missing-native and broader router invariants were not adjudicated here."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/compiled-route.cjs",
+        ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs"
+      ],
+      "bugClass": "compiled_route_hub_path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "The dynamic module path is selected only after a fixed hub allowlist lookup.",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route.cjs:41-59",
+        ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:55-85"
+      ],
+      "reason": "The inspected loader rejects unknown hub IDs before path construction or require."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "setup_probe_command_injection",
+      "disposition": "ruled_out",
+      "rationale": "The user prompt does not enter a shell command string in the execution path.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:76-87",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:138-141"
+      ],
+      "reason": "spawnSync is called with an argv array and no shell option."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
+      ],
+      "bugClass": "native_bridge_input_or_environment_leak",
+      "disposition": "ruled_out",
+      "rationale": "The selected bridge path does not interpolate payload text into a shell command or inherit the full environment.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:664-722"
+      ],
+      "reason": "The inspected call passes serialized input via stdin and filters environment keys through NATIVE_BRIDGE_ENV_ALLOWLIST."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-TR-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/skills/sk-code/mode-registry.json",
+        ".skilled/skills/sk-code/hub-router.json",
+        ".skilled/skills/sk-code/ROUTER.md"
+      ],
+      "bugClass": "sk-code_mode_surface_projection",
+      "disposition": "ruled_out",
+      "rationale": "No mismatch appeared in the selected workflow/surface projection.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/SKILL.md:15",
+        ".skilled/skills/sk-code/SKILL.md:40",
+        ".skilled/skills/sk-code/mode-registry.json:1",
+        ".skilled/skills/sk-code/hub-router.json:1",
+        ".skilled/skills/sk-code/ROUTER.md:37"
+      ],
+      "reason": "The current prose, registry, and router agree on the selected mode/surface projection."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-TR-010",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/scope-files.txt"
+      ],
+      "bugClass": "scope_manifest_duplicate_target",
+      "disposition": "ruled_out",
+      "rationale": "The manifest contains a duplicated path and therefore does not represent a unique target list.",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/scope-files.txt:1",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/scope-files.txt:2"
+      ],
+      "reason": "No repeated path appeared."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "probe_input_shell_execution",
+      "disposition": "ruled_out",
+      "rationale": "The checker does not execute custom prompt shell syntax during probe launch.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:77",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:80",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:140"
+      ],
+      "reason": "Direct inspection confirms argv-based spawning; the finding is limited to the string displayed for humans."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-502",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:351",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/create-unknown-options.vitest.ts:60"
+      ],
+      "bugClass": "unknown_option_multichar_refusal",
+      "disposition": "ruled_out",
+      "rationale": "The tested multi-character unknown flag follows the refusal branch.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:351",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/create-unknown-options.vitest.ts:60"
+      ],
+      "reason": "Static branch and regression assertions agree for --goal."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-503",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/create-unknown-options.vitest.ts:71"
+      ],
+      "bugClass": "valid_option_preservation",
+      "disposition": "ruled_out",
+      "rationale": "The scoped regression test explicitly preserves the valid option behavior.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/create-unknown-options.vitest.ts:71",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/create-unknown-options.vitest.ts:78"
+      ],
+      "reason": "Existing happy-path assertions cover --with-goal."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh"
+      ],
+      "bugClass": "unknown_option_fail_open",
+      "disposition": "ruled_out",
+      "rationale": "The parser has an explicit refusal branch for unknown dash-prefixed options.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:351"
+      ],
+      "proof": "The inspected branch exits before any later scaffold handling."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "doctor_probe_false_positive",
+      "disposition": "ruled_out",
+      "rationale": "The reviewed path does not treat a zero exit code alone as a successful route.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:182",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:245"
+      ],
+      "proof": "The setup judge verifies the parsed decision and explicitly rejects legacy serving."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+      ],
+      "bugClass": "surface_tie_order_false_negative",
+      "disposition": "ruled_out",
+      "rationale": "The inspected check covers the stated user-added-after-native case.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1165"
+      ],
+      "proof": "No false-negative was found for the check's declared ordering case; missing-native and broader router invariants were not adjudicated here."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/compiled-route.cjs",
+        ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs"
+      ],
+      "bugClass": "compiled_route_hub_path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "The dynamic module path is selected only after a fixed hub allowlist lookup.",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route.cjs:41-59",
+        ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:55-85"
+      ],
+      "proof": "The inspected loader rejects unknown hub IDs before path construction or require."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "setup_probe_command_injection",
+      "disposition": "ruled_out",
+      "rationale": "The user prompt does not enter a shell command string in the execution path.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:76-87",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:138-141"
+      ],
+      "proof": "spawnSync is called with an argv array and no shell option."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
+      ],
+      "bugClass": "native_bridge_input_or_environment_leak",
+      "disposition": "ruled_out",
+      "rationale": "The selected bridge path does not interpolate payload text into a shell command or inherit the full environment.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:664-722"
+      ],
+      "proof": "The inspected call passes serialized input via stdin and filters environment keys through NATIVE_BRIDGE_ENV_ALLOWLIST."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-TR-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/skills/sk-code/mode-registry.json",
+        ".skilled/skills/sk-code/hub-router.json",
+        ".skilled/skills/sk-code/ROUTER.md"
+      ],
+      "bugClass": "sk-code_mode_surface_projection",
+      "disposition": "ruled_out",
+      "rationale": "No mismatch appeared in the selected workflow/surface projection.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/SKILL.md:15",
+        ".skilled/skills/sk-code/SKILL.md:40",
+        ".skilled/skills/sk-code/mode-registry.json:1",
+        ".skilled/skills/sk-code/hub-router.json:1",
+        ".skilled/skills/sk-code/ROUTER.md:37"
+      ],
+      "proof": "The current prose, registry, and router agree on the selected mode/surface projection."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-TR-010",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/scope-files.txt"
+      ],
+      "bugClass": "scope_manifest_duplicate_target",
+      "disposition": "ruled_out",
+      "rationale": "The manifest contains a duplicated path and therefore does not represent a unique target list.",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/scope-files.txt:1",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/scope-files.txt:2"
+      ],
+      "proof": "No repeated path appeared."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "probe_input_shell_execution",
+      "disposition": "ruled_out",
+      "rationale": "The checker does not execute custom prompt shell syntax during probe launch.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:77",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:80",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:140"
+      ],
+      "proof": "Direct inspection confirms argv-based spawning; the finding is limited to the string displayed for humans."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-502",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:351",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/create-unknown-options.vitest.ts:60"
+      ],
+      "bugClass": "unknown_option_multichar_refusal",
+      "disposition": "ruled_out",
+      "rationale": "The tested multi-character unknown flag follows the refusal branch.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:351",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/create-unknown-options.vitest.ts:60"
+      ],
+      "proof": "Static branch and regression assertions agree for --goal."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-503",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/create-unknown-options.vitest.ts:71"
+      ],
+      "bugClass": "valid_option_preservation",
+      "disposition": "ruled_out",
+      "rationale": "The scoped regression test explicitly preserves the valid option behavior.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/create-unknown-options.vitest.ts:71",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/create-unknown-options.vitest.ts:78"
+      ],
+      "proof": "Existing happy-path assertions cover --with-goal."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "unknown_option_single_dash",
+      "unknown_option_multichar_refusal",
+      "valid_option_preservation",
+      "release_claim_tree_accuracy",
+      "commit_id_policy_validation",
+      "pi_fast_mode_model_default"
+    ],
+    "covered": [
+      "unknown_option_single_dash"
+    ],
+    "ruledOut": [
+      "unknown_option_multichar_refusal",
+      "valid_option_preservation"
+    ],
+    "deferred": [
+      "release_claim_tree_accuracy",
+      "commit_id_policy_validation",
+      "pi_fast_mode_model_default"
+    ],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

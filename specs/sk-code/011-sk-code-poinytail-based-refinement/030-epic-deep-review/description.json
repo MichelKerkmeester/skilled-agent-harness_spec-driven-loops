@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review",
+  "description": "Phase 30: epic-deep-review",
+  "keywords": [
+    "phase",
+    "epic-deep-review"
+  ],
+  "lastUpdated": "2026-10-14T17:46:29.624Z",
+  "specId": "030",
+  "folderSlug": "epic-deep-review",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-10-26_18-46__five-iteration-cli-codex-deep-review-of-the-sk.md"
+  ]
+}
