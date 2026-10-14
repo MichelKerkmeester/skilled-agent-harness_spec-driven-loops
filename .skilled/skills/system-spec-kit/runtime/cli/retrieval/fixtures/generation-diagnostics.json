@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 6955,
-    "ok": 14241,
+    "missing-frontmatter": 6968,
+    "ok": 14252,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 24743,
+  "documentsScanned": 24767,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "59eb3a8329101368edb1b2a7452642b9e2619def3027b98c78022b0e21f7a1f1",
+  "manifestHash": "cf97348e240104146ae37b6a95ecf997b28b3e3fcc5df88df018c7ea403230c5",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36395,
+      "ok": 36407,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -38811,6 +38811,84 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/research/iterations/iteration-001.md",
       "reason": "no opening frontmatter delimiter"
@@ -68831,7 +68909,23 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/030-epic-deep-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/031-epic-review-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-code/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
       "reason": "excluded directory"
     },
     {
