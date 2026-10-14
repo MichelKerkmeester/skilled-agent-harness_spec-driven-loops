@@ -83,10 +83,13 @@ function buildRoot({
   return root;
 }
 
-function run(root, args = []) {
+function run(root, args = [], env = {}) {
+  const inherited = { ...process.env };
+  // Strip the routing flag so a caller's shell cannot change what these tests assert.
+  delete inherited.SPECKIT_COMPILED_ROUTING;
   const result = spawnSync(process.execPath, [SCRIPT, ...args], {
     encoding: 'utf8',
-    env: { ...process.env, SK_CODE_SETUP_ROOT: root },
+    env: { ...inherited, SK_CODE_SETUP_ROOT: root, ...env },
   });
   return {
     status: result.status,
@@ -131,6 +134,15 @@ test('the legacy stub exits 0 but fails the probe with the guard repair', () => 
   assert.match(out, /^ {6}served the legacy stub, so sk-code serves no compiled route$/m);
   assert.match(out, /^ {6}repair: .*compiled-route-manifest\.cjs refresh --hub sk-code.*$/m);
   assert.match(out, /^STATUS=FAIL failed=1 skipped=0$/m);
+});
+
+test('the legacy stub under SPECKIT_COMPILED_ROUTING=0 fails the probe with the unset repair', () => {
+  const probe = { out: '{"servingAuthority":"legacy","hubId":"sk-code"}\n' };
+  const { status, out } = run(buildRoot({ probe }), [], { SPECKIT_COMPILED_ROUTING: '0' });
+  assert.equal(status, 1, out);
+  assert.match(out, /^ {6}served the legacy stub because SPECKIT_COMPILED_ROUTING="0" switches compiled routing off$/m);
+  assert.match(out, /^ {6}repair: unset SPECKIT_COMPILED_ROUTING, then rerun /m);
+  assert.doesNotMatch(out, /compiled-route-manifest\.cjs refresh/);
 });
 
 test('a probe that exits non-zero is reported by its exit status', () => {

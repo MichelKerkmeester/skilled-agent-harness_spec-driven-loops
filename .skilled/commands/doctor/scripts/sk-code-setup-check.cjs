@@ -254,6 +254,16 @@ const JUDGES = {
     }
     if (decision.action === 'route') return pass();
     if (decision.servingAuthority === 'legacy') {
+      const flag = process.env.SPECKIT_COMPILED_ROUTING;
+      // A flag other than '1' is the kill switch or fails closed, so legacy is
+      // deliberate here and the manifest refresh would repair nothing.
+      if (flag !== undefined && flag !== '' && flag !== '1') {
+        return fail([
+          `served the legacy stub because SPECKIT_COMPILED_ROUTING=${JSON.stringify(flag)} switches compiled routing off`,
+        ], [
+          'unset SPECKIT_COMPILED_ROUTING, then rerun node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs',
+        ]);
+      }
       return fail(['served the legacy stub, so sk-code serves no compiled route'], [legacyStubRepair()]);
     }
     return fail([`action: ${decision.action}`], [
