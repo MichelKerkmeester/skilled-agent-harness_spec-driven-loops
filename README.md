@@ -1230,7 +1230,7 @@ The active autonomous loop families. See [Deep Loop](#6--deep-loop) for how they
 &nbsp;
 #### DOCTOR
 
-Eight commands cover the diagnostic surface, one per owner. The six routed ones share the `.skilled/commands/doctor/_routes.yaml` manifest, where each route names its command and carries its setup vars, allowed flags, mutation class and trigger phrases.
+Nine commands cover the diagnostic surface, one per owner. The seven routed ones share the `.skilled/commands/doctor/_routes.yaml` manifest, where each route names its command and carries its setup vars, allowed flags, mutation class and trigger phrases.
 
 **`/doctor:speckit`** - spec-kit retrieval
 
@@ -1250,6 +1250,8 @@ Eight commands cover the diagnostic surface, one per owner. The six routed ones 
 - For research and review scopes, also lists the unresolved `[SOURCE: path:line]` tags per lineage
 
 **`/doctor:runtime-mirrors`** - checks the agent, command, prompt and hook mirrors each runtime directory derives from `.skilled`, and names the repair command for any that drift
+
+**`/doctor:sk-code [setup] [--prompt=<text>]`** - read-only sk-code setup battery: runs the provisioning, doctor, root-metadata, route guard, sync, drift-guard, derived-freshness and route-probe checks and names the repair command for each failing leg
 
 **`/doctor:git <hooks|standards>`** - your own settings for the shipped git hooks and sk-git rules
 
@@ -1275,7 +1277,7 @@ Eight commands cover the diagnostic surface, one per owner. The six routed ones 
 - Saves a preference only after showing the exact line and destination and getting an explicit yes. `--dry-run` shows the same preview and writes nothing
 - Explains secrets and per-invocation switches without asking for or saving their values. A per-invocation switch is shown as a one-command prefix
 
-The 20 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode` block and runs in phases, and most also declare `upstream_assets`, `user_inputs` and `field_handling`. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
+The 21 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode` block and runs in phases, and most also declare `upstream_assets`, `user_inputs` and `field_handling`. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
 
 &nbsp;
 #### UTILITY
