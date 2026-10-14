@@ -57,6 +57,8 @@ A fourth pass on 2026-10-14 ordered the entry by impact for someone using the fr
 
 A fifth pass on 2026-10-14 first added the untrusted-clone hook fix and the review fixes, then split the single entry into seven releases at the operator's request, each telling one story: v4.0.0.4 packets, rules and runtimes (compact), v4.0.0.5 spec repairs, v4.0.0.6 code reviews, v4.0.0.7 deep loop and routing, v4.0.0.8 fresh clone and input checks, v4.0.0.9 skill doc versions and v4.0.0.10 adapting sk-code and hook safety. A fresh Opus agent proposed the split and a script confirmed all 78 items and 32 upgrade notes landed exactly once and unchanged, with two items folded into the compact release's glance list. A second Opus audit found thirteen skills whose own changelogs had missed changes since v4.0.0.3, and each got an entry and a matching version bump.
 
+A conformance pass the same day checked all twenty entries against the create-changelog contract. Structure, ceilings and both validators already passed. The fixes were editorial: the v4.0.0.5, v4.0.0.6, v4.0.0.7 and v4.0.0.10 openings now state themes instead of repeating their glance bullets, the Jev switch upgrade step moved from v4.0.0.4 to v4.0.0.7 where the switches were retired, and the sk-code, sk-code-opencode, cli-devin and manual-testing-playbook entries lost a playbook bullet, a docs-alignment bullet, a bullet that restated the summary and a summary sentence the bullets repeated.
+
 ### Files Changed
 
 | File | Action | Purpose |
