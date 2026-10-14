@@ -54,6 +54,8 @@ contextType: "implementation"
 - [x] T007 Fold the v4.0.0.5 note and the later surface, setup doctor, Commit-Id and Pi Fast Mode changes into v4.0.0.4, delete v4.0.0.5.md and trim the glance list to 12 bullets
 - [x] T008 Rerun the voice scan, the document validator and the trigger index rebuild
 - [x] T009 Order the sections, glance bullets and upgrade notes from most to least impact for outside users, split long sections and cut entries only this repository's maintainers would notice (`.skilled/changelog/skilled/v4.0.0.4.md`)
+- [x] T010 Add the hook trust fix and the review fixes, then split the entry into seven releases, v4.0.0.4 to v4.0.0.10, each item moved verbatim (`.skilled/changelog/skilled/`)
+- [x] T011 Write the thirteen missing per-skill changelog entries, bump each skill's version carriers and repoint the cli-classifier changelog links
 <!-- /ANCHOR:phase-3 -->
 
 ---

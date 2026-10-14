@@ -44,7 +44,8 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/changelog/skilled/v4.0.0.4.md"
+      ".skilled/changelog/skilled/v4.0.0.4.md",
+      ".skilled/changelog/skilled/v4.0.0.5.md"
     ],
     "entities": [
       {
@@ -81,6 +82,12 @@
         "name": "v4.0.0.4.md",
         "kind": "doc",
         "path": ".skilled/changelog/skilled/v4.0.0.4.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.5.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.5.md",
         "source": "derived"
       },
       {
@@ -184,17 +191,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Other sessions filled the v4.0.0.4 release entry with the spec tooling, deep-loop and security work",
     "created_at": "2026-10-11T13:36:05Z",
-    "last_save_at": "2026-10-14T15:50:49.396Z",
+    "last_save_at": "2026-10-14T21:02:58.885Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:323ad8743905b74aede51a52dba99725c750ca5db7301465b3e769b655bded32",
+    "source_fingerprint": "sha256:c2443d40b29c6680ee9b7ced70107dc4060376dc21b5708c388cd1c1f6caab79",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ceeea3a41efdc33f3c52ccc669af3eaffdd32b61812f01fd0c23420a1d3230da",
       "plan.md": "822d35952c70335322b49340ddf5796d357db54d9bfa2077ba0814e923369bf4",
-      "tasks.md": "fad11f1564a719f432136788f7d5b949a3a442babd486090aca695464aae66aa",
-      "implementation-summary.md": "f4a5f1307fa52195ea5f02025b87cb0b6d8529b43e22c81266e2083274907df4"
+      "tasks.md": "5ea3350b2adff91100aabd5ea52b6394513580bd25c4508fa92aee8dfc6d6d1d",
+      "implementation-summary.md": "de8e335a9b6b28e4adacea4b580fbd9fab561510c3fe50887b7f53be461252af"
     },
     "last_active_at": null
   }

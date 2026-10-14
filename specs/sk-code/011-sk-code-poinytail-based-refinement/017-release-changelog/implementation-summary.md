@@ -55,12 +55,16 @@ A third pass on 2026-10-14 folded in everything that landed after the entry was 
 
 A fourth pass on 2026-10-14 ordered the entry by impact for someone using the framework in their own repository. Sections now run from spec upgrades, undo and validation through commit checks, the retired deep-loop modes and the code skill, down to authoring validators and session settings, and the glance list and upgrade notes follow the same order. Tooling Changes, the commit and pull request checks, the code skill and skill authoring were split so no section runs past six items, and the Follow-Up Fixes and Deep Review Fixes headings, which named internal review rounds, gave their items to the matching topical sections. Two internal prompt fixes, a citation fix for a path only this repository has, an internal Pi variable, a CI build detail and two items that repeated others were cut, the trigger index job entry went from three paragraphs to one, and the upgrade notes went from 34 to 31 by merging the six linked-path notes and the two unknown-option notes. A script confirmed every moved item matches its earlier text apart from the five edited on purpose.
 
+A fifth pass on 2026-10-14 first added the untrusted-clone hook fix and the review fixes, then split the single entry into seven releases at the operator's request, each telling one story: v4.0.0.4 packets, rules and runtimes (compact), v4.0.0.5 spec repairs, v4.0.0.6 code reviews, v4.0.0.7 deep loop and routing, v4.0.0.8 fresh clone and input checks, v4.0.0.9 skill doc versions and v4.0.0.10 adapting sk-code and hook safety. A fresh Opus agent proposed the split and a script confirmed all 78 items and 32 upgrade notes landed exactly once and unchanged, with two items folded into the compact release's glance list. A second Opus audit found thirteen skills whose own changelogs had missed changes since v4.0.0.3, and each got an entry and a matching version bump.
+
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
 | `.skilled/changelog/skilled/v4.0.0.4.md` | Modify | Release entries |
-| `.skilled/changelog/skilled/v4.0.0.5.md` | Delete | Folded into v4.0.0.4 |
+| `.skilled/changelog/skilled/v4.0.0.5.md` to `v4.0.0.10.md` | Create | The split releases |
+| Thirteen skill `changelog/` entries and their version carriers | Create/Modify | Per-skill entries missed since v4.0.0.3 |
+| `.skilled/changelog/cli-classifier/` | Create | Changelog links moved from the broken `cli-jev` folder |
 | This phase's docs and the parent `spec.md` and `goal.md` | Create/Modify | Phase record |
 <!-- /ANCHOR:what-built -->
 
@@ -107,6 +111,9 @@ The inventory came from the bodies of the 92 non-spec commits whose Spec trailer
 | generate-trigger-index.mjs --check after the rebuild | exit 0 |
 | hvr_scan.py after the fourth pass | 0 hard blockers, 95/100 |
 | validate_document.py after the fourth pass | VALID, 0 issues |
+| Split check, 78 items and 32 upgrade notes | Each placed once, unchanged |
+| hvr_scan.py and validate_document.py on the 7 releases and 13 skill entries | 0 hard blockers, 96 to 100, all VALID |
+| frontmatter-version.mjs verify | No failures |
 | validate.sh parent --recursive --strict | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
