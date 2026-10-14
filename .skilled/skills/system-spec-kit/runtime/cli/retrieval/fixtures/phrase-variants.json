@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5337874f8909f74d02c3d30b4e14afcab2bc0e374ba69d2148a94ee16a289d72",
+  "manifestHash": "44b8d0d9483975870500a5c8037916be2f6db102ff5c63378feeb9918c86c43a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8041,9 +8041,6 @@
     ],
     "add union alpha": [
       "add union alpha"
-    ],
-    "add your own sk code surface": [
-      "add your own sk-code surface"
     ],
     "adding new mcp server": [
       "adding new mcp server"
@@ -64735,9 +64732,6 @@
     "nested anchors fail validation": [
       "nested anchors fail validation"
     ],
-    "nested anchors now fail validation": [
-      "nested anchors now fail validation"
-    ],
     "nested changelog backfill": [
       "nested changelog backfill"
     ],
@@ -79787,9 +79781,6 @@
     "remove task mcp": [
       "remove task mcp"
     ],
-    "remove the example sk code surfaces": [
-      "remove the example sk-code surfaces"
-    ],
     "remove track narrowing scorer": [
       "remove track narrowing scorer"
     ],
@@ -89788,6 +89779,9 @@
     "sk code 5 mode taxonomy": [
       "sk-code 5-mode taxonomy"
     ],
+    "sk code adapts to your own stack": [
+      "sk-code adapts to your own stack"
+    ],
     "sk code adds surface evidence": [
       "sk-code Adds Surface Evidence"
     ],
@@ -95571,9 +95565,6 @@
     ],
     "skilled v4 0 0 4": [
       "skilled v4.0.0.4"
-    ],
-    "skilled v4 0 0 5": [
-      "skilled v4.0.0.5"
     ],
     "skilled verification phase goal": [
       "skilled verification phase goal"
@@ -106638,9 +106629,6 @@
     ],
     "v4 0 0 4 release notes": [
       "v4.0.0.4 release notes"
-    ],
-    "v4 0 0 5 release notes": [
-      "v4.0.0.5 release notes"
     ],
     "v4 changelog": [
       "v4 changelog"

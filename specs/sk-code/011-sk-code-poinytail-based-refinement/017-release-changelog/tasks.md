@@ -51,6 +51,8 @@ contextType: "implementation"
 
 - [x] T005 Run the voice scan and the document validator
 - [x] T006 Validate the parent recursively and commit
+- [x] T007 Fold the v4.0.0.5 note and the later surface, setup doctor, Commit-Id and Pi Fast Mode changes into v4.0.0.4, delete v4.0.0.5.md and trim the glance list to 12 bullets
+- [x] T008 Rerun the voice scan, the document validator and the trigger index rebuild
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -51,11 +51,14 @@ Internal work stayed out: the research and review rounds, goal refreshes, versio
 
 A second pass on 2026-10-11 aligned the whole entry with the current tree for external readers. The glance list now gives each theme one payoff line, with the code skill, hooks, routing and skill authoring themes taking the slots of the internal packet move and the closed follow-ups. Why This Release names the code-side gap. The create.sh unknown-option refusal and the router-sync git-ignore skip were added, and the README template change was noted. Entries that only this repository's maintainers would notice were cut: the 21-packet regroup and its upgrade note, test hygiene, README path fixes, workflow linting, the hostile-name tests and the template cache. The two Gate 3 child-worker items, which said the same thing, became one.
 
+A third pass on 2026-10-14 folded in everything that landed after the entry was last edited. The operator chose one release over two, so the separate v4.0.0.5 note, which covered the external surface build, was merged in and deleted. A new Adapting the Code Skill section covers OpenCode as the native surface, the fresh-clone guide, new surfaces ranked ahead of OpenCode, check 5l, examples that can be removed, failures that name their fix and `/doctor:sk-code setup`. Commit and Pull Request Checks gained the Commit-Id hooks, Tooling Changes gained Pi Fast Mode on by default and Upgrade Notes gained four actions. The glance list went from 14 bullets back to the template's 12, and the topic phrases back to two.
+
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
 | `.skilled/changelog/skilled/v4.0.0.4.md` | Modify | Release entries |
+| `.skilled/changelog/skilled/v4.0.0.5.md` | Delete | Folded into v4.0.0.4 |
 | This phase's docs and the parent `spec.md` and `goal.md` | Create/Modify | Phase record |
 <!-- /ANCHOR:what-built -->
 
@@ -97,6 +100,9 @@ The inventory came from the bodies of the 92 non-spec commits whose Spec trailer
 | hvr_scan.py after the second pass | 0 hard blockers, 98/100 |
 | validate_document.py | VALID, 0 issues |
 | extract_structure.py | exit 0 |
+| hvr_scan.py after the third pass | 0 hard blockers, 95/100, the same as before it |
+| validate_document.py after the third pass | VALID, 0 issues |
+| generate-trigger-index.mjs --check after the rebuild | exit 0 |
 | validate.sh parent --recursive --strict | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 

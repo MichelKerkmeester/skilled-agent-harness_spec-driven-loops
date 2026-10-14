@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e69d483704068984e6342035e988d20af7aa5376c358cea17d38a38a89a8d58b",
+  "corpusHash": "ae4bdb76c7b2477cb8540b274798197547d4575284beb265e20680400dbbbf16",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24744,
+  "includedPathCount": 24743,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -77,7 +77,6 @@
     ".skilled/changelog/skilled/v4.0.0.2.md",
     ".skilled/changelog/skilled/v4.0.0.3.md",
     ".skilled/changelog/skilled/v4.0.0.4.md",
-    ".skilled/changelog/skilled/v4.0.0.5.md",
     ".skilled/hooks/README.md",
     ".skilled/hooks/classifier-injection-screen/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -24775,7 +24774,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5337874f8909f74d02c3d30b4e14afcab2bc0e374ba69d2148a94ee16a289d72",
+  "manifestHash": "44b8d0d9483975870500a5c8037916be2f6db102ff5c63378feeb9918c86c43a",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
