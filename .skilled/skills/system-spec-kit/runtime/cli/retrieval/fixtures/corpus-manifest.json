@@ -1,5 +1,5 @@
 {
-  "corpusHash": "2aec84a0646ca976f8e12f5430a429ed1e9a5ce68010a2bea305f44e323822f1",
+  "corpusHash": "48b0d3f9ecba95a79c1e84110dd8c8afd9cd892659094504472079fb6cfb2be8",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -24821,7 +24821,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "75d5b21bb6f8831c94c2bc1ca22951dc7e96ba6ba9eb6ef758c5da8b656c90b3",
+  "manifestHash": "78859a07d1a0157abc1ae2b500271031d9ad172a4eb74b35da6dfd0301b94206",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27065,6 +27065,14 @@
     },
     {
       "path": "specs/sk-code/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
       "reason": "excluded directory"
     },
     {
