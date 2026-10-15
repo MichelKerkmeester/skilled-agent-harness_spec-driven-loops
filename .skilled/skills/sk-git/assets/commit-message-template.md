@@ -9,7 +9,7 @@ trigger_phrases:
   - "commit subject length rules"
 importance_tier: normal
 contextType: implementation
-version: 1.3.1.0
+version: 1.3.2.0
 ---
 
 # Commit Message Template - Repository-Specific Contract
@@ -259,7 +259,12 @@ Git-generated subjects listed in `passthroughSubjects` skip every rule.
     "strictKeys": ["Spec", "Commit-Id"],
     "machineKeys": ["Spec", "Commit-Id"],
     "machineKeysInFinalParagraph": true,
-    "commitId": { "key": "Commit-Id", "pattern": "^(?!0{7})[0-9]{7}$", "hint": "exactly seven digits, not 0000000", "unique": true },
+    "commitId": {
+      "key": "Commit-Id",
+      "pattern": "^(?!0{7})[0-9]{7}$",
+      "hint": "exactly seven digits, not 0000000",
+      "unique": true
+    },
     "spec": { "key": "Spec", "root": "specs", "forbiddenPrefix": "specs/", "mustExist": true }
   },
   "attribution": {

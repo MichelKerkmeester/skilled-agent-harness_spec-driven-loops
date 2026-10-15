@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "sk-git/034-standards-template-round-trip",
+  "description": "Restore the round-trip of the shipped commit template rules block through the /doctor:git standards serializer",
+  "keywords": [
+    "restore",
+    "round-trip",
+    "shipped",
+    "commit",
+    "template",
+    "rules",
+    "block",
+    "doctor",
+    "git",
+    "standards",
+    "serializer"
+  ],
+  "lastUpdated": "2026-10-15T08:27:22.326Z",
+  "specId": "034",
+  "folderSlug": "standards-template-round-trip",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-10-26_09-27__parsed-contract-identical-before-and-after-git.md"
+  ]
+}

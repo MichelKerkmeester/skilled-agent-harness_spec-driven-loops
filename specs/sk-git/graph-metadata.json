@@ -17,7 +17,8 @@
     "sk-git/030-commit-body-always-required",
     "sk-git/031-fix-broad-staging-in-examples",
     "sk-git/032-template-driven-message-enforcement",
-    "sk-git/033-git-setup-customization"
+    "sk-git/033-git-setup-customization",
+    "sk-git/034-standards-template-round-trip"
   ],
   "manual": {
     "depends_on": [],
