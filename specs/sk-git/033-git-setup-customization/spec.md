@@ -98,6 +98,7 @@ _memory:
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-deep-research/ | [Phase 1 scope] | Pending |
+| 2 | 002-doctor-git-setup/ | [Phase 2 scope] | Pending |
 
 ### Phase Transition Rules
 
@@ -110,7 +111,7 @@ _memory:
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| (single phase - no handoffs) | | | |
+| 001-deep-research | 002-doctor-git-setup | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

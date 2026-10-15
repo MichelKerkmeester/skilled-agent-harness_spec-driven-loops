@@ -1,0 +1,20 @@
+{
+  "level": "2",
+  "specFolder": "sk-git/033-git-setup-customization/002-doctor-git-setup",
+  "description": "Phase 2: doctor-git-setup",
+  "keywords": [
+    "phase",
+    "doctor-git-setup"
+  ],
+  "lastUpdated": "2026-10-15T06:56:35.698Z",
+  "specId": "002",
+  "folderSlug": "doctor-git-setup",
+  "parentChain": [
+    "sk-git",
+    "033-git-setup-customization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-10-26_07-56__battery-resolves-helpers-from-its-own-root-and.md"
+  ]
+}
