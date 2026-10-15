@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "962e2212ff6833364e3fed32a9d603bdd3c9e964474f4da7e3d2ef6c0f00340e",
+  "manifestHash": "7d2ba03b78a15f3a5f9c8a865bfa4d2737fedb6c16b2f0611a8898a9c13de504",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -69016,14 +69016,6 @@
     },
     {
       "path": "specs/sk-code/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
       "reason": "excluded directory"
     },
     {
