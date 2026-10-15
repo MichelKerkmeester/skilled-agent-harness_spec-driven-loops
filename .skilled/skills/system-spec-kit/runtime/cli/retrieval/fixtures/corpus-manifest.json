@@ -1,5 +1,5 @@
 {
-  "corpusHash": "9cadd8c7be9f52fa61928de4925fe50e19250c4e750abd6e0a797f893ddd2583",
+  "corpusHash": "fb7fad86a24251e89503e6f41538f0267c67c17751a88dc1811c416cddca8fff",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24817,
+  "includedPathCount": 24822,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12528,6 +12528,11 @@
     "specs/sk-git/033-git-setup-customization/001-deep-research/research/resource-map.md",
     "specs/sk-git/033-git-setup-customization/001-deep-research/spec.md",
     "specs/sk-git/033-git-setup-customization/001-deep-research/tasks.md",
+    "specs/sk-git/033-git-setup-customization/002-doctor-git-setup/acceptance-criteria.md",
+    "specs/sk-git/033-git-setup-customization/002-doctor-git-setup/implementation-summary.md",
+    "specs/sk-git/033-git-setup-customization/002-doctor-git-setup/plan.md",
+    "specs/sk-git/033-git-setup-customization/002-doctor-git-setup/spec.md",
+    "specs/sk-git/033-git-setup-customization/002-doctor-git-setup/tasks.md",
     "specs/sk-git/033-git-setup-customization/spec.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/implementation-summary.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/plan.md",
@@ -24848,7 +24853,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7b26c1d871cc5c3b2d99a7ad4f9c2195b7287fea95110385d13c5381adda7ffa",
+  "manifestHash": "f5d0a682aa820e6257ef48802923c2b00eaffa18460c37a88b454c22f1c2bf08",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27095,6 +27100,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/scratch",
       "reason": "excluded directory"
     },
@@ -27872,6 +27885,10 @@
     },
     {
       "path": "specs/sk-git/033-git-setup-customization/001-deep-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/033-git-setup-customization/002-doctor-git-setup/scratch",
       "reason": "excluded directory"
     },
     {

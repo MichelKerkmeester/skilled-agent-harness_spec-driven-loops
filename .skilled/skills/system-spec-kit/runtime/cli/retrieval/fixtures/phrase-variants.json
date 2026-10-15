@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7b26c1d871cc5c3b2d99a7ad4f9c2195b7287fea95110385d13c5381adda7ffa",
+  "manifestHash": "f5d0a682aa820e6257ef48802923c2b00eaffa18460c37a88b454c22f1c2bf08",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -37463,6 +37463,18 @@
     "doctor git setup": [
       "doctor git setup"
     ],
+    "doctor git setup acceptance criteria": [
+      "doctor git setup acceptance criteria"
+    ],
+    "doctor git setup implementation summary": [
+      "doctor git setup implementation summary"
+    ],
+    "doctor git setup plan": [
+      "doctor git setup plan"
+    ],
+    "doctor git setup tasks": [
+      "doctor git setup tasks"
+    ],
     "doctor git summary": [
       "doctor git summary"
     ],
@@ -71067,6 +71079,9 @@
     ],
     "phase 2 budget check": [
       "phase 2 budget check"
+    ],
+    "phase 2 doctor git setup": [
+      "phase 2 doctor git setup"
     ],
     "phase 2 doctor guard sync messages": [
       "phase 2 doctor guard sync messages"
