@@ -213,7 +213,7 @@
     ],
     "causal_summary": "The skill advisor has no path to the `/doctor:` commands",
     "created_at": "2026-10-15T15:39:09Z",
-    "last_save_at": "2026-10-15T18:06:35.590Z",
+    "last_save_at": "2026-10-15T19:43:17.153Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,12 +223,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:474f76fe36283ec30ae8b26d45878466af9a4919f9e312cbf44f6f065ae47681",
+    "source_fingerprint": "sha256:81eb00beb828b0015b81798618cfed140a94d86f800962943a9d1538ff88930e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1049b4d3b295164f1ab737c1c816b65a44e5994c7b811ef1da253512bd11a1fa",
       "plan.md": "3e673b3aaff13e72a5d1b48a4e1f9b4f70d427929d92b9a158d99f7b43adc64d",
-      "tasks.md": "5ee52162e2846b9be35db463841854185a29b1109272f3c1cc012644b26425ca",
+      "tasks.md": "423d2078253db0895757474bba041e2c25620a60023beb2034815f5d940b2973",
       "implementation-summary.md": "bd3716bdf15e7b9f004befecba184f2dc24b9365d4749e25ca67822cb778a318"
     },
     "last_active_at": null

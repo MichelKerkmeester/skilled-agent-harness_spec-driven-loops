@@ -2,7 +2,7 @@
 // MODULE: Single Writer Lease Stress
 // ───────────────────────────────────────────────────────────────────
 
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, beforeAll } from 'vitest';
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -18,6 +18,13 @@ import {
 describe('sa-002 — Single-writer lease', () => {
   let tmpDir: string;
   let leases: SkillGraphLease[];
+
+  // The first SQLite open in a fresh worker is slow on some CI runners; warming it here keeps that cost out of the timed race.
+  beforeAll(() => {
+    const warmDir = mkdtempSync(join(tmpdir(), 'sa-stress-002-warm-'));
+    openLeaseDatabase(warmDir, join(warmDir, 'lease.sqlite')).close();
+    rmSync(warmDir, { recursive: true, force: true });
+  });
 
   beforeEach(() => {
     tmpDir = mkdtempSync(join(tmpdir(), 'sa-stress-002-'));

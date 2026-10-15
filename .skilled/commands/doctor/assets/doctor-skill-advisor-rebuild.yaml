@@ -74,7 +74,7 @@ workflow:
   phase_1_probe:
     purpose: "Report the advisor's current state before asking for anything"
     activities:
-      - "Run node .skilled/bin/skill-advisor.cjs advisor_status --format json --warm-only. Exit 75 means no daemon is running; record it as daemon=absent, which the rebuild itself does not need."
+      - "Run node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --format json --warm-only. Exit 75 means no daemon is running; record it as daemon=absent, which the rebuild itself does not need."
       - "Record whether skill-graph.sqlite exists, its size and modified time"
       - "Count the .skilled/skills/*/graph-metadata.json files the rebuild will index"
 
@@ -102,7 +102,7 @@ workflow:
     purpose: "Prove the rebuilt graph is usable"
     activities:
       - "Run node .skilled/bin/skill-advisor.cjs skill_graph_validate --format json --warm-only"
-      - "Run node .skilled/bin/skill-advisor.cjs advisor_status --format json --warm-only"
+      - "Run node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --format json --warm-only"
       - "If validation reports errors, go to phase_6_restore; otherwise render the mutating result with STATUS=OK and keep the backup path in the summary"
 
   phase_6_restore:
