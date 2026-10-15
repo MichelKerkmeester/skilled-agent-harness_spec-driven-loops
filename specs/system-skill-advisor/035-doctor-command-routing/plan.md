@@ -120,7 +120,7 @@ This packet is a feature, but it changes shared scoring policy and the public br
 | Corpus hash pins | `scorer-eval-baseline.json:5-7` and CI at `routing-registry-drift.yml:316` | Unchanged. The pinned corpora are not edited | Gates G3 and G6 |
 | Runtime mirrors | `.claude`, `.codex`, `.pi`, `.hermes`, `.cursor` command trees | Generated for `/doctor:setup` | Gate G10 |
 | Claude prompt hook | Calls the fallback renderer at `user-prompt-submit.ts:336` | Update: compute and pass the setup-wording flag | T016 hint tests and the hook tests in G4 |
-| Pi prompt hook | Calls the fallback with no arguments at `prompt-advisor.ts:283` | Unchanged, so Pi shows no hint | Recorded limitation |
+| Pi prompt hook | Calls the shared handler with the prompt and `runtime: "pi"` at `.skilled/hooks/skill-advisor/pi/prompt-advisor.ts:263-270`, and calls the fallback with no arguments only when the advisor misses Pi's deadline (`:282-283`) | Unchanged. Pi shows the hint on a no-match like Claude, and the deadline path prints the outage line | Corrected 2026-10-15 after a run as Pi |
 | CI workflows that run the generator | Install steps per job | Update where the `yaml` parser is missing | T010 job list |
 
 Required inventories, run at task T002:
