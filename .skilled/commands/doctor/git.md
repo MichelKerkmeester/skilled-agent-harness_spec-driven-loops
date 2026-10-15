@@ -38,7 +38,7 @@ Load the presentation contract before showing the startup menu, a dashboard, a c
 
 ## 3. MODE ROUTING
 
-- `_routes.yaml` is the canonical routing and mutation-class manifest; this command owns the routes whose `command` is `/doctor:git`.
+- `_routes.yaml` is the canonical routing and mutation-class manifest. This command owns the routes whose `command` is `/doctor:git`.
 - `execution_mode` is always `INTERACTIVE`. No `:auto` or `:confirm` suffix is supported.
 - Unknown or cross-target flags fail before YAML load.
 - The YAML start condition is: target bound, workflow asset exists, presentation asset loaded, and every target setup variable resolved.
@@ -58,14 +58,14 @@ Load the presentation contract before showing the startup menu, a dashboard, a c
 |----------|------------|--------|
 | `--dry-run` | `hooks`, `standards` | Show every plan and stop before any write |
 | `--tool=<name>` | `setup` | Name the AI tool running the check: claude, codex, devin, cursor, opencode or pi |
-| `list`, `?`, `--list` | the command | Render the route manifest; load no workflow |
+| `list`, `?`, `--list` | the command | Render the route manifest and load no workflow |
 | `--target=<name>` | the command | Compatibility alias for the positional target |
 
 1. Read `.skilled/commands/doctor/assets/doctor-git-presentation.txt`.
 2. Read `.skilled/commands/doctor/_routes.yaml` and keep the `/doctor:git` routes.
 3. If the bound target is unknown, render the presentation contract's unknown-target failure and stop.
 4. Resolve `yaml`, `setup_vars`, `allowed_flags`, `mutating`, `mcp_tools`, and script invocations from the route.
-5. Parse the remaining flags against that route's `allowed_flags`; reject a cross-target flag with the presentation contract's wording.
+5. Parse the remaining flags against that route's `allowed_flags`, and reject a cross-target flag with the presentation contract's wording.
 6. Load the resolved workflow YAML from `.skilled/commands/doctor/assets/<yaml>` and execute it step by step.
 
 ---

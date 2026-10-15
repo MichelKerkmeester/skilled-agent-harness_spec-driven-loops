@@ -7,7 +7,7 @@ trigger_phrases:
   - "run doctor subsystem diagnostic"
   - "skill advisor rebuild doctor"
   - "how do I diagnose and repair a spec-kit subsystem"
-version: 1.7.1.0
+version: 1.7.2.0
 ---
 
 # Doctor commands
@@ -24,7 +24,7 @@ This category documents the doctor command surface that diagnoses and repairs sp
 
 The shipped surface splits by owner. `/doctor:speckit` takes no target and diagnoses spec-kit retrieval: the trigger index, its lookup and the ripgrep recipes. `/doctor:skill-advisor <target>` owns six targets: `tune`, `rebuild`, `skill-graph-freshness`, `router-reach`, `skill-budget` and `parent-skill`. The `rebuild` target rebuilds `skill-graph.sqlite` through the advisor CLI behind a backup. `/doctor:deep-loop` takes only `--scope`, and `/doctor:runtime-mirrors` takes no arguments. Standalone `/doctor:update` carries check, align, gated apply, rollback, record-base and compat actions and owns release migration. `/doctor:mcp install|debug`, `/doctor:env` and `/doctor:git <hooks|standards|setup>` complete the set.
 
-The route manifest declares every target's location and mutation class so Gate 3 can be answered per-route before execution. Routes marked `read-only` may inspect and report without a spec-folder write path; `add-only` routes may create scoped logs, snapshots, or evidence after Gate 3 is satisfied; `mutates` routes follow the same spec-folder discipline as any other file or database mutation. A CI assertion verifies the manifest against the router source.
+The route manifest declares every target's location and mutation class so Gate 3 can be answered per-route before execution. Routes marked `read-only` may inspect and report without a spec-folder write path. `add-only` routes may create scoped logs, snapshots, or evidence after Gate 3 is satisfied. `mutates` routes follow the same spec-folder discipline as any other file or database mutation. A CI assertion verifies the manifest against the router source.
 
 The playbook peer at `manual-testing-playbook/doctor-commands/` holds the scenarios for the four commands this skill owns: `/doctor:speckit`, `/doctor:runtime-mirrors`, `/doctor:env` and `/doctor:update` (DOC-349 through DOC-361 and DOC-381). The other commands are tested where they belong: `/doctor:skill-advisor` in the system-skill-advisor playbook, `/doctor:deep-loop` in the system-deep-loop playbook, `/doctor:git` in the sk-git playbook and `/doctor:mcp` in the mcp-code-mode playbook, each under its own `doctor-commands/` category.
 

@@ -69,8 +69,7 @@ const MAX_BUFFER = 64 * 1024 * 1024;
 // counted rather than silently shortened.
 const DETAIL_LIMIT = 10;
 
-const PROVISION_REPAIR = 'bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision .';
-const HOOKS_REPAIR = 'bash .skilled/scripts/install-git-hooks.sh';
+const INSTALL_REPAIR = 'restore the missing sk-git files from your sk-git source, for example git restore .skilled/skills/sk-git, or run /doctor:update';
 const RULES_REPAIR = 'fix the check name in .skilled/skills/sk-git/hard-rules.json';
 const WORKTREE_REPAIR = 'git config speckit.worktreeBase <dir>';
 const CONTRACT_REPAIR = '/doctor:git standards';
@@ -119,12 +118,29 @@ function repoLabel(repoRoot, absolute) {
   return !relative || relative.startsWith('..') || path.isAbsolute(relative) ? absolute : relative;
 }
 
+// Config passed through the environment outranks every config file, so no git a
+// helper starts can be steered by the inspected repository: fsmonitor starts a
+// program on a plain query, and showSignature makes log run gpg.program.
+const SAFE_GIT_CONFIG = [['core.fsmonitor', 'false'], ['log.showSignature', 'false']];
+
+function safeGitEnv() {
+  const env = { ...process.env };
+  const base = Number.parseInt(env.GIT_CONFIG_COUNT || '0', 10) || 0;
+  SAFE_GIT_CONFIG.forEach(([key, value], i) => {
+    env[`GIT_CONFIG_KEY_${base + i}`] = key;
+    env[`GIT_CONFIG_VALUE_${base + i}`] = value;
+  });
+  env.GIT_CONFIG_COUNT = String(base + SAFE_GIT_CONFIG.length);
+  return env;
+}
+
 // Every child process runs from the inspected repository root and takes an argv
 // array, never a shell string, so a repository cannot influence a helper
 // through the working directory or through shell expansion.
 function runCommand(cwd, command, args) {
   const result = spawnSync(command, args, {
     cwd,
+    env: safeGitEnv(),
     encoding: 'utf8',
     maxBuffer: MAX_BUFFER,
   });
@@ -185,12 +201,12 @@ const unknown = (source, details = []) => ({ result: 'UNKNOWN', source, details,
 
 // The toolchain files this battery itself needs: without any one of them the
 // rest of the report would name helpers that do not exist, so install is the
-// first check and its repair provisions the whole skill.
+// first check and its repair restores the skill's files.
 function checkInstall() {
   const source = 'skills/sk-git/SKILL.md + hard-rules.json + scripts/';
   const required = ['skills/sk-git/SKILL.md', 'skills/sk-git/hard-rules.json', 'skills/sk-git/scripts'];
   const missing = required.filter((relative) => !fs.existsSync(path.join(OWN_ROOT, relative)));
-  if (missing.length > 0) return fail(source, missing.map(ownLabel), PROVISION_REPAIR);
+  if (missing.length > 0) return fail(source, missing.map(ownLabel), INSTALL_REPAIR);
   return pass(source);
 }
 
@@ -198,16 +214,23 @@ function checkInstall() {
 // repository it runs in and then executes that repository's own
 // validate-message.mjs, so a clone the operator does not trust could pick the
 // code this battery runs; the hook links are read and compared in process instead.
-// PASS only when every Git hook this checkout ships is installed in the inspected
-// repository's hooks folder and resolves to this checkout's own script. A missing
-// target and a foreign or shadowed target both surface as one detail line.
+// PASS when every Git hook this checkout ships is installed in the inspected
+// repository's hooks folder and resolves to a hook source: the repository's own
+// tree, where the installer links them, or this checkout's, which a core.hooksPath
+// shares. A missing target and a foreign target both surface as one detail line.
 function checkHooks(ctx) {
   const source = 'git rev-parse --git-path hooks + hook links';
   const ownDir = path.join(OWN_ROOT, 'scripts', 'git-hooks');
   if (!fs.existsSync(ownDir)) return unknown(source, [ownLabel('scripts/git-hooks')]);
+  const repoTree = ['.skilled', '.opencode']
+    .find((root) => fs.existsSync(path.join(ctx.repoRoot, root, 'skills', 'system-spec-kit', 'SKILL.md')));
+  const repoDir = repoTree ? path.join(ctx.repoRoot, repoTree, 'scripts', 'git-hooks') : null;
+  const repair = repoTree
+    ? `bash ${repoTree}/scripts/install-git-hooks.sh`
+    : `git config core.hooksPath ${ownDir}`;
   const resolved = git(ctx.repoRoot, ['rev-parse', '--git-path', 'hooks']);
   if (resolved.status !== 0 || resolved.stdout.trim() === '') {
-    return fail(source, [firstLine(resolved.stderr) || `git rev-parse --git-path hooks exited ${resolved.status}`], HOOKS_REPAIR);
+    return fail(source, [firstLine(resolved.stderr) || `git rev-parse --git-path hooks exited ${resolved.status}`], repair);
   }
   const hooksDir = path.resolve(ctx.repoRoot, resolved.stdout.trim());
   const names = fs.readdirSync(ownDir, { withFileTypes: true })
@@ -222,10 +245,12 @@ function checkHooks(ctx) {
       continue;
     }
     const installedReal = fs.realpathSync(installed);
-    const ownReal = fs.realpathSync(path.join(ownDir, name));
-    if (installedReal !== ownReal) details.push(`${name}: resolves to ${installedReal}, not this checkout`);
+    const accepted = [ownDir, repoDir]
+      .filter((dir) => dir !== null && fs.existsSync(path.join(dir, name)))
+      .map((dir) => fs.realpathSync(path.join(dir, name)));
+    if (!accepted.includes(installedReal)) details.push(`${name}: resolves to ${installedReal}, not a hook source`);
   }
-  if (details.length > 0) return fail(source, details, HOOKS_REPAIR);
+  if (details.length > 0) return fail(source, details, repair);
   return pass(source);
 }
 
@@ -239,16 +264,29 @@ function commonDirFor(repoRoot, dir) {
   return path.resolve(dir, value);
 }
 
+// The naming helper resolves its files and the worktree base against the main
+// worktree, the parent of the common git dir, so a linked worktree is judged
+// by the same folder the helper reads.
+function mainTopFor(repoRoot) {
+  const common = commonDirFor(repoRoot, repoRoot);
+  if (!common) return repoRoot;
+  try {
+    return fs.realpathSync(path.dirname(common));
+  } catch {
+    return repoRoot;
+  }
+}
+
 function checkTrust(ctx) {
-  const source = 'git config --local --get skilled.trustRepoHooks + git rev-parse --git-common-dir';
+  const source = 'git config --local --bool skilled.trustRepoHooks + git rev-parse --git-common-dir';
   const ownCommon = commonDirFor(ctx.repoRoot, OWN_ROOT);
   const repoCommon = commonDirFor(ctx.repoRoot, ctx.repoRoot);
-  const configured = git(ctx.repoRoot, ['config', '--local', '--get', 'skilled.trustRepoHooks']);
+  const configured = git(ctx.repoRoot, ['config', '--local', '--bool', '--get', 'skilled.trustRepoHooks']);
   const value = configured.status === 0 ? configured.stdout.trim() : '';
   if (ownCommon && repoCommon && ownCommon === repoCommon) {
     return pass(source, [`own checkout: ${repoCommon}`]);
   }
-  if (value.toLowerCase() === 'true') return pass(source, [`skilled.trustRepoHooks=${value}`]);
+  if (value === 'true') return pass(source, [`skilled.trustRepoHooks=${value}`]);
   return skip(source, ['untrusted: this clone\'s own hook scripts do not run']);
 }
 
@@ -338,15 +376,14 @@ function checkAllowlist(ctx) {
   return pass(source, details);
 }
 
-// The matcher resolves the file from the inspected repository's working tree,
-// named .skilled first and .opencode second. When the repository ships none,
-// the battery's own copy is reported so the pattern list still names what the
-// toolchain carries; its absolute path shows it is not the repository's file.
+// The matcher reads the file from the main worktree, named .skilled first and
+// .opencode second, and from nowhere else, so a repository without one has
+// only the built-in exceptions.
 function allowlistFileFor(repoRoot) {
+  const top = mainTopFor(repoRoot);
   const candidates = [
-    path.join(repoRoot, '.skilled', 'skills', 'sk-git', 'scripts', 'remote-branch-allowlist.txt'),
-    path.join(repoRoot, '.opencode', 'skills', 'sk-git', 'scripts', 'remote-branch-allowlist.txt'),
-    path.join(OWN_ROOT, 'skills', 'sk-git', 'scripts', 'remote-branch-allowlist.txt'),
+    path.join(top, '.skilled', 'skills', 'sk-git', 'scripts', 'remote-branch-allowlist.txt'),
+    path.join(top, '.opencode', 'skills', 'sk-git', 'scripts', 'remote-branch-allowlist.txt'),
   ];
   return candidates.find((candidate) => fs.existsSync(candidate)) || null;
 }
@@ -362,7 +399,7 @@ function allowlistPatternsIn(file) {
 
 // The worktree base resolves the same way the naming helper resolves it: env
 // first, then git config, then the in-checkout default. A relative value lands
-// against the repository root, and a leading ~ expands like the helper does.
+// against the main worktree, and a leading ~ expands like the helper does.
 function resolveWorktreeBase(repoRoot) {
   const envValue = process.env.SPECKIT_WORKTREE_BASE || '';
   const configured = git(repoRoot, ['config', '--get', 'speckit.worktreeBase']);
@@ -375,7 +412,7 @@ function resolveWorktreeBase(repoRoot) {
       : 'default';
   if (raw === '~') raw = os.homedir();
   else if (raw.startsWith('~/')) raw = path.join(os.homedir(), raw.slice(2));
-  const dir = path.isAbsolute(raw) ? path.normalize(raw) : path.resolve(repoRoot, raw);
+  const dir = path.isAbsolute(raw) ? path.normalize(raw) : path.resolve(mainTopFor(repoRoot), raw);
   return { dir, source: sourceLabel };
 }
 
@@ -529,31 +566,68 @@ function checkSuppression() {
   return pass(source, details);
 }
 
-// Only the runtime that is actually running the check is probed. Every other
-// adapter is named with its file path so the operator can see what was not
-// checked rather than reading silence as coverage.
+// Every adapter whose config file exists must register the advisory, because a
+// present but unregistered file reads as coverage while no warning is ever shown.
+// An absent file is only "not set up", except for the tool running the check,
+// which must register. opencode and pi load the adapter file itself, so for them
+// the file existing is the registration.
+// Claude also loads hooks from its local settings file, so either file counts.
+const TOOL_EXTRA_FILES = { claude: ['.claude/settings.local.json'] };
+
+// Only the hooks section counts, so a mention elsewhere, such as a permissions
+// deny rule, is not read as a registration. Devin keeps its events at the top
+// level, so its whole file is the hooks section.
+function registersAdvisory(tool, body) {
+  const parsed = JSON.parse(body);
+  const section = tool === 'devin' ? parsed : parsed && parsed.hooks;
+  return JSON.stringify(section ?? {}).includes('git-preflight-advisory');
+}
+
 function checkAiToolHooks(ctx) {
   const explicit = typeof ctx.tool === 'string' && ctx.tool !== '';
   const active = explicit ? ctx.tool : process.env.CLAUDECODE ? 'claude' : null;
-  const source = active === null ? '--tool | CLAUDECODE' : explicit ? `--tool ${active}` : 'CLAUDECODE -> claude';
-  const details = TOOLS
-    .filter((tool) => tool !== active)
-    .map((tool) => `${tool}: not checked (${TOOL_FILES[tool]})`);
-  if (active === null) return skip(source, details);
-  const file = path.join(ctx.repoRoot, TOOL_FILES[active]);
-  if (!fs.existsSync(file)) {
-    return fail(source, [`${active}: missing (${TOOL_FILES[active]})`, ...details], advisoryRepair(active));
+  const source = active === null
+    ? 'six adapter files, no active tool detected'
+    : `six adapter files, active ${active} via ${explicit ? '--tool' : 'CLAUDECODE'}`;
+  const details = [];
+  const broken = [];
+  for (const tool of TOOLS) {
+    const rel = TOOL_FILES[tool];
+    const label = tool === active ? `${tool} (active)` : tool;
+    const present = [rel, ...(TOOL_EXTRA_FILES[tool] || [])]
+      .filter((candidate) => fs.existsSync(path.join(ctx.repoRoot, candidate)));
+    if (present.length === 0) {
+      details.push(`${label}: not set up (${rel})`);
+      if (tool === active) broken.push(tool);
+      continue;
+    }
+    if (tool === 'opencode' || tool === 'pi') {
+      details.push(`${label}: registered (${rel})`);
+      continue;
+    }
+    let registeredIn = null;
+    let error = null;
+    for (const candidate of present) {
+      try {
+        if (registersAdvisory(tool, fs.readFileSync(path.join(ctx.repoRoot, candidate), 'utf8'))) {
+          registeredIn = candidate;
+          break;
+        }
+      } catch (err) {
+        error = `${candidate}: ${err.message}`;
+      }
+    }
+    if (registeredIn) {
+      details.push(`${label}: registered (${registeredIn})`);
+    } else if (error) {
+      details.push(`${label}: cannot read ${error}`);
+      broken.push(tool);
+    } else {
+      details.push(`${label}: ${present.join(' and ')} does not register git-preflight-advisory`);
+      broken.push(tool);
+    }
   }
-  if (active === 'opencode') return pass(source, details);
-  let body;
-  try {
-    body = fs.readFileSync(file, 'utf8');
-  } catch (err) {
-    return unknown(source, [err.message, ...details]);
-  }
-  if (!body.includes('git-preflight-advisory')) {
-    return fail(source, [`${active}: ${TOOL_FILES[active]} does not register git-preflight-advisory`, ...details], advisoryRepair(active));
-  }
+  if (broken.length > 0) return fail(source, details, broken.map(advisoryRepair).join(', then '));
   return pass(source, details);
 }
 

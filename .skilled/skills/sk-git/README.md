@@ -8,7 +8,7 @@ trigger_phrases:
   - "git workspace commit finish"
   - "pull request commit hygiene"
   - "commit id trailer"
-version: 1.8.7.0
+version: 1.8.8.0
 ---
 
 # sk-git
@@ -49,7 +49,7 @@ sk-git does not write code or manage spec folders. `sk-code` owns the code that 
 
 | Feature | What the skill operates |
 |---|---|
-| **Numbered worktree grammar** | Worktree-backed branches use `worktrees/NNN-slug` with the directory `.worktrees/NNN-slug`; dedicated branches without a worktree use `branches/NNN-slug` |
+| **Numbered worktree grammar** | Worktree-backed branches use `worktrees/NNN-slug` with the directory `.worktrees/NNN-slug`. Dedicated branches without a worktree use `branches/NNN-slug` |
 | **Per-namespace number allocator** | Reserves the next `NNN` under a lock per namespace (`worktrees/` and `branches/` each number independently), reading that namespace's high-water mark plus every matching worktree and ref |
 | **Ask-first workspace rule** | Never picks worktree vs current branch on its own. Holds your choice for the session |
 | **Launch-wrapper isolation** | An operator opt-in that places each top-level session in its own worktree and branch, with isolated MCP databases |
@@ -120,9 +120,9 @@ RESERVED        := "main"
 WRAPPER         := "work/" RUNTIME "/" SLUG          (launch-wrapper lane, exempt)
 ```
 
-Two flat spec-style namespaces, `worktrees/` and `branches/`, keep a Git-UI branch tree legible as a few clean folders instead of a per-skill pile, and they number **independently**: a `worktrees/003` and a `branches/003` may coexist. Strictly sequential, never skipped, never reused; deleting a middle number never back-fills the gap. `backup/<anything>` safety refs and the launch wrapper's `work/{runtime}/{slug}` lane stay distinct legal-but-not-numbered namespaces.
+Two flat spec-style namespaces, `worktrees/` and `branches/`, keep a Git-UI branch tree legible as a few clean folders instead of a per-skill pile, and they number **independently**: a `worktrees/003` and a `branches/003` may coexist. Strictly sequential, never skipped, never reused. Deleting a middle number never back-fills the gap. `backup/<anything>` safety refs and the launch wrapper's `work/{runtime}/{slug}` lane stay distinct legal-but-not-numbered namespaces.
 
-`BASE` defaults to `.worktrees` inside the checkout. Set git config `speckit.worktreeBase` (or env `SPECKIT_WORKTREE_BASE`) to an absolute path to relocate worktrees OUT of the checkout, so its file-watchers, `git status`/fsmonitor, Git GUIs, sync clients, stop scanning every worktree's `node_modules` on each pass. The allocator, launch wrapper, and reaper all resolve this base; `is_valid_pair` accepts both the configured base and the legacy `.worktrees` layout, so worktrees created before and after a relocation both validate. Number allocation is location-independent: relocating the base can never reissue a live number.
+`BASE` defaults to `.worktrees` inside the checkout. Set git config `speckit.worktreeBase` (or env `SPECKIT_WORKTREE_BASE`) to an absolute path to relocate worktrees OUT of the checkout, so its file-watchers, `git status`/fsmonitor, Git GUIs, sync clients, stop scanning every worktree's `node_modules` on each pass. The allocator, launch wrapper, and reaper all resolve this base, and `is_valid_pair` accepts both the configured base and the legacy `.worktrees` layout, so worktrees created before and after a relocation both validate. Number allocation is location-independent: relocating the base can never reissue a live number.
 
 ### The Number Allocator And Its Lock
 
@@ -210,8 +210,8 @@ sk-git/
 | `scripts/worktree-naming.sh` | Numbered-worktree allocator, worktree creators and grammar validators |
 | `scripts/commit-id-naming.sh` | Repository-wide commit ordinal allocator, high-water scanner and validator |
 | `scripts/stamp-branch.sh` | Stamps ordinals onto a rebased branch's unique commits |
-| `scripts/tests/commit-id-naming.test.sh` | Harness for the commit ordinal allocator |
-| `scripts/tests/stamp-branch.test.sh` | Harness for the branch ordinal stamper |
+| `scripts/tests/commit-id-naming.test.sh` | Tests for the commit ordinal allocator |
+| `scripts/tests/stamp-branch.test.sh` | Tests for the branch ordinal stamper |
 | `references/worktree-workflows.md` | Workspace creation, directory and branch strategy |
 | `references/commit-workflows.md` | Commit flow with artifact filtering and scoped staging |
 | `references/finish-workflows.md` | Completion: PR, merge, cleanup and release notes |

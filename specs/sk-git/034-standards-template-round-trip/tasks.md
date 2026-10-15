@@ -49,6 +49,19 @@ contextType: "general"
 
 - [x] T003 Compare the parsed JSON before and after, and run `validate-message.mjs` on a message with a valid and a `0000000` Commit-Id [EVIDENCE: parsed JSON identical (cmp), Commit-Id 1234567 exit 0, 0000000 exit 1, --check-template exit 0]
 - [x] T004 Run `git-standards.test.cjs` and `run-all.sh` [EVIDENCE: git-standards.test.cjs 10 of 10, run-all.sh exit 0 with 7 of 7 suites]
+- [x] T005 Read the hook-trust sentinel as a note in the gate-inputs checker, with a test case (`.github/scripts/check-gate-inputs.sh`) [EVIDENCE: check-gate-inputs.sh RESULT: PASSED with failures=0, its tests 49 of 49, and the new case fails against the old checker]
+- [x] T006 Clear the HVR hard blockers in the five docs [EVIDENCE: hvr_scan.py reports 0 hard blockers in all five docs]
+- [x] T007 Extend the ai-tool-hooks check to all six adapters, with tests (`git-setup-check.cjs`) [EVIDENCE: git-setup-check.test.cjs 11 of 11, the six-adapter test fails 2 cases against the old function, and this checkout reports all six adapters registered]
+- [x] T008 Run DOC-384 through a real AI runtime and record the verdict [EVIDENCE: DOC-384 PASS in a live Claude Code run of /doctor:git setup: 11 PASS rows, exit 0, --json 11 complete rows, --tool nope exit 2, git status and local config unchanged. Recorded here by operator choice instead of a benchmark report folder]
+- [x] T009 Fresh Opus 5.5 medium review of the 033 and 034 work, and fix what it confirms [EVIDENCE: fresh Opus 5.5 medium review returned 9 findings (3 P1, 6 P2). P1 #1 reproduced by hand: the planted gpg.program ran once. All 9 fixed in T010 to T017]
+- [x] T010 Review fix: helper git calls cannot run a program from the inspected repo's config (`log.showSignature` with `gpg.program`) [EVIDENCE: gpg.program test passes, fails with the fix reverted]
+- [x] T011 Review fix: hooks PASS when each hook resolves into the repo's own hook sources or this checkout's, with a matching repair [EVIDENCE: hooks test passes, fails reverted. Applying the printed repair to a fresh repo turned FAIL into PASS]
+- [x] T012 Review fix: the install repair restores missing sk-git files [EVIDENCE: install repair test passes, fails reverted]
+- [x] T013 Review fix: the gate-inputs sentinel rule strips only the sentinel, so other paths in the segment still resolve [EVIDENCE: gate-inputs suite 50 of 50, the beside-the-sentinel case fails reverted]
+- [x] T014 Review fix: trust reads `skilled.trustRepoHooks` with `--bool` [EVIDENCE: trust yes test passes, fails reverted]
+- [x] T015 Review fix: allowlist and worktree base resolve against the main worktree, as the helpers do [EVIDENCE: linked-worktree test passes, fails reverted]
+- [x] T016 Review fix: ai-tool-hooks reads registrations from the parsed hooks section and from `.claude/settings.local.json` [EVIDENCE: deny-rule and settings.local.json test passes, fails reverted]
+- [x] T017 Review fix: the no-exec test covers the `gpg.program` vector without masking markers [EVIDENCE: the fsmonitor assertion now states it guards a future index-refreshing query, and the gpg test covers today's helper path]
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -280,6 +280,13 @@ function unread(text) { if (text ~ /\.(opencode|skilled)/ && !hits) emit("miss",
       if (part ~ /\.(opencode|skilled)/) emit("note", "message")
       continue
     }
+    # The untrusted-clone sentinel lives under /dev/null, which is never a
+    # directory, so it names no source root to resolve. Only the sentinel is
+    # dropped: any other path in the same segment is still read.
+    if (part ~ /\/dev\/null\/\.(opencode|skilled)/) {
+      emit("note", "sentinel")
+      gsub(/\/dev\/null\/\.(opencode|skilled)[A-Za-z0-9._-]*/, "", part)
+    }
     if (part ~ /^[[:space:]]*((local|export|readonly|declare|typeset)([[:space:]]+-[A-Za-z]+)*[[:space:]]+)?[A-Za-z_][A-Za-z0-9_]*="?\.(opencode|skilled)\/[A-Za-z0-9._\/-]+"?[[:space:]]*$/) {
       path = part; sub(/^[^=]*="?/, "", path); sub(/"?[[:space:]]*$/, "", path); emit("repo", path)
       continue

@@ -38,7 +38,7 @@ upstream_assets:
 # ─────────────────────────────────────────────────────────────────
 inputs:
   target: "setup is one of the route's three targets, along with hooks and standards: /doctor:git setup runs it. Any other positional fails before this YAML loads."
-  tool: "--tool=<name> names the AI tool running the check: claude, codex, devin, cursor, opencode or pi. The battery probes only that tool's hook registration file and reports the others as not checked."
+  tool: "--tool=<name> names the AI tool running the check: claude, codex, devin, cursor, opencode or pi. That tool's adapter must register the advisory. Every other adapter is checked too, and fails only when its config file exists without the registration."
 
 # ─────────────────────────────────────────────────────────────────
 # EXECUTION
@@ -46,7 +46,7 @@ inputs:
 execution:
   steps:
     - "Run .skilled/commands/doctor/scripts/git-setup-check.cjs once, adding --tool=<name> for the AI tool executing this command."
-    - "The battery runs eleven checks in order: install (the toolchain is present), hooks (every installed git hook resolves to this checkout), trust (this checkout is trusted through the shared git common dir or its local config), gates (the saved hook gate settings), standards (the contract folder and the rule copies in force), allowlist (the remote-branch allowlist patterns), worktrees (the worktree base and the provisioning entries), commit-id (the Commit-Id policy markers), advisory-rules (every rule in hard-rules.json names a known check), suppression (the advisory suppressors and the two whole-hook master switches), and ai-tool-hooks (the named tool's git-preflight advisory registration)."
+    - "The battery runs eleven checks in order: install (the toolchain is present), hooks (every installed git hook resolves to this checkout), trust (this checkout is trusted through the shared git common dir or its local config), gates (the saved hook gate settings), standards (the contract folder and the rule copies in force), allowlist (the remote-branch allowlist patterns), worktrees (the worktree base and the provisioning entries), commit-id (the Commit-Id policy markers), advisory-rules (every rule in hard-rules.json names a known check), suppression (the advisory suppressors and the two whole-hook master switches), and ai-tool-hooks (every configured AI-tool adapter, and the named tool's, registers the git-preflight advisory)."
     - "Each check prints one PASS|FAIL|SKIP|UNKNOWN line with its source, its detail lines, and a repair: <command> line under each failure. The battery's last line is STATUS=OK checks=11, or STATUS=FAIL failed=<n> skipped=<n> unknown=<n>."
     - "Render the battery's verdict through .skilled/commands/doctor/assets/doctor-git-presentation.txt: the per-check table and the DOCTOR DIAGNOSTIC RESULT summary, with the repair command under each failure."
     - "Map the battery's exit code to the route status: 0 all checks pass, 1 any failure, 2 bad argument."

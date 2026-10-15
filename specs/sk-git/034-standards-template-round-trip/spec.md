@@ -45,6 +45,8 @@ The shipped commit template round-trips again, so `set` changes exactly one line
 ### In Scope
 - Reflow the `commitId` entry of the shipped commit template's rules block into the multi-line layout the serializer emits. Whitespace only, the JSON value is unchanged.
 
+Scope widened on 2026-10-15 with operator approval to the follow-ups of the `/doctor:git setup` build: the red Gate Inputs CI check, the HVR blockers in the docs that build touched, all six AI-tool adapters in the ai-tool-hooks check and a DOC-384 run through a real runtime.
+
 ### Out of Scope
 - Raising `INLINE_WIDTH`. The operator chose the template reflow, which leaves every user's `set` output layout as it is.
 - A CI guard for the shipped templates. The existing round-trip test already catches this, it only needs to stay green.
@@ -54,6 +56,10 @@ The shipped commit template round-trips again, so `set` changes exactly one line
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.skilled/skills/sk-git/assets/commit-message-template.md` | Modify | Split the `commitId` line into six lines |
+| `.github/scripts/check-gate-inputs.sh`, `.github/scripts/tests/check-gate-inputs.test.sh` | Modify | Read the `/dev/null/.skilled-untrusted` hook-trust sentinel as a note, not an unread source root |
+| `.skilled/commands/doctor/git.md`, `.skilled/skills/sk-git/README.md`, `README.md`, `.skilled/commands/doctor/scripts/README.md`, spec-kit `feature-catalog/doctor-commands/category-overview.md` | Modify | Clear the HVR hard blockers |
+| `.skilled/commands/doctor/scripts/git-setup-check.cjs`, its test, `doctor-git-presentation.txt`, playbook DOC-384 | Modify | The ai-tool-hooks check covers all six AI-tool adapters |
+| `.skilled/commands/doctor/scripts/git-setup-check.cjs` and its test | Modify | The nine fixes from the fresh Opus review |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -73,6 +79,11 @@ The shipped commit template round-trips again, so `set` changes exactly one line
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-003 | The contract the hooks enforce is unchanged | The parsed JSON of the block is equal before and after, and `validate-message.mjs` accepts and refuses the same Commit-Id values |
+| REQ-004 | `check-gate-inputs.sh` passes on main | The script prints `RESULT: PASSED`, and its own test suite gains a sentinel case |
+| REQ-005 | The five docs carry no HVR hard blocker | `hvr_scan.py` reports 0 hard blockers for each |
+| REQ-006 | The ai-tool-hooks check reports all six adapters | Tests cover a registered, a missing and a broken adapter |
+| REQ-007 | DOC-384 has a real-runtime verdict | The scenario run is recorded with its evidence |
+| REQ-008 | Every confirmed review finding is fixed | Each fix has a test that fails with the fix reverted |
 <!-- /ANCHOR:requirements -->
 
 ---

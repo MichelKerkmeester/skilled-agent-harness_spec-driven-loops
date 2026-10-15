@@ -65,7 +65,7 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 | `git-hook-gates.cjs` | Lists the shipped hook gates from `scripts/git-hooks/lib/gates.tsv` with their saved `speckit.hooks.<key>` values, and sets or unsets one in local or global git config for `/doctor:git hooks`. Refuses the per-push approvals. |
 | `git-standards.cjs` | Shows where a repository's commit, PR and branch rules come from, copies the shipped sk-git templates into `.sk-git/`, and changes a rules block setting or removes a kind's rules section in those copies for `/doctor:git standards`, re-validating each change with sk-git's own contract check. |
 | `git-setup-check.cjs` | Runs the read-only sk-git setup battery for `/doctor:git setup`: eleven checks, each PASS, FAIL, SKIP or UNKNOWN with the source it read and one repair per failure. It loads every helper from its own install root and never runs code from the repository it inspects. |
-| `command-catalog-mirror-check.cjs` | Compares every command catalog and hub metadata entry back to the command's own frontmatter, which is the one copy nothing else derives from. Structural drift fails; prose divergence reports and fails only under `--strict`. |
+| `command-catalog-mirror-check.cjs` | Compares every command catalog and hub metadata entry back to the command's own frontmatter, which is the one copy nothing else derives from. Structural drift fails. Prose divergence reports and fails only under `--strict`. |
 
 ---
 

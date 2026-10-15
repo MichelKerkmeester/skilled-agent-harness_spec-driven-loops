@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: standards template round-trip"
-description: "The shipped commit template round-trips through the /doctor:git standards serializer again, so a set changes one line and the doctor suite is green."
+description: "The commit template round-trips again, CI Gate Inputs is green, the setup check covers all six AI-tool adapters and nine review findings are fixed."
 trigger_phrases:
   - "standards template round trip implementation summary"
 importance_tier: "normal"
@@ -8,16 +8,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-git/034-standards-template-round-trip"
-    last_updated_at: "2026-10-15T08:27:22Z"
+    last_updated_at: "2026-10-15T11:53:27Z"
     last_updated_by: "generate-context"
-    recent_action: "Reflowed the commitId line so the commit rules block round-trips"
-    next_safe_action: "Commit the fix, then await the push go-ahead"
+    recent_action: "Fixed the setup follow-ups and all nine review findings"
+    next_safe_action: "Commit the fixes, then await the push go-ahead"
     blockers: []
     key_files:
-      - ".skilled/skills/sk-git/assets/commit-message-template.md"
+      - ".skilled/commands/doctor/scripts/git-setup-check.cjs"
+      - ".github/scripts/check-gate-inputs.sh"
       - "specs/sk-git/034-standards-template-round-trip/implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:6733f4b91c89fb30de4e7ad60f10877ac9ccaf3f79a7693185e25f7c707f91d3"
+      fingerprint: "sha256:6171440c9ee5e1402b6a48dc684148f49fb95bbc519bc729a7e67731c4f24ea5"
       session_id: "scaffold-034-standards-template-round-trip"
       parent_session_id: null
     completion_pct: 100
@@ -47,17 +48,29 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-`/doctor:git standards set` changes one line of your `.sk-git/` commit template again, instead of rewriting its whole rules block. The doctor test suite is fully green again: the two `git-standards.test.cjs` tests that failed on main since 2026-10-14 now pass.
+`/doctor:git standards set` changes one line of your `.sk-git/` copy again, CI Gate Inputs is green on main, and `/doctor:git setup` is safer and more accurate. A fresh review found a way for an inspected repository to make the setup check run a program of its choosing, and that is now closed.
 
-### Restore the round-trip of the shipped commit template rules block
+### Standards template round-trip
 
-The `commitId` trailer entry in the shipped commit template had grown to 133 characters when its pattern started refusing `0000000`. That is past the 115-character inline limit in `git-standards.cjs`, so the block no longer matched the layout the serializer writes, and `set` fell back to a full rewrite. The entry now spans six lines in that layout. The rule itself is unchanged.
+The `commitId` trailer entry in the shipped commit template had grown past the serializer's 115-character inline limit, so `set` rewrote the whole block. The entry now spans six lines in the serializer's layout, with the parsed contract unchanged.
+
+### Follow-ups and review fixes
+
+- The gate-inputs checker reads the `/dev/null/.skilled-untrusted` hook-trust sentinel as a note and still checks any other path on the same line.
+- The five docs the setup build touched carry no HVR hard blocker.
+- ai-tool-hooks checks all six adapters. A present config must register the advisory, an absent one is "not set up", and the active tool must register. Only the parsed hooks section counts, and Claude's local settings file counts too.
+- Every child process gets `core.fsmonitor=false` and `log.showSignature=false` through the environment, so no helper's git call can run `gpg.program` or an fsmonitor program from the inspected repository.
+- hooks accepts links into the repository's own sources, the install repair restores files, trust reads a boolean, and the allowlist and worktree base resolve against the main worktree, each as the hooks and helpers do.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.skilled/skills/sk-git/assets/commit-message-template.md` | Modified | The `commitId` entry split into the serializer's six-line layout |
+| `.skilled/skills/sk-git/assets/commit-message-template.md` | Modified | The `commitId` entry in the serializer's layout |
+| `.github/scripts/check-gate-inputs.sh` and its test | Modified | The sentinel rule |
+| `.skilled/commands/doctor/scripts/git-setup-check.cjs` and its test | Modified | Six adapters and the nine review fixes |
+| `.skilled/commands/doctor/assets/doctor-git-setup.yaml` | Modified | The six-adapter rule |
+| `git.md`, both READMEs, the scripts README, the doctor catalog overview | Modified | HVR fixes |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -65,7 +78,7 @@ The `commitId` trailer entry in the shipped commit template had grown to 133 cha
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-DeepSeek v4.1 Flash at max thinking, run through cli-pi, made the one edit from an exact brief. The orchestrator compared the parsed contract before and after, ran the Commit-Id rule on a valid and a refused id and ran the full doctor suite.
+DeepSeek v4.1 Flash at max thinking, run through cli-pi, made every edit from exact briefs, one at a time. The orchestrator reviewed each diff against a backup and checked every new test by reverting its fix and watching it fail. A fresh Opus 5.5 medium agent reviewed all the work read-only, and the orchestrator reproduced its top finding before fixing it.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -75,7 +88,12 @@ DeepSeek v4.1 Flash at max thinking, run through cli-pi, made the one edit from 
 
 | Decision | Why |
 |----------|-----|
-| Reflow the template line, keep `INLINE_WIDTH` at 115 | The operator chose it. It leaves the layout of every user's `set` output as it was |
+| Reflow the template line, keep `INLINE_WIDTH` at 115 | It leaves the layout of every user's `set` output as it was |
+| Exempt the sentinel in the checker, leave the hooks alone | One rule instead of seven hook edits |
+| Configured adapters must register, the active tool must exist | A present but unregistered file reads as coverage while no warning is ever shown |
+| Force safe git config through the environment | It outranks every config file, so it reaches helper scripts the battery cannot change |
+| Hooks may resolve into the repository's own sources or this checkout's | That matches both the installer and a shared core.hooksPath |
+| DOC-384 verdict recorded here, not in a benchmark report folder | The operator chose it, since that folder is written by the harness |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -85,11 +103,13 @@ DeepSeek v4.1 Flash at max thinking, run through cli-pi, made the one edit from 
 
 | Check | Result |
 |-------|--------|
-| Parsed contract before and after | PASS, byte-identical |
-| `validate-message.mjs` Commit-Id rule | PASS, `1234567` accepted with exit 0, `0000000` refused with exit 1 |
-| `validate-message.mjs --check-template` on the commit template | PASS, exit 0 |
-| `git-standards.test.cjs` | PASS, 10 of 10 |
-| `run-all.sh` | PASS, exit 0, 7 of 7 suites, 296 tests |
+| Parsed contract before and after the reflow | PASS, byte-identical |
+| `run-all.sh` | PASS, exit 0, 7 of 7 suites, 302 tests |
+| `git-setup-check.test.cjs` | PASS, 17 of 17. Each new test fails with its fix reverted |
+| `check-gate-inputs.sh` and its suite | PASS, `RESULT: PASSED` and 50 of 50 |
+| `route-validate.sh` | PASS, exit 0 |
+| HVR on the five docs | PASS, 0 hard blockers each |
+| DOC-384 through a live Claude Code `/doctor:git setup` | PASS: 11 PASS rows, exit 0, `--json` 11 complete rows, `--tool nope` exit 2, status and local config unchanged |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -97,7 +117,8 @@ DeepSeek v4.1 Flash at max thinking, run through cli-pi, made the one edit from 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Nothing stops the next over-wide line.** The round-trip test catches it, but only when someone runs the doctor suite after editing the template.
+1. **The battery's own `GIT_FLAGS` comment overstates the risk.** It says fsmonitor runs on a plain query, while the review found none of today's queries start it. The environment override makes the point moot.
+2. **`hard-rules.json` has no per-repository overlay,** as the setup research noted.
 <!-- /ANCHOR:limitations -->
 
 ---

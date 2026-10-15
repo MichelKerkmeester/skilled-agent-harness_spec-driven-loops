@@ -161,7 +161,7 @@ test('human mode ends with the STATUS line that decides the exit code', (t) => {
   const last = lastLine(clean.stdout);
   assert.match(last, /^STATUS=/);
   assert.equal(clean.status, last.startsWith('STATUS=OK') ? 0 : 1);
-  assert.equal(last, 'STATUS=FAIL failed=1 skipped=2 unknown=0');
+  assert.equal(last, 'STATUS=FAIL failed=1 skipped=1 unknown=0');
 
   // Installing every hook the checkout ships is what turns the same fixture into
   // the STATUS=OK direction of the mapping.
@@ -237,8 +237,10 @@ test('an untrusted clone runs neither its planted helper nor its fsmonitor progr
   fs.writeFileSync(path.join(hookSource, 'pre-commit'), '#!/usr/bin/env bash\nexit 0\n');
   fs.chmodSync(path.join(hookSource, 'pre-commit'), 0o755);
 
-  // A configured fsmonitor program runs on some git queries even while a
-  // repository is only being read, so it is pointed at a second marker.
+  // A configured fsmonitor program runs on git queries that refresh the index,
+  // such as git status. None of the battery's current queries does, so this
+  // marker guards a future one. The gpg.program test covers the helper path
+  // that a repository config can reach today.
   execFileSync(
     'git',
     ['-C', f.repo, 'config', '--local', 'core.fsmonitor', `sh -c 'echo ran > ${fsmonitorMarker}'`],
@@ -324,12 +326,13 @@ test('a hard rule naming an unknown check fails advisory-rules by rule id', (t) 
   assert.ok(row.details.some((detail) => detail.includes('planted-rule')));
 });
 
-test('ai-tool-hooks fails a missing registration, passes a registered one, and skips without a tool', (t) => {
+test('ai-tool-hooks requires the active tool and every configured adapter to register', (t) => {
   const f = fixture(t);
 
   const absent = rowOf(reportOf(f.run(['--tool', 'codex', '--json'])), 'ai-tool-hooks');
   assert.equal(absent.result, 'FAIL');
   assert.match(absent.repair, /^register git-preflight-advisory in \.codex\/hooks\.json/);
+  assert.ok(absent.details.includes('codex (active): not set up (.codex/hooks.json)'));
 
   fs.mkdirSync(path.join(f.repo, '.codex'), { recursive: true });
   fs.writeFileSync(
@@ -338,13 +341,22 @@ test('ai-tool-hooks fails a missing registration, passes a registered one, and s
   );
   const registered = rowOf(reportOf(f.run(['--tool', 'codex', '--json'])), 'ai-tool-hooks');
   assert.equal(registered.result, 'PASS');
+  assert.ok(registered.details.includes('codex (active): registered (.codex/hooks.json)'));
 
-  const skipped = rowOf(reportOf(f.run(['--json'])), 'ai-tool-hooks');
-  assert.equal(skipped.result, 'SKIP');
-  const details = skipped.details.join('\n');
+  const noTool = rowOf(reportOf(f.run(['--json'])), 'ai-tool-hooks');
+  assert.equal(noTool.result, 'PASS');
   for (const [tool, file] of Object.entries(TOOL_FILES)) {
-    assert.ok(details.includes(`${tool}: not checked (${file})`), `${tool} must be named as not checked`);
+    if (tool === 'codex') continue;
+    assert.ok(noTool.details.includes(`${tool}: not set up (${file})`), `${tool} must be reported as not set up`);
   }
+
+  // A configured adapter that is not the active tool still fails when it does
+  // not register the advisory.
+  fs.mkdirSync(path.join(f.repo, '.cursor'), { recursive: true });
+  fs.writeFileSync(path.join(f.repo, '.cursor', 'hooks.json'), JSON.stringify({ hooks: {} }));
+  const unregistered = rowOf(reportOf(f.run(['--tool', 'codex', '--json'])), 'ai-tool-hooks');
+  assert.equal(unregistered.result, 'FAIL');
+  assert.match(unregistered.repair, /^register git-preflight-advisory in \.cursor\/hooks\.json/);
 });
 
 test('a truthy SYSTEM_HOOKS_DISABLED fails suppression with its unset repair', (t) => {
@@ -362,4 +374,120 @@ test('allowlist reports a release branch as exempt, not refused', (t) => {
   assert.ok(row.details.includes('main: allowed'));
   assert.ok(row.details.some((detail) => detail.startsWith('skilled/v4.0.0.0: exempt')));
   assert.ok(row.details.includes('feature/setup-check-probe: refused'));
+});
+
+test('a repository config cannot make a helper run gpg.program', (t) => {
+  const f = fixture(t);
+  const marker = path.join(f.dir, 'gpg-ran');
+  const program = path.join(f.dir, 'fake-gpg.sh');
+  fs.writeFileSync(program, `#!/bin/sh\necho ran >> "${marker}"\n`, { mode: 0o755 });
+  const g = (args, input) => execFileSync('git', ['-C', f.repo, ...args], { env: f.env, encoding: 'utf8', input });
+  g(['-c', 'user.email=a@b', '-c', 'user.name=a', 'commit', '-q', '--allow-empty', '-m', 'init']);
+  const tree = g(['rev-parse', 'HEAD^{tree}']).trim();
+  // A gpgsig header is enough for log to call gpg.program when showSignature is on.
+  const body = `tree ${tree}\nauthor a <a@b> 1 +0000\ncommitter a <a@b> 1 +0000\ngpgsig -----BEGIN PGP SIGNATURE-----\n x\n -----END PGP SIGNATURE-----\n\nsigned\n`;
+  const signed = g(['hash-object', '-t', 'commit', '-w', '--stdin'], body).trim();
+  g(['update-ref', 'HEAD', signed]);
+  g(['config', 'log.showSignature', 'true']);
+  g(['config', 'gpg.program', program]);
+
+  f.run(['--json']);
+  assert.equal(fs.existsSync(marker), false, "the battery ran the repository's gpg.program");
+});
+
+test('hooks accepts links into the repository\'s own hook sources and names a repair that exists', (t) => {
+  const f = fixture(t);
+  const bare = rowOf(reportOf(f.run(['--json'])), 'hooks');
+  assert.equal(bare.result, 'FAIL');
+  assert.equal(bare.repair, `git config core.hooksPath ${HOOKS_SOURCE}`);
+
+  // A repository that carries its own toolchain gets its hooks linked to its own copies.
+  const ownSources = path.join(f.repo, '.skilled', 'scripts', 'git-hooks');
+  fs.mkdirSync(ownSources, { recursive: true });
+  fs.mkdirSync(path.join(f.repo, '.skilled', 'skills', 'system-spec-kit'), { recursive: true });
+  fs.writeFileSync(path.join(f.repo, '.skilled', 'skills', 'system-spec-kit', 'SKILL.md'), 'sentinel\n');
+  const hooksDir = path.join(f.repo, '.git', 'hooks');
+  for (const entry of fs.readdirSync(HOOKS_SOURCE, { withFileTypes: true })) {
+    if (entry.isFile() && entry.name !== 'README.md') {
+      fs.writeFileSync(path.join(ownSources, entry.name), '#!/bin/sh\nexit 0\n', { mode: 0o755 });
+      fs.symlinkSync(path.join(ownSources, entry.name), path.join(hooksDir, entry.name));
+    }
+  }
+  const own = rowOf(reportOf(f.run(['--json'])), 'hooks');
+  assert.equal(own.result, 'PASS');
+});
+
+test('install names a repair that restores missing sk-git files', (t) => {
+  const f = fixture(t);
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'git-setup-check-root-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+
+  // The copy resolves its install root from its own location, and this root has
+  // SKILL.md and scripts/ but no hard-rules.json.
+  const installRoot = path.join(root, '.skilled');
+  const fakeSkill = path.join(installRoot, 'skills', 'sk-git');
+  const scriptCopy = path.join(installRoot, 'commands', 'doctor', 'scripts', 'git-setup-check.cjs');
+  fs.mkdirSync(path.dirname(scriptCopy), { recursive: true });
+  fs.mkdirSync(fakeSkill, { recursive: true });
+  fs.copyFileSync(SCRIPT, scriptCopy);
+  fs.symlinkSync(path.join(OWN_ROOT, 'skills', 'sk-git', 'scripts'), path.join(fakeSkill, 'scripts'), 'dir');
+  fs.symlinkSync(path.join(OWN_ROOT, 'skills', 'sk-git', 'SKILL.md'), path.join(fakeSkill, 'SKILL.md'), 'file');
+
+  const result = spawnSync(process.execPath, [scriptCopy, '--repo', f.repo, '--json'], {
+    encoding: 'utf8',
+    cwd: f.repo,
+    env: f.env,
+  });
+  const row = rowOf(reportOf(result), 'install');
+  assert.equal(row.result, 'FAIL');
+  assert.ok(row.details.some((detail) => detail.includes('hard-rules.json')));
+  assert.match(row.repair, /^restore the missing sk-git files/);
+});
+
+test('trust reads skilled.trustRepoHooks as a boolean, as the hooks do', (t) => {
+  const f = fixture(t);
+  execFileSync('git', ['-C', f.repo, 'config', '--local', 'skilled.trustRepoHooks', 'yes'], { env: f.env });
+  const row = rowOf(reportOf(f.run(['--json'])), 'trust');
+  assert.equal(row.result, 'PASS');
+});
+
+test('allowlist and worktree base resolve against the main worktree from a linked one', (t) => {
+  const f = fixture(t);
+  const g = (args) => execFileSync('git', ['-C', f.repo, ...args], { env: f.env, encoding: 'utf8' });
+  g(['-c', 'user.email=a@b', '-c', 'user.name=a', 'commit', '-q', '--allow-empty', '-m', 'init']);
+  const side = path.join(f.dir, 'side');
+  g(['worktree', 'add', '-q', '--detach', side]);
+  // An allowlist only in the linked worktree is one the matcher never reads.
+  const sideList = path.join(side, '.skilled', 'skills', 'sk-git', 'scripts', 'remote-branch-allowlist.txt');
+  fs.mkdirSync(path.dirname(sideList), { recursive: true });
+  fs.writeFileSync(sideList, 'feature/*\n');
+
+  const report = reportOf(f.run(['--repo', side, '--json']));
+  const allowlist = rowOf(report, 'allowlist');
+  assert.ok(allowlist.details.includes('feature/setup-check-probe: refused'));
+  assert.ok(allowlist.details.includes('patterns: no allowlist file, so only the built-in main exception applies'));
+  const worktrees = rowOf(report, 'worktrees');
+  assert.equal(worktrees.details[0], `base: ${path.join(fs.realpathSync(f.repo), '.worktrees')} (from default)`);
+});
+
+test('ai-tool-hooks reads only the hooks section and Claude\'s local settings', (t) => {
+  const f = fixture(t);
+  const claudeDir = path.join(f.repo, '.claude');
+  fs.mkdirSync(claudeDir, { recursive: true });
+
+  // A deny rule that names the advisory is not a registration.
+  fs.writeFileSync(path.join(claudeDir, 'settings.json'), JSON.stringify({
+    permissions: { deny: ['Bash(node .claude/hooks/git-preflight-advisory.cjs)'] },
+  }));
+  const denied = rowOf(reportOf(f.run(['--tool', 'claude', '--json'])), 'ai-tool-hooks');
+  assert.equal(denied.result, 'FAIL');
+
+  // A registration in the local settings file counts.
+  fs.rmSync(path.join(claudeDir, 'settings.json'));
+  fs.writeFileSync(path.join(claudeDir, 'settings.local.json'), JSON.stringify({
+    hooks: { PreToolUse: [{ hooks: [{ type: 'command', command: 'node git-preflight-advisory.mjs' }] }] },
+  }));
+  const local = rowOf(reportOf(f.run(['--tool', 'claude', '--json'])), 'ai-tool-hooks');
+  assert.equal(local.result, 'PASS');
+  assert.ok(local.details.includes('claude (active): registered (.claude/settings.local.json)'));
 });

@@ -474,6 +474,18 @@ echo 'TOOL="$SOURCE_ROOT/bin/tool.sh"' >> "$TMP/repo/.opencode/hooks/git/pre-com
 run_check; RC=$?
 expect "a placeholder .skilled directory does not win the selection" 0 "$RC" "RESULT: PASSED"
 
+# ── 48. the untrusted-clone sentinel under /dev/null is not a source root ──
+setup_fixture
+printf '%s\n' 'SOURCE_ROOT="/dev/null/.skilled-untrusted"' 'if [[ "$SOURCE_ROOT" == "/dev/null/.skilled-untrusted" ]]; then :; fi' >> "$TMP/repo/.opencode/scripts/git-hooks/pre-commit"
+run_check; RC=$?
+expect "the /dev/null hook-trust sentinel passes" 0 "$RC" "RESULT: PASSED"
+
+# ── 49. the sentinel does not hide a missing input in the same segment ──
+setup_fixture
+echo 'cp "$REPO_ROOT/.opencode/bin/gone.sh" /dev/null/.skilled-untrusted' >> "$TMP/repo/.opencode/scripts/git-hooks/pre-commit"
+run_check; RC=$?
+expect "a missing path beside the sentinel still fails hook-inputs" 1 "$RC" 'FAIL hook-inputs: .opencode/scripts/git-hooks/pre-commit:4 $REPO_ROOT/.opencode/bin/gone.sh resolves nowhere'
+
 echo ""
 echo "check-gate-inputs: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]

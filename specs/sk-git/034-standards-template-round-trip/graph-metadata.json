@@ -38,7 +38,16 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-git/assets/commit-message-template.md"
+      ".skilled/skills/sk-git/assets/commit-message-template.md",
+      ".github/scripts/check-gate-inputs.sh",
+      ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+      ".github/scripts/tests/check-gate-inputs.test.sh",
+      ".skilled/commands/doctor/git.md",
+      ".skilled/skills/sk-git/README.md",
+      ".skilled/commands/doctor/scripts/README.md",
+      "feature-catalog/doctor-commands/category-overview.md",
+      ".claude/settings.local.json"
     ],
     "entities": [
       {
@@ -72,6 +81,54 @@
         "source": "derived"
       },
       {
+        "name": "check-gate-inputs.sh",
+        "kind": "script",
+        "path": ".github/scripts/check-gate-inputs.sh",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-git-setup.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "check-gate-inputs.test.sh",
+        "kind": "script",
+        "path": ".github/scripts/tests/check-gate-inputs.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "git.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/git.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "category-overview.md",
+        "kind": "doc",
+        "path": "feature-catalog/doctor-commands/category-overview.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -96,13 +153,13 @@
         "source": "derived"
       },
       {
-        "name": "File Path",
+        "name": "Gate Inputs",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Change Type",
+        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -136,59 +193,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`/doctor:git standards set` changes one rule by re-serializing the rules block, and it keeps the block's own layout only when the shipped block round-trips through `styled()` in `git-standards.cjs`",
     "created_at": "2026-10-15T08:21:46Z",
-    "last_save_at": "2026-10-15T08:27:22.326Z",
+    "last_save_at": "2026-10-15T11:53:27.556Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9270665d87d4b92f0261415b82a4a1dc8e0a645596cd71ca6223ec9588aaa567",
+    "source_fingerprint": "sha256:59fb5aa64124356cce45c92dca7d5f72868423eb2350323cb316b90a7cc04390",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bc9b0b573219f9e21d01d2952746dbf8236148d46e6e576ab2681a6a604e86a0",
+      "spec.md": "71e1068fa20da1b7380f839ebd3f523951ca563fc40e4471a64a1bef54a72c15",
       "plan.md": "ce92f0e1c1f22f7b662e643496ebfce6b2d6cbc4aa53a47330863d62c107aeb3",
-      "tasks.md": "e72319371b25720d81031a9cf366d6353172ead98558d6a1d25aa6d596e059dd",
-      "implementation-summary.md": "7edc32db87f20832655823eaf8aab66d5c03fb6a5d3496caeccd87cb0a67bce7"
+      "tasks.md": "7a21a2e9dc48711e03cd40a4ddb71ae59a9811510190a5c4ea9346719aae7df9",
+      "implementation-summary.md": "4de91b598d79805b769d7a0f7d3354ae53d630b67ed59072f8f44c45e7bdb92e"
     },
     "last_active_at": null
   }
