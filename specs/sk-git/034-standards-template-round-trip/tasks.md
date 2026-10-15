@@ -62,6 +62,10 @@ contextType: "general"
 - [x] T015 Review fix: allowlist and worktree base resolve against the main worktree, as the helpers do [EVIDENCE: linked-worktree test passes, fails reverted]
 - [x] T016 Review fix: ai-tool-hooks reads registrations from the parsed hooks section and from `.claude/settings.local.json` [EVIDENCE: deny-rule and settings.local.json test passes, fails reverted]
 - [x] T017 Review fix: the no-exec test covers the `gpg.program` vector without masking markers [EVIDENCE: the fsmonitor assertion now states it guards a future index-refreshing query, and the gpg test covers today's helper path]
+- [x] T018 Name `setup` in the root README command reference (`README.md`) [EVIDENCE: README.md command entry reads <hooks|standards|setup> with a setup bullet]
+- [x] T019 Add DOC-384 to the spec-kit playbook's doctor cross-reference [EVIDENCE: the spec-kit doctor README names DOC-384]
+- [x] T020 Point sk-git's `SKILL.md` at `/doctor:git` and its three targets [EVIDENCE: SKILL.md section "Repository Settings: /doctor:git" before the lifecycle map]
+- [x] T021 Add a `/doctor:git` feature entry to the sk-git feature catalog [EVIDENCE: feature file workflow-playbooks/doctor-git-settings.md and its catalog entry, leaf manifest regenerated (14 of 14), 0 new HVR blockers]
 <!-- /ANCHOR:phase-3 -->
 
 ---

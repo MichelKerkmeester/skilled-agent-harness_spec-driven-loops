@@ -1253,10 +1253,11 @@ Nine commands cover the diagnostic surface, one per owner. The seven routed ones
 
 **`/doctor:sk-code [setup] [--prompt=<text>]`** - read-only sk-code setup battery: runs the provisioning, doctor, root-metadata, route guard, sync, drift-guard, derived-freshness and route-probe checks and names the repair command for each failing leg
 
-**`/doctor:git <hooks|standards>`** - your own settings for the shipped git hooks and sk-git rules
+**`/doctor:git <hooks|standards|setup>`** - your own settings for the shipped git hooks and sk-git rules, and a check of which ones are live
 
 - `hooks` lists every optional pre-commit, prepare-commit-msg and pre-push gate with its saved setting, and switches one on or off in local or global git config (`speckit.hooks.<key>`) after showing the exact command. The per-push approvals are never saved, and the whole-hook kill switches stay with `/doctor:env`
 - `standards` shows which commit, PR and branch rules are enforced and where they come from, copies the shipped sk-git templates into `.sk-git/` once, then changes a setting, removes one or stops enforcing a kind in those copies, refusing any edit the sk-git validator would reject. The sk-git skill itself is never edited
+- `setup` checks eleven sk-git settings in one read-only pass: the install, hook links, trust, saved gates, commit, PR and branch rules, the push allowlist, the worktree base, Commit-Id, the advisory rules, suppression switches and each AI tool's advisory registration. It prints PASS, FAIL, SKIP or UNKNOWN for each with the source it read and one repair command for each failure, and writes nothing
 - Each change waits for an approval. `--dry-run` shows the plans and writes nothing
 
 **`/doctor:mcp install|debug`** - MCP infrastructure repair

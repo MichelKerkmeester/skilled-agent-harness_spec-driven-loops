@@ -42,6 +42,7 @@
       ".github/scripts/check-gate-inputs.sh",
       ".skilled/commands/doctor/scripts/git-setup-check.cjs",
       ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+      ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/doctor-git-settings.md",
       ".github/scripts/tests/check-gate-inputs.test.sh",
       ".skilled/commands/doctor/git.md",
       ".skilled/skills/sk-git/README.md",
@@ -96,6 +97,12 @@
         "name": "doctor-git-setup.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-git-settings.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/doctor-git-settings.md",
         "source": "derived"
       },
       {
@@ -187,17 +194,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`/doctor:git standards set` changes one rule by re-serializing the rules block, and it keeps the block's own layout only when the shipped block round-trips through `styled()` in `git-standards.cjs`",
     "created_at": "2026-10-15T08:21:46Z",
-    "last_save_at": "2026-10-15T11:53:27.556Z",
+    "last_save_at": "2026-10-15T13:17:04.259Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:59fb5aa64124356cce45c92dca7d5f72868423eb2350323cb316b90a7cc04390",
+    "source_fingerprint": "sha256:5764cc2d6c79bffbc038d3e6a97d6c4f8c557182571126d5db412e9bb2886e00",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "71e1068fa20da1b7380f839ebd3f523951ca563fc40e4471a64a1bef54a72c15",
+      "spec.md": "cd3007991c8b376568268abb2687c8c6a805e21593f86d8b610aba6f685bad62",
       "plan.md": "ce92f0e1c1f22f7b662e643496ebfce6b2d6cbc4aa53a47330863d62c107aeb3",
-      "tasks.md": "7a21a2e9dc48711e03cd40a4ddb71ae59a9811510190a5c4ea9346719aae7df9",
-      "implementation-summary.md": "4de91b598d79805b769d7a0f7d3354ae53d630b67ed59072f8f44c45e7bdb92e"
+      "tasks.md": "e2cc0df7a8e706299a765e5b37748ef2f3630119cd625448dd7099087bd69adb",
+      "implementation-summary.md": "f1b699fa8f35d1ef8ed94b1f78ea69b6976bc63b67484f6fc67aaf3da5188c9d"
     },
     "last_active_at": null
   }

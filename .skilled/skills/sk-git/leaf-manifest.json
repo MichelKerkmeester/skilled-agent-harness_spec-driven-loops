@@ -11,6 +11,7 @@
         "feature-catalog/session-lifecycle/launch-wrapper-session-isolation.md",
         "feature-catalog/session-lifecycle/worktree-reaper.md",
         "feature-catalog/workflow-playbooks/conventional-commit-workflows.md",
+        "feature-catalog/workflow-playbooks/doctor-git-settings.md",
         "feature-catalog/workflow-playbooks/finish-and-integration-workflows.md",
         "feature-catalog/workflow-playbooks/large-reorg-playbook.md",
         "feature-catalog/workflow-playbooks/message-contract-enforcement.md",

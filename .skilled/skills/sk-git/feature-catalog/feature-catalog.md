@@ -7,7 +7,7 @@ trigger_phrases:
   - "worktree naming allocator"
   - "sk-git capability inventory"
 last_updated: "2026-10-01"
-version: 1.2.0.0
+version: 1.2.1.0
 ---
 
 # sk-git: Feature Catalog
@@ -149,6 +149,22 @@ One validator holds every commit message, PR description and new branch name to 
 #### Source Files
 
 See [`workflow-playbooks/message-contract-enforcement.md`](workflow-playbooks/message-contract-enforcement.md) for full implementation and test file listings.
+
+---
+
+### Repository settings and setup check
+
+#### Description
+
+One doctor command switches sk-git's hook gates, changes the repository's commit, PR and branch rules, and checks which sk-git settings are live without writing anything.
+
+#### Current Reality
+
+`/doctor:git hooks` saves a gate setting in git config and `/doctor:git standards` edits the `.sk-git/` rule copies, each behind an approval. `/doctor:git setup` runs eleven read-only checks, prints PASS, FAIL, SKIP or UNKNOWN for each with one repair per failure, and never runs code from the repository it inspects.
+
+#### Source Files
+
+See [`workflow-playbooks/doctor-git-settings.md`](workflow-playbooks/doctor-git-settings.md) for full implementation and test file listings.
 
 ---
 

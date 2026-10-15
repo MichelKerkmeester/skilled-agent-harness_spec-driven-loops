@@ -84,6 +84,7 @@ Scope widened on 2026-10-15 with operator approval to the follow-ups of the `/do
 | REQ-006 | The ai-tool-hooks check reports all six adapters | Tests cover a registered, a missing and a broken adapter |
 | REQ-007 | DOC-384 has a real-runtime verdict | The scenario run is recorded with its evidence |
 | REQ-008 | Every confirmed review finding is fixed | Each fix has a test that fails with the fix reverted |
+| REQ-009 | The root README, the sk-git skill and its feature catalog and the playbook cross-reference name `/doctor:git setup` | `rg` over those files finds it |
 <!-- /ANCHOR:requirements -->
 
 ---

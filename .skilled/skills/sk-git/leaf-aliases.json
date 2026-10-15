@@ -46,6 +46,11 @@
   },
   {
     "workflowMode": "sk-git",
+    "leafResourceId": "feature-catalog/workflow-playbooks/doctor-git-settings.md",
+    "diskPath": "feature-catalog/workflow-playbooks/doctor-git-settings.md"
+  },
+  {
+    "workflowMode": "sk-git",
     "leafResourceId": "feature-catalog/workflow-playbooks/finish-and-integration-workflows.md",
     "diskPath": "feature-catalog/workflow-playbooks/finish-and-integration-workflows.md"
   },

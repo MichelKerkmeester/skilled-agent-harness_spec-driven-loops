@@ -8,17 +8,16 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-git/034-standards-template-round-trip"
-    last_updated_at: "2026-10-15T11:53:27Z"
+    last_updated_at: "2026-10-15T13:17:04Z"
     last_updated_by: "generate-context"
-    recent_action: "Fixed the setup follow-ups and all nine review findings"
-    next_safe_action: "Commit the fixes, then await the push go-ahead"
+    recent_action: "Named /doctor:git setup in the README, SKILL.md, catalog and playbook"
+    next_safe_action: "Commit the doc gaps, then start the deep research and review loops"
     blockers: []
     key_files:
-      - ".skilled/commands/doctor/scripts/git-setup-check.cjs"
-      - ".github/scripts/check-gate-inputs.sh"
-      - "specs/sk-git/034-standards-template-round-trip/implementation-summary.md"
+      - ".skilled/skills/sk-git/SKILL.md"
+      - ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/doctor-git-settings.md"
     session_dedup:
-      fingerprint: "sha256:6171440c9ee5e1402b6a48dc684148f49fb95bbc519bc729a7e67731c4f24ea5"
+      fingerprint: "sha256:0b0ac2d79e6af6bb29cc8c6227d3ebc5404d98a73f137c35983ae6b466c47cce"
       session_id: "scaffold-034-standards-template-round-trip"
       parent_session_id: null
     completion_pct: 100
@@ -71,6 +70,8 @@ The `commitId` trailer entry in the shipped commit template had grown past the s
 | `.skilled/commands/doctor/scripts/git-setup-check.cjs` and its test | Modified | Six adapters and the nine review fixes |
 | `.skilled/commands/doctor/assets/doctor-git-setup.yaml` | Modified | The six-adapter rule |
 | `git.md`, both READMEs, the scripts README, the doctor catalog overview | Modified | HVR fixes |
+| `README.md`, sk-git `SKILL.md`, the sk-git feature catalog, the spec-kit doctor playbook README | Modified | Name `/doctor:git setup` where it was missing |
+| `.skilled/skills/sk-git/feature-catalog/workflow-playbooks/doctor-git-settings.md` | Created | The `/doctor:git` feature entry |
 <!-- /ANCHOR:what-built -->
 
 ---

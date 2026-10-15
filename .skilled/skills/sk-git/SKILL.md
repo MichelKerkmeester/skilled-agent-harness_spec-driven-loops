@@ -256,6 +256,18 @@ fail-open), [scripts/lib/README.md](scripts/lib/README.md) (rule engine, tests),
 Suppression: `SKGIT_ADVISORY=0` (global), `SKGIT_ADVISORY_SKIP=<rule-id>` (one rule), or a
 `SKGIT_ADVISORY_SKIP=commit`-style prefix (a family).
 
+### Repository Settings: /doctor:git
+
+A repository adapts sk-git through git config and a `.sk-git/` folder, not by editing this
+skill. `/doctor:git` is the command that changes and checks those settings:
+
+- `hooks` switches an optional pre-commit or pre-push gate on or off in git config.
+- `standards` copies the commit, PR and branch rule templates into `.sk-git/` and changes a rule there.
+- `setup` checks eleven settings in one read-only pass and names one repair for each failure.
+
+When a user asks whether sk-git is set up or why a rule is not enforced, point them to
+`/doctor:git setup` before reading config by hand. Command: `.skilled/commands/doctor/git.md`.
+
 ### Git Development Lifecycle Map
 
 Git development flows through 3 phases:
