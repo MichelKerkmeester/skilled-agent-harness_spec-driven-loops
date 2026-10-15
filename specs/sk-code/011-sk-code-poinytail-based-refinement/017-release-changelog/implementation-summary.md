@@ -59,6 +59,8 @@ A fifth pass on 2026-10-14 first added the untrusted-clone hook fix and the revi
 
 A conformance pass the same day checked all twenty entries against the create-changelog contract. Structure, ceilings and both validators already passed. The fixes were editorial: the v4.0.0.5, v4.0.0.6, v4.0.0.7 and v4.0.0.10 openings now state themes instead of repeating their glance bullets, the Jev switch upgrade step moved from v4.0.0.4 to v4.0.0.7 where the switches were retired, and the sk-code, sk-code-opencode, cli-devin and manual-testing-playbook entries lost a playbook bullet, a docs-alignment bullet, a bullet that restated the summary and a summary sentence the bullets repeated.
 
+A fresh Opus review on 2026-10-15 confirmed about 45 claims against the tree and raised five placement findings and a set of style points. Four held: the removed `heal-spec-docs` flags moved to v4.0.0.4, whose version the code's own message names, and the text null parent and the retired Jev switches gained body text. The fifth, that Devin does not read `~/.agents/skills`, was wrong: `devin skills paths` lists it. The style fixes dropped doctor check ids, test counts and repeats and title-cased five skill entry headings.
+
 ### Files Changed
 
 | File | Action | Purpose |

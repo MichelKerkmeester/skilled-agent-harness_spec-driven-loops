@@ -57,6 +57,7 @@ contextType: "implementation"
 - [x] T010 Add the hook trust fix and the review fixes, then split the entry into seven releases, v4.0.0.4 to v4.0.0.10, each item moved verbatim (`.skilled/changelog/skilled/`)
 - [x] T011 Write the thirteen missing per-skill changelog entries, bump each skill's version carriers and repoint the cli-classifier changelog links
 - [x] T012 Audit the twenty new changelog entries against the create-changelog contract, rewrite four release openings at theme level, move the Jev switch upgrade step to v4.0.0.7 and cut three glance bullets and one summary sentence that broke the omission or say-it-once rules
+- [x] T013 Apply the confirmed findings of a fresh Opus review: move the removed healer and audit flags to v4.0.0.4, describe the text null parent and the retired Jev switches in the body, drop doctor check ids, counts and repeats and title-case five skill entry headings
 <!-- /ANCHOR:phase-3 -->
 
 ---
