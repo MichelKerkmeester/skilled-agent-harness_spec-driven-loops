@@ -1,5 +1,5 @@
 {
-  "corpusHash": "fb7fad86a24251e89503e6f41538f0267c67c17751a88dc1811c416cddca8fff",
+  "corpusHash": "04fce0be3d126e863463b2ccd86e52c24ea0e5836a83e0d1240474f0b4c85624",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24822,
+  "includedPathCount": 24823,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6624,6 +6624,7 @@
     ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/README.md",
     ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-hooks-list.md",
     ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md",
+    ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-setup-check.md",
     ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule.md",
     ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-standards-copy-once.md",
     ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-standards-refuse-invalid.md",
@@ -24853,7 +24854,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f5d0a682aa820e6257ef48802923c2b00eaffa18460c37a88b454c22f1c2bf08",
+  "manifestHash": "964f7fd5aa009f0fc3e2e0e83542d515af733b42e80d6df5f0a74d9da954d9c4",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27097,6 +27098,14 @@
     },
     {
       "path": "specs/sk-code/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
       "reason": "excluded directory"
     },
     {

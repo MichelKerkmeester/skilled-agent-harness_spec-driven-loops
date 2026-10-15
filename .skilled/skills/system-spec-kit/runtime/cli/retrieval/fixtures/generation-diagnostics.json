@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 6982,
+    "missing-frontmatter": 6983,
     "ok": 14293,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 24822,
+  "documentsScanned": 24823,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "f5d0a682aa820e6257ef48802923c2b00eaffa18460c37a88b454c22f1c2bf08",
+  "manifestHash": "964f7fd5aa009f0fc3e2e0e83542d515af733b42e80d6df5f0a74d9da954d9c4",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -29684,6 +29684,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-setup-check.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -69010,6 +69016,14 @@
     },
     {
       "path": "specs/sk-code/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
       "reason": "excluded directory"
     },
     {
