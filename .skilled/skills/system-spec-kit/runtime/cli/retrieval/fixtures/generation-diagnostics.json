@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 6983,
-    "ok": 14298,
+    "missing-frontmatter": 7013,
+    "ok": 14313,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 24828,
+  "documentsScanned": 24873,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "7d2ba03b78a15f3a5f9c8a865bfa4d2737fedb6c16b2f0611a8898a9c13de504",
+  "manifestHash": "6ba62a564a5822827b99ef79612453b32e8c6a48faa910d564d3ce744145a16c",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36502,
+      "ok": 36521,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -39428,6 +39428,174 @@
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-git/033-git-setup-customization/003-improvement-research/research/deep-research-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-git/033-git-setup-customization/003-improvement-research/research/deep-research-strategy.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/033-git-setup-customization/003-improvement-research/research/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/033-git-setup-customization/003-improvement-research/research/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/033-git-setup-customization/003-improvement-research/research/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/033-git-setup-customization/003-improvement-research/research/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/033-git-setup-customization/003-improvement-research/research/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/033-git-setup-customization/003-improvement-research/research/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/033-git-setup-customization/003-improvement-research/research/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/033-git-setup-customization/003-improvement-research/research/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/033-git-setup-customization/003-improvement-research/research/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/033-git-setup-customization/003-improvement-research/research/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-git/033-git-setup-customization/003-improvement-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-git/033-git-setup-customization/004-final-deep-review/review/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/033-git-setup-customization/004-final-deep-review/review/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/033-git-setup-customization/004-final-deep-review/review/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/033-git-setup-customization/004-final-deep-review/review/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/033-git-setup-customization/004-final-deep-review/review/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/033-git-setup-customization/004-final-deep-review/review/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/033-git-setup-customization/004-final-deep-review/review/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/033-git-setup-customization/004-final-deep-review/review/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/033-git-setup-customization/004-final-deep-review/review/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/033-git-setup-customization/004-final-deep-review/review/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/033-git-setup-customization/004-final-deep-review/review/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/033-git-setup-customization/004-final-deep-review/review/quarantine/iteration-1.first-dispatch.prompt.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/033-git-setup-customization/004-final-deep-review/review/quarantine/iteration-2.first-dispatch.prompt.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-git/033-git-setup-customization/004-final-deep-review/review/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/033-git-setup-customization/004-final-deep-review/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
       "category": "valid-empty-list",
       "line": 4,
       "path": "specs/sk-prompt/007-sk-prompt-parent/review/deep-review-dashboard.md",
@@ -43784,6 +43952,18 @@
       "line": 1,
       "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/014-changelog-alignment/evidence/review/verification.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/034-doctor-command-guidance/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-skill-advisor/034-doctor-command-guidance/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "valid-empty-list",
@@ -69019,6 +69199,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/scratch",
       "reason": "excluded directory"
     },
@@ -69800,6 +69988,14 @@
     },
     {
       "path": "specs/sk-git/033-git-setup-customization/002-doctor-git-setup/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/033-git-setup-customization/003-improvement-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/033-git-setup-customization/004-final-deep-review/scratch",
       "reason": "excluded directory"
     },
     {
@@ -70664,6 +70860,14 @@
     },
     {
       "path": "specs/system-skill-advisor/033-advisor-status-truthfulness/003-status-contract-and-docs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/034-doctor-command-guidance/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/034-doctor-command-guidance/scratch",
       "reason": "excluded directory"
     },
     {

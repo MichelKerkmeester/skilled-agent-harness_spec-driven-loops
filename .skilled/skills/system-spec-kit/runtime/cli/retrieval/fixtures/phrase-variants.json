@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7d2ba03b78a15f3a5f9c8a865bfa4d2737fedb6c16b2f0611a8898a9c13de504",
+  "manifestHash": "6ba62a564a5822827b99ef79612453b32e8c6a48faa910d564d3ce744145a16c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8634,6 +8634,9 @@
     ],
     "advisor docs update summary": [
       "advisor docs update summary"
+    ],
+    "advisor doctor routing": [
+      "advisor doctor routing"
     ],
     "advisor embedder adapters": [
       "advisor embedder adapters"
@@ -37204,6 +37207,21 @@
     "doctor command cutover summary": [
       "doctor command cutover summary"
     ],
+    "doctor command guidance": [
+      "doctor command guidance"
+    ],
+    "doctor command guidance implementation summary": [
+      "doctor command guidance implementation summary"
+    ],
+    "doctor command guidance plan": [
+      "doctor command guidance plan"
+    ],
+    "doctor command guidance research": [
+      "doctor command guidance research"
+    ],
+    "doctor command guidance tasks": [
+      "doctor command guidance tasks"
+    ],
     "doctor command pointers in skill readmes": [
       "doctor command pointers in skill readmes"
     ],
@@ -37474,6 +37492,9 @@
     ],
     "doctor git setup implementation summary": [
       "doctor git setup implementation summary"
+    ],
+    "doctor git setup improvement research": [
+      "doctor git setup improvement research"
     ],
     "doctor git setup plan": [
       "doctor git setup plan"
@@ -43969,6 +43990,18 @@
     "filters jsonc": [
       "filters.jsonc"
     ],
+    "final deep review": [
+      "final deep review"
+    ],
+    "final deep review implementation summary": [
+      "final deep review implementation summary"
+    ],
+    "final deep review plan": [
+      "final deep review plan"
+    ],
+    "final deep review tasks": [
+      "final deep review tasks"
+    ],
     "final gate ledger": [
       "final gate ledger"
     ],
@@ -47405,6 +47438,9 @@
     ],
     "git run failure analysis": [
       "git run failure analysis"
+    ],
+    "git setup check improvements": [
+      "git-setup-check improvements"
     ],
     "git setup customization phase parent spec": [
       "git setup customization phase parent spec"
@@ -52443,6 +52479,18 @@
     ],
     "improvement promotion authority implementation": [
       "improvement promotion authority implementation"
+    ],
+    "improvement research": [
+      "improvement research"
+    ],
+    "improvement research implementation summary": [
+      "improvement research implementation summary"
+    ],
+    "improvement research plan": [
+      "improvement research plan"
+    ],
+    "improvement research tasks": [
+      "improvement research tasks"
     ],
     "in flight classification verification receipts": [
       "in-flight classification verification receipts"
@@ -71269,6 +71317,9 @@
     "phase 3 hub surface precedence": [
       "phase 3 hub surface precedence"
     ],
+    "phase 3 improvement research": [
+      "phase 3 improvement research"
+    ],
     "phase 3 playbook catalog truth": [
       "phase 3 playbook catalog truth"
     ],
@@ -71322,6 +71373,9 @@
     ],
     "phase 4 dispatch guard and vitest": [
       "phase 4 dispatch guard and vitest"
+    ],
+    "phase 4 final deep review": [
+      "phase 4 final deep review"
     ],
     "phase 4 hook stdin deadline": [
       "phase 4 hook stdin deadline"
@@ -81207,6 +81261,9 @@
     ],
     "research graph stop blockers": [
       "research graph stop blockers"
+    ],
+    "research how the skill advisor can guide users": [
+      "research how the skill advisor can guide users"
     ],
     "research implementation summary": [
       "research implementation summary"
