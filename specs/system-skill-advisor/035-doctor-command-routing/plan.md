@@ -23,7 +23,7 @@ contextType: "general"
 | **Language/Stack** | TypeScript (advisor runtime), Python 3 (fallback scorer), CommonJS (bridge deriver), YAML and Markdown (doctor commands) |
 | **Framework** | None. The advisor is a daemon plus a CLI front door |
 | **Storage** | None changed. Generated JSON and generated source blocks only |
-| **Testing** | Vitest under `runtime/`, a standalone Python harness, shell and Node gate scripts |
+| **Testing** | Vitest under `runtime/`, a standalone Python test script, shell and Node gate scripts |
 
 ### Overview
 
@@ -41,10 +41,10 @@ Doctor commands reach the advisor the same way every other command does: as `kin
 - [x] Dependencies identified (`spec.md` section 6 and section 6 below)
 
 ### Definition of Done
-- [ ] Every row in `acceptance-criteria.md` is `Met`
-- [ ] Every gate in section 5 passes from the final state, with output and exit status read
-- [ ] The per-prompt comparison shows zero rows that passed at the start and fail at the end
-- [ ] Docs updated (spec, plan, tasks, implementation summary)
+- [x] Every row in `acceptance-criteria.md` is `Met`
+- [x] Every gate in section 5 passes from the final state, with output and exit status read
+- [x] The per-prompt comparison shows zero rows that passed at the start and fail at the end
+- [x] Docs updated (spec, plan, tasks, implementation summary)
 
 ### Measured Baseline (2026-10-15, HEAD `ede8b9137c`)
 
@@ -170,7 +170,7 @@ After every return the orchestrator runs three checks before sending the next br
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | Deriver doctor source, ordering rule, renderer second line and hint | Vitest under `runtime/tests/`, and the Python harness for the Python block |
+| Unit | Deriver doctor source, ordering rule, renderer second line and hint | Vitest under `runtime/tests/`, and the Python test script for the Python block |
 | Integration | Slice gate, per-prompt comparison, parity, ratchets, drift guard, reach probe | Vitest, Node scripts, `route-validate.sh` |
 | Manual | `/doctor:setup` in a live session, plus the two probe prompts through the daemon | A live advisor session |
 

@@ -999,6 +999,32 @@ description: Fixture helper for routing tests
     except Exception as exc:
         fail_test("native bridge receives at most the advisor prompt limit", str(exc))
 
+    # The native wrapper re-sorts by confidence; a doctor command bridge must still
+    # stay below a skill unless the prompt typed a doctor slash command.
+    try:
+        original_bridge = advisor._run_native_bridge
+        try:
+            def fake_doctor_bridge(payload, timeout=advisor.NATIVE_TIMEOUT_SECONDS):
+                return {"status": "ok", "data": {"recommendations": [
+                    {"skillId": "command-doctor-git-setup", "score": 0.7, "confidence": 0.8962, "uncertainty": 0.12},
+                    {"skillId": "sk-git", "score": 0.55, "confidence": 0.82, "uncertainty": 0.2},
+                ]}}
+
+            advisor._run_native_bridge = fake_doctor_bridge
+            plain = [r["skill"] for r in advisor.recommend_with_native_advisor("check my git hooks setup") or []]
+            typed = [r["skill"] for r in advisor.recommend_with_native_advisor("/doctor:git setup") or []]
+            if plain[:2] == ["sk-git", "command-doctor-git-setup"] and typed[:2] == ["command-doctor-git-setup", "sk-git"]:
+                ok("native wrapper keeps a skill above a doctor bridge unless the doctor command is typed")
+            else:
+                fail_test(
+                    "native wrapper keeps a skill above a doctor bridge unless the doctor command is typed",
+                    f"plain={plain} typed={typed}",
+                )
+        finally:
+            advisor._run_native_bridge = original_bridge
+    except Exception as exc:
+        fail_test("native wrapper keeps a skill above a doctor bridge unless the doctor command is typed", str(exc))
+
     # A stopped daemon publishes 'unavailable' even though the index hashes
     # still match disk; the one-shot bridge must fall back to that index
     # freshness instead of reporting the advisor unusable. The bridge is

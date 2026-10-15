@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-15 |
 | **Branch** | `main` (no branch created at planning, the workspace choice belongs to the implement step) |
 | **Related packet** | `specs/system-skill-advisor/034-doctor-command-guidance` (the research this packet implements) |
@@ -62,6 +62,7 @@ All ten ranked recommendations of the 034 research [SOURCE: specs/system-skill-a
 - One bounded fallback hint naming `/doctor:setup`, shown only when an unmatched prompt uses setup, install, check or configure wording.
 - Trigger phrases for `/doctor:env` and plain-word phrases for `/doctor:update`, plus a corrected `_routes.yaml` header.
 - An install step for the `yaml` parser in every CI job that runs the bridge generator and lacks it.
+- Added 2026-10-15 by the operator during implementation: manual testing playbook scenarios and feature catalog entries for the doctor routing behavior, written so an external agent with no context can run them, plus a `/doctor:setup` row in the spec-kit doctor catalog and the root README command list.
 
 ### Operator Decision (settled, not reopened)
 
@@ -100,6 +101,11 @@ When a prompt fits both a skill and a doctor command, the skill keeps first plac
 | `.github/workflows/*.yml` (only jobs that run the bridge generator without the parser) | Modify | Add `npm --prefix .skilled ci`, or the equivalent install step |
 | `.skilled/commands/README.txt` | Modify | Catalog row and the command count |
 | `.claude/commands/doctor/setup.md`, `.codex/prompts/doctor-setup.md`, `.pi/prompts/doctor-setup.md`, `.hermes/prompts/doctor-setup.md`, `.cursor/commands/doctor-setup.md` | Generate | Runtime mirrors, produced by the sync scripts, never by hand |
+| `.skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-routing-*.md`, `doctor-setup-run.md` | Create | Agent-runnable scenarios for the doctor routing behavior and the `/doctor:setup` run (scope added 2026-10-15) |
+| `.skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md`, `runtime/tests/manual-testing-playbook.vitest.ts` | Modify | Playbook index rows and the scenario count its inventory test pins |
+| `.skilled/skills/system-skill-advisor/leaf-manifest.json`, `leaf-aliases.json` | Regenerate | Leaf registration of the new playbook and catalog files |
+| `.skilled/skills/system-skill-advisor/feature-catalog/` (new leaf) and `feature-catalog.md` | Create, Modify | Catalog entry for doctor command routing |
+| `.skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md`, `README.md` | Modify | `/doctor:setup` row in the spec-kit doctor catalog and the root README command list |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -133,6 +139,7 @@ Every evidence cell names a file and line opened during planning.
 | REQ-013 | `/doctor:env` gains a manifest entry with trigger phrases, since it has none today. `/doctor:update` gains plain-word phrases next to its existing ones. The `_routes.yaml` header drops "inert today" and the stale `skill_advisor.py:810-871` citation and names the deriver as its consumer. | `.skilled/commands/doctor/_routes.yaml:14-21`, `.skilled/commands/doctor/_routes.yaml:351-354`, `.skilled/commands/doctor/env.md:6` |
 | REQ-014 | The command catalog, the bridge README and every runtime mirror stay in sync with the new command and the new bridge source. Mirrors are produced by the sync scripts, never written by hand. | `.skilled/commands/README.txt:46`, `.skilled/commands/README.txt:158`, `.skilled/commands/doctor/_routes.yaml:205-212` |
 | REQ-015 | Every CI job that runs the bridge generator, directly or through the Python bridge check, has the `yaml` parser installed. Where a job lacks it, the job gains an install step. The golden-prompt job installs only system-spec-kit and the advisor runtime, while two spec-kit-check jobs already install the `.skilled` packages. | `.skilled/package.json:11`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:616-622`, `.github/workflows/routing-registry-drift.yml:249-253`, `.github/workflows/spec-kit-check.yml:80`, `.github/workflows/spec-kit-check.yml:191` |
+| REQ-016 | Added 2026-10-15 by the operator. The doctor routing behavior ships with manual testing playbook scenarios that an agent with no context can run, covering the `/doctor:setup` onboarding prompt, the `/doctor:env list` prompt, a contested prompt with the skill first and the doctor line second, a typed `/doctor:git setup` in the Python fallback, the setup-worded no-match hint, an unrelated prompt with no hint and the `/doctor:setup` run itself. A feature catalog entry describes the behavior, and the spec-kit doctor catalog and the root README list `/doctor:setup`. The playbook and catalog validators pass. | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md`, `.skilled/skills/sk-doc/sk-create-feature-catalog/scripts/README.md`, `.skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts:44-62` |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

@@ -42,7 +42,8 @@ function collectSlashIds(): { id: string; source: string }[] {
   }
   for (const bridge of COMMAND_BRIDGES) {
     for (const token of [...bridge.keywords, ...bridge.intentSignals]) {
-      if (token.startsWith('/')) out.push({ id: token, source: `COMMAND_BRIDGES[${bridge.id}]` });
+      // A runnable command string may name a positional target after the slash id.
+      if (token.startsWith('/')) out.push({ id: token.split(/\s+/)[0] as string, source: `COMMAND_BRIDGES[${bridge.id}]` });
     }
   }
   return out;

@@ -4,9 +4,10 @@
   "counts": {
     "commandMetadata": 19,
     "allowList": 8,
-    "generated": 27,
-    "typescriptActive": 5,
-    "pythonActive": 15
+    "doctorRoutes": 16,
+    "generated": 43,
+    "typescriptActive": 20,
+    "pythonActive": 30
   },
   "entries": [
     {
@@ -405,6 +406,628 @@
         },
         "python": {
           "enabled": false
+        }
+      }
+    },
+    {
+      "id": "command-doctor-deep-loop",
+      "command": "/doctor:deep-loop",
+      "skillId": "system-deep-loop",
+      "ownerMode": "system-deep-loop",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
+    },
+    {
+      "id": "command-doctor-env",
+      "command": "/doctor:env",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-env",
+          "order": 6,
+          "id": "command-doctor-env",
+          "description": "",
+          "name": "/doctor:env list",
+          "keywords": [
+            "check my environment variables",
+            "which environment variable switches are set",
+            "skilled environment switch values",
+            "environment switch inventory"
+          ],
+          "intentSignals": [
+            "/doctor:env list"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-env",
+          "order": 17,
+          "id": "command-doctor-env",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:env list"
+          ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-git-hooks",
+      "command": "/doctor:git",
+      "skillId": "sk-git",
+      "ownerMode": "sk-git",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-git-hooks",
+          "order": 7,
+          "id": "command-doctor-git-hooks",
+          "description": "",
+          "name": "/doctor:git hooks",
+          "keywords": [
+            "turn off a git hook check",
+            "disable comment hygiene gate",
+            "pre-commit gate keeps blocking",
+            "git hook settings"
+          ],
+          "intentSignals": [
+            "/doctor:git hooks"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-git-hooks",
+          "order": 18,
+          "id": "command-doctor-git-hooks",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:git hooks"
+          ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-git-setup",
+      "command": "/doctor:git",
+      "skillId": "sk-git",
+      "ownerMode": "sk-git",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-git-setup",
+          "order": 10,
+          "id": "command-doctor-git-setup",
+          "description": "",
+          "name": "/doctor:git setup",
+          "keywords": [
+            "sk-git setup check",
+            "is my sk-git setup working",
+            "which git rules are live",
+            "check my git hooks setup"
+          ],
+          "intentSignals": [
+            "/doctor:git setup"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-git-setup",
+          "order": 21,
+          "id": "command-doctor-git-setup",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:git setup"
+          ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-git-standards",
+      "command": "/doctor:git",
+      "skillId": "sk-git",
+      "ownerMode": "sk-git",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-git-standards",
+          "order": 11,
+          "id": "command-doctor-git-standards",
+          "description": "",
+          "name": "/doctor:git standards",
+          "keywords": [
+            "change commit message rules",
+            "allow longer commit subjects",
+            "stop checking pr descriptions",
+            "customize sk-git standards"
+          ],
+          "intentSignals": [
+            "/doctor:git standards"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-git-standards",
+          "order": 22,
+          "id": "command-doctor-git-standards",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:git standards"
+          ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-runtime-mirrors",
+      "command": "/doctor:runtime-mirrors",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-runtime-mirrors",
+          "order": 8,
+          "id": "command-doctor-runtime-mirrors",
+          "description": "",
+          "name": "/doctor:runtime-mirrors",
+          "keywords": [
+            "runtime mirror drift",
+            "agent command mirror parity",
+            "command catalog drift",
+            "cursor devin codex sync check",
+            "discovery mirror out of sync"
+          ],
+          "intentSignals": [
+            "/doctor:runtime-mirrors"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-runtime-mirrors",
+          "order": 19,
+          "id": "command-doctor-runtime-mirrors",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:runtime-mirrors"
+          ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-setup",
+      "command": "/doctor:setup",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-setup",
+          "order": 5,
+          "id": "command-doctor-setup",
+          "description": "",
+          "name": "/doctor:setup",
+          "keywords": [
+            "set up skilled",
+            "help me set up skilled",
+            "is my skilled install healthy",
+            "skilled setup check",
+            "getting started with skilled"
+          ],
+          "intentSignals": [
+            "/doctor:setup"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-setup",
+          "order": 16,
+          "id": "command-doctor-setup",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:setup"
+          ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-sk-code",
+      "command": "/doctor:sk-code",
+      "skillId": "sk-code",
+      "ownerMode": "sk-code",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-sk-code",
+          "order": 12,
+          "id": "command-doctor-sk-code",
+          "description": "",
+          "name": "/doctor:sk-code",
+          "keywords": [
+            "sk-code setup check",
+            "verify my sk-code surface",
+            "sk-code battery fails",
+            "does my sk-code surface route"
+          ],
+          "intentSignals": [
+            "/doctor:sk-code"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-sk-code",
+          "order": 23,
+          "id": "command-doctor-sk-code",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:sk-code"
+          ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-skill-advisor-parent-skill",
+      "command": "/doctor:skill-advisor",
+      "skillId": "system-skill-advisor",
+      "ownerMode": "system-skill-advisor",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-skill-advisor-parent-skill",
+          "order": 15,
+          "id": "command-doctor-skill-advisor-parent-skill",
+          "description": "",
+          "name": "/doctor:skill-advisor parent-skill",
+          "keywords": [
+            "parent skill structure audit",
+            "nested mode packet check",
+            "mode-registry drift guard",
+            "single graph-metadata identity",
+            "skill root metadata contract",
+            "missing skill json files"
+          ],
+          "intentSignals": [
+            "/doctor:skill-advisor parent-skill"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-skill-advisor-parent-skill",
+          "order": 26,
+          "id": "command-doctor-skill-advisor-parent-skill",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:skill-advisor parent-skill"
+          ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-skill-advisor-rebuild",
+      "command": "/doctor:skill-advisor",
+      "skillId": "system-skill-advisor",
+      "ownerMode": "system-skill-advisor",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-skill-advisor-rebuild",
+          "order": 14,
+          "id": "command-doctor-skill-advisor-rebuild",
+          "description": "",
+          "name": "/doctor:skill-advisor rebuild",
+          "keywords": [
+            "skill advisor rebuild",
+            "rebuild the skill graph database",
+            "skill_graph scan",
+            "new skill not appearing in advisor results"
+          ],
+          "intentSignals": [
+            "/doctor:skill-advisor rebuild"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-skill-advisor-rebuild",
+          "order": 25,
+          "id": "command-doctor-skill-advisor-rebuild",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:skill-advisor rebuild"
+          ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-skill-advisor-router-reach",
+      "command": "/doctor:skill-advisor",
+      "skillId": "system-skill-advisor",
+      "ownerMode": "system-skill-advisor",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-skill-advisor-router-reach",
+          "order": 17,
+          "id": "command-doctor-skill-advisor-router-reach",
+          "description": "",
+          "name": "/doctor:skill-advisor router-reach",
+          "keywords": [
+            "router reach check",
+            "does a declared phrase reach its hub",
+            "router vocabulary reach",
+            "phrase reaches nobody",
+            "routing residue allowlist"
+          ],
+          "intentSignals": [
+            "/doctor:skill-advisor router-reach"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-skill-advisor-router-reach",
+          "order": 28,
+          "id": "command-doctor-skill-advisor-router-reach",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:skill-advisor router-reach"
+          ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-skill-advisor-skill-budget",
+      "command": "/doctor:skill-advisor",
+      "skillId": "system-skill-advisor",
+      "ownerMode": "system-skill-advisor",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-skill-advisor-skill-budget",
+          "order": 9,
+          "id": "command-doctor-skill-advisor-skill-budget",
+          "description": "",
+          "name": "/doctor:skill-advisor skill-budget",
+          "keywords": [
+            "skill budget audit",
+            "description budget check",
+            "skill char count drift",
+            "frontmatter description trim"
+          ],
+          "intentSignals": [
+            "/doctor:skill-advisor skill-budget"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-skill-advisor-skill-budget",
+          "order": 20,
+          "id": "command-doctor-skill-advisor-skill-budget",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:skill-advisor skill-budget"
+          ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-skill-advisor-skill-graph-freshness",
+      "command": "/doctor:skill-advisor",
+      "skillId": "system-skill-advisor",
+      "ownerMode": "system-skill-advisor",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-skill-advisor-skill-graph-freshness",
+          "order": 16,
+          "id": "command-doctor-skill-advisor-skill-graph-freshness",
+          "description": "",
+          "name": "/doctor:skill-advisor skill-graph-freshness",
+          "keywords": [
+            "skill graph freshness",
+            "skill-graph zombie ghost nodes",
+            "compiled vs sqlite vs disk graph drift",
+            "reindex staleness check"
+          ],
+          "intentSignals": [
+            "/doctor:skill-advisor skill-graph-freshness"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-skill-advisor-skill-graph-freshness",
+          "order": 27,
+          "id": "command-doctor-skill-advisor-skill-graph-freshness",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:skill-advisor skill-graph-freshness"
+          ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-skill-advisor-tune",
+      "command": "/doctor:skill-advisor",
+      "skillId": "system-skill-advisor",
+      "ownerMode": "system-skill-advisor",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-skill-advisor-tune",
+          "order": 13,
+          "id": "command-doctor-skill-advisor-tune",
+          "description": "",
+          "name": "/doctor:skill-advisor tune",
+          "keywords": [
+            "skill advisor scoring",
+            "advisor recommendation tuning",
+            "skill advisor recommends the wrong skill"
+          ],
+          "intentSignals": [
+            "/doctor:skill-advisor tune"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-skill-advisor-tune",
+          "order": 24,
+          "id": "command-doctor-skill-advisor-tune",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:skill-advisor tune"
+          ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-speckit",
+      "command": "/doctor:speckit",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-speckit",
+          "order": 18,
+          "id": "command-doctor-speckit",
+          "description": "",
+          "name": "/doctor:speckit",
+          "keywords": [
+            "trigger index drift",
+            "trigger index lookup fails",
+            "retrieval conventions doctor",
+            "ripgrep recipe check",
+            "citation drift summary"
+          ],
+          "intentSignals": [
+            "/doctor:speckit"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-speckit",
+          "order": 29,
+          "id": "command-doctor-speckit",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:speckit"
+          ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-update",
+      "command": "/doctor:update",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-update",
+          "order": 19,
+          "id": "command-doctor-update",
+          "description": "",
+          "name": "/doctor:update",
+          "keywords": [
+            "doctor update",
+            "update skills to latest release",
+            "release update",
+            "update skilled to the latest release",
+            "check for skilled updates",
+            "is there a newer skilled release"
+          ],
+          "intentSignals": [
+            "/doctor:update"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-update",
+          "order": 30,
+          "id": "command-doctor-update",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:update"
+          ]
         }
       }
     },

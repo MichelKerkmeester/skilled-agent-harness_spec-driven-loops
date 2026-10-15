@@ -1,0 +1,2311 @@
+{
+ "head": "828cb749da",
+ "capturedAt": "2026-10-15",
+ "sources": {
+  "labeled": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl",
+  "holdout": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl",
+  "ambiguity": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ambiguity-prompts.jsonl"
+ },
+ "totals": {
+  "labeled": {
+   "pass": 155,
+   "total": 195
+  },
+  "holdout": {
+   "pass": 49,
+   "total": 66
+  },
+  "ambiguity": {
+   "pass": 19,
+   "total": 24
+  }
+ },
+ "rows": {
+  "labeled": [
+   {
+    "index": 0,
+    "id": "rr-iter2-001",
+    "prompt": "Implement a negative-trigger whitelist in `gate-3-classifier.ts` and run the targeted tests.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 1,
+    "id": "rr-iter2-002",
+    "prompt": "Edit the routing phase README to document the new corpus file layout.",
+    "gold": "sk-doc",
+    "top": "sk-doc",
+    "pass": true
+   },
+   {
+    "index": 2,
+    "id": "rr-iter2-003",
+    "prompt": "Add a `corpus/` subdirectory under the routing-accuracy phase and create a starter `labeled-prompts.jsonl`.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 3,
+    "id": "rr-iter2-004",
+    "prompt": "Refactor `skill_advisor.py` to surface raw ambiguity counts in debug output.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 4,
+    "id": "rr-iter2-005",
+    "prompt": "Fix the broken JSON example in `deep-research-config.json` and revalidate the packet.",
+    "gold": "system-spec-kit",
+    "top": "system-deep-loop",
+    "pass": false
+   },
+   {
+    "index": 5,
+    "id": "rr-iter2-006",
+    "prompt": "Write a Vitest covering `classifyPrompt()` for the `resume deep review` phrase.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 6,
+    "id": "rr-iter2-007",
+    "prompt": "Rename the packet folder from `018-old-routing-study` to `019-routing-accuracy` and sweep the backlinks.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 7,
+    "id": "rr-iter2-008",
+    "prompt": "Update `FEATURE_CATALOG.md` with the new routing-accuracy evaluation command.",
+    "gold": "sk-doc",
+    "top": "sk-doc",
+    "pass": true
+   },
+   {
+    "index": 8,
+    "id": "rr-iter2-009",
+    "prompt": "Configure `.vscode/mcp.json` to mirror the current code graph server inputs.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 9,
+    "id": "rr-iter2-010",
+    "prompt": "Generate `implementation-summary.md` for the phase after the corpus seeding pass.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 10,
+    "id": "rr-iter2-011",
+    "prompt": "Review the current Gate 3 trigger list and flag false positives only; do not edit files.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 11,
+    "id": "rr-iter2-012",
+    "prompt": "Analyze why `phase` used to misfire without making changes.",
+    "gold": "none",
+    "top": null,
+    "pass": true
+   },
+   {
+    "index": 12,
+    "id": "rr-iter2-013",
+    "prompt": "Explain how `skill_advisor.py` computes uncertainty.",
+    "gold": "none",
+    "top": null,
+    "pass": true
+   },
+   {
+    "index": 13,
+    "id": "rr-iter2-014",
+    "prompt": "Inspect the deep-research state log and summarize iteration progression.",
+    "gold": "none",
+    "top": "system-deep-loop",
+    "pass": false
+   },
+   {
+    "index": 14,
+    "id": "rr-iter2-015",
+    "prompt": "Audit the SKILL catalog for missing keyword sections, read-only only.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 15,
+    "id": "rr-iter2-017",
+    "prompt": "Compare the current Gate 3 prose with the classifier implementation and list any drift.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 16,
+    "id": "rr-iter2-018",
+    "prompt": "Explain the difference between `resume` and `restart` in deep-research lineage.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 17,
+    "id": "rr-iter2-019",
+    "prompt": "Inspect `.opencode/agents` and tell me which agent names are defined.",
+    "gold": "none",
+    "top": null,
+    "pass": true
+   },
+   {
+    "index": 18,
+    "id": "rr-iter2-020",
+    "prompt": "Audit whether `memory_save` prompts are documented consistently across packet docs.",
+    "gold": "sk-code",
+    "top": "sk-doc",
+    "pass": false
+   },
+   {
+    "index": 19,
+    "id": "rr-iter2-021",
+    "prompt": "/memory:save this session with a short handover about routing-accuracy findings.",
+    "gold": "memory:save",
+    "top": "system-spec-kit",
+    "pass": false
+   },
+   {
+    "index": 20,
+    "id": "rr-iter2-022",
+    "prompt": "Save context for the routing-accuracy packet before I log off.",
+    "gold": "memory:save",
+    "top": "memory:save",
+    "pass": true
+   },
+   {
+    "index": 21,
+    "id": "rr-iter2-023",
+    "prompt": "/speckit:resume the current routing-accuracy phase and rebuild continuity from `handover.md`.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 22,
+    "id": "rr-iter2-024",
+    "prompt": "Resume deep research on the routing-accuracy packet from the active lineage.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 23,
+    "id": "rr-iter2-025",
+    "prompt": "Continue iteration 7 and append the next delta record.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 24,
+    "id": "rr-iter2-026",
+    "prompt": "Resume deep review for the docs-audit packet and keep the same lineage.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 25,
+    "id": "rr-iter2-027",
+    "prompt": "Save memory after the reducer finishes and refresh description metadata.",
+    "gold": "memory:save",
+    "top": "memory:save",
+    "pass": true
+   },
+   {
+    "index": 26,
+    "id": "rr-iter2-028",
+    "prompt": "Resume iteration from the last state log entry, then continue the overnight run.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 27,
+    "id": "rr-iter2-029",
+    "prompt": "Use `/memory:save` to capture the current blockers and next focus.",
+    "gold": "memory:save",
+    "top": "memory:save",
+    "pass": true
+   },
+   {
+    "index": 28,
+    "id": "rr-iter2-030",
+    "prompt": "Resume the phase folder and rebuild context from implementation-summary continuity.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 29,
+    "id": "rr-iter2-031",
+    "prompt": "Analyze why Gate 3 misses resume prompts, then patch the classifier if the fix is obvious.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 30,
+    "id": "rr-iter2-032",
+    "prompt": "Decompose the routing work into phases and update `tasks.md` with the result.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 31,
+    "id": "rr-iter2-033",
+    "prompt": "Phase 2 should only review the reducer output and explain the drift.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 32,
+    "id": "rr-iter2-034",
+    "prompt": "Inspect the current prompts and generate a replacement corpus file if coverage is thin.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 33,
+    "id": "rr-iter2-035",
+    "prompt": "Explain whether the packet needs a new spec folder or just update the current one.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 34,
+    "id": "rr-iter2-036",
+    "prompt": "Review the skill graph, and if a missing edge is obvious, add it.",
+    "gold": "system-spec-kit",
+    "top": "sk-code",
+    "pass": false
+   },
+   {
+    "index": 35,
+    "id": "rr-iter2-037",
+    "prompt": "Analyze the false positives around `analyze` and `phase`; no edits yet.",
+    "gold": "none",
+    "top": null,
+    "pass": true
+   },
+   {
+    "index": 36,
+    "id": "rr-iter2-038",
+    "prompt": "Audit the iteration artifacts and rename the mislabeled delta file.",
+    "gold": "system-spec-kit",
+    "top": "sk-code",
+    "pass": false
+   },
+   {
+    "index": 37,
+    "id": "rr-iter2-039",
+    "prompt": "Explain the current routing taxonomy, then write the agreed labels into `iteration-002.md`.",
+    "gold": "system-spec-kit",
+    "top": "sk-doc",
+    "pass": false
+   },
+   {
+    "index": 38,
+    "id": "rr-iter2-040",
+    "prompt": "Decompose the research plan only; do not touch packet files.",
+    "gold": "none",
+    "top": null,
+    "pass": true
+   },
+   {
+    "index": 39,
+    "id": "rr-iter2-041",
+    "prompt": "Run `/deep:research :auto` on the routing-accuracy phase for 15 iterations.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 40,
+    "id": "rr-iter2-042",
+    "prompt": "Continue the active deep-research lineage with another routing-accuracy iteration.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 41,
+    "id": "rr-iter2-043",
+    "prompt": "Start a deep review loop over the packet docs and stop on convergence.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 42,
+    "id": "rr-iter2-044",
+    "prompt": "Resume deep review for the release-readiness audit and keep the same session.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 43,
+    "id": "rr-iter2-045",
+    "prompt": "Run a fresh deep-research pass on the external evidence tree and write the iteration artifacts.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 44,
+    "id": "rr-iter2-046",
+    "prompt": "`/deep:review :auto` the current phase folder for 10 iterations.",
+    "gold": "system-deep-loop",
+    "top": "system-spec-kit",
+    "pass": false
+   },
+   {
+    "index": 45,
+    "id": "rr-iter2-047",
+    "prompt": "Kick off an overnight research loop that populates `research/iterations/` and `deltas/`.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 46,
+    "id": "rr-iter2-048",
+    "prompt": "Continue iteration 4 of the deep-review wave and append the canonical JSONL record.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 47,
+    "id": "rr-iter2-049",
+    "prompt": "Use the deep-research workflow, not a manual loop, to investigate routing drift.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 48,
+    "id": "rr-iter2-050",
+    "prompt": "Launch a convergence-tracked deep review on the docs packet.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 49,
+    "id": "rr-iter2-053",
+    "prompt": "Use Chrome DevTools to capture a HAR for the reducer dashboard failing in staging.",
+    "gold": "mcp-tooling",
+    "top": "mcp-tooling",
+    "pass": true
+   },
+   {
+    "index": 50,
+    "id": "rr-iter2-054",
+    "prompt": "Create a cleaner prompt for the overnight routing-accuracy agent run.",
+    "gold": "sk-prompt",
+    "top": "sk-prompt",
+    "pass": true
+   },
+   {
+    "index": 51,
+    "id": "rr-iter2-055",
+    "prompt": "Set up a git worktree for the routing-accuracy experiment branch.",
+    "gold": "sk-git",
+    "top": "sk-git",
+    "pass": true
+   },
+   {
+    "index": 52,
+    "id": "rr-iter2-057",
+    "prompt": "Review this PR for blocking routing regressions and list findings first.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 53,
+    "id": "rr-iter2-058",
+    "prompt": "Create a manual testing playbook page for the routing dashboard.",
+    "gold": "sk-doc",
+    "top": "sk-doc",
+    "pass": true
+   },
+   {
+    "index": 54,
+    "id": "rr-iter2-059",
+    "prompt": "Use the OpenCode standards route to clean up this CommonJS helper.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 55,
+    "id": "rr-iter3-061",
+    "prompt": "Add a packet-local helper that formats Gate 3 confusion-matrix rows for the research summary.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 56,
+    "id": "rr-iter3-062",
+    "prompt": "Update `deep-research-dashboard.md` to show corpus-completion progress for routing accuracy.",
+    "gold": "system-spec-kit",
+    "top": "system-deep-loop",
+    "pass": false
+   },
+   {
+    "index": 57,
+    "id": "rr-iter3-063",
+    "prompt": "Please edit `iteration-003.md` so the actions section mentions the first-100 classifier pass.",
+    "gold": "system-spec-kit",
+    "top": "sk-code",
+    "pass": false
+   },
+   {
+    "index": 58,
+    "id": "rr-iter3-064",
+    "prompt": "Generate a replacement `gate3-baseline.json` fixture for the first 100 prompts.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 59,
+    "id": "rr-iter3-065",
+    "prompt": "Refactor the corpus scoring helper so it emits stable JSONL keys in sorted order.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 60,
+    "id": "rr-iter3-066",
+    "prompt": "Fix the mislabeled `resume_write` note in the routing corpus documentation.",
+    "gold": "sk-doc",
+    "top": "sk-doc",
+    "pass": true
+   },
+   {
+    "index": 61,
+    "id": "rr-iter3-067",
+    "prompt": "Modify the packet checklist to include a verification step for `gate3-predictions-iter3.jsonl`.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 62,
+    "id": "rr-iter3-068",
+    "prompt": "Create a `corpus/README.md` that explains the six routing buckets and their targets.",
+    "gold": "sk-doc",
+    "top": "sk-doc",
+    "pass": true
+   },
+   {
+    "index": 63,
+    "id": "rr-iter3-069",
+    "prompt": "Rename `gate3-baseline-notes.md` to `gate3-eval-notes.md` and sweep the local references.",
+    "gold": "system-spec-kit",
+    "top": "mcp-tooling",
+    "pass": false
+   },
+   {
+    "index": 64,
+    "id": "rr-iter3-070",
+    "prompt": "Build a tiny script that counts how many prompts mention `/speckit:resume`.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 65,
+    "id": "rr-iter3-071",
+    "prompt": "Change the corpus source-mix note so paraphrased prompts are tracked explicitly.",
+    "gold": "sk-doc",
+    "top": "system-spec-kit",
+    "pass": false
+   },
+   {
+    "index": 66,
+    "id": "rr-iter3-072",
+    "prompt": "Write a regression test that proves `save context` still forces Gate 3.",
+    "gold": "sk-code",
+    "top": "memory:save",
+    "pass": false
+   },
+   {
+    "index": 67,
+    "id": "rr-iter3-073",
+    "prompt": "Configure the routing study config to record the first-100 confusion matrix output path.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 68,
+    "id": "rr-iter3-074",
+    "prompt": "Edit `research.md` to add a short section summarizing Gate 3 baseline accuracy.",
+    "gold": "system-spec-kit",
+    "top": "sk-code",
+    "pass": false
+   },
+   {
+    "index": 69,
+    "id": "rr-iter3-075",
+    "prompt": "Delete the stale scratch note about the old 50-row sanity check plan.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 70,
+    "id": "rr-iter3-076",
+    "prompt": "Could you update the routing packet plan so it says iteration 4 covers full-corpus Gate 3 scoring?",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 71,
+    "id": "rr-iter3-077",
+    "prompt": "Add a JSON schema comment block to the corpus writer describing every field.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 72,
+    "id": "rr-iter3-078",
+    "prompt": "Generate a `corpus/stats-iter3.json` snapshot after the expansion pass.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 73,
+    "id": "rr-iter3-079",
+    "prompt": "Move the old routing-accuracy notes into `scratch/archive/` and update the references.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 74,
+    "id": "rr-iter3-080",
+    "prompt": "Please implement the markdown table row for the first-100 TP/FP/FN/TN counts.",
+    "gold": "system-spec-kit",
+    "top": "sk-doc",
+    "pass": false
+   },
+   {
+    "index": 75,
+    "id": "rr-iter3-081",
+    "prompt": "Update the packet-local prompt template so future runs mention the confusion matrix requirement.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 76,
+    "id": "rr-iter3-082",
+    "prompt": "Create a compact reporter that lists Gate 3 mismatches by bucket.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 77,
+    "id": "rr-iter3-083",
+    "prompt": "Review the current routing corpus and tell me which buckets are still underrepresented.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 78,
+    "id": "rr-iter3-084",
+    "prompt": "Audit the first two iterations for drift against the original research charter.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 79,
+    "id": "rr-iter3-085",
+    "prompt": "Explain why `save memory` is treated as a write-producing workflow in Gate 3.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 80,
+    "id": "rr-iter3-086",
+    "prompt": "Analyze the wording overlap between `review` prompts and file-write prompts.",
+    "gold": "none",
+    "top": "sk-code",
+    "pass": false
+   },
+   {
+    "index": 81,
+    "id": "rr-iter3-087",
+    "prompt": "Inspect the state log and summarize how newInfoRatio changed across iterations.",
+    "gold": "none",
+    "top": null,
+    "pass": true
+   },
+   {
+    "index": 82,
+    "id": "rr-iter3-088",
+    "prompt": "Compare the current classifier vocabulary with the prose in AGENTS.md and list any mismatches.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 83,
+    "id": "rr-iter3-089",
+    "prompt": "Can you explain the six routing buckets in plain English for a reviewer?",
+    "gold": "none",
+    "top": null,
+    "pass": true
+   },
+   {
+    "index": 84,
+    "id": "rr-iter3-090",
+    "prompt": "Review whether the corpus already covers enough resume and continuation phrases.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 85,
+    "id": "rr-iter3-091",
+    "prompt": "Analyze how often `create` appears in prompts that should stay below Gate 3.",
+    "gold": "none",
+    "top": null,
+    "pass": true
+   },
+   {
+    "index": 86,
+    "id": "rr-iter3-092",
+    "prompt": "Inspect `gate-3-classifier.ts` and show me the read-only disqualifier list.",
+    "gold": "none",
+    "top": "sk-code",
+    "pass": false
+   },
+   {
+    "index": 87,
+    "id": "rr-iter3-093",
+    "prompt": "Audit whether the corpus has any duplicated prompt intents before we score it.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 88,
+    "id": "rr-iter3-094",
+    "prompt": "Explain the difference between `memory_save` and `resume_write` labels in the corpus.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 89,
+    "id": "rr-iter3-095",
+    "prompt": "Review the packet docs and tell me whether iteration 3 is scoped correctly.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 90,
+    "id": "rr-iter3-096",
+    "prompt": "Analyze whether `phase` still causes confusion in human labeling, but do not change anything.",
+    "gold": "none",
+    "top": null,
+    "pass": true
+   },
+   {
+    "index": 91,
+    "id": "rr-iter3-097",
+    "prompt": "Inspect the corpus file and list the current source-type mix.",
+    "gold": "none",
+    "top": "system-spec-kit",
+    "pass": false
+   },
+   {
+    "index": 92,
+    "id": "rr-iter3-098",
+    "prompt": "Review the deep-research instructions and confirm whether first-100 scoring is in scope.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 93,
+    "id": "rr-iter3-099",
+    "prompt": "Explain why deep-loop prompts belong in the same corpus as ordinary file-write prompts.",
+    "gold": "system-deep-loop",
+    "top": "system-spec-kit",
+    "pass": false
+   },
+   {
+    "index": 94,
+    "id": "rr-iter3-100",
+    "prompt": "Audit the prompt IDs and confirm they stay stable across iterations.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 95,
+    "id": "rr-iter3-101",
+    "prompt": "Review the routing packet and flag any missing evidence links for the next iteration.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 96,
+    "id": "rr-iter3-102",
+    "prompt": "Inspect the predictions schema from iteration 3 and summarize what each field means.",
+    "gold": "none",
+    "top": null,
+    "pass": true
+   },
+   {
+    "index": 97,
+    "id": "rr-iter3-103",
+    "prompt": "Explain the intended difference between a Gate 3 false positive and a skill-routing false positive.",
+    "gold": "none",
+    "top": null,
+    "pass": true
+   },
+   {
+    "index": 98,
+    "id": "rr-iter3-104",
+    "prompt": "Audit whether the current corpus already stresses connector-routing prompts enough.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 99,
+    "id": "rr-iter3-105",
+    "prompt": "/memory:save the routing-accuracy packet with the current first-100 confusion matrix.",
+    "gold": "memory:save",
+    "top": "system-spec-kit",
+    "pass": false
+   },
+   {
+    "index": 100,
+    "id": "rr-iter3-106",
+    "prompt": "Save context once the Gate 3 baseline file is written.",
+    "gold": "memory:save",
+    "top": "memory:save",
+    "pass": true
+   },
+   {
+    "index": 101,
+    "id": "rr-iter3-107",
+    "prompt": "Please save memory for this routing study before we switch packets.",
+    "gold": "memory:save",
+    "top": "memory:save",
+    "pass": true
+   },
+   {
+    "index": 102,
+    "id": "rr-iter3-108",
+    "prompt": "Resume deep research on the routing-accuracy phase and keep the active lineage.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 103,
+    "id": "rr-iter3-109",
+    "prompt": "Resume deep review for the routing packet after the baseline scoring pass.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 104,
+    "id": "rr-iter3-110",
+    "prompt": "Continue iteration 8 of the routing-accuracy research wave.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 105,
+    "id": "rr-iter3-111",
+    "prompt": "/speckit:resume the current phase folder and rebuild continuity.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 106,
+    "id": "rr-iter3-112",
+    "prompt": "Save context for the packet with blockers, findings, and next focus.",
+    "gold": "memory:save",
+    "top": "memory:save",
+    "pass": true
+   },
+   {
+    "index": 107,
+    "id": "rr-iter3-113",
+    "prompt": "Resume iteration from the latest JSONL state entry and append the next delta.",
+    "gold": "system-deep-loop",
+    "top": "sk-code",
+    "pass": false
+   },
+   {
+    "index": 108,
+    "id": "rr-iter3-114",
+    "prompt": "Use `/memory:save` after the classifier pass so the continuity files stay current.",
+    "gold": "memory:save",
+    "top": "system-spec-kit",
+    "pass": false
+   },
+   {
+    "index": 109,
+    "id": "rr-iter3-115",
+    "prompt": "Resume the packet and reconstruct continuity from `implementation-summary.md`.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 110,
+    "id": "rr-iter3-116",
+    "prompt": "Save memory right after the corpus reaches 200 prompts.",
+    "gold": "memory:save",
+    "top": "memory:save",
+    "pass": true
+   },
+   {
+    "index": 111,
+    "id": "rr-iter3-117",
+    "prompt": "/memory:save this routing baseline before the overnight worker exits.",
+    "gold": "memory:save",
+    "top": "memory:save",
+    "pass": true
+   },
+   {
+    "index": 112,
+    "id": "rr-iter3-118",
+    "prompt": "Resume deep research from the active lineage and keep writing iteration artifacts.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 113,
+    "id": "rr-iter3-119",
+    "prompt": "Continue iteration after reloading the routing packet from continuity state.",
+    "gold": "system-deep-loop",
+    "top": "system-spec-kit",
+    "pass": false
+   },
+   {
+    "index": 114,
+    "id": "rr-iter3-120",
+    "prompt": "Save context after the reducer finishes the confusion-matrix summary.",
+    "gold": "memory:save",
+    "top": "memory:save",
+    "pass": true
+   },
+   {
+    "index": 115,
+    "id": "rr-iter3-121",
+    "prompt": "Can you resume the phase folder so the next research pass starts from the right lineage?",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 116,
+    "id": "rr-iter3-122",
+    "prompt": "Resume deep review on the docs packet and keep the same session lineage.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 117,
+    "id": "rr-iter3-123",
+    "prompt": "/speckit:resume the routing-accuracy phase and continue the current run.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 118,
+    "id": "rr-iter3-124",
+    "prompt": "Save memory with the current error classes before we test rule changes.",
+    "gold": "memory:save",
+    "top": "memory:save",
+    "pass": true
+   },
+   {
+    "index": 119,
+    "id": "rr-iter3-125",
+    "prompt": "Continue iteration 11 and append the canonical JSONL line before anything else.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 120,
+    "id": "rr-iter3-126",
+    "prompt": "Resume deep research for the routing hardening packet from the active state.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 121,
+    "id": "rr-iter3-127",
+    "prompt": "Review the routing corpus and update the mislabeled prompts if any stand out.",
+    "gold": "system-spec-kit",
+    "top": "sk-code",
+    "pass": false
+   },
+   {
+    "index": 122,
+    "id": "rr-iter3-128",
+    "prompt": "Audit the packet docs, then generate a corrected `iteration-004.md` stub.",
+    "gold": "system-spec-kit",
+    "top": "sk-doc",
+    "pass": false
+   },
+   {
+    "index": 123,
+    "id": "rr-iter3-129",
+    "prompt": "Explain the current resume handling, then write the approved summary into `research.md`.",
+    "gold": "system-spec-kit",
+    "top": "system-deep-loop",
+    "pass": false
+   },
+   {
+    "index": 124,
+    "id": "rr-iter3-130",
+    "prompt": "Inspect the first-100 predictions and rename any rows whose ids are malformed.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 125,
+    "id": "rr-iter3-131",
+    "prompt": "Analyze the current error classes and patch the obvious trigger gap.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 126,
+    "id": "rr-iter3-132",
+    "prompt": "Review the deep-loop prompts, and if a blind spot is obvious, add replacement examples.",
+    "gold": "system-spec-kit",
+    "top": "system-deep-loop",
+    "pass": false
+   },
+   {
+    "index": 127,
+    "id": "rr-iter3-133",
+    "prompt": "Audit the corpus balance but do not edit anything yet.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 128,
+    "id": "rr-iter3-134",
+    "prompt": "Explain whether the packet needs another phase or just continue the current research.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 129,
+    "id": "rr-iter3-135",
+    "prompt": "Review the routing packet and create a follow-up task list only if the evidence is weak.",
+    "gold": "system-spec-kit",
+    "top": "sk-code",
+    "pass": false
+   },
+   {
+    "index": 130,
+    "id": "rr-iter3-136",
+    "prompt": "Analyze the `create` false positives around prompt-improvement requests, no edits yet.",
+    "gold": "none",
+    "top": "sk-prompt",
+    "pass": false
+   },
+   {
+    "index": 131,
+    "id": "rr-iter3-137",
+    "prompt": "Inspect the skill-routing bucket and generate five new examples if connector coverage is missing.",
+    "gold": "system-spec-kit",
+    "top": "sk-code",
+    "pass": false
+   },
+   {
+    "index": 132,
+    "id": "rr-iter3-138",
+    "prompt": "Audit whether any prompts are duplicated and remove the extras if they are exact clones.",
+    "gold": "system-spec-kit",
+    "top": "sk-code",
+    "pass": false
+   },
+   {
+    "index": 133,
+    "id": "rr-iter3-139",
+    "prompt": "Explain the current taxonomy and update `corpus/README.md` with the final wording.",
+    "gold": "sk-doc",
+    "top": "sk-doc",
+    "pass": true
+   },
+   {
+    "index": 134,
+    "id": "rr-iter3-140",
+    "prompt": "Review the packet checklist for drift and tell me what would change, but do not change it.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 135,
+    "id": "rr-iter3-141",
+    "prompt": "Analyze the continuation prompts and rewrite the weak ones if you find any.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 136,
+    "id": "rr-iter3-142",
+    "prompt": "Inspect the current labels and explain whether any bucket should be merged.",
+    "gold": "none",
+    "top": null,
+    "pass": true
+   },
+   {
+    "index": 137,
+    "id": "rr-iter3-143",
+    "prompt": "Review the predictions file, then move any malformed rows into a quarantine file.",
+    "gold": "system-spec-kit",
+    "top": "sk-code",
+    "pass": false
+   },
+   {
+    "index": 138,
+    "id": "rr-iter3-144",
+    "prompt": "Audit the read-only prompts and add a few harder edge cases if they look too easy.",
+    "gold": "system-spec-kit",
+    "top": "sk-code",
+    "pass": false
+   },
+   {
+    "index": 139,
+    "id": "rr-iter3-145",
+    "prompt": "Explain why deep-loop prompts matter, then generate a follow-up set for review workflows.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 140,
+    "id": "rr-iter3-146",
+    "prompt": "Review the routing taxonomy only; don’t write anything back yet.",
+    "gold": "sk-code",
+    "top": "sk-doc",
+    "pass": false
+   },
+   {
+    "index": 141,
+    "id": "rr-iter3-147",
+    "prompt": "Inspect the corpus ids and update the broken prefix if a mismatch shows up.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 142,
+    "id": "rr-iter3-148",
+    "prompt": "Analyze the first-100 baseline and explain the misses before we decide on edits.",
+    "gold": "none",
+    "top": null,
+    "pass": true
+   },
+   {
+    "index": 143,
+    "id": "rr-iter3-149",
+    "prompt": "Run `/deep:research :auto` for the routing hardening packet and stop on convergence.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 144,
+    "id": "rr-iter3-150",
+    "prompt": "Start an overnight deep research run that keeps appending iteration markdown and delta JSONL files.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 145,
+    "id": "rr-iter3-151",
+    "prompt": "Kick off another deep-review wave for the packet docs and keep the iteration history in the same folder.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 146,
+    "id": "rr-iter3-152",
+    "prompt": "Continue the deep-research lineage with five more routing iterations.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 147,
+    "id": "rr-iter3-153",
+    "prompt": "Launch a convergence-tracked research loop on Gate 3 misses instead of doing a manual pass.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 148,
+    "id": "rr-iter3-154",
+    "prompt": "`/deep:review :auto` the current packet for 12 iterations.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 149,
+    "id": "rr-iter3-155",
+    "prompt": "Resume the active deep-review lineage and append the next review artifact set.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 150,
+    "id": "rr-iter3-156",
+    "prompt": "Run a fresh deep-research pass focused on prompt-routing false positives.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 151,
+    "id": "rr-iter3-157",
+    "prompt": "Use the deep-research workflow, not ad hoc notes, to keep iterating on routing accuracy.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 152,
+    "id": "rr-iter3-158",
+    "prompt": "Start a multi-round review loop for release-readiness evidence on this packet.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 153,
+    "id": "rr-iter3-159",
+    "prompt": "Continue the current research loop and append the canonical state entry when the pass finishes.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 154,
+    "id": "rr-iter3-160",
+    "prompt": "Begin a 10-iteration research sweep over skill-routing prompts and record every pass.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 155,
+    "id": "rr-iter3-161",
+    "prompt": "Kick off a deep review of the routing docs packet and stop when convergence is clear.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 156,
+    "id": "rr-iter3-162",
+    "prompt": "Resume deep research on the routing packet and keep writing into `research/iterations/`.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 157,
+    "id": "rr-iter3-163",
+    "prompt": "Run another automated research cycle for the routing corpus and preserve the same lineage.",
+    "gold": "system-deep-loop",
+    "top": "system-spec-kit",
+    "pass": false
+   },
+   {
+    "index": 158,
+    "id": "rr-iter3-164",
+    "prompt": "Start a deep-review loop over the packet checklists and findings registry.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 159,
+    "id": "rr-iter3-165",
+    "prompt": "Continue the overnight research run with one more packet-local iteration.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 160,
+    "id": "rr-iter3-166",
+    "prompt": "Use the deep-review workflow for the docs audit rather than a one-off review message.",
+    "gold": "system-deep-loop",
+    "top": "sk-doc",
+    "pass": false
+   },
+   {
+    "index": 161,
+    "id": "rr-iter3-167",
+    "prompt": "Launch a fresh routing-accuracy research loop that rebuilds state under the research folder.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 162,
+    "id": "rr-iter3-168",
+    "prompt": "Run `/deep:research :auto --max-iterations=8` on the routing packet.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 163,
+    "id": "rr-iter3-169",
+    "prompt": "Resume deep review for the release packet and continue the same session.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 164,
+    "id": "rr-iter3-170",
+    "prompt": "Start a looped investigation into the `review + write` false-negative class and keep per-iteration artifacts.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 165,
+    "id": "rr-iter3-171",
+    "prompt": "Continue the current deep-research wave and append the next markdown iteration report.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 166,
+    "id": "rr-iter3-172",
+    "prompt": "Kick off a deep review on the routing packet with convergence detection enabled.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 167,
+    "id": "rr-iter3-173",
+    "prompt": "Use the deep-research workflow to keep digging until newInfoRatio drops below the threshold.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 168,
+    "id": "rr-iter3-174",
+    "prompt": "Continue the deep-review lineage with another findings pass on the packet docs.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 169,
+    "id": "rr-iter3-177",
+    "prompt": "Use Chrome DevTools to capture a HAR from the routing dashboard in staging.",
+    "gold": "mcp-tooling",
+    "top": "mcp-tooling",
+    "pass": true
+   },
+   {
+    "index": 170,
+    "id": "rr-iter3-178",
+    "prompt": "Improve this overnight-agent prompt so it is clearer and more constrained.",
+    "gold": "sk-prompt",
+    "top": "sk-prompt",
+    "pass": true
+   },
+   {
+    "index": 171,
+    "id": "rr-iter3-179",
+    "prompt": "Create a sharper prompt for the next routing-accuracy overnight run.",
+    "gold": "sk-prompt",
+    "top": "sk-prompt",
+    "pass": true
+   },
+   {
+    "index": 172,
+    "id": "rr-iter3-180",
+    "prompt": "Set up a git worktree for the routing-hardening experiment branch.",
+    "gold": "sk-git",
+    "top": "sk-git",
+    "pass": true
+   },
+   {
+    "index": 173,
+    "id": "rr-iter3-182",
+    "prompt": "Review the current PR for routing regressions and list findings first.",
+    "gold": "sk-code",
+    "top": "sk-git",
+    "pass": false
+   },
+   {
+    "index": 174,
+    "id": "rr-iter3-183",
+    "prompt": "Use the OpenCode standards route to clean up the routing helper implementation.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 175,
+    "id": "rr-iter3-184",
+    "prompt": "Create a manual testing playbook entry for the routing dashboard.",
+    "gold": "sk-doc",
+    "top": "sk-doc",
+    "pass": true
+   },
+   {
+    "index": 176,
+    "id": "rr-iter3-185",
+    "prompt": "Generate a better prompt package for the routing baseline run, but do not save it anywhere.",
+    "gold": "sk-prompt",
+    "top": "sk-prompt",
+    "pass": true
+   },
+   {
+    "index": 177,
+    "id": "rr-iter3-186",
+    "prompt": "Build me a stronger system prompt for the routing evaluator.",
+    "gold": "sk-prompt",
+    "top": "sk-prompt",
+    "pass": true
+   },
+   {
+    "index": 178,
+    "id": "rr-iter3-188",
+    "prompt": "Use the code-review skill to audit this packet for blocking issues only.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 179,
+    "id": "rr-iter3-189",
+    "prompt": "Improve my prompt for comparing Gate 3 and skill-advisor outputs.",
+    "gold": "sk-prompt",
+    "top": "sk-prompt",
+    "pass": true
+   },
+   {
+    "index": 180,
+    "id": "rr-iter3-191",
+    "prompt": "Create a new prompt variant for the overnight run and just show it inline.",
+    "gold": "sk-prompt",
+    "top": "sk-prompt",
+    "pass": true
+   },
+   {
+    "index": 181,
+    "id": "rr-iter3-192",
+    "prompt": "Use the git workflow skill to prepare a clean experiment branch for routing work.",
+    "gold": "sk-git",
+    "top": "sk-git",
+    "pass": true
+   },
+   {
+    "index": 182,
+    "id": "rr-iter3-193",
+    "prompt": "Open Chrome DevTools and record the console errors from the packet dashboard.",
+    "gold": "mcp-tooling",
+    "top": "mcp-tooling",
+    "pass": true
+   },
+   {
+    "index": 183,
+    "id": "rr-iter3-194",
+    "prompt": "Write a cleaner user prompt for the next routing-accuracy dispatch.",
+    "gold": "sk-prompt",
+    "top": "sk-prompt",
+    "pass": true
+   },
+   {
+    "index": 184,
+    "id": "rr-iter3-195",
+    "prompt": "Create a README section that explains how to run the routing baseline.",
+    "gold": "sk-doc",
+    "top": "sk-doc",
+    "pass": true
+   },
+   {
+    "index": 185,
+    "id": "rr-iter3-196",
+    "prompt": "Build a better phrasing for the deep-review dispatch and keep it in chat only.",
+    "gold": "sk-prompt",
+    "top": "system-deep-loop",
+    "pass": false
+   },
+   {
+    "index": 186,
+    "id": "rr-iter3-199",
+    "prompt": "Improve the operator prompt for the first-100 Gate 3 benchmark.",
+    "gold": "sk-prompt",
+    "top": "sk-prompt",
+    "pass": true
+   },
+   {
+    "index": 187,
+    "id": "rr-iter3-200",
+    "prompt": "Use the OpenCode standards route to refactor the small CommonJS reducer helper.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 188,
+    "id": "rr-hub6-201",
+    "prompt": "Mark the ClickUp task done with a note and log the time I spent via cupt.",
+    "gold": "mcp-tooling",
+    "top": "mcp-tooling",
+    "pass": true
+   },
+   {
+    "index": 189,
+    "id": "rr-hub6-202",
+    "prompt": "Render this component in Figma Desktop and export its design tokens with figma-ds-cli.",
+    "gold": "mcp-tooling",
+    "top": "mcp-tooling",
+    "pass": true
+   },
+   {
+    "index": 190,
+    "id": "rr-hub6-203",
+    "prompt": "Use the Aside browser to sign into staging and capture repl evidence of the console errors.",
+    "gold": "mcp-tooling",
+    "top": "mcp-tooling",
+    "pass": true
+   },
+   {
+    "index": 191,
+    "id": "rr-hub6-204",
+    "prompt": "Run an agentic browser session with aside mcp through Code Mode and save the screenshots.",
+    "gold": "mcp-tooling",
+    "top": "mcp-code-mode",
+    "pass": false
+   },
+   {
+    "index": 192,
+    "id": "rr-hub6-205",
+    "prompt": "Search Refero for real app checkout screens and pull style references for the redesign.",
+    "gold": "mcp-tooling",
+    "top": "mcp-tooling",
+    "pass": true
+   },
+   {
+    "index": 193,
+    "id": "rr-hub6-206",
+    "prompt": "Research onboarding flow patterns from real iOS apps on Mobbin for our signup rework.",
+    "gold": "mcp-tooling",
+    "top": "mcp-tooling",
+    "pass": true
+   },
+   {
+    "index": 194,
+    "id": "rr-hub6-207",
+    "prompt": "Use the Mobbin MCP through code mode to collect screen examples of paywall designs.",
+    "gold": "mcp-tooling",
+    "top": "mcp-code-mode",
+    "pass": false
+   }
+  ],
+  "holdout": [
+   {
+    "index": 0,
+    "id": "harder:c4b5aa8603df",
+    "prompt": "Before the next handoff, rebuild the work packet ledger and prove the closure gates are internally consistent.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 1,
+    "id": "harder:0627b7a965f0",
+    "prompt": "Capture the current operating state so a later session can resume without rereading every artifact.",
+    "gold": "system-spec-kit",
+    "top": "memory:save",
+    "pass": false
+   },
+   {
+    "index": 2,
+    "id": "harder:b299699c3964",
+    "prompt": "Turn this scattered onboarding note into a polished operator-facing playbook with examples and stable headings.",
+    "gold": "sk-doc",
+    "top": "sk-doc",
+    "pass": true
+   },
+   {
+    "index": 3,
+    "id": "harder:9d3cc274bedb",
+    "prompt": "Rework this usage narrative so it reads like an install path people can follow without extra explanation.",
+    "gold": "sk-doc",
+    "top": null,
+    "pass": false
+   },
+   {
+    "index": 4,
+    "id": "harder:2e5b255cf683",
+    "prompt": "Package these local edits into a reviewable change with a clean history and remote branch ready for handoff.",
+    "gold": "sk-git",
+    "top": "sk-git",
+    "pass": true
+   },
+   {
+    "index": 5,
+    "id": "harder:f54f90c56889",
+    "prompt": "Set up an isolated lane for this risky experiment, then publish the final patch series for maintainers.",
+    "gold": "sk-git",
+    "top": null,
+    "pass": false
+   },
+   {
+    "index": 6,
+    "id": "harder:dc5b1eec42f4",
+    "prompt": "Rewrite these instructions so a smaller model follows the constraints instead of improvising around them.",
+    "gold": "sk-prompt",
+    "top": null,
+    "pass": false
+   },
+   {
+    "index": 7,
+    "id": "harder:a936c52192b6",
+    "prompt": "Score this task brief for ambiguity, missing inputs, and whether the requested behavior is testable.",
+    "gold": "sk-prompt",
+    "top": null,
+    "pass": false
+   },
+   {
+    "index": 8,
+    "id": "harder:8c541500fe24",
+    "prompt": "Bundle several connector calls into one typed execution and return only the compact structured result.",
+    "gold": "mcp-code-mode",
+    "top": null,
+    "pass": false
+   },
+   {
+    "index": 9,
+    "id": "harder:00b82eb94d58",
+    "prompt": "Drive the external integrations through a single script so the transcript stays small.",
+    "gold": "mcp-code-mode",
+    "top": null,
+    "pass": false
+   },
+   {
+    "index": 10,
+    "id": "harder:9bda50ef3e7b",
+    "prompt": "Open the local interface, reproduce the broken interaction, and capture the page evidence from the runtime.",
+    "gold": "mcp-tooling",
+    "top": null,
+    "pass": false
+   },
+   {
+    "index": 11,
+    "id": "harder:eb10a4b1b288",
+    "prompt": "Inspect what the rendered page actually did after the click, including network and visual proof.",
+    "gold": "mcp-tooling",
+    "top": null,
+    "pass": false
+   },
+   {
+    "index": 12,
+    "id": "harder:79997ebae7df",
+    "prompt": "Ask OpenCode with a small-model executor to sweep the architecture and report what this repo is missing.",
+    "gold": "cli-external-orchestration",
+    "top": "cli-external-orchestration",
+    "pass": true
+   },
+   {
+    "index": 13,
+    "id": "harder:fa49edfc3656",
+    "prompt": "Use an OpenCode second opinion for a wide-context read before we decide on the design.",
+    "gold": "cli-external-orchestration",
+    "top": "cli-external-orchestration",
+    "pass": true
+   },
+   {
+    "index": 14,
+    "id": "harder:ce0726a9d0f5",
+    "prompt": "Run repeated evidence-gathering passes until the question stops producing new information, then synthesize.",
+    "gold": "deep-research",
+    "top": "sk-design",
+    "pass": false
+   },
+   {
+    "index": 15,
+    "id": "harder:a29dc6008527",
+    "prompt": "Keep an external state trail while investigating this unknown area across multiple fresh passes.",
+    "gold": "deep-research",
+    "top": null,
+    "pass": false
+   },
+   {
+    "index": 16,
+    "id": "harder:4c8fe4462488",
+    "prompt": "Make several independent passes over this change, stop when findings converge, and rank the release risks.",
+    "gold": "deep-review",
+    "top": "sk-doc",
+    "pass": false
+   },
+   {
+    "index": 17,
+    "id": "harder:6ec7daa39ca9",
+    "prompt": "Audit the implementation repeatedly with a persistent state log until only residual issues remain.",
+    "gold": "deep-review",
+    "top": "sk-code",
+    "pass": false
+   },
+   {
+    "index": 18,
+    "id": "harder:92622c987099",
+    "prompt": "Have multiple perspectives argue the plan, compare tradeoffs, and leave the decision artifacts in the packet.",
+    "gold": "deep-ai-council",
+    "top": "system-spec-kit",
+    "pass": false
+   },
+   {
+    "index": 19,
+    "id": "harder:4798f04a4216",
+    "prompt": "Stage a structured design deliberation with separate seats and converge on the least risky option.",
+    "gold": "deep-ai-council",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 20,
+    "id": "P0-GIT-001",
+    "prompt": "create a pull request on github",
+    "gold": "sk-git",
+    "top": "sk-git",
+    "pass": true
+   },
+   {
+    "index": 21,
+    "id": "P0-GIT-002",
+    "prompt": "resolve merge conflict and rebase branch",
+    "gold": "sk-git",
+    "top": "sk-git",
+    "pass": true
+   },
+   {
+    "index": 22,
+    "id": "P0-MEM-001",
+    "prompt": "save this conversation context to memory",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 23,
+    "id": "P0-SPEC-001",
+    "prompt": "create a new spec folder with plan and tasks",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 24,
+    "id": "P0-CHROME-001",
+    "prompt": "debug console errors in chrome devtools",
+    "gold": "mcp-tooling",
+    "top": "mcp-tooling",
+    "pass": true
+   },
+   {
+    "index": 25,
+    "id": "P0-CHROME-002",
+    "prompt": "inspect network waterfall in browser",
+    "gold": "mcp-tooling",
+    "top": "mcp-tooling",
+    "pass": true
+   },
+   {
+    "index": 26,
+    "id": "P0-UNC-001",
+    "prompt": "api chain mcp",
+    "gold": "none",
+    "top": null,
+    "pass": true
+   },
+   {
+    "index": 27,
+    "id": "P0-CMD-002",
+    "prompt": "/speckit:plan create docs",
+    "gold": "command-spec-kit",
+    "top": "command-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 28,
+    "id": "P0-CMD-003",
+    "prompt": "/memory:save this context",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 29,
+    "id": "P0-ABSTAIN-001",
+    "prompt": "find where this function is defined",
+    "gold": "none",
+    "top": null,
+    "pass": true
+   },
+   {
+    "index": 30,
+    "id": "P1-MCP-001",
+    "prompt": "update notion page using code mode toolchain",
+    "gold": "mcp-code-mode",
+    "top": "mcp-code-mode",
+    "pass": true
+   },
+   {
+    "index": 31,
+    "id": "P1-MCP-002",
+    "prompt": "fetch webflow cms collection",
+    "gold": "mcp-code-mode",
+    "top": "mcp-code-mode",
+    "pass": true
+   },
+   {
+    "index": 32,
+    "id": "P1-RESEARCH-001",
+    "prompt": "autoresearch this repository architecture",
+    "gold": "sk-deep-research",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 33,
+    "id": "P1-RESEARCH-002",
+    "prompt": "/autoresearch auth subsystem",
+    "gold": "sk-deep-research",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 34,
+    "id": "P1-REVIEW-001",
+    "prompt": "perform a security code review for regressions",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 35,
+    "id": "P1-REVIEW-002",
+    "prompt": "check merge readiness and request changes",
+    "gold": "sk-code",
+    "top": "sk-git",
+    "pass": false
+   },
+   {
+    "index": 36,
+    "id": "P1-REVIEW-003",
+    "prompt": "deep review loop for release readiness",
+    "gold": "sk-deep-review",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 37,
+    "id": "P1-REVIEW-004",
+    "prompt": ":review:auto security audit",
+    "gold": "sk-deep-review",
+    "top": "sk-design",
+    "pass": false
+   },
+   {
+    "index": 38,
+    "id": "P1-REVIEW-005",
+    "prompt": "auto review release readiness",
+    "gold": "sk-deep-review",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 39,
+    "id": "P1-REVIEW-006",
+    "prompt": "auto review this PR",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 40,
+    "id": "P1-REVIEW-007",
+    "prompt": "review and update this",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 41,
+    "id": "P1-WEB-001",
+    "prompt": "implement responsive css layout fix",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 42,
+    "id": "P1-WEB-002",
+    "prompt": "refactor frontend component and verify accessibility",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 43,
+    "id": "P1-OPENCODE-001",
+    "prompt": "update python script following opencode standards",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 44,
+    "id": "P1-OPENCODE-002",
+    "prompt": "write bash script with proper shebang and snake_case",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 45,
+    "id": "P1-PROMPT-001",
+    "prompt": "improve this prompt with COSTAR framework",
+    "gold": "sk-prompt",
+    "top": "sk-prompt",
+    "pass": true
+   },
+   {
+    "index": 46,
+    "id": "P1-PROMPT-002",
+    "prompt": "enhance my prompt using CRISPE and CRAFT",
+    "gold": "sk-prompt",
+    "top": "sk-prompt",
+    "pass": true
+   },
+   {
+    "index": 47,
+    "id": "P1-DOC-001",
+    "prompt": "create markdown documentation and install guide",
+    "gold": "sk-doc",
+    "top": "sk-doc",
+    "pass": true
+   },
+   {
+    "index": 48,
+    "id": "P1-CLI-001",
+    "prompt": "use opencode cli for second opinion",
+    "gold": "cli-external-orchestration",
+    "top": "cli-external-orchestration",
+    "pass": true
+   },
+   {
+    "index": 49,
+    "id": "P1-CLI-002",
+    "prompt": "delegate to opencode for code generation",
+    "gold": "cli-external-orchestration",
+    "top": "cli-external-orchestration",
+    "pass": true
+   },
+   {
+    "index": 50,
+    "id": "P1-CLI-003",
+    "prompt": "use claude code cli for extended thinking",
+    "gold": "cli-external-orchestration",
+    "top": "cli-external-orchestration",
+    "pass": true
+   },
+   {
+    "index": 51,
+    "id": "P1-FULLSTACK-001",
+    "prompt": "build full stack typescript service",
+    "gold": "none",
+    "top": null,
+    "pass": true
+   },
+   {
+    "index": 52,
+    "id": "P1-ABSTAIN-001",
+    "prompt": "help",
+    "gold": "none",
+    "top": null,
+    "pass": true
+   },
+   {
+    "index": 53,
+    "id": "P1-ABSTAIN-002",
+    "prompt": "optimize skill_advisor.py execution speed and recommendation quality",
+    "gold": "none",
+    "top": null,
+    "pass": true
+   },
+   {
+    "index": 54,
+    "id": "P1-AUDIT-001",
+    "prompt": "audit skill advisor recommendations and speed",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 55,
+    "id": "P1-GRAPH-002",
+    "prompt": "review opencode typescript module",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 56,
+    "id": "P1-PHRASE-001",
+    "prompt": "code audit",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 57,
+    "id": "P1-PHRASE-008",
+    "prompt": "browser verification checklist",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 58,
+    "id": "P2-BREADTH-GUARD-001",
+    "prompt": "build TypeScript route handler for auth",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 59,
+    "id": "P2-BREADTH-GUARD-002",
+    "prompt": "fix full-stack auth service test failure",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 60,
+    "id": "direct-alias-cli-opencode-literal",
+    "prompt": "Use cli-opencode to delegate this coding task through OpenCode CLI.",
+    "gold": "cli-external-orchestration",
+    "top": "cli-external-orchestration",
+    "pass": true
+   },
+   {
+    "index": 61,
+    "id": "direct-alias-delegate-to-opencode",
+    "prompt": "delegate to opencode and run the ablation suite",
+    "gold": "cli-external-orchestration",
+    "top": "cli-external-orchestration",
+    "pass": true
+   },
+   {
+    "index": 62,
+    "id": "direct-alias-cli-claude-code-literal",
+    "prompt": "Use cli-claude-code to delegate the refactor to Claude Code CLI.",
+    "gold": "cli-external-orchestration",
+    "top": "cli-external-orchestration",
+    "pass": true
+   },
+   {
+    "index": 63,
+    "id": "direct-alias-anthropic-second-opinion",
+    "prompt": "get an anthropic cli second opinion",
+    "gold": "cli-external-orchestration",
+    "top": "cli-external-orchestration",
+    "pass": true
+   },
+   {
+    "index": 64,
+    "id": "negative-guard-following-opencode-standards",
+    "prompt": "update the python script following opencode standards",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 65,
+    "id": "suppressed-codex-abstain",
+    "prompt": "delegate to codex",
+    "gold": "none",
+    "top": "cli-external-orchestration",
+    "pass": false
+   }
+  ],
+  "ambiguity": [
+   {
+    "index": 0,
+    "id": "rr-iter2-046",
+    "prompt": "`/deep:review :auto` the current phase folder for 10 iterations.",
+    "gold": "system-deep-loop",
+    "top": "system-spec-kit",
+    "pass": false
+   },
+   {
+    "index": 1,
+    "id": "rr-iter3-113",
+    "prompt": "Resume iteration from the latest JSONL state entry and append the next delta.",
+    "gold": "system-deep-loop",
+    "top": "sk-code",
+    "pass": false
+   },
+   {
+    "index": 2,
+    "id": "rr-iter3-061",
+    "prompt": "Add a packet-local helper that formats Gate 3 confusion-matrix rows for the research summary.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 3,
+    "id": "rr-iter2-022",
+    "prompt": "Save context for the routing-accuracy packet before I log off.",
+    "gold": "memory:save",
+    "top": "memory:save",
+    "pass": true
+   },
+   {
+    "index": 4,
+    "id": "rr-iter3-125",
+    "prompt": "Continue iteration 11 and append the canonical JSONL line before anything else.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 5,
+    "id": "rr-iter3-170",
+    "prompt": "Start a looped investigation into the `review + write` false-negative class and keep per-iteration artifacts.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 6,
+    "id": "rr-iter3-071",
+    "prompt": "Change the corpus source-mix note so paraphrased prompts are tracked explicitly.",
+    "gold": "sk-doc",
+    "top": "system-spec-kit",
+    "pass": false
+   },
+   {
+    "index": 7,
+    "id": "rr-iter3-081",
+    "prompt": "Update the packet-local prompt template so future runs mention the confusion matrix requirement.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 8,
+    "id": "rr-iter3-123",
+    "prompt": "/speckit:resume the routing-accuracy phase and continue the current run.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 9,
+    "id": "rr-iter3-121",
+    "prompt": "Can you resume the phase folder so the next research pass starts from the right lineage?",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 10,
+    "id": "rr-iter3-140",
+    "prompt": "Review the packet checklist for drift and tell me what would change, but do not change it.",
+    "gold": "sk-code",
+    "top": "sk-code",
+    "pass": true
+   },
+   {
+    "index": 11,
+    "id": "rr-iter3-102",
+    "prompt": "Inspect the predictions schema from iteration 3 and summarize what each field means.",
+    "gold": "none",
+    "top": null,
+    "pass": true
+   },
+   {
+    "index": 12,
+    "id": "rr-iter3-148",
+    "prompt": "Analyze the first-100 baseline and explain the misses before we decide on edits.",
+    "gold": "none",
+    "top": null,
+    "pass": true
+   },
+   {
+    "index": 13,
+    "id": "rr-iter2-041",
+    "prompt": "Run `/deep:research :auto` on the routing-accuracy phase for 15 iterations.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 14,
+    "id": "rr-iter3-168",
+    "prompt": "Run `/deep:research :auto --max-iterations=8` on the routing packet.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 15,
+    "id": "rr-iter2-012",
+    "prompt": "Analyze why `phase` used to misfire without making changes.",
+    "gold": "none",
+    "top": null,
+    "pass": true
+   },
+   {
+    "index": 16,
+    "id": "rr-iter2-029",
+    "prompt": "Use `/memory:save` to capture the current blockers and next focus.",
+    "gold": "memory:save",
+    "top": "memory:save",
+    "pass": true
+   },
+   {
+    "index": 17,
+    "id": "rr-iter3-117",
+    "prompt": "/memory:save this routing baseline before the overnight worker exits.",
+    "gold": "memory:save",
+    "top": "memory:save",
+    "pass": true
+   },
+   {
+    "index": 18,
+    "id": "rr-iter3-142",
+    "prompt": "Inspect the current labels and explain whether any bucket should be merged.",
+    "gold": "none",
+    "top": null,
+    "pass": true
+   },
+   {
+    "index": 19,
+    "id": "rr-iter3-099",
+    "prompt": "Explain why deep-loop prompts belong in the same corpus as ordinary file-write prompts.",
+    "gold": "system-deep-loop",
+    "top": "system-spec-kit",
+    "pass": false
+   },
+   {
+    "index": 20,
+    "id": "rr-iter3-151",
+    "prompt": "Kick off another deep-review wave for the packet docs and keep the iteration history in the same folder.",
+    "gold": "system-deep-loop",
+    "top": "system-deep-loop",
+    "pass": true
+   },
+   {
+    "index": 21,
+    "id": "rr-iter3-089",
+    "prompt": "Can you explain the six routing buckets in plain English for a reviewer?",
+    "gold": "none",
+    "top": null,
+    "pass": true
+   },
+   {
+    "index": 22,
+    "id": "rr-iter2-034",
+    "prompt": "Inspect the current prompts and generate a replacement corpus file if coverage is thin.",
+    "gold": "system-spec-kit",
+    "top": "system-spec-kit",
+    "pass": true
+   },
+   {
+    "index": 23,
+    "id": "rr-iter3-146",
+    "prompt": "Review the routing taxonomy only; don’t write anything back yet.",
+    "gold": "sk-code",
+    "top": "sk-doc",
+    "pass": false
+   }
+  ]
+ }
+}

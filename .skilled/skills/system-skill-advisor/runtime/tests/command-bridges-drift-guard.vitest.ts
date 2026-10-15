@@ -7,6 +7,7 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
+import { parse as parseYaml } from 'yaml';
 
 import {
   COMMAND_BRIDGES,
@@ -38,6 +39,8 @@ interface AllowListEntry extends Omit<CommandBridgeEntry, 'source'> {
 
 const REPO_ROOT = findAdvisorWorkspaceRoot(import.meta.dirname);
 const SKILLS_ROOT = join(REPO_ROOT, '.skilled', 'skills');
+const DOCTOR_DIR = join(REPO_ROOT, '.skilled', 'commands', 'doctor');
+const DOCTOR_PREFIX = 'command-doctor-';
 const COMMAND_BRIDGES_DIR = join(
   SKILLS_ROOT,
   'system-skill-advisor',
@@ -76,6 +79,61 @@ function metadataProjection(): CommandBridgeEntry[] {
   return entries;
 }
 
+function doctorProjection(): CommandBridgeEntry[] {
+  const source = '.skilled/commands/doctor/_routes.yaml';
+  const manifest = parseYaml(readFileSync(join(DOCTOR_DIR, '_routes.yaml'), 'utf8')) as {
+    readonly routes: readonly { readonly command: string; readonly target: string }[];
+    readonly standalone?: readonly { readonly command?: string }[];
+  };
+  const doctorName = (command: string): string => {
+    const match = /^\/doctor:([a-z0-9-]+)$/.exec(command);
+    if (!match) throw new Error(`Unrecognized doctor command in ${source}: ${command}`);
+    return match[1] as string;
+  };
+  const routeCounts = new Map<string, number>();
+  for (const route of manifest.routes) {
+    const commandName = doctorName(route.command);
+    routeCounts.set(commandName, (routeCounts.get(commandName) ?? 0) + 1);
+  }
+  const skillAgent = (commandName: string): string => {
+    const router = readFileSync(join(DOCTOR_DIR, `${commandName}.md`), 'utf8');
+    const tag = /<!--\s*skill_agent:\s*([a-z0-9-]+)\s*-->/.exec(router);
+    if (!tag) throw new Error(`No skill_agent tag in ${commandName}.md`);
+    return tag[1] as string;
+  };
+
+  const entries = manifest.routes.map((route) => {
+    const commandName = doctorName(route.command);
+    const skillId = skillAgent(commandName);
+    return {
+      // A command with several targets needs one bridge per target; a
+      // single-target command takes the command's own id.
+      id: (routeCounts.get(commandName) ?? 0) > 1
+        ? `${DOCTOR_PREFIX}${commandName}-${route.target}`
+        : `${DOCTOR_PREFIX}${commandName}`,
+      command: route.command,
+      skillId,
+      ownerMode: skillId,
+      source,
+    };
+  });
+
+  for (const item of manifest.standalone ?? []) {
+    if (typeof item.command !== 'string') continue;
+    const commandName = doctorName(item.command);
+    const skillId = skillAgent(commandName);
+    entries.push({
+      id: `${DOCTOR_PREFIX}${commandName}`,
+      command: item.command,
+      skillId,
+      ownerMode: skillId,
+      source,
+    });
+  }
+
+  return entries;
+}
+
 function sorted(entries: readonly CommandBridgeEntry[]): CommandBridgeEntry[] {
   return [...entries].sort((left, right) => left.id.localeCompare(right.id));
 }
@@ -86,7 +144,7 @@ function inventoryEntry(entry: CommandBridgeEntry): CommandBridgeEntry {
 }
 
 describe('command-bridges drift guard', () => {
-  it('generated projection exactly equals JSON-derived ids union the residual allow-list', () => {
+  it('generated projection exactly equals JSON-derived ids union the residual allow-list and the doctor routes', () => {
     const generated = JSON.parse(readFileSync(GENERATED_PATH, 'utf8')) as CommandBridgeDump;
     const allowList = JSON.parse(readFileSync(ALLOW_LIST_PATH, 'utf8')) as readonly AllowListEntry[];
     const expected = sorted([
@@ -95,6 +153,7 @@ describe('command-bridges drift guard', () => {
         ...entry,
         source: 'scripts/command-bridges/allow-list.json',
       })),
+      ...doctorProjection(),
     ]);
     const expectedIds = new Set(expected.map((entry) => entry.id));
     const generatedInventory = generated.entries.map(inventoryEntry);
@@ -115,8 +174,11 @@ describe('command-bridges drift guard', () => {
     const typescriptInventoryIds = GENERATED_COMMAND_BRIDGES
       .map((entry) => entry.inventoryId ?? entry.id)
       .sort();
+    // The doctor bridges are generated from the doctor route manifest and have no
+    // hand-authored counterpart, so the frozen hand-authored snapshot is compared
+    // against the other bridges only.
     const typescriptActive = GENERATED_COMMAND_BRIDGES.filter(
-      (entry) => entry.routingEnabled !== false,
+      (entry) => entry.routingEnabled !== false && !entry.id.startsWith(DOCTOR_PREFIX),
     ).map(({ inventoryId: _inventoryId, routingEnabled: _routingEnabled, ...entry }) => entry);
     const handAuthored = HAND_AUTHORED_COMMAND_BRIDGES.map(
       ({ inventoryId: _inventoryId, routingEnabled: _routingEnabled, ...entry }) => entry,
@@ -124,13 +186,24 @@ describe('command-bridges drift guard', () => {
 
     expect(typescriptInventoryIds).toEqual(inventoryIds);
     expect(typescriptActive).toEqual(handAuthored);
-    expect(generated.entries.filter((entry) => entry.runtime?.typescript.enabled)).toHaveLength(5);
-    expect(generated.entries.filter((entry) => entry.runtime?.python.enabled)).toHaveLength(15);
+    expect(
+      generated.entries.filter(
+        (entry) => !entry.id.startsWith(DOCTOR_PREFIX) && entry.runtime?.typescript.enabled,
+      ),
+    ).toHaveLength(5);
+    expect(
+      generated.entries.filter(
+        (entry) => !entry.id.startsWith(DOCTOR_PREFIX) && entry.runtime?.python.enabled,
+      ),
+    ).toHaveLength(15);
     // Derived, not literal. This was a hardcoded total and went stale twice: once
     // when a hub deprecation removed commands, once when new ones were added. The
     // export may alias either the active subset or the whole inventory, so accept
     // either, but measure both from the generated file rather than a magic number.
-    expect([typescriptActive.length, inventoryIds.length]).toContain(COMMAND_BRIDGES.length);
+    const typescriptActiveAll = GENERATED_COMMAND_BRIDGES.filter(
+      (entry) => entry.routingEnabled !== false,
+    ).length;
+    expect([typescriptActiveAll, inventoryIds.length]).toContain(COMMAND_BRIDGES.length);
   });
 
   it('preserves the Python bridge records, order, and owner normalization byte-for-byte', () => {
@@ -140,7 +213,8 @@ describe('command-bridges drift guard', () => {
       'metadata = {"inventory_id", "command", "skill_id", "owner_mode", "routing_enabled"}',
       'def cleaned(records):',
       '    return [[key, {k: v for k, v in value.items() if k not in metadata}]',
-      '            for key, value in records.items() if value.get("routing_enabled", True)]',
+      '            for key, value in records.items() if value.get("routing_enabled", True)',
+      '            and not key.startswith("command-doctor-")]',
       'print(json.dumps({',
       '    "hand": cleaned(module["HAND_AUTHORED_COMMAND_BRIDGES"]),',
       '    "generated": cleaned(module["GENERATED_COMMAND_BRIDGES"]),',

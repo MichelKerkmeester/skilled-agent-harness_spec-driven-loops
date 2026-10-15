@@ -1,0 +1,87 @@
+# /doctor:setup Presentation Contract
+
+This file is the single source of truth for user-facing presentation in `/doctor:setup`: the argument failure, the doctor target list, the per-leg result table, result templates, and next-step text. The command router owns asset routing only. The workflow YAML owns execution behavior.
+
+## 1. Argument Failure
+
+```text
+Unknown argument: [argument]
+/doctor:setup takes no target and no flag. Run /doctor:setup on its own.
+STATUS=FAIL ERROR="unknown_argument"
+```
+
+## 2. Doctor Target List
+
+Render this table first, before any leg runs.
+
+| Command | What it checks |
+|---------|----------------|
+| `/doctor:setup` | This overview: the doctor target list and the five read-only setup legs |
+| `/doctor:env list` | The documented environment switches and where each value comes from |
+| `/doctor:update` | Whether a newer spec-kit release is available (bare runs the read-only check) |
+| `/doctor:git setup` | Whether the sk-git install, hooks, trust and standards are live |
+| `/doctor:git hooks` | Which shipped git hook gates are on or off, and switching one |
+| `/doctor:git standards` | The commit, PR and branch rules in .sk-git/ |
+| `/doctor:sk-code setup` | The sk-code setup battery, with a repair command per failing leg |
+| `/doctor:speckit` | The generated trigger index, its lookup and the ripgrep recipes |
+| `/doctor:runtime-mirrors` | Whether each runtime's agent, command, prompt and hook mirrors match .skilled |
+| `/doctor:skill-advisor tune` | Advisor recommendation quality and scoring tuning |
+| `/doctor:skill-advisor rebuild` | Rebuilding the skill graph database |
+| `/doctor:skill-advisor skill-budget` | Skill description character budgets |
+| `/doctor:skill-advisor parent-skill` | A parent skill hub's structure and registry |
+| `/doctor:skill-advisor skill-graph-freshness` | Drift between the compiled, SQLite and on-disk skill graph |
+| `/doctor:skill-advisor router-reach` | Whether each declared routing phrase reaches its hub |
+| `/doctor:deep-loop` | Deep-loop coverage graphs and convergence for research, review and council runs |
+| `/doctor:mcp` | Code Mode install and debug, its UTCP configuration and runtime registration |
+
+## 3. Per-Leg Result Table
+
+Render one row per leg, in the workflow's order.
+
+| Leg | Command | Result | Repair |
+|-----|---------|--------|--------|
+| [leg] | [check-only command] | [PASS|FAIL|SKIP] | [the doctor command that repairs it, or none] |
+
+| Leg | Repair when it fails |
+|-----|----------------------|
+| sk-code | `/doctor:sk-code setup` |
+| sk-git | `/doctor:git setup` |
+| trigger-index | `/doctor:speckit` |
+| runtime-mirrors | `/doctor:runtime-mirrors` |
+| advisor | `/doctor:skill-advisor rebuild` |
+
+## 4. Result Templates
+
+### Summary
+
+```text
+DOCTOR DIAGNOSTIC RESULT
+Target: setup
+Status: [OK|FAIL|ERROR]
+Mutation class: read-only
+Evidence: [N] legs, [N] passed, [N] failed, [N] skipped
+Recommendation: [the doctor command for each failing leg, or none]
+STATUS=[status]
+```
+
+### Failure Summary
+
+```text
+DOCTOR TARGET FAILED
+Target: setup
+Step: [leg]
+Error: [message]
+Next: [recommended command or manual action]
+STATUS=ERROR ERROR="[message]"
+```
+
+## 5. Troubleshooting Display
+
+| Situation | Suggested Action |
+|-----------|------------------|
+| A leg reports FAIL | Run the doctor command in that leg's Repair cell, then rerun `/doctor:setup` |
+| The advisor leg reports SKIP | The advisor daemon is not running. This is not a failure, and any advisor command starts it on demand |
+| The trigger-index leg reports stale documents | Run `/doctor:speckit` to see which documents are stale |
+| Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
+
+End interactive presentations with: `What would you like to do next?`

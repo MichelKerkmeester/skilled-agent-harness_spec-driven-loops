@@ -45,6 +45,10 @@ const IS_CLI_ENTRY = process.argv[1]
   : false;
 
 const requireFromAdvisor = createRequire(import.meta.url);
+
+// Setup, install, check or configure wording marks a prompt that the read-only
+// /doctor:setup overview can answer when no skill matched it.
+const SETUP_WORDING = /\b(?:set\s?up|setups?|install(?:s|ed|ing|ation)?|check(?:s|ed|ing)?|configur(?:e|es|ed|ing|ation))\b/i;
 function skillAdvisorHookEnabled(): boolean {
   try {
     const { isHookEnabled } = requireFromAdvisor(
@@ -331,7 +335,7 @@ export async function handleClaudeUserPromptSubmit(
       },
     };
     const deliveryState = deliveryStateOptionsFor(input);
-    const renderOptions = { deliveryState };
+    const renderOptions = { deliveryState, setupWording: SETUP_WORDING.test(prompt) };
     const brief = renderBrief(result, renderOptions);
     const emitted = brief ?? renderAdvisorFallbackDirective(renderOptions, result);
     // Directive-lifecycle dedup delivers the full brief on the first message

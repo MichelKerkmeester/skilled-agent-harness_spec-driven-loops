@@ -42,52 +42,52 @@
       "acceptance"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      "specs/system-skill-advisor/035-doctor-command-routing/spec.md",
-      "specs/system-skill-advisor/035-doctor-command-routing/plan.md",
-      "specs/system-skill-advisor/035-doctor-command-routing/tasks.md",
-      "specs/system-skill-advisor/035-doctor-command-routing/acceptance-criteria.md",
-      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
-      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
-      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
-      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
-      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
-      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
-      ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
-      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md",
       ".skilled/commands/doctor/_routes.yaml",
-      ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
-      ".skilled/commands/README.txt"
+      ".skilled/commands/doctor/setup.md",
+      ".claude/commands/doctor/setup.md",
+      ".cursor/commands/doctor-setup.md",
+      ".codex/prompts/doctor-setup.md",
+      ".pi/prompts/doctor-setup.md",
+      ".hermes/prompts/doctor-setup.md",
+      ".skilled/commands/doctor/scripts/doctor-phrase-reach.cjs",
+      ".skilled/commands/README.txt",
+      "hooks/claude/user-prompt-submit.ts",
+      ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+      "scratch/ci-yaml-check.md",
+      "scratch/baseline-per-prompt.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/doctor-prompts.jsonl",
+      ".skilled/skills/system-skill-advisor/runtime/tests/doctor-routing-slice.vitest.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "specs/system-skill-advisor/035-doctor-command-routing/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": "specs/system-skill-advisor/035-doctor-command-routing/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": "specs/system-skill-advisor/035-doctor-command-routing/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "acceptance-criteria.md",
         "kind": "doc",
-        "path": "specs/system-skill-advisor/035-doctor-command-routing/acceptance-criteria.md",
+        "path": "acceptance-criteria.md",
         "source": "derived"
       },
       {
@@ -97,69 +97,69 @@
         "source": "derived"
       },
       {
-        "name": "derive-command-bridges.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "scoring-compatibility.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
-        "source": "derived"
-      },
-      {
-        "name": "command-bridges.generated.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
-        "source": "derived"
-      },
-      {
-        "name": "projection.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
-        "source": "derived"
-      },
-      {
-        "name": "skill_advisor.py",
-        "kind": "file",
-        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
-        "source": "derived"
-      },
-      {
-        "name": "fusion.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
-        "source": "derived"
-      },
-      {
-        "name": "render.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md",
-        "source": "derived"
-      },
-      {
         "name": "_routes.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/_routes.yaml",
         "source": "derived"
       },
       {
-        "name": "user-prompt-submit.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+        "name": "setup.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/setup.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-setup.md",
+        "kind": "doc",
+        "path": ".cursor/commands/doctor-setup.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-phrase-reach.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/doctor-phrase-reach.cjs",
         "source": "derived"
       },
       {
         "name": "README.txt",
         "kind": "file",
         "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": "hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "category-overview.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+        "source": "derived"
+      },
+      {
+        "name": "ci-yaml-check.md",
+        "kind": "doc",
+        "path": "scratch/ci-yaml-check.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-per-prompt.json",
+        "kind": "config",
+        "path": "scratch/baseline-per-prompt.json",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-prompts.jsonl",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/doctor-prompts.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-routing-slice.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/doctor-routing-slice.vitest.ts",
         "source": "derived"
       },
       {
@@ -213,7 +213,7 @@
     ],
     "causal_summary": "The skill advisor has no path to the `/doctor:` commands",
     "created_at": "2026-10-15T15:39:09Z",
-    "last_save_at": "2026-10-15T16:00:29.926Z",
+    "last_save_at": "2026-10-15T18:06:35.590Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,13 +223,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1f181fe1e48a8ce7ad66c845766aed673d403d1dbeec0aeba45481004aa71870",
+    "source_fingerprint": "sha256:474f76fe36283ec30ae8b26d45878466af9a4919f9e312cbf44f6f065ae47681",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7ac6e84a2ae4a7fcd87a6af38e5e73f0da26bbc7fa225e87d0fff21a1dcb1d43",
-      "plan.md": "fdd4e60575e47b9f61daffcb21efb806a480c92ef8a47c08b1e6232bb6980200",
-      "tasks.md": "4216f308633ef60a0de75d3e9b1afe186a49c1c044e8ed408f51225f34e29b95",
-      "implementation-summary.md": "832b975e8e59cab9b6871d0dded8486e95cde9b23cb857332e81951a7d8f7a29"
+      "spec.md": "1049b4d3b295164f1ab737c1c816b65a44e5994c7b811ef1da253512bd11a1fa",
+      "plan.md": "3e673b3aaff13e72a5d1b48a4e1f9b4f70d427929d92b9a158d99f7b43adc64d",
+      "tasks.md": "5ee52162e2846b9be35db463841854185a29b1109272f3c1cc012644b26425ca",
+      "implementation-summary.md": "bd3716bdf15e7b9f004befecba184f2dc24b9365d4749e25ca67822cb778a318"
     },
     "last_active_at": null
   }

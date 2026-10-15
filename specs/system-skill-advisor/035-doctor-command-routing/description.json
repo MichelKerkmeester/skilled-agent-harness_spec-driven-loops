@@ -13,14 +13,16 @@
     "target",
     "lines"
   ],
-  "lastUpdated": "2026-10-15T15:49:32.347Z",
+  "lastUpdated": "2026-10-15T18:06:35.590Z",
   "specId": "035",
   "folderSlug": "doctor-command-routing",
   "parentChain": [
     "system-skill-advisor"
   ],
-  "memorySequence": 1,
+  "memorySequence": 3,
   "memoryNameHistory": [
-    "15-10-26_16-49__measured-baseline-labeled-corpus-155-of-195.md"
+    "15-10-26_16-49__measured-baseline-labeled-corpus-155-of-195.md",
+    "15-10-26_17-11__t001-baseline-at-828cb749da-labeled-155-195.md",
+    "15-10-26_19-06__built-doctor-command-routing-routes-yaml-routes.md"
   ]
 }

@@ -118,6 +118,96 @@
         "create test playbook",
         "testing playbook"
       ]
+    },
+    {
+      "inventoryId": "command-doctor-setup",
+      "order": 5,
+      "id": "command-doctor-setup",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-env",
+      "order": 6,
+      "id": "command-doctor-env",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-git-hooks",
+      "order": 7,
+      "id": "command-doctor-git-hooks",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-runtime-mirrors",
+      "order": 8,
+      "id": "command-doctor-runtime-mirrors",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-skill-advisor-skill-budget",
+      "order": 9,
+      "id": "command-doctor-skill-advisor-skill-budget",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-git-setup",
+      "order": 10,
+      "id": "command-doctor-git-setup",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-git-standards",
+      "order": 11,
+      "id": "command-doctor-git-standards",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-sk-code",
+      "order": 12,
+      "id": "command-doctor-sk-code",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-skill-advisor-tune",
+      "order": 13,
+      "id": "command-doctor-skill-advisor-tune",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-skill-advisor-rebuild",
+      "order": 14,
+      "id": "command-doctor-skill-advisor-rebuild",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-skill-advisor-parent-skill",
+      "order": 15,
+      "id": "command-doctor-skill-advisor-parent-skill",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-skill-advisor-skill-graph-freshness",
+      "order": 16,
+      "id": "command-doctor-skill-advisor-skill-graph-freshness",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-skill-advisor-router-reach",
+      "order": 17,
+      "id": "command-doctor-skill-advisor-router-reach",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-speckit",
+      "order": 18,
+      "id": "command-doctor-speckit",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-update",
+      "order": 19,
+      "id": "command-doctor-update",
+      "description": ""
     }
   ],
   "python": [
@@ -279,6 +369,96 @@
         "/create:readme",
         "create:readme"
       ]
+    },
+    {
+      "inventoryId": "command-doctor-setup",
+      "order": 16,
+      "id": "command-doctor-setup",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-env",
+      "order": 17,
+      "id": "command-doctor-env",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-git-hooks",
+      "order": 18,
+      "id": "command-doctor-git-hooks",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-runtime-mirrors",
+      "order": 19,
+      "id": "command-doctor-runtime-mirrors",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-skill-advisor-skill-budget",
+      "order": 20,
+      "id": "command-doctor-skill-advisor-skill-budget",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-git-setup",
+      "order": 21,
+      "id": "command-doctor-git-setup",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-git-standards",
+      "order": 22,
+      "id": "command-doctor-git-standards",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-sk-code",
+      "order": 23,
+      "id": "command-doctor-sk-code",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-skill-advisor-tune",
+      "order": 24,
+      "id": "command-doctor-skill-advisor-tune",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-skill-advisor-rebuild",
+      "order": 25,
+      "id": "command-doctor-skill-advisor-rebuild",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-skill-advisor-parent-skill",
+      "order": 26,
+      "id": "command-doctor-skill-advisor-parent-skill",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-skill-advisor-skill-graph-freshness",
+      "order": 27,
+      "id": "command-doctor-skill-advisor-skill-graph-freshness",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-skill-advisor-router-reach",
+      "order": 28,
+      "id": "command-doctor-skill-advisor-router-reach",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-speckit",
+      "order": 29,
+      "id": "command-doctor-speckit",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-update",
+      "order": 30,
+      "id": "command-doctor-update",
+      "description": ""
     }
   ],
   "pythonOwnerNormalization": {

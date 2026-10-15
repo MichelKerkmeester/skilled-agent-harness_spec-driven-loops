@@ -19,6 +19,8 @@ const COMMAND_BRIDGES_DIR = __dirname;
 const REPO_ROOT = resolve(COMMAND_BRIDGES_DIR, '../../../../../..');
 const SKILLS_ROOT = join(REPO_ROOT, '.skilled', 'skills');
 const ALLOW_LIST_PATH = join(COMMAND_BRIDGES_DIR, 'allow-list.json');
+const DOCTOR_COMMANDS_DIR = join(REPO_ROOT, '.skilled', 'commands', 'doctor');
+const DOCTOR_ROUTES_PATH = join(DOCTOR_COMMANDS_DIR, '_routes.yaml');
 const COMPATIBILITY_PATH = join(COMMAND_BRIDGES_DIR, 'scoring-compatibility.json');
 const OUTPUT_PATH = join(COMMAND_BRIDGES_DIR, 'command-bridges.generated.json');
 const TS_PROJECTION_PATH = join(
@@ -40,6 +42,14 @@ const TS_GENERATED_START = '// BEGIN GENERATED COMMAND BRIDGES';
 const TS_GENERATED_END = '// END GENERATED COMMAND BRIDGES';
 const PY_GENERATED_START = '# BEGIN GENERATED COMMAND BRIDGES';
 const PY_GENERATED_END = '# END GENERATED COMMAND BRIDGES';
+const DOCTOR_PREFIX = 'command-doctor-';
+const RENDER_PATH = join(SKILLS_ROOT, 'system-skill-advisor', 'runtime', 'lib', 'render.ts');
+const RENDER_GENERATED_START = '// BEGIN GENERATED DOCTOR COMMANDS';
+const RENDER_GENERATED_END = '// END GENERATED DOCTOR COMMANDS';
+
+// Manifest-derived runnable strings and trigger phrases per doctor bridge id.
+// The inventory entries keep their five-key shape; the projection merge reads here.
+const DOCTOR_DETAILS = new Map();
 
 // ───────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -122,6 +132,107 @@ function allowListEntries() {
   });
 }
 
+function doctorSkillAgent(name) {
+  const routerPath = join(DOCTOR_COMMANDS_DIR, `${name}.md`);
+  const tag = existsSync(routerPath)
+    ? /<!--\s*skill_agent:\s*([a-z0-9-]+)\s*-->/.exec(readFileSync(routerPath, 'utf8'))
+    : null;
+  if (!tag) {
+    throw new Error(
+      `[command-bridges] ${sourcePath(routerPath)} has no skill_agent tag; `
+        + 'a doctor bridge needs its owning skill',
+    );
+  }
+  return tag[1];
+}
+
+function doctorCommandName(command, label) {
+  const match = /^\/doctor:([a-z0-9-]+)$/.exec(command);
+  if (!match) {
+    throw new Error(`[command-bridges] ${label} has invalid doctor command ${command}`);
+  }
+  return match[1];
+}
+
+function doctorRouteEntries() {
+  DOCTOR_DETAILS.clear();
+  // Required lazily: an argument-rejecting run must exit before this module
+  // ever needs a YAML parser.
+  const YAML = require('yaml');
+  let manifest;
+  try {
+    manifest = YAML.parse(readFileSync(DOCTOR_ROUTES_PATH, 'utf8'));
+  } catch (error) {
+    throw new Error(
+      `[command-bridges] Failed to read ${sourcePath(DOCTOR_ROUTES_PATH)}: ${error.message}`,
+    );
+  }
+  const routes = manifest && manifest.routes;
+  if (!Array.isArray(routes)) {
+    throw new Error('[command-bridges] _routes.yaml routes must be an array');
+  }
+  const names = routes.map((route, index) => (
+    doctorCommandName(route.command, `_routes.yaml routes[${index}]`)
+  ));
+  const totals = new Map();
+  for (const name of names) {
+    totals.set(name, (totals.get(name) || 0) + 1);
+  }
+
+  const entries = [];
+  routes.forEach((route, index) => {
+    const label = `_routes.yaml routes[${index}]`;
+    if (typeof route.target !== 'string' || !route.target) {
+      throw new Error(`[command-bridges] ${label} requires a non-empty string target`);
+    }
+    // A command with several targets needs one bridge per target; a
+    // single-target command takes the command's own id.
+    const multiTarget = totals.get(names[index]) > 1;
+    const id = multiTarget
+      ? `command-doctor-${names[index]}-${route.target}`
+      : `command-doctor-${names[index]}`;
+    const skillId = doctorSkillAgent(names[index]);
+    DOCTOR_DETAILS.set(id, {
+      runnable: multiTarget ? `${route.command} ${route.target}` : route.command,
+      phrases: stringArray(route.trigger_phrases, `${label}.trigger_phrases`),
+    });
+    entries.push({
+      id,
+      command: route.command,
+      skillId,
+      ownerMode: skillId,
+      source: sourcePath(DOCTOR_ROUTES_PATH),
+    });
+  });
+
+  const standalone = manifest.standalone === undefined ? [] : manifest.standalone;
+  if (!Array.isArray(standalone)) {
+    throw new Error('[command-bridges] _routes.yaml standalone must be an array');
+  }
+  standalone.forEach((item, index) => {
+    if (!item || typeof item.command !== 'string') return;
+    const name = doctorCommandName(item.command, `_routes.yaml standalone[${index}]`);
+    const skillId = doctorSkillAgent(name);
+    const runnable = typeof item.runnable === 'string' && item.runnable
+      ? item.runnable
+      : item.command;
+    const phrases = Array.isArray(item.trigger_phrases)
+      && item.trigger_phrases.every((phrase) => typeof phrase === 'string' && phrase)
+      ? item.trigger_phrases
+      : [];
+    DOCTOR_DETAILS.set(`command-doctor-${name}`, { runnable, phrases });
+    entries.push({
+      id: `command-doctor-${name}`,
+      command: item.command,
+      skillId,
+      ownerMode: skillId,
+      source: sourcePath(DOCTOR_ROUTES_PATH),
+    });
+  });
+
+  return entries;
+}
+
 function assertUniqueIds(entries) {
   const seen = new Map();
   for (const entry of entries) {
@@ -173,15 +284,25 @@ function compatibilityByInventoryId(entries, inventoryIds, platform) {
     if (orders.has(order)) {
       throw new Error(`[command-bridges] Duplicate ${platform} order ${order}`);
     }
+    const isDoctor = inventoryId.startsWith(DOCTOR_PREFIX);
+    if (isDoctor && id !== inventoryId) {
+      throw new Error(
+        `[command-bridges] ${platform}[${index}] doctor bridge id must equal its inventoryId`,
+      );
+    }
     if (platform === 'typescript') {
-      if (typeof entry.name !== 'string' || !entry.name) {
-        throw new Error(`[command-bridges] typescript[${index}] requires name`);
+      if (!isDoctor) {
+        if (typeof entry.name !== 'string' || !entry.name) {
+          throw new Error(`[command-bridges] typescript[${index}] requires name`);
+        }
+        stringArray(entry.keywords, `typescript[${index}].keywords`);
+        stringArray(entry.domains, `typescript[${index}].domains`);
+        stringArray(entry.intentSignals, `typescript[${index}].intentSignals`);
       }
-      stringArray(entry.keywords, `typescript[${index}].keywords`);
-      stringArray(entry.domains, `typescript[${index}].domains`);
-      stringArray(entry.intentSignals, `typescript[${index}].intentSignals`);
     } else {
-      stringArray(entry.slashMarkers, `python[${index}].slashMarkers`);
+      if (!isDoctor) {
+        stringArray(entry.slashMarkers, `python[${index}].slashMarkers`);
+      }
       if ('owningSkill' in entry && (typeof entry.owningSkill !== 'string' || !entry.owningSkill)) {
         throw new Error(`[command-bridges] python[${index}].owningSkill must be a non-empty string`);
       }
@@ -237,6 +358,20 @@ function tsString(value) {
 
 function tsArray(values) {
   return `[${values.map((value) => tsString(value)).join(', ')}]`;
+}
+
+function doctorRuntime(entryId, platform, compat) {
+  const { runnable, phrases } = DOCTOR_DETAILS.get(entryId);
+  if (platform === 'typescript') {
+    return {
+      ...compat,
+      name: runnable,
+      keywords: [...phrases],
+      intentSignals: [runnable],
+      domains: ['doctor', 'command'],
+    };
+  }
+  return { ...compat, slashMarkers: [runnable] };
 }
 
 function runtimeOrdered(entries, platform) {
@@ -350,9 +485,25 @@ function replaceMarkedBlock(content, startMarker, endMarker, replacement, filePa
   return `${content.slice(0, bodyStart)}\n${replacement}\n${content.slice(end)}`;
 }
 
+function renderDoctorCommandStrings(entries) {
+  const lines = entries
+    .filter((entry) => entry.id.startsWith(DOCTOR_PREFIX))
+    .sort((left, right) => left.id.localeCompare(right.id))
+    .map((entry) => {
+      const { runnable } = DOCTOR_DETAILS.get(entry.id);
+      return `  ${tsString(entry.id)}: ${tsString(runnable)},`;
+    });
+  return [
+    'const DOCTOR_COMMAND_STRINGS: Readonly<Record<string, string>> = Object.freeze({',
+    ...lines,
+    '});',
+  ].join('\n');
+}
+
 function generatedSources(entries, pythonOwnerNormalization) {
   const typescript = readFileSync(TS_PROJECTION_PATH, 'utf8');
   const python = readFileSync(PY_ADVISOR_PATH, 'utf8');
+  const render = readFileSync(RENDER_PATH, 'utf8');
   return [
     {
       path: TS_PROJECTION_PATH,
@@ -376,6 +527,17 @@ function generatedSources(entries, pythonOwnerNormalization) {
         PY_ADVISOR_PATH,
       ),
     },
+    {
+      path: RENDER_PATH,
+      current: render,
+      next: replaceMarkedBlock(
+        render,
+        RENDER_GENERATED_START,
+        RENDER_GENERATED_END,
+        renderDoctorCommandStrings(entries),
+        RENDER_PATH,
+      ),
+    },
   ];
 }
 
@@ -397,20 +559,29 @@ function main() {
   const checkOnly = process.argv.includes('--check');
   const metadata = metadataEntries();
   const allowList = allowListEntries();
-  const inventory = [...metadata, ...allowList].sort((left, right) => left.id.localeCompare(right.id));
+  const doctor = doctorRouteEntries();
+  const inventory = [...metadata, ...allowList, ...doctor].sort((left, right) => left.id.localeCompare(right.id));
   assertUniqueIds(inventory);
   const compatibility = runtimeCompatibility(inventory);
-  const entries = inventory.map((entry) => ({
-    ...entry,
-    runtime: {
-      typescript: compatibility.typescript.get(entry.id)
-        ? { enabled: true, ...compatibility.typescript.get(entry.id) }
-        : { enabled: false },
-      python: compatibility.python.get(entry.id)
-        ? { enabled: true, ...compatibility.python.get(entry.id) }
-        : { enabled: false },
-    },
-  }));
+  const entries = inventory.map((entry) => {
+    const isDoctor = entry.id.startsWith(DOCTOR_PREFIX);
+    const typescript = compatibility.typescript.get(entry.id);
+    const python = compatibility.python.get(entry.id);
+    const runtime = { typescript: { enabled: false }, python: { enabled: false } };
+    if (typescript) {
+      runtime.typescript = {
+        enabled: true,
+        ...(isDoctor ? doctorRuntime(entry.id, 'typescript', typescript) : typescript),
+      };
+    }
+    if (python) {
+      runtime.python = {
+        enabled: true,
+        ...(isDoctor ? doctorRuntime(entry.id, 'python', python) : python),
+      };
+    }
+    return { ...entry, runtime };
+  });
 
   const projection = {
     schemaVersion: 2,
@@ -418,6 +589,7 @@ function main() {
     counts: {
       commandMetadata: metadata.length,
       allowList: allowList.length,
+      doctorRoutes: doctor.length,
       generated: entries.length,
       typescriptActive: compatibility.typescript.size,
       pythonActive: compatibility.python.size,

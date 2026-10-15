@@ -50,6 +50,7 @@ router_reach_invariant: |
 upstream_assets:
   contract: "local command design contract"
   diagnostic_script: ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs"
+  doctor_reach_script: ".skilled/commands/doctor/scripts/doctor-phrase-reach.cjs"
   allowlist: ".skilled/skills/sk-doc/sk-create-skill/scripts/router-reach-allowlist.json"
   stage_one_vocabulary: ".skilled/skills/*/graph-metadata.json"
   stage_two_vocabulary: ".skilled/skills/*/ROUTER.md"
@@ -93,6 +94,7 @@ workflow:
     activities:
       - "Execute upstream_assets.diagnostic_script via Bash, adding --hub <id> when supplied and --concurrency <n> when supplied; otherwise use the script default."
       - "Capture stdout and exit code. The run probes concurrently and takes minutes, not seconds."
+      - "Execute upstream_assets.doctor_reach_script via Bash (node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs). It scores every phrase of each doctor command bridge that is active in the TypeScript scorer in process, under the pinned force-local regime, and needs the advisor runtime built. Capture its stdout, its STATUS= line and its exit code: 0 every admitted phrase reaches its bridge as the top pick or the second line, 1 at least one miss, 2 missing build or bad argument."
     outputs:
       - reach_report
       - advisor_generation
@@ -104,6 +106,7 @@ workflow:
       - "Print the per-hub counts and every failing phrase with the hub that took it instead."
       - "State the advisor generation the numbers were taken at, since a rebuild changes them."
       - "Require the literal RESULT line. A run that printed no rule output has failed, not passed."
+      - "Report the doctor reach probe separately: its STATUS= line and every FAIL row with the top pick and the second line it got instead. A doctor miss fails the run like a wrong-hub row."
 
 # ─────────────────────────────────────────────────────────────────
 # OUTPUT FORMAT
@@ -116,3 +119,6 @@ output_format: |
 
   A no-reach row does not fail. It is reported for a human to judge, because it is usually
   a phrase too short to clear the bar at all and no amount of vocabulary changes that.
+
+  The doctor reach probe adds its own STATUS=OK or STATUS=FAIL line. RESULT: FAILED also
+  covers a doctor probe exit 1, and its exit 2 is reported as a refused run.

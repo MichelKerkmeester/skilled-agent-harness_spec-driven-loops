@@ -81,6 +81,7 @@ const CONCERN_QUALITY = /\b(quality|accuracy|recommendation|recommendations|corr
 const TRUE_FLAG_VALUES = new Set(['1', 'true', 'yes', 'on', 'enabled']);
 const NO_RRF_RANK = Number.MAX_SAFE_INTEGER;
 const ADVISOR_SELF_RECOMMENDATION_SKILL_IDS = new Set(['system-skill-advisor', 'skill-advisor']);
+const DOCTOR_BRIDGE_PREFIX = 'command-doctor-';
 
 // ───────────────────────────────────────────────────────────────────
 // 3. TYPE DEFINITIONS
@@ -645,6 +646,51 @@ function primaryIntentBonus(
 // 5. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
 
+// A doctor bridge surfaces only on its own wording: one of its manifest phrases
+// or its runnable slash string, which the explicit-author lane reports. A doctor
+// bridge that passed on shared single tokens alone stays scored but stops passing.
+export function requireDoctorPhraseAnchor(
+  ranked: readonly AdvisorScoredRecommendation[],
+): AdvisorScoredRecommendation[] {
+  return ranked.map((recommendation) => {
+    if (
+      !recommendation.passes_threshold
+      || recommendation.kind !== 'command'
+      || !recommendation.skill.startsWith(DOCTOR_BRIDGE_PREFIX)
+    ) {
+      return recommendation;
+    }
+    const anchored = recommendation.laneContributions.some((contribution) => (
+      contribution.lane === 'explicit_author' && contribution.rawScore > 0
+    ));
+    return anchored ? recommendation : { ...recommendation, passes_threshold: false };
+  });
+}
+
+// A doctor command answers a setup or health question about the tooling, not the
+// work itself. When a skill also passes, the skill keeps first place and every
+// doctor bridge that ranked above it moves to just after the last passing skill,
+// keeping their relative order. A prompt that types a doctor slash command asked
+// for the command, so it keeps the scored order.
+export function keepPassingSkillsAboveDoctorBridges(
+  ranked: readonly AdvisorScoredRecommendation[],
+  promptLower: string,
+): AdvisorScoredRecommendation[] {
+  if (promptLower.includes('/doctor:')) return [...ranked];
+  let lastPassingSkill = -1;
+  ranked.forEach((recommendation, index) => {
+    if (recommendation.kind === 'skill' && recommendation.passes_threshold) lastPassingSkill = index;
+  });
+  if (lastPassingSkill < 0) return [...ranked];
+  const isDoctorBridge = (recommendation: AdvisorScoredRecommendation): boolean => (
+    recommendation.kind === 'command' && recommendation.skill.startsWith(DOCTOR_BRIDGE_PREFIX)
+  );
+  const above = ranked.slice(0, lastPassingSkill + 1);
+  const moved = above.filter(isDoctorBridge);
+  if (moved.length === 0) return [...ranked];
+  return [...above.filter((recommendation) => !isDoctorBridge(recommendation)), ...moved, ...ranked.slice(lastPassingSkill + 1)];
+}
+
 export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOptions): AdvisorScoringResult {
   const projection = projectionWithUsableSkillIds(
     options.projection ?? loadAdvisorProjection(options.workspaceRoot),
@@ -892,6 +938,9 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
     confidenceThreshold: options.confidenceThreshold ?? DEFAULT_CONFIDENCE_THRESHOLD,
     uncertaintyThreshold: options.uncertaintyThreshold ?? DEFAULT_UNCERTAINTY_THRESHOLD,
   });
+
+  ranked = requireDoctorPhraseAnchor(ranked);
+  ranked = keepPassingSkillsAboveDoctorBridges(ranked, promptLower);
 
   const passing = ranked.filter((recommendation) => recommendation.passes_threshold);
   const visible = options.includeAllCandidates ? ranked : passing;

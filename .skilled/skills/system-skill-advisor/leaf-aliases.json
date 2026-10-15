@@ -196,6 +196,11 @@
   },
   {
     "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature-catalog/scorer-fusion/doctor-command-routing.md",
+    "diskPath": "feature-catalog/scorer-fusion/doctor-command-routing.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
     "leafResourceId": "feature-catalog/scorer-fusion/five-lane-fusion.md",
     "diskPath": "feature-catalog/scorer-fusion/five-lane-fusion.md"
   },
@@ -303,6 +308,41 @@
     "workflowMode": "system-skill-advisor",
     "leafResourceId": "manual-testing-playbook/compat-and-disable/python-shim-stdin.md",
     "diskPath": "manual-testing-playbook/compat-and-disable/python-shim-stdin.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-routing-contested-second-line.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-routing-contested-second-line.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-routing-env-prompt.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-routing-env-prompt.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-routing-no-hint-unrelated.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-routing-no-hint-unrelated.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-routing-python-typed-command.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-routing-python-typed-command.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-routing-setup-hint.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-routing-setup-hint.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-routing-setup-onboarding.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-routing-setup-onboarding.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-setup-run.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-setup-run.md"
   },
   {
     "workflowMode": "system-skill-advisor",

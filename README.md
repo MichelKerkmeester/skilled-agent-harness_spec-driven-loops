@@ -1230,7 +1230,9 @@ The active autonomous loop families. See [Deep Loop](#6--deep-loop) for how they
 &nbsp;
 #### DOCTOR
 
-Nine commands cover the diagnostic surface, one per owner. The seven routed ones share the `.skilled/commands/doctor/_routes.yaml` manifest, where each route names its command and carries its setup vars, allowed flags, mutation class and trigger phrases.
+Ten commands cover the diagnostic surface, one per owner. The eight routed ones share the `.skilled/commands/doctor/_routes.yaml` manifest, where each route names its command and carries its setup vars, allowed flags, mutation class and trigger phrases.
+
+**`/doctor:setup`** - read-only onboarding and health check: lists every doctor command and target, runs the sk-code setup, sk-git setup, trigger index, runtime mirror and skill advisor status checks, prints PASS, FAIL or SKIP for each with one repair command per failure, and writes nothing. The skill advisor also suggests it when a prompt about setting up or checking skilled matches no skill
 
 **`/doctor:speckit`** - spec-kit retrieval
 

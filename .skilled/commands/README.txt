@@ -43,7 +43,7 @@ Commands are organized into six groups plus root-level utilities:
 |-------|------|----------|---------|
 | **create** | `commands/create/` | 13 | Scaffold OpenCode components, documentation packages, changelogs, charts, diagrams, diffs and repo rules |
 | **deep** | `commands/deep/` | 3 | Deep research, review and AI council loops |
-| **doctor** | `commands/doctor/` | 9 | Spec-kit retrieval, skill advisor, deep-loop, runtime-mirror, sk-code setup, git hook and standards, MCP, release-update and environment-switch diagnostics |
+| **doctor** | `commands/doctor/` | 10 | Setup overview, spec-kit retrieval, skill advisor, deep-loop, runtime-mirror, sk-code setup, git hook and standards, MCP, release-update and environment-switch diagnostics |
 | **design** | `commands/design/` | 3 | Style Reference extraction, standalone charts and diagrams |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
 | **speckit** | `commands/speckit/` | 6 | Spec folder workflows (plan, implement, resume, complete), continuity write (save) and lexical retrieval (search) |
@@ -155,10 +155,11 @@ Scaffold OpenCode components using the `sk-doc` skill. Each command supports `:a
 
 ### Doctor Commands
 
-Nine command files cover the diagnostic surface, one per owner. Backed by `_routes.yaml`, `mcp-doctor.sh`, interactive YAML workflows, and the live environment switch reference.
+Ten command files cover the diagnostic surface, one per owner. Backed by `_routes.yaml`, `mcp-doctor.sh`, interactive YAML workflows, and the live environment switch reference.
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
+| Setup | `/doctor:setup` | List every doctor target with what it checks, run the read-only setup checks once and name the repair command for each failing leg |
 | Spec-Kit Retrieval | `/doctor:speckit` | Diagnose the generated trigger index, its lookup and the ripgrep retrieval recipes |
 | Skill Advisor | `/doctor:skill-advisor <target> [flags]` | Re-tune routing, rebuild the skill graph, or audit graph freshness, router reach, description budget and parent-skill structure |
 | Deep-Loop | `/doctor:deep-loop [--scope=<scope>]` | Diagnose deep-loop coverage graphs and convergence for research, review and council runs |

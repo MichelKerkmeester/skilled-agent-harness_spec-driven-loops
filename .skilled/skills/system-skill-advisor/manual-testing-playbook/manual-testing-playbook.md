@@ -1,7 +1,7 @@
 ---
 title: "Skill Advisor: Manual Testing Playbook"
 description: "Canonical sk-doc manual testing playbook for the Skill Advisor manual scenario corpus across the native command surface, runtime hooks, compatibility, daemon state, indexing, lifecycle, scorer and Python compatibility workflows."
-version: 0.8.1.0
+version: 0.8.2.0
 ---
 
 # Skill Advisor: Manual Testing Playbook
@@ -28,7 +28,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 54 deterministic scenario files across 10 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for the native command surface, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, plus `PC` for Python compatibility, and `DOC` for the `/doctor:skill-advisor` command, whose numbers are shared with the doctor scenarios in other playbooks.
+This playbook provides 61 deterministic scenario files across 10 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for the native command surface, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, plus `PC` for Python compatibility, and `DOC` for the `/doctor:skill-advisor` command and doctor command routing, whose numbers are shared with the doctor scenarios in other playbooks.
 
 > **Numbering note (gap-09).** The directory layout skips slot `09--*` between `scorer-fusion` and `python-compat`. This mirrors the `feature-catalog/` 05-gap pattern and is an intentional historical reservation from initial scaffold design. The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
 
@@ -125,7 +125,7 @@ Scenario verdict:
 
 ### Release Readiness Rule
 
-Release is `READY` only when all 54 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
+Release is `READY` only when all 61 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
 
 ---
 
@@ -290,7 +290,7 @@ This category validates python compat scenarios `PC-001..PC-005`.
 
 ## 16. DOCTOR COMMANDS
 
-This category validates the `/doctor:skill-advisor` scenarios `DOC-348` and `DOC-362..DOC-367`, one per target plus the menu shown when no target is given. Each scenario runs in a disposable copy. The read-only targets must leave every checksum unchanged, and `tune` and `rebuild` write only after an approval. The memory and causal-graph doctor IDs (DOC-323 to DOC-330) and the rebuild-orchestrator IDs (DOC-338 to DOC-342 and DOC-344 to DOC-347) are retired across every playbook.
+This category validates the `/doctor:skill-advisor` scenarios `DOC-348` and `DOC-362..DOC-367`, one per target plus the menu shown when no target is given. Scenarios `DOC-385..DOC-391` validate doctor command routing: the advisor surfaces a runnable `/doctor:<command>` line for doctor-shaped prompts, keeps a passing skill first, adds a setup hint on setup wording, and `/doctor:setup` itself runs read-only. Each scenario runs in a disposable copy. The read-only targets must leave every checksum unchanged, and `tune` and `rebuild` write only after an approval. The memory and causal-graph doctor IDs (DOC-323 to DOC-330) and the rebuild-orchestrator IDs (DOC-338 to DOC-342 and DOC-344 to DOC-347) are retired across every playbook.
 
 | ID | Scenario | File |
 |---|---|---|
@@ -301,6 +301,13 @@ This category validates the `/doctor:skill-advisor` scenarios `DOC-348` and `DOC
 | DOC-365 | Doctor skill-advisor skill budget | [doctor-skill-advisor-skill-budget.md](doctor-commands/doctor-skill-advisor-skill-budget.md) |
 | DOC-366 | Doctor skill-advisor parent skill | [doctor-skill-advisor-parent-skill.md](doctor-commands/doctor-skill-advisor-parent-skill.md) |
 | DOC-367 | Doctor skill-advisor target menu | [doctor-skill-advisor-target-menu.md](doctor-commands/doctor-skill-advisor-target-menu.md) |
+| DOC-385 | Doctor routing setup onboarding prompt | [doctor-routing-setup-onboarding.md](doctor-commands/doctor-routing-setup-onboarding.md) |
+| DOC-386 | Doctor routing environment variables prompt | [doctor-routing-env-prompt.md](doctor-commands/doctor-routing-env-prompt.md) |
+| DOC-387 | Doctor routing contested prompt second line | [doctor-routing-contested-second-line.md](doctor-commands/doctor-routing-contested-second-line.md) |
+| DOC-388 | Doctor routing typed command in the Python fallback | [doctor-routing-python-typed-command.md](doctor-commands/doctor-routing-python-typed-command.md) |
+| DOC-389 | Doctor routing setup hint on a no-match | [doctor-routing-setup-hint.md](doctor-commands/doctor-routing-setup-hint.md) |
+| DOC-390 | Doctor routing no hint on an unrelated prompt | [doctor-routing-no-hint-unrelated.md](doctor-commands/doctor-routing-no-hint-unrelated.md) |
+| DOC-391 | Doctor setup umbrella run | [doctor-setup-run.md](doctor-commands/doctor-setup-run.md) |
 
 ---
 
@@ -350,7 +357,7 @@ The catalog uses 7 groups; the playbook uses 10 categories. Mapping is intention
 | `hooks-and-plugin` | `cli-hooks-and-plugin` (primary) plus `compat-and-disable` (rollback states) | Catalog group split across 2 playbook categories: happy-path hook behavior in 02, disable plus rollback flags in 03 |
 | `python-compat` | `python-compat` | 1:1 mapping (note gap-09 is intentional per playbook §1) |
 | (none) | `compat-and-disable` | Compat plus disable flags cut across multiple catalog groups; no single catalog group owns them |
-| (none) | `doctor-commands` | The doctor command is documented in the system-spec-kit feature catalog, not this one |
+| `scorer-fusion` (doctor command routing entry) | `doctor-commands` | The doctor commands themselves are documented in the system-spec-kit feature catalog. This catalog documents only how the advisor routes prompts to them |
 | (none) | `operator-h5` | H5 operator state scenarios cut across catalog groups; no single catalog group owns them |
 
 **Why asymmetric**: catalog groups model feature ownership (what the code does), while playbook categories model operator workflow (what an operator validates in one sitting). A single feature group can require multiple operator scenarios that span different runtime contexts (native command surface vs CLI hook vs compat shim). The asymmetry is documented here rather than removed by renumbering because renumbering would break checked-in inventory tests plus deep cross-references in earlier packets.

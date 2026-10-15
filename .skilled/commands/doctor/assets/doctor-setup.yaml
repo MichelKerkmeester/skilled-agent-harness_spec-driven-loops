@@ -1,0 +1,65 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: SETUP UMBRELLA (READ-ONLY DIAGNOSTIC)
+# ─────────────────────────────────────────────────────────────────
+role: Diagnostic Operator giving a first-run overview of every doctor command and running the existing read-only setup checks once
+purpose: List every doctor target with what it checks, run five read-only legs, and name the runnable doctor command that repairs each failing leg
+action: Print the doctor target list -> run the five read-only legs once -> render the per-leg verdict and repair lines through the presentation contract
+skill_owner: ".skilled/commands/doctor/"
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: single-step
+  compliance: MANDATORY
+  execution: read_only
+  approvals: none
+  tracking: single_run
+  validation: read_only_assertion
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES (READ-ONLY)
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  read_only: true
+  allowed_targets: []
+  forbidden_targets:
+    - "**/*"
+  invariant: "Every leg runs in its check-only form. This route MUST NOT regenerate the trigger index, sync a runtime mirror, start the advisor daemon, install hooks or provision the tree. A failing leg prints the doctor command that repairs it; repair is an explicit operator action, never a side effect of this diagnostic."
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  route_manifest: ".skilled/commands/doctor/_routes.yaml"
+  sk_code_battery: ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+  sk_git_battery: ".skilled/commands/doctor/scripts/git-setup-check.cjs"
+  trigger_index_check: ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs"
+  runtime_mirror_check: ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs"
+
+# ─────────────────────────────────────────────────────────────────
+# INPUTS
+# ─────────────────────────────────────────────────────────────────
+inputs:
+  target: "The command takes no positional target and no flag. /doctor:setup alone runs it; anything else fails before this YAML loads."
+
+# ─────────────────────────────────────────────────────────────────
+# EXECUTION
+# ─────────────────────────────────────────────────────────────────
+execution:
+  steps:
+    - "Read .skilled/commands/doctor/_routes.yaml and print the doctor target list through the presentation contract: one row per route (command plus target), plus /doctor:update, /doctor:env and /doctor:mcp, each with the one-line description of what it checks."
+    - "Leg sk-code: run node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs. Exit 0 passes. Any other exit fails, with repair /doctor:sk-code setup."
+    - "Leg sk-git: run node .skilled/commands/doctor/scripts/git-setup-check.cjs. Exit 0 passes. Any other exit fails, with repair /doctor:git setup."
+    - "Leg trigger-index: run node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check --json. Exit 0 passes. Exit 1 (stale documents) or 2 and higher (unreadable index) fails, with repair /doctor:speckit."
+    - "Leg runtime-mirrors: run node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check. Exit 0 passes. Any other exit fails, with repair /doctor:runtime-mirrors."
+    - "Leg advisor: run node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --format json --timeout-ms 500 --warm-only. Exit 0 passes. Exit 75 means the daemon is not running and is reported as SKIP, never as a failure, because the flag never starts it. Any other exit fails, with repair /doctor:skill-advisor rebuild."
+    - "Run every leg even when an earlier one fails, then render the per-leg table, the DOCTOR DIAGNOSTIC RESULT summary and the troubleshooting table through .skilled/commands/doctor/assets/doctor-setup-presentation.txt."
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+output: |
+  STATUS=OK when every leg passes or is skipped.
+  STATUS=FAIL when any leg fails; list each failing leg with its repair command.
+  STATUS=ERROR when a leg crashes or its output cannot be read; report the message and the accepted invocation (/doctor:setup).
