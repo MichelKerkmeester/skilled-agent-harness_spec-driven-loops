@@ -1,5 +1,5 @@
 {
-  "corpusHash": "82a12135adcb3f24b0ec3f64162e9623a237b0f2ad2f7178b46a8abcebddf02a",
+  "corpusHash": "1fb31d951cad6e5f11619fc9bfb85d92e0bc3b9217a1311aca3d19249e2d2fae",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24873,
+  "includedPathCount": 24883,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12573,6 +12573,11 @@
     "specs/sk-git/033-git-setup-customization/004-final-deep-review/review/review-report.md",
     "specs/sk-git/033-git-setup-customization/004-final-deep-review/spec.md",
     "specs/sk-git/033-git-setup-customization/004-final-deep-review/tasks.md",
+    "specs/sk-git/033-git-setup-customization/005-setup-check-hardening/acceptance-criteria.md",
+    "specs/sk-git/033-git-setup-customization/005-setup-check-hardening/implementation-summary.md",
+    "specs/sk-git/033-git-setup-customization/005-setup-check-hardening/plan.md",
+    "specs/sk-git/033-git-setup-customization/005-setup-check-hardening/spec.md",
+    "specs/sk-git/033-git-setup-customization/005-setup-check-hardening/tasks.md",
     "specs/sk-git/033-git-setup-customization/spec.md",
     "specs/sk-git/034-standards-template-round-trip/implementation-summary.md",
     "specs/sk-git/034-standards-template-round-trip/plan.md",
@@ -15168,6 +15173,11 @@
     "specs/system-skill-advisor/034-doctor-command-guidance/research/resource-map.md",
     "specs/system-skill-advisor/034-doctor-command-guidance/spec.md",
     "specs/system-skill-advisor/034-doctor-command-guidance/tasks.md",
+    "specs/system-skill-advisor/035-doctor-command-routing/acceptance-criteria.md",
+    "specs/system-skill-advisor/035-doctor-command-routing/implementation-summary.md",
+    "specs/system-skill-advisor/035-doctor-command-routing/plan.md",
+    "specs/system-skill-advisor/035-doctor-command-routing/spec.md",
+    "specs/system-skill-advisor/035-doctor-command-routing/tasks.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/implementation-summary.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/plan.md",
@@ -24904,7 +24914,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "6ba62a564a5822827b99ef79612453b32e8c6a48faa910d564d3ce744145a16c",
+  "manifestHash": "370545c014576ddd42677b92b25157ff9c2ee680fbad1e53de8c815f9ce70393",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27151,6 +27161,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/scratch",
       "reason": "excluded directory"
     },
@@ -27940,6 +27958,10 @@
     },
     {
       "path": "specs/sk-git/033-git-setup-customization/004-final-deep-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/033-git-setup-customization/005-setup-check-hardening/scratch",
       "reason": "excluded directory"
     },
     {
@@ -28812,6 +28834,10 @@
     },
     {
       "path": "specs/system-skill-advisor/034-doctor-command-guidance/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/035-doctor-command-routing/scratch",
       "reason": "excluded directory"
     },
     {

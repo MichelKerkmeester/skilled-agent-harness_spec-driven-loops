@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6ba62a564a5822827b99ef79612453b32e8c6a48faa910d564d3ce744145a16c",
+  "manifestHash": "370545c014576ddd42677b92b25157ff9c2ee680fbad1e53de8c815f9ce70393",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8634,6 +8634,9 @@
     ],
     "advisor docs update summary": [
       "advisor docs update summary"
+    ],
+    "advisor doctor bridges": [
+      "advisor doctor bridges"
     ],
     "advisor doctor routing": [
       "advisor doctor routing"
@@ -37252,6 +37255,21 @@
     "doctor command routers rewired": [
       "doctor command routers rewired"
     ],
+    "doctor command routing": [
+      "doctor command routing"
+    ],
+    "doctor command routing acceptance criteria": [
+      "doctor command routing acceptance criteria"
+    ],
+    "doctor command routing implementation summary": [
+      "doctor command routing implementation summary"
+    ],
+    "doctor command routing plan": [
+      "doctor command routing plan"
+    ],
+    "doctor command routing tasks": [
+      "doctor command routing tasks"
+    ],
     "doctor command security hardening": [
       "doctor command security hardening"
     ],
@@ -37489,6 +37507,9 @@
     ],
     "doctor git setup acceptance criteria": [
       "doctor git setup acceptance criteria"
+    ],
+    "doctor git setup hardening": [
+      "doctor git setup hardening"
     ],
     "doctor git setup implementation summary": [
       "doctor git setup implementation summary"
@@ -37922,6 +37943,9 @@
     ],
     "doctor setup check": [
       "doctor setup check"
+    ],
+    "doctor setup umbrella": [
+      "doctor setup umbrella"
     ],
     "doctor signal criteria": [
       "doctor signal criteria"
@@ -47438,6 +47462,12 @@
     ],
     "git run failure analysis": [
       "git run failure analysis"
+    ],
+    "git setup check degraded status": [
+      "git-setup-check degraded status"
+    ],
+    "git setup check hardening plan": [
+      "git-setup-check hardening plan"
     ],
     "git setup check improvements": [
       "git-setup-check improvements"
@@ -71458,6 +71488,9 @@
     "phase 5 rule amendments": [
       "phase 5 rule amendments"
     ],
+    "phase 5 setup check hardening": [
+      "phase 5 setup check hardening"
+    ],
     "phase 5 silent input sweep": [
       "phase 5 silent input sweep"
     ],
@@ -85000,6 +85033,9 @@
     "runnable commands and repaired cross references": [
       "Runnable commands and repaired cross-references"
     ],
+    "runnable doctor command line": [
+      "runnable doctor command line"
+    ],
     "runnable series parent recipe": [
       "runnable series parent recipe"
     ],
@@ -88413,6 +88449,21 @@
     ],
     "setup a vec store rebuild": [
       "Setup A vec store rebuild"
+    ],
+    "setup check hardening": [
+      "setup check hardening"
+    ],
+    "setup check hardening acceptance criteria": [
+      "setup check hardening acceptance criteria"
+    ],
+    "setup check hardening implementation summary": [
+      "setup check hardening implementation summary"
+    ],
+    "setup check hardening plan": [
+      "setup check hardening plan"
+    ],
+    "setup check hardening tasks": [
+      "setup check hardening tasks"
     ],
     "setup cp sandbox rmrf guard": [
       "setup cp sandbox rmrf guard"
