@@ -1,5 +1,5 @@
 {
-  "corpusHash": "fcc01dfb7790e43affa0f16ca001b66778789cc4becf5b5aa19fff489669690c",
+  "corpusHash": "9cadd8c7be9f52fa61928de4925fe50e19250c4e750abd6e0a797f893ddd2583",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24809,
+  "includedPathCount": 24817,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12521,6 +12521,14 @@
     "specs/sk-git/032-template-driven-message-enforcement/review/review-report.md",
     "specs/sk-git/032-template-driven-message-enforcement/spec.md",
     "specs/sk-git/032-template-driven-message-enforcement/tasks.md",
+    "specs/sk-git/033-git-setup-customization/001-deep-research/implementation-summary.md",
+    "specs/sk-git/033-git-setup-customization/001-deep-research/plan.md",
+    "specs/sk-git/033-git-setup-customization/001-deep-research/research/fanout-attribution.md",
+    "specs/sk-git/033-git-setup-customization/001-deep-research/research/research.md",
+    "specs/sk-git/033-git-setup-customization/001-deep-research/research/resource-map.md",
+    "specs/sk-git/033-git-setup-customization/001-deep-research/spec.md",
+    "specs/sk-git/033-git-setup-customization/001-deep-research/tasks.md",
+    "specs/sk-git/033-git-setup-customization/spec.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/implementation-summary.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/plan.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/spec.md",
@@ -24840,7 +24848,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "cb5a418f1be64f261f0b3bb374c608438372133963a259fa4b0e953996847dca",
+  "manifestHash": "7b26c1d871cc5c3b2d99a7ad4f9c2195b7287fea95110385d13c5381adda7ffa",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27087,6 +27095,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/scratch",
       "reason": "excluded directory"
     },
@@ -27856,6 +27872,14 @@
     },
     {
       "path": "specs/sk-git/032-template-driven-message-enforcement/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/033-git-setup-customization/001-deep-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/033-git-setup-customization/001-deep-research/scratch",
       "reason": "excluded directory"
     },
     {

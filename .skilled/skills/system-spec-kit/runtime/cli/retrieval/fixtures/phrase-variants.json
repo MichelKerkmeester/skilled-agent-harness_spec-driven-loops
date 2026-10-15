@@ -1,5 +1,5 @@
 {
-  "manifestHash": "cb5a418f1be64f261f0b3bb374c608438372133963a259fa4b0e953996847dca",
+  "manifestHash": "7b26c1d871cc5c3b2d99a7ad4f9c2195b7287fea95110385d13c5381adda7ffa",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -32626,7 +32626,8 @@
       "deep reasoning"
     ],
     "deep research": [
-      "/deep:research"
+      "/deep:research",
+      "deep research"
     ],
     "deep research 008 003": [
       "deep research 008-003"
@@ -37458,6 +37459,9 @@
     ],
     "doctor git plan": [
       "doctor git plan"
+    ],
+    "doctor git setup": [
+      "doctor git setup"
     ],
     "doctor git summary": [
       "doctor git summary"
@@ -47383,6 +47387,9 @@
     ],
     "git run failure analysis": [
       "git run failure analysis"
+    ],
+    "git setup customization phase parent spec": [
+      "git setup customization phase parent spec"
     ],
     "git skill doc authoring tasks": [
       "git skill doc authoring tasks"
@@ -70794,6 +70801,9 @@
     "phase 1 compiled route manifest suite": [
       "phase 1 compiled route manifest suite"
     ],
+    "phase 1 deep research": [
+      "phase 1 deep research"
+    ],
     "phase 1 doc version contract": [
       "phase 1 doc version contract"
     ],
@@ -92717,6 +92727,9 @@
     "sk git commit contract update": [
       "sk-git commit contract update"
     ],
+    "sk git customization": [
+      "sk-git customization"
+    ],
     "sk git doc contract authoring": [
       "sk-git doc contract authoring"
     ],
@@ -92767,6 +92780,9 @@
     ],
     "sk git scripts tests": [
       "sk-git scripts tests"
+    ],
+    "sk git setup check": [
+      "sk-git setup check"
     ],
     "sk git skill benchmark artifacts": [
       "sk-git skill-benchmark artifacts"
