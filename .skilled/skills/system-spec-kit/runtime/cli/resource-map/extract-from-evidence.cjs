@@ -94,12 +94,13 @@ function emitResourceMap({ shape, deltas, packet, scope, createdAt }) {
   const normalizedDeltas = Array.isArray(deltas) ? deltas : [];
   const generatedAt = normalizeText(createdAt) || new Date().toISOString();
   const packetSummary = normalizePacket(packet);
+  const packetRoot = resolvePacketRoot(packet);
   const normalizedScope = normalizeText(scope)
     || `${normalizedShape} evidence aggregated for ${packetSummary.scopeHint}`;
 
   const normalizedEntries = normalizedShape === 'review'
-    ? normalizeReviewEntries(normalizedDeltas)
-    : normalizeResearchEntries(normalizedDeltas);
+    ? normalizeReviewEntries(normalizedDeltas, packetRoot)
+    : normalizeResearchEntries(normalizedDeltas, packetRoot);
 
   const rowsByCategory = new Map(CATEGORY_ORDER.map((category) => [category.key, []]));
   let missingOnDisk = 0;
@@ -215,7 +216,72 @@ function normalizePacket(packet) {
   };
 }
 
-function normalizeReviewEntries(deltas) {
+function resolvePacketRoot(packet) {
+  if (!packet || typeof packet !== 'object') {
+    return null;
+  }
+
+  // A research packet can live in a consuming repository that reaches this runtime
+  // through a `.skilled` link. The cited paths are relative to that repository, so
+  // the walk starts at the packet and stops at the nearest git work tree. The shared
+  // root resolver looks for the runtime sentinel instead, and a consuming repository
+  // nested in a workspace that holds the runtime would resolve past its own root.
+  const candidateDirs = [
+    packet.specFolder,
+    packet.artifactDir,
+    packet.directory,
+    packet.path,
+  ];
+
+  for (const candidateDir of candidateDirs) {
+    const resolvedDir = resolveExistingDirectory(candidateDir);
+    if (resolvedDir) {
+      return findGitWorkTree(resolvedDir) || findRepoRoot(resolvedDir);
+    }
+  }
+
+  return null;
+}
+
+function findGitWorkTree(startDir) {
+  let current = startDir;
+  for (;;) {
+    // A linked worktree or a submodule carries `.git` as a file, so any entry counts.
+    if (fs.existsSync(path.join(current, '.git'))) {
+      return current;
+    }
+    const parent = path.dirname(current);
+    if (parent === current) {
+      return null;
+    }
+    current = parent;
+  }
+}
+
+function resolveExistingDirectory(candidateDir) {
+  const normalized = normalizeText(candidateDir);
+  if (!normalized) {
+    return null;
+  }
+
+  const candidates = path.isAbsolute(normalized)
+    ? [normalized]
+    : [path.resolve(process.cwd(), normalized), path.resolve(REPO_ROOT, normalized)];
+
+  for (const candidate of candidates) {
+    try {
+      if (fs.statSync(candidate).isDirectory()) {
+        return candidate;
+      }
+    } catch (_error) {
+      // A missing candidate is not a packet root. Try the next spelling.
+    }
+  }
+
+  return null;
+}
+
+function normalizeReviewEntries(deltas, packetRoot) {
   const flattened = flattenRecords(deltas);
   const files = new Map();
   const findings = new Map();
@@ -290,7 +356,7 @@ function normalizeReviewEntries(deltas) {
     entries: Array.from(files.values()).map((entry) => ({
       path: entry.path,
       action: hasFindings(entry.findings) ? 'Analyzed' : 'Validated',
-      status: determineStatus(entry.path),
+      status: determineStatus(entry.path, packetRoot),
       note: [
         `Findings P0=${entry.findings.P0} P1=${entry.findings.P1} P2=${entry.findings.P2}`,
         `Iterations=${entry.iterations.size}`,
@@ -299,7 +365,7 @@ function normalizeReviewEntries(deltas) {
   };
 }
 
-function normalizeResearchEntries(deltas) {
+function normalizeResearchEntries(deltas, packetRoot) {
   const flattened = flattenRecords(deltas);
   const files = new Map();
   let degradedCount = flattened.degradedCount;
@@ -334,7 +400,7 @@ function normalizeResearchEntries(deltas) {
     entries: Array.from(files.values()).map((entry) => ({
       path: entry.path,
       action: 'Cited',
-      status: determineStatus(entry.path),
+      status: determineStatus(entry.path, packetRoot),
       note: `Citations=${entry.iterations.size}; Iterations=${entry.iterations.size}`,
     })),
   };
@@ -435,10 +501,13 @@ function normalizePathCandidate(value) {
   if (normalizedPath === '..' || normalizedPath.startsWith('../')) {
     return null;
   }
-  // Strip trailing `:NNN` or `:NNN-NNN` line anchor — review deltas carry
-  // `file: "path:line"` per the prompt-pack contract, and the suffix would
-  // otherwise make the existence check chase a nonexistent path.
-  return normalizedPath.replace(/^\.\/+/, '').replace(/:\d+(?:-\d+)?$/, '');
+  // A citation can carry a trailing `#anchor` and a `:NNN` or `:NNN-NNN` line
+  // anchor. Either suffix would otherwise make the existence check chase a path
+  // that describes a location inside the file rather than the file itself.
+  return normalizedPath
+    .replace(/^\.\/+/, '')
+    .replace(/#.*$/, '')
+    .replace(/:\d+(?:-\d+)?$/, '');
 }
 
 function ensureFileEntry(map, filePath) {
@@ -476,11 +545,22 @@ function normalizeSeverity(value) {
   return SEVERITY_KEYS.includes(normalized) ? normalized : null;
 }
 
-function determineStatus(resourcePath) {
-  const candidatePath = path.isAbsolute(resourcePath)
-    ? resourcePath
-    : path.resolve(REPO_ROOT, resourcePath);
+function determineStatus(resourcePath, packetRoot) {
+  const cleanPath = stripCitationSuffix(resourcePath);
+  const baseRoot = packetRoot || REPO_ROOT;
+  const candidatePath = path.isAbsolute(cleanPath)
+    ? cleanPath
+    : path.resolve(baseRoot, cleanPath);
+  // existsSync follows symlinks and returns true for a folder, so a citation that
+  // names an existing directory is OK rather than a crash.
   return fs.existsSync(candidatePath) ? 'OK' : 'MISSING';
+}
+
+function stripCitationSuffix(resourcePath) {
+  const text = String(resourcePath);
+  const anchorIndex = text.indexOf('#');
+  const withoutAnchor = anchorIndex === -1 ? text : text.slice(0, anchorIndex);
+  return withoutAnchor.replace(/:\d+(?:-\d+)?$/, '');
 }
 
 function classifyPath(resourcePath) {

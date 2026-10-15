@@ -1490,6 +1490,24 @@ function mergeQuestionSources(strategyQuestions, inboxQuestions) {
   return merged;
 }
 
+function seedTopicQuestion(topic) {
+  const text = normalizeOptionalText(topic);
+  if (!text) {
+    return [];
+  }
+
+  // A lineage strategy can initialize with an empty key-questions section. Seeding the
+  // research topic keeps the registry's question view from starting at zero.
+  return [{
+    checked: false,
+    text,
+    origin: 'analyst-strategy',
+    source: 'topic',
+    injectedAtIteration: 0,
+    promotedQuestionId: null,
+  }];
+}
+
 function warnLegacyImportQuestions(questions) {
   const legacyCount = questions.filter((question) => question.origin === LEGACY_IMPORT_ORIGIN).length;
   if (!legacyCount) {
@@ -1836,8 +1854,21 @@ function parseIterationFile(iterationPath) {
   };
 }
 
+function extractKeyQuestionsSection(strategyContent) {
+  const canonical = extractSection(strategyContent, '3. KEY QUESTIONS (remaining)');
+  if (canonical) {
+    return canonical;
+  }
+
+  // A fan-out leaf can author the section without the ordinal, so fall back to the
+  // heading core and treat the parenthetical as optional.
+  const pattern = /(?:^|\n)##\s+(?:\d+[A-Za-z]?\.\s+)?KEY QUESTIONS(?:\s*\(remaining\))?[^\S\n]*\n([\s\S]*?)(?=\n##\s|$)/i;
+  const match = strategyContent.match(pattern);
+  return match ? match[1].trim() : '';
+}
+
 function parseStrategyQuestions(strategyContent) {
-  const section = extractSection(strategyContent, '3. KEY QUESTIONS (remaining)');
+  const section = extractKeyQuestionsSection(strategyContent);
   return section
     .split('\n')
     .map((line) => line.trim())
@@ -2992,7 +3023,9 @@ function reduceResearchState(specFolder, options = {}) {
     inboxQuestions: inbox.questions,
     priorRegistry,
   });
-  const questionInputs = questionResolution.questions;
+  const questionInputs = questionResolution.questions.length > 0
+    ? questionResolution.questions
+    : seedTopicQuestion(config.topic);
   if (write) {
     warnLegacyImportQuestions(questionInputs);
   }

@@ -223,6 +223,10 @@ function strategyTemplate(): string {
   ].join('\n');
 }
 
+function strategyTemplateWithoutQuestions(): string {
+  return strategyTemplate().replace('- [ ] What should be checked?', '[None yet]');
+}
+
 function writeState(specFolder: string, content: string): void {
   writeFileSync(join(specFolder, 'research', 'deep-research-state.jsonl'), content, 'utf8');
 }
@@ -882,6 +886,98 @@ describe('deep-research reduce-state recovery gate', () => {
 
     expect(result.registryPath.startsWith(lineageDir)).toBe(true);
     expect(existsSync(join(specFolder, 'research', 'findings-registry.json'))).toBe(false);
+  });
+
+  it('seeds the topic question into a lineage strategy that initialized without key questions', () => {
+    const specFolder = makeTempSpec();
+    const lineageDir = join(specFolder, 'research', 'lineages', 'gamma');
+    mkdirSync(lineageDir, { recursive: true });
+    writeFileSync(
+      join(lineageDir, 'deep-research-config.json'),
+      `${JSON.stringify({
+        topic: 'Which seeded question should the registry carry?',
+        createdAt: '2026-06-19T00:00:00.000Z',
+        status: 'initialized',
+        maxIterations: 3,
+        resource_map: { emit: false },
+      }, null, 2)}\n`,
+      'utf8',
+    );
+    writeFileSync(join(lineageDir, 'deep-research-strategy.md'), strategyTemplateWithoutQuestions(), 'utf8');
+    writeFileSync(
+      join(lineageDir, 'deep-research-state.jsonl'),
+      `${JSON.stringify({
+        type: 'iteration',
+        run: 1,
+        status: 'complete',
+        focus: 'seed the key question block',
+        findingsCount: 1,
+        newInfoRatio: 0.4,
+      })}\n`,
+      'utf8',
+    );
+
+    const result = reduceResearchState(specFolder, { write: true, artifactDir: lineageDir });
+
+    expect(result.registry.openQuestions).toEqual([
+      expect.objectContaining({
+        text: 'Which seeded question should the registry carry?',
+        origin: 'analyst-strategy',
+        source: 'topic',
+      }),
+    ]);
+    expect(result.strategy).toContain('- [ ] Which seeded question should the registry carry?');
+    expect(readFileSync(join(lineageDir, 'deep-research-strategy.md'), 'utf8'))
+      .toContain('- [ ] Which seeded question should the registry carry?');
+  });
+
+  it('reads key questions from a lineage strategy that omits the canonical heading ordinal', () => {
+    const specFolder = makeTempSpec();
+    const lineageDir = join(specFolder, 'research', 'lineages', 'delta');
+    mkdirSync(lineageDir, { recursive: true });
+    writeFileSync(
+      join(lineageDir, 'deep-research-config.json'),
+      `${JSON.stringify({
+        topic: 'Leaf authored strategy',
+        createdAt: '2026-06-19T00:00:00.000Z',
+        status: 'initialized',
+        maxIterations: 3,
+        resource_map: { emit: false },
+      }, null, 2)}\n`,
+      'utf8',
+    );
+    writeFileSync(
+      join(lineageDir, 'deep-research-strategy.md'),
+      [
+        '# Deep Research Strategy - delta',
+        '',
+        '## Research Topic',
+        'Leaf authored strategy.',
+        '',
+        '## Key Questions (remaining)',
+        '- [ ] Which leaf question stays open?',
+        '- [x] Which leaf question is answered?',
+        '',
+        '## Next Focus',
+        'Leaf focus',
+        '',
+      ].join('\n'),
+      'utf8',
+    );
+    writeFileSync(
+      join(lineageDir, 'deep-research-state.jsonl'),
+      `${JSON.stringify({ type: 'iteration', run: 1, status: 'complete' })}\n`,
+      'utf8',
+    );
+
+    const result = reduceResearchState(specFolder, { write: false, artifactDir: lineageDir });
+
+    expect(result.registry.openQuestions).toEqual([
+      expect.objectContaining({ text: 'Which leaf question stays open?' }),
+    ]);
+    expect(result.registry.resolvedQuestions).toEqual([
+      expect.objectContaining({ text: 'Which leaf question is answered?' }),
+    ]);
   });
 });
 

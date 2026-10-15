@@ -2,11 +2,37 @@
 // MODULE: Resource Map Extractor tests
 // ───────────────────────────────────────────────────────────────────
 
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 
 const require = createRequire(import.meta.url);
+
+const fixtureRepos: string[] = [];
+
+// A consuming repository with its own git store, nested in a workspace that holds the
+// runtime marker, so a resolver that looks for the marker walks past the repository.
+function makeFixtureRepo(): string {
+  const workspaceRoot = mkdtempSync(join(tmpdir(), 'resource-map-workspace-'));
+  fixtureRepos.push(workspaceRoot);
+  mkdirSync(join(workspaceRoot, '.skilled', 'skills', 'system-spec-kit'), { recursive: true });
+  writeFileSync(join(workspaceRoot, '.skilled', 'skills', 'system-spec-kit', 'SKILL.md'), '# Fixture runtime marker\n', 'utf8');
+  const repoRoot = join(workspaceRoot, 'consumer');
+  mkdirSync(join(repoRoot, '.git'), { recursive: true });
+  return repoRoot;
+}
+
+afterEach(() => {
+  while (fixtureRepos.length > 0) {
+    const repoRoot = fixtureRepos.pop();
+    if (repoRoot) {
+      rmSync(repoRoot, { recursive: true, force: true });
+    }
+  }
+});
 
 type Shape = 'review' | 'research';
 type EmitArgs = {
@@ -198,5 +224,46 @@ describe('resource-map extractor', () => {
     expect(findLine(markdown, '- **By category**:')).toContain('Commands=1');
     expect(findLine(markdown, '- **By category**:')).toContain('Skills=1');
     expect(findLine(markdown, '- **Missing on disk**:')).toBe('- **Missing on disk**: 0');
+  });
+
+  it('resolves citations against the repository that holds the packet, not the runtime repository', () => {
+    const repoRoot = makeFixtureRepo();
+    const citedDir = join(repoRoot, 'cited');
+    mkdirSync(join(citedDir, 'folder'), { recursive: true });
+    writeFileSync(join(citedDir, 'existing.md'), '# Existing\n', 'utf8');
+    writeFileSync(join(citedDir, 'lines.md'), '# Lines\n', 'utf8');
+    writeFileSync(join(citedDir, 'anchored.md'), '# Anchored\n\n## Section\n', 'utf8');
+    const packetDir = join(repoRoot, 'specs', '999-fixture-packet');
+    mkdirSync(packetDir, { recursive: true });
+
+    const markdown = emitResourceMap({
+      shape: 'research',
+      createdAt: '2026-04-24T14:00:00.000Z',
+      scope: 'fixture packet in a repository other than the runtime repository',
+      packet: {
+        title: 'Fixture packet',
+        specFolder: packetDir,
+      },
+      deltas: [[{
+        iteration: 1,
+        type: 'finding',
+        sources: [
+          'cited/existing.md',
+          'cited/lines.md:10-20',
+          'cited/anchored.md#section',
+          'cited/folder',
+          'cited/absent.md',
+        ],
+      }]],
+    });
+
+    expect(findLine(markdown, '- **Missing on disk**:')).toBe('- **Missing on disk**: 1');
+    expect(markdown).toContain('| cited/existing.md | Cited | OK |');
+    expect(markdown).toContain('| cited/lines.md | Cited | OK |');
+    expect(markdown).toContain('| cited/anchored.md | Cited | OK |');
+    expect(markdown).toContain('| cited/folder | Cited | OK |');
+    expect(markdown).toContain('| cited/absent.md | Cited | MISSING |');
+    expect(markdown).not.toContain(':10-20');
+    expect(markdown).not.toContain('#section');
   });
 });
