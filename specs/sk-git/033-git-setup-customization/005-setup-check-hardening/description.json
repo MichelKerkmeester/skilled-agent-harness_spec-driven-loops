@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "sk-git/033-git-setup-customization/005-setup-check-hardening",
+  "description": "Phase 5: setup-check-hardening",
+  "keywords": [
+    "phase",
+    "setup-check-hardening"
+  ],
+  "lastUpdated": "2026-10-15T15:57:44.615Z",
+  "specId": "005",
+  "folderSlug": "setup-check-hardening",
+  "parentChain": [
+    "sk-git",
+    "033-git-setup-customization"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "15-10-26_16-46__planned-25-requirements-3-p0-12-p1-10-p2-36-tasks.md",
+    "15-10-26_16-57__hooks-repair-resolved-with-option-a-on-2026-10-15.md"
+  ]
+}

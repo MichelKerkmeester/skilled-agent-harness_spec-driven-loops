@@ -7,7 +7,8 @@
     "sk-git/033-git-setup-customization/001-deep-research",
     "sk-git/033-git-setup-customization/002-doctor-git-setup",
     "sk-git/033-git-setup-customization/003-improvement-research",
-    "sk-git/033-git-setup-customization/004-final-deep-review"
+    "sk-git/033-git-setup-customization/004-final-deep-review",
+    "sk-git/033-git-setup-customization/005-setup-check-hardening"
   ],
   "manual": {
     "depends_on": [],
@@ -35,13 +36,20 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "004-final-deep-review/review/review-report.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "004-final-deep-review/review/review-report.md",
         "source": "derived"
       },
       {
@@ -83,18 +91,18 @@
     ],
     "causal_summary": "[One-paragraph problem statement — what needs solving and why]",
     "created_at": "2026-10-15T05:35:17Z",
-    "last_save_at": "2026-10-15T14:50:15.912Z",
+    "last_save_at": "2026-10-15T15:57:44.653Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:7b00750182b21b9e7f33884208bb0305e90e2ccfb12dd8f3aaa38dfc26401662",
+    "source_fingerprint": "sha256:72074ce45f8a7d0a2947303a8a93a44b25404475e4e8af2eb72d00999ff1ba61",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ba664a6c3047d22598459f78bc17f690fa7c2fd62516c145c64fe8c91e168a21"
+      "spec.md": "84487d774db30d06d6a3b579063a1d048c7266fb5897d2c6bd9a8699075465d1"
     },
-    "last_active_child_id": "sk-git/033-git-setup-customization/004-final-deep-review",
-    "last_active_at": "2026-10-15T14:50:15.912Z"
+    "last_active_child_id": "sk-git/033-git-setup-customization/005-setup-check-hardening",
+    "last_active_at": "2026-10-15T15:57:44.653Z"
   }
 }
