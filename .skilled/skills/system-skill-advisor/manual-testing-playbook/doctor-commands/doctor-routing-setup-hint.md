@@ -1,7 +1,7 @@
 ---
 title: "DOC-389 -- Doctor routing setup hint on a no-match"
 description: "Manual scenario validating that a no-match advisor brief for a prompt with setup wording adds the /doctor:setup hint line and leaves the directive block unchanged."
-version: 1.0.0.0
+version: 1.0.1.0
 id: doctor-commands-doctor-routing-setup-hint
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -50,20 +50,21 @@ Run every command from the repository root.
 printf '{"prompt":"install the frobnicator widget","session_id":"pb-doc-389","hook_event_name":"UserPromptSubmit","cwd":"%s"}' "$PWD" | node .skilled/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js 2>/dev/null | python3 -c "import json,sys;print(json.load(sys.stdin)['hookSpecificOutput']['additionalContext'])"
 ```
 
-2. Confirm the first line is exactly `Advisor: no skill matched. For setup or health checks, run /doctor:setup.`, the second line is exactly `Directives:`, and the third line starts with `- Comment hygiene [HARD BLOCK]:`.
+2. Confirm the first line is exactly `Advisor: no skill matched. For setup or health checks, run /doctor:setup.`, the second line is exactly `Directives:`, and the third line starts with `- Comment hygiene [HARD BLOCK]:`. Then confirm the brief has exactly three lines, the same count an unrelated no-match prompt prints in DOC-390, so the hint adds no line to the directive block.
 
 ### Expected
 
-The hook command prints the advisor brief. The first line is exactly `Advisor: no skill matched. For setup or health checks, run /doctor:setup.`. The second line is exactly `Directives:`. The third line starts with `- Comment hygiene [HARD BLOCK]:` and the directive block is unchanged.
+The hook command prints the advisor brief. The first line is exactly `Advisor: no skill matched. For setup or health checks, run /doctor:setup.`. The second line is exactly `Directives:`. The third line starts with `- Comment hygiene [HARD BLOCK]:` and the brief has exactly three lines, so the hint leaves the directive block as it is.
 
 ### Evidence
 
 - The full advisor brief from the hook command.
 - The first three lines of the brief.
+- The line count of the brief.
 
 ### Pass / Fail
 
-- **Pass**: All three lines match. The first line is exactly `Advisor: no skill matched. For setup or health checks, run /doctor:setup.`, the second line is exactly `Directives:`, and the third line starts with `- Comment hygiene [HARD BLOCK]:`.
+- **Pass**: All three lines match. The first line is exactly `Advisor: no skill matched. For setup or health checks, run /doctor:setup.`, the second line is exactly `Directives:`, and the third line starts with `- Comment hygiene [HARD BLOCK]:`. The brief has exactly three lines.
 - **Fail**: The hint is missing, worded differently, or the directive block changed.
 
 ### Failure Triage

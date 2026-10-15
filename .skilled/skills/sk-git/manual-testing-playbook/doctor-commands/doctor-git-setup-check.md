@@ -1,7 +1,7 @@
 ---
 title: "DOC-384 -- Doctor git setup check"
 description: "Manual scenario validating that /doctor:git setup reports all eleven setup checks with a result and source each, names a repair for every failing check, and writes nothing."
-version: 1.0.1.0
+version: 1.0.2.0
 id: doctor-commands-doctor-git-setup-check
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -42,11 +42,13 @@ Check my sk-git setup and tell me which hooks, rules and settings are live.
 
 ### Commands
 
-1. Confirm the working copy is clean and record the starting state: `git status --porcelain` and `git config --list --local`.
-2. Run `/doctor:git setup` through the real runtime.
+Run every command from the repository root.
+
+1. Record the starting state, clean or not, since step 7 compares against it: `git status --porcelain` and `git config --list --local`.
+2. Run `/doctor:git setup` through the real runtime. An agent without slash commands records steps 2 and 3 as not run and continues with step 4.
 3. Capture the result table and the `DOCTOR DIAGNOSTIC RESULT` block.
-4. Run `node .skilled/commands/doctor/scripts/git-setup-check.cjs --tool claude` and keep its exit code and final `STATUS=` line.
-5. Run it again with `--json` and confirm the output parses as one JSON object with a `checks` array of eleven rows, each with id, result, source, details and repair.
+4. Run `node .skilled/commands/doctor/scripts/git-setup-check.cjs --tool <runtime>` and keep its exit code and final `STATUS=` line, where <runtime> is the AI tool running the scenario: claude, codex, devin, cursor, opencode or pi.
+5. Run the step 4 command again with `--json` and confirm the output parses as one JSON object with a `checks` array of eleven rows, each with id, result, source, details and repair.
 6. Run `node .skilled/commands/doctor/scripts/git-setup-check.cjs --tool nope` and confirm exit 2 with a usage line.
 7. Record `git status --porcelain` and `git config --list --local` again and compare them with step 1.
 
@@ -60,14 +62,14 @@ The run writes no git config value and no repository file, so the config listing
 
 - The rendered result table with its eleven rows and the source line per row.
 - The `DOCTOR DIAGNOSTIC RESULT` block with `Target: setup` and `Changed: none`.
-- The `--tool claude` exit code and final `STATUS=` line.
+- The step 4 exit code and final `STATUS=` line.
 - The parsed `--json` payload with its `checks` array of eleven rows, each showing id, result, source, details and repair.
 - The `--tool nope` exit code and usage line.
 - The step 1 and step 7 status and config outputs.
 
 ### Pass / Fail
 
-- **Pass**: All eleven checks appear with a result and source, every FAIL carries a repair, the exit codes match, and no git config value and no repository file changes.
+- **Pass**: All eleven checks appear with a result and source, every FAIL carries a repair, the exit codes match, and no git config value and no repository file changes. Steps 2 and 3 recorded as not run, for an agent without slash commands, do not change the verdict.
 - **Fail**: A check is missing, a FAIL carries no repair, an exit code is wrong, or a file or git config value changes.
 
 ### Failure Triage

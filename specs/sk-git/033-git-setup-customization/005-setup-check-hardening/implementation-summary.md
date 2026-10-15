@@ -8,24 +8,18 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-git/033-git-setup-customization/005-setup-check-hardening"
-    last_updated_at: "2026-10-15T17:49:54Z"
+    last_updated_at: "2026-10-15T18:52:55Z"
     last_updated_by: "generate-context"
-    recent_action: "Built and verified the setup-check hardening, 23 of 25 criteria Met"
-    next_safe_action: "Run DOC-384 in a real runtime, then push and read the three CI runs"
-    blockers:
-      - "AC-016 needs a push and the Gate Inputs run read"
-      - "AC-020 needs DOC-384 run in a real runtime"
+    recent_action: "Closed AC-016 and AC-020 with CI runs and real-runtime DOC-384"
+    next_safe_action: "Commit the closeout and the playbook wording fixes"
+    blockers: []
     key_files:
       - ".skilled/commands/doctor/scripts/git-setup-check.cjs"
-      - ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs"
-      - ".skilled/commands/doctor/assets/doctor-git-setup.yaml"
-      - ".github/workflows/gate-inputs.yml"
-      - "specs/sk-git/033-git-setup-customization/005-setup-check-hardening/acceptance-criteria.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:4d348d5a8eae1b72b844faa64555addfcbeadf969829e2a82b47ad44a2aa17cd"
       session_id: "scaffold-005-setup-check-hardening"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -43,7 +37,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-setup-check-hardening |
-| **Completed** | Built and verified locally on 2026-10-15. Not closeable: AC-016 and AC-020 are open |
+| **Completed** | 2026-10-15. All 25 acceptance criteria are Met, with the pushed CI runs and the real-runtime DOC-384 run as the last evidence |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 

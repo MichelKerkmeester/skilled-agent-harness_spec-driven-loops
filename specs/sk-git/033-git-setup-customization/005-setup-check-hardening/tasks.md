@@ -96,7 +96,7 @@ Each implementation task is one brief to the cli-pi executor. The battery is `.s
 - [x] T032 Run `bash .skilled/commands/doctor/scripts/route-validate.sh`, `bash .github/scripts/tests/check-gate-inputs.test.sh` and `bash .github/scripts/check-gate-inputs.sh` [EVIDENCE: `route-validate.sh` "OK: route-validate - 14 routes validated, 2 warnings", the two H1 `--dry-run` notes. `check-gate-inputs.test.sh` 50 passed, 0 failed. `check-gate-inputs.sh` RESULT: PASSED]
 - [x] T033 Run `hvr_scan.py` on every touched Markdown and text doc, and rerun `test_readme_manifest.py` and `validate_catalog_package.py` [EVIDENCE: `hvr_scan.py` hard blockers: catalog leaf 0, DOC-384 0, setup YAML 0, `README.md` 0, all added lines of the playbook and the presentation 0. Three files carried blockers before this phase and keep the same count: the hooks README 32, the playbook 53 and the presentation 4. `test_readme_manifest.py` exit 0, `validate_catalog_package.py` exit 0, its fixture tests ALL PASS]
 - [x] T034 Run the battery with `--tool claude` on this checkout and confirm `STATUS=OK checks=11` and exit 0, then run DOC-384 through the real runtime [EVIDENCE: battery part done: `--tool claude` ends `STATUS=OK checks=11`, exit 0, 0.57 s against 0.61 s at T001, `--json` gives 11 rows with all five keys, `--tool nope` exits 2, and `git status --porcelain` and `git config --list --local` match before and after. DOC-384 run 2026-10-15 by the orchestrator in Claude Code through `/doctor:git setup`: eleven PASS rows with a source each, result block `Target: setup`, `Changed: none`, `STATUS=OK`; battery `--tool=claude` exit 0 `STATUS=OK checks=11`, `--json` 11 rows with all five keys, `--tool nope` exit 2 with the usage line, and `git config --list --local` and `git status --porcelain` identical before and after]
-- [B] T035 Push only on the operator's instruction, then read the Gate Inputs, sk-doc Script Tests and Feature catalog runs with `gh run view` and record their conclusions [BLOCKED: no push was authorized for this build, so the three CI runs are unread]
+- [x] T035 Push only on the operator's instruction, then read the Gate Inputs, sk-doc Script Tests and Feature catalog runs with `gh run view` and record their conclusions [EVIDENCE: pushed `73e4bb6e06` on 2026-10-15: Gate Inputs run 38785057616 success with 0 `ERR_MODULE_NOT_FOUND` lines in its log, sk-doc Script Tests run 38785057551 success (it carries the catalog validator), Spec-Kit Check run 38785057574 success. No separate Feature catalog workflow exists, the catalog check runs inside sk-doc Script Tests]
 - [x] T036 Run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-git/033-git-setup-customization --strict` and require `RESULT: PASSED` [EVIDENCE: `validate.sh specs/sk-git/033-git-setup-customization --strict` RESULT: PASSED for the parent and every phase]
 - [x] T037 Record the `/doctor:git` work in the sk-git changelog and a new skilled release entry, added at the operator's request on 2026-10-15 [EVIDENCE: `.skilled/skills/sk-git/changelog/v1.9.0.0.md` (minor, new command) and `.skilled/changelog/skilled/v4.0.0.11.md`, both compact; `hvr_scan.py` hard blockers 0 and `validate_document.py` Total issues 0 on each; sk-git `SKILL.md` version 1.9.0.0 and its Hermes mirror synced]
 <!-- /ANCHOR:phase-3 -->
@@ -106,9 +106,9 @@ Each implementation task is one brief to the cli-pi executor. The battery is `.s
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed (DOC-384 in Claude Code and by Luna through cli-codex)
 <!-- /ANCHOR:completion -->
 
 ---
@@ -161,7 +161,7 @@ Each implementation task is one brief to the cli-pi executor. The battery is `.s
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met [OPEN: AC-016 is Unmet until the pushed CI runs are read, see acceptance-criteria.md]
+- [x] CHK-020 [P0] All acceptance criteria met [EVIDENCE: 25 of 25 Met in acceptance-criteria.md]
 - [x] CHK-021 [P0] DOC-384 run through the real runtime [EVIDENCE: run 2026-10-15 by the orchestrator in Claude Code through `/doctor:git setup`: eleven PASS rows with a source each, result block `Target: setup`, `Changed: none`, `STATUS=OK`; battery `--tool=claude` exit 0 `STATUS=OK checks=11`, `--json` 11 rows with all five keys, `--tool nope` exit 2 with the usage line, and `git config --list --local` and `git status --porcelain` identical before and after]
 - [x] CHK-022 [P1] Edge cases tested: FIFO, symlink, empty env value, file at the base path, tool-less run [EVIDENCE: FIFO (T017), symlinked allowlist and the readRepoFile table (T017, T018), empty env value (suppression and `HOOK_FLAGS_CONFIG` tests), file at the base path (T010), tool-less run (T009)]
 - [x] CHK-023 [P1] Each code fix has a recorded mutation check [EVIDENCE: every code fix task from T003 to T022 names its mutation in the task evidence, and each mutation failed at least one test, the original code then restored and compared with `cmp`]
