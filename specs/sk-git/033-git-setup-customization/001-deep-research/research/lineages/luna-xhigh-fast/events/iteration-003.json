@@ -1,0 +1,27 @@
+{
+  "type": "iteration",
+  "iteration": 3,
+  "runId": "fanout-luna-xhigh-fast-1792042581294-btcd4b",
+  "sessionId": "fanout-luna-xhigh-fast-1792042581294-btcd4b",
+  "lineageId": "fanout-luna-xhigh-fast-1792042581294-btcd4b",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 1.0,
+  "status": "complete",
+  "focus": "Trace worktree base and provisioning inputs, Commit-Id opt-in, and shared allocator/hook behavior",
+  "findingsCount": 4,
+  "keyQuestions": [
+    "How do worktree naming/provisioning, Commit-Id allocation, hook trust, global hooks, and preflight advice interact?"
+  ],
+  "answeredQuestions": [],
+  "timestamp": "2026-10-15T05:48:13Z",
+  "noveltyJustification": "Worktree location, provisioning inputs, Commit-Id policy, and allocator/enforcement failure paths add new repository adaptation surfaces.",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "fast"
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "topic": "Design a doctor-style setup path for sk-git that lets a repository user adapt sk-git to their own repository, the way /doctor:sk-code setup lets them adapt sk-code. Study the sk-code precedent first: .skilled/commands/doctor/sk-code.md, .skilled/commands/doctor/scripts/sk-code-setup-check.cjs, the sk-code adaptation guide and the packets under specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build and 029-surface-setup-build. Then map every customizable part of sk-git (.skilled/skills/sk-git/: SKILL.md, hard-rules.json, the commit message template and its per-repository rules, the remote branch allowlist, worktree naming and provisioning, the Commit-Id allocator and its opt-in config, hook trust and skilled.trustRepoHooks, the global hooks under .skilled/scripts/git-hooks/ and the preflight advisory) and the existing /doctor:git command (.skilled/commands/doctor/git.md). For each part state what a user would want to change, where it is set today, what breaks when it is changed or removed, and what a read-only setup check would need to prove. Decide whether the setup belongs in /doctor:git as a new action or in a separate command, and name ideas to reject with the reason. Cite path:line for every claim. End the synthesis with proposed implementation phases.",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/sk-git/033-git-setup-customization/001-deep-research",
+  "createdAt": "2026-10-15T05:36:13.000Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "native",
+    "model": null,
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineage",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "status",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "researchTopic": "Design a doctor-style setup path for sk-git that lets a repository user adapt sk-git to their own repository, the way /doctor:sk-code setup lets them adapt sk-code. Study the sk-code precedent first: .skilled/commands/doctor/sk-code.md, .skilled/commands/doctor/scripts/sk-code-setup-check.cjs, the sk-code adaptation guide and the packets under specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build and 029-surface-setup-build. Then map every customizable part of sk-git (.skilled/skills/sk-git/: SKILL.md, hard-rules.json, the commit message template and its per-repository rules, the remote branch allowlist, worktree naming and provisioning, the Commit-Id allocator and its opt-in config, hook trust and skilled.trustRepoHooks, the global hooks under .skilled/scripts/git-hooks/ and the preflight advisory) and the existing /doctor:git command (.skilled/commands/doctor/git.md). For each part state what a user would want to change, where it is set today, what breaks when it is changed or removed, and what a read-only setup check would need to prove. Decide whether the setup belongs in /doctor:git as a new action or in a separate command, and name ideas to reject with the reason. Cite path:line for every claim. End the synthesis with proposed implementation phases.",
+  "sessionId": "2026-10-15T05:36:13.000Z",
+  "stopPolicy": "max-iterations",
+  "resource_map": {
+    "emit": true
+  },
+  "fanout": {
+    "concurrency": 2,
+    "executors": [
+      {
+        "kind": "cli-codex",
+        "model": "gpt-6-luna",
+        "reasoningEffort": "xhigh",
+        "serviceTier": "fast",
+        "timeoutSeconds": 1800,
+        "label": "luna-xhigh-fast",
+        "count": 1,
+        "iterations": 5
+      },
+      {
+        "kind": "cli-devin",
+        "model": "swe-2-max",
+        "reasoningEffort": null,
+        "timeoutSeconds": 1800,
+        "label": "swe-2-max",
+        "count": 1,
+        "iterations": 5
+      }
+    ]
+  }
+}

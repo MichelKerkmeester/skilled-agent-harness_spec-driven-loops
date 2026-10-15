@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "sk-git/033-git-setup-customization/001-deep-research",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-10-15T06:14:11.284Z",
+  "specId": "001",
+  "folderSlug": "deep-research",
+  "parentChain": [
+    "sk-git",
+    "033-git-setup-customization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-10-26_07-14__both-lineages-chose-a-read-only-doctor-git-setup.md"
+  ]
+}

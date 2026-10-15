@@ -1,0 +1,1015 @@
+{
+  "sessionId": "fanout-swe-2-max-1792042581294-btcd4b",
+  "parentSessionId": null,
+  "lineageMode": "detached",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "kq-runtime-probe",
+      "inboxId": null,
+      "text": "Is there a uniform read-only probe for per-runtime adapter registration (Claude PreToolUse, opencode plugin, pi extension)?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "kq-hard-rules-overlay",
+      "inboxId": null,
+      "text": "Does a repo-local overlay for hard-rules.json exist or is the vendored sidecar the only source?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "kq-spec-trailer",
+      "inboxId": null,
+      "text": "How should repos without specs/ satisfy trailers.spec mustExist?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "kq-runtime-probe",
+      "inboxId": null,
+      "text": "Is there a uniform read-only probe for per-runtime adapter registration (Claude PreToolUse, opencode plugin, pi extension)?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "kq-hard-rules-overlay",
+      "inboxId": null,
+      "text": "Does a repo-local overlay for hard-rules.json exist or is the vendored sidecar the only source?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "kq-spec-trailer",
+      "inboxId": null,
+      "text": "How should repos without specs/ satisfy trailers.spec mustExist?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "What do `git-standards.cjs` and `git-hook-gates.cjs` already cover, and how does `/doctor:git` route? → Iteration 4.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What did packets 026/029 decide about check scope and placement (why a battery under `/doctor:` rather than inside the skill)? → Iteration 2.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What is sk-git's actual customization inventory and where does each value live? → Iterations 3-4.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does a `setup` target under the existing `/doctor:git` satisfy the same grammar (owner = git family) or does sk-git need `/doctor:sk-git`? The one-per-owner rule suggests the former — /doctor:git already IS the git owner route. Confirm against `/doctor:git`'s router file in iteration 4.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What are sk-git's customizable parts and where does each live? → Iterations 3-4.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the preflight advisory have per-repo install state worth checking (plugin/hook registration per runtime)? → Iteration 4.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The git hooks themselves: what does `install-git-hooks.sh` install, what does `skilled.trustRepoHooks` gate, what do `speckit.hooks.<key>` switches control (git-hook-gates.cjs), and what does `/doctor:git` route today? → Iteration 4.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Exact `/doctor:git` route table rows (targets, setup variables, workflow assets) and whether the command's presentation contract already constrains output shape — iteration 5 reads `_routes.yaml` + `git.md` in full.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether any check script (`git-doctor-*.cjs` style) already exists that a setup battery could reuse beyond `git-standards.cjs status`/`git-hook-gates.cjs list`/`install-git-hooks.sh --status` — iteration 5 inventories doctor scripts.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "u1–u3 above; the per-runtime registration probe is the only leg that cannot be made deterministic from git/skill state alone.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Is there a uniform read-only probe for per-runtime adapter registration (Claude PreToolUse, opencode plugin, pi extension)?",
+    "Does a repo-local overlay for hard-rules.json exist or is the vendored sidecar the only source?",
+    "How should repos without specs/ satisfy trailers.spec mustExist?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-10-doctor-git-already-exists-with-two-mutating-mutates-targets-hooks-dry-run-plan-o",
+      "text": "`/doctor:git` already exists with two `mutating: mutates` targets — `hooks` (dry-run plan over `git config speckit.hooks.<key>` then `--apply` after approval) and `standards` (status/init/set/disable/check over a `.sk-git/` contract dir named by `git config skgit.contractDir`, plus `validate-message.mjs --explain`). sk-git already has a doctor surface AND a per-repo override mechanism; a read-only setup target would be the route family's third member, not a new command family. [SOURCE: .skilled/commands/doctor/_routes.yaml:236-274]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/sk-code.md:1-61",
+        ".skilled/commands/doctor/_routes.yaml:1-338",
+        ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:1-60",
+        ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt:1-58",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:1-369",
+        "README.md:1447-1491",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
+      ]
+    },
+    {
+      "id": "finding-1-1-doctor-sk-code-is-a-thin-router-not-an-implementation-sk-code-md-binds-the-route",
+      "text": "`/doctor:sk-code` is a thin router, not an implementation: `sk-code.md` binds the route whose `command` is `/doctor:sk-code` out of `_routes.yaml`, loads the route's workflow YAML plus the presentation contract, and forbids agent dispatch or YAML edits from the Markdown. Its only target is `setup` (default when no positional is given); the only accepted flag is `--prompt=<text>`; anything else fails before YAML load. [SOURCE: .skilled/commands/doctor/sk-code.md:10-36]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/sk-code.md:1-61",
+        ".skilled/commands/doctor/_routes.yaml:1-338",
+        ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:1-60",
+        ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt:1-58",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:1-369",
+        "README.md:1447-1491",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
+      ]
+    },
+    {
+      "id": "finding-1-7-every-fail-leg-prints-the-exact-command-that-repairs-it-rather-than-fixing-anyth",
+      "text": "Every FAIL leg prints the exact command that repairs it rather than fixing anything: provisioning→`bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision .`, sync→`node .skilled/bin/compiled-route-sync.cjs`, derived-freshness→per-root `regenerate-skill-derived.cjs --root <name> --write`, probe-legacy→the guard's own `staleFix(hub)` text. Repairs are data in `JUDGES`, not actions. [SOURCE: .skilled/commands/doctor/scripts/sk-code-setup-check.cjs:64,183-185,198-280]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/sk-code.md:1-61",
+        ".skilled/commands/doctor/_routes.yaml:1-338",
+        ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:1-60",
+        ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt:1-58",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:1-369",
+        "README.md:1447-1491",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-battery-sk-code-setup-check-cjs-is-a-self-contained-node-script-with-four-pa",
+      "text": "The battery `sk-code-setup-check.cjs` is a self-contained node script with four parts: a `LEGS` array (each leg = `{id, command(), run()}` spawning a child check from the repo root), a `JUDGES` map (leg result → `{ok, details[], repairs[]}`), a `report()` that prints `PASS|FAIL|SKIP <leg> <command>` lines plus indented `repair:` lines under failures and a final `STATUS=OK legs=8` / `STATUS=FAIL failed=<n> skipped=<n>`, and `main()` returning exit 0/1/2. `SK_CODE_SETUP_ROOT` overrides the repo root so the battery can be pointed at a fixture tree. [SOURCE: .skilled/commands/doctor/scripts/sk-code-setup-check.cjs:39-41,83-149,155-311,331-369]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/sk-code.md:1-61",
+        ".skilled/commands/doctor/_routes.yaml:1-338",
+        ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:1-60",
+        ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt:1-58",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:1-369",
+        "README.md:1447-1491",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
+      ]
+    },
+    {
+      "id": "finding-1-6-the-battery-is-dependency-aware-not-fail-fast-provision-dependents-parent-skill-",
+      "text": "The battery is dependency-aware, not fail-fast: `PROVISION_DEPENDENTS = {parent-skill, root-metadata}` report SKIP (not FAIL) when provisioning fails, and a missing `.skilled/skills/sk-code/SKILL.md` reports provisioning FAIL with a \"predates the v4 layout\" repair while every other leg reports `SKIP … needs the v4 layout`. [SOURCE: .skilled/commands/doctor/scripts/sk-code-setup-check.cjs:69,339-361]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/sk-code.md:1-61",
+        ".skilled/commands/doctor/_routes.yaml:1-338",
+        ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:1-60",
+        ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt:1-58",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:1-369",
+        "README.md:1447-1491",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-eight-legs-are-provisioning-in-process-require-resolve-spec-kit-shared-front",
+      "text": "The eight legs are: `provisioning` (in-process `require.resolve('@spec-kit/shared/frontmatter/parse-frontmatter.js')`, no child), `parent-skill` (`parent-skill-check.cjs .skilled/skills/sk-code`), `root-metadata` (`ci-skill-root-metadata.cjs`), `guard` (`compiled-route-guard.cjs --json`), `sync` (`compiled-route-sync.cjs --check`), `drift-guards` (`run-all-drift-guards.sh`), `derived-freshness` (`ci-skill-derived-freshness.cjs --format json`), and `probe` (`compiled-route.cjs --hub sk-code --prompt <text>` must parse a final JSON line with `action:\"route\"` — the legacy stub exits 0 too, so exit code alone proves nothing). [SOURCE: .skilled/commands/doctor/scripts/sk-code-setup-check.cjs:97-148,252-280; .skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:49]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/sk-code.md:1-61",
+        ".skilled/commands/doctor/_routes.yaml:1-338",
+        ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:1-60",
+        ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt:1-58",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:1-369",
+        "README.md:1447-1491",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-route-manifest-routes-yaml-is-the-canonical-routing-and-mutation-class-manif",
+      "text": "The route manifest `_routes.yaml` is the canonical routing and mutation-class manifest. Each route carries `command`, `target`, `yaml`, `setup_vars`, `allowed_flags`, `mutating` (`read-only | add-only | mutates`), `gate3_location`, `mcp_tools`, `script_invocations`, `trigger_phrases`. The sk-code route is `mutating: read-only` with `gate3_location: \"n/a (read-only setup battery … writes nothing)\"`. [SOURCE: .skilled/commands/doctor/_routes.yaml:23-37,220-234]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/sk-code.md:1-61",
+        ".skilled/commands/doctor/_routes.yaml:1-338",
+        ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:1-60",
+        ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt:1-58",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:1-369",
+        "README.md:1447-1491",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
+      ]
+    },
+    {
+      "id": "finding-1-8-the-sk-code-adaptation-guide-is-the-readme-block-what-adapting-sk-code-looks-lik",
+      "text": "The sk-code adaptation guide is the README block \"What Adapting `sk-code` Looks Like\": four before-you-start steps (provision, `git config --local skilled.trustRepoHooks true`, `bash .skilled/scripts/install-git-hooks.sh`, keep the authored routing source + `.opencode/skills` link), a 9-step remove-an-example recipe, a 5-step add-your-own-surface recipe (`/create:skill-parent update --surfaces <name>` + hand edits + canary fixture), and a Verify block listing the same six commands the battery wraps plus `/doctor:sk-code setup` itself. [SOURCE: README.md:1447-1489]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/sk-code.md:1-61",
+        ".skilled/commands/doctor/_routes.yaml:1-338",
+        ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:1-60",
+        ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt:1-58",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:1-369",
+        "README.md:1447-1491",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
+      ]
+    },
+    {
+      "id": "finding-1-9-the-sk-code-battery-s-own-provisioning-repair-is-an-sk-git-script-worktree-namin",
+      "text": "The sk-code battery's own provisioning repair is an sk-git script (`worktree-naming.sh provision .`), and its trust step is `skilled.trustRepoHooks` — the setup-check concept already crosses the sk-code/sk-git boundary, so an sk-git battery has precedent for checking shared infrastructure owned partly by other surfaces. [SOURCE: .skilled/commands/doctor/scripts/sk-code-setup-check.cjs:64; README.md:1453-1454]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/sk-code.md:1-61",
+        ".skilled/commands/doctor/_routes.yaml:1-338",
+        ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:1-60",
+        ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt:1-58",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:1-369",
+        "README.md:1447-1491",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-workflow-doctor-sk-code-setup-yaml-is-single-step-and-hard-pinned-read-only-",
+      "text": "The workflow `doctor-sk-code-setup.yaml` is single-step and hard-pinned read-only: `mutation_boundaries.read_only: true`, `allowed_targets: []`, `forbidden_targets: [\"**/*\"]`, with the invariant that every leg runs check-only and \"Repair is an explicit operator action, never a side effect of a diagnostic.\" Exit code maps 0→STATUS=OK, 1→STATUS=FAIL, 2→STATUS=ERROR. [SOURCE: .skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:23-28,46-60]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/sk-code.md:1-61",
+        ".skilled/commands/doctor/_routes.yaml:1-338",
+        ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:1-60",
+        ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt:1-58",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:1-369",
+        "README.md:1447-1491",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
+      ]
+    },
+    {
+      "id": "finding-2-9-battery-cost-and-growth-were-considered-acceptable-15-s-measured-e6-one-pass-per",
+      "text": "Battery cost and growth were considered acceptable: ~15 s measured (E6), one pass per leg, and the drift-guards leg is the one that grows — a sk-git battery should likewise time-budget its legs. [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:118]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
+      ]
+    },
+    {
+      "id": "finding-2-6-naming-was-weighed-setup-was-chosen-over-surfaces-because-the-battery-also-cover",
+      "text": "Naming was weighed: `setup` was chosen over `surfaces` because the battery also covers provisioning — the target name must cover the whole check surface, not just the resource being adapted. [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:111]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
+      ]
+    },
+    {
+      "id": "finding-2-5-phase-ordering-was-deliberate-p1-029-001-fixed-the-hand-followed-path-first-read",
+      "text": "Phase ordering was deliberate: P1 (029/001) fixed the hand-followed path first — README before-you-start lines, guard stale-manifest message naming its commands, named failure instead of a stack — and only then P2 (029/002) built the battery that prints those same repair texts. The battery depends on P1 because it prints P1's repair strings. Lesson: the documented journey must be self-sufficient before a battery is worth running. [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:85-118; specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:149-174]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
+      ]
+    },
+    {
+      "id": "finding-2-7-route-additions-have-a-fixed-recipe-and-a-validator-append-a-row-to-routes-yaml-",
+      "text": "Route additions have a fixed recipe and a validator: append a row to `_routes.yaml`, list it in the command's router and presentation, run `route-validate.sh`; every script the route runs is enumerated in `script_invocations`. The acceptance gate for the new route was `route-validate.sh` exit 0 plus pristine/stale/unprovisioned copy runs (S-1..S-3 ledger rows). [SOURCE: .skilled/commands/doctor/_routes.yaml:36-38; specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:80-95]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
+      ]
+    },
+    {
+      "id": "finding-2-8-the-026-packet-already-shipped-the-external-surface-semantics-this-research-buil",
+      "text": "The 026 packet already shipped the \"external surface\" semantics this research builds on: a user-added surface is scaffolded ahead of the native `sk-code-opencode` in `tieBreak` so it wins keyword ties (doctor check 5l fails a surface placed after it), OpenCode is marked native (keep), Webflow/Obsidian are optional examples (removable via the 9-step recipe). [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-83; README.md:1449,1472]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
+      ]
+    },
+    {
+      "id": "finding-2-3-the-battery-s-leg-list-is-not-arbitrary-it-is-the-executable-form-of-the-readme-",
+      "text": "The battery's leg list is not arbitrary — it is the executable form of the README guide's Verify block: the six documented verify commands, plus a provisioning precheck (the missing step a fresh clone needs) and the derived-metadata freshness gate (CI ran it but the user's battery did not), plus a probe that must parse `action:\"route\"` because the last README leg exited 0 on the legacy stub. [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:88-93,105,123; specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:35-44]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
+      ]
+    },
+    {
+      "id": "finding-2-4-the-motivating-failures-define-what-a-setup-check-is-for-the-guard-printed-re-mi",
+      "text": "The motivating failures define what a setup check is FOR: the guard printed `Re-mint: sk-code` with no command (F5), the route probe could not fail (F7), a CI gate was missing from the user battery (F16), and a fresh clone could not reach green following the guide (F1-F3). A doctor setup exists to make invisible/unactionable failures visible with named repairs. [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:85-113]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-placement-decision-is-documented-explicitly-a-new-doctor-command-doctor-sk-c",
+      "text": "The placement decision is documented explicitly: \"a new doctor command, `/doctor:sk-code`, with one read-only target, `setup`\" — chosen because the family grammar is `/doctor:<owner> <target>` and the one-per-owner rule wants the sk-code hub as owner. A `sk-code-setup` hub mode was rejected because `packetKind` is only `workflow` or `surface` (setup is neither), no setup prompt would ever route to it, and it would cost 15+ files plus a contract change. [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:97-111,135]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
+      ]
+    },
+    {
+      "id": "finding-2-2-the-rejection-catalogue-is-a-checklist-of-tempting-but-wrong-ideas-x1-hub-mode-c",
+      "text": "The rejection catalogue is a checklist of tempting-but-wrong ideas: X1 hub mode (contract mismatch + cost); X2 target under `/doctor:skill-advisor` (wrong owner, undiscoverable name); X3 extending the `parent-skill` route (its contract is a structural audit — routing/drift failures would corrupt what a pass means); X4 mutating repairs inside the doctor (a read-only route may not write; `route-validate.sh` enforces it); X6 terminal add/remove script (the registry scrub and ROUTER.md edits need judgment; a second mutation path serves one caller class); X7 minting manifests inside `update --surfaces`; X11 advisor surface-awareness (no failure exists). [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:131-145]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
+      ]
+    },
+    {
+      "id": "finding-3-4-git-standards-cjs-the-doctor-git-standards-backend-already-is-the-per-repo-overr",
+      "text": "`git-standards.cjs` (the `/doctor:git standards` backend) already is the per-repo override tool for commit/PR/branch rules: `status` reports resolved dir + source + editable + per-kind enforced/broken/drift; `init` copies the three shipped templates into `.sk-git/` (dry-run default, never overwrites, warns when contractDir outranks `.sk-git/`); `set <kind> <dotted.path> <json>` refuses to write shipped assets and refuses a change that breaks `contractShapeErrors`; `disable <kind>` removes the Enforced-rules section so that kind is unenforced; `check` exits 0/1/2 on clean/drift/broken. [SOURCE: .skilled/commands/doctor/scripts/git-standards.cjs:7-37,158-189,217-351]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-git/SKILL.md:1-475",
+        ".skilled/skills/sk-git/hard-rules.json:1-104",
+        ".skilled/skills/sk-git/assets/commit-message-template.md:1-280",
+        ".skilled/skills/sk-git/scripts/remote-branch-allowlist.txt:1-9",
+        ".skilled/skills/sk-git/references/remote-branch-policy.md:1-116",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:1-80",
+        ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt:1-40",
+        ".skilled/skills/sk-git/scripts/commit-id-naming.sh:1-80",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs:270-349",
+        ".skilled/skills/sk-git/scripts/validate-message.mjs:15-222 (exit codes, contract load, --explain)",
+        ".skilled/commands/doctor/scripts/git-standards.cjs:1-374",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh:1-60"
+      ]
+    },
+    {
+      "id": "finding-3-5-hard-rules-json-is-17-warn-severity-advisory-rules-id-check-message-evaluated-by",
+      "text": "`hard-rules.json` is 17 warn-severity advisory rules `{id, check, message}` evaluated by the shared preflight advisory hook against live repository state — firing on the risky state, never bare verbs; advise-only, never blocks; suppression is `SKGIT_ADVISORY=0` (global) or `SKGIT_ADVISORY_SKIP=<rule-id>`/prefix. What a user would change: rule texts, severities, or add repo-specific rules; what breaks: a malformed JSON or a rule the engine's `check` key doesn't implement silently weakens the advisory without failing anything. [SOURCE: .skilled/skills/sk-git/hard-rules.json:1-104; .skilled/skills/sk-git/SKILL.md:243-257]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-git/SKILL.md:1-475",
+        ".skilled/skills/sk-git/hard-rules.json:1-104",
+        ".skilled/skills/sk-git/assets/commit-message-template.md:1-280",
+        ".skilled/skills/sk-git/scripts/remote-branch-allowlist.txt:1-9",
+        ".skilled/skills/sk-git/references/remote-branch-policy.md:1-116",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:1-80",
+        ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt:1-40",
+        ".skilled/skills/sk-git/scripts/commit-id-naming.sh:1-80",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs:270-349",
+        ".skilled/skills/sk-git/scripts/validate-message.mjs:15-222 (exit codes, contract load, --explain)",
+        ".skilled/commands/doctor/scripts/git-standards.cjs:1-374",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh:1-60"
+      ]
+    },
+    {
+      "id": "finding-3-1-skill-md-is-prose-and-contract-its-rules-are-behavior-ask-first-workspace-rule-n",
+      "text": "`SKILL.md` is prose AND contract: its rules are behavior (ask-first workspace rule; NEVER create branches directly; remote-push permission; commit grammar `worktrees/NNN-slug` / `branches/NNN-slug`), while the mechanical pieces defer to files a repository can override — the rules block in `assets/commit-message-template.md` §7, `scripts/remote-branch-allowlist.txt`, `worktree-naming.sh`, `worktree-provision-paths.txt`, `hard-rules.json`. [SOURCE: .skilled/skills/sk-git/SKILL.md:205-258,285-318]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-git/SKILL.md:1-475",
+        ".skilled/skills/sk-git/hard-rules.json:1-104",
+        ".skilled/skills/sk-git/assets/commit-message-template.md:1-280",
+        ".skilled/skills/sk-git/scripts/remote-branch-allowlist.txt:1-9",
+        ".skilled/skills/sk-git/references/remote-branch-policy.md:1-116",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:1-80",
+        ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt:1-40",
+        ".skilled/skills/sk-git/scripts/commit-id-naming.sh:1-80",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs:270-349",
+        ".skilled/skills/sk-git/scripts/validate-message.mjs:15-222 (exit codes, contract load, --explain)",
+        ".skilled/commands/doctor/scripts/git-standards.cjs:1-374",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh:1-60"
+      ]
+    },
+    {
+      "id": "finding-3-9-commit-id-is-opt-in-per-repository-via-skilled-commitid-cip-repo-wants-ids-reads",
+      "text": "Commit-Id is opt-in per repository via `skilled.commitId`: `cip_repo_wants_ids` reads `git config --local --bool skilled.commitId` FIRST (true=on, false=off), and only local config counts so a cloned repo cannot switch itself in or out. Absent the flag it auto-detects: repo shipping `.skilled/` or `.opencode/` sk-git allocator or the system-spec-kit sentinel, or ≥1 `Commit-Id` trailer in the last 50 commits. [SOURCE: .skilled/scripts/git-hooks/lib/commit-id-policy.sh:19-45]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-git/SKILL.md:1-475",
+        ".skilled/skills/sk-git/hard-rules.json:1-104",
+        ".skilled/skills/sk-git/assets/commit-message-template.md:1-280",
+        ".skilled/skills/sk-git/scripts/remote-branch-allowlist.txt:1-9",
+        ".skilled/skills/sk-git/references/remote-branch-policy.md:1-116",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:1-80",
+        ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt:1-40",
+        ".skilled/skills/sk-git/scripts/commit-id-naming.sh:1-80",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs:270-349",
+        ".skilled/skills/sk-git/scripts/validate-message.mjs:15-222 (exit codes, contract load, --explain)",
+        ".skilled/commands/doctor/scripts/git-standards.cjs:1-374",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh:1-60"
+      ]
+    },
+    {
+      "id": "finding-3-3-contract-dir-resolution-order-is-skgit-contractdir-git-config-file-scope-only-a-",
+      "text": "Contract-dir resolution order is `skgit.contractDir` (git config, file scope only — a command-scoped `-c`/`GIT_CONFIG_*` value is deliberately ignored so no invocation can switch rules off) → `.sk-git/` at repo root → shipped `assets/` under `.skilled/` or `.opencode/`. A `skgit.contractDir` pointing at a missing directory throws `ContractError`, and `validate-message.mjs` exit 2 is treated as a block — so a stale contractDir breaks EVERY commit, the highest-blast-radius misconfiguration in this surface. [SOURCE: .skilled/skills/sk-git/scripts/lib/message-contract.mjs:278-307,314-324; .skilled/skills/sk-git/scripts/validate-message.mjs:17-18,222]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-git/SKILL.md:1-475",
+        ".skilled/skills/sk-git/hard-rules.json:1-104",
+        ".skilled/skills/sk-git/assets/commit-message-template.md:1-280",
+        ".skilled/skills/sk-git/scripts/remote-branch-allowlist.txt:1-9",
+        ".skilled/skills/sk-git/references/remote-branch-policy.md:1-116",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:1-80",
+        ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt:1-40",
+        ".skilled/skills/sk-git/scripts/commit-id-naming.sh:1-80",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs:270-349",
+        ".skilled/skills/sk-git/scripts/validate-message.mjs:15-222 (exit codes, contract load, --explain)",
+        ".skilled/commands/doctor/scripts/git-standards.cjs:1-374",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh:1-60"
+      ]
+    },
+    {
+      "id": "finding-3-10-the-spec-trailer-and-attribution-forbidden-are-repo-shaped-assumptions-inside-th",
+      "text": "The `Spec:` trailer and `attribution.forbidden` are repo-shaped assumptions inside the shipped rules block: `trailers.spec` pins `root: \"specs\"`, `forbiddenPrefix: \"specs/\"`, `mustExist: true` — a repo without `specs/` packets must override or disable that rule via its own `.sk-git/` copy; `attribution.forbiddenKeys: [Co-Authored-By, Claude-Session]` + `forbiddenTrailerValuePattern: \"anthropic\"` may be wrong for repos that want attribution. These are exactly the `git-standards.cjs set`/`disable` levers. [SOURCE: .skilled/skills/sk-git/assets/commit-message-template.md:257-269]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-git/SKILL.md:1-475",
+        ".skilled/skills/sk-git/hard-rules.json:1-104",
+        ".skilled/skills/sk-git/assets/commit-message-template.md:1-280",
+        ".skilled/skills/sk-git/scripts/remote-branch-allowlist.txt:1-9",
+        ".skilled/skills/sk-git/references/remote-branch-policy.md:1-116",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:1-80",
+        ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt:1-40",
+        ".skilled/skills/sk-git/scripts/commit-id-naming.sh:1-80",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs:270-349",
+        ".skilled/skills/sk-git/scripts/validate-message.mjs:15-222 (exit codes, contract load, --explain)",
+        ".skilled/commands/doctor/scripts/git-standards.cjs:1-374",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh:1-60"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-commit-message-contract-is-data-not-prose-the-json-enforced-rules-block-in-c",
+      "text": "The commit message contract is data, not prose: the ```json \"Enforced rules\" block in `commit-message-template.md` §7 (kind/version/help/passthroughSubjects/subject/body/trailers/attribution/breakingFooterPattern) is read by `validate-message.mjs` and enforced identically by the commit-msg hook, pre-push hook, agent gate and CI. The template says so explicitly: \"Another repository gets its own rules by carrying its own copy of this template, in `.sk-git/` at its root or in the directory git config `skgit.contractDir` names.\" [SOURCE: .skilled/skills/sk-git/assets/commit-message-template.md:177-184,216-271]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-git/SKILL.md:1-475",
+        ".skilled/skills/sk-git/hard-rules.json:1-104",
+        ".skilled/skills/sk-git/assets/commit-message-template.md:1-280",
+        ".skilled/skills/sk-git/scripts/remote-branch-allowlist.txt:1-9",
+        ".skilled/skills/sk-git/references/remote-branch-policy.md:1-116",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:1-80",
+        ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt:1-40",
+        ".skilled/skills/sk-git/scripts/commit-id-naming.sh:1-80",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs:270-349",
+        ".skilled/skills/sk-git/scripts/validate-message.mjs:15-222 (exit codes, contract load, --explain)",
+        ".skilled/commands/doctor/scripts/git-standards.cjs:1-374",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh:1-60"
+      ]
+    },
+    {
+      "id": "finding-3-8-the-commit-id-allocator-is-commit-id-naming-sh-7-digit-ordinals-0000001-9999999-",
+      "text": "The Commit-Id allocator is `commit-id-naming.sh`: 7-digit ordinals (`0000001`-`9999999`, `0000000` invalid) minted in commit order under a common-git-dir lock, cold-start rescanning `git log --all` for the max, high-water file as cache, never reissued. The `prepare-commit-msg` hook stamps `Commit-Id:` (and `Spec:` only when the trailer belongs), with amend/cherry-pick/rebase semantics documented. [SOURCE: .skilled/skills/sk-git/scripts/commit-id-naming.sh:1-75; .skilled/scripts/git-hooks/prepare-commit-msg:6-8,97-111,370]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-git/SKILL.md:1-475",
+        ".skilled/skills/sk-git/hard-rules.json:1-104",
+        ".skilled/skills/sk-git/assets/commit-message-template.md:1-280",
+        ".skilled/skills/sk-git/scripts/remote-branch-allowlist.txt:1-9",
+        ".skilled/skills/sk-git/references/remote-branch-policy.md:1-116",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:1-80",
+        ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt:1-40",
+        ".skilled/skills/sk-git/scripts/commit-id-naming.sh:1-80",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs:270-349",
+        ".skilled/skills/sk-git/scripts/validate-message.mjs:15-222 (exit codes, contract load, --explain)",
+        ".skilled/commands/doctor/scripts/git-standards.cjs:1-374",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh:1-60"
+      ]
+    },
+    {
+      "id": "finding-3-6-the-remote-branch-allowlist-is-main-skilled-v-hardcoded-checked-before-the-file-",
+      "text": "The remote-branch allowlist is `main` + `skilled/v*` (hardcoded, checked before the file is read) + globs in `scripts/remote-branch-allowlist.txt`. The file can only narrow, never widen — \"an operator-editable file must fail toward MORE asking.\" Creation of a remote branch always needs `SPECKIT_ALLOW_REMOTE_PUSH=<branch>`; `=1` only permits updates to existing remote branches, set per-invocation never per-session. The pre-push hook backstops; the concern fails open if `worktree-naming.sh` is missing/unsourceable. [SOURCE: .skilled/skills/sk-git/references/remote-branch-policy.md:30-56,78-104; .skilled/skills/sk-git/scripts/remote-branch-allowlist.txt:1-9]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-git/SKILL.md:1-475",
+        ".skilled/skills/sk-git/hard-rules.json:1-104",
+        ".skilled/skills/sk-git/assets/commit-message-template.md:1-280",
+        ".skilled/skills/sk-git/scripts/remote-branch-allowlist.txt:1-9",
+        ".skilled/skills/sk-git/references/remote-branch-policy.md:1-116",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:1-80",
+        ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt:1-40",
+        ".skilled/skills/sk-git/scripts/commit-id-naming.sh:1-80",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs:270-349",
+        ".skilled/skills/sk-git/scripts/validate-message.mjs:15-222 (exit codes, contract load, --explain)",
+        ".skilled/commands/doctor/scripts/git-standards.cjs:1-374",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh:1-60"
+      ]
+    },
+    {
+      "id": "finding-3-7-worktree-naming-provisioning-is-a-shipped-script-with-per-repo-knobs-branch-gram",
+      "text": "Worktree naming/provisioning is a shipped script with per-repo knobs: branch grammar `worktrees/NNN-slug` and `branches/NNN-slug` (independent 001-999 sequences, locked counter in the common git dir seeded from high-water + all matching refs + registered worktrees, never reissued); reserved lanes `skilled/v*`, `backup/`, `main`, and the launch-wrapper lane `work/<runtime>/<slug>`; the worktree BASE relocates via `SPECKIT_WORKTREE_BASE` env > `git config speckit.worktreeBase` > `.worktrees`. Provisioning installs the per-repo dependency list in `worktree-provision-paths.txt` (dir per line, optional `npm run build` artifact check) under the invariant that no shared path may resolve a repo-internal reference back to the source checkout. [SOURCE: .skilled/skills/sk-git/scripts/worktree-naming.sh:5-77; .skilled/skills/sk-git/scripts/worktree-provision-paths.txt:1-40; .skilled/skills/sk-git/SKILL.md:292,296]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-git/SKILL.md:1-475",
+        ".skilled/skills/sk-git/hard-rules.json:1-104",
+        ".skilled/skills/sk-git/assets/commit-message-template.md:1-280",
+        ".skilled/skills/sk-git/scripts/remote-branch-allowlist.txt:1-9",
+        ".skilled/skills/sk-git/references/remote-branch-policy.md:1-116",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:1-80",
+        ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt:1-40",
+        ".skilled/skills/sk-git/scripts/commit-id-naming.sh:1-80",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs:270-349",
+        ".skilled/skills/sk-git/scripts/validate-message.mjs:15-222 (exit codes, contract load, --explain)",
+        ".skilled/commands/doctor/scripts/git-standards.cjs:1-374",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh:1-60"
+      ]
+    },
+    {
+      "id": "finding-4-10-doctor-git-is-already-a-thin-router-in-exactly-the-sk-code-shape-target-setup-va",
+      "text": "`/doctor:git` is already a thin router in exactly the sk-code shape: target + setup values resolved from `_routes.yaml`, presentation contract loaded, workflow YAML executed from `.skilled/commands/doctor/assets/` — so a `setup` target is one route row + one workflow YAML + one read-only check script, and the existing `hooks`/`standards` targets already own mutation (`git-hook-gates.cjs`, `git-standards.cjs`), which a setup check would read-only invoke (`status`/`list`) rather than duplicate. [SOURCE: .skilled/commands/doctor/git.md:3-10,22-67]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/scripts/git-hooks/README.md:1-60",
+        ".skilled/scripts/install-git-hooks.sh:1-197",
+        ".skilled/scripts/git-hooks/pre-commit:28-82",
+        ".skilled/scripts/git-hooks/pre-push:35-83",
+        ".skilled/scripts/git-hooks/lib/gates.tsv:1-16",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs:1-80",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:1-70",
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs:1-40",
+        ".skilled/skills/sk-git/scripts/hooks/opencode/sk-git-preflight-advisory.js:1-30",
+        ".skilled/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts:1-25",
+        ".skilled/hooks/shared/hook-flags.mjs:1-10; .skilled/hooks/shared/hook-flags.cjs:25-68",
+        ".skilled/commands/doctor/git.md:1-82"
+      ]
+    },
+    {
+      "id": "finding-4-4-commit-msg-deliberately-sits-outside-the-trust-block-it-finds-validate-message-m",
+      "text": "`commit-msg` deliberately sits outside the trust block: it finds `validate-message.mjs` beside the installed hook and enforces *the target repository's own* rules block even in untrusted clones; it has no bypass and `--no-verify` only defers the check to `pre-push` and CI. So the message contract is the one enforcement a repo cannot escape by staying untrusted. [SOURCE: .skilled/scripts/git-hooks/README.md:34-36]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/scripts/git-hooks/README.md:1-60",
+        ".skilled/scripts/install-git-hooks.sh:1-197",
+        ".skilled/scripts/git-hooks/pre-commit:28-82",
+        ".skilled/scripts/git-hooks/pre-push:35-83",
+        ".skilled/scripts/git-hooks/lib/gates.tsv:1-16",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs:1-80",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:1-70",
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs:1-40",
+        ".skilled/skills/sk-git/scripts/hooks/opencode/sk-git-preflight-advisory.js:1-30",
+        ".skilled/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts:1-25",
+        ".skilled/hooks/shared/hook-flags.mjs:1-10; .skilled/hooks/shared/hook-flags.cjs:25-68",
+        ".skilled/commands/doctor/git.md:1-82"
+      ]
+    },
+    {
+      "id": "finding-4-8-git-message-gate-mjs-is-the-agent-side-mirror-of-commit-msg-a-pretooluse-gate-th",
+      "text": "`git-message-gate.mjs` is the agent-side mirror of `commit-msg`: a PreToolUse gate that parses the command line (`git commit -m/-F`, `gh pr create/edit --body`, branch-creating commands) and blocks only violations it can see, with no suppression switch, one file serving Claude/Codex `Bash`, older Codex/Devin `exec` and Cursor `Shell` deny envelopes. A setup check for agent-side coverage must therefore detect registration per runtime event, not a git config key. [SOURCE: .skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs:1-40]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/scripts/git-hooks/README.md:1-60",
+        ".skilled/scripts/install-git-hooks.sh:1-197",
+        ".skilled/scripts/git-hooks/pre-commit:28-82",
+        ".skilled/scripts/git-hooks/pre-push:35-83",
+        ".skilled/scripts/git-hooks/lib/gates.tsv:1-16",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs:1-80",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:1-70",
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs:1-40",
+        ".skilled/skills/sk-git/scripts/hooks/opencode/sk-git-preflight-advisory.js:1-30",
+        ".skilled/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts:1-25",
+        ".skilled/hooks/shared/hook-flags.mjs:1-10; .skilled/hooks/shared/hook-flags.cjs:25-68",
+        ".skilled/commands/doctor/git.md:1-82"
+      ]
+    },
+    {
+      "id": "finding-4-3-skilled-trustrepohooks-is-the-repo-side-opt-in-that-decides-whether-the-globally",
+      "text": "`skilled.trustRepoHooks` is the repo-side opt-in that decides whether the globally installed hooks run *this* repository's own gate scripts: an identical block in all six lifecycle hooks keeps the selected source root only when the target shares the hooks' checkout (or a worktree of it) or sets `git config --local skilled.trustRepoHooks true`; a `-c` flag or `GIT_CONFIG_*` never counts, local config is never cloned, and trust covers the repository not a branch. Untrusted → `SOURCE_ROOT=/dev/null/.skilled-untrusted` → treated as a repo without the toolchain, with a NOTICE naming the enable command. [SOURCE: .skilled/scripts/git-hooks/pre-commit:28-56; .skilled/scripts/git-hooks/README.md:34-36]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/scripts/git-hooks/README.md:1-60",
+        ".skilled/scripts/install-git-hooks.sh:1-197",
+        ".skilled/scripts/git-hooks/pre-commit:28-82",
+        ".skilled/scripts/git-hooks/pre-push:35-83",
+        ".skilled/scripts/git-hooks/lib/gates.tsv:1-16",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs:1-80",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:1-70",
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs:1-40",
+        ".skilled/skills/sk-git/scripts/hooks/opencode/sk-git-preflight-advisory.js:1-30",
+        ".skilled/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts:1-25",
+        ".skilled/hooks/shared/hook-flags.mjs:1-10; .skilled/hooks/shared/hook-flags.cjs:25-68",
+        ".skilled/commands/doctor/git.md:1-82"
+      ]
+    },
+    {
+      "id": "finding-4-2-install-safety-is-already-solved-and-a-setup-check-should-verify-rather-than-red",
+      "text": "Install safety is already solved and a setup check should verify rather than redo it: the installer refuses to overwrite a foreign hook (a symlink counts as ours only if it resolves under `.skilled/` or `.opencode/` `scripts/git-hooks`), warns-and-skips, and `--uninstall` removes only own symlinks — coexistence with husky/pre-commit/lefthook is the designed posture, and installing from a linked worktree prints a dangling-symlink warning. [SOURCE: .skilled/scripts/install-git-hooks.sh:72-105,146-177,188-197]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/scripts/git-hooks/README.md:1-60",
+        ".skilled/scripts/install-git-hooks.sh:1-197",
+        ".skilled/scripts/git-hooks/pre-commit:28-82",
+        ".skilled/scripts/git-hooks/pre-push:35-83",
+        ".skilled/scripts/git-hooks/lib/gates.tsv:1-16",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs:1-80",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:1-70",
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs:1-40",
+        ".skilled/skills/sk-git/scripts/hooks/opencode/sk-git-preflight-advisory.js:1-30",
+        ".skilled/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts:1-25",
+        ".skilled/hooks/shared/hook-flags.mjs:1-10; .skilled/hooks/shared/hook-flags.cjs:25-68",
+        ".skilled/commands/doctor/git.md:1-82"
+      ]
+    },
+    {
+      "id": "finding-4-6-kill-switches-sit-at-three-levels-system-hooks-disabled-system-git-commit-hooks-",
+      "text": "Kill switches sit at three levels: `SYSTEM_HOOKS_DISABLED`/`SYSTEM_GIT_COMMIT_HOOKS_DISABLED` master flags via `isHookEnabled`, per-concern env (`git-preflight` → `SK_GIT_PREFLIGHT_DISABLED`), and per-gate `SPECKIT_SKIP_*`/config keys — a setup check that only inspected hook files would miss a master-flag silence entirely. [SOURCE: .skilled/hooks/shared/hook-flags.cjs:25-40; .skilled/scripts/git-hooks/README.md:20-28]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/scripts/git-hooks/README.md:1-60",
+        ".skilled/scripts/install-git-hooks.sh:1-197",
+        ".skilled/scripts/git-hooks/pre-commit:28-82",
+        ".skilled/scripts/git-hooks/pre-push:35-83",
+        ".skilled/scripts/git-hooks/lib/gates.tsv:1-16",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs:1-80",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:1-70",
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs:1-40",
+        ".skilled/skills/sk-git/scripts/hooks/opencode/sk-git-preflight-advisory.js:1-30",
+        ".skilled/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts:1-25",
+        ".skilled/hooks/shared/hook-flags.mjs:1-10; .skilled/hooks/shared/hook-flags.cjs:25-68",
+        ".skilled/commands/doctor/git.md:1-82"
+      ]
+    },
+    {
+      "id": "finding-4-5-per-gate-persistence-is-data-driven-lib-gates-tsv-is-the-single-registry-hook-ke",
+      "text": "Per-gate persistence is data-driven: `lib/gates.tsv` is the single registry (hook, key, env, persistable, description) — 13 persistable gates across pre-commit (9), prepare-commit-msg (1) and pre-push (3 blocking + 1 warn-only), plus `remotePush` and `massDeletion` marked non-persistable so an approval can never be saved. `lib/gate-config.sh` reads `speckit.hooks.<key>` from local/global config only (`off|false|no|0`), and `/doctor:git hooks` is `git-hook-gates.cjs list|set` — dry-run by default, exit 0/2, refusing non-persistable keys and delegating commit-msg rules to `git-standards.cjs`. [SOURCE: .skilled/scripts/git-hooks/lib/gates.tsv:1-16; .skilled/commands/doctor/scripts/git-hook-gates.cjs:7-29,80-83]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/scripts/git-hooks/README.md:1-60",
+        ".skilled/scripts/install-git-hooks.sh:1-197",
+        ".skilled/scripts/git-hooks/pre-commit:28-82",
+        ".skilled/scripts/git-hooks/pre-push:35-83",
+        ".skilled/scripts/git-hooks/lib/gates.tsv:1-16",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs:1-80",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:1-70",
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs:1-40",
+        ".skilled/skills/sk-git/scripts/hooks/opencode/sk-git-preflight-advisory.js:1-30",
+        ".skilled/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts:1-25",
+        ".skilled/hooks/shared/hook-flags.mjs:1-10; .skilled/hooks/shared/hook-flags.cjs:25-68",
+        ".skilled/commands/doctor/git.md:1-82"
+      ]
+    },
+    {
+      "id": "finding-4-1-the-global-hooks-are-shipped-sources-under-skilled-scripts-git-hooks-symlinked-i",
+      "text": "The global hooks are shipped sources under `.skilled/scripts/git-hooks/` symlinked into `git rev-parse --git-path hooks` by `.skilled/scripts/install-git-hooks.sh` — honoring repo-local or global `core.hooksPath` automatically, and usually installed machine-wide. `--status` prints the hooksPath scope, per-hook resolved target, a `SHADOWED` warning when the installed link resolves outside the checkout, and the resolved message contract (`validate-message.mjs --repo --explain`). [SOURCE: .skilled/scripts/install-git-hooks.sh:107-144; .skilled/scripts/git-hooks/README.md:15-18]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/scripts/git-hooks/README.md:1-60",
+        ".skilled/scripts/install-git-hooks.sh:1-197",
+        ".skilled/scripts/git-hooks/pre-commit:28-82",
+        ".skilled/scripts/git-hooks/pre-push:35-83",
+        ".skilled/scripts/git-hooks/lib/gates.tsv:1-16",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs:1-80",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:1-70",
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs:1-40",
+        ".skilled/skills/sk-git/scripts/hooks/opencode/sk-git-preflight-advisory.js:1-30",
+        ".skilled/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts:1-25",
+        ".skilled/hooks/shared/hook-flags.mjs:1-10; .skilled/hooks/shared/hook-flags.cjs:25-68",
+        ".skilled/commands/doctor/git.md:1-82"
+      ]
+    },
+    {
+      "id": "finding-4-9-the-honest-failure-mode-list-for-a-hooks-setup-check-a-hook-absent-or-resolved-t",
+      "text": "The honest failure-mode list for a hooks setup check: (a) hook absent or resolved target SHADOWED by another checkout; (b) foreign hook occupying the path so ours was skipped; (c) `core.hooksPath` scope mismatch (local vs global vs unset); (d) linked-worktree dangling symlinks; (e) repo untrusted → all repo-owned gates silently skipped except commit-msg/Commit-Id; (f) master/per-gate disable flags muting gates that appear installed; (g) advisory/message-gate not registered in the user's runtime; (h) missing gate script inside a toolchain repo → blocking gate exits 1 naming path + bypass (loud, by design). [SOURCE: .skilled/scripts/install-git-hooks.sh:107-144,188-197; .skilled/scripts/git-hooks/README.md:20-36; .skilled/scripts/git-hooks/pre-commit:51-56]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/scripts/git-hooks/README.md:1-60",
+        ".skilled/scripts/install-git-hooks.sh:1-197",
+        ".skilled/scripts/git-hooks/pre-commit:28-82",
+        ".skilled/scripts/git-hooks/pre-push:35-83",
+        ".skilled/scripts/git-hooks/lib/gates.tsv:1-16",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs:1-80",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:1-70",
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs:1-40",
+        ".skilled/skills/sk-git/scripts/hooks/opencode/sk-git-preflight-advisory.js:1-30",
+        ".skilled/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts:1-25",
+        ".skilled/hooks/shared/hook-flags.mjs:1-10; .skilled/hooks/shared/hook-flags.cjs:25-68",
+        ".skilled/commands/doctor/git.md:1-82"
+      ]
+    },
+    {
+      "id": "finding-4-7-the-preflight-advisory-scripts-hooks-git-preflight-advisory-mjs-is-a-pretooluse-",
+      "text": "The preflight advisory (`scripts/hooks/git-preflight-advisory.mjs`) is a PreToolUse hook reading the same `hard-rules.json` through `dispatch-rule-checks.mjs` + `git-context.mjs`/`git-rule-checks.mjs`, capped at `MAX_ADVISORIES=3`, failing open on every path, suppressed by `SKGIT_ADVISORY=0` or `SKGIT_ADVISORY_SKIP=<id|prefix>` — and it exists as three runtime adapters (Claude `.mjs`, `opencode/sk-git-preflight-advisory.js`, `pi/git-preflight-advisory.ts`), so presence in git config or hook dir does not prove it is wired; each runtime's hook/plugin registration is the real state to check. [SOURCE: .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:1-66; .skilled/skills/sk-git/scripts/hooks/opencode/sk-git-preflight-advisory.js:1-30]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/scripts/git-hooks/README.md:1-60",
+        ".skilled/scripts/install-git-hooks.sh:1-197",
+        ".skilled/scripts/git-hooks/pre-commit:28-82",
+        ".skilled/scripts/git-hooks/pre-push:35-83",
+        ".skilled/scripts/git-hooks/lib/gates.tsv:1-16",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs:1-80",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:1-70",
+        ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs:1-40",
+        ".skilled/skills/sk-git/scripts/hooks/opencode/sk-git-preflight-advisory.js:1-30",
+        ".skilled/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts:1-25",
+        ".skilled/hooks/shared/hook-flags.mjs:1-10; .skilled/hooks/shared/hook-flags.cjs:25-68",
+        ".skilled/commands/doctor/git.md:1-82"
+      ]
+    },
+    {
+      "id": "finding-5-1-doctor-git-is-a-mandatory-gate-thin-router-first-positional-token-binds-target-h",
+      "text": "`/doctor:git` is a mandatory-gate thin router: first positional token binds `target` (`hooks`/`standards` today), absent target → startup menu and stop; `_routes.yaml` is the canonical manifest carrying `target`, `yaml`, `setup_vars`, `allowed_flags`, `mutating` (read-only|add-only|mutates), `gate3_location`, `mcp_tools`, `script_invocations`, `trigger_phrases`; adding a target = append one route + one `assets/doctor-*.yaml` + list it in the command. [SOURCE: .skilled/commands/doctor/git.md:12-20,39-67; .skilled/commands/doctor/_routes.yaml:25-38]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/commands/doctor/git.md:1-84",
+        ".skilled/commands/doctor/_routes.yaml:1-40,220-273",
+        ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:1-70",
+        ".skilled/commands/doctor/scripts/ (inventory)",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:141-160,505-530",
+        ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:255-285",
+        ".skilled/scripts/git-hooks/pre-push:42,368-399",
+        ".skilled/scripts/git-hooks/prepare-commit-msg:6-8"
+      ]
+    },
+    {
+      "id": "finding-5-7-hard-rules-json-edits-carry-a-silent-failure-mode-worth-a-dedicated-leg-evaluate",
+      "text": "`hard-rules.json` edits carry a silent-failure mode worth a dedicated leg: `evaluate()` skips any rule whose `check` name is absent from the check registry — \"unknown check → skip (the CI validator catches typos, not this hot path)\" — so a malformed or mistyped rule never fires and never complains; a setup check can prove `every rule.check ∈ GIT_CHECKS` read-only. [SOURCE: .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:274-283; .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:30-33]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/commands/doctor/git.md:1-84",
+        ".skilled/commands/doctor/_routes.yaml:1-40,220-273",
+        ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:1-70",
+        ".skilled/commands/doctor/scripts/ (inventory)",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:141-160,505-530",
+        ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:255-285",
+        ".skilled/scripts/git-hooks/pre-push:42,368-399",
+        ".skilled/scripts/git-hooks/prepare-commit-msg:6-8"
+      ]
+    },
+    {
+      "id": "finding-5-9-a-non-vendored-consumer-a-repo-using-a-shared-global-sk-git-install-can-customiz",
+      "text": "A non-vendored consumer (a repo using a shared/global sk-git install) can customize only class (a); `remote-branch-allowlist.txt`, `worktree-provision-paths.txt`, `hard-rules.json` and `gates.tsv` are shared-install files whose edits affect every repo on that install — the setup check must report them as shared-scope, not invite a repo-scoped edit. This is the honest answer to \"what may a repository user change\": config keys and `.sk-git/` always; skill-side data files only when vendored. [SOURCE: .skilled/skills/sk-git/scripts/worktree-naming.sh:141-157,505-511; .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:260-265]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/commands/doctor/git.md:1-84",
+        ".skilled/commands/doctor/_routes.yaml:1-40,220-273",
+        ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:1-70",
+        ".skilled/commands/doctor/scripts/ (inventory)",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:141-160,505-530",
+        ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:255-285",
+        ".skilled/scripts/git-hooks/pre-push:42,368-399",
+        ".skilled/scripts/git-hooks/prepare-commit-msg:6-8"
+      ]
+    },
+    {
+      "id": "finding-5-4-placement-decision-setup-belongs-in-doctor-git-as-a-third-read-only-target-reaso",
+      "text": "Placement decision: `setup` belongs in `/doctor:git` as a third, read-only target. Reasons: (a) ownership — `git.md` frontmatter declares `skill_agent: sk-git`, so the skill whose customization is verified owns the command; (b) repair adjacency — every failing leg's repair is either a `/doctor:git hooks|standards` invocation or a named `git config`, so the command that reports is the command that fixes; (c) precedent — sk-code chose the owner-scoped target over a separate command and over hub/mode routing; (d) discoverability — `list`/`?` already renders `/doctor:git`'s manifest. [SOURCE: .skilled/commands/doctor/git.md:3-10,49-58; .skilled/commands/doctor/_routes.yaml:220-234]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/commands/doctor/git.md:1-84",
+        ".skilled/commands/doctor/_routes.yaml:1-40,220-273",
+        ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:1-70",
+        ".skilled/commands/doctor/scripts/ (inventory)",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:141-160,505-530",
+        ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:255-285",
+        ".skilled/scripts/git-hooks/pre-push:42,368-399",
+        ".skilled/scripts/git-hooks/prepare-commit-msg:6-8"
+      ]
+    },
+    {
+      "id": "finding-5-8-proposed-battery-legs-the-customization-matrix-as-checks-l1-sk-git-provisioning-",
+      "text": "Proposed battery legs (the customization matrix as checks): L1 sk-git provisioning (SKILL.md/scripts/hard-rules.json present and parseable); L2 hook install (`--status`: no missing/SHADOWED, hooksPath scope); L3 trust (`skilled.trustRepoHooks` — PASS/SKIP both legitimate, consequences printed); L4 gates (`git-hook-gates.cjs list --json` resolves, saved keys valid, non-persistable absent); L5 standards (`git-standards.cjs check --json`); L6 `skgit.contractDir` resolves to a valid dir when set; L7 allowlist parses + ownership note; L8 worktree base resolves writable + `worktree-provision-paths.txt` entries exist; L9 Commit-Id (`skilled.commitId` effective + allocator present when policy covers); L10 advisory rules all resolve against `GIT_CHECKS`; L11 suppression audit (active `SKGIT_ADVISORY*`/`SYSTEM_*_DISABLED`/`speckit.hooks.*` reported so \"installed but muted\" is visible). [SOURCE: .skilled/commands/doctor/_routes.yaml:236-273; .skilled/scripts/install-git-hooks.sh:107-144; .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:274-283]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/commands/doctor/git.md:1-84",
+        ".skilled/commands/doctor/_routes.yaml:1-40,220-273",
+        ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:1-70",
+        ".skilled/commands/doctor/scripts/ (inventory)",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:141-160,505-530",
+        ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:255-285",
+        ".skilled/scripts/git-hooks/pre-push:42,368-399",
+        ".skilled/scripts/git-hooks/prepare-commit-msg:6-8"
+      ]
+    },
+    {
+      "id": "finding-5-5-rejected-designs-extending-the-precedent-s-rejection-pattern-r1-a-separate-docto",
+      "text": "Rejected designs (extending the precedent's rejection pattern): R1 a separate `/doctor:sk-git` command — doubles a router for one target and breaks the `/doctor:<concern>` naming where the concern is `git`, already owned by `git.md`; R2 folding setup into `hooks` or `standards` as a flag — those routes are `mutates` with approval flows, a no-approval read-only battery violates their mutation class; R3 `/doctor:git-setup` — breaks the `<command> <target>` grammar and leaves the route manifest split; R4 a mutating setup (auto-init `.sk-git/`, auto-install hooks, auto-trust) — violates the read-only-diagnostic invariant the precedent set verbatim; R5 per-tool `--doctor` flags inside `worktree-naming.sh`/`validate-message.mjs` — scatters one battery across N executables; R6 `install-git-hooks.sh --status` alone as the battery — covers hook resolution only, no standards/gates/trust/allocator legs. [SOURCE: .skilled/commands/doctor/_routes.yaml:220-273; .skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:24-31; .skilled/commands/doctor/git.md:49-58]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/commands/doctor/git.md:1-84",
+        ".skilled/commands/doctor/_routes.yaml:1-40,220-273",
+        ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:1-70",
+        ".skilled/commands/doctor/scripts/ (inventory)",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:141-160,505-530",
+        ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:255-285",
+        ".skilled/scripts/git-hooks/pre-push:42,368-399",
+        ".skilled/scripts/git-hooks/prepare-commit-msg:6-8"
+      ]
+    },
+    {
+      "id": "finding-5-10-residual-unknowns-for-the-synthesis-u1-no-uniform-probe-exists-for-per-runtime-a",
+      "text": "Residual unknowns for the synthesis: (u1) no uniform probe exists for per-runtime adapter registration (Claude PreToolUse config vs opencode plugin vs pi extension) — the leg will likely SKIP with file paths to verify; (u2) no repo-local `hard-rules.json` overlay mechanism was found — vendored copy or nothing; (u3) `SPECKIT_COMMIT_SPEC`/`Spec:` trailer provisioning semantics for repos without `specs/` rely on the `.sk-git` rules override rather than a dedicated switch. [SOURCE: .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:24-40; .skilled/skills/sk-git/assets/commit-message-template.md:257-269; .skilled/scripts/git-hooks/prepare-commit-msg:6-8]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/commands/doctor/git.md:1-84",
+        ".skilled/commands/doctor/_routes.yaml:1-40,220-273",
+        ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:1-70",
+        ".skilled/commands/doctor/scripts/ (inventory)",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:141-160,505-530",
+        ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:255-285",
+        ".skilled/scripts/git-hooks/pre-push:42,368-399",
+        ".skilled/scripts/git-hooks/prepare-commit-msg:6-8"
+      ]
+    },
+    {
+      "id": "finding-5-6-the-customization-ownership-boundary-has-three-classes-and-the-battery-must-say-",
+      "text": "The customization ownership boundary has three classes, and the battery must say which class each failure sits in: (a) repo-owned config — `.sk-git/` copies, `skgit.contractDir`, `speckit.hooks.<key>`, `skilled.trustRepoHooks`, `skilled.commitId`, `speckit.worktreeBase`, suppression envs, foreign hooks in `.git/hooks`; (b) vendored-skill files — `remote-branch-allowlist.txt` resolves at the repo toplevel's own `.skilled`/`.opencode` copy, `worktree-provision-paths.txt` resolves beside the running script, `hard-rules.json` reads \"the sidecar beside the skill's SKILL.md\": editable only where the repository vendors the skill tree, with no second repo-local override layer; (c) runtime-registered adapters — the advisory and message-gate PreToolUse hooks, probed per runtime. [SOURCE: .skilled/skills/sk-git/scripts/worktree-naming.sh:141-157,505-511; .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:260-265; .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:24-33]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/commands/doctor/git.md:1-84",
+        ".skilled/commands/doctor/_routes.yaml:1-40,220-273",
+        ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:1-70",
+        ".skilled/commands/doctor/scripts/ (inventory)",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:141-160,505-530",
+        ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:255-285",
+        ".skilled/scripts/git-hooks/pre-push:42,368-399",
+        ".skilled/scripts/git-hooks/prepare-commit-msg:6-8"
+      ]
+    },
+    {
+      "id": "finding-5-3-the-precedent-s-route-shape-is-confirmed-verbatim-doctor-sk-code-setup-is-mutati",
+      "text": "The precedent's route shape is confirmed verbatim: `/doctor:sk-code setup` is `mutating: read-only`, `gate3_location: \"n/a (read-only setup battery; runs each check in its check-only form and prints repair commands, writes nothing)\"`, one script invocation, `allowed_flags: [\"--prompt=<text>\"]`; its workflow YAML declares `execution: read_only`, `approvals: none`, `forbidden_targets: [\"**/*\"]` and the invariant \"Repair is an explicit operator action, never a side effect of a diagnostic,\" mapping exit 0/1/2 to STATUS=OK/FAIL/ERROR. [SOURCE: .skilled/commands/doctor/_routes.yaml:220-234; .skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:1-70]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/commands/doctor/git.md:1-84",
+        ".skilled/commands/doctor/_routes.yaml:1-40,220-273",
+        ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:1-70",
+        ".skilled/commands/doctor/scripts/ (inventory)",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:141-160,505-530",
+        ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:255-285",
+        ".skilled/scripts/git-hooks/pre-push:42,368-399",
+        ".skilled/scripts/git-hooks/prepare-commit-msg:6-8"
+      ]
+    },
+    {
+      "id": "finding-5-2-the-two-existing-doctor-git-targets-are-both-mutates-routes-whose-script-invocat",
+      "text": "The two existing `/doctor:git` targets are both `mutates` routes whose script_invocations already enumerate the exact check-only calls a setup battery would reuse: `git-hook-gates.cjs list --json`, `install-git-hooks.sh --status`, `git-standards.cjs status|check --json`, `validate-message.mjs --explain`. The mutating forms (`set`, `init`, `disable` with `--apply`) are the repair side. [SOURCE: .skilled/commands/doctor/_routes.yaml:236-273]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/commands/doctor/git.md:1-84",
+        ".skilled/commands/doctor/_routes.yaml:1-40,220-273",
+        ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:1-70",
+        ".skilled/commands/doctor/scripts/ (inventory)",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:141-160,505-530",
+        ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:255-285",
+        ".skilled/scripts/git-hooks/pre-push:42,368-399",
+        ".skilled/scripts/git-hooks/prepare-commit-msg:6-8"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-8d2de85490a0",
+      "text": "None. Every named file in the dispatch topic resolved.",
+      "contentHash": "8d2de85490a0",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-94534a5ad61c",
+      "text": "Reading the full git-standards/git-hook-gates scripts this iteration — deferred to iteration 4 where they belong topically; `_routes.yaml` already fixed their contract surface.",
+      "contentHash": "94534a5ad61c",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-007fdb0d494f",
+      "text": "None.",
+      "contentHash": "007fdb0d494f",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-6ebab432d78e",
+      "text": "Reading `parent-skill-check.cjs`, the guard, or the sync scripts' internals — their contract surfaces (what they check) are already established via the battery's leg commands; internals matter only if sk-git needs an analogous per-leg script, which iteration 4 will settle.",
+      "contentHash": "6ebab432d78e",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-56494cadd259",
+      "text": "None — every file the topic named exists and resolved cleanly.",
+      "contentHash": "56494cadd259",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-3aa0c7461a62",
+      "text": "`trustRepoHooks` does not appear under `.opencode/` or as a standalone file — it lives in the identical trust block inside each lifecycle hook and in README/changelog docs. Resolved by reading `pre-commit:28-56` directly.",
+      "contentHash": "3aa0c7461a62",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-445212367a23",
+      "text": "No `hard-rules.json` repo override exists — confirmed by `readHardRules` reading only the sidecar beside `SKILL.md`. Recorded as a limitation, not a defect to fix here.",
+      "contentHash": "445212367a23",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-722faf5767e3",
+      "text": "Separate `/doctor:sk-git` or `/doctor:git-setup` commands (R1/R3); flags on the mutating routes (R2); mutating/auto-repair setup (R4); per-tool `--doctor` modes (R5); `--status` alone as the battery (R6).",
+      "contentHash": "722faf5767e3",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 3,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 10,
+    "keyFindings": 49,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.88,
+    "coverageBySources": {
+      "code": 42,
+      "other": 1
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-git/033-git-setup-customization/001-deep-research/research/lineages/swe-2-max/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": [
+    "Missing anchor section key-questions in strategy file"
+  ]
+}

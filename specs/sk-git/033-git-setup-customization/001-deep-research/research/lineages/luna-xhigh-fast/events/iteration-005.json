@@ -1,0 +1,31 @@
+{
+  "type": "iteration",
+  "iteration": 5,
+  "runId": "fanout-luna-xhigh-fast-1792042581294-btcd4b",
+  "sessionId": "fanout-luna-xhigh-fast-1792042581294-btcd4b",
+  "lineageId": "fanout-luna-xhigh-fast-1792042581294-btcd4b",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.9,
+  "status": "complete",
+  "focus": "Define the read-only setup proof matrix, inspect doctor route constraints, decide command placement, and reject unsafe or redundant approaches",
+  "findingsCount": 5,
+  "keyQuestions": [
+    "What can a read-only sk-git setup check prove, and how does `/doctor:git` currently route and report?",
+    "Should setup be a new `/doctor:git` action or a separate command, and which proposals should be rejected?"
+  ],
+  "answeredQuestions": [
+    "What can a read-only sk-git setup check prove, and how does `/doctor:git` currently route and report?",
+    "Should setup be a new `/doctor:git` action or a separate command, and which proposals should be rejected?"
+  ],
+  "timestamp": "2026-10-15T05:52:16Z",
+  "noveltyJustification": "Command placement and the read-only proof boundary are decided using the current route contracts and sk-code setup precedent.",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "fast"
+  }
+}

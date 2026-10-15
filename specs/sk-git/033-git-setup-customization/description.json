@@ -1,0 +1,24 @@
+{
+  "specFolder": "sk-git/033-git-setup-customization",
+  "description": "sk-git setup customization: a doctor-style setup check so users can adapt sk-git to their own repository",
+  "keywords": [
+    "sk-git",
+    "setup",
+    "customization",
+    "doctor-style",
+    "check",
+    "users",
+    "adapt",
+    "own",
+    "repository"
+  ],
+  "lastUpdated": "2026-10-15T05:35:18.127Z",
+  "specId": "033",
+  "folderSlug": "git-setup-customization",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

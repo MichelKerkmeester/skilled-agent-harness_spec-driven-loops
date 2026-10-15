@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/033-git-setup-customization",
+  "spec_folder": "sk-git/033-git-setup-customization",
+  "parent_id": null,
+  "children_ids": [
+    "sk-git/033-git-setup-customization/001-deep-research"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "git setup customization phase parent spec"
+    ],
+    "key_topics": [
+      "git",
+      "setup",
+      "customization",
+      "phase",
+      "parent",
+      "spec",
+      "one-paragraph",
+      "problem",
+      "statement",
+      "needs",
+      "solving",
+      "feature"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "[One-paragraph problem statement — what needs solving and why]",
+    "created_at": "2026-10-15T05:35:17Z",
+    "last_save_at": "2026-10-15T06:14:11.302Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:b299b9ab86234ce190ffc41351d8df33123eaa8ad88c58f18b433b8a1d107aa3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0d0477d976b2f865e4c028a211a0ef1d14bded2f98aebdc384c696100d14e266"
+    },
+    "last_active_at": "2026-10-15T06:14:11.302Z",
+    "last_active_child_id": "sk-git/033-git-setup-customization/001-deep-research"
+  }
+}

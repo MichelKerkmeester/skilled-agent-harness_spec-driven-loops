@@ -1,0 +1,29 @@
+{
+  "type": "iteration",
+  "iteration": 4,
+  "runId": "fanout-luna-xhigh-fast-1792042581294-btcd4b",
+  "sessionId": "fanout-luna-xhigh-fast-1792042581294-btcd4b",
+  "lineageId": "fanout-luna-xhigh-fast-1792042581294-btcd4b",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 1.0,
+  "status": "complete",
+  "focus": "Trace repository hook trust, Git hook installation and persistent gates, and runtime preflight advisory delivery",
+  "findingsCount": 4,
+  "keyQuestions": [
+    "How do worktree naming/provisioning, Commit-Id allocation, hook trust, global hooks, and preflight advice interact?"
+  ],
+  "answeredQuestions": [
+    "How do worktree naming/provisioning, Commit-Id allocation, hook trust, global hooks, and preflight advice interact?"
+  ],
+  "timestamp": "2026-10-15T05:49:40Z",
+  "noveltyJustification": "Trust, hook installation, persistent gate ownership, and runtime advisory delivery complete the hook interaction map.",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "fast"
+  }
+}
