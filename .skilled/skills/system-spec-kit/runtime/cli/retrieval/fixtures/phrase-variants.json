@@ -1,5 +1,5 @@
 {
-  "manifestHash": "120f972074d61e20f83dec30d4bf42b604c9232fd4d4106cda54c5c6006b6bbc",
+  "manifestHash": "45ddd7040db060aaa8f8cc4b05378257e39c9f24a5c0a4e9b9b26c6db34f37b4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -82007,6 +82007,9 @@
     "restore template default": [
       "restore template default"
     ],
+    "restore the round trip of the shipped commit": [
+      "restore the round trip of the shipped commit"
+    ],
     "restore time mutations": [
       "restore-time mutations"
     ],
@@ -99406,6 +99409,18 @@
     ],
     "standards alignment audit": [
       "standards alignment audit"
+    ],
+    "standards template round trip": [
+      "standards template round trip"
+    ],
+    "standards template round trip implementation summary": [
+      "standards template round trip implementation summary"
+    ],
+    "standards template round trip plan": [
+      "standards template round trip plan"
+    ],
+    "standards template round trip tasks": [
+      "standards template round trip tasks"
     ],
     "start browser debugging session": [
       "start browser debugging session"
