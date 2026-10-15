@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 7013,
-    "ok": 14323,
+    "missing-frontmatter": 7020,
+    "ok": 14326,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 24883,
+  "documentsScanned": 24893,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "370545c014576ddd42677b92b25157ff9c2ee680fbad1e53de8c815f9ce70393",
+  "manifestHash": "4a6e15259a47056f6397d9f190dfe414fb2ef4dfbb8c2d89bafc6fefc54f6830",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36538,
+      "ok": 36547,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -32903,6 +32903,48 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/skill-advisor-cli-fallback.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-routing-contested-second-line.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-routing-env-prompt.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-routing-no-hint-unrelated.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-routing-python-typed-command.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-routing-setup-hint.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-routing-setup-onboarding.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-setup-run.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -69196,6 +69238,14 @@
     },
     {
       "path": "specs/sk-code/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
       "reason": "excluded directory"
     },
     {

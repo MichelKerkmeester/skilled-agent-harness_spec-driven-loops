@@ -1,5 +1,5 @@
 {
-  "manifestHash": "370545c014576ddd42677b92b25157ff9c2ee680fbad1e53de8c815f9ce70393",
+  "manifestHash": "4a6e15259a47056f6397d9f190dfe414fb2ef4dfbb8c2d89bafc6fefc54f6830",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -37204,6 +37204,9 @@
     "doctor command authoring plan": [
       "doctor command authoring plan"
     ],
+    "doctor command bridges": [
+      "doctor command bridges"
+    ],
     "doctor command consolidation summary": [
       "doctor command consolidation summary"
     ],
@@ -37507,6 +37510,9 @@
     ],
     "doctor git setup acceptance criteria": [
       "doctor git setup acceptance criteria"
+    ],
+    "doctor git setup check": [
+      "doctor git setup check"
     ],
     "doctor git setup hardening": [
       "doctor git setup hardening"
@@ -37941,8 +37947,14 @@
     "doctor sequential thinking removal": [
       "doctor sequential thinking removal"
     ],
+    "doctor setup": [
+      "/doctor:setup"
+    ],
     "doctor setup check": [
       "doctor setup check"
+    ],
+    "doctor setup hint": [
+      "doctor setup hint"
     ],
     "doctor setup umbrella": [
       "doctor setup umbrella"
@@ -75629,6 +75641,9 @@
     "prove the whole packet from its final state": [
       "prove the whole packet from its final state"
     ],
+    "prove your git setup": [
+      "prove your git setup"
+    ],
     "provenance audit phase summary": [
       "provenance audit phase summary"
     ],
@@ -92832,6 +92847,9 @@
     "sk git 1 8 6 0": [
       "sk-git 1.8.6.0"
     ],
+    "sk git 1 9 0 0": [
+      "sk-git 1.9.0.0"
+    ],
     "sk git benchmark": [
       "sk-git benchmark"
     ],
@@ -93011,6 +93029,9 @@
     ],
     "sk git v1 8 6 0": [
       "sk-git v1.8.6.0"
+    ],
+    "sk git v1 9 0 0": [
+      "sk-git v1.9.0.0"
     ],
     "sk git workflow support": [
       "sk-git workflow support"
@@ -95926,6 +95947,9 @@
     ],
     "skilled v4 0 0 10": [
       "skilled v4.0.0.10"
+    ],
+    "skilled v4 0 0 11": [
+      "skilled v4.0.0.11"
     ],
     "skilled v4 0 0 2": [
       "skilled v4.0.0.2"
@@ -106966,6 +106990,9 @@
     ],
     "v4 0 0 10 release notes": [
       "v4.0.0.10 release notes"
+    ],
+    "v4 0 0 11 release notes": [
+      "v4.0.0.11 release notes"
     ],
     "v4 0 0 2 release notes": [
       "v4.0.0.2 release notes"

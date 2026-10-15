@@ -1,5 +1,5 @@
 {
-  "corpusHash": "1fb31d951cad6e5f11619fc9bfb85d92e0bc3b9217a1311aca3d19249e2d2fae",
+  "corpusHash": "63f46a2da1150c1082454443c83105aedf1d06535b5874882ea06f41d6868e67",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24883,
+  "includedPathCount": 24893,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -75,6 +75,7 @@
     ".skilled/changelog/skilled/v4.0.0.0.md",
     ".skilled/changelog/skilled/v4.0.0.1.md",
     ".skilled/changelog/skilled/v4.0.0.10.md",
+    ".skilled/changelog/skilled/v4.0.0.11.md",
     ".skilled/changelog/skilled/v4.0.0.2.md",
     ".skilled/changelog/skilled/v4.0.0.3.md",
     ".skilled/changelog/skilled/v4.0.0.4.md",
@@ -6599,6 +6600,7 @@
     ".skilled/skills/sk-git/changelog/v1.8.4.0.md",
     ".skilled/skills/sk-git/changelog/v1.8.5.0.md",
     ".skilled/skills/sk-git/changelog/v1.8.6.0.md",
+    ".skilled/skills/sk-git/changelog/v1.9.0.0.md",
     ".skilled/skills/sk-git/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/github-mcp-integration.md",
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/gitkraken-mcp-integration.md",
@@ -7616,6 +7618,7 @@
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/ablation.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/ambiguity.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/attribution.md",
+    ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/five-lane-fusion.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/projection.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/weights-config.md",
@@ -7643,6 +7646,13 @@
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/force-local-force-native.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/python-shim-stdin.md",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-routing-contested-second-line.md",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-routing-env-prompt.md",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-routing-no-hint-unrelated.md",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-routing-python-typed-command.md",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-routing-setup-hint.md",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-routing-setup-onboarding.md",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-setup-run.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-skill-advisor-graph-freshness.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-skill-advisor-parent-skill.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-skill-advisor-rebuild.md",
@@ -24914,7 +24924,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "370545c014576ddd42677b92b25157ff9c2ee680fbad1e53de8c815f9ce70393",
+  "manifestHash": "4a6e15259a47056f6397d9f190dfe414fb2ef4dfbb8c2d89bafc6fefc54f6830",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27158,6 +27168,14 @@
     },
     {
       "path": "specs/sk-code/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
       "reason": "excluded directory"
     },
     {
