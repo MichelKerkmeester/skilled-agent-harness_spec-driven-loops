@@ -48,12 +48,12 @@ const TOOL_FILES = {
   pi: '.pi/extensions/git-preflight-advisory.ts',
 };
 
-const RESULTS = ['PASS', 'FAIL', 'SKIP', 'UNKNOWN'];
+const RESULTS = ['PASS', 'FAIL', 'SKIP', 'UNKNOWN', 'DEGRADED'];
 
 // The child must not inherit the operator's git identity, repository redirection,
 // runtime detection or hook switches, or a setting outside the fixture would decide
 // a verdict this battery is supposed to report.
-const ISOLATED_DROP = /^(GIT_DIR|GIT_WORK_TREE|GIT_CONFIG_COUNT|GIT_CONFIG_KEY_[0-9]+|GIT_CONFIG_VALUE_[0-9]+|CLAUDECODE|SYSTEM_HOOKS_DISABLED|SYSTEM_GIT_COMMIT_HOOKS_DISABLED)$/;
+const ISOLATED_DROP = /^(GIT_DIR|GIT_WORK_TREE|GIT_CONFIG_COUNT|GIT_CONFIG_KEY_[0-9]+|GIT_CONFIG_VALUE_[0-9]+|CLAUDECODE|SYSTEM_HOOKS_DISABLED|SYSTEM_GIT_COMMIT_HOOKS_DISABLED|MK_HOOKS_DISABLED|SK_GIT_PREFLIGHT_DISABLED|MK_GIT_PREFLIGHT_DISABLED|SKGIT_ADVISORY|SKGIT_ADVISORY_SKIP|SPECKIT_WORKTREE_BASE|HOOK_FLAGS_CONFIG)$/;
 
 function isolatedEnv(dir) {
   const globalConfig = path.join(dir, 'global.gitconfig');
@@ -87,6 +87,21 @@ function fixture(t) {
     };
   };
   return { dir, repo, env, run };
+}
+
+// A fake install root whose gate helper is a stub, so how the gates row reads a
+// helper failure and a report shape can be observed without the real registry.
+function fakeRoot(t, gateHelperSource) {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'git-setup-check-root-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const installRoot = path.join(root, '.skilled');
+  const scriptsDir = path.join(installRoot, 'commands', 'doctor', 'scripts');
+  fs.mkdirSync(scriptsDir, { recursive: true });
+  fs.copyFileSync(SCRIPT, path.join(scriptsDir, 'git-setup-check.cjs'));
+  fs.writeFileSync(path.join(scriptsDir, 'git-hook-gates.cjs'), gateHelperSource);
+  fs.symlinkSync(path.join(OWN_ROOT, 'skills'), path.join(installRoot, 'skills'), 'dir');
+  fs.symlinkSync(path.join(OWN_ROOT, 'scripts'), path.join(installRoot, 'scripts'), 'dir');
+  return path.join(scriptsDir, 'git-setup-check.cjs');
 }
 
 // A byte-level identity for the fixture tree, .git included: a read-only battery
@@ -123,6 +138,22 @@ function rowOf(report, id) {
 
 const lastLine = (text) => text.trimEnd().split('\n').pop();
 
+// The status fold is observed through the real main() and its exit code, so
+// the checks are stubbed in a child process. Stubbing in this process would
+// write reports into the test runner's own stdout and never exercise the
+// exit path being asserted.
+const STUB_PROGRAM = `
+const battery = require(process.argv[1]);
+const results = JSON.parse(process.argv[2]);
+battery.CHECKS.forEach((check, i) => {
+  check.run = () => ({ result: results[i], source: 'stub', details: [], repair: results[i] === 'FAIL' || results[i] === 'DEGRADED' ? 'stub repair' : null });
+});
+battery.main(process.argv.slice(3)).then((code) => { process.exitCode = code; });
+`;
+function runStubbed(f, results, args) {
+  return spawnSync(process.execPath, ['-e', STUB_PROGRAM, SCRIPT, JSON.stringify(results), '--repo', f.repo, ...args], { encoding: 'utf8', cwd: f.repo, env: f.env });
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. TESTS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -148,20 +179,21 @@ test('--json prints one object with the eleven checks in contract order', (t) =>
       `${check.id}: repair must be null or a string`,
     );
   }
-
-  const failed = report.checks.some((check) => check.result === 'FAIL');
-  assert.equal(report.status, failed ? 'FAIL' : 'OK');
-  assert.equal(result.status, failed ? 1 : 0);
 });
 
 test('human mode ends with the STATUS line that decides the exit code', (t) => {
   const f = fixture(t);
+  fs.mkdirSync(path.join(f.repo, '.claude'), { recursive: true });
+  fs.writeFileSync(
+    path.join(f.repo, '.claude', 'settings.json'),
+    JSON.stringify({ hooks: { PreToolUse: [{ matcher: 'Bash', hooks: [{ type: 'command', command: 'node git-preflight-advisory.mjs' }] }] } }),
+  );
 
-  const clean = f.run();
+  const clean = f.run(['--tool', 'claude']);
   const last = lastLine(clean.stdout);
   assert.match(last, /^STATUS=/);
-  assert.equal(clean.status, last.startsWith('STATUS=OK') ? 0 : 1);
-  assert.equal(last, 'STATUS=FAIL failed=1 skipped=1 unknown=0');
+  assert.equal(last, 'STATUS=FAIL failed=1 degraded=0 skipped=1 unknown=0');
+  assert.equal(clean.status, 1);
 
   // Installing every hook the checkout ships is what turns the same fixture into
   // the STATUS=OK direction of the mapping.
@@ -171,9 +203,69 @@ test('human mode ends with the STATUS line that decides the exit code', (t) => {
       fs.symlinkSync(path.join(HOOKS_SOURCE, entry.name), path.join(hooksDir, entry.name));
     }
   }
-  const installed = f.run();
+  const installed = f.run(['--tool', 'claude']);
   assert.equal(lastLine(installed.stdout), 'STATUS=OK checks=11');
   assert.equal(installed.status, 0);
+});
+
+test('human mode prints every row and every repair line for a run with several failures', (t) => {
+  const f = fixture(t);
+  execFileSync('git', ['-C', f.repo, 'config', '--local', 'speckit.hooks.commentHygiene', 'off'], { env: f.env });
+  const result = f.run(['--tool', 'codex'], { SYSTEM_HOOKS_DISABLED: '1' });
+  const lines = result.stdout.trimEnd().split('\n');
+  const rowLines = lines.filter((line) => /^(PASS|FAIL|SKIP|UNKNOWN|DEGRADED) +\S/.test(line));
+  assert.deepEqual(rowLines, [
+    'PASS     install',
+    'FAIL     hooks',
+    'SKIP     trust',
+    'DEGRADED gates',
+    'PASS     standards',
+    'PASS     allowlist',
+    'PASS     worktrees',
+    'PASS     commit-id',
+    'PASS     advisory-rules',
+    'FAIL     suppression',
+    'FAIL     ai-tool-hooks',
+  ]);
+  const repairLines = lines.filter((line) => line.startsWith('      repair: '));
+  assert.deepEqual(repairLines, [
+    `      repair: git config core.hooksPath ${HOOKS_SOURCE}`,
+    '      repair: /doctor:git hooks',
+    '      repair: unset SYSTEM_HOOKS_DISABLED',
+    '      repair: register git-preflight-advisory in .codex/hooks.json (see .skilled/skills/sk-git/scripts/hooks/README.md section 3)',
+  ]);
+  assert.equal(lines[lines.length - 1], 'STATUS=FAIL failed=3 degraded=1 skipped=1 unknown=0');
+  assert.equal(result.status, 1);
+});
+
+test('the status fold maps rows to OK 0, DEGRADED 3 and FAIL 1 in both modes', (t) => {
+  const f = fixture(t);
+  const rowsFor = (changes) => {
+    const rows = Array.from({ length: 11 }, () => 'PASS');
+    for (const [index, result] of changes) rows[index] = result;
+    return rows;
+  };
+  const cases = [
+    { rows: rowsFor([]), status: 'OK', code: 0, line: 'STATUS=OK checks=11' },
+    { rows: rowsFor([[0, 'SKIP']]), status: 'OK', code: 0, line: 'STATUS=OK checks=11' },
+    { rows: rowsFor([[1, 'UNKNOWN']]), status: 'DEGRADED', code: 3, line: 'STATUS=DEGRADED degraded=0 skipped=0 unknown=1' },
+    { rows: rowsFor([[2, 'DEGRADED']]), status: 'DEGRADED', code: 3, line: 'STATUS=DEGRADED degraded=1 skipped=0 unknown=0', repair: 'stub repair' },
+    { rows: rowsFor([[3, 'FAIL']]), status: 'FAIL', code: 1, line: 'STATUS=FAIL failed=1 degraded=0 skipped=0 unknown=0' },
+    { rows: rowsFor([[4, 'FAIL'], [5, 'UNKNOWN']]), status: 'FAIL', code: 1, line: 'STATUS=FAIL failed=1 degraded=0 skipped=0 unknown=1' },
+  ];
+
+  for (const c of cases) {
+    const json = runStubbed(f, c.rows, ['--json']);
+    assert.equal(JSON.parse(json.stdout).status, c.status, `${c.line}: JSON status`);
+    assert.equal(json.status, c.code, `${c.line}: JSON exit code`);
+
+    const human = runStubbed(f, c.rows, []);
+    assert.equal(lastLine(human.stdout), c.line, `${c.line}: human status line`);
+    assert.equal(human.status, c.code, `${c.line}: human exit code`);
+    if (c.repair) {
+      assert.ok(human.stdout.includes(`      repair: ${c.repair}`), `${c.line}: repair line`);
+    }
+  }
 });
 
 test('a non-repository, an unknown flag and an unknown tool are usage errors', (t) => {
@@ -198,14 +290,35 @@ test('a run leaves the fixture tree, .git included, and its local config unchang
   const f = fixture(t);
   const before = snapshotTree(f.repo);
   assert.ok(before.has('.git/config'), 'the snapshot must cover .git, not just the worktree');
+
+  // The battery loads helpers from its own skill and command trees and its child
+  // processes may use the temp directory, so a read-only run must leave those
+  // byte-identical too, not only the repository it inspects.
+  const skillBefore = snapshotTree(path.join(OWN_ROOT, 'skills', 'sk-git'));
+  const commandBefore = snapshotTree(path.join(OWN_ROOT, 'commands', 'doctor'));
+  const tmp = path.join(f.dir, 'tmp');
+  fs.mkdirSync(tmp);
+  const tmpBefore = snapshotTree(tmp);
+
   const configBefore = execFileSync('git', ['-C', f.repo, 'config', '--list', '--local'], {
     encoding: 'utf8',
     env: f.env,
   });
 
-  f.run(['--json']);
+  f.run(['--json'], { TMPDIR: tmp, TMP: tmp, TEMP: tmp });
 
   assert.deepEqual(snapshotTree(f.repo), before);
+  assert.deepEqual(
+    snapshotTree(path.join(OWN_ROOT, 'skills', 'sk-git')),
+    skillBefore,
+    'the battery left its own sk-git skill tree changed',
+  );
+  assert.deepEqual(
+    snapshotTree(path.join(OWN_ROOT, 'commands', 'doctor')),
+    commandBefore,
+    'the battery left its own doctor command tree changed',
+  );
+  assert.deepEqual(snapshotTree(tmp), tmpBefore, 'the battery left the temp directory changed');
   const configAfter = execFileSync('git', ['-C', f.repo, 'config', '--list', '--local'], {
     encoding: 'utf8',
     env: f.env,
@@ -215,23 +328,26 @@ test('a run leaves the fixture tree, .git included, and its local config unchang
 
 test('an untrusted clone runs neither its planted helper nor its fsmonitor program', (t) => {
   const f = fixture(t);
-  const helperMarker = path.join(f.dir, 'validate-message.marker');
+  const helperMarker = path.join(f.dir, 'helper.marker');
   const fsmonitorMarker = path.join(f.dir, 'fsmonitor.marker');
 
   // A clone can plant any helper under the paths the toolchain uses, so the
-  // fixture carries an executable that writes a marker the moment it runs.
+  // fixture plants the two modules the standards and advisory-rules rows import
+  // from the battery's own root: message-contract.mjs answers the standards row
+  // and git-rule-checks.mjs the advisory-rules row, and each one writes a marker
+  // the moment it loads, so a battery that resolved either module from the
+  // inspected repository would leave that marker behind.
   fs.mkdirSync(path.join(f.repo, '.skilled', 'skills', 'system-spec-kit'), { recursive: true });
   fs.writeFileSync(path.join(f.repo, '.skilled', 'skills', 'system-spec-kit', 'SKILL.md'), '# planted\n');
-  const helper = path.join(f.repo, '.skilled', 'skills', 'sk-git', 'scripts', 'validate-message.mjs');
-  fs.mkdirSync(path.dirname(helper), { recursive: true });
-  fs.writeFileSync(
-    helper,
-    `import { writeFileSync } from 'node:fs';\nwriteFileSync(${JSON.stringify(helperMarker)}, 'ran');\n`,
-  );
+  const plantedSource = `import { writeFileSync } from 'node:fs';\nwriteFileSync(${JSON.stringify(helperMarker)}, 'ran');\nexport const GIT_CHECKS = {};\nexport function resolveContractDir() { return null; }\nexport function loadContract() { return null; }\n`;
+  const plantedLib = path.join(f.repo, '.skilled', 'skills', 'sk-git', 'scripts', 'lib');
+  fs.mkdirSync(plantedLib, { recursive: true });
+  fs.writeFileSync(path.join(plantedLib, 'message-contract.mjs'), plantedSource);
+  fs.writeFileSync(path.join(plantedLib, 'git-rule-checks.mjs'), plantedSource);
 
-  // The installer bails out before it can reach the validator when the repository
-  // carries no hook sources, so the fixture ships one: a battery that shells out
-  // to the installer must now run the planted helper for the marker to stay absent.
+  // The installer refuses a source root that carries no hook tree, so the
+  // fixture ships one: the inspected repository looks like a complete toolchain
+  // install rather than one an installer would give up on.
   const hookSource = path.join(f.repo, '.skilled', 'scripts', 'git-hooks');
   fs.mkdirSync(hookSource, { recursive: true });
   fs.writeFileSync(path.join(hookSource, 'pre-commit'), '#!/usr/bin/env bash\nexit 0\n');
@@ -251,6 +367,13 @@ test('an untrusted clone runs neither its planted helper nor its fsmonitor progr
   const trust = rowOf(report, 'trust');
   assert.equal(trust.result, 'SKIP');
   assert.ok(trust.details.some((detail) => detail.includes('untrusted')));
+  // Both rows reached their real module: standards reports the contract dir its
+  // module resolved, and advisory-rules passes because the real GIT_CHECKS table
+  // names every rule where the planted empty table would fail them all.
+  assert.ok(
+    rowOf(report, 'standards').details.some((detail) => detail.startsWith('contract dir:')),
+  );
+  assert.equal(rowOf(report, 'advisory-rules').result, 'PASS');
   assert.equal(fs.existsSync(helperMarker), false);
   assert.equal(fs.existsSync(fsmonitorMarker), false);
 });
@@ -262,13 +385,24 @@ test('standards fails a missing configured contract dir and reports an absent co
 
   const broken = rowOf(reportOf(f.run(['--json'])), 'standards');
   assert.equal(broken.result, 'FAIL');
-  assert.equal(broken.repair, '/doctor:git standards');
+  assert.equal(broken.repair, `git config --local --unset skgit.contractDir, or mkdir -p ${missing}`);
   assert.ok(broken.details.some((detail) => detail.includes(missing)));
 
-  execFileSync('git', ['-C', f.repo, 'config', '--local', '--unset', 'skgit.contractDir'], { env: f.env });
+  // The first alternative of the printed repair is applied exactly as printed, so
+  // the command an operator would run is the one that turns the row PASS.
+  execFileSync('bash', ['-c', broken.repair.split(', or ')[0]], { env: f.env, cwd: f.repo });
   const absent = rowOf(reportOf(f.run(['--json'])), 'standards');
   assert.equal(absent.result, 'PASS');
   assert.ok(absent.details.some((detail) => detail.includes('not enforced')));
+});
+
+test('standards names the global scope when the missing contract dir is set globally', (t) => {
+  const f = fixture(t);
+  execFileSync('git', ['config', '--global', 'skgit.contractDir', path.join(f.dir, 'nowhere')], { env: f.env });
+
+  const row = rowOf(reportOf(f.run(['--json'])), 'standards');
+  assert.equal(row.result, 'FAIL');
+  assert.ok(row.repair.startsWith('git config --global --unset skgit.contractDir'), row.repair);
 });
 
 test('standards passes an enforced .sk-git contract and fails a malformed rules block', (t) => {
@@ -337,14 +471,15 @@ test('ai-tool-hooks requires the active tool and every configured adapter to reg
   fs.mkdirSync(path.join(f.repo, '.codex'), { recursive: true });
   fs.writeFileSync(
     path.join(f.repo, '.codex', 'hooks.json'),
-    JSON.stringify({ hooks: { SessionStart: [{ command: 'git-preflight-advisory' }] } }),
+    JSON.stringify({ hooks: { PreToolUse: [{ matcher: 'exec|Bash', hooks: [{ type: 'command', command: 'node git-preflight-advisory.mjs' }] }] } }),
   );
   const registered = rowOf(reportOf(f.run(['--tool', 'codex', '--json'])), 'ai-tool-hooks');
   assert.equal(registered.result, 'PASS');
   assert.ok(registered.details.includes('codex (active): registered (.codex/hooks.json)'));
 
   const noTool = rowOf(reportOf(f.run(['--json'])), 'ai-tool-hooks');
-  assert.equal(noTool.result, 'PASS');
+  assert.equal(noTool.result, 'UNKNOWN');
+  assert.ok(noTool.details[0].includes('--tool'));
   for (const [tool, file] of Object.entries(TOOL_FILES)) {
     if (tool === 'codex') continue;
     assert.ok(noTool.details.includes(`${tool}: not set up (${file})`), `${tool} must be reported as not set up`);
@@ -364,7 +499,35 @@ test('a truthy SYSTEM_HOOKS_DISABLED fails suppression with its unset repair', (
   const row = rowOf(reportOf(f.run(['--json'], { SYSTEM_HOOKS_DISABLED: '1' })), 'suppression');
   assert.equal(row.result, 'FAIL');
   assert.equal(row.repair, 'unset SYSTEM_HOOKS_DISABLED');
-  assert.ok(row.details.some((detail) => detail.includes('SYSTEM_HOOKS_DISABLED=1')));
+  assert.ok(row.details.includes('SYSTEM_HOOKS_DISABLED=1 (env)'));
+});
+
+test('a master switch saved in hook-flags.env fails suppression and names its line', (t) => {
+  const f = fixture(t);
+  fs.mkdirSync(path.join(f.repo, '.skilled', 'skills', 'system-spec-kit'), { recursive: true });
+  fs.writeFileSync(path.join(f.repo, '.skilled', 'skills', 'system-spec-kit', 'SKILL.md'), '# sentinel\n');
+  fs.mkdirSync(path.join(f.repo, '.skilled', 'hooks'), { recursive: true });
+  fs.writeFileSync(path.join(f.repo, '.skilled', 'hooks', 'hook-flags.env'), '# saved switches\nSYSTEM_HOOKS_DISABLED=1\n');
+
+  const row = rowOf(reportOf(f.run(['--json'])), 'suppression');
+  assert.equal(row.result, 'FAIL');
+  assert.ok(row.details.includes('SYSTEM_HOOKS_DISABLED=1 (.skilled/hooks/hook-flags.env:2)'));
+  assert.equal(row.repair, 'delete line 2 of .skilled/hooks/hook-flags.env (SYSTEM_HOOKS_DISABLED=1)');
+
+  // An empty environment value is still a set value, so it wins over the file.
+  const overridden = rowOf(reportOf(f.run(['--json'], { SYSTEM_HOOKS_DISABLED: '' })), 'suppression');
+  assert.equal(overridden.result, 'PASS');
+});
+
+test('hook-flags.env parsing matches the hooks: BOM, quotes, trailing comment and HOOK_FLAGS_CONFIG', (t) => {
+  const f = fixture(t);
+  const flagsPath = path.join(f.dir, 'flags.env');
+  fs.writeFileSync(flagsPath, '\uFEFFMK_HOOKS_DISABLED="yes" # saved\n');
+
+  const row = rowOf(reportOf(f.run(['--json'], { HOOK_FLAGS_CONFIG: flagsPath })), 'suppression');
+  assert.equal(row.result, 'FAIL');
+  assert.ok(row.details.includes(`MK_HOOKS_DISABLED=yes (${flagsPath}:1)`));
+  assert.equal(row.repair, `delete line 1 of ${flagsPath} (MK_HOOKS_DISABLED=yes)`);
 });
 
 test('allowlist reports a release branch as exempt, not refused', (t) => {
@@ -374,6 +537,43 @@ test('allowlist reports a release branch as exempt, not refused', (t) => {
   assert.ok(row.details.includes('main: allowed'));
   assert.ok(row.details.some((detail) => detail.startsWith('skilled/v4.0.0.0: exempt')));
   assert.ok(row.details.includes('feature/setup-check-probe: refused'));
+});
+
+test('a symlinked allowlist is refused and none of its target lines are shown', (t) => {
+  const f = fixture(t);
+  const outside = path.join(f.dir, 'secret.txt');
+  fs.writeFileSync(outside, 'secret-pattern-one\nsecret-pattern-two\n');
+  const list = path.join(f.repo, '.skilled', 'skills', 'sk-git', 'scripts', 'remote-branch-allowlist.txt');
+  fs.mkdirSync(path.dirname(list), { recursive: true });
+  fs.symlinkSync(outside, list);
+
+  const row = rowOf(reportOf(f.run(['--json'])), 'allowlist');
+  assert.equal(row.result, 'PASS');
+  assert.ok(
+    row.details.some((detail) => detail.startsWith('patterns (.skilled/skills/sk-git/scripts/remote-branch-allowlist.txt): not shown')),
+    row.details.join(' | '),
+  );
+  assert.ok(!JSON.stringify(row).includes('secret-pattern'), row.details.join(' | '));
+});
+
+test('allowlist shows the patterns of the file the matcher used when both roots carry one', (t) => {
+  const f = fixture(t);
+  // The real directory wins over the legacy one, so only the patterns of the
+  // file the matcher actually read may appear in the report.
+  const real = path.join(f.repo, '.skilled', 'skills', 'sk-git', 'scripts', 'remote-branch-allowlist.txt');
+  fs.mkdirSync(path.dirname(real), { recursive: true });
+  fs.writeFileSync(real, 'feature/*\n');
+  const legacy = path.join(f.repo, '.opencode', 'skills', 'sk-git', 'scripts', 'remote-branch-allowlist.txt');
+  fs.mkdirSync(path.dirname(legacy), { recursive: true });
+  fs.writeFileSync(legacy, 'release/*\n');
+
+  const row = rowOf(reportOf(f.run(['--json'])), 'allowlist');
+  assert.ok(row.details.includes('feature/setup-check-probe: allowed'), row.details.join(' | '));
+  assert.ok(
+    row.details.includes('patterns (.skilled/skills/sk-git/scripts/remote-branch-allowlist.txt): feature/*'),
+    row.details.join(' | '),
+  );
+  assert.ok(!JSON.stringify(row.details).includes('release/*'), row.details.join(' | '));
 });
 
 test('a repository config cannot make a helper run gpg.program', (t) => {
@@ -406,15 +606,75 @@ test('hooks accepts links into the repository\'s own hook sources and names a re
   fs.mkdirSync(ownSources, { recursive: true });
   fs.mkdirSync(path.join(f.repo, '.skilled', 'skills', 'system-spec-kit'), { recursive: true });
   fs.writeFileSync(path.join(f.repo, '.skilled', 'skills', 'system-spec-kit', 'SKILL.md'), 'sentinel\n');
-  const hooksDir = path.join(f.repo, '.git', 'hooks');
+  const names = [];
   for (const entry of fs.readdirSync(HOOKS_SOURCE, { withFileTypes: true })) {
     if (entry.isFile() && entry.name !== 'README.md') {
       fs.writeFileSync(path.join(ownSources, entry.name), '#!/bin/sh\nexit 0\n', { mode: 0o755 });
-      fs.symlinkSync(path.join(ownSources, entry.name), path.join(hooksDir, entry.name));
+      names.push(entry.name);
     }
+  }
+
+  // The sentinel says the clone carries a toolchain, not that it is this
+  // checkout, so the repair still points at this checkout's hooks and never at
+  // the clone's own installer.
+  const foreign = rowOf(reportOf(f.run(['--json'])), 'hooks');
+  assert.equal(foreign.result, 'FAIL');
+  assert.equal(foreign.repair, `git config core.hooksPath ${HOOKS_SOURCE}`);
+  assert.ok(!foreign.repair.includes('install-git-hooks.sh'));
+
+  const hooksDir = path.join(f.repo, '.git', 'hooks');
+  for (const name of names) {
+    fs.symlinkSync(path.join(ownSources, name), path.join(hooksDir, name));
   }
   const own = rowOf(reportOf(f.run(['--json'])), 'hooks');
   assert.equal(own.result, 'PASS');
+});
+
+test('hooks names this checkout\'s installer by absolute path when the inspected repository is the battery\'s own checkout', (t) => {
+  const f = fixture(t);
+
+  // The battery's root lives inside the inspected repository, so both resolve
+  // to one git common dir and the repair may name the installer this checkout
+  // ships, by absolute path.
+  const installRoot = path.join(fs.realpathSync(f.repo), '.skilled');
+  const scriptsDir = path.join(installRoot, 'commands', 'doctor', 'scripts');
+  fs.mkdirSync(scriptsDir, { recursive: true });
+  const copy = path.join(scriptsDir, 'git-setup-check.cjs');
+  fs.copyFileSync(SCRIPT, copy);
+  fs.cpSync(HOOKS_SOURCE, path.join(installRoot, 'scripts', 'git-hooks'), { recursive: true });
+  fs.copyFileSync(
+    path.join(OWN_ROOT, 'scripts', 'install-git-hooks.sh'),
+    path.join(installRoot, 'scripts', 'install-git-hooks.sh'),
+  );
+  fs.mkdirSync(path.join(installRoot, 'skills', 'system-spec-kit'), { recursive: true });
+  fs.writeFileSync(path.join(installRoot, 'skills', 'system-spec-kit', 'SKILL.md'), '# sentinel\n');
+  fs.symlinkSync(path.join(OWN_ROOT, 'skills', 'sk-git'), path.join(installRoot, 'skills', 'sk-git'), 'dir');
+
+  const run = () => spawnSync(process.execPath, [copy, '--repo', f.repo, '--json'], {
+    encoding: 'utf8',
+    cwd: f.repo,
+    env: f.env,
+  });
+  const row = rowOf(reportOf(run()), 'hooks');
+  assert.equal(row.result, 'FAIL');
+  assert.equal(row.repair, `bash ${path.join(installRoot, 'scripts', 'install-git-hooks.sh')}`);
+
+  // The repair is applied exactly as printed, so the installer it names is the
+  // one that turns the row PASS.
+  execFileSync('bash', ['-c', row.repair], { cwd: f.repo, env: f.env, stdio: 'pipe' });
+  assert.equal(rowOf(reportOf(run()), 'hooks').result, 'PASS');
+});
+
+test('a foreign repository applying the printed core.hooksPath repair turns hooks PASS', (t) => {
+  const f = fixture(t);
+  const broken = rowOf(reportOf(f.run(['--json'])), 'hooks');
+  assert.equal(broken.result, 'FAIL');
+  assert.equal(broken.repair, `git config core.hooksPath ${HOOKS_SOURCE}`);
+
+  // The repair is applied exactly as printed, so the command an operator would
+  // run is the one that turns the row PASS.
+  execFileSync('bash', ['-c', broken.repair], { cwd: f.repo, env: f.env });
+  assert.equal(rowOf(reportOf(f.run(['--json'])), 'hooks').result, 'PASS');
 });
 
 test('install names a repair that restores missing sk-git files', (t) => {
@@ -441,7 +701,52 @@ test('install names a repair that restores missing sk-git files', (t) => {
   const row = rowOf(reportOf(result), 'install');
   assert.equal(row.result, 'FAIL');
   assert.ok(row.details.some((detail) => detail.includes('hard-rules.json')));
-  assert.match(row.repair, /^restore the missing sk-git files/);
+  // This root is not in a git work tree, so there is nothing to restore from
+  // and the repair must name the reinstall, never a restore or /doctor:update.
+  assert.equal(row.repair, 'reinstall sk-git from its source: this install root is not in a git work tree');
+  assert.ok(!row.repair.includes('/doctor:update'));
+});
+
+test('install restores exactly the missing path of a git install root, and the restore turns the row PASS', (t) => {
+  const f = fixture(t);
+  const root = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'git-setup-check-root-')));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+
+  // The copied battery resolves its install root from its own location, so the
+  // checkout it repairs is this fixture's, and the committed tree holds every
+  // file but the one deleted below.
+  execFileSync('git', ['init', '-q', root], { env: f.env });
+  const installRoot = path.join(root, '.skilled');
+  const fakeSkill = path.join(installRoot, 'skills', 'sk-git');
+  const scriptCopy = path.join(installRoot, 'commands', 'doctor', 'scripts', 'git-setup-check.cjs');
+  fs.mkdirSync(path.dirname(scriptCopy), { recursive: true });
+  fs.mkdirSync(path.join(fakeSkill, 'scripts'), { recursive: true });
+  fs.copyFileSync(SCRIPT, scriptCopy);
+  fs.copyFileSync(path.join(OWN_ROOT, 'skills', 'sk-git', 'SKILL.md'), path.join(fakeSkill, 'SKILL.md'));
+  fs.copyFileSync(path.join(OWN_ROOT, 'skills', 'sk-git', 'hard-rules.json'), path.join(fakeSkill, 'hard-rules.json'));
+  fs.writeFileSync(path.join(fakeSkill, 'scripts', '.keep'), '');
+  execFileSync('git', ['-C', root, 'add', '-A'], { env: f.env });
+  execFileSync('git', ['-C', root, '-c', 'user.email=a@b', '-c', 'user.name=a', 'commit', '-q', '-m', 'init'], { env: f.env });
+  fs.rmSync(path.join(fakeSkill, 'hard-rules.json'));
+
+  const result = spawnSync(process.execPath, [scriptCopy, '--repo', f.repo, '--json'], {
+    encoding: 'utf8',
+    cwd: f.repo,
+    env: f.env,
+  });
+  const row = rowOf(reportOf(result), 'install');
+  assert.equal(row.result, 'FAIL');
+  assert.equal(row.repair, `git -C ${root} restore --source=HEAD -- .skilled/skills/sk-git/hard-rules.json`);
+
+  // The repair is applied exactly as printed, so the command the operator would
+  // run is the command that turns the row PASS.
+  execFileSync('bash', ['-c', row.repair], { env: f.env, cwd: f.repo });
+  const rerun = spawnSync(process.execPath, [scriptCopy, '--repo', f.repo, '--json'], {
+    encoding: 'utf8',
+    cwd: f.repo,
+    env: f.env,
+  });
+  assert.equal(rowOf(reportOf(rerun), 'install').result, 'PASS');
 });
 
 test('trust reads skilled.trustRepoHooks as a boolean, as the hooks do', (t) => {
@@ -470,6 +775,42 @@ test('allowlist and worktree base resolve against the main worktree from a linke
   assert.equal(worktrees.details[0], `base: ${path.join(fs.realpathSync(f.repo), '.worktrees')} (from default)`);
 });
 
+test('worktrees fails an unwritable base and a file at the base, and names the variable that set it', (t) => {
+  if (process.getuid && process.getuid() === 0) {
+    t.skip('root ignores file permissions');
+    return;
+  }
+
+  const f = fixture(t);
+  const unwritable = path.join(f.dir, 'wt-unwritable');
+  fs.mkdirSync(unwritable);
+  fs.chmodSync(unwritable, 0o555);
+  t.after(() => {
+    if (fs.existsSync(unwritable)) fs.chmodSync(unwritable, 0o755);
+  });
+  execFileSync('git', ['-C', f.repo, 'config', '--local', 'speckit.worktreeBase', unwritable], { env: f.env });
+
+  const unwritableRow = rowOf(reportOf(f.run(['--json'])), 'worktrees');
+  assert.equal(unwritableRow.result, 'FAIL');
+  assert.equal(unwritableRow.details[0], `base not writable: ${unwritable}`);
+  assert.equal(unwritableRow.repair, 'git config speckit.worktreeBase <dir>');
+
+  const asFile = path.join(f.dir, 'wt-file');
+  fs.writeFileSync(asFile, 'x');
+  execFileSync('git', ['-C', f.repo, 'config', '--local', 'speckit.worktreeBase', asFile], { env: f.env });
+  const fileRow = rowOf(reportOf(f.run(['--json'])), 'worktrees');
+  assert.equal(fileRow.result, 'FAIL');
+  assert.equal(fileRow.details[0], `base is not a directory: ${asFile}`);
+
+  execFileSync('git', ['-C', f.repo, 'config', '--local', '--unset', 'speckit.worktreeBase'], { env: f.env });
+  const envRow = rowOf(reportOf(f.run(['--json'], { SPECKIT_WORKTREE_BASE: asFile })), 'worktrees');
+  assert.equal(envRow.result, 'FAIL');
+  assert.equal(envRow.repair, 'export SPECKIT_WORKTREE_BASE=<writable dir>, or unset SPECKIT_WORKTREE_BASE');
+
+  const missingRow = rowOf(reportOf(f.run(['--json'], { SPECKIT_WORKTREE_BASE: path.join(f.dir, 'not-yet', 'base') })), 'worktrees');
+  assert.equal(missingRow.result, 'PASS');
+});
+
 test('ai-tool-hooks reads only the hooks section and Claude\'s local settings', (t) => {
   const f = fixture(t);
   const claudeDir = path.join(f.repo, '.claude');
@@ -490,4 +831,413 @@ test('ai-tool-hooks reads only the hooks section and Claude\'s local settings', 
   const local = rowOf(reportOf(f.run(['--tool', 'claude', '--json'])), 'ai-tool-hooks');
   assert.equal(local.result, 'PASS');
   assert.ok(local.details.includes('claude (active): registered (.claude/settings.local.json)'));
+});
+
+test('ai-tool-hooks accepts each runtime\'s real wiring and refuses a wrong event or matcher', (t) => {
+  const REAL_ROOT = path.dirname(OWN_ROOT);
+  const cases = {
+    claude: { event: 'PreToolUse', wrongEvent: 'PostToolUse', wrongMatcher: 'Task' },
+    codex: { event: 'PreToolUse', wrongEvent: 'SessionStart', wrongMatcher: 'exec' },
+    devin: { event: 'PreToolUse', wrongEvent: 'PostToolUse', wrongMatcher: '^(edit|write)$' },
+    cursor: { event: 'preToolUse', wrongEvent: 'postToolUse', wrongMatcher: 'Task' },
+  };
+
+  for (const [tool, c] of Object.entries(cases)) {
+    const f = fixture(t);
+    const file = TOOL_FILES[tool];
+    const target = path.join(f.repo, file);
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    // Only the active tool's adapter file exists, so no other adapter decides the row.
+    for (const other of Object.values(TOOL_FILES)) {
+      if (other !== file) fs.rmSync(path.join(f.repo, other), { force: true });
+    }
+    const realJson = () => JSON.parse(fs.readFileSync(path.join(REAL_ROOT, file), 'utf8'));
+    const sectionOf = (json) => (tool === 'devin' ? json : json.hooks);
+    const carriesAdvisory = (entry) => JSON.stringify(entry).includes('git-preflight-advisory');
+    const write = (json) => fs.writeFileSync(target, JSON.stringify(json));
+    const row = () => rowOf(reportOf(f.run(['--tool', tool, '--json'])), 'ai-tool-hooks');
+
+    write(realJson());
+    const registered = row();
+    assert.equal(registered.result, 'PASS', `${tool}: ${registered.details.join(' | ')}`);
+    assert.ok(
+      registered.details.includes(`${tool} (active): registered (${file})`),
+      `${tool}: ${registered.details.join(' | ')}`,
+    );
+
+    // The advisory under any other event is never dispatched.
+    const moved = realJson();
+    const movedSection = sectionOf(moved);
+    const entries = Array.isArray(movedSection[c.event]) ? movedSection[c.event] : [];
+    movedSection[c.event] = entries.filter((entry) => !carriesAdvisory(entry));
+    movedSection[c.wrongEvent] = [
+      ...(Array.isArray(movedSection[c.wrongEvent]) ? movedSection[c.wrongEvent] : []),
+      ...entries.filter(carriesAdvisory),
+    ];
+    write(moved);
+    assert.equal(row().result, 'FAIL', `${tool}: an advisory under ${c.wrongEvent} must not count`);
+
+    // A matcher that misses a shell tool the runtime reports is never dispatched.
+    const rewritten = realJson();
+    const rewrittenSection = sectionOf(rewritten);
+    for (const entry of rewrittenSection[c.event].filter(carriesAdvisory)) entry.matcher = c.wrongMatcher;
+    write(rewritten);
+    assert.equal(row().result, 'FAIL', `${tool}: a matcher that misses the shell tool must not count`);
+  }
+});
+
+test('a run with no active tool and nothing broken is UNKNOWN and names --tool', (t) => {
+  const f = fixture(t);
+
+  // The fixture environment drops CLAUDECODE, so nothing selects a tool.
+  const report = reportOf(f.run(['--json']));
+  const row = rowOf(report, 'ai-tool-hooks');
+  assert.equal(row.result, 'UNKNOWN');
+  assert.equal(row.repair, null);
+  assert.ok(row.details[0].includes('--tool'));
+  assert.ok(['FAIL', 'DEGRADED'].includes(report.status), `unexpected status ${report.status}`);
+});
+
+test('opencode and pi pass only when the adapter registers its event and imports git-rule-checks.mjs', (t) => {
+  const REAL_ROOT = path.dirname(OWN_ROOT);
+  const cases = [
+    ['opencode', '.opencode/plugins/sk-git-preflight-advisory.js'],
+    ['pi', '.pi/extensions/git-preflight-advisory.ts'],
+  ];
+
+  for (const [tool, file] of cases) {
+    const f = fixture(t);
+    const target = path.join(f.repo, file);
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+
+    // A stub with neither the pre-tool event handler nor the shared module import.
+    fs.writeFileSync(target, 'export default {};\n');
+    const stub = rowOf(reportOf(f.run(['--tool', tool, '--json'])), 'ai-tool-hooks');
+    assert.equal(stub.result, 'FAIL', `${tool}: ${stub.details.join(' | ')}`);
+    assert.ok(
+      stub.details.some((detail) => detail.startsWith(`${tool} (active): ${file} does not register`)),
+      `${tool}: ${stub.details.join(' | ')}`,
+    );
+
+    // The real adapter comes from this checkout, whose pi path is a symlink into .skilled.
+    fs.writeFileSync(target, fs.readFileSync(path.join(REAL_ROOT, file), 'utf8'));
+    const real = rowOf(reportOf(f.run(['--tool', tool, '--json'])), 'ai-tool-hooks');
+    assert.equal(real.result, 'PASS', `${tool}: ${real.details.join(' | ')}`);
+    assert.ok(
+      real.details.includes(`${tool} (active): registered (${file})`),
+      `${tool}: ${real.details.join(' | ')}`,
+    );
+  }
+});
+
+test('gates reports UNKNOWN with no repair when the helper fails or its report has no gates', (t) => {
+  const f = fixture(t);
+  const cases = [
+    {
+      helper: "process.stderr.write('registry exploded\\n'); process.exit(2);\n",
+      detail: 'registry exploded',
+    },
+    {
+      helper: "process.stdout.write('not json\\n');\n",
+      detail: 'the gate report did not parse as JSON',
+    },
+    {
+      helper: "process.stdout.write(JSON.stringify({ repo: 'x' }) + '\\nSTATUS=OK GATES=0 OFF=0\\n');\n",
+      detail: 'the gate report carries no gates list',
+    },
+  ];
+
+  for (const c of cases) {
+    const copy = fakeRoot(t, c.helper);
+    const result = spawnSync(process.execPath, [copy, '--repo', f.repo, '--json'], { encoding: 'utf8', cwd: f.repo, env: f.env });
+    const row = rowOf(reportOf(result), 'gates');
+    assert.equal(row.result, 'UNKNOWN', `${c.detail}: ${result.stderr}`);
+    assert.equal(row.repair, null, c.detail);
+    assert.ok(row.details.some((detail) => detail.includes(c.detail)), `${c.detail}: ${row.details.join(' | ')}`);
+  }
+});
+
+test('a gate saved off degrades the run to exit 3 with the hooks repair', (t) => {
+  const f = fixture(t);
+  const hooksDir = path.join(f.repo, '.git', 'hooks');
+  for (const entry of fs.readdirSync(HOOKS_SOURCE, { withFileTypes: true })) {
+    if (entry.isFile() && entry.name !== 'README.md') {
+      fs.symlinkSync(path.join(HOOKS_SOURCE, entry.name), path.join(hooksDir, entry.name));
+    }
+  }
+  execFileSync('git', ['-C', f.repo, 'config', '--local', 'speckit.hooks.commentHygiene', 'off'], { env: f.env });
+
+  const result = f.run(['--json']);
+  const report = reportOf(result);
+  const row = rowOf(report, 'gates');
+  assert.equal(row.result, 'DEGRADED');
+  assert.equal(row.repair, '/doctor:git hooks');
+  assert.ok(row.details.includes('commentHygiene: off (local config)'), row.details.join(' | '));
+  assert.equal(report.status, 'DEGRADED');
+  assert.equal(result.status, 3);
+});
+
+test('gates ignores a GATE_REGISTRY inherited from the environment', (t) => {
+  const f = fixture(t);
+  const row = rowOf(reportOf(f.run(['--json'], { GATE_REGISTRY: path.join(f.dir, 'no-such-registry.tsv') })), 'gates');
+  assert.equal(row.result, 'PASS');
+});
+
+test('an exported GIT_DIR cannot point the probes at another repository', (t) => {
+  const f = fixture(t);
+  const other = path.join(f.dir, 'other');
+  execFileSync('git', ['init', '-q', other], { env: f.env });
+  execFileSync('git', ['-C', other, 'config', '--local', 'speckit.worktreeBase', path.join(f.dir, 'other-base')], { env: f.env });
+
+  const report = reportOf(f.run(['--repo', f.repo, '--json'], { GIT_DIR: path.join(other, '.git') }));
+  assert.equal(fs.realpathSync(report.repo), fs.realpathSync(f.repo));
+  assert.ok(rowOf(report, 'worktrees').details[0].endsWith('(from default)'));
+});
+
+test('a relative or empty PATH entry cannot run a git or bash planted in the inspected repository', (t) => {
+  const f = fixture(t);
+  const marker = path.join(f.dir, 'planted.marker');
+  for (const name of ['git', 'bash']) {
+    fs.writeFileSync(
+      path.join(f.repo, name),
+      `#!/bin/sh\necho ran >> "${marker}"\nexit 1\n`,
+      { mode: 0o755 },
+    );
+  }
+
+  // '.', an empty entry and a trailing ':' all resolve against the child's
+  // working directory, which is the inspected repository.
+  const PATH = ['.', '', ...process.env.PATH.split(path.delimiter), ''].join(path.delimiter);
+  const result = f.run(['--json'], { PATH });
+
+  assert.equal(fs.existsSync(marker), false, 'a planted git or bash ran from a relative PATH entry');
+  assert.equal(JSON.parse(result.stdout).checks.length, 11);
+});
+
+test('readRepoFile reads only a regular file under the cap', (t) => {
+  const { readRepoFile, READ_CAP } = require(SCRIPT);
+  const d = fs.mkdtempSync(path.join(os.tmpdir(), 'git-setup-check-read-'));
+  t.after(() => fs.rmSync(d, { recursive: true, force: true }));
+  const outside = fs.mkdtempSync(path.join(os.tmpdir(), 'git-setup-check-target-'));
+  t.after(() => fs.rmSync(outside, { recursive: true, force: true }));
+
+  const fifo = path.join(d, 'fifo');
+  execFileSync('mkfifo', [fifo]);
+  const directory = path.join(d, 'directory');
+  fs.mkdirSync(directory);
+  const empty = path.join(d, 'empty');
+  fs.writeFileSync(empty, '');
+  const exact = path.join(d, 'exact');
+  fs.writeFileSync(exact, 'a'.repeat(READ_CAP));
+  const over = path.join(d, 'over');
+  fs.writeFileSync(over, 'a'.repeat(READ_CAP + 1));
+  const target = path.join(outside, 'target.txt');
+  fs.writeFileSync(target, 'target text');
+  const link = path.join(d, 'link');
+  fs.symlinkSync(target, link);
+
+  const cases = [
+    { name: 'fifo', file: fifo, options: {}, text: null, problem: 'not a regular file' },
+    { name: 'directory', file: directory, options: {}, text: null, problem: 'not a regular file' },
+    { name: 'empty file', file: empty, options: {}, text: '', problem: null },
+    { name: 'exactly the cap', file: exact, options: {}, text: 'a'.repeat(READ_CAP), problem: null },
+    { name: 'past the cap', file: over, options: {}, text: null, problem: `larger than ${READ_CAP} bytes` },
+    { name: 'refused symlink', file: link, options: { refuseSymlink: true }, text: null, problem: 'is a symlink' },
+    { name: 'followed symlink', file: link, options: {}, text: 'target text', problem: null },
+    { name: 'missing path', file: path.join(d, 'missing'), options: {}, text: null, problem: null },
+  ];
+
+  for (const c of cases) {
+    const result = readRepoFile(c.file, c.options);
+    assert.equal(result.problem, c.problem, `${c.name}: problem`);
+    assert.equal(result.text, c.text, `${c.name}: text`);
+  }
+});
+
+test('a FIFO at an adapter config path is reported, not read, and the run finishes', (t) => {
+  const f = fixture(t);
+  fs.mkdirSync(path.join(f.repo, '.claude'), { recursive: true });
+  execFileSync('mkfifo', [path.join(f.repo, '.claude', 'settings.json')]);
+
+  const result = spawnSync(process.execPath, [SCRIPT, '--tool', 'claude', '--json'], {
+    encoding: 'utf8',
+    cwd: f.repo,
+    env: f.env,
+    timeout: 20000,
+  });
+  assert.equal(result.signal, null, 'the run was killed before it finished');
+  assert.equal(typeof result.status, 'number');
+
+  const row = rowOf(reportOf(result), 'ai-tool-hooks');
+  assert.equal(row.result, 'FAIL');
+  assert.ok(row.details.some((detail) => detail.includes('not a regular file')), row.details.join(' | '));
+});
+
+// Repair round trips: each printed repair, applied as printed, turns its row PASS.
+
+test('round trip: the gates repair, run as the script /doctor:git hooks runs, turns gates PASS', (t) => {
+  const f = fixture(t);
+  execFileSync('git', ['-C', f.repo, 'config', '--local', 'speckit.hooks.commentHygiene', 'off'], { env: f.env });
+
+  const broken = rowOf(reportOf(f.run(['--json'])), 'gates');
+  assert.equal(broken.result, 'DEGRADED');
+  assert.equal(broken.repair, '/doctor:git hooks');
+
+  // /doctor:git hooks runs git-hook-gates.cjs, so the repair is applied as that script.
+  execFileSync(
+    process.execPath,
+    [
+      path.join(OWN_ROOT, 'commands', 'doctor', 'scripts', 'git-hook-gates.cjs'),
+      'set', 'commentHygiene', 'on', '--scope', 'local', '--repo', f.repo, '--apply',
+    ],
+    { env: f.env, cwd: f.repo },
+  );
+
+  assert.equal(rowOf(reportOf(f.run(['--json'])), 'gates').result, 'PASS');
+});
+
+test('round trip: the worktrees repair turns a broken base PASS, from git config and from the environment', (t) => {
+  const f = fixture(t);
+  const asFile = path.join(fs.realpathSync(f.dir), 'wt-file');
+  fs.writeFileSync(asFile, 'x');
+  execFileSync('git', ['-C', f.repo, 'config', '--local', 'speckit.worktreeBase', asFile], { env: f.env });
+
+  const broken = rowOf(reportOf(f.run(['--json'])), 'worktrees');
+  assert.equal(broken.result, 'FAIL');
+  assert.equal(broken.repair, 'git config speckit.worktreeBase <dir>');
+
+  // The printed repair carries a placeholder, so it is applied with <dir> replaced.
+  const good = path.join(fs.realpathSync(f.dir), 'wt-good');
+  execFileSync('bash', ['-c', broken.repair.replace('<dir>', good)], { env: f.env, cwd: f.repo });
+  assert.equal(rowOf(reportOf(f.run(['--json'])), 'worktrees').result, 'PASS');
+
+  const envBroken = rowOf(reportOf(f.run(['--json'], { SPECKIT_WORKTREE_BASE: asFile })), 'worktrees');
+  assert.equal(envBroken.result, 'FAIL');
+  assert.ok(envBroken.repair.startsWith('export SPECKIT_WORKTREE_BASE=<writable dir>'), envBroken.repair);
+
+  // The export means the next run gets SPECKIT_WORKTREE_BASE = good.
+  assert.equal(rowOf(reportOf(f.run(['--json'], { SPECKIT_WORKTREE_BASE: good })), 'worktrees').result, 'PASS');
+});
+
+test('round trip: the commit-id repair turns a missing allocator PASS', (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'git-setup-check-root-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+
+  // A fake install root that ships every required file but the allocator, so the
+  // commit-id check fails on the missing script while the shared helpers stay real.
+  const installRoot = path.join(root, '.skilled');
+  const copy = path.join(installRoot, 'commands', 'doctor', 'scripts', 'git-setup-check.cjs');
+  fs.mkdirSync(path.dirname(copy), { recursive: true });
+  fs.copyFileSync(SCRIPT, copy);
+  const fakeSkill = path.join(installRoot, 'skills', 'sk-git');
+  fs.mkdirSync(path.join(fakeSkill, 'scripts'), { recursive: true });
+  fs.writeFileSync(path.join(fakeSkill, 'scripts', '.keep'), '');
+  fs.copyFileSync(path.join(OWN_ROOT, 'skills', 'sk-git', 'SKILL.md'), path.join(fakeSkill, 'SKILL.md'));
+  fs.copyFileSync(path.join(OWN_ROOT, 'skills', 'sk-git', 'hard-rules.json'), path.join(fakeSkill, 'hard-rules.json'));
+  fs.symlinkSync(path.join(OWN_ROOT, 'scripts'), path.join(installRoot, 'scripts'), 'dir');
+
+  const f = fixture(t);
+  execFileSync('git', ['-C', f.repo, 'config', '--local', 'skilled.commitId', 'true'], { env: f.env });
+
+  const runCopy = () => spawnSync(process.execPath, [copy, '--repo', f.repo, '--json'], { encoding: 'utf8', cwd: f.repo, env: f.env });
+  const broken = rowOf(reportOf(runCopy()), 'commit-id');
+  assert.equal(broken.result, 'FAIL');
+  assert.equal(
+    broken.repair,
+    'restore .skilled/skills/sk-git/scripts/commit-id-naming.sh, or git config --local skilled.commitId false',
+  );
+
+  // The second alternative is applied as printed, so the config the operator would
+  // set is the one that turns the row PASS.
+  execFileSync('bash', ['-c', broken.repair.split(', or ')[1]], { env: f.env, cwd: f.repo });
+  assert.equal(rowOf(reportOf(runCopy()), 'commit-id').result, 'PASS');
+});
+
+test('round trip: the advisory-rules repair turns an unknown check name PASS', (t) => {
+  const f = fixture(t);
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'git-setup-check-root-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+
+  // The copy resolves its own install root from its location, so the planted rule
+  // file is the one it reads while the shared scripts stay the real ones.
+  const installRoot = path.join(root, '.skilled');
+  const fakeSkill = path.join(installRoot, 'skills', 'sk-git');
+  const scriptCopy = path.join(installRoot, 'commands', 'doctor', 'scripts', 'git-setup-check.cjs');
+  fs.mkdirSync(path.dirname(scriptCopy), { recursive: true });
+  fs.mkdirSync(fakeSkill, { recursive: true });
+  fs.copyFileSync(SCRIPT, scriptCopy);
+  const rulesFile = path.join(fakeSkill, 'hard-rules.json');
+  fs.writeFileSync(rulesFile, JSON.stringify([
+    { id: 'planted-rule', check: 'no-such-check', message: 'never dispatched', severity: 'warn' },
+  ]));
+  fs.symlinkSync(path.join(OWN_ROOT, 'skills', 'sk-git', 'scripts'), path.join(fakeSkill, 'scripts'), 'dir');
+  fs.symlinkSync(path.join(OWN_ROOT, 'skills', 'sk-git', 'SKILL.md'), path.join(fakeSkill, 'SKILL.md'), 'file');
+
+  const runCopy = () => spawnSync(process.execPath, [scriptCopy, '--repo', f.repo, '--json'], { encoding: 'utf8', cwd: f.repo, env: f.env });
+  const broken = rowOf(reportOf(runCopy()), 'advisory-rules');
+  assert.equal(broken.result, 'FAIL');
+  assert.equal(broken.repair, 'fix the check name in .skilled/skills/sk-git/hard-rules.json');
+
+  // The repair is applied as printed: the check name is fixed in the planted file.
+  const planted = JSON.parse(fs.readFileSync(rulesFile, 'utf8'));
+  planted[0].check = 'force-push-without-lease';
+  fs.writeFileSync(rulesFile, JSON.stringify(planted));
+  assert.equal(rowOf(reportOf(runCopy()), 'advisory-rules').result, 'PASS');
+});
+
+test('round trip: the suppression repairs turn the row PASS, from the environment and from hook-flags.env', (t) => {
+  const f = fixture(t);
+
+  const envBroken = rowOf(reportOf(f.run(['--json'], { SYSTEM_HOOKS_DISABLED: '1' })), 'suppression');
+  assert.equal(envBroken.result, 'FAIL');
+  assert.equal(envBroken.repair, 'unset SYSTEM_HOOKS_DISABLED');
+
+  // Applying the repair means the next run carries no such variable, the state
+  // the unset asks for.
+  assert.equal(rowOf(reportOf(f.run(['--json'])), 'suppression').result, 'PASS');
+
+  fs.mkdirSync(path.join(f.repo, '.skilled', 'skills', 'system-spec-kit'), { recursive: true });
+  fs.writeFileSync(path.join(f.repo, '.skilled', 'skills', 'system-spec-kit', 'SKILL.md'), '# sentinel\n');
+  fs.mkdirSync(path.join(f.repo, '.skilled', 'hooks'), { recursive: true });
+  fs.writeFileSync(path.join(f.repo, '.skilled', 'hooks', 'hook-flags.env'), '# saved\nSYSTEM_HOOKS_DISABLED=1\n');
+
+  const fileBroken = rowOf(reportOf(f.run(['--json'])), 'suppression');
+  assert.equal(fileBroken.result, 'FAIL');
+  assert.equal(fileBroken.repair, 'delete line 2 of .skilled/hooks/hook-flags.env (SYSTEM_HOOKS_DISABLED=1)');
+
+  // The repair is applied as printed: the line number and the file are read out
+  // of it and that one line is removed from the named file.
+  const parsed = fileBroken.repair.match(/^delete line (\d+) of (.+) \(/);
+  assert.ok(parsed, fileBroken.repair);
+  const flagsPath = path.join(f.repo, parsed[2]);
+  const flagsLines = fs.readFileSync(flagsPath, 'utf8').split('\n');
+  flagsLines.splice(Number(parsed[1]) - 1, 1);
+  fs.writeFileSync(flagsPath, flagsLines.join('\n'));
+
+  assert.equal(rowOf(reportOf(f.run(['--json'])), 'suppression').result, 'PASS');
+});
+
+test('round trip: registering the advisory as README section 3 shows turns ai-tool-hooks PASS for every runtime', (t) => {
+  const REAL_ROOT = path.dirname(OWN_ROOT);
+
+  for (const tool of ['claude', 'codex', 'devin', 'cursor', 'opencode', 'pi']) {
+    const f = fixture(t);
+    const file = TOOL_FILES[tool];
+
+    const broken = rowOf(reportOf(f.run(['--tool', tool, '--json'])), 'ai-tool-hooks');
+    assert.equal(broken.result, 'FAIL', `${tool}: ${broken.details.join(' | ')}`);
+    assert.ok(
+      broken.repair.startsWith(`register git-preflight-advisory in ${file}`),
+      `${tool}: ${broken.repair}`,
+    );
+
+    // This checkout ships the registration the README's section 3 shows for this
+    // runtime, so its file content is the repair the fixture repository needs.
+    const target = path.join(f.repo, file);
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.writeFileSync(target, fs.readFileSync(path.join(REAL_ROOT, file), 'utf8'));
+
+    const fixed = rowOf(reportOf(f.run(['--tool', tool, '--json'])), 'ai-tool-hooks');
+    assert.equal(fixed.result, 'PASS', `${tool}: ${fixed.details.join(' | ')}`);
+  }
 });

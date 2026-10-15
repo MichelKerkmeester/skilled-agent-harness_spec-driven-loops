@@ -31,7 +31,7 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Record the parsed JSON of the commit rules block and the two failing tests as the baseline (scratch only) [EVIDENCE: parsed contract saved, the two tests failing on HEAD]
+- [x] T001 Record the parsed JSON of the commit rules block and the two failing tests as the baseline [EVIDENCE: rerun from the repository root. Parsed contract: `git show 6c2c3304d3^:.skilled/skills/sk-git/assets/commit-message-template.md | node --input-type=module -e 'import {extractContract} from "./.skilled/skills/sk-git/scripts/lib/message-contract.mjs"; let s=""; process.stdin.on("data",(d)=>{s+=d}).on("end",()=>{console.log(JSON.stringify(extractContract(s)))});' | shasum -a 256` prints `b36db201d1160df99bf11d528c6ec831afc231cd0909511f6744afde7eb29803`. Failing tests: `d=$(mktemp -d) && git archive 6c2c3304d3^ .skilled/commands/doctor/scripts .skilled/skills/sk-git .skilled/scripts/git-hooks | tar -x -C "$d" && git -C "$d" init -q && (cd "$d" && node --test .skilled/commands/doctor/scripts/tests/git-standards.test.cjs)` reports tests 10, pass 8, fail 2, the two failures being "the shipped rules blocks round-trip through the layout serializer" and "set changes only the edited line and the gates enforce the new value"]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -47,7 +47,7 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T003 Compare the parsed JSON before and after, and run `validate-message.mjs` on a message with a valid and a `0000000` Commit-Id [EVIDENCE: parsed JSON identical (cmp), Commit-Id 1234567 exit 0, 0000000 exit 1, --check-template exit 0]
+- [x] T003 Compare the parsed JSON before and after, and run `validate-message.mjs` on a message with a valid and a `0000000` Commit-Id [EVIDENCE: parsed JSON identical: the T001 command run against `6c2c3304d3` instead of `6c2c3304d3^` prints the same sha256 `b36db201d1160df99bf11d528c6ec831afc231cd0909511f6744afde7eb29803`, and the T001 archive command against `6c2c3304d3` reports tests 10, pass 10, fail 0. Commit-Id 1234567 exit 0, 0000000 exit 1, --check-template exit 0]
 - [x] T004 Run `git-standards.test.cjs` and `run-all.sh` [EVIDENCE: git-standards.test.cjs 10 of 10, run-all.sh exit 0 with 7 of 7 suites]
 - [x] T005 Read the hook-trust sentinel as a note in the gate-inputs checker, with a test case (`.github/scripts/check-gate-inputs.sh`) [EVIDENCE: check-gate-inputs.sh RESULT: PASSED with failures=0, its tests 49 of 49, and the new case fails against the old checker]
 - [x] T006 Clear the HVR hard blockers in the five docs [EVIDENCE: hvr_scan.py reports 0 hard blockers in all five docs]

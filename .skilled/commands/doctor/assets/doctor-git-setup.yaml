@@ -3,7 +3,7 @@
 # ─────────────────────────────────────────────────────────────────
 role: Diagnostic Operator reporting whether the sk-git setup passes its read-only battery end to end
 purpose: Run the read-only battery over the sk-git install, hooks, trust, gates, standards, allowlist, worktrees, Commit-Id policy, advisory rules, suppressors and AI-tool hook registration, and name the repair command for each failing check
-action: Run .skilled/commands/doctor/scripts/git-setup-check.cjs once -> render its per-check PASS/FAIL/SKIP/UNKNOWN verdict and repair lines through the presentation contract
+action: Run .skilled/commands/doctor/scripts/git-setup-check.cjs once -> render its per-check PASS/FAIL/SKIP/UNKNOWN/DEGRADED verdict and repair lines through the presentation contract
 skill_owner: ".skilled/skills/sk-git/"
 
 # ─────────────────────────────────────────────────────────────────
@@ -38,7 +38,7 @@ upstream_assets:
 # ─────────────────────────────────────────────────────────────────
 inputs:
   target: "setup is one of the route's three targets, along with hooks and standards: /doctor:git setup runs it. Any other positional fails before this YAML loads."
-  tool: "--tool=<name> names the AI tool running the check: claude, codex, devin, cursor, opencode or pi. That tool's adapter must register the advisory. Every other adapter is checked too, and fails only when its config file exists without the registration."
+  tool: "--tool=<name> names the AI tool running the check: claude, codex, devin, cursor, opencode or pi. That tool's adapter must register the advisory under its own pre-tool event for its shell tool, and an OpenCode or Pi adapter must register its event handler and import git-rule-checks.mjs. Every other adapter is checked the same way and fails only when its file exists without the registration. Without --tool, and outside Claude Code, the row is UNKNOWN and names --tool."
 
 # ─────────────────────────────────────────────────────────────────
 # EXECUTION
@@ -46,15 +46,16 @@ inputs:
 execution:
   steps:
     - "Run .skilled/commands/doctor/scripts/git-setup-check.cjs once, adding --tool=<name> for the AI tool executing this command."
-    - "The battery runs eleven checks in order: install (the toolchain is present), hooks (every installed git hook resolves to this checkout), trust (this checkout is trusted through the shared git common dir or its local config), gates (the saved hook gate settings), standards (the contract folder and the rule copies in force), allowlist (the remote-branch allowlist patterns), worktrees (the worktree base and the provisioning entries), commit-id (the Commit-Id policy markers), advisory-rules (every rule in hard-rules.json names a known check), suppression (the advisory suppressors and the two whole-hook master switches), and ai-tool-hooks (every configured AI-tool adapter, and the named tool's, registers the git-preflight advisory)."
-    - "Each check prints one PASS|FAIL|SKIP|UNKNOWN line with its source, its detail lines, and a repair: <command> line under each failure. The battery's last line is STATUS=OK checks=11, or STATUS=FAIL failed=<n> skipped=<n> unknown=<n>."
+    - "The battery runs eleven checks in order: install (the toolchain is present), hooks (every installed git hook resolves to this checkout), trust (this checkout is trusted through the shared git common dir or its local config), gates (the saved hook gate settings, where a gate saved off is DEGRADED), standards (the contract folder and the rule copies in force), allowlist (the remote-branch allowlist patterns), worktrees (the worktree base and the provisioning entries), commit-id (the Commit-Id policy markers), advisory-rules (every rule in hard-rules.json names a known check), suppression (the advisory suppressors and the whole-hook master switches, from the environment and hook-flags.env), and ai-tool-hooks (every configured AI-tool adapter, and the named tool's, registers the git-preflight advisory for its shell tool)."
+    - "Each check prints one PASS|FAIL|SKIP|UNKNOWN|DEGRADED line with its source, its detail lines, and a repair: <command> line under each failure and each degraded row. The battery's last line is STATUS=OK checks=11, STATUS=DEGRADED degraded=<n> skipped=<n> unknown=<n>, or STATUS=FAIL failed=<n> degraded=<n> skipped=<n> unknown=<n>."
     - "Render the battery's verdict through .skilled/commands/doctor/assets/doctor-git-presentation.txt: the per-check table and the DOCTOR DIAGNOSTIC RESULT summary, with the repair command under each failure."
-    - "Map the battery's exit code to the route status: 0 all checks pass, 1 any failure, 2 bad argument."
+    - "Map the battery's exit code to the route status: 0 every check passes or skips, 3 degraded (no failure, but a check is UNKNOWN or a gate is saved off), 1 any failure, 2 bad argument or crash."
 
 # ─────────────────────────────────────────────────────────────────
 # OUTPUT
 # ─────────────────────────────────────────────────────────────────
 output: |
   STATUS=OK when the battery exits 0 and its last line is STATUS=OK checks=11.
-  STATUS=FAIL when the battery exits 1. List each failing check with the repair command its repair: line printed, and each skipped or unknown check.
+  STATUS=DEGRADED when the battery exits 3 and its last line starts STATUS=DEGRADED. List each unknown check with its detail line and each degraded check with the repair command its repair: line printed.
+  STATUS=FAIL when the battery exits 1. List each failing check with the repair command its repair: line printed, and each degraded, skipped or unknown check.
   STATUS=FAIL ERROR="<message>" when the battery exits 2 (bad argument) or crashes, or when its output cannot be read. Report the message and the accepted invocation (/doctor:git setup [--tool=<name>]).

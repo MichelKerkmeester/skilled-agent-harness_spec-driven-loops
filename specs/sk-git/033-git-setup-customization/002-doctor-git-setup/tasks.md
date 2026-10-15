@@ -32,7 +32,7 @@ contextType: "general"
 ## Phase 1: Setup
 
 - [x] T001 Write the test skeleton with a temporary `git init` fixture, `GIT_CONFIG_GLOBAL` and `GIT_CONFIG_NOSYSTEM=1` isolation and a before-and-after tree and config snapshot helper (`.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs`)
-- [x] T002 Confirm each read-only entry point's output on this checkout: `install-git-hooks.sh --status`, `git-hook-gates.cjs list --json`, `resolveContractDir` and `loadContract`, `cip_repo_wants_ids`, `worktree-naming.sh next` and `GIT_CHECKS` (scratch notes only)
+- [x] T002 Confirm each read-only entry point's output on this checkout: `install-git-hooks.sh --status`, `git-hook-gates.cjs list --json`, `resolveContractDir` and `loadContract`, `cip_repo_wants_ids`, `worktree-naming.sh next` and `GIT_CHECKS` [EVIDENCE: rerun on this checkout on 2026-10-15. `bash .skilled/scripts/install-git-hooks.sh --status` prints `core.hooksPath`, the resolved hooks dir and each hook's source. `node .skilled/commands/doctor/scripts/git-hook-gates.cjs list --json` ends `STATUS=OK GATES=15 OFF=0`. `resolveContractDir` and `loadContract` from `.skilled/skills/sk-git/scripts/lib/message-contract.mjs` give `.skilled/skills/sk-git/assets/` with commit, pr and branch enforced. `bash -c 'source .skilled/scripts/git-hooks/lib/commit-id-policy.sh; cip_repo_wants_ids "$PWD"'` exits 0. `bash .skilled/skills/sk-git/scripts/worktree-naming.sh next` prints the next free number and exits 0. `GIT_CHECKS` from `git-rule-checks.mjs` has 17 keys]
 <!-- /ANCHOR:phase-1 -->
 
 ---

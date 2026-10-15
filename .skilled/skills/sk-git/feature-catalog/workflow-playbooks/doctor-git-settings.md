@@ -1,5 +1,5 @@
 ---
-title: "Repository settings and setup check (/doctor:git)"
+title: "Repository settings and setup check"
 description: "One doctor command switches sk-git's hook gates, changes the repository's commit, PR and branch rules, and checks which sk-git settings are live without writing anything."
 trigger_phrases:
   - "doctor git"
@@ -7,7 +7,7 @@ trigger_phrases:
   - "hook gate settings"
   - "change commit rules"
 importance_tier: "important"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Repository settings and setup check (/doctor:git)
@@ -26,7 +26,7 @@ A repository adapts sk-git through git config and a `.sk-git/` folder, never by 
 
 ### The Setup Check
 
-`setup` runs eleven checks: install, hooks, trust, gates, standards, allowlist, worktrees, commit-id, advisory-rules, suppression and ai-tool-hooks. Each prints PASS, FAIL, SKIP or UNKNOWN with the source it read, and each FAIL names one repair command. The run exits 0 when nothing fails, 1 when a check fails and 2 on a usage error, and its last line is `STATUS=`. `--json` prints one object for scripts.
+`setup` runs eleven checks: install, hooks, trust, gates, standards, allowlist, worktrees, commit-id, advisory-rules, suppression and ai-tool-hooks. Each prints PASS, FAIL, SKIP, UNKNOWN or DEGRADED with the source it read, and each FAIL, and a gate saved off, names one repair command. The run exits 0 when every check passes or skips, 3 when none fails but a check is UNKNOWN or a gate is saved off, 1 when a check fails and 2 on a usage error or crash, and its last line is `STATUS=OK`, `STATUS=DEGRADED` or `STATUS=FAIL`. `--json` prints one object for scripts.
 
 The check never writes and never runs code from the repository it inspects. It loads every helper from its own install, reads hook links in process instead of calling the installer, and passes `core.fsmonitor=false` and `log.showSignature=false` to every child process through the environment, so the inspected repository's config cannot make a helper start a program.
 

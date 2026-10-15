@@ -1,7 +1,7 @@
 ---
 title: "sk-git: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the sk-git skill."
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # sk-git: Manual Testing Playbook
@@ -944,7 +944,7 @@ Prove the read-only setup battery reports all eleven checks with a result and so
 
 Prompt: `Check my sk-git setup and tell me which hooks, rules and settings are live.`
 
-Expected signals: The rendered table has one row per check in the order install, hooks, trust, gates, standards, allowlist, worktrees, commit-id, advisory-rules, suppression and ai-tool-hooks, each with a result of PASS, FAIL, SKIP or UNKNOWN and the source it read. On this repository's own checkout every row reads PASS and the case ends `STATUS=OK checks=11`. The result block reads `Target: setup` and `Changed: none`.
+Expected signals: The rendered table has one row per check in the order install, hooks, trust, gates, standards, allowlist, worktrees, commit-id, advisory-rules, suppression and ai-tool-hooks, each with a result of PASS, FAIL, SKIP, UNKNOWN or DEGRADED and the source it read. On this repository's own checkout, with the hooks installed and the Claude adapter registered, every row reads PASS under `--tool claude` and the case ends `STATUS=OK checks=11` with exit 0, a run with an UNKNOWN row or a gate saved off ends `STATUS=DEGRADED` with exit 3, a failing check ends `STATUS=FAIL` with exit 1, and an unknown `--tool` exits 2 with a usage line. The result block reads `Target: setup` and `Changed: none`.
 
 #### Test Execution
 

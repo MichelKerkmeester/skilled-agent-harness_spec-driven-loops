@@ -24,7 +24,8 @@
 //           opencode or pi. Without it, claude is assumed when CLAUDECODE is
 //           set; no other environment variable is consulted.
 //   --json  print one JSON object instead of the human report
-// Exit 0 when no check failed, 1 when one did, 2 on a usage error.
+// Exit 0 when every check passed or skipped, 3 (DEGRADED) when none failed
+// but one was UNKNOWN or DEGRADED, 1 when one failed, 2 on a usage error or crash.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -69,9 +70,9 @@ const MAX_BUFFER = 64 * 1024 * 1024;
 // counted rather than silently shortened.
 const DETAIL_LIMIT = 10;
 
-const INSTALL_REPAIR = 'restore the missing sk-git files from your sk-git source, for example git restore .skilled/skills/sk-git, or run /doctor:update';
 const RULES_REPAIR = 'fix the check name in .skilled/skills/sk-git/hard-rules.json';
 const WORKTREE_REPAIR = 'git config speckit.worktreeBase <dir>';
+const WORKTREE_ENV_REPAIR = 'export SPECKIT_WORKTREE_BASE=<writable dir>, or unset SPECKIT_WORKTREE_BASE';
 const CONTRACT_REPAIR = '/doctor:git standards';
 const GATES_REPAIR = '/doctor:git hooks';
 const COMMIT_ID_REPAIR = 'restore .skilled/skills/sk-git/scripts/commit-id-naming.sh, or git config --local skilled.commitId false';
@@ -88,17 +89,21 @@ const CONTRACT_KINDS = ['commit', 'pr', 'branch'];
 // line of its own in the allowlist file.
 const ALLOWLIST_SAMPLES = ['main', 'skilled/v4.0.0.0', 'feature/setup-check-probe'];
 
-// Advisory suppression first, then the two master switches that turn off the
-// whole hook chain. Only the master switches fail the check; the advisory tier
-// silences one hook, which the registration check above reports separately.
-const SUPPRESSION_VARS = [
-  'SKGIT_ADVISORY',
-  'SKGIT_ADVISORY_SKIP',
-  'SK_GIT_PREFLIGHT_DISABLED',
+// The hook kill-switches resolve from the environment first, then the
+// operator's hook-flags.env, with the environment winning whenever the name is
+// set, even to an empty string; the advisory reads its two SKGIT_ variables
+// from the environment only. Only the master switches fail the check, because
+// they turn off every hook in the chain rather than one advisory surface, which
+// the registration check above reports separately.
+const SUPPRESSION_FILE_VARS = [
   'SYSTEM_HOOKS_DISABLED',
+  'MK_HOOKS_DISABLED',
   'SYSTEM_GIT_COMMIT_HOOKS_DISABLED',
+  'SK_GIT_PREFLIGHT_DISABLED',
+  'MK_GIT_PREFLIGHT_DISABLED',
 ];
-const MASTER_SWITCHES = ['SYSTEM_HOOKS_DISABLED', 'SYSTEM_GIT_COMMIT_HOOKS_DISABLED'];
+const SUPPRESSION_ENV_VARS = ['SKGIT_ADVISORY', 'SKGIT_ADVISORY_SKIP'];
+const MASTER_SWITCHES = ['SYSTEM_HOOKS_DISABLED', 'MK_HOOKS_DISABLED', 'SYSTEM_GIT_COMMIT_HOOKS_DISABLED'];
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -120,11 +125,15 @@ function repoLabel(repoRoot, absolute) {
 
 // Config passed through the environment outranks every config file, so no git a
 // helper starts can be steered by the inspected repository: fsmonitor starts a
-// program on a plain query, and showSignature makes log run gpg.program.
+// program on a plain query, and showSignature makes log run gpg.program. These
+// variables select a repository and outrank -C, so they are dropped and every
+// probe reads the repository the battery was pointed at.
 const SAFE_GIT_CONFIG = [['core.fsmonitor', 'false'], ['log.showSignature', 'false']];
+const REPO_SELECTING_VARS = ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_INDEX_FILE', 'GIT_COMMON_DIR'];
 
 function safeGitEnv() {
   const env = { ...process.env };
+  for (const name of REPO_SELECTING_VARS) delete env[name];
   const base = Number.parseInt(env.GIT_CONFIG_COUNT || '0', 10) || 0;
   SAFE_GIT_CONFIG.forEach(([key, value], i) => {
     env[`GIT_CONFIG_KEY_${base + i}`] = key;
@@ -134,13 +143,56 @@ function safeGitEnv() {
   return env;
 }
 
+// A PATH entry that is relative or empty resolves against the child's working
+// directory, which is the inspected repository, so a planted ./git or ./bash
+// would run in place of the real tool. Only absolute entries are searched, and
+// the resolution happens once here so every child process in the battery
+// starts from the same executable.
+function resolveBinary(name) {
+  for (const entry of (process.env.PATH || '').split(path.delimiter)) {
+    if (!entry || !path.isAbsolute(entry)) continue;
+    const candidate = path.join(entry, name);
+    try {
+      fs.accessSync(candidate, fs.constants.X_OK);
+      if (fs.statSync(candidate).isFile()) return candidate;
+    } catch {
+      // not executable or not readable from this entry; keep searching
+    }
+  }
+  return null;
+}
+
+const GIT_BIN = resolveBinary('git');
+const BASH_BIN = resolveBinary('bash');
+
+// Anything the battery loads in-process reads process.env directly, and every
+// child it spawns inherits it, so the PATH is narrowed once at the start of a
+// run to absolute entries. A relative or empty entry resolves against the
+// child's working directory, which is the inspected repository, and would let a
+// planted ./git or ./bash run in place of the real tool.
+function narrowPath() {
+  process.env.PATH = (process.env.PATH || '').split(path.delimiter).filter((entry) => entry && path.isAbsolute(entry)).join(path.delimiter);
+}
+
 // Every child process runs from the inspected repository root and takes an argv
 // array, never a shell string, so a repository cannot influence a helper
 // through the working directory or through shell expansion.
-function runCommand(cwd, command, args) {
+function runCommand(cwd, command, args, env = safeGitEnv()) {
+  // A binary that was not found on an absolute PATH entry is reported the way
+  // spawnSync reports a spawn failure, so callers that read .error treat it as
+  // a tool the battery could not run.
+  if (command === null) {
+    return {
+      status: 1,
+      stdout: '',
+      stderr: '',
+      output: '',
+      error: new Error('not found on an absolute PATH entry'),
+    };
+  }
   const result = spawnSync(command, args, {
     cwd,
-    env: safeGitEnv(),
+    env,
     encoding: 'utf8',
     maxBuffer: MAX_BUFFER,
   });
@@ -158,7 +210,7 @@ function runCommand(cwd, command, args) {
 const GIT_FLAGS = ['-c', 'core.fsmonitor=false'];
 
 function git(repoRoot, args) {
-  return runCommand(repoRoot, 'git', [...GIT_FLAGS, '-C', repoRoot, ...args]);
+  return runCommand(repoRoot, GIT_BIN, [...GIT_FLAGS, '-C', repoRoot, ...args]);
 }
 
 // `git-hook-gates.cjs list --json` appends its status line after the JSON
@@ -190,6 +242,38 @@ function firstLine(text) {
   return text.split('\n').find((line) => line.trim() !== '') || '';
 }
 
+// A repository file past this size is reported, never read, so one generated
+// artifact cannot swamp the run.
+const READ_CAP = 1024 * 1024;
+
+// The one reader for every file the battery takes out of the inspected
+// repository. O_NONBLOCK makes opening a FIFO return at once instead of waiting
+// for a writer, and the type and size are checked with fstat on the opened
+// descriptor, so a FIFO, a device or a directory is reported rather than blocking
+// the run, and the file cannot be swapped between the check and the read. A
+// missing file is not a problem: each caller decides what absence means there.
+function readRepoFile(file, options = {}) {
+  const flags = fs.constants.O_RDONLY
+    | fs.constants.O_NONBLOCK
+    | (options.refuseSymlink ? fs.constants.O_NOFOLLOW : 0);
+  let fd;
+  try {
+    fd = fs.openSync(file, flags);
+  } catch (err) {
+    if (err.code === 'ENOENT') return { text: null, problem: null };
+    if (err.code === 'ELOOP') return { text: null, problem: 'is a symlink' };
+    return { text: null, problem: err.message };
+  }
+  try {
+    const stats = fs.fstatSync(fd);
+    if (!stats.isFile()) return { text: null, problem: 'not a regular file' };
+    if (stats.size > READ_CAP) return { text: null, problem: `larger than ${READ_CAP} bytes` };
+    return { text: fs.readFileSync(fd, 'utf8'), problem: null };
+  } finally {
+    fs.closeSync(fd);
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. CHECKS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -198,6 +282,7 @@ const pass = (source, details = []) => ({ result: 'PASS', source, details, repai
 const fail = (source, details, repair) => ({ result: 'FAIL', source, details, repair });
 const skip = (source, details = []) => ({ result: 'SKIP', source, details, repair: null });
 const unknown = (source, details = []) => ({ result: 'UNKNOWN', source, details, repair: null });
+const degraded = (source, details, repair) => ({ result: 'DEGRADED', source, details, repair });
 
 // The toolchain files this battery itself needs: without any one of them the
 // rest of the report would name helpers that do not exist, so install is the
@@ -206,14 +291,34 @@ function checkInstall() {
   const source = 'skills/sk-git/SKILL.md + hard-rules.json + scripts/';
   const required = ['skills/sk-git/SKILL.md', 'skills/sk-git/hard-rules.json', 'skills/sk-git/scripts'];
   const missing = required.filter((relative) => !fs.existsSync(path.join(OWN_ROOT, relative)));
-  if (missing.length > 0) return fail(source, missing.map(ownLabel), INSTALL_REPAIR);
+  if (missing.length > 0) {
+    // Each missing path is named so the restore brings back only what is gone
+    // and keeps every other local edit, and the command runs against this
+    // battery's own checkout, never the inspected repository.
+    const top = git(OWN_ROOT, ['rev-parse', '--show-toplevel']);
+    let repair;
+    if (top.status === 0 && top.stdout.trim() !== '') {
+      const topDir = top.stdout.trim();
+      // git prints the real path, so compare like with like.
+      const ownReal = fs.realpathSync(OWN_ROOT);
+      const rels = missing.map((relative) => path.relative(topDir, path.join(ownReal, relative)));
+      repair = `git -C ${topDir} restore --source=HEAD -- ${rels.join(' ')}`;
+    } else {
+      repair = 'reinstall sk-git from its source: this install root is not in a git work tree';
+    }
+    return fail(source, missing.map(ownLabel), repair);
+  }
   return pass(source);
 }
 
-// install-git-hooks.sh is not called: it resolves its source tree from the
-// repository it runs in and then executes that repository's own
-// validate-message.mjs, so a clone the operator does not trust could pick the
-// code this battery runs; the hook links are read and compared in process instead.
+// install-git-hooks.sh is not called: it links the hook sources of the
+// repository it runs in, resolving its source tree from the working directory's
+// git toplevel and then executing that repository's own validate-message.mjs,
+// so a clone the operator does not trust could pick the code this battery runs;
+// the hook links are read and compared in process instead. That installer is
+// named, by absolute path, only when the inspected repository is this checkout;
+// any other repository is pointed at this checkout's hook folder through
+// core.hooksPath, and its own installer is never named.
 // PASS when every Git hook this checkout ships is installed in the inspected
 // repository's hooks folder and resolves to a hook source: the repository's own
 // tree, where the installer links them, or this checkout's, which a core.hooksPath
@@ -225,8 +330,11 @@ function checkHooks(ctx) {
   const repoTree = ['.skilled', '.opencode']
     .find((root) => fs.existsSync(path.join(ctx.repoRoot, root, 'skills', 'system-spec-kit', 'SKILL.md')));
   const repoDir = repoTree ? path.join(ctx.repoRoot, repoTree, 'scripts', 'git-hooks') : null;
-  const repair = repoTree
-    ? `bash ${repoTree}/scripts/install-git-hooks.sh`
+  const ownCommon = commonDirFor(ctx.repoRoot, OWN_ROOT);
+  const repoCommon = commonDirFor(ctx.repoRoot, ctx.repoRoot);
+  const ownCheckout = Boolean(ownCommon && repoCommon && ownCommon === repoCommon);
+  const repair = ownCheckout
+    ? `bash ${path.join(OWN_ROOT, 'scripts', 'install-git-hooks.sh')}`
     : `git config core.hooksPath ${ownDir}`;
   const resolved = git(ctx.repoRoot, ['rev-parse', '--git-path', 'hooks']);
   if (resolved.status !== 0 || resolved.stdout.trim() === '') {
@@ -257,7 +365,7 @@ function checkHooks(ctx) {
 // The inspected repository runs its own hook scripts only when it is this
 // checkout (shared git common dir) or its local config grants trust.
 function commonDirFor(repoRoot, dir) {
-  const result = runCommand(repoRoot, 'git', [...GIT_FLAGS, '-C', dir, 'rev-parse', '--git-common-dir']);
+  const result = runCommand(repoRoot, GIT_BIN, [...GIT_FLAGS, '-C', dir, 'rev-parse', '--git-common-dir']);
   if (result.status !== 0) return null;
   const value = result.stdout.trim();
   if (!value) return null;
@@ -296,17 +404,50 @@ function checkGates(ctx) {
   const source = 'git-hook-gates.cjs list --repo <repo> --json';
   const script = path.join(OWN_ROOT, 'commands', 'doctor', 'scripts', 'git-hook-gates.cjs');
   if (!fs.existsSync(script)) return unknown(source, [ownLabel('commands/doctor/scripts/git-hook-gates.cjs')]);
-  const result = runCommand(ctx.repoRoot, process.execPath, [script, 'list', '--repo', ctx.repoRoot, '--json']);
-  if (result.status !== 0) {
-    return fail(source, [firstLine(result.stderr) || `git-hook-gates.cjs list exited ${result.status}`], GATES_REPAIR);
+  // git-hook-gates.cjs reads its registry path from GATE_REGISTRY, so an
+  // inherited value would decide which gates this row judges.
+  const env = safeGitEnv();
+  delete env.GATE_REGISTRY;
+  const result = runCommand(ctx.repoRoot, process.execPath, [script, 'list', '--repo', ctx.repoRoot, '--json'], env);
+  if (result.error || result.status !== 0) {
+    // /doctor:git hooks starts with this same list call, so a repair cannot fix
+    // a helper that fails; the row reports what it could not verify.
+    const stderrLine = firstLine(result.stderr);
+    const stdoutLine = result.stdout.split('\n').filter((line) => line.trim() !== '').pop();
+    const message = stderrLine || stdoutLine || `git-hook-gates.cjs list exited ${result.status}`;
+    return unknown(source, [message]);
   }
   const report = parseJsonReport(result.stdout);
-  if (!report) return fail(source, ['the gate report did not parse as JSON'], GATES_REPAIR);
-  const gates = Array.isArray(report.gates) ? report.gates : [];
-  const details = gates
+  if (!report) return unknown(source, ['the gate report did not parse as JSON']);
+  if (!Array.isArray(report.gates)) return unknown(source, ['the gate report carries no gates list']);
+  const details = report.gates
     .filter((gate) => gate && gate.effective && gate.effective.state === 'off')
     .map((gate) => `${gate.key}: off (${gate.effective.from})`);
-  return pass(source, details);
+  if (details.length > 0) return degraded(source, details, GATES_REPAIR);
+  return pass(source);
+}
+
+// A configured skgit.contractDir that points nowhere cannot be repaired by the
+// command the other ContractError path names, because /doctor:git standards
+// resolves that same setting first and refuses while it is broken. The repair
+// therefore names the setting at the scope git reported it from, or creating
+// the directory the setting names. Only a file scope counts, matching
+// resolveContractDir, so a command-scope value never decides the repair, and a
+// setting that cannot be read keeps the command repair.
+function contractDirRepair(ctx) {
+  const scoped = git(ctx.repoRoot, ['config', '--show-scope', '--get-all', 'skgit.contractDir']);
+  if (scoped.status !== 0) return CONTRACT_REPAIR;
+  const entry = scoped.stdout
+    .split('\n')
+    .filter((line) => line !== '' && !line.startsWith('command\t'))
+    .map((line) => {
+      const separator = line.indexOf('\t');
+      return { scope: line.slice(0, separator).trim(), value: line.slice(separator + 1).trim() };
+    })
+    .filter((candidate) => candidate.value !== '')
+    .pop();
+  if (!entry) return CONTRACT_REPAIR;
+  return `git config --${entry.scope} --unset skgit.contractDir, or mkdir -p ${path.resolve(ctx.repoRoot, entry.value)}`;
 }
 
 // The contract loader decides what is enforced, and it throws when a declared
@@ -329,7 +470,10 @@ async function checkStandards(ctx) {
   try {
     resolved = mod.resolveContractDir(ctx.repoRoot);
   } catch (err) {
-    if (err && err.name === 'ContractError') return fail(source, [err.message], CONTRACT_REPAIR);
+    // /doctor:git standards reads this same setting first and refuses while it
+    // points nowhere, so the repair names the setting at the scope it came from,
+    // or creating the directory it names.
+    if (err && err.name === 'ContractError') return fail(source, [err.message], contractDirRepair(ctx));
     return unknown(source, [err.message]);
   }
   const details = [resolved ? `contract dir: ${resolved.source}` : 'contract dir: none'];
@@ -357,7 +501,7 @@ function checkAllowlist(ctx) {
   }
   const details = ALLOWLIST_SAMPLES.map((branch) => {
     if (branch.startsWith('skilled/v')) return `${branch}: exempt (pre-push skips release branches before the allowlist)`;
-    const result = runCommand(ctx.repoRoot, 'bash', [script, 'validate-remote-allowlist', branch]);
+    const result = runCommand(ctx.repoRoot, BASH_BIN, [script, 'validate-remote-allowlist', branch]);
     if (result.error) return `${branch}: not checked (cannot run bash: ${result.error.message})`;
     const verdict = result.status === 0
       ? 'allowed'
@@ -368,8 +512,11 @@ function checkAllowlist(ctx) {
   });
   const file = allowlistFileFor(ctx.repoRoot);
   if (file) {
-    const patterns = allowlistPatternsIn(file);
-    details.push(`patterns (${repoLabel(ctx.repoRoot, file)}): ${patterns.length > 0 ? patterns.join(', ') : 'none'}`);
+    const label = repoLabel(ctx.repoRoot, file);
+    const { patterns, problem } = allowlistPatternsIn(file);
+    details.push(problem
+      ? `patterns (${label}): not shown, ${problem}`
+      : `patterns (${label}): ${patterns.length > 0 ? patterns.join(', ') : 'none'}`);
   } else {
     details.push('patterns: no allowlist file, so only the built-in main exception applies');
   }
@@ -388,13 +535,18 @@ function allowlistFileFor(repoRoot) {
   return candidates.find((candidate) => fs.existsSync(candidate)) || null;
 }
 
+// The matcher follows the link (worktree-naming.sh line 148), but the report must
+// not print a file outside the repository, so a linked allowlist is named and not
+// shown: the read refuses the symlink and checkAllowlist reports the problem.
 function allowlistPatternsIn(file) {
+  const read = readRepoFile(file, { refuseSymlink: true });
+  if (read.text === null) return { patterns: [], problem: read.problem };
   const patterns = [];
-  for (const line of fs.readFileSync(file, 'utf8').split('\n')) {
+  for (const line of read.text.split('\n')) {
     const trimmed = line.split('#')[0].trim();
     if (trimmed) patterns.push(trimmed);
   }
-  return patterns;
+  return { patterns, problem: null };
 }
 
 // The worktree base resolves the same way the naming helper resolves it: env
@@ -437,11 +589,14 @@ function readProvisionEntries(file) {
   return entries;
 }
 
-// PASS requires the base's nearest existing parent to be writable. Each
-// provision entry is listed with its install and build state, including the
-// entries provision skips for want of a package, so a relocated base and a
-// stale provision list are visible before a new worktree needs them. These
-// lines stay informational and never decide the verdict.
+// PASS requires the base itself to be a writable directory, or, when it does
+// not exist yet, its nearest existing ancestor to be a writable directory,
+// because the helper creates the base with mkdir -p. Each provision entry is
+// listed with its install and build state, including the entries provision
+// skips for want of a package, so a relocated base and a stale provision list
+// are visible before a new worktree needs them. These lines stay informational
+// and never decide the verdict. The repair names the environment variable when
+// that is what set the base, since the environment outranks git config.
 function checkWorktrees(ctx) {
   const source = 'SPECKIT_WORKTREE_BASE | speckit.worktreeBase | .worktrees + worktree-provision-paths.txt';
   const base = resolveWorktreeBase(ctx.repoRoot);
@@ -463,12 +618,25 @@ function checkWorktrees(ctx) {
   } else {
     details.push(`provision list missing: ${ownLabel('skills/sk-git/scripts/worktree-provision-paths.txt')}`);
   }
-  const parent = nearestExistingDir(path.dirname(base.dir));
-  if (!parent) return fail(source, ['the base has no existing parent folder', ...details], WORKTREE_REPAIR);
+  const repair = base.source === 'SPECKIT_WORKTREE_BASE' ? WORKTREE_ENV_REPAIR : WORKTREE_REPAIR;
+  const nearest = nearestExistingDir(base.dir);
+  if (!nearest) return fail(source, ['the base has no existing parent folder', ...details], repair);
+  const label = repoLabel(ctx.repoRoot, nearest);
+  let isDirectory;
   try {
-    fs.accessSync(parent, fs.constants.W_OK);
+    isDirectory = fs.statSync(nearest).isDirectory();
   } catch {
-    return fail(source, [`base parent not writable: ${repoLabel(ctx.repoRoot, parent)}`, ...details], WORKTREE_REPAIR);
+    isDirectory = false;
+  }
+  if (!isDirectory) {
+    const message = nearest === base.dir ? 'base is not a directory' : 'base parent is not a directory';
+    return fail(source, [`${message}: ${label}`, ...details], repair);
+  }
+  try {
+    fs.accessSync(nearest, fs.constants.W_OK);
+  } catch {
+    const message = nearest === base.dir ? 'base not writable' : 'base parent not writable';
+    return fail(source, [`${message}: ${label}`, ...details], repair);
   }
   return pass(source, details);
 }
@@ -490,7 +658,7 @@ function checkCommitId(ctx) {
   const source = 'commit-id-policy.sh cip_repo_wants_ids + git config --local --bool skilled.commitId';
   const policy = path.join(OWN_ROOT, 'scripts', 'git-hooks', 'lib', 'commit-id-policy.sh');
   if (!fs.existsSync(policy)) return unknown(source, [ownLabel('scripts/git-hooks/lib/commit-id-policy.sh')]);
-  const probe = runCommand(ctx.repoRoot, 'bash', [
+  const probe = runCommand(ctx.repoRoot, BASH_BIN, [
     '-c',
     'source "$1"; cip_repo_wants_ids "$2"',
     '_',
@@ -553,34 +721,145 @@ async function checkAdvisoryRules() {
   return pass(source);
 }
 
-// The environment is reported, never changed. Any of the five variables that is
-// set is listed, and only the two master switches fail the check, because they
-// turn off every hook in the chain rather than one advisory surface.
-function checkSuppression() {
-  const source = 'env SKGIT_ADVISORY, SKGIT_ADVISORY_SKIP, SK_GIT_PREFLIGHT_DISABLED, SYSTEM_*_DISABLED';
-  const details = SUPPRESSION_VARS
-    .filter((name) => process.env[name] !== undefined && process.env[name] !== '')
-    .map((name) => `${name}=${process.env[name]}`);
-  const off = MASTER_SWITCHES.filter((name) => isTruthy(process.env[name]));
-  if (off.length > 0) return fail(source, details, `unset ${off.join(' ')}`);
+// The kill-switch file the hooks read: an explicit HOOK_FLAGS_CONFIG wins,
+// then the source root that carries the spec-kit skill, .skilled before
+// .opencode, exactly as the hooks resolve it. No file found yields null.
+function hookFlagsFileFor(repoRoot) {
+  const configured = process.env.HOOK_FLAGS_CONFIG;
+  if (configured !== undefined && configured !== '') return configured;
+  for (const root of ['.skilled', '.opencode']) {
+    if (fs.existsSync(path.join(repoRoot, root, 'skills', 'system-spec-kit', 'SKILL.md'))) {
+      return path.join(repoRoot, root, 'hooks', 'hook-flags.env');
+    }
+  }
+  return null;
+}
+
+// Parse the kill-switch file in process, never executing it. Blank and comment
+// lines are ignored, a '#' after a space or tab ends the value, one pair of
+// surrounding quotes is stripped, and the last line for a key wins; the line
+// number is kept so a repair can point at it. Any read failure yields no values
+// and the reason, so a file the check cannot read never silences it by accident
+// and the row can say why it was not read.
+function parseHookFlagsFile(file) {
+  const read = readRepoFile(file);
+  if (read.text === null) return { values: new Map(), problem: read.problem };
+  const values = new Map();
+  const text = read.text.startsWith('\uFEFF') ? read.text.slice(1) : read.text;
+  text.split(/\r?\n/).forEach((line, index) => {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) return;
+    const eq = trimmed.indexOf('=');
+    if (eq <= 0) return;
+    const key = trimmed.slice(0, eq).trim();
+    let value = trimmed.slice(eq + 1).replace(/[ \t]#.*$/, '').trim();
+    if (value.length >= 2 && ((value[0] === '"' && value[value.length - 1] === '"') || (value[0] === "'" && value[value.length - 1] === "'"))) {
+      value = value.slice(1, -1);
+    }
+    values.set(key, { value, line: index + 1 });
+  });
+  return { values, problem: null };
+}
+
+// The environment and the saved file are both reported, never changed, and a
+// saved switch names the file and line that carries it so a silenced hook is
+// traceable. Only the master switches fail the check, because they turn off
+// every hook in the chain rather than one advisory surface.
+function checkSuppression(ctx) {
+  const source = 'env + hook-flags.env: SYSTEM_HOOKS_DISABLED, MK_HOOKS_DISABLED, SYSTEM_GIT_COMMIT_HOOKS_DISABLED, SK_GIT_PREFLIGHT_DISABLED, MK_GIT_PREFLIGHT_DISABLED; env only: SKGIT_ADVISORY, SKGIT_ADVISORY_SKIP';
+  const file = hookFlagsFileFor(ctx.repoRoot);
+  const parsed = file === null ? { values: new Map(), problem: null } : parseHookFlagsFile(file);
+  const saved = parsed.values;
+  const label = file === null ? '' : repoLabel(ctx.repoRoot, file);
+  const resolved = new Map();
+  for (const name of SUPPRESSION_FILE_VARS) {
+    if (process.env[name] !== undefined) {
+      resolved.set(name, { value: process.env[name], env: true });
+    } else if (saved.has(name)) {
+      resolved.set(name, { value: saved.get(name).value, env: false, line: saved.get(name).line });
+    }
+  }
+  for (const name of SUPPRESSION_ENV_VARS) {
+    if (process.env[name] !== undefined) resolved.set(name, { value: process.env[name], env: true });
+  }
+  const details = [];
+  if (parsed.problem) details.push(`hook-flags.env not read (${label}): ${parsed.problem}`);
+  for (const name of [...SUPPRESSION_FILE_VARS, ...SUPPRESSION_ENV_VARS]) {
+    const entry = resolved.get(name);
+    if (!entry || entry.value === '') continue;
+    details.push(entry.env ? `${name}=${entry.value} (env)` : `${name}=${entry.value} (${label}:${entry.line})`);
+  }
+  const envOff = [];
+  const fileOff = [];
+  for (const name of MASTER_SWITCHES) {
+    const entry = resolved.get(name);
+    if (!entry || !isTruthy(entry.value)) continue;
+    if (entry.env) envOff.push(name);
+    else fileOff.push({ name, line: entry.line, value: entry.value });
+  }
+  if (envOff.length > 0 || fileOff.length > 0) {
+    const parts = [];
+    if (envOff.length > 0) parts.push(`unset ${envOff.join(' ')}`);
+    for (const entry of fileOff) parts.push(`delete line ${entry.line} of ${label} (${entry.name}=${entry.value})`);
+    return fail(source, details, parts.join(', then '));
+  }
   return pass(source, details);
 }
 
 // Every adapter whose config file exists must register the advisory, because a
 // present but unregistered file reads as coverage while no warning is ever shown.
 // An absent file is only "not set up", except for the tool running the check,
-// which must register. opencode and pi load the adapter file itself, so for them
-// the file existing is the registration.
+// which must register. opencode and pi load the adapter file itself, so the check
+// reads it for its event handler and its import of the shared git-rule-checks.mjs.
+// A run with no active tool cannot say whether the tool running it is covered, so
+// it is UNKNOWN and names --tool.
 // Claude also loads hooks from its local settings file, so either file counts.
 const TOOL_EXTRA_FILES = { claude: ['.claude/settings.local.json'] };
+
+// Where each runtime fires its pre-tool hooks and which shell tool names it
+// reports there. Claude accepts a registration without a matcher; the other
+// three dispatch only through a matcher that names the shell tool, so a missing
+// or empty matcher there is not coverage.
+const TOOL_HOOK_EVENTS = {
+  claude: { event: 'PreToolUse', names: ['Bash'], allowEmptyMatcher: true },
+  codex: { event: 'PreToolUse', names: ['exec', 'Bash'], allowEmptyMatcher: false },
+  devin: { event: 'PreToolUse', names: ['exec'], allowEmptyMatcher: false },
+  cursor: { event: 'preToolUse', names: ['Shell'], allowEmptyMatcher: false },
+};
 
 // Only the hooks section counts, so a mention elsewhere, such as a permissions
 // deny rule, is not read as a registration. Devin keeps its events at the top
 // level, so its whole file is the hooks section.
+//
+// The event and the matcher both decide whether the advisory ever runs: each
+// runtime fires it only from its own pre-tool event and only for its shell tool
+// (git-preflight-advisory.mjs accepts bash, exec and shell), and Codex sends
+// exec or Bash depending on its version, so an entry under another event or
+// behind a matcher that misses a shell tool is not a registration.
 function registersAdvisory(tool, body) {
+  const runtime = TOOL_HOOK_EVENTS[tool];
+  if (!runtime) return false;
   const parsed = JSON.parse(body);
   const section = tool === 'devin' ? parsed : parsed && parsed.hooks;
-  return JSON.stringify(section ?? {}).includes('git-preflight-advisory');
+  const entries = section && Array.isArray(section[runtime.event]) ? section[runtime.event] : [];
+  return entries.some((entry) => {
+    if (!entry || typeof entry !== 'object') return false;
+    const commands = [
+      entry.command,
+      ...(Array.isArray(entry.hooks) ? entry.hooks.map((hook) => hook && hook.command) : []),
+    ].filter((command) => typeof command === 'string');
+    if (!commands.some((command) => command.includes('git-preflight-advisory'))) return false;
+    const matcher = entry.matcher;
+    if (matcher === undefined || matcher === null || matcher === '') return runtime.allowEmptyMatcher;
+    if (typeof matcher !== 'string') return false;
+    let pattern;
+    try {
+      pattern = new RegExp(`^(?:${matcher})$`);
+    } catch {
+      return false;
+    }
+    return runtime.names.every((name) => pattern.test(name));
+  });
 }
 
 function checkAiToolHooks(ctx) {
@@ -602,14 +881,36 @@ function checkAiToolHooks(ctx) {
       continue;
     }
     if (tool === 'opencode' || tool === 'pi') {
-      details.push(`${label}: registered (${rel})`);
+      const read = readRepoFile(path.join(ctx.repoRoot, rel));
+      if (read.text === null) {
+        details.push(`${label}: cannot read ${rel}: ${read.problem || 'missing'}`);
+        broken.push(tool);
+        continue;
+      }
+      const body = read.text;
+      const registered = tool === 'opencode'
+        ? /['"]tool\.execute\.before['"]/.test(body) && /git-rule-checks\.mjs/.test(body)
+        : /\.on\(\s*['"]tool_call['"]/.test(body) && /git-rule-checks\.mjs/.test(body);
+      if (registered) {
+        details.push(`${label}: registered (${rel})`);
+      } else {
+        details.push(tool === 'opencode'
+          ? `${label}: ${rel} does not register tool.execute.before with git-rule-checks.mjs`
+          : `${label}: ${rel} does not register a tool_call handler with git-rule-checks.mjs`);
+        broken.push(tool);
+      }
       continue;
     }
     let registeredIn = null;
     let error = null;
     for (const candidate of present) {
+      const read = readRepoFile(path.join(ctx.repoRoot, candidate));
+      if (read.text === null) {
+        error = `${candidate}: ${read.problem || 'missing'}`;
+        continue;
+      }
       try {
-        if (registersAdvisory(tool, fs.readFileSync(path.join(ctx.repoRoot, candidate), 'utf8'))) {
+        if (registersAdvisory(tool, read.text)) {
           registeredIn = candidate;
           break;
         }
@@ -623,11 +924,18 @@ function checkAiToolHooks(ctx) {
       details.push(`${label}: cannot read ${error}`);
       broken.push(tool);
     } else {
-      details.push(`${label}: ${present.join(' and ')} does not register git-preflight-advisory`);
+      const runtime = TOOL_HOOK_EVENTS[tool];
+      details.push(`${label}: ${present.join(' and ')} does not register git-preflight-advisory under ${runtime.event} for ${runtime.names.join(' and ')}`);
       broken.push(tool);
     }
   }
   if (broken.length > 0) return fail(source, details, broken.map(advisoryRepair).join(', then '));
+  if (active === null) {
+    return unknown(source, [
+      'no active AI tool detected: pass --tool <claude|codex|devin|cursor|opencode|pi>',
+      ...details,
+    ]);
+  }
   return pass(source, details);
 }
 
@@ -670,20 +978,38 @@ async function runCheck(check, ctx) {
 // 5. REPORT
 // ─────────────────────────────────────────────────────────────────────────────
 
+// One verdict for the whole battery, taken from its strongest row: a failure
+// outranks a degraded or unknown row, which outranks a clean pass, so the
+// human STATUS line, the JSON status field and the exit code agree.
+function statusOf(rows) {
+  if (rows.some((row) => row.result === 'FAIL')) return { status: 'FAIL', exitCode: 1 };
+  if (rows.some((row) => row.result === 'UNKNOWN' || row.result === 'DEGRADED')) {
+    return { status: 'DEGRADED', exitCode: 3 };
+  }
+  return { status: 'OK', exitCode: 0 };
+}
+
 function renderHuman(rows) {
   const lines = [];
   for (const row of rows) {
     lines.push(`${row.result.padEnd(9)}${row.id}`);
     lines.push(`      source: ${row.source}`);
     for (const detail of row.details) lines.push(`      ${detail}`);
-    if (row.result === 'FAIL' && row.repair) lines.push(`      repair: ${row.repair}`);
+    const repairable = row.result === 'FAIL' || row.result === 'DEGRADED';
+    if (repairable && row.repair) lines.push(`      repair: ${row.repair}`);
   }
   const failed = rows.filter((row) => row.result === 'FAIL').length;
+  const degradedCount = rows.filter((row) => row.result === 'DEGRADED').length;
   const skipped = rows.filter((row) => row.result === 'SKIP').length;
   const unknownCount = rows.filter((row) => row.result === 'UNKNOWN').length;
-  lines.push(failed === 0
-    ? `STATUS=OK checks=${rows.length}`
-    : `STATUS=FAIL failed=${failed} skipped=${skipped} unknown=${unknownCount}`);
+  const status = statusOf(rows).status;
+  if (status === 'OK') {
+    lines.push(`STATUS=OK checks=${rows.length}`);
+  } else if (status === 'DEGRADED') {
+    lines.push(`STATUS=DEGRADED degraded=${degradedCount} skipped=${skipped} unknown=${unknownCount}`);
+  } else {
+    lines.push(`STATUS=FAIL failed=${failed} degraded=${degradedCount} skipped=${skipped} unknown=${unknownCount}`);
+  }
   return lines;
 }
 
@@ -729,9 +1055,10 @@ function parseArgs(argv) {
  * Run every check against one repository and print the report.
  *
  * @param {string[]} argv - CLI arguments after the script path
- * @returns {Promise<number>} 0 when no check failed, 1 when one did, 2 on a usage error
+ * @returns {Promise<number>} 0 when OK, 3 when DEGRADED, 1 when FAIL, 2 on a usage error
  */
 async function main(argv) {
+  narrowPath();
   const opts = parseArgs(argv);
   if (opts === null) {
     process.stderr.write(`${USAGE}\n`);
@@ -741,7 +1068,7 @@ async function main(argv) {
   // probe runs from the requested directory rather than from the root it is
   // about to return.
   const requested = opts.repo === null ? process.cwd() : path.resolve(opts.repo);
-  const probe = runCommand(requested, 'git', [...GIT_FLAGS, '-C', requested, 'rev-parse', '--show-toplevel']);
+  const probe = runCommand(requested, GIT_BIN, [...GIT_FLAGS, '-C', requested, 'rev-parse', '--show-toplevel']);
   const repoRoot = probe.status === 0 && probe.stdout.trim() !== '' ? path.resolve(probe.stdout.trim()) : '';
   if (repoRoot === '') {
     process.stderr.write(`${USAGE}\n`);
@@ -750,16 +1077,16 @@ async function main(argv) {
   const ctx = { repoRoot, tool: opts.tool };
   const rows = [];
   for (const check of CHECKS) rows.push(await runCheck(check, ctx));
-  const failed = rows.some((row) => row.result === 'FAIL');
+  const fold = statusOf(rows);
   if (opts.json) {
-    process.stdout.write(`${JSON.stringify({ repo: repoRoot, checks: rows, status: failed ? 'FAIL' : 'OK' }, null, 2)}\n`);
-    return failed ? 1 : 0;
+    process.stdout.write(`${JSON.stringify({ repo: repoRoot, checks: rows, status: fold.status }, null, 2)}\n`);
+    return fold.exitCode;
   }
   process.stdout.write(`${renderHuman(rows).join('\n')}\n`);
-  return failed ? 1 : 0;
+  return fold.exitCode;
 }
 
-module.exports = { main, CHECKS };
+module.exports = { main, CHECKS, readRepoFile, READ_CAP };
 
 if (require.main === module) {
   main(process.argv.slice(2)).then(

@@ -86,7 +86,7 @@ Render this compact panel after setup and before YAML execution when target reso
 DOCTOR ROUTE SETUP
 Target: [target]
 Workflow: .skilled/commands/doctor/assets/[yaml]
-Mutation class: mutates
+Mutation class: [the target's mutating value in _routes.yaml: mutates for hooks and standards, read-only for setup]
 Execution mode: INTERACTIVE
 Setup values: [key=value list]
 Presentation: .skilled/commands/doctor/assets/doctor-git-presentation.txt
@@ -244,16 +244,16 @@ Render one row per check the battery ran, in the battery's order.
 ```text
 | Check | Result | Source | Repair |
 |-------|--------|--------|--------|
-| [check] | [PASS|FAIL|SKIP|UNKNOWN] | [source line] | [the repair command the battery printed, or none] |
+| [check] | [PASS|FAIL|SKIP|UNKNOWN|DEGRADED] | [source line] | [the repair command the battery printed, or none] |
 
 DOCTOR DIAGNOSTIC RESULT
 Target: setup
-Failed: [n]  Skipped: [n]  Unknown: [n]
+Failed: [n]  Degraded: [n]  Skipped: [n]  Unknown: [n]
 Changed: none
-STATUS=OK
+STATUS=[OK|DEGRADED|FAIL]
 ```
 
-When the battery exits 1, close the block with `STATUS=FAIL` and list each failing check with the repair command its `repair:` line printed.
+Close the block with the status the battery's exit code maps to. Exit 0 closes with `STATUS=OK`. Exit 3 closes with `STATUS=DEGRADED` and lists each UNKNOWN check with its detail and each DEGRADED check with the repair command its `repair:` line printed. Exit 1 closes with `STATUS=FAIL` and lists each failing check with the repair command its `repair:` line printed. Exit 2, a usage error or a crash, renders the `DOCTOR TARGET FAILED` block above with `STATUS=FAIL ERROR="[message]"`.
 
 ## 4. NEXT-STEP SUGGESTIONS
 

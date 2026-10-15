@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 777,
+  "derived_count": 778,
   "directories": [
     ".",
     ".claude/commands/create",
@@ -363,6 +363,7 @@
     ".skilled/skills/sk-code/benchmark/reports/2026-07-10--live-mode-b--live",
     ".skilled/skills/sk-code/benchmark/reports/2026-07-10--router-baseline--router",
     ".skilled/skills/sk-code/benchmark/reports/baseline",
+    ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands",
     ".skilled/skills/sk-code/shared",
     ".skilled/skills/sk-code/sk-code-obsidian",
     ".skilled/skills/sk-code/sk-code-opencode",

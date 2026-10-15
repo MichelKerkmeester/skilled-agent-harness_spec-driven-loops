@@ -91,7 +91,7 @@
     ],
     "causal_summary": "[One-paragraph problem statement — what needs solving and why]",
     "created_at": "2026-10-15T05:35:17Z",
-    "last_save_at": "2026-10-15T15:57:44.653Z",
+    "last_save_at": "2026-10-15T17:49:54.365Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -103,6 +103,6 @@
       "spec.md": "84487d774db30d06d6a3b579063a1d048c7266fb5897d2c6bd9a8699075465d1"
     },
     "last_active_child_id": "sk-git/033-git-setup-customization/005-setup-check-hardening",
-    "last_active_at": "2026-10-15T15:57:44.653Z"
+    "last_active_at": "2026-10-15T17:49:54.365Z"
   }
 }

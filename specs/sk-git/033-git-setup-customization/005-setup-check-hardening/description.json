@@ -6,16 +6,17 @@
     "phase",
     "setup-check-hardening"
   ],
-  "lastUpdated": "2026-10-15T15:57:44.615Z",
+  "lastUpdated": "2026-10-15T17:49:54.338Z",
   "specId": "005",
   "folderSlug": "setup-check-hardening",
   "parentChain": [
     "sk-git",
     "033-git-setup-customization"
   ],
-  "memorySequence": 2,
+  "memorySequence": 3,
   "memoryNameHistory": [
     "15-10-26_16-46__planned-25-requirements-3-p0-12-p1-10-p2-36-tasks.md",
-    "15-10-26_16-57__hooks-repair-resolved-with-option-a-on-2026-10-15.md"
+    "15-10-26_16-57__hooks-repair-resolved-with-option-a-on-2026-10-15.md",
+    "15-10-26_18-49__battery-now-folds-unknown-or-degraded-rows-to.md"
   ]
 }

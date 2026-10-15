@@ -36,7 +36,7 @@
       "acceptance"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -175,6 +175,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -197,17 +203,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The battery promises that a PASS row means the sk-git surface works, yet several rows pass on evidence they never checked",
     "created_at": "2026-10-15T15:37:22Z",
-    "last_save_at": "2026-10-15T15:57:44.615Z",
+    "last_save_at": "2026-10-15T17:59:02.998Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0cfc7e754dc24325402d016d89ae7e9cdd886f3b94aa5baa0c212f2b75dee21b",
+    "source_fingerprint": "sha256:cb7d24673bee673f22d3eb4538cdc5bd4111c013118c421f103825fab2d2a658",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9e6ad4921771b14dc2c60a0b51a40289364f491fd7539207fba55facee5178a7",
+      "spec.md": "36a21fcbe49496222b1934b113fd403f46a4c149b008aa903b770270edf77937",
       "plan.md": "db59a908a6ad988d87eaf77e3f0bb95f673371febda7e7766857264cf3627a00",
-      "tasks.md": "7aad477a39174d01e77d8ee0bb739ecfe4e5f60c744566c06bb4926377fb7141",
-      "implementation-summary.md": "2b6eec0cad6c21fbcca07a0939adf002f31d632555966aa490e26fcd5557aa6b"
+      "tasks.md": "435589b0435d577d0bf3a411130c19e676a41fddc288609adfbba861405ea208",
+      "implementation-summary.md": "b6dae1942c02c5ec811afb406469272b5a6ed38d4921f0121171540ee5a68007"
     },
     "last_active_at": null
   }

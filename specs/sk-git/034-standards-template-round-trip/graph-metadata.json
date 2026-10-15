@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`/doctor:git standards set` changes one rule by re-serializing the rules block, and it keeps the block's own layout only when the shipped block round-trips through `styled()` in `git-standards.cjs`",
     "created_at": "2026-10-15T08:21:46Z",
-    "last_save_at": "2026-10-15T13:17:04.259Z",
+    "last_save_at": "2026-10-15T17:41:28.021Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5764cc2d6c79bffbc038d3e6a97d6c4f8c557182571126d5db412e9bb2886e00",
+    "source_fingerprint": "sha256:3588bf8f463cd0627951d0f5e920f47a3f8601a102e06bc07382cc97bb4b1475",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cd3007991c8b376568268abb2687c8c6a805e21593f86d8b610aba6f685bad62",
       "plan.md": "ce92f0e1c1f22f7b662e643496ebfce6b2d6cbc4aa53a47330863d62c107aeb3",
-      "tasks.md": "e2cc0df7a8e706299a765e5b37748ef2f3630119cd625448dd7099087bd69adb",
+      "tasks.md": "e4c555f8c75cbf6c487b13b20073c8ea6175b95a3245ee848892061a6e17da39",
       "implementation-summary.md": "f1b699fa8f35d1ef8ed94b1f78ea69b6976bc63b67484f6fc67aaf3da5188c9d"
     },
     "last_active_at": null

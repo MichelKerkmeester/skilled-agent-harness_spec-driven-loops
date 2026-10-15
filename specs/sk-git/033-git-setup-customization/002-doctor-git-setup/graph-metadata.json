@@ -53,6 +53,7 @@
       ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
       ".skilled/commands/README.txt",
       "feature-catalog/doctor-commands/category-overview.md",
+      ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
       "scripts/README.md"
     ],
     "entities": [
@@ -159,6 +160,12 @@
         "source": "derived"
       },
       {
+        "name": "message-contract.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -193,17 +200,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "sk-git has twelve surfaces a repository can change, and several of them fail open",
     "created_at": "2026-10-15T06:52:15Z",
-    "last_save_at": "2026-10-15T08:10:12.055Z",
+    "last_save_at": "2026-10-15T17:41:50.726Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,12 +214,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c3bb9f4153a7d192e60cf8515a2d2246777d940265170869092503e5f4e89381",
+    "source_fingerprint": "sha256:6e1a81e9be5d3ff1adfa8a1f8e3d2d5c8ed833c5c8c26195a15691ec7c518587",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4f6a6f74868ae4575f0d61e38bac84c33714a50cb220fb07c52b07edfa00b2d8",
       "plan.md": "0e715f73eee2dd669dccc4a3ac5c92131c37a0e3a5ef14e242aa057ef1bd4496",
-      "tasks.md": "131673cc47c7c7c56df3607741c78b8eb81b9f9614be1589ebb81d47846732c7",
+      "tasks.md": "4f387286d79b354abf6630f0a8534d9775875dd631fb086ec13cd2b712f6246d",
       "implementation-summary.md": "1f9a7f65ed3a92a3a7a42d10db7a74f394a4c1f125593efc6692ee774dacff90"
     },
     "last_active_at": null

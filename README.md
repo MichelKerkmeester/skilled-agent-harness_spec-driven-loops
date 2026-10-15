@@ -1504,7 +1504,7 @@ The other shipped skills keep working unchanged: `sk-doc` still validates your m
 - **Worktrees and Commit-Id.** `git config speckit.worktreeBase <dir>` moves the worktree folder. `git config --local skilled.commitId true` or `false` decides whether commits carry an id.
 - **Shared files.** The remote branch allowlist, the worktree provision list and `hard-rules.json` live inside `.skilled/skills/sk-git/`, so a change there applies to every repository that shares the install.
 
-**Verify.** Run `/doctor:git setup`, or outside an AI runtime `node .skilled/commands/doctor/scripts/git-setup-check.cjs`. It checks eleven settings in one read-only pass, prints PASS, FAIL, SKIP or UNKNOWN for each with the source it read and one repair command for each failure, and exits 0 when nothing fails.
+**Verify.** Run `/doctor:git setup`, or outside an AI runtime `node .skilled/commands/doctor/scripts/git-setup-check.cjs --tool <claude|codex|devin|cursor|opencode|pi>`. It checks eleven settings in one read-only pass, prints PASS, FAIL, SKIP, UNKNOWN or DEGRADED for each with the source it read and one repair command for each failure or saved-off gate, and exits 0 when every check passes or skips, 3 when none fails but a check is UNKNOWN or a gate is saved off, 1 when a check fails and 2 on a usage error, and its last line is `STATUS=OK`, `STATUS=DEGRADED` or `STATUS=FAIL`.
 
 &nbsp;
 ### Core Configuration Files

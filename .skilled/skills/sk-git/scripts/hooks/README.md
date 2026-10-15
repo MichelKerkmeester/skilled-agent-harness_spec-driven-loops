@@ -6,7 +6,7 @@ trigger_phrases:
   - "git advisory runtime matrix"
   - "SKGIT_ADVISORY"
   - "git hook fail open"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # hooks: Git Preflight Advisory Runtime Adapters
@@ -74,8 +74,8 @@ Every runtime evaluates the **same** `GIT_SHAPE` gate, `GIT_CHECKS` rule set, `r
 
 | Runtime | Adapter | Event / wiring | Payload difference it handles | Delivery |
 |---|---|---|---|---|
-| **Claude** | `git-preflight-advisory.mjs` | `PreToolUse` in `.claude/settings.json` (no matcher: the hook filters to `tool_name: Bash` itself); timeout 5s | Reads `tool_input.command` + `cwd`; project dir from `cwd` then `CLAUDE_PROJECT_DIR` then `process.cwd()` | `hookSpecificOutput.additionalContext` JSON on stdout (PreToolUse) |
-| **Codex** | `git-preflight-advisory.mjs` | `PreToolUse` in `.codex/hooks.json`, matcher `exec`; timeout 5s | Same `exec` payload shape as Devin; `cd "${CODEX_PROJECT_DIR:-$PWD}"` | Same `additionalContext` JSON; a fallback `printf` envelope covers a resolution failure |
+| **Claude** | `git-preflight-advisory.mjs` | `PreToolUse` in `.claude/settings.json`, matcher `Bash`; timeout 5s | Reads `tool_input.command` + `cwd`; project dir from `cwd` then `CLAUDE_PROJECT_DIR` then `process.cwd()` | `hookSpecificOutput.additionalContext` JSON on stdout (PreToolUse) |
+| **Codex** | `git-preflight-advisory.mjs` | `PreToolUse` in `.codex/hooks.json`, matcher `exec\|Bash` (Codex sends `exec` before 0.160 and `Bash` from 0.160); timeout 5s | Same `exec` payload shape as Devin; `cd "${CODEX_PROJECT_DIR:-$PWD}"` | Same `additionalContext` JSON; a fallback `printf` envelope covers a resolution failure |
 | **Devin** | `git-preflight-advisory.mjs` | `PreToolUse` in `.devin/hooks.v1.json`, matcher `^exec$`; timeout 5s | Same `exec` shape; `cd "${DEVIN_PROJECT_DIR:-$PWD}"` | Same `additionalContext` JSON; fallback `printf` envelope |
 | **Cursor** | `git-preflight-advisory.mjs` (registered directly; `.cursor/hooks/git-preflight-advisory.mjs` is a browsability-only mirror symlink) | `preToolUse` in `.cursor/hooks.json`, matcher `Shell` | Cursor carries the project root in `workspace_roots[0]` instead of `cwd`; the hook falls through to `CLAUDE_PROJECT_DIR`/`CODEX_PROJECT_DIR`/`process.cwd()` when absent | Same `additionalContext` JSON |
 | **OpenCode** | `.skilled/plugins/sk-git-preflight-advisory.js` (mirrored at `opencode/` via browsability symlink) | `tool.execute.before` for `bash`; advisory buffered and drained on the next `experimental.chat.system.transform` | Resolves repo root via `findRepoRoot` (falls back to host dir); OpenCode plugins cannot print without overlaying the TUI prompt line, so it buffers at most 20 events | Bounded findings injected once as a system block on the next transform; never stdout/stderr; the command is never delayed or blocked |
