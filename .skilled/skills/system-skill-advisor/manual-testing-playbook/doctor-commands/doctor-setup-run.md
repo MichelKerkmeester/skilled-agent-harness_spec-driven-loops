@@ -1,7 +1,7 @@
 ---
 title: "DOC-391 -- Doctor setup umbrella run"
 description: "Manual scenario validating that /doctor:setup lists every doctor target with what it checks, runs the five read-only legs once, names the repair command for each failing leg and leaves the working tree unchanged."
-version: 1.0.1.0
+version: 1.0.2.0
 id: doctor-commands-doctor-setup-run
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -66,7 +66,7 @@ When step 2 runs `/doctor:setup` in an AI session, it prints the doctor target t
 
 Then the command prints one row per leg with PASS, FAIL or SKIP. A failing leg names its repair command: sk-code -> `/doctor:sk-code setup`, sk-git -> `/doctor:git setup`, trigger-index -> `/doctor:speckit`, runtime-mirrors -> `/doctor:runtime-mirrors` and advisor -> `/doctor:skill-advisor rebuild`. An advisor exit 75 is SKIP, never FAIL.
 
-The run ends with a `DOCTOR DIAGNOSTIC RESULT` block whose last line is `STATUS=OK` or `STATUS=FAIL`. The status agrees with the leg results.
+Through `/doctor:setup`, the run ends with a `DOCTOR DIAGNOSTIC RESULT` block whose last line is `STATUS=OK` or `STATUS=FAIL`. The status agrees with the leg results. The direct legs print no combined block.
 
 The step 3 diff is empty, because the run writes nothing.
 
@@ -76,7 +76,7 @@ The step 4 command prints `Unknown argument: extra`, then `/doctor:setup takes n
 
 - The target table from step 2, with its row count.
 - The five leg rows and their results.
-- The `DOCTOR DIAGNOSTIC RESULT` block and its last line.
+- The `DOCTOR DIAGNOSTIC RESULT` block and its last line, on the slash-command path.
 - The step 3 diff output.
 - The step 4 argument error block.
 

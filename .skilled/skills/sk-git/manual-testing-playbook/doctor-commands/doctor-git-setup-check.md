@@ -1,7 +1,7 @@
 ---
 title: "DOC-384 -- Doctor git setup check"
 description: "Manual scenario validating that /doctor:git setup reports all eleven setup checks with a result and source each, names a repair for every failing check, and writes nothing."
-version: 1.0.2.0
+version: 1.0.3.0
 id: doctor-commands-doctor-git-setup-check
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -25,7 +25,7 @@ The route runs each check in its check-only form and prints repair commands inst
 - Prompt: `Check my sk-git setup and tell me which hooks, rules and settings are live.`
 - Preconditions: A working copy of this repository with the hooks installed (`bash .skilled/scripts/install-git-hooks.sh`) and the Claude adapter registered in `.claude/settings.json`, run from Claude Code. From another runtime, run the battery with that runtime's `--tool` and read its adapter row instead of Claude's. The run is read-only and safe in the live working copy.
 - Expected execution process: Record the starting state, run `/doctor:git setup` through the real runtime, capture the result table and the `DOCTOR DIAGNOSTIC RESULT` block, run the battery directly in human and JSON form, confirm the usage exit for an unknown tool, and compare the starting state.
-- Expected signals: The rendered table has one row per check in the order install, hooks, trust, gates, standards, allowlist, worktrees, commit-id, advisory-rules, suppression and ai-tool-hooks, and each row carries a result of PASS, FAIL, SKIP, UNKNOWN or DEGRADED plus the source it read. On this repository's own checkout, with the preconditions met, every row reads PASS. `node .skilled/commands/doctor/scripts/git-setup-check.cjs --tool claude` exits 0 and ends `STATUS=OK checks=11`. A failing check exits 1, ends `STATUS=FAIL failed=<n> degraded=<n> skipped=<n> unknown=<n>` and prints a `repair:` line for the failing row. A run with no failure but an UNKNOWN row or a gate saved off exits 3 and ends `STATUS=DEGRADED degraded=<n> skipped=<n> unknown=<n>`. The `--json` run prints one JSON object with a `checks` array of eleven rows, each with id, result, source, details and repair. `node .skilled/commands/doctor/scripts/git-setup-check.cjs --tool nope` exits 2 with a usage line. The run's result block reads `Target: setup` and `Changed: none`. The step 1 and step 7 outputs match.
+- Expected signals: The rendered table has one row per check in the order install, hooks, trust, gates, standards, allowlist, worktrees, commit-id, advisory-rules, suppression and ai-tool-hooks, and each row carries a result of PASS, FAIL, SKIP, UNKNOWN or DEGRADED plus the source it read. On this repository's own checkout, with the preconditions met, every row reads PASS. `node .skilled/commands/doctor/scripts/git-setup-check.cjs --tool <runtime>` exits 0 and ends `STATUS=OK checks=11`. A failing check exits 1, ends `STATUS=FAIL failed=<n> degraded=<n> skipped=<n> unknown=<n>` and prints a `repair:` line for the failing row. A run with no failure but an UNKNOWN row or a gate saved off exits 3 and ends `STATUS=DEGRADED degraded=<n> skipped=<n> unknown=<n>`. The `--json` run prints one JSON object with a `checks` array of eleven rows, each with id, result, source, details and repair. `node .skilled/commands/doctor/scripts/git-setup-check.cjs --tool nope` exits 2 with a usage line. Through `/doctor:git setup`, the result block reads `Target: setup` and `Changed: none`. The step 1 and step 7 outputs match.
 - Desired user-visible outcome: One row per check with its result and source, the repair line for anything failing, and a result that shows the run changed nothing.
 - Pass/fail: PASS if all eleven checks appear with a result and source, every FAIL carries a repair, the exit codes match (0 OK, 3 DEGRADED, 1 FAIL, 2 usage), and no git config value and no repository file changes.
 - Classification: Manual scenario. Valid verdicts are `PASS`, `FAIL`, or `SKIP`. Record `SKIP` only when a named environment prerequisite, credential, or command binary is unavailable. A scenario that cannot be run for any other reason is a `FAIL`.
@@ -56,12 +56,12 @@ Run every command from the repository root.
 
 Every check in the battery appears with a result and the source it read, in the order install, hooks, trust, gates, standards, allowlist, worktrees, commit-id, advisory-rules, suppression and ai-tool-hooks. A failing check names its repair in the printed `repair:` line, and an unknown tool is a usage error rather than a partial run.
 
-The run writes no git config value and no repository file, so the config listing and the working tree are identical afterwards and the result block reads `Target: setup` with `Changed: none`.
+The run writes no git config value and no repository file, so the config listing and the working tree are identical afterwards. Through `/doctor:git setup`, the result block reads `Target: setup` with `Changed: none`.
 
 ### Evidence
 
 - The rendered result table with its eleven rows and the source line per row.
-- The `DOCTOR DIAGNOSTIC RESULT` block with `Target: setup` and `Changed: none`.
+- The `DOCTOR DIAGNOSTIC RESULT` block with `Target: setup` and `Changed: none`, on the slash-command path.
 - The step 4 exit code and final `STATUS=` line.
 - The parsed `--json` payload with its `checks` array of eleven rows, each showing id, result, source, details and repair.
 - The `--tool nope` exit code and usage line.
