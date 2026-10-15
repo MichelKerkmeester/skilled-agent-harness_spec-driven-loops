@@ -1,0 +1,86 @@
+'use strict';
+// Iteration 4 record generator: command admission pipeline and harvester scope.
+const fs = require('fs');
+const L = process.argv[2];
+const SID = 'fanout-deepseek-flash-max-1792072037811-has9cy';
+
+const record = {
+  type: 'iteration',
+  iteration: 4,
+  run: 4,
+  runId: SID, sessionId: SID, lineageId: SID,
+  mode: 'research',
+  target_agent: 'deep-research',
+  agent_definition_loaded: true,
+  resolved_route: 'Resolved route: mode=research target_agent=deep-research',
+  newInfoRatio: 0.85,
+  status: 'complete',
+  focus: 'Command admission pipeline (metadata, allow-list, scoring compatibility) and harvester scope in both implementations',
+  findingsCount: 10,
+  noveltyJustification: 'The admission gates, id grammar, uniqueness constraint and harvester code paths are all new evidence; only the bridge existence itself was carried from iteration 1.',
+  keyQuestions: [
+    'How are commands surfaced to the advisor relative to skills, and do doctor commands participate in that surface at all?'
+  ],
+  answeredQuestions: [],
+  ruledOut: [
+    'Feeding _routes.yaml to a harvester as a documentation-only change',
+    'A one-bridge-per-doctor-route design under the current id grammar'
+  ],
+  keyFindings: [
+    { id: 'f-iter004-two-inputs', title: 'Command admission has two inputs: per-skill command-metadata.json or allow-list.json' },
+    { id: 'f-iter004-metadata-shape', title: 'Command metadata carries userIntent and ownedSignals for plain-word routing' },
+    { id: 'f-iter004-allowlist-shape', title: 'Allow-list entries require id, command, skillId, ownerMode, reason' },
+    { id: 'f-iter004-id-grammar', title: 'Bridge id grammar and uniqueness reject multi-target commands like /doctor:git' },
+    { id: 'f-iter004-routing-enabled', title: 'routingEnabled is per-platform from scoring-compatibility.json; 5 TS-active' },
+    { id: 'f-iter004-py-harvest-scope', title: 'Python harvest roots at .skilled/skills with references/assets only' },
+    { id: 'f-iter004-ts-harvest-scope', title: 'TS harvest mirrors subdir scope behind SPECKIT_ADVISOR_DOC_TRIGGERS' },
+    { id: 'f-iter004-skill-docs-table', title: 'Doc triggers land in skill_docs with content-hash upsert and bounded lane contribution' },
+    { id: 'f-iter004-doctor-needs-authored-metadata', title: 'Neither supported mechanism can read _routes.yaml directly; doctor needs authored metadata' },
+    { id: 'f-iter004-two-ci-gates', title: 'Drift guard and route-validate are the two CI gates any admission change must satisfy' }
+  ],
+  graphEvents: [
+    { type: 'node', id: 'q-admission', kind: 'QUESTION', label: 'Command admission gates' },
+    { type: 'node', id: 'f-two-inputs', kind: 'FINDING', label: 'Metadata or allow-list admission' },
+    { type: 'node', id: 'f-id-collision', kind: 'FINDING', label: 'Multi-target doctor commands collide on derived ids' },
+    { type: 'node', id: 's-derive', kind: 'SOURCE', label: 'derive command bridges', path: '.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs' },
+    { type: 'node', id: 's-py-harvest', kind: 'SOURCE', label: 'python harvester scope', path: '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py' },
+    { type: 'edge', id: 'e-004-admission', source: 's-derive', target: 'f-two-inputs', relation: 'SUPPORTS' },
+    { type: 'edge', id: 'e-004-collision', source: 's-derive', target: 'f-id-collision', relation: 'SUPPORTS' },
+    { type: 'edge', id: 'e-004-scope', source: 's-py-harvest', target: 'q-admission', relation: 'ANSWERS' }
+  ],
+  toolsUsed: ['Read', 'Bash', 'Grep'],
+  sourcesQueried: [
+    '.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs',
+    '.skilled/skills/sk-doc/command-metadata.json',
+    '.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json',
+    '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py',
+    '.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/doc-frontmatter.ts',
+    '.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts'
+  ],
+  timestamp: new Date().toISOString()
+};
+
+const findings = [
+  { id: 'f-iter004-two-inputs', label: 'Command admission has exactly two inputs: a per-skill command-metadata.json or an allow-list.json entry; only three skills carry metadata today, yielding 19 entries.', sources: ['.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:71-99', '.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1-10'] },
+  { id: 'f-iter004-metadata-shape', label: 'Command metadata requires command and ownerMode but carries description, argumentHint, userIntent.job, userIntent.ownedSignals, choreography and discriminator fields usable for plain-word routing.', sources: ['.skilled/skills/sk-doc/command-metadata.json:1-50'] },
+  { id: 'f-iter004-allowlist-shape', label: 'Allow-list entries require id, command, skillId, ownerMode and reason, and cover commands whose owner skill has no command-metadata.json yet.', sources: ['.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json:1-50'] },
+  { id: 'f-iter004-id-grammar', label: 'Bridge ids are command-derived and must match ^/[a-z][a-z0-9-]*:[a-z0-9-]+$ with explicit uniqueness; /doctor:git targets would collide at command-doctor-git, so doctor admission needs one bridge per command or non-derived allow-list ids.', sources: ['.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:56-60', '.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:117-130'] },
+  { id: 'f-iter004-routing-enabled', label: 'routingEnabled is per-platform from scoring-compatibility.json; the generator emits signal lists only for enabled runtimes, with 5 TypeScript-active and 15 Python-active bridges.', sources: ['.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:250-290', '.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1-10'] },
+  { id: 'f-iter004-py-harvest-scope', label: 'The Python harvester roots at .skilled/skills and reads doc frontmatter only from references/ and assets/ subdirectories when building its signal map.', sources: ['.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:44', '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:991', '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:1030-1051'] },
+  { id: 'f-iter004-ts-harvest-scope', label: 'The TS harvester mirrors the references/assets scope over markdown files and is gated by SPECKIT_ADVISOR_DOC_TRIGGERS.', sources: ['.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/doc-frontmatter.ts:170', '.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/doc-frontmatter.ts:204-217'] },
+  { id: 'f-iter004-skill-docs-table', label: 'Harvested doc triggers land in the skill_docs table with content-hash upsert/delete and reach scoring through the derived lane with a top-3-doc, 0.45-capped contribution.', sources: ['.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:855-945', '.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/derived.ts:22-35'] },
+  { id: 'f-iter004-doctor-needs-authored-metadata', label: 'Neither supported mechanism can consume _routes.yaml directly (wrong root and file type for harvesters; no route granularity in bridges), so doctor routing requires authored metadata rather than manifest harvesting.', sources: ['.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:65-99', '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:991-1051'] },
+  { id: 'f-iter004-two-ci-gates', label: 'Any admission change must satisfy the command-bridges drift guard and the doctor route-validate.sh assertion.', sources: ['.skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts:1-40', '.skilled/commands/doctor/scripts/route-validate.sh:1-30'] }
+];
+
+const ruledOut = [
+  { type: 'ruled_out', direction: 'Feeding _routes.yaml to a harvester as a documentation-only change', reason: 'Both harvesters are scoped to skill roots and markdown frontmatter; a new file type and root would need new code in both implementations.', iteration: 4 },
+  { type: 'ruled_out', direction: 'A one-bridge-per-doctor-route design under the current id grammar', reason: '/doctor:git targets collide at command-doctor-git under the uniqueness assertion.', iteration: 4 }
+];
+
+fs.writeFileSync(L + '/events/iter-004.json', JSON.stringify(record) + '\n');
+const delta = [JSON.stringify(record)]
+  .concat(findings.map((f) => JSON.stringify({ type: 'finding', ...f, iteration: 4 })))
+  .concat(ruledOut.map((r) => JSON.stringify(r)));
+fs.writeFileSync(L + '/deltas/iter-004.jsonl', delta.join('\n') + '\n');
+console.log('wrote event + delta with', findings.length, 'findings');

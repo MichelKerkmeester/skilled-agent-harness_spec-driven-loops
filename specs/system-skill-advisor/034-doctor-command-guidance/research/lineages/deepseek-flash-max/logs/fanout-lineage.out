@@ -1,0 +1,14 @@
+Deep-research lineage complete. Summary of what is on disk in `specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max`:
+
+**Loop:** phase_init (config + strategy + registry seed + `run_initialized` via gateway, seq 1) → 10 iterations (each `iterations/iteration-NNN.md` + `deltas/iter-NNN.jsonl` + one canonical record through the append gateway, seq 2–11) → phase_synthesis (`research.md` 20 sections incl. required Eliminated Alternatives + Divergence Map + Convergence Report, `resource-map.md`, reducer outputs, `synthesis_complete` via gateway seq 14, config flipped `status: complete`).
+
+**Verification:**
+- All gateway calls exit 0 (`ok:true`, projection refreshed), zero `gateway-refusals.jsonl`.
+- Contract audit passes for all 10 iterations: `findingsCount` = numbered findings = delta finding rows with non-empty `sources` (106 findings total; registry 10/10 questions resolved).
+- State log holds distinct iterations 1–10 plus the terminal event `{"event":"synthesis_complete","stopReason":"maxIterationsReached","totalIterations":10,"answeredCount":10,"totalQuestions":10}`.
+- Two factual count corrections (empty-prompt count 9→10; contested phrases 6→8) were applied as documented corrected attempts plus correction observations; the terminal event and validation-collapsed view report the true counts.
+- All writes stayed inside the lineage directory; reads elsewhere; no repo tooling, no git writes.
+
+**Research core:** 36 live advisor measurements (12 onboarding prompts — 10 empty; 10 controls — all incumbents preserved; 14 candidate doctor phrases — 8 skill-owned, 3 empty, 2 mis-routed, 1 borderline). Design verdict: doctor routes enter via the existing `kind:'command'` bridge pipeline generated from `_routes.yaml` (allow-list per-route ids + scoring-compatibility signals), a single-route `/doctor:setup` umbrella for onboarding phrases, phrase-ownership arbitration guards, a doctor golden slice on the existing routing-accuracy corpus, and 7 ranked recommendations in 4 gated phases — with 22 rejected ideas and reasons.
+
+FANOUT_LINEAGE_COMPLETE:deepseek-flash-max

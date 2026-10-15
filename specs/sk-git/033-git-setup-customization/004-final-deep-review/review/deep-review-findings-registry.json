@@ -1,0 +1,1329 @@
+{
+  "sessionId": "2026-10-15T13:35:35.122Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Persistent hook disable flags are invisible to the suppression check",
+      "file": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      "line": 559,
+      "description": "Read the inspected checkout's hook-flags.env with the shared parser and precedence rules, without loading code from that checkout, and report/fail on effective master or preflight disables.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "The checker filters process.env at lines 561-565; hook-flags.cjs resolves its default config file at lines 83-89 and consults it when no injected config is supplied at lines 151-173. The preflight hook exits early when isHookEnabled returns false at lines 76-81.",
+      "affectedSurfaceHints": [
+        "checkSuppression",
+        "hook-flags.cjs",
+        "git-preflight-advisory.mjs",
+        "git-setup-check.test.cjs"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Persistent hook disable flags remain invisible to the suppression check",
+      "file": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      "line": 559,
+      "description": "The setup check can report hooks active while the checkout persistent hook-flags file disables the master or preflight path.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "The replayed checker branch reads process.env only; prior scope proof identifies the hook-flags parser and preflight consumer.",
+      "affectedSurfaceHints": [
+        "checkSuppression",
+        "hook-flags.cjs",
+        "git-preflight-advisory.mjs",
+        "checker tests"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-002",
+      "severity": "P1",
+      "title": "AI hook registration passes on a marker string in the wrong event",
+      "file": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      "line": 580,
+      "description": "Validate each runtime's actual event, matcher, and executable target; make positive fixtures match the documented runtime schema and add inert/wrong-event negative fixtures.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "The implementation serializes the whole selected section and performs substring matching at lines 580-583. The Codex positive test uses SessionStart at lines 337-344, while the integration contract specifies PreToolUse and matcher exec in hooks/README.md:78.",
+      "affectedSurfaceHints": [
+        "registersAdvisory",
+        "checkAiToolHooks",
+        "Codex hook configuration",
+        "git-setup-check.test.cjs"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-002",
+      "severity": "P1",
+      "title": "AI-hook registration accepts a marker in the wrong event or command shape",
+      "file": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      "line": 580,
+      "description": "A marker string in a hooks section is treated as registration without validating the runtime event or command target.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "The helper is shared by adapter checks, and the positive Codex fixture exercises the permissive predicate.",
+      "affectedSurfaceHints": [
+        "registersAdvisory",
+        "adapter event schemas",
+        "Codex hooks configuration",
+        "checker tests"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "Relative PATH entries can execute checkout-supplied git or bash",
+      "file": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      "line": 141,
+      "description": "A relative inherited PATH entry lets a checkout-provided git or bash win executable lookup in the child cwd.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": "The shared runner at lines 140-146 passes cwd and inherited PATH; observed bare-command consumers are the bash call at line 360 and git probe at line 744.",
+      "affectedSurfaceHints": [
+        "runCommand",
+        "initial git probe",
+        "allowlist bash helper"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "Relative PATH lookup can resolve a spawned executable from the inspected checkout",
+      "file": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      "line": 141,
+      "description": "A relative PATH entry can make child executable resolution depend on files in the repository being inspected.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "The path-resolution boundary is the common runCommand child-process wrapper.",
+      "affectedSurfaceHints": [
+        "runCommand",
+        "safeGitEnv",
+        "git probes",
+        "helper process launch"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-002",
+      "severity": "P1",
+      "title": "A symlinked branch allowlist can disclose readable host files",
+      "file": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      "line": 393,
+      "description": "A checkout-controlled allowlist symlink makes the checker read and disclose its target.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": "The selected path flows from lines 382-388 through readFileSync at 393, details at 369-372, and human/JSON output at 678 and 755.",
+      "affectedSurfaceHints": [
+        "allowlistFileFor",
+        "allowlistPatternsIn",
+        "human report",
+        "--json report"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-002",
+      "severity": "P1",
+      "title": "Allowlist parsing follows a repository-controlled symlink while reading patterns",
+      "file": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      "line": 393,
+      "description": "An inspected repository can steer the checker to read a host file through a symlink used as an allowlist candidate.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "The read occurs at the shared allowlist-pattern loader after candidate selection.",
+      "affectedSurfaceHints": [
+        "allowlist candidate discovery",
+        "allowlistPatternsIn",
+        "inspection report details"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "JSON outcome tests do not cover UNKNOWN/SKIP-only runs",
+      "file": ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+      "line": 130,
+      "description": "Add a JSON fixture with no FAIL and at least one SKIP, plus an UNKNOWN-only/no-FAIL case, and assert report.status and process status both remain OK/0.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "The sole JSON behavior test asserts aggregation at lines 130-155 using a normal fixture; the no-fail SKIP case at lines 174-176 is human mode only.",
+      "affectedSurfaceHints": [
+        "JSON status aggregation",
+        "git-setup-check.test.cjs"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "A FIFO in a recognized hook path can block the checker indefinitely",
+      "file": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      "line": 612,
+      "description": "Reject non-regular files before reading and bound reads of checkout-controlled configuration.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": "The present-path filter is at lines 594-598 and synchronous read at 612, with no type check or timeout in that path.",
+      "affectedSurfaceHints": [
+        "checkAiToolHooks",
+        "TOOL_FILES",
+        "recognized hook configuration files"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "Inherited GIT_DIR and GIT_WORK_TREE can redirect the requested checkout probe",
+      "file": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      "line": 127,
+      "description": "Clear repository-selector variables when an explicit target is requested, or set them consistently from that target.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": "safeGitEnv copies process.env at 127, runCommand passes it at 143, and the requested-target probe is at 743-745.",
+      "affectedSurfaceHints": [
+        "safeGitEnv",
+        "runCommand",
+        "initial git probe",
+        "--repo target selection"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "AC-002 cites tests that do not assert the human rows or repair lines",
+      "file": "specs/sk-git/033-git-setup-customization/002-doctor-git-setup/acceptance-criteria.md",
+      "line": 55,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "Completed baseline tasks cite scratch-only evidence",
+      "file": "specs/sk-git/033-git-setup-customization/002-doctor-git-setup/tasks.md",
+      "line": 35,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "The no-write test only detects writes inside the fixture repository",
+      "file": ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+      "line": 197,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "The planted-helper test can pass without proving the helper-resolution path was exercised",
+      "file": ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+      "line": 232,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-003",
+      "severity": "P2",
+      "title": "Allowlist verdicts and displayed patterns have separate source-selection logic",
+      "file": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      "line": 358,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 8,
+    "P2": 8
+  },
+  "openFindingsCount": 16,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0.919,
+  "graphDecision": "CONTINUE",
+  "graphBlockers": [],
+  "graphSignals": {
+    "dimensionCoverage": 1,
+    "evidenceDensity": 0.625,
+    "findingStability": 0.875,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 0.919
+  },
+  "candidateCoverage": {
+    "covered": [
+      "allowlist_parser_drift",
+      "ambient_git_repository_override",
+      "blocking_special_file_read",
+      "checklist_evidence_gap",
+      "contract_parser_duplication",
+      "duplicate_target_scope",
+      "event_registration_validation",
+      "exit_status_mismatch",
+      "external_write_test_scope",
+      "json_skip_unknown_test_gap",
+      "persistent_suppression_mismatch",
+      "persistent_suppression_state",
+      "planted_helper_test_reachability",
+      "playbook_output_mismatch",
+      "relative_path_executable_lookup",
+      "repository_code_execution",
+      "runtime_registration_false_positive",
+      "sentinel_parser_scope",
+      "symlink_file_read",
+      "symlinked_file_disclosure",
+      "target_list_omission",
+      "test_sensitivity",
+      "untrusted_path_executable_lookup"
+    ],
+    "ruledOut": [
+      "contract_parser_duplication",
+      "duplicate_target_scope",
+      "duplicate_target_scope_global_rejection",
+      "exit_status_mismatch",
+      "playbook_output_mismatch",
+      "repository_code_execution",
+      "sentinel_neighbor_path_masking",
+      "sentinel_parser_scope",
+      "target_list_omission"
+    ],
+    "deferred": [
+      "repair_effectiveness"
+    ],
+    "blocked": [
+      "duplicate_target_scoping",
+      "dynamic_test_execution",
+      "gate_inputs_test_sensitivity",
+      "serializer_round_trip",
+      "standards_serializer_round_trip",
+      "template_serializer_drift"
+    ],
+    "byBugClass": {
+      "persistent_suppression_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "runtime_registration_false_positive": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "exit_status_mismatch": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "json_skip_unknown_test_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "repository_code_execution": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "repair_effectiveness": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "cross_runtime_registration_matrix": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "dynamic_test_execution_under_no-delete-constraint": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "test_sensitivity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "dynamic_test_execution": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          1
+        ]
+      },
+      "untrusted_path_executable_lookup": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "symlinked_file_disclosure": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "blocking_special_file_read": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "ambient_git_repository_override": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "checklist_evidence_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "target_list_omission": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "playbook_output_mismatch": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "template_serializer_drift": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          3
+        ]
+      },
+      "external_write_test_scope": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "planted_helper_test_reachability": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "allowlist_parser_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "contract_parser_duplication": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "standards_serializer_round_trip": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          4
+        ]
+      },
+      "duplicate_target_scoping": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          4
+        ]
+      },
+      "route_validate_test_sensitivity": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "gate_inputs_test_sensitivity": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          4
+        ]
+      },
+      "duplicate_target_scope": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "sentinel_parser_scope": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "persistent_suppression_state": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "event_registration_validation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "relative_path_executable_lookup": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "symlink_file_read": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "duplicate_target_scope_global_rejection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "sentinel_neighbor_path_masking": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "serializer_test_mutation_sensitivity": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "serializer_round_trip": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        ".skilled/commands/doctor/assets/doctor-git-setup.yaml"
+      ],
+      "bugClass": "repair_effectiveness",
+      "disposition": "deferred",
+      "rationale": "The text-to-remediation route requires a fuller read of the /doctor:git workflow and repair command implementations.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs:72-81"
+      ],
+      "reason": "Carry to the next traceability/correctness pass; do not infer that a named repair command fixes its check."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/git-setup-check.test.cjs"
+      ],
+      "bugClass": "dynamic_test_execution",
+      "disposition": "blocked",
+      "rationale": "Static contract analysis was completed.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:70-72",
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:300-302"
+      ],
+      "reason": "The dispatch prohibits executing rm against any path; running this test file calls fs.rmSync on OS-temporary fixture directories."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-git/034-standards-template-round-trip/spec.md",
+        "specs/sk-git/034-standards-template-round-trip/tasks.md",
+        ".skilled/skills/sk-git/assets/commit-message-template.md"
+      ],
+      "bugClass": "template_serializer_drift",
+      "disposition": "blocked",
+      "rationale": "The 034 docs were inspected, but direct template-to-serializer comparison was not completed.",
+      "evidenceRefs": [
+        "specs/sk-git/034-standards-template-round-trip/spec.md:34",
+        "specs/sk-git/034-standards-template-round-trip/spec.md:58"
+      ],
+      "reason": "The attempted serializer path is absent and no canonical source path was resolved; carry the implementation check forward."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-005",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/git-standards.cjs",
+        ".skilled/skills/sk-git/assets/commit-message-template.md",
+        "specs/sk-git/034-standards-template-round-trip"
+      ],
+      "bugClass": "standards_serializer_round_trip",
+      "disposition": "blocked",
+      "rationale": "Serializer behavior and the 034 claim need direct comparison.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/git-standards.cjs:135-138"
+      ],
+      "reason": "The combined output was truncated before the relevant consumers and round-trip tests were inspectable."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-006",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/route-validate.py",
+        ".skilled/commands/doctor/scripts/tests/route-validate.test.sh"
+      ],
+      "bugClass": "duplicate_target_scoping",
+      "disposition": "blocked",
+      "rationale": "The requested scoping change could not be verified from visible line evidence.",
+      "evidenceRefs": [],
+      "reason": "Relevant source and test output was truncated; no conclusion is recorded."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-007",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".github/scripts/check-gate-inputs.sh",
+        ".github/scripts/tests/check-gate-inputs.test.sh"
+      ],
+      "bugClass": "gate_inputs_test_sensitivity",
+      "disposition": "blocked",
+      "rationale": "Mutation sensitivity cannot be judged without visible assertions.",
+      "evidenceRefs": [],
+      "reason": "Relevant source and test output was truncated; no conclusion is recorded."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/git-standards.cjs",
+        ".skilled/skills/sk-git/assets/commit-message-template.md",
+        "specs/sk-git/034-standards-template-round-trip/spec.md",
+        "specs/sk-git/034-standards-template-round-trip/implementation-summary.md",
+        ".skilled/commands/doctor/scripts/tests/git-standards.test.cjs"
+      ],
+      "bugClass": "serializer_round_trip",
+      "disposition": "blocked",
+      "rationale": "Implementation and packet claims align with the described reflow, but test mutation sensitivity is unverified.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/git-standards.cjs:135",
+        "specs/sk-git/034-standards-template-round-trip/spec.md:72"
+      ],
+      "reason": "Dedicated serializer test body was not inspected within the iteration read budget."
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs"
+      ],
+      "bugClass": "exit_status_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Current output and exit code share the same failure predicate.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs:681-687",
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs:753-759",
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:130-177"
+      ],
+      "reason": "No mismatch is present in the reviewed branches; JSON-specific no-fail-with-UNKNOWN/SKIP test coverage is recorded separately as R1-P2-001."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/assets/doctor-git-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+        ".skilled/skills/sk-git/SKILL.md",
+        ".skilled/skills/sk-git/README.md",
+        ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/doctor-git-settings.md",
+        ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-setup-check.md",
+        "README.md"
+      ],
+      "bugClass": "target_list_omission",
+      "disposition": "ruled_out",
+      "rationale": "The route, presentation, command hint, skill docs, playbook and README target surfaces include setup.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/assets/doctor-git-presentation.txt:57",
+        ".skilled/commands/doctor/_routes.yaml:275",
+        ".skilled/skills/sk-git/README.md:232",
+        "README.md:1256",
+        "README.md:1505"
+      ],
+      "reason": "Exact target-list scan found no omission in the named surfaces."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-setup-check.md",
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs"
+      ],
+      "bugClass": "playbook_output_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Observed human output satisfies the scenario's stated row, source, and terminal status expectations.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-setup-check.md:55",
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs:675"
+      ],
+      "reason": "Direct battery output matched DOC-384's expected output contract."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs"
+      ],
+      "bugClass": "contract_parser_duplication",
+      "disposition": "ruled_out",
+      "rationale": "The inspected contract path delegates to the shared loader.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs:316-346"
+      ],
+      "reason": "Direct reads show resolveContractDir and loadContract are called from message-contract.mjs."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/route-validate.py",
+        ".skilled/commands/doctor/scripts/tests/route-validate.test.sh"
+      ],
+      "bugClass": "duplicate_target_scope",
+      "disposition": "ruled_out",
+      "rationale": "The inspected implementation inputs and both test cases match command-scoped duplicate behavior.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/route-validate.py:687",
+        ".skilled/commands/doctor/scripts/tests/route-validate.test.sh:133",
+        ".skilled/commands/doctor/scripts/tests/route-validate.test.sh:140"
+      ],
+      "reason": "A global duplicate rejection would fail the real-manifest cross-command test; disabling duplicate checks would fail the duplicate fixture."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".github/scripts/check-gate-inputs.sh",
+        ".github/scripts/tests/check-gate-inputs.test.sh"
+      ],
+      "bugClass": "sentinel_parser_scope",
+      "disposition": "ruled_out",
+      "rationale": "The parser's narrow substitution and paired fixtures guard the claimed boundary.",
+      "evidenceRefs": [
+        ".github/scripts/check-gate-inputs.sh:283",
+        ".github/scripts/tests/check-gate-inputs.test.sh:477",
+        ".github/scripts/tests/check-gate-inputs.test.sh:483"
+      ],
+      "reason": "A broken sentinel exemption or overbroad segment removal changes one of the expected test statuses."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs"
+      ],
+      "bugClass": "exit_status_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Current output and exit code share the same failure predicate.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs:681-687",
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs:753-759",
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:130-177"
+      ],
+      "proof": "No mismatch is present in the reviewed branches; JSON-specific no-fail-with-UNKNOWN/SKIP test coverage is recorded separately as R1-P2-001."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/assets/doctor-git-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+        ".skilled/skills/sk-git/SKILL.md",
+        ".skilled/skills/sk-git/README.md",
+        ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/doctor-git-settings.md",
+        ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-setup-check.md",
+        "README.md"
+      ],
+      "bugClass": "target_list_omission",
+      "disposition": "ruled_out",
+      "rationale": "The route, presentation, command hint, skill docs, playbook and README target surfaces include setup.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/assets/doctor-git-presentation.txt:57",
+        ".skilled/commands/doctor/_routes.yaml:275",
+        ".skilled/skills/sk-git/README.md:232",
+        "README.md:1256",
+        "README.md:1505"
+      ],
+      "proof": "Exact target-list scan found no omission in the named surfaces."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-setup-check.md",
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs"
+      ],
+      "bugClass": "playbook_output_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Observed human output satisfies the scenario's stated row, source, and terminal status expectations.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-setup-check.md:55",
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs:675"
+      ],
+      "proof": "Direct battery output matched DOC-384's expected output contract."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs"
+      ],
+      "bugClass": "contract_parser_duplication",
+      "disposition": "ruled_out",
+      "rationale": "The inspected contract path delegates to the shared loader.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs:316-346"
+      ],
+      "proof": "Direct reads show resolveContractDir and loadContract are called from message-contract.mjs."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/route-validate.py",
+        ".skilled/commands/doctor/scripts/tests/route-validate.test.sh"
+      ],
+      "bugClass": "duplicate_target_scope",
+      "disposition": "ruled_out",
+      "rationale": "The inspected implementation inputs and both test cases match command-scoped duplicate behavior.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/route-validate.py:687",
+        ".skilled/commands/doctor/scripts/tests/route-validate.test.sh:133",
+        ".skilled/commands/doctor/scripts/tests/route-validate.test.sh:140"
+      ],
+      "proof": "A global duplicate rejection would fail the real-manifest cross-command test; disabling duplicate checks would fail the duplicate fixture."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".github/scripts/check-gate-inputs.sh",
+        ".github/scripts/tests/check-gate-inputs.test.sh"
+      ],
+      "bugClass": "sentinel_parser_scope",
+      "disposition": "ruled_out",
+      "rationale": "The parser's narrow substitution and paired fixtures guard the claimed boundary.",
+      "evidenceRefs": [
+        ".github/scripts/check-gate-inputs.sh:283",
+        ".github/scripts/tests/check-gate-inputs.test.sh:477",
+        ".github/scripts/tests/check-gate-inputs.test.sh:483"
+      ],
+      "proof": "A broken sentinel exemption or overbroad segment removal changes one of the expected test statuses."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "serializer_round_trip",
+      "duplicate_target_scope",
+      "sentinel_parser_scope",
+      "persistent_suppression_state",
+      "event_registration_validation",
+      "relative_path_executable_lookup",
+      "symlink_file_read"
+    ],
+    "covered": [
+      "duplicate_target_scope",
+      "sentinel_parser_scope",
+      "persistent_suppression_state",
+      "event_registration_validation",
+      "relative_path_executable_lookup",
+      "symlink_file_read"
+    ],
+    "ruledOut": [
+      "duplicate_target_scope_global_rejection",
+      "sentinel_neighbor_path_masking"
+    ],
+    "deferred": [],
+    "blocked": [
+      "serializer_test_mutation_sensitivity"
+    ],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

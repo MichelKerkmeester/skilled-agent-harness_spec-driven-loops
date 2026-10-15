@@ -18,7 +18,8 @@
     "system-skill-advisor/028-restore-pi-advisor-brief",
     "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement",
     "system-skill-advisor/031-align-runtime-code-with-sk-code-opencode",
-    "system-skill-advisor/033-advisor-status-truthfulness"
+    "system-skill-advisor/033-advisor-status-truthfulness",
+    "system-skill-advisor/034-doctor-command-guidance"
   ],
   "manual": {
     "depends_on": [],

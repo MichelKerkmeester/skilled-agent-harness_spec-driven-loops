@@ -1,0 +1,107 @@
+{
+  "topic": "How can the read-only /doctor:git setup check and the /doctor:git command family be improved further? Study the shipped work: .skilled/commands/doctor/scripts/git-setup-check.cjs and its test, .skilled/commands/doctor/git.md, _routes.yaml, assets/doctor-git-setup.yaml, assets/doctor-git-presentation.txt, the sk-git skill (.skilled/skills/sk-git/SKILL.md, scripts/, hard-rules.json, feature-catalog/workflow-playbooks/doctor-git-settings.md, manual-testing-playbook DOC-384) and the packets specs/sk-git/033-git-setup-customization (001 research, 002 build) and specs/sk-git/034-standards-template-round-trip. Find concrete improvements: checks still missing, failure modes the battery reads as healthy, repairs that could be wrong, untrusted-repository vectors not yet closed (any git or helper path a repository config can steer), drift between docs and behavior, test gaps, and the deferred items (a per-repository hard-rules.json overlay, the remaining CI failures in Gate Inputs hook tests and sk-doc Script Tests). Rank each with impact and effort and cite path:line for every claim. End with proposed implementation phases.",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/sk-git/033-git-setup-customization/003-improvement-research",
+  "createdAt": "2026-10-15T13:34:40Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "configDir": null,
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "2026-10-15T13:34:40Z",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineage",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "status",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "researchTopic": "How can the read-only /doctor:git setup check and the /doctor:git command family be improved further? Study the shipped work: .skilled/commands/doctor/scripts/git-setup-check.cjs and its test, .skilled/commands/doctor/git.md, _routes.yaml, assets/doctor-git-setup.yaml, assets/doctor-git-presentation.txt, the sk-git skill (.skilled/skills/sk-git/SKILL.md, scripts/, hard-rules.json, feature-catalog/workflow-playbooks/doctor-git-settings.md, manual-testing-playbook DOC-384) and the packets specs/sk-git/033-git-setup-customization (001 research, 002 build) and specs/sk-git/034-standards-template-round-trip. Find concrete improvements: checks still missing, failure modes the battery reads as healthy, repairs that could be wrong, untrusted-repository vectors not yet closed (any git or helper path a repository config can steer), drift between docs and behavior, test gaps, and the deferred items (a per-repository hard-rules.json overlay, the remaining CI failures in Gate Inputs hook tests and sk-doc Script Tests). Rank each with impact and effort and cite path:line for every claim. End with proposed implementation phases.",
+  "minIterations": 3,
+  "stopPolicy": "convergence",
+  "minIdeaObservations": 2,
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null
+}

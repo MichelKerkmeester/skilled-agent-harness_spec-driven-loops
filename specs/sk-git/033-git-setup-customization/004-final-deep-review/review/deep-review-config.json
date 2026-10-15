@@ -1,0 +1,143 @@
+{
+  "topic": "Review: Review all shipped work of the /doctor:git setup program for correctness, security, traceability and maintainability, and judge whether it is complete: commits 8d40b8c128 through 0b2414a14b on main (git log c05034a20b..0b2414a14b). Scope: .skilled/commands/doctor/scripts/git-setup-check.cjs and tests/git-setup-check.test.cjs, assets/doctor-git-setup.yaml, assets/doctor-git-presentation.txt, git.md, _routes.yaml, scripts/route-validate.py and its test, .github/scripts/check-gate-inputs.sh and its test, .skilled/skills/sk-git/assets/commit-message-template.md, sk-git SKILL.md, README.md, feature-catalog/workflow-playbooks/doctor-git-settings.md, manual-testing-playbook DOC-384, the root README.md sk-git sections, and the packets specs/sk-git/033-git-setup-customization/002-doctor-git-setup and specs/sk-git/034-standards-template-round-trip. Invariants to attack: the battery writes nothing and never runs code from the repository it inspects (any git, helper or config path a repository can steer), exit codes and the STATUS line agree, each FAIL's repair actually fixes it, each check matches what the hooks and helpers really do, tests fail when the behavior breaks, and every doc that lists /doctor:git targets names setup accurately. Every finding needs a concrete failure case and path:line evidence.",
+  "sessionId": "2026-10-15T13:35:35.122Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/sk-git/033-git-setup-customization/004-final-deep-review",
+  "createdAt": "2026-10-15T13:35:35.122Z",
+  "status": "complete",
+  "releaseReadinessState": "release-blocking",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "Review all shipped work of the /doctor:git setup program for correctness, security, traceability and maintainability, and judge whether it is complete: commits 8d40b8c128 through 0b2414a14b on main (git log c05034a20b..0b2414a14b). Scope: .skilled/commands/doctor/scripts/git-setup-check.cjs and tests/git-setup-check.test.cjs, assets/doctor-git-setup.yaml, assets/doctor-git-presentation.txt, git.md, _routes.yaml, scripts/route-validate.py and its test, .github/scripts/check-gate-inputs.sh and its test, .skilled/skills/sk-git/assets/commit-message-template.md, sk-git SKILL.md, README.md, feature-catalog/workflow-playbooks/doctor-git-settings.md, manual-testing-playbook DOC-384, the root README.md sk-git sections, and the packets specs/sk-git/033-git-setup-customization/002-doctor-git-setup and specs/sk-git/034-standards-template-round-trip. Invariants to attack: the battery writes nothing and never runs code from the repository it inspects (any git, helper or config path a repository can steer), exit codes and the STATUS line agree, each FAIL's repair actually fixes it, each check matches what the hooks and helpers really do, tests fail when the behavior breaks, and every doc that lists /doctor:git targets names setup accurately. Every finding needs a concrete failure case and path:line evidence.",
+  "reviewTargetType": "files",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+    ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+    ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+    ".skilled/commands/doctor/assets/doctor-git-presentation.txt",
+    ".skilled/commands/doctor/git.md",
+    ".skilled/commands/doctor/_routes.yaml",
+    ".skilled/commands/doctor/scripts/route-validate.py",
+    ".skilled/commands/doctor/scripts/tests/route-validate.test.sh",
+    ".github/scripts/check-gate-inputs.sh",
+    ".github/scripts/tests/check-gate-inputs.test.sh",
+    ".skilled/skills/sk-git/assets/commit-message-template.md",
+    ".skilled/skills/sk-git/SKILL.md",
+    ".skilled/skills/sk-git/README.md",
+    ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/doctor-git-settings.md",
+    ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-setup-check.md",
+    "README.md",
+    "specs/sk-git/033-git-setup-customization/002-doctor-git-setup/spec.md",
+    "specs/sk-git/033-git-setup-customization/002-doctor-git-setup/plan.md",
+    "specs/sk-git/033-git-setup-customization/002-doctor-git-setup/tasks.md",
+    "specs/sk-git/033-git-setup-customization/002-doctor-git-setup/acceptance-criteria.md",
+    "specs/sk-git/033-git-setup-customization/002-doctor-git-setup/implementation-summary.md",
+    "specs/sk-git/034-standards-template-round-trip/spec.md",
+    "specs/sk-git/034-standards-template-round-trip/plan.md",
+    "specs/sk-git/034-standards-template-round-trip/tasks.md",
+    "specs/sk-git/034-standards-template-round-trip/implementation-summary.md"
+  ],
+  "stopPolicy": "convergence",
+  "resource_map": {
+    "emit": true
+  }
+}

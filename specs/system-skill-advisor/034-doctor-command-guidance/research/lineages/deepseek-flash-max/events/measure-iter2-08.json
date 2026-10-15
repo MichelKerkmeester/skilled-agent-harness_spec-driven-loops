@@ -1,0 +1,9 @@
+{
+  "index": 8,
+  "prompt": "my hooks are not running",
+  "exitCode": 0,
+  "signal": null,
+  "durationMs": 180,
+  "stdout": "{\n  \"status\": \"ok\",\n  \"data\": {\n    \"workspaceRoot\": \"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public\",\n    \"effectiveThresholds\": {\n      \"confidenceThreshold\": 0.8,\n      \"uncertaintyThreshold\": 0.35,\n      \"confidenceOnly\": false\n    },\n    \"recommendations\": [],\n    \"ambiguous\": false,\n    \"freshness\": \"live\",\n    \"trustState\": {\n      \"state\": \"live\",\n      \"reason\": null,\n      \"generation\": 1033,\n      \"checkedAt\": \"2026-10-15T13:54:12.789Z\",\n      \"lastLiveAt\": \"2026-10-15T13:14:46.644Z\"\n    },\n    \"generatedAt\": \"2026-10-15T13:54:12.827Z\",\n    \"cache\": {\n      \"hit\": false,\n      \"sourceSignaturePresent\": true\n    },\n    \"_shadow\": {\n      \"model\": \"advisor-shadow-learned-weights-v1\",\n      \"liveWeightsFrozen\": true,\n      \"recommendations\": []\n    }\n  }\n}\n",
+  "stderr": ""
+}

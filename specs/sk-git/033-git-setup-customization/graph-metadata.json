@@ -5,7 +5,9 @@
   "parent_id": null,
   "children_ids": [
     "sk-git/033-git-setup-customization/001-deep-research",
-    "sk-git/033-git-setup-customization/002-doctor-git-setup"
+    "sk-git/033-git-setup-customization/002-doctor-git-setup",
+    "sk-git/033-git-setup-customization/003-improvement-research",
+    "sk-git/033-git-setup-customization/004-final-deep-review"
   ],
   "manual": {
     "depends_on": [],
@@ -81,18 +83,18 @@
     ],
     "causal_summary": "[One-paragraph problem statement — what needs solving and why]",
     "created_at": "2026-10-15T05:35:17Z",
-    "last_save_at": "2026-10-15T08:10:12.084Z",
+    "last_save_at": "2026-10-15T14:50:15.912Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:d5c02b63a7c6e18cf436cb1ab7782e37d0bf9115277bc407f5d0b9fc871831db",
+    "source_fingerprint": "sha256:7b00750182b21b9e7f33884208bb0305e90e2ccfb12dd8f3aaa38dfc26401662",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "51234ee50e3b658f378103b954e08b8c89a473390c4a288522c8a7a2672a2226"
+      "spec.md": "ba664a6c3047d22598459f78bc17f690fa7c2fd62516c145c64fe8c91e168a21"
     },
-    "last_active_child_id": "sk-git/033-git-setup-customization/002-doctor-git-setup",
-    "last_active_at": "2026-10-15T08:10:12.084Z"
+    "last_active_child_id": "sk-git/033-git-setup-customization/004-final-deep-review",
+    "last_active_at": "2026-10-15T14:50:15.912Z"
   }
 }

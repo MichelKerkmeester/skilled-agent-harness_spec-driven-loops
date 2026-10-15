@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/034-doctor-command-guidance",
+  "spec_folder": "system-skill-advisor/034-doctor-command-guidance",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor command guidance",
+      "research how the skill advisor can guide users",
+      "doctor command guidance plan",
+      "doctor command guidance tasks",
+      "doctor command guidance implementation summary",
+      "doctor command guidance research",
+      "advisor doctor routing"
+    ],
+    "key_topics": [
+      "doctor",
+      "command",
+      "guidance",
+      "research",
+      "skill",
+      "advisor",
+      "guide",
+      "users",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/lineages/deepseek-flash-max/research.md",
+      "research/lineages/swe-2-max/research.md",
+      "research/fanout-attribution.md",
+      "research/resource-map.md",
+      ".skilled/bin/skill-advisor.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
+      "research/lineages/deepseek-flash-max/events/measure-iter2-01.json",
+      ".skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs",
+      "research/lineages/deepseek-flash-max/events/measure-iter6-doctor-02.json",
+      "research/lineages/deepseek-flash-max/events/measure-iter6-index.json",
+      "research/lineages/deepseek-flash-max/events/measure-iter2-06.json",
+      ".skilled/commands/README.txt",
+      "research/findings-registry.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-attribution.md",
+        "kind": "doc",
+        "path": "research/fanout-attribution.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ci-router-vocabulary-reach.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "corpus.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "measure-iter2-01.json",
+        "kind": "config",
+        "path": "research/lineages/deepseek-flash-max/events/measure-iter2-01.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-catalog-mirror-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "measure-iter6-doctor-02.json",
+        "kind": "config",
+        "path": "research/lineages/deepseek-flash-max/events/measure-iter6-doctor-02.json",
+        "source": "derived"
+      },
+      {
+        "name": "measure-iter6-index.json",
+        "kind": "config",
+        "path": "research/lineages/deepseek-flash-max/events/measure-iter6-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "measure-iter2-06.json",
+        "kind": "config",
+        "path": "research/lineages/deepseek-flash-max/events/measure-iter2-06.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "created_at": "2026-10-15T13:45:46Z",
+    "last_save_at": "2026-10-15T14:12:41.255Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:6ac88a183448400ceb480ac34f101d28193d55348f4a2360bd988c8497298294",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "64ac06a9eb812841e1718b455ce9b2ef61dce063b89048277dda71355c91bb0b",
+      "plan.md": "c792034433450bf8b737e8f3a6039ef4363f41b7ff3694114e93103421bee63a",
+      "tasks.md": "19b9fa5e63a95802d8aa273e6fd2f6c7dcf64df1d0c2d6e2cbeffce76235623b",
+      "implementation-summary.md": "1a14bcb8351ed39a91e39ea23288b65ed1d5cd1a50c3151f95607dc31961f003",
+      "research/research.md": "ad4bdb0e1a9705b0bb99ae82a39fbc8ee4e367f9b05a2d69cd388f13d109d726"
+    },
+    "last_active_at": null
+  }
+}

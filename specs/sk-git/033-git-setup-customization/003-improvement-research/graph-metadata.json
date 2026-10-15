@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/033-git-setup-customization/003-improvement-research",
+  "spec_folder": "sk-git/033-git-setup-customization/003-improvement-research",
+  "parent_id": "sk-git/033-git-setup-customization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "improvement research",
+      "phase 3 improvement research",
+      "improvement research plan",
+      "improvement research tasks",
+      "improvement research implementation summary",
+      "doctor git setup improvement research",
+      "git-setup-check improvements"
+    ],
+    "key_topics": [
+      "improvement",
+      "research",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "doctor",
+      "git",
+      "setup",
+      "git-setup-check",
+      "improvements"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/iterations/iteration-001.md",
+      "research/resource-map.md",
+      "specs/sk-git/033-git-setup-customization/001-deep-research/research/research.md",
+      "specs/sk-git/033-git-setup-customization/002-doctor-git-setup/implementation-summary.md",
+      "specs/sk-git/034-standards-template-round-trip/implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "and",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "created_at": "2026-10-15T13:33:25Z",
+    "last_save_at": "2026-10-15T14:23:53.676Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:355df99bd785707795f164e4b1a73aa31200a429ca3dcfb98bd03b947de20080",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0fe3675346d1b44b00a9a459913205aa5b9ec88488b898fd1fb8c35bfb3f2a3d",
+      "plan.md": "d4cec24d064310acb87c6d2e5ebb4f9b33cd836fc868a17bf8e5e3f4e6b41650",
+      "tasks.md": "9797c14ff76fa66f027981364ff47558981e6b91dee3bbfaa07cc5cf9fd36f99",
+      "implementation-summary.md": "d0d1215caf70fce412193ddfe5a54b5d777f95246499a593002dceb40975e66b",
+      "research/research.md": "bd41fb81d1e5bfe354540900c3964dbcb9ee098484c290dafc93296d31adbf66"
+    },
+    "last_active_at": null
+  }
+}

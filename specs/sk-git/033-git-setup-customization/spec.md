@@ -99,6 +99,8 @@ _memory:
 |-------|--------|-------|--------|
 | 1 | 001-deep-research/ | [Phase 1 scope] | Pending |
 | 2 | 002-doctor-git-setup/ | [Phase 2 scope] | Pending |
+| 3 | 003-improvement-research/ | [Phase 3 scope] | Pending |
+| 4 | 004-final-deep-review/ | [Phase 4 scope] | Pending |
 
 ### Phase Transition Rules
 
@@ -112,6 +114,8 @@ _memory:
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | 001-deep-research | 002-doctor-git-setup | [Criteria TBD] | [Verification TBD] |
+| 002-doctor-git-setup | 003-improvement-research | [Criteria TBD] | [Verification TBD] |
+| 003-improvement-research | 004-final-deep-review | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

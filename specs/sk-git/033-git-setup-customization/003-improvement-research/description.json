@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "sk-git/033-git-setup-customization/003-improvement-research",
+  "description": "Phase 3: improvement-research",
+  "keywords": [
+    "phase",
+    "improvement-research"
+  ],
+  "lastUpdated": "2026-10-15T14:23:53.676Z",
+  "specId": "003",
+  "folderSlug": "improvement-research",
+  "parentChain": [
+    "sk-git",
+    "033-git-setup-customization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-10-26_15-23__deep-research-5-cli-codex-gpt-6-luna-max.md"
+  ]
+}

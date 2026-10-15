@@ -1,0 +1,667 @@
+{
+  "sessionId": "2026-10-15T13:34:40Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-which-sk-git-settings-or-failure-modes-does-git-setup-check-cjs-still-miss-or",
+      "inboxId": null,
+      "text": "Q1: Which sk-git settings or failure modes does git-setup-check.cjs still miss, or read as PASS/SKIP when the setting is actually broken (false-healthy readings)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-q2-which-untrusted-repository-vectors-remain-open-meaning-any-git-invocation-hel",
+      "inboxId": null,
+      "text": "Q2: Which untrusted-repository vectors remain open, meaning any git invocation, helper path, hook path, config key or environment the inspected repository can steer while the battery runs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-3-q3-which-repairs-named-by-the-battery-or-by-doctor-git-targets-are-wrong-incompl",
+      "inboxId": null,
+      "text": "Q3: Which repairs named by the battery or by /doctor:git targets are wrong, incomplete or unsafe for the failure they claim to fix?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-4-q4-where-do-git-md-routes-yaml-doctor-git-setup-yaml-doctor-git-presentation-txt",
+      "inboxId": null,
+      "text": "Q4: Where do git.md, _routes.yaml, doctor-git-setup.yaml, doctor-git-presentation.txt, the sk-git SKILL.md, feature catalog and DOC-384 drift from the script's actual behavior, and which test gaps leave that behavior unguarded?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-5-q5-how-should-the-deferred-items-be-resolved-a-per-repository-hard-rules-json-ov",
+      "inboxId": null,
+      "text": "Q5: How should the deferred items be resolved: a per-repository hard-rules.json overlay design, and the remaining CI failures in Gate Inputs hook tests and sk-doc Script Tests (root cause and fix)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-5-q5-how-should-the-deferred-items-be-resolved-a-per-repository-hard-rules-json-ov",
+      "inboxId": null,
+      "text": "Q5: How should the deferred items be resolved: a per-repository hard-rules.json overlay design, and the remaining CI failures in Gate Inputs hook tests and sk-doc Script Tests (root cause and fix)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-q1-which-sk-git-settings-or-failure-modes-does-git-setup-check-cjs-still-miss-or",
+      "inboxId": null,
+      "text": "Q1: Which sk-git settings or failure modes does git-setup-check.cjs still miss, or read as PASS/SKIP when the setting is actually broken (false-healthy readings)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-q2-which-untrusted-repository-vectors-remain-open-meaning-any-git-invocation-hel",
+      "inboxId": null,
+      "text": "Q2: Which untrusted-repository vectors remain open, meaning any git invocation, helper path, hook path, config key or environment the inspected repository can steer while the battery runs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-3-q3-which-repairs-named-by-the-battery-or-by-doctor-git-targets-are-wrong-incompl",
+      "inboxId": null,
+      "text": "Q3: Which repairs named by the battery or by /doctor:git targets are wrong, incomplete or unsafe for the failure they claim to fix?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-4-q4-where-do-git-md-routes-yaml-doctor-git-setup-yaml-doctor-git-presentation-txt",
+      "inboxId": null,
+      "text": "Q4: Where do git.md, _routes.yaml, doctor-git-setup.yaml, doctor-git-presentation.txt, the sk-git SKILL.md, feature catalog and DOC-384 drift from the script's actual behavior, and which test gaps leave that behavior unguarded?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q5: How should the deferred items be resolved: a per-repository hard-rules.json overlay design, and the remaining CI failures in Gate Inputs hook tests and sk-doc Script Tests?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: Where do git.md, _routes.yaml, doctor-git-setup.yaml, doctor-git-presentation.txt, the sk-git SKILL.md, feature catalog and DOC-384 drift from the script's actual behavior, and which test gaps leave that behavior unguarded?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3: Which repairs named by the battery or by /doctor:git targets are wrong, incomplete or unsafe for the failure they claim to fix?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: Where do the command docs and skill references drift from script behavior, and which test gaps leave it unguarded?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: How should the deferred items be resolved: a per-repository hard-rules.json overlay design, and the remaining CI failures in Gate Inputs hook tests and sk-doc Script Tests? The two identified repository-wide sk-doc cases are statically traced, but the remaining historical failure names and present run status need a successful GitHub API lookup.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Q5: How should the deferred items be resolved: a per-repository hard-rules.json overlay design, and the remaining CI failures in Gate Inputs hook tests and sk-doc Script Tests (root cause and fix)?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-rank-1-p1-high-impact-low-effort-unknown-can-still-produce-a-healthy-result-a-th",
+      "text": "**Rank 1 — P1, high impact, low effort: UNKNOWN can still produce a healthy result.** A thrown check becomes UNKNOWN, but report and exit status count only FAIL. A missing helper or failed import can yield JSON status OK and exit 0; human mode prints STATUS=OK checks=11 if there is no FAIL. Tests permit UNKNOWN but derive status only from FAIL. Require UNKNOWN to block or produce a distinct nonzero status, and add an UNKNOWN-only test. [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:651] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:681] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:752] [SOURCE: .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:137]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs:121",
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:216",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs:74",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs:283",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:46",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh:25",
+        "specs/sk-git/033-git-setup-customization/003-improvement-research/research/deep-research-strategy.md:20"
+      ]
+    },
+    {
+      "id": "finding-1-2-rank-2-p1-high-impact-low-effort-the-gates-check-can-mistake-an-incomplete-repor",
+      "text": "**Rank 2 — P1, high impact, low effort: the gates check can mistake an incomplete report for zero disabled gates.** Valid JSON without a gates array becomes an empty array and returns PASS. The helper reads its registry from inherited GATE_REGISTRY while the battery copies the caller environment. Pin registry provenance, validate report shape and expected keys, and test missing or empty registry input. [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:303] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:126] [SOURCE: .skilled/commands/doctor/scripts/git-hook-gates.cjs:74] [SOURCE: .skilled/commands/doctor/scripts/git-hook-gates.cjs:207] [SOURCE: .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:130]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs:121",
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:216",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs:74",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs:283",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:46",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh:25",
+        "specs/sk-git/033-git-setup-customization/003-improvement-research/research/deep-research-strategy.md:20"
+      ]
+    },
+    {
+      "id": "finding-1-3-rank-3-p1-medium-high-impact-low-effort-worktree-writability-checks-the-wrong-di",
+      "text": "**Rank 3 — P1, medium-high impact, low effort: worktree writability checks the wrong directory when the base already exists.** The battery checks the nearest existing directory above base.dir, not base.dir itself. An existing unwritable base or a file at that path can pass although the allocator creates worktrees beneath the base. Check the existing base directly and add both cases. [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:445] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:466] [SOURCE: .skilled/skills/sk-git/scripts/worktree-naming.sh:415] [SOURCE: .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:454]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs:121",
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:216",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs:74",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs:283",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:46",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh:25",
+        "specs/sk-git/033-git-setup-customization/003-improvement-research/research/deep-research-strategy.md:20"
+      ]
+    },
+    {
+      "id": "finding-1-4-rank-4-p1-medium-high-impact-low-effort-unknown-active-runtime-can-pass-without-",
+      "text": "**Rank 4 — P1, medium-high impact, low effort: unknown active runtime can pass without verifying an active adapter.** Without --tool, only CLAUDECODE identifies the active runtime. When no runtime is identified, a missing adapter is informational and does not enter the failure list, so the check can PASS without checking the running tool. Detect supported runtimes or return UNKNOWN, and test absent-all/no-tool. [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:586] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:599] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:630] [SOURCE: .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:346]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs:121",
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:216",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs:74",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs:283",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:46",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh:25",
+        "specs/sk-git/033-git-setup-customization/003-improvement-research/research/deep-research-strategy.md:20"
+      ]
+    },
+    {
+      "id": "finding-1-5-rank-5-p1-medium-impact-low-effort-adapter-registration-is-weaker-than-runtime-h",
+      "text": "**Rank 5 — P1, medium impact, low effort: adapter registration is weaker than runtime health.** Four tools pass when serialized hooks contain the literal git-preflight-advisory; OpenCode and Pi pass when their adapter file merely exists. A disabled or unrelated node, stale file, or non-runnable command can appear registered without an effective registration. Validate runtime-specific event and command targets, or report registration as evidence rather than health. [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:580] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:604] [SOURCE: .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:337] [INFERENCE: the implementation checks presence/text, not whether the runtime will execute the configured adapter]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs:121",
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:216",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs:74",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs:283",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:46",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh:25",
+        "specs/sk-git/033-git-setup-customization/003-improvement-research/research/deep-research-strategy.md:20"
+      ]
+    },
+    {
+      "id": "finding-1-6-rank-6-p2-medium-impact-low-effort-allowlist-execution-failures-are-reported-as-",
+      "text": "**Rank 6 — P2, medium impact, low effort: allowlist execution failures are reported as healthy.** A process launch error is rendered as not checked; any nonzero validator status is rendered as refused, including unexpected failure codes. The function nevertheless returns PASS. Distinguish expected refusal (exit 1) from helper/runtime error and return UNKNOWN or FAIL when evaluation fails. [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:352] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:360] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:376] [SOURCE: .skilled/skills/sk-git/scripts/worktree-naming.sh:608] [SOURCE: .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:370]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs:121",
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:216",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs:74",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs:283",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:46",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh:25",
+        "specs/sk-git/033-git-setup-customization/003-improvement-research/research/deep-research-strategy.md:20"
+      ]
+    },
+    {
+      "id": "finding-1-7-rank-7-p2-medium-impact-medium-effort-hook-checks-establish-link-destination-not",
+      "text": "**Rank 7 — P2, medium impact, medium effort: hook checks establish link destination, not hook behavior.** The checker compares realpaths against accepted own-install or repository hook-source paths; it does not inspect contents or executable mode. The test creates repository-owned hooks containing only exit 0 and still observes PASS. State that the check proves linkage only, or add bounded integrity and executable checks. [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:221] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:247] [SOURCE: .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:398] [SOURCE: .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:412]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs:121",
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:216",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs:74",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs:283",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:46",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh:25",
+        "specs/sk-git/033-git-setup-customization/003-improvement-research/research/deep-research-strategy.md:20"
+      ]
+    },
+    {
+      "id": "finding-1-8-rank-8-p2-medium-impact-medium-effort-repository-controlled-paths-can-escape-the",
+      "text": "**Rank 8 — P2, medium impact, medium effort: repository-controlled paths can escape the worktree, though inspected paths are read/probed rather than executed.** core.hooksPath selects the hooks directory; skgit.contractDir is joined with the repo root (absolute values stay absolute) and template files are read; speckit.worktreeBase selects a path whose parent is probed. Fixed AI-tool config paths follow symlinks. Helpers resolve beneath OWN_ROOT, and this call graph reads repo files/config rather than importing repository-owned helper code. Add containment/regular-file checks where external paths are unsupported and label supported external paths. [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:43] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:231] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:297] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:597] [SOURCE: .skilled/skills/sk-git/scripts/lib/message-contract.mjs:283] [SOURCE: .skilled/skills/sk-git/scripts/lib/message-contract.mjs:317] [SOURCE: .skilled/commands/doctor/scripts/git-hook-gates.cjs:45] [SOURCE: .skilled/commands/doctor/scripts/git-hook-gates.cjs:210]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs:121",
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:216",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs:74",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs:283",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:46",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh:25",
+        "specs/sk-git/033-git-setup-customization/003-improvement-research/research/deep-research-strategy.md:20"
+      ]
+    },
+    {
+      "id": "finding-2-1-rank-1-p2-medium-impact-medium-effort-specify-an-additive-repository-overlay-the",
+      "text": "**Rank 1, P2, medium impact, medium effort: specify an additive repository overlay.** The current readers use one hard-rules.json beside the selected SKILL.md. The Git advisory resolves that SKILL.md from the project root and filters rules through a fixed registry. The dispatch reader silently drops missing, malformed or unsupported rules, so a second file needs explicit merge and error behavior. I recommend a fixed `.sk-git/hard-rules.json` overlay that adds warning rules only, uses unique repository-prefixed IDs and supported checks, rejects symlinks and paths outside the repository, and reports invalid data through /doctor:git. Keep the shipped rules active if the overlay is invalid. This design is an inference from the single-file reader and the deferred item. [SOURCE: .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:14] [SOURCE: .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:18] [SOURCE: .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:21] [SOURCE: .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:281] [SOURCE: .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:282] [SOURCE: .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:287] [SOURCE: .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:106] [SOURCE: .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:107] [SOURCE: .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:108] [SOURCE: .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:13] [SOURCE: specs/sk-git/033-git-setup-customization/003-improvement-research/research/deep-research-strategy.md:114] [INFERENCE: the repository needs a distinct precedence and trust contract because the current reader consumes one sibling file and silently drops malformed or unsupported rules]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:14-23,281-287",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:13-16,106-108",
+        ".skilled/skills/sk-git/hard-rules.json:1-35",
+        ".github/scripts/check-gate-inputs.sh:283-288",
+        ".github/scripts/tests/check-gate-inputs.test.sh:477-487",
+        ".github/workflows/sk-doc-script-tests.yml:3-53",
+        ".github/workflows/README.md:45",
+        "specs/sk-git/034-standards-template-round-trip/tasks.md:52",
+        "specs/sk-git/034-standards-template-round-trip/implementation-summary.md:50",
+        "specs/sk-git/033-git-setup-customization/003-improvement-research/research/deep-research-strategy.md:114"
+      ]
+    },
+    {
+      "id": "finding-2-2-rank-2-p1-high-impact-low-effort-gate-inputs-has-a-recorded-fix-the-failing-hook",
+      "text": "**Rank 2, P1, high impact, low effort: Gate Inputs has a recorded fix.** The failing hook-input case treated the untrusted-clone sentinel as a source root. The checker now strips only that sentinel and keeps validating other paths in the same command. Test 49 protects that boundary. Packet 034 records the checker as passed with 49 of 49 tests, and its summary says Gate Inputs is green on main. I did not rerun the suite, so this is packet evidence rather than a result observed in this iteration. [SOURCE: .github/scripts/check-gate-inputs.sh:283] [SOURCE: .github/scripts/check-gate-inputs.sh:286] [SOURCE: .github/scripts/check-gate-inputs.sh:288] [SOURCE: .github/scripts/tests/check-gate-inputs.test.sh:477] [SOURCE: .github/scripts/tests/check-gate-inputs.test.sh:485] [SOURCE: .github/scripts/tests/check-gate-inputs.test.sh:487] [SOURCE: specs/sk-git/034-standards-template-round-trip/tasks.md:52] [SOURCE: specs/sk-git/034-standards-template-round-trip/implementation-summary.md:50]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:14-23,281-287",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:13-16,106-108",
+        ".skilled/skills/sk-git/hard-rules.json:1-35",
+        ".github/scripts/check-gate-inputs.sh:283-288",
+        ".github/scripts/tests/check-gate-inputs.test.sh:477-487",
+        ".github/workflows/sk-doc-script-tests.yml:3-53",
+        ".github/workflows/README.md:45",
+        "specs/sk-git/034-standards-template-round-trip/tasks.md:52",
+        "specs/sk-git/034-standards-template-round-trip/implementation-summary.md:50",
+        "specs/sk-git/033-git-setup-customization/003-improvement-research/research/deep-research-strategy.md:114"
+      ]
+    },
+    {
+      "id": "finding-2-3-rank-3-p1-high-impact-medium-effort-sk-doc-ci-visibility-is-fixed-but-the-failur",
+      "text": "**Rank 3, P1, high impact, medium effort: sk-doc CI visibility is fixed, but the failures are unresolved here.** The workflow says the tests previously ran nowhere and four failures went unseen. It now runs the script-test suite on pull requests and pushes, with the long rename fixture excluded. That fixes discoverability. The workflow definition does not establish that the four cases now pass, and I did not find a current run result in the verification evidence inspected here. Their individual causes and current status are UNKNOWN. The next evidence needed is a current workflow run with the failing test names and output. [SOURCE: .github/workflows/sk-doc-script-tests.yml:3] [SOURCE: .github/workflows/sk-doc-script-tests.yml:4] [SOURCE: .github/workflows/sk-doc-script-tests.yml:5] [SOURCE: .github/workflows/sk-doc-script-tests.yml:34] [SOURCE: .github/workflows/sk-doc-script-tests.yml:50] [SOURCE: .github/workflows/sk-doc-script-tests.yml:53] [SOURCE: .github/workflows/README.md:45]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:14-23,281-287",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:13-16,106-108",
+        ".skilled/skills/sk-git/hard-rules.json:1-35",
+        ".github/scripts/check-gate-inputs.sh:283-288",
+        ".github/scripts/tests/check-gate-inputs.test.sh:477-487",
+        ".github/workflows/sk-doc-script-tests.yml:3-53",
+        ".github/workflows/README.md:45",
+        "specs/sk-git/034-standards-template-round-trip/tasks.md:52",
+        "specs/sk-git/034-standards-template-round-trip/implementation-summary.md:50",
+        "specs/sk-git/033-git-setup-customization/003-improvement-research/research/deep-research-strategy.md:114"
+      ]
+    },
+    {
+      "id": "finding-3-1-rank-1-p1-high-impact-low-effort-the-aggregate-result-treats-unknown-only-runs-a",
+      "text": "**Rank 1 — P1, high impact, low effort: the aggregate result treats UNKNOWN-only runs as healthy.** The setup workflow says exit 0 means all checks pass. The battery catches a thrown check as UNKNOWN, but the human summary and process exit consider only whether any row is FAIL. An UNKNOWN-only report can therefore end with STATUS=OK and exit 0. The tests assert exit status from the presence of FAIL and cover all-pass and FAIL examples, but not UNKNOWN without FAIL. Change the aggregate result to distinguish uncertainty from success and add this edge case. [SOURCE: .skilled/commands/doctor/assets/doctor-git-setup.yaml:52] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:651] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:658] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:684] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:686] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:753] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:759] [SOURCE: .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:130] [SOURCE: .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:152] [SOURCE: .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:164]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+        ".skilled/commands/doctor/assets/doctor-git-presentation.txt",
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+        ".skilled/skills/sk-git/SKILL.md",
+        ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/doctor-git-settings.md",
+        ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-setup-check.md"
+      ]
+    },
+    {
+      "id": "finding-3-2-rank-2-p1-medium-high-impact-medium-effort-the-workflow-promises-adapter-registr",
+      "text": "**Rank 2 — P1, medium-high impact, medium effort: the workflow promises adapter registration that two adapter branches do not verify.** The workflow says every configured AI-tool adapter registers the advisory. For OpenCode and Pi, the battery reports registered as soon as an adapter file exists; it does not read the file contents. The current adapter tests exercise Codex and Cursor registration, not these two presence-only branches. Either verify their runtime-specific registration shape and test malformed or unrelated files, or narrow the workflow claim to file presence. [SOURCE: .skilled/commands/doctor/assets/doctor-git-setup.yaml:41] [SOURCE: .skilled/commands/doctor/assets/doctor-git-setup.yaml:49] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:597] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:604] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:606] [SOURCE: .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:329] [SOURCE: .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:342] [SOURCE: .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:357]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+        ".skilled/commands/doctor/assets/doctor-git-presentation.txt",
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+        ".skilled/skills/sk-git/SKILL.md",
+        ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/doctor-git-settings.md",
+        ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-setup-check.md"
+      ]
+    },
+    {
+      "id": "finding-3-3-rank-3-p2-medium-impact-low-effort-the-shared-setup-dashboard-labels-setup-as-mu",
+      "text": "**Rank 3 — P2, medium impact, low effort: the shared setup dashboard labels setup as mutating.** Its template unconditionally says “Mutation class: mutates,” while the setup route is marked read-only in the route manifest and its workflow. The setup panel can therefore tell users the wrong mutation class. Render the selected route's class and add a small presentation-contract assertion for setup. [SOURCE: .skilled/commands/doctor/assets/doctor-git-presentation.txt:89] [SOURCE: .skilled/commands/doctor/_routes.yaml:275] [SOURCE: .skilled/commands/doctor/_routes.yaml:280] [SOURCE: .skilled/commands/doctor/assets/doctor-git-setup.yaml:15] [SOURCE: .skilled/commands/doctor/git.md:10] [SOURCE: .skilled/commands/doctor/git.md:89]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+        ".skilled/commands/doctor/assets/doctor-git-presentation.txt",
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+        ".skilled/skills/sk-git/SKILL.md",
+        ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/doctor-git-settings.md",
+        ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-setup-check.md"
+      ]
+    },
+    {
+      "id": "finding-3-4-rank-4-p2-medium-impact-low-effort-doc-384-s-precondition-does-not-support-its-a",
+      "text": "**Rank 4 — P2, medium impact, low effort: DOC-384's precondition does not support its all-PASS expectation.** The scenario requires only a working copy with hooks installed, then explicitly runs with --tool claude and expects every row to pass. The battery marks the explicitly active tool as broken when its adapter file is absent. The scenario can thus fail correctly in a checkout that meets its stated precondition. Require the active and configured adapters to be registered, or accept valid FAIL rows as captured results. [SOURCE: .skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-setup-check.md:26] [SOURCE: .skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-setup-check.md:28] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:597] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:601] [SOURCE: .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:329] [SOURCE: .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:335]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+        ".skilled/commands/doctor/assets/doctor-git-presentation.txt",
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+        ".skilled/skills/sk-git/SKILL.md",
+        ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/doctor-git-settings.md",
+        ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-setup-check.md"
+      ]
+    },
+    {
+      "id": "finding-4-4-p1-high-impact-medium-effort-standards-cannot-repair-the-missing-directory-error",
+      "text": "**P1 · High impact · Medium effort — standards cannot repair the missing-directory error it names.** When skgit.contractDir points to a missing directory, setup reports /doctor:git standards. Every git-standards mode first resolves that setting and aborts on the missing path; the interactive target starts with status, so it never reaches init. The repair must first unset or correct skgit.contractDir, or provide a resolver recovery path [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:330] [SOURCE: .skilled/commands/doctor/scripts/git-standards.cjs:167] [SOURCE: .skilled/commands/doctor/scripts/git-standards.cjs:172] [SOURCE: .skilled/commands/doctor/assets/doctor-git-standards.yaml:80] [SOURCE: .skilled/commands/doctor/assets/doctor-git-standards.yaml:91] [SOURCE: .skilled/skills/sk-git/scripts/lib/message-contract.mjs:295].",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        ".skilled/commands/doctor/update.md",
+        ".skilled/scripts/install-git-hooks.sh",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs",
+        ".skilled/commands/doctor/assets/doctor-git-hooks.yaml",
+        ".skilled/commands/doctor/scripts/git-standards.cjs",
+        ".skilled/commands/doctor/assets/doctor-git-standards.yaml",
+        ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh",
+        ".skilled/skills/sk-git/scripts/hooks/README.md",
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs"
+      ]
+    },
+    {
+      "id": "finding-4-3-p1-high-impact-medium-effort-the-gates-repair-either-repeats-the-failure-or-is-n",
+      "text": "**P1 · High impact · Medium effort — the gates repair either repeats the failure or is never emitted for an off gate.** The battery emits /doctor:git hooks when the list helper errors or its report does not parse. That target starts by running the same list helper, so it cannot recover those utility/report failures. Meanwhile the battery puts saved-off gates in details and returns PASS, although the hooks target can change gate values through an approved set --apply call [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:295] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:301] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:307] [SOURCE: .skilled/commands/doctor/scripts/git-hook-gates.cjs:169] [SOURCE: .skilled/commands/doctor/assets/doctor-git-hooks.yaml:81] [SOURCE: .skilled/commands/doctor/assets/doctor-git-hooks.yaml:101]. Separate broken-diagnostic recovery from gate-state repair, and make a saved-off gate a failing or explicitly degraded verdict.",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        ".skilled/commands/doctor/update.md",
+        ".skilled/scripts/install-git-hooks.sh",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs",
+        ".skilled/commands/doctor/assets/doctor-git-hooks.yaml",
+        ".skilled/commands/doctor/scripts/git-standards.cjs",
+        ".skilled/commands/doctor/assets/doctor-git-standards.yaml",
+        ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh",
+        ".skilled/skills/sk-git/scripts/hooks/README.md",
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs"
+      ]
+    },
+    {
+      "id": "finding-4-2-p1-high-impact-small-effort-hook-recovery-asks-the-operator-to-run-inspected-rep",
+      "text": "**P1 · High impact · Small effort — hook recovery asks the operator to run inspected-repository code.** When the repository contains the toolchain sentinel, the repair points at that repository's install-git-hooks.sh. The installer selects its source tree from the repository being operated on and chmods hook sources before linking them into Git's hooks directory, so this repair crosses the battery's trust boundary and can install untrusted hook code [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:225] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:229] [SOURCE: .skilled/scripts/install-git-hooks.sh:29] [SOURCE: .skilled/scripts/install-git-hooks.sh:45] [SOURCE: .skilled/scripts/install-git-hooks.sh:175]. Add a trust-review step or direct the operator to a verified installer source.",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        ".skilled/commands/doctor/update.md",
+        ".skilled/scripts/install-git-hooks.sh",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs",
+        ".skilled/commands/doctor/assets/doctor-git-hooks.yaml",
+        ".skilled/commands/doctor/scripts/git-standards.cjs",
+        ".skilled/commands/doctor/assets/doctor-git-standards.yaml",
+        ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh",
+        ".skilled/skills/sk-git/scripts/hooks/README.md",
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs"
+      ]
+    },
+    {
+      "id": "finding-4-1-p1-high-impact-small-effort-install-recovery-does-not-match-the-detected-failure",
+      "text": "**P1 · High impact · Small effort — install recovery does not match the detected failure.** The check identifies missing paths under the install root, but its fallback bare /doctor:update runs the update check, which is read-only. The git restore example targets the complete sk-git skill directory rather than only the missing file; it can overwrite tracked local edits in that subtree [INFERENCE: based on the broad path argument] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:72] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:205] [SOURCE: .skilled/commands/doctor/update.md:16] [SOURCE: .skilled/commands/doctor/update.md:70]. Replace this with exact missing-file recovery or an explicit reviewed update/apply route.",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        ".skilled/commands/doctor/update.md",
+        ".skilled/scripts/install-git-hooks.sh",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs",
+        ".skilled/commands/doctor/assets/doctor-git-hooks.yaml",
+        ".skilled/commands/doctor/scripts/git-standards.cjs",
+        ".skilled/commands/doctor/assets/doctor-git-standards.yaml",
+        ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh",
+        ".skilled/skills/sk-git/scripts/hooks/README.md",
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs"
+      ]
+    },
+    {
+      "id": "finding-4-8-p2-low-impact-small-effort-suppression-repair-is-shell-local-the-checker-reads-p",
+      "text": "**P2 · Low impact · Small effort — suppression repair is shell-local.** The checker reads process.env and prints unset for the two whole-hook master switches. That is actionable when the value comes from the current shell; when an IDE or agent host injects it, unsetting it in a later child shell cannot change the checker’s parent environment [INFERENCE: based on process-environment inheritance] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:562] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:565]. Show the source and say when the host must be restarted.",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        ".skilled/commands/doctor/update.md",
+        ".skilled/scripts/install-git-hooks.sh",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs",
+        ".skilled/commands/doctor/assets/doctor-git-hooks.yaml",
+        ".skilled/commands/doctor/scripts/git-standards.cjs",
+        ".skilled/commands/doctor/assets/doctor-git-standards.yaml",
+        ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh",
+        ".skilled/skills/sk-git/scripts/hooks/README.md",
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs"
+      ]
+    },
+    {
+      "id": "finding-4-7-p2-medium-impact-small-effort-advisory-rules-guidance-is-wrong-for-parse-and-sha",
+      "text": "**P2 · Medium impact · Small effort — advisory-rules guidance is wrong for parse and shape errors.** The same repair says to fix a check name when hard-rules.json is invalid JSON or its root is not an array, as well as when a rule has a missing or unknown check name [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:73] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:531] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:534] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:552]. Emit syntax, schema, and unknown-check repairs separately.",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        ".skilled/commands/doctor/update.md",
+        ".skilled/scripts/install-git-hooks.sh",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs",
+        ".skilled/commands/doctor/assets/doctor-git-hooks.yaml",
+        ".skilled/commands/doctor/scripts/git-standards.cjs",
+        ".skilled/commands/doctor/assets/doctor-git-standards.yaml",
+        ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh",
+        ".skilled/skills/sk-git/scripts/hooks/README.md",
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs"
+      ]
+    },
+    {
+      "id": "finding-4-6-p2-medium-impact-small-effort-the-commit-id-alternative-is-a-policy-opt-out-not-",
+      "text": "**P2 · Medium impact · Small effort — the Commit-Id alternative is a policy opt-out, not a repair.** The failure is specifically that Commit-Id is required while the allocator is missing. The offered local false value wins before repository markers and makes cip_repo_wants_ids return off, so it passes by removing enforcement [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:77] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:513] [SOURCE: .skilled/scripts/git-hooks/lib/commit-id-policy.sh:17] [SOURCE: .skilled/scripts/git-hooks/lib/commit-id-policy.sh:25]. Label this alternative as an explicit waiver and keep restoration as the repair.",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        ".skilled/commands/doctor/update.md",
+        ".skilled/scripts/install-git-hooks.sh",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs",
+        ".skilled/commands/doctor/assets/doctor-git-hooks.yaml",
+        ".skilled/commands/doctor/scripts/git-standards.cjs",
+        ".skilled/commands/doctor/assets/doctor-git-standards.yaml",
+        ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh",
+        ".skilled/skills/sk-git/scripts/hooks/README.md",
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs"
+      ]
+    },
+    {
+      "id": "finding-4-5-p2-medium-impact-small-effort-worktree-repair-ignores-the-winning-source-the-rep",
+      "text": "**P2 · Medium impact · Small effort — worktree repair ignores the winning source.** The repair always suggests writing speckit.worktreeBase, but SPECKIT_WORKTREE_BASE is checked first and wins over Git config. If the reported source is the environment, the printed config command leaves the failing base unchanged [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:72] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:403] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:407] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:415] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:467]. Branch the repair on the source label and include an environment-unset or update step when applicable.",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        ".skilled/commands/doctor/update.md",
+        ".skilled/scripts/install-git-hooks.sh",
+        ".skilled/commands/doctor/scripts/git-hook-gates.cjs",
+        ".skilled/commands/doctor/assets/doctor-git-hooks.yaml",
+        ".skilled/commands/doctor/scripts/git-standards.cjs",
+        ".skilled/commands/doctor/assets/doctor-git-standards.yaml",
+        ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+        ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+        ".skilled/scripts/git-hooks/lib/commit-id-policy.sh",
+        ".skilled/skills/sk-git/scripts/hooks/README.md",
+        ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs"
+      ]
+    },
+    {
+      "id": "finding-5-2-p1-medium-impact-small-effort-gate-inputs-sentinel-fix-is-present-and-the-adjace",
+      "text": "**P1 · Medium impact · Small effort — Gate Inputs' sentinel fix is present and the adjacent-path regression is explicit; no residual failing case is evidenced.** The checker removes only the `/dev/null/.skilled` or `.opencode` trust sentinel before it continues scanning the rest of the command. Test 48 covers the sentinel-only pass, and test 49 requires a missing repository input in the same command to fail. Packet 034 records 49/49 tests and Gate Inputs green; this iteration did not rerun them, so that is recorded packet evidence, not a fresh test result. I found no residual failing case in the inspected sources [SOURCE: .github/scripts/check-gate-inputs.sh:283] [SOURCE: .github/scripts/check-gate-inputs.sh:286] [SOURCE: .github/scripts/check-gate-inputs.sh:288] [SOURCE: .github/scripts/tests/check-gate-inputs.test.sh:477] [SOURCE: .github/scripts/tests/check-gate-inputs.test.sh:483] [SOURCE: .github/scripts/tests/check-gate-inputs.test.sh:487] [SOURCE: specs/sk-git/034-standards-template-round-trip/tasks.md:52] [SOURCE: specs/sk-git/034-standards-template-round-trip/implementation-summary.md:50].",
+      "addedAtIteration": 5,
+      "sources": [
+        ".github/workflows/sk-doc-script-tests.yml",
+        ".github/workflows/sk-doc-rename-harness.yml",
+        ".opencode/skills/sk-doc/scripts/tests/run-script-tests.sh",
+        ".skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py",
+        ".skilled/skills/sk-doc/scripts/tests/test_readme_verdict_parity.py",
+        ".github/scripts/check-gate-inputs.sh",
+        ".github/scripts/tests/check-gate-inputs.test.sh",
+        ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        "specs/sk-git/034-standards-template-round-trip/tasks.md",
+        "specs/sk-git/034-standards-template-round-trip/implementation-summary.md",
+        "Prior iteration findings from iterations 001–004 in this packet"
+      ]
+    },
+    {
+      "id": "finding-5-1-p1-medium-high-impact-small-effort-sk-doc-ci-is-wired-with-prerequisites-but-the",
+      "text": "**P1 · Medium-high impact · Small effort — sk-doc CI is wired with prerequisites, but the four historical failures and present status are still unverified.** The workflow says four failures went unseen, names two repository-wide cases (durable-directory manifest and README verdict baseline), installs PyYAML plus the spec-kit, sk-doc and deep-loop packages, then runs the shared script suite. The manifest test calls audit_readmes discovery/build functions; the verdict test invokes validate_document.py and compares each result with its frozen baseline. Workflow comments also identify scaffolder and root-name consumers needing those packages, but do not bind them to the unnamed failures. GitHub API access failed, so the other two identities and current CI result remain UNKNOWN. The `test_rename_tooling_fixture_harness.py` file is skipped from this workflow and has a separate ten-minute workflow [SOURCE: .github/workflows/sk-doc-script-tests.yml:3] [SOURCE: .github/workflows/sk-doc-script-tests.yml:4] [SOURCE: .github/workflows/sk-doc-script-tests.yml:34] [SOURCE: .github/workflows/sk-doc-script-tests.yml:39] [SOURCE: .github/workflows/sk-doc-script-tests.yml:42] [SOURCE: .github/workflows/sk-doc-script-tests.yml:50] [SOURCE: .github/workflows/sk-doc-script-tests.yml:52] [SOURCE: .skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py:22] [SOURCE: .skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py:49] [SOURCE: .skilled/skills/sk-doc/scripts/tests/test_readme_verdict_parity.py:19] [SOURCE: .skilled/skills/sk-doc/scripts/tests/test_readme_verdict_parity.py:78] [SOURCE: .github/workflows/sk-doc-rename-harness.yml:3].",
+      "addedAtIteration": 5,
+      "sources": [
+        ".github/workflows/sk-doc-script-tests.yml",
+        ".github/workflows/sk-doc-rename-harness.yml",
+        ".opencode/skills/sk-doc/scripts/tests/run-script-tests.sh",
+        ".skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py",
+        ".skilled/skills/sk-doc/scripts/tests/test_readme_verdict_parity.py",
+        ".github/scripts/check-gate-inputs.sh",
+        ".github/scripts/tests/check-gate-inputs.test.sh",
+        ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        "specs/sk-git/034-standards-template-round-trip/tasks.md",
+        "specs/sk-git/034-standards-template-round-trip/implementation-summary.md",
+        "Prior iteration findings from iterations 001–004 in this packet"
+      ]
+    },
+    {
+      "id": "finding-5-3-p2-medium-impact-medium-effort-hard-rules-overlay-contract-keep-installed-rules-",
+      "text": "**P2 · Medium impact · Medium effort — hard-rules overlay contract.** Keep installed rules authoritative. Put repository additions at the fixed root path `.sk-git/hard-rules.json`; load it only after an operator-owned trust decision keyed to the canonical repository path and remote identity. Never let repository config self-authorize trust or steer the overlay path. Merge in deterministic order: built-ins first, then additions. Permit only registered existing checks and `warn` severity; require repository-namespaced IDs; reject duplicates against built-ins and within the overlay. Reject symlinks, traversal and oversize files. On parse, schema, check or ID failure, ignore the overlay as a unit while retaining built-ins and report the invalid state. The setup battery should display built-in count, overlay count, and one explicit state: absent, active, ignored-untrusted or invalid. This is needed because the current dispatch loader reads one sibling sidecar, returns an empty list on read/parse/shape errors, skips unknown checks and treats throwing checks as passed; the advisory resolves the inspected repository's skill path, while the setup battery checks the installed copy [SOURCE: .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:14] [SOURCE: .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:18] [SOURCE: .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:21] [SOURCE: .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:280] [SOURCE: .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:287] [SOURCE: .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:106] [SOURCE: .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:107] [SOURCE: .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:108] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:524] [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:526].",
+      "addedAtIteration": 5,
+      "sources": [
+        ".github/workflows/sk-doc-script-tests.yml",
+        ".github/workflows/sk-doc-rename-harness.yml",
+        ".opencode/skills/sk-doc/scripts/tests/run-script-tests.sh",
+        ".skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py",
+        ".skilled/skills/sk-doc/scripts/tests/test_readme_verdict_parity.py",
+        ".github/scripts/check-gate-inputs.sh",
+        ".github/scripts/tests/check-gate-inputs.test.sh",
+        ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        "specs/sk-git/034-standards-template-round-trip/tasks.md",
+        "specs/sk-git/034-standards-template-round-trip/implementation-summary.md",
+        "Prior iteration findings from iterations 001–004 in this packet"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-54340835880b",
+      "text": "The AI-tool registration repair's section-3 README pointer is specific enough to locate the runtime wiring, so it is not counted as a repair defect [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:81] [SOURCE: .skilled/skills/sk-git/scripts/hooks/README.md:77].",
+      "contentHash": "54340835880b",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-39c4728ca618",
+      "text": "No repair command or test suite was executed in this research iteration. The Gate Inputs fix was checked statically against its test assertions and the recorded packet result.",
+      "contentHash": "39c4728ca618",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 1,
+    "resolvedQuestions": 4,
+    "carriedForwardOpenQuestions": 5,
+    "keyFindings": 26,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.5,
+    "coverageBySources": {
+      "code": 18,
+      "other": 33
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-git/033-git-setup-customization/003-improvement-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

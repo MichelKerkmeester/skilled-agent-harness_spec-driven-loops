@@ -1,0 +1,90 @@
+{
+  "topic": "How can the skill advisor guide users to the right doctor command when they ask setup or health questions in plain words, such as 'help me set up skilled', 'is my repo set up right', 'check my git hooks' or 'why is this rule not enforced'? Study how the advisor routes today: .skilled/bin/skill-advisor.cjs, .skilled/skills/system-skill-advisor/ (its scorer, hooks/skill-advisor-hook.md, graph and trigger data), how commands are surfaced to the advisor versus skills, and the doctor family: .skilled/commands/doctor/*.md, .skilled/commands/doctor/_routes.yaml (its trigger_phrases per route), /doctor:sk-code setup, /doctor:git setup, /doctor:speckit, /doctor:env, /doctor:update, /doctor:mcp and /doctor:skill-advisor. Measure what the advisor returns today for at least ten such prompts (run node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"...\"}' --format json). Then design how it should point to doctor commands: whether _routes.yaml trigger phrases should feed the advisor, a dedicated onboarding or 'set up skilled' entry point, how to avoid stealing prompts from skills, and how to test routing accuracy. Name ideas to reject with the reason. Cite path:line for every claim. End with ranked recommendations and proposed implementation phases.",
+  "research_topic": "Advisor guidance to doctor commands for plain-word setup and health prompts",
+  "specFolder": "specs/system-skill-advisor/034-doctor-command-guidance",
+  "artifact_dir": "specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max",
+  "fanout_lineage_artifact_dir": "specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max",
+  "loop_type": "research",
+  "stopPolicy": "convergence",
+  "stop_policy": "convergence",
+  "maxIterations": 10,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "executionMode": "auto",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-flash-max-1792072037811-has9cy",
+    "parentSessionId": null,
+    "lineageId": "deepseek-flash-max",
+    "lineageMode": "detached",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "scopeBoundary": {
+    "writeRoot": "specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max",
+    "writeback": "skipped by detached lineage boundary"
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "prompts/.deep-research-pause",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  },
+  "createdAt": "2026-10-15T13:51:08Z",
+  "status": "complete",
+  "stopReason": "maxIterationsReached"
+}

@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/034-doctor-command-guidance",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-10-15T14:12:41.255Z",
+  "specId": "034",
+  "folderSlug": "doctor-command-guidance",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-10-26_15-12__deep-research-completed-as-a-two-lineage-fan-out.md"
+  ]
+}

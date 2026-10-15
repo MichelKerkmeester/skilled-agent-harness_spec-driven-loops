@@ -1,0 +1,1920 @@
+{
+  "sessionId": "fanout-deepseek-flash-max-1792072037811-has9cy",
+  "parentSessionId": null,
+  "lineageMode": "detached",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "answeredCount": 10,
+    "totalQuestions": 10,
+    "timestamp": "2026-10-15T14:07:09.397Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-how-does-the-skill-advisor-resolve-a-prompt-to-a-recommendation-today-and-which-",
+      "inboxId": null,
+      "text": "How does the skill advisor resolve a prompt to a recommendation today, and which files own scoring, graph, and trigger data?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-what-does-the-advisor-return-today-for-the-required-plain-word-setup-and-health-",
+      "inboxId": null,
+      "text": "What does the advisor return today for the required plain-word setup and health prompts, measured live?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-how-is-the-doctor-command-family-structured-and-what-trigger-phrases-does-skille",
+      "inboxId": null,
+      "text": "How is the doctor command family structured, and what trigger_phrases does .skilled/commands/doctor/_routes.yaml declare per route?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-how-are-commands-surfaced-to-the-advisor-relative-to-skills-and-do-doctor-comman",
+      "inboxId": null,
+      "text": "How are commands surfaced to the advisor relative to skills, and do doctor commands participate in that surface at all?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-5-should-routes-yaml-trigger-phrases-feed-the-advisor-and-through-which-mechanism-",
+      "inboxId": null,
+      "text": "Should _routes.yaml trigger phrases feed the advisor, and through which mechanism would that work?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-6-should-there-be-a-dedicated-onboarding-or-set-up-skilled-entry-point-and-how-sho",
+      "inboxId": null,
+      "text": "Should there be a dedicated onboarding or set up skilled entry point, and how should it relate to the /doctor:* family?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "resolved": true
+    },
+    {
+      "id": "question-7-how-can-doctor-routing-avoid-stealing-prompts-that-legitimately-belong-to-skills",
+      "inboxId": null,
+      "text": "How can doctor routing avoid stealing prompts that legitimately belong to skills?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-8-how-should-routing-accuracy-be-tested-and-which-existing-test-seams-should-the-h",
+      "inboxId": null,
+      "text": "How should routing accuracy be tested, and which existing test seams should the harness reuse?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8,
+      "resolved": true
+    },
+    {
+      "id": "question-9-which-candidate-ideas-should-be-rejected-and-for-which-measured-reason",
+      "inboxId": null,
+      "text": "Which candidate ideas should be rejected, and for which measured reason?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9,
+      "resolved": true
+    },
+    {
+      "id": "question-10-what-is-the-ranked-recommendation-set-and-the-implementation-phase-plan",
+      "inboxId": null,
+      "text": "What is the ranked recommendation set and the implementation phase plan?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-how-does-the-skill-advisor-resolve-a-prompt-to-a-recommendation-today-and-which-",
+      "inboxId": null,
+      "text": "How does the skill advisor resolve a prompt to a recommendation today, and which files own scoring, graph, and trigger data?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-what-does-the-advisor-return-today-for-the-required-plain-word-setup-and-health-",
+      "inboxId": null,
+      "text": "What does the advisor return today for the required plain-word setup and health prompts, measured live?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-how-is-the-doctor-command-family-structured-and-what-trigger-phrases-does-skille",
+      "inboxId": null,
+      "text": "How is the doctor command family structured, and what trigger_phrases does .skilled/commands/doctor/_routes.yaml declare per route?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-how-are-commands-surfaced-to-the-advisor-relative-to-skills-and-do-doctor-comman",
+      "inboxId": null,
+      "text": "How are commands surfaced to the advisor relative to skills, and do doctor commands participate in that surface at all?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-5-should-routes-yaml-trigger-phrases-feed-the-advisor-and-through-which-mechanism-",
+      "inboxId": null,
+      "text": "Should _routes.yaml trigger phrases feed the advisor, and through which mechanism would that work?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-6-should-there-be-a-dedicated-onboarding-or-set-up-skilled-entry-point-and-how-sho",
+      "inboxId": null,
+      "text": "Should there be a dedicated onboarding or set up skilled entry point, and how should it relate to the /doctor:* family?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7
+    },
+    {
+      "id": "question-7-how-can-doctor-routing-avoid-stealing-prompts-that-legitimately-belong-to-skills",
+      "inboxId": null,
+      "text": "How can doctor routing avoid stealing prompts that legitimately belong to skills?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-8-how-should-routing-accuracy-be-tested-and-which-existing-test-seams-should-the-h",
+      "inboxId": null,
+      "text": "How should routing accuracy be tested, and which existing test seams should the harness reuse?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8
+    },
+    {
+      "id": "question-9-which-candidate-ideas-should-be-rejected-and-for-which-measured-reason",
+      "inboxId": null,
+      "text": "Which candidate ideas should be rejected, and for which measured reason?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9
+    },
+    {
+      "id": "question-10-what-is-the-ranked-recommendation-set-and-the-implementation-phase-plan",
+      "inboxId": null,
+      "text": "What is the ranked recommendation set and the implementation phase plan?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-11-a-doctor-side-contract-for-exactly-this-scoring-surface-already-exists-the-expli",
+      "text": "A doctor-side contract for exactly this scoring surface already exists: the explicit lane's `PHRASE_BOOST_BOUND = { min: -1.0, max: 2.0 }` is documented as the same range the doctor skill-advisor proposal validator enforces via `phrase_boost_range` in `.skilled/commands/doctor/assets/doctor-skill-advisor-tune.yaml` — so `/doctor:skill-advisor` is already the sanctioned tuning surface for advisor phrase boosts and negative disambiguation. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:107-112] [SOURCE: .skilled/commands/doctor/assets/doctor-skill-advisor-tune.yaml]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/bin/skill-advisor.cjs",
+        ".skilled/skills/system-skill-advisor/SKILL.md",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/weights-config.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts",
+        ".skilled/commands/doctor/assets/doctor-skill-advisor-tune.yaml (existence)"
+      ]
+    },
+    {
+      "id": "finding-1-12-command-bridges-have-a-drift-guard-runtime-tests-command-bridges-drift-guard-vit",
+      "text": "Command bridges have a drift guard: `runtime/tests/command-bridges-drift-guard.vitest.ts` compares the generated projection, the generator dump and the allow-list, which is the natural CI seam for admitting doctor bridges and asserting they stay byte-stable. [SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts:1-40]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/bin/skill-advisor.cjs",
+        ".skilled/skills/system-skill-advisor/SKILL.md",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/weights-config.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts",
+        ".skilled/commands/doctor/assets/doctor-skill-advisor-tune.yaml (existence)"
+      ]
+    },
+    {
+      "id": "finding-1-10-command-recommendations-are-rank-adjusted-in-fusion-ordering-a-recommendation-wi",
+      "text": "Command recommendations are rank-adjusted: in fusion ordering, a recommendation with `kind === 'command'` is demoted by 0.08 when the prompt does not itself contain a `/` character, so natural-language prompts do not float command bridges above skills by accident. This is the existing guard the doctor design must respect. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:776-777] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/types.ts:47]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/bin/skill-advisor.cjs",
+        ".skilled/skills/system-skill-advisor/SKILL.md",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/weights-config.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts",
+        ".skilled/commands/doctor/assets/doctor-skill-advisor-tune.yaml (existence)"
+      ]
+    },
+    {
+      "id": "finding-1-7-commands-are-already-first-class-scoring-projections-with-kind-command-projectio",
+      "text": "Commands are already first-class scoring projections with `kind: 'command'`: `projection.ts` defines hand-authored `CommandBridgeProjection` entries (`command-spec-kit`, `memory:save`, `command-memory-save`, `create:agent`, `create:manual-testing-playbook`) plus a generated block of command bridges, and both the SQLite and filesystem projection loaders append the routing-enabled bridges to the skill list. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:75-151] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:1127] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:1205]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/bin/skill-advisor.cjs",
+        ".skilled/skills/system-skill-advisor/SKILL.md",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/weights-config.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts",
+        ".skilled/commands/doctor/assets/doctor-skill-advisor-tune.yaml (existence)"
+      ]
+    },
+    {
+      "id": "finding-1-9-no-doctor-command-participates-in-that-surface-today-projection-ts-contains-zero",
+      "text": "No doctor command participates in that surface today: `projection.ts` contains zero `doctor` references and zero `command-doctor-*` ids, and the only `doctor` mention in the advisor runtime source is the comment describing the tune proposal validator. `.skilled/commands/doctor/` itself carries no `command-metadata.json`, so the derive script has no input for it. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:108-109] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/bin/skill-advisor.cjs",
+        ".skilled/skills/system-skill-advisor/SKILL.md",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/weights-config.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts",
+        ".skilled/commands/doctor/assets/doctor-skill-advisor-tune.yaml (existence)"
+      ]
+    },
+    {
+      "id": "finding-1-3-routing-vocabulary-for-skills-lives-in-each-skill-s-graph-metadata-json-intent-s",
+      "text": "Routing vocabulary for skills lives in each skill's `graph-metadata.json` (`intent_signals` plus `derived.trigger_phrases`); a skill's `SKILL.md` frontmatter `trigger_phrases` and `intent_signals` are not read by any runtime routing reader, and reference/asset doc frontmatter `trigger_phrases` feed routing only when `SPECKIT_ADVISOR_DOC_TRIGGERS=true`. This means a doctor-routing change cannot be expressed by editing `SKILL.md` frontmatter alone. [SOURCE: .skilled/skills/system-skill-advisor/SKILL.md:338] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/skill-graph/doc-frontmatter.ts:36]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/bin/skill-advisor.cjs",
+        ".skilled/skills/system-skill-advisor/SKILL.md",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/weights-config.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts",
+        ".skilled/commands/doctor/assets/doctor-skill-advisor-tune.yaml (existence)"
+      ]
+    },
+    {
+      "id": "finding-1-5-scoring-is-a-five-lane-fusion-explicit-author-lexical-graph-causal-derived-gener",
+      "text": "Scoring is a five-lane fusion (`explicit_author`, `lexical`, `graph_causal`, `derived_generated`, `semantic_shadow`) with per-variant weight multipliers (e.g. `explicit_author: 1.04`, `lexical: 1.00`, `graph_causal: 0.98`, `derived_generated: 0.98` in the default variant) and bounded constants in `weights-config.ts`. Any doctor-routing design lands inside this fusion, not beside it. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:169-177] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/weights-config.ts:15-21]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/bin/skill-advisor.cjs",
+        ".skilled/skills/system-skill-advisor/SKILL.md",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/weights-config.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts",
+        ".skilled/commands/doctor/assets/doctor-skill-advisor-tune.yaml (existence)"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-advisor-has-exactly-one-front-door-skilled-bin-skill-advisor-cjs-resolves-ru",
+      "text": "The advisor has exactly one front door: `.skilled/bin/skill-advisor.cjs` resolves `runtime/dist/runtime/skill-advisor-cli.js` inside the `system-skill-advisor` package and spawns it with the caller's arguments; a freshness preflight refuses a stale or missing dist with exit 69 (75 for `--warm-only` retryable warmups). [SOURCE: .skilled/bin/skill-advisor.cjs:22-23] [SOURCE: .skilled/bin/skill-advisor.cjs:70-83] [SOURCE: .skilled/bin/skill-advisor.cjs:105-109]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/bin/skill-advisor.cjs",
+        ".skilled/skills/system-skill-advisor/SKILL.md",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/weights-config.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts",
+        ".skilled/commands/doctor/assets/doctor-skill-advisor-tune.yaml (existence)"
+      ]
+    },
+    {
+      "id": "finding-1-6-the-explicit-author-lane-already-carries-command-syntax-a-phrase-boosts-table-ma",
+      "text": "The explicit-author lane already carries command syntax: a `PHRASE_BOOSTS` table maps exact command strings and phrases to skill ids and pseudo-command ids (for example `/speckit:save` → `memory:save` 1.6 / `command-memory-save` 1 / `system-spec-kit` 0.45; `/deep:research` → `system-deep-loop` 1.6 / `command-spec-kit` 0.45), and a `TOKEN_BOOSTS` table maps single tokens to skills. There is no `/doctor:*` entry in either table. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:117-119]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/bin/skill-advisor.cjs",
+        ".skilled/skills/system-skill-advisor/SKILL.md",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/weights-config.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts",
+        ".skilled/commands/doctor/assets/doctor-skill-advisor-tune.yaml (existence)"
+      ]
+    },
+    {
+      "id": "finding-1-8-the-generated-command-inventory-is-produced-by-runtime-scripts-command-bridges-d",
+      "text": "The generated command inventory is produced by `runtime/scripts/command-bridges/derive-command-bridges.cjs` from per-skill `command-metadata.json` files plus a hand-maintained `allow-list.json`; the generated summary reports 19 command-metadata entries, 8 allow-list entries, 27 generated bridges, with TypeScript-active count 5 and Python-active count 15 — most generated bridges are `routingEnabled: false`. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:28-40] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1-10]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/bin/skill-advisor.cjs",
+        ".skilled/skills/system-skill-advisor/SKILL.md",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/weights-config.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts",
+        ".skilled/commands/doctor/assets/doctor-skill-advisor-tune.yaml (existence)"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-package-exposes-nine-stable-command-ids-advisor-recommend-advisor-rebuild-ad",
+      "text": "The package exposes nine stable command ids (`advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate`, `skill_graph_propagate_enhances`) over a resident daemon; exit taxonomy is 0/1/64/69/75, and when the daemon is unreachable the CLI answers from the local Python scorer and marks the result degraded instead of failing. [SOURCE: .skilled/skills/system-skill-advisor/SKILL.md:318-336]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/bin/skill-advisor.cjs",
+        ".skilled/skills/system-skill-advisor/SKILL.md",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/weights-config.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts",
+        ".skilled/commands/doctor/assets/doctor-skill-advisor-tune.yaml (existence)"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-prompt-time-hook-fires-on-every-user-prompt-kill-switch-check-prompt-gate-on",
+      "text": "The prompt-time hook fires on every user prompt: kill-switch check, prompt gate, one bounded CLI `advisor_recommend` call, then a model-visible `Advisor:` brief; when there is no route it emits a directives fallback status line (`Advisor: no skill matched.`, `Advisor: prompt skipped.`, `Advisor: outage (<status>)`) and never blocks the prompt. Raw prompt text is not persisted. [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:33-43]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/bin/skill-advisor.cjs",
+        ".skilled/skills/system-skill-advisor/SKILL.md",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/weights-config.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts",
+        ".skilled/commands/doctor/assets/doctor-skill-advisor-tune.yaml (existence)"
+      ]
+    },
+    {
+      "id": "finding-2-4-check-my-git-hooks-routes-to-sk-git-with-confidence-0-8316-score-0-579682-domina",
+      "text": "`check my git hooks` routes to `sk-git` with `confidence 0.8316`, `score 0.579682`, `dominantLane: explicit_author`, `status: active` — consistent with the explicit lane's `git -> sk-git 1.0` token boost rather than any hooks or doctor vocabulary. The recommendation names the skill, not `/doctor:git` or `/doctor:git setup`. [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter2-03.json] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:37]",
+      "addedAtIteration": 2,
+      "sources": [
+        "events/measure-iter2-01.json … events/measure-iter2-12.json",
+        "events/measure-iter2-index.json",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts"
+      ]
+    },
+    {
+      "id": "finding-2-5-help-me-get-started-with-this-repo-routes-to-sk-doc-with-confidence-0-82-score-0",
+      "text": "`help me get started with this repo` routes to `sk-doc` with `confidence 0.82`, `score 0.229089`, `dominantLane: lexical`, plus a `compiledRoute` with `action: \"defer\"` and no targets. A getting-started/onboarding prompt is answered with a documentation skill on a weak lexical match. [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter2-11.json]",
+      "addedAtIteration": 2,
+      "sources": [
+        "events/measure-iter2-01.json … events/measure-iter2-12.json",
+        "events/measure-iter2-index.json",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts"
+      ]
+    },
+    {
+      "id": "finding-2-1-all-12-measured-calls-exit-0-against-a-live-advisor-freshness-live-truststate-ge",
+      "text": "All 12 measured calls exit 0 against a live advisor: `freshness: \"live\"`, `trustState.generation: 1033`, `confidenceThreshold: 0.8`, `uncertaintyThreshold: 0.35`. The measurement is reproducible from `events/measure-iter2-index.json`. [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter2-index.json]",
+      "addedAtIteration": 2,
+      "sources": [
+        "events/measure-iter2-01.json … events/measure-iter2-12.json",
+        "events/measure-iter2-index.json",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts"
+      ]
+    },
+    {
+      "id": "finding-2-9-each-payload-carries-a-shadow-block-advisor-shadow-learned-weights-v1-liveweight",
+      "text": "Each payload carries a `_shadow` block (`advisor-shadow-learned-weights-v1`, `liveWeightsFrozen: true`) with parallel shadow scores for every emitted recommendation — a read-only learned-weights telemetry path that could inform later calibration but does not affect live routing. [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter2-03.json]",
+      "addedAtIteration": 2,
+      "sources": [
+        "events/measure-iter2-01.json … events/measure-iter2-12.json",
+        "events/measure-iter2-index.json",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts"
+      ]
+    },
+    {
+      "id": "finding-2-7-every-empty-result-is-a-genuine-no-route-outcome-under-a-live-graph-the-envelope",
+      "text": "Every empty result is a genuine no-route outcome under a live graph — the envelopes show `freshness: \"live\"` and no degradation marker, so the gaps are vocabulary/ownership gaps rather than staleness or daemon failure. [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter2-10.json]",
+      "addedAtIteration": 2,
+      "sources": [
+        "events/measure-iter2-01.json … events/measure-iter2-12.json",
+        "events/measure-iter2-index.json",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts"
+      ]
+    },
+    {
+      "id": "finding-2-8-no-recommendation-in-the-sample-carries-kind-command-both-non-empty-results-are-",
+      "text": "No recommendation in the sample carries `kind: \"command\"`; both non-empty results are skills (`sk-git`, `sk-doc`). Combined with iteration 1, this confirms doctor commands cannot appear as candidates until something introduces them to the projection. [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter2-03.json] [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter2-11.json]",
+      "addedAtIteration": 2,
+      "sources": [
+        "events/measure-iter2-01.json … events/measure-iter2-12.json",
+        "events/measure-iter2-index.json",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts"
+      ]
+    },
+    {
+      "id": "finding-2-2-ten-of-the-twelve-prompts-return-zero-recommendations-recommendations-so-the-hoo",
+      "text": "Ten of the twelve prompts return **zero recommendations** (`recommendations: []`), so the hook would render `Advisor: no skill matched.` for them: `help me set up skilled`, `is my repo set up right`, `why is this rule not enforced`, `set up my repo correctly`, `verify my repository health`, `is the skill setup working`, `my hooks are not running`, `check if my environment is configured properly`, `something is wrong with my setup`, and `are my rules being enforced`. [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter2-01.json] [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter2-04.json]",
+      "addedAtIteration": 2,
+      "sources": [
+        "events/measure-iter2-01.json … events/measure-iter2-12.json",
+        "events/measure-iter2-index.json",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts"
+      ]
+    },
+    {
+      "id": "finding-2-10-the-measurement-preserves-raw-artifacts-twelve-per-prompt-envelopes-plus-an-inde",
+      "text": "The measurement preserves raw artifacts: twelve per-prompt envelopes plus an index with exit code, duration, byte size and prompt text are on disk in the lineage for later regression baselining. [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter2-index.json]",
+      "addedAtIteration": 2,
+      "sources": [
+        "events/measure-iter2-01.json … events/measure-iter2-12.json",
+        "events/measure-iter2-index.json",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts"
+      ]
+    },
+    {
+      "id": "finding-2-6-the-recommendation-gate-is-confidence-0-8-not-raw-score-a-0-229089-score-still-s",
+      "text": "The recommendation gate is confidence (0.8), not raw score: a `0.229089` score still surfaces at `0.82` confidence. Routing-accuracy work therefore has to consider calibration behaviour, not only phrase coverage. [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter2-11.json]",
+      "addedAtIteration": 2,
+      "sources": [
+        "events/measure-iter2-01.json … events/measure-iter2-12.json",
+        "events/measure-iter2-index.json",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts"
+      ]
+    },
+    {
+      "id": "finding-2-3-three-of-the-four-topic-named-example-prompts-return-an-empty-recommendation-hel",
+      "text": "Three of the four topic-named example prompts return an empty recommendation — `help me set up skilled`, `is my repo set up right`, `why is this rule not enforced` — and only `check my git hooks` routes. The flagship onboarding phrase in the research topic has no advisor owner today. [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter2-01.json] [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter2-02.json] [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter2-03.json]",
+      "addedAtIteration": 2,
+      "sources": [
+        "events/measure-iter2-01.json … events/measure-iter2-12.json",
+        "events/measure-iter2-index.json",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts"
+      ]
+    },
+    {
+      "id": "finding-3-9-routes-yaml-is-not-a-complete-doctor-family-inventory-doctor-env-exists-as-a-sta",
+      "text": "`_routes.yaml` is not a complete doctor-family inventory: `/doctor:env` exists as a standalone thin router (`env.md` with its own workflow and presentation assets) but appears nowhere in the manifest; `/doctor:update` is tracked only under a `standalone` node and `/doctor:mcp` only under `mcp_subroutes`. [SOURCE: .skilled/commands/doctor/env.md:1-40] [SOURCE: .skilled/commands/doctor/_routes.yaml:291-355]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/env.md",
+        ".skilled/commands/doctor/scripts/route-validate.sh"
+      ]
+    },
+    {
+      "id": "finding-3-1-routes-yaml-is-the-canonical-route-manifest-for-the-routed-doctor-commands-it-de",
+      "text": "`_routes.yaml` is the canonical route manifest for the routed doctor commands: it declares `/doctor:speckit` (speckit-retrieval), `/doctor:deep-loop`, six `/doctor:skill-advisor` targets, `/doctor:runtime-mirrors`, `/doctor:sk-code` setup, and three `/doctor:git` targets (hooks, standards, setup). [SOURCE: .skilled/commands/doctor/_routes.yaml:41-289]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/env.md",
+        ".skilled/commands/doctor/scripts/route-validate.sh"
+      ]
+    },
+    {
+      "id": "finding-3-5-router-reach-already-validates-routing-accuracy-as-a-doctor-workflow-it-probes-t",
+      "text": "`router-reach` already validates routing accuracy as a doctor workflow: it probes the live advisor for every declared phrase through `ci-router-vocabulary-reach.cjs` and reports. Any proposed routing-accuracy test can reuse this seam instead of inventing one. [SOURCE: .skilled/commands/doctor/_routes.yaml:179-194]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/env.md",
+        ".skilled/commands/doctor/scripts/route-validate.sh"
+      ]
+    },
+    {
+      "id": "finding-3-8-doctor-commands-are-thin-routers-with-a-mandatory-input-gate-the-target-must-be-",
+      "text": "Doctor commands are thin routers with a mandatory input gate: the target must be named explicitly, and the router must not infer it \"from conversation history, open files, earlier runs or repository state\". A plain-word advisor brief therefore has to name both the command and its target (for example `/doctor:git setup`) rather than only the command. [SOURCE: .skilled/commands/doctor/skill-advisor.md:13-19] [SOURCE: .skilled/commands/doctor/git.md:13-18]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/env.md",
+        ".skilled/commands/doctor/scripts/route-validate.sh"
+      ]
+    },
+    {
+      "id": "finding-3-11-each-doctor-command-doc-carries-an-owner-marker-in-an-html-comment-skill-agent-s",
+      "text": "Each doctor command doc carries an owner marker in an HTML comment — `<!-- skill_agent: system-skill-advisor -->`, `<!-- skill_agent: sk-git -->`, `<!-- skill_agent: system-spec-kit -->` — a latent machine-readable owner link a bridge generator could consume. [SOURCE: .skilled/commands/doctor/skill-advisor.md:5] [SOURCE: .skilled/commands/doctor/git.md:5] [SOURCE: .skilled/commands/doctor/env.md:5]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/env.md",
+        ".skilled/commands/doctor/scripts/route-validate.sh"
+      ]
+    },
+    {
+      "id": "finding-3-2-each-route-carries-machine-readable-fields-command-target-yaml-setup-vars-allowe",
+      "text": "Each route carries machine-readable fields: `command`, `target`, `yaml`, `setup_vars`, `allowed_flags`, `mutating` class, `gate3_location`, `mcp_tools`, `script_invocations` and `trigger_phrases` — a ready-made structured inventory for any advisor bridge. [SOURCE: .skilled/commands/doctor/_routes.yaml:23-33]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/env.md",
+        ".skilled/commands/doctor/scripts/route-validate.sh"
+      ]
+    },
+    {
+      "id": "finding-3-6-setup-shaped-routes-are-read-only-batteries-doctor-sk-code-setup-runs-sk-code-se",
+      "text": "Setup-shaped routes are read-only batteries: `/doctor:sk-code setup` runs `sk-code-setup-check.cjs` (optional `--prompt=<text>`), and `/doctor:git setup` runs `git-setup-check.cjs` (optional `--tool=<name>`); mutation lives in `/doctor:git hooks` (git config keys) and `/doctor:git standards` (`.sk-git/`). [SOURCE: .skilled/commands/doctor/_routes.yaml:220-289]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/env.md",
+        ".skilled/commands/doctor/scripts/route-validate.sh"
+      ]
+    },
+    {
+      "id": "finding-3-4-the-doctor-skill-advisor-family-is-already-the-advisor-s-own-health-surface-tune",
+      "text": "The `/doctor:skill-advisor` family is already the advisor's own health surface: `tune` mutates the scorer lanes (`explicit.ts`, `lexical.ts`, per-skill `graph-metadata.json`), `rebuild` mutates `skill-graph.sqlite` behind a backup, and `skill-graph-freshness`, `router-reach`, `skill-budget`, `parent-skill` are read-only audits. [SOURCE: .skilled/commands/doctor/_routes.yaml:81-194]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/env.md",
+        ".skilled/commands/doctor/scripts/route-validate.sh"
+      ]
+    },
+    {
+      "id": "finding-3-7-the-declared-trigger-phrases-are-already-written-in-plain-user-language-e-g-git-",
+      "text": "The declared trigger phrases are already written in plain user language, e.g. git setup's `check my git hooks setup` / `is my sk-git setup working` / `which git rules are live`, git hooks' `pre-commit gate keeps blocking` / `disable comment hygiene gate`, and sk-code setup's `verify my sk-code surface` / `does my sk-code surface route`. These closely paraphrase the measured prompt set, so the vocabulary gap is about harvesting, not authoring. [SOURCE: .skilled/commands/doctor/_routes.yaml:248-289]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/env.md",
+        ".skilled/commands/doctor/scripts/route-validate.sh"
+      ]
+    },
+    {
+      "id": "finding-3-10-the-manifest-has-ci-teeth-route-validate-sh-asserts-it-against-on-disk-yaml-asse",
+      "text": "The manifest has CI teeth: `route-validate.sh` asserts it against on-disk YAML assets, each owning router's frontmatter allowed-tools union, and internal consistency rules, with a documented dependency on python3 + PyYAML and exit codes 0/1/2/3. Any harvest change must keep this validator green. [SOURCE: .skilled/commands/doctor/scripts/route-validate.sh:1-30]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/env.md",
+        ".skilled/commands/doctor/scripts/route-validate.sh"
+      ]
+    },
+    {
+      "id": "finding-3-3-the-manifest-states-its-own-advisor-status-the-trigger-phrases-are-not-harvested",
+      "text": "The manifest states its own advisor status: the `trigger_phrases` are **not harvested by either Skill Advisor implementation**. Both harvesters only walk `.skilled/skills/*/{references,assets}/*.md` frontmatter (Python `_DOC_HARVEST_SUBDIRS = (\"references\",\"assets\")` and the TS doc-frontmatter reader, which in this runtime is additionally gated by `SPECKIT_ADVISOR_DOC_TRIGGERS=true`), so a YAML file under `.skilled/commands/doctor/` is out of scope by both file type and root; doctor dispatch is presentation-menu/argv driven, and the field is retained \"for a possible future doctor-routes harvester but is inert today\". [SOURCE: .skilled/commands/doctor/_routes.yaml:14-21]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/env.md",
+        ".skilled/commands/doctor/scripts/route-validate.sh"
+      ]
+    },
+    {
+      "id": "finding-4-5-routingenabled-is-driven-per-platform-by-scoring-compatibility-json-runtime-enab",
+      "text": "`routingEnabled` is driven per platform by `scoring-compatibility.json` runtime enablement; the generator only emits keywords, intent signals, description and name for an enabled runtime, and renders inactive bridges with empty signal lists. TypeScript-active count is 5, Python-active 15. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:250-290] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1-10]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/sk-doc/command-metadata.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/doc-frontmatter.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts"
+      ]
+    },
+    {
+      "id": "finding-4-3-allow-list-entries-require-id-command-skillid-ownermode-and-a-reason-and-exist-f",
+      "text": "Allow-list entries require `id`, `command`, `skillId`, `ownerMode` and a `reason`, and exist for commands whose owning skill has no `command-metadata.json` yet (for example the `/speckit:*` family and the retired `/memory:save` id). [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json:1-50]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/sk-doc/command-metadata.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/doc-frontmatter.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts"
+      ]
+    },
+    {
+      "id": "finding-4-4-bridge-ids-are-derived-from-the-command-string-and-must-match-a-z-a-z0-9-a-z0-9-",
+      "text": "Bridge ids are derived from the command string and must match `^\\/[a-z][a-z0-9-]*:[a-z0-9-]+$`; duplicates are rejected by an explicit uniqueness assertion. Because `/doctor:git` owns three targets (hooks, standards, setup), a naive one-bridge-per-route design would collide on `command-doctor-git` — doctor admission needs either a single bridge per command with target phrases in its signal lists, or allow-list ids that do not follow the command-derived form. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:56-60] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:117-130]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/sk-doc/command-metadata.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/doc-frontmatter.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts"
+      ]
+    },
+    {
+      "id": "finding-4-1-command-admission-has-exactly-two-inputs-a-per-skill-command-metadata-json-deriv",
+      "text": "Command admission has exactly two inputs: a per-skill `command-metadata.json` (`derive-command-bridges.cjs:71`) or a hand-maintained `allow-list.json` entry; only three skills carry metadata today (`system-deep-loop`, `sk-design`, `sk-doc`), yielding the 19 metadata entries counted in the generated summary. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:71-99] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1-10]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/sk-doc/command-metadata.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/doc-frontmatter.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts"
+      ]
+    },
+    {
+      "id": "finding-4-9-consequence-for-doctor-routing-neither-harvest-path-can-see-skilled-commands-doc",
+      "text": "Consequence for doctor routing: neither harvest path can see `.skilled/commands/doctor/**` (wrong root and wrong file type in both implementations), while the command-bridge pipeline cannot see route-level granularity unless doctor entries are authored per command with target phrases folded into their signal lists. Both supported mechanisms therefore require authored metadata, not direct consumption of `_routes.yaml`. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:65-99] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:991-1051]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/sk-doc/command-metadata.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/doc-frontmatter.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts"
+      ]
+    },
+    {
+      "id": "finding-4-10-everything-above-is-guarded-the-drift-guard-compares-committed-projections-again",
+      "text": "Everything above is guarded: the drift guard compares committed projections against a fresh generator dump and the allow-list, and `route-validate.sh` guards the doctor manifest, so any admission change has two CI gates to satisfy. [SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts:1-40] [SOURCE: .skilled/commands/doctor/scripts/route-validate.sh:1-30]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/sk-doc/command-metadata.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/doc-frontmatter.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts"
+      ]
+    },
+    {
+      "id": "finding-4-8-harvested-doc-triggers-land-in-the-skill-docs-table-with-content-hash-based-upse",
+      "text": "Harvested doc triggers land in the `skill_docs` table with content-hash-based upsert/delete semantics, and the derived lane consumes them with a bounded contribution (top 3 docs, 0.45 cap) so doc volume cannot dominate curated skill signals. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:855-945] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/derived.ts:22-35]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/sk-doc/command-metadata.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/doc-frontmatter.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts"
+      ]
+    },
+    {
+      "id": "finding-4-2-metadata-entries-require-command-and-ownermode-but-the-authored-shape-carries-fa",
+      "text": "Metadata entries require `command` and `ownerMode` but the authored shape carries far more routing-relevant material: `description`, `argumentHint`, `userIntent.job`, `userIntent.ownedSignals`, `choreography[]` and `discriminator.whenToUse` / `preferSiblingWhen` — a ready model for a doctor command entry. [SOURCE: .skilled/skills/sk-doc/command-metadata.json:1-50]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/sk-doc/command-metadata.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/doc-frontmatter.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts"
+      ]
+    },
+    {
+      "id": "finding-4-6-the-python-harvester-roots-at-skilled-skills-skills-dir-script-dir-and-reads-doc",
+      "text": "The Python harvester roots at `.skilled/skills` (`SKILLS_DIR = SCRIPT_DIR/../../..`) and reads doc frontmatter only from `(\"references\", \"assets\")` subdirectories of each skill directory when building its signal map. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:44] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:991] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:1030-1051]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/sk-doc/command-metadata.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/doc-frontmatter.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts"
+      ]
+    },
+    {
+      "id": "finding-4-7-the-typescript-harvester-mirrors-that-scope-with-harvest-subdirs-references-asse",
+      "text": "The TypeScript harvester mirrors that scope with `HARVEST_SUBDIRS = ['references', 'assets']`, walking markdown files under those subdirs of each skill root, and is gated by `SPECKIT_ADVISOR_DOC_TRIGGERS`. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/skill-graph/doc-frontmatter.ts:170] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/skill-graph/doc-frontmatter.ts:204-217]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/sk-doc/command-metadata.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/doc-frontmatter.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts"
+      ]
+    },
+    {
+      "id": "finding-5-1-a-fed-phrase-would-score-by-phrasespecificity-one-token-0-7-each-extra-token-0-1",
+      "text": "A fed phrase would score by `phraseSpecificity`: one token = 0.7, each extra token +0.18, capped at 1.0. A three-token doctor phrase like `check my git hooks setup` therefore scores 1.0 on an exact mention, the same order as the hand-written command boosts. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts:71-74]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/commands/doctor/_routes.yaml",
+        "events/measure-iter2-03.json"
+      ]
+    },
+    {
+      "id": "finding-5-2-bridge-keywords-and-intentsignals-are-consumed-inside-the-explicit-author-lane-f",
+      "text": "Bridge `keywords` and `intentSignals` are consumed inside the explicit-author lane: for every projection skill (including command bridges), each phrase that appears with a word boundary adds `phraseSpecificity` to that id and records `author:<phrase>` evidence. Admission is therefore not a new scoring path; it reuses the strongest existing lane. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:358-376]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/commands/doctor/_routes.yaml",
+        "events/measure-iter2-03.json"
+      ]
+    },
+    {
+      "id": "finding-5-3-command-kind-recommendations-do-not-ride-a-slash-bonus-fusion-demotes-a-kind-com",
+      "text": "Command-kind recommendations do not ride a slash bonus: fusion demotes a `kind: 'command'` candidate by 0.08 when the prompt contains no `/`, so a doctor bridge reached from natural language starts with a small handicap. The handicap is uniform across all command bridges and does not block a strong phrase match. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:776-777]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/commands/doctor/_routes.yaml",
+        "events/measure-iter2-03.json"
+      ]
+    },
+    {
+      "id": "finding-5-10-measured-contrast-to-design-against-check-my-git-hooks-routed-to-sk-git-at-0-83-",
+      "text": "Measured contrast to design against: `check my git hooks` routed to `sk-git` at 0.83 while the manifest already declares the near-identical `check my git hooks setup` phrase; the feed decision is therefore about arbitration (which id owns which phrase), not about inventing vocabulary. [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter2-03.json] [SOURCE: .skilled/commands/doctor/_routes.yaml:285-289]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/commands/doctor/_routes.yaml",
+        "events/measure-iter2-03.json"
+      ]
+    },
+    {
+      "id": "finding-5-5-mechanism-a-extend-the-harvesters-to-parse-routes-yaml-rejected-both-harvesters-",
+      "text": "Mechanism A - extend the harvesters to parse `_routes.yaml`: rejected. Both harvesters are hard-scoped to skill roots and the `references`/`assets` subdirs (Python `SKILLS_DIR` + `_DOC_HARVEST_SUBDIRS`; TS `HARVEST_SUBDIRS`), so this needs a new root, a new file type, YAML parsing in two languages, and new gate semantics, for a manifest that already documents the boundary as out of scope. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:44] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/skill-graph/doc-frontmatter.ts:170]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/commands/doctor/_routes.yaml",
+        "events/measure-iter2-03.json"
+      ]
+    },
+    {
+      "id": "finding-5-6-mechanism-b-hand-write-phrase-boosts-entries-for-doctor-phrases-rejected-as-the-",
+      "text": "Mechanism B - hand-write `PHRASE_BOOSTS` entries for doctor phrases: rejected as the primary path. It is a supported code path, but it bypasses the command inventory, the generated projections, Python parity and the drift guard, and it silently changes scoring vocabulary outside the doctor tune flow; keep it for negative disambiguation only, where the tune contract (`phrase_boost_range`) already sanctions it. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:107-200]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/commands/doctor/_routes.yaml",
+        "events/measure-iter2-03.json"
+      ]
+    },
+    {
+      "id": "finding-5-7-mechanism-c-admit-doctor-routes-as-command-bridges-through-allow-list-json-scori",
+      "text": "Mechanism C - admit doctor routes as command bridges through `allow-list.json` + `scoring-compatibility.json`: supported today. Allow-list ids are free-form (only non-empty string checks) while uniqueness is enforced per id, so `/doctor:git`'s three targets can take distinct ids such as `command-doctor-git-hooks` and `command-doctor-git-setup` without colliding; target phrases enter `keywords`/`intentSignals` and regeneration writes both TypeScript and Python projections. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:100-130] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:240-290]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/commands/doctor/_routes.yaml",
+        "events/measure-iter2-03.json"
+      ]
+    },
+    {
+      "id": "finding-5-8-mechanism-d-generate-those-admission-inputs-from-routes-yaml-at-build-time-so-th",
+      "text": "Mechanism D - generate those admission inputs from `_routes.yaml` at build time so the manifest stays canonical: this is the recommended long-term shape. The manifest already carries `trigger_phrases` per route and the command docs carry `skill_agent` owner markers; route-validate.sh can assert the generated bridge set, and the drift guard keeps the projections byte-stable. [SOURCE: .skilled/commands/doctor/_routes.yaml:36-38] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:399-420]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/commands/doctor/_routes.yaml",
+        "events/measure-iter2-03.json"
+      ]
+    },
+    {
+      "id": "finding-5-4-rendering-carries-the-kind-through-and-renders-a-label-the-brief-line-is-advisor",
+      "text": "Rendering carries the kind through and renders a label: the brief line is `Advisor: <freshness>; use <label> <confidence>/<uncertainty> pass.` with the label resolved from metadata or the recommendation name, and prepared commands keep `kind: 'command'`. A doctor bridge's rendered `name` is therefore what the user actually sees, so it should be the runnable command form (e.g. `/doctor:git setup`), not an internal bridge id. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:170] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:439-447]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/commands/doctor/_routes.yaml",
+        "events/measure-iter2-03.json"
+      ]
+    },
+    {
+      "id": "finding-5-9-the-input-gate-constrains-the-rendered-guidance-because-doctor-routers-refuse-to",
+      "text": "The input gate constrains the rendered guidance: because doctor routers refuse to infer a target, the bridge entry for a routed target must render a fully qualified name (`/doctor:git setup`) and the phrase set must be target-specific; one bridge per *route*, not per command, is the correct granularity. [SOURCE: .skilled/commands/doctor/git.md:13-18]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/commands/doctor/_routes.yaml",
+        "events/measure-iter2-03.json"
+      ]
+    },
+    {
+      "id": "finding-6-3-a-pre-existing-ambiguity-already-surfaces-today-run-a-deep-review-of-this-spec-r",
+      "text": "A pre-existing ambiguity already surfaces today: `run a deep review of this spec` returns system-deep-loop and sk-code tied at confidence 0.95 (scores 0.8209 vs 0.8227), which the renderer would present as an ambiguous brief. Any doctor admission must not add new pairs of this kind. [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter6-control-07.json]",
+      "addedAtIteration": 6,
+      "sources": [
+        "events/measure-iter6-control-01.json … measure-iter6-control-10.json",
+        "events/measure-iter6-doctor-01.json … measure-iter6-doctor-14.json",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
+      ]
+    },
+    {
+      "id": "finding-6-4-eight-candidate-doctor-phrases-already-route-to-the-correct-owning-skill-rather-",
+      "text": "Eight candidate doctor phrases already route to the correct owning skill rather than the doctor diagnostic: `check my git hooks setup`, `is my sk-git setup working` (0.887), `which git rules are live` (0.834) and `pre-commit gate keeps blocking` (0.8854) -> sk-git; `verify my sk-code surface` and `does my sk-code surface route` -> sk-code (0.95); `skill advisor recommends the wrong skill` -> system-skill-advisor (0.8843); `trigger index drift` -> system-spec-kit (0.8862). [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter6-doctor-02.json] [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter6-doctor-06.json]",
+      "addedAtIteration": 6,
+      "sources": [
+        "events/measure-iter6-control-01.json … measure-iter6-control-10.json",
+        "events/measure-iter6-doctor-01.json … measure-iter6-doctor-14.json",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
+      ]
+    },
+    {
+      "id": "finding-6-1-every-one-of-the-ten-skill-shaped-controls-keeps-its-incumbent-skill-commit-my-c",
+      "text": "Every one of the ten skill-shaped controls keeps its incumbent skill: `commit my changes`, `rebase my branch onto main`, `set up a new git worktree` -> sk-git; `write a readme for the parser module`, `update the changelog` -> sk-doc; `create a spec folder for the new feature` -> system-spec-kit; `improve my prompt` -> sk-prompt; `debug the failing test` -> sk-code; `save context` -> memory:save + command-memory-save + system-spec-kit. [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter6-control-01.json] [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter6-control-08.json]",
+      "addedAtIteration": 6,
+      "sources": [
+        "events/measure-iter6-control-01.json … measure-iter6-control-10.json",
+        "events/measure-iter6-doctor-01.json … measure-iter6-doctor-14.json",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
+      ]
+    },
+    {
+      "id": "finding-6-6-one-candidate-phrase-routes-to-a-wrong-owner-today-new-skill-not-appearing-in-ad",
+      "text": "One candidate phrase routes to a wrong owner today: `new skill not appearing in advisor results` -> sk-doc 0.82 (documentation vocabulary), while the manifest maps it to `/doctor:skill-advisor rebuild`; `Code Mode broken` -> mcp-code-mode 0.8785 + sk-code 0.8574, where `/doctor:mcp debug` is the diagnostic. These are adopter cases where a doctor bridge would correct a mis-route rather than steal a correct one. [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter6-doctor-09.json] [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter6-doctor-12.json]",
+      "addedAtIteration": 6,
+      "sources": [
+        "events/measure-iter6-control-01.json … measure-iter6-control-10.json",
+        "events/measure-iter6-doctor-01.json … measure-iter6-doctor-14.json",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
+      ]
+    },
+    {
+      "id": "finding-6-9-proposed-arbitration-guard-set-all-evidence-backed-a-phrase-ownership-no-doctor-",
+      "text": "Proposed arbitration guard set, all evidence-backed: (a) phrase ownership - no doctor phrase may duplicate a skill phrase unless the handoff is intended; (b) 3+ token diagnostic phrases only, never bare generic tokens; (c) prefer currently-empty phrases as the first admission wave; (d) re-run the control set after admission and require unchanged top skills; (e) budget zero new ambiguous pairs against the measured baseline. [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter6-index.json]",
+      "addedAtIteration": 6,
+      "sources": [
+        "events/measure-iter6-control-01.json … measure-iter6-control-10.json",
+        "events/measure-iter6-doctor-01.json … measure-iter6-doctor-14.json",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
+      ]
+    },
+    {
+      "id": "finding-6-10-the-0-08-command-demotion-does-not-save-the-design-here-it-only-applies-to-slash",
+      "text": "The 0.08 command demotion does not save the design here: it only applies to slashless prompts and is small relative to a full-specificity phrase, so the guards must live in phrase selection and post-admission measurement rather than relying on the demotion. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:776-777]",
+      "addedAtIteration": 6,
+      "sources": [
+        "events/measure-iter6-control-01.json … measure-iter6-control-10.json",
+        "events/measure-iter6-doctor-01.json … measure-iter6-doctor-14.json",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
+      ]
+    },
+    {
+      "id": "finding-6-2-the-controls-include-generic-verbs-a-careless-doctor-phrase-set-could-collide-wi",
+      "text": "The controls include generic verbs a careless doctor phrase set could collide with: `set up a new git worktree` contains `set up` + `git`, and `update the changelog` contains `update`. Doctor phrases must therefore be multi-token and diagnostic, never bare `setup`, `set up` or `update`. [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter6-control-09.json] [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter6-control-10.json]",
+      "addedAtIteration": 6,
+      "sources": [
+        "events/measure-iter6-control-01.json … measure-iter6-control-10.json",
+        "events/measure-iter6-doctor-01.json … measure-iter6-doctor-14.json",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
+      ]
+    },
+    {
+      "id": "finding-6-8-the-measured-incumbent-confidences-for-the-diagnostic-phrases-sit-at-0-82-0-95-s",
+      "text": "The measured incumbent confidences for the diagnostic phrases sit at 0.82-0.95, so a doctor bridge admitted with a 3+ token phrase can be expected to clear the 0.8 gate; the design must therefore ensure doctor phrases are chosen where the diagnostic reading is intended, and leave the control phrases above untouched. [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter6-doctor-01.json]",
+      "addedAtIteration": 6,
+      "sources": [
+        "events/measure-iter6-control-01.json … measure-iter6-control-10.json",
+        "events/measure-iter6-doctor-01.json … measure-iter6-doctor-14.json",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
+      ]
+    },
+    {
+      "id": "finding-6-5-three-candidate-phrases-are-empty-today-and-therefore-carry-zero-theft-risk-as-p",
+      "text": "Three candidate phrases are empty today and therefore carry zero theft risk as pure additions: `disable comment hygiene gate`, `runtime mirror drift`, `skill budget audit`. [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter6-doctor-05.json] [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter6-doctor-11.json] [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter6-doctor-14.json]",
+      "addedAtIteration": 6,
+      "sources": [
+        "events/measure-iter6-control-01.json … measure-iter6-control-10.json",
+        "events/measure-iter6-doctor-01.json … measure-iter6-doctor-14.json",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
+      ]
+    },
+    {
+      "id": "finding-6-7-verbatim-duplication-is-the-real-theft-mechanism-at-phrasespecificity-1-0-for-a-",
+      "text": "Verbatim duplication is the real theft mechanism: at `phraseSpecificity` 1.0 for a three-token phrase, a doctor bridge reusing `is my sk-git setup working` would enter the fusion with the same phrase mass as the incumbent skill's evidence, producing a tie or ambiguity rather than a clean handoff. Phrase ownership, not score magnitude, is the guard. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts:71-74] [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter6-doctor-02.json]",
+      "addedAtIteration": 6,
+      "sources": [
+        "events/measure-iter6-control-01.json … measure-iter6-control-10.json",
+        "events/measure-iter6-doctor-01.json … measure-iter6-doctor-14.json",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
+      ]
+    },
+    {
+      "id": "finding-7-3-a-safe-default-precedent-exists-in-the-family-bare-doctor-update-runs-the-read-o",
+      "text": "A safe-default precedent exists in the family: bare `/doctor:update` runs the read-only `check` action, and bare `/doctor:env` renders a selection menu. A new umbrella command can run a read-only battery by default and still offer a menu. [SOURCE: .skilled/commands/doctor/update.md:6-13] [SOURCE: .skilled/commands/doctor/env.md:25-30]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/env.md",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/README.txt",
+        ".skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs",
+        "events/measure-iter2-01.json, measure-iter2-06.json, measure-iter6-control-01.json"
+      ]
+    },
+    {
+      "id": "finding-7-11-adding-a-command-has-a-known-maintenance-cost-the-repo-wide-catalog-carries-the-",
+      "text": "Adding a command has a known maintenance cost: the repo-wide catalog carries the doctor group count (currently 9) and a per-command row, and `command-catalog-mirror-check.cjs` enforces catalog/mirror consistency; plus `_routes.yaml` and `route-validate.sh` for the route, plus the advisor admission. All three gates must move together. [SOURCE: .skilled/commands/README.txt:46] [SOURCE: .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs:202-220]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/env.md",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/README.txt",
+        ".skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs",
+        "events/measure-iter2-01.json, measure-iter2-06.json, measure-iter6-control-01.json"
+      ]
+    },
+    {
+      "id": "finding-7-4-no-onboarding-umbrella-exists-today-the-command-inventory-has-no-setup-and-the-d",
+      "text": "No onboarding umbrella exists today: the command inventory has no `/setup`, and the doctor family is nine per-owner diagnostic commands (speckit, skill-advisor, deep-loop, runtime-mirrors, sk-code, git, mcp, update, env). Onboarding prompts currently have nowhere to land. [SOURCE: .skilled/commands/README.txt:46] [SOURCE: .skilled/commands/README.txt:158-171]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/env.md",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/README.txt",
+        ".skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs",
+        "events/measure-iter2-01.json, measure-iter2-06.json, measure-iter6-control-01.json"
+      ]
+    },
+    {
+      "id": "finding-7-6-option-1-recommended-a-new-single-route-doctor-setup-umbrella-that-runs-the-read",
+      "text": "Option 1 (recommended): a new single-route `/doctor:setup` umbrella that runs the read-only battery across sk-code, git, advisor and runtime mirrors, prints repair commands per failing leg, and offers `list`/selection for scoped runs. It gives onboarding prompts one unambiguous target and matches how `/doctor:update` already defaults to a safe action. [SOURCE: .skilled/commands/doctor/update.md:6-13] [SOURCE: .skilled/commands/README.txt:166-171]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/env.md",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/README.txt",
+        ".skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs",
+        "events/measure-iter2-01.json, measure-iter2-06.json, measure-iter6-control-01.json"
+      ]
+    },
+    {
+      "id": "finding-7-7-option-2-rejected-folding-onboarding-into-doctor-skill-advisor-as-another-target",
+      "text": "Option 2 (rejected): folding onboarding into `/doctor:skill-advisor` as another target. The ownership is wrong (the battery spans sk-git, sk-code, spec-kit and advisor), the input gate would require the user to name `onboard` anyway, and the measured phrase `help me set up skilled` would still need a bridge to bind it. [SOURCE: .skilled/commands/doctor/skill-advisor.md:13-19]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/env.md",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/README.txt",
+        ".skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs",
+        "events/measure-iter2-01.json, measure-iter2-06.json, measure-iter6-control-01.json"
+      ]
+    },
+    {
+      "id": "finding-7-8-option-3-rejected-as-the-sole-answer-no-new-entry-only-per-route-bridges-generic",
+      "text": "Option 3 (rejected as the sole answer): no new entry, only per-route bridges. Generic onboarding prompts have no single route, so the brief would have to pick arbitrarily among `/doctor:sk-code setup`, `/doctor:git setup` and others, or stay empty exactly as measured today. [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter2-06.json]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/env.md",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/README.txt",
+        ".skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs",
+        "events/measure-iter2-01.json, measure-iter2-06.json, measure-iter6-control-01.json"
+      ]
+    },
+    {
+      "id": "finding-7-9-option-4-complement-a-bounded-fallback-sentence-naming-the-doctor-entry-surface-",
+      "text": "Option 4 (complement): a bounded fallback sentence naming the doctor entry surface when no skill matched. It is cheap and helps on unmatched prompts, but it is static text injected on every empty result, so it must stay one short sentence and never grow into a routing table. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:110-118]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/env.md",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/README.txt",
+        ".skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs",
+        "events/measure-iter2-01.json, measure-iter2-06.json, measure-iter6-control-01.json"
+      ]
+    },
+    {
+      "id": "finding-7-5-the-batteries-the-umbrella-would-run-already-exist-and-are-read-only-sk-code-set",
+      "text": "The batteries the umbrella would run already exist and are read-only: `sk-code-setup-check.cjs` (`--prompt`), `git-setup-check.cjs` (`--tool`), the advisor `advisor_status` probe, the runtime-mirror `--check` scripts and the trigger-index `--check`. An umbrella command composes existing checks; it does not need new diagnostics. [SOURCE: .skilled/commands/doctor/_routes.yaml:228-247] [SOURCE: .skilled/commands/doctor/_routes.yaml:204-212]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/env.md",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/README.txt",
+        ".skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs",
+        "events/measure-iter2-01.json, measure-iter2-06.json, measure-iter6-control-01.json"
+      ]
+    },
+    {
+      "id": "finding-7-2-the-manifest-already-sanctions-single-route-commands-without-positional-targets-",
+      "text": "The manifest already sanctions single-route commands without positional targets: \"A command that owns one route needs no positional target.\" A dedicated onboarding command therefore does not need to fight the target input gate that every multi-route doctor command has. [SOURCE: .skilled/commands/doctor/_routes.yaml:12]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/env.md",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/README.txt",
+        ".skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs",
+        "events/measure-iter2-01.json, measure-iter2-06.json, measure-iter6-control-01.json"
+      ]
+    },
+    {
+      "id": "finding-7-1-the-measured-onboarding-prompts-have-no-owner-and-the-fallback-gives-no-guidance",
+      "text": "The measured onboarding prompts have no owner and the fallback gives no guidance: for an unmatched prompt the hook renders only `Advisor: no skill matched.` plus the directives and hygiene block. There is no \"try /doctor:...\" sentence anywhere in the fallback path. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:476-487] [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter2-01.json]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/env.md",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/README.txt",
+        ".skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs",
+        "events/measure-iter2-01.json, measure-iter2-06.json, measure-iter6-control-01.json"
+      ]
+    },
+    {
+      "id": "finding-7-10-the-two-layer-relationship-is-umbrella-for-onboarding-intent-per-route-bridges-f",
+      "text": "The two-layer relationship is: umbrella for onboarding intent, per-route bridges for specific diagnostics. The umbrella owns phrases like `help me set up skilled` and `is my repo set up right`; route-specific phrases like `check my git hooks` stay with their owner (`/doctor:git setup` or sk-git, a deliberate arbitration decision per the iteration 6 guards). [SOURCE: .skilled/commands/doctor/_routes.yaml:285-289] [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter6-control-01.json]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/env.md",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/README.txt",
+        ".skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs",
+        "events/measure-iter2-01.json, measure-iter2-06.json, measure-iter6-control-01.json"
+      ]
+    },
+    {
+      "id": "finding-8-4-advisor-validate-confirm-heavy-run-true-runs-corpus-holdout-parity-safety-and-la",
+      "text": "`advisor_validate --confirm-heavy-run true` runs corpus, holdout, parity, safety and latency slices in one pass, and a per-skill slice form exists; this is the release-scale check that a doctor routing change must pass in addition to the fast slice. [SOURCE: .skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md:52-64]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ambiguity-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs"
+      ]
+    },
+    {
+      "id": "finding-8-5-ci-router-vocabulary-reach-cjs-probes-every-multi-word-phrase-a-hub-s-router-md-",
+      "text": "`ci-router-vocabulary-reach.cjs` probes every multi-word phrase a hub's ROUTER.md declares and reports phrases that do not reach the declaring hub; its allowlist pins `declaredBy` + `phrase` + `wonBy`, so an allowed phrase that starts losing to someone new still fails, and single-token phrases are skipped because they fail on length rather than vocabulary. [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:1-70]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ambiguity-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs"
+      ]
+    },
+    {
+      "id": "finding-8-1-a-full-routing-accuracy-corpus-infrastructure-already-exists-labeled-prompts-jso",
+      "text": "A full routing-accuracy corpus infrastructure already exists: `labeled-prompts.jsonl` (195 cases), `holdout-prompts.jsonl` (66), `ambiguity-prompts.jsonl` (24), plus `capture-scorer-eval-baseline.mjs`, `score-routing-corpus.py`, `build-holdout.mjs` and `derive-ambiguity-slice.mjs`, measured against a pinned environment (semantic lane disabled, empty DB dir, filesystem projection). [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json:1-16] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl:1-3]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ambiguity-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs"
+      ]
+    },
+    {
+      "id": "finding-8-10-ci-wiring-structural-gates-stay-route-validate-sh-manifest-and-the-command-bridg",
+      "text": "CI wiring: structural gates stay `route-validate.sh` (manifest) and the command-bridges drift guard (projections); the outcome gate becomes a captured doctor slice in the routing-accuracy corpus with a new baseline row; the reach check gains either a doctor probe mode or a sibling script that reads `_routes.yaml` and asserts each admitted phrase reaches its declared command id. [SOURCE: .skilled/commands/doctor/scripts/route-validate.sh:1-30] [SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts:1-40]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ambiguity-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs"
+      ]
+    },
+    {
+      "id": "finding-8-7-corpus-records-already-carry-everything-a-doctor-slice-needs-id-bucket-source-ty",
+      "text": "Corpus records already carry everything a doctor slice needs: `id`, `bucket`, `source_type`, `prompt`, expected `skill_top_1`, `notes`, and for ambiguity cases a captured `margin_at_capture` with `tau`. A doctor slice can mirror the schema with `command-doctor-*` bridge ids as expected top-1. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl:1-3] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ambiguity-prompts.jsonl:1-2]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ambiguity-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs"
+      ]
+    },
+    {
+      "id": "finding-8-8-proposed-doctor-golden-set-seeded-from-this-lineage-s-measurements-a-an-onboardi",
+      "text": "Proposed doctor golden set, seeded from this lineage's measurements: (a) an onboarding slice - the nine measured onboarding prompts with expected `/doctor:setup`; (b) a diagnostics slice - the fourteen candidate phrases from iteration 6 with expected per-route ids; (c) a control slice - the ten skill-shaped controls with their unchanged incumbent skills; (d) an ambiguity slice - cases where two owners legitimately compete, each with an expected winner and a margin. [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter6-index.json] [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter2-index.json]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ambiguity-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs"
+      ]
+    },
+    {
+      "id": "finding-8-9-proposed-gates-per-slice-onboarding-top-1-9-9-diagnostics-top-1-12-14-initially-",
+      "text": "Proposed gates per slice: onboarding top-1 = 9/9; diagnostics top-1 >= 12/14 initially with margin >= 0.05 over the runner-up; controls top-1 = 10/10 unchanged; zero new ambiguous pairs against the iteration 6 baseline; doctor empty-rate = 0; plus the existing bounded-delta rows recomputed against the current JSON baseline (full corpus >= 0.7749, holdout >= 0.7324, UNKNOWN <= 15). [SOURCE: .skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md:59] [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter6-control-07.json]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ambiguity-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs"
+      ]
+    },
+    {
+      "id": "finding-8-6-that-harness-covers-mode-registry-hubs-only-it-filters-directories-with-mode-reg",
+      "text": "That harness covers mode-registry hubs only (it filters directories with `mode-registry.json` and `ROUTER.md`), so doctor commands are outside its probe surface today; a doctor slice needs its own probe source (the `_routes.yaml` trigger phrases) and an expected-winner mapping. [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:71-90]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ambiguity-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs"
+      ]
+    },
+    {
+      "id": "finding-8-3-the-bounded-delta-gate-is-already-policy-full-corpus-top-1-must-stay-at-or-above",
+      "text": "The bounded-delta gate is already policy: full-corpus top-1 must stay at or above baseline minus 0.02, holdout at or above baseline minus 0.01, UNKNOWN at or below baseline plus 2, and the docs state validation baselines are \"the promotion gate for routing behavior changes, not after-the-fact reporting\". Note a doc-vs-data drift worth fixing when the doctor slice lands: the doc's dated numbers (0.7544 floor / 0.7261 / 15, citing a 0.7744 snapshot) trail the current JSON baseline (0.7949), so the slice capture should re-freeze both. [SOURCE: .skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md:33] [SOURCE: .skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md:43-59]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ambiguity-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs"
+      ]
+    },
+    {
+      "id": "finding-8-2-the-captured-baseline-is-explicit-and-comparable-full-corpus-top-1-0-7949-155-19",
+      "text": "The captured baseline is explicit and comparable: full-corpus top-1 0.7949 (155/195), UNKNOWN count 13, gold-none false-fire 5, holdout top-1 0.7424, ambiguity top-1 0.7917 at tau 0.03, with per-bucket rows for review, memory_save and delegation. Captured 2026-10-11 against the pinned environment. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json:1-58]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ambiguity-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs"
+      ]
+    },
+    {
+      "id": "finding-9-12-reject-a-big-bang-launch-admitting-all-thirteen-routes-at-once-measured-conteste",
+      "text": "Reject: a big-bang launch admitting all thirteen routes at once. Measured contested phrases tie with incumbents when duplicated, so the staged path is: umbrella plus currently-empty phrases first, then contested routes one at a time behind the slice gates. [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter6-index.json]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/_routes.yaml",
+        "events/measure-iter2-01.json, measure-iter6-index.json"
+      ]
+    },
+    {
+      "id": "finding-9-3-reject-a-special-lower-confidence-threshold-for-doctor-commands-thresholds-are-u",
+      "text": "Reject: a special lower confidence threshold for doctor commands. Thresholds are uniform and calibrated (0.8 confidence / 0.35 uncertainty in the measured envelopes), and phrase specificity plus documented gates already carry the routing signal; a special threshold would emit weak recommendations and break the shared calibration semantics. [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter2-01.json]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/_routes.yaml",
+        "events/measure-iter2-01.json, measure-iter6-index.json"
+      ]
+    },
+    {
+      "id": "finding-9-1-reject-auto-dispatching-or-auto-running-a-doctor-command-from-the-advisor-the-ho",
+      "text": "Reject: auto-dispatching or auto-running a doctor command from the advisor. The hook contract is advisory-only and must never replace explicit skill loading, and every doctor route runs `execution_mode: INTERACTIVE`; the advisor can name a command but cannot execute it. [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:21] [SOURCE: .skilled/commands/doctor/skill-advisor.md:42]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/_routes.yaml",
+        "events/measure-iter2-01.json, measure-iter6-index.json"
+      ]
+    },
+    {
+      "id": "finding-9-11-reject-building-the-onboarding-battery-as-a-new-skill-instead-of-a-command-the-d",
+      "text": "Reject: building the onboarding battery as a new skill instead of a command. The deliverable is a diagnostic run across existing owned checks; the command family already provides the route manifest, presentation contract, mutation classes and validation, while a new skill would add a routing identity with no workflow of its own. [SOURCE: .skilled/commands/doctor/_routes.yaml:23-33]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/_routes.yaml",
+        "events/measure-iter2-01.json, measure-iter6-index.json"
+      ]
+    },
+    {
+      "id": "finding-9-10-reject-expanding-the-hook-fallback-into-a-routing-table-fallback-text-is-injecte",
+      "text": "Reject: expanding the hook fallback into a routing table. Fallback text is injected on every unmatched prompt, and its current shape is a single status line plus the directives block; a table would bloat the smallest useful output. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:476-487]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/_routes.yaml",
+        "events/measure-iter2-01.json, measure-iter6-index.json"
+      ]
+    },
+    {
+      "id": "finding-9-2-reject-faking-a-skill-id-per-doctor-route-to-reuse-skill-plumbing-commands-alrea",
+      "text": "Reject: faking a skill id per doctor route to reuse skill plumbing. Commands already have a first-class `kind: 'command'` projection path with `routingEnabled` and generated bridges; fake skills would pollute skill lifecycle state, dashboards and the skill namespace for no routing gain. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:75-151]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/_routes.yaml",
+        "events/measure-iter2-01.json, measure-iter6-index.json"
+      ]
+    },
+    {
+      "id": "finding-9-5-reject-reading-routes-yaml-live-on-every-advisor-request-scoring-inputs-are-the-",
+      "text": "Reject: reading `_routes.yaml` live on every advisor request. Scoring inputs are the SQLite projection (or the filesystem fallback) plus the committed bridges; a runtime file read would drift from the pinned projection the drift guard protects. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:1226-1242]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/_routes.yaml",
+        "events/measure-iter2-01.json, measure-iter6-index.json"
+      ]
+    },
+    {
+      "id": "finding-9-7-reject-relaxing-the-doctor-input-gate-to-let-routers-guess-a-target-several-targ",
+      "text": "Reject: relaxing the doctor input gate to let routers guess a target. Several targets mutate real state (git config hook keys, `.sk-git/` standards, advisor lane files and the skill graph database); guessing is precisely what the gate exists to prevent. The advisor stays a recommendation, the operator keeps the choice. [SOURCE: .skilled/commands/doctor/git.md:13-18] [SOURCE: .skilled/commands/doctor/_routes.yaml:236-273]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/_routes.yaml",
+        "events/measure-iter2-01.json, measure-iter6-index.json"
+      ]
+    },
+    {
+      "id": "finding-9-8-reject-shipping-an-mcp-server-or-transport-for-doctor-diagnostics-the-advisor-pa",
+      "text": "Reject: shipping an MCP server or transport for doctor diagnostics. The advisor package ships no MCP transport by design (no stdio server, no SDK, no server declaration); doctor commands are CLI/command surfaces, and a server would multiply the surface with no routing benefit. [SOURCE: .skilled/skills/system-skill-advisor/ARCHITECTURE.md:22]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/_routes.yaml",
+        "events/measure-iter2-01.json, measure-iter6-index.json"
+      ]
+    },
+    {
+      "id": "finding-9-6-reject-stuffing-doctor-phrases-into-sk-git-sk-code-or-sk-doc-graph-metadata-json",
+      "text": "Reject: stuffing doctor phrases into sk-git, sk-code or sk-doc `graph-metadata.json`. A skill's `graph-metadata.json` is what makes that skill routable, so this routes users to the skills rather than the doctor commands - the wrong destination - and pollutes curated skill signals the reach check tracks. [SOURCE: .skilled/skills/system-skill-advisor/SKILL.md:338] [SOURCE: .skilled/commands/doctor/_routes.yaml:14-21]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/_routes.yaml",
+        "events/measure-iter2-01.json, measure-iter6-index.json"
+      ]
+    },
+    {
+      "id": "finding-9-4-reject-teaching-the-advisor-to-inspect-repository-state-before-recommending-a-do",
+      "text": "Reject: teaching the advisor to inspect repository state before recommending a doctor route. The advisor scores a prompt against a projection; state inspection is exactly what the doctor batteries exist to do, and doing it early would add IO and failure modes to every prompt. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:1103-1144]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/_routes.yaml",
+        "events/measure-iter2-01.json, measure-iter6-index.json"
+      ]
+    },
+    {
+      "id": "finding-9-9-reject-unconditional-onboarding-guidance-on-every-prompt-the-brief-is-a-bounded-",
+      "text": "Reject: unconditional onboarding guidance on every prompt. The brief is a bounded advisory line built to route one prompt; always-on text spends the injection budget and undermines the honest `no skill matched` status. Onboarding guidance belongs to matched onboarding phrases and optionally one bounded fallback sentence. [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:43]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/_routes.yaml",
+        "events/measure-iter2-01.json, measure-iter6-index.json"
+      ]
+    },
+    {
+      "id": "finding-10-8-phase-1-measurement-harness-author-the-doctor-slice-files-and-capture-the-baseli",
+      "text": "Phase 1 - Measurement harness: author the doctor slice files and capture the baseline; gates are only that the capture is reproducible and the control slice records the current incumbent behavior; no runtime change, so rollback is deleting the slice. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-scorer-eval-baseline.mjs]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ (baseline and capture script)",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/scripts/route-validate.sh",
+        ".skilled/commands/README.txt",
+        "events/measure-iter2-01.json, measure-iter6-doctor-02.json, measure-iter6-doctor-05.json"
+      ]
+    },
+    {
+      "id": "finding-10-9-phase-2-onboarding-umbrella-author-the-command-router-markdown-presentation-asse",
+      "text": "Phase 2 - Onboarding umbrella: author the command (router markdown, presentation asset, workflow battery, route entry, catalog row and count), then admit the `command-doctor-setup` bridge and regenerate; gates: route-validate green, drift guard green, onboarding slice 9/9 top-1 to the umbrella, controls unchanged, bounded-delta rows honored; rollback removes the route and bridge entries and regenerates. [SOURCE: .skilled/commands/doctor/scripts/route-validate.sh:1-30] [SOURCE: .skilled/commands/README.txt:46]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ (baseline and capture script)",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/scripts/route-validate.sh",
+        ".skilled/commands/README.txt",
+        "events/measure-iter2-01.json, measure-iter6-doctor-02.json, measure-iter6-doctor-05.json"
+      ]
+    },
+    {
+      "id": "finding-10-10-phase-3-per-route-diagnostics-in-two-waves-empty-phrases-then-contested-phrases-",
+      "text": "Phase 3 - Per-route diagnostics in two waves (empty phrases, then contested phrases with owner sign-off), each wave gated by the diagnostics slice and the reach probe pinning the declaredBy/phrase/wonBy triple; Phase 4 - guidance surface (fallback sentence, name formatting) plus the documentation refresh. Every phase lands with the same three structural gates and the outcome slice. [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:24-70] [SOURCE: .skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md:63-75]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ (baseline and capture script)",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/scripts/route-validate.sh",
+        ".skilled/commands/README.txt",
+        "events/measure-iter2-01.json, measure-iter6-doctor-02.json, measure-iter6-doctor-05.json"
+      ]
+    },
+    {
+      "id": "finding-10-1-r1-highest-value-lowest-risk-build-the-doctor-golden-slice-first-add-onboarding-",
+      "text": "R1 (highest value, lowest risk): build the doctor golden slice first. Add onboarding, diagnostics, control and ambiguity cases seeded from this lineage's measured envelopes to the existing routing-accuracy corpus and capture a fresh baseline; this turns every later phase into a measurable claim and reuses the existing capture script, pinned environment and bounded-delta gate. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json:1-16]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ (baseline and capture script)",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/scripts/route-validate.sh",
+        ".skilled/commands/README.txt",
+        "events/measure-iter2-01.json, measure-iter6-doctor-02.json, measure-iter6-doctor-05.json"
+      ]
+    },
+    {
+      "id": "finding-10-2-r2-ship-one-onboarding-umbrella-command-doctor-setup-as-a-single-route-read-only",
+      "text": "R2: ship one onboarding umbrella command (`/doctor:setup`) as a single-route, read-only battery composed from the existing checks (`sk-code-setup-check.cjs`, `git-setup-check.cjs`, advisor status, mirror `--check`, trigger-index `--check`), so the measured empty onboarding phrases have one unambiguous destination. [SOURCE: .skilled/commands/doctor/_routes.yaml:228-247] [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter2-01.json]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ (baseline and capture script)",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/scripts/route-validate.sh",
+        ".skilled/commands/README.txt",
+        "events/measure-iter2-01.json, measure-iter6-doctor-02.json, measure-iter6-doctor-05.json"
+      ]
+    },
+    {
+      "id": "finding-10-3-r3-admit-doctor-routes-through-the-supported-command-bridge-pipeline-generated-f",
+      "text": "R3: admit doctor routes through the supported command-bridge pipeline, generated from `_routes.yaml` so the manifest stays canonical. Per-route allow-list entries carry distinct ids (`command-doctor-git-setup`, ...) and target phrases land in `scoring-compatibility.json`; regeneration writes both TypeScript and Python projections, and the drift guard plus route-validate keep the set consistent. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:100-130] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:240-290]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ (baseline and capture script)",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/scripts/route-validate.sh",
+        ".skilled/commands/README.txt",
+        "events/measure-iter2-01.json, measure-iter6-doctor-02.json, measure-iter6-doctor-05.json"
+      ]
+    },
+    {
+      "id": "finding-10-4-r4-stage-the-phrase-admission-wave-a-is-the-measured-empty-phrases-with-zero-the",
+      "text": "R4: stage the phrase admission. Wave A is the measured empty phrases with zero theft risk (`disable comment hygiene gate` -> `/doctor:git hooks`, `runtime mirror drift` -> `/doctor:runtime-mirrors`, `skill budget audit` -> `/doctor:skill-advisor skill-budget`); Wave B is the contested phrases where the doctor diagnostic is the deliberate winner (`check my git hooks` family), admitted one route at a time with the ownership pin. [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter6-doctor-05.json] [SOURCE: specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter6-doctor-02.json]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ (baseline and capture script)",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/scripts/route-validate.sh",
+        ".skilled/commands/README.txt",
+        "events/measure-iter2-01.json, measure-iter6-doctor-02.json, measure-iter6-doctor-05.json"
+      ]
+    },
+    {
+      "id": "finding-10-5-r5-render-fully-qualified-names-each-admitted-bridge-s-rendered-name-must-be-the",
+      "text": "R5: render fully qualified names. Each admitted bridge's rendered `name` must be the runnable `/doctor:<command> <target>` string, because the doctor routers refuse inferred targets and the brief label is what the model and user see. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:439-447] [SOURCE: .skilled/commands/doctor/git.md:13-18]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ (baseline and capture script)",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/scripts/route-validate.sh",
+        ".skilled/commands/README.txt",
+        "events/measure-iter2-01.json, measure-iter6-doctor-02.json, measure-iter6-doctor-05.json"
+      ]
+    },
+    {
+      "id": "finding-10-6-r6-complement-not-substitute-add-exactly-one-bounded-fallback-sentence-naming-th",
+      "text": "R6 (complement, not substitute): add exactly one bounded fallback sentence naming the doctor entry surface when no skill matched, deployed only after the umbrella exists so it points at something real; keep the directives block intact. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:476-487]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ (baseline and capture script)",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/scripts/route-validate.sh",
+        ".skilled/commands/README.txt",
+        "events/measure-iter2-01.json, measure-iter6-doctor-02.json, measure-iter6-doctor-05.json"
+      ]
+    },
+    {
+      "id": "finding-10-7-r7-maintenance-refresh-the-stale-documentation-in-the-same-change-set-the-valida",
+      "text": "R7 (maintenance): refresh the stale documentation in the same change set - the `validation-baselines.md` dated numbers and the `_routes.yaml` \"Consumed by\" comment once a harvester or generator consumes it - so the next reader is not misled about which mechanisms are live. [SOURCE: .skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md:45-59] [SOURCE: .skilled/commands/doctor/_routes.yaml:14-21]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ (baseline and capture script)",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/scripts/route-validate.sh",
+        ".skilled/commands/README.txt",
+        "events/measure-iter2-01.json, measure-iter6-doctor-02.json, measure-iter6-doctor-05.json"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-5a1b58e11f08",
+      "text": "Assuming commands and skills are surfaced by the same pipeline with no distinction: commands enter as `kind: 'command'` projections with per-bridge `routingEnabled` flags and a slash-presence rank adjustment.",
+      "contentHash": "5a1b58e11f08",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-c8e0744558be",
+      "text": "None this iteration; all targeted reads resolved.",
+      "contentHash": "c8e0744558be",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-d346a4f6e40b",
+      "text": "Treating `SKILL.md` frontmatter `trigger_phrases` as a routing input for doctor commands: the runtime does not read them; only `graph-metadata.json` and gated doc frontmatter feed routing.",
+      "contentHash": "d346a4f6e40b",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-f110a66ed4f2",
+      "text": "Attributing the `sk-git` match to hooks awareness: the dominant lane is `explicit_author` and the only contributing vocabulary is the `git` token boost, not hook semantics.",
+      "contentHash": "f110a66ed4f2",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-4371611c2261",
+      "text": "None; the measurement surface delivered exactly what the topic asked for.",
+      "contentHash": "4371611c2261",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-1e6a4782bd18",
+      "text": "Treating the empty results as an advisor outage: every envelope is `freshness: live` with a current generation and exit 0.",
+      "contentHash": "1e6a4782bd18",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-c600320c820f",
+      "text": "Assuming `_routes.yaml` trigger_phrases already influence advisor routing: the manifest's own header documents them as inert, and iteration 1 found no doctor bridge in the projection.",
+      "contentHash": "c600320c820f",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-795fe58c6014",
+      "text": "None; the manifest answered the consumption question directly.",
+      "contentHash": "795fe58c6014",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-111be2cf8a88",
+      "text": "Treating `_routes.yaml` as the complete doctor family inventory: `/doctor:env` is absent from it.",
+      "contentHash": "111be2cf8a88",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-7568d5f8c48e",
+      "text": "A one-bridge-per-doctor-route design under the current id grammar: `/doctor:git` targets collide at `command-doctor-git` under the uniqueness assertion.",
+      "contentHash": "7568d5f8c48e",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-88054184400b",
+      "text": "Feeding `_routes.yaml` to a harvester as a documentation change: both harvesters are scoped to skill roots and markdown frontmatter; a new file type and root would need new code in both implementations plus the opt-in gate.",
+      "contentHash": "88054184400b",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-3cb16b8497eb",
+      "text": "None; every seam resolved to concrete code or data.",
+      "contentHash": "3cb16b8497eb",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-c41f6e86bc77",
+      "text": "Mechanism A (harvester extension) — new root and file type in two implementations for a manifest whose header documents the boundary.",
+      "contentHash": "c41f6e86bc77",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-8b2278a539d6",
+      "text": "Mechanism B as primary (hand PHRASE_BOOSTS) — bypasses inventory, parity and drift guard; retain only for bounded negative disambiguation.",
+      "contentHash": "8b2278a539d6",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-55ab1f1898b8",
+      "text": "None; each mechanism has a concrete verdict.",
+      "contentHash": "55ab1f1898b8",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-c6bad8040e95",
+      "text": "One bridge per doctor command — target granularity is required for a runnable recommendation under the input gate.",
+      "contentHash": "c6bad8040e95",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-a1ec04412c4b",
+      "text": "Copying `_routes.yaml` trigger phrases verbatim into bridge signal lists: the measured incumbents show verbatim duplication lands as a tie/ambiguity, not a handoff.",
+      "contentHash": "a1ec04412c4b",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-3212212011c7",
+      "text": "None; all 24 measurements returned clean, parseable envelopes.",
+      "contentHash": "3212212011c7",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-73034f541ca6",
+      "text": "Relying on the command-kind demotion to prevent theft: too small and only applies without a slash.",
+      "contentHash": "73034f541ca6",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-c410e6e28d2a",
+      "text": "A full routing table in the hook fallback: static prompt-injected text must stay minimal.",
+      "contentHash": "c410e6e28d2a",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-ee19b7acbbc7",
+      "text": "None; the design options have concrete verdicts.",
+      "contentHash": "ee19b7acbbc7",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-9ee9d44007d5",
+      "text": "Onboarding as a `/doctor:skill-advisor` target: owner mismatch and input-gate friction.",
+      "contentHash": "9ee9d44007d5",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-1de9766c8b72",
+      "text": "Per-route bridges alone as the onboarding answer: no single route exists for the generic phrases.",
+      "contentHash": "1de9766c8b72",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-990655b8834e",
+      "text": "Building a new accuracy harness from scratch: the corpus, capture script, baseline gate and reach probe already exist.",
+      "contentHash": "990655b8834e",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-25ef8ec697ea",
+      "text": "None; the infrastructure answered the design question directly.",
+      "contentHash": "25ef8ec697ea",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-f1046f18c2dc",
+      "text": "Reusing `ci-router-vocabulary-reach.cjs` unchanged: its hub filter excludes doctor commands.",
+      "contentHash": "f1046f18c2dc",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-007fdb0d494f",
+      "text": "None.",
+      "contentHash": "007fdb0d494f",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-c48cee9b312e",
+      "text": "This iteration's rule-set is itself the reject list; no additional dead ends.",
+      "contentHash": "c48cee9b312e",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-415a1085c44f",
+      "text": "Deferring the harness to the end: it is the gate for every other phase.",
+      "contentHash": "415a1085c44f",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-8e87efdcd901",
+      "text": "Reordering the phases to ship the umbrella before the harness: without the slice, the umbrella's admission cannot be distinguished from theft or a tie.",
+      "contentHash": "8e87efdcd901",
+      "addedAtIteration": 10
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 12,
+    "openQuestions": 0,
+    "resolvedQuestions": 10,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 106,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.9,
+    "coverageBySources": {
+      "other": 47
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

@@ -1,0 +1,86 @@
+'use strict';
+// Iteration 10 record generator: ranked recommendations and implementation phases.
+const fs = require('fs');
+const L = process.argv[2];
+const SID = 'fanout-deepseek-flash-max-1792072037811-has9cy';
+
+const record = {
+  type: 'iteration',
+  iteration: 10,
+  run: 10,
+  runId: SID, sessionId: SID, lineageId: SID,
+  mode: 'research',
+  target_agent: 'deep-research',
+  agent_definition_loaded: true,
+  resolved_route: 'Resolved route: mode=research target_agent=deep-research',
+  newInfoRatio: 0.65,
+  status: 'complete',
+  focus: 'Ranked recommendations R1-R7 and the four-phase implementation plan with gates and rollback',
+  findingsCount: 10,
+  noveltyJustification: 'Synthesis iteration: the recommendations and phase sequencing are new artifacts, composed from evidence gathered in iterations 1-9.',
+  keyQuestions: [
+    'What is the ranked recommendation set and the implementation phase plan?'
+  ],
+  answeredQuestions: [
+    'What is the ranked recommendation set and the implementation phase plan?'
+  ],
+  ruledOut: [
+    'Shipping the umbrella before the measurement harness',
+    'Deferring the harness to the end of the plan'
+  ],
+  keyFindings: [
+    { id: 'f-iter010-r1-harness-first', title: 'R1: golden slice first, reusing the existing corpus and gate' },
+    { id: 'f-iter010-r2-umbrella', title: 'R2: single-route /doctor:setup umbrella from existing read-only batteries' },
+    { id: 'f-iter010-r3-generated-admission', title: 'R3: generate bridge admission from _routes.yaml with per-route ids' },
+    { id: 'f-iter010-r4-staged-phrases', title: 'R4: stage phrases - empty wave first, contested wave second' },
+    { id: 'f-iter010-r5-qualified-names', title: 'R5: render fully qualified /doctor:cmd target names' },
+    { id: 'f-iter010-r6-fallback-sentence', title: 'R6: one bounded fallback sentence after the umbrella exists' },
+    { id: 'f-iter010-r7-docs-refresh', title: 'R7: refresh stale baselines and manifest comments in the same change set' },
+    { id: 'f-iter010-phase1', title: 'Phase 1: measurement harness with reproducible capture and control baseline' },
+    { id: 'f-iter010-phase2', title: 'Phase 2: onboarding umbrella with route, catalog, bridge and slice gates' },
+    { id: 'f-iter010-phase34', title: 'Phase 3-4: per-route diagnostics waves then guidance surface and docs' }
+  ],
+  graphEvents: [
+    { type: 'node', id: 'q-plan', kind: 'QUESTION', label: 'Ranked recommendations and phases' },
+    { type: 'node', id: 'f-plan', kind: 'FINDING', label: 'Four-phase gated plan' },
+    { type: 'node', id: 's-baseline-json-2', kind: 'SOURCE', label: 'routing accuracy baseline', path: '.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json' },
+    { type: 'node', id: 's-routes-yaml-2', kind: 'SOURCE', label: 'doctor route manifest', path: '.skilled/commands/doctor/_routes.yaml' },
+    { type: 'edge', id: 'e-010-plan', source: 'f-plan', target: 'q-plan', relation: 'ANSWERS' },
+    { type: 'edge', id: 'e-010-baseline', source: 's-baseline-json-2', target: 'f-plan', relation: 'SUPPORTS' },
+    { type: 'edge', id: 'e-010-routes', source: 's-routes-yaml-2', target: 'f-plan', relation: 'SUPPORTS' }
+  ],
+  toolsUsed: ['Read', 'Bash', 'Write'],
+  sourcesQueried: [
+    '.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json',
+    '.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs',
+    '.skilled/skills/system-skill-advisor/runtime/lib/render.ts',
+    '.skilled/commands/doctor/_routes.yaml',
+    '.skilled/commands/doctor/scripts/route-validate.sh'
+  ],
+  timestamp: new Date().toISOString()
+};
+
+const findings = [
+  { id: 'f-iter010-r1-harness-first', label: 'R1: build the doctor golden slice first (onboarding, diagnostics, control, ambiguity) on the existing corpus and capture a fresh baseline, making every later phase measurable.', sources: ['.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json:1-16'] },
+  { id: 'f-iter010-r2-umbrella', label: 'R2: ship a single-route /doctor:setup umbrella composed from existing read-only batteries so measured empty onboarding phrases have one destination.', sources: ['.skilled/commands/doctor/_routes.yaml:228-247', 'specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter2-01.json'] },
+  { id: 'f-iter010-r3-generated-admission', label: 'R3: admit doctor routes through generated per-route allow-list entries and scoring-compatibility blocks so _routes.yaml stays canonical and both projections regenerate.', sources: ['.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:100-130', '.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:240-290'] },
+  { id: 'f-iter010-r4-staged-phrases', label: 'R4: stage phrase admission: Wave A empty phrases (disable comment hygiene gate, runtime mirror drift, skill budget audit), Wave B contested phrases admitted one route at a time with ownership pins.', sources: ['specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter6-doctor-05.json', 'specs/system-skill-advisor/034-doctor-command-guidance/research/lineages/deepseek-flash-max/events/measure-iter6-doctor-02.json'] },
+  { id: 'f-iter010-r5-qualified-names', label: 'R5: bridge rendered names must be fully qualified /doctor:<command> <target> strings, because doctor routers refuse inferred targets and the brief label is user-visible.', sources: ['.skilled/skills/system-skill-advisor/runtime/lib/render.ts:439-447', '.skilled/commands/doctor/git.md:13-18'] },
+  { id: 'f-iter010-r6-fallback-sentence', label: 'R6: add exactly one bounded fallback sentence naming the doctor entry surface when no skill matched, deployed after the umbrella exists, keeping the directives block intact.', sources: ['.skilled/skills/system-skill-advisor/runtime/lib/render.ts:476-487'] },
+  { id: 'f-iter010-r7-docs-refresh', label: 'R7: refresh the stale validation-baselines numbers and the _routes.yaml consumption comment in the same change set that makes them stale-then-true.', sources: ['.skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md:45-59', '.skilled/commands/doctor/_routes.yaml:14-21'] },
+  { id: 'f-iter010-phase1', label: 'Phase 1: measurement harness - author the slice files, capture the baseline, no runtime change, rollback is deleting the slice.', sources: ['.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-scorer-eval-baseline.mjs'] },
+  { id: 'f-iter010-phase2', label: 'Phase 2: onboarding umbrella - command, presentation, battery, route, catalog row and count, then the bridge; gates: route-validate, drift guard, onboarding slice 9/9, controls unchanged, bounded-delta honored.', sources: ['.skilled/commands/doctor/scripts/route-validate.sh:1-30', '.skilled/commands/README.txt:46'] },
+  { id: 'f-iter010-phase34', label: 'Phase 3-4: per-route diagnostics in two gated waves, then the guidance surface and documentation refresh, each landing with the same structural gates plus the outcome slice and reach pins.', sources: ['.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:24-70', '.skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md:63-75'] }
+];
+
+const ruledOut = [
+  { type: 'ruled_out', direction: 'Shipping the umbrella before the measurement harness', reason: 'Without the slice, the umbrella admission cannot be distinguished from theft or a tie.', iteration: 10 },
+  { type: 'ruled_out', direction: 'Deferring the harness to the end of the plan', reason: 'The harness is the gate for every other phase.', iteration: 10 }
+];
+
+fs.writeFileSync(L + '/events/iter-010.json', JSON.stringify(record) + '\n');
+const delta = [JSON.stringify(record)]
+  .concat(findings.map((f) => JSON.stringify({ type: 'finding', ...f, iteration: 10 })))
+  .concat(ruledOut.map((r) => JSON.stringify(r)));
+fs.writeFileSync(L + '/deltas/iter-010.jsonl', delta.join('\n') + '\n');
+console.log('wrote event + delta with', findings.length, 'findings');

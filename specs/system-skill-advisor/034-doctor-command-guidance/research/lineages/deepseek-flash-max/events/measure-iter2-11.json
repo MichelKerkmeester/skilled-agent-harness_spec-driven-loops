@@ -1,0 +1,9 @@
+{
+  "index": 11,
+  "prompt": "help me get started with this repo",
+  "exitCode": 0,
+  "signal": null,
+  "durationMs": 385,
+  "stdout": "{\n  \"status\": \"ok\",\n  \"data\": {\n    \"workspaceRoot\": \"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public\",\n    \"effectiveThresholds\": {\n      \"confidenceThreshold\": 0.8,\n      \"uncertaintyThreshold\": 0.35,\n      \"confidenceOnly\": false\n    },\n    \"recommendations\": [\n      {\n        \"skillId\": \"sk-doc\",\n        \"score\": 0.229089,\n        \"confidence\": 0.82,\n        \"uncertainty\": 0.22,\n        \"dominantLane\": \"lexical\",\n        \"status\": \"active\",\n        \"compiledRoute\": {\n          \"hubId\": \"sk-doc\",\n          \"action\": \"defer\",\n          \"selectionKind\": null,\n          \"targets\": [],\n          \"effectivePolicyHash\": \"4117206a0763a629d0f3d5829c948832f475953443e3610d2a0d93f2eefd5126\",\n          \"generation\": 5\n        }\n      }\n    ],\n    \"ambiguous\": false,\n    \"freshness\": \"live\",\n    \"trustState\": {\n      \"state\": \"live\",\n      \"reason\": null,\n      \"generation\": 1033,\n      \"checkedAt\": \"2026-10-15T13:54:13.405Z\",\n      \"lastLiveAt\": \"2026-10-15T13:14:46.644Z\"\n    },\n    \"generatedAt\": \"2026-10-15T13:54:13.444Z\",\n    \"cache\": {\n      \"hit\": false,\n      \"sourceSignaturePresent\": true\n    },\n    \"_shadow\": {\n      \"model\": \"advisor-shadow-learned-weights-v1\",\n      \"liveWeightsFrozen\": true,\n      \"recommendations\": [\n        {\n          \"skillId\": \"sk-doc\",\n          \"liveScore\": 0.229089,\n          \"shadowScore\": 0.206509,\n          \"delta\": -0.02258,\n          \"dominantShadowLane\": \"lexical\"\n        }\n      ]\n    }\n  }\n}\n",
+  "stderr": ""
+}

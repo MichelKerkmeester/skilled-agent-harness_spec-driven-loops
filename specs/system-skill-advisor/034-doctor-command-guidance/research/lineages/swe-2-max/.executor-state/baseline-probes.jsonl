@@ -1,0 +1,17 @@
+{"prompt": "help me set up skilled", "ambiguous": false, "recs": []}
+{"prompt": "is my repo set up right", "ambiguous": false, "recs": []}
+{"prompt": "check my git hooks", "ambiguous": false, "recs": [{"id": "sk-git", "confidence": 0.8316, "score": 0.579682}]}
+{"prompt": "why is this rule not enforced", "ambiguous": false, "recs": []}
+{"prompt": "set up the development environment", "ambiguous": false, "recs": []}
+{"prompt": "check if my environment is healthy", "ambiguous": false, "recs": []}
+{"prompt": "my MCP server is not connecting", "ambiguous": false, "recs": [{"id": "mcp-code-mode", "confidence": 0.893, "score": 0.694004}, {"id": "sk-code", "confidence": 0.8415, "score": 0.598199}, {"id": "cli-classifier", "confidence": 0.82, "score": 0.257366}]}
+{"prompt": "update my skills to latest", "ambiguous": false, "recs": []}
+{"prompt": "the skill advisor keeps recommending the wrong skill", "ambiguous": false, "recs": [{"id": "system-skill-advisor", "confidence": 0.8541, "score": 0.621594}]}
+{"prompt": "verify my speckit setup", "ambiguous": false, "recs": [{"id": "system-spec-kit", "confidence": 0.82, "score": 0.416693}]}
+{"prompt": "install git hooks for this repo", "ambiguous": false, "recs": [{"id": "sk-git", "confidence": 0.82, "score": 0.552902}]}
+{"prompt": "something is wrong with my setup, run diagnostics", "ambiguous": true, "recs": [{"id": "cli-external-orchestration", "confidence": 0.82, "score": 0.102174}, {"id": "mcp-code-mode", "confidence": 0.82, "score": 0.090676}, {"id": "system-skill-advisor", "confidence": 0.82, "score": 0.080564}]}
+{"prompt": "/doctor:git", "ambiguous": false, "recs": [{"id": "sk-git", "confidence": 0.8346, "score": 0.585306}]}
+{"prompt": "doctor git setup", "ambiguous": false, "recs": [{"id": "sk-git", "confidence": 0.8313, "score": 0.579158}]}
+{"prompt": "run the doctor for my repo", "ambiguous": true, "recs": [{"id": "sk-doc", "confidence": 0.82, "score": 0.13577}, {"id": "cli-external-orchestration", "confidence": 0.82, "score": 0.132557}, {"id": "mcp-code-mode", "confidence": 0.82, "score": 0.12675}]}
+{"prompt": "/doctor:env", "ambiguous": false, "recs": []}
+{"prompt": "doctor:skill-advisor", "ambiguous": false, "recs": [{"id": "system-skill-advisor", "confidence": 0.82, "score": 0.54487}]}

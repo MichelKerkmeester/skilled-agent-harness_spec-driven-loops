@@ -1,0 +1,391 @@
+[
+  {
+    "file": "measure-iter6-control-01.json",
+    "prompt": "commit my changes",
+    "exitCode": 0,
+    "recommendations": [
+      {
+        "skillId": "sk-git",
+        "confidence": 0.9406,
+        "score": 0.782602,
+        "lane": "explicit_author",
+        "kind": "skill"
+      }
+    ]
+  },
+  {
+    "file": "measure-iter6-control-02.json",
+    "prompt": "rebase my branch onto main",
+    "exitCode": 0,
+    "recommendations": [
+      {
+        "skillId": "sk-git",
+        "confidence": 0.9499,
+        "score": 0.799885,
+        "lane": "explicit_author",
+        "kind": "skill"
+      }
+    ]
+  },
+  {
+    "file": "measure-iter6-control-03.json",
+    "prompt": "write a readme for the parser module",
+    "exitCode": 0,
+    "recommendations": [
+      {
+        "skillId": "sk-doc",
+        "confidence": 0.95,
+        "score": 0.810086,
+        "lane": "explicit_author",
+        "kind": "skill"
+      },
+      {
+        "skillId": "system-spec-kit",
+        "confidence": 0.82,
+        "score": 0.333464,
+        "lane": "lexical",
+        "kind": "skill"
+      },
+      {
+        "skillId": "mcp-tooling",
+        "confidence": 0.82,
+        "score": 0.218676,
+        "lane": "lexical",
+        "kind": "skill"
+      }
+    ]
+  },
+  {
+    "file": "measure-iter6-control-04.json",
+    "prompt": "create a spec folder for the new feature",
+    "exitCode": 0,
+    "recommendations": [
+      {
+        "skillId": "system-spec-kit",
+        "confidence": 0.95,
+        "score": 0.87462,
+        "lane": "explicit_author",
+        "kind": "skill"
+      },
+      {
+        "skillId": "sk-doc",
+        "confidence": 0.82,
+        "score": 0.366479,
+        "lane": "lexical",
+        "kind": "skill"
+      },
+      {
+        "skillId": "mcp-tooling",
+        "confidence": 0.82,
+        "score": 0.291444,
+        "lane": "lexical",
+        "kind": "skill"
+      }
+    ]
+  },
+  {
+    "file": "measure-iter6-control-05.json",
+    "prompt": "improve my prompt",
+    "exitCode": 0,
+    "recommendations": [
+      {
+        "skillId": "sk-prompt",
+        "confidence": 0.9481,
+        "score": 0.796501,
+        "lane": "explicit_author",
+        "kind": "skill"
+      }
+    ]
+  },
+  {
+    "file": "measure-iter6-control-06.json",
+    "prompt": "debug the failing test",
+    "exitCode": 0,
+    "recommendations": [
+      {
+        "skillId": "sk-code",
+        "confidence": 0.9057,
+        "score": 0.71763,
+        "lane": "explicit_author",
+        "kind": "skill"
+      }
+    ]
+  },
+  {
+    "file": "measure-iter6-control-07.json",
+    "prompt": "run a deep review of this spec",
+    "exitCode": 0,
+    "recommendations": [
+      {
+        "skillId": "system-deep-loop",
+        "confidence": 0.95,
+        "score": 0.820889,
+        "lane": "explicit_author",
+        "kind": "skill"
+      },
+      {
+        "skillId": "sk-code",
+        "confidence": 0.95,
+        "score": 0.822735,
+        "lane": "explicit_author",
+        "kind": "skill"
+      },
+      {
+        "skillId": "cli-external-orchestration",
+        "confidence": 0.82,
+        "score": 0.402911,
+        "lane": "lexical",
+        "kind": "skill"
+      }
+    ]
+  },
+  {
+    "file": "measure-iter6-control-08.json",
+    "prompt": "save context",
+    "exitCode": 0,
+    "recommendations": [
+      {
+        "skillId": "memory:save",
+        "confidence": 0.8962,
+        "score": 0.7,
+        "lane": "explicit_author",
+        "kind": "skill"
+      },
+      {
+        "skillId": "command-memory-save",
+        "confidence": 0.8962,
+        "score": 0.7,
+        "lane": "explicit_author",
+        "kind": "skill"
+      },
+      {
+        "skillId": "system-spec-kit",
+        "confidence": 0.95,
+        "score": 0.841023,
+        "lane": "explicit_author",
+        "kind": "skill"
+      }
+    ]
+  },
+  {
+    "file": "measure-iter6-control-09.json",
+    "prompt": "set up a new git worktree",
+    "exitCode": 0,
+    "recommendations": [
+      {
+        "skillId": "sk-git",
+        "confidence": 0.929,
+        "score": 0.760949,
+        "lane": "explicit_author",
+        "kind": "skill"
+      }
+    ]
+  },
+  {
+    "file": "measure-iter6-control-10.json",
+    "prompt": "update the changelog",
+    "exitCode": 0,
+    "recommendations": [
+      {
+        "skillId": "sk-doc",
+        "confidence": 0.82,
+        "score": 0.135916,
+        "lane": "lexical",
+        "kind": "skill"
+      }
+    ]
+  },
+  {
+    "file": "measure-iter6-doctor-01.json",
+    "prompt": "check my git hooks setup",
+    "exitCode": 0,
+    "recommendations": [
+      {
+        "skillId": "sk-git",
+        "confidence": 0.82,
+        "score": 0.552927,
+        "lane": "explicit_author",
+        "kind": "skill"
+      }
+    ]
+  },
+  {
+    "file": "measure-iter6-doctor-02.json",
+    "prompt": "is my sk-git setup working",
+    "exitCode": 0,
+    "recommendations": [
+      {
+        "skillId": "sk-git",
+        "confidence": 0.887,
+        "score": 0.682743,
+        "lane": "explicit_author",
+        "kind": "skill"
+      }
+    ]
+  },
+  {
+    "file": "measure-iter6-doctor-03.json",
+    "prompt": "which git rules are live",
+    "exitCode": 0,
+    "recommendations": [
+      {
+        "skillId": "sk-git",
+        "confidence": 0.834,
+        "score": 0.584248,
+        "lane": "explicit_author",
+        "kind": "skill"
+      }
+    ]
+  },
+  {
+    "file": "measure-iter6-doctor-04.json",
+    "prompt": "pre-commit gate keeps blocking",
+    "exitCode": 0,
+    "recommendations": [
+      {
+        "skillId": "sk-git",
+        "confidence": 0.8854,
+        "score": 0.679903,
+        "lane": "explicit_author",
+        "kind": "skill"
+      }
+    ]
+  },
+  {
+    "file": "measure-iter6-doctor-05.json",
+    "prompt": "disable comment hygiene gate",
+    "exitCode": 0,
+    "recommendations": []
+  },
+  {
+    "file": "measure-iter6-doctor-06.json",
+    "prompt": "verify my sk-code surface",
+    "exitCode": 0,
+    "recommendations": [
+      {
+        "skillId": "sk-code",
+        "confidence": 0.95,
+        "score": 0.872842,
+        "lane": "explicit_author",
+        "kind": "skill"
+      }
+    ]
+  },
+  {
+    "file": "measure-iter6-doctor-07.json",
+    "prompt": "does my sk-code surface route",
+    "exitCode": 0,
+    "recommendations": [
+      {
+        "skillId": "sk-code",
+        "confidence": 0.95,
+        "score": 0.856488,
+        "lane": "explicit_author",
+        "kind": "skill"
+      }
+    ]
+  },
+  {
+    "file": "measure-iter6-doctor-08.json",
+    "prompt": "skill advisor recommends the wrong skill",
+    "exitCode": 0,
+    "recommendations": [
+      {
+        "skillId": "system-skill-advisor",
+        "confidence": 0.8843,
+        "score": 0.677696,
+        "lane": "explicit_author",
+        "kind": "skill"
+      }
+    ]
+  },
+  {
+    "file": "measure-iter6-doctor-09.json",
+    "prompt": "new skill not appearing in advisor results",
+    "exitCode": 0,
+    "recommendations": [
+      {
+        "skillId": "sk-doc",
+        "confidence": 0.82,
+        "score": 0.526081,
+        "lane": "explicit_author",
+        "kind": "skill"
+      }
+    ]
+  },
+  {
+    "file": "measure-iter6-doctor-10.json",
+    "prompt": "trigger index drift",
+    "exitCode": 0,
+    "recommendations": [
+      {
+        "skillId": "system-spec-kit",
+        "confidence": 0.8862,
+        "score": 0.681318,
+        "lane": "explicit_author",
+        "kind": "skill"
+      },
+      {
+        "skillId": "sk-doc",
+        "confidence": 0.82,
+        "score": 0.248178,
+        "lane": "lexical",
+        "kind": "skill"
+      }
+    ]
+  },
+  {
+    "file": "measure-iter6-doctor-11.json",
+    "prompt": "runtime mirror drift",
+    "exitCode": 0,
+    "recommendations": []
+  },
+  {
+    "file": "measure-iter6-doctor-12.json",
+    "prompt": "Code Mode broken",
+    "exitCode": 0,
+    "recommendations": [
+      {
+        "skillId": "mcp-code-mode",
+        "confidence": 0.8785,
+        "score": 0.666895,
+        "lane": "explicit_author",
+        "kind": "skill"
+      },
+      {
+        "skillId": "sk-code",
+        "confidence": 0.8574,
+        "score": 0.627664,
+        "lane": "explicit_author",
+        "kind": "skill"
+      },
+      {
+        "skillId": "mcp-tooling",
+        "confidence": 0.82,
+        "score": 0.273228,
+        "lane": "lexical",
+        "kind": "skill"
+      }
+    ]
+  },
+  {
+    "file": "measure-iter6-doctor-13.json",
+    "prompt": "skill graph freshness",
+    "exitCode": 0,
+    "recommendations": [
+      {
+        "skillId": "system-skill-advisor",
+        "confidence": 0.82,
+        "score": 0.53877,
+        "lane": "explicit_author",
+        "kind": "skill"
+      }
+    ]
+  },
+  {
+    "file": "measure-iter6-doctor-14.json",
+    "prompt": "skill budget audit",
+    "exitCode": 0,
+    "recommendations": []
+  }
+]
