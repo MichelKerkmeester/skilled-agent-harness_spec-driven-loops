@@ -1,7 +1,7 @@
 ---
 title: "DOC-374 -- Doctor git target menu"
 description: "Manual scenario validating that a missing /doctor:git target shows the startup menu and waits, and that --dry-run renders plans without writing."
-version: 1.0.0.0
+version: 1.0.1.0
 id: doctor-commands-doctor-git-target-menu
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -25,7 +25,7 @@ The run writes no git config value and no repository file, so no disposable copy
 - Prompt: `Run the doctor git command with no target so I can see the menu, then dry-run a hook gate change and show that nothing was written.`
 - Preconditions: A working copy of the repository with the shipped gate registry and no positional token in the first command's arguments. No gate change is saved by the run.
 - Expected execution process: Record the config state, run `/doctor:git` with no arguments, capture the menu, cancel it, run `/doctor:git hooks --dry-run`, capture the plan and the dry-run line, finish with `done`, and compare the config state.
-- Expected signals: The first visible response is the startup menu with `What do you want to change?`, the options `1) Git hook gates`, `2) Commit, PR and branch rules`, `H) Help me decide` and `X) Cancel`, and no gate table, setup dashboard or workflow output appears before an answer. Replying `X` renders `STATUS=CANCELLED ACTION=cancelled`. `/doctor:git hooks --dry-run` renders a `GATE CHANGE PLAN` with the chosen gate, its current state and its exact `Will run` git config command, then the presentation's `Dry run: nothing was written.` line, asks no approval prompt and returns to the change prompt. Replying `done` renders `DOCTOR TARGET CANCELLED` with `Changed: none` and `STATUS=CANCELLED ACTION=cancelled`. `git config --local --get-regexp speckit.hooks` and `git config --global --get-regexp speckit.hooks` return the same output before and after, and `git status --porcelain` is unchanged.
+- Expected signals: The first visible response is the startup menu with `What do you want to change?`, the options `1) Git hook gates`, `2) Commit, PR and branch rules`, `3) Check my sk-git setup`, `H) Help me decide` and `X) Cancel`, and no gate table, setup dashboard or workflow output appears before an answer. Replying `X` renders `STATUS=CANCELLED ACTION=cancelled`. `/doctor:git hooks --dry-run` renders a `GATE CHANGE PLAN` with the chosen gate, its current state and its exact `Will run` git config command, then the presentation's `Dry run: nothing was written.` line, asks no approval prompt and returns to the change prompt. Replying `done` renders `DOCTOR TARGET CANCELLED` with `Changed: none` and `STATUS=CANCELLED ACTION=cancelled`. `git config --local --get-regexp speckit.hooks` and `git config --global --get-regexp speckit.hooks` return the same output before and after, and `git status --porcelain` is unchanged.
 - Desired user-visible outcome: The menu appears and waits for a target, the dry run shows exactly what would change, and nothing is written.
 - Pass/fail: PASS if the missing target shows the menu and waits, the dry run renders the plan plus the dry-run line, no approval is asked in the dry run, and no config value or repository file changes.
 - Classification: Manual scenario. Valid verdicts are `PASS`, `FAIL`, or `SKIP`. Record `SKIP` only when a named environment prerequisite, credential, or command binary is unavailable. A scenario that cannot be run for any other reason is a `FAIL`.

@@ -136,6 +136,11 @@
   },
   {
     "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-git-setup-check.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-git-setup-check.md"
+  },
+  {
+    "workflowMode": "sk-git",
     "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule.md",
     "diskPath": "manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule.md"
   },

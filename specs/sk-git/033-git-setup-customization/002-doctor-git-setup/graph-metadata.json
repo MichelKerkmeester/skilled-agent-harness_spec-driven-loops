@@ -33,22 +33,26 @@
       "twelve"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      ".skilled/commands/doctor/sk-code.md",
+      ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+      ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
       ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/scripts/route-validate.py",
+      ".skilled/skills/sk-git/README.md",
+      ".skilled/commands/doctor/sk-code.md",
       ".skilled/commands/doctor/git.md",
       ".skilled/commands/doctor/assets/doctor-git-presentation.txt",
       ".skilled/commands/doctor/scripts/README.md",
       ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
       ".skilled/commands/README.txt",
       "feature-catalog/doctor-commands/category-overview.md",
-      ".skilled/skills/sk-git/README.md",
       "scripts/README.md"
     ],
     "entities": [
@@ -83,15 +87,45 @@
         "source": "derived"
       },
       {
-        "name": "sk-code.md",
-        "kind": "doc",
-        "path": ".skilled/commands/doctor/sk-code.md",
+        "name": "git-setup-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-git-setup.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
         "source": "derived"
       },
       {
         "name": "_routes.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "route-validate.py",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/route-validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/sk-code.md",
         "source": "derived"
       },
       {
@@ -104,12 +138,6 @@
         "name": "doctor-git-presentation.txt",
         "kind": "file",
         "path": ".skilled/commands/doctor/assets/doctor-git-presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/commands/doctor/scripts/README.md",
         "source": "derived"
       },
       {
@@ -171,35 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Check Sources",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "sk-git has twelve surfaces a repository can change, and several of them fail open",
     "created_at": "2026-10-15T06:52:15Z",
-    "last_save_at": "2026-10-15T06:56:35.698Z",
+    "last_save_at": "2026-10-15T08:10:12.055Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +213,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8a681f93b996a947e9437c594fce1fcea90b784bc32f1087a4001cc4bfd86fa3",
+    "source_fingerprint": "sha256:c3bb9f4153a7d192e60cf8515a2d2246777d940265170869092503e5f4e89381",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "95948d532221e026aeff11311ef8916d57973c7b417a9a2c9054b3b272d1b3f1",
+      "spec.md": "4f6a6f74868ae4575f0d61e38bac84c33714a50cb220fb07c52b07edfa00b2d8",
       "plan.md": "0e715f73eee2dd669dccc4a3ac5c92131c37a0e3a5ef14e242aa057ef1bd4496",
-      "tasks.md": "ac75c312e42a169cfdabcbf6c96c0e051fbe9e8be9fb84ab6c2a82b40cd06961",
-      "implementation-summary.md": "9f81d07e6d7e80c052217b58f055e156187afceb7210756023997ab644433af1"
+      "tasks.md": "131673cc47c7c7c56df3607741c78b8eb81b9f9614be1589ebb81d47846732c7",
+      "implementation-summary.md": "1f9a7f65ed3a92a3a7a42d10db7a74f394a4c1f125593efc6692ee774dacff90"
     },
     "last_active_at": null
   }

@@ -36,6 +36,7 @@ Current state:
 | `parent-skill-check-root-router.test.cjs` | `parent-skill-check.cjs` root-router checks |
 | `git-hook-gates.test.cjs` | `git-hook-gates.cjs` against throwaway repositories with an isolated global config, and the hook helper reading what it writes |
 | `git-standards.test.cjs` | `git-standards.cjs` against throwaway repositories, each change checked with sk-git's `validate-message.mjs` |
+| `git-setup-check.test.cjs` | `git-setup-check.cjs` against throwaway repositories with an isolated global config: the passing battery, each failing check with its repair, the usage errors, a no-write proof over the tree and git config, and an untrusted clone whose planted helpers must never run |
 | `release-update.test.cjs` | `release-update.cjs`, every subcommand against throwaway git repositories |
 | `doctor-update-contract.test.cjs` | Checks the `/doctor:update` router, workflows, presentation and command contract against each other and the engine |
 | `doctor-update-compat.test.cjs` | Checks the read-only compatibility phase of `/doctor:update check` (layout states and era signal fields, with neither command writing) and the compat action: its YAML and router as contracts, the planned steps against classic, partial, interrupted and colliding fixtures, the dirty-root refusal, the failed-step contract in `on_step_failure`, the failed-packet parsing and the release gate |

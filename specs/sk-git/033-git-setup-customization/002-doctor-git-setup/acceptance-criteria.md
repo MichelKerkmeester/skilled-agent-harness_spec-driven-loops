@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** sk-git/033-git-setup-customization/002-doctor-git-setup
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-10-15
 <!-- /ANCHOR:metadata -->
 
@@ -51,17 +51,17 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the new route row, When `route-validate.sh` runs, Then it passes and lists `setup` under `/doctor:git` as read-only | `route-validate.sh` output | Unmet | - |
-| AC-002 | REQ-002 | Given a fixture repository, When the battery runs, Then it prints eleven result rows, a repair line for each FAIL and a final `STATUS=` line, and exits 0 when all pass and 1 when one fails | `git-setup-check.test.cjs` | Unmet | - |
-| AC-003 | REQ-002 | Given no git repository, When the battery runs, Then it exits 2 with a usage message | `git-setup-check.test.cjs` | Unmet | - |
-| AC-004 | REQ-003 | Given a fixture repository, When the battery runs, Then its file tree, `git config --list` and git directory are unchanged | No-write test in `git-setup-check.test.cjs` | Unmet | - |
-| AC-005 | REQ-004 | Given an untrusted fixture clone with a planted helper under its own `.skilled/`, When the battery runs, Then the planted helper never runs and the trust check reports SKIP | Planted-helper test | Unmet | - |
-| AC-006 | REQ-005 | Given no contract, an enforced contract and a malformed rules block, When the standards check runs, Then it reports not enforced, PASS and FAIL in turn | Standards fixtures | Unmet | - |
-| AC-007 | REQ-006 | Given a run from one AI tool, When the advisory hook check runs, Then it reports that tool's registration and SKIP with file paths for the others | Advisory fixture | Unmet | - |
-| AC-008 | REQ-007 | Given `--json`, When the battery runs, Then it prints one parseable object with id, result, source, details and repair per check | JSON test | Unmet | - |
-| AC-009 | REQ-008 | Given a `hard-rules.json` rule naming an unknown check, When the advisory rules check runs, Then it fails and names the rule | Advisory rules fixture | Unmet | - |
-| AC-010 | REQ-009 | Given every target list in scope, When searched for `/doctor:git` targets, Then each names `setup`, and the playbook holds one setup scenario | `rg` over the scoped files | Unmet | - |
-| AC-011 | REQ-010 | Given the root README, When a reader reaches the adaptation guide, Then an sk-git section points to `/doctor:git setup` as the proof step | `README.md` section | Unmet | - |
+| AC-001 | REQ-001 | Given the new route row, When `route-validate.sh` runs, Then it passes and lists `setup` under `/doctor:git` as read-only | `route-validate.sh` output. Observed: route-validate.sh exit 0, C1 PASS (`.skilled/commands/doctor/_routes.yaml:276`) | Met | - |
+| AC-002 | REQ-002 | Given a fixture repository, When the battery runs, Then it prints eleven result rows, a repair line for each FAIL and a final `STATUS=` line, and exits 0 when all pass and 1 when one fails | `git-setup-check.test.cjs`. Observed: tests 1 and 2 plus the failing-check tests (`.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:157`) | Met | - |
+| AC-003 | REQ-002 | Given no git repository, When the battery runs, Then it exits 2 with a usage message | `git-setup-check.test.cjs`. Observed: usage-error test (`.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:179`) | Met | - |
+| AC-004 | REQ-003 | Given a fixture repository, When the battery runs, Then its file tree, `git config --list` and git directory are unchanged | No-write test in `git-setup-check.test.cjs`. Observed: no-write test (`.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:197`) | Met | - |
+| AC-005 | REQ-004 | Given an untrusted fixture clone with a planted helper under its own `.skilled/`, When the battery runs, Then the planted helper never runs and the trust check reports SKIP | Planted-helper test. Observed: untrusted-clone test, and trust SKIP on a fresh repository (`.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:216`) | Met | - |
+| AC-006 | REQ-005 | Given no contract, an enforced contract and a malformed rules block, When the standards check runs, Then it reports not enforced, PASS and FAIL in turn | Standards fixtures. Observed: standards tests: not enforced, enforced PASS, malformed FAIL (`.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:272`) | Met | - |
+| AC-007 | REQ-006 | Given a run from one AI tool, When the advisory hook check runs, Then it reports that tool's registration and SKIP with file paths for the others | Advisory fixture. Observed: ai-tool-hooks test (`.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:327`) | Met | - |
+| AC-008 | REQ-007 | Given `--json`, When the battery runs, Then it prints one parseable object with id, result, source, details and repair per check | JSON test. Observed: --json test (`.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:130`) | Met | - |
+| AC-009 | REQ-008 | Given a `hard-rules.json` rule naming an unknown check, When the advisory rules check runs, Then it fails and names the rule | Advisory rules fixture. Observed: advisory-rules test (`.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:296`) | Met | - |
+| AC-010 | REQ-009 | Given every target list in scope, When searched for `/doctor:git` targets, Then each names `setup`, and the playbook holds one setup scenario | `rg` over the scoped files. Observed: diffs of the scoped lists and DOC-384 (`.skilled/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md:163`) | Met | - |
+| AC-011 | REQ-010 | Given the root README, When a reader reaches the adaptation guide, Then an sk-git section points to `/doctor:git setup` as the proof step | `README.md` section. Observed: README section "What Adapting `sk-git` Looks Like" (`README.md:1494`) | Met | - |
 
 ### Status values
 
@@ -86,8 +86,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+All eleven criteria are Met, with the battery tests, route validation and the doc diffs as evidence. The per-repository overlay for `hard-rules.json` was left out, as the spec scoped it.
 <!-- /ANCHOR:closure -->

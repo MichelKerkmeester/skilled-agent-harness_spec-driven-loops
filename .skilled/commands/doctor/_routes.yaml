@@ -272,6 +272,22 @@ routes:
       - "stop checking pr descriptions"
       - "customize sk-git standards"
 
+  - command: /doctor:git
+    target: setup
+    yaml: doctor-git-setup.yaml
+    setup_vars: [execution_mode, tool]
+    allowed_flags: ["--tool=<claude|codex|devin|cursor|opencode|pi>"]
+    mutating: read-only
+    gate3_location: "n/a (read-only setup battery; inspects each sk-git surface in its check-only form and prints repair commands, writes nothing)"
+    mcp_tools: []   # script-only battery; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/git-setup-check.cjs  # the workflow adds --tool=<name> for the AI tool running it'
+    trigger_phrases:
+      - "sk-git setup check"
+      - "is my sk-git setup working"
+      - "which git rules are live"
+      - "check my git hooks setup"
+
 # ─────────────────────────────────────────────────────────────────
 # COMPANION COMMAND ROUTES (/doctor:mcp sub-actions)
 # ─────────────────────────────────────────────────────────────────

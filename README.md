@@ -1491,6 +1491,19 @@ node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<a prompt about you
 The other shipped skills keep working unchanged: `sk-doc` still validates your markdown, `sk-git` still manages your branches, `system-spec-kit` still specs your work. `sk-code`'s `code-review` mode auto-adapts to your customized surfaces at review time.
 
 &nbsp;
+#### What Adapting `sk-git` Looks Like
+
+`sk-git` reads most of its settings from the repository, so you adapt it with git config and a `.sk-git/` folder rather than by editing the skill. Run every command from the repository root.
+
+- **Commit, PR and branch rules.** Run `/doctor:git standards` to copy the shipped templates into `.sk-git/` and change a rule there. `git config skgit.contractDir <dir>` points at another folder.
+- **Hook gates.** Run `/doctor:git hooks` to switch an optional pre-commit or pre-push check on or off. It saves `speckit.hooks.<key>` in local or global git config.
+- **Hook trust and install.** In a clone, run `git config --local skilled.trustRepoHooks true`, then `bash .skilled/scripts/install-git-hooks.sh`. Without trust the clone's own gates do not run.
+- **Worktrees and Commit-Id.** `git config speckit.worktreeBase <dir>` moves the worktree folder. `git config --local skilled.commitId true` or `false` decides whether commits carry an id.
+- **Shared files.** The remote branch allowlist, the worktree provision list and `hard-rules.json` live inside `.skilled/skills/sk-git/`, so a change there applies to every repository that shares the install.
+
+**Verify.** Run `/doctor:git setup`, or outside an AI runtime `node .skilled/commands/doctor/scripts/git-setup-check.cjs`. It checks eleven settings in one read-only pass, prints PASS, FAIL, SKIP or UNKNOWN for each with the source it read and one repair command for each failure, and exits 0 when nothing fails.
+
+&nbsp;
 ### Core Configuration Files
 
 - **`AGENTS.md`** - gate definitions, behavior rules, agent routing and capability reference. The canonical contract for all runtimes. Claude Code reads it directly, so the repository ships no `CLAUDE.md`, and Codex loads it as project instructions, so `.codex/` carries no copy either

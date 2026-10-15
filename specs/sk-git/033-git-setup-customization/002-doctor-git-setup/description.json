@@ -6,15 +6,17 @@
     "phase",
     "doctor-git-setup"
   ],
-  "lastUpdated": "2026-10-15T06:56:35.698Z",
+  "lastUpdated": "2026-10-15T08:10:12.055Z",
   "specId": "002",
   "folderSlug": "doctor-git-setup",
   "parentChain": [
     "sk-git",
     "033-git-setup-customization"
   ],
-  "memorySequence": 1,
+  "memorySequence": 3,
   "memoryNameHistory": [
-    "15-10-26_07-56__battery-resolves-helpers-from-its-own-root-and.md"
+    "15-10-26_07-56__battery-resolves-helpers-from-its-own-root-and.md",
+    "15-10-26_09-05__git-setup-check-test-cjs-passes-11-of-11-and-each.md",
+    "15-10-26_09-10__scratch-contract-removed-with-operator-approval.md"
   ]
 }

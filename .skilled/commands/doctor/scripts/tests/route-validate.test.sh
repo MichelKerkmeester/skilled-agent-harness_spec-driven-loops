@@ -137,6 +137,11 @@ PY
 run_rv ROUTES_FILE="$WORK/dupe.yaml" -- "$SCRIPT"
 check "a duplicated route is caught as C1 drift" '[[ "$RC" -eq 1 && "$OUT" == *"FAIL: C1:"* ]]'
 
+# 'setup' is a target of both /doctor:sk-code and /doctor:git; a separate router
+# per command makes that legal, so the real manifest must pass C1.
+run_rv -- "$SCRIPT"
+check "the real manifest passes C1 when a target repeats across commands" '[[ "$RC" -eq 0 && "$OUT" == *"PASS: C1:"* ]]'
+
 # ───────────────────────────────────────────────────────────────
 # 4. SELF-TEST CATCHES A SILENCED RULE
 # ───────────────────────────────────────────────────────────────

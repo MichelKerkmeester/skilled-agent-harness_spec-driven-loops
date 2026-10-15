@@ -29,6 +29,7 @@
         "manual-testing-playbook/doctor-commands/README.md",
         "manual-testing-playbook/doctor-commands/doctor-git-hooks-list.md",
         "manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md",
+        "manual-testing-playbook/doctor-commands/doctor-git-setup-check.md",
         "manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule.md",
         "manual-testing-playbook/doctor-commands/doctor-git-standards-copy-once.md",
         "manual-testing-playbook/doctor-commands/doctor-git-standards-refuse-invalid.md",

@@ -11,6 +11,7 @@ What do you want to change?
 
    1) Git hook gates                     (switch a shipped pre-commit or pre-push check on or off)
    2) Commit, PR and branch rules        (the message and naming standards sk-git enforces)
+   3) Check my sk-git setup              (read-only: which hooks, rules and settings are live)
    H) Help me decide
    X) Cancel
 ```
@@ -21,6 +22,7 @@ Accepted answers:
 |--------|--------|
 | `1` | target = `hooks` |
 | `2` | target = `standards` |
+| `3` | target = `setup` |
 | `H` | Show the help block, then ask the startup prompt again |
 | `X`, empty, `cancel` | `STATUS=CANCELLED ACTION=cancelled` |
 
@@ -37,20 +39,22 @@ Pick by symptom:
    Our team's commit subjects may be longer, or use new types -> 2  Rules
    We do not want the Spec: trailer checked                   -> 2  Rules
    PR descriptions should not be checked at all               -> 2  Rules
+   I changed sk-git settings and want to see what is live     -> 3  Setup check
 
 Quick reference:
    Hook gates (1) are saved in git config and switch one check on or off
    Rules (2) live in .sk-git/ templates and change what a commit message, PR or branch must look like
    The commit-msg hook has no off switch: change or remove its rules with 2
+   Setup (3) only reads and reports, and names the repair for each failure
 
-Press 1, 2, H, or X.
+Press 1, 2, 3, H, or X.
 ```
 
 ### Unknown Target Failure
 
 ```text
 Unknown target: [target]
-Valid targets: hooks, standards
+Valid targets: hooks, standards, setup
 Try: /doctor:git list
 STATUS=FAIL ERROR="unknown_target"
 ```
@@ -72,6 +76,7 @@ Render this table for `list`, `?`, or `--list`. Values should mirror `_routes.ya
 |--------|----------|----------------|------------------|
 | `hooks` | `doctor-git-hooks.yaml` | mutates | List the shipped hook gates with their saved settings and switch one on or off in local or global git config |
 | `standards` | `doctor-git-standards.yaml` | mutates | Show the enforced commit, PR and branch rules and change them in the repository's own `.sk-git/` copies |
+| `setup` | `doctor-git-setup.yaml` | read-only | Run every sk-git check in its read-only form and name the repair for each failure |
 
 ### Setup Dashboard
 
@@ -231,6 +236,24 @@ Changed: [changes applied before the failure, or none]
 Next: [recommended command or manual action]
 STATUS=FAIL ERROR="[message]"
 ```
+
+### Setup Check Result
+
+Render one row per check the battery ran, in the battery's order.
+
+```text
+| Check | Result | Source | Repair |
+|-------|--------|--------|--------|
+| [check] | [PASS|FAIL|SKIP|UNKNOWN] | [source line] | [the repair command the battery printed, or none] |
+
+DOCTOR DIAGNOSTIC RESULT
+Target: setup
+Failed: [n]  Skipped: [n]  Unknown: [n]
+Changed: none
+STATUS=OK
+```
+
+When the battery exits 1, close the block with `STATUS=FAIL` and list each failing check with the repair command its `repair:` line printed.
 
 ## 4. NEXT-STEP SUGGESTIONS
 

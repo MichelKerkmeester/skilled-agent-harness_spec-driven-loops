@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-15 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -90,6 +90,7 @@ A user runs `/doctor:git setup` and gets one row per surface with its source, a 
 | `.skilled/commands/doctor/_routes.yaml` | Modify | The `setup` route row and the header list |
 | `.skilled/commands/doctor/git.md` | Modify | Argument hint, target tables and workflow summary |
 | `.skilled/commands/doctor/assets/doctor-git-presentation.txt` | Modify | Menu, help, valid targets and setup result templates |
+| `.skilled/commands/doctor/scripts/route-validate.py`, `scripts/tests/route-validate.test.sh` | Modify | Scope the C1 duplicate-target check to one command, since `setup` is also a `/doctor:sk-code` target. Added with operator approval on 2026-10-15 |
 | `.skilled/commands/doctor/scripts/README.md`, `scripts/tests/README.md` | Modify | Script and test rows |
 | `.skilled/skills/sk-doc/sk-create-command/assets/command-contract.json` | Modify | `/doctor:git setup` alias |
 | `.skilled/commands/README.txt`, spec-kit `feature-catalog/doctor-commands/category-overview.md` | Modify | Command table rows |

@@ -13,7 +13,7 @@ Validates `.skilled/commands/doctor/_routes.yaml` against:
   A. YAML parse + schema_version
   B. Routes list integrity + required keys per route; each route's command names
      an existing doctor router
-  C. No duplicate target names
+  C. No duplicate target names within one command
   D. Every route's YAML asset exists in assets/
   E. Mutation class is one of {read-only, add-only, mutates}
   F. Each route's mcp_tools is a subset of its router's frontmatter allowed-tools
@@ -397,7 +397,7 @@ def check_required_keys(routes: Sequence[Any], result: Result) -> None:
 # ───────────────────────────────────────────────────────────────
 
 def check_duplicate_targets(targets: Sequence[Any], result: Result) -> None:
-    """C1: no target name appears twice."""
+    """C1: no target name appears twice within one command."""
     seen = set()
     dupes = set()
     for t in targets:
@@ -405,9 +405,10 @@ def check_duplicate_targets(targets: Sequence[Any], result: Result) -> None:
             dupes.add(t)
         seen.add(t)
     if dupes:
-        result.fail(f"C1: duplicate target names: {', '.join(sorted(dupes))}")
+        labels = sorted(f"{command} {target}" for command, target in dupes)
+        result.fail(f"C1: duplicate target names: {', '.join(labels)}")
     else:
-        result.passed("C1: no duplicate target names")
+        result.passed("C1: no duplicate target names within a command")
 
 
 def check_yaml_assets(routes: Sequence[Dict[str, Any]], assets_dir: Path, result: Result) -> None:
@@ -683,7 +684,9 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     check_required_keys(routes, result)
 
     route_maps = [route for route in routes if isinstance(route, dict)]
-    targets = [route.get("target") for route in route_maps]
+    # A target name may recur across commands because each command has its own
+    # router; C1 only flags a repeat within one command.
+    targets = [(command_name(route), route.get("target")) for route in route_maps]
     check_commands(route_maps, doctor_dir, result)
     check_duplicate_targets(targets, result)
     check_yaml_assets(route_maps, assets_dir, result)

@@ -1,7 +1,7 @@
 ---
 title: "sk-git: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the sk-git skill."
-version: 1.5.0.0
+version: 1.5.1.0
 ---
 
 # sk-git: Manual Testing Playbook
@@ -160,7 +160,7 @@ This section records wave planning and capacity guidance for running the full sc
 | 4 | Cross-CLI | GIT-020..GIT-022 | Advisory handback validation after policy baseline is trusted |
 | 5 | Numbered Worktree Tooling | GIT-023..GIT-043 | Hermetic fixture repos per script; run after the core lifecycle baseline is trusted, since the allocator/session/reaper/pre-push scripts sit underneath every other worktree scenario |
 | 6 | Git Preflight Advisory | GIT-042 | Disposable repository with tracked and untracked files; verify advisory, ordinary-commit silence and suppression |
-| 7 | Doctor Commands | DOC-369..DOC-374 | Disposable repository, because the hooks target writes git config and the standards target writes `.sk-git/` |
+| 7 | Doctor Commands | DOC-369..DOC-374, DOC-384 | Disposable repository, because the hooks target writes git config and the standards target writes `.sk-git/` |
 
 ---
 
@@ -834,9 +834,9 @@ Prompt: `As a git safety reviewer, run the sk-git preflight advisory against a d
 
 ---
 
-## 15. DOCTOR COMMANDS (`DOC-369..DOC-374`)
+## 15. DOCTOR COMMANDS (`DOC-369..DOC-374, DOC-384`)
 
-This category covers 6 scenarios for `/doctor:git`. Run every one in a disposable repository, because `hooks` writes git config and `standards` writes `.sk-git/`. Category notes: [doctor-commands/README.md](doctor-commands/README.md). The linked per-feature files remain the canonical execution contract.
+This category covers 7 scenarios for `/doctor:git`. Run every one in a disposable repository, because `hooks` writes git config and `standards` writes `.sk-git/`. Category notes: [doctor-commands/README.md](doctor-commands/README.md). The linked per-feature files remain the canonical execution contract.
 
 ### DOC-369 | Doctor git hooks list
 
@@ -934,6 +934,22 @@ Expected signals: The first visible response is the startup menu with `What do y
 
 > **Feature File:** [DOC-374](doctor-commands/doctor-git-target-menu.md)
 
+### DOC-384 | Doctor git setup check
+
+#### Description
+
+Prove the read-only setup battery reports all eleven checks with a result and source each, in the documented order, and writes nothing.
+
+#### Scenario Contract
+
+Prompt: `Check my sk-git setup and tell me which hooks, rules and settings are live.`
+
+Expected signals: The rendered table has one row per check in the order install, hooks, trust, gates, standards, allowlist, worktrees, commit-id, advisory-rules, suppression and ai-tool-hooks, each with a result of PASS, FAIL, SKIP or UNKNOWN and the source it read. On this repository's own checkout every row reads PASS and the case ends `STATUS=OK checks=11`. The result block reads `Target: setup` and `Changed: none`.
+
+#### Test Execution
+
+> **Feature File:** [DOC-384](doctor-commands/doctor-git-setup-check.md)
+
 ---
 
 ## 16. AUTOMATED TEST CROSS-REFERENCE
@@ -1005,3 +1021,4 @@ The `sk-doc` package validator (`validate-playbook-package.cjs`) is the structur
 | Doctor Commands | DOC-372 | `doctor-commands/doctor-git-standards-change-rule.md` | No |
 | Doctor Commands | DOC-373 | `doctor-commands/doctor-git-standards-refuse-invalid.md` | No |
 | Doctor Commands | DOC-374 | `doctor-commands/doctor-git-target-menu.md` | No |
+| Doctor Commands | DOC-384 | `doctor-commands/doctor-git-setup-check.md` | Yes |

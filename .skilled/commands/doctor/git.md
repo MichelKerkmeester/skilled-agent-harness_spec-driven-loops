@@ -1,13 +1,13 @@
 ---
-description: "Switch shipped git hook gates on or off, and change the commit, PR and branch rules in .sk-git/."
-argument-hint: "<hooks|standards> [--dry-run] | list | ?"
+description: "Switch shipped git hook gates on or off, change the commit, PR and branch rules in .sk-git/ and check which sk-git settings are live."
+argument-hint: "<hooks|standards|setup> [--dry-run] [--tool=<name>] | list | ?"
 allowed-tools: Read, Bash, Edit
 ---
 <!-- skill_agent: sk-git -->
 
 # /doctor:git Router
 
-Thin router for the git hook gate settings and the repository's sk-git rules. It resolves the target and setup values from `_routes.yaml`, loads the presentation contract, then executes the target's workflow YAML.
+Thin router for the git hook gate settings, the repository's sk-git rules, and a read-only setup check. It resolves the target and setup values from `_routes.yaml`, loads the presentation contract, then executes the target's workflow YAML.
 
 ### MANDATORY INPUT GATE
 
@@ -52,10 +52,12 @@ Load the presentation contract before showing the startup menu, a dashboard, a c
 |--------|----------|
 | `hooks` | `.skilled/commands/doctor/assets/doctor-git-hooks.yaml` |
 | `standards` | `.skilled/commands/doctor/assets/doctor-git-standards.yaml` |
+| `setup` | `.skilled/commands/doctor/assets/doctor-git-setup.yaml` |
 
 | Argument | Applies to | Effect |
 |----------|------------|--------|
 | `--dry-run` | `hooks`, `standards` | Show every plan and stop before any write |
+| `--tool=<name>` | `setup` | Name the AI tool running the check: claude, codex, devin, cursor, opencode or pi |
 | `list`, `?`, `--list` | the command | Render the route manifest; load no workflow |
 | `--target=<name>` | the command | Compatibility alias for the positional target |
 
@@ -84,4 +86,5 @@ The following content lives only in `.skilled/commands/doctor/assets/doctor-git-
 1. Bind the target through the input gate, then resolve its route from `_routes.yaml`.
 2. `hooks` runs `doctor-git-hooks.yaml`: list the gates and their saved settings, then switch one in local or global git config per approved change.
 3. `standards` runs `doctor-git-standards.yaml`: show the active rules, copy the shipped sk-git templates into `.sk-git/` once, then change those copies per approved change.
-4. Render the result and next step from the presentation contract.
+4. `setup` runs `doctor-git-setup.yaml`: one read-only pass over every sk-git check, a result per check, and a repair command for each failure, with nothing written.
+5. Render the result and next step from the presentation contract.
