@@ -113,6 +113,7 @@ describe('Pi prompt advisor bridge', () => {
     vi.doMock('../../dist/hooks/claude/user-prompt-submit.js', () => ({
       handleClaudeUserPromptSubmit,
       renderAdvisorFallbackDirective: () => 'Directives:\n- stub',
+      SETUP_WORDING: /\bset\s?up\b/i,
     }));
 
     const handler = registeredInputHandler();
@@ -138,6 +139,39 @@ describe('Pi prompt advisor bridge', () => {
     );
   });
 
+  it('passes setup wording through to the timed-out fallback directive', async () => {
+    process.env.SPECKIT_CLAUDE_HOOK_TIMEOUT_MS = '50';
+    const handleClaudeUserPromptSubmit = vi.fn(() => new Promise<never>(() => {}));
+    const renderAdvisorFallbackDirective = vi.fn(() => 'Directives:\n- stub');
+    vi.doMock('../../dist/hooks/claude/user-prompt-submit.js', () => ({
+      handleClaudeUserPromptSubmit,
+      renderAdvisorFallbackDirective,
+      SETUP_WORDING: /\bset\s?up\b/i,
+    }));
+
+    const handler = registeredInputHandler();
+    let guard: ReturnType<typeof setTimeout> | undefined;
+    await Promise.race([
+      handler({ text: 'help me set up the repo' }, { cwd: process.cwd() }),
+      new Promise<never>((_resolve, reject) => {
+        guard = setTimeout(() => reject(new Error('input handler exceeded 1,000 ms')), 1_000);
+      }),
+    ]).finally(() => {
+      if (guard) clearTimeout(guard);
+    });
+    await Promise.race([
+      handler({ text: 'explain photosynthesis' }, { cwd: process.cwd() }),
+      new Promise<never>((_resolve, reject) => {
+        guard = setTimeout(() => reject(new Error('input handler exceeded 1,000 ms')), 1_000);
+      }),
+    ]).finally(() => {
+      if (guard) clearTimeout(guard);
+    });
+
+    expect(renderAdvisorFallbackDirective).toHaveBeenNthCalledWith(1, { setupWording: true });
+    expect(renderAdvisorFallbackDirective).toHaveBeenNthCalledWith(2, { setupWording: false });
+  });
+
   it('keeps the live advisor brief when the timeout env parses non-positive', async () => {
     process.env.SPECKIT_CLAUDE_HOOK_TIMEOUT_MS = '-100';
     const handleClaudeUserPromptSubmit = vi.fn(
@@ -155,6 +189,7 @@ describe('Pi prompt advisor bridge', () => {
     vi.doMock('../../dist/hooks/claude/user-prompt-submit.js', () => ({
       handleClaudeUserPromptSubmit,
       renderAdvisorFallbackDirective: () => 'Directives:\n- stub',
+      SETUP_WORDING: /\bset\s?up\b/i,
     }));
 
     const handler = registeredInputHandler();

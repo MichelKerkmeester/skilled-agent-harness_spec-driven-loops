@@ -541,7 +541,7 @@ export function renderAdvisorFallbackDirective(
 ): string {
   const classification = advisorFallbackCase(result);
   const head = classification.fallbackCase === 'outage'
-    ? `Advisor: outage (${classification.outageLabel}); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json`
+    ? `Advisor: outage (${classification.outageLabel});${options.setupWording === true ? ' for setup or health checks, run /doctor:setup;' : ''} route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json`
     : classification.fallbackCase === 'skipped'
       ? 'Advisor: prompt skipped.'
       : options.setupWording === true

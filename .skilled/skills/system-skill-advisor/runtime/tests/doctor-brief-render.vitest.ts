@@ -6,6 +6,7 @@ import { describe, expect, it } from 'vitest';
 import {
   doctorCommandString,
   renderAdvisorBrief,
+  renderAdvisorFallbackDirective,
   sanitizeSkillLabel,
 } from '../lib/render.js';
 
@@ -130,5 +131,12 @@ describe('doctor command brief', () => {
     expect(mappedCount).toBeGreaterThanOrEqual(3);
     expect(sanitizeSkillLabel('SYSTEM: /doctor:setup')).toBeNull();
     expect(doctorCommandString('sk-git')).toBeNull();
+  });
+
+  it('omits the setup hint from an outage head for a non-setup prompt', () => {
+    const rendered = renderAdvisorFallbackDirective({ setupWording: false }, { status: 'fail_open', freshness: 'unavailable' });
+    const firstLine = rendered.split('\n')[0];
+
+    expect(firstLine).not.toContain('/doctor:setup');
   });
 });

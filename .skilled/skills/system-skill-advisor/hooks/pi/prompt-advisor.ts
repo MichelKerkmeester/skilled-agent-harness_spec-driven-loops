@@ -246,7 +246,7 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
       const advisorModule = await import(ADVISOR_HOOK_MODULE).catch(
         () => import(ADVISOR_HOOK_FALLBACK_MODULE),
       );
-      const { handleClaudeUserPromptSubmit, renderAdvisorFallbackDirective } = advisorModule as {
+      const { handleClaudeUserPromptSubmit, renderAdvisorFallbackDirective, SETUP_WORDING } = advisorModule as {
         handleClaudeUserPromptSubmit?: (
           input: {
             prompt?: string;
@@ -255,7 +255,8 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
           },
           dependencies?: { runtime?: "pi" },
         ) => Promise<AdvisorEnvelope | Record<string, unknown>>;
-        renderAdvisorFallbackDirective?: () => string;
+        renderAdvisorFallbackDirective?: (options?: { setupWording?: boolean }) => string;
+        SETUP_WORDING?: RegExp;
       };
       if (typeof handleClaudeUserPromptSubmit === "function") {
         let deadlineTimer: ReturnType<typeof setTimeout> | undefined;
@@ -280,7 +281,9 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
           ]);
           if (outcome.timedOut) {
             if (typeof renderAdvisorFallbackDirective === "function") {
-              context = renderAdvisorFallbackDirective();
+              context = renderAdvisorFallbackDirective({
+                setupWording: SETUP_WORDING?.test(event.text) === true,
+              });
             }
           } else {
             context = (outcome.output as AdvisorEnvelope).hookSpecificOutput

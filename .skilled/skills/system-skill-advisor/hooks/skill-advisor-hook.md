@@ -9,7 +9,7 @@ trigger_phrases:
   - "advisor hook smoke tests"
 importance_tier: important
 contextType: implementation
-version: 3.6.0.31
+version: 3.6.1.0
 ---
 
 # Skill Advisor Hook Reference
@@ -36,7 +36,7 @@ On each user-prompt event the adapter:
 2. **Read the prompt + workspace.** Resolves the workspace root (install-anchored walk, not CWD-relative, so the hook stays correct off-root), reads the prompt text (bounded), and resolves the session id.
 3. **Prompt gate.** `skippedAdvisorResultFor` uses `shouldFireAdvisor` to decline skip commands, short acknowledgements and prompts below its length threshold. A declined prompt returns a skipped result and does not spawn the CLI.
 4. **CLI front door.** The hook calls `buildSkillAdvisorBriefFromCli`, which runs `skill-advisor.cjs advisor_recommend --json - --no-warm-only` within the `SPECKIT_CLAUDE_HOOK_TIMEOUT_MS` budget (2,500 ms by default). It writes the request to the CLI's stdin, so the prompt never appears in the process table. The request carries at most the prompt's first 10,000 characters, the most `advisor_recommend` accepts, so a longer prompt is routed on its head instead of failing open. The Claude shim sets the child budget to 2,200 ms when the operator has not set the variable. An operator value above about 2,200 ms lets the shim kill the hook at 2,500 ms first, so the turn gets `{}`. The CLI owns the warm-daemon probe, starts the daemon when the socket is cold and falls back to the local Python scorer with a `degraded` result. The request carries `includeCompiledRoute: false`, so the daemon skips compiled-route enrichment and starts no `compiled-route.cjs` child. A daemon still running an older build rejects that option with JSON-RPC `-32602` and the CLI retries once without it.
-5. **Render.** `renderAdvisorBrief` produces the model-visible `Advisor:` text. When there is no brief, the handler emits `renderAdvisorFallbackDirective`: one status line, then the directives block. The line reads `Advisor: outage (<status>)` with the command to route by hand when the advisor failed or timed out, `Advisor: no skill matched.` when it answered with nothing above threshold, and `Advisor: prompt skipped.` when the prompt gate declined. Raw prompt text is never persisted in diagnostics, cache metadata, status, or attribution.
+5. **Render.** `renderAdvisorBrief` produces the model-visible `Advisor:` text. When there is no brief, the handler emits `renderAdvisorFallbackDirective`: one status line, then the directives block. The line reads `Advisor: outage (<status>)` with the command to route by hand when the advisor failed or timed out, `Advisor: no skill matched.` when it answered with nothing above threshold, and `Advisor: prompt skipped.` when the prompt gate declined. A setup, install, check or configure prompt also gets a `/doctor:setup` hint on the no-match and outage lines, placed before the outage command so the command stays last. Raw prompt text is never persisted in diagnostics, cache metadata, status, or attribution.
 6. **Directive-lifecycle dedup.** `decideDirectiveLifecycleDelivery` suppresses a re-delivery of the same directive to the same session within its cadence, so a repeated prompt does not re-inject an identical brief. A repeat in a known session keeps the first line, a route or a fallback status, and drops the directives block.
 7. **Emit.** Native adapters emit a `hookSpecificOutput.additionalContext` JSON envelope; OpenCode appends to `output.system` via `experimental.chat.system.transform`; Pi sends a model-visible message.
 

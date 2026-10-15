@@ -87,12 +87,12 @@ describe('doctor setup hint on a no-match', () => {
     expect(rendered).toBe(EXPECTED_SETUP_CONTEXT);
   });
 
-  it('keeps the plain no-match head without setup wording and the outage text unchanged', () => {
+  it('keeps the plain no-match head without setup wording and adds the hint to a setup-worded outage', () => {
     const plain = renderAdvisorFallbackDirective({}, { status: 'ok', freshness: 'live' });
     const outage = renderAdvisorFallbackDirective({ setupWording: true }, { status: 'fail_open', freshness: 'unavailable' });
 
     expect(plain).toBe(EXPECTED_NO_MATCH_CONTEXT);
-    expect(outage).not.toContain('/doctor:setup');
+    expect(outage.split('\n')[0]).toBe(`Advisor: outage (fail_open); for setup or health checks, run /doctor:setup; route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json`);
   });
 
   it('adds the setup hint for a setup-shaped prompt with no match', async () => {
