@@ -1,5 +1,5 @@
 {
-  "manifestHash": "adb43e2f3b460175e6f14bd2339b80c4f3fdc4d7becfa41aede2a08ee3002094",
+  "manifestHash": "962e2212ff6833364e3fed32a9d603bdd3c9e964474f4da7e3d2ef6c0f00340e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -15756,6 +15756,9 @@
     ],
     "cg remediation branch fixes": [
       "cg-remediation branch fixes"
+    ],
+    "change commit rules": [
+      "change commit rules"
     ],
     "change gate obsidian plugin": [
       "change gate obsidian plugin"
@@ -37448,6 +37451,9 @@
     "doctor gates drift": [
       "doctor gates drift"
     ],
+    "doctor git": [
+      "doctor git"
+    ],
     "doctor git acceptance criteria": [
       "doctor git acceptance criteria"
     ],
@@ -51108,6 +51114,9 @@
     ],
     "hook flags trailing comment": [
       "hook flags trailing comment"
+    ],
+    "hook gate settings": [
+      "hook gate settings"
     ],
     "hook helper skipped fail open": [
       "hook helper skipped fail_open"

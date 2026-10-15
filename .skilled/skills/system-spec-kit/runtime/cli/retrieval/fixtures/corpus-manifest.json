@@ -1,5 +1,5 @@
 {
-  "corpusHash": "7adcdacb95c985ad4b01af10fbadc99a1ec5c2974e34df19a57f0498e02bb628",
+  "corpusHash": "e2d8c80c8574c60ba662b3ecec44bbd059a59f6e77c2b431e3db2ec6f666c6d9",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24827,
+  "includedPathCount": 24828,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6606,6 +6606,7 @@
     ".skilled/skills/sk-git/feature-catalog/session-lifecycle/launch-wrapper-session-isolation.md",
     ".skilled/skills/sk-git/feature-catalog/session-lifecycle/worktree-reaper.md",
     ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/conventional-commit-workflows.md",
+    ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/doctor-git-settings.md",
     ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/finish-and-integration-workflows.md",
     ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/large-reorg-playbook.md",
     ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/message-contract-enforcement.md",
@@ -24858,7 +24859,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "adb43e2f3b460175e6f14bd2339b80c4f3fdc4d7becfa41aede2a08ee3002094",
+  "manifestHash": "962e2212ff6833364e3fed32a9d603bdd3c9e964474f4da7e3d2ef6c0f00340e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27102,6 +27103,14 @@
     },
     {
       "path": "specs/sk-code/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
       "reason": "excluded directory"
     },
     {
