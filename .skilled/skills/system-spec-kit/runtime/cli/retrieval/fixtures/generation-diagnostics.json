@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 7024,
-    "ok": 14338,
+    "ok": 14343,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 24909,
+  "documentsScanned": 24914,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "52f2b191dddc605ce14cf5fe4a53a9cd57e29a5c797dc637d51f1c17f4837a51",
+  "manifestHash": "86b643d77ca775521fd8a2f69f1c1212b00382e351d8b848a724a8c6e3255b8b",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36565,
+      "ok": 36575,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -70078,6 +70078,10 @@
     },
     {
       "path": "specs/sk-git/033-git-setup-customization/007-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/033-git-setup-customization/008-out-of-scope-cleanup/scratch",
       "reason": "excluded directory"
     },
     {

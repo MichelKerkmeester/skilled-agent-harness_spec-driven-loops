@@ -1,5 +1,5 @@
 {
-  "corpusHash": "0043714f7fe14d8a75cb1de673013612611e3f545125dd51c1112de238c33912",
+  "corpusHash": "6cb3001fbacc8786bed02ad73fe1b7cee08adf0d8671ac3ebadfed48367f832c",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24909,
+  "includedPathCount": 24914,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12601,7 +12601,12 @@
     "specs/sk-git/033-git-setup-customization/007-review-remediation/plan.md",
     "specs/sk-git/033-git-setup-customization/007-review-remediation/spec.md",
     "specs/sk-git/033-git-setup-customization/007-review-remediation/tasks.md",
+    "specs/sk-git/033-git-setup-customization/008-out-of-scope-cleanup/implementation-summary.md",
+    "specs/sk-git/033-git-setup-customization/008-out-of-scope-cleanup/plan.md",
+    "specs/sk-git/033-git-setup-customization/008-out-of-scope-cleanup/spec.md",
+    "specs/sk-git/033-git-setup-customization/008-out-of-scope-cleanup/tasks.md",
     "specs/sk-git/033-git-setup-customization/changelog/changelog-033-007-review-remediation.md",
+    "specs/sk-git/033-git-setup-customization/changelog/changelog-033-008-out-of-scope-cleanup.md",
     "specs/sk-git/033-git-setup-customization/spec.md",
     "specs/sk-git/034-standards-template-round-trip/implementation-summary.md",
     "specs/sk-git/034-standards-template-round-trip/plan.md",
@@ -24940,7 +24945,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "52f2b191dddc605ce14cf5fe4a53a9cd57e29a5c797dc637d51f1c17f4837a51",
+  "manifestHash": "86b643d77ca775521fd8a2f69f1c1212b00382e351d8b848a724a8c6e3255b8b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28000,6 +28005,10 @@
     },
     {
       "path": "specs/sk-git/033-git-setup-customization/007-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/033-git-setup-customization/008-out-of-scope-cleanup/scratch",
       "reason": "excluded directory"
     },
     {

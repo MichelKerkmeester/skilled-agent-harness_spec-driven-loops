@@ -1,5 +1,5 @@
 {
-  "manifestHash": "52f2b191dddc605ce14cf5fe4a53a9cd57e29a5c797dc637d51f1c17f4837a51",
+  "manifestHash": "86b643d77ca775521fd8a2f69f1c1212b00382e351d8b848a724a8c6e3255b8b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -24228,6 +24228,9 @@
     "command injection rollout": [
       "command injection rollout"
     ],
+    "command input gate placement": [
+      "command input gate placement"
+    ],
     "command md yaml alignment": [
       "command md yaml alignment"
     ],
@@ -37677,6 +37680,9 @@
     "doctor parent skill yaml": [
       "doctor-parent-skill.yaml"
     ],
+    "doctor phrase reach test": [
+      "doctor phrase reach test"
+    ],
     "doctor playbook deep loop": [
       "doctor playbook deep-loop"
     ],
@@ -38696,6 +38702,9 @@
     ],
     "drift guard repairs tasks": [
       "drift guard repairs tasks"
+    ],
+    "drift guard review evidence skip": [
+      "drift guard review evidence skip"
     ],
     "drift guard scripts path fixed": [
       "drift guard scripts path fixed"
@@ -47496,6 +47505,9 @@
     "git setup check improvements": [
       "git-setup-check improvements"
     ],
+    "git setup customization out of scope cleanup changelog": [
+      "git setup customization out of scope cleanup changelog"
+    ],
     "git setup customization phase parent spec": [
       "git setup customization phase parent spec"
     ],
@@ -50561,6 +50573,9 @@
     ],
     "hermes mirror gate": [
       "hermes mirror gate"
+    ],
+    "hermes mirror header semicolons": [
+      "hermes mirror header semicolons"
     ],
     "hermes model registry and routing": [
       "hermes model registry and routing"
@@ -68660,6 +68675,18 @@
     "out of box embedder support matrix": [
       "out-of-box embedder support matrix"
     ],
+    "out of scope cleanup": [
+      "out of scope cleanup"
+    ],
+    "out of scope cleanup implementation summary": [
+      "out of scope cleanup implementation summary"
+    ],
+    "out of scope cleanup plan": [
+      "out of scope cleanup plan"
+    ],
+    "out of scope cleanup tasks": [
+      "out of scope cleanup tasks"
+    ],
     "out of scope findings named": [
       "out of scope findings named"
     ],
@@ -71646,6 +71673,9 @@
     ],
     "phase 8 lineage proof enforcement": [
       "phase 8 lineage proof enforcement"
+    ],
+    "phase 8 out of scope cleanup": [
+      "phase 8 out of scope cleanup"
     ],
     "phase 8 remediation deep review": [
       "phase 8 remediation deep review"
