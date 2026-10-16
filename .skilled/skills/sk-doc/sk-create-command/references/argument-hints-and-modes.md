@@ -9,7 +9,7 @@ trigger_phrases:
   - "allowed-tools least privilege"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.4
+version: 1.0.1.0
 ---
 
 # Command Creation - Argument Hints and Modes
@@ -46,7 +46,7 @@ Use `argument-hint` when the command expects user input. Required arguments use 
 - `"<optional-target>"` because required syntax contradicts the word optional
 - `"<query> [query]"` because it duplicates the same concept in two forms
 
-Mandatory-gate reminder: when the hint contains any required `<argument>`, the command needs a blocking input gate immediately after frontmatter. The gate must ignore mode suffixes when deciding whether real required content exists.
+Mandatory-gate reminder: when the hint contains any required `<argument>`, the command needs a blocking input gate after the H1 and its purpose line, before any workflow step. The gate must ignore mode suffixes when deciding whether real required content exists.
 
 ---
 

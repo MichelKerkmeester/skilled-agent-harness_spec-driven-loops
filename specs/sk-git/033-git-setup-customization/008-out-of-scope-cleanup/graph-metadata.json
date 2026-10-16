@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/033-git-setup-customization/008-out-of-scope-cleanup",
+  "spec_folder": "sk-git/033-git-setup-customization/008-out-of-scope-cleanup",
+  "parent_id": "sk-git/033-git-setup-customization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "out of scope cleanup",
+      "phase 8 out of scope cleanup",
+      "drift guard review evidence skip",
+      "doctor phrase reach test",
+      "hermes mirror header semicolons",
+      "command input gate placement",
+      "out of scope cleanup plan",
+      "out of scope cleanup tasks",
+      "out of scope cleanup implementation summary"
+    ],
+    "key_topics": [
+      "scope",
+      "cleanup",
+      "phase",
+      "drift",
+      "guard",
+      "review",
+      "evidence",
+      "skip",
+      "doctor",
+      "phrase",
+      "reach",
+      "test"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py",
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py",
+      ".skilled/commands/doctor/scripts/tests/doctor-phrase-reach.test.cjs",
+      ".skilled/commands/doctor/scripts/README.md",
+      "tests/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs",
+      ".skilled/commands/doctor/scripts/tests/README.md",
+      "specs/system-skill-advisor/035-doctor-command-routing/review/lineages/deepseek-max/evidence/pre/SKILL.md",
+      "scripts/README.md",
+      ".skilled/commands/doctor/git.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "verify_alignment_drift.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_verify_alignment_drift.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-phrase-reach.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-phrase-reach.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-skills-hermes.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": "specs/system-skill-advisor/035-doctor-command-routing/review/lineages/deepseek-max/evidence/pre/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "git.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/git.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Hermes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The phase 7 build left four defects it found outside its scope",
+    "created_at": "2026-10-16T07:28:31Z",
+    "last_save_at": "2026-10-16T16:12:09.082Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a9af8ab9e77cdacabf7f67096a47beaaad9b2bcc80be4f85352da209fe1bf0b0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e3fed6512f807def0a3cf04fded98c151fff3fdbae4ad0345c857909a2b6b80f",
+      "plan.md": "f0f1599bc4fe09ff387d4405a8fa576c86eb39772a0c903f569771770ee66e4e",
+      "tasks.md": "7eed87b2ce7aae7b8013fcc0c31851e9f56dd382c905e6217e245b6830ef70e7",
+      "implementation-summary.md": "3e6c3859c8efda43bb5f11f3c9400a94306ec304cde21877e418ffb0e3226aae"
+    },
+    "last_active_at": null
+  }
+}

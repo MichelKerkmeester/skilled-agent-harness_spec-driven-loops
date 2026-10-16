@@ -222,7 +222,7 @@ Rules:
 
 ### Step 7: Add Mandatory Input Gates
 
-If `argument-hint` contains any required `<argument>`, add the mandatory gate immediately after frontmatter, before all other content.
+If `argument-hint` contains any required `<argument>`, add the mandatory gate after the H1 and its purpose line, before mode routing, asset loading and every workflow step.
 
 The gate must:
 
@@ -387,7 +387,7 @@ Before publishing or claiming the command is valid, verify:
 - `description` exists, is action-oriented, and is single-line.
 - `argument-hint` exists when arguments are expected.
 - `allowed-tools` lists only tools actually used.
-- Required `<arguments>` have a mandatory gate immediately after frontmatter.
+- Required `<arguments>` have a mandatory gate after the H1 and its purpose line, before any workflow step.
 - The gate forbids inference and waits for explicit input.
 - Section numbering uses full integers only.
 - H2 headers follow `## N. SECTION-NAME`.
@@ -454,7 +454,7 @@ A command produced through this packet is complete when:
 
 - The correct component type was chosen: the workflow genuinely warrants a slash command rather than a skill, agent, or one-off task.
 - Frontmatter is well-formed: a single-line, action-oriented `description`, an `argument-hint` whenever user input is expected, and a least-privilege `allowed-tools` list using fully qualified MCP tool IDs.
-- Every required `<argument>` has a mandatory input gate immediately after frontmatter that forbids inference and waits for explicit input.
+- Every required `<argument>` has a mandatory input gate after the H1 and its purpose line, before any workflow step, that forbids inference and waits for explicit input.
 - The body is executable and instruction-oriented, with full-integer `## N. SECTION-NAME` headings, actionable steps, two or three example invocations, and structured status output.
 - Router commands keep the blocking core (`OWNED ASSETS` plus `PRESENTATION BOUNDARY`), use the canonical numbered vocabulary, and hold no presentation templates when a presentation asset exists.
 - Shared validation was run: `validate_document.py` exits `0`, or its absence is stated explicitly rather than assumed.

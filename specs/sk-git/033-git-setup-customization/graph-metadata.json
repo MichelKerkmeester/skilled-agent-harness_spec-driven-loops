@@ -10,7 +10,8 @@
     "sk-git/033-git-setup-customization/004-final-deep-review",
     "sk-git/033-git-setup-customization/005-setup-check-hardening",
     "sk-git/033-git-setup-customization/006-release-conformance-review",
-    "sk-git/033-git-setup-customization/007-review-remediation"
+    "sk-git/033-git-setup-customization/007-review-remediation",
+    "sk-git/033-git-setup-customization/008-out-of-scope-cleanup"
   ],
   "manual": {
     "depends_on": [],
@@ -39,7 +40,8 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "004-final-deep-review/review/review-report.md"
+      "004-final-deep-review/review/review-report.md",
+      "007-review-remediation/implementation-summary.md"
     ],
     "entities": [
       {
@@ -93,18 +95,18 @@
     ],
     "causal_summary": "[One-paragraph problem statement — what needs solving and why]",
     "created_at": "2026-10-15T05:35:17Z",
-    "last_save_at": "2026-10-16T07:06:01.565Z",
+    "last_save_at": "2026-10-16T08:56:36.094Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:882fb066b49348afb4fa8ad5a91fe005cedec4a8d6cd3be49e55418a89266db6",
+    "source_fingerprint": "sha256:2b4dbeab223598399c04fdd3927995508b692b29c37e14e386733fc2d62bf53b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d28b9c839ad6fa303a09a6ed5591f89104ec586b79cbd03378d247157f2054ea"
+      "spec.md": "066b27a149072aa1e9be4a78343a97187578028ec67753a03b25a50aa4b37ddc"
     },
-    "last_active_child_id": "sk-git/033-git-setup-customization/007-review-remediation",
-    "last_active_at": "2026-10-16T07:06:01.565Z"
+    "last_active_child_id": "sk-git/033-git-setup-customization/008-out-of-scope-cleanup",
+    "last_active_at": "2026-10-16T08:56:34.201Z"
   }
 }

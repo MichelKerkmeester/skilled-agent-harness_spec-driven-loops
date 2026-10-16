@@ -8,7 +8,7 @@ trigger_phrases:
   - "argument hint patterns"
 importance_tier: normal
 contextType: general
-version: 1.0.0.36
+version: 1.0.1.0
 ---
 
 # Command Template - OpenCode Slash Commands
@@ -392,12 +392,12 @@ Without this gate, AI agents may:
 
 ### The Pattern
 
-Add this block **immediately after frontmatter, before any other content**:
+Add this block **after the H1 and its purpose line, before any workflow step**:
 
 ```markdown
-# 🚨 MANDATORY FIRST ACTION - DO NOT SKIP
+### 🚨 MANDATORY FIRST ACTION - DO NOT SKIP
 
-**BEFORE READING ANYTHING ELSE IN THIS FILE, CHECK `$ARGUMENTS`:**
+**BEFORE ANY WORKFLOW STEP, CHECK `$ARGUMENTS`:**
 
 \`\`\`
 IF $ARGUMENTS is empty, undefined, or contains only whitespace (ignoring mode flags):
@@ -500,9 +500,13 @@ argument-hint: "<required-arg> [optional-arg]"
 allowed-tools: Tool1, Tool2
 ---
 
-# 🚨 MANDATORY FIRST ACTION - DO NOT SKIP
+# [Command Title]
 
-**BEFORE READING ANYTHING ELSE IN THIS FILE, CHECK `$ARGUMENTS`:**
+[One sentence describing what this command does and when to use it.]
+
+### 🚨 MANDATORY FIRST ACTION - DO NOT SKIP
+
+**BEFORE ANY WORKFLOW STEP, CHECK `$ARGUMENTS`:**
 
 \`\`\`
 IF $ARGUMENTS is empty, undefined, or contains only whitespace:
@@ -519,12 +523,6 @@ IF $ARGUMENTS contains required input:
 - **DO NOT** infer from context, screenshots, or conversation history
 - **DO NOT** assume what the user wants
 - **DO NOT** proceed without explicit input from the user
-
----
-
-# [Command Title]
-
-[One sentence describing what this command does and when to use it.]
 
 ---
 
@@ -617,15 +615,13 @@ argument-hint: "<topic> [context]"
 allowed-tools: Read, Write, Edit, Bash, Task
 ---
 
-# 🚨 MANDATORY FIRST ACTION - DO NOT SKIP
-
-[Include the Mandatory Gate Pattern]
-
----
-
 # [Workflow Title]
 
 **Purpose**: [One sentence describing the workflow's goal and primary output.]
+
+### 🚨 MANDATORY FIRST ACTION - DO NOT SKIP
+
+[Include the Mandatory Gate Pattern]
 
 ---
 
@@ -734,15 +730,13 @@ argument-hint: "<request> [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Task
 ---
 
-# 🚨 MANDATORY FIRST ACTION - DO NOT SKIP
-
-[Include the Mandatory Gate Pattern]
-
----
-
 # [Command Title]
 
 **Purpose**: [Description of what this command accomplishes.]
+
+### 🚨 MANDATORY FIRST ACTION - DO NOT SKIP
+
+[Include the Mandatory Gate Pattern]
 
 ---
 
@@ -1148,7 +1142,7 @@ Before publishing a command, verify:
 ### Mandatory Gate (CRITICAL for required arguments)
 
 - [ ] If `argument-hint` contains `<required>` args → **MANDATORY GATE present**
-- [ ] Gate is **immediately after frontmatter**, before any other content
+- [ ] Gate sits **after the H1 and its purpose line**, before any workflow step
 - [ ] Gate presents options to user with appropriate question
 - [ ] Gate includes all 4 CRITICAL RULES (DO NOT infer, assume, proceed)
 - [ ] Skip gate only if ALL arguments are `[optional]` with defaults

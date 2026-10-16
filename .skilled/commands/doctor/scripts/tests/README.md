@@ -29,6 +29,7 @@ Current state:
 | `run-all.sh` | Runs every suite below, plus `route-validate.sh --self-test` and the skill-graph freshness panel |
 | `agent-roster-mirror-check.test.cjs` | `agent-roster-mirror-check.cjs` |
 | `command-catalog-mirror-check.test.cjs` | `command-catalog-mirror-check.cjs` |
+| `doctor-phrase-reach.test.cjs` | `doctor-phrase-reach.cjs`: every admitted phrase reaching its bridge on the built advisor, and the stale-build refusal with exit 2 |
 | `sk-code-setup-check.test.cjs` | `sk-code-setup-check.cjs` against throwaway fixture roots: the passing battery, the probe verdicts, the repair line for each failing leg it drives, the provision-step skip and the usage error |
 | `parent-skill-check-invariants.test.cjs` | `parent-skill-check.cjs`, one or more cases per invariant id |
 | `parent-skill-check-command-column.test.cjs` | `parent-skill-check.cjs` command-column checks |

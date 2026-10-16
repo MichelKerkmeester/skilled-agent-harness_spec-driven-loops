@@ -9,7 +9,7 @@ trigger_phrases:
   - "command allowed-tools mistake"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.6
+version: 1.0.1.0
 ---
 
 # Command Creation - Component Choice and Common Pitfalls
@@ -52,7 +52,7 @@ Choose the component type before drafting.
 |---|---|---|
 | Creating a command for reference-only guidance | The slash command becomes a bloated manual instead of an executable workflow | Create or extend a skill/reference instead |
 | Omitting `argument-hint` for required input | Users cannot see what the invocation expects | Add a precise hint with `<required>` and `[optional]` parts |
-| Using a required hint without a gate | The command may infer missing input from context | Put the blocking gate immediately after frontmatter |
+| Using a required hint without a gate | The command may infer missing input from context | Put the blocking gate after the H1 and its purpose line, before any workflow step |
 | Treating `:auto` as permission to guess | Autonomous runs can fabricate missing decisions | Fail fast or ask targeted questions when required data is missing |
 | Putting dashboards in the router | Routing logic becomes hard to audit and presentation cannot evolve independently | Move visible wording to `-presentation.txt` |
 | Changing behavior while splitting presentation | A refactor becomes a hidden semantic change | Move wording without changing routing, modes, gates, or permissions |

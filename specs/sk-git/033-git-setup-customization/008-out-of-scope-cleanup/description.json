@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "sk-git/033-git-setup-customization/008-out-of-scope-cleanup",
+  "description": "Phase 8: out-of-scope-cleanup",
+  "keywords": [
+    "phase",
+    "out-of-scope-cleanup"
+  ],
+  "lastUpdated": "2026-10-16T08:56:34.176Z",
+  "specId": "008",
+  "folderSlug": "out-of-scope-cleanup",
+  "parentChain": [
+    "sk-git",
+    "033-git-setup-customization"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "16-10-26_09-55__phase-8-closed-all-four-out-of-scope-issues.md",
+    "16-10-26_09-56__phase-8-closed-all-four-out-of-scope-issues.md",
+    "16-10-26_09-56__phase-8-closed-all-four-out-of-scope-issues.md"
+  ]
+}

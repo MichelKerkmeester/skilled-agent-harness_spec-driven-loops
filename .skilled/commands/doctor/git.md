@@ -3,6 +3,12 @@ description: "Switch sk-git hook gates, edit the commit, PR and branch rules in 
 argument-hint: "<hooks|standards|setup> [--dry-run] [--tool=<name>] | list | ?"
 allowed-tools: Read, Bash, Edit
 ---
+<!-- skill_agent: sk-git -->
+
+# /doctor:git Router
+
+Thin router for the git hook gate settings, the repository's sk-git rules, and a read-only setup check. It resolves the target and setup values from `_routes.yaml`, loads the presentation contract, then executes the target's workflow YAML.
+
 ### MANDATORY INPUT GATE
 
 **STATUS: BLOCKED** until `target` is bound.
@@ -12,12 +18,6 @@ allowed-tools: Read, Bash, Edit
 3. When it is missing, show the presentation contract's startup menu, stop, and wait. Use only `$ARGUMENTS` or that explicit reply.
 
 If this gate was skipped, stop, say so, return to it, and bind the target before loading any workflow.
-
-<!-- skill_agent: sk-git -->
-
-# /doctor:git Router
-
-Thin router for the git hook gate settings, the repository's sk-git rules, and a read-only setup check. It resolves the target and setup values from `_routes.yaml`, loads the presentation contract, then executes the target's workflow YAML.
 
 ## 1. ROUTER CONTRACT
 

@@ -4,7 +4,7 @@ description: "Turns a repeatable workflow into a validated OpenCode slash comman
 trigger_phrases:
   - "create command"
   - "slash command"
-version: 1.0.0.12
+version: 1.0.1.0
 ---
 
 # create-command
@@ -74,7 +74,7 @@ You get `✅ VALID` with any warnings listed by name. Warnings do not block deli
 
 Resolve the invocation path first. `.skilled/commands/<command>.md` becomes `/<command>`, while `.skilled/commands/<namespace>/<action>.md` becomes `/<namespace>:<action>`. Read any existing command completely before editing it, then check nearby commands in the same namespace so structure and vocabulary match the family. Classify the command type from the table in `SKILL.md`, then author the frontmatter first, starting with a single-line `description`. Add an `argument-hint` when input is expected. Keep `allowed-tools` at least privilege, listing only the tools the command actually calls.
 
-If `argument-hint` carries a required argument, the mandatory gate goes immediately after frontmatter, before any other content. It checks whether `$ARGUMENTS` is empty, stops immediately when required input is missing, asks a specific question and waits. It never infers missing input from context, screenshots, conversation history or open files.
+If `argument-hint` carries a required argument, the mandatory gate goes after the H1 and its purpose line, before mode routing, asset loading and every workflow step. It checks whether `$ARGUMENTS` is empty, stops immediately when required input is missing, asks a specific question and waits. It never infers missing input from context, screenshots, conversation history or open files.
 
 The full command-type table in `SKILL.md` lists seven shapes, summarized above. Pick the smallest one that fits. A single action with few arguments stays a simple command in one file. A destructive command, one that deletes data or makes an irreversible change, needs confirmation by default, an affected-state display before execution, execution logging and recovery guidance, whatever type it otherwise is.
 
@@ -104,7 +104,7 @@ Reach for create-command when a workflow is repeatable and needs `$ARGUMENTS` pa
 
 | What you see | Why | Fix |
 |---|---|---|
-| Command accepts empty required input | No mandatory gate after frontmatter | Add the gate immediately after frontmatter, before any other content |
+| Command accepts empty required input | No mandatory gate before the workflow steps | Add the gate after the H1 and its purpose line, before any workflow step |
 | `argument-hint` keeps growing past budget | The hint tries to enumerate every flag instead of summarizing the shape | Keep the hint under 140 characters and move the full flag surface into `EXECUTION TARGETS` |
 | Router file has a dashboard baked in | Presentation content was never split out | Move startup prompts, dashboards and result templates into a presentation asset, keep routing in the router |
 | Validator flags raw argument echo | The command ends with a bare `User request: $ARGUMENTS` line | Remove it. The router already receives `$ARGUMENTS` and resolves it in the body |

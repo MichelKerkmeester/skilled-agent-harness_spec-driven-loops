@@ -18,7 +18,7 @@ importance_tier: "important"
 
 `.skilled/commands/doctor/scripts/` contains shell, JavaScript and Python tools that support doctor routes.
 
-The scripts validate route manifests, inspect MCP installations, audit parent skill hubs, report graph freshness, and plan and apply framework release updates. Most are read-only. The release updater's apply and rollback paths write local state. Most scripts have a test under `tests/`, and one runner executes them all, together with the skill advisor's freshness panel test for `skill-graph-freshness.cjs`.
+The scripts validate route manifests, inspect MCP installations, audit parent skill hubs, report graph freshness, and plan and apply framework release updates. Most are read-only. The release updater's apply and rollback paths write local state. Every script has a test under `tests/`, except `skill-graph-freshness.cjs`, whose freshness panel test lives in the skill advisor runtime. One runner executes them all.
 
 ---
 

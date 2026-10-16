@@ -1,7 +1,7 @@
 ---
 title: "create-command: Manual Testing Playbook"
 description: "Operator-facing reference for authoring, routing and validating OpenCode slash commands in the create-command workflow."
-version: 1.0.0.3
+version: 1.0.1.0
 ---
 
 # create-command: Manual Testing Playbook
@@ -182,7 +182,7 @@ Verify that a required argument is shown in `argument-hint` and checked before t
 #### Scenario Contract
 Prompt: `Create a command that requires a target path. It must stop and ask when the path is missing instead of guessing from open files.`
 
-The draft places the mandatory gate immediately after frontmatter. It checks empty or whitespace-only input and ignores a mode suffix while deciding whether the target exists.
+The draft places the mandatory gate after the H1 and its purpose line, before any workflow step. It checks empty or whitespace-only input and ignores a mode suffix while deciding whether the target exists.
 
 Desired user-visible outcome: the command asks for explicit input and does not infer a target.
 

@@ -9,7 +9,7 @@ trigger_phrases:
   - "namespace command example"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.8
+version: 1.0.1.0
 ---
 
 # Command Creation - Worked Split Example
@@ -64,7 +64,11 @@ argument-hint: "<spec-folder> [:auto|:confirm]"
 allowed-tools: Read, Grep, Glob, Bash, Task
 ---
 
-# MANDATORY FIRST ACTION - DO NOT SKIP
+# Review Packet Router
+
+Thin router for `/review:packet`. The router resolves inputs and mode, loads owned assets, and selects the execution target. It does not own display templates.
+
+### MANDATORY FIRST ACTION - DO NOT SKIP
 
 Before using any tools, inspect `$ARGUMENTS`.
 
@@ -76,10 +80,6 @@ If `$ARGUMENTS` is empty, undefined, whitespace-only, or contains only `:auto` /
 - do not infer the folder from conversation history, open files, or recent work
 
 ---
-
-# Review Packet Router
-
-Thin router for `/review:packet`. The router resolves inputs and mode, loads owned assets, and selects the execution target. It does not own display templates.
 
 ## 1. ROUTER CONTRACT
 
