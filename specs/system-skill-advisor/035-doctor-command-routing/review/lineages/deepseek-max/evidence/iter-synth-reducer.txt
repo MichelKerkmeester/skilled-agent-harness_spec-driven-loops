@@ -1,0 +1,15 @@
+{
+  "registryPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/035-doctor-command-routing/review/lineages/deepseek-max/deep-review-findings-registry.json",
+  "dashboardPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/035-doctor-command-routing/review/lineages/deepseek-max/deep-review-dashboard.md",
+  "strategyPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/035-doctor-command-routing/review/lineages/deepseek-max/deep-review-strategy.md",
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "searchDebtCount": 0,
+  "corruptionCount": 0,
+  "strategyWarning": null,
+  "resourceMapPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/035-doctor-command-routing/review/lineages/deepseek-max/resource-map.md",
+  "resourceMapSkipped": false,
+  "resourceMapSkipReason": null
+}

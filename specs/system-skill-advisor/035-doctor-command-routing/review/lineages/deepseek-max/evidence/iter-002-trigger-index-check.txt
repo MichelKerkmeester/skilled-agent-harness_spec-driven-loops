@@ -1,0 +1,42 @@
+{
+  "corpusManifestHash": "b5a5675cfedb7451693386d4bdb88da13d4ca4380c43b73920a351a8144bd9ed",
+  "documentsScanned": 24900,
+  "durationMs": 9150.017416,
+  "fresh": false,
+  "indexManifestHash": "79c15b068e77a62d8a65e95ebb57781a3f18ad084a4cb897e6087b85174737eb",
+  "indexPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+  "missingDocuments": 4,
+  "obsoletePaths": [],
+  "staleDocuments": [
+    {
+      "added": [
+        "release conformance review implementation summary"
+      ],
+      "path": "specs/sk-git/033-git-setup-customization/006-release-conformance-review/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "release conformance review plan"
+      ],
+      "path": "specs/sk-git/033-git-setup-customization/006-release-conformance-review/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "phase 6 release conformance review",
+        "release conformance review"
+      ],
+      "path": "specs/sk-git/033-git-setup-customization/006-release-conformance-review/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "release conformance review tasks"
+      ],
+      "path": "specs/sk-git/033-git-setup-customization/006-release-conformance-review/tasks.md",
+      "removed": []
+    }
+  ],
+  "untrustedDocuments": []
+}

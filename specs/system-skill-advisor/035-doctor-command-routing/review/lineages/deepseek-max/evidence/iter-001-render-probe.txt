@@ -1,0 +1,41 @@
+[doctor-a-01] top=command-doctor-setup amb=false cap=80 :: Advisor: live; use /doctor:setup 0.90/0.12 pass. || Directives:
+[doctor-a-02] top=command-doctor-setup amb=false cap=80 :: Advisor: live; use /doctor:setup 0.84/0.16 pass. || Directives:
+[doctor-a-03] top=command-doctor-setup amb=false cap=80 :: Advisor: live; use /doctor:setup 0.90/0.16 pass. || Directives:
+[doctor-a-04] top=command-doctor-setup amb=false cap=80 :: Advisor: live; use /doctor:setup 0.82/0.20 pass. || Directives:
+[doctor-a-05] top=command-doctor-env amb=false cap=80 :: Advisor: live; use /doctor:env list 0.90/0.16 pass. || Directives:
+[doctor-a-06] top=command-doctor-env amb=false cap=80 :: Advisor: live; use /doctor:env list 0.90/0.12 pass. || Directives:
+[doctor-a-07] top=command-doctor-env amb=false cap=80 :: Advisor: live; use /doctor:env list 0.90/0.16 pass. || Directives:
+[doctor-a-08] top=command-doctor-git-hooks amb=false cap=80 :: Advisor: live; use /doctor:git hooks 0.90/0.12 pass. || Directives:
+[doctor-a-09] top=sk-git amb=true cap=120 :: Advisor: live; ambiguous: sk-git 0.87/0.16 vs /doctor:git hooks 0.90/0.12 pass. || Directives:
+[doctor-a-10] top=command-doctor-runtime-mirrors amb=false cap=80 :: Advisor: live; use /doctor:runtime-mirrors 0.90/0.16 pass. || Directives:
+[doctor-a-11] top=sk-code amb=true cap=120 :: Advisor: live; ambiguous: sk-code 0.82/0.20 vs sk-doc 0.82/0.26 pass. || Also: /doctor:skill-advisor skill-budget
+[doctor-a-12] top=sk-doc amb=true cap=120 :: Advisor: live; ambiguous: sk-doc 0.93/0.16 vs sk-code 0.82/0.24 pass. || Also: /doctor:skill-advisor skill-budget
+[doctor-b-git-01] top=sk-git amb=false cap=80 :: Advisor: live; use sk-git 0.82/0.20 pass. || Also: /doctor:git setup
+[doctor-b-git-02] top=sk-git amb=true cap=120 :: Advisor: live; ambiguous: sk-git 0.87/0.16 vs /doctor:git setup 0.90/0.12 pass. || Directives:
+[doctor-b-git-03] top=command-doctor-git-setup amb=false cap=80 :: Advisor: live; use /doctor:git setup 0.90/0.16 pass. || Directives:
+[doctor-b-git-04] top=sk-git amb=true cap=120 :: Advisor: live; ambiguous: sk-git 0.91/0.16 vs sk-doc 0.82/0.34 pass. || Also: /doctor:git standards
+[doctor-b-git-05] top=sk-git amb=true cap=120 :: Advisor: live; ambiguous: sk-git 0.89/0.16 vs /doctor:git standards 0.90/0.12 pass. || Directives:
+[doctor-b-skcode-01] top=sk-code amb=true cap=120 :: Advisor: live; ambiguous: sk-code 0.91/0.16 vs /doctor:sk-code 0.90/0.12 pass. || Directives:
+[doctor-b-skcode-02] top=sk-code amb=true cap=120 :: Advisor: live; ambiguous: sk-code 0.93/0.16 vs /doctor:sk-code 0.90/0.12 pass. || Directives:
+[doctor-b-advisor-01] top=system-skill-advisor amb=true cap=120 :: Advisor: live; ambiguous: system-skill-advisor 0.87/0.16 vs /doctor:skill-advisor rebuild 0.85/0.16 pass. || Directives:
+[doctor-b-advisor-02] top=system-skill-advisor amb=true cap=120 :: Advisor: live; ambiguous: system-skill-advisor 0.86/0.16 vs /doctor:skill-advisor tune 0.90/0.16 pass. || Directives:
+[doctor-b-advisor-03] top=system-skill-advisor amb=true cap=120 :: Advisor: live; ambiguous: system-skill-advisor 0.82/0.16 vs /doctor:skill-advisor skill-graph-freshness 0.85/0.20 pass. || Directives:
+[doctor-b-advisor-04] top=sk-doc amb=true cap=120 :: Advisor: live; ambiguous: sk-doc 0.86/0.20 vs sk-code 0.82/0.20 pass. || Also: /doctor:skill-advisor parent-skill
+[doctor-b-advisor-05] top=sk-code amb=true cap=120 :: Advisor: live; ambiguous: sk-code 0.82/0.26 vs sk-doc 0.82/0.30 pass. || Also: /doctor:skill-advisor router-reach
+[doctor-b-update-01] top=system-spec-kit amb=true cap=120 :: Advisor: live; ambiguous: system-spec-kit 0.86/0.20 vs sk-doc 0.82/0.30 pass. || Also: /doctor:speckit
+[doctor-b-update-02] top=sk-code amb=true cap=120 :: Advisor: live; ambiguous: sk-code 0.82/0.34 vs system-deep-loop 0.82/0.34 pass. || Also: /doctor:update
+[doctor-b-update-03] top=command-doctor-update amb=false cap=80 :: Advisor: live; use /doctor:update 0.90/0.16 pass. || Directives:
+[doctor-control-01] top=sk-git amb=false cap=80 :: Advisor: live; use sk-git 0.93/0.12 pass. || Directives:
+[doctor-control-02] top=sk-code amb=false cap=80 :: Advisor: live; use sk-code 0.91/0.12 pass. || Directives:
+[doctor-control-03] top=sk-doc amb=false cap=80 :: Advisor: live; use sk-doc 0.95/0.12 pass. || Directives:
+[doctor-control-04] top=sk-git amb=true cap=120 :: Advisor: live; ambiguous: sk-git 0.91/0.16 vs sk-code 0.86/0.16 pass. || Directives:
+[doctor-control-05] top=sk-prompt amb=false cap=80 :: Advisor: live; use sk-prompt 0.92/0.12 pass. || Directives:
+[doctor-control-06] top=system-spec-kit amb=false cap=80 :: Advisor: live; use system-spec-kit 0.94/0.12 pass. || Directives:
+[doctor-control-07] top=sk-git amb=false cap=80 :: Advisor: live; use sk-git 0.90/0.12 pass. || Directives:
+[doctor-control-08] top=sk-code amb=false cap=80 :: Advisor: live; use sk-code 0.90/0.12 pass. || Directives:
+[doctor-control-09] top=system-deep-loop amb=false cap=80 :: Advisor: live; use system-deep-loop 0.93/0.12 pass. || Directives:
+[doctor-control-10] top=sk-code amb=false cap=80 :: Advisor: live; use sk-code 0.90/0.12 pass. || Directives:
+[doctor-none-01] top=null amb=false cap=80 :: <null>
+[doctor-none-02] top=null amb=false cap=80 :: <null>
+[doctor-none-03] top=null amb=false cap=80 :: <null>
+ROWS=40 TOP_MISMATCH=0

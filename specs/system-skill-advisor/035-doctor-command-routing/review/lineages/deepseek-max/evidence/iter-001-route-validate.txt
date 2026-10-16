@@ -1,0 +1,25 @@
+WARN: H1: flag '--dry-run' appears in multiple /doctor:skill-advisor targets (allowed but informational): tune, rebuild
+WARN: H1: flag '--dry-run' appears in multiple /doctor:git targets (allowed but informational): hooks, standards
+INFO: Manifest:     /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/commands/doctor/_routes.yaml
+INFO: Doctor dir:   /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/commands/doctor
+INFO: Assets:       /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/commands/doctor/assets
+INFO: Repo root:    /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+PASS: A1: manifest parses as YAML
+PASS: A2: schema_version is 1
+PASS: B1: .routes has 14 entries
+PASS: B2: all routes have required keys
+PASS: B3: every route's command names an existing doctor router
+PASS: C1: no duplicate target names within a command
+PASS: D1: all route YAML assets exist
+PASS: E1: all mutation classes valid
+PASS: F2: all route mcp_tools are subsets of their router's allowed-tools union
+PASS: F3: every cli_commands entry invokes the advisor CLI with a known command
+PASS: G1: every route has ≥1 trigger phrase
+PASS: I1: all route script_invocations resolve to existing local scripts
+PASS: J1: targets are in parity with their router and presentation across 7 commands
+PASS: K1/K2: no read-only route declares a write or grants a mutating advisor command
+PASS: L1: all 38 route script invocations are invoked by their workflow YAML
+
+─────────────────────────────────────────────────────────────────
+OK: route-validate — 14 routes validated, 2 warnings

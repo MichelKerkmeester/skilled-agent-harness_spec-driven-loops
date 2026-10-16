@@ -1,0 +1,5 @@
+### DOC-386 env prompt hook
+Advisor: live; use /doctor:env list 0.90/0.16 pass.
+Directives:
+### DOC-386 recommend first
+first: command-doctor-env

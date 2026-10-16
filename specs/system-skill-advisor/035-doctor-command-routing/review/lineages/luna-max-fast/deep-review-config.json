@@ -1,0 +1,150 @@
+{
+  "topic": "Review: v4.0.0.12 doctor command routing and shipped advisor work",
+  "sessionId": "fanout-luna-max-fast-1792125949812-grdnrc",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/system-skill-advisor/035-doctor-command-routing",
+  "createdAt": "2026-10-16T04:51:56Z",
+  "status": "initialized",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "specs/system-skill-advisor/035-doctor-command-routing",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "reviewScopeFiles": [
+    ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md",
+    ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+    ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+    ".opencode/plugins/system-skill-advisor.js",
+    ".opencode/plugins/lib/skill-advisor-render.js",
+    ".skilled/commands/doctor/scripts/doctor-phrase-reach.cjs",
+    ".skilled/skills/system-skill-advisor/runtime/tests/doctor-command-bridges.vitest.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/doctor-brief-render.vitest.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/doctor-routing-slice.vitest.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/hooks/doctor-setup-hint.vitest.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/scorer/doctor-ordering.vitest.ts",
+    ".skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/single-writer-lease-stress.vitest.ts",
+    ".skilled/commands/doctor/setup.md",
+    ".skilled/commands/doctor/assets/doctor-setup.yaml",
+    ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
+    ".skilled/commands/doctor/_routes.yaml",
+    ".skilled/commands/doctor/assets/doctor-router-reach.yaml",
+    ".skilled/commands/doctor/assets/doctor-skill-advisor-rebuild.yaml",
+    ".claude/commands/doctor/setup.md",
+    ".codex/prompts/doctor-setup.md",
+    ".cursor/commands/doctor-setup.md",
+    ".pi/prompts/doctor-setup.md",
+    ".hermes/prompts/doctor-setup.md",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-routing-setup-onboarding.md",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-routing-env-prompt.md",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-routing-contested-second-line.md",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-routing-python-typed-command.md",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-routing-setup-hint.md",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-routing-no-hint-unrelated.md",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-setup-run.md",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md",
+    ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/claude-hook.md",
+    ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/opencode-plugin-bridge.md",
+    ".skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+    ".skilled/skills/system-skill-advisor/hooks/pi/README.md",
+    ".skilled/skills/system-skill-advisor/README.md",
+    ".skilled/skills/system-skill-advisor/SKILL.md",
+    "README.md",
+    ".skilled/commands/README.txt",
+    ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+    ".skilled/skills/system-spec-kit/SKILL.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.16.0.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.8.0.0.md",
+    ".skilled/changelog/skilled/v4.0.0.12.md"
+  ],
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": false
+  },
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

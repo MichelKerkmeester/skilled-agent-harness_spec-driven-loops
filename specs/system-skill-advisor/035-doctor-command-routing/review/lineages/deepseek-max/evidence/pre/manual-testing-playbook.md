@@ -1,0 +1,365 @@
+---
+title: "Skill Advisor: Manual Testing Playbook"
+description: "Canonical sk-doc manual testing playbook for the Skill Advisor manual scenario corpus across the native command surface, runtime hooks, compatibility, daemon state, indexing, lifecycle, scorer and Python compatibility workflows."
+version: 0.8.1.0
+---
+
+# Skill Advisor: Manual Testing Playbook
+
+This document combines the canonical manual-validation contract for the `skill_advisor` package into a single reference. The root playbook acts as the operator directory, review protocol and orchestration guide while the per-feature files carry scenario-specific execution truth.
+
+---
+
+This playbook package follows the sk-doc manual testing playbook template. The current corpus is the historical operator scenario set merged into the canonical manual-testing package on 2026-05-07, with former `SAD-NNN` scenarios absorbed into their current `NC` and `CL` homes.
+
+Canonical package artifacts:
+- `manual-testing-playbook.md`
+- `native-cli-tools/`
+- `cli-hooks-and-plugin/`
+- `compat-and-disable/`
+- `operator-h5/`
+- `auto-update-daemon/`
+- `auto-indexing/`
+- `lifecycle-routing/`
+- `scorer-fusion/`
+- `python-compat/`
+
+---
+
+## 1. OVERVIEW
+
+This playbook provides 54 deterministic scenario files across 10 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for the native command surface, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, plus `PC` for Python compatibility, and `DOC` for the `/doctor:skill-advisor` command, whose numbers are shared with the doctor scenarios in other playbooks.
+
+> **Numbering note (gap-09).** The directory layout skips slot `09--*` between `scorer-fusion` and `python-compat`. This mirrors the `feature-catalog/` 05-gap pattern and is an intentional historical reservation from initial scaffold design. The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
+
+Coverage note (2026-05-07): the prior operator scenario corpus now lives under `manual-testing-playbook/` as the canonical manual validation package. Former `SAD-NNN` IDs are deprecated plus mapped to current feature files in section 18. The source root index describes 42 scenarios, but the source category tree contains 41 `NNN-*.md` scenario files plus no `CL-002`. This root playbook reflects the live file inventory.
+
+### Realistic Test Model
+
+1. A realistic user request is given to an operator or runtime.
+2. The operator decides whether to call the native command through the CLI, run a prompt-time hook, execute compatibility shims or inspect daemon/indexing behavior.
+3. The operator captures command transcripts, CLI JSON envelopes, hook stdout/stderr and final verdicts.
+4. The scenario passes only when observed output is prompt-safe, user-visible and consistent with the documented feature contract.
+
+### What Each Feature File Should Explain
+
+- The realistic user request or operational state that should trigger the behavior.
+- The deterministic setup and execution steps.
+- The expected signals and failure modes.
+- The desired user-visible outcome.
+- The implementation, automated test or catalog anchors that justify the scenario.
+
+---
+
+## 2. GLOBAL PRECONDITIONS
+
+1. Working directory is the repository root.
+2. Node.js and Python 3 are available.
+3. The advisor runtime build is current:
+
+```bash
+npm --prefix .skilled/skills/system-skill-advisor/runtime run build
+```
+
+4. `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset unless a scenario explicitly sets it.
+5. Operators can run the documented advisor CLI and Node/Python commands from the repo root.
+6. Destructive or stateful scenarios use a disposable workspace copy unless the scenario explicitly validates the live checkout.
+
+---
+
+## 3. GLOBAL EVIDENCE REQUIREMENTS
+
+- Scenario ID and per-feature file path.
+- User request or operational condition used.
+- Exact command transcript or CLI call payload.
+- Full JSON output or a focused excerpt containing asserted fields.
+- Exit code for shell commands.
+- Hook stdout and stderr captured separately when hook scripts are involved.
+- Final user-facing verdict with rationale.
+- Triage notes for every `FAIL`, `PARTIAL` or `SKIP`.
+
+---
+
+## 4. DETERMINISTIC COMMAND NOTATION
+
+- CLI commands shown as `bash: <command>`.
+- CLI calls shown as `node .skilled/bin/skill-advisor.cjs <command> --format json`.
+- Hook stdin payloads shown as JSON piped into the compiled hook script.
+- `->` separates sequential steps inside one scenario contract.
+- File references use repo-root-relative paths unless otherwise stated.
+
+---
+
+## 5. REVIEW PROTOCOL AND RELEASE READINESS
+
+### Inputs Required
+
+1. `manual-testing-playbook.md`.
+2. Referenced per-feature files under `manual-testing-playbook/NN__category_name/`.
+3. Scenario execution evidence.
+4. Feature-to-scenario coverage map.
+5. Triage notes for all non-pass outcomes.
+
+### Scenario Acceptance Rules
+
+For each executed scenario, check:
+
+1. Preconditions were satisfied.
+2. Prompt and command sequence were executed as written.
+3. Expected signals are present in the captured output.
+4. Evidence is complete and readable.
+5. Raw prompt text is not leaked into diagnostics, attribution, cache metadata or trust-state fields unless the scenario explicitly validates input echo behavior.
+6. Outcome rationale is explicit and references the user-visible behavior.
+
+Scenario verdict:
+- `PASS`: all acceptance checks true.
+- `PARTIAL`: core behavior works but non-critical evidence or metadata is incomplete.
+- `FAIL`: expected behavior missing, contradictory output appears, prompt text leaks or a critical check failed.
+- `SKIP`: a real sandbox, dependency or runtime blocker prevents execution and is documented.
+
+### Feature Verdict Rules
+
+- `PASS`: all mapped scenarios for the feature are `PASS`.
+- `PARTIAL`: at least one mapped scenario is `PARTIAL`, none are `FAIL`.
+- `FAIL`: any mapped scenario is `FAIL`.
+
+### Release Readiness Rule
+
+Release is `READY` only when all 54 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
+
+---
+
+## 6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING
+
+### Purpose
+
+This section records wave planning for the canonical Skill Advisor manual test package. The scenario corpus is large enough to split across operators while keeping category ownership clear.
+
+### Operational Rules
+
+1. Probe build state first with the advisor runtime build command.
+2. Run native command-surface scenarios before hook scenarios so runtime failures can be separated from scorer or command failures.
+3. Run rebuild and daemon scenarios in disposable workspaces when validating repair or generated state.
+4. Assign explicit scenario IDs before parallel execution.
+5. Keep stdout, stderr and CLI JSON evidence in scenario-specific files under `/tmp/skill-advisor-playbook/`.
+6. After each wave, record verdicts and blockers before starting the next wave.
+
+### Recommended Wave Plan
+
+- **Wave 1**: `NC-001..NC-010` native command-surface behavior.
+- **Wave 2**: `CL-001`, `CL-004..CL-007` runtime hooks, the OpenCode plugin, CLI fallback and the goal plugin.
+- **Wave 3**: `CP-001..CP-004` compatibility and disable controls.
+- **Wave 4**: `OP-001..OP-003` H5 operator states.
+- **Wave 5**: `AU-001..AU-005` auto-update daemon behavior.
+- **Wave 6**: `AI-001..AI-006` auto-indexing behavior.
+- **Wave 7**: `LC-001..LC-005` lifecycle routing.
+- **Wave 8**: `SC-001..SC-005` scorer fusion.
+- **Wave 9**: `PC-001..PC-005` Python compatibility.
+- **Wave 10**: `DOC-348`, `DOC-362..DOC-367` the `/doctor:skill-advisor` command, run in a disposable copy.
+
+---
+
+## 7. NATIVE COMMAND SURFACE
+
+This category validates native command-surface scenarios `NC-001..NC-010`.
+
+| ID | Scenario | File |
+|---|---|---|
+| NC-001 | Native advisor_recommend Happy Path | [native-recommend-happy-path.md](native-cli-tools/native-recommend-happy-path.md) |
+| NC-002 | Native advisor_status Transitions | [native-status-transitions.md](native-cli-tools/native-status-transitions.md) |
+| NC-003 | Native advisor_validate Slice Bundle | [native-validate-slices.md](native-cli-tools/native-validate-slices.md) |
+| NC-004 | Ambiguous Brief Rendering | [ambiguous-brief-rendering.md](native-cli-tools/ambiguous-brief-rendering.md) |
+| NC-005 | Lifecycle Redirect Metadata | [lifecycle-redirect-metadata.md](native-cli-tools/lifecycle-redirect-metadata.md) |
+| NC-006 | Advisor Status and Rebuild Separation | [advisor-status-rebuild-separation.md](native-cli-tools/advisor-status-rebuild-separation.md) |
+| NC-007 | Skill Graph Status | [skill-graph-status.md](native-cli-tools/skill-graph-status.md) |
+| NC-008 | Skill Graph Query | [skill-graph-query.md](native-cli-tools/skill-graph-query.md) |
+| NC-009 | Skill Graph Validate | [skill-graph-validate.md](native-cli-tools/skill-graph-validate.md) |
+| NC-010 | Shadow-Delta Sink Opt-In | [shadow-delta-sink.md](native-cli-tools/shadow-delta-sink.md) |
+
+---
+
+## 8. CLI HOOKS AND PLUGIN
+
+This category validates cli hooks and plugin scenarios `CL-001`, `CL-004..CL-007`.
+
+| ID | Scenario | File |
+|---|---|---|
+| CL-001 | Claude Code UserPromptSubmit Hook | [001-claude-user-prompt-submit.md](cli-hooks-and-plugin/claude-user-prompt-submit.md) |
+| CL-004 | OpenCode Native Hooks And Wrapper Fallback | 004-opencode-hook-and-wrapper.md (not yet authored) |
+| CL-005 | OpenCode Plugin | [005-opencode-plugin-bridge.md](cli-hooks-and-plugin/opencode-plugin-bridge.md) |
+| CL-006 | skill-advisor CLI Fallback Surface (028) | [006-skill-advisor-cli-fallback.md](cli-hooks-and-plugin/skill-advisor-cli-fallback.md) |
+| CL-007 | Goal OpenCode Plugin | [goal-opencode-plugin.md](cli-hooks-and-plugin/goal-opencode-plugin.md) |
+
+---
+
+## 9. COMPAT AND DISABLE
+
+This category validates compat and disable scenarios `CP-001..CP-004`.
+
+| ID | Scenario | File |
+|---|---|---|
+| CP-001 | Python Shim --stdin Mode | [001-python-shim-stdin.md](compat-and-disable/python-shim-stdin.md) |
+| CP-002 | Force Local And Force Native Toggles | [002-force-local-force-native.md](compat-and-disable/force-local-force-native.md) |
+| CP-003 | Global Disable Flag | [003-global-disable-flag.md](compat-and-disable/global-disable-flag.md) |
+| CP-004 | Daemon Absent Fallback | [004-daemon-absent-fallback.md](compat-and-disable/daemon-absent-fallback.md) |
+
+---
+
+## 10. OPERATOR H5
+
+This category validates operator h5 scenarios `OP-001..OP-003`.
+
+| ID | Scenario | File |
+|---|---|---|
+| OP-001 | Degraded Daemon | [001-degraded-daemon.md](operator-h5/degraded-daemon.md) |
+| OP-002 | Quarantined Daemon | [002-quarantined-daemon.md](operator-h5/quarantined-daemon.md) |
+| OP-003 | Unavailable Daemon | [003-unavailable-daemon.md](operator-h5/unavailable-daemon.md) |
+
+---
+
+## 11. AUTO UPDATE DAEMON
+
+This category validates auto update daemon scenarios `AU-001..AU-005`.
+
+| ID | Scenario | File |
+|---|---|---|
+| AU-001 | Chokidar Watcher Narrow Scope | [001-watcher-narrow-scope.md](auto-update-daemon/watcher-narrow-scope.md) |
+| AU-002 | Workspace Single-Writer Lease | [002-lease-single-writer.md](auto-update-daemon/lease-single-writer.md) |
+| AU-003 | Daemon Lifecycle and SIGTERM | [003-daemon-lifecycle-shutdown.md](auto-update-daemon/daemon-lifecycle-shutdown.md) |
+| AU-004 | Generation-Tagged Snapshot Publication | [004-generation-publication.md](auto-update-daemon/generation-publication.md) |
+| AU-005 | Rebuild From Source on Corrupt SQLite | [005-rebuild-from-source.md](auto-update-daemon/rebuild-from-source.md) |
+
+---
+
+## 12. AUTO INDEXING
+
+This category validates auto indexing scenarios `AI-001..AI-006`.
+
+| ID | Scenario | File |
+|---|---|---|
+| AI-001 | Deterministic Derived Extraction | [001-derived-extraction.md](auto-indexing/derived-extraction.md) |
+| AI-002 | A7 Sanitizer at Every Write Boundary | [002-sanitizer-boundaries.md](auto-indexing/sanitizer-boundaries.md) |
+| AI-003 | Provenance Fingerprints and Trust Lanes | [003-provenance-and-trust-lanes.md](auto-indexing/provenance-and-trust-lanes.md) |
+| AI-004 | DF/IDF Corpus Stats Active-Only | [004-corpus-df-idf.md](auto-indexing/corpus-df-idf.md) |
+| AI-005 | Anti-Stuffing and Cardinality Caps | [005-anti-stuffing.md](auto-indexing/anti-stuffing.md) |
+| AI-006 | Doc-Frontmatter Trigger Harvest | [006-doc-frontmatter-harvest.md](auto-indexing/doc-frontmatter-harvest.md) |
+
+---
+
+## 13. LIFECYCLE ROUTING
+
+This category validates lifecycle routing scenarios `LC-001..LC-005`.
+
+| ID | Scenario | File |
+|---|---|---|
+| LC-001 | Derived-Lane-Only Age Haircut | [001-age-haircut.md](lifecycle-routing/age-haircut.md) |
+| LC-002 | Asymmetric Supersession Redirects | [002-supersession.md](lifecycle-routing/supersession.md) |
+| LC-003 | Archive and Future Skills Indexed But Not Routed | [003-archive-handling.md](lifecycle-routing/archive-handling.md) |
+| LC-004 | Schema v1 to v2 Additive Backfill | [004-schema-migration.md](lifecycle-routing/schema-migration.md) |
+| LC-005 | Lifecycle-Level Rollback | [005-rollback-lifecycle.md](lifecycle-routing/rollback-lifecycle.md) |
+
+---
+
+## 14. SCORER FUSION
+
+This category validates scorer fusion scenarios `SC-001..SC-005`.
+
+| ID | Scenario | File |
+|---|---|---|
+| SC-001 | Five-Lane Analytical Fusion | [001-five-lane-fusion.md](scorer-fusion/five-lane-fusion.md) |
+| SC-002 | Registry Projection Drift Guard and workflowMode Publication | [002-projection.md](scorer-fusion/projection.md) |
+| SC-003 | Top-2 Ambiguity Window | [003-ambiguity.md](scorer-fusion/ambiguity.md) |
+| SC-004 | Lane Contribution Attribution | [004-lane-attribution.md](scorer-fusion/lane-attribution.md) |
+| SC-005 | Lane-by-Lane Ablation Protocol | [005-ablation.md](scorer-fusion/ablation.md) |
+
+---
+
+## 15. PYTHON COMPAT
+
+This category validates python compat scenarios `PC-001..PC-005`.
+
+| ID | Scenario | File |
+|---|---|---|
+| PC-001 | Python Shim --stdin Round-Trip | [001-stdin-mode.md](python-compat/stdin-mode.md) |
+| PC-002 | --force-native and --force-local Toggles | [002-force-native-force-local.md](python-compat/force-native-force-local.md) |
+| PC-003 | threshold Confidence Flag | [003-threshold-flag.md](python-compat/threshold-flag.md) |
+| PC-004 | Python Regression Dataset | [004-regression-suite.md](python-compat/regression-suite.md) |
+| PC-005 | Python Bench Runner | [005-bench-runner.md](python-compat/bench-runner.md) |
+
+---
+
+## 16. DOCTOR COMMANDS
+
+This category validates the `/doctor:skill-advisor` scenarios `DOC-348` and `DOC-362..DOC-367`, one per target plus the menu shown when no target is given. Each scenario runs in a disposable copy. The read-only targets must leave every checksum unchanged, and `tune` and `rebuild` write only after an approval. The memory and causal-graph doctor IDs (DOC-323 to DOC-330) and the rebuild-orchestrator IDs (DOC-338 to DOC-342 and DOC-344 to DOC-347) are retired across every playbook.
+
+| ID | Scenario | File |
+|---|---|---|
+| DOC-348 | Doctor skill-advisor rebuild | [doctor-skill-advisor-rebuild.md](doctor-commands/doctor-skill-advisor-rebuild.md) |
+| DOC-362 | Doctor skill-advisor tune | [doctor-skill-advisor-tune.md](doctor-commands/doctor-skill-advisor-tune.md) |
+| DOC-363 | Doctor skill-advisor graph freshness | [doctor-skill-advisor-graph-freshness.md](doctor-commands/doctor-skill-advisor-graph-freshness.md) |
+| DOC-364 | Doctor skill-advisor router reach | [doctor-skill-advisor-router-reach.md](doctor-commands/doctor-skill-advisor-router-reach.md) |
+| DOC-365 | Doctor skill-advisor skill budget | [doctor-skill-advisor-skill-budget.md](doctor-commands/doctor-skill-advisor-skill-budget.md) |
+| DOC-366 | Doctor skill-advisor parent skill | [doctor-skill-advisor-parent-skill.md](doctor-commands/doctor-skill-advisor-parent-skill.md) |
+| DOC-367 | Doctor skill-advisor target menu | [doctor-skill-advisor-target-menu.md](doctor-commands/doctor-skill-advisor-target-menu.md) |
+
+---
+
+## 17. AUTOMATED TEST CROSS-REFERENCE
+
+The active inventory check lives at `.skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts`. It verifies the root playbook rows, the live per-feature file inventory and the scenario package count.
+
+| Area | Automated test anchors |
+|---|---|
+| Native command surface | `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts`; `.skilled/skills/system-skill-advisor/runtime/tests/advisor-rebuild.vitest.ts` |
+| Hooks and plugin | `.skilled/skills/system-skill-advisor/runtime/tests/hooks/settings-driven-invocation-parity.vitest.ts`; `.skilled/skills/system-skill-advisor/runtime/tests/hooks/runtime-parity.vitest.ts`; `.skilled/plugins/tests/opencode-goal-state.test.cjs`; `.skilled/plugins/tests/opencode-goal-continuation.test.cjs` |
+| Compatibility and Python entrypoints | `.skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts` |
+| Scoring, lifecycle, indexing and daemon state | `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts`; `.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-privacy.vitest.ts` |
+
+Validator limitation: `validate_document.py` validates this root document and per-feature documents individually, but it does not prove that every command can execute in the current sandbox. Operators must capture execution evidence during release review.
+
+---
+
+## 18. FEATURE CATALOG CROSS-REFERENCE INDEX
+
+| Scenario prefix | Category | Feature file directory |
+|---|---|---|
+| NC | Native command surface | `native-cli-tools/` |
+| CL | CLI hooks and plugin | `cli-hooks-and-plugin/` |
+| CP | Compat and disable | `compat-and-disable/` |
+| OP | Operator H5 | `operator-h5/` |
+| AU | Auto update daemon | `auto-update-daemon/` |
+| AI | Auto indexing | `auto-indexing/` |
+| LC | Lifecycle routing | `lifecycle-routing/` |
+| SC | Scorer fusion | `scorer-fusion/` |
+| PC | Python compat | `python-compat/` |
+| DOC | Doctor commands | `doctor-commands/` |
+
+Per-feature files include SOURCE FILES sections with implementation, catalog and test anchors where the source scenario provided them.
+
+### 18.5 Catalog group ↔ playbook category mapping (F37 cross-reference)
+
+The catalog uses 7 groups; the playbook uses 10 categories. Mapping is intentionally asymmetric, not 1:1. This table documents the relationships so operators can navigate between surfaces without surprise.
+
+| Feature catalog group | Maps to playbook category | Notes |
+|---|---|---|
+| `daemon-and-freshness` | `auto-update-daemon` (primary) plus `operator-h5` (operator state subset) | Catalog group split across 2 playbook categories: daemon mechanics in 05, operator-facing trust-state scenarios in 04 |
+| `auto-indexing` | `auto-indexing` | 1:1 mapping |
+| `lifecycle-routing` | `lifecycle-routing` | 1:1 mapping |
+| `scorer-fusion` | `scorer-fusion` | 1:1 mapping |
+| `cli-surface` | `native-cli-tools` plus `cli-hooks-and-plugin` | Catalog group split across 2 playbook categories: native command-surface scenarios in 01, CLI hook plus plugin invocation scenarios in 02 |
+| `hooks-and-plugin` | `cli-hooks-and-plugin` (primary) plus `compat-and-disable` (rollback states) | Catalog group split across 2 playbook categories: happy-path hook behavior in 02, disable plus rollback flags in 03 |
+| `python-compat` | `python-compat` | 1:1 mapping (note gap-09 is intentional per playbook §1) |
+| (none) | `compat-and-disable` | Compat plus disable flags cut across multiple catalog groups; no single catalog group owns them |
+| (none) | `doctor-commands` | The doctor command is documented in the system-spec-kit feature catalog, not this one |
+| (none) | `operator-h5` | H5 operator state scenarios cut across catalog groups; no single catalog group owns them |
+
+**Why asymmetric**: catalog groups model feature ownership (what the code does), while playbook categories model operator workflow (what an operator validates in one sitting). A single feature group can require multiple operator scenarios that span different runtime contexts (native command surface vs CLI hook vs compat shim). The asymmetry is documented here rather than removed by renumbering because renumbering would break checked-in inventory tests plus deep cross-references in earlier packets.
+
+---
+
+## 19. LEGACY ID CROSS-REFERENCE
+
+- SAD-001 -> NC-001 (native-cli-tools/native-recommend-happy-path.md)
+- SAD-002 -> NC-004 (native-cli-tools/ambiguous-brief-rendering.md)
+- SAD-003 -> CL-001 (cli-hooks-and-plugin/claude-user-prompt-submit.md)
+- SAD-004 -> NC-006 (native-cli-tools/advisor-status-rebuild-separation.md)

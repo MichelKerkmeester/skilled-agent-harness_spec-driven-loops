@@ -1,0 +1,17 @@
+--- advisor_status without --workspace-root ---
+{
+  "status": "error",
+  "error": "Invalid arguments for advisor_status: advisor_status.workspaceRoot is required",
+  "exitCode": 64
+}
+EXIT=64
+--- advisor_status with --workspace-root ---
+{
+  "status": "ok",
+  "data": {
+    "freshness": "live",
+    "generation": 1082,
+    "trustState": {
+      "state": "live",
+      "reason": null,
+PIPE_EXIT=0

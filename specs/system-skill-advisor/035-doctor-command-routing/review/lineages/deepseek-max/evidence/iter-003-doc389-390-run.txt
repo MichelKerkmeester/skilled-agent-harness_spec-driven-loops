@@ -1,0 +1,10 @@
+### DOC-389 setup hint (prompt: install the frobnicator widget)
+Advisor: no skill matched. For setup or health checks, run /doctor:setup.
+Directives:
+- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.
+doctor-mention-count: 1
+### DOC-390 unrelated no hint (prompt: describe how photosynthesis turns sunlight into sugar in plants)
+Advisor: no skill matched.
+Directives:
+- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.
+doctor-mention-count: 0

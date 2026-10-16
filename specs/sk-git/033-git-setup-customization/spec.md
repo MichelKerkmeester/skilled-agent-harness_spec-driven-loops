@@ -102,6 +102,7 @@ _memory:
 | 3 | 003-improvement-research/ | [Phase 3 scope] | Pending |
 | 4 | 004-final-deep-review/ | [Phase 4 scope] | Pending |
 | 5 | 005-setup-check-hardening/ | Harden the setup battery: DEGRADED status, the two review P1 fixes, proved repairs, trust-boundary hardening, CI and doc fixes | Pending |
+| 6 | 006-release-conformance-review/ | [Phase 6 scope] | Pending |
 
 ### Phase Transition Rules
 
@@ -118,6 +119,7 @@ _memory:
 | 002-doctor-git-setup | 003-improvement-research | [Criteria TBD] | [Verification TBD] |
 | 003-improvement-research | 004-final-deep-review | [Criteria TBD] | [Verification TBD] |
 | 004-final-deep-review | 005-setup-check-hardening | The review report names its active findings and Planning Packet | `004-final-deep-review/review/review-report.md` sections 2 and 3 |
+| 005-setup-check-hardening | 006-release-conformance-review | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

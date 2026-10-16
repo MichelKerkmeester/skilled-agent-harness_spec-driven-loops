@@ -1,0 +1,12 @@
+### step1 typed forced-local
+first: command-doctor-git-setup command
+exit ok
+EXIT=0
+### step3 plain forced-local
+first: sk-git
+doctor elements: []
+EXIT=0
+### step5 plain no-flag
+skills: ['sk-git', 'command-doctor-git-setup']
+sk-git idx: [0] doctor idx: [1] ordered: True
+EXIT=0

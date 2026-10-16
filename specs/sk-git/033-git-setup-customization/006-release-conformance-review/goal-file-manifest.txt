@@ -1,0 +1,33 @@
+# Review scope for the v4.0.0.11 release conformance review: the /doctor:git setup
+# command and its hardening. One repo-relative file per line, read by the deep-review
+# scope discovery. The review is read-only over every path below.
+# Code
+.skilled/commands/doctor/scripts/git-setup-check.cjs
+.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs
+.github/workflows/gate-inputs.yml
+.github/scripts/check-gate-inputs.sh
+.github/scripts/tests/check-gate-inputs.test.sh
+# Command
+.skilled/commands/doctor/git.md
+.skilled/commands/doctor/assets/doctor-git-setup.yaml
+.skilled/commands/doctor/assets/doctor-git-presentation.txt
+.skilled/commands/doctor/_routes.yaml
+.skilled/commands/doctor/scripts/README.md
+# Skill docs
+.skilled/skills/sk-git/SKILL.md
+.skilled/skills/sk-git/README.md
+.skilled/skills/sk-git/assets/commit-message-template.md
+.skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-setup-check.md
+.skilled/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md
+.skilled/skills/sk-git/feature-catalog/workflow-playbooks/doctor-git-settings.md
+.skilled/skills/sk-git/feature-catalog/feature-catalog.md
+.skilled/skills/sk-git/scripts/hooks/README.md
+# Cross-repo
+README.md
+.skilled/commands/README.txt
+.skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md
+.skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md
+.hermes/skills/sk-git/SKILL.md
+# Changelogs
+.skilled/skills/sk-git/changelog/v1.9.0.0.md
+.skilled/changelog/skilled/v4.0.0.11.md

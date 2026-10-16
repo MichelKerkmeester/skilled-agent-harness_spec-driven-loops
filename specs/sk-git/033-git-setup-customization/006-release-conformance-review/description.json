@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "sk-git/033-git-setup-customization/006-release-conformance-review",
+  "description": "The v4.0.0.11 release shipped the `/doctor:git setup` command and its hardening across code, a command router, skill docs, playbooks, catalogs,",
+  "keywords": [
+    "release",
+    "shipped",
+    "doctor",
+    "git",
+    "setup",
+    "command",
+    "hardening",
+    "across",
+    "code",
+    "router",
+    "skill",
+    "docs",
+    "playbooks",
+    "catalogs"
+  ],
+  "lastUpdated": "2026-10-16T05:42:01.194Z",
+  "specId": "006",
+  "folderSlug": "release-conformance-review",
+  "parentChain": [
+    "sk-git",
+    "033-git-setup-customization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-10-26_06-42__deep-review-of-the-v4-0-0-11-doctor-git-setup.md"
+  ]
+}

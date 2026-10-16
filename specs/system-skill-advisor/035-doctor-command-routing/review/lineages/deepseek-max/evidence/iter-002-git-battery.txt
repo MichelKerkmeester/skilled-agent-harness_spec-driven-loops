@@ -1,0 +1,50 @@
+PASS     install
+      source: skills/sk-git/SKILL.md + hard-rules.json + scripts/
+PASS     hooks
+      source: git rev-parse --git-path hooks + hook links
+PASS     trust
+      source: git config --local --bool skilled.trustRepoHooks + git rev-parse --git-common-dir
+      own checkout: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.git
+PASS     gates
+      source: git-hook-gates.cjs list --repo <repo> --json
+PASS     standards
+      source: message-contract.mjs resolveContractDir + loadContract
+      contract dir: .skilled/skills/sk-git/assets/
+      commit enforced (.skilled/skills/sk-git/assets/commit-message-template.md)
+      pr enforced (.skilled/skills/sk-git/assets/pr-template.md)
+      branch enforced (.skilled/skills/sk-git/assets/worktree-checklist.md)
+PASS     allowlist
+      source: worktree-naming.sh validate-remote-allowlist + remote-branch-allowlist.txt
+      main: allowed
+      skilled/v4.0.0.0: exempt (pre-push skips release branches before the allowlist)
+      feature/setup-check-probe: refused
+      patterns (.skilled/skills/sk-git/scripts/remote-branch-allowlist.txt): none
+PASS     worktrees
+      source: SPECKIT_WORKTREE_BASE | speckit.worktreeBase | .worktrees + worktree-provision-paths.txt
+      base: .worktrees (from default)
+      .: no package, provision skips it
+      .skilled: installed
+      .skilled/skills/system-spec-kit: installed
+      .skilled/skills/system-spec-kit/shared: not installed
+      .skilled/skills/system-spec-kit/runtime: installed, built
+      .skilled/skills/system-spec-kit/runtime/cli: installed, built
+      .skilled/skills/system-skill-advisor/runtime: installed, built
+      .skilled/skills/system-deep-loop: installed
+      ... 2 more
+PASS     commit-id
+      source: commit-id-policy.sh cip_repo_wants_ids + git config --local --bool skilled.commitId
+      ids on (markers)
+PASS     advisory-rules
+      source: hard-rules.json + git-rule-checks.mjs GIT_CHECKS
+PASS     suppression
+      source: env + hook-flags.env: SYSTEM_HOOKS_DISABLED, MK_HOOKS_DISABLED, SYSTEM_GIT_COMMIT_HOOKS_DISABLED, SK_GIT_PREFLIGHT_DISABLED, MK_GIT_PREFLIGHT_DISABLED; env only: SKGIT_ADVISORY, SKGIT_ADVISORY_SKIP
+UNKNOWN  ai-tool-hooks
+      source: six adapter files, no active tool detected
+      no active AI tool detected: pass --tool <claude|codex|devin|cursor|opencode|pi>
+      claude: registered (.claude/settings.json)
+      codex: registered (.codex/hooks.json)
+      devin: registered (.devin/hooks.v1.json)
+      cursor: registered (.cursor/hooks.json)
+      opencode: registered (.opencode/plugins/sk-git-preflight-advisory.js)
+      pi: registered (.pi/extensions/git-preflight-advisory.ts)
+STATUS=DEGRADED degraded=0 skipped=0 unknown=1

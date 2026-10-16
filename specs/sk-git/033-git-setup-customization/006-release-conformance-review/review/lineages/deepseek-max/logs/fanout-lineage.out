@@ -1,0 +1,18 @@
+Final-state verification is complete: all artifacts present, 5 iteration records + terminal synthesis in the ledger (7 gateway receipts, all exit 0), registry at 1 P1 + 11 P2, config flipped to complete, and the working tree shows no write outside the lineage (the concurrent `luna-max-fast` files and orchestrator telemetry are not mine).
+
+BINDING: target=specs/sk-git/033-git-setup-customization/006-release-conformance-review
+BINDING: maxIterations=5
+BINDING: convergence=0.1
+BINDING: mode=review
+BINDING: dimensions=correctness,security,traceability,maintainability
+BINDING: specFolder=specs/sk-git/033-git-setup-customization/006-release-conformance-review
+
+Review lineage `deepseek-max` complete — 5/5 iterations across code, command surface, skill docs, cross-repo references, and changelogs; verdict **CONDITIONAL**.
+
+- 12 active findings: 1 P1 (`SKILL.md` 5038 words > the repo's 5000-word packaging limit; the release's own README documents that check as PASS) and 11 P2s (stale playbook census/ranges, missing `doctor-commands/` in the index artifact list, missing `/doctor:sk-code` in the sys-spec-kit overview, an incomplete/contradictory verdict list in the root README, a documented `bash <py-file>` command, HVR semicolons in the new presentation asset, `git.md` description over budget, and the allowlist row's un-runnable-bash false PASS).
+- Confirmed clean: 44 node tests, 50 shell fixtures, gate-inputs check, route-validate + self-test, skill/playbook/catalog/document validators, router-drift (34/34), Hermes mirror parity, changelog validators (0 issues, 0 hard HVR blockers), and the live battery (`STATUS=OK checks=11`).
+- Terminal state: `deep-review-state.jsonl` carries 5 iteration records (route proof + findingDetails) and the synthesis row with `stopReason: "maxIterationsReached"`; iterations/, deltas/, registry, dashboard, strategy, and `review-report.md` all exist under the lineage.
+
+Operator's next step: for the P1, trim `.skilled/skills/sk-git/SKILL.md` below 5000 words and rerun `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/sk-git --check`; the cross-lineage merge will roll this lineage's findings into the parent report.
+
+FANOUT_LINEAGE_COMPLETE:deepseek-max

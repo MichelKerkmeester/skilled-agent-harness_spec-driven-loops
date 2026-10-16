@@ -1,0 +1,1 @@
+[codex-prompt-sync] PASS: 37 prompts are in sync.

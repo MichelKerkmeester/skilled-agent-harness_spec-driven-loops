@@ -1,0 +1,142 @@
+{
+  "topic": "Review: v4.0.0.11 release conformance for /doctor:git setup and its hardening",
+  "sessionId": "fanout-luna-max-fast-1792125954096-ldhndm",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/sk-git/033-git-setup-customization/006-release-conformance-review",
+  "createdAt": "2026-10-16T04:49:36Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "specs/sk-git/033-git-setup-customization/006-release-conformance-review",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "stopPolicy": "max-iterations",
+  "resource_map": {
+    "emit": true
+  },
+  "reviewScopeFiles": [
+    ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+    ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+    ".github/workflows/gate-inputs.yml",
+    ".github/scripts/check-gate-inputs.sh",
+    ".github/scripts/tests/check-gate-inputs.test.sh",
+    ".skilled/commands/doctor/git.md",
+    ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+    ".skilled/commands/doctor/assets/doctor-git-presentation.txt",
+    ".skilled/commands/doctor/_routes.yaml",
+    ".skilled/commands/doctor/scripts/README.md",
+    ".skilled/skills/sk-git/SKILL.md",
+    ".skilled/skills/sk-git/README.md",
+    ".skilled/skills/sk-git/assets/commit-message-template.md",
+    ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-setup-check.md",
+    ".skilled/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/doctor-git-settings.md",
+    ".skilled/skills/sk-git/feature-catalog/feature-catalog.md",
+    ".skilled/skills/sk-git/scripts/hooks/README.md",
+    "README.md",
+    ".skilled/commands/README.txt",
+    ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
+    ".hermes/skills/sk-git/SKILL.md",
+    ".skilled/skills/sk-git/changelog/v1.9.0.0.md",
+    ".skilled/changelog/skilled/v4.0.0.11.md"
+  ]
+}

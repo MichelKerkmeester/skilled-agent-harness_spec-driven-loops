@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/033-git-setup-customization/006-release-conformance-review",
+  "spec_folder": "sk-git/033-git-setup-customization/006-release-conformance-review",
+  "parent_id": "sk-git/033-git-setup-customization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "release conformance review",
+      "phase 6 release conformance review",
+      "release conformance review plan",
+      "release conformance review tasks",
+      "release conformance review implementation summary"
+    ],
+    "key_topics": [
+      "release",
+      "conformance",
+      "review",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "shipped",
+      "doctor",
+      "git",
+      "setup"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/scripts/validate_document.py",
+      ".skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py",
+      ".skilled/commands/doctor/scripts/route-validate.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "hvr_scan.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py",
+        "source": "derived"
+      },
+      {
+        "name": "route-validate.sh",
+        "kind": "script",
+        "path": ".skilled/commands/doctor/scripts/route-validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "and",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The v4.0.0.11 release shipped the `/doctor:git setup` command and its hardening across code, a command router, skill docs, playbooks, catalogs, changelogs and cross-repo indexes",
+    "created_at": "2026-10-16T04:42:59Z",
+    "last_save_at": "2026-10-16T05:40:01.974Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d5eac11e68ac2720e8ac37b98d150dcd251d03140460d52650c0ebaf971c8a20",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e06b4e36da83e30f94c7976a0f2e43825ac023ec6301df824602d71890902c93",
+      "plan.md": "cd9fef3f482e83efb36de34d81d14f256ee9c2baad6a6dd37ac55701f7733c62",
+      "tasks.md": "1e9d7a3399b2649fc8c6c3b0119ab14cb21fca86e1e7670cede2048329cdadea",
+      "implementation-summary.md": "b752f6a698719dd33fadfcb735d8a96812ad8fa489b24f4d89632530cf276f38"
+    },
+    "last_active_at": null
+  }
+}

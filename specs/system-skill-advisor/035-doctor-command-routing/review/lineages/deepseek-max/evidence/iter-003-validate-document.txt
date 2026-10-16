@@ -1,0 +1,48 @@
+### root playbook (reference)
+
+✅ VALID: .skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md
+Document type: reference
+Total issues: 0
+EXIT=0
+### .skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md
+
+✅ VALID: .skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md
+Document type: readme
+Total issues: 1
+EXIT=0
+### .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md
+
+✅ VALID: .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md
+Document type: feature_catalog
+Total issues: 0
+EXIT=0
+### .skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/claude-hook.md
+
+✅ VALID: .skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/claude-hook.md
+Document type: feature_catalog
+Total issues: 0
+EXIT=0
+### .skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/opencode-plugin-bridge.md
+
+✅ VALID: .skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/opencode-plugin-bridge.md
+Document type: feature_catalog
+Total issues: 0
+EXIT=0
+### .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md
+
+✅ VALID: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md
+Document type: readme
+Total issues: 1
+EXIT=0
+### .skilled/skills/system-skill-advisor/README.md
+
+✅ VALID: .skilled/skills/system-skill-advisor/README.md
+Document type: readme
+Total issues: 0
+EXIT=0
+### SKILL.md (skill)
+
+✅ VALID: .skilled/skills/system-skill-advisor/SKILL.md
+Document type: skill
+Total issues: 0
+EXIT=0

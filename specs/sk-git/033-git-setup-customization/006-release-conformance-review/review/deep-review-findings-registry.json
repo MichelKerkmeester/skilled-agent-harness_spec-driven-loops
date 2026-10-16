@@ -1,0 +1,1304 @@
+{
+  "mergedFrom": [
+    "deepseek-max",
+    "luna-max-fast"
+  ],
+  "lineageExecutors": {
+    "deepseek-max": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "luna-max-fast": {
+      "kind": "cli-codex",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "max"
+    }
+  },
+  "mergedVerdict": "CONDITIONAL",
+  "openFindings": [
+    {
+      "findingId": "R3-P2-002--cec6ec9149f3",
+      "severity": "P2",
+      "title": "A documented validation command does not run as written",
+      "file": ".skilled/skills/sk-git/SKILL.md",
+      "line": 573,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-max"
+      ],
+      "_conflictOf": "R3-P2-002",
+      "_conflict_id": "R3-P2-002--cec6ec9149f3",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-002",
+          "peerId": "R3-P2-002--51e4b8350784",
+          "peerLineages": [
+            "luna-max-fast"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-001--6de6d30e61c9",
+      "severity": "P2",
+      "title": "Allowlist row reports PASS when the bash probe could not run",
+      "file": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      "line": 504,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-max"
+      ],
+      "_conflictOf": "R1-P2-001",
+      "_conflict_id": "R1-P2-001--6de6d30e61c9",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-001",
+          "peerId": "R1-P2-001--17e75b11ddda",
+          "peerLineages": [
+            "luna-max-fast"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-005--4410dcb2aeff",
+      "severity": "P2",
+      "title": "Catalog entry omits the DEGRADED verdict from the battery's vocabulary",
+      "file": ".skilled/skills/sk-git/feature-catalog/feature-catalog.md",
+      "line": 163,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-max"
+      ],
+      "_conflictOf": "R3-P2-005",
+      "_conflict_id": "R3-P2-005--4410dcb2aeff",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-005",
+          "peerId": "R3-P2-005--f906b281f8ce",
+          "peerLineages": [
+            "luna-max-fast"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-001--926cf9c7a35f",
+      "severity": "P2",
+      "title": "Doctor category overview never mentions /doctor:sk-code",
+      "file": ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+      "line": 17,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-max"
+      ],
+      "_conflictOf": "R4-P2-001",
+      "_conflict_id": "R4-P2-001--926cf9c7a35f",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--2af99497f3fe",
+          "peerLineages": [
+            "luna-max-fast"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R2-P2-002--f09dd7b1fe1a",
+      "severity": "P2",
+      "title": "git.md description exceeds the 110-character soft target",
+      "file": ".skilled/commands/doctor/git.md",
+      "line": 2,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-max"
+      ],
+      "_conflictOf": "R2-P2-002",
+      "_conflict_id": "R2-P2-002--f09dd7b1fe1a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-002",
+          "peerId": "R2-P2-002--fee55020a5c5",
+          "peerLineages": [
+            "luna-max-fast"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "OpenCode and Pi hook checks can mistake matching text for a registered handler",
+      "file": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      "line": 891,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "findingId": "R3-P2-004--2a3c221dda3c",
+      "severity": "P2",
+      "title": "Playbook index range and count statements lag the tree",
+      "file": ".skilled/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 603,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-max"
+      ],
+      "_conflictOf": "R3-P2-004",
+      "_conflict_id": "R3-P2-004--2a3c221dda3c",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-004",
+          "peerId": "R3-P2-004--f1e268b471d9",
+          "peerLineages": [
+            "luna-max-fast"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-003--0abb4552ab44",
+      "severity": "P2",
+      "title": "Playbook index's canonical artifact list omits doctor-commands/",
+      "file": ".skilled/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 18,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-max"
+      ],
+      "_conflictOf": "R3-P2-003",
+      "_conflict_id": "R3-P2-003--0abb4552ab44",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-003",
+          "peerId": "R3-P2-003--ac2c96be92ec",
+          "peerLineages": [
+            "luna-max-fast"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R2-P2-001--6542cebaa47d",
+      "severity": "P2",
+      "title": "Presentation asset carries four hard semicolon blockers",
+      "file": ".skilled/commands/doctor/assets/doctor-git-presentation.txt",
+      "line": 262,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-max"
+      ],
+      "_conflictOf": "R2-P2-001",
+      "_conflict_id": "R2-P2-001--6542cebaa47d",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-001",
+          "peerId": "R2-P2-001--f0cc343f845d",
+          "peerLineages": [
+            "luna-max-fast"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-002--42aeac85f69a",
+      "severity": "P2",
+      "title": "Root README gives the new setup command two different verdict sets, one of them incomplete",
+      "file": "README.md",
+      "line": 1262,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-max"
+      ],
+      "_conflictOf": "R4-P2-002",
+      "_conflict_id": "R4-P2-002--42aeac85f69a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-002",
+          "peerId": "R4-P2-002--ffba9f473d7e",
+          "peerLineages": [
+            "luna-max-fast"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R2-P2-003--3245dac6b583",
+      "severity": "P2",
+      "title": "Scripts README test-location claim is inaccurate for one script",
+      "file": ".skilled/commands/doctor/scripts/README.md",
+      "line": 21,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-max"
+      ],
+      "_conflictOf": "R2-P2-003",
+      "_conflict_id": "R2-P2-003--3245dac6b583",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-003",
+          "peerId": "R2-P2-003--60aaf1fc2397",
+          "peerLineages": [
+            "luna-max-fast"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P1-001--14355bb41223",
+      "severity": "P1",
+      "title": "sk-git fails its own skill-packaging check: SKILL.md is 5038 words against a 5000 hard limit",
+      "file": ".skilled/skills/sk-git/SKILL.md",
+      "line": 1,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-max"
+      ],
+      "_conflictOf": "R3-P1-001",
+      "_conflict_id": "R3-P1-001--14355bb41223",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P1-001",
+          "peerId": "R3-P1-001--696ea8c4e03a",
+          "peerLineages": [
+            "luna-max-fast"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-001--269c6f3e3bcd",
+      "severity": "P2",
+      "title": "SKILL.md's playbook census is stale",
+      "file": ".skilled/skills/sk-git/SKILL.md",
+      "line": 573,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-max"
+      ],
+      "_conflictOf": "R3-P2-001",
+      "_conflict_id": "R3-P2-001--269c6f3e3bcd",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--7bf439ae5791",
+          "peerLineages": [
+            "luna-max-fast"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R2-P2-004",
+      "severity": "P2",
+      "title": "The command description exceeds the documented 110-character target",
+      "file": ".skilled/commands/doctor/git.md",
+      "line": 2,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "findingId": "R4-P2-005",
+      "severity": "P2",
+      "title": "The command index contains two Human Voice Rules punctuation blockers",
+      "file": ".skilled/commands/README.txt",
+      "line": 54,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "findingId": "R4-P2-003",
+      "severity": "P2",
+      "title": "The feature catalog fails the Human Voice Rules punctuation scan",
+      "file": ".skilled/skills/sk-git/feature-catalog/feature-catalog.md",
+      "line": 31,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "findingId": "R4-P2-002--ffba9f473d7e",
+      "severity": "P2",
+      "title": "The feature catalog skips section 3",
+      "file": ".skilled/skills/sk-git/feature-catalog/feature-catalog.md",
+      "line": 105,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ],
+      "_conflictOf": "R4-P2-002",
+      "_conflict_id": "R4-P2-002--ffba9f473d7e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-002",
+          "peerId": "R4-P2-002--42aeac85f69a",
+          "peerLineages": [
+            "deepseek-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-001--17e75b11ddda",
+      "severity": "P2",
+      "title": "The hook check accepts an installed target without confirming it is executable",
+      "file": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      "line": 351,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ],
+      "_conflictOf": "R1-P2-001",
+      "_conflict_id": "R1-P2-001--17e75b11ddda",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-001",
+          "peerId": "R1-P2-001--6de6d30e61c9",
+          "peerLineages": [
+            "deepseek-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-004",
+      "severity": "P2",
+      "title": "The hooks README fails the Human Voice Rules punctuation scan",
+      "file": ".skilled/skills/sk-git/scripts/hooks/README.md",
+      "line": 31,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "findingId": "R2-P2-002--fee55020a5c5",
+      "severity": "P2",
+      "title": "The mandatory input gate appears after other command content",
+      "file": ".skilled/commands/doctor/git.md",
+      "line": 6,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ],
+      "_conflictOf": "R2-P2-002",
+      "_conflict_id": "R2-P2-002--fee55020a5c5",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-002",
+          "peerId": "R2-P2-002--f09dd7b1fe1a",
+          "peerLineages": [
+            "deepseek-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-005--f906b281f8ce",
+      "severity": "P2",
+      "title": "The playbook index has widespread HVR punctuation blockers",
+      "file": ".skilled/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 14,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ],
+      "_conflictOf": "R3-P2-005",
+      "_conflict_id": "R3-P2-005--f906b281f8ce",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-005",
+          "peerId": "R3-P2-005--4410dcb2aeff",
+          "peerLineages": [
+            "deepseek-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-002--51e4b8350784",
+      "severity": "P2",
+      "title": "The playbook validation example cannot run as written",
+      "file": ".skilled/skills/sk-git/SKILL.md",
+      "line": 573,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ],
+      "_conflictOf": "R3-P2-002",
+      "_conflict_id": "R3-P2-002--51e4b8350784",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-002",
+          "peerId": "R3-P2-002--cec6ec9149f3",
+          "peerLineages": [
+            "deepseek-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-003--ac2c96be92ec",
+      "severity": "P2",
+      "title": "The playbook wave plan double-books GIT-042 and omits GIT-044 through GIT-046",
+      "file": ".skilled/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 161,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ],
+      "_conflictOf": "R3-P2-003",
+      "_conflict_id": "R3-P2-003--ac2c96be92ec",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-003",
+          "peerId": "R3-P2-003--0abb4552ab44",
+          "peerLineages": [
+            "deepseek-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-006",
+      "severity": "P2",
+      "title": "The README repeats the worktree reaper outcome",
+      "file": ".skilled/skills/sk-git/README.md",
+      "line": 57,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "findingId": "R2-P2-001--f0cc343f845d",
+      "severity": "P2",
+      "title": "The required-input gate does not bind the documented --target alias",
+      "file": ".skilled/commands/doctor/git.md",
+      "line": 16,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ],
+      "_conflictOf": "R2-P2-001",
+      "_conflict_id": "R2-P2-001--f0cc343f845d",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-001",
+          "peerId": "R2-P2-001--6542cebaa47d",
+          "peerLineages": [
+            "deepseek-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-001--2af99497f3fe",
+      "severity": "P2",
+      "title": "The setup documentation omits the status counters emitted by the command",
+      "file": "README.md",
+      "line": 1507,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ],
+      "_conflictOf": "R4-P2-001",
+      "_conflict_id": "R4-P2-001--2af99497f3fe",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--926cf9c7a35f",
+          "peerLineages": [
+            "deepseek-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P1-001--696ea8c4e03a",
+      "severity": "P1",
+      "title": "The sk-git skill fails its package size gate",
+      "file": ".skilled/skills/sk-git/SKILL.md",
+      "line": 1,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ],
+      "_conflictOf": "R3-P1-001",
+      "_conflict_id": "R3-P1-001--696ea8c4e03a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P1-001",
+          "peerId": "R3-P1-001--14355bb41223",
+          "peerLineages": [
+            "deepseek-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-001--7bf439ae5791",
+      "severity": "P2",
+      "title": "The skill playbook summary reports an obsolete scenario range and category count",
+      "file": ".skilled/skills/sk-git/SKILL.md",
+      "line": 573,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ],
+      "_conflictOf": "R3-P2-001",
+      "_conflict_id": "R3-P2-001--7bf439ae5791",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--269c6f3e3bcd",
+          "peerLineages": [
+            "deepseek-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-004--f1e268b471d9",
+      "severity": "P2",
+      "title": "The skill prose has widespread HVR punctuation blockers",
+      "file": ".skilled/skills/sk-git/SKILL.md",
+      "line": 220,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ],
+      "_conflictOf": "R3-P2-004",
+      "_conflict_id": "R3-P2-004--f1e268b471d9",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-004",
+          "peerId": "R3-P2-004--2a3c221dda3c",
+          "peerLineages": [
+            "deepseek-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R2-P2-003--60aaf1fc2397",
+      "severity": "P2",
+      "title": "Visible command prose violates the Human Voice Rules punctuation standard",
+      "file": ".skilled/commands/doctor/assets/doctor-git-presentation.txt",
+      "line": 262,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ],
+      "_conflictOf": "R2-P2-003",
+      "_conflict_id": "R2-P2-003--60aaf1fc2397",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-003",
+          "peerId": "R2-P2-003--3245dac6b583",
+          "peerLineages": [
+            "deepseek-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 28
+  },
+  "openFindingsCount": 30,
+  "resolvedFindingsCount": 0,
+  "activeP0": 0,
+  "activeP1": 2,
+  "activeP2": 28
+}

@@ -1,0 +1,1 @@
+{"stem":"deep_review.synthesis_complete","scope":{"runId":"deepseek-max","sessionId":"deepseek-max"},"data":{"mode":"review","totalIterations":5,"activeP0":0,"activeP1":0,"activeP2":2,"dimensionCoverage":1,"verdict":"PASS","releaseReadinessState":"in-progress","stopReason":"maxIterationsReached"}}

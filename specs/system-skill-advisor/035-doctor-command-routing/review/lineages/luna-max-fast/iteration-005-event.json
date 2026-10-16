@@ -1,0 +1,399 @@
+{
+  "type": "iteration",
+  "iteration": 5,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": "fanout-luna-max-fast-1792125949812-grdnrc",
+  "sessionId": "fanout-luna-max-fast-1792125949812-grdnrc",
+  "generation": 1,
+  "lineageMode": "new",
+  "status": "complete",
+  "focus": "release changelogs and final cross-check",
+  "dimensions": [
+    "correctness",
+    "traceability",
+    "maintainability"
+  ],
+  "filesReviewed": [
+    "specs/system-skill-advisor/035-doctor-command-routing/review/lineages/luna-max-fast/steer.md:1-53",
+    ".skilled/skills/system-skill-advisor/changelog/v0.16.0.0.md:14-31",
+    ".skilled/skills/system-spec-kit/changelog/v2.8.0.0.md:13-26",
+    ".skilled/changelog/skilled/v4.0.0.12.md:11-25",
+    ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md:123-150",
+    ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+    ".skilled/bin/skill-advisor.cjs:85-105",
+    ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1342-1355",
+    ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1371-1389",
+    ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1577-1585",
+    ".skilled/commands/doctor/assets/doctor-setup.yaml:56",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-setup-run.md:14-16",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-setup-run.md:56-60",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:663-679",
+    ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:49-51",
+    ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:543-549",
+    ".skilled/commands/doctor/scripts/doctor-phrase-reach.cjs:262-267",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-routing-setup-onboarding.md:94-99",
+    ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md:501-509",
+    ".skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md:122-128",
+    ".skilled/skills/sk-doc/sk-create-feature-catalog/SKILL.md:12-16",
+    "README.md:80",
+    "README.md:1074",
+    "README.md:1231-1235",
+    ".skilled/commands/README.txt:42-54",
+    ".skilled/commands/README.txt:156-164",
+    ".skilled/skills/system-skill-advisor/references/runtime/cli-front-door-contract.md:28-34"
+  ],
+  "findingsCount": 7,
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 7
+  },
+  "findingsNew": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "findingDetails": [
+    {
+      "id": "P2-001",
+      "severity": "P2",
+      "title": "Quoted doctor-command text bypasses skill-first ordering",
+      "dimension": "correctness",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:679",
+      "evidence": "The raw '/doctor:' substring guard preserves the scored ranking, while explicit-author evidence accepts the slash-command marker. The changelog's no-route-changes claim is therefore too broad.",
+      "case": "A prompt that quotes /doctor:setup can keep the doctor bridge ahead of a passing matching skill.",
+      "recommendation": "Distinguish direct slash-command invocation from quoted references before bypassing skill-first ordering.",
+      "findingClass": "routing-disambiguation",
+      "scopeProof": "The scorer and release claim are in the steer's advisor-code and changelog scope.",
+      "affectedSurfaceHints": [
+        "advisor ranking",
+        "doctor routing changelog"
+      ],
+      "disposition": "active"
+    },
+    {
+      "id": "P2-002",
+      "severity": "P2",
+      "title": "Generic check wording advertises setup on unrelated no-match prompts",
+      "dimension": "correctness",
+      "file": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:51",
+      "evidence": "SETUP_WORDING accepts standalone check inflections and the no-match renderer adds the setup hint when that predicate is true.",
+      "case": "If 'Check what time the tide turns' gets no advisor recommendation, it receives a /doctor:setup hint despite being unrelated to tooling setup or health.",
+      "recommendation": "Require setup, environment, installation, or tooling-health context in addition to a generic check verb.",
+      "findingClass": "fallback-intent-qualification",
+      "scopeProof": "The predicate and no-match call path are in the steer's advisor-code scope; the advisor changelog says unrelated prompts get no hint.",
+      "affectedSurfaceHints": [
+        "Claude hook fallback",
+        "Pi timeout fallback",
+        "OpenCode fallback"
+      ],
+      "disposition": "active"
+    },
+    {
+      "id": "P2-003",
+      "severity": "P2",
+      "title": "Doctor phrase reach can report stale scorer behavior as current",
+      "dimension": "correctness",
+      "file": ".skilled/commands/doctor/scripts/doctor-phrase-reach.cjs:264",
+      "evidence": "The probe checks only that BUILT_SCORER exists before importing the built scorer; it has no source/build freshness comparison.",
+      "case": "After source changes break a doctor phrase, an older but present dist scorer can still report reach as passing.",
+      "recommendation": "Check source/build freshness or mark the probe indeterminate when the artifact is stale.",
+      "findingClass": "stale-build-probe",
+      "scopeProof": "The phrase reach script is in the command scope and is rechecked here against its source.",
+      "affectedSurfaceHints": [
+        "/doctor:skill-advisor router reach",
+        "advisor runtime"
+      ],
+      "disposition": "active"
+    },
+    {
+      "id": "P2-004",
+      "severity": "P2",
+      "title": "Doctor-routing scenarios omit their required feature-catalog backlink",
+      "dimension": "maintainability",
+      "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-routing-setup-onboarding.md:94",
+      "evidence": "The authoring contract requires linking each scenario to its matching feature-catalog entry; DOC-385 through DOC-391 omit that link.",
+      "case": "A reader opening a scenario cannot follow it directly to the feature contract and its test anchors.",
+      "recommendation": "Link each scenario to feature-catalog/scorer-fusion/doctor-command-routing.md.",
+      "findingClass": "documentation-traceability",
+      "scopeProof": "All seven scenarios and the playbook authoring contract were checked.",
+      "affectedSurfaceHints": [
+        "DOC-385 through DOC-391",
+        "feature-catalog navigation"
+      ],
+      "disposition": "active"
+    },
+    {
+      "id": "P2-006",
+      "severity": "P2",
+      "title": "The feature catalog lists an OpenCode hook capability without a feature page",
+      "dimension": "traceability",
+      "file": ".skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md:126",
+      "evidence": "The root catalog lists native OpenCode hooks and the prompt-wrapper fallback but labels the feature page missing.",
+      "case": "A reader following this capability has no per-feature implementation and validation anchors.",
+      "recommendation": "Add the feature page or merge/remove the row if it is not a distinct capability.",
+      "findingClass": "catalog-leaf-coverage",
+      "scopeProof": "The catalog row and one-leaf-per-entry authoring rule are in scope.",
+      "affectedSurfaceHints": [
+        "feature catalog",
+        "OpenCode hooks"
+      ],
+      "disposition": "active"
+    },
+    {
+      "id": "P2-007",
+      "severity": "P2",
+      "title": "Root README understates the command catalog by two entries",
+      "dimension": "traceability",
+      "file": "README.md:1074",
+      "evidence": "The README reports 37 commands; the canonical command-catalog checker reports 39 and the command index lists 39/39.",
+      "case": "Readers sizing the command surface from the root README receive a count two below the canonical inventory.",
+      "recommendation": "Update both README totals and the group breakdown, or explain the excluded entries.",
+      "findingClass": "command-catalog-count-drift",
+      "scopeProof": "The checker output and command index reconcile to 39.",
+      "affectedSurfaceHints": [
+        "root README",
+        "command index"
+      ],
+      "disposition": "active"
+    },
+    {
+      "id": "P2-008",
+      "severity": "P2",
+      "title": "DOC-391's write-free claim misses a socket-directory creation",
+      "dimension": "correctness",
+      "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-setup-run.md:16",
+      "evidence": "DOC-391 invokes the CLI shim at line 56. skill-advisor.cjs calls ensureSocketDir at module startup (line 102), and ensureSocketDir uses mkdirSync on the default /tmp/system-skill-advisor path when that directory is absent (lines 85-91).",
+      "case": "On a machine without the default socket directory, /doctor:setup creates it before the warm-only probe returns. DOC-391's git-status comparison does not observe this write. The warm-only path does not cold-start the daemon or write a lease.",
+      "recommendation": "Document and assert the temporary directory effect, or make socket-directory setup conditional on a mode that may start/attach the daemon.",
+      "findingClass": "side-effect-accuracy",
+      "scopeProof": "The in-scope doctor workflow calls the shim, and direct source inspection confirms the top-level directory creation even though warm-only suppresses a cold daemon spawn.",
+      "affectedSurfaceHints": [
+        "/doctor:setup",
+        "DOC-391",
+        "read-only release claims"
+      ],
+      "disposition": "active"
+    },
+    {
+      "id": "P2-005",
+      "severity": "P2",
+      "title": "DOC-391 calls the setup run write-free while its advisor leg writes daemon state",
+      "dimension": "correctness",
+      "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-setup-run.md:16",
+      "evidence": "The prior interpretation relied on the shared CLI reference, but the runtime implementation prevents warm-only from starting an unavailable daemon.",
+      "case": "A cold warm-only advisor call returns retryable without spawning the daemon, so the recorded lease-database write case does not occur.",
+      "recommendation": "Resolve this cold-start claim and retain the separately evidenced socket-directory write as P2-008.",
+      "findingClass": "side-effect-accuracy",
+      "scopeProof": "The source was re-read in iteration 5 and contradicts the prior contract-based inference.",
+      "affectedSurfaceHints": [
+        "DOC-391",
+        "warm-only behavior"
+      ],
+      "disposition": "resolved"
+    }
+  ],
+  "resolvedFindings": [
+    "P2-005"
+  ],
+  "newFindingsRatio": 0.1429,
+  "timestamp": "2026-10-16T05:19:09Z",
+  "durationMs": 360000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "complex",
+    "enforcement": "strict",
+    "reason": "Final release-changelog pass reconciles user-facing claims with source behavior and corrects an earlier interpretation of warm-only handling.",
+    "evidenceRefs": [
+      "specs/system-skill-advisor/035-doctor-command-routing/review/lineages/luna-max-fast/steer.md:1",
+      ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md"
+    ]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      ".skilled/skills/system-skill-advisor/changelog/v0.16.0.0.md",
+      ".skilled/skills/system-spec-kit/changelog/v2.8.0.0.md",
+      ".skilled/changelog/skilled/v4.0.0.12.md",
+      ".skilled/bin/skill-advisor.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts",
+      ".skilled/commands/doctor/assets/doctor-setup.yaml",
+      ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-setup-run.md"
+    ],
+    "selectionReason": "The lead steer assigns the last pass to changelogs and a final cross-check; the warm-only call path was re-read to test the earlier side-effect claim.",
+    "discoveryMethods": [
+      "steer_scope",
+      "direct_read",
+      "exact_search",
+      "read_only_validator"
+    ],
+    "omittedHighRiskTargets": [
+      "No runtime probe or test runner was executed under the bound write-surface restriction; the doctor phrase-reach probe remains blocked from iteration 2."
+    ],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "unavailable",
+    "evidenceRefs": [
+      ".skilled/skills/system-skill-advisor/changelog/v0.16.0.0.md:28-31",
+      ".skilled/bin/skill-advisor.cjs:85-105"
+    ]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "changelog_claim_accuracy",
+      "setup_write_claim_accuracy",
+      "prior_route_compatibility_claim",
+      "warm_only_daemon_start",
+      "changelog_format_contract"
+    ],
+    "covered": [
+      "changelog_claim_accuracy",
+      "setup_write_claim_accuracy",
+      "prior_route_compatibility_claim"
+    ],
+    "ruledOut": [
+      "warm_only_daemon_start",
+      "changelog_format_contract"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-018",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/changelog/v0.16.0.0.md",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts"
+      ],
+      "bugClass": "changelog_claim_accuracy",
+      "hypothesis": "The release note may overstate when an unrelated prompt receives a setup hint.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "release setup-hint statement compared with hook predicate and no-match renderer",
+          "result": "The generic check predicate matches unrelated no-match prompts, confirming P2-002.",
+          "evidenceRefs": [
+            ".skilled/skills/system-skill-advisor/changelog/v0.16.0.0.md:28",
+            ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:51",
+            ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:547-549"
+          ]
+        }
+      ],
+      "disposition": "finding",
+      "rationale": "The release note makes an absolute negative claim that source behavior contradicts.",
+      "linkedFindingId": "P2-002"
+    },
+    {
+      "id": "SL-019",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-setup-run.md",
+        ".skilled/bin/skill-advisor.cjs",
+        ".skilled/commands/doctor/assets/doctor-setup.yaml"
+      ],
+      "bugClass": "setup_write_claim_accuracy",
+      "hypothesis": "The no-write claim may miss writes performed by the advisor leg before warm-only handling.",
+      "searchActions": [
+        {
+          "method": "producer_consumer_trace",
+          "queryOrPath": "doctor setup advisor leg through the CLI shim startup",
+          "result": "The shim creates its default socket directory before invoking the CLI; the scenario's git status comparison misses the /tmp creation.",
+          "evidenceRefs": [
+            ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-setup-run.md:16",
+            ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-setup-run.md:56",
+            ".skilled/bin/skill-advisor.cjs:85-105"
+          ]
+        }
+      ],
+      "disposition": "finding",
+      "rationale": "The documented write-free guarantee is false when the default socket directory does not already exist.",
+      "linkedFindingId": "P2-008"
+    },
+    {
+      "id": "SL-020",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/changelog/v0.16.0.0.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
+      ],
+      "bugClass": "prior_route_compatibility_claim",
+      "hypothesis": "The changelog's compatibility guarantee may not hold for quoted slash-command references.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "matching-skill order when a prompt contains quoted /doctor: text",
+          "result": "The substring guard preserves doctor-first scoring on quoted references, reconfirming P2-001.",
+          "evidenceRefs": [
+            ".skilled/skills/system-skill-advisor/changelog/v0.16.0.0.md:25",
+            ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:663-679"
+          ]
+        }
+      ],
+      "disposition": "finding",
+      "rationale": "The implementation uses substring presence as an invocation proxy, so the compatibility statement is too broad.",
+      "linkedFindingId": "P2-001"
+    },
+    {
+      "id": "SL-021",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts",
+        ".skilled/bin/skill-advisor.cjs"
+      ],
+      "bugClass": "warm_only_daemon_start",
+      "hypothesis": "A warm-only advisor call may cold-start the daemon before checking status.",
+      "searchActions": [
+        {
+          "method": "producer_consumer_trace",
+          "queryOrPath": "warm-only flag from CLI entry through ensureDaemonReady",
+          "result": "An unavailable daemon raises a retryable error when warmOnly is true; only the non-warm-only path reaches spawnLauncher. The doctor setup call does not cold-start the daemon.",
+          "evidenceRefs": [
+            ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1342-1355"
+          ]
+        }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "The previous cold-start interpretation is contradicted by the executable path.",
+      "ruledOutReason": "warm-only suppresses daemon spawning when the daemon is unavailable."
+    },
+    {
+      "id": "SL-022",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/changelog/v0.16.0.0.md",
+        ".skilled/skills/system-spec-kit/changelog/v2.8.0.0.md",
+        ".skilled/changelog/skilled/v4.0.0.12.md"
+      ],
+      "bugClass": "changelog_format_contract",
+      "hypothesis": "The three release changelogs may fail their format or voice contract.",
+      "searchActions": [
+        {
+          "method": "read_only_validator",
+          "queryOrPath": "validate_document.py --type changelog and hvr_scan.py across all three release notes",
+          "result": "All three changelog validations pass with zero issues; HVR reports zero hard blockers, with review-only wording candidates.",
+          "evidenceRefs": [
+            ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+            ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md:123-150"
+          ]
+        }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "Applicable structural validation found no changelog format issue.",
+      "ruledOutReason": "All three changelogs pass document validation and HVR has no hard blockers."
+    }
+  ],
+  "traceabilityChecks": {
+    "changelogValidators": "PASS: all three changelogs valid with zero issues; exit 0.",
+    "humanVoice": "PASS: HVR exit 0, zero hard blockers; one soft deduction and comma-review candidates remain.",
+    "priorFindingCrossCheck": "P2-001 and P2-002 corroborated; P2-005 cold-start/lease case disproved and resolved; P2-008 records the confirmed socket-directory write.",
+    "warmOnlyCallPath": "PASS: warm-only suppresses cold spawn when unavailable and still executes advisor_status when the daemon is alive.",
+    "buildsRun": false,
+    "testsRun": false,
+    "runtimeProbesRun": false
+  },
+  "graphEvents": []
+}

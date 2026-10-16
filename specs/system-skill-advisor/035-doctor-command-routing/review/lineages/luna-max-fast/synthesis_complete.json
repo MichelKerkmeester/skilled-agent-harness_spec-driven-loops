@@ -1,0 +1,18 @@
+{
+  "stem": "deep_review.synthesis_complete",
+  "scope": {
+    "runId": "luna-max-fast",
+    "sessionId": "luna-max-fast"
+  },
+  "data": {
+    "mode": "review",
+    "totalIterations": 5,
+    "activeP0": 0,
+    "activeP1": 0,
+    "activeP2": 7,
+    "dimensionCoverage": 0.75,
+    "verdict": "CONDITIONAL",
+    "releaseReadinessState": "in-progress",
+    "stopReason": "maxIterationsReached"
+  }
+}

@@ -1,0 +1,904 @@
+{
+  "sessionId": "fanout-luna-max-fast-1792125949812-grdnrc",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "timestamp": "2026-10-16T05:23:12.233Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "P2-001",
+      "severity": "P2",
+      "title": "Quoted doctor-command text bypasses skill-first ordering",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+      "line": 679,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-002",
+      "severity": "P2",
+      "title": "Generic check wording advertises setup on unrelated no-match prompts",
+      "file": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      "line": 51,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-003",
+      "severity": "P2",
+      "title": "Doctor phrase reach can report stale scorer behavior as current",
+      "file": ".skilled/commands/doctor/scripts/doctor-phrase-reach.cjs",
+      "line": 264,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-004",
+      "severity": "P2",
+      "title": "Doctor-routing scenarios omit their required feature-catalog backlink",
+      "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-routing-setup-onboarding.md",
+      "line": 94,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-006",
+      "severity": "P2",
+      "title": "The feature catalog lists an OpenCode hook capability without a feature page",
+      "file": ".skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md",
+      "line": 126,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-007",
+      "severity": "P2",
+      "title": "Root README understates the command catalog by two entries",
+      "file": "README.md",
+      "line": 1074,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-008",
+      "severity": "P2",
+      "title": "DOC-391's write-free claim misses a socket-directory creation",
+      "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-setup-run.md",
+      "line": 16,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [
+    {
+      "findingId": "P2-005",
+      "severity": "P2",
+      "title": "DOC-391 calls the setup run write-free while its advisor leg writes daemon state",
+      "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-setup-run.md",
+      "line": 16,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 7
+  },
+  "openFindingsCount": 7,
+  "resolvedFindingsCount": 1,
+  "convergenceScore": 0.8571,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "built_runtime_freshness",
+      "catalog_entry_leaf_coverage",
+      "changelog_claim_accuracy",
+      "command_catalog_count_alignment",
+      "command_intent_qualification",
+      "cross_runtime_consistency",
+      "fallback_context_qualification",
+      "prior_route_compatibility_claim",
+      "scenario_feature_crosslink",
+      "scenario_side_effect_accuracy",
+      "setup_mutation_claim_accuracy",
+      "setup_write_claim_accuracy"
+    ],
+    "ruledOut": [
+      "changelog_format_contract",
+      "cross_repo_reference_integrity",
+      "doc_format_contract",
+      "doctor_command_list_alignment",
+      "generated_bridge_parity",
+      "lease_stress_coverage",
+      "route_manifest_parity",
+      "runtime_mirror_parity",
+      "UNKNOWN",
+      "warm_only_daemon_start"
+    ],
+    "deferred": [],
+    "blocked": [
+      "doctor_probe_execution"
+    ],
+    "byBugClass": {
+      "command_intent_qualification": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "fallback_context_qualification": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "cross_runtime_consistency": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "generated_bridge_parity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "lease_stress_coverage": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "UNKNOWN": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "built_runtime_freshness": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "route_manifest_parity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "runtime_mirror_parity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "doctor_probe_execution": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          2
+        ]
+      },
+      "scenario_feature_crosslink": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "scenario_side_effect_accuracy": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "catalog_entry_leaf_coverage": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "doc_format_contract": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "command_catalog_count_alignment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "setup_mutation_claim_accuracy": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "doctor_command_list_alignment": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "cross_repo_reference_integrity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "changelog_claim_accuracy": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "setup_write_claim_accuracy": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "prior_route_compatibility_claim": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "warm_only_daemon_start": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "changelog_format_contract": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/doctor-phrase-reach.cjs"
+      ],
+      "bugClass": "doctor_probe_execution",
+      "disposition": "blocked",
+      "rationale": "The probe is a relevant validator, but executing it would write outside the lineage.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/doctor-phrase-reach.cjs:152"
+      ],
+      "reason": "Runtime probe intentionally not executed under the bound write-surface restriction."
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/tests/doctor-command-bridges.vitest.ts"
+      ],
+      "bugClass": "generated_bridge_parity",
+      "disposition": "ruled_out",
+      "rationale": "Static source and test assertions align on the manifest as the source of truth.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:180",
+        ".skilled/skills/system-skill-advisor/runtime/tests/doctor-command-bridges.vitest.ts:71"
+      ],
+      "reason": "No generator or generated-artifact mismatch was found by direct inspection; executable validation remains for a permitted validator pass."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/single-writer-lease-stress.vitest.ts"
+      ],
+      "bugClass": "UNKNOWN",
+      "disposition": "ruled_out",
+      "rationale": "The in-scope stress test covers the reviewed lease acquisition and reclamation cases.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/single-writer-lease-stress.vitest.ts:35"
+      ],
+      "reason": "No missing stress scenario was identified in the test source; implementation and executable test behavior were outside this iteration's permitted execution."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/assets/doctor-setup.yaml",
+        ".skilled/commands/doctor/assets/doctor-setup-presentation.txt"
+      ],
+      "bugClass": "route_manifest_parity",
+      "disposition": "ruled_out",
+      "rationale": "The route validator confirms the manifest and workflow targets align, including read-only mutation checks.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/_routes.yaml:292",
+        ".skilled/commands/doctor/assets/doctor-setup.yaml:49"
+      ],
+      "reason": "The validator passed; its two warnings are informational duplicate flags on other targets."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/setup.md",
+        ".claude/commands/doctor/setup.md",
+        ".codex/prompts/doctor-setup.md",
+        ".cursor/commands/doctor-setup.md",
+        ".pi/prompts/doctor-setup.md",
+        ".hermes/prompts/doctor-setup.md"
+      ],
+      "bugClass": "runtime_mirror_parity",
+      "disposition": "ruled_out",
+      "rationale": "Generated mirror checks and direct comparison found no drift in the five requested surfaces.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/setup.md:1",
+        ".codex/prompts/doctor-setup.md:1",
+        ".hermes/prompts/doctor-setup.md:1"
+      ],
+      "reason": "The mirror validator passed and the wrapper bodies name the canonical source."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-013",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands",
+        ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/hooks/pi/README.md",
+        ".skilled/skills/system-skill-advisor/README.md",
+        ".skilled/skills/system-skill-advisor/SKILL.md"
+      ],
+      "bugClass": "doc_format_contract",
+      "disposition": "ruled_out",
+      "rationale": "Single-file structural validators found no format violations; playbook package result is a skip, not a validation pass, and was not used to rule out authoring-contract issues.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md:1",
+        ".skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md:1"
+      ],
+      "reason": "No structural issue was found by the applicable single-file validators; the explicit backlink and missing-leaf requirements were evaluated separately and are recorded as findings."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-014",
+      "dimension": "traceability",
+      "targetRefs": [
+        "README.md",
+        ".skilled/commands/README.txt",
+        ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+        ".skilled/skills/system-spec-kit/SKILL.md"
+      ],
+      "bugClass": "doctor_command_list_alignment",
+      "disposition": "ruled_out",
+      "rationale": "The relevant inventories name the command consistently and attribute its playbook to system-skill-advisor.",
+      "evidenceRefs": [
+        "README.md:1231-1235",
+        ".skilled/commands/README.txt:156-172",
+        ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md:17-29"
+      ],
+      "reason": "No omission or route-name drift was found in the in-scope command lists."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-017",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md"
+      ],
+      "bugClass": "cross_repo_reference_integrity",
+      "disposition": "ruled_out",
+      "rationale": "The direct reference resolves and the setup target is represented in the implementation table.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md:43-49"
+      ],
+      "reason": "The cited path exists and no setup route was missing from the category overview."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-021",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts",
+        ".skilled/bin/skill-advisor.cjs"
+      ],
+      "bugClass": "warm_only_daemon_start",
+      "disposition": "ruled_out",
+      "rationale": "The previous cold-start interpretation is contradicted by the executable path.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1342-1355"
+      ],
+      "reason": "warm-only suppresses daemon spawning when the daemon is unavailable."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-022",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/changelog/v0.16.0.0.md",
+        ".skilled/skills/system-spec-kit/changelog/v2.8.0.0.md",
+        ".skilled/changelog/skilled/v4.0.0.12.md"
+      ],
+      "bugClass": "changelog_format_contract",
+      "disposition": "ruled_out",
+      "rationale": "Applicable structural validation found no changelog format issue.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md:123-150"
+      ],
+      "reason": "All three changelogs pass document validation and HVR has no hard blockers."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/tests/doctor-command-bridges.vitest.ts"
+      ],
+      "bugClass": "generated_bridge_parity",
+      "disposition": "ruled_out",
+      "rationale": "Static source and test assertions align on the manifest as the source of truth.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:180",
+        ".skilled/skills/system-skill-advisor/runtime/tests/doctor-command-bridges.vitest.ts:71"
+      ],
+      "proof": "No generator or generated-artifact mismatch was found by direct inspection; executable validation remains for a permitted validator pass."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/single-writer-lease-stress.vitest.ts"
+      ],
+      "bugClass": "UNKNOWN",
+      "disposition": "ruled_out",
+      "rationale": "The in-scope stress test covers the reviewed lease acquisition and reclamation cases.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/single-writer-lease-stress.vitest.ts:35"
+      ],
+      "proof": "No missing stress scenario was identified in the test source; implementation and executable test behavior were outside this iteration's permitted execution."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/commands/doctor/assets/doctor-setup.yaml",
+        ".skilled/commands/doctor/assets/doctor-setup-presentation.txt"
+      ],
+      "bugClass": "route_manifest_parity",
+      "disposition": "ruled_out",
+      "rationale": "The route validator confirms the manifest and workflow targets align, including read-only mutation checks.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/_routes.yaml:292",
+        ".skilled/commands/doctor/assets/doctor-setup.yaml:49"
+      ],
+      "proof": "The validator passed; its two warnings are informational duplicate flags on other targets."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/setup.md",
+        ".claude/commands/doctor/setup.md",
+        ".codex/prompts/doctor-setup.md",
+        ".cursor/commands/doctor-setup.md",
+        ".pi/prompts/doctor-setup.md",
+        ".hermes/prompts/doctor-setup.md"
+      ],
+      "bugClass": "runtime_mirror_parity",
+      "disposition": "ruled_out",
+      "rationale": "Generated mirror checks and direct comparison found no drift in the five requested surfaces.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/setup.md:1",
+        ".codex/prompts/doctor-setup.md:1",
+        ".hermes/prompts/doctor-setup.md:1"
+      ],
+      "proof": "The mirror validator passed and the wrapper bodies name the canonical source."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-013",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands",
+        ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/hooks/pi/README.md",
+        ".skilled/skills/system-skill-advisor/README.md",
+        ".skilled/skills/system-skill-advisor/SKILL.md"
+      ],
+      "bugClass": "doc_format_contract",
+      "disposition": "ruled_out",
+      "rationale": "Single-file structural validators found no format violations; playbook package result is a skip, not a validation pass, and was not used to rule out authoring-contract issues.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md:1",
+        ".skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md:1"
+      ],
+      "proof": "No structural issue was found by the applicable single-file validators; the explicit backlink and missing-leaf requirements were evaluated separately and are recorded as findings."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-014",
+      "dimension": "traceability",
+      "targetRefs": [
+        "README.md",
+        ".skilled/commands/README.txt",
+        ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+        ".skilled/skills/system-spec-kit/SKILL.md"
+      ],
+      "bugClass": "doctor_command_list_alignment",
+      "disposition": "ruled_out",
+      "rationale": "The relevant inventories name the command consistently and attribute its playbook to system-skill-advisor.",
+      "evidenceRefs": [
+        "README.md:1231-1235",
+        ".skilled/commands/README.txt:156-172",
+        ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md:17-29"
+      ],
+      "proof": "No omission or route-name drift was found in the in-scope command lists."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-017",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md"
+      ],
+      "bugClass": "cross_repo_reference_integrity",
+      "disposition": "ruled_out",
+      "rationale": "The direct reference resolves and the setup target is represented in the implementation table.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md:43-49"
+      ],
+      "proof": "The cited path exists and no setup route was missing from the category overview."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-021",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts",
+        ".skilled/bin/skill-advisor.cjs"
+      ],
+      "bugClass": "warm_only_daemon_start",
+      "disposition": "ruled_out",
+      "rationale": "The previous cold-start interpretation is contradicted by the executable path.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1342-1355"
+      ],
+      "proof": "warm-only suppresses daemon spawning when the daemon is unavailable."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-022",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/changelog/v0.16.0.0.md",
+        ".skilled/skills/system-spec-kit/changelog/v2.8.0.0.md",
+        ".skilled/changelog/skilled/v4.0.0.12.md"
+      ],
+      "bugClass": "changelog_format_contract",
+      "disposition": "ruled_out",
+      "rationale": "Applicable structural validation found no changelog format issue.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md:123-150"
+      ],
+      "proof": "All three changelogs pass document validation and HVR has no hard blockers."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "changelog_claim_accuracy",
+      "setup_write_claim_accuracy",
+      "prior_route_compatibility_claim",
+      "warm_only_daemon_start",
+      "changelog_format_contract"
+    ],
+    "covered": [
+      "changelog_claim_accuracy",
+      "setup_write_claim_accuracy",
+      "prior_route_compatibility_claim"
+    ],
+    "ruledOut": [
+      "warm_only_daemon_start",
+      "changelog_format_contract"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

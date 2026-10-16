@@ -1,0 +1,2 @@
+PACKAGE system-skill-advisor: PASS tier=fail violations=0
+PASS: 0 violations (all enforced catalog checks).

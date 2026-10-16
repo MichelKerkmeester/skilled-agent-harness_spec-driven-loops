@@ -1,0 +1,353 @@
+{
+  "mergedFrom": [
+    "deepseek-max",
+    "luna-max-fast"
+  ],
+  "lineageExecutors": {
+    "deepseek-max": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "luna-max-fast": {
+      "kind": "cli-codex",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "max"
+    }
+  },
+  "mergedVerdict": "PASS",
+  "openFindings": [
+    {
+      "findingId": "P2-008",
+      "severity": "P2",
+      "title": "DOC-391's write-free claim misses a socket-directory creation",
+      "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-setup-run.md",
+      "line": 16,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "findingId": "P2-003",
+      "severity": "P2",
+      "title": "Doctor phrase reach can report stale scorer behavior as current",
+      "file": ".skilled/commands/doctor/scripts/doctor-phrase-reach.cjs",
+      "line": 264,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "findingId": "P2-004",
+      "severity": "P2",
+      "title": "Doctor-routing scenarios omit their required feature-catalog backlink",
+      "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-routing-setup-onboarding.md",
+      "line": 94,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Fleet-wide DOC-number registry omits the new DOC-385..DOC-391 scenarios and /doctor:setup",
+      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
+      "line": 26,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-max"
+      ]
+    },
+    {
+      "findingId": "P2-002",
+      "severity": "P2",
+      "title": "Generic check wording advertises setup on unrelated no-match prompts",
+      "file": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      "line": 51,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "findingId": "P2-001",
+      "severity": "P2",
+      "title": "Quoted doctor-command text bypasses skill-first ordering",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+      "line": 679,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "findingId": "P2-007",
+      "severity": "P2",
+      "title": "Root README understates the command catalog by two entries",
+      "file": "README.md",
+      "line": 1074,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "findingId": "P2-006",
+      "severity": "P2",
+      "title": "The feature catalog lists an OpenCode hook capability without a feature page",
+      "file": ".skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md",
+      "line": 126,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "Umbrella sk-git leg reports a permanent FAIL on runtimes it cannot identify, and the named repair cannot clear it",
+      "file": ".skilled/commands/doctor/assets/doctor-setup.yaml",
+      "line": 53,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-max"
+      ]
+    }
+  ],
+  "resolvedFindings": [
+    {
+      "findingId": "P2-005",
+      "severity": "P2",
+      "title": "DOC-391 calls the setup run write-free while its advisor leg writes daemon state",
+      "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-setup-run.md",
+      "line": 16,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    }
+  ],
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 9
+  },
+  "openFindingsCount": 9,
+  "resolvedFindingsCount": 1,
+  "activeP0": 0,
+  "activeP1": 0,
+  "activeP2": 9
+}

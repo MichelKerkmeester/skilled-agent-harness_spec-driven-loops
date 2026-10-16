@@ -1,0 +1,3 @@
+Lineage `deepseek-max` complete: 5 iterations reviewed (advisor code, command + mirrors, skill docs, cross-repo refs, changelogs), verdict **PASS** with 2 active P2 advisories (R2-P2-001 umbrella sk-git leg attribution, R4-P2-001 DOC-number registry omission). All artifacts written inside the lineage; registry, dashboard, resource map, review-report, state log (5 iteration records + terminal synthesis with `stopReason: maxIterationsReached`) verified; containment baseline shows zero drift.
+
+FANOUT_LINEAGE_COMPLETE:deepseek-max
