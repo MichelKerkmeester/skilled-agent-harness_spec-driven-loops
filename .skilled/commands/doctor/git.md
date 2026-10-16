@@ -57,7 +57,7 @@ Load the presentation contract before showing the startup menu, a dashboard, a c
 | Argument | Applies to | Effect |
 |----------|------------|--------|
 | `--dry-run` | `hooks`, `standards` | Show every plan and stop before any write |
-| `--tool=<name>` | `setup` | Name the AI tool running the check: claude, codex, devin, cursor, opencode or pi |
+| `--tool=<name>` | `setup` | Name the AI tool running the check: claude, codex, devin, cursor, opencode, pi or hermes |
 | `list`, `?`, `--list` | the command | Render the route manifest and load no workflow |
 | `--target=<name>` | the command | Compatibility alias for the positional target |
 

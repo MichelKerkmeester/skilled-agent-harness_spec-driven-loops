@@ -7,7 +7,7 @@ trigger_phrases:
   - "hook gate settings"
   - "change commit rules"
 importance_tier: "important"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Repository settings and setup check (/doctor:git)
@@ -26,9 +26,13 @@ A repository adapts sk-git through git config and a `.sk-git/` folder, never by 
 
 ### The Setup Check
 
-`setup` runs eleven checks: install, hooks, trust, gates, standards, allowlist, worktrees, commit-id, advisory-rules, suppression and ai-tool-hooks. Each prints PASS, FAIL, SKIP, UNKNOWN or DEGRADED with the source it read, and each FAIL, and a gate saved off, names one repair command. The run exits 0 when every check passes or skips, 3 when none fails but a check is UNKNOWN or a gate is saved off, 1 when a check fails and 2 on a usage error or crash, and its last line is the status with its counters: `STATUS=OK checks=<n>`, `STATUS=DEGRADED degraded=<n> skipped=<n> unknown=<n>` or `STATUS=FAIL failed=<n> degraded=<n> skipped=<n> unknown=<n>`. `--json` prints one object for scripts.
+`setup` runs eleven checks: install, hooks, trust, gates, standards, allowlist, worktrees, commit-id, advisory-rules, suppression and ai-tool-hooks. Each prints PASS, FAIL, SKIP, UNKNOWN or DEGRADED with the source it read. A FAIL or DEGRADED row prints a repair command when one is available.
 
-The check never writes and never runs code from the repository it inspects. It loads every helper from its own install, reads hook links in process instead of calling the installer, and passes `core.fsmonitor=false` and `log.showSignature=false` to every child process through the environment, so the inspected repository's config cannot make a helper start a program.
+The trust row passes when the inspected repository's installed hooks point into its own tree. The advisory-rules row reads the inspected repository's `.skilled/skills/sk-git/hard-rules.json` file and is DEGRADED when the file is missing. The suppression row is DEGRADED when the advisory's own switches mute it.
+
+The run exits 0 when every row passes or skips, 3 when no row fails and at least one row is UNKNOWN or DEGRADED, 1 when a row fails and 2 on a usage error or crash. Its last line is the status with counters: `STATUS=OK checks=<n>`, `STATUS=DEGRADED degraded=<n> skipped=<n> unknown=<n>` or `STATUS=FAIL failed=<n> degraded=<n> skipped=<n> unknown=<n>`. `--json` prints one object for scripts.
+
+The check never writes and never runs code from the repository it inspects. It loads every helper from its own install and reads hook links in process instead of calling the installer. At the start of each run, it sets `core.fsmonitor=false` and `log.showSignature=false` in its own process environment and drops `GIT_DIR`, `GIT_WORK_TREE`, `GIT_INDEX_FILE` and `GIT_COMMON_DIR`. In-process helpers and every child process see those settings, so the inspected repository's config cannot make a helper start a program.
 
 ---
 

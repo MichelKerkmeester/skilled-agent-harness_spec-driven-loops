@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The phase 7 build left four defects it found outside its scope",
     "created_at": "2026-10-16T07:28:31Z",
-    "last_save_at": "2026-10-16T16:33:23.726Z",
+    "last_save_at": "2026-10-16T21:05:21.629Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:58fb72cb17825cbafa362ffd4d7d4f8100e452e9efb003aedcf510da921fb2a1",
+    "source_fingerprint": "sha256:34088fdb037ed1dc6dc8c118007b824afc69e10ca9429f58113e3012da2c58b9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e3fed6512f807def0a3cf04fded98c151fff3fdbae4ad0345c857909a2b6b80f",
       "plan.md": "f0f1599bc4fe09ff387d4405a8fa576c86eb39772a0c903f569771770ee66e4e",
       "tasks.md": "fb9942548a54ac036791a8be1b8f9649a614d419b8c83a182f51099bdd5cfa69",
-      "implementation-summary.md": "3e6c3859c8efda43bb5f11f3c9400a94306ec304cde21877e418ffb0e3226aae"
+      "implementation-summary.md": "d236f978919b93b8e29bd205bcf62464a54b38b8585e8851dccc18b6756839bc"
     },
     "last_active_at": null
   }

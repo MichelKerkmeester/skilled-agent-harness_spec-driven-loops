@@ -3,7 +3,7 @@ name: sk-git
 description: "Git: numbered worktrees, conventional commits, PRs, merge/rebase, and finish; single-skill workflow guidance with no spec."
 allowed-tools: [Read, Bash, mcp__code_mode__call_tool_chain]
 argument-hint: "[worktree|commit|finish]"
-version: 1.9.1.0
+version: 1.9.2.0
 ---
 
 <!-- Keywords: git-workflow, git-worktree, create-worktree, numbered-worktree, restructure-worktrees, worktree-prefix, wt-branch, worktree-branch, branch-naming-allocator, skilled-branch, branch, commit, conventional-commits, pull-request, PR, merge, rebase, finish-work, integrate-changes, commit-hygiene, workspace-isolation, version-control, github, issues, pr-review, gitkraken, gitlens, gitlens-launchpad, gitlens-commit-composer, cross-platform-pr, multi-provider-issue -->
@@ -247,9 +247,9 @@ firing only on the specific risky state, never a bare verb match, and prints the
 as typed. It advises and never blocks. Enforcement stays with the pre-commit, commit-msg, and
 pre-push hooks.
 
-All six AI runtimes carry the same shared hook (Claude/Codex/Devin via PreToolUse, Cursor via a
-Shell-payload proxy, OpenCode via the `sk-git-preflight-advisory` plugin, Pi via a native
-extension). Full docs: [scripts/hooks/README.md](scripts/hooks/README.md) (registration, delivery,
+Seven AI runtimes share it: Claude/Codex/Devin use `PreToolUse`, Cursor uses a Shell proxy,
+OpenCode uses its plugin, Pi uses its extension and Hermes uses the `repo-guards` plugin. Full
+docs: [scripts/hooks/README.md](scripts/hooks/README.md) (registration, delivery,
 fail-open), [scripts/lib/README.md](scripts/lib/README.md) (rule engine, tests), and
 [manual-testing-playbook/](manual-testing-playbook/manual-testing-playbook.md) (operator scenario).
 

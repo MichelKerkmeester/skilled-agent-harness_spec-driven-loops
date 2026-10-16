@@ -8,6 +8,15 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch
 
 Thin router for the deep-research loop. This command verifies the runtime agent, resolves setup and execution mode, loads the presentation contract, then executes the owned workflow YAML.
 
+### MANDATORY INPUT GATE
+
+- **DO NOT** dispatch any agent from this document.
+- **ALL** agent dispatching is handled by the YAML workflow steps.
+- **MARKDOWN OWNS SETUP**: resolve setup inputs here first, then hand off to YAML.
+- **YAML START CONDITION**: do not load YAML until ALL required inputs are bound:
+  - `research_topic`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `stop_policy`
+  - `dry_run` is normalized to `true` or `false`; absence means `false`
+
 ## 1. ROUTER CONTRACT
 
 Do not dispatch agents from this Markdown file. Agent dispatch, workflow steps, artifact-writing behavior, convergence detection, synthesis, and memory save behavior are owned by the workflow YAML assets.
@@ -34,15 +43,6 @@ Load the presentation contract before showing startup questions, dashboards, che
 > 3. Execute the YAML workflow step by step using those resolved values
 >
 > This command is **general-agent based** — it orchestrates the deep-research loop. The Unified Setup Phase (the BLOCKED gate) is a HARD BLOCK; it may not be skipped.
-
-### MANDATORY INPUT GATE
-
-- **DO NOT** dispatch any agent from this document.
-- **ALL** agent dispatching is handled by the YAML workflow steps.
-- **MARKDOWN OWNS SETUP**: resolve setup inputs here first, then hand off to YAML.
-- **YAML START CONDITION**: do not load YAML until ALL required inputs are bound:
-  - `research_topic`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `stop_policy`
-  - `dry_run` is normalized to `true` or `false`; absence means `false`
 
 For `:confirm` or no suffix, the consolidated setup prompt in the presentation contract MUST be the first visible response. For `:auto`, do not emit the consolidated setup prompt by default; use the auto setup resolution rules in the presentation contract and fail fast when required fields cannot be resolved.
 

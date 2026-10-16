@@ -8,7 +8,7 @@ trigger_phrases:
   - "git workspace commit finish"
   - "pull request commit hygiene"
   - "commit id trailer"
-version: 1.8.9.0
+version: 1.8.10.0
 ---
 
 # sk-git
@@ -57,7 +57,7 @@ sk-git does not write code or manage spec folders. `sk-code` owns the code that 
 | **Worktree reaper** | Auto-reaps qualifying wrapper worktrees, keeps and reports the rest, and never signals a process |
 | **Deterministic commits** | The same diff and metadata always produce the same Conventional Commit subject |
 | **Safety refusals** | Blocks no-verify bypasses, secrets in a diff, amending published commits and force-pushing main |
-| **Preflight advisory** | Evaluates every git command against 17 state-gated rules across all six AI runtimes and prints the matching rule before it runs. Advisory only, never blocking (see `scripts/hooks/README.md`) |
+| **Preflight advisory** | Evaluates every git command against 17 state-gated rules across all seven AI runtimes and prints the matching rule before it runs. Advisory only, never blocking (see `scripts/hooks/README.md`) |
 
 ---
 
