@@ -6,7 +6,7 @@ trigger_phrases:
   - "plugin bridge"
   - "system-skill-advisor plugin"
   - "skill advisor plugin"
-version: 0.8.1.0
+version: 0.8.2.0
 ---
 
 # OpenCode Plugin
@@ -25,7 +25,7 @@ Give OpenCode a first-class plugin that surfaces advisor output at prompt time w
 
 ### Fallback Directive
 
-When the CLI returns no brief, the plugin renders `renderPluginFallbackDirective`, which mirrors the hook's rule and text except the `/doctor:setup` hint, which the plugin does not render. The output is one status line above the directives block. The status line is `Advisor: outage (<label>); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json`, `Advisor: no skill matched.` or `Advisor: prompt skipped.` A missing prompt renders the `prompt skipped` line and an unexpected error renders the outage line.
+When the CLI returns no brief, the plugin renders `renderPluginFallbackDirective`, which mirrors the hook's rule and text, the `/doctor:setup` hint included. The plugin keeps its own copy of the setup-wording check, because it cannot import the TypeScript hook, and a parity test holds that copy equal to the hook's. The output is one status line above the directives block. The status line is `Advisor: outage (<label>); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json`, `Advisor: no skill matched.` or `Advisor: prompt skipped.` A missing prompt renders the `prompt skipped` line and an unexpected error renders the outage line.
 
 ### Freshness Labels
 

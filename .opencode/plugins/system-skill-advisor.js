@@ -26,6 +26,7 @@ import { tool } from '@opencode-ai/plugin/tool';
 import * as messageIdentity from './lib/opencode-message-identity.js';
 import {
   FALLBACK_DIRECTIVE,
+  SETUP_WORDING,
   renderCompiledRouteSummaryLine,
   renderPluginFallbackDirective,
 } from './lib/skill-advisor-render.js';
@@ -1294,7 +1295,7 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
         : freshness === undefined || freshness === 'unavailable'
           ? { status: 'fail_open', freshness: 'unavailable' }
           : { status: 'skipped', freshness };
-      const noBriefFallback = renderPluginFallbackDirective(fallbackResult);
+      const noBriefFallback = renderPluginFallbackDirective(fallbackResult, { setupWording: SETUP_WORDING.test(prompt) });
       const advisorBlock = response.brief
         ? clampBrief(response.brief, options.maxBriefChars)
         : noBriefFallback;

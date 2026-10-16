@@ -19,11 +19,15 @@ vi.mock('node:child_process', () => ({
 import * as skillAdvisorPlugin from '../../../../plugins/system-skill-advisor.js';
 import * as skillAdvisorRender from '../../../../plugins/lib/skill-advisor-render.js';
 import { renderAdvisorFallbackDirective } from '../lib/render.js';
+import { SETUP_WORDING as HOOK_SETUP_WORDING } from '../../hooks/claude/user-prompt-submit.js';
 
 const MkSkillAdvisorPlugin = skillAdvisorPlugin.default;
 
 type PluginFallbackResult = NonNullable<Parameters<typeof renderAdvisorFallbackDirective>[1]>;
-type PluginFallbackRenderer = (result?: PluginFallbackResult) => string;
+type PluginFallbackRenderer = (
+  result?: PluginFallbackResult,
+  options?: { setupWording?: boolean },
+) => string;
 const renderPluginFallbackDirective = (
   skillAdvisorRender as unknown as { renderPluginFallbackDirective?: PluginFallbackRenderer }
 ).renderPluginFallbackDirective;
@@ -223,6 +227,23 @@ describe('system-skill-advisor OpenCode plugin', () => {
     },
   );
 
+  it.each(FALLBACK_PARITY_CASES)(
+    'matches the canonical setup-wording fallback for $status status and $freshness freshness',
+    (result) => {
+      expect(renderPluginFallbackDirective?.(result, { setupWording: true })).toBe(
+        renderAdvisorFallbackDirective({ setupWording: true }, result),
+      );
+    },
+  );
+
+  it('keeps the setup-wording regex equal to the Claude hook check', () => {
+    const pluginSetupWording = (
+      skillAdvisorRender as unknown as { SETUP_WORDING?: RegExp }
+    ).SETUP_WORDING;
+    expect(pluginSetupWording?.source).toBe(HOOK_SETUP_WORDING.source);
+    expect(pluginSetupWording?.flags).toBe(HOOK_SETUP_WORDING.flags);
+  });
+
   it('matches the canonical fail-open fallback when no result is available', () => {
     expect(renderPluginFallbackDirective).toBeTypeOf('function');
     expect(renderPluginFallbackDirective?.()).toBe(renderAdvisorFallbackDirective());
@@ -246,6 +267,21 @@ describe('system-skill-advisor OpenCode plugin', () => {
     expect(result.additionalContext).toBe(NO_MATCH_FALLBACK_CONTEXT);
     expect(result.output.system).toEqual([NO_MATCH_FALLBACK_CONTEXT]);
     expect(mockedBridge.spawn).toHaveBeenCalledTimes(1);
+  });
+
+  it('gates the setup hint on setup wording in the no-brief fallback', async () => {
+    mockBridgeSuccess(cliResponse([]));
+    const setupHooks = await makePlugin();
+
+    const setupResult = await runPrompt(setupHooks, { prompt: 'help me set up the repo' });
+
+    expect(setupResult.output.system[0]).toContain('For setup or health checks, run /doctor:setup.');
+
+    const plainHooks = await makePlugin();
+
+    const plainResult = await runPrompt(plainHooks, { prompt: 'implement feature X' });
+
+    expect(plainResult.output.system[0]).not.toContain('/doctor:setup');
   });
 
   it('loads the latest user prompt from session messages when transform input has no prompt', async () => {

@@ -24,6 +24,8 @@ const HYGIENE_DIRECTIVE = '\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/RE
 // This suffix is shared by headed fallbacks and route briefs so directive
 // lifecycle reduction sees the same block in either case.
 export const FALLBACK_DIRECTIVE = '\nDirectives:' + HYGIENE_DIRECTIVE;
+// Parity test holds this equal to the Claude hook's check, which the plugin cannot import.
+export const SETUP_WORDING = /\b(?:set\s?up|setups?|install(?:s|ed|ing|ation)?|check(?:s|ed|ing)?|configur(?:e|es|ed|ing|ation))\b/i;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. FALLBACK DIRECTIVE
@@ -33,9 +35,10 @@ export const FALLBACK_DIRECTIVE = '\nDirectives:' + HYGIENE_DIRECTIVE;
  * Mirror the renderer's no-brief fallback; a parity test holds the two to the same text.
  *
  * @param {{status?: string, freshness?: string}} result - Advisor status and freshness
+ * @param {{setupWording?: boolean}} [options] - Append the /doctor:setup hint when true
  * @returns {string} Status head followed by the directive block
  */
-export function renderPluginFallbackDirective({ status, freshness } = {}) {
+export function renderPluginFallbackDirective({ status, freshness } = {}, { setupWording } = {}) {
   const isOutage = (status === undefined && freshness === undefined)
     || status === 'fail_open'
     || freshness === 'absent'
@@ -51,10 +54,12 @@ export function renderPluginFallbackDirective({ status, freshness } = {}) {
       ? 'degraded'
       : 'fail_open';
   const head = fallbackCase === 'outage'
-    ? `Advisor: outage (${outageLabel}); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json`
+    ? `Advisor: outage (${outageLabel});${setupWording === true ? ' for setup or health checks, run /doctor:setup;' : ''} route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json`
     : fallbackCase === 'skipped'
       ? 'Advisor: prompt skipped.'
-      : 'Advisor: no skill matched.';
+      : setupWording === true
+        ? 'Advisor: no skill matched. For setup or health checks, run /doctor:setup.'
+        : 'Advisor: no skill matched.';
   return head + FALLBACK_DIRECTIVE;
 }
 

@@ -7,7 +7,7 @@ trigger_phrases:
   - "runnable doctor command line"
   - "doctor setup hint"
   - "/doctor:setup"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Doctor Command Routing
@@ -32,7 +32,7 @@ A doctor bridge passes only on its own wording, an explicit-author match on one 
 
 ### Brief Text
 
-The renderer reads a generated lookup of runnable strings, so a doctor bridge shows as `/doctor:git setup` and never as its raw id. An unmapped doctor id renders nothing. When a doctor bridge is the top pick it is the top line. When a skill is first and a doctor bridge also passes, the brief adds `Also: /doctor:<command> <target>` inside the same token cap. When nothing matches, or the advisor is down, and the prompt uses setup, install, check or configure wording, the fallback adds one sentence naming `/doctor:setup`, since that command also checks the advisor. The Claude hook computes that flag, and the Pi hook computes it when the advisor misses Pi's deadline, because the renderer never reads prompt text.
+The renderer reads a generated lookup of runnable strings, so a doctor bridge shows as `/doctor:git setup` and never as its raw id. An unmapped doctor id renders nothing. When a doctor bridge is the top pick it is the top line. When a skill is first and a doctor bridge also passes, the brief adds `Also: /doctor:<command> <target>` inside the same token cap. When nothing matches, or the advisor is down, and the prompt uses setup, install, check or configure wording, the fallback adds one sentence naming `/doctor:setup`, since that command also checks the advisor. The Claude hook computes that flag, the Pi hook computes it when the advisor misses Pi's deadline and the OpenCode plugin computes it for its own fallback, because the renderer never reads prompt text.
 
 ### Reach Probe
 
