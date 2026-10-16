@@ -30,7 +30,10 @@ interface RecommendationInput {
 
 // Every recommendation is marked as passing so each case isolates label
 // rendering instead of threshold filtering.
-function advisorResult(recommendations: readonly RecommendationInput[]): AdvisorBriefResult {
+function advisorResult(
+  recommendations: readonly RecommendationInput[],
+  tokenCap: number = 80,
+): AdvisorBriefResult {
   return {
     status: 'ok',
     freshness: 'live',
@@ -38,7 +41,7 @@ function advisorResult(recommendations: readonly RecommendationInput[]): Advisor
       ...recommendation,
       passes_threshold: true,
     })),
-    metrics: { tokenCap: 80 },
+    metrics: { tokenCap },
   };
 }
 
@@ -51,7 +54,7 @@ describe('doctor command brief', () => {
     expect(rendered).toBe(expectedBrief('Advisor: live; use /doctor:setup 0.85/0.20 pass.'));
   });
 
-  it('adds the doctor command as a second line when a skill is first', () => {
+  it('keeps the complete companion before directives under the default cap', () => {
     const rendered = renderAdvisorBrief(advisorResult([
       { skill: 'sk-git', kind: 'skill', confidence: 0.82, uncertainty: 0.2 },
       { skill: 'command-doctor-git-setup', kind: 'command', confidence: 0.82, uncertainty: 0.21 },
@@ -97,17 +100,18 @@ describe('doctor command brief', () => {
     expect(rendered).toBe(expectedBrief('Advisor: live; use sk-git 0.82/0.20 pass.'));
   });
 
-  it('keeps the companion line inside the token cap', () => {
+  it('drops the entire companion when it does not fit the character cap', () => {
     const rendered = renderAdvisorBrief(advisorResult([
-      { skill: 'sk-git', kind: 'skill', confidence: 0.82, uncertainty: 0.2 },
+      { skill: 'sk-system-skill-advisor', kind: 'skill', confidence: 0.82, uncertainty: 0.2 },
       { skill: 'command-doctor-git-setup', kind: 'command', confidence: 0.82, uncertainty: 0.21 },
-    ])) ?? '';
+    ], 20)) ?? '';
     const directiveSuffix = DIRECTIVES_LABEL + HYGIENE_DIRECTIVE;
-    const cappedPortion = rendered.endsWith(directiveSuffix)
-      ? rendered.slice(0, -directiveSuffix.length)
-      : rendered;
+    const cappedPortion = rendered.slice(0, -directiveSuffix.length);
 
-    expect(cappedPortion.length).toBeLessThanOrEqual(80 * 4);
+    expect(rendered.endsWith(directiveSuffix)).toBe(true);
+    expect(cappedPortion).toBe('Advisor: live; use sk-system-skill-advisor 0.82/0.20 pass.');
+    expect(cappedPortion).not.toContain('Also:');
+    expect(cappedPortion).not.toContain('/doctor:');
   });
 
   it('every generated doctor string passes the label sanitizer and an instruction-shaped label is rejected', () => {

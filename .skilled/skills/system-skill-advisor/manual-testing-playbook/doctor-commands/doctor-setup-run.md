@@ -1,7 +1,7 @@
 ---
 title: "DOC-391 -- Doctor setup umbrella run"
 description: "Manual scenario validating that /doctor:setup lists every doctor target with what it checks, runs the five read-only legs once, names the repair command for each failing leg and leaves the working tree unchanged."
-version: 1.0.3.0
+version: 1.0.4.0
 id: doctor-commands-doctor-setup-run
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -25,9 +25,15 @@ The run writes nothing in the repository. The advisor leg's CLI creates its sock
 - Prompt: `/doctor:setup`
 - Preconditions: The advisor runtime is built (`npm --prefix .skilled/skills/system-skill-advisor/runtime run build` exits 0) and the bridge projection is fresh (`node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check` prints `"status": "fresh"`). Every command runs from the repository root.
 - Expected execution process: Record `git status --porcelain` into `/tmp/doc-391-before.txt`. Run `/doctor:setup` in an AI session, or run the five legs directly and record each exit code and last line. Record `git status --porcelain` into `/tmp/doc-391-after.txt` and diff the two files. Run `/doctor:setup extra` and read the argument error.
-- Expected signals: The command prints the target table first. The table holds 17 rows, starts with `/doctor:setup` and includes `/doctor:env list` and `/doctor:git setup`. Then it prints one row per leg with PASS, FAIL, SKIP or DEGRADED. The run ends with a `DOCTOR DIAGNOSTIC RESULT` block whose last line is `STATUS=OK` or `STATUS=FAIL`. Every failing leg names its mapped repair command: sk-code -> `/doctor:sk-code setup`, sk-git -> `/doctor:git setup`, trigger-index -> `/doctor:speckit`, runtime-mirrors -> `/doctor:runtime-mirrors` and advisor -> `/doctor:skill-advisor rebuild`. An advisor exit 75 is SKIP, never FAIL. A sk-git exit 3 is DEGRADED, never FAIL. The step 3 diff is empty. Step 4 prints `Unknown argument: extra`, then `/doctor:setup takes no target and no flag. Run /doctor:setup on its own.` and ends with `STATUS=FAIL ERROR="unknown_argument"`.
+- Expected signals:
+  - The command prints the target table first. It has 17 rows and starts with `/doctor:setup`. It includes `/doctor:env list` and `/doctor:git setup`.
+  - The command prints one row per leg with PASS, FAIL, SKIP, DEGRADED or ERROR. Every failing leg names its mapped repair command: sk-code -> `/doctor:sk-code setup`, sk-git -> `/doctor:git setup`, trigger-index -> `/doctor:speckit`, runtime-mirrors -> `/doctor:runtime-mirrors` and advisor -> `npm --prefix .skilled/skills/system-skill-advisor/runtime run build` for stale builds or `/doctor:skill-advisor rebuild` for other failures.
+  - The advisor reports PASS for exit 0 when `data.freshness` is `live`. Any other freshness on exit 0 is DEGRADED and names `/doctor:skill-advisor rebuild`.
+  - The advisor reports FAIL for exit 75 when stderr JSON includes `staleDistWarning`. Its repair command is `npm --prefix .skilled/skills/system-skill-advisor/runtime run build`. Exit 75 without that field is SKIP because the daemon is stopped. Any other advisor exit is FAIL and names `/doctor:skill-advisor rebuild`.
+  - A sk-git exit 2 is ERROR because it indicates a usage error or crash. Exit 3 is DEGRADED, never FAIL.
+  - The step 3 diff is empty. Step 4 prints `Unknown argument: extra`, then `/doctor:setup takes no target and no flag. Run /doctor:setup on its own.` and ends with `STATUS=FAIL ERROR="unknown_argument"`. The result ends with `STATUS=OK`, `STATUS=FAIL` or `STATUS=ERROR`, according to the leg results.
 - Desired user-visible outcome: A first-run overview of every doctor target plus a per-leg verdict and repair line, so the operator knows which doctor command to run next without the diagnostic writing anything.
-- Pass/fail: Through `/doctor:setup`, PASS needs the target table, all five leg rows, a mapped repair command on every FAIL row, a final status that agrees with the legs and an empty diff. Through the direct legs, PASS needs all five legs run with their exit code and last line recorded, each leg read as PASS, FAIL, SKIP or DEGRADED by the rules in Expected, a mapped repair named for every FAIL, an empty diff and step 4 recorded as not run.
+- Pass/fail: Through `/doctor:setup`, PASS needs the target table, all five leg rows, the correct repair command on every FAIL row, a final status that agrees with all leg results including ERROR, and an empty diff. Through the direct legs, PASS needs all five legs run with their exit code and last line recorded, each leg classified by the rules in Expected including advisor JSON freshness and stderr plus sk-git exit 2 as ERROR, a mapped repair named for every FAIL, an empty diff and step 4 recorded as not run.
 - Classification: Manual scenario. Valid verdicts are `PASS`, `FAIL`, or `SKIP`. Record `SKIP` only when a named environment prerequisite, credential, or command binary is unavailable. A scenario that cannot be run for any other reason is a `FAIL`.
 
 ---
@@ -62,11 +68,11 @@ node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --for
 
 ### Expected
 
-When step 2 runs `/doctor:setup` in an AI session, it prints the doctor target table first. When the five legs run directly, there is no table, and the check is each leg's exit code against the rules below. Read each leg by its exit code alone, the way `.skilled/commands/doctor/assets/doctor-setup.yaml` does: exit 0 is PASS, an advisor exit 75 is SKIP, a sk-git exit 3 is DEGRADED and any other exit is FAIL. The table holds 17 rows with what each command checks. It starts with `/doctor:setup` and includes `/doctor:env list` and `/doctor:git setup`.
+When step 2 runs `/doctor:setup` in an AI session, it prints the doctor target table first. When the five legs run directly, there is no table. Check each exit code and the advisor JSON. Exit 0 passes for sk-code, sk-git, trigger-index and runtime-mirrors. Advisor exit 0 with `data.freshness` set to `live` is PASS. Any other freshness is DEGRADED and names `/doctor:skill-advisor rebuild`. Exit 75 with `staleDistWarning` in stderr JSON is FAIL and names `npm --prefix .skilled/skills/system-skill-advisor/runtime run build`. Exit 75 without that field is SKIP because the daemon is stopped. Any other advisor exit is FAIL and names `/doctor:skill-advisor rebuild`. A sk-git exit 2 is ERROR for a usage error or crash. Exit 3 is DEGRADED. Any other sk-git exit is FAIL. Any other nonzero exit is FAIL. The table has 17 rows. It starts with `/doctor:setup` and includes `/doctor:env list` and `/doctor:git setup`.
 
-Then the command prints one row per leg with PASS, FAIL, SKIP or DEGRADED. A failing leg names its repair command: sk-code -> `/doctor:sk-code setup`, sk-git -> `/doctor:git setup`, trigger-index -> `/doctor:speckit`, runtime-mirrors -> `/doctor:runtime-mirrors` and advisor -> `/doctor:skill-advisor rebuild`. An advisor exit 75 is SKIP, never FAIL. A sk-git exit 3 is DEGRADED, never FAIL.
+Then the command prints one row per leg with PASS, FAIL, SKIP, DEGRADED or ERROR. The mapped repair commands are sk-code -> `/doctor:sk-code setup`, sk-git -> `/doctor:git setup`, trigger-index -> `/doctor:speckit` and runtime-mirrors -> `/doctor:runtime-mirrors`. The advisor shows the build command for a stale build and `/doctor:skill-advisor rebuild` for other FAIL or DEGRADED results. Exit 75 without `staleDistWarning` is SKIP because the daemon is stopped. A sk-git exit 2 shows ERROR. Exit 3 shows DEGRADED, never FAIL.
 
-Through `/doctor:setup`, the run ends with a `DOCTOR DIAGNOSTIC RESULT` block whose last line is `STATUS=OK` or `STATUS=FAIL`. The status agrees with the leg results. The direct legs print no combined block.
+Through `/doctor:setup`, the run ends with a `DOCTOR DIAGNOSTIC RESULT` block whose last line is `STATUS=OK`, `STATUS=FAIL` or `STATUS=ERROR`. The status agrees with the leg results. `STATUS=ERROR` means a leg reports ERROR or its output cannot be read. The direct legs print no combined block.
 
 The step 3 diff is empty, because the run writes nothing in the repository.
 
@@ -82,7 +88,7 @@ The step 4 command prints `Unknown argument: extra`, then `/doctor:setup takes n
 
 ### Pass / Fail
 
-- **Pass**: Through `/doctor:setup`, PASS needs the target table, all five leg rows, a mapped repair command on every FAIL row, a final status that agrees with the legs and an empty diff. Through the direct legs, PASS needs all five legs run with their exit code and last line recorded, each leg read as PASS, FAIL, SKIP or DEGRADED by the rules in Expected, a mapped repair named for every FAIL, an empty diff and step 4 recorded as not run.
+- **Pass**: Through `/doctor:setup`, PASS needs the target table, all five leg rows, a mapped repair command on every FAIL row, a final status that agrees with the leg results including ERROR cases and an empty diff. Through the direct legs, PASS needs all five legs run with their exit code and last line recorded, each leg classified as PASS, FAIL, SKIP, DEGRADED or ERROR by the rules in Expected, a mapped repair named for every FAIL, an empty diff and step 4 recorded as not run.
 - **Fail**: Any leg is missing, a repair command is wrong, the status disagrees, or any file changed.
 
 ### Failure Triage

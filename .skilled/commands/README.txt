@@ -109,6 +109,7 @@ command/
 │   ├── mcp.md                # Diagnose/install MCP infrastructure
 │   ├── update.md             # Release-aware framework updater
 │   ├── env.md                # Environment switch inspection
+│   ├── setup.md              # Doctor targets plus the read-only setup checks
 │   ├── assets/               # YAML workflow definitions
 │   └── scripts/              # Diagnostic scripts
 ├── design/                    # Design extraction commands

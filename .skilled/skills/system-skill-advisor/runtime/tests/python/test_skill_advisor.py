@@ -1026,6 +1026,149 @@ description: Fixture helper for routing tests
     except Exception as exc:
         fail_test("native wrapper keeps a skill above a doctor bridge unless the doctor command is typed", str(exc))
 
+    # A typed doctor invocation owns its matching command bridge.
+    try:
+        original_bridge = advisor._run_native_bridge
+        try:
+            rows_by_prompt = {
+                "please run /doctor:setup for me": [
+                    {
+                        "skillId": "sk-code",
+                        "score": 0.8,
+                        "confidence": 0.95,
+                        "uncertainty": 0.12,
+                    },
+                    {
+                        "skillId": "command-doctor-setup",
+                        "score": 0.7,
+                        "confidence": 0.90,
+                        "uncertainty": 0.12,
+                    },
+                ],
+                "show me the best order": [
+                    {
+                        "skillId": "sk-code",
+                        "score": 0.8,
+                        "confidence": 0.97,
+                        "uncertainty": 0.12,
+                    },
+                    {
+                        "skillId": "sk-doc",
+                        "score": 0.7,
+                        "confidence": 0.96,
+                        "uncertainty": 0.12,
+                    },
+                    {
+                        "skillId": "sk-git",
+                        "score": 0.6,
+                        "confidence": 0.95,
+                        "uncertainty": 0.12,
+                    },
+                    {
+                        "skillId": "command-doctor-env",
+                        "score": 0.9,
+                        "confidence": 0.99,
+                        "uncertainty": 0.12,
+                    },
+                ],
+                "/doctor:sk-code": [
+                    {
+                        "skillId": "sk-code",
+                        "score": 0.9,
+                        "confidence": 0.96,
+                        "uncertainty": 0.12,
+                    },
+                    {
+                        "skillId": "command-doctor-sk-code",
+                        "score": 0.8,
+                        "confidence": 0.88,
+                        "uncertainty": 0.12,
+                    },
+                ],
+                "check environment and memory": [
+                    {
+                        "skillId": "command-doctor-env",
+                        "kind": "command",
+                        "score": 0.9,
+                        "confidence": 0.90,
+                        "uncertainty": 0.12,
+                    },
+                    {
+                        "skillId": "memory:save",
+                        "kind": "command",
+                        "score": 0.85,
+                        "confidence": 0.85,
+                        "uncertainty": 0.12,
+                    },
+                ],
+            }
+
+            def fake_doctor_ordering_bridge(payload, timeout=advisor.NATIVE_TIMEOUT_SECONDS):
+                return {"status": "ok", "data": {
+                    "recommendations": rows_by_prompt[payload["prompt"]],
+                }}
+
+            advisor._run_native_bridge = fake_doctor_ordering_bridge
+            orders = {
+                prompt: [
+                    recommendation["skill"]
+                    for recommendation in advisor.recommend_with_native_advisor(prompt) or []
+                ]
+                for prompt in rows_by_prompt
+            }
+            failures = []
+            if orders["please run /doctor:setup for me"][0] != "command-doctor-setup":
+                failures.append(f"run invocation={orders['please run /doctor:setup for me']}")
+            if orders["show me the best order"].index("command-doctor-env") != 2:
+                failures.append(f"plain order={orders['show me the best order']}")
+            if orders["/doctor:sk-code"][0] != "command-doctor-sk-code":
+                failures.append(f"typed bridge={orders['/doctor:sk-code']}")
+            if orders["check environment and memory"][0] != "command-doctor-env":
+                failures.append(f"command-only order={orders['check environment and memory']}")
+            if failures:
+                fail_test(
+                    "T243-SA-027: native doctor ordering follows typed commands",
+                    "; ".join(failures),
+                )
+            else:
+                ok("T243-SA-027: native doctor ordering follows typed commands")
+        finally:
+            advisor._run_native_bridge = original_bridge
+    except Exception as exc:
+        fail_test(
+            "T243-SA-027: native doctor ordering follows typed commands",
+            str(exc),
+        )
+
+    try:
+        quoted = [
+            recommendation["skill"]
+            for recommendation in advisor.analyze_request(
+                "fix the git hook that /doctor:git setup lists"
+            )
+        ]
+        typed = [
+            recommendation["skill"]
+            for recommendation in advisor.analyze_request("/doctor:git setup")
+        ]
+        if (
+            "sk-git" in quoted
+            and "command-doctor-git-setup" in quoted
+            and quoted.index("sk-git") < quoted.index("command-doctor-git-setup")
+            and typed[:1] == ["command-doctor-git-setup"]
+        ):
+            ok("T243-SA-028: local doctor intent requires a typed invocation")
+        else:
+            fail_test(
+                "T243-SA-028: local doctor intent requires a typed invocation",
+                f"quoted={quoted} typed={typed}",
+            )
+    except Exception as exc:
+        fail_test(
+            "T243-SA-028: local doctor intent requires a typed invocation",
+            str(exc),
+        )
+
     # A stopped daemon publishes 'unavailable' even though the index hashes
     # still match disk; the one-shot bridge must fall back to that index
     # freshness instead of reporting the advisor unusable. The bridge is

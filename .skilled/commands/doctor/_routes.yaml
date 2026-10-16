@@ -33,8 +33,11 @@
 #                              into the advisor (see "Consumed by" above)
 #
 # Skill-advisor recommendation tools are registered through system-skill-advisor.
-# To add a new target: append a route here with its owning command, list it in
-# that command's router and presentation, then re-run route-validate.sh.
+# To add a new target:
+#   1. Append the route here with its owning command and trigger_phrases of three or more words.
+#   2. List the target in that command's router and presentation, and add its row to the /doctor:setup target list in .skilled/commands/doctor/assets/doctor-setup-presentation.txt.
+#   3. To let the advisor suggest it, add its activation entry to both the "typescript" and "python" lists in .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json (a bridge without one stays inactive, like /doctor:deep-loop).
+#   4. Rerun node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs, then bash .skilled/commands/doctor/scripts/route-validate.sh and node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs.
 # To remove a target: delete the route AND its corresponding assets/doctor-<target>.yaml.
 # ─────────────────────────────────────────────────────────────────
 schema_version: 1
@@ -118,7 +121,7 @@ routes:
     trigger_phrases:
       - "skill advisor rebuild"
       - "rebuild the skill graph database"
-      - "skill_graph scan"
+      - "rerun the skill_graph scan"
       - "new skill not appearing in advisor results"
 
   - command: /doctor:skill-advisor
@@ -277,7 +280,7 @@ routes:
     target: setup
     yaml: doctor-git-setup.yaml
     setup_vars: [execution_mode, tool]
-    allowed_flags: ["--tool=<claude|codex|devin|cursor|opencode|pi>"]
+    allowed_flags: ["--tool=<claude|codex|devin|cursor|opencode|pi|hermes>"]
     mutating: read-only
     gate3_location: "n/a (read-only setup battery; inspects each sk-git surface in its check-only form and prints repair commands, writes nothing)"
     mcp_tools: []   # script-only battery; no MCP calls
@@ -372,9 +375,9 @@ standalone:
           - "pre-v4 spec folder upgrade"
           - "move .opencode/specs to specs"
     trigger_phrases:
-      - "doctor update"
+      - "doctor update command"
       - "update skills to latest release"
-      - "release update"
+      - "skilled release update"
       - "update skilled to the latest release"
       - "check for skilled updates"
       - "is there a newer skilled release"

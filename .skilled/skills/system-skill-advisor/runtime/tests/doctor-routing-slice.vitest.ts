@@ -80,13 +80,16 @@ function activeWaves(rows: readonly DoctorRow[], activeIds: ReadonlySet<string>)
   return active;
 }
 
-// Recommendations are ordered by confidence, so the doctor expectation for the second
-// slot is the first doctor recommendation after the top pick, not the top pick itself.
+// The rendered brief keeps three recommendations and omits a second line for a
+// null or doctor top pick.
 function secondDoctor(
   recommendations: readonly AdvisorScoredRecommendation[],
   top: string | null,
 ): string | null {
-  for (const recommendation of recommendations.slice(1)) {
+  if (top === null || top.startsWith(DOCTOR_PREFIX)) return null;
+
+  const renderedRecommendations = recommendations.slice(0, 3);
+  for (const recommendation of renderedRecommendations.slice(1)) {
     if (recommendation.skill.startsWith(DOCTOR_PREFIX)) return recommendation.skill;
   }
   return null;

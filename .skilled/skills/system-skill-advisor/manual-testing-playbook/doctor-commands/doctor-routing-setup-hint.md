@@ -1,7 +1,7 @@
 ---
 title: "DOC-389 -- Doctor routing setup hint on a no-match"
 description: "Manual scenario validating that a no-match advisor brief for a prompt with setup wording adds the /doctor:setup hint line and leaves the directive block unchanged."
-version: 1.0.1.1
+version: 1.0.2.0
 id: doctor-commands-doctor-routing-setup-hint
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -11,7 +11,7 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario validates the advisor fallback hint for setup wording. When no skill matches and the prompt uses setup, install or configure wording, or check wording followed by an environment, hook or tooling word, the fallback adds one sentence naming `/doctor:setup`.
+This scenario validates the advisor fallback hint for setup wording. When no skill matches, the fallback adds one sentence naming `/doctor:setup` for prompts that use set up, set-up or setup wording, install or reinstall wording including installation and installer, configure or configuration wording or `check` followed within three words by environment, env, config, hooks, tools, tooling, toolchain or skilled.
 
 The hint sits above the directive block. The directive block below it is unchanged, and the scenario checks the first three lines of the brief.
 

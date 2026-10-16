@@ -35,7 +35,12 @@ export interface AdvisorBriefRenderOptions {
     readonly confidenceOnly?: boolean;
   };
   readonly deliveryState?: ShadowDeliveryRenderOptions;
-  /** Set by the hook on setup, install or configure wording, or check wording followed by a tooling word. The renderer never reads prompt text itself. */
+  /**
+   * True when prompts use set up, set-up or setup wording, install or reinstall wording
+   * including installation and installer, configure or configuration wording or `check`
+   * followed within three words by environment, env, config, hooks, tools, tooling,
+   * toolchain or skilled. The renderer never reads prompt text.
+   */
   readonly setupWording?: boolean;
 }
 
@@ -488,6 +493,10 @@ export function renderAdvisorBrief(
   const companionLine = (shownSecond: string | undefined): string => (
     companionLabel && companion && companion.skill !== shownSecond ? `\nAlso: ${companionLabel}` : ''
   );
+  const capWithCompanion = (head: string, companionText: string, cap: number): string => {
+    const companionFits = head.length + companionText.length <= cap * TOKEN_TO_CHAR_ESTIMATE;
+    return `${capText(head, cap)}${companionFits ? companionText : ''}`;
+  };
 
   if (tokenCap > DEFAULT_TOKEN_CAP && second && hasAdvisorAmbiguitySignal(recommendations, result.ambiguous === true)) {
     const secondLabel = recommendationLabel(second.skill);
@@ -496,8 +505,12 @@ export function renderAdvisorBrief(
       return null;
     }
     if (secondLabel) {
-      const rendered = capText(
-        `Advisor: ${result.freshness}; ambiguous: ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} vs ${secondLabel} ${formatScore(second.confidence)}/${formatScore(second.uncertainty)} pass.${companionLine(second.skill)}`,
+      const head = `Advisor: ${result.freshness}; ambiguous: ${topLabel} `
+        + `${formatScore(top.confidence)}/${formatScore(top.uncertainty)} vs ${secondLabel} `
+        + `${formatScore(second.confidence)}/${formatScore(second.uncertainty)} pass.`;
+      const rendered = capWithCompanion(
+        head,
+        companionLine(second.skill),
         Math.min(tokenCap, AMBIGUOUS_TOKEN_CAP),
       ) + DIRECTIVES_LABEL + HYGIENE_DIRECTIVE;
       observeAdvisorPolicy(rendered, options);
@@ -505,8 +518,11 @@ export function renderAdvisorBrief(
     }
   }
 
-  const rendered = capText(
-    `Advisor: ${result.freshness}; use ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} pass.${companionLine(undefined)}`,
+  const head = `Advisor: ${result.freshness}; use ${topLabel} `
+    + `${formatScore(top.confidence)}/${formatScore(top.uncertainty)} pass.`;
+  const rendered = capWithCompanion(
+    head,
+    companionLine(undefined),
     Math.min(tokenCap, DEFAULT_TOKEN_CAP),
   ) + DIRECTIVES_LABEL + HYGIENE_DIRECTIVE;
   observeAdvisorPolicy(rendered, options);

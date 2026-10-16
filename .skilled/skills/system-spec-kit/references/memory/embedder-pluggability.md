@@ -11,7 +11,7 @@ trigger_phrases:
   - "embedder device selection"
 importance_tier: important
 contextType: implementation
-version: 1.6.0.14
+version: 1.6.1.0
 ---
 
 # Embedder Pluggability
@@ -110,7 +110,7 @@ Three operations wrap the registry: list the registered manifests with their `re
 
 Operator flow is "list, set, watch." The set operation is asynchronous: it returns a job ID, the orchestrator re-embeds every row through the new adapter, and the active pointer flips only when the job reaches `completed`.
 
-**The spec kit exposes no tool for any of this, and `shared/` owns no store.** The stack produces vectors; the consuming service owns the pointer, the tables, and the swap. The skill advisor is that consumer today, holding the registry shim, the dim-tagged schema and its `skill-graph.sqlite`. Configure the stack through the environment variables in `../config/environment-variables.md`, and read health from the advisor's own status surface: `node .skilled/bin/skill-advisor.cjs advisor_status --format json`.
+**The spec kit exposes no tool for any of this, and `shared/` owns no store.** The stack produces vectors; the consuming service owns the pointer, the tables, and the swap. The skill advisor is that consumer today, holding the registry shim, the dim-tagged schema and its `skill-graph.sqlite`. Configure the stack through the environment variables in `../config/environment-variables.md`, and read health from the advisor's own status surface: `node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json`.
 
 ### EmbedderAdapter interface
 
@@ -174,7 +174,7 @@ Per-row empirical results live in `evidence/embedder-comparison-with-rescue.json
 | 1 | Install the consuming service (per its install guide). |
 | 2 | Pull the default Ollama model: `ollama pull nomic-embed-text:v1.5`. |
 | 3 | Start the consumer; the active profile reads back as `nomic-embed-text-v1.5`. |
-| 4 | Confirm health: `node .skilled/bin/skill-advisor.cjs advisor_status --format json`. |
+| 4 | Confirm health: `node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json`. |
 
 No code changes. No schema migrations. A fresh clone reaches a ready state from the documented commands above.
 

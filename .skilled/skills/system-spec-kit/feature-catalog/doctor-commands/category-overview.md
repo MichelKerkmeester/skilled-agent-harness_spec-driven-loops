@@ -1,6 +1,6 @@
 ---
 title: "Doctor commands overview"
-description: "The doctor routers split by owner (`/doctor:speckit`, `/doctor:skill-advisor`, `/doctor:deep-loop`, `/doctor:runtime-mirrors`) and the subsystem routes they dispatch to."
+description: "The seven doctor routers split checks by owner (`/doctor:speckit`, `/doctor:skill-advisor`, `/doctor:deep-loop`, `/doctor:runtime-mirrors`, `/doctor:sk-code`, `/doctor:git` and `/doctor:setup`) and dispatch to their subsystem routes."
 trigger_phrases:
   - "doctor commands"
   - "/doctor"

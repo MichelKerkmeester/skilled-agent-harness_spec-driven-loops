@@ -7,6 +7,7 @@ import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   handleClaudeUserPromptSubmit,
+  SETUP_WORDING,
   type ClaudeUserPromptSubmitInput,
   type ClaudeUserPromptSubmitOutput,
 } from '../../../hooks/claude/user-prompt-submit.js';
@@ -104,6 +105,11 @@ describe('doctor setup hint on a no-match', () => {
   it.each([
     { prompt: 'install the hooks', sessionId: 'setup-hint-install' },
     { prompt: 'check my environment variables', sessionId: 'setup-hint-check' },
+    { prompt: 'check my config', sessionId: 'setup-hint-check-config' },
+    { prompt: 'reinstall skilled', sessionId: 'setup-hint-reinstall' },
+    { prompt: 'set-up skilled', sessionId: 'setup-hint-set-up-hyphen' },
+    { prompt: 'the installer is broken', sessionId: 'setup-hint-installer' },
+    { prompt: 'fix the configurations', sessionId: 'setup-hint-configurations' },
     { prompt: 'configure the advisor', sessionId: 'setup-hint-configure' },
   ])('adds the setup hint for "$prompt"', async ({ prompt, sessionId }) => {
     const { output } = await runHook(promptInput(prompt, sessionId), NO_MATCH_RESULT);
@@ -120,10 +126,24 @@ describe('doctor setup hint on a no-match', () => {
   it.each([
     { prompt: 'check what time the tide turns', sessionId: 'setup-hint-check-unrelated' },
     { prompt: 'check with my doctor', sessionId: 'setup-hint-check-doctor' },
+    {
+      prompt: 'check the tool rental hours at the hardware store',
+      sessionId: 'setup-hint-check-tool-rental',
+    },
+    {
+      prompt: 'check whether the coat hooks are loose',
+      sessionId: 'setup-hint-check-coat-hooks',
+    },
   ])('keeps the plain no-match head for check wording with no tooling context: "$prompt"', async ({ prompt, sessionId }) => {
     const { output } = await runHook(promptInput(prompt, sessionId), NO_MATCH_RESULT);
 
     expect(additionalContext(output)).toBe(EXPECTED_NO_MATCH_CONTEXT);
+  });
+
+  it('keeps setup wording checks bounded for long sequences of check terms', () => {
+    expect(SETUP_WORDING.test(
+      'check '.repeat(5000) + 'x'.repeat(100000),
+    )).toBe(false);
   });
 
   it('appends the unchanged directive block after the setup hint head', async () => {

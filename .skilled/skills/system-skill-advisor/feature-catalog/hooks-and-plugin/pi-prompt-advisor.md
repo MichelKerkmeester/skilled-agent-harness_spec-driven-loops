@@ -6,7 +6,7 @@ trigger_phrases:
   - "pi prompt advisor extension"
   - "pi advisor extension"
   - "SPECKIT_PI_ADVISOR_DEBUG"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # Pi Prompt Advisor Extension
@@ -23,7 +23,7 @@ A Pi extension that surfaces the skill advisor's brief at prompt time in-process
 
 The extension registers a Pi `input` handler that calls `handleClaudeUserPromptSubmit` from the compiled Claude `user-prompt-submit` hook with `runtime: 'pi'`. The handler loads that hook with dynamic `import()`, trying `ADVISOR_HOOK_MODULE` first and falling back to `ADVISOR_HOOK_FALLBACK_MODULE` when the first specifier does not resolve. The primary specifier is written for the `.pi/extensions/` symlink base and the fallback for the skill's `hooks/pi/` source directory, so the compiled hook resolves from either load location.
 
-The in-process call races a timer set to the advisor budget plus `PI_ADVISOR_DEADLINE_MARGIN_MS` (300 ms). The budget is `SPECKIT_CLAUDE_HOOK_TIMEOUT_MS` or 2500 ms when that variable holds no number. A call that hangs past the deadline delivers `renderAdvisorFallbackDirective()` output instead of the advisor context.
+The in-process call races a timer set to the advisor budget plus `PI_ADVISOR_DEADLINE_MARGIN_MS` (300 ms). The budget is `SPECKIT_CLAUDE_HOOK_TIMEOUT_MS` or 2500 ms when that variable holds no number. A call that hangs past the deadline delivers `renderAdvisorFallbackDirective()` output instead of the advisor context. The deadline path passes the shared `SETUP_WORDING` check to the fallback renderer, so matching prompts show the same `/doctor:setup` hint.
 
 With `SPECKIT_PI_ADVISOR_DEBUG` set to `1` or `true`, the handler classifies the turn in an `[advisor-debug]` line. A fallback brief is labeled `fallback(outage)`, `fallback(no-match)`, `fallback(skipped)` or `fallback(headless)` and a routed brief is labeled `head(<freshness>)`. Diagnostics carry the runtime label `pi`.
 

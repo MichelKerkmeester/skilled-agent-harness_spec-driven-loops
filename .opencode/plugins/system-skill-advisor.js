@@ -1295,10 +1295,11 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
         : freshness === undefined || freshness === 'unavailable'
           ? { status: 'fail_open', freshness: 'unavailable' }
           : { status: 'skipped', freshness };
-      const noBriefFallback = renderPluginFallbackDirective(fallbackResult, { setupWording: SETUP_WORDING.test(prompt) });
       const advisorBlock = response.brief
         ? clampBrief(response.brief, options.maxBriefChars)
-        : noBriefFallback;
+        : renderPluginFallbackDirective(fallbackResult, {
+          setupWording: SETUP_WORDING.test(prompt),
+        });
       const advisorBlockId = response.brief
         ? messageIdentity.POLICY_BLOCK_IDS.ADVISOR_ROUTE
         : messageIdentity.POLICY_BLOCK_IDS.COMMENT_HYGIENE;

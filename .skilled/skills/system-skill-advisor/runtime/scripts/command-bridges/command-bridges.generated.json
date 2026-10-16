@@ -765,7 +765,7 @@
           "keywords": [
             "skill advisor rebuild",
             "rebuild the skill graph database",
-            "skill_graph scan",
+            "rerun the skill_graph scan",
             "new skill not appearing in advisor results"
           ],
           "intentSignals": [
@@ -1004,9 +1004,9 @@
           "description": "",
           "name": "/doctor:update",
           "keywords": [
-            "doctor update",
+            "doctor update command",
             "update skills to latest release",
-            "release update",
+            "skilled release update",
             "update skilled to the latest release",
             "check for skilled updates",
             "is there a newer skilled release"

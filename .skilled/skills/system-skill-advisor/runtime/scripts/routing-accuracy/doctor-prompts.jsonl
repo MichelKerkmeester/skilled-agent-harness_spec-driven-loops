@@ -8,20 +8,26 @@
 {"id":"doctor-a-08","prompt":"disable comment hygiene gate","expected_top":"command-doctor-git-hooks","expected_second":null,"wave":"A"}
 {"id":"doctor-a-09","prompt":"pre-commit gate keeps blocking","expected_top":"sk-git","expected_second":"command-doctor-git-hooks","wave":"A"}
 {"id":"doctor-a-10","prompt":"runtime mirror drift","expected_top":"command-doctor-runtime-mirrors","expected_second":null,"wave":"A"}
-{"id":"doctor-a-11","prompt":"skill budget audit","expected_top":"sk-code","expected_second":"command-doctor-skill-advisor-skill-budget","wave":"A"}
+{"id":"doctor-a-11","prompt":"skill budget audit","expected_top":"command-doctor-skill-advisor-skill-budget","expected_second":null,"wave":"A"}
 {"id":"doctor-a-12","prompt":"description budget check","expected_top":"sk-doc","expected_second":"command-doctor-skill-advisor-skill-budget","wave":"A"}
+{"id":"doctor-a-13","prompt":"please run /doctor:setup for me","expected_top":"command-doctor-setup","expected_second":null,"wave":"A"}
+{"id":"doctor-a-14","prompt":"run /doctor:setup","expected_top":"command-doctor-setup","expected_second":null,"wave":"A"}
 {"id":"doctor-b-git-01","prompt":"check my git hooks setup","expected_top":"sk-git","expected_second":"command-doctor-git-setup","wave":"B-git"}
 {"id":"doctor-b-git-02","prompt":"is my sk-git setup working","expected_top":"sk-git","expected_second":"command-doctor-git-setup","wave":"B-git"}
 {"id":"doctor-b-git-03","prompt":"/doctor:git setup","expected_top":"command-doctor-git-setup","expected_second":null,"wave":"B-git"}
 {"id":"doctor-b-git-04","prompt":"change commit message rules","expected_top":"sk-git","expected_second":"command-doctor-git-standards","wave":"B-git"}
 {"id":"doctor-b-git-05","prompt":"allow longer commit subjects","expected_top":"sk-git","expected_second":"command-doctor-git-standards","wave":"B-git"}
+{"id":"doctor-b-git-06","prompt":"run /doctor:git setup","expected_top":"command-doctor-git-setup","expected_second":null,"wave":"B-git"}
+{"id":"doctor-b-git-07","prompt":"see the output of `/doctor:git setup`","expected_top":"sk-git","expected_second":"command-doctor-git-setup","wave":"B-git"}
+{"id":"doctor-b-git-08","prompt":"fix the git hook that /doctor:git setup lists","expected_top":"sk-git","expected_second":"command-doctor-git-setup","wave":"B-git"}
 {"id":"doctor-b-skcode-01","prompt":"sk-code setup check","expected_top":"sk-code","expected_second":"command-doctor-sk-code","wave":"B-sk-code"}
 {"id":"doctor-b-skcode-02","prompt":"does my sk-code surface route","expected_top":"sk-code","expected_second":"command-doctor-sk-code","wave":"B-sk-code"}
+{"id":"doctor-b-skcode-03","prompt":"/doctor:sk-code","expected_top":"command-doctor-sk-code","expected_second":null,"wave":"B-sk-code"}
 {"id":"doctor-b-advisor-01","prompt":"skill advisor rebuild","expected_top":"system-skill-advisor","expected_second":"command-doctor-skill-advisor-rebuild","wave":"B-skill-advisor"}
 {"id":"doctor-b-advisor-02","prompt":"skill advisor recommends the wrong skill","expected_top":"system-skill-advisor","expected_second":"command-doctor-skill-advisor-tune","wave":"B-skill-advisor"}
 {"id":"doctor-b-advisor-03","prompt":"skill graph freshness","expected_top":"system-skill-advisor","expected_second":"command-doctor-skill-advisor-skill-graph-freshness","wave":"B-skill-advisor"}
 {"id":"doctor-b-advisor-04","prompt":"parent skill structure audit","expected_top":"sk-doc","expected_second":"command-doctor-skill-advisor-parent-skill","wave":"B-skill-advisor"}
-{"id":"doctor-b-advisor-05","prompt":"router reach check","expected_top":"sk-code","expected_second":"command-doctor-skill-advisor-router-reach","wave":"B-skill-advisor"}
+{"id":"doctor-b-advisor-05","prompt":"router reach check","expected_top":"command-doctor-skill-advisor-router-reach","expected_second":null,"wave":"B-skill-advisor"}
 {"id":"doctor-b-update-01","prompt":"trigger index drift","expected_top":"system-spec-kit","expected_second":"command-doctor-speckit","wave":"B-speckit-update"}
 {"id":"doctor-b-update-02","prompt":"update skilled to the latest release","expected_top":"sk-code","expected_second":"command-doctor-update","wave":"B-speckit-update"}
 {"id":"doctor-b-update-03","prompt":"check for skilled updates","expected_top":"command-doctor-update","expected_second":null,"wave":"B-speckit-update"}
@@ -38,3 +44,9 @@
 {"id":"doctor-none-01","prompt":"what is the capital of France","expected_top":null,"expected_second":null,"wave":"control"}
 {"id":"doctor-none-02","prompt":"tell me a joke about cats","expected_top":null,"expected_second":null,"wave":"control"}
 {"id":"doctor-none-03","prompt":"what time is it in Tokyo","expected_top":null,"expected_second":null,"wave":"control"}
+{"id":"doctor-control-11","prompt":"git hooks","expected_top":"sk-git","expected_second":null,"wave":"control"}
+{"id":"doctor-control-12","prompt":"git standards","expected_top":"sk-git","expected_second":null,"wave":"control"}
+{"id":"doctor-control-13","prompt":"git setup","expected_top":"sk-git","expected_second":null,"wave":"control"}
+{"id":"doctor-control-14","prompt":"git rules","expected_top":"sk-git","expected_second":null,"wave":"control"}
+{"id":"doctor-control-15","prompt":"speckit doctor","expected_top":"system-spec-kit","expected_second":null,"wave":"control"}
+{"id":"doctor-none-04","prompt":"my doctor update came in","expected_top":null,"expected_second":null,"wave":"control"}

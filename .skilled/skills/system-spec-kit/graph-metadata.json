@@ -54,7 +54,11 @@
     "create a spec folder",
     "save context to the packet",
     "resume previous session",
-    "validate the spec packet"
+    "validate the spec packet",
+    "env vars",
+    "runtime mirrors",
+    "resume spec",
+    "validate spec"
   ],
   "derived": {
     "trigger_phrases": [

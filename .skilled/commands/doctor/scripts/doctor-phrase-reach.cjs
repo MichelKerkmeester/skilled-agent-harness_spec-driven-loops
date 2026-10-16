@@ -194,22 +194,35 @@ function errorText(error) {
 // 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
-// The bridge is reached when it is the top pick or the first doctor bridge among
-// the passing recommendations behind the top pick, because a passing skill keeps
-// first place and a doctor bridge then surfaces as the second line.
+// Only the first three recommendations render. A doctor bridge can be second only
+// under a non-doctor top pick, and a runnable command must rank first.
 function probeBridge(scoreAdvisorPrompt, workspaceRoot, bridge) {
   const rows = [];
-  for (const phrase of [...bridge.phrases, bridge.runnable]) {
+  for (const [index, phrase] of [...bridge.phrases, bridge.runnable].entries()) {
+    const isRunnable = index === bridge.phrases.length;
+    if (!isRunnable && phrase.trim().split(/\s+/).filter(Boolean).length < 3) {
+      rows.push({ id: bridge.id, phrase, reached: null, top: null, second: null, short: true });
+      continue;
+    }
+
     const result = scoreAdvisorPrompt(phrase, { workspaceRoot });
-    const top = result.topSkill;
+    const recommendations = result.recommendations.slice(0, 3);
+    const top = recommendations[0]?.skill ?? null;
     let second = null;
-    for (const recommendation of result.recommendations.slice(1)) {
-      if (recommendation.skill.startsWith(DOCTOR_PREFIX)) {
-        second = recommendation.skill;
-        break;
+    if (top !== null && !top.startsWith(DOCTOR_PREFIX)) {
+      for (const recommendation of recommendations.slice(1)) {
+        if (recommendation.skill.startsWith(DOCTOR_PREFIX)) {
+          second = recommendation.skill;
+          break;
+        }
       }
     }
-    const reached = top === bridge.id ? 'top' : second === bridge.id ? 'second' : null;
+    let reached = null;
+    if (top === bridge.id) {
+      reached = 'top';
+    } else if (!isRunnable && second === bridge.id) {
+      reached = 'second';
+    }
     rows.push({ id: bridge.id, phrase, reached, top, second });
   }
   return rows;
@@ -237,6 +250,15 @@ async function main(bridges, options) {
     }, null, 2)}\n`);
   } else {
     for (const row of rows) {
+      if (row.short) {
+        process.stdout.write([
+          'FAIL',
+          row.id,
+          JSON.stringify(row.phrase),
+          'phrase has fewer than three words',
+        ].join(' ') + '\n');
+        continue;
+      }
       if (row.reached) {
         process.stdout.write(`PASS ${row.id} ${row.reached} ${JSON.stringify(row.phrase)}\n`);
       } else {

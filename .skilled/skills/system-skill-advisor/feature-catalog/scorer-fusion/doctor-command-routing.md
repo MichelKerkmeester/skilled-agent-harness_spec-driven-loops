@@ -7,7 +7,7 @@ trigger_phrases:
   - "runnable doctor command line"
   - "doctor setup hint"
   - "/doctor:setup"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Doctor Command Routing
@@ -24,19 +24,19 @@ A passing skill keeps first place on a contested prompt and the doctor command s
 
 ### Bridge Generation
 
-`derive-command-bridges.cjs` reads `.skilled/commands/doctor/_routes.yaml` as a third inventory source. Each route becomes one bridge `command-doctor-<command>-<target>`, or `command-doctor-<command>` when the command owns one route. Each standalone command becomes one bridge. The owning skill comes from the router's `skill_agent` tag. An entry in `scoring-compatibility.json` activates a bridge. The deriver fills the TypeScript keywords from the manifest's trigger phrases and the Python slash marker from the runnable string only. `/doctor:deep-loop` and the `/doctor:mcp` sub-actions stay inactive.
+`derive-command-bridges.cjs` reads `.skilled/commands/doctor/_routes.yaml` as a third inventory source. Each route becomes one bridge `command-doctor-<command>-<target>`, or `command-doctor-<command>` when the command owns one route. Each standalone command becomes one bridge. The owning skill comes from the router's `skill_agent` tag. Each route needs a hand-written entry in both the `typescript` and `python` lists in `scoring-compatibility.json`. The deriver fills the TypeScript keywords from the manifest's trigger phrases and the Python slash marker from the runnable string only. `/doctor:deep-loop` and the `/doctor:mcp` sub-actions stay inactive.
 
 ### Ranking
 
-A doctor bridge passes only on its own wording, an explicit-author match on one of its manifest phrases or its runnable string. It never ranks above a passing skill unless the prompt types a doctor slash command. The Python native wrapper keeps the same order.
+A doctor bridge passes only on its own wording, an explicit-author match on one of its manifest phrases or its runnable string. A `/doctor:` command counts as typed when the prompt starts with `/doctor:` or when it directly follows `run`, `execute`, `start`, `launch`, `use` or `kick off` outside quotes and backticks. A quoted command or a bare mid-sentence mention does not count. A typed command puts its own passing bridge first. For other prompts, a passing skill stays first and passing doctor bridges sit right after the second passing skill or the only passing skill. This keeps a doctor line within the CLI's three shown results. Doctor bridges never change skill scores. The scorer computes skill ambiguity and abstention as if no doctor bridge existed. The Python native wrapper keeps the same order.
 
 ### Brief Text
 
-The renderer reads a generated lookup of runnable strings, so a doctor bridge shows as `/doctor:git setup` and never as its raw id. An unmapped doctor id renders nothing. When a doctor bridge is the top pick it is the top line. When a skill is first and a doctor bridge also passes, the brief adds `Also: /doctor:<command> <target>` inside the same token cap. When nothing matches, or the advisor is down, and the prompt uses setup, install or configure wording, or check wording followed by an environment, hook or tooling word, the fallback adds one sentence naming `/doctor:setup`, since that command also checks the advisor. The Claude hook computes that flag, the Pi hook computes it when the advisor misses Pi's deadline and the OpenCode plugin computes it for its own fallback, because the renderer never reads prompt text.
+The renderer reads a generated lookup of runnable strings, so a doctor bridge shows as `/doctor:git setup` and never as its raw id. An unmapped doctor id renders nothing. When a doctor bridge is the top pick it is the top line. When a skill is first and a doctor bridge also passes, the brief adds `Also: /doctor:<command> <target>` inside the same token cap. For no-match and outage prompts, the fallback adds one sentence naming `/doctor:setup` when the setup check matches. The check matches set up, set-up or setup wording, install or reinstall wording including installation and installer, configure or configuration wording or `check` followed within three words by environment, env, config, hooks, tools, tooling, toolchain or skilled. The command also checks the advisor. The Claude hook sets the flag, Pi passes it on the deadline fallback and the OpenCode plugin uses its copy of the setup check. The renderer never reads prompt text.
 
 ### Reach Probe
 
-`doctor-phrase-reach.cjs` scores every admitted phrase under the pinned regime and fails when a phrase reaches neither the top line nor the second line of its bridge. `/doctor:skill-advisor router-reach` runs it.
+`doctor-phrase-reach.cjs` keeps the three results shown by the CLI in the reach check. Its rank-first check requires the runnable doctor command, and it rejects any activated phrase with fewer than three words. `/doctor:skill-advisor router-reach` runs it.
 
 ---
 
@@ -52,6 +52,8 @@ The renderer reads a generated lookup of runnable strings, so a doctor bridge sh
 | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts` | Shared | Phrase-anchor rule and skill-first ordering |
 | `.skilled/skills/system-skill-advisor/runtime/lib/render.ts` | Shared | Runnable doctor line, second line and setup hint |
 | `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Handler | Setup-wording flag for the no-match hint |
+| `.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts` | Handler | Passes the setup flag on Pi's deadline path |
+| `.skilled/plugins/lib/skill-advisor-render.js` | Shared | OpenCode copy of the setup check |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | Script | Python slash markers and the native wrapper order |
 | `.skilled/commands/doctor/scripts/doctor-phrase-reach.cjs` | Script | Doctor reach probe |
 

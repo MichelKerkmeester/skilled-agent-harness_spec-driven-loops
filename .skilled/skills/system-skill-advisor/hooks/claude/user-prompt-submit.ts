@@ -46,14 +46,15 @@ const IS_CLI_ENTRY = process.argv[1]
 
 const requireFromAdvisor = createRequire(import.meta.url);
 
-// Setup, install or configure wording, or check wording followed by an environment,
-// hook or tooling word, marks a prompt the read-only /doctor:setup overview
-// can answer when no skill matched it.
+// Setup, install and configure words trigger the hint; check needs nearby tooling context.
+// Bounded context keeps unrelated checks quiet without scanning long prompts.
 export const SETUP_WORDING = new RegExp(
-  String.raw`\b(?:set\s?up|setups?|install(?:s|ed|ing|ation)?`
-    + String.raw`|configur(?:e|es|ed|ing|ation)`
-    + String.raw`|check(?:s|ed|ing)?\b`
-    + String.raw`(?=[\s\S]*\b(?:environment|env|hooks?|tool(?:s|ing|chain)?|skilled)\b))\b`,
+  String.raw`\b(?:set[\s-]?up|setups?`
+    + String.raw`|(?:re)?install(?:s|ed|ing|ation|er|ers)?`
+    + String.raw`|configur(?:e|es|ed|ing|ations?)`
+    + String.raw`|check(?:s|ed|ing)?(?:\s+\S+){0,2}?\s+`
+    + String.raw`(?:environment|env|config(?:s|urations?)?`
+    + String.raw`|hooks?|tools|tooling|toolchain|skilled))\b`,
   'i',
 );
 function skillAdvisorHookEnabled(): boolean {
@@ -342,8 +343,8 @@ export async function handleClaudeUserPromptSubmit(
       },
     };
     const deliveryState = deliveryStateOptionsFor(input);
-    const renderOptions = { deliveryState, setupWording: SETUP_WORDING.test(prompt) };
-    const brief = renderBrief(result, renderOptions);
+    const brief = renderBrief(result, { deliveryState });
+    const renderOptions = { deliveryState, setupWording: !brief && SETUP_WORDING.test(prompt) };
     const emitted = brief ?? renderAdvisorFallbackDirective(renderOptions, result);
     // Directive-lifecycle dedup delivers the full brief on the first message
     // and after lifecycle boundaries or transcript shrink. On proven repeats,

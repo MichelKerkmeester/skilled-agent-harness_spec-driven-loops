@@ -52,6 +52,70 @@ test('every admitted phrase reaches its bridge on the built advisor', () => {
   assert.equal(report.phrases, report.rows.length);
 });
 
+test('a two-word manifest phrase is reported as missed without scoring it', (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'doctor-phrase-reach-test-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  writeFile(root, SCRIPT_COPY, fs.readFileSync(SCRIPT, 'utf8'));
+  writeFile(root, 'package.json', '{"type":"module"}');
+  writeFile(root, BUILT_SCORER, [
+    'export function scoreAdvisorPrompt() {',
+    '  return {',
+    "    topSkill: 'command-doctor-status',",
+    "    recommendations: [{ skill: 'command-doctor-status' }],",
+    '  };',
+    '}',
+    '',
+  ].join('\n'));
+  writeFile(root,
+    '.skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/utils/' +
+      'workspace-root.js',
+    "export function findAdvisorWorkspaceRoot() { return '/tmp'; }\n");
+  writeFile(root, FRESHNESS_LIB, [
+    'module.exports = {',
+    "  checkPackageFreshness: () => ({ status: 'fresh', message: 'stub build is current' }),",
+    '};',
+    '',
+  ].join('\n'));
+  writeFile(root,
+    '.skilled/commands/doctor/scripts/node_modules/yaml/package.json',
+    '{"type":"commonjs"}');
+  writeFile(root,
+    '.skilled/commands/doctor/scripts/node_modules/yaml/index.js',
+    'module.exports = { parse: JSON.parse };\n');
+  writeFile(root, '.skilled/commands/doctor/_routes.yaml', JSON.stringify({
+    routes: [{
+      command: '/doctor:status',
+      target: 'workspace',
+      trigger_phrases: ['doctor update'],
+    }],
+    standalone: [],
+  }));
+  writeFile(root,
+    '.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/' +
+      'scoring-compatibility.json',
+    JSON.stringify({ typescript: [{ inventoryId: 'command-doctor-status' }] }));
+  writeFile(root,
+    '.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/' +
+      'scorer-eval-baseline.json',
+    JSON.stringify({ capturedAt: '2026-10-16' }));
+
+  const result = runProbe(path.join(root, SCRIPT_COPY), ['--json']);
+  assert.equal(result.status, 1, result.stderr);
+  const report = JSON.parse(result.stdout);
+  assert.equal(report.status, 'fail');
+  assert.equal(report.missed, 1);
+  const shortRow = report.rows.find((row) => row.phrase === 'doctor update');
+  assert.equal(shortRow.reached, null);
+  assert.equal(shortRow.short, true);
+  const runnableRow = report.rows.find((row) => row.phrase === '/doctor:status');
+  assert.equal(runnableRow.reached, 'top');
+
+  const textResult = runProbe(path.join(root, SCRIPT_COPY));
+  assert.equal(textResult.status, 1, textResult.stderr);
+  assert.match(textResult.stdout,
+    /FAIL command-doctor-status "doctor update" phrase has fewer than three words/);
+});
+
 test('a stale build exits 2 and prints no reach verdict', (t) => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'doctor-phrase-reach-test-'));
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));

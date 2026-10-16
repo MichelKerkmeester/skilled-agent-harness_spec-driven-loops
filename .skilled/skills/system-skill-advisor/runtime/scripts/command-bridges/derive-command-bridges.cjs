@@ -216,9 +216,8 @@ function doctorRouteEntries() {
     const runnable = typeof item.runnable === 'string' && item.runnable
       ? item.runnable
       : item.command;
-    const phrases = Array.isArray(item.trigger_phrases)
-      && item.trigger_phrases.every((phrase) => typeof phrase === 'string' && phrase)
-      ? item.trigger_phrases
+    const phrases = Object.prototype.hasOwnProperty.call(item, 'trigger_phrases')
+      ? stringArray(item.trigger_phrases, `_routes.yaml standalone[${index}].trigger_phrases`)
       : [];
     DOCTOR_DETAILS.set(`command-doctor-${name}`, { runnable, phrases });
     entries.push({

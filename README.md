@@ -190,6 +190,9 @@ grep -l mcp-code-mode-launcher opencode.json .mcp.json .claude/mcp.json .codex/c
 
 # Confirm the advisor CLI enumerates all nine commands
 node .skilled/bin/skill-advisor.cjs list-tools --format json
+
+# In an AI session, /doctor:setup runs read-only setup checks and names a repair command per failure
+/doctor:setup
 ```
 
 ### Git Hooks
@@ -667,7 +670,8 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 - Nine commands: four `advisor_*` for routing, freshness, rebuild and validation, plus five `skill_graph_*` for scan, query, status, graph validation and `enhances` propagation. The three writes need a trusted caller
 - No MCP registration, in `opencode.json` or any other runtime config
 - Daemon unreachable → the CLI answers from the Python scorer at `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` and marks the response degraded, so the prompt-time brief reports `Advisor: stale` rather than claiming live
-- **No brief** → the prompt hooks and the OpenCode plugin still say why in one line above the directives: `Advisor: outage (...)` with the command to route by hand, `Advisor: no skill matched.` or `Advisor: prompt skipped.` for casual prompts such as `thanks`, which never reach the CLI
+- **No brief** → the prompt hooks and the OpenCode plugin still say why in one line above the directives: `Advisor: outage (...)` with the command to route by hand, `Advisor: no skill matched.` or `Advisor: prompt skipped.` for casual prompts such as `thanks`, which never reach the CLI. A setup, install, configure or check-the-tooling prompt with no match also gets `For setup or health checks, run /doctor:setup.`
+- **Doctor command suggestions** → the advisor also suggests doctor commands. A setup or health prompt that no skill answers gets a runnable `/doctor:<command> <target>` line. When a skill also matches, the skill comes first and the brief adds `Also: /doctor:<command> <target>` on a second line.
 
 #### How It Works
 
@@ -1230,9 +1234,9 @@ The active autonomous loop families. See [Deep Loop](#6--deep-loop) for how they
 &nbsp;
 #### DOCTOR
 
-Ten commands cover the diagnostic surface, one per owner. The eight routed ones share the `.skilled/commands/doctor/_routes.yaml` manifest, where each route names its command and carries its setup vars, allowed flags, mutation class and trigger phrases.
+Ten commands cover the diagnostic surface, one per owner. The seven routed ones share the `.skilled/commands/doctor/_routes.yaml` manifest, where each route names its command and carries its setup vars, allowed flags, mutation class and trigger phrases.
 
-**`/doctor:setup`** - read-only onboarding and health check: lists every doctor command and target, runs the sk-code setup, sk-git setup, trigger index, runtime mirror and skill advisor status checks, prints PASS, FAIL or SKIP for each with one repair command per failure, and writes nothing. The skill advisor also suggests it when a prompt about setting up or checking skilled matches no skill
+**`/doctor:setup`** - read-only onboarding and health check: lists every doctor command and target, runs the sk-code setup, sk-git setup, trigger index, runtime mirror and skill advisor status checks, prints PASS, FAIL, SKIP, DEGRADED or ERROR for each with one repair command per failure, and writes nothing in the repository. The skill advisor also suggests it when a prompt about setting up or checking skilled matches no skill
 
 **`/doctor:speckit`** - spec-kit retrieval
 
@@ -1280,7 +1284,7 @@ Ten commands cover the diagnostic surface, one per owner. The eight routed ones 
 - Saves a preference only after showing the exact line and destination and getting an explicit yes. `--dry-run` shows the same preview and writes nothing
 - Explains secrets and per-invocation switches without asking for or saving their values. A per-invocation switch is shown as a one-command prefix
 
-The 21 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode` block and runs in phases, and most also declare `upstream_assets`, `user_inputs` and `field_handling`. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
+The 23 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode` block and runs in phases, and most also declare `upstream_assets`, `user_inputs` and `field_handling`. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
 
 &nbsp;
 #### UTILITY
@@ -1500,11 +1504,11 @@ The other shipped skills keep working unchanged: `sk-doc` still validates your m
 
 - **Commit, PR and branch rules.** Run `/doctor:git standards` to copy the shipped templates into `.sk-git/` and change a rule there. `git config skgit.contractDir <dir>` points at another folder.
 - **Hook gates.** Run `/doctor:git hooks` to switch an optional pre-commit or pre-push check on or off. It saves `speckit.hooks.<key>` in local or global git config.
-- **Hook trust and install.** In a clone, run `git config --local skilled.trustRepoHooks true`, then `bash .skilled/scripts/install-git-hooks.sh`. Without trust the clone's own gates do not run.
+- **Hook trust and install.** In a clone, run `bash .skilled/scripts/install-git-hooks.sh`, which links the hooks into the clone's own tree so they run its own scripts. Set `git config --local skilled.trustRepoHooks true` only when the hooks come from another checkout, such as a global `core.hooksPath`.
 - **Worktrees and Commit-Id.** `git config speckit.worktreeBase <dir>` moves the worktree folder. `git config --local skilled.commitId true` or `false` decides whether commits carry an id.
-- **Shared files.** The remote branch allowlist, the worktree provision list and `hard-rules.json` live inside `.skilled/skills/sk-git/`, so a change there applies to every repository that shares the install.
+- **Shared files.** Each repository reads its remote branch allowlist and `hard-rules.json` from its own `.skilled/skills/sk-git/` folder. The worktree provision list comes from beside the shared helper, so it applies to every repository that shares the install.
 
-**Verify.** Run `/doctor:git setup`, or outside an AI runtime `node .skilled/commands/doctor/scripts/git-setup-check.cjs --tool <claude|codex|devin|cursor|opencode|pi>`. It checks eleven settings in one read-only pass, prints PASS, FAIL, SKIP, UNKNOWN or DEGRADED for each with the source it read and one repair command for each failing or degraded check, and exits 0 when every check passes or skips, 3 when none fails but a check is UNKNOWN or a gate is saved off, 1 when a check fails and 2 on a usage error, and its last line is the status with its counters: `STATUS=OK checks=<n>`, `STATUS=DEGRADED degraded=<n> skipped=<n> unknown=<n>` or `STATUS=FAIL failed=<n> degraded=<n> skipped=<n> unknown=<n>`.
+**Verify.** Run `/doctor:git setup`, or outside an AI runtime `node .skilled/commands/doctor/scripts/git-setup-check.cjs --tool <claude|codex|devin|cursor|opencode|pi|hermes>`. It checks eleven settings in one read-only pass, prints PASS, FAIL, SKIP, UNKNOWN or DEGRADED for each with the source it read and one repair command for each failing or degraded check, and exits 0 when every check passes or skips, 3 when none fails but a check is UNKNOWN or DEGRADED, 1 when a check fails and 2 on a usage error, and its last line is the status with its counters: `STATUS=OK checks=<n>`, `STATUS=DEGRADED degraded=<n> skipped=<n> unknown=<n>` or `STATUS=FAIL failed=<n> degraded=<n> skipped=<n> unknown=<n>`.
 
 &nbsp;
 ### Core Configuration Files

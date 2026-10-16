@@ -30,6 +30,7 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 +-- audit_descriptions.py
 +-- command-catalog-mirror-check.cjs
 +-- check-mcp-mutation-class.sh
++-- doctor-phrase-reach.cjs
 +-- git-hook-gates.cjs
 +-- git-setup-check.cjs
 +-- git-standards.cjs
@@ -66,6 +67,7 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 | `git-standards.cjs` | Shows where a repository's commit, PR and branch rules come from, copies the shipped sk-git templates into `.sk-git/`, and changes a rules block setting or removes a kind's rules section in those copies for `/doctor:git standards`, re-validating each change with sk-git's own contract check. |
 | `git-setup-check.cjs` | Runs the read-only sk-git setup battery for `/doctor:git setup`: eleven checks, each PASS, FAIL, SKIP, UNKNOWN or DEGRADED with the source it read and one repair per failure. It exits 0 when every check passes or skips, 3 when a check is UNKNOWN or a gate is saved off, 1 on any failure and 2 on a usage error. It loads every helper from its own install root and never runs code from the repository it inspects. |
 | `command-catalog-mirror-check.cjs` | Compares every command catalog and hub metadata entry back to the command's own frontmatter, which is the one copy nothing else derives from. Structural drift fails. Prose divergence reports and fails only under `--strict`. |
+| `doctor-phrase-reach.cjs` | Scores every activated doctor phrase and each runnable doctor command through the built advisor scorer, then keeps the three results the hooks show. It fails when a phrase reaches neither the top pick nor the second line. It also fails if a runnable command does not rank first or an activated phrase has fewer than three words. It exits 2 when the advisor build is missing or stale. |
 
 ---
 
