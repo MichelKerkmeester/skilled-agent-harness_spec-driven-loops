@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 7020,
-    "ok": 14329,
+    "missing-frontmatter": 7024,
+    "ok": 14338,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 24896,
+  "documentsScanned": 24909,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "79c15b068e77a62d8a65e95ebb57781a3f18ad084a4cb897e6087b85174737eb",
+  "manifestHash": "52f2b191dddc605ce14cf5fe4a53a9cd57e29a5c797dc637d51f1c17f4837a51",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36556,
+      "ok": 36565,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -39638,6 +39638,18 @@
       "reason": "no opening frontmatter delimiter"
     },
     {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/033-git-setup-customization/006-release-conformance-review/review/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/033-git-setup-customization/006-release-conformance-review/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
       "category": "valid-empty-list",
       "line": 4,
       "path": "specs/sk-prompt/007-sk-prompt-parent/review/deep-review-dashboard.md",
@@ -44006,6 +44018,18 @@
       "line": 2,
       "path": "specs/system-skill-advisor/034-doctor-command-guidance/research/resource-map.md",
       "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/035-doctor-command-routing/review/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/035-doctor-command-routing/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "valid-empty-list",
@@ -69241,6 +69265,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/scratch",
       "reason": "excluded directory"
     },
@@ -70034,6 +70066,18 @@
     },
     {
       "path": "specs/sk-git/033-git-setup-customization/005-setup-check-hardening/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/033-git-setup-customization/006-release-conformance-review/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/033-git-setup-customization/006-release-conformance-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/033-git-setup-customization/007-review-remediation/scratch",
       "reason": "excluded directory"
     },
     {
@@ -70906,6 +70950,10 @@
     },
     {
       "path": "specs/system-skill-advisor/034-doctor-command-guidance/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/035-doctor-command-routing/review/lineages",
       "reason": "excluded directory"
     },
     {

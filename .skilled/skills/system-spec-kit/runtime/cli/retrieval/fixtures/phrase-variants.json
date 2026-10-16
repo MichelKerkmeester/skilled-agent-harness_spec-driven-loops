@@ -1,5 +1,5 @@
 {
-  "manifestHash": "79c15b068e77a62d8a65e95ebb57781a3f18ad084a4cb897e6087b85174737eb",
+  "manifestHash": "52f2b191dddc605ce14cf5fe4a53a9cd57e29a5c797dc637d51f1c17f4837a51",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -37520,6 +37520,9 @@
     "doctor git setup check": [
       "doctor git setup check"
     ],
+    "doctor git setup conformance fixes": [
+      "doctor git setup conformance fixes"
+    ],
     "doctor git setup hardening": [
       "doctor git setup hardening"
     ],
@@ -47495,6 +47498,9 @@
     ],
     "git setup customization phase parent spec": [
       "git setup customization phase parent spec"
+    ],
+    "git setup customization review remediation changelog": [
+      "git setup customization review remediation changelog"
     ],
     "git skill doc authoring tasks": [
       "git skill doc authoring tasks"
@@ -71566,6 +71572,9 @@
     "phase 6 plan": [
       "phase 6 plan"
     ],
+    "phase 6 release conformance review": [
+      "phase 6 release conformance review"
+    ],
     "phase 6 remediation deep review": [
       "phase 6 remediation deep review"
     ],
@@ -71607,6 +71616,9 @@
     ],
     "phase 7 review reducer missing config": [
       "phase 7 review reducer missing config"
+    ],
+    "phase 7 review remediation": [
+      "phase 7 review remediation"
     ],
     "phase 7 series parent review and hardening research": [
       "phase 7 series parent review and hardening research"
@@ -79471,6 +79483,18 @@
     ],
     "release cleanup system spec kit changelog": [
       "release cleanup system spec kit changelog"
+    ],
+    "release conformance review": [
+      "release conformance review"
+    ],
+    "release conformance review implementation summary": [
+      "release conformance review implementation summary"
+    ],
+    "release conformance review plan": [
+      "release conformance review plan"
+    ],
+    "release conformance review tasks": [
+      "release conformance review tasks"
     ],
     "release daemon on shutdown": [
       "release daemon on shutdown"
@@ -92948,6 +92972,9 @@
     ],
     "sk git skill benchmark artifacts": [
       "sk-git skill-benchmark artifacts"
+    ],
+    "sk git skill word limit": [
+      "sk-git skill word limit"
     ],
     "sk git standards override": [
       "sk-git standards override"
