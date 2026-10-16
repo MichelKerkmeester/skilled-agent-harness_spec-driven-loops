@@ -16,6 +16,8 @@
 # ═══════════════════════════════════════════════════════════════════════════════
 .DS_Store
 .rename-engine-disposable
+# JetBrains IDE project settings, which are per machine
+.idea/
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Environment & local configuration
