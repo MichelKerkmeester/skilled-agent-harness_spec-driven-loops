@@ -1,5 +1,5 @@
 {
-  "manifestHash": "86b643d77ca775521fd8a2f69f1c1212b00382e351d8b848a724a8c6e3255b8b",
+  "manifestHash": "681a7bb8c404e2ee0b05c0bee2056a577aaf5acb3cd1ed9a2811e3e2bc486670",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -37181,6 +37181,9 @@
     "doctor check 5l": [
       "doctor check 5l"
     ],
+    "doctor checks prove results": [
+      "doctor checks prove results"
+    ],
     "doctor cocoindex": [
       "/doctor cocoindex",
       "doctor cocoindex"
@@ -37580,6 +37583,9 @@
     "doctor health rows adapters": [
       "doctor health rows adapters"
     ],
+    "doctor hint narrowed": [
+      "doctor hint narrowed"
+    ],
     "doctor install alignment": [
       "doctor install alignment"
     ],
@@ -37970,6 +37976,9 @@
     ],
     "doctor setup command": [
       "doctor setup command"
+    ],
+    "doctor setup every runtime": [
+      "doctor setup every runtime"
     ],
     "doctor setup hint": [
       "doctor setup hint"
@@ -38708,6 +38717,9 @@
     ],
     "drift guard scripts path fixed": [
       "drift guard scripts path fixed"
+    ],
+    "drift guard skips evidence": [
+      "drift guard skips evidence"
     ],
     "drift guard warning count": [
       "drift guard warning count"
@@ -53067,6 +53079,9 @@
     ],
     "input data was truncated": [
       "Input data was truncated"
+    ],
+    "input gate position": [
+      "input gate position"
     ],
     "input kind document query cache": [
       "input kind document query cache"
@@ -88543,6 +88558,9 @@
     "setup check hardening tasks": [
       "setup check hardening tasks"
     ],
+    "setup check unknown probe": [
+      "setup check unknown probe"
+    ],
     "setup cp sandbox rmrf guard": [
       "setup cp sandbox rmrf guard"
     ],
@@ -90738,6 +90756,9 @@
     "sk code opencode 1 2 5 0": [
       "sk-code-opencode 1.2.5.0"
     ],
+    "sk code opencode 1 2 6 0": [
+      "sk-code-opencode 1.2.6.0"
+    ],
     "sk code opencode alignment": [
       "sk-code opencode alignment"
     ],
@@ -90806,6 +90827,9 @@
     ],
     "sk code opencode v1 2 5 0": [
       "sk-code-opencode v1.2.5.0"
+    ],
+    "sk code opencode v1 2 6 0": [
+      "sk-code-opencode v1.2.6.0"
     ],
     "sk code overlay hardcoded replacement": [
       "sk-code overlay hardcoded replacement"
@@ -91518,6 +91542,9 @@
     "sk create command 1 0 3 0": [
       "sk-create-command 1.0.3.0"
     ],
+    "sk create command 1 0 4 0": [
+      "sk-create-command 1.0.4.0"
+    ],
     "sk create command playbook": [
       "sk-create-command playbook"
     ],
@@ -91535,6 +91562,9 @@
     ],
     "sk create command v1 0 3 0": [
       "sk-create-command v1.0.3.0"
+    ],
+    "sk create command v1 0 4 0": [
+      "sk-create-command v1.0.4.0"
     ],
     "sk create diagram benchmark index": [
       "sk-create-diagram benchmark index"
@@ -92457,6 +92487,9 @@
     "sk doc 2 3 1 0": [
       "sk-doc 2.3.1.0"
     ],
+    "sk doc 2 3 10 0": [
+      "sk-doc 2.3.10.0"
+    ],
     "sk doc 2 3 2 0": [
       "sk-doc 2.3.2.0"
     ],
@@ -92597,6 +92630,9 @@
     ],
     "sk doc human voice mode": [
       "sk-doc human voice mode"
+    ],
+    "sk doc input gate position": [
+      "sk-doc input gate position"
     ],
     "sk doc keyword triggers source of truth": [
       "sk-doc keyword triggers source of truth"
@@ -92772,6 +92808,9 @@
     "sk doc v2 3 1 0": [
       "sk-doc v2.3.1.0"
     ],
+    "sk doc v2 3 10 0": [
+      "sk-doc v2.3.10.0"
+    ],
     "sk doc v2 3 2 0": [
       "sk-doc v2.3.2.0"
     ],
@@ -92912,6 +92951,9 @@
     ],
     "sk git 1 9 0 0": [
       "sk-git 1.9.0.0"
+    ],
+    "sk git 1 9 1 0": [
+      "sk-git 1.9.1.0"
     ],
     "sk git benchmark": [
       "sk-git benchmark"
@@ -93098,6 +93140,9 @@
     ],
     "sk git v1 9 0 0": [
       "sk-git v1.9.0.0"
+    ],
+    "sk git v1 9 1 0": [
+      "sk-git v1.9.1.0"
     ],
     "sk git workflow support": [
       "sk-git workflow support"
@@ -96019,6 +96064,9 @@
     ],
     "skilled v4 0 0 12": [
       "skilled v4.0.0.12"
+    ],
+    "skilled v4 0 0 13": [
+      "skilled v4.0.0.13"
     ],
     "skilled v4 0 0 2": [
       "skilled v4.0.0.2"
@@ -101791,6 +101839,9 @@
     "system skill advisor 0 16 0 0": [
       "system-skill-advisor 0.16.0.0"
     ],
+    "system skill advisor 0 16 1 0": [
+      "system-skill-advisor 0.16.1.0"
+    ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
     ],
@@ -101958,6 +102009,9 @@
     ],
     "system skill advisor v0 16 0 0": [
       "system-skill-advisor v0.16.0.0"
+    ],
+    "system skill advisor v0 16 1 0": [
+      "system-skill-advisor v0.16.1.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -102264,6 +102318,9 @@
     ],
     "system spec kit 2 8 0 0": [
       "system-spec-kit 2.8.0.0"
+    ],
+    "system spec kit 2 8 1 0": [
+      "system-spec-kit 2.8.1.0"
     ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
@@ -102684,6 +102741,9 @@
     ],
     "system spec kit v2 8 0 0": [
       "system-spec-kit v2.8.0.0"
+    ],
+    "system spec kit v2 8 1 0": [
+      "system-spec-kit v2.8.1.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
@@ -107077,6 +107137,9 @@
     ],
     "v4 0 0 12 release notes": [
       "v4.0.0.12 release notes"
+    ],
+    "v4 0 0 13 release notes": [
+      "v4.0.0.13 release notes"
     ],
     "v4 0 0 2 release notes": [
       "v4.0.0.2 release notes"

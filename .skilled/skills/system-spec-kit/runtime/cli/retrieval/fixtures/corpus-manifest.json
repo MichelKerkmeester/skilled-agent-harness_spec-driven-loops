@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6cb3001fbacc8786bed02ad73fe1b7cee08adf0d8671ac3ebadfed48367f832c",
+  "corpusHash": "41076513739ae9d1f3f79c7eff997d3a3680b881f1d94d57cbb5ec7392df7aec",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24914,
+  "includedPathCount": 24921,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -77,6 +77,7 @@
     ".skilled/changelog/skilled/v4.0.0.10.md",
     ".skilled/changelog/skilled/v4.0.0.11.md",
     ".skilled/changelog/skilled/v4.0.0.12.md",
+    ".skilled/changelog/skilled/v4.0.0.13.md",
     ".skilled/changelog/skilled/v4.0.0.2.md",
     ".skilled/changelog/skilled/v4.0.0.3.md",
     ".skilled/changelog/skilled/v4.0.0.4.md",
@@ -2838,6 +2839,7 @@
     ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.3.0.md",
     ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.4.0.md",
     ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.5.0.md",
+    ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.6.0.md",
     ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/code-quality-gate.md",
     ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/implementation-authoring.md",
     ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/verification-alignment.md",
@@ -6082,6 +6084,7 @@
     ".skilled/skills/sk-doc/changelog/v2.2.6.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.0.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.1.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.3.10.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.2.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.4.0.md",
@@ -6267,6 +6270,7 @@
     ".skilled/skills/sk-doc/sk-create-command/changelog/v1.0.1.1.md",
     ".skilled/skills/sk-doc/sk-create-command/changelog/v1.0.2.0.md",
     ".skilled/skills/sk-doc/sk-create-command/changelog/v1.0.3.0.md",
+    ".skilled/skills/sk-doc/sk-create-command/changelog/v1.0.4.0.md",
     ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/component-and-path/reference-guidance-stays-a-skill.md",
     ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/component-and-path/repeatable-slash-command.md",
     ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/input-and-modes/complete-auto-and-confirm-modes.md",
@@ -6602,6 +6606,7 @@
     ".skilled/skills/sk-git/changelog/v1.8.5.0.md",
     ".skilled/skills/sk-git/changelog/v1.8.6.0.md",
     ".skilled/skills/sk-git/changelog/v1.9.0.0.md",
+    ".skilled/skills/sk-git/changelog/v1.9.1.0.md",
     ".skilled/skills/sk-git/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/github-mcp-integration.md",
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/gitkraken-mcp-integration.md",
@@ -7572,6 +7577,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.15.5.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.15.6.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.16.0.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.16.1.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.2.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.4.0.0.md",
@@ -8011,6 +8017,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.7.8.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.9.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.8.0.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.8.1.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
@@ -24945,7 +24952,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "86b643d77ca775521fd8a2f69f1c1212b00382e351d8b848a724a8c6e3255b8b",
+  "manifestHash": "681a7bb8c404e2ee0b05c0bee2056a577aaf5acb3cd1ed9a2811e3e2bc486670",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
