@@ -1,5 +1,5 @@
 {
-  "corpusHash": "4532d71fd7d1b2cfced5c065c1a870a55611e2a70210ad83b7aad07ee60cb816",
+  "corpusHash": "438ddfe11cdcfa2b3703ae401cb8b7c828aa38c8e602d2f664cb784150d813e5",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24893,
+  "includedPathCount": 24896,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -76,6 +76,7 @@
     ".skilled/changelog/skilled/v4.0.0.1.md",
     ".skilled/changelog/skilled/v4.0.0.10.md",
     ".skilled/changelog/skilled/v4.0.0.11.md",
+    ".skilled/changelog/skilled/v4.0.0.12.md",
     ".skilled/changelog/skilled/v4.0.0.2.md",
     ".skilled/changelog/skilled/v4.0.0.3.md",
     ".skilled/changelog/skilled/v4.0.0.4.md",
@@ -7570,6 +7571,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.15.4.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.15.5.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.15.6.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.16.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.2.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.4.0.0.md",
@@ -8008,6 +8010,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.7.7.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.8.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.9.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.8.0.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
@@ -24924,7 +24927,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "9ee5c05d67a59514d2218c57897ec1234ef5dcc531d72c3563b1d6e0dc353a89",
+  "manifestHash": "79c15b068e77a62d8a65e95ebb57781a3f18ad084a4cb897e6087b85174737eb",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27168,6 +27171,14 @@
     },
     {
       "path": "specs/sk-code/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
       "reason": "excluded directory"
     },
     {

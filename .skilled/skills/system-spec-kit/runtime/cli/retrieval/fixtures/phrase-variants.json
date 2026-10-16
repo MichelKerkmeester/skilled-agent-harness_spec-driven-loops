@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9ee5c05d67a59514d2218c57897ec1234ef5dcc531d72c3563b1d6e0dc353a89",
+  "manifestHash": "79c15b068e77a62d8a65e95ebb57781a3f18ad084a4cb897e6087b85174737eb",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8638,6 +8638,9 @@
     "advisor doctor bridges": [
       "advisor doctor bridges"
     ],
+    "advisor doctor command routing": [
+      "advisor doctor command routing"
+    ],
     "advisor doctor routing": [
       "advisor doctor routing"
     ],
@@ -9292,6 +9295,9 @@
     ],
     "advisor suggested order summary": [
       "advisor suggested order summary"
+    ],
+    "advisor suggests doctor commands": [
+      "advisor suggests doctor commands"
     ],
     "advisor suite drift plan": [
       "advisor suite drift plan"
@@ -37952,6 +37958,9 @@
     ],
     "doctor setup check": [
       "doctor setup check"
+    ],
+    "doctor setup command": [
+      "doctor setup command"
     ],
     "doctor setup hint": [
       "doctor setup hint"
@@ -95951,6 +95960,9 @@
     "skilled v4 0 0 11": [
       "skilled v4.0.0.11"
     ],
+    "skilled v4 0 0 12": [
+      "skilled v4.0.0.12"
+    ],
     "skilled v4 0 0 2": [
       "skilled v4.0.0.2"
     ],
@@ -101719,6 +101731,9 @@
     "system skill advisor 0 15 6 0": [
       "system-skill-advisor 0.15.6.0"
     ],
+    "system skill advisor 0 16 0 0": [
+      "system-skill-advisor 0.16.0.0"
+    ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
     ],
@@ -101883,6 +101898,9 @@
     ],
     "system skill advisor v0 15 6 0": [
       "system-skill-advisor v0.15.6.0"
+    ],
+    "system skill advisor v0 16 0 0": [
+      "system-skill-advisor v0.16.0.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -102186,6 +102204,9 @@
     ],
     "system spec kit 2 7 9 0": [
       "system-spec-kit 2.7.9.0"
+    ],
+    "system spec kit 2 8 0 0": [
+      "system-spec-kit 2.8.0.0"
     ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
@@ -102603,6 +102624,9 @@
     ],
     "system spec kit v2 7 9 0": [
       "system-spec-kit v2.7.9.0"
+    ],
+    "system spec kit v2 8 0 0": [
+      "system-spec-kit v2.8.0.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
@@ -106993,6 +107017,9 @@
     ],
     "v4 0 0 11 release notes": [
       "v4.0.0.11 release notes"
+    ],
+    "v4 0 0 12 release notes": [
+      "v4.0.0.12 release notes"
     ],
     "v4 0 0 2 release notes": [
       "v4.0.0.2 release notes"
