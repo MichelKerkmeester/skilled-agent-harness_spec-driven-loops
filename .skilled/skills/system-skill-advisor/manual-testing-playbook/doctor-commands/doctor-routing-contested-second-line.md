@@ -1,7 +1,7 @@
 ---
 title: "DOC-387 -- Doctor routing contested prompt second line"
 description: "Manual scenario validating that a contested prompt keeps the skill as the advisor brief's first line and appends the runnable /doctor:git setup line as a second line only when the doctor bridge anchors to the wording."
-version: 1.0.0.0
+version: 1.0.0.1
 id: doctor-commands-doctor-routing-contested-second-line
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -96,6 +96,7 @@ If the doctor command is the first line of the step 1 brief, inspect `keepPassin
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature catalog: [scorer-fusion/doctor-command-routing.md](../../feature-catalog/scorer-fusion/doctor-command-routing.md)
 - Scorer fusion: [.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts](../../../../skills/system-skill-advisor/runtime/lib/scorer/fusion.ts)
 - Brief renderer: [.skilled/skills/system-skill-advisor/runtime/lib/render.ts](../../../../skills/system-skill-advisor/runtime/lib/render.ts)
 - Route manifest: [.skilled/commands/doctor/_routes.yaml](../../../../commands/doctor/_routes.yaml)

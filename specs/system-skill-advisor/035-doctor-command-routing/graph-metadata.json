@@ -60,10 +60,10 @@
       ".skilled/commands/README.txt",
       "hooks/claude/user-prompt-submit.ts",
       ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
-      "scratch/ci-yaml-check.md",
-      "scratch/baseline-per-prompt.json",
-      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/doctor-prompts.jsonl",
-      ".skilled/skills/system-skill-advisor/runtime/tests/doctor-routing-slice.vitest.ts"
+      ".skilled/commands/doctor/assets/doctor-setup.yaml",
+      ".opencode/plugins/lib/skill-advisor-render.js",
+      "feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md"
     ],
     "entities": [
       {
@@ -139,27 +139,27 @@
         "source": "derived"
       },
       {
-        "name": "ci-yaml-check.md",
-        "kind": "doc",
-        "path": "scratch/ci-yaml-check.md",
-        "source": "derived"
-      },
-      {
-        "name": "baseline-per-prompt.json",
+        "name": "doctor-setup.yaml",
         "kind": "config",
-        "path": "scratch/baseline-per-prompt.json",
+        "path": ".skilled/commands/doctor/assets/doctor-setup.yaml",
         "source": "derived"
       },
       {
-        "name": "doctor-prompts.jsonl",
-        "kind": "file",
-        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/doctor-prompts.jsonl",
+        "name": "skill-advisor-render.js",
+        "kind": "code",
+        "path": ".opencode/plugins/lib/skill-advisor-render.js",
         "source": "derived"
       },
       {
-        "name": "doctor-routing-slice.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skill-advisor/runtime/tests/doctor-routing-slice.vitest.ts",
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
         "source": "derived"
       },
       {
@@ -213,7 +213,7 @@
     ],
     "causal_summary": "The skill advisor has no path to the `/doctor:` commands",
     "created_at": "2026-10-15T15:39:09Z",
-    "last_save_at": "2026-10-16T04:29:57.028Z",
+    "last_save_at": "2026-10-16T06:40:56.750Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,13 +223,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:34f110a8521f3df3f0c154815f84d47ead4d3c46a36f1925a004cd4988d86412",
+    "source_fingerprint": "sha256:e18c73dc9cad67127f7f0181b229537e0faea5310b628eea8727ec2c26e593c5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "85d414e44883ca6763488657381080f8c3ae7575345a7a5c2cc801171a35fc34",
+      "spec.md": "75f5093236c599cc0068763ea5990e699acbd99219c3ad74ac9e1d2c9f37492b",
       "plan.md": "cc1139669494ff3cbd3d1f1021ce19c61d04b0eef1dac8e68d10c42ce209b0c0",
-      "tasks.md": "06011b77ff66835146333326887916c101f1cde6a5c23740ebfc49b8dfc62e76",
-      "implementation-summary.md": "bd3716bdf15e7b9f004befecba184f2dc24b9365d4749e25ca67822cb778a318"
+      "tasks.md": "e7273e9596f1e3d9b00aa8afc936cd741e0cebb23b6b9c159df9871dbbeda955",
+      "implementation-summary.md": "9d2dda99b7049a8a9845a673107c17c20225266d9943cc1aa8778c84d464beb4"
     },
     "last_active_at": null
   }

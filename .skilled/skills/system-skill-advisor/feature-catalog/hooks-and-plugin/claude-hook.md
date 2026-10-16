@@ -6,7 +6,7 @@ trigger_phrases:
   - "claude user-prompt-submit"
   - "hookSpecificOutput claude"
   - "claude advisor hook"
-version: 0.11.1.0
+version: 0.11.2.0
 ---
 
 # Claude Code user-prompt-submit Hook
@@ -21,13 +21,13 @@ Surface skill recommendations in Claude Code sessions at prompt time, without bl
 
 ### Core Behavior
 
-`hooks/claude/user-prompt-submit.ts` reads the prompt from stdin, calls the native advisor and returns a JSON envelope with `hookSpecificOutput.additionalContext`. The hook honors `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` and fails open on any daemon-level failure. As a default-off, fail-open shadow it also records post-emission advisor-policy delivery (`observeEmittedAdvisorPolicy`) — an observed receipt with `lifecycleEpoch >= 1` — as the final step before returning, leaving the emitted envelope byte-identical. Freshness vocabulary is `live / stale / absent / unavailable`. Status vocabulary is `ok / skipped / degraded / fail_open`.
+`hooks/claude/user-prompt-submit.ts` reads the prompt from stdin, calls the native advisor and returns a JSON envelope with `hookSpecificOutput.additionalContext`. The hook honors `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` and fails open on any daemon-level failure. As a default-off, fail-open shadow it also records post-emission advisor-policy delivery (`observeEmittedAdvisorPolicy`), an observed receipt with `lifecycleEpoch >= 1`, as the final step before returning, leaving the emitted envelope byte-identical. Freshness vocabulary is `live / stale / absent / unavailable`. Status vocabulary is `ok / skipped / degraded / fail_open`.
 
 Before any CLI spawn the hook runs the casual-prompt gate. `/help`, short acknowledgements and prompts below the length threshold return `skipped` without spawning the CLI. The CLI request sends `includeCompiledRoute: false`, so no compiled-route child process starts.
 
 ### Fallback And Repeats
 
-When no brief is available the hook emits a fallback that opens with one status line and then the directives block. The status line takes one of three forms. For an outage the line is `Advisor: outage (<label>); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json` and the label is `absent`, `degraded` or `fail_open`. When no skill matched the line is `Advisor: no skill matched.` When the prompt gate skips the prompt the line is `Advisor: prompt skipped.` A prompt with setup, install, check or configure wording also gets a `/doctor:setup` hint: the no-match line ends with ` For setup or health checks, run /doctor:setup.` and the outage line carries `for setup or health checks, run /doctor:setup;` before `route by hand`, so the command stays last.
+When no brief is available the hook emits a fallback that opens with one status line and then the directives block. The status line takes one of three forms. For an outage the line is `Advisor: outage (<label>); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json` and the label is `absent`, `degraded` or `fail_open`. When no skill matched the line is `Advisor: no skill matched.` When the prompt gate skips the prompt the line is `Advisor: prompt skipped.` A prompt with setup, install or configure wording, or with check wording followed by an environment, hook or tooling word, also gets a `/doctor:setup` hint: the no-match line ends with ` For setup or health checks, run /doctor:setup.` and the outage line carries `for setup or health checks, run /doctor:setup;` before `route by hand`, so the command stays last.
 
 Directive-lifecycle dedup treats that fallback like a brief. In a known, confirmed session the first no-route turn gets the whole text and later turns get the status line alone. Unknown sessions, the dedup kill switch and thrown errors still get the whole text.
 

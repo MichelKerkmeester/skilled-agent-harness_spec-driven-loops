@@ -1,7 +1,7 @@
 ---
 title: "DOC-388 -- Doctor routing typed command in the Python fallback"
 description: "Manual scenario validating that the Python fallback scorer ranks a doctor bridge first only for the typed `/doctor:git setup` command and surfaces no doctor bridge for the plain git hooks wording."
-version: 1.0.0.0
+version: 1.0.0.1
 id: doctor-commands-doctor-routing-python-typed-command
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -98,6 +98,7 @@ If step 1 does not rank the doctor bridge first, check the generated Python bloc
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature catalog: [scorer-fusion/doctor-command-routing.md](../../feature-catalog/scorer-fusion/doctor-command-routing.md)
 - Python fallback scorer: [.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py](../../../../skills/system-skill-advisor/runtime/scripts/skill_advisor.py)
 - Bridge projection deriver: [.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs](../../../../skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs)
 

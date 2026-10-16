@@ -670,13 +670,14 @@ export function requireDoctorPhraseAnchor(
 // A doctor command answers a setup or health question about the tooling, not the
 // work itself. When a skill also passes, the skill keeps first place and every
 // doctor bridge that ranked above it moves to just after the last passing skill,
-// keeping their relative order. A prompt that types a doctor slash command asked
-// for the command, so it keeps the scored order.
+// keeping their relative order. A prompt that starts with a doctor slash command
+// asked for the command, so it keeps the scored order. A doctor command quoted
+// inside a longer request did not, so there the skill still keeps first place.
 export function keepPassingSkillsAboveDoctorBridges(
   ranked: readonly AdvisorScoredRecommendation[],
   promptLower: string,
 ): AdvisorScoredRecommendation[] {
-  if (promptLower.includes('/doctor:')) return [...ranked];
+  if (promptLower.trimStart().startsWith('/doctor:')) return [...ranked];
   let lastPassingSkill = -1;
   ranked.forEach((recommendation, index) => {
     if (recommendation.kind === 'skill' && recommendation.passes_threshold) lastPassingSkill = index;

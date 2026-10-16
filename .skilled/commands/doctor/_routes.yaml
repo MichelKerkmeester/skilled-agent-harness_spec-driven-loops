@@ -186,7 +186,7 @@ routes:
     mcp_tools: []   # spawns the advisor CLI per phrase; no MCP calls
     script_invocations:
       - 'node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs'
-      - 'node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs  # doctor bridges: every admitted manifest phrase reaches its /doctor:x bridge as the top pick or the second line; scores in process, writes nothing'
+      - 'node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs  # doctor bridges: every admitted manifest phrase reaches its /doctor:x bridge as the top pick or the second line; scores in process, writes nothing tracked (the freshness check may refresh a cached build record in the ignored dist folder)'
     trigger_phrases:
       - "router reach check"
       - "does a declared phrase reach its hub"
@@ -301,7 +301,7 @@ routes:
     mcp_tools: []   # script-only umbrella; the advisor leg goes through the CLI front door with --warm-only
     script_invocations:
       - 'node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs'
-      - 'node .skilled/commands/doctor/scripts/git-setup-check.cjs'
+      - 'node .skilled/commands/doctor/scripts/git-setup-check.cjs  # the workflow adds --tool=<name> for the AI tool running it, when the battery knows that tool'
       - 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check --json  # staleness verdict only; writes nothing'
       - 'node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check'
     trigger_phrases:

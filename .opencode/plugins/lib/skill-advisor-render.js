@@ -25,7 +25,13 @@ const HYGIENE_DIRECTIVE = '\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/RE
 // lifecycle reduction sees the same block in either case.
 export const FALLBACK_DIRECTIVE = '\nDirectives:' + HYGIENE_DIRECTIVE;
 // Parity test holds this equal to the Claude hook's check, which the plugin cannot import.
-export const SETUP_WORDING = /\b(?:set\s?up|setups?|install(?:s|ed|ing|ation)?|check(?:s|ed|ing)?|configur(?:e|es|ed|ing|ation))\b/i;
+export const SETUP_WORDING = new RegExp(
+  String.raw`\b(?:set\s?up|setups?|install(?:s|ed|ing|ation)?`
+    + String.raw`|configur(?:e|es|ed|ing|ation)`
+    + String.raw`|check(?:s|ed|ing)?\b`
+    + String.raw`(?=[\s\S]*\b(?:environment|env|hooks?|tool(?:s|ing|chain)?|skilled)\b))\b`,
+  'i',
+);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. FALLBACK DIRECTIVE

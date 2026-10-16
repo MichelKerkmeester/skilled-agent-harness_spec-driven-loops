@@ -6,7 +6,7 @@ trigger_phrases:
   - "advisor feature catalog"
   - "native advisor features"
   - "skill advisor inventory"
-version: 0.8.1.0
+version: 0.8.1.1
 ---
 
 # Skill Advisor: Feature Catalog
@@ -17,7 +17,7 @@ This catalog is the current inventory for the skill advisor. The package source 
 
 ## 1. OVERVIEW
 
-The catalog covers 44 features across 7 groups. Group 01 owns daemon correctness. Groups 02-03 own the index and lifecycle surface that feeds the scorer. Group 04 owns scoring. Group 06 owns the command surface: the nine CLI commands plus the stable compat entrypoint. Groups 07-08 cover runtime integrations, OpenCode plugins and Python compatibility.
+The catalog covers 43 features across 7 groups. Group 01 owns daemon correctness. Groups 02-03 own the index and lifecycle surface that feeds the scorer. Group 04 owns scoring. Group 06 owns the command surface: the nine CLI commands plus the stable compat entrypoint. Groups 07-08 cover runtime integrations, OpenCode plugins and Python compatibility.
 
 > **Numbering note (gap-05).** The directory layout skips slot `05--*` between `scorer-fusion` and `cli-surface`. This is an intentional historical reservation from initial scaffold design that marked the boundary between the core scoring pipeline (groups 01-04) and the integration layer (groups 06-08). The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
 
@@ -28,7 +28,7 @@ The catalog covers 44 features across 7 groups. Group 01 owns daemon correctness
 | [lifecycle-routing](../feature-catalog/lifecycle-routing) | 5 | Age haircut, supersession, archive handling, schema migration, rollback |
 | [scorer-fusion](../feature-catalog/scorer-fusion) | 7 | 5-lane fusion, projection, ambiguity, attribution, ablation, weights config, doctor command routing |
 | [cli-surface](../feature-catalog/cli-surface) | 10 | `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, stable compat entrypoint, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate`, daemon-backed `skill-advisor` CLI |
-| [hooks-and-plugin](../feature-catalog/hooks-and-plugin) | 5 | Claude and OpenCode hooks, the OpenCode plugin, the `/goal` plugin and the Pi prompt advisor |
+| [hooks-and-plugin](../feature-catalog/hooks-and-plugin) | 4 | The Claude hook, the OpenCode plugin, the `/goal` plugin and the Pi prompt advisor |
 | [python-compat](../feature-catalog/python-compat) | 3 | Python CLI shim, regression suite, bench runner |
 
 Baseline numbers (remediation SHA `97a318d83`):
@@ -38,7 +38,7 @@ Baseline numbers (remediation SHA `97a318d83`):
 | Full-corpus top-1 accuracy | 80.5% |
 | Holdout top-1 accuracy | 77.5% |
 | UNKNOWN count | <= 10 |
-| Python regression suite | regression harness coverage |
+| Python regression suite | regression suite coverage |
 | Advisor vitest tests | 167 across 23 files |
 | Watcher idle envelope | 0.031% CPU, 5.516 MB RSS |
 | Cache-hit p95 | ~6.989 ms |
@@ -123,7 +123,6 @@ Baseline numbers (remediation SHA `97a318d83`):
 | --- | --- |
 | Claude Code `user-prompt-submit` hook | [hooks-and-plugin/claude-hook.md](../feature-catalog/hooks-and-plugin/claude-hook.md) |
 | Pi prompt advisor extension | [hooks-and-plugin/pi-prompt-advisor.md](../feature-catalog/hooks-and-plugin/pi-prompt-advisor.md) |
-| OpenCode native SessionStart/UserPromptSubmit hooks with prompt-wrapper fallback | No feature file yet |
 | OpenCode plugin | [hooks-and-plugin/opencode-plugin-bridge.md](../feature-catalog/hooks-and-plugin/opencode-plugin-bridge.md) |
 | Goal OpenCode plugin (`/goal`, `opencode_goal`, `opencode_goal_status`) | [hooks-and-plugin/goal-opencode-plugin.md](../feature-catalog/hooks-and-plugin/goal-opencode-plugin.md) |
 

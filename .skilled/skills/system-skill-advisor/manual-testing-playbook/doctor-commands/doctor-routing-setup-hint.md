@@ -1,7 +1,7 @@
 ---
 title: "DOC-389 -- Doctor routing setup hint on a no-match"
 description: "Manual scenario validating that a no-match advisor brief for a prompt with setup wording adds the /doctor:setup hint line and leaves the directive block unchanged."
-version: 1.0.1.0
+version: 1.0.1.1
 id: doctor-commands-doctor-routing-setup-hint
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -11,7 +11,7 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario validates the advisor fallback hint for setup wording. When no skill matches and the prompt uses setup, install, check or configure wording, the fallback adds one sentence naming `/doctor:setup`.
+This scenario validates the advisor fallback hint for setup wording. When no skill matches and the prompt uses setup, install or configure wording, or check wording followed by an environment, hook or tooling word, the fallback adds one sentence naming `/doctor:setup`.
 
 The hint sits above the directive block. The directive block below it is unchanged, and the scenario checks the first three lines of the brief.
 
@@ -76,6 +76,7 @@ If the hint is missing, check `SETUP_WORDING` and the `setupWording` render opti
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature catalog: [scorer-fusion/doctor-command-routing.md](../../feature-catalog/scorer-fusion/doctor-command-routing.md)
 - Hook entrypoint: [.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts](../../../../skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts)
 - Brief renderer: [.skilled/skills/system-skill-advisor/runtime/lib/render.ts](../../../../skills/system-skill-advisor/runtime/lib/render.ts)
 

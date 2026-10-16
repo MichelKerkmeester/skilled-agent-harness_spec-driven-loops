@@ -1013,12 +1013,13 @@ description: Fixture helper for routing tests
             advisor._run_native_bridge = fake_doctor_bridge
             plain = [r["skill"] for r in advisor.recommend_with_native_advisor("check my git hooks setup") or []]
             typed = [r["skill"] for r in advisor.recommend_with_native_advisor("/doctor:git setup") or []]
-            if plain[:2] == ["sk-git", "command-doctor-git-setup"] and typed[:2] == ["command-doctor-git-setup", "sk-git"]:
+            quoted = [r["skill"] for r in advisor.recommend_with_native_advisor("fix the git hook that /doctor:git setup lists") or []]
+            if plain[:2] == ["sk-git", "command-doctor-git-setup"] and typed[:2] == ["command-doctor-git-setup", "sk-git"] and quoted[:2] == ["sk-git", "command-doctor-git-setup"]:
                 ok("native wrapper keeps a skill above a doctor bridge unless the doctor command is typed")
             else:
                 fail_test(
                     "native wrapper keeps a skill above a doctor bridge unless the doctor command is typed",
-                    f"plain={plain} typed={typed}",
+                    f"plain={plain} typed={typed} quoted={quoted}",
                 )
         finally:
             advisor._run_native_bridge = original_bridge

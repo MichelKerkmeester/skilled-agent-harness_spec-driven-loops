@@ -117,6 +117,15 @@ describe('doctor setup hint on a no-match', () => {
     expect(additionalContext(output)).toBe(EXPECTED_NO_MATCH_CONTEXT);
   });
 
+  it.each([
+    { prompt: 'check what time the tide turns', sessionId: 'setup-hint-check-unrelated' },
+    { prompt: 'check with my doctor', sessionId: 'setup-hint-check-doctor' },
+  ])('keeps the plain no-match head for check wording with no tooling context: "$prompt"', async ({ prompt, sessionId }) => {
+    const { output } = await runHook(promptInput(prompt, sessionId), NO_MATCH_RESULT);
+
+    expect(additionalContext(output)).toBe(EXPECTED_NO_MATCH_CONTEXT);
+  });
+
   it('appends the unchanged directive block after the setup hint head', async () => {
     const { output } = await runHook(promptInput('Help me set up skilled', 'setup-hint-directive-block'), NO_MATCH_RESULT);
 

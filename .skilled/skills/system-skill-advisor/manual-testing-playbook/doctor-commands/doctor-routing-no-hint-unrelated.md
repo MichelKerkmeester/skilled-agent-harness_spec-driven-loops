@@ -1,7 +1,7 @@
 ---
 title: "DOC-390 -- Doctor routing no hint on an unrelated prompt"
 description: "Manual scenario validating that an unrelated prompt which matches no skill gets the plain no-match advisor line and no doctor hint."
-version: 1.0.0.0
+version: 1.0.0.1
 id: doctor-commands-doctor-routing-no-hint-unrelated
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -76,6 +76,7 @@ If the hint appears, check that `SETUP_WORDING` in `.skilled/skills/system-skill
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature catalog: [scorer-fusion/doctor-command-routing.md](../../feature-catalog/scorer-fusion/doctor-command-routing.md)
 - Hook entrypoint: [.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts](../../../../skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts)
 - Brief rendering: [.skilled/skills/system-skill-advisor/runtime/lib/render.ts](../../../../skills/system-skill-advisor/runtime/lib/render.ts)
 

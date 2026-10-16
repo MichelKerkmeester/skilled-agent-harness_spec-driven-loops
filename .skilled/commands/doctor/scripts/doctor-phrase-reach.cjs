@@ -17,12 +17,13 @@
 //
 // It is strictly REPORT-ONLY. It writes nothing in the repository; its only
 // filesystem touch is the empty temporary database directory the pinned regime
-// needs, which it removes before exiting.
+// needs, which it removes before exiting. The freshness check may also refresh
+// its cached build record inside the ignored dist folder.
 //
 // Exit codes:
 //   0  every admitted phrase and runnable string reaches its bridge
 //   1  at least one admitted phrase reaches neither the top pick nor the second line
-//   2  bad argument, missing build output, or an unreadable input
+//   2  bad argument, missing or stale build output, or an unreadable input
 //
 // Usage: doctor-phrase-reach.cjs [--json]
 //   --json  print one JSON object instead of the per-phrase text report
@@ -37,6 +38,7 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const { pathToFileURL } = require('url');
+const { checkPackageFreshness } = require(path.join(__dirname, '../../../skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs'));
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS AND PATHS
@@ -263,6 +265,15 @@ if (options === null) {
 // so the run must not print a reach result either way.
 if (!fs.existsSync(BUILT_SCORER)) {
   process.stderr.write('doctor-phrase-reach: advisor runtime is not built; run npm --prefix .skilled/skills/system-skill-advisor/runtime run build\n');
+  process.exit(2);
+}
+
+// A build older than its source scores code that no longer exists, so its
+// verdict could pass a phrase the current source would miss. Refuse it too,
+// and likewise a build whose freshness cannot be assessed.
+const freshness = checkPackageFreshness('system-skill-advisor/runtime', { workspaceRoot: REPO_ROOT });
+if (freshness.status !== 'fresh') {
+  process.stderr.write(`doctor-phrase-reach: ${freshness.message}\n`);
   process.exit(2);
 }
 

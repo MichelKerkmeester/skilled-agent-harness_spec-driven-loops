@@ -94,7 +94,7 @@ workflow:
     activities:
       - "Execute upstream_assets.diagnostic_script via Bash, adding --hub <id> when supplied and --concurrency <n> when supplied; otherwise use the script default."
       - "Capture stdout and exit code. The run probes concurrently and takes minutes, not seconds."
-      - "Execute upstream_assets.doctor_reach_script via Bash (node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs). It scores every phrase of each doctor command bridge that is active in the TypeScript scorer in process, under the pinned force-local regime, and needs the advisor runtime built. Capture its stdout, its STATUS= line and its exit code: 0 every admitted phrase reaches its bridge as the top pick or the second line, 1 at least one miss, 2 missing build or bad argument."
+      - "Execute upstream_assets.doctor_reach_script via Bash (node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs). It scores every phrase of each doctor command bridge that is active in the TypeScript scorer in process, under the pinned force-local regime, and needs the advisor runtime built. Capture its stdout, its STATUS= line and its exit code: 0 every admitted phrase reaches its bridge as the top pick or the second line, 1 at least one miss, 2 missing or stale build, or bad argument."
     outputs:
       - reach_report
       - advisor_generation

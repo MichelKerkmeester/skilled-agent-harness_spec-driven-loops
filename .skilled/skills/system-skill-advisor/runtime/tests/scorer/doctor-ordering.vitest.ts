@@ -56,6 +56,20 @@ describe('doctor bridge ordering', () => {
     ]);
   });
 
+  it('moves a doctor bridge below the passing skill when the prompt only quotes the command', () => {
+    const ranked = [
+      rec('command-doctor-git-setup', 'command', true),
+      rec('sk-git', 'skill', true),
+    ];
+
+    const result = keepPassingSkillsAboveDoctorBridges(ranked, 'fix the git hook that /doctor:git setup lists');
+
+    expect(result.map((recommendation) => recommendation.skill)).toEqual([
+      'sk-git',
+      'command-doctor-git-setup',
+    ]);
+  });
+
   it('keeps a doctor bridge first when no skill passes', () => {
     const ranked = [
       rec('command-doctor-setup', 'command', true),

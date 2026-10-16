@@ -40,7 +40,7 @@ Render one row per leg, in the workflow's order.
 
 | Leg | Command | Result | Repair |
 |-----|---------|--------|--------|
-| [leg] | [check-only command] | [PASS|FAIL|SKIP] | [the doctor command that repairs it, or none] |
+| [leg] | [check-only command] | [PASS|FAIL|SKIP|DEGRADED] | [the doctor command that repairs it or shows why, or none] |
 
 | Leg | Repair when it fails |
 |-----|----------------------|
@@ -59,8 +59,8 @@ DOCTOR DIAGNOSTIC RESULT
 Target: setup
 Status: [OK|FAIL|ERROR]
 Mutation class: read-only
-Evidence: [N] legs, [N] passed, [N] failed, [N] skipped
-Recommendation: [the doctor command for each failing leg, or none]
+Evidence: [N] legs, [N] passed, [N] failed, [N] skipped, [N] degraded
+Recommendation: [the doctor command for each failing or degraded leg, or none]
 STATUS=[status]
 ```
 
@@ -81,6 +81,7 @@ STATUS=ERROR ERROR="[message]"
 |-----------|------------------|
 | A leg reports FAIL | Run the doctor command in that leg's Repair cell, then rerun `/doctor:setup` |
 | The advisor leg reports SKIP | The advisor daemon is not running. This is not a failure, and any advisor command starts it on demand |
+| The sk-git leg reports DEGRADED | No sk-git check failed, but one is unknown or a gate is saved off. Run `/doctor:git setup` to see which. On a runtime the battery cannot name, such as Hermes, the AI-tool check stays unknown |
 | The trigger-index leg reports stale documents | Run `/doctor:speckit` to see which documents are stale |
 | Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
 

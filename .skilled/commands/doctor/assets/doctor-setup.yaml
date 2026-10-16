@@ -50,7 +50,7 @@ execution:
   steps:
     - "Read .skilled/commands/doctor/_routes.yaml and print the doctor target list through the presentation contract: one row per route (command plus target), plus /doctor:update, /doctor:env and /doctor:mcp, each with the one-line description of what it checks."
     - "Leg sk-code: run node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs. Exit 0 passes. Any other exit fails, with repair /doctor:sk-code setup."
-    - "Leg sk-git: run node .skilled/commands/doctor/scripts/git-setup-check.cjs. Exit 0 passes. Any other exit fails, with repair /doctor:git setup."
+    - "Leg sk-git: run node .skilled/commands/doctor/scripts/git-setup-check.cjs --tool=<name>, where <name> is the AI tool executing this command: claude, codex, devin, cursor, opencode or pi. On any other runtime, such as Hermes, run it without --tool, because the battery accepts no other name. Exit 0 passes. Exit 3 is DEGRADED, not a failure: no check failed, but one is UNKNOWN or a gate is saved off, so the row names /doctor:git setup to show which. Any other exit fails, with repair /doctor:git setup."
     - "Leg trigger-index: run node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check --json. Exit 0 passes. Exit 1 (stale documents) or 2 and higher (unreadable index) fails, with repair /doctor:speckit."
     - "Leg runtime-mirrors: run node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check. Exit 0 passes. Any other exit fails, with repair /doctor:runtime-mirrors."
     - "Leg advisor: run node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --format json --timeout-ms 500 --warm-only. Exit 0 passes. Exit 75 means the daemon is not running and is reported as SKIP, never as a failure, because the flag never starts it. Any other exit fails, with repair /doctor:skill-advisor rebuild."
@@ -60,6 +60,6 @@ execution:
 # OUTPUT
 # ─────────────────────────────────────────────────────────────────
 output: |
-  STATUS=OK when every leg passes or is skipped.
+  STATUS=OK when no leg fails: each leg passes, is skipped or is degraded. List each degraded leg with the command that shows why.
   STATUS=FAIL when any leg fails; list each failing leg with its repair command.
   STATUS=ERROR when a leg crashes or its output cannot be read; report the message and the accepted invocation (/doctor:setup).

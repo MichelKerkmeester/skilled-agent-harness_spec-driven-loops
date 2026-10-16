@@ -46,9 +46,16 @@ const IS_CLI_ENTRY = process.argv[1]
 
 const requireFromAdvisor = createRequire(import.meta.url);
 
-// Setup, install, check or configure wording marks a prompt that the read-only
-// /doctor:setup overview can answer when no skill matched it.
-export const SETUP_WORDING = /\b(?:set\s?up|setups?|install(?:s|ed|ing|ation)?|check(?:s|ed|ing)?|configur(?:e|es|ed|ing|ation))\b/i;
+// Setup, install or configure wording, or check wording followed by an environment,
+// hook or tooling word, marks a prompt the read-only /doctor:setup overview
+// can answer when no skill matched it.
+export const SETUP_WORDING = new RegExp(
+  String.raw`\b(?:set\s?up|setups?|install(?:s|ed|ing|ation)?`
+    + String.raw`|configur(?:e|es|ed|ing|ation)`
+    + String.raw`|check(?:s|ed|ing)?\b`
+    + String.raw`(?=[\s\S]*\b(?:environment|env|hooks?|tool(?:s|ing|chain)?|skilled)\b))\b`,
+  'i',
+);
 function skillAdvisorHookEnabled(): boolean {
   try {
     const { isHookEnabled } = requireFromAdvisor(

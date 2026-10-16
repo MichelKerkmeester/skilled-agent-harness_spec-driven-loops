@@ -1,7 +1,7 @@
 ---
 title: "DOC-385 -- Doctor routing setup onboarding prompt"
 description: "Manual scenario validating that a plain onboarding prompt with no skill match surfaces the runnable /doctor:setup line as the advisor's top recommendation."
-version: 1.0.0.0
+version: 1.0.0.1
 id: doctor-commands-doctor-routing-setup-onboarding
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -92,6 +92,7 @@ If no recommendation comes back, check that `command-doctor-setup` is listed in 
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature catalog: [scorer-fusion/doctor-command-routing.md](../../feature-catalog/scorer-fusion/doctor-command-routing.md)
 - Route manifest: [.skilled/commands/doctor/_routes.yaml](../../../../commands/doctor/_routes.yaml)
 - Command entrypoint: [.skilled/commands/doctor/setup.md](../../../../commands/doctor/setup.md)
 - Bridge deriver: [.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs](../../../../skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs)

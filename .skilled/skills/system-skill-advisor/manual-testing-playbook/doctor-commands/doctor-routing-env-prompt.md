@@ -1,7 +1,7 @@
 ---
 title: "DOC-386 -- Doctor routing environment variables prompt"
 description: "Manual scenario validating that a plain environment-variables prompt surfaces the runnable /doctor:env list line as the advisor's top recommendation."
-version: 1.0.0.0
+version: 1.0.0.1
 id: doctor-commands-doctor-routing-env-prompt
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -92,6 +92,7 @@ If the line shows `/doctor:env` alone, check the `runnable: /doctor:env list` fi
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature catalog: [scorer-fusion/doctor-command-routing.md](../../feature-catalog/scorer-fusion/doctor-command-routing.md)
 - Route manifest: [.skilled/commands/doctor/_routes.yaml](../../../../commands/doctor/_routes.yaml)
 - Command entrypoint: [.skilled/commands/doctor/env.md](../../../../commands/doctor/env.md)
 - Brief renderer: [.skilled/skills/system-skill-advisor/runtime/lib/render.ts](../../../../skills/system-skill-advisor/runtime/lib/render.ts)

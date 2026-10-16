@@ -35,7 +35,7 @@ export interface AdvisorBriefRenderOptions {
     readonly confidenceOnly?: boolean;
   };
   readonly deliveryState?: ShadowDeliveryRenderOptions;
-  /** Set by the hook when the prompt uses setup, install, check or configure wording; the renderer never reads prompt text itself. */
+  /** Set by the hook on setup, install or configure wording, or check wording followed by a tooling word. The renderer never reads prompt text itself. */
   readonly setupWording?: boolean;
 }
 

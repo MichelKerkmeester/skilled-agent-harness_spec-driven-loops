@@ -882,8 +882,9 @@ def recommend_with_native_advisor(
         _apply_deep_research_disambiguation(recommendations, prompt_lower)
         _apply_deep_skill_routing_layer(recommendations, prompt)
         # A doctor command answers a setup or health question about the tooling, so
-        # it never sorts above a skill unless the prompt typed a doctor slash command.
-        doctor_typed = "/doctor:" in prompt_lower
+        # it never sorts above a skill unless the prompt starts with a doctor slash
+        # command. A doctor command quoted inside a longer request does not count.
+        doctor_typed = prompt_lower.lstrip().startswith("/doctor:")
         recommendations.sort(
             key=lambda x: (
                 1 if (not doctor_typed and str(x.get("skill", "")).startswith("command-doctor-")) else 0,
