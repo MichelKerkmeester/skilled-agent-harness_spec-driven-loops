@@ -1,5 +1,5 @@
 {
-  "manifestHash": "681a7bb8c404e2ee0b05c0bee2056a577aaf5acb3cd1ed9a2811e3e2bc486670",
+  "manifestHash": "35bd21d8d9a524d8930b64d2b6c196da0957a88b18b84f452993432e7c8f2b2c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -37983,6 +37983,9 @@
     "doctor setup hint": [
       "doctor setup hint"
     ],
+    "doctor setup stale advisor": [
+      "doctor setup stale advisor"
+    ],
     "doctor setup umbrella": [
       "doctor setup umbrella"
     ],
@@ -47507,6 +47510,9 @@
     ],
     "git run failure analysis": [
       "git run failure analysis"
+    ],
+    "git setup battery review fixes": [
+      "git setup battery review fixes"
     ],
     "git setup check degraded status": [
       "git-setup-check degraded status"
@@ -71728,6 +71734,9 @@
     "phase 9 review remediation": [
       "phase 9 review remediation"
     ],
+    "phase 9 second review remediation": [
+      "phase 9 second review remediation"
+    ],
     "phase a readme authoring": [
       "Phase A readme authoring"
     ],
@@ -87634,6 +87643,18 @@
     "second research lineage advisor": [
       "second research lineage advisor"
     ],
+    "second review remediation": [
+      "second review remediation"
+    ],
+    "second review remediation implementation summary": [
+      "second review remediation implementation summary"
+    ],
+    "second review remediation plan": [
+      "second review remediation plan"
+    ],
+    "second review remediation tasks": [
+      "second review remediation tasks"
+    ],
     "second rewrite pass every subject normalized": [
       "second rewrite pass every subject normalized"
     ],
@@ -88558,6 +88579,9 @@
     "setup check hardening tasks": [
       "setup check hardening tasks"
     ],
+    "setup check outside this checkout": [
+      "setup check outside this checkout"
+    ],
     "setup check unknown probe": [
       "setup check unknown probe"
     ],
@@ -89470,6 +89494,9 @@
     ],
     "short no table wording adopted": [
       "short no table wording adopted"
+    ],
+    "short prompts route again": [
+      "short prompts route again"
     ],
     "short registry reconstruction criteria": [
       "short registry reconstruction criteria"
@@ -92955,6 +92982,9 @@
     "sk git 1 9 1 0": [
       "sk-git 1.9.1.0"
     ],
+    "sk git 1 9 2 0": [
+      "sk-git 1.9.2.0"
+    ],
     "sk git benchmark": [
       "sk-git benchmark"
     ],
@@ -93143,6 +93173,9 @@
     ],
     "sk git v1 9 1 0": [
       "sk-git v1.9.1.0"
+    ],
+    "sk git v1 9 2 0": [
+      "sk-git v1.9.2.0"
     ],
     "sk git workflow support": [
       "sk-git workflow support"
@@ -96067,6 +96100,9 @@
     ],
     "skilled v4 0 0 13": [
       "skilled v4.0.0.13"
+    ],
+    "skilled v4 0 0 14": [
+      "skilled v4.0.0.14"
     ],
     "skilled v4 0 0 2": [
       "skilled v4.0.0.2"
@@ -101842,6 +101878,9 @@
     "system skill advisor 0 16 1 0": [
       "system-skill-advisor 0.16.1.0"
     ],
+    "system skill advisor 0 16 2 0": [
+      "system-skill-advisor 0.16.2.0"
+    ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
     ],
@@ -102012,6 +102051,9 @@
     ],
     "system skill advisor v0 16 1 0": [
       "system-skill-advisor v0.16.1.0"
+    ],
+    "system skill advisor v0 16 2 0": [
+      "system-skill-advisor v0.16.2.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -102321,6 +102363,9 @@
     ],
     "system spec kit 2 8 1 0": [
       "system-spec-kit 2.8.1.0"
+    ],
+    "system spec kit 2 8 2 0": [
+      "system-spec-kit 2.8.2.0"
     ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
@@ -102744,6 +102789,9 @@
     ],
     "system spec kit v2 8 1 0": [
       "system-spec-kit v2.8.1.0"
+    ],
+    "system spec kit v2 8 2 0": [
+      "system-spec-kit v2.8.2.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
@@ -107140,6 +107188,9 @@
     ],
     "v4 0 0 13 release notes": [
       "v4.0.0.13 release notes"
+    ],
+    "v4 0 0 14 release notes": [
+      "v4.0.0.14 release notes"
     ],
     "v4 0 0 2 release notes": [
       "v4.0.0.2 release notes"

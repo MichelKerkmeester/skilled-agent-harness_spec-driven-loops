@@ -1,5 +1,5 @@
 {
-  "corpusHash": "41076513739ae9d1f3f79c7eff997d3a3680b881f1d94d57cbb5ec7392df7aec",
+  "corpusHash": "5e7ec9aafed9ed4e3fc6dd44094ca74e8d118456f082547d4c2789030a24d03f",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24921,
+  "includedPathCount": 24929,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -78,6 +78,7 @@
     ".skilled/changelog/skilled/v4.0.0.11.md",
     ".skilled/changelog/skilled/v4.0.0.12.md",
     ".skilled/changelog/skilled/v4.0.0.13.md",
+    ".skilled/changelog/skilled/v4.0.0.14.md",
     ".skilled/changelog/skilled/v4.0.0.2.md",
     ".skilled/changelog/skilled/v4.0.0.3.md",
     ".skilled/changelog/skilled/v4.0.0.4.md",
@@ -6607,6 +6608,7 @@
     ".skilled/skills/sk-git/changelog/v1.8.6.0.md",
     ".skilled/skills/sk-git/changelog/v1.9.0.0.md",
     ".skilled/skills/sk-git/changelog/v1.9.1.0.md",
+    ".skilled/skills/sk-git/changelog/v1.9.2.0.md",
     ".skilled/skills/sk-git/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/github-mcp-integration.md",
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/gitkraken-mcp-integration.md",
@@ -7578,6 +7580,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.15.6.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.16.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.16.1.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.16.2.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.2.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.4.0.0.md",
@@ -8018,6 +8021,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.7.9.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.8.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.8.1.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.8.2.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
@@ -12612,6 +12616,10 @@
     "specs/sk-git/033-git-setup-customization/008-out-of-scope-cleanup/plan.md",
     "specs/sk-git/033-git-setup-customization/008-out-of-scope-cleanup/spec.md",
     "specs/sk-git/033-git-setup-customization/008-out-of-scope-cleanup/tasks.md",
+    "specs/sk-git/033-git-setup-customization/009-second-review-remediation/implementation-summary.md",
+    "specs/sk-git/033-git-setup-customization/009-second-review-remediation/plan.md",
+    "specs/sk-git/033-git-setup-customization/009-second-review-remediation/spec.md",
+    "specs/sk-git/033-git-setup-customization/009-second-review-remediation/tasks.md",
     "specs/sk-git/033-git-setup-customization/changelog/changelog-033-007-review-remediation.md",
     "specs/sk-git/033-git-setup-customization/changelog/changelog-033-008-out-of-scope-cleanup.md",
     "specs/sk-git/033-git-setup-customization/spec.md",
@@ -24952,7 +24960,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "681a7bb8c404e2ee0b05c0bee2056a577aaf5acb3cd1ed9a2811e3e2bc486670",
+  "manifestHash": "35bd21d8d9a524d8930b64d2b6c196da0957a88b18b84f452993432e7c8f2b2c",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27199,6 +27207,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/scratch",
       "reason": "excluded directory"
     },
@@ -28008,6 +28024,14 @@
     },
     {
       "path": "specs/sk-git/033-git-setup-customization/008-out-of-scope-cleanup/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/033-git-setup-customization/009-second-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/033-git-setup-customization/scratch",
       "reason": "excluded directory"
     },
     {
