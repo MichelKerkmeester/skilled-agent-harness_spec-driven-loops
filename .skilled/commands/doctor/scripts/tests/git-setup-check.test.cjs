@@ -539,6 +539,22 @@ test('allowlist reports a release branch as exempt, not refused', (t) => {
   assert.ok(row.details.includes('feature/setup-check-probe: refused'));
 });
 
+test('allowlist reports UNKNOWN, not PASS, when the bash probe cannot run', (t) => {
+  const f = fixture(t);
+  // A PATH holding only git leaves bash unresolved, so no allowlist sample can be checked.
+  const binDir = path.join(f.dir, 'git-only-bin');
+  fs.mkdirSync(binDir);
+  const realGit = process.env.PATH.split(path.delimiter)
+    .filter((entry) => path.isAbsolute(entry))
+    .map((entry) => path.join(entry, 'git'))
+    .find((candidate) => fs.existsSync(candidate));
+  fs.symlinkSync(realGit, path.join(binDir, 'git'));
+
+  const row = rowOf(reportOf(f.run(['--json'], { PATH: binDir })), 'allowlist');
+  assert.equal(row.result, 'UNKNOWN', row.details.join(' | '));
+  assert.ok(row.details.some((detail) => detail.includes('not checked (cannot run bash')), row.details.join(' | '));
+});
+
 test('a symlinked allowlist is refused and none of its target lines are shown', (t) => {
   const f = fixture(t);
   const outside = path.join(f.dir, 'secret.txt');
@@ -628,6 +644,29 @@ test('hooks accepts links into the repository\'s own hook sources and names a re
   }
   const own = rowOf(reportOf(f.run(['--json'])), 'hooks');
   assert.equal(own.result, 'PASS');
+});
+
+test('hooks fails a linked hook that is not executable', (t) => {
+  const f = fixture(t);
+  const ownSources = path.join(f.repo, '.skilled', 'scripts', 'git-hooks');
+  fs.mkdirSync(ownSources, { recursive: true });
+  fs.mkdirSync(path.join(f.repo, '.skilled', 'skills', 'system-spec-kit'), { recursive: true });
+  fs.writeFileSync(path.join(f.repo, '.skilled', 'skills', 'system-spec-kit', 'SKILL.md'), 'sentinel\n');
+  const names = fs.readdirSync(HOOKS_SOURCE, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && entry.name !== 'README.md')
+    .map((entry) => entry.name);
+  const hooksDir = path.join(f.repo, '.git', 'hooks');
+  for (const name of names) {
+    fs.writeFileSync(path.join(ownSources, name), '#!/bin/sh\nexit 0\n', { mode: 0o755 });
+    fs.symlinkSync(path.join(ownSources, name), path.join(hooksDir, name));
+  }
+  assert.equal(rowOf(reportOf(f.run(['--json'])), 'hooks').result, 'PASS');
+
+  // Git skips a hook it cannot execute, so a linked hook without the execute bit gates nothing.
+  fs.chmodSync(path.join(ownSources, names[0]), 0o644);
+  const row = rowOf(reportOf(f.run(['--json'])), 'hooks');
+  assert.equal(row.result, 'FAIL', row.details.join(' | '));
+  assert.ok(row.details.some((detail) => detail.startsWith(`${names[0]}: not executable`)), row.details.join(' | '));
 });
 
 test('hooks names this checkout\'s installer by absolute path when the inspected repository is the battery\'s own checkout', (t) => {
@@ -926,6 +965,37 @@ test('opencode and pi pass only when the adapter registers its event and imports
     assert.ok(
       real.details.includes(`${tool} (active): registered (${file})`),
       `${tool}: ${real.details.join(' | ')}`,
+    );
+  }
+});
+
+test('opencode and pi fail an adapter that names the tokens without registering a handler', (t) => {
+  const cases = [
+    ['opencode', '.opencode/plugins/sk-git-preflight-advisory.js', "// Registers 'tool.execute.before' through git-rule-checks.mjs.\nexport default {};\n"],
+    ['opencode', '.opencode/plugins/sk-git-preflight-advisory.js', "export const notes = ['tool.execute.before', 'git-rule-checks.mjs'];\n"],
+    ['pi', '.pi/extensions/git-preflight-advisory.ts', "/* pi.on('tool_call', handler) imports git-rule-checks.mjs */\nexport default function noop() {}\n"],
+    // A well-formed registration that only exists inside comments.
+    ['opencode', '.opencode/plugins/sk-git-preflight-advisory.js', "// import { GIT_CHECKS } from '../lib/git-rule-checks.mjs';\n/* export default () => ({ async 'tool.execute.before'() {} }); */\nexport default {};\n"],
+    // A real handler, with the shared module named only in a string.
+    ['opencode', '.opencode/plugins/sk-git-preflight-advisory.js', "const helper = 'git-rule-checks.mjs';\nexport default () => ({ async 'tool.execute.before'(input) { return helper; } });\n"],
+    // A real import, with the event named only in a list.
+    ['opencode', '.opencode/plugins/sk-git-preflight-advisory.js', "import { GIT_CHECKS } from '../lib/git-rule-checks.mjs';\nexport const events = ['tool.execute.before', GIT_CHECKS];\nexport default {};\n"],
+    ['pi', '.pi/extensions/git-preflight-advisory.ts', "const checks = import('../lib/git-rule-checks.mjs');\nexport const events = ['tool_call', checks];\nexport default function noop(pi) { pi.on('tool_result', () => {}); }\n"],
+    // A real import, with the event bound to a value that is not a handler.
+    ['opencode', '.opencode/plugins/sk-git-preflight-advisory.js', "import { GIT_CHECKS } from '../lib/git-rule-checks.mjs';\nexport default () => ({ meta: { 'tool.execute.before': false }, GIT_CHECKS });\n"],
+    ['pi', '.pi/extensions/git-preflight-advisory.ts', "const checks = import('../lib/git-rule-checks.mjs');\nexport default function noop(pi) { pi.on('tool_call', null); return checks; }\n"],
+  ];
+
+  for (const [tool, file, body] of cases) {
+    const f = fixture(t);
+    const target = path.join(f.repo, file);
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.writeFileSync(target, body);
+    const row = rowOf(reportOf(f.run(['--tool', tool, '--json'])), 'ai-tool-hooks');
+    assert.equal(row.result, 'FAIL', `${tool}: ${row.details.join(' | ')}`);
+    assert.ok(
+      row.details.some((detail) => detail.startsWith(`${tool} (active): ${file} does not register`)),
+      `${tool}: ${row.details.join(' | ')}`,
     );
   }
 });

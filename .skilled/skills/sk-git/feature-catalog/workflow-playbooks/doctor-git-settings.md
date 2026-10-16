@@ -7,7 +7,7 @@ trigger_phrases:
   - "hook gate settings"
   - "change commit rules"
 importance_tier: "important"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Repository settings and setup check (/doctor:git)
@@ -26,7 +26,7 @@ A repository adapts sk-git through git config and a `.sk-git/` folder, never by 
 
 ### The Setup Check
 
-`setup` runs eleven checks: install, hooks, trust, gates, standards, allowlist, worktrees, commit-id, advisory-rules, suppression and ai-tool-hooks. Each prints PASS, FAIL, SKIP, UNKNOWN or DEGRADED with the source it read, and each FAIL, and a gate saved off, names one repair command. The run exits 0 when every check passes or skips, 3 when none fails but a check is UNKNOWN or a gate is saved off, 1 when a check fails and 2 on a usage error or crash, and its last line is `STATUS=OK`, `STATUS=DEGRADED` or `STATUS=FAIL`. `--json` prints one object for scripts.
+`setup` runs eleven checks: install, hooks, trust, gates, standards, allowlist, worktrees, commit-id, advisory-rules, suppression and ai-tool-hooks. Each prints PASS, FAIL, SKIP, UNKNOWN or DEGRADED with the source it read, and each FAIL, and a gate saved off, names one repair command. The run exits 0 when every check passes or skips, 3 when none fails but a check is UNKNOWN or a gate is saved off, 1 when a check fails and 2 on a usage error or crash, and its last line is the status with its counters: `STATUS=OK checks=<n>`, `STATUS=DEGRADED degraded=<n> skipped=<n> unknown=<n>` or `STATUS=FAIL failed=<n> degraded=<n> skipped=<n> unknown=<n>`. `--json` prints one object for scripts.
 
 The check never writes and never runs code from the repository it inspects. It loads every helper from its own install, reads hook links in process instead of calling the installer, and passes `core.fsmonitor=false` and `log.showSignature=false` to every child process through the environment, so the inspected repository's config cannot make a helper start a program.
 

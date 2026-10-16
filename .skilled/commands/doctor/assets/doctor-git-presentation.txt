@@ -259,9 +259,9 @@ Close the block with the status the battery's exit code maps to. Exit 0 closes w
 
 | Condition | Suggested Command | Reason |
 |-----------|-------------------|--------|
-| A gate still runs after it was switched off | `bash .skilled/scripts/install-git-hooks.sh --status` | The installed hooks may link to an older checkout; update the checkout they link to |
-| A teammate's commits still run a gate you switched off | none; each person runs `/doctor:git hooks` | Local and global config are per machine; CI still enforces the rules |
-| A rule change was refused | `/doctor:git standards` | The sk-git validator rejected the result; pick a value it accepts |
+| A gate still runs after it was switched off | `bash .skilled/scripts/install-git-hooks.sh --status` | The installed hooks may link to an older checkout. Update the checkout they link to |
+| A teammate's commits still run a gate you switched off | none: each person runs `/doctor:git hooks` | Local and global config are per machine. CI still enforces the rules |
+| A rule change was refused | `/doctor:git standards` | The sk-git validator rejected the result. Pick a value it accepts |
 | Commits fail after a rule edit | `node .skilled/skills/sk-git/scripts/validate-message.mjs --explain` | Shows which template each kind is enforced from |
 | `.sk-git/` is ignored | `git config --unset skgit.contractDir` | That setting outranks `.sk-git/` |
 | Rules changed in `.sk-git/` | `git add .sk-git/ && git commit` | CI and teammates enforce only the committed copies |

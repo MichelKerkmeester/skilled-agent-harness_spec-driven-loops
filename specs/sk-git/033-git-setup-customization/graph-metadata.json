@@ -9,7 +9,8 @@
     "sk-git/033-git-setup-customization/003-improvement-research",
     "sk-git/033-git-setup-customization/004-final-deep-review",
     "sk-git/033-git-setup-customization/005-setup-check-hardening",
-    "sk-git/033-git-setup-customization/006-release-conformance-review"
+    "sk-git/033-git-setup-customization/006-release-conformance-review",
+    "sk-git/033-git-setup-customization/007-review-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -92,18 +93,18 @@
     ],
     "causal_summary": "[One-paragraph problem statement — what needs solving and why]",
     "created_at": "2026-10-15T05:35:17Z",
-    "last_save_at": "2026-10-16T05:42:01.212Z",
+    "last_save_at": "2026-10-16T07:06:01.565Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:866a11f66d74ca14c7c16515e678b20d89db920651e30c65ad8ffb0ae135eaa6",
+    "source_fingerprint": "sha256:882fb066b49348afb4fa8ad5a91fe005cedec4a8d6cd3be49e55418a89266db6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "71e15318b82bbdde8d170e9c34bb7307acffec443bcd4c35e05114032933ea69"
+      "spec.md": "d28b9c839ad6fa303a09a6ed5591f89104ec586b79cbd03378d247157f2054ea"
     },
-    "last_active_child_id": "sk-git/033-git-setup-customization/006-release-conformance-review",
-    "last_active_at": "2026-10-16T05:42:01.212Z"
+    "last_active_child_id": "sk-git/033-git-setup-customization/007-review-remediation",
+    "last_active_at": "2026-10-16T07:06:01.565Z"
   }
 }

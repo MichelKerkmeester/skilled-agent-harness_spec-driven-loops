@@ -77,7 +77,7 @@ The framework extends each runtime through plugins, hooks and extensions rather 
 - **`pi-cache-optimizer` ("Cache Pi"):** our custom Pi extension package that keeps Pi-side context costs down across dispatches, alongside `pi-fast-mode-w-subagent-support` for fast mode with subagent support
 - **Plus the rest of the extension surface:** spec-gate enforcement, skill-advisor prompt briefs, post-edit quality checks, session lifecycle and cleanup, MCP route guards and git preflight advisories - thin runtime adapters over shared policy cores in `.skilled/hooks/`
 
-Behind them: 14 on-demand skills, 37 command entry points and the Code Mode MCP server, each detailed in its own section below.
+Behind them: 14 on-demand skills, 39 command entry points and the Code Mode MCP server, each detailed in its own section below.
 
 ---
 
@@ -1071,7 +1071,7 @@ The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which ru
 
 ## 11. ⌨️ COMMAND LIBRARY
 
-37 command entry points: 34 across 6 command groups plus 3 root utilities. Each command is a Markdown entry point under `.skilled/commands/**/*.md`, and most are backed by a YAML execution spec. Command families keep that workflow routing separate from their Markdown presentation contracts, so the rendered dashboards stay stable while the underlying workflow evolves.
+39 command entry points: 36 across 6 command groups plus 3 root utilities. Each command is a Markdown entry point under `.skilled/commands/**/*.md`, and most are backed by a YAML execution spec. Command families keep that workflow routing separate from their Markdown presentation contracts, so the rendered dashboards stay stable while the underlying workflow evolves.
 
 #### SPEC KIT
 
@@ -1259,7 +1259,7 @@ Ten commands cover the diagnostic surface, one per owner. The eight routed ones 
 
 - `hooks` lists every optional pre-commit, prepare-commit-msg and pre-push gate with its saved setting, and switches one on or off in local or global git config (`speckit.hooks.<key>`) after showing the exact command. The per-push approvals are never saved, and the whole-hook kill switches stay with `/doctor:env`
 - `standards` shows which commit, PR and branch rules are enforced and where they come from, copies the shipped sk-git templates into `.sk-git/` once, then changes a setting, removes one or stops enforcing a kind in those copies, refusing any edit the sk-git validator would reject. The sk-git skill itself is never edited
-- `setup` checks eleven sk-git settings in one read-only pass: the install, hook links, trust, saved gates, commit, PR and branch rules, the push allowlist, the worktree base, Commit-Id, the advisory rules, suppression switches and each AI tool's advisory registration. It prints PASS, FAIL, SKIP or UNKNOWN for each with the source it read and one repair command for each failure, and writes nothing
+- `setup` checks eleven sk-git settings in one read-only pass: the install, hook links, trust, saved gates, commit, PR and branch rules, the push allowlist, the worktree base, Commit-Id, the advisory rules, suppression switches and each AI tool's advisory registration. It prints PASS, FAIL, SKIP, UNKNOWN or DEGRADED for each with the source it read and one repair command for each failing or degraded check, and writes nothing
 - Each change waits for an approval. `--dry-run` shows the plans and writes nothing
 
 **`/doctor:mcp install|debug`** - MCP infrastructure repair
@@ -1504,7 +1504,7 @@ The other shipped skills keep working unchanged: `sk-doc` still validates your m
 - **Worktrees and Commit-Id.** `git config speckit.worktreeBase <dir>` moves the worktree folder. `git config --local skilled.commitId true` or `false` decides whether commits carry an id.
 - **Shared files.** The remote branch allowlist, the worktree provision list and `hard-rules.json` live inside `.skilled/skills/sk-git/`, so a change there applies to every repository that shares the install.
 
-**Verify.** Run `/doctor:git setup`, or outside an AI runtime `node .skilled/commands/doctor/scripts/git-setup-check.cjs --tool <claude|codex|devin|cursor|opencode|pi>`. It checks eleven settings in one read-only pass, prints PASS, FAIL, SKIP, UNKNOWN or DEGRADED for each with the source it read and one repair command for each failure or saved-off gate, and exits 0 when every check passes or skips, 3 when none fails but a check is UNKNOWN or a gate is saved off, 1 when a check fails and 2 on a usage error, and its last line is `STATUS=OK`, `STATUS=DEGRADED` or `STATUS=FAIL`.
+**Verify.** Run `/doctor:git setup`, or outside an AI runtime `node .skilled/commands/doctor/scripts/git-setup-check.cjs --tool <claude|codex|devin|cursor|opencode|pi>`. It checks eleven settings in one read-only pass, prints PASS, FAIL, SKIP, UNKNOWN or DEGRADED for each with the source it read and one repair command for each failing or degraded check, and exits 0 when every check passes or skips, 3 when none fails but a check is UNKNOWN or a gate is saved off, 1 when a check fails and 2 on a usage error, and its last line is the status with its counters: `STATUS=OK checks=<n>`, `STATUS=DEGRADED degraded=<n> skipped=<n> unknown=<n>` or `STATUS=FAIL failed=<n> degraded=<n> skipped=<n> unknown=<n>`.
 
 &nbsp;
 ### Core Configuration Files

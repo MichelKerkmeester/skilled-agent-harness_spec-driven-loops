@@ -8,7 +8,7 @@ trigger_phrases:
   - "git workspace commit finish"
   - "pull request commit hygiene"
   - "commit id trailer"
-version: 1.8.8.0
+version: 1.8.9.0
 ---
 
 # sk-git
@@ -54,7 +54,7 @@ sk-git does not write code or manage spec folders. `sk-code` owns the code that 
 | **Ask-first workspace rule** | Never picks worktree vs current branch on its own. Holds your choice for the session |
 | **Launch-wrapper isolation** | An operator opt-in that places each top-level session in its own worktree and branch, with isolated MCP databases |
 | **Continuous-integration autosync** | Publishes each commit to one shared live branch so the operator's IDE stays current |
-| **Worktree reaper** | Auto-reaps qualifying wrapper worktrees. Keeps the rest and keeps and reports the rest, and never signals a process |
+| **Worktree reaper** | Auto-reaps qualifying wrapper worktrees, keeps and reports the rest, and never signals a process |
 | **Deterministic commits** | The same diff and metadata always produce the same Conventional Commit subject |
 | **Safety refusals** | Blocks no-verify bypasses, secrets in a diff, amending published commits and force-pushing main |
 | **Preflight advisory** | Evaluates every git command against 17 state-gated rules across all six AI runtimes and prints the matching rule before it runs. Advisory only, never blocking (see `scripts/hooks/README.md`) |

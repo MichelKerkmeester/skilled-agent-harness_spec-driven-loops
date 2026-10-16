@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "sk-git/033-git-setup-customization/007-review-remediation",
+  "description": "Phase 7: review-remediation",
+  "keywords": [
+    "phase",
+    "review-remediation"
+  ],
+  "lastUpdated": "2026-10-16T07:06:01.545Z",
+  "specId": "007",
+  "folderSlug": "review-remediation",
+  "parentChain": [
+    "sk-git",
+    "033-git-setup-customization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-10-26_08-06__fixed-all-25-findings-of-the-v4-0-0-11-release.md"
+  ]
+}

@@ -356,7 +356,16 @@ function checkHooks(ctx) {
     const accepted = [ownDir, repoDir]
       .filter((dir) => dir !== null && fs.existsSync(path.join(dir, name)))
       .map((dir) => fs.realpathSync(path.join(dir, name)));
-    if (!accepted.includes(installedReal)) details.push(`${name}: resolves to ${installedReal}, not a hook source`);
+    if (!accepted.includes(installedReal)) {
+      details.push(`${name}: resolves to ${installedReal}, not a hook source`);
+      continue;
+    }
+    // Git skips a hook it cannot execute, so a linked hook without the execute bit gates nothing.
+    try {
+      fs.accessSync(installedReal, fs.constants.X_OK);
+    } catch {
+      details.push(`${name}: not executable (chmod +x ${installedReal})`);
+    }
   }
   if (details.length > 0) return fail(source, details, repair);
   return pass(source);
@@ -499,10 +508,14 @@ function checkAllowlist(ctx) {
   if (!fs.existsSync(script)) {
     return unknown(source, [ownLabel('skills/sk-git/scripts/worktree-naming.sh')]);
   }
+  let unchecked = false;
   const details = ALLOWLIST_SAMPLES.map((branch) => {
     if (branch.startsWith('skilled/v')) return `${branch}: exempt (pre-push skips release branches before the allowlist)`;
     const result = runCommand(ctx.repoRoot, BASH_BIN, [script, 'validate-remote-allowlist', branch]);
-    if (result.error) return `${branch}: not checked (cannot run bash: ${result.error.message})`;
+    if (result.error) {
+      unchecked = true;
+      return `${branch}: not checked (cannot run bash: ${result.error.message})`;
+    }
     const verdict = result.status === 0
       ? 'allowed'
       : result.status === 1
@@ -520,6 +533,8 @@ function checkAllowlist(ctx) {
   } else {
     details.push('patterns: no allowlist file, so only the built-in main exception applies');
   }
+  // A sample the probe never ran has no verdict, so the row cannot vouch for the matcher.
+  if (unchecked) return unknown(source, details);
   return pass(source, details);
 }
 
@@ -887,10 +902,16 @@ function checkAiToolHooks(ctx) {
         broken.push(tool);
         continue;
       }
-      const body = read.text;
-      const registered = tool === 'opencode'
-        ? /['"]tool\.execute\.before['"]/.test(body) && /git-rule-checks\.mjs/.test(body)
-        : /\.on\(\s*['"]tool_call['"]/.test(body) && /git-rule-checks\.mjs/.test(body);
+      // A token in a comment or a loose string registers nothing, so comments are
+      // dropped and each token must sit where it takes effect: the event as a handler
+      // key or an .on() argument bound to something other than a literal, and the
+      // shared module as an import specifier. Without a parser, an unused object that
+      // binds the event to a function still reads as registered.
+      const code = read.text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:\\])\/\/.*$/gm, '$1');
+      const importsChecks = /(?:\bfrom\s*|\bimport\s*\(\s*|\brequire\s*\(\s*)['"][^'"]*git-rule-checks\.mjs['"]/.test(code);
+      const registered = importsChecks && (tool === 'opencode'
+        ? /['"]tool\.execute\.before['"]\s*(?:\(|:(?!\s*(?:true|false|null|undefined)\b|\s*['"`\d[{-]))/.test(code)
+        : /\.on\(\s*['"]tool_call['"]\s*,\s*(?!\s*(?:true|false|null|undefined)\b|\s*['"`\d[{-])/.test(code));
       if (registered) {
         details.push(`${label}: registered (${rel})`);
       } else {

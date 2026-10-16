@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/033-git-setup-customization/007-review-remediation",
+  "spec_folder": "sk-git/033-git-setup-customization/007-review-remediation",
+  "parent_id": "sk-git/033-git-setup-customization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review remediation",
+      "phase 7 review remediation",
+      "doctor git setup conformance fixes",
+      "sk-git skill word limit",
+      "review remediation plan",
+      "review remediation tasks",
+      "review remediation implementation summary"
+    ],
+    "key_topics": [
+      "review",
+      "remediation",
+      "phase",
+      "doctor",
+      "git",
+      "setup",
+      "conformance",
+      "sk-git",
+      "skill",
+      "word",
+      "limit",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-git/SKILL.md",
+      ".hermes/skills/sk-git/SKILL.md",
+      ".skilled/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/sk-git/feature-catalog/feature-catalog.md",
+      ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/doctor-git-settings.md",
+      ".skilled/skills/sk-git/scripts/hooks/README.md",
+      ".skilled/skills/sk-git/README.md",
+      ".skilled/commands/README.txt",
+      ".skilled/commands/doctor/assets/doctor-git-presentation.txt",
+      ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+      ".skilled/commands/doctor/git.md",
+      ".skilled/commands/doctor/scripts/README.md",
+      ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+      ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+      ".skilled/commands/doctor/scripts/doctor-phrase-reach.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-git-settings.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/doctor-git-settings.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/scripts/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-git-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-git-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-git-setup.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "git.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/git.md",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "category-overview.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-phrase-reach.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/doctor-phrase-reach.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Human Voice Rules",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The release-conformance review of `/doctor:git setup` returned CONDITIONAL",
+    "created_at": "2026-10-16T05:45:15Z",
+    "last_save_at": "2026-10-16T07:06:01.545Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9aa548df9cb68b6c28e4c1e817afb63722aae2c467dd762271486db1e046e34f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "38ea51529669061880a1fb9aa029fac995508e8795571f5da26b8612b4889a56",
+      "plan.md": "872f13fe5bd0ae13932a88d5d1b19c04da7a73da7a1fda432b8bbafe4a66cb54",
+      "tasks.md": "7a6ea7b23320015b95bba77e0e38e000b805bbbdac9e0ac67c63657a7e449df6",
+      "implementation-summary.md": "ca87b07d126c1ad2fc49f30db0224489ead59654bf3a127d3926f70d0cbf4bd4"
+    },
+    "last_active_at": null
+  }
+}

@@ -7,7 +7,7 @@ trigger_phrases:
   - "worktree naming allocator"
   - "sk-git capability inventory"
 last_updated: "2026-10-01"
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # sk-git: Feature Catalog
@@ -28,7 +28,7 @@ Use this catalog as the canonical inventory for the live `sk-git` feature surfac
 
 #### Description
 
-Two flat per-namespace counters plus a set of grammar validators give every AI-created branch one numbered shape — `worktrees/NNN-slug` (with the directory `.worktrees/NNN-slug`) or `branches/NNN-slug` (a dedicated branch with no worktree).
+Two flat per-namespace counters plus a set of grammar validators give every AI-created branch one numbered shape: `worktrees/NNN-slug` (with the directory `.worktrees/NNN-slug`) or `branches/NNN-slug` (a dedicated branch with no worktree).
 
 #### Current Reality
 
@@ -54,6 +54,10 @@ Creating a branch on origin needs the branch named in the approval, because a ba
 
 See [`remote-branch-policy.md`](../references/remote-branch-policy.md) for the approval forms and the autosync exemption, and `.skilled/scripts/git-hooks/tests/pre-push.test.sh` for the automated matrix.
 
+---
+
+## 3. SESSION LIFECYCLE
+
 ### Launch-wrapper session isolation
 
 #### Description
@@ -62,7 +66,7 @@ An operator-opted-in launch wrapper places every top-level AI session in its own
 
 #### Current Reality
 
-`worktree-session.sh` detects whether the invoking process is a top-level session or an orchestrated child (`AI_SESSION_CHILD=1`, or already inside a linked worktree) and only isolates the former; a child execs in place inside its parent's worktree instead of nesting. A top-level session gets a numbered ephemeral worktree on a `work/<runtime>/<slug>` branch, shared `node_modules`/`dist` symlinked in from the main checkout, and per-session `SPEC_KIT_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR` exports.
+`worktree-session.sh` detects whether the invoking process is a top-level session or an orchestrated child (`AI_SESSION_CHILD=1`, or already inside a linked worktree) and only isolates the former. A child execs in place inside its parent's worktree instead of nesting. A top-level session gets a numbered ephemeral worktree on a `work/<runtime>/<slug>` branch, shared `node_modules`/`dist` symlinked in from the main checkout, and per-session `SPEC_KIT_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR` exports.
 
 #### Source Files
 
@@ -94,7 +98,7 @@ An always-current live branch model keeps every concurrent AI session's committe
 
 #### Current Reality
 
-Each launch-wrapper session bases its worktree on whatever branch the primary checkout currently has open, and a `post-commit` hook publishes every commit to that live branch via `git-sync.sh` — fast-forwarding when possible, rebasing only the session's own commits when the live tip has moved, and aborting cleanly (never half-applying) on a rebase conflict. `git-live-follow.sh` fast-forwards the operator's IDE checkout as the live branch advances, and never touches a dirty or diverged tree.
+Each launch-wrapper session bases its worktree on whatever branch the primary checkout currently has open, and a `post-commit` hook publishes every commit to that live branch via `git-sync.sh`: fast-forwarding when possible, rebasing only the session's own commits when the live tip has moved, and aborting cleanly (never half-applying) on a rebase conflict. `git-live-follow.sh` fast-forwards the operator's IDE checkout as the live branch advances, and never touches a dirty or diverged tree.
 
 #### Source Files
 
@@ -108,11 +112,11 @@ See [`session-lifecycle/continuous-integration-autosync.md`](session-lifecycle/c
 
 #### Description
 
-The end-to-end workflow an AI follows to gather inputs, verify safety, create a numbered worktree (or dedicated branch), and report status — covering fast-merge, long-running, dedicated-branch and detached-experiment lifecycle strategies.
+The end-to-end workflow an AI follows to gather inputs, verify safety, create a numbered worktree (or dedicated branch), and report status, covering fast-merge, long-running, dedicated-branch and detached-experiment lifecycle strategies.
 
 #### Current Reality
 
-The AI must ask the user to choose between a worktree and the current branch before any worktree is created, and must never create a branch with `git branch`/`git checkout -b`/`git switch -c` directly. All lifecycle strategies share the identical numbered naming and creation mechanics; they differ only in how the resulting branch is managed afterward.
+The AI must ask the user to choose between a worktree and the current branch before any worktree is created, and must never create a branch with `git branch`/`git checkout -b`/`git switch -c` directly. All lifecycle strategies share the identical numbered naming and creation mechanics. They differ only in how the resulting branch is managed afterward.
 
 #### Source Files
 
@@ -128,7 +132,7 @@ A deterministic commit-message contract (`type(scope)[!]: imperative summary`) p
 
 #### Current Reality
 
-Type and scope selection both follow a fixed first-match priority order; the commit-msg and pre-push hooks, an agent gate and CI enforce the structural contract from the "Enforced rules" block in the commit template, with no bypass. On a dirty shared tree, the AI stages only its own explicit pathspecs and asserts the staged set against a deny-pattern before committing, rather than using a broad `git add -A`/`git add .`. The trailer paragraph ends every commit and carries `Spec: <track>/<packet>[/<phase>...]` for packet work plus a stamped seven-digit `Commit-Id: NNNNNNN`. The identifier queries live in `references/quick-reference.md`, where one greps the `Spec:` line for a packet and the other greps the `Commit-Id:` line for an ordinal.
+Type and scope selection both follow a fixed first-match priority order. The commit-msg and pre-push hooks, an agent gate and CI enforce the structural contract from the "Enforced rules" block in the commit template, with no bypass. On a dirty shared tree, the AI stages only its own explicit pathspecs and asserts the staged set against a deny-pattern before committing, rather than using a broad `git add -A`/`git add .`. The trailer paragraph ends every commit and carries `Spec: <track>/<packet>[/<phase>...]` for packet work plus a stamped seven-digit `Commit-Id: NNNNNNN`. The identifier queries live in `references/quick-reference.md`, where one greps the `Spec:` line for a packet and the other greps the `Commit-Id:` line for an ordinal.
 
 #### Source Files
 
@@ -144,7 +148,7 @@ One validator holds every commit message, PR description and new branch name to 
 
 #### Current Reality
 
-`validate-message.mjs` is the only place a rule is evaluated. The commit-msg hook, pre-push gate 6, the agent PreToolUse gate and the `message-contract` CI workflow all call it, so a `--no-verify` commit is still caught at push. The templates are found through git config `skgit.contractDir`, then `.sk-git/`, then the sk-git assets directory; a repository with no rules block is not checked, and a broken block blocks rather than passing.
+`validate-message.mjs` is the only place a rule is evaluated. The commit-msg hook, pre-push gate 6, the agent PreToolUse gate and the `message-contract` CI workflow all call it, so a `--no-verify` commit is still caught at push. The templates are found through git config `skgit.contractDir`, then `.sk-git/`, then the sk-git assets directory. A repository with no rules block is not checked, and a broken block blocks rather than passing.
 
 #### Source Files
 
@@ -160,7 +164,7 @@ One doctor command switches sk-git's hook gates, changes the repository's commit
 
 #### Current Reality
 
-`/doctor:git hooks` saves a gate setting in git config and `/doctor:git standards` edits the `.sk-git/` rule copies, each behind an approval. `/doctor:git setup` runs eleven read-only checks, prints PASS, FAIL, SKIP or UNKNOWN for each with one repair per failure, and never runs code from the repository it inspects.
+`/doctor:git hooks` saves a gate setting in git config and `/doctor:git standards` edits the `.sk-git/` rule copies, each behind an approval. `/doctor:git setup` runs eleven read-only checks, prints PASS, FAIL, SKIP, UNKNOWN or DEGRADED for each with one repair per failing or degraded check, and never runs code from the repository it inspects.
 
 #### Source Files
 
@@ -172,7 +176,7 @@ See [`workflow-playbooks/doctor-git-settings.md`](workflow-playbooks/doctor-git-
 
 #### Description
 
-The structured completion flow that gates on passing tests, then presents exactly four integration choices — merge locally, push and open a PR, keep as-is, or discard — and executes the chosen path safely.
+The structured completion flow that gates on passing tests, then presents exactly four integration choices: merge locally, push and open a PR, keep as-is, or discard, and executes the chosen path safely.
 
 #### Current Reality
 
@@ -192,7 +196,7 @@ A step-ordered runbook for a large rename/reorg (hundreds-to-thousands of `git m
 
 #### Current Reality
 
-A fresh worktree lacks gitignored build dependencies, so toolchain runs inside it can silently no-op on zero files; the memory and vector databases are a single global instance, not one per worktree, so reindexing from inside a reorg worktree would index paths that do not yet exist on `main`. The playbook snapshots the gitignored databases before starting, verifies renames landed as `R`-status, and sweeps leftover gitignored cruft that `git mv` leaves behind in old source directories.
+A fresh worktree lacks gitignored build dependencies, so toolchain runs inside it can silently no-op on zero files. The memory and vector databases are a single global instance, not one per worktree, so reindexing from inside a reorg worktree would index paths that do not yet exist on `main`. The playbook snapshots the gitignored databases before starting, verifies renames landed as `R`-status, and sweeps leftover gitignored cruft that `git mv` leaves behind in old source directories.
 
 #### Source Files
 
@@ -210,7 +214,7 @@ Cross-platform (GitHub/GitLab/Azure DevOps/Bitbucket/Jira) access to GitLens AI 
 
 #### Current Reality
 
-GitKraken MCP's local-mutation tools (`git_add_or_commit`, `git_push`, `git_branch`, `git_worktree`, `git_stash`, etc.) duplicate sk-git's own Bash-based, rule-gated workflow and must never substitute for it; two internal helper tools are self-declared app-only and must never be called. The integration is reserved for GitLens AI workflows (commit composer, launchpad triage, AI-driven review/work-start) and cross-provider issue/PR/repository operations that local git and GitHub MCP cannot reach.
+GitKraken MCP's local-mutation tools (`git_add_or_commit`, `git_push`, `git_branch`, `git_worktree`, `git_stash`, etc.) duplicate sk-git's own Bash-based, rule-gated workflow and must never substitute for it. Two internal helper tools are self-declared app-only and must never be called. The integration is reserved for GitLens AI workflows (commit composer, launchpad triage, AI-driven review/work-start) and cross-provider issue/PR/repository operations that local git and GitHub MCP cannot reach.
 
 #### Source Files
 
@@ -226,7 +230,7 @@ Full CRUD access to GitHub's remote PR, issue, and repository operations via Cod
 
 #### Current Reality
 
-Local `git` stays the tool for commit/diff/status/log/merge/worktree operations; GitHub MCP is preferred for PR reviews and comments and issue management, where its API is richer than `gh` alone. CI/CD workflow status and logs route to the `gh` CLI instead, since GitHub MCP's tool set does not cover them. Branch creation is explicitly routed back to local `git worktree add -b ...` rather than GitHub MCP's `github_create_branch`.
+Local `git` stays the tool for commit/diff/status/log/merge/worktree operations. GitHub MCP is preferred for PR reviews and comments and issue management, where its API is richer than `gh` alone. CI/CD workflow status and logs route to the `gh` CLI instead, since GitHub MCP's tool set does not cover them. Branch creation is explicitly routed back to local `git worktree add -b ...` rather than GitHub MCP's `github_create_branch`.
 
 #### Source Files
 

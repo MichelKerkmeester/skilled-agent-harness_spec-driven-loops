@@ -1,23 +1,23 @@
 ---
-description: "Switch shipped git hook gates on or off, change the commit, PR and branch rules in .sk-git/ and check which sk-git settings are live."
+description: "Switch sk-git hook gates, edit the commit, PR and branch rules in .sk-git/ and check which settings are live."
 argument-hint: "<hooks|standards|setup> [--dry-run] [--tool=<name>] | list | ?"
 allowed-tools: Read, Bash, Edit
 ---
+### MANDATORY INPUT GATE
+
+**STATUS: BLOCKED** until `target` is bound.
+
+1. Parse the first positional token of `$ARGUMENTS` as `target`, before any flag. With no positional token, bind `target` from `--target=<name>` or `--target <name>`. `list`, `?` and `--list` render the route manifest instead of binding a target.
+2. Treat an absent or whitespace-only target as missing. Do not infer it from conversation history, open files, earlier runs or repository state.
+3. When it is missing, show the presentation contract's startup menu, stop, and wait. Use only `$ARGUMENTS` or that explicit reply.
+
+If this gate was skipped, stop, say so, return to it, and bind the target before loading any workflow.
+
 <!-- skill_agent: sk-git -->
 
 # /doctor:git Router
 
 Thin router for the git hook gate settings, the repository's sk-git rules, and a read-only setup check. It resolves the target and setup values from `_routes.yaml`, loads the presentation contract, then executes the target's workflow YAML.
-
-### MANDATORY INPUT GATE
-
-**STATUS: BLOCKED** until `target` is bound.
-
-1. Parse the first positional token of `$ARGUMENTS` as `target`, before any flag. `list`, `?` and `--list` render the route manifest instead of binding a target.
-2. Treat an absent or whitespace-only target as missing. Do not infer it from conversation history, open files, earlier runs or repository state.
-3. When it is missing, show the presentation contract's startup menu, stop, and wait. Use only `$ARGUMENTS` or that explicit reply.
-
-If this gate was skipped, stop, say so, return to it, and bind the target before loading any workflow.
 
 ## 1. ROUTER CONTRACT
 
