@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The `/doctor:git setup` battery passes on its own checkout but gives wrong answers elsewhere",
     "created_at": "2026-10-16T17:03:02Z",
-    "last_save_at": "2026-10-17T04:44:24.745Z",
+    "last_save_at": "2026-10-17T04:58:35.652Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,12 +212,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ec5d629856c2652d47165d1bc3a4f6ccfea9c94a46f882220b8e599c399a7a89",
+    "source_fingerprint": "sha256:131a14e68ceee0dece9ec2ea4c838f0161f7e74198fce753c4a0704537e05211",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "865dd872a7827bca44f31ee44dc5a11961ccee3d1efae5e412764727785a640e",
       "plan.md": "5a7a2e2bf60dc5aaf04c0c502fbaa35ecbc5d8214a43832e00381f0e28865d21",
-      "tasks.md": "60bf69eac5d46965073e6b2183907e11199f020a1f7cc3092609c0df0d8dab90",
+      "tasks.md": "2e03922076ca66eae027cff8cbbf36637cb94bf5909cf0c127810e9956d1fcf9",
       "implementation-summary.md": "8863f3454b679465bb544c6b278696e7af0dd6f9282c29c09021b80bd4d21c5d"
     },
     "last_active_at": null
