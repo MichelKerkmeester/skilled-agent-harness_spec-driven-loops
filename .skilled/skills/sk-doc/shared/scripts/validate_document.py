@@ -573,6 +573,14 @@ def _fenced_line_numbers(content: str) -> set:
 _STRUCTURE_ENFORCEMENT_ENV = 'SKDOC_ENFORCE_STRUCTURE'
 
 
+def is_repo_root_readme(file_path: str) -> bool:
+    """Whether the file is the README at a repository root, the directory that holds
+    `.git` (a folder in a checkout, a file in a linked worktree). That README separates
+    its sections with `&nbsp;` lines instead of `---` rules, so the divider rule skips it."""
+    path = Path(file_path).resolve()
+    return path.name.lower() == 'readme.md' and (path.parent / '.git').exists()
+
+
 def _structure_enforcement_enabled() -> bool:
     """Whether the general-path structure rules are enforced: a `---` divider between
     numbered ALL-CAPS H2 sections, no Table of Contents, and no navigation-anchor
@@ -1764,7 +1772,10 @@ def validate_document(
     all_errors.extend(validate_toc(content, doc_type_rules, rules))
     all_errors.extend(validate_h2_headers(content, doc_type_rules, rules))
     if doc_type != 'code_folder':
-        all_errors.extend(validate_general_structure(content, doc_type_rules))
+        structure_rules = doc_type_rules
+        if is_repo_root_readme(file_path):
+            structure_rules = {**doc_type_rules, 'h2DividerRequired': False}
+        all_errors.extend(validate_general_structure(content, structure_rules))
     all_errors.extend(validate_required_sections(content, doc_type_rules))
     if doc_type == 'feature_catalog':
         all_errors.extend(validate_feature_catalog_table(content, doc_type_rules))

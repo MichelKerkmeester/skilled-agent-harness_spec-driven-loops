@@ -24,7 +24,7 @@ Built for Claude Code, Codex, Opencode, Pi Agent, Devin, Cursor and Hermes CLI
 - **11 Specialized Agents** - focused roles for implementation, review, research, docs, git and more
 - **14 On-Demand Skills** - deep capabilities for code, design, docs and multi-CLI dispatch
 
----
+&nbsp;
 
 ## 2. 🎁 WHAT YOU GET
 
@@ -79,7 +79,7 @@ The framework extends each runtime through plugins, hooks and extensions rather 
 
 Behind them: 14 on-demand skills, 39 command entry points and the Code Mode MCP server, each detailed in its own section below.
 
----
+&nbsp;
 
 ## 3. 🗺️ OVERVIEW
 
@@ -149,7 +149,7 @@ From request to documented result:
          └──────────────────────────────────────────┘
 ```
 
----
+&nbsp;
 
 ## 4. 🚀 QUICK START
 
@@ -246,7 +246,7 @@ This repo ships as a public template.
 
 See the [customization guide](#customizing-for-your-stack) for the full map and step-by-step adaptation guide.
 
----
+&nbsp;
 
 ## 5. 📋 SPEC KIT
 
@@ -554,7 +554,7 @@ Spec memory and retrieval are packet-local and file-based, integrated into the s
 - `/doctor:speckit` checks that the index and the recipes are still healthy
 - The skill advisor owns the shared model server and embedding provider
 
----
+&nbsp;
 
 ## 6. 🔄 DEEP LOOP
 
@@ -657,7 +657,7 @@ Brings several AI viewpoints together to plan hard decisions. `@ai-council` runs
 
 For details, see the [Deep Loop Runtime README](.skilled/skills/system-deep-loop/runtime/README.md), or the [system-deep-loop README](.skilled/skills/system-deep-loop/README.md), which documents each mode.
 
----
+&nbsp;
 
 ## 7. 🎯 SKILL ADVISOR
 
@@ -773,7 +773,7 @@ What happens to that input:
 
 For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor/README.md).
 
----
+&nbsp;
 
 ## 8. 🧰 SKILL LIBRARY
 
@@ -930,7 +930,7 @@ One advisor identity routing to nine modes through `mode-registry.json`: five wo
 - **Checks the app before it touches anything.** It resolves the `orca` executable and confirms the runtime answers, so a broken install stops the route instead of half-running it
 - Orca work routes here, not to the mcp-tooling hub, which names `cli-orca` as the owner. The eight official Orca skills ride along as authored references, with flag detail always read from the version-matched guide the binary itself serves
 
----
+&nbsp;
 
 ## 9. 🤖 AGENT LIBRARY
 
@@ -999,7 +999,7 @@ One advisor identity routing to nine modes through `mode-registry.json`: five wo
 
 - Produces `file:line` findings. The `/deep:review` command owns the loop. See [Deep Loop](#6--deep-loop)
 
----
+&nbsp;
 
 ## 10. 🧩 PLUGIN & EXTENSION LIBRARY
 
@@ -1071,7 +1071,7 @@ Hermes keeps shell hooks in your user-level config, so a repository cannot ship 
 
 The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which runtime runs each hook, and why a runtime that skips one cannot carry it. Codex runs a repository hook only after you approve that entry, so open `/hooks` after an update and approve every entry it lists as needing review. Its shell matchers name both `exec` and `Bash`, the tool's name from Codex 0.160 on.
 
----
+&nbsp;
 
 ## 11. ⌨️ COMMAND LIBRARY
 
@@ -1310,7 +1310,7 @@ The 23 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-
 
 - On-device read of your latest image: scene, caption and exact OCR, or a direct answer, with no model switch
 
----
+&nbsp;
 
 ## 12. 🔌 CODE MODE MCP
 
@@ -1361,7 +1361,7 @@ To call a Code Mode tool: `call_tool_chain({ code: "return await figma.figma_get
 
 For more on the `mcp-code-mode` skill and TypeScript execution patterns, see the skill at `.skilled/skills/mcp-code-mode/SKILL.md`.
 
----
+&nbsp;
 
 ## 13. 🌿 GIT WORKTREE / LIVE SYNC
 
@@ -1378,7 +1378,7 @@ The repo runs a live-sync loop around the worktree-per-session model.
 - `SPECKIT_AUTOSYNC=0` for the publish leg, `SPECKIT_GIT_HOOKS_GUARD=off` for the guard, `SYSTEM_LIVE_FOLLOW_DISABLED=1` for the follower, `SYSTEM_PRIMARY_RECONCILE_DISABLED=1` for the reconcile step
 - See `sk-git/references/continuous-integration.md` for the full model
 
----
+&nbsp;
 
 ## 14. ⚙️ CONFIGURATION
 
@@ -1557,7 +1557,7 @@ Nothing to configure.
 }
 ```
 
----
+&nbsp;
 
 ## 15. ❓ FAQ
 
@@ -1637,7 +1637,7 @@ Everything is a file in your own repository.
 - The canonical feature inventory for the `system-spec-kit` engine at `.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md`
 - It groups the shipped surface by capability area and maps each section to a directory under `feature-catalog/`
 
----
+&nbsp;
 
 ## 16. 📚 RELATED DOCUMENTS
 

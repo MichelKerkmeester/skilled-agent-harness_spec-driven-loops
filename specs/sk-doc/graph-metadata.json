@@ -20,7 +20,8 @@
     "sk-doc/063-security-policy-alignment",
     "sk-doc/064-description-budget",
     "sk-doc/065-changelog-section-spacing",
-    "sk-doc/066-feature-catalog-template-anchor-deprecation"
+    "sk-doc/066-feature-catalog-template-anchor-deprecation",
+    "sk-doc/067-root-readme-section-spacing"
   ],
   "manual": {
     "depends_on": [],

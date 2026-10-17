@@ -187,3 +187,44 @@ def test_typed_or_named_readme_gets_no_fallback(tmp_path: Path) -> None:
     assert named["document_type"] == "readme"
     assert not any(item["type"] == "document_type_fallback" for item in typed["warnings"])
     assert not any(item["type"] == "document_type_fallback" for item in named["warnings"])
+
+
+SPACED_README = """# Project
+
+## 1. OVERVIEW
+
+Content.
+
+&nbsp;
+
+## 2. SETUP
+
+Content.
+"""
+
+
+def test_repo_root_readme_is_exempt_from_the_divider_rule(monkeypatch, tmp_path: Path) -> None:
+    monkeypatch.setenv("SKDOC_ENFORCE_STRUCTURE", "1")
+    (tmp_path / ".git").mkdir()
+    root = tmp_path / "README.md"
+    root.write_text(SPACED_README, encoding="utf-8")
+    nested = tmp_path / "docs" / "README.md"
+    nested.parent.mkdir()
+    nested.write_text(SPACED_README, encoding="utf-8")
+
+    assert "general_h2_separator" not in issue_types(validate(root, "readme"))
+    assert "general_h2_separator" in issue_types(validate(nested, "readme"))
+
+
+def test_repo_root_readme_keeps_the_full_divider_score(tmp_path: Path) -> None:
+    from extract_structure import extract_structure  # type: ignore
+
+    (tmp_path / ".git").write_text("gitdir: elsewhere\n", encoding="utf-8")
+    root = tmp_path / "README.md"
+    root.write_text(SPACED_README, encoding="utf-8")
+    nested = tmp_path / "docs" / "README.md"
+    nested.parent.mkdir()
+    nested.write_text(SPACED_README, encoding="utf-8")
+
+    assert extract_structure(str(root))["dqi"]["breakdown"]["divider_score"] == 6
+    assert extract_structure(str(nested))["dqi"]["breakdown"]["divider_score"] == 0
