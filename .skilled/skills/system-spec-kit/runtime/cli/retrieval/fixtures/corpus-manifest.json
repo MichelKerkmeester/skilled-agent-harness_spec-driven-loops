@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3a734bff1aba76e121d54f8b1dfb57b0f9a8ae581b58e7d0d9c1f32c318a4378",
+  "corpusHash": "53ac3e5cbf32780dcea7af7ff38a8b3bbc6e855ed05d66bff4189acb446ce73a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -24963,7 +24963,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f9752fec9ed30d56b9b8da80099754123788af2924af8d6d4bfa8026ef83c38b",
+  "manifestHash": "d94bc535dfd2bd295968922e29b68226eae4aa6f31cc5389bafc8333ca4a506c",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
