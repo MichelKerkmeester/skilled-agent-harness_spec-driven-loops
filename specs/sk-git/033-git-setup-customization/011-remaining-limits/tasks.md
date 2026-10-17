@@ -57,6 +57,7 @@ contextType: "general"
 - [x] T010 Mutation check for items 1 and 2: with the old function or rule restored, each new test fails. Item 1 done: the old function fails the four form tests (2 passed, 4 failed in the filtered run), and a mutation that accepts any resolved identifier fails the negative test. Item 2 done: with the old rule restored, the new test fails because `specs/demo/001-x/scratch/run.sh` is discovered.
 - [x] T011 Run every gate from the final state and record the result lines in `implementation-summary.md`
 - [x] T012 Update `implementation-summary.md` and repair derived metadata
+- [x] T013 Fold the v4.0.0.13 release into v4.0.0.12, by operator decision, because it was too small to stand alone. v4.0.0.12 gains one glance bullet and this folder on its spec line, v4.0.0.13 is removed, and the component entries keep their own versions [EVIDENCE: `validate_document.py` 0 issues, `hvr_scan.py` 0 hard blockers]
 <!-- /ANCHOR:phase-3 -->
 
 ---

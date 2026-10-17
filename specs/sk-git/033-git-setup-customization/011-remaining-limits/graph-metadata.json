@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The `/doctor:git setup` battery reads only an inline default export, so an OpenCode or Pi adapter written as `export default plugin;` reads as unregistered even when `plugin` registers the advisory",
     "created_at": "2026-10-17T11:59:09Z",
-    "last_save_at": "2026-10-17T13:00:46.523Z",
+    "last_save_at": "2026-10-17T16:41:26.985Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:877bae4e2c4883d3fd28c7d04183f802ea54aa5684ec0983759d85c96bcc1f42",
+    "source_fingerprint": "sha256:16d91c62e260fcb69218fe7f475c7b3d3f77a5c099d8f23a2fdab63bcf3d8208",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3ec68d3b8fa00d08e3c00a3accec987b599688bf4f5cdce4f4a458fb6856571d",
       "plan.md": "f6eb4f0d11dafa7e5b29e9575f3abc69f8e7e703dd5def5994b92e94dfabe3a5",
-      "tasks.md": "83e4472e8ad2d6fff0d1dba4c2ec64ddb84c2bb8d62f7961d710e1656c5c700d",
+      "tasks.md": "c0d57c9ee5308f10288d226bbf19513d55e8bed069ab350ba97e39ef9a02655c",
       "implementation-summary.md": "937776cea84f710707af8a24d2b911efff859ac5bb47ee50f2b9e9c532f1ec43"
     },
     "last_active_at": null
