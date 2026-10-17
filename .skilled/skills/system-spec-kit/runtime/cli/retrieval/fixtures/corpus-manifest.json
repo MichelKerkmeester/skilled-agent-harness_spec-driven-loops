@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ea4d23ddb17485a76655b3f02b2e3301e4e9313de0af4efef6d1c7b68314a198",
+  "corpusHash": "0ebf7fd7700f7f146b38d9f980033f77ea83bf9468addb4bf3a60c5aefc4e75b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24943,
+  "includedPathCount": 24950,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -77,6 +77,7 @@
     ".skilled/changelog/skilled/v4.0.0.10.md",
     ".skilled/changelog/skilled/v4.0.0.11.md",
     ".skilled/changelog/skilled/v4.0.0.12.md",
+    ".skilled/changelog/skilled/v4.0.0.13.md",
     ".skilled/changelog/skilled/v4.0.0.2.md",
     ".skilled/changelog/skilled/v4.0.0.3.md",
     ".skilled/changelog/skilled/v4.0.0.4.md",
@@ -2840,6 +2841,7 @@
     ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.4.0.md",
     ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.5.0.md",
     ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.6.0.md",
+    ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.7.0.md",
     ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/code-quality-gate.md",
     ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/implementation-authoring.md",
     ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/verification-alignment.md",
@@ -6609,6 +6611,7 @@
     ".skilled/skills/sk-git/changelog/v1.9.1.0.md",
     ".skilled/skills/sk-git/changelog/v1.9.2.0.md",
     ".skilled/skills/sk-git/changelog/v1.9.3.0.md",
+    ".skilled/skills/sk-git/changelog/v1.9.4.0.md",
     ".skilled/skills/sk-git/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/github-mcp-integration.md",
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/gitkraken-mcp-integration.md",
@@ -12629,6 +12632,10 @@
     "specs/sk-git/033-git-setup-customization/010-open-ends-cleanup/plan.md",
     "specs/sk-git/033-git-setup-customization/010-open-ends-cleanup/spec.md",
     "specs/sk-git/033-git-setup-customization/010-open-ends-cleanup/tasks.md",
+    "specs/sk-git/033-git-setup-customization/011-remaining-limits/implementation-summary.md",
+    "specs/sk-git/033-git-setup-customization/011-remaining-limits/plan.md",
+    "specs/sk-git/033-git-setup-customization/011-remaining-limits/spec.md",
+    "specs/sk-git/033-git-setup-customization/011-remaining-limits/tasks.md",
     "specs/sk-git/033-git-setup-customization/changelog/changelog-033-007-review-remediation.md",
     "specs/sk-git/033-git-setup-customization/changelog/changelog-033-008-out-of-scope-cleanup.md",
     "specs/sk-git/033-git-setup-customization/spec.md",
@@ -24974,7 +24981,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "4593f025c820c31b28c00c9aba3281dc73680f1d6ef48a82fceb6af5c9e947f8",
+  "manifestHash": "3ec170bc7911af82fd756662ab30619891ce691f98322ff08c0558d64396cf0a",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27221,6 +27228,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/scratch",
       "reason": "excluded directory"
     },
@@ -28038,6 +28053,10 @@
     },
     {
       "path": "specs/sk-git/033-git-setup-customization/010-open-ends-cleanup/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/033-git-setup-customization/011-remaining-limits/scratch",
       "reason": "excluded directory"
     },
     {

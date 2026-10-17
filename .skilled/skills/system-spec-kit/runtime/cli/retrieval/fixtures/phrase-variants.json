@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4593f025c820c31b28c00c9aba3281dc73680f1d6ef48a82fceb6af5c9e947f8",
+  "manifestHash": "3ec170bc7911af82fd756662ab30619891ce691f98322ff08c0558d64396cf0a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -38733,6 +38733,9 @@
     "drift guard skips evidence": [
       "drift guard skips evidence"
     ],
+    "drift guard skips spec scratch": [
+      "drift guard skips spec scratch"
+    ],
     "drift guard warning count": [
       "drift guard warning count"
     ],
@@ -43697,6 +43700,9 @@
     ],
     "fetched text injection screen summary": [
       "fetched text injection screen summary"
+    ],
+    "fewer false alarms": [
+      "fewer false alarms"
     ],
     "fewer skills safer paths": [
       "fewer skills safer paths"
@@ -64760,6 +64766,9 @@
     "named colour tokens": [
       "named colour tokens"
     ],
+    "named default export counts": [
+      "named default export counts"
+    ],
     "named refusal not raw errno": [
       "named refusal not raw errno"
     ],
@@ -71109,6 +71118,9 @@
     ],
     "phase 11 pre existing gate failures": [
       "phase 11 pre existing gate failures"
+    ],
+    "phase 11 remaining limits": [
+      "phase 11 remaining limits"
     ],
     "phase 11 remediation deep review": [
       "phase 11 remediation deep review"
@@ -79829,6 +79841,18 @@
     ],
     "remaining deferred p2 tasks": [
       "remaining deferred p2 tasks"
+    ],
+    "remaining limits": [
+      "remaining limits"
+    ],
+    "remaining limits implementation summary": [
+      "remaining limits implementation summary"
+    ],
+    "remaining limits plan": [
+      "remaining limits plan"
+    ],
+    "remaining limits tasks": [
+      "remaining limits tasks"
     ],
     "remaining mode cutover": [
       "remaining mode cutover"
@@ -90849,6 +90873,9 @@
     "sk code opencode 1 2 6 0": [
       "sk-code-opencode 1.2.6.0"
     ],
+    "sk code opencode 1 2 7 0": [
+      "sk-code-opencode 1.2.7.0"
+    ],
     "sk code opencode alignment": [
       "sk-code opencode alignment"
     ],
@@ -90920,6 +90947,9 @@
     ],
     "sk code opencode v1 2 6 0": [
       "sk-code-opencode v1.2.6.0"
+    ],
+    "sk code opencode v1 2 7 0": [
+      "sk-code-opencode v1.2.7.0"
     ],
     "sk code overlay hardcoded replacement": [
       "sk-code overlay hardcoded replacement"
@@ -93051,6 +93081,9 @@
     "sk git 1 9 3 0": [
       "sk-git 1.9.3.0"
     ],
+    "sk git 1 9 4 0": [
+      "sk-git 1.9.4.0"
+    ],
     "sk git benchmark": [
       "sk-git benchmark"
     ],
@@ -93245,6 +93278,9 @@
     ],
     "sk git v1 9 3 0": [
       "sk-git v1.9.3.0"
+    ],
+    "sk git v1 9 4 0": [
+      "sk-git v1.9.4.0"
     ],
     "sk git workflow support": [
       "sk-git workflow support"
@@ -96172,6 +96208,9 @@
     ],
     "skilled v4 0 0 12": [
       "skilled v4.0.0.12"
+    ],
+    "skilled v4 0 0 13": [
+      "skilled v4.0.0.13"
     ],
     "skilled v4 0 0 2": [
       "skilled v4.0.0.2"
@@ -107278,6 +107317,9 @@
     ],
     "v4 0 0 12 release notes": [
       "v4.0.0.12 release notes"
+    ],
+    "v4 0 0 13 release notes": [
+      "v4.0.0.13 release notes"
     ],
     "v4 0 0 2 release notes": [
       "v4.0.0.2 release notes"
