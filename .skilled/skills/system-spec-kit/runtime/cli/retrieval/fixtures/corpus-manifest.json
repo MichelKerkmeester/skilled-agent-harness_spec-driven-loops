@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3ac3d7d1076dc1b0b812501ac80d523eeebc4e0a0aea4e773e2caf589a9e065d",
+  "corpusHash": "e626e92605cb5cb494ad0a72f330e53b0c1a841d18e5c20d3d977c58cc7030d4",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24950,
+  "includedPathCount": 24949,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -77,7 +77,6 @@
     ".skilled/changelog/skilled/v4.0.0.10.md",
     ".skilled/changelog/skilled/v4.0.0.11.md",
     ".skilled/changelog/skilled/v4.0.0.12.md",
-    ".skilled/changelog/skilled/v4.0.0.13.md",
     ".skilled/changelog/skilled/v4.0.0.2.md",
     ".skilled/changelog/skilled/v4.0.0.3.md",
     ".skilled/changelog/skilled/v4.0.0.4.md",
@@ -24981,7 +24980,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7e3d40a434b6a378e19e38328f66d94b68d88485518ce61703b6c21f99fa1df0",
+  "manifestHash": "018dc1a766a97bfa208b758cda62d4c879cdd26f9d7056f9bef569ce9c467436",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27225,6 +27224,14 @@
     },
     {
       "path": "specs/sk-code/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
       "reason": "excluded directory"
     },
     {

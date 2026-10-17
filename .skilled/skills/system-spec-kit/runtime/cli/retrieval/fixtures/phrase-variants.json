@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7e3d40a434b6a378e19e38328f66d94b68d88485518ce61703b6c21f99fa1df0",
+  "manifestHash": "018dc1a766a97bfa208b758cda62d4c879cdd26f9d7056f9bef569ce9c467436",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -43700,9 +43700,6 @@
     ],
     "fetched text injection screen summary": [
       "fetched text injection screen summary"
-    ],
-    "fewer false alarms": [
-      "fewer false alarms"
     ],
     "fewer skills safer paths": [
       "fewer skills safer paths"
@@ -96209,9 +96206,6 @@
     "skilled v4 0 0 12": [
       "skilled v4.0.0.12"
     ],
-    "skilled v4 0 0 13": [
-      "skilled v4.0.0.13"
-    ],
     "skilled v4 0 0 2": [
       "skilled v4.0.0.2"
     ],
@@ -107317,9 +107311,6 @@
     ],
     "v4 0 0 12 release notes": [
       "v4.0.0.12 release notes"
-    ],
-    "v4 0 0 13 release notes": [
-      "v4.0.0.13 release notes"
     ],
     "v4 0 0 2 release notes": [
       "v4.0.0.2 release notes"
