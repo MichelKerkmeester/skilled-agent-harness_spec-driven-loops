@@ -208,24 +208,35 @@ function collectIterationFindingGroups(record, fields) {
     .filter((keys) => keys.length > 0);
 }
 
+// Cumulative review snapshots and repeatedFindings (a subset of openFindings) need
+// one count per finding identity.
+function countDistinctFindings(findings) {
+  const identities = new Set();
+  let unkeyedCount = 0;
+  for (const finding of findings) {
+    const identity = findingKeys(finding)[0];
+    if (identity) identities.add(identity);
+    else unkeyedCount += 1;
+  }
+  return identities.size + unkeyedCount;
+}
+
 function registryEvidence(mode, registry) {
   if (mode === 'research') {
     const present = Array.isArray(registry?.keyFindings);
     return {
-      registryFindingCount: present ? registry.keyFindings.length : null,
+      registryFindingCount: present ? countDistinctFindings(registry.keyFindings) : null,
       keys: present ? registry.keyFindings.flatMap(findingKeys) : [],
       missingCode: 'registry_missing_keyFindings',
     };
   }
-  const openCount = Array.isArray(registry?.openFindings) ? registry.openFindings.length : null;
-  const resolvedCount = Array.isArray(registry?.resolvedFindings) ? registry.resolvedFindings.length : 0;
-  const repeatedCount = Array.isArray(registry?.repeatedFindings) ? registry.repeatedFindings.length : 0;
+  const openFindings = Array.isArray(registry?.openFindings) ? registry.openFindings : null;
+  const registryFindings = [registry?.openFindings, registry?.resolvedFindings, registry?.repeatedFindings]
+    .filter(Array.isArray)
+    .flat();
   return {
-    registryFindingCount: openCount === null ? null : openCount + resolvedCount + repeatedCount,
-    keys: [registry?.openFindings, registry?.resolvedFindings, registry?.repeatedFindings]
-      .filter(Array.isArray)
-      .flatMap((findings) => findings)
-      .flatMap(findingKeys),
+    registryFindingCount: openFindings === null ? null : countDistinctFindings(registryFindings),
+    keys: registryFindings.flatMap(findingKeys),
     missingCode: 'registry_missing_openFindings',
   };
 }
@@ -298,10 +309,14 @@ function closeOut(args) {
     (record) => collectIterationFindingGroups(record, fields),
   );
   const registryFindingKeys = new Set(evidence.keys);
-  const missingStructuredFindingCount = identifiableFindingGroups
-    .filter((keys) => !keys.some((key) => registryFindingKeys.has(key)))
-    .length;
-  const identifiableFindingCount = identifiableFindingGroups.length;
+  const missingStructuredFindingGroups = identifiableFindingGroups
+    .filter((keys) => !keys.some((key) => registryFindingKeys.has(key)));
+  const missingStructuredFindingCount = countDistinctFindings(
+    missingStructuredFindingGroups.map((keys) => keys[0]),
+  );
+  const identifiableFindingCount = countDistinctFindings(
+    identifiableFindingGroups.map((keys) => keys[0]),
+  );
   // The root dashboard is a single-executor artifact. Fan-out stores one
   // beside each lineage, so it is required only when the close reads the root log.
   const missingArtifacts = [

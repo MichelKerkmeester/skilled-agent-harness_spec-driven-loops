@@ -12,7 +12,8 @@
     "sk-git/033-git-setup-customization/006-release-conformance-review",
     "sk-git/033-git-setup-customization/007-review-remediation",
     "sk-git/033-git-setup-customization/008-out-of-scope-cleanup",
-    "sk-git/033-git-setup-customization/009-second-review-remediation"
+    "sk-git/033-git-setup-customization/009-second-review-remediation",
+    "sk-git/033-git-setup-customization/010-open-ends-cleanup"
   ],
   "manual": {
     "depends_on": [],
@@ -30,19 +31,20 @@
       "phase",
       "parent",
       "spec",
-      "one-paragraph",
-      "problem",
-      "statement",
-      "needs",
-      "solving",
-      "feature"
+      "sk-git",
+      "dozen",
+      "surfaces",
+      "repository",
+      "change",
+      "several"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
       "spec.md",
       "004-final-deep-review/review/review-report.md",
-      "007-review-remediation/implementation-summary.md"
+      "007-review-remediation/implementation-summary.md",
+      "010-open-ends-cleanup/plan.md"
     ],
     "entities": [
       {
@@ -88,26 +90,26 @@
         "source": "derived"
       },
       {
-        "name": "Phase Documentation Map",
+        "name": "Purpose Give",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[One-paragraph problem statement — what needs solving and why]",
+    "causal_summary": "sk-git has a dozen surfaces a repository can change, and several of them fail open: a missing contract, a rule naming an unknown check or an unregistered advisory hook gives no error",
     "created_at": "2026-10-15T05:35:17Z",
-    "last_save_at": "2026-10-16T21:05:20.057Z",
+    "last_save_at": "2026-10-17T09:03:17.336Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:93a678360ac198d230aeaaef6614ee516eb2968241066fa12469717266eaf31b",
+    "source_fingerprint": "sha256:16ba8b4edbd2b722292d4563740024d530c8af1eaf487d3b8ace05aac1319297",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4c7fd498a8d5726cac0d7344f27d45bf2e892a09d5f57adfd800eca62f11dcff"
+      "spec.md": "8cfa6063c742eb34460f74b2c8ab0f59e2a0450037d1808242f0bf56dd60ee5b"
     },
-    "last_active_child_id": "sk-git/033-git-setup-customization/009-second-review-remediation",
-    "last_active_at": "2026-10-16T21:05:20.057Z"
+    "last_active_child_id": "sk-git/033-git-setup-customization/010-open-ends-cleanup",
+    "last_active_at": "2026-10-17T09:03:17.336Z"
   }
 }

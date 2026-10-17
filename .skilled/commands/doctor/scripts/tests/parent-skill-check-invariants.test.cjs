@@ -327,6 +327,17 @@ test('missing hub directory exits 2', () => {
   assert.match(output, /ERROR: parent skill directory not found/);
 });
 
+test('standalone skill root exits 2 without hub metadata', () => {
+  const skillRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'parent-skill-check-standalone-'));
+  tempRoots.push(skillRoot);
+  fs.writeFileSync(path.join(skillRoot, 'SKILL.md'), '---\nname: standalone-skill\n---\n# standalone-skill\n');
+  writeJson(path.join(skillRoot, 'graph-metadata.json'), { skill_id: 'standalone-skill', family: 'sk-util' });
+
+  const { status, output } = runChecker(skillRoot);
+  assert.equal(status, 2, output);
+  assert.match(output, /not a parent hub/);
+});
+
 test('STRICT=0 downgrades advisory findings to WARN and exits 0', () => {
   const hub = buildHub();
   fs.rmSync(path.join(hub, 'benchmark'), { recursive: true });

@@ -999,6 +999,200 @@ function registersAdvisory(tool, body, repoRoot) {
     : { status: 'missing', token: missingToken };
 }
 
+function scanAdapterSource(source) {
+  const code = source.split('');
+  const regexKeywords = new Set('await case delete do else in instanceof new of return throw typeof void yield'.split(' '));
+  const controlKeywords = new Set('catch for if switch while with'.split(' '));
+  const regexPunctuators = new Set('([{},;:=!&|?+-*/%^~<>'.split(''));
+  regexPunctuators.add('=>');
+  const parens = [];
+  let skipTemplate;
+  const isWordStart = (c) => /[A-Za-z_$]/.test(c || '');
+  const isWordPart = (c) => /[A-Za-z0-9_$]/.test(c || '');
+  const regexCanStart = (token) => token === null || token === 'control-close'
+    || regexKeywords.has(token) || regexPunctuators.has(token);
+  const hide = (start, end, marker = ' ') => {
+    for (let i = start; i < end; i += 1) code[i] = i === start ? marker : /[\r\n]/.test(source[i]) ? source[i] : ' ';
+  };
+  const skipQuote = (start, quote) => {
+    let i = start + 1;
+    while (i < source.length && source[i] !== quote) i += source[i] === '\\' ? 2 : 1;
+    return Math.min(i + 1, source.length);
+  };
+  const skipRegex = (start) => {
+    let i = start + 1;
+    let inClass = false;
+    while (i < source.length && !/[\r\n]/.test(source[i])) {
+      if (source[i] === '\\') i += 2;
+      else if (source[i] === '[') { inClass = true; i += 1; }
+      else if (source[i] === ']') { inClass = false; i += 1; }
+      else if (source[i] === '/' && !inClass) {
+        i += 1;
+        while (isWordPart(source[i])) i += 1;
+        return i;
+      } else i += 1;
+    }
+    return i;
+  };
+  const skipComment = (start) => {
+    if (source[start + 1] === '/') {
+      let i = start + 2;
+      while (i < source.length && !/[\r\n]/.test(source[i])) i += 1;
+      return i;
+    }
+    const end = source.indexOf('*/', start + 2);
+    return end < 0 ? source.length : end + 2;
+  };
+  const scanCode = (start, interpolation = false) => {
+    let i = start;
+    let braces = 0;
+    let previous = null;
+    while (i < source.length) {
+      const c = source[i];
+      if (/\s/.test(c)) { i += 1; continue; }
+      if (interpolation && c === '}' && braces === 0) return i + 1;
+      if (c === '/' && (source[i + 1] === '/' || source[i + 1] === '*')) {
+        const end = skipComment(i);
+        hide(i, end);
+        i = end;
+        continue;
+      }
+      if (c === "'" || c === '"') {
+        const end = skipQuote(i, c);
+        const value = source.slice(i + 1, source[end - 1] === c ? end - 1 : end);
+        if (!['tool.execute.before', 'tool_call'].includes(value)) hide(i, end, '\u0001');
+        previous = 'literal';
+        i = end;
+        continue;
+      }
+      if (c === '`') {
+        const end = skipTemplate(i);
+        hide(i, end, '\u0001');
+        previous = 'literal';
+        i = end;
+        continue;
+      }
+      if (c === '/' && regexCanStart(previous)) {
+        const end = skipRegex(i);
+        hide(i, end, '\u0002');
+        previous = 'literal';
+        i = end;
+        continue;
+      }
+      if (isWordStart(c)) {
+        const tokenStart = i++;
+        while (isWordPart(source[i])) i += 1;
+        previous = source.slice(tokenStart, i);
+        continue;
+      }
+      if (/[0-9]/.test(c)) {
+        i += 1;
+        while (/[A-Za-z0-9_$.]/.test(source[i] || '')) i += 1;
+        previous = 'literal';
+        continue;
+      }
+      const token = ['===', '!==', '=>', '==', '!=', '&&', '||', '??']
+        .find((operator) => source.startsWith(operator, i)) || c;
+      i += token.length;
+      if (interpolation && token === '{') braces += 1;
+      else if (interpolation && token === '}') braces -= 1;
+      if (token === '(') parens.push(controlKeywords.has(previous));
+      previous = token === ')' && parens.pop() ? 'control-close' : token;
+    }
+    return i;
+  };
+  skipTemplate = (start) => {
+    let i = start + 1;
+    while (i < source.length) {
+      if (source[i] === '\\') i += 2;
+      else if (source[i] === '`') return i + 1;
+      else if (source[i] === '$' && source[i + 1] === '{') i = scanCode(i + 2, true);
+      else i += 1;
+    }
+    return i;
+  };
+  scanCode(0);
+  return code.join('');
+}
+
+function matchingBrace(code, open) {
+  let depth = 0;
+  for (let i = open; i < code.length; i += 1) {
+    if (code[i] === '{') depth += 1;
+    else if (code[i] === '}' && --depth === 0) return i;
+  }
+  return -1;
+}
+
+function handlerIsNonLiteral(value) {
+  const handler = value.trimStart();
+  return handler !== '' && !/^(?:true|false|null|undefined)\b/.test(handler)
+    && !/^(?:\u0001|\d|\[|\{|\-|\)|\}|\]|,|;)/.test(handler);
+}
+
+function openCodeObjectHasHandler(code, open, close) {
+  let depth = 0;
+  for (let i = open + 1; i < close; i += 1) {
+    if (depth === 0 && (code.startsWith("'tool.execute.before'", i)
+      || code.startsWith('"tool.execute.before"', i))) {
+      const keyEnd = i + '"tool.execute.before"'.length;
+      const tail = code.slice(keyEnd, close);
+      if (/^\s*\(/.test(tail)) return true;
+      const colon = tail.match(/^\s*:/);
+      if (colon && handlerIsNonLiteral(tail.slice(colon[0].length))) return true;
+    }
+    if ('([{'.includes(code[i])) depth += 1;
+    else if (')]}'.includes(code[i]) && depth > 0) depth -= 1;
+  }
+  return false;
+}
+
+function adapterExportsBinding(tool, source) {
+  const code = scanAdapterSource(source);
+  const functionPattern = new RegExp(
+    String.raw`\bexport\s+default\s+(?:async\s+)?function(?:\s+[A-Za-z_$][\w$]*)?\s*\(([^)]*)\)`
+      + String.raw`(?:\s*:\s*[A-Za-z_$][\w$]*(?:<[^>{};]+>)?)?\s*\{`,
+  );
+  const functionExport = code.match(functionPattern);
+  const arrowExport = functionExport ? null
+    : code.match(/\bexport\s+default\s+(?:async\s+)?\(([^)]*)\)\s*=>\s*(\(\s*\{\s*|\{\s*)/);
+  if (!functionExport && !arrowExport) return false;
+  const exported = functionExport || arrowExport;
+  const params = exported[1];
+  const bodyOpen = exported.index + exported[0].lastIndexOf('{');
+  const bodyClose = matchingBrace(code, bodyOpen);
+  if (bodyClose < 0) return false;
+  if (tool === 'opencode') {
+    if (arrowExport && arrowExport[2].startsWith('(')) {
+      return openCodeObjectHasHandler(code, bodyOpen, bodyClose);
+    }
+    let depth = 0;
+    for (let i = bodyOpen + 1; i < bodyClose; i += 1) {
+      if (depth === 0 && code.startsWith('return', i)
+        && !/[A-Za-z0-9_$]/.test(code[i - 1] || '') && !/[A-Za-z0-9_$]/.test(code[i + 6] || '')) {
+        const returned = code.slice(i + 6, bodyClose).match(/^\s*\{/);
+        if (returned && !/[\r\n]/.test(returned[0])) {
+          const open = i + 6 + returned[0].lastIndexOf('{');
+          const close = matchingBrace(code, open);
+          if (close > open && openCodeObjectHasHandler(code, open, close)) return true;
+        }
+      }
+      if ('([{'.includes(code[i])) depth += 1;
+      else if (')]}'.includes(code[i]) && depth > 0) depth -= 1;
+    }
+    return false;
+  }
+  const parameter = params.match(/^\s*(?:\.\.\.)?([A-Za-z_$][\w$]*)/)?.[1];
+  if (!parameter) return false;
+  const escaped = parameter.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const body = code.slice(bodyOpen + 1, bodyClose);
+  const callPattern = new RegExp(
+    String.raw`(?:^|[^\w$.])${escaped}\s*\.\s*on\s*\(\s*['"]tool_call['"]\s*,`,
+  );
+  const call = body.match(callPattern);
+  return call !== null && handlerIsNonLiteral(body.slice(call.index + call[0].length));
+}
+
 function checkAiToolHooks(ctx) {
   const explicit = typeof ctx.tool === 'string' && ctx.tool !== '';
   const active = explicit ? ctx.tool : process.env.CLAUDECODE ? 'claude' : null;
@@ -1054,17 +1248,12 @@ function checkAiToolHooks(ctx) {
         broken.push(tool);
         continue;
       }
-      // A token in a comment or a loose string registers nothing, so comments are
-      // dropped and each token must sit where it takes effect: the event as a handler
-      // key or an .on() argument bound to something other than a literal, and the
-      // shared module as an import specifier. Without a parser, an unused object that
-      // binds the event to a function still reads as registered.
+      // The default export must carry the handler; an unused object elsewhere cannot
+      // make an adapter look registered. Scan source without executing the adapter.
       const code = read.text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:\\])\/\/.*$/gm, '$1');
       // A registration whose script is missing fails every shell call, so only one whose file exists counts.
       const importMatch = code.match(/(?:\bfrom\s*|\bimport\s*\(\s*|\brequire\s*\(\s*)['"]([^'"]*git-rule-checks\.mjs)['"]/);
-      const registered = importMatch !== null && (tool === 'opencode'
-        ? /['"]tool\.execute\.before['"]\s*(?:\(|:(?!\s*(?:true|false|null|undefined)\b|\s*['"`\d[{-]))/.test(code)
-        : /\.on\(\s*['"]tool_call['"]\s*,\s*(?!\s*(?:true|false|null|undefined)\b|\s*['"`\d[{-])/.test(code));
+      const registered = importMatch !== null && adapterExportsBinding(tool, read.text);
       if (registered) {
         const specifier = importMatch[1];
         const adapterPath = path.join(ctx.repoRoot, rel);

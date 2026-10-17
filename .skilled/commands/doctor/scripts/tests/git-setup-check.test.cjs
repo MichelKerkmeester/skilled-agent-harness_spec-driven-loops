@@ -1238,6 +1238,43 @@ test('opencode and pi pass only when the adapter registers its event and imports
   }
 });
 
+test('opencode concise arrows and pi default functions register supported handlers', (t) => {
+  const cases = [
+    [
+      'opencode',
+      '.opencode/plugins/sk-git-preflight-advisory.js',
+      "import { GIT_CHECKS } from '../lib/git-rule-checks.mjs';\n"
+        + "export default () => ({ async 'tool.execute.before'(input) {} });\n",
+    ],
+    [
+      'pi',
+      '.pi/extensions/git-preflight-advisory.ts',
+      "import { GIT_CHECKS } from '../lib/git-rule-checks.mjs';\n"
+        + "export default function ext(pi) { pi.on('tool_call', async (event) => {}); }\n",
+    ],
+  ];
+
+  for (const [tool, file, body] of cases) {
+    const f = fixture(t);
+    const target = path.join(f.repo, file);
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.writeFileSync(target, body);
+
+    const importMatch = body.match(/(?:\bfrom\s*|\bimport\s*\(\s*|\brequire\s*\(\s*)['"]([^'"]*git-rule-checks\.mjs)['"]/);
+    assert.ok(importMatch, `${tool}: the adapter must import git-rule-checks.mjs`);
+    const importedFile = path.resolve(path.dirname(target), importMatch[1]);
+    fs.mkdirSync(path.dirname(importedFile), { recursive: true });
+    fs.writeFileSync(importedFile, '');
+
+    const row = rowOf(reportOf(f.run(['--tool', tool, '--json'])), 'ai-tool-hooks');
+    assert.equal(row.result, 'PASS', `${tool}: ${row.details.join(' | ')}`);
+    assert.ok(
+      row.details.includes(`${tool} (active): registered (${file})`),
+      `${tool}: ${row.details.join(' | ')}`,
+    );
+  }
+});
+
 test('opencode and pi fail an adapter that names the tokens without registering a handler', (t) => {
   const cases = [
     ['opencode', '.opencode/plugins/sk-git-preflight-advisory.js', "// Registers 'tool.execute.before' through git-rule-checks.mjs.\nexport default {};\n"],
@@ -1253,13 +1290,28 @@ test('opencode and pi fail an adapter that names the tokens without registering 
     // A real import, with the event bound to a value that is not a handler.
     ['opencode', '.opencode/plugins/sk-git-preflight-advisory.js', "import { GIT_CHECKS } from '../lib/git-rule-checks.mjs';\nexport default () => ({ meta: { 'tool.execute.before': false }, GIT_CHECKS });\n"],
     ['pi', '.pi/extensions/git-preflight-advisory.ts', "const checks = import('../lib/git-rule-checks.mjs');\nexport default function noop(pi) { pi.on('tool_call', null); return checks; }\n"],
+    ['opencode', '.opencode/plugins/sk-git-preflight-advisory.js', "import { GIT_CHECKS } from '../lib/git-rule-checks.mjs';\nconst unused = { async 'tool.execute.before'(input) { return GIT_CHECKS; } };\nexport default async function plugin() { return {}; }\n", true],
+    ['pi', '.pi/extensions/git-preflight-advisory.ts', "const checks = import('../lib/git-rule-checks.mjs');\nfunction unused(pi) { pi.on('tool_call', async () => checks); }\nexport default function noop(pi) {}\n", true],
+    ['opencode', '.opencode/plugins/sk-git-preflight-advisory.js', "import { GIT_CHECKS } from '../lib/git-rule-checks.mjs';\nconst hooks = { async 'tool.execute.before'() {} };\nexport default async function p() { return { other: hooks }; }\n", true],
+    ['opencode', '.opencode/plugins/sk-git-preflight-advisory.js', "import { GIT_CHECKS } from '../lib/git-rule-checks.mjs';\nconst pattern = /'tool.execute.before'/;\nexport default function p() { return {}; }\n", true],
+    ['pi', '.pi/extensions/git-preflight-advisory.ts', "import { GIT_CHECKS } from '../lib/git-rule-checks.mjs';\nexport default function noop(pi) { if (true) /pi.on('tool_call', handler)/.test(''); }\n", true],
+    ['opencode', '.opencode/plugins/sk-git-preflight-advisory.js', "import { GIT_CHECKS } from '../lib/git-rule-checks.mjs';\nconst fake = `${'tool.execute.before'}`;\nexport default function p() { return {}; }\n", true],
+    ['opencode', '.opencode/plugins/sk-git-preflight-advisory.js', "import { GIT_CHECKS } from '../lib/git-rule-checks.mjs';\nconst fake = `${`'tool.execute.before': handler`}`;\nexport default function p() { return {}; }\n", true],
+    ['pi', '.pi/extensions/git-preflight-advisory.ts', "import { GIT_CHECKS } from '../lib/git-rule-checks.mjs';\nconst fake = `${`pi.on('tool_call', handler)`}`;\nexport default function noop(pi) {}\n", true],
   ];
 
-  for (const [tool, file, body] of cases) {
+  for (const [tool, file, body, createImportTarget] of cases) {
     const f = fixture(t);
     const target = path.join(f.repo, file);
     fs.mkdirSync(path.dirname(target), { recursive: true });
     fs.writeFileSync(target, body);
+    if (createImportTarget) {
+      const importMatch = body.match(/(?:\bfrom\s*|\bimport\s*\(\s*|\brequire\s*\(\s*)['"]([^'"]*git-rule-checks\.mjs)['"]/);
+      assert.ok(importMatch, `${tool}: the adapter must import git-rule-checks.mjs`);
+      const importedFile = path.resolve(path.dirname(target), importMatch[1]);
+      fs.mkdirSync(path.dirname(importedFile), { recursive: true });
+      fs.writeFileSync(importedFile, '');
+    }
     const row = rowOf(reportOf(f.run(['--tool', tool, '--json'])), 'ai-tool-hooks');
     assert.equal(row.result, 'FAIL', `${tool}: ${row.details.join(' | ')}`);
     assert.ok(

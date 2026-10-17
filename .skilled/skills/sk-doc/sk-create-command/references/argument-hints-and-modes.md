@@ -9,12 +9,12 @@ trigger_phrases:
   - "allowed-tools least privilege"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Command Creation - Argument Hints and Modes
 
-Depth for SKILL.md Steps 6 and 10 — the surface where a command declares its inputs. Use these patterns when writing `argument-hint`, choosing `:auto`/`:confirm` behavior, or tightening frontmatter.
+Depth for SKILL.md Steps 6 and 10: the surface where a command declares its inputs. Use these patterns when writing `argument-hint`, choosing `:auto`/`:confirm` behavior, or tightening frontmatter.
 
 ---
 

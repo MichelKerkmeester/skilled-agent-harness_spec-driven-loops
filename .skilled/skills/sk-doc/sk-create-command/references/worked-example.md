@@ -9,18 +9,18 @@ trigger_phrases:
   - "namespace command example"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Command Creation - Worked Split Example
 
-A concrete end-to-end example of a mode-based namespace command. `sk-create-command/SKILL.md` owns the numbered workflow; this file shows what the finished output package looks like so you can model the shape.
+A concrete end-to-end example of a mode-based namespace command. `sk-create-command/SKILL.md` owns the numbered workflow. This file shows what the finished output package looks like so you can model the shape.
 
 ---
 
 ## 1. OVERVIEW
 
-This reference is a single worked example: the canonical command file contract and its invariants, then a full mode-based split showing both the router `.md` and its presentation `.txt`. It is illustrative overflow for SKILL.md Steps 5 and 11 — model the shape, do not treat `/review:packet` as a live command.
+This reference is a single worked example: the canonical command file contract and its invariants, then a full mode-based split showing both the router `.md` and its presentation `.txt`. It is illustrative overflow for SKILL.md Steps 5 and 11 (model the shape, do not treat `/review:packet` as a live command).
 
 ---
 
