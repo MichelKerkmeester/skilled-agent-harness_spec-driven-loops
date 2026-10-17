@@ -1,5 +1,5 @@
 {
-  "corpusHash": "53ac3e5cbf32780dcea7af7ff38a8b3bbc6e855ed05d66bff4189acb446ce73a",
+  "corpusHash": "7845170e92076f1fe7c92e201383412876452c0788c507eceef28d71b81348ec",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24932,
+  "includedPathCount": 24930,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -77,8 +77,6 @@
     ".skilled/changelog/skilled/v4.0.0.10.md",
     ".skilled/changelog/skilled/v4.0.0.11.md",
     ".skilled/changelog/skilled/v4.0.0.12.md",
-    ".skilled/changelog/skilled/v4.0.0.13.md",
-    ".skilled/changelog/skilled/v4.0.0.14.md",
     ".skilled/changelog/skilled/v4.0.0.2.md",
     ".skilled/changelog/skilled/v4.0.0.3.md",
     ".skilled/changelog/skilled/v4.0.0.4.md",
@@ -24963,7 +24961,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d94bc535dfd2bd295968922e29b68226eae4aa6f31cc5389bafc8333ca4a506c",
+  "manifestHash": "9dd099dea8339c18393e20c5756bc0826e524c631f343d89762760226c645abd",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d94bc535dfd2bd295968922e29b68226eae4aa6f31cc5389bafc8333ca4a506c",
+  "manifestHash": "9dd099dea8339c18393e20c5756bc0826e524c631f343d89762760226c645abd",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -37183,9 +37183,6 @@
     ],
     "doctor check 5l": [
       "doctor check 5l"
-    ],
-    "doctor checks prove results": [
-      "doctor checks prove results"
     ],
     "doctor cocoindex": [
       "/doctor cocoindex",
@@ -96119,12 +96116,6 @@
     "skilled v4 0 0 12": [
       "skilled v4.0.0.12"
     ],
-    "skilled v4 0 0 13": [
-      "skilled v4.0.0.13"
-    ],
-    "skilled v4 0 0 14": [
-      "skilled v4.0.0.14"
-    ],
     "skilled v4 0 0 2": [
       "skilled v4.0.0.2"
     ],
@@ -107212,12 +107203,6 @@
     ],
     "v4 0 0 12 release notes": [
       "v4.0.0.12 release notes"
-    ],
-    "v4 0 0 13 release notes": [
-      "v4.0.0.13 release notes"
-    ],
-    "v4 0 0 14 release notes": [
-      "v4.0.0.14 release notes"
     ],
     "v4 0 0 2 release notes": [
       "v4.0.0.2 release notes"
