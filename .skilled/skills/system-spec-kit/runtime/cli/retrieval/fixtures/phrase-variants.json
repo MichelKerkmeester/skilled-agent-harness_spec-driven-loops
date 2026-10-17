@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c3be163ece927af6eee8c85a211b0b0041f802fd61313dcbdf360f83d308032a",
+  "manifestHash": "4593f025c820c31b28c00c9aba3281dc73680f1d6ef48a82fceb6af5c9e947f8",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7894,6 +7894,9 @@
     "ad group roles": [
       "ad group roles"
     ],
+    "adapter check reads the real binding": [
+      "adapter check reads the real binding"
+    ],
     "adapter close idempotence": [
       "adapter close idempotence"
     ],
@@ -8937,6 +8940,9 @@
     ],
     "advisor phrase booster": [
       "advisor phrase booster"
+    ],
+    "advisor playbook validator exclusion": [
+      "advisor playbook validator exclusion"
     ],
     "advisor plugin bridge cutover": [
       "advisor plugin bridge cutover"
@@ -31647,6 +31653,9 @@
     "deep loop and cli contract drift": [
       "deep loop and cli contract drift"
     ],
+    "deep loop and mcp doctor routing": [
+      "deep-loop and mcp doctor routing"
+    ],
     "deep loop architecture": [
       "deep loop architecture"
     ],
@@ -40711,6 +40720,9 @@
     "environment variable census": [
       "environment variable census"
     ],
+    "environment variables route to spec kit": [
+      "environment variables route to spec-kit"
+    ],
     "eperm launcher lease": [
       "EPERM launcher lease"
     ],
@@ -44700,6 +44712,9 @@
     ],
     "fix stress test coverage gap": [
       "fix stress test coverage gap"
+    ],
+    "fix the advisor open ends left after": [
+      "fix the advisor open ends left after"
     ],
     "fix the gap detector over capping": [
       "fix the gap detector over-capping"
@@ -50348,6 +50363,9 @@
     ],
     "healthmd rollup summary": [
       "healthmd rollup_summary"
+    ],
+    "healthy review closes as complete": [
+      "healthy review closes as complete"
     ],
     "heap profiler implementation": [
       "heap profiler implementation"
@@ -67183,6 +67201,18 @@
     "open an obsidian plugin action": [
       "open an Obsidian plugin action"
     ],
+    "open ends cleanup": [
+      "open ends cleanup"
+    ],
+    "open ends cleanup implementation summary": [
+      "open ends cleanup implementation summary"
+    ],
+    "open ends cleanup plan": [
+      "open ends cleanup plan"
+    ],
+    "open ends cleanup tasks": [
+      "open ends cleanup tasks"
+    ],
     "open ends remediation": [
       "open ends remediation"
     ],
@@ -71055,6 +71085,9 @@
     ],
     "phase 10 observations tasks": [
       "phase 10 observations tasks"
+    ],
+    "phase 10 open ends cleanup": [
+      "phase 10 open ends cleanup"
     ],
     "phase 10 trigger index ci rebuild": [
       "phase 10 trigger index ci rebuild"
@@ -84541,6 +84574,21 @@
     "routing alignment tasks": [
       "routing alignment tasks"
     ],
+    "routing and launcher hardening": [
+      "routing and launcher hardening"
+    ],
+    "routing and launcher hardening acceptance criteria": [
+      "routing and launcher hardening acceptance criteria"
+    ],
+    "routing and launcher hardening implementation summary": [
+      "routing and launcher hardening implementation summary"
+    ],
+    "routing and launcher hardening plan": [
+      "routing and launcher hardening plan"
+    ],
+    "routing and launcher hardening tasks": [
+      "routing and launcher hardening tasks"
+    ],
     "routing baseline recapture": [
       "routing-baseline-recapture"
     ],
@@ -87018,6 +87066,9 @@
     ],
     "scorer routing abstention tuning": [
       "scorer routing abstention tuning"
+    ],
+    "scorer substring partial credit": [
+      "scorer substring partial credit"
     ],
     "scorer weight change": [
       "scorer weight change"
@@ -92997,6 +93048,9 @@
     "sk git 1 9 2 0": [
       "sk-git 1.9.2.0"
     ],
+    "sk git 1 9 3 0": [
+      "sk-git 1.9.3.0"
+    ],
     "sk git benchmark": [
       "sk-git benchmark"
     ],
@@ -93188,6 +93242,9 @@
     ],
     "sk git v1 9 2 0": [
       "sk-git v1.9.2.0"
+    ],
+    "sk git v1 9 3 0": [
+      "sk-git v1.9.3.0"
     ],
     "sk git workflow support": [
       "sk-git workflow support"
@@ -101662,6 +101719,9 @@
     "system deep loop 1 6 4 0": [
       "system-deep-loop 1.6.4.0"
     ],
+    "system deep loop 1 6 5 0": [
+      "system-deep-loop 1.6.5.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -101800,6 +101860,9 @@
     "system deep loop v1 6 4 0": [
       "system-deep-loop v1.6.4.0"
     ],
+    "system deep loop v1 6 5 0": [
+      "system-deep-loop v1.6.5.0"
+    ],
     "system deep research bugs": [
       "system deep research bugs"
     ],
@@ -101898,6 +101961,9 @@
     ],
     "system skill advisor 0 16 2 0": [
       "system-skill-advisor 0.16.2.0"
+    ],
+    "system skill advisor 0 16 3 0": [
+      "system-skill-advisor 0.16.3.0"
     ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
@@ -102072,6 +102138,9 @@
     ],
     "system skill advisor v0 16 2 0": [
       "system-skill-advisor v0.16.2.0"
+    ],
+    "system skill advisor v0 16 3 0": [
+      "system-skill-advisor v0.16.3.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -102384,6 +102453,9 @@
     ],
     "system spec kit 2 8 2 0": [
       "system-spec-kit 2.8.2.0"
+    ],
+    "system spec kit 2 8 3 0": [
+      "system-spec-kit 2.8.3.0"
     ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
@@ -102810,6 +102882,9 @@
     ],
     "system spec kit v2 8 2 0": [
       "system-spec-kit v2.8.2.0"
+    ],
+    "system spec kit v2 8 3 0": [
+      "system-spec-kit v2.8.3.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"

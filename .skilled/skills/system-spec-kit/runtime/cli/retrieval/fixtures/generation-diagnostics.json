@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 7024,
-    "ok": 14359,
+    "ok": 14372,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 24930,
+  "documentsScanned": 24943,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "c3be163ece927af6eee8c85a211b0b0041f802fd61313dcbdf360f83d308032a",
+  "manifestHash": "4593f025c820c31b28c00c9aba3281dc73680f1d6ef48a82fceb6af5c9e947f8",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36617,
+      "ok": 36642,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -69265,6 +69265,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/scratch",
       "reason": "excluded directory"
     },
@@ -70078,6 +70086,10 @@
     },
     {
       "path": "specs/sk-git/033-git-setup-customization/009-second-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/033-git-setup-customization/010-open-ends-cleanup/scratch",
       "reason": "excluded directory"
     },
     {
@@ -70962,6 +70974,10 @@
     },
     {
       "path": "specs/system-skill-advisor/035-doctor-command-routing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/036-routing-and-launcher-hardening/scratch",
       "reason": "excluded directory"
     },
     {
