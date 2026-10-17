@@ -6,7 +6,7 @@ trigger_phrases:
   - "anti stuffing"
   - "cardinality cap"
   - "repetition density demote"
-version: 0.8.0.15
+version: 0.8.1.0
 id: AI-005
 category: auto_indexing
 stage: routing
@@ -37,7 +37,7 @@ Validate that `lib/derived/anti-stuffing.ts` enforces cardinality caps on derive
 
 ## 3. TEST EXECUTION
 
-> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred-decisions.md` §F34 for rationale.
+### Commands
 
 1. Copy an existing active skill into the disposable copy and duplicate a trigger phrase 1000 times in its body.
 2. Add a second fixture where a single n-gram is repeated with only punctuation variation.
@@ -50,14 +50,24 @@ touch /tmp/path-to-copy/.opencode/skills/adversarial-fixture/SKILL.md
 4. Read the fixture's `graph-metadata.json.derived` block.
 5. Call `advisor_recommend` with a prompt that would match the stuffed n-gram. Compare the fixture's derived lane score against a normal skill.
 
-### Expected Signals
+### Expected
 
 - The fixture's derived entries respect a hard cardinality cap (not every repetition is stored).
 - Tokens with high repetition density receive demoted weights relative to normal skills.
 - Known adversarial fixtures (per the bundled test suite) are rejected and excluded from routing.
 - The fixture does not outrank an honest candidate in `advisor_recommend` output.
 
-### Failure Modes
+### Evidence
+
+- Capture each command's output and exit status.
+- Record the derived-entry count, repeated-token weights, adversarial-fixture disposition, and the `advisor_recommend` ordering.
+
+### Pass / Fail
+
+- **Pass**: Every expected signal holds.
+- **Fail**: Any expected signal differs.
+
+### Failure Triage
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
@@ -69,6 +79,7 @@ touch /tmp/path-to-copy/.opencode/skills/adversarial-fixture/SKILL.md
 
 ## 4. SOURCE FILES
 
+- Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Scenario [AI-002](../../manual-testing-playbook/auto-indexing/sanitizer-boundaries.md), sanitizer at write boundaries.
 - Feature [`auto-indexing/anti-stuffing.md`](../../feature-catalog/auto-indexing/anti-stuffing.md).
 - Source: `.skilled/skills/system-skill-advisor/runtime/lib/derived/anti-stuffing.ts`.

@@ -6,7 +6,7 @@ trigger_phrases:
   - "threshold flag"
   - "confidence cutoff shim"
   - "dual threshold shim"
-version: 0.8.0.13
+version: 0.8.1.0
 id: PC-003
 category: python_compat
 stage: routing
@@ -37,6 +37,8 @@ Validate that `--threshold <value>` adjusts the confidence cutoff applied by the
 
 ## 3. TEST EXECUTION
 
+### Commands
+
 1. Run at the default threshold:
 
 ```bash
@@ -64,7 +66,17 @@ python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "r
 - Strict threshold returns fewer candidates (often zero if no candidate clears 0.95).
 - All outputs remain valid JSON arrays with consistent shape.
 
-### Failure Modes
+### Evidence
+
+- The output and exit status for each threshold command.
+- The JSON-array shape, entry count at each threshold, and the candidate values needed to compare the default, looser, and strict results.
+
+### Pass / Fail
+
+- **Pass**: Every expected signal holds.
+- **Fail**: Any expected signal differs.
+
+### Failure Triage
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
@@ -76,6 +88,7 @@ python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "r
 
 ## 4. SOURCE FILES
 
+- Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Scenario [PC-002](../../manual-testing-playbook/python-compat/force-native-force-local.md), force toggles.
 - Scenario [PC-004](../../manual-testing-playbook/python-compat/regression-suite.md), regression suite coverage of threshold behavior.
 - Feature [`python-compat/cli-shim.md`](../../feature-catalog/python-compat/cli-shim.md).
@@ -89,128 +102,3 @@ python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "r
 - Playbook ID: PC-003
 - Canonical root source: manual-testing-playbook.md
 - Feature file path: python-compat/threshold-flag.md
-
----
-
-## 6. EVIDENCE
-
-Command:
-
-```bash
-python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "review this pull request" --threshold 0.8
-```
-
-Output:
-
-```text
-Skill graph: loaded from SQLite
-[
-  {
-    "skill": "sk-git",
-    "kind": "skill",
-    "confidence": 0.95,
-    "uncertainty": 0.15,
-    "passes_threshold": true,
-    "reason": "Matched: !pull, !pull request(keyword), !pull request(signal), git(name), merge",
-    "_graph_boost_count": 0,
-    "source": "local"
-  },
-  {
-    "skill": "sk-code-review",
-    "kind": "skill",
-    "confidence": 0.95,
-    "uncertainty": 0.23,
-    "passes_threshold": true,
-    "reason": "Matched: !intent:review, !pull request(keyword), !review, !review(multi), review(name)",
-    "_graph_boost_count": 0,
-    "source": "local"
-  }
-]
-```
-
-Entry count: 2
-
-Command:
-
-```bash
-python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "review this pull request" --threshold 0.6
-```
-
-Output:
-
-```text
-Skill graph: loaded from SQLite
-[
-  {
-    "skill": "sk-git",
-    "kind": "skill",
-    "confidence": 0.95,
-    "uncertainty": 0.15,
-    "passes_threshold": true,
-    "reason": "Matched: !pull, !pull request(keyword), !pull request(signal), git(name), merge",
-    "_graph_boost_count": 0,
-    "source": "local"
-  },
-  {
-    "skill": "sk-code-review",
-    "kind": "skill",
-    "confidence": 0.95,
-    "uncertainty": 0.23,
-    "passes_threshold": true,
-    "reason": "Matched: !intent:review, !pull request(keyword), !review, !review(multi), review(name)",
-    "_graph_boost_count": 0,
-    "source": "local"
-  }
-]
-```
-
-Entry count: 2
-
-Command:
-
-```bash
-python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "review this pull request" --threshold 0.95
-```
-
-Output:
-
-```text
-Skill graph: loaded from SQLite
-[
-  {
-    "skill": "sk-git",
-    "kind": "skill",
-    "confidence": 0.95,
-    "uncertainty": 0.15,
-    "passes_threshold": true,
-    "reason": "Matched: !pull, !pull request(keyword), !pull request(signal), git(name), merge",
-    "_graph_boost_count": 0,
-    "source": "local"
-  },
-  {
-    "skill": "sk-code-review",
-    "kind": "skill",
-    "confidence": 0.95,
-    "uncertainty": 0.23,
-    "passes_threshold": true,
-    "reason": "Matched: !intent:review, !pull request(keyword), !review, !review(multi), review(name)",
-    "_graph_boost_count": 0,
-    "source": "local"
-  }
-]
-```
-
-Entry count: 2
-
-Observed comparison against Expected Signals:
-
-- Default returned 2 entries.
-- Looser threshold returned 2 entries, not more candidates than default.
-- Strict threshold returned 2 entries, not fewer candidates than default.
-- The command output included `Skill graph: loaded from SQLite` before the JSON array, so the full stdout was not a valid JSON array.
-
----
-
-## 7. PASS/FAIL
-
-FAIL: Output was identical across thresholds, and full stdout was not a valid JSON array because it included `Skill graph: loaded from SQLite` before the array.

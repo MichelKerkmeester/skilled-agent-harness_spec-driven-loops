@@ -7,7 +7,7 @@ trigger_phrases:
   - "runnable doctor command line"
   - "doctor setup hint"
   - "/doctor:setup"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Doctor Command Routing
@@ -16,7 +16,7 @@ version: 1.0.4.0
 
 Doctor routes from the doctor route manifest become advisor command bridges, so setup and health prompts surface a runnable /doctor:x line.
 
-A passing skill keeps first place on a contested prompt and the doctor command shows as a second line. The Python fallback matches a doctor bridge only on a typed slash command.
+A passing skill keeps first place on a contested prompt and the doctor command shows as a second line. A doctor phrase listed in its route's `lead_phrases` is the exception: it ranks the doctor command first, which is how `check my environment variables` keeps `/doctor:env` ahead of system-spec-kit. The Python fallback matches a doctor bridge only on a typed slash command.
 
 ---
 
@@ -24,7 +24,7 @@ A passing skill keeps first place on a contested prompt and the doctor command s
 
 ### Bridge Generation
 
-`derive-command-bridges.cjs` reads `.skilled/commands/doctor/_routes.yaml` as a third inventory source. Each route becomes one bridge `command-doctor-<command>-<target>`, or `command-doctor-<command>` when the command owns one route. Each standalone command becomes one bridge. The owning skill comes from the router's `skill_agent` tag. Each route needs a hand-written entry in both the `typescript` and `python` lists in `scoring-compatibility.json`. The deriver fills the TypeScript keywords from the manifest's trigger phrases and the Python slash marker from the runnable string only. `/doctor:deep-loop` and the `/doctor:mcp` sub-actions stay inactive.
+`derive-command-bridges.cjs` reads `.skilled/commands/doctor/_routes.yaml` as a third inventory source. Each route becomes one bridge `command-doctor-<command>-<target>`, or `command-doctor-<command>` when the command owns one route. Each standalone command becomes one bridge. Each `mcp_subroutes` entry becomes one bridge `command-doctor-mcp-<sub_action>`. The owning skill comes from the router's `skill_agent` tag. Each route needs a hand-written entry in both the `typescript` and `python` lists in `scoring-compatibility.json`. The deriver fills the TypeScript keywords from the manifest's trigger phrases and the Python slash marker from the runnable string only. `/doctor:deep-loop`, `/doctor:mcp install` and `/doctor:mcp debug` are active.
 
 ### Ranking
 

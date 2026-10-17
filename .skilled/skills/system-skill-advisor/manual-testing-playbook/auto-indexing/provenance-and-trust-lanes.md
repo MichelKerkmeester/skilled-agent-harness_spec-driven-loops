@@ -6,7 +6,7 @@ trigger_phrases:
   - "provenance fingerprint"
   - "trust lanes"
   - "derived provenance"
-version: 0.8.0.15
+version: 0.8.1.0
 id: AI-003
 category: auto_indexing
 stage: routing
@@ -37,7 +37,7 @@ Validate that `lib/derived/provenance.ts` writes provenance fingerprints for eac
 
 ## 3. TEST EXECUTION
 
-> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred-decisions.md` §F34 for rationale.
+### Commands
 
 1. Read the target skill's `graph-metadata.json.derived` block for the current state.
 2. Identify the derived lane sources present in the target (frontmatter terms, fenced examples, local docs, body n-grams).
@@ -50,14 +50,30 @@ touch .skilled/skills/sk-doc/SKILL.md
 
 5. Re-read `graph-metadata.json.derived` and verify fingerprints are stable for unchanged sources and changed for mutated sources.
 
-### Expected Signals
+### Expected
 
-- The derived block carries block-level `provenance_fingerprint` and `trust_lane` fields; per-entry provenance/lane fields are not part of the shipped schema.
-- The trust lane matches the block's source tier (author-tier frontmatter signals resolve to the author lane; harvested content resolves to the derived lane).
+- The derived block carries block-level `provenance_fingerprint` and `trust_lane` fields. The shipped schema does not define per-entry provenance or lane fields.
+- The trust lane matches the block's source tier. Author-tier frontmatter signals resolve to the author lane. Harvested content resolves to the derived lane.
 - Fingerprints are stable across reindex for unchanged content and change only when the underlying source bytes change.
 - Author-tier tokens (intent_signals in frontmatter) resolve to the `author` lane.
 
-### Failure Modes
+### Evidence
+
+- Capture each command's output and exit status.
+- Record the block-level `provenance_fingerprint` and `trust_lane`, source-tier lane assignments, fingerprints for unchanged and changed source bytes, and the lane for author-tier `intent_signals`.
+
+For the derived-field values, capture this inspection output and exit status:
+
+```bash
+jq '.derived | {provenance_fingerprint, trust_lane, intent_signals, source_docs}' '.skilled/skills/sk-doc/graph-metadata.json'
+```
+
+### Pass / Fail
+
+- **Pass**: Every expected signal holds.
+- **Fail**: Any expected signal differs.
+
+### Failure Triage
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
@@ -65,167 +81,11 @@ touch .skilled/skills/sk-doc/SKILL.md
 | Wrong lane tag | Body token shows `author` or vice versa | Audit `trust-lanes.ts` classification rules. |
 | Unstable fingerprints | Fingerprint changes without source change | Verify sort order and fingerprint input normalization. |
 
-### Evidence
-
-Precondition check, MCP skill graph status:
-
-```json
-```
-
-Target skill metadata read from `.skilled/skills/sk-doc/graph-metadata.json`:
-
-```json
-{
-  "schema_version": 2,
-  "skill_id": "sk-doc",
-  "family": "sk-util",
-  "category": "utility",
-  "domains": [
-    "documentation",
-    "markdown",
-    "readme",
-    "guide",
-    "flowchart",
-    "catalog"
-  ],
-  "intent_signals": [
-    "create readme",
-    "write documentation",
-    "feature catalog",
-    "skill.md headline",
-    "rewrite section",
-    "documentation section",
-    "headline section",
-    "headline section to clarify",
-    "update skill.md",
-    "update sk-code skill.md",
-    "update the sk-code skill.md",
-    "clarify the routing",
-    "clarify the routing model",
-    "clarify the two-axis routing",
-    "rewrite the headline",
-    "reorganize the readme",
-    "reorganize readme into",
-    "reorganize the cli",
-    "add a one-line summary",
-    "one-line summary at the top"
-  ],
-  "derived": {
-    "trigger_phrases": [
-      "create readme",
-      "write documentation",
-      "feature catalog",
-      "documentation quality workflow",
-      "validate markdown structure",
-      "create skill or readme docs",
-      "ascii flowchart generation",
-      "sk-doc",
-      "sk doc",
-      "markdown-quality",
-      "skill-creation"
-    ],
-    "key_topics": [
-      "documentation",
-      "markdown",
-      "readme",
-      "guide",
-      "flowchart",
-      "catalog",
-      "markdown validation",
-      "component creation",
-      "templates",
-      "flowcharts"
-    ],
-    "intent_signals": [
-      "write documentation",
-      "validate markdown",
-      "create readme",
-      "scaffold component"
-    ],
-    "key_files": [
-      ".skilled/skills/sk-doc/SKILL.md",
-      ".skilled/skills/sk-doc/README.md",
-      ".skilled/skills/sk-doc/shared/references/validation.md",
-      ".skilled/skills/sk-doc/sk-create-skill/references/README.md",
-      ".skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md",
-      ".skilled/skills/sk-doc/scripts/validate_document.py",
-      ".skilled/skills/sk-doc/scripts/extract_structure.py",
-      ".skilled/skills/sk-doc/shared/assets/template-rules.json"
-    ],
-    "causal_summary": "Unified markdown and OpenCode component specialist providing document quality enforcement, content optimization, component creation workflows (skills, agents, commands), ASCII flowcharts, feature catalogs, and manual testing playbooks. It matters because it gives the workspace a single specialist for creating and validating high-quality markdown components and documentation artifacts.",
-    "source_docs": [
-      "SKILL.md",
-      "README.md",
-      "references/global/validation.md",
-      "references/skill-creation.md",
-      "references/README.md"
-    ],
-    "created_at": "2026-04-13T00:00:00Z",
-    "last_updated_at": "2026-04-13T23:00:00Z"
-  }
-}
-```
-
-Derived provenance/trust field check:
-
-```bash
-jq '.derived | {provenance_fingerprint, trust_lane, intent_signals, source_docs}' '.skilled/skills/sk-doc/graph-metadata.json'
-```
-
-```json
-{
-  "provenance_fingerprint": null,
-  "trust_lane": null,
-  "intent_signals": [
-    "write documentation",
-    "validate markdown",
-    "create readme",
-    "scaffold component"
-  ],
-  "source_docs": [
-    "SKILL.md",
-    "README.md",
-    "references/global/validation.md",
-    "references/skill-creation.md",
-    "references/README.md"
-  ]
-}
-```
-
-Fenced example source check:
-
-~~~text
-Found 2 matches
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/SKILL.md:
-  Line 208: ```python
-
-  Line 345: ```
-~~~
-
-Local docs/assets source check returned paths including:
-
-```text
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/shared/assets/frontmatter-templates.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/shared/references/validation.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/sk-create-skill/references/README.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/sk-create-readme/references/README.md
-```
-
-The scenario command below was not run because this manual execution was constrained to write only this scenario file, and `touch` would modify `.skilled/skills/sk-doc/SKILL.md` metadata:
-
-```bash
-touch .skilled/skills/sk-doc/SKILL.md
-```
-
-### Pass/Fail
-
-BLOCKED. The scenario requires `touch .skilled/skills/sk-doc/SKILL.md` to force reindexing, but the execution request allowed writes only to `.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md`. Read-only evidence also showed `provenance_fingerprint: null` and `trust_lane: null` in the current derived block, so the expected provenance/trust fields were not observable before the blocked reindex step.
-
 ---
 
 ## 4. SOURCE FILES
 
+- Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Scenario [AI-001](../../manual-testing-playbook/auto-indexing/derived-extraction.md), deterministic extraction.
 - Scenario [SC-004](../../manual-testing-playbook/scorer-fusion/lane-attribution.md), lane attribution on the read side.
 - Feature [`auto-indexing/provenance-and-trust-lanes.md`](../../feature-catalog/auto-indexing/provenance-and-trust-lanes.md).

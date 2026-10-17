@@ -6,7 +6,7 @@ trigger_phrases:
   - "df-idf corpus"
   - "active corpus stats"
   - "idf debounce"
-version: 0.8.0.14
+version: 0.8.1.0
 id: AI-004
 category: auto_indexing
 stage: routing
@@ -37,7 +37,7 @@ Validate that `lib/df-idf.ts` computes document-frequency and inverse-document-f
 
 ## 3. TEST EXECUTION
 
-> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred-decisions.md` §F34 for rationale.
+### Commands
 
 1. Capture current corpus statistics via the advisor internals exposed through `advisor_status` or, if unavailable, read the persisted IDF table from SQLite.
 2. Touch three active skills in quick succession (within the debounce window):
@@ -51,14 +51,24 @@ touch .skilled/skills/system-spec-kit/SKILL.md
 3. Wait for debounce to elapse and capture statistics again.
 4. Touch an archived skill (if present under `z_archive/`) and repeat.
 
-### Expected Signals
+### Expected
 
 - Step 3 captures a single recomputation after the debounce window, not one per touch.
 - IDF document count equals the active skill count (excludes `z_archive/` and `z-future/`).
 - Archived or future skill touches do not alter active IDF.
 - Recomputed IDF differs only where active content changed.
 
-### Failure Modes
+### Evidence
+
+- Capture each command's output and exit status.
+- Record corpus statistics before and after active-skill touches, recomputation count, active skill count, archived or future touch effects, and changed IDF values.
+
+### Pass / Fail
+
+- **Pass**: Every expected signal holds.
+- **Fail**: Any expected signal differs.
+
+### Failure Triage
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
@@ -66,99 +76,11 @@ touch .skilled/skills/system-spec-kit/SKILL.md
 | Archived skills in IDF | Document count exceeds active skill count | Audit corpus filter against `z_archive/` and `z-future/`. |
 | Stale IDF after active change | Statistics unchanged after active touch | Confirm write path and debounce flush. |
 
-### Evidence
-
-Scenario file was read in full before execution.
-
-Read-only advisor status check:
-
-```json
-{
-  "status": "ok",
-  "data": {
-    "freshness": "unavailable",
-    "generation": 9476,
-    "trustState": {
-      "state": "stale",
-      "reason": "SIGTERM",
-      "generation": 9476,
-      "checkedAt": "2026-07-03T02:14:57.239Z",
-      "lastLiveAt": null
-    },
-    "lastGenerationBump": "2026-07-02T05:27:14.803Z",
-    "lastScanAt": "2026-07-02T05:27:14.803Z",
-    "skillCount": 26,
-    "laneWeights": {
-      "explicit_author": 0.42,
-      "lexical": 0.28,
-      "graph_causal": 0.13,
-      "derived_generated": 0.12,
-      "semantic_shadow": 0.05
-    }
-  }
-}
-```
-
-Active `SKILL.md` path check:
-
-```text
-<repo-root>/.skilled/skills/sk-git/SKILL.md
-<repo-root>/.skilled/skills/cli-opencode/SKILL.md
-<repo-root>/.skilled/skills/mcp-click-up/SKILL.md
-<repo-root>/.skilled/skills/system-deep-loop/SKILL.md
-<repo-root>/.skilled/skills/system-deep-loop/deep-research/SKILL.md
-<repo-root>/.skilled/skills/mcp-code-mode/SKILL.md
-<repo-root>/.skilled/skills/sk-doc/SKILL.md
-<repo-root>/.skilled/skills/mcp-figma/SKILL.md
-<repo-root>/.skilled/skills/system-deep-loop/SKILL.md
-<repo-root>/.skilled/skills/sk-design/sk-design-md-generator/SKILL.md
-<repo-root>/.skilled/skills/system-deep-loop/deep-ai-council/SKILL.md
-.skilled/skills/sk-design/SKILL.md
-<repo-root>/.skilled/skills/sk-code/sk-code-review/SKILL.md
-<repo-root>/.skilled/skills/sk-design/SKILL.md
-<repo-root>/.skilled/skills/system-skill-advisor/SKILL.md
-<repo-root>/.skilled/skills/sk-design/design-foundations/SKILL.md
-<repo-root>/.skilled/skills/system-deep-loop/deep-review/SKILL.md
-<repo-root>/.skilled/skills/sk-design/design-audit/SKILL.md
-<repo-root>/.skilled/skills/sk-design/design-motion/SKILL.md
-.skilled/skills/sk-design/SKILL.md
-<repo-root>/.skilled/skills/system-deep-loop/runtime/SKILL.md
-<repo-root>/.skilled/skills/sk-prompt-models/SKILL.md
-<repo-root>/.skilled/skills/system-spec-kit/SKILL.md
-<repo-root>/.skilled/skills/sk-code/SKILL.md
-<repo-root>/.skilled/skills/cli-claude-code/SKILL.md
-<repo-root>/.skilled/skills/sk-prompt/SKILL.md
-<repo-root>/.skilled/skills/mcp-chrome-devtools/SKILL.md
-```
-
-Archive/future precondition checks:
-
-```text
-z_archive glob output included:
-<repo-root>/.skilled/skills/z_archive/cli-codex-retired/SKILL.retired.md
-
-z_future glob output:
-No files found
-```
-
-The required scenario commands were not executed:
-
-```bash
-touch .skilled/skills/sk-git/SKILL.md
-touch .skilled/skills/sk-doc/SKILL.md
-touch .skilled/skills/system-spec-kit/SKILL.md
-```
-
-Reason: the session-level allowed write path is only `.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/corpus-df-idf.md`; the scenario commands would modify `.skilled/skills/sk-git/SKILL.md`, `.skilled/skills/sk-doc/SKILL.md`, and `.skilled/skills/system-spec-kit/SKILL.md` mtimes outside the allowed write path. The archived-skill touch step would also require modifying a file under `.skilled/skills/z_archive/`, which is outside the allowed write path.
-
-### Pass/Fail
-
-BLOCKED - The scenario cannot be executed under the provided write restrictions because its required `touch` commands modify files outside the single allowed write path. Additionally, `advisor_status` reported `freshness: "unavailable"` and `trustState.state: "stale"` with `reason: "SIGTERM"`, so the daemon-backed active IDF state was not available for the expected recomputation checks.
-
 ---
 
 ## 4. SOURCE FILES
 
+- Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Scenario [LC-003](../../manual-testing-playbook/lifecycle-routing/archive-handling.md), archive indexing but not routing.
 - Scenario [SC-002](../scorer-fusion/projection.md), projection input for scorer.
 - Feature [`auto-indexing/df-idf-corpus.md`](../../feature-catalog/auto-indexing/df-idf-corpus.md).

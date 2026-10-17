@@ -1202,6 +1202,41 @@ function run(command, args, options = {}) {
   }
 }
 
+function installedTreeMatchesLockfile(dir) {
+  try {
+    const lockfilePath = path.join(dir, 'package-lock.json');
+    if (!exists(lockfilePath)) return false;
+
+    const lockfile = JSON.parse(fs.readFileSync(lockfilePath, 'utf8'));
+    if (!lockfile || typeof lockfile !== 'object' || !lockfile.packages
+      || typeof lockfile.packages !== 'object' || Array.isArray(lockfile.packages)) {
+      return false;
+    }
+
+    for (const [key, lockedPackage] of Object.entries(lockfile.packages)) {
+      if (!key.startsWith('node_modules/')) continue;
+      if (lockedPackage?.optional === true) continue;
+
+      const packagePath = path.join(dir, key);
+      if (lockedPackage?.link === true) {
+        if (!exists(packagePath)) return false;
+        continue;
+      }
+
+      const lockedVersion = lockedPackage?.version;
+      if (typeof lockedVersion !== 'string') return false;
+      const packageJsonPath = path.join(packagePath, 'package.json');
+      if (!exists(packageJsonPath)) return false;
+      const installedPackage = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+      if (installedPackage.version !== lockedVersion) return false;
+    }
+
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 function serverEntrypoint() {
   return path.join(runtimeDir, 'dist', 'runtime', 'advisor-server.js');
 }
@@ -1283,9 +1318,15 @@ function buildIfNeeded(actions) {
     run('npm', [specKitInstall, '--no-audit', '--no-fund', '--silent'], { cwd: specKitDir });
   }
 
-  actions.push('installed dependencies and built the @spec-kit/system-skill-advisor daemon');
-  const installCommand = exists(path.join(runtimeDir, 'package-lock.json')) ? 'ci' : 'install';
-  run('npm', [installCommand, '--no-audit', '--no-fund', '--silent'], { cwd: runtimeDir });
+  // npm ci deletes node_modules before it installs. A failed install over a matching
+  // lockfile tree would destroy working dependencies.
+  if (installedTreeMatchesLockfile(runtimeDir)) {
+    actions.push('built the @spec-kit/system-skill-advisor daemon against the installed dependencies');
+  } else {
+    actions.push('installed dependencies and built the @spec-kit/system-skill-advisor daemon');
+    const installCommand = exists(path.join(runtimeDir, 'package-lock.json')) ? 'ci' : 'install';
+    run('npm', [installCommand, '--no-audit', '--no-fund', '--silent'], { cwd: runtimeDir });
+  }
   run('npm', ['run', 'build'], { cwd: runtimeDir });
 
   const missing = requiredArtifacts().filter((artifact) => !exists(artifact));
@@ -1592,11 +1633,13 @@ module.exports = {
   advisorDbPath,
   artifactsReady,
   bridgeStdioThroughSessionProxy,
+  buildIfNeeded,
   classifyOwnerLease,
   classifySkillAdvisorFrame,
   clearOwnerLeaseFile,
   configureLauncherPathsForTesting,
   createChildEnv,
+  installedTreeMatchesLockfile,
   isModelServerEnabled,
   latestSourceMtimeMs,
   launchedDaemonPredatesBuild,

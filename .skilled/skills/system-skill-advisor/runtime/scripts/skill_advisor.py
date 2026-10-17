@@ -899,7 +899,7 @@ def _keep_passing_skills_above_doctor_bridges(
     recommendations: List[Dict[str, Any]],
     prompt_lower: str,
 ) -> List[Dict[str, Any]]:
-    """Place the typed doctor bridge first or passing bridges after passing skills."""
+    """Place typed or lead-phrase doctor bridges first, or passing bridges after passing skills."""
     bridge_prefix = "command-doctor-"
 
     def recommendation_id(recommendation: Dict[str, Any]) -> str:
@@ -948,6 +948,24 @@ def _keep_passing_skills_above_doctor_bridges(
             *ranked[:matched_bridge_index],
             *ranked[matched_bridge_index + 1:],
         ]
+
+    # Lead phrases preserve explicit bridge intent when no slash command is typed.
+    for index, recommendation in enumerate(ranked):
+        if not is_passing_doctor_bridge(recommendation):
+            continue
+        bridge = GENERATED_COMMAND_BRIDGES.get(recommendation_id(recommendation), {})
+        if any(
+            re.search(
+                rf"(?<![a-z0-9_]){re.escape(phrase.lower())}(?![a-z0-9_])",
+                prompt_lower,
+            )
+            for phrase in bridge.get("lead_phrases", [])
+        ):
+            return [
+                recommendation,
+                *ranked[:index],
+                *ranked[index + 1:],
+            ]
 
     passing_skill_count = sum(
         1
@@ -2521,6 +2539,7 @@ GENERATED_COMMAND_BRIDGES = {
     "command-doctor-env": {
         "description": "",
         "slash_markers": ["/doctor:env list"],
+        "lead_phrases": ["check my environment variables"],
         "inventory_id": "command-doctor-env",
         "command": "/doctor:env",
         "skill_id": "system-spec-kit",
@@ -2644,6 +2663,33 @@ GENERATED_COMMAND_BRIDGES = {
         "owner_mode": "system-spec-kit",
         "routing_enabled": True,
     },
+    "command-doctor-deep-loop": {
+        "description": "",
+        "slash_markers": ["/doctor:deep-loop"],
+        "inventory_id": "command-doctor-deep-loop",
+        "command": "/doctor:deep-loop",
+        "skill_id": "system-deep-loop",
+        "owner_mode": "system-deep-loop",
+        "routing_enabled": True,
+    },
+    "command-doctor-mcp-debug": {
+        "description": "",
+        "slash_markers": ["/doctor:mcp debug"],
+        "inventory_id": "command-doctor-mcp-debug",
+        "command": "/doctor:mcp",
+        "skill_id": "system-spec-kit",
+        "owner_mode": "system-spec-kit",
+        "routing_enabled": True,
+    },
+    "command-doctor-mcp-install": {
+        "description": "",
+        "slash_markers": ["/doctor:mcp install"],
+        "inventory_id": "command-doctor-mcp-install",
+        "command": "/doctor:mcp",
+        "skill_id": "system-spec-kit",
+        "owner_mode": "system-spec-kit",
+        "routing_enabled": True,
+    },
     "command-create-benchmark": {
         "description": "",
         "slash_markers": ["/create:benchmark"],
@@ -2741,15 +2787,6 @@ GENERATED_COMMAND_BRIDGES = {
         "command": "/design:extract",
         "skill_id": "sk-design",
         "owner_mode": "sk-design-md-generator",
-        "routing_enabled": False,
-    },
-    "command-doctor-deep-loop": {
-        "description": "",
-        "slash_markers": ["/doctor:deep-loop"],
-        "inventory_id": "command-doctor-deep-loop",
-        "command": "/doctor:deep-loop",
-        "skill_id": "system-deep-loop",
-        "owner_mode": "system-deep-loop",
         "routing_enabled": False,
     },
     "memory:save": {

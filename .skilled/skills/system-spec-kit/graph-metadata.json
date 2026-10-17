@@ -56,6 +56,7 @@
     "resume previous session",
     "validate the spec packet",
     "env vars",
+    "environment variables",
     "runtime mirrors",
     "resume spec",
     "validate spec"

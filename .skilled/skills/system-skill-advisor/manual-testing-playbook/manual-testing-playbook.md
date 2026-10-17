@@ -1,7 +1,7 @@
 ---
 title: "Skill Advisor: Manual Testing Playbook"
 description: "Canonical sk-doc manual testing playbook for the Skill Advisor manual scenario corpus across the native command surface, runtime hooks, compatibility, daemon state, indexing, lifecycle, scorer and Python compatibility workflows."
-version: 0.8.2.0
+version: 0.8.3.0
 ---
 
 # Skill Advisor: Manual Testing Playbook
@@ -317,10 +317,10 @@ The active inventory check lives at `.skilled/skills/system-skill-advisor/runtim
 
 | Area | Automated test anchors |
 |---|---|
-| Native command surface | `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts`; `.skilled/skills/system-skill-advisor/runtime/tests/advisor-rebuild.vitest.ts` |
-| Hooks and plugin | `.skilled/skills/system-skill-advisor/runtime/tests/hooks/settings-driven-invocation-parity.vitest.ts`; `.skilled/skills/system-skill-advisor/runtime/tests/hooks/runtime-parity.vitest.ts`; `.skilled/plugins/tests/opencode-goal-state.test.cjs`; `.skilled/plugins/tests/opencode-goal-continuation.test.cjs` |
+| Native command surface | `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts`, `.skilled/skills/system-skill-advisor/runtime/tests/advisor-rebuild.vitest.ts` |
+| Hooks and plugin | `.skilled/skills/system-skill-advisor/runtime/tests/hooks/settings-driven-invocation-parity.vitest.ts`, `.skilled/skills/system-skill-advisor/runtime/tests/hooks/runtime-parity.vitest.ts`, `.skilled/plugins/tests/opencode-goal-state.test.cjs`, `.skilled/plugins/tests/opencode-goal-continuation.test.cjs` |
 | Compatibility and Python entrypoints | `.skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts` |
-| Scoring, lifecycle, indexing and daemon state | `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts`; `.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-privacy.vitest.ts` |
+| Scoring, lifecycle, indexing and daemon state | `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts`, `.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-privacy.vitest.ts` |
 
 Validator limitation: `validate_document.py` validates this root document and per-feature documents individually, but it does not prove that every command can execute in the current sandbox. Operators must capture execution evidence during release review.
 
@@ -345,7 +345,7 @@ Per-feature files include SOURCE FILES sections with implementation, catalog and
 
 ### 18.5 Catalog group ↔ playbook category mapping (F37 cross-reference)
 
-The catalog uses 7 groups; the playbook uses 10 categories. Mapping is intentionally asymmetric, not 1:1. This table documents the relationships so operators can navigate between surfaces without surprise.
+The catalog uses 7 groups. The playbook uses 10 categories. Mapping is intentionally asymmetric, not 1:1. This table documents the relationships so operators can navigate between surfaces without surprise.
 
 | Feature catalog group | Maps to playbook category | Notes |
 |---|---|---|
@@ -356,9 +356,9 @@ The catalog uses 7 groups; the playbook uses 10 categories. Mapping is intention
 | `cli-surface` | `native-cli-tools` plus `cli-hooks-and-plugin` | Catalog group split across 2 playbook categories: native command-surface scenarios in 01, CLI hook plus plugin invocation scenarios in 02 |
 | `hooks-and-plugin` | `cli-hooks-and-plugin` (primary) plus `compat-and-disable` (rollback states) | Catalog group split across 2 playbook categories: happy-path hook behavior in 02, disable plus rollback flags in 03 |
 | `python-compat` | `python-compat` | 1:1 mapping (note gap-09 is intentional per playbook §1) |
-| (none) | `compat-and-disable` | Compat plus disable flags cut across multiple catalog groups; no single catalog group owns them |
+| (none) | `compat-and-disable` | Compat plus disable flags cut across multiple catalog groups. No single catalog group owns them |
 | `scorer-fusion` (doctor command routing entry) | `doctor-commands` | The doctor commands themselves are documented in the system-spec-kit feature catalog. This catalog documents only how the advisor routes prompts to them |
-| (none) | `operator-h5` | H5 operator state scenarios cut across catalog groups; no single catalog group owns them |
+| (none) | `operator-h5` | H5 operator state scenarios cut across catalog groups. No single catalog group owns them |
 
 **Why asymmetric**: catalog groups model feature ownership (what the code does), while playbook categories model operator workflow (what an operator validates in one sitting). A single feature group can require multiple operator scenarios that span different runtime contexts (native command surface vs CLI hook vs compat shim). The asymmetry is documented here rather than removed by renumbering because renumbering would break checked-in inventory tests plus deep cross-references in earlier packets.
 

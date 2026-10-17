@@ -6,7 +6,7 @@ trigger_phrases:
   - "python bench"
   - "skill_advisor_bench.py"
   - "latency bench runner"
-version: 0.8.0.14
+version: 0.8.1.0
 id: PC-005
 category: python_compat
 stage: routing
@@ -37,6 +37,8 @@ Validate that `scripts/skill_advisor_bench.py` runs the performance bench, measu
 
 ## 3. TEST EXECUTION
 
+### Commands
+
 1. Run the bench:
 
 ```bash
@@ -46,7 +48,7 @@ python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_bench
   --out /tmp/skill-advisor-bench.json
 ```
 
-`--dataset` is required. `--runs 1` is a fast smoke-test convenience; use a higher `--runs` (default 7) for a stable latency baseline on a calibrated host.
+`--dataset` is required. `--runs 1` is a fast smoke-test convenience. Use a higher `--runs` (default 7) for a stable latency baseline on a calibrated host.
 
 2. Capture stdout and the `--out` JSON report.
 3. Record the `inprocess_warm`, `subprocess_one_shot`, and `batch_mode` p50/p95 latencies and the `throughput_multiplier`.
@@ -58,21 +60,33 @@ python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_bench
 - `gates.warm_p95` passes: in-process warm p95 <= 50 ms (the documented design envelope).
 - `gates.throughput_multiplier` passes: batch throughput is >= 2x the subprocess one-shot path (the blocking regression gate).
 - `gates.cold_p95` is **advisory** by default: subprocess one-shot p95 measures per-prompt Python + Node bridge startup, not native scorer latency, so it does not block `overall_pass` unless `--enforce-cold-p95` is passed on a calibrated host (`cold_p95_advisory: true` appears in the report).
-- `overall_pass` is `true` (warm_p95 + throughput_multiplier) on a nominal workstation; exit code 0.
+- `overall_pass` is `true` (warm_p95 + throughput_multiplier) on a nominal workstation. Exit code 0.
 
-### Failure Modes
+### Evidence
+
+- The benchmark command stdout and exit status, plus the JSON report written to the `--out` path.
+- The `inprocess_warm`, `subprocess_one_shot`, and `batch_mode` p50 and p95 latencies, plus the `throughput_multiplier`.
+- The `gates.warm_p95`, `gates.throughput_multiplier`, `gates.cold_p95`, `cold_p95_advisory`, and `overall_pass` values, plus any native-unavailability warning.
+
+### Pass / Fail
+
+- **Pass**: Every expected signal holds.
+- **Fail**: Any expected signal differs.
+
+### Failure Triage
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
 | Missing `--dataset` error | `error: the following arguments are required: --dataset` | Pass `--dataset <jsonl>` (see command above). |
 | warm_p95 or throughput_multiplier fails | `gates` shows a blocking gate `false` | Investigate a real Python-surface regression. Block release if repeatable. |
-| cold_p95 fails (advisory) | `gates.cold_p95` false while `overall_pass` true | Expected on shared/loaded hosts; calibrate, then pass `--enforce-cold-p95` only on a stable bench host. |
+| cold_p95 fails (advisory) | `gates.cold_p95` false while `overall_pass` true | Expected on shared/loaded hosts. Calibrate, then pass `--enforce-cold-p95` only on a stable bench host. |
 | Bench hangs | No output after expected runtime | Check daemon health per AU-003 and OP-003. |
 
 ---
 
 ## 4. SOURCE FILES
 
+- Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Scenario [PC-004](../../manual-testing-playbook/python-compat/regression-suite.md), regression suite.
 - Scenario [NC-003](../../manual-testing-playbook/native-cli-tools/native-validate-slices.md), native validate latency slice.
 - Feature [`python-compat/bench-runner.md`](../../feature-catalog/python-compat/bench-runner.md).
@@ -86,140 +100,3 @@ python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_bench
 - Playbook ID: PC-005
 - Canonical root source: manual-testing-playbook.md
 - Feature file path: python-compat/bench-runner.md
-
----
-
-## 6. EVIDENCE
-
-Command run from repo root:
-
-```bash
-python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_bench.py \
-  --dataset .skilled/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl \
-  --runs 1 \
-  --out /tmp/skill-advisor-bench.json
-```
-
-Stdout:
-
-```json
-Skill graph: loaded from SQLite
-{
-  "dataset": ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl",
-  "runs": 1,
-  "prompts": 50,
-  "threshold": 0.8,
-  "uncertainty": 0.35,
-  "subprocess_one_shot": {
-    "count": 50,
-    "p50_ms": 362.0035,
-    "p95_ms": 455.1037,
-    "min_ms": 347.8627,
-    "max_ms": 487.2537,
-    "mean_ms": 376.0593,
-    "runtime_mode": "subprocess_one_shot",
-    "throughput_prompts_per_sec": 2.659,
-    "total_prompts": 50
-  },
-  "inprocess_warm": {
-    "count": 50,
-    "p50_ms": 58.0585,
-    "p95_ms": 70.0421,
-    "min_ms": 54.045,
-    "max_ms": 72.1062,
-    "mean_ms": 58.8024,
-    "runtime_mode": "python_inprocess",
-    "throughput_prompts_per_sec": 17.0059,
-    "total_prompts": 50
-  },
-  "batch_mode": {
-    "count": 1,
-    "p50_ms": 2927.8917,
-    "p95_ms": 2927.8917,
-    "min_ms": 2927.8917,
-    "max_ms": 2927.8917,
-    "mean_ms": 2927.8917,
-    "runtime_mode": "subprocess_batch",
-    "throughput_prompts_per_sec": 17.0771,
-    "total_prompts": 50,
-    "batch_size": 50
-  },
-  "throughput_multiplier": 6.4224,
-  "gates": {
-    "warm_p95": false,
-    "cold_p95": false,
-    "throughput_multiplier": true
-  },
-  "cold_p95_advisory": true,
-  "overall_pass": false
-}
-```
-
-`/tmp/skill-advisor-bench.json`:
-
-```json
-{
-  "dataset": ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl",
-  "runs": 1,
-  "prompts": 50,
-  "threshold": 0.8,
-  "uncertainty": 0.35,
-  "subprocess_one_shot": {
-    "count": 50,
-    "p50_ms": 362.0035,
-    "p95_ms": 455.1037,
-    "min_ms": 347.8627,
-    "max_ms": 487.2537,
-    "mean_ms": 376.0593,
-    "runtime_mode": "subprocess_one_shot",
-    "throughput_prompts_per_sec": 2.659,
-    "total_prompts": 50
-  },
-  "inprocess_warm": {
-    "count": 50,
-    "p50_ms": 58.0585,
-    "p95_ms": 70.0421,
-    "min_ms": 54.045,
-    "max_ms": 72.1062,
-    "mean_ms": 58.8024,
-    "runtime_mode": "python_inprocess",
-    "throughput_prompts_per_sec": 17.0059,
-    "total_prompts": 50
-  },
-  "batch_mode": {
-    "count": 1,
-    "p50_ms": 2927.8917,
-    "p95_ms": 2927.8917,
-    "min_ms": 2927.8917,
-    "max_ms": 2927.8917,
-    "mean_ms": 2927.8917,
-    "runtime_mode": "subprocess_batch",
-    "throughput_prompts_per_sec": 17.0771,
-    "total_prompts": 50,
-    "batch_size": 50
-  },
-  "throughput_multiplier": 6.4224,
-  "gates": {
-    "warm_p95": false,
-    "cold_p95": false,
-    "throughput_multiplier": true
-  },
-  "cold_p95_advisory": true,
-  "overall_pass": false
-}
-```
-
-Recorded latency values:
-
-- `inprocess_warm`: p50 `58.0585` ms, p95 `70.0421` ms.
-- `subprocess_one_shot`: p50 `362.0035` ms, p95 `455.1037` ms.
-- `batch_mode`: p50 `2927.8917` ms, p95 `2927.8917` ms.
-- `throughput_multiplier`: `6.4224`.
-
-No runtime warning about native unavailability appeared in stdout; stdout began with `Skill graph: loaded from SQLite`.
-
----
-
-## 7. PASS/FAIL
-
-FAIL: Bench produced a JSON report and `throughput_multiplier` passed, but `gates.warm_p95` was `false` with in-process warm p95 `70.0421` ms, above the expected `<= 50` ms envelope, and `overall_pass` was `false`.

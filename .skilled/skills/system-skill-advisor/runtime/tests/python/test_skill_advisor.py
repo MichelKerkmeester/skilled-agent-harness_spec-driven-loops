@@ -1026,6 +1026,44 @@ description: Fixture helper for routing tests
     except Exception as exc:
         fail_test("native wrapper keeps a skill above a doctor bridge unless the doctor command is typed", str(exc))
 
+    try:
+        original_bridge = advisor._run_native_bridge
+        try:
+            def fake_environment_bridge(payload, timeout=advisor.NATIVE_TIMEOUT_SECONDS):
+                return {"status": "ok", "data": {"recommendations": [
+                    {"skillId": "command-doctor-env", "score": 0.7, "confidence": 0.8962, "uncertainty": 0.12},
+                    {"skillId": "system-spec-kit", "score": 0.55, "confidence": 0.833, "uncertainty": 0.2},
+                ]}}
+
+            advisor._run_native_bridge = fake_environment_bridge
+            lead_phrase = [
+                recommendation["skill"]
+                for recommendation in advisor.recommend_with_native_advisor(
+                    "check my environment variables"
+                ) or []
+            ]
+            plain_phrase = [
+                recommendation["skill"]
+                for recommendation in advisor.recommend_with_native_advisor(
+                    "environment variables"
+                ) or []
+            ]
+            case_name = "native wrapper puts a doctor bridge first on its lead phrase"
+            if (
+                lead_phrase[:2] == ["command-doctor-env", "system-spec-kit"]
+                and plain_phrase[:2] == ["system-spec-kit", "command-doctor-env"]
+            ):
+                ok(case_name)
+            else:
+                fail_test(
+                    case_name,
+                    f"lead_phrase={lead_phrase} plain_phrase={plain_phrase}",
+                )
+        finally:
+            advisor._run_native_bridge = original_bridge
+    except Exception as exc:
+        fail_test("native wrapper puts a doctor bridge first on its lead phrase", str(exc))
+
     # A typed doctor invocation owns its matching command bridge.
     try:
         original_bridge = advisor._run_native_bridge

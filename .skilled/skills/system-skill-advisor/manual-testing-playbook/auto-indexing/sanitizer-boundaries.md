@@ -6,7 +6,7 @@ trigger_phrases:
   - "a7 sanitizer"
   - "sanitizeSkillLabel"
   - "write boundary sanitization"
-version: 0.8.0.14
+version: 0.8.1.0
 id: AI-002
 category: auto_indexing
 stage: routing
@@ -38,7 +38,7 @@ Validate that `lib/derived/sanitizer.ts` is invoked at every public write bounda
 
 ## 3. TEST EXECUTION
 
-> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred-decisions.md` §F34 for rationale.
+### Commands
 
 1. Call `advisor_recommend` with a benign prompt that should match an active skill:
 
@@ -51,14 +51,24 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "save this conver
 4. Call `advisor_status` and verify `skillCount` is either unchanged (rejected) or the label appears sanitized.
 5. Read the `graph-metadata.json.derived` block for the injected fixture and confirm all string fields are sanitized.
 
-### Expected Signals
+### Expected
 
 - Every skill label surfaced through public boundaries conforms to the slug shape `[a-z0-9][a-z0-9-]*`.
 - Control characters, path separators and prompt fragments never appear in envelope or diagnostic output.
 - Malformed labels are either rejected (skill excluded) or normalized.
 - Derived entries written to `graph-metadata.json` use the sanitized label only.
 
-### Failure Modes
+### Evidence
+
+- Capture each command's output and exit status.
+- Record labels and prompt fragments across public envelopes and diagnostics, malformed-label rejection or normalization, and sanitized strings in the derived block.
+
+### Pass / Fail
+
+- **Pass**: Every expected signal holds.
+- **Fail**: Any expected signal differs.
+
+### Failure Triage
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
@@ -66,88 +76,11 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "save this conver
 | Unsanitized label in DB | SQLite row contains raw input | Audit `sanitizer.ts` invocation at persistence layer. |
 | Sanitizer silently skips | Label passes through unchanged despite control chars | Add regression case and inspect sanitizer input path. |
 
-### Evidence
-
-`advisor_recommend({"prompt":"save this conversation context to memory","options":{"topK":2,"includeAttribution":true}})` via MCP returned:
-
-```json
-{
-  "status": "ok",
-  "data": {
-    "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
-    "effectiveThresholds": {
-      "confidenceThreshold": 0.8,
-      "uncertaintyThreshold": 0.35,
-      "confidenceOnly": false
-    },
-    "recommendations": [],
-    "ambiguous": false,
-    "freshness": "unavailable",
-    "trustState": {
-      "state": "unavailable",
-      "reason": "advisor_unavailable",
-      "generation": 9476,
-      "checkedAt": "2026-07-03T02:18:34.818Z",
-      "lastLiveAt": null
-    },
-    "generatedAt": "2026-07-03T02:18:34.818Z",
-    "cache": {
-      "hit": false,
-      "sourceSignaturePresent": false
-    },
-    "warnings": [
-      "advisor_unavailable"
-    ],
-    "abstainReasons": [
-      "Skill advisor freshness is unavailable; returning fail-open empty recommendations."
-    ]
-  }
-}
-```
-
-`advisor_status` via MCP returned:
-
-```json
-{
-  "status": "ok",
-  "data": {
-    "freshness": "unavailable",
-    "generation": 9476,
-    "trustState": {
-      "state": "stale",
-      "reason": "SIGTERM",
-      "generation": 9476,
-      "checkedAt": "2026-07-03T02:18:14.606Z",
-      "lastLiveAt": null
-    },
-    "lastGenerationBump": "2026-07-02T05:27:14.803Z",
-    "lastScanAt": "2026-07-02T05:27:14.803Z",
-    "skillCount": 26,
-    "laneWeights": {
-      "explicit_author": 0.42,
-      "lexical": 0.28,
-      "graph_causal": 0.13,
-      "derived_generated": 0.12,
-      "semantic_shadow": 0.05
-    }
-  }
-}
-```
-
-Step 2 could not inspect `laneBreakdown` because the `advisor_recommend` envelope did not include `laneBreakdown`; it returned `recommendations: []`, `freshness: "unavailable"`, `trustState.reason: "advisor_unavailable"`, and `warnings: ["advisor_unavailable"]`.
-
-Step 3 could not be executed because it requires injecting a fixture skill with control characters or unsafe path segments in a disposable copy, but this run's allowed write paths permit editing only `.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/sanitizer-boundaries.md` and explicitly ban modifying, creating, or deleting any other file.
-
-Step 5 could not be executed because no injected fixture could be created under the allowed write path constraint, so there was no injected fixture `graph-metadata.json.derived` block to read.
-
-### Pass/Fail
-
-BLOCKED - The advisor was unavailable (`freshness: "unavailable"`, `trustState.reason: "advisor_unavailable"`) and the malformed-fixture write required by step 3 was outside the allowed write paths for this run.
-
 ---
 
 ## 4. SOURCE FILES
 
+- Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Scenario [AI-001](../../manual-testing-playbook/auto-indexing/derived-extraction.md), derived extraction correctness.
 - Scenario [AI-005](../../manual-testing-playbook/auto-indexing/anti-stuffing.md), repetition-density and adversarial rejection.
 - Feature [`auto-indexing/sanitizer.md`](../../feature-catalog/auto-indexing/sanitizer.md).

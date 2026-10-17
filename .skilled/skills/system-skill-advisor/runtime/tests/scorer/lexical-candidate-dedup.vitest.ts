@@ -45,3 +45,18 @@ describe('lexical candidate token Set contract', () => {
     expect(duplicateScore).toBe(singleScore);
   });
 });
+
+describe('scoreTokenOverlap partial credit', () => {
+  it('does not match a prompt word buried inside a longer skill word', () => {
+    expect(scoreTokenOverlap(['list'], ['push allowlist'])).toBe(0);
+    expect(scoreTokenOverlap(['spec'], ['inspect the dom'])).toBe(0);
+  });
+
+  it('matches a prompt word that extends a skill word', () => {
+    expect(scoreTokenOverlap(['regressions'], ['regression'])).toBeCloseTo(0.15);
+  });
+
+  it('matches a skill word that extends a prompt word', () => {
+    expect(scoreTokenOverlap(['plan'], ['planning'])).toBeCloseTo(0.15);
+  });
+});

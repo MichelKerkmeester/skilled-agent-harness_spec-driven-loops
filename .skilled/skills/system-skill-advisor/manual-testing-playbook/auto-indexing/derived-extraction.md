@@ -6,7 +6,7 @@ trigger_phrases:
   - "derived extraction"
   - "deterministic n-gram"
   - "graph-metadata derived"
-version: 0.8.0.14
+version: 0.8.1.0
 id: AI-001
 category: auto_indexing
 stage: routing
@@ -38,7 +38,7 @@ Validate that derived extraction in `lib/derived/extract.ts` produces determinis
 
 ## 3. TEST EXECUTION
 
-> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred-decisions.md` §F34 for rationale.
+### Commands
 
 1. Capture pre-state of the target skill:
 
@@ -63,14 +63,24 @@ cp .skilled/skills/sk-doc/graph-metadata.json /tmp/post-derived.json
 
 5. Diff `graph-metadata.json` pre vs post and compare `SKILL.md` pre vs post.
 
-### Expected Signals
+### Expected
 
 - `graph-metadata.json.derived` section is populated with n-grams, patterns and provenance fingerprints.
 - Two consecutive touches produce identical derived output for unchanged source content (deterministic).
 - `SKILL.md` is byte-identical pre vs post (never mutated by derived extraction).
 - Extracted tokens are scoped to the configured inputs: frontmatter, body, examples, `references/**`, `assets/**`, `intent_signals`, `source_docs` and `derived.key_files`.
 
-### Failure Modes
+### Evidence
+
+- Capture each command's output and exit status.
+- Record the `graph-metadata.json.derived` entries and provenance fingerprints, output stability across repeated touches, the `SKILL.md` byte comparison, and which configured source types contributed tokens.
+
+### Pass / Fail
+
+- **Pass**: Every expected signal holds.
+- **Fail**: Any expected signal differs.
+
+### Failure Triage
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
@@ -82,6 +92,7 @@ cp .skilled/skills/sk-doc/graph-metadata.json /tmp/post-derived.json
 
 ## 4. SOURCE FILES
 
+- Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Scenario [AI-002](../../manual-testing-playbook/auto-indexing/sanitizer-boundaries.md), A7 sanitizer boundary enforcement.
 - Scenario [AI-003](../../manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md), provenance and trust lane tagging.
 - Feature [`auto-indexing/derived-extraction.md`](../../feature-catalog/auto-indexing/derived-extraction.md).

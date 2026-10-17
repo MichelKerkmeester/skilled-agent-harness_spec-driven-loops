@@ -708,11 +708,12 @@ export function isDoctorCommandTyped(promptLower: string): boolean {
   return findTypedDoctorCommandText(promptLower) !== null;
 }
 
-// Typed doctor commands place their matching passing bridge first. Otherwise, passing bridges
-// follow the second passing skill, or the only passing skill. All other recommendations keep order.
+// A typed command or matching doctor lead phrase moves its passing bridge first; otherwise passing
+// bridges follow the second passing skill or the only passing skill, and other recommendations keep order.
 export function keepPassingSkillsAboveDoctorBridges(
   ranked: readonly AdvisorScoredRecommendation[],
   promptLower: string,
+  leadPhrasesById: ReadonlyMap<string, readonly string[]> = new Map(),
 ): AdvisorScoredRecommendation[] {
   const isDoctorBridge = (recommendation: AdvisorScoredRecommendation): boolean => (
     recommendation.kind === 'command' && recommendation.skill.startsWith(DOCTOR_BRIDGE_PREFIX)
@@ -743,6 +744,21 @@ export function keepPassingSkillsAboveDoctorBridges(
       matchedBridge,
       ...ranked.slice(0, matchedBridgeIndex),
       ...ranked.slice(matchedBridgeIndex + 1),
+    ];
+  }
+
+  const leadPhraseBridgeIndex = ranked.findIndex((recommendation) => {
+    if (!isPassingDoctorBridge(recommendation)) return false;
+    return leadPhrasesById.get(recommendation.skill)?.some((phrase) => (
+      matchesPhraseBoundary(promptLower, phrase.toLowerCase())
+    )) ?? false;
+  });
+  const leadPhraseBridge = ranked[leadPhraseBridgeIndex];
+  if (leadPhraseBridge) {
+    return [
+      leadPhraseBridge,
+      ...ranked.slice(0, leadPhraseBridgeIndex),
+      ...ranked.slice(leadPhraseBridgeIndex + 1),
     ];
   }
 
@@ -1071,7 +1087,12 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
   });
 
   ranked = requireDoctorPhraseAnchor(ranked);
-  ranked = keepPassingSkillsAboveDoctorBridges(ranked, promptLower);
+  const leadPhrasesById = new Map<string, readonly string[]>();
+  for (const skill of projection.skills) {
+    if (!skill.id.startsWith(DOCTOR_BRIDGE_PREFIX) || !skill.leadPhrases?.length) continue;
+    leadPhrasesById.set(skill.id, skill.leadPhrases);
+  }
+  ranked = keepPassingSkillsAboveDoctorBridges(ranked, promptLower, leadPhrasesById);
 
   const passing = ranked.filter((recommendation) => recommendation.passes_threshold);
   const visible = options.includeAllCandidates ? ranked : passing;

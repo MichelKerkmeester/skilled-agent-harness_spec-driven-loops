@@ -50,3 +50,9 @@
 {"id":"doctor-control-14","prompt":"git rules","expected_top":"sk-git","expected_second":null,"wave":"control"}
 {"id":"doctor-control-15","prompt":"speckit doctor","expected_top":"system-spec-kit","expected_second":null,"wave":"control"}
 {"id":"doctor-none-04","prompt":"my doctor update came in","expected_top":null,"expected_second":null,"wave":"control"}
+{"id":"doctor-b-deeploop-01","prompt":"deep-research convergence drift","expected_top":"system-deep-loop","expected_second":"command-doctor-deep-loop","wave":"B-deep-loop"}
+{"id":"doctor-b-deeploop-02","prompt":"deep-review iteration graph","expected_top":"system-deep-loop","expected_second":"command-doctor-deep-loop","wave":"B-deep-loop"}
+{"id":"doctor-b-deeploop-03","prompt":"/doctor:deep-loop","expected_top":"command-doctor-deep-loop","expected_second":null,"wave":"B-deep-loop"}
+{"id":"doctor-b-mcp-01","prompt":"Code Mode broken","expected_top":"mcp-code-mode","expected_second":"command-doctor-mcp-debug","wave":"B-mcp"}
+{"id":"doctor-b-mcp-02","prompt":"reinstall Code Mode MCP","expected_top":"mcp-code-mode","expected_second":"command-doctor-mcp-install","wave":"B-mcp"}
+{"id":"doctor-b-mcp-03","prompt":"/doctor:mcp install","expected_top":"command-doctor-mcp-install","expected_second":null,"wave":"B-mcp"}

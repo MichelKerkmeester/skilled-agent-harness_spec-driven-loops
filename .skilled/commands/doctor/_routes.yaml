@@ -13,11 +13,12 @@
 # A command that owns one route needs no positional target.
 # Validated by: .skilled/commands/doctor/scripts/route-validate.sh
 # Consumed by: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs
-#   turns every route and every standalone command into one advisor command
-#   bridge, copies its trigger_phrases into the TypeScript scorer and its
-#   runnable command into the Python slash markers and the brief's lookup. A
-#   bridge routes only once scoring-compatibility.json beside the deriver
-#   activates it. Doctor dispatch itself stays argv-driven (see each router).
+#   turns every route, every standalone command and every mcp_subroutes
+#   entry into one advisor command bridge, copies its trigger_phrases into
+#   the TypeScript scorer and its runnable command into the Python slash
+#   markers and the brief's lookup. A bridge routes only once
+#   scoring-compatibility.json beside the deriver activates it. Doctor
+#   dispatch itself stays argv-driven (see each router).
 #
 # Schema (per route):
 #   command:          string — the doctor command that owns the route
@@ -31,12 +32,13 @@
 #   trigger_phrases:  list   — diagnostic routing phrases for this target, three or
 #                              more words each; the bridge deriver copies them
 #                              into the advisor (see "Consumed by" above)
+#   lead_phrases:     list   — optional subset of trigger_phrases that puts this bridge ahead of a passing skill when the prompt contains the phrase. Use it only where the doctor command must lead the skill.
 #
 # Skill-advisor recommendation tools are registered through system-skill-advisor.
 # To add a new target:
-#   1. Append the route here with its owning command and trigger_phrases of three or more words.
+#   1. Append the route here with its owning command and trigger_phrases of three or more words. Add lead_phrases only for a phrase where the doctor command must rank above a passing skill.
 #   2. List the target in that command's router and presentation, and add its row to the /doctor:setup target list in .skilled/commands/doctor/assets/doctor-setup-presentation.txt.
-#   3. To let the advisor suggest it, add its activation entry to both the "typescript" and "python" lists in .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json (a bridge without one stays inactive, like /doctor:deep-loop).
+#   3. To let the advisor suggest it, add its activation entry to both the "typescript" and "python" lists in .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json. A bridge without one stays inactive.
 #   4. Rerun node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs, then bash .skilled/commands/doctor/scripts/route-validate.sh and node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs.
 # To remove a target: delete the route AND its corresponding assets/doctor-<target>.yaml.
 # ─────────────────────────────────────────────────────────────────
@@ -76,7 +78,7 @@ routes:
       - 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}" --iteration "{latest_iteration}" --read-only'
       - 'node .skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs "{spec_folder}"  # [SOURCE:] tag resolution per lineage; writes nothing, zero model calls'
     trigger_phrases:
-      - "deep-loop coverage"
+      - "deep-loop coverage graph check"
       - "deep-loop graph empty or stale"
       - "deep-research convergence drift"
       - "deep-review iteration graph"
@@ -328,9 +330,9 @@ mcp_subroutes:
     mutating: mutates
     gate3_location: "Code Mode build output, .utcp_config.json and the runtime MCP configs"
     trigger_phrases:
-      - "MCP install"
+      - "install the MCP servers"
       - "Code Mode fresh install"
-      - "reinstall MCP"
+      - "reinstall Code Mode MCP"
 
   - sub_action: debug
     yaml: doctor-mcp-debug.yaml
@@ -339,9 +341,9 @@ mcp_subroutes:
     gate3_location: "Code Mode configuration and runtime registration repair"
     trigger_phrases:
       - "Code Mode broken"
-      - "MCP debug"
+      - "debug an MCP connection"
       - "MCP connection failure"
-      - "mcp-doctor.sh"
+      - "mcp-doctor.sh diagnostic script"
 
 # ─────────────────────────────────────────────────────────────────
 # STANDALONE COMMANDS (own routers, tracked here for visibility)
@@ -393,3 +395,5 @@ standalone:
       - "which environment variable switches are set"
       - "skilled environment switch values"
       - "environment switch inventory"
+    lead_phrases:
+      - "check my environment variables"

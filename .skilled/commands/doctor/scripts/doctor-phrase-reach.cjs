@@ -53,6 +53,7 @@ const DIST = path.join(RUNTIME, 'dist', 'runtime');
 const BUILT_SCORER = path.join(DIST, 'lib', 'scorer', 'fusion.js');
 const BUILT_WORKSPACE_ROOT = path.join(DIST, 'lib', 'utils', 'workspace-root.js');
 const DOCTOR_PREFIX = 'command-doctor-';
+const DOCTOR_MCP_COMMAND = '/doctor:mcp';
 const SENTINEL = '.skilled/skills/system-spec-kit/SKILL.md';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -131,6 +132,18 @@ function manifestBridges() {
     bridges.push({
       id,
       runnable: typeof item.runnable === 'string' && item.runnable ? item.runnable : item.command,
+      phrases: stringArray(item.trigger_phrases),
+    });
+  }
+
+  const mcpSubroutes = Array.isArray(manifest.mcp_subroutes) ? manifest.mcp_subroutes : [];
+  for (const item of mcpSubroutes) {
+    if (!item || typeof item.sub_action !== 'string' || !item.sub_action) continue;
+    const id = `${DOCTOR_PREFIX}${doctorName(DOCTOR_MCP_COMMAND)}-${item.sub_action}`;
+    if (!admitted.has(id)) continue;
+    bridges.push({
+      id,
+      runnable: `${DOCTOR_MCP_COMMAND} ${item.sub_action}`,
       phrases: stringArray(item.trigger_phrases),
     });
   }

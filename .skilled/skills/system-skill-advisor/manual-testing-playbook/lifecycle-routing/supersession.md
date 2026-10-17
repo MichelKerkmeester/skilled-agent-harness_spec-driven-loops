@@ -6,7 +6,7 @@ trigger_phrases:
   - "supersession"
   - "redirect_from redirect_to"
   - "asymmetric routing"
-version: 0.8.0.14
+version: 0.8.1.0
 id: LC-002
 category: lifecycle_routing
 stage: routing
@@ -37,7 +37,7 @@ Validate that `lib/lifecycle/supersession.ts` implements asymmetric routing: a s
 
 ## 3. TEST EXECUTION
 
-> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred-decisions.md` §F34 for rationale.
+### Commands
 
 1. Identify the superseded-successor pair from `graph-metadata.json` supersession fields.
 2. Call `advisor_recommend` with a prompt that historically mapped to the superseded skill:
@@ -56,7 +56,17 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "<prompt mapping 
 - Successor's response carries `lifecycle.redirect_from` (or equivalent) referencing the superseded skill.
 - Redirect is asymmetric: the successor does not redirect back to the superseded skill.
 
-### Failure Modes
+### Evidence
+
+- Capture the output and exit status from both advisor_recommend calls.
+- Record the superseded-successor pair, the top recommendation, lifecycle.redirect_to, lifecycle.redirect_from and whether the successor redirects back.
+
+### Pass / Fail
+
+- **Pass**: Every expected signal holds.
+- **Fail**: Any expected signal differs.
+
+### Failure Triage
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
@@ -68,6 +78,7 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "<prompt mapping 
 
 ## 4. SOURCE FILES
 
+- Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Scenario [NC-005](../../manual-testing-playbook/native-cli-tools/lifecycle-redirect-metadata.md), native redirect metadata.
 - Scenario [LC-005](../../manual-testing-playbook/lifecycle-routing/rollback-lifecycle.md), lifecycle-level rollback.
 - Feature [`lifecycle-routing/supersession.md`](../../feature-catalog/lifecycle-routing/supersession.md).
@@ -81,177 +92,3 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "<prompt mapping 
 - Playbook ID: LC-002
 - Canonical root source: manual-testing-playbook.md
 - Feature file path: lifecycle-routing/supersession.md
-
----
-
-## 6. EVIDENCE
-
-Precondition check for a superseded-successor pair in skill `graph-metadata.json` files:
-
-```text
-grep pattern: "supersession|redirect_to|redirect_from|superseded|successor"
-path: <repo-root>/.skilled/skills
-include: graph-metadata.json
-
-No files found
-```
-
-More specific metadata-field check:
-
-```text
-grep pattern: "\"lifecycle_status\"|\"redirect_to\"|\"redirect_from\"|\"skill_id\""
-path: <repo-root>/.skilled/skills
-include: *graph-metadata.json
-
-Found 20 matches
-<repo-root>/.skilled/skills/mcp-chrome-devtools/graph-metadata.json:
-  Line 3:   "skill_id": "mcp-chrome-devtools",
-
-
-<repo-root>/.skilled/skills/sk-git/graph-metadata.json:
-  Line 3:   "skill_id": "sk-git",
-
-
-<repo-root>/.skilled/skills/cli-opencode/graph-metadata.json:
-  Line 3:   "skill_id": "cli-opencode",
-
-
-<repo-root>/.skilled/skills/z_archive/cli-codex-retired/graph-metadata.json:
-  Line 3:   "skill_id": "cli-codex",
-
-
-.skilled/skills/sk-design/graph-metadata.json:
-  Line 3:   "skill_id": "sk-design",
-
-
-<repo-root>/.skilled/skills/mcp-code-mode/graph-metadata.json:
-  Line 3:   "skill_id": "mcp-code-mode",
-
-
-<repo-root>/.skilled/skills/system-spec-kit/graph-metadata.json:
-  Line 3:   "skill_id": "system-spec-kit",
-
-
-<repo-root>/.skilled/skills/cli-claude-code/graph-metadata.json:
-  Line 3:   "skill_id": "cli-claude-code",
-
-
-<repo-root>/.skilled/skills/mcp-click-up/graph-metadata.json:
-  Line 3:   "skill_id": "mcp-click-up",
-
-
-<repo-root>/.skilled/skills/sk-doc/graph-metadata.json:
-  Line 3:   "skill_id": "sk-doc",
-
-
-<repo-root>/.skilled/skills/sk-prompt/graph-metadata.json:
-  Line 3:   "skill_id": "sk-prompt",
-
-
-<repo-root>/.skilled/skills/mcp-figma/graph-metadata.json:
-  Line 3:   "skill_id": "mcp-figma",
-
-
-<repo-root>/.skilled/skills/system-deep-loop/runtime/graph-metadata.json:
-  Line 4:   "skill_id": "deep-loop-runtime",
-
-
-
-
-<repo-root>/.skilled/skills/sk-code/sk-code-review/graph-metadata.json:
-  Line 3:   "skill_id": "sk-code-review",
-
-
-<repo-root>/.skilled/skills/sk-prompt-models/graph-metadata.json:
-  Line 3:   "skill_id": "sk-prompt-models",
-
-
-<repo-root>/.skilled/skills/sk-design/graph-metadata.json:
-  Line 3:   "skill_id": "sk-design",
-
-
-<repo-root>/.skilled/skills/sk-code/graph-metadata.json:
-  Line 3:   "skill_id": "sk-code",
-
-
-<repo-root>/.skilled/skills/system-skill-advisor/graph-metadata.json:
-  Line 3:   "skill_id": "system-skill-advisor",
-
-
-<repo-root>/.skilled/skills/system-deep-loop/graph-metadata.json:
-  Line 4:   "skill_id": "system-deep-loop",
-```
-
-MCP advisor recommendation call made during routing/precondition validation:
-
-```json
-{
-  "status": "ok",
-  "data": {
-    "workspaceRoot": "<repo-root>",
-    "effectiveThresholds": {
-      "confidenceThreshold": 0.8,
-      "uncertaintyThreshold": 0.35,
-      "confidenceOnly": false
-    },
-    "recommendations": [],
-    "ambiguous": false,
-    "freshness": "unavailable",
-    "trustState": {
-      "state": "unavailable",
-      "reason": "advisor_unavailable",
-      "generation": 9476,
-      "checkedAt": "2026-07-03T02:31:01.835Z",
-      "lastLiveAt": null
-    },
-    "generatedAt": "2026-07-03T02:31:01.835Z",
-    "cache": {
-      "hit": false,
-      "sourceSignaturePresent": false
-    },
-    "warnings": [
-      "advisor_unavailable"
-    ],
-    "abstainReasons": [
-      "Skill advisor freshness is unavailable; returning fail-open empty recommendations."
-    ]
-  }
-}
-```
-
-Direct MCP advisor status:
-
-```json
-{
-  "status": "ok",
-  "data": {
-    "freshness": "unavailable",
-    "generation": 9476,
-    "trustState": {
-      "state": "stale",
-      "reason": "SIGTERM",
-      "generation": 9476,
-      "checkedAt": "2026-07-03T02:32:16.354Z",
-      "lastLiveAt": null
-    },
-    "lastGenerationBump": "2026-07-02T05:27:14.803Z",
-    "lastScanAt": "2026-07-02T05:27:14.803Z",
-    "skillCount": 26,
-    "laneWeights": {
-      "explicit_author": 0.42,
-      "lexical": 0.28,
-      "graph_causal": 0.13,
-      "derived_generated": 0.12,
-      "semantic_shadow": 0.05
-    }
-  }
-}
-```
-
-Blocked before scenario recommendation calls because step 1 could not identify a superseded-successor pair from `graph-metadata.json` supersession fields, and the daemon precondition was not met (`freshness: "unavailable"`, `trustState.reason: "SIGTERM"`).
-
----
-
-## 7. PASS/FAIL
-
-BLOCKED - Missing preconditions: no `graph-metadata.json` supersession fields identifying a superseded-successor pair were present, and the advisor daemon was not reachable/fresh (`advisor_unavailable`, `SIGTERM`).

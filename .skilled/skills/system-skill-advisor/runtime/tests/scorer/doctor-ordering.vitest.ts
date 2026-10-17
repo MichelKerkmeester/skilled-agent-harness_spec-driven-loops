@@ -30,6 +30,10 @@ describe('isDoctorCommandTyped', () => {
 
 // A typed doctor command moves its matching passing bridge ahead of passing skills.
 describe('doctor bridge ordering', () => {
+  const leadPhrasesById = new Map<string, readonly string[]>([
+    ['command-doctor-env', ['check my environment variables']],
+  ]);
+
   it('moves a doctor bridge below the passing skill', () => {
     const ranked = [
       rec('command-doctor-git-setup', 'command', true),
@@ -81,6 +85,74 @@ describe('doctor bridge ordering', () => {
       'sk-git',
       'command-doctor-setup',
       'sk-doc',
+    ]);
+  });
+
+  it('moves a matching lead-phrase bridge ahead of a passing skill', () => {
+    const ranked = [
+      rec('sk-env', 'skill', true),
+      rec('command-doctor-env', 'command', true),
+    ];
+
+    const result = keepPassingSkillsAboveDoctorBridges(
+      ranked,
+      'check my environment variables',
+      leadPhrasesById,
+    );
+
+    expect(result.map((recommendation) => recommendation.skill)).toEqual([
+      'command-doctor-env',
+      'sk-env',
+    ]);
+  });
+
+  it('keeps the skill-first order when no lead-phrase map is passed', () => {
+    const ranked = [
+      rec('sk-env', 'skill', true),
+      rec('command-doctor-env', 'command', true),
+    ];
+
+    const result = keepPassingSkillsAboveDoctorBridges(ranked, 'check my environment variables');
+
+    expect(result.map((recommendation) => recommendation.skill)).toEqual([
+      'sk-env',
+      'command-doctor-env',
+    ]);
+  });
+
+  it('does not match a partial lead phrase', () => {
+    const ranked = [
+      rec('sk-env', 'skill', true),
+      rec('command-doctor-env', 'command', true),
+    ];
+
+    const result = keepPassingSkillsAboveDoctorBridges(
+      ranked,
+      'environment variables',
+      leadPhrasesById,
+    );
+
+    expect(result.map((recommendation) => recommendation.skill)).toEqual([
+      'sk-env',
+      'command-doctor-env',
+    ]);
+  });
+
+  it('does not promote a non-passing lead-phrase bridge', () => {
+    const ranked = [
+      rec('sk-env', 'skill', true),
+      rec('command-doctor-env', 'command', false),
+    ];
+
+    const result = keepPassingSkillsAboveDoctorBridges(
+      ranked,
+      'check my environment variables',
+      leadPhrasesById,
+    );
+
+    expect(result.map((recommendation) => recommendation.skill)).toEqual([
+      'sk-env',
+      'command-doctor-env',
     ]);
   });
 

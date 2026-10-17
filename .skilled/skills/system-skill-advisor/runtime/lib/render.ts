@@ -116,6 +116,8 @@ const DOCTOR_COMMAND_STRINGS: Readonly<Record<string, string>> = Object.freeze({
   'command-doctor-git-hooks': '/doctor:git hooks',
   'command-doctor-git-setup': '/doctor:git setup',
   'command-doctor-git-standards': '/doctor:git standards',
+  'command-doctor-mcp-debug': '/doctor:mcp debug',
+  'command-doctor-mcp-install': '/doctor:mcp install',
   'command-doctor-runtime-mirrors': '/doctor:runtime-mirrors',
   'command-doctor-setup': '/doctor:setup',
   'command-doctor-sk-code': '/doctor:sk-code',

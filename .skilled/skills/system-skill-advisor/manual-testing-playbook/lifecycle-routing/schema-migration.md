@@ -6,7 +6,7 @@ trigger_phrases:
   - "schema migration"
   - "v1 to v2 backfill"
   - "additive migration"
-version: 0.8.0.15
+version: 0.8.1.0
 id: LC-004
 category: lifecycle_routing
 stage: routing
@@ -37,7 +37,7 @@ Validate that `lib/lifecycle/schema-migration.ts` performs additive backfill fro
 
 ## 3. TEST EXECUTION
 
-> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred-decisions.md` §F34 for rationale.
+### Commands
 
 1. Snapshot the v1 state:
 
@@ -61,7 +61,17 @@ node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/path-to
 - `schemaVersion` (or equivalent) reports v2 after migration and v1 after rollback.
 - No migration errors in logs.
 
-### Failure Modes
+### Evidence
+
+- Capture the output and exit status from the v1 snapshot copy and advisor_status commands.
+- Save the v1 snapshot and post-migration and post-rollback states. Record retained v1 fields, new v2 fields, schemaVersion and migration log output.
+
+### Pass / Fail
+
+- **Pass**: Every expected signal holds.
+- **Fail**: Any expected signal differs.
+
+### Failure Triage
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
@@ -73,6 +83,7 @@ node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/path-to
 
 ## 4. SOURCE FILES
 
+- Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Scenario [LC-005](../../manual-testing-playbook/lifecycle-routing/rollback-lifecycle.md), lifecycle rollback.
 - Scenario [AU-005](../../manual-testing-playbook/auto-update-daemon/rebuild-from-source.md), rebuild-from-source.
 - Feature [`lifecycle-routing/schema-migration.md`](../../feature-catalog/lifecycle-routing/schema-migration.md).

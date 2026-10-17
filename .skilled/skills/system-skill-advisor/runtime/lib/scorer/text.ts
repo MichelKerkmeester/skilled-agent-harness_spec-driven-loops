@@ -91,7 +91,9 @@ export function scoreTokenOverlap(
       continue;
     }
     for (const candidate of candidateTokens) {
-      if (token.length >= 4 && candidate.length >= 4 && (token.includes(candidate) || candidate.includes(token))) {
+      // A short prompt word inside or at the end of "allowlist" ("list") names a different concept.
+      // A prompt extension ("regressions") or skill extension ("plan" -> "planning") stays related.
+      if (token.length >= 4 && candidate.length >= 4 && (token.includes(candidate) || candidate.startsWith(token))) {
         hits += 0.45;
         break;
       }

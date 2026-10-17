@@ -68,7 +68,7 @@
     "commit ordinal",
     "stamp commit id",
     "pre-push hook",
-    "push",
+    "push allowlist",
     "hook trust",
     "hook gates",
     "cherry pick",
