@@ -6,7 +6,7 @@ trigger_phrases:
   - "a7 sanitizer"
   - "sanitizeSkillLabel"
   - "write boundary sanitization"
-version: 0.8.1.0
+version: 0.8.2.0
 id: AI-002
 category: auto_indexing
 stage: routing
@@ -83,7 +83,7 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "save this conver
 - Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Scenario [AI-001](../../manual-testing-playbook/auto-indexing/derived-extraction.md), derived extraction correctness.
 - Scenario [AI-005](../../manual-testing-playbook/auto-indexing/anti-stuffing.md), repetition-density and adversarial rejection.
-- Feature [`auto-indexing/sanitizer.md`](../../feature-catalog/auto-indexing/sanitizer.md).
+- Feature [`feature-catalog/auto-indexing/sanitizer.md`](../../feature-catalog/auto-indexing/sanitizer.md).
 - Source: `.skilled/skills/system-skill-advisor/runtime/lib/derived/sanitizer.ts`.
 
 ---

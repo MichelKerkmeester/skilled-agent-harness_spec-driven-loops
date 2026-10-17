@@ -6,7 +6,7 @@ trigger_phrases:
   - "generation counter"
   - "snapshot publication"
   - "reindex commit"
-version: 0.8.1.0
+version: 0.8.2.0
 id: AU-004
 category: auto_update_daemon
 stage: routing
@@ -98,7 +98,7 @@ node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/pa
 - Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Scenario [AU-001](../../manual-testing-playbook/auto-update-daemon/watcher-narrow-scope.md), watcher scope.
 - Scenario [AU-005](../../manual-testing-playbook/auto-update-daemon/rebuild-from-source.md), recovery when snapshot unreadable.
-- Feature [`daemon-and-freshness/generation.md`](../../feature-catalog/daemon-and-freshness/generation.md).
+- Feature [`feature-catalog/daemon-and-freshness/generation.md`](../../feature-catalog/daemon-and-freshness/generation.md).
 - Source: `.skilled/skills/system-skill-advisor/runtime/lib/freshness/generation.ts`.
 
 ---

@@ -6,7 +6,7 @@ trigger_phrases:
   - "doc harvest smoke"
   - "matchedDocs validation"
   - "doc trigger flag"
-version: 0.8.1.0
+version: 0.8.2.0
 id: AI-006
 category: auto_indexing
 stage: routing
@@ -78,8 +78,8 @@ sqlite3 .skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite
 | Symptom | Detection | Action |
 | --- | --- | --- |
 | Scan shows no `docs` counters with flag set in configs | `skill_docs` has 0 rows | Daemon child never received the flag: verify `CHILD_ENV_ALLOWLIST` in `system-skill-advisor-launcher.cjs` and respawn via fresh session. |
-| `matchedDocs` missing while harvest counters look right | Evidence shows no `doc:` entries | Inspect projection flag gate and `lanes/derived.ts` scoring. |
-| Doc-heavy skill outranks curated matches | doc evidence dominates attribution | Audit top-3/tier-weight/0.45-cap constants in `lanes/derived.ts`. |
+| `matchedDocs` missing while harvest counters look right | Evidence shows no `doc:` entries | Inspect projection flag gate and `runtime/lib/scorer/lanes/derived.ts` scoring. |
+| Doc-heavy skill outranks curated matches | doc evidence dominates attribution | Audit top-3/tier-weight/0.45-cap constants in `runtime/lib/scorer/lanes/derived.ts`. |
 | Skill docs appear in spec-doc retrieval results | the trigger index lookup returns skill paths | Block release. That boundary is an operator directive. |
 
 ---

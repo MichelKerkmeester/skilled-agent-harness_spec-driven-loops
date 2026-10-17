@@ -6,7 +6,7 @@ trigger_phrases:
   - "shadow delta sink"
   - "shadow delta opt-in"
   - "advisor shadow recording"
-version: 0.8.1.0
+version: 0.8.2.0
 id: NC-010
 category: native_cli_tools
 stage: routing
@@ -32,7 +32,7 @@ Validate that `advisor_recommend` keeps shadow-delta comparison response-visible
 - Repo root is the working directory.
 - Advisor runtime built. Daemon reachable.
 - `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` unset.
-- Use a disposable workspace copy or a scratch sink path so the live `runtime/data/shadow-deltas.jsonl` file is not mutated.
+- Use a disposable workspace copy or a scratch sink path so the live `shadow-deltas.jsonl` sink, which the advisor writes under `runtime/data/` at run time, is not mutated.
 
 ---
 
@@ -95,7 +95,7 @@ cd .skilled/skills/system-skill-advisor/runtime && npm exec -- vitest run tests/
 - Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - `.skilled/skills/system-skill-advisor/runtime/lib/shadow/shadow-sink.ts`
 - `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`
-- Feature [`cli-surface/advisor-recommend.md`](../../feature-catalog/cli-surface/advisor-recommend.md).
+- Feature [`feature-catalog/cli-surface/advisor-recommend.md`](../../feature-catalog/cli-surface/advisor-recommend.md).
 
 ---
 

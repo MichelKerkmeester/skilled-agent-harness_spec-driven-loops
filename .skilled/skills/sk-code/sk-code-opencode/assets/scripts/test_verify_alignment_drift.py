@@ -391,6 +391,26 @@ class VerifyAlignmentDriftTests(unittest.TestCase):
             self.assertIn("src/evidence/run.sh", result.stdout)
             self.assertNotIn("specs/demo", result.stdout)
 
+    def test_skips_spec_scratch_and_archive_trees(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            spec_scratch = root / "specs" / "demo" / "001-x" / "scratch" / "run.sh"
+            spec_archive = root / "specs" / "z_archive" / "old" / "run.sh"
+            nested_archive = root / "specs" / "demo" / "z_archive" / "002-y" / "tool.sh"
+            shipped_scratch = root / "src" / "scratch" / "run.sh"
+            for file_path in (spec_scratch, spec_archive, nested_archive, shipped_scratch):
+                self.write_file(file_path, "echo hi\n")
+
+            discovered = list(self.module.iter_code_files([str(root)]))
+            for file_path in (spec_scratch, spec_archive, nested_archive):
+                self.assertNotIn(str(file_path.resolve()), discovered)
+            self.assertIn(str(shipped_scratch.resolve()), discovered)
+
+            result = self.run_cli(root, ["--fail-on-warn"])
+            self.assertEqual(1, result.returncode)
+            self.assertIn("src/scratch/run.sh", result.stdout)
+            self.assertNotIn("specs/", result.stdout)
+
 
 if __name__ == "__main__":
     unittest.main()

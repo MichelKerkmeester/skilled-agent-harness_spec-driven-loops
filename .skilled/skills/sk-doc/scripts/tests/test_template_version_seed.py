@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Every sk-doc doc template seeds `version: 1.0.0.0` on the skill docs it creates.
 
 Two kinds of template create skill docs: init_skill.py renders the scaffolds into a

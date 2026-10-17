@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/033-git-setup-customization/011-remaining-limits",
+  "spec_folder": "sk-git/033-git-setup-customization/011-remaining-limits",
+  "parent_id": "sk-git/033-git-setup-customization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "remaining limits",
+      "phase 11 remaining limits",
+      "remaining limits plan",
+      "remaining limits tasks",
+      "remaining limits implementation summary"
+    ],
+    "key_topics": [
+      "remaining",
+      "limits",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "doctor",
+      "git",
+      "setup",
+      "battery",
+      "reads"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py",
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py",
+      ".skilled/skills/mcp-code-mode/mcp-server/scripts/check-node.cjs",
+      ".skilled/skills/sk-design/shared/scripts/render-screenshots.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs",
+      ".skilled/skills/sk-doc/scripts/validate-doc-model-refs.js",
+      ".skilled/skills/sk-doc/scripts/tests/test_template_version_seed.py",
+      ".skilled/skills/sk-vision/hooks/opencode/sk-vision.js",
+      ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/single-writer-lease-stress.vitest.ts",
+      "specs/sk-git/033-git-setup-customization/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify_alignment_drift.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_verify_alignment_drift.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py",
+        "source": "derived"
+      },
+      {
+        "name": "check-node.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/mcp-code-mode/mcp-server/scripts/check-node.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "render-screenshots.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-design/shared/scripts/render-screenshots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "generate-router-intent-signals.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate-doc-model-refs.js",
+        "kind": "code",
+        "path": ".skilled/skills/sk-doc/scripts/validate-doc-model-refs.js",
+        "source": "derived"
+      },
+      {
+        "name": "test_template_version_seed.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_template_version_seed.py",
+        "source": "derived"
+      },
+      {
+        "name": "sk-vision.js",
+        "kind": "code",
+        "path": ".skilled/skills/sk-vision/hooks/opencode/sk-vision.js",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "single-writer-lease-stress.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/single-writer-lease-stress.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `/doctor:git setup` battery reads only an inline default export, so an OpenCode or Pi adapter written as `export default plugin;` reads as unregistered even when `plugin` registers the advisory",
+    "created_at": "2026-10-17T11:59:09Z",
+    "last_save_at": "2026-10-17T13:00:46.523Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:877bae4e2c4883d3fd28c7d04183f802ea54aa5684ec0983759d85c96bcc1f42",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3ec68d3b8fa00d08e3c00a3accec987b599688bf4f5cdce4f4a458fb6856571d",
+      "plan.md": "f6eb4f0d11dafa7e5b29e9575f3abc69f8e7e703dd5def5994b92e94dfabe3a5",
+      "tasks.md": "83e4472e8ad2d6fff0d1dba4c2ec64ddb84c2bb8d62f7961d710e1656c5c700d",
+      "implementation-summary.md": "937776cea84f710707af8a24d2b911efff859ac5bb47ee50f2b9e9c532f1ec43"
+    },
+    "last_active_at": null
+  }
+}

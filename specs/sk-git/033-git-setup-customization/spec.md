@@ -107,6 +107,7 @@ Give users a doctor-style setup check, `/doctor:git setup`, that reports one row
 | 8 | 008-out-of-scope-cleanup/ | Fix the four issues phase 7 found outside its scope: drift guard evidence skip, phrase-reach test, Hermes header semicolons, sk-create-command gate position | Complete |
 | 9 | 009-second-review-remediation/ | [Phase 9 scope] | Pending |
 | 10 | 010-open-ends-cleanup/ | Close four open ends from the doctor releases: the adapter binding check, the hub check on sk-prompt, the synthesis count check and the Human Voice blockers | Complete |
+| 11 | 011-remaining-limits/ | Close four limits left after phase 10: the identifier default export in the adapter check, the drift warnings from spec scratch, the advisor playbook warnings and the lease stress budget | Complete |
 
 ### Phase Transition Rules
 
@@ -128,6 +129,7 @@ Give users a doctor-style setup check, `/doctor:git setup`, that reports one row
 | 007-review-remediation | 008-out-of-scope-cleanup | Phase 7 records the four issues it left out of scope | `007-review-remediation/implementation-summary.md` known limitations |
 | 008-out-of-scope-cleanup | 009-second-review-remediation | [Criteria TBD] | [Verification TBD] |
 | 009-second-review-remediation | 010-open-ends-cleanup | Phase 9 records the four open ends it left | `010-open-ends-cleanup/plan.md` section 3 |
+| 010-open-ends-cleanup | 011-remaining-limits | Phase 10 records the adapter export limit it left | `010-open-ends-cleanup/implementation-summary.md` known limitations |
 <!-- /ANCHOR:phase-map -->
 
 ---

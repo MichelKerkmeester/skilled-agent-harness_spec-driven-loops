@@ -1275,6 +1275,143 @@ test('opencode concise arrows and pi default functions register supported handle
   }
 });
 
+function assertAdapterBindingResult(t, tool, file, body, expectedResult) {
+  const f = fixture(t);
+  const target = path.join(f.repo, file);
+  fs.mkdirSync(path.dirname(target), { recursive: true });
+  fs.writeFileSync(target, body);
+
+  const importMatch = body.match(
+    /(?:\bfrom\s*|\bimport\s*\(\s*|\brequire\s*\(\s*)['"]([^'"]*git-rule-checks\.mjs)['"]/,
+  );
+  assert.ok(importMatch, `${tool}: the adapter must import git-rule-checks.mjs`);
+  const importedFile = path.resolve(path.dirname(target), importMatch[1]);
+  fs.mkdirSync(path.dirname(importedFile), { recursive: true });
+  fs.writeFileSync(importedFile, '');
+
+  const row = rowOf(reportOf(f.run(['--tool', tool, '--json'])), 'ai-tool-hooks');
+  assert.equal(row.result, expectedResult, `${tool}: ${row.details.join(' | ')}`);
+  if (expectedResult === 'PASS') {
+    assert.ok(
+      row.details.includes(`${tool} (active): registered (${file})`),
+      `${tool}: ${row.details.join(' | ')}`,
+    );
+  } else {
+    assert.ok(
+      row.details.some((detail) => detail.startsWith(`${tool} (active): ${file} does not register`)),
+      `${tool}: ${row.details.join(' | ')}`,
+    );
+  }
+}
+
+test('OpenCode and Pi resolve exported top-level function declarations', (t) => {
+  const importLine = "import { GIT_CHECKS } from '../lib/git-rule-checks.mjs';\n";
+  assertAdapterBindingResult(
+    t,
+    'opencode',
+    '.opencode/plugins/sk-git-preflight-advisory.js',
+    importLine
+      + "async function plugin(ctx) { return { async 'tool.execute.before'(input) {} }; }\n"
+      + 'export default plugin;\n',
+    'PASS',
+  );
+  assertAdapterBindingResult(
+    t,
+    'pi',
+    '.pi/extensions/git-preflight-advisory.ts',
+    importLine + "function ext(pi) { pi.on('tool_call', async (event) => {}); }\nexport default ext;\n",
+    'PASS',
+  );
+});
+
+test('OpenCode and Pi resolve exported top-level function expressions', (t) => {
+  const importLine = "import { GIT_CHECKS } from '../lib/git-rule-checks.mjs';\n";
+  assertAdapterBindingResult(
+    t,
+    'opencode',
+    '.opencode/plugins/sk-git-preflight-advisory.js',
+    importLine
+      + "const plugin = async function (ctx) { return { 'tool.execute.before': async (input) => {} }; };\n"
+      + 'export default plugin;\n',
+    'PASS',
+  );
+  assertAdapterBindingResult(
+    t,
+    'pi',
+    '.pi/extensions/git-preflight-advisory.ts',
+    importLine + "let ext = function (pi) { pi.on('tool_call', async (event) => {}); };\nexport default ext\n",
+    'PASS',
+  );
+});
+
+test('OpenCode and Pi resolve exported top-level arrows', (t) => {
+  const importLine = "import { GIT_CHECKS } from '../lib/git-rule-checks.mjs';\n";
+  assertAdapterBindingResult(
+    t,
+    'opencode',
+    '.opencode/plugins/sk-git-preflight-advisory.js',
+    importLine + "let plugin = async (ctx) => ({ async 'tool.execute.before'(input) {} });\nexport default plugin;\n",
+    'PASS',
+  );
+  assertAdapterBindingResult(
+    t,
+    'pi',
+    '.pi/extensions/git-preflight-advisory.ts',
+    importLine + "var ext = (pi: ExtensionAPI) => { pi.on('tool_call', async (event) => {}); };\nexport default ext;\n",
+    'PASS',
+  );
+});
+
+test('OpenCode resolves an exported top-level object literal', (t) => {
+  const body = "import { GIT_CHECKS } from '../lib/git-rule-checks.mjs';\n"
+    + "const plugin = { async 'tool.execute.before'(input) {} };\nexport default plugin;\n";
+  assertAdapterBindingResult(
+    t,
+    'opencode',
+    '.opencode/plugins/sk-git-preflight-advisory.js',
+    body,
+    'PASS',
+  );
+});
+
+test('OpenCode and Pi reject default bindings without a supported top-level handler', (t) => {
+  const importLine = "import { GIT_CHECKS } from '../lib/git-rule-checks.mjs';\n";
+  const cases = [
+    [
+      'opencode',
+      '.opencode/plugins/sk-git-preflight-advisory.js',
+      importLine + "const plugin = async (ctx) => ({ other: true });\nexport default plugin;\n",
+    ],
+    [
+      'pi',
+      '.pi/extensions/git-preflight-advisory.ts',
+      importLine + "function ext(pi) { pi.on('tool_result', async () => {}); }\nexport default ext;\n",
+    ],
+    [
+      'pi',
+      '.pi/extensions/git-preflight-advisory.ts',
+      importLine + "const ext = { tool_call: async () => {} };\nexport default ext;\n",
+    ],
+    [
+      'opencode',
+      '.opencode/plugins/sk-git-preflight-advisory.js',
+      importLine
+        + "function wrap() { const plugin = { async 'tool.execute.before'() {} }; return plugin; }\n"
+        + 'const plugin = {};\n'
+        + 'export default plugin;\n',
+    ],
+    [
+      'opencode',
+      '.opencode/plugins/sk-git-preflight-advisory.js',
+      importLine + "import plugin from './other.js';\nexport default plugin;\n",
+    ],
+  ];
+
+  for (const [tool, file, body] of cases) {
+    assertAdapterBindingResult(t, tool, file, body, 'FAIL');
+  }
+});
+
 test('opencode and pi fail an adapter that names the tokens without registering a handler', (t) => {
   const cases = [
     ['opencode', '.opencode/plugins/sk-git-preflight-advisory.js', "// Registers 'tool.execute.before' through git-rule-checks.mjs.\nexport default {};\n"],

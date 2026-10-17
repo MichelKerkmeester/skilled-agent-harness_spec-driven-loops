@@ -6,7 +6,7 @@ trigger_phrases:
   - "force-native flag"
   - "force-local flag"
   - "compat force toggles"
-version: 0.8.1.0
+version: 0.8.2.0
 id: PC-002
 category: python_compat
 stage: routing
@@ -89,7 +89,7 @@ SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 python3 .skilled/skills/system-skill-advis
 - Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Scenario [CP-002](../../manual-testing-playbook/compat-and-disable/force-local-force-native.md), original toggles scenario.
 - Scenario [PC-003](../../manual-testing-playbook/python-compat/threshold-flag.md), threshold flag.
-- Feature [`python-compat/cli-shim.md`](../../feature-catalog/python-compat/cli-shim.md).
+- Feature [`feature-catalog/python-compat/cli-shim.md`](../../feature-catalog/python-compat/cli-shim.md).
 - Source: `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` and `scripts/skill_advisor_runtime.py`.
 
 ---

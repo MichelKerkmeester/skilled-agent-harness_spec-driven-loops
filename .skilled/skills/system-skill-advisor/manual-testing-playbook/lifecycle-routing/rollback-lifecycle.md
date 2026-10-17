@@ -6,7 +6,7 @@ trigger_phrases:
   - "lifecycle rollback"
   - "atomic rollback"
   - "lifecycle revert"
-version: 0.8.1.0
+version: 0.8.2.0
 id: LC-005
 category: lifecycle_routing
 stage: routing
@@ -78,7 +78,7 @@ Validate that `lib/lifecycle/rollback.ts` can revert lifecycle changes (superses
 
 - Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Scenario [LC-004](../../manual-testing-playbook/lifecycle-routing/schema-migration.md), schema migration rollback.
-- Feature [`lifecycle-routing/rollback.md`](../../feature-catalog/lifecycle-routing/rollback.md).
+- Feature [`feature-catalog/lifecycle-routing/rollback.md`](../../feature-catalog/lifecycle-routing/rollback.md).
 - Source: `.skilled/skills/system-skill-advisor/runtime/lib/lifecycle/rollback.ts`.
 
 ---

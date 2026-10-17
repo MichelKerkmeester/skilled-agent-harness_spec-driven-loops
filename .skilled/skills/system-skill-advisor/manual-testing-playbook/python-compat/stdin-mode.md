@@ -6,7 +6,7 @@ trigger_phrases:
   - "python shim stdin"
   - "skill_advisor.py stdin"
   - "compat shim stdin"
-version: 0.8.1.0
+version: 0.8.2.0
 id: PC-001
 category: python_compat
 stage: routing
@@ -80,7 +80,7 @@ printf '%s' "save this conversation context to memory" | python3 .skilled/skills
 - Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Scenario [CP-001](../../manual-testing-playbook/compat-and-disable/python-shim-stdin.md), original shim stdin scenario.
 - Scenario [PC-002](../../manual-testing-playbook/python-compat/force-native-force-local.md), force toggles.
-- Feature [`python-compat/cli-shim.md`](../../feature-catalog/python-compat/cli-shim.md).
+- Feature [`feature-catalog/python-compat/cli-shim.md`](../../feature-catalog/python-compat/cli-shim.md).
 - Source: `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`.
 
 ---

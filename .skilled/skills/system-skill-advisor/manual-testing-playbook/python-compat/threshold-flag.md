@@ -6,7 +6,7 @@ trigger_phrases:
   - "threshold flag"
   - "confidence cutoff shim"
   - "dual threshold shim"
-version: 0.8.1.0
+version: 0.8.2.0
 id: PC-003
 category: python_compat
 stage: routing
@@ -91,7 +91,7 @@ python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "r
 - Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Scenario [PC-002](../../manual-testing-playbook/python-compat/force-native-force-local.md), force toggles.
 - Scenario [PC-004](../../manual-testing-playbook/python-compat/regression-suite.md), regression suite coverage of threshold behavior.
-- Feature [`python-compat/cli-shim.md`](../../feature-catalog/python-compat/cli-shim.md).
+- Feature [`feature-catalog/python-compat/cli-shim.md`](../../feature-catalog/python-compat/cli-shim.md).
 - Source: `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`.
 
 ---

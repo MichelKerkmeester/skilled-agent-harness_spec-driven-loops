@@ -66,14 +66,17 @@ EXCLUDED_DIRS = {
 
 
 def is_unscanned_record_path(path: str) -> bool:
-    """Whether `path` sits under a recorded-evidence or shaped-fixture directory.
+    """Whether `path` sits under a spec-record or shaped-fixture directory.
 
-    An evidence folder inside a spec packet holds the scripts a packet ran to
-    prove a result; rewriting them to house style would change what was
-    recorded. A directory named `fixture` or ending in `-fixture` holds
-    deliberately shaped input for experiments. Only directory names count,
-    never the file name, and an `evidence` folder outside `specs/` is shipped
-    source that still gets scanned.
+    Inside `specs/`, an `evidence` folder holds the scripts a packet ran to
+    prove a result, and rewriting them to house style would change what was
+    recorded. A `scratch` folder holds a packet's throwaway working
+    files, so those files are not shipped source. A `z_archive` folder holds
+    retired packets, so its files are not shipped source. A directory named
+    `fixture` or ending in `-fixture` holds deliberately shaped input for
+    experiments. Only directory names count, never the file name. Outside
+    `specs/`, `evidence`, `scratch` and `z_archive` are shipped source that
+    still gets scanned.
     """
     parts = [part.lower() for part in path.replace("\\", "/").split("/") if part]
     dirs = parts[:-1]
@@ -81,7 +84,7 @@ def is_unscanned_record_path(path: str) -> bool:
         return True
     if "specs" in dirs:
         after_specs = dirs[dirs.index("specs") + 1:]
-        if "evidence" in after_specs:
+        if any(name in after_specs for name in ("evidence", "scratch", "z_archive")):
             return True
     return False
 

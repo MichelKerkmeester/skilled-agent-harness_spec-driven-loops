@@ -5,6 +5,8 @@
 // Enforces the doc-implementation cross-checking mandate.
 // Detects doc drift where markdown cites a non-canonical model name as default.
 
+'use strict';
+
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';

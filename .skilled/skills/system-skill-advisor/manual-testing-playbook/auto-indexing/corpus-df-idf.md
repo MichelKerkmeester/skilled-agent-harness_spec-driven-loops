@@ -6,7 +6,7 @@ trigger_phrases:
   - "df-idf corpus"
   - "active corpus stats"
   - "idf debounce"
-version: 0.8.1.0
+version: 0.8.2.0
 id: AI-004
 category: auto_indexing
 stage: routing
@@ -83,7 +83,7 @@ touch .skilled/skills/system-spec-kit/SKILL.md
 - Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Scenario [LC-003](../../manual-testing-playbook/lifecycle-routing/archive-handling.md), archive indexing but not routing.
 - Scenario [SC-002](../scorer-fusion/projection.md), projection input for scorer.
-- Feature [`auto-indexing/df-idf-corpus.md`](../../feature-catalog/auto-indexing/df-idf-corpus.md).
+- Feature [`feature-catalog/auto-indexing/df-idf-corpus.md`](../../feature-catalog/auto-indexing/df-idf-corpus.md).
 - Source: `.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts`.
 
 ---

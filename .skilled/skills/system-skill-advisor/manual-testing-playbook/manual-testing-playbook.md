@@ -1,7 +1,7 @@
 ---
 title: "Skill Advisor: Manual Testing Playbook"
 description: "Canonical sk-doc manual testing playbook for the Skill Advisor manual scenario corpus across the native command surface, runtime hooks, compatibility, daemon state, indexing, lifecycle, scorer and Python compatibility workflows."
-version: 0.8.3.0
+version: 0.8.4.0
 ---
 
 # Skill Advisor: Manual Testing Playbook
@@ -23,6 +23,11 @@ Canonical package artifacts:
 - `lifecycle-routing/`
 - `scorer-fusion/`
 - `python-compat/`
+
+### Result persistence
+
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and reason are recorded into `system-skill-advisor/benchmark/reports/<dated-run-label>/`. Generated report Markdown is renderer-owned and never hand-authored.
 
 ---
 

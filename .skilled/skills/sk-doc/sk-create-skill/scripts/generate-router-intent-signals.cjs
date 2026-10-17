@@ -20,6 +20,9 @@
  * Single words are left behind deliberately, since they are the ones that would
  * over-trigger.
  */
+
+'use strict';
+
 const fs = require('fs');
 const path = require('path');
 

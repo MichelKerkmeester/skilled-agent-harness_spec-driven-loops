@@ -13,7 +13,8 @@
     "sk-git/033-git-setup-customization/007-review-remediation",
     "sk-git/033-git-setup-customization/008-out-of-scope-cleanup",
     "sk-git/033-git-setup-customization/009-second-review-remediation",
-    "sk-git/033-git-setup-customization/010-open-ends-cleanup"
+    "sk-git/033-git-setup-customization/010-open-ends-cleanup",
+    "sk-git/033-git-setup-customization/011-remaining-limits"
   ],
   "manual": {
     "depends_on": [],
@@ -44,7 +45,8 @@
       "spec.md",
       "004-final-deep-review/review/review-report.md",
       "007-review-remediation/implementation-summary.md",
-      "010-open-ends-cleanup/plan.md"
+      "010-open-ends-cleanup/plan.md",
+      "010-open-ends-cleanup/implementation-summary.md"
     ],
     "entities": [
       {
@@ -98,16 +100,16 @@
     ],
     "causal_summary": "sk-git has a dozen surfaces a repository can change, and several of them fail open: a missing contract, a rule naming an unknown check or an unregistered advisory hook gives no error",
     "created_at": "2026-10-15T05:35:17Z",
-    "last_save_at": "2026-10-17T09:03:17.336Z",
+    "last_save_at": "2026-10-17T13:01:57.697Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:16ba8b4edbd2b722292d4563740024d530c8af1eaf487d3b8ace05aac1319297",
+    "source_fingerprint": "sha256:7996fe599d80b8b0ae7cfe0e675ce73a9b79dc6b0518d7232cc5ff6f4191c8d3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8cfa6063c742eb34460f74b2c8ab0f59e2a0450037d1808242f0bf56dd60ee5b"
+      "spec.md": "b03abeed3c309f634c9f85819a638eef1bd537b9f9d82ec24b1561d8bbd8d48d"
     },
     "last_active_child_id": "sk-git/033-git-setup-customization/010-open-ends-cleanup",
     "last_active_at": "2026-10-17T09:03:17.336Z"

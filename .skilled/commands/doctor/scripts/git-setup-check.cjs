@@ -1147,25 +1147,101 @@ function openCodeObjectHasHandler(code, open, close) {
   return false;
 }
 
-function adapterExportsBinding(tool, source) {
-  const code = scanAdapterSource(source);
-  const functionPattern = new RegExp(
-    String.raw`\bexport\s+default\s+(?:async\s+)?function(?:\s+[A-Za-z_$][\w$]*)?\s*\(([^)]*)\)`
-      + String.raw`(?:\s*:\s*[A-Za-z_$][\w$]*(?:<[^>{};]+>)?)?\s*\{`,
+function isTopLevelDeclarationStart(code, start) {
+  const prefix = code.slice(0, start);
+  const previous = prefix.trimEnd();
+  if (previous === '') return true;
+  const last = previous.at(-1);
+  if (last === ';' || last === '}') return true;
+  if (/\bexport$/.test(previous)) return true;
+  if (!/[\r\n]/.test(prefix.slice(previous.length))) return false;
+  return !/[=,:.?+\-*\/%&|^!<>()[\]]$/.test(previous);
+}
+
+function bindingInitializer(code, start) {
+  const expression = code.slice(start);
+  const functionExpression = expression.match(
+    /^(?:async\s+)?function(?:\s+[A-Za-z_$][\w$]*)?\s*\(([^)]*)\)(?:\s*:\s*[A-Za-z_$][\w$]*(?:<[^>{};]+>)?)?\s*\{/,
   );
-  const functionExport = code.match(functionPattern);
-  const arrowExport = functionExport ? null
-    : code.match(/\bexport\s+default\s+(?:async\s+)?\(([^)]*)\)\s*=>\s*(\(\s*\{\s*|\{\s*)/);
-  if (!functionExport && !arrowExport) return false;
-  const exported = functionExport || arrowExport;
-  const params = exported[1];
-  const bodyOpen = exported.index + exported[0].lastIndexOf('{');
+  if (functionExpression) {
+    return {
+      params: functionExpression[1],
+      bodyOpen: start + functionExpression[0].lastIndexOf('{'),
+    };
+  }
+
+  const arrow = expression.match(
+    /^(?:async\s+)?\(([^)]*)\)(?:\s*:\s*[A-Za-z_$][\w$]*(?:<[^>{};]+>)?)?\s*=>\s*(\(\s*\{\s*|\{\s*)/,
+  );
+  if (arrow) {
+    return {
+      params: arrow[1],
+      bodyOpen: start + arrow[0].lastIndexOf('{'),
+      conciseObject: arrow[2].startsWith('('),
+    };
+  }
+
+  const object = expression.match(/^\{\s*/);
+  if (object) return { bodyOpen: start };
+  return null;
+}
+
+function findTopLevelBindingDeclaration(code, identifier) {
+  const escaped = identifier.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const returnType = String.raw`(?:\s*:\s*[A-Za-z_$][\w$]*(?:<[^>{};]+>)?)?`;
+  const functionDeclaration = new RegExp(
+    String.raw`^(?:async\s+)?function\s+${escaped}\s*\(([^)]*)\)${returnType}\s*\{`,
+  );
+  const variableDeclaration = new RegExp(
+    String.raw`^(?:const|let|var)\s+${escaped}(?:\s*:\s*[A-Za-z_$][\w$]*(?:<[^>{};]+>)?)?\s*=\s*`,
+  );
+  let braces = 0;
+  let parens = 0;
+  let brackets = 0;
+
+  for (let i = 0; i < code.length; i += 1) {
+    if (braces === 0 && parens === 0 && brackets === 0) {
+      const startsAtWord = i === 0 || !/[A-Za-z0-9_$]/.test(code[i - 1]);
+      const functionStart = startsAtWord && (code.startsWith('function', i)
+        || (code.startsWith('async', i) && /^async\s+function\b/.test(code.slice(i))));
+      if (functionStart && isTopLevelDeclarationStart(code, i)) {
+        const match = code.slice(i).match(functionDeclaration);
+        if (match) {
+          return {
+            params: match[1],
+            bodyOpen: i + match[0].lastIndexOf('{'),
+          };
+        }
+      }
+
+      const variableStart = startsAtWord && ['const', 'let', 'var'].find((keyword) => code.startsWith(keyword, i)
+        && !/[A-Za-z0-9_$]/.test(code[i + keyword.length] || ''));
+      if (variableStart) {
+        const match = code.slice(i).match(variableDeclaration);
+        if (match) {
+          const declaration = bindingInitializer(code, i + match[0].length);
+          if (declaration) return declaration;
+        }
+      }
+    }
+
+    if (code[i] === '{') braces += 1;
+    else if (code[i] === '}' && braces > 0) braces -= 1;
+    else if (code[i] === '(') parens += 1;
+    else if (code[i] === ')' && parens > 0) parens -= 1;
+    else if (code[i] === '[') brackets += 1;
+    else if (code[i] === ']' && brackets > 0) brackets -= 1;
+  }
+  return null;
+}
+
+function adapterBodyRegistersHandler(tool, code, declaration) {
+  const { bodyOpen, params, conciseObject = false, objectLiteral = false } = declaration;
   const bodyClose = matchingBrace(code, bodyOpen);
   if (bodyClose < 0) return false;
+
   if (tool === 'opencode') {
-    if (arrowExport && arrowExport[2].startsWith('(')) {
-      return openCodeObjectHasHandler(code, bodyOpen, bodyClose);
-    }
+    if (conciseObject || objectLiteral) return openCodeObjectHasHandler(code, bodyOpen, bodyClose);
     let depth = 0;
     for (let i = bodyOpen + 1; i < bodyClose; i += 1) {
       if (depth === 0 && code.startsWith('return', i)
@@ -1182,6 +1258,7 @@ function adapterExportsBinding(tool, source) {
     }
     return false;
   }
+  if (objectLiteral) return false;
   const parameter = params.match(/^\s*(?:\.\.\.)?([A-Za-z_$][\w$]*)/)?.[1];
   if (!parameter) return false;
   const escaped = parameter.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -1191,6 +1268,33 @@ function adapterExportsBinding(tool, source) {
   );
   const call = body.match(callPattern);
   return call !== null && handlerIsNonLiteral(body.slice(call.index + call[0].length));
+}
+
+function adapterExportsBinding(tool, source) {
+  const code = scanAdapterSource(source);
+  const functionPattern = new RegExp(
+    String.raw`\bexport\s+default\s+(?:async\s+)?function(?:\s+[A-Za-z_$][\w$]*)?\s*\(([^)]*)\)`
+      + String.raw`(?:\s*:\s*[A-Za-z_$][\w$]*(?:<[^>{};]+>)?)?\s*\{`,
+  );
+  const functionExport = code.match(functionPattern);
+  const arrowExport = functionExport ? null
+    : code.match(/\bexport\s+default\s+(?:async\s+)?\(([^)]*)\)\s*=>\s*(\(\s*\{\s*|\{\s*)/);
+  if (functionExport || arrowExport) {
+    const exported = functionExport || arrowExport;
+    return adapterBodyRegistersHandler(tool, code, {
+      params: exported[1],
+      bodyOpen: exported.index + exported[0].lastIndexOf('{'),
+      conciseObject: Boolean(arrowExport && arrowExport[2].startsWith('(')),
+    });
+  }
+
+  const bindingExport = code.match(/\bexport\s+default\s+([A-Za-z_$][\w$]*)[ \t]*(?=;|\r?$)/m);
+  if (!bindingExport) return false;
+  const declaration = findTopLevelBindingDeclaration(code, bindingExport[1]);
+  return declaration !== null && adapterBodyRegistersHandler(tool, code, {
+    ...declaration,
+    objectLiteral: declaration.params === undefined,
+  });
 }
 
 function checkAiToolHooks(ctx) {
