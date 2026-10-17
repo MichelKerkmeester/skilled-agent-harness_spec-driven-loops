@@ -35,9 +35,13 @@ cip_repo_wants_ids() {
   done
   # Fifty commits reach past any run of unstamped ones a broken hook could leave,
   # and keep the probe cheap in a large repository that never adopted the trailer.
-  git -C "$repo_root" log -n 50 --no-merges \
-    --format='%(trailers:key=Commit-Id,valueonly)' HEAD 2>/dev/null \
-    | grep -qE '^[0-9]{7}$'
+  # The log is captured before grep reads it: the hooks run under pipefail, and a
+  # grep -q that stops at its first match leaves git log dying of SIGPIPE, which
+  # turned every match into a miss and opted the repository out.
+  local ids
+  ids="$(git -C "$repo_root" log -n 50 --no-merges \
+    --format='%(trailers:key=Commit-Id,valueonly)' HEAD 2>/dev/null || true)"
+  grep -qE '^[0-9]{7}$' <<<"$ids"
 }
 
 # Path of the allocator beside the hooks in $1, the checkout these hooks run
@@ -49,5 +53,7 @@ cip_own_allocator() {
 
 # True when the message file $1 carries a Commit-Id trailer line.
 cip_message_has_id() {
-  grep -E '^Commit-Id: [0-9]{7}$' "$1" | grep -qv '^Commit-Id: 0000000$'
+  local ids
+  ids="$(grep -E '^Commit-Id: [0-9]{7}$' "$1" || true)"
+  [[ -n "$ids" ]] && grep -qv '^Commit-Id: 0000000$' <<<"$ids"
 }

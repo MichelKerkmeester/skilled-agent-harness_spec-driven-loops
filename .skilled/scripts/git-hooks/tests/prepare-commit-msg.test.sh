@@ -453,6 +453,24 @@ git -C "$TMP" config --unset skilled.commitId
     bash "$HOOK" "$TMP/message.txt" message >"$TMP/out.log" 2>&1 )
 check_same "a command-scope skilled.commitId does not opt a repository in" "$TMP/before.txt" "$TMP/message.txt"
 
+# ── 16d. a long stamped history still opts a repository in under pipefail ──
+# The hook runs under pipefail. With one commit, git log has finished writing
+# before grep matches; with fifty it is still writing, and a grep -q reading it
+# straight from a pipe left git log dying of SIGPIPE and the repository unstamped.
+rm -rf "$TMP"
+mkdir -p "$TMP"
+git -C "$TMP" init -q
+git -C "$TMP" config core.hooksPath /dev/null
+git -C "$TMP" config user.email t@example.com
+git -C "$TMP" config user.name test
+for n in $(seq 1 50); do
+  git -C "$TMP" commit -q --allow-empty -m "chore(x): step $n" -m "Body." -m "Commit-Id: $(printf '%07d' "$n")"
+done
+printf 'feat(x): follow a long history\n\nBody text.\n' > "$TMP/message.txt"
+run_hook message; RC=$?
+check_rc "a long history with ids exits 0" 0 "$RC"
+check_count "a long history with ids mints the next id" '^Commit-Id: 0000051$' 1 "$TMP/message.txt"
+
 # ── 17. an allocator under a linked source root still stamps ──
 setup_repo
 mv "$TMP/.opencode" "$TMP/.skilled"
