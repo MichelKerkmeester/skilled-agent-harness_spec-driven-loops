@@ -1,5 +1,5 @@
 {
-  "manifestHash": "35bd21d8d9a524d8930b64d2b6c196da0957a88b18b84f452993432e7c8f2b2c",
+  "manifestHash": "f9752fec9ed30d56b9b8da80099754123788af2924af8d6d4bfa8026ef83c38b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -31323,6 +31323,9 @@
     "deep command router split": [
       "deep command router split"
     ],
+    "deep commands input gate": [
+      "deep commands input gate"
+    ],
     "deep commands split plan": [
       "deep commands split plan"
     ],
@@ -59855,6 +59858,9 @@
     "mcp tooling 1 8 2 0": [
       "mcp-tooling 1.8.2.0"
     ],
+    "mcp tooling 1 8 3 0": [
+      "mcp-tooling 1.8.3.0"
+    ],
     "mcp tooling benchmark": [
       "mcp-tooling benchmark"
     ],
@@ -59951,8 +59957,14 @@
     "mcp tooling v1 8 2 0": [
       "mcp-tooling v1.8.2.0"
     ],
+    "mcp tooling v1 8 3 0": [
+      "mcp-tooling v1.8.3.0"
+    ],
     "mcp tools": [
       "mcp tools"
+    ],
+    "mcp tools short prompt": [
+      "mcp tools short prompt"
     ],
     "mcp topology pivot 006 003": [
       "mcp topology pivot 006-003"
@@ -75442,6 +75454,9 @@
     ],
     "prompt improve implementation plan": [
       "prompt-improve implementation plan"
+    ],
+    "prompt improve input gate": [
+      "prompt improve input gate"
     ],
     "prompt improve onboarding summary": [
       "prompt-improve onboarding summary"
@@ -93237,6 +93252,9 @@
     "sk prompt 3 0 3 0": [
       "sk-prompt 3.0.3.0"
     ],
+    "sk prompt 3 0 4 0": [
+      "sk-prompt 3.0.4.0"
+    ],
     "sk prompt 7 against 5 frameworks": [
       "sk-prompt 7 against 5 frameworks"
     ],
@@ -93524,6 +93542,9 @@
     ],
     "sk prompt v3 0 3 0": [
       "sk-prompt v3.0.3.0"
+    ],
+    "sk prompt v3 0 4 0": [
+      "sk-prompt v3.0.4.0"
     ],
     "sk vision": [
       "sk-vision"
@@ -101647,6 +101668,9 @@
     "system deep loop 1 6 3 0": [
       "system-deep-loop 1.6.3.0"
     ],
+    "system deep loop 1 6 4 0": [
+      "system-deep-loop 1.6.4.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -101781,6 +101805,9 @@
     ],
     "system deep loop v1 6 3 0": [
       "system-deep-loop v1.6.3.0"
+    ],
+    "system deep loop v1 6 4 0": [
+      "system-deep-loop v1.6.4.0"
     ],
     "system deep research bugs": [
       "system deep research bugs"

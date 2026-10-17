@@ -1,5 +1,5 @@
 {
-  "corpusHash": "5e7ec9aafed9ed4e3fc6dd44094ca74e8d118456f082547d4c2789030a24d03f",
+  "corpusHash": "3a734bff1aba76e121d54f8b1dfb57b0f9a8ae581b58e7d0d9c1f32c318a4378",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24929,
+  "includedPathCount": 24932,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -1908,6 +1908,7 @@
     ".skilled/skills/mcp-tooling/changelog/v1.8.0.2.md",
     ".skilled/skills/mcp-tooling/changelog/v1.8.1.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.8.2.0.md",
+    ".skilled/skills/mcp-tooling/changelog/v1.8.3.0.md",
     ".skilled/skills/mcp-tooling/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/mcp-tooling/feature-catalog/feature-catalog.md",
     ".skilled/skills/mcp-tooling/feature-catalog/workflow-vs-transport-routing/workflow-vs-transport-routing.md",
@@ -6733,6 +6734,7 @@
     ".skilled/skills/sk-prompt/changelog/v3.0.1.0.md",
     ".skilled/skills/sk-prompt/changelog/v3.0.2.0.md",
     ".skilled/skills/sk-prompt/changelog/v3.0.3.0.md",
+    ".skilled/skills/sk-prompt/changelog/v3.0.4.0.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/clear-five-dimensions.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/dimension-drilldown-rationale.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/dimension-floors-block.md",
@@ -6922,6 +6924,7 @@
     ".skilled/skills/system-deep-loop/changelog/v1.6.1.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.2.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.3.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v1.6.4.0.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/README.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-dashboard.md",
@@ -24960,7 +24963,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "35bd21d8d9a524d8930b64d2b6c196da0957a88b18b84f452993432e7c8f2b2c",
+  "manifestHash": "f9752fec9ed30d56b9b8da80099754123788af2924af8d6d4bfa8026ef83c38b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
