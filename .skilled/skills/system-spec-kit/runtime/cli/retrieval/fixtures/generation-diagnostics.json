@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 7024,
-    "ok": 14378,
+    "ok": 14383,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 24949,
+  "documentsScanned": 24954,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "018dc1a766a97bfa208b758cda62d4c879cdd26f9d7056f9bef569ce9c467436",
+  "manifestHash": "e24b214fbb1bf7c7f8b534ef26371d0f09e330996dde0f605b1375e1fb6911ae",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36653,
+      "ok": 36659,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -69265,6 +69265,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/scratch",
       "reason": "excluded directory"
     },
@@ -69954,6 +69962,10 @@
     },
     {
       "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/067-root-readme-section-spacing/scratch",
       "reason": "excluded directory"
     },
     {

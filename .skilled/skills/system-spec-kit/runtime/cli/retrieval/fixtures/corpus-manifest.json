@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e626e92605cb5cb494ad0a72f330e53b0c1a841d18e5c20d3d977c58cc7030d4",
+  "corpusHash": "f29a4c4216682a7b6b67060084754b46ab0313d45ba2916772eae8297c260ea7",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24949,
+  "includedPathCount": 24954,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12406,6 +12406,11 @@
     "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/009-review-remediation/tasks.md",
     "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/goal.md",
     "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/spec.md",
+    "specs/sk-doc/067-root-readme-section-spacing/acceptance-criteria.md",
+    "specs/sk-doc/067-root-readme-section-spacing/implementation-summary.md",
+    "specs/sk-doc/067-root-readme-section-spacing/plan.md",
+    "specs/sk-doc/067-root-readme-section-spacing/spec.md",
+    "specs/sk-doc/067-root-readme-section-spacing/tasks.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
     "specs/sk-git/020-live-sync-harden-default-on/plan.md",
     "specs/sk-git/020-live-sync-harden-default-on/spec.md",
@@ -24980,7 +24985,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "018dc1a766a97bfa208b758cda62d4c879cdd26f9d7056f9bef569ce9c467436",
+  "manifestHash": "e24b214fbb1bf7c7f8b534ef26371d0f09e330996dde0f605b1375e1fb6911ae",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27227,6 +27232,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/scratch",
       "reason": "excluded directory"
     },
@@ -27916,6 +27929,10 @@
     },
     {
       "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/067-root-readme-section-spacing/scratch",
       "reason": "excluded directory"
     },
     {
