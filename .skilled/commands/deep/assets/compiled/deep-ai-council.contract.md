@@ -7,7 +7,7 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/ai-council.md",
-      "sha256": "661979dd4bc2db547c5087d215fe2e87b5b24e408a84c632a8f82737b9d71121",
+      "sha256": "b7008e88ec5e36651e315c8315db9427ef3090bcae76e82cbdba2388eacb70a3",
       "section": "full"
     },
     {
@@ -17,7 +17,7 @@
     },
     {
       "path": ".skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md",
-      "sha256": "4baced67719594331b77ff1c0b9271983bf438611fa96b7d6ed6d9ae8e4d78c2",
+      "sha256": "c7da6611cf513d7a8f48d4b88a1f7f520f5916be0996a936b6d4233c3f99e3c6",
       "section": "full"
     },
     {
@@ -32,12 +32,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/mode-registry.json",
-      "sha256": "0642f92d490fc596793689e8b296df86aff37cefa94afc0b2937bd803a99bdb2",
+      "sha256": "24725a61a9e7b689c6a028a7d40b05037ac2a23205e32a234ed3a63e327f8fb1",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "7c36a276366b6c457ea539efe177396d4c7c49bf6466b5f3ca8245a3194c8b6f",
+      "sha256": "61bca879a433fd1ff6989939458912eb57b4cc010e6ad7cb9ce63fa2b3399bd9",
       "section": "full"
     },
     {
@@ -47,77 +47,77 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md",
-      "sha256": "43584fe2896d6c992ee52ccded93d97c7e2c06c04b6d658f567dcbe7b94ae3b0",
+      "sha256": "ebf08c3eb9d51be8b27c8bbff40c1e9d08bc9047571ad3c88455461da6b799b5",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/deep-mode.md",
-      "sha256": "91a1564927e4a6e93c8184c58d4d83f6020f639015eb2bc080f4d58e8c42da13",
+      "sha256": "a6c8b6516ff412b3bb50ce46a873ecdbdd639298ae494d51582b3f9ee96ee4e9",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/depth-dispatch.md",
-      "sha256": "c2bef3590f396db8ff1fc4914bf6d60f566c1b88502ed25347d5a2e1db550d02",
+      "sha256": "f4eb360b28962397e558940f2dd2b7faf752c464f218398478544611055637d5",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/failure-handling.md",
-      "sha256": "f463d0542ae7f396314b52d34d6544a8da1ded9c7fce16e46be505adbe68f31d",
+      "sha256": "0966bbae9b20e7add3e63fb730a6f10be92f965518ed5574a0da5b87371fe1b9",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/scoring/findings-registry.md",
-      "sha256": "3e73d95bf0679fea17cc22f4e9419f2338c98a0662b68acdd691a5268f9cb71a",
+      "sha256": "6f02a3694991e82b2d9005a92224999392203847985344069fc0ac3b273559c7",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md",
-      "sha256": "c50c244edeea097d3e2a421b16fd2513f2c4424cefe739445019a4b2cb9dfa93",
+      "sha256": "f48a6ba07b399b2759fe4c8f9c0904d47d4cf2629670ea9a9e785fdf3613da6a",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md",
-      "sha256": "f0072c22793d16d618e0671364f324c2cfe8b9662ca55d7af7464b250266764d",
+      "sha256": "5c59ea1bfa5383669f26ffbea99f0f410bb61f27c6f40b2f907bc8a5a020037e",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md",
-      "sha256": "41d16ca90743a49267b16de51d5d5b4a19474aa19c1b95d324b93f7068fe7b84",
+      "sha256": "132a72942bc2fab6a14b5ded377d99347ff05be9e42529b44c9ac27c53e2f092",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md",
-      "sha256": "15873c8c0b2574728f8bb385869d11e768ed2edf4b89ee4b5e622660933ef7cb",
+      "sha256": "fdf6e50390965d129ba95550d197dd262d5c0f00789cd333b61140fc2783d38a",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/integration/graph-support.md",
-      "sha256": "2cf6e8037801717d55375193b0adebb657f391edf12e52eed6aba3e734bb9ea5",
+      "sha256": "12bbeaa5efc34f130f0dad56a06060a9bba719d5e34b856ed8c08ed4264eef75",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/integration/loop-protocol.md",
-      "sha256": "51b86e480fa72ecaee584adee4704e9e0c52071a314c5314df3e29b90a8e31b4",
+      "sha256": "30c60cbea2507782141b345d37a6f199bfbd16aea517444309a133d2b264613b",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/integration/quick-reference.md",
-      "sha256": "feae6aee39644a61c23d68c53a0331b73f1663e50adfd91f3aec957cb72eb1c1",
+      "sha256": "f9c6ab56abada1ca31f152e48f5a24f66950fc377eb1d858eb71a16d10b279dc",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/anti-patterns.md",
-      "sha256": "6d06fa56c659695f1092f6fe02d1fc495ee93e976c98223a8ca0ec6091af8ccb",
+      "sha256": "c5877fff403368458cf7b6e7bbc1fa0ba2e0828df3e092f83aedee0e3028b5b7",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md",
-      "sha256": "de197ed311e2e9a9b09ad517e765d6bebcf356827c778e2c5b296ae916861964",
+      "sha256": "13c585c3369cf30b457e23c0cdb69403267461d330ceae1bf6bcecde47287d70",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md",
-      "sha256": "2b1c741099aae8687f69ad2c12c48383c90823519ae50bc7b656fca25c13236a",
+      "sha256": "6b0387e77bdb3547550bcf9c8cd32a031368f0565ed1a83146e7d679b53159cc",
       "section": "full"
     },
     {
@@ -127,7 +127,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/assets/prompt-pack-round.md",
-      "sha256": "7b9f175620ab8126f30a8fc0e2e724ff646c8af28b9d3b77e4a84f049f5e3422",
+      "sha256": "957593230a921766534f897f78ea0bd034005f1afa6b65dbc666c12681eafe0f",
       "section": "full"
     },
     {
