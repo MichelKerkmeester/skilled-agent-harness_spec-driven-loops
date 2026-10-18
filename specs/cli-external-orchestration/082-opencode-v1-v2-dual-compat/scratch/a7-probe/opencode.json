@@ -1,0 +1,1 @@
+{"plugin":["./.opencode/plugin/v1-singular.js"],"plugins":["@acme/v2-plural-plugin"],"permission":{"edit":"allow","bash":"allow"},"permissions":[{"action":"edit","resource":"*","effect":"allow"}],"mcp":{"v1shape":{"type":"local","command":["node","-e","process.exit(0)"]},"servers":{"v2shape":{"type":"local","command":["node","-e","process.exit(0)"]}}}}

@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "@opencode/plugin",
+  "version": "2.0.32",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "test": "bun test --only-failures",
+    "typecheck": "tsgo --noEmit",
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/promise/index.js",
+      "types": "./dist/promise/index.d.ts"
+    },
+    "./effect": {
+      "import": "./dist/effect/index.js",
+      "types": "./dist/effect/index.d.ts"
+    },
+    "./host": {
+      "import": "./dist/host.js",
+      "types": "./dist/host.d.ts"
+    },
+    "./runtime": {
+      "import": "./dist/runtime.js",
+      "types": "./dist/runtime.d.ts"
+    },
+    "./tui": {
+      "import": "./dist/tui/index.js",
+      "types": "./dist/tui/index.d.ts"
+    },
+    "./*": {
+      "import": "./dist/*.js",
+      "types": "./dist/*.d.ts"
+    }
+  },
+  "imports": {
+    "#plugin-source": {
+      "bun": "./dist/source.bun.js",
+      "node": "./dist/source.node.js",
+      "default": "./dist/source.node.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@ai-sdk/provider": "3.0.8",
+    "@opencode/ai": "2.0.32",
+    "@opencode/client": "2.0.32",
+    "@opencode/protocol": "2.0.32",
+    "@opencode/schema": "2.0.32",
+    "@opencode/util": "2.0.32",
+    "effect": "4.0.1"
+  },
+  "peerDependencies": {
+    "@opencode/theme": "2.0.32",
+    "@opentui/core": ">=0.5.17",
+    "@opentui/solid": ">=0.5.17",
+    "solid-js": ">=1.9.0"
+  },
+  "peerDependenciesMeta": {
+    "@opencode/theme": {
+      "optional": true
+    },
+    "@opentui/core": {
+      "optional": true
+    },
+    "@opentui/solid": {
+      "optional": true
+    },
+    "solid-js": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@opencode/theme": "2.0.32",
+    "@opentui/core": "0.5.17",
+    "@opentui/solid": "0.5.17",
+    "@tsconfig/bun": "1.0.9",
+    "@tsconfig/node22": "22.0.2",
+    "@types/bun": "1.4.0",
+    "@types/node": "24.12.2",
+    "solid-js": "1.9.15",
+    "typescript": "5.8.2",
+    "@typescript/native-preview": "7.0.0-dev.20251207.1"
+  }
+}

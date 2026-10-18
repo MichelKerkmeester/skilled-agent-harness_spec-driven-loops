@@ -1,0 +1,22 @@
+DESCRIPTION
+  Manage the background server
+
+USAGE
+  opencode service <subcommand> [flags]
+
+GLOBAL FLAGS
+  --help, -h                                                          Show help information
+  --version, -v                                                       Show version information
+  --wizard                                                            Start wizard mode for a command
+  --completions <bash|zsh|fish|sh>                                    Print shell completion script (choices: bash, zsh, fish, sh)
+  --log-level <all|trace|debug|info|warn|warning|error|fatal|none>    Sets the minimum log level (choices: all, trace, debug, info, warn, warning, error, fatal, none)
+  --print-logs                                                        Print logs to stderr (server logs require --standalone)
+
+SUBCOMMANDS
+  start      Start the background server
+  restart    Restart the background server
+  status     Show background server status
+  stop       Stop the background server
+  get        Get service configuration
+  set        Set service configuration
+  unset      Unset service configuration

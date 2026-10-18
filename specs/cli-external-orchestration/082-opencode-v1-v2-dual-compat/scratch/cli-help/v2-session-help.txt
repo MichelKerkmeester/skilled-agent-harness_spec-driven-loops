@@ -1,0 +1,19 @@
+DESCRIPTION
+  Manage sessions
+
+USAGE
+  opencode session <subcommand> [flags]
+
+GLOBAL FLAGS
+  --help, -h                                                          Show help information
+  --version, -v                                                       Show version information
+  --wizard                                                            Start wizard mode for a command
+  --completions <bash|zsh|fish|sh>                                    Print shell completion script (choices: bash, zsh, fish, sh)
+  --log-level <all|trace|debug|info|warn|warning|error|fatal|none>    Sets the minimum log level (choices: all, trace, debug, info, warn, warning, error, fatal, none)
+  --print-logs                                                        Print logs to stderr (server logs require --standalone)
+
+SUBCOMMANDS
+  list      List top-level sessions in the current project, newest first
+  delete    Delete a session and its child sessions
+  export    Export session data as JSON
+  import    Import session data from a JSON file or URL
