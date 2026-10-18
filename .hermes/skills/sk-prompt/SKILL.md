@@ -452,7 +452,9 @@ Dispatch `@prompt-improver`, or run this skill inline, only on an eligible (mode
 | any route | Opus | No | Denied under no circumstances |
 | any route | Fable | No | Denied under no circumstances |
 | native Claude | Sonnet | Yes | — |
+| native Claude | Haiku | Yes | — |
 | `cli-claude-code` | Sonnet | Yes | — |
+| `cli-claude-code` | Haiku | Yes | — |
 | `cli-codex` | GPT Luna | Yes | — |
 | `cli-pi` | any model except Luna | Yes | — |
 | `cli-opencode` | any model except Luna | Yes | — |
