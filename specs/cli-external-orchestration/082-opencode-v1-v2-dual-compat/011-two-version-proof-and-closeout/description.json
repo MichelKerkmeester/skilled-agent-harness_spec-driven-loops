@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout",
+  "description": "Phase 11: two-version-proof-and-closeout",
+  "keywords": [
+    "phase",
+    "two-version-proof-and-closeout"
+  ],
+  "lastUpdated": "2026-10-18T12:45:11.572Z",
+  "specId": "011",
+  "folderSlug": "two-version-proof-and-closeout",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

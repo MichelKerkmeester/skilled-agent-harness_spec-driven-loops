@@ -3,7 +3,19 @@
   "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
   "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
   "parent_id": null,
-  "children_ids": [],
+  "children_ids": [
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/004-agents-commands-config",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/005-version-aware-guards",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/006-cli-opencode-dual-dispatch",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/008-doctor-and-ci",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/009-sk-code-opencode-alignment",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/010-documentation-sweep",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -12,6 +24,10 @@
   "derived": {
     "trigger_phrases": [
       "opencode v1 v2 dual compat research spec",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "opencode v1 v2 dual compat research",
       "opencode v2 plugin migration",
       "opencode side by side install",
@@ -23,29 +39,37 @@
       "compat",
       "research",
       "spec",
-      "plugin",
-      "migration",
-      "side",
-      "install",
-      "cli-opencode",
-      "version",
-      "detection"
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
+      "goal.md",
       "research/research.md",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+      "001-unknowns-and-baseline/goal.md",
+      "002-pins-imports-dual-export/goal.md",
+      "003-hard-plugins/goal.md",
+      "004-agents-commands-config/goal.md",
+      "005-version-aware-guards/goal.md",
+      "006-cli-opencode-dual-dispatch/goal.md",
+      "007-install-guidance-and-setup-helper/goal.md",
+      "008-doctor-and-ci/goal.md",
+      "009-sk-code-opencode-alignment/goal.md",
+      "010-documentation-sweep/goal.md",
+      "011-two-version-proof-and-closeout/goal.md",
       "research/steering-log.md",
       ".skilled/commands/doctor/_routes.yaml",
       ".opencode/package.json",
       ".skilled/package.json",
-      "research/iterations/iteration-001.md",
-      "research/deltas/iter-001.jsonl",
-      "research/resource-map.md",
-      ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
-      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
-      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      "research/iterations/iteration-001.md"
     ],
     "entities": [
       {
@@ -55,9 +79,21 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
         "source": "derived"
       },
       {
@@ -85,30 +121,6 @@
         "source": "derived"
       },
       {
-        "name": "iter-001.jsonl",
-        "kind": "file",
-        "path": "research/deltas/iter-001.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "dispatch-audit.mjs",
-        "kind": "file",
-        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "dispatch-rule-checks.mjs",
-        "kind": "file",
-        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
         "name": "Research Record",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -127,21 +139,57 @@
         "source": "derived"
       },
       {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "both",
-        "kind": "key_phrase",
+        "name": "Phase Transition Rules",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "an",
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
         "kind": "key_phrase",
-        "path": "spec.md",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-codex",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-devin",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -167,33 +215,22 @@
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
-      },
-      {
-        "name": "Version Detection",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Dispatch Matrix",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What question is being researched and why",
+    "causal_summary": "OpenCode now ships two lines that load plugins, read config and parse the `run` command differently",
     "created_at": "2026-10-18T09:21:48Z",
-    "last_save_at": "2026-10-18T10:43:26.567Z",
+    "last_save_at": "2026-10-18T13:39:00.852Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:906622315714c6f5a9d8fe701d57f9ca31ec6e1414d9e2eaf347399e09812082",
+    "source_fingerprint": "sha256:74d1bb14b69f508dd28b79bc533c97a4c1e660224a8238e7aec7d28b57b1c47a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1eb500d92a6c3ebef8f00d0fd008166378c82051e78adc865075215cd73643ef",
+      "spec.md": "1237a29c8903910dff457de6570042a72f62334dbc094b51a597c15715f3183e",
       "research/research.md": "d98a79b9f7b739b2ec1048e9bd48e083a8164b43ab63c6c54ca78b48202962a9"
     },
     "last_active_at": null

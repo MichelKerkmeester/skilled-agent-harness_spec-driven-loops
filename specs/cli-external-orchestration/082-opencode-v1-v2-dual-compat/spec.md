@@ -1,13 +1,13 @@
 ---
 title: "Research Record: OpenCode v1 and v2 dual compatibility research"
-description: "[What is being researched and why. 2-3 sentences naming the question, the surfaces it touches and the decision the findings inform.]"
+description: "Make every agent, command, plugin, skill, hook and config file in this repo run on OpenCode 1.19.x and 2.0.x at once, and teach cli-opencode to dispatch to either version. The research record in research/ informs the eleven build phases below."
 trigger_phrases:
   - "opencode v1 v2 dual compat research spec"
 importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "scaffold/082-opencode-v1-v2-dual-compat"
+    packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat"
     last_updated_at: "2026-10-18T09:21:48Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"
@@ -42,8 +42,8 @@ FAILURE MODES:
 | Field | Value |
 |-------|-------|
 | **Level** | research |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [In Progress/Complete] |
+| **Priority** | P0 |
+| **Status** | In Progress |
 | **Created** | 2026-10-18 |
 | **Findings** | `research/research.md` |
 <!-- /ANCHOR:metadata -->
@@ -54,10 +54,10 @@ FAILURE MODES:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What question is being researched and why. What decision do the findings inform?]
+OpenCode now ships two lines that load plugins, read config and parse the `run` command differently. Version 1.19.3 calls a plugin's `server()` entry and version 2.0.32 calls its `setup()` entry. All 16 repo plugins load only on v1, the dispatch guards do not see `opencode2`, and cli-opencode builds a v1-only command line. A user who clones the repo with only v2 installed gets plugins that never load and guards that never fire, with no error.
 
 ### Purpose
-[One-sentence outcome statement. What will be known when the research is done?] The findings live in `research/research.md`.
+Every repo surface loads and runs on both pinned versions, cli-opencode dispatches to either version and documents side-by-side and single-version installs, and the remaining capability gaps are listed where users will see them. The research findings live in `research/research.md`, and the build runs as the eleven phase children in the map below.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -66,11 +66,17 @@ FAILURE MODES:
 ## 3. SCOPE
 
 ### In Scope
-- [Surface or question 1]
-- [Surface or question 2]
+- The 16 plugins under `.opencode/plugins/`, their shared `lib/` and their tests.
+- Agent frontmatter and bodies, the command tree and `opencode.json`.
+- The dispatch guards under `.skilled/hooks/dispatch/` and `cli-opencode/hard-rules.json`.
+- cli-opencode version detection and dispatch, and the deep-loop runtime's opencode executor in `fanout-run.cjs`.
+- Install guidance, a setup helper, a `/doctor:opencode` battery and a two-version CI workflow.
+- Alignment of all new and changed code with the sk-code OPENCODE surface, and every doc the change touches, through the matching sk-doc mode.
 
 ### Out of Scope
-- [Excluded item] - [why]
+- Closing the nine gaps research marks irreducible, such as the server-side toast and per-agent `temperature` on v2. They are documented, not closed.
+- OpenCode versions other than 1.19.3 and 2.0.32. Later versions are unsupported until re-verified.
+- Pushing any branch. Every push needs a separate operator go-ahead.
 <!-- /ANCHOR:scope -->
 
 
@@ -79,7 +85,6 @@ FAILURE MODES:
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- [Question requiring clarification, or "None."]
 - how to make the skilled repo perfectly compatible with both opencode v1 (1.19.x) and opencode v2 (2.0.x) at the same time: every agent, command, plugin, skill, hook and config file, plus the cli-opencode skill dispatching to both versions and documenting side-by-side and single-version installs
 - Research context: deep-research is active for this topic; `research/research.md` remains canonical.
 
@@ -98,3 +103,45 @@ FAILURE MODES:
 Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v2 event delivery, `plugin.check` tolerance for extra keys, and `Tool.ValueSchema`. See `research/research.md` section 12.
 <!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, verification, decisions, continuity) live inside the phase children.
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | 001-unknowns-and-baseline/ | Settle the open questions and record the per-plugin, per-version baseline | Pending |
+| 2 | 002-pins-imports-dual-export/ | Pin plugin dependencies and give the 11 mechanical plugins the dual export | Pending |
+| 3 | 003-hard-plugins/ | Port the five hard plugins: sentinel, spec gate, skill advisor, goal and sk-vision | Pending |
+| 4 | 004-agents-commands-config/ | One agent, command and config set that both versions read the same way | Pending |
+| 5 | 005-version-aware-guards/ | Make the dispatch guards version-aware so they see `opencode2` | Pending |
+| 6 | 006-cli-opencode-dual-dispatch/ | Version detection and two dispatch shapes in cli-opencode and the deep-loop runtime | Pending |
+| 7 | 007-install-guidance-and-setup-helper/ | Install reference and `opencode-setup.sh` for side by side, v1 only and v2 only | Pending |
+| 8 | 008-doctor-and-ci/ | `/doctor:opencode` battery and a two-prefix CI workflow | Pending |
+| 9 | 009-sk-code-opencode-alignment/ | Align every new and changed code file with the sk-code OPENCODE surface | Pending |
+| 10 | 010-documentation-sweep/ | Bring every touched doc up to its sk-doc mode | Pending |
+| 11 | 011-two-version-proof-and-closeout/ | Prove the tree on both versions and close the packet | Pending |
+
+### Phase Transition Rules
+
+- Each phase MUST pass `validate.sh` independently before the next phase begins
+- Parent spec tracks aggregate progress via this map
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001-unknowns-and-baseline | 002-pins-imports-dual-export | Every open question has a verdict, and the baseline lists all 16 plugins on both versions | `001/findings.md` and `001/baseline.json` |
+| 002-pins-imports-dual-export | 003-hard-plugins | The 11 mechanical plugins load on both versions | v2 `/api/plugin` and the v1 plugin log lines |
+| 003-hard-plugins | 004-agents-commands-config | The five hard plugins load on both versions, with v2 behaviour tests | The plugin test suites |
+| 004-agents-commands-config | 005-version-aware-guards | No non-command file registers, and the mirrors are in sync | v2 `/api/command` and `check-agent-mirror-sync.cjs` |
+| 005-version-aware-guards | 006-cli-opencode-dual-dispatch | `opencode2 run` is classified and evaluated | The guard test suite |
+| 006-cli-opencode-dual-dispatch | 007-install-guidance-and-setup-helper | A smoke dispatch succeeds on each version | The smoke dispatch logs and the runtime suites |
+| 007-install-guidance-and-setup-helper | 008-doctor-and-ci | `opencode-setup.sh both` builds a working pair in a throwaway prefix | The helper run log |
+| 008-doctor-and-ci | 009-sk-code-opencode-alignment | The battery passes on both pinned versions | The battery output |
+| 009-sk-code-opencode-alignment | 010-documentation-sweep | The drift guards exit 0 and no P0 or P1 finding is open | `run-all-drift-guards.sh` |
+| 010-documentation-sweep | 011-two-version-proof-and-closeout | Every touched doc passes its sk-doc validator | `validate_document.py` and the package checks |
+<!-- /ANCHOR:phase-map -->

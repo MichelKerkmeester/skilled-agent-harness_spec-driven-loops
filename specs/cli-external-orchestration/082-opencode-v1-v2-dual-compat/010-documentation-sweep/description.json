@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/010-documentation-sweep",
+  "description": "Phase 10: documentation-sweep",
+  "keywords": [
+    "phase",
+    "documentation-sweep"
+  ],
+  "lastUpdated": "2026-10-18T12:45:10.492Z",
+  "specId": "010",
+  "folderSlug": "documentation-sweep",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

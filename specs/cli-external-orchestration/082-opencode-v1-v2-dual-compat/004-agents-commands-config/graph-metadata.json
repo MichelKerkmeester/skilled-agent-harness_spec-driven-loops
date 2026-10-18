@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/004-agents-commands-config",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/004-agents-commands-config",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agents commands config",
+      "phase 4 agents commands config",
+      "agents commands config plan",
+      "agents commands config tasks",
+      "agents commands config acceptance criteria",
+      "agents commands config goal",
+      "agents commands config implementation summary"
+    ],
+    "key_topics": [
+      "agents",
+      "commands",
+      "config",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "carry"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/agents/debug.md",
+      ".skilled/agents/orchestrate.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/README.md",
+      "runtime/scripts/README.md",
+      ".skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs",
+      ".skilled/skills/sk-code/sk-code-opencode/assets/checklists/command-authoring.md",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+      ".codex/SYNC.md",
+      ".skilled/skills/cli-external-orchestration/cli-devin/references/devin-tools.md",
+      ".opencode/bin/check-agent-mirror-sync.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "debug.md",
+        "kind": "doc",
+        "path": ".skilled/agents/debug.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".skilled/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "compile-command-contracts.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compile-command-contracts.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-projection-manifest.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-3-menu-parity.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-authoring.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/checklists/command-authoring.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "durable-directory-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".codex/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "devin-tools.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-devin/references/devin-tools.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-agent-mirror-sync.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/check-agent-mirror-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The agents and commands carry wording and file layout that only one host understands",
+    "created_at": "2026-10-18T12:45:03Z",
+    "last_save_at": "2026-10-18T13:35:09.387Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e91a5984965bb13b619b00d21d6ee2d0bcba43d7a50c4f32c5299ca307ca38cb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0239c8023ef58f9981823f726d7dc52c4afcb7c633483e971f2b5305978fd05b",
+      "plan.md": "7f827360863cd462edf5184cf536a67a9807dcb06c32e41d6f0f37415c602c72",
+      "tasks.md": "d29cf275860c70f8a64837aead0d3fa2c394f8175adae62ac5168eafcbca5249",
+      "implementation-summary.md": "ca93306e8b8aea1349bde923f456ead35b324e0d5ae5b059798798b2f0b7b23c"
+    },
+    "last_active_at": null
+  }
+}

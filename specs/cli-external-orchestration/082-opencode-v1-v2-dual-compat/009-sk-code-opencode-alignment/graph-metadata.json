@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/009-sk-code-opencode-alignment",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/009-sk-code-opencode-alignment",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk code opencode alignment",
+      "phase 9 sk code opencode alignment",
+      "sk code opencode alignment plan",
+      "sk code opencode alignment tasks",
+      "sk code opencode alignment acceptance criteria",
+      "sk code opencode alignment goal",
+      "sk code opencode alignment implementation summary"
+    ],
+    "key_topics": [
+      "code",
+      "opencode",
+      "alignment",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "phases"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compile-command-contracts.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hard-rules.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-comment-hygiene.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Files",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Review",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 002 to 008 add and change plugin, guard, runtime and install code for two OpenCode versions",
+    "created_at": "2026-10-18T12:45:08Z",
+    "last_save_at": "2026-10-18T13:38:59.621Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:454ef742b6bad07ca06e52c85755dac4b3f936ba35160f0aae842aa27762d96f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f358e145b47c4fb0994a97d42aba437c920dee66b30d9d5d587337af6fea50ab",
+      "plan.md": "f7668a651dadd4051d9f76e5d50dbfad7191ff64f5ce11b78aead44c39cb6bea",
+      "tasks.md": "36ecbcbc2459566988935118c1b020b7d8fe64a6c1c89b8f5f1cca082626f1a2",
+      "implementation-summary.md": "d1a5527ed07fddf28ba9360772d7b08f0ad35afcf3c5bf600bc626c5a71262db"
+    },
+    "last_active_at": null
+  }
+}

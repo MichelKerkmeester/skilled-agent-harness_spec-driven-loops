@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pins imports dual export",
+      "phase 2 pins imports dual export",
+      "pins imports dual export plan",
+      "pins imports dual export tasks",
+      "pins imports dual export acceptance criteria",
+      "pins imports dual export goal",
+      "pins imports dual export implementation summary"
+    ],
+    "key_topics": [
+      "pins",
+      "imports",
+      "dual",
+      "export",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/package.json",
+      ".skilled/package.json",
+      ".opencode/package-lock.json",
+      ".skilled/package-lock.json",
+      ".opencode/plugins/system-speckit-completion.js",
+      ".opencode/plugins/classifier-injection-screen.js",
+      ".opencode/plugins/tests/classifier-injection-screen.test.cjs",
+      ".opencode/plugins/system-skill-advisor.js",
+      ".opencode/plugins/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "package-lock.json",
+        "kind": "config",
+        "path": ".opencode/package-lock.json",
+        "source": "derived"
+      },
+      {
+        "name": "system-speckit-completion.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-speckit-completion.js",
+        "source": "derived"
+      },
+      {
+        "name": "classifier-injection-screen.js",
+        "kind": "code",
+        "path": ".opencode/plugins/classifier-injection-screen.js",
+        "source": "derived"
+      },
+      {
+        "name": "classifier-injection-screen.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/classifier-injection-screen.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Port",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 11 mechanical plugins export one default function, which is the v1 `server` entry",
+    "created_at": "2026-10-18T12:45:01Z",
+    "last_save_at": "2026-10-18T13:20:00.936Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:827b548443448e77a3afa9c8c3c694b196965c7e2f2af6f02028d7f8d61532cb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7998761ec2e218cb510495bb4fab9d1fa580ef95fe097fd3e587bcae61271201",
+      "plan.md": "3b6b4ff8aa6289e0dc1cc8cae78e181c259f8fd598466610ce02fda3a30f800a",
+      "tasks.md": "71786df4f4358e26b06250a3e3d64094f033eb24c64efc3049e40f31c7626056",
+      "implementation-summary.md": "56fd1111572ccda3009ced7b84bc2e7865681b3bef2a431ace102e2340bcb04d"
+    },
+    "last_active_at": null
+  }
+}

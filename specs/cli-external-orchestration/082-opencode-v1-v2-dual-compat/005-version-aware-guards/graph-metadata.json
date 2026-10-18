@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/005-version-aware-guards",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/005-version-aware-guards",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "version aware guards",
+      "phase 5 version aware guards",
+      "version aware guards plan",
+      "version aware guards tasks",
+      "version aware guards acceptance criteria",
+      "version aware guards goal",
+      "version aware guards implementation summary"
+    ],
+    "key_topics": [
+      "version",
+      "aware",
+      "guards",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "dispatch"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.test.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+      ".opencode/plugins/cli-dispatch-audit.js",
+      ".opencode/plugins/tests/source-root-consumers.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hard-rules.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "cli-dispatch-audit.js",
+        "kind": "code",
+        "path": ".opencode/plugins/cli-dispatch-audit.js",
+        "source": "derived"
+      },
+      {
+        "name": "source-root-consumers.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/source-root-consumers.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The dispatch classifier admits only the exact binary name `opencode`, and every evidence regex matches `opencode run` with a word boundary",
+    "created_at": "2026-10-18T12:45:04Z",
+    "last_save_at": "2026-10-18T13:12:59.763Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6c70ca64905ab9e7a6fd8ab735f52b7a7b81f2c019a52c7b1b7d9e30d193ff99",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4ec66e2dceaa0deabdf44a80dc204bb3e95d7dbccf33bf5c5e5fd150fb03585e",
+      "plan.md": "7e0ad7e65abfd42b10564e12ba4b21e77c0b1296e68c782125934dcd790ded2e",
+      "tasks.md": "6bf981dd54dd11fb3a84cd9528a8a8b2ae64b8e14e1bc5fe6aeea1245bd40351",
+      "implementation-summary.md": "64424bb9e8e05709bf1c43c5dd9ff9a92d6f5049e40582bd41d11e2dd79d14d8"
+    },
+    "last_active_at": null
+  }
+}

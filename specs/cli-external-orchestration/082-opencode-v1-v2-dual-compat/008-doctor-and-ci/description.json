@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/008-doctor-and-ci",
+  "description": "Phase 8: doctor-and-ci",
+  "keywords": [
+    "phase",
+    "doctor-and-ci"
+  ],
+  "lastUpdated": "2026-10-18T12:45:08.284Z",
+  "specId": "008",
+  "folderSlug": "doctor-and-ci",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

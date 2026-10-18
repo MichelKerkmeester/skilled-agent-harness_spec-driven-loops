@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export",
+  "description": "Phase 2: pins-imports-dual-export",
+  "keywords": [
+    "phase",
+    "pins-imports-dual-export"
+  ],
+  "lastUpdated": "2026-10-18T12:45:02.160Z",
+  "specId": "002",
+  "folderSlug": "pins-imports-dual-export",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
