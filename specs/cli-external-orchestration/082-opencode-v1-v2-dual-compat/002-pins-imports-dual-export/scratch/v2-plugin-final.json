@@ -1,0 +1,85 @@
+{
+ "version": "v2",
+ "plugins": [
+  {
+   "name": "classifier-injection-screen",
+   "status": "active",
+   "error": null
+  },
+  {
+   "name": "cli-dispatch-audit",
+   "status": "active",
+   "error": null
+  },
+  {
+   "name": "codex-hooks-watchdog",
+   "status": "active",
+   "error": null
+  },
+  {
+   "name": "mcp-route-guard",
+   "status": "active",
+   "error": null
+  },
+  {
+   "name": "opencode-goal",
+   "status": "failed",
+   "error": "Plugin must export a default definition with an id and an effect or setup function."
+  },
+  {
+   "name": "session-cleanup",
+   "status": "active",
+   "error": null
+  },
+  {
+   "name": "sk-code-post-edit-quality",
+   "status": "active",
+   "error": null
+  },
+  {
+   "name": "sk-git-message-gate",
+   "status": "active",
+   "error": null
+  },
+  {
+   "name": "sk-git-preflight-advisory",
+   "status": "active",
+   "error": null
+  },
+  {
+   "name": "sk-vision",
+   "status": "failed",
+   "error": "Plugin must export a default definition with an id and an effect or setup function."
+  },
+  {
+   "name": "system-completion-sentinel",
+   "status": "failed",
+   "error": "Plugin must export a default definition with an id and an effect or setup function."
+  },
+  {
+   "name": "system-deep-loop-guard",
+   "status": "active",
+   "error": null
+  },
+  {
+   "name": "system-dist-freshness-guard",
+   "status": "active",
+   "error": null
+  },
+  {
+   "name": "system-skill-advisor",
+   "status": "failed",
+   "error": "Plugin must export a default definition with an id and an effect or setup function."
+  },
+  {
+   "name": "system-spec-gate",
+   "status": "failed",
+   "error": "Plugin must export a default definition with an id and an effect or setup function."
+  },
+  {
+   "name": "system-speckit-completion",
+   "status": "active",
+   "error": null
+  }
+ ]
+}

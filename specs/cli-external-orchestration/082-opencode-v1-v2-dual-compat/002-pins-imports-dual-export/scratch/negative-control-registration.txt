@@ -1,0 +1,175 @@
+✖ classifier-injection-screen registers v2 hooks (17.579792ms)
+✖ cli-dispatch-audit registers v2 hooks (3.159542ms)
+✖ codex-hooks-watchdog registers v2 hooks (0.79625ms)
+✖ mcp-route-guard registers v2 hooks (2.683958ms)
+✖ session-cleanup registers v2 hooks (0.798209ms)
+✖ sk-code-post-edit-quality registers v2 hooks (1.549875ms)
+✖ sk-git-message-gate registers v2 hooks (3.531917ms)
+✖ sk-git-preflight-advisory registers v2 hooks (1.2ms)
+✖ system-deep-loop-guard registers v2 hooks (3.858292ms)
+✖ system-dist-freshness-guard registers v2 hooks (3.58825ms)
+✖ system-speckit-completion registers v2 hooks (86.054625ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 0
+ℹ fail 11
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 175.284125
+
+✖ failing tests:
+
+test at .opencode/plugins/tests/v2-registration.test.cjs:68:3
+✖ classifier-injection-screen registers v2 hooks (17.579792ms)
+  AssertionError [ERR_ASSERTION]: classifier-injection-screen default export must be a non-function object
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-registration.test.cjs:72:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/v2-registration.test.cjs:68:3
+✖ cli-dispatch-audit registers v2 hooks (3.159542ms)
+  AssertionError [ERR_ASSERTION]: cli-dispatch-audit default export must be a non-function object
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-registration.test.cjs:72:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/v2-registration.test.cjs:68:3
+✖ codex-hooks-watchdog registers v2 hooks (0.79625ms)
+  AssertionError [ERR_ASSERTION]: codex-hooks-watchdog default export must be a non-function object
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-registration.test.cjs:72:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/v2-registration.test.cjs:68:3
+✖ mcp-route-guard registers v2 hooks (2.683958ms)
+  AssertionError [ERR_ASSERTION]: mcp-route-guard default export must be a non-function object
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-registration.test.cjs:72:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/v2-registration.test.cjs:68:3
+✖ session-cleanup registers v2 hooks (0.798209ms)
+  AssertionError [ERR_ASSERTION]: session-cleanup default export must be a non-function object
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-registration.test.cjs:72:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/v2-registration.test.cjs:68:3
+✖ sk-code-post-edit-quality registers v2 hooks (1.549875ms)
+  AssertionError [ERR_ASSERTION]: sk-code-post-edit-quality default export must be a non-function object
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-registration.test.cjs:72:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/v2-registration.test.cjs:68:3
+✖ sk-git-message-gate registers v2 hooks (3.531917ms)
+  AssertionError [ERR_ASSERTION]: sk-git-message-gate default export must be a non-function object
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-registration.test.cjs:72:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/v2-registration.test.cjs:68:3
+✖ sk-git-preflight-advisory registers v2 hooks (1.2ms)
+  AssertionError [ERR_ASSERTION]: sk-git-preflight-advisory default export must be a non-function object
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-registration.test.cjs:72:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/v2-registration.test.cjs:68:3
+✖ system-deep-loop-guard registers v2 hooks (3.858292ms)
+  AssertionError [ERR_ASSERTION]: system-deep-loop-guard default export must be a non-function object
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-registration.test.cjs:72:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/v2-registration.test.cjs:68:3
+✖ system-dist-freshness-guard registers v2 hooks (3.58825ms)
+  AssertionError [ERR_ASSERTION]: system-dist-freshness-guard default export must be a non-function object
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-registration.test.cjs:72:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/v2-registration.test.cjs:68:3
+✖ system-speckit-completion registers v2 hooks (86.054625ms)
+  AssertionError [ERR_ASSERTION]: system-speckit-completion default export must be a non-function object
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-registration.test.cjs:72:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

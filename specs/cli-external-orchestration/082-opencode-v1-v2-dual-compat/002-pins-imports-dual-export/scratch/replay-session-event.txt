@@ -1,0 +1,4 @@
+session.created  properties.info.id = ses_A
+session.deleted  properties.info.id = ses_A
+session.updated  properties.info.id = ses_B
+message.updated  properties.info.id = msg_1

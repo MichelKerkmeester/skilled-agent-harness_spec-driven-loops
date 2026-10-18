@@ -21,7 +21,7 @@ import { dirname, join, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 
-import { tool } from '@opencode-ai/plugin/tool';
+import { tool } from './lib/tool-identity.js';
 
 import * as messageIdentity from './lib/opencode-message-identity.js';
 import {

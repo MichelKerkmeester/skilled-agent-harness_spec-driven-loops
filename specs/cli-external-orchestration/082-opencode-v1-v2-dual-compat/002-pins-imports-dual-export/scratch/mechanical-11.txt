@@ -1,0 +1,11 @@
+classifier-injection-screen
+cli-dispatch-audit
+codex-hooks-watchdog
+mcp-route-guard
+session-cleanup
+sk-code-post-edit-quality
+sk-git-message-gate
+sk-git-preflight-advisory
+system-deep-loop-guard
+system-dist-freshness-guard
+system-speckit-completion

@@ -112,7 +112,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-unknowns-and-baseline/ | Settle the open questions and record the per-plugin, per-version baseline | Complete |
-| 2 | 002-pins-imports-dual-export/ | Pin plugin dependencies and give the 11 mechanical plugins the dual export | Pending |
+| 2 | 002-pins-imports-dual-export/ | Pin plugin dependencies and give the 11 mechanical plugins the dual export | Complete |
 | 3 | 003-hard-plugins/ | Port the five hard plugins: sentinel, spec gate, skill advisor, goal and sk-vision | Pending |
 | 4 | 004-agents-commands-config/ | One agent, command and config set that both versions read the same way | Pending |
 | 5 | 005-version-aware-guards/ | Make the dispatch guards version-aware so they see `opencode2` | Complete |

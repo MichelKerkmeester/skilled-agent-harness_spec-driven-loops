@@ -30,6 +30,7 @@ import * as dispatchAuditCore from '../hooks/dispatch/lib/dispatch-audit.mjs';
 // The same engine the Claude PreToolUse adapter runs, so a rule enforced there is enforced
 // here without a second copy of the severity model or the rule parser.
 import { readHardRules, evaluate } from '../hooks/dispatch/lib/dispatch-rule-checks.mjs';
+import { dualPlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
@@ -51,7 +52,7 @@ const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
  * @param {{ directory?: string } | undefined} ctx - OpenCode plugin context.
  * @returns {Promise<object>} Hooks object for the OpenCode plugin loader.
  */
-export default async function MkCliDispatchAuditPlugin(ctx) {
+async function MkCliDispatchAuditPlugin(ctx) {
   // Anchor to the repository root: the plugin host can hand us a nested working
   // directory, and writing the audit log relative to it plants a stray
   // .skilled tree wherever the dispatch happened to run.
@@ -127,11 +128,4 @@ export default async function MkCliDispatchAuditPlugin(ctx) {
   };
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 3. TEST SURFACE
-// ─────────────────────────────────────────────────────────────────────────────
-
-MkCliDispatchAuditPlugin.__test = Object.freeze({
-  KILL_SWITCH_ENV: dispatchAuditCore.KILL_SWITCH_ENV,
-  DEFAULT_LOG_RELATIVE_PATH: dispatchAuditCore.DEFAULT_LOG_RELATIVE_PATH,
-});
+export default dualPlugin('cli-dispatch-audit', MkCliDispatchAuditPlugin);

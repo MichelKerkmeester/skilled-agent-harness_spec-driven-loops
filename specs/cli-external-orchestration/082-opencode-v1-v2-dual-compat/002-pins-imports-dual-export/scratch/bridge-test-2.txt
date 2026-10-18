@@ -1,0 +1,22 @@
+✔ setup bridges mapped hooks, counts skipped keys, and cleans up registrations and events (47.766625ms)
+✔ the v2 handler rejects when the v1 hook throws so the host denies the tool call (0.359292ms)
+✔ execute.after maps a v2 error result to v1 output (0.146208ms)
+✔ execute.after maps title, output, and metadata from a v2 result (0.1245ms)
+✔ execute.after defaults output fields when the v2 result is absent (0.103708ms)
+✔ v1 tool string results convert to v2 content results (0.271583ms)
+✔ v1 tool object results convert output and title metadata to v2 results (0.327541ms)
+✔ v1 tool execute receives adapted context fields and preserved v2 fields (0.306709ms)
+✔ system transform receives the model when the v2 context event includes one (0.130542ms)
+✔ cleanup returns the same promise when called more than once (0.180083ms)
+✔ cleanup rejects when a registered dispose rejects (0.116583ms)
+✔ setup failure cleans registered hooks and rethrows the original error (0.116917ms)
+✔ execute.before leaves the original args untouched when the v1 hook does not change them (0.099167ms)
+✔ tool identity preserves the v1 helper contract (2.09725ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 101.76

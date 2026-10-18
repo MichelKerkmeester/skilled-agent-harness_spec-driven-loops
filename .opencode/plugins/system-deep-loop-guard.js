@@ -26,6 +26,7 @@
 // thin, default-export-only OpenCode plugin while the Claude hook consumes the
 // same core. A .cjs core is imported here as the ESM default export.
 import guardCore from '../hooks/task-dispatch/lib/dispatch-guard.cjs';
+import { dualPlugin } from './lib/v2-bridge.js';
 
 import { createRequire } from 'node:module';
 
@@ -54,7 +55,7 @@ const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
  * @param {{ directory?: string } | undefined} ctx - OpenCode plugin context.
  * @returns {Promise<object>} Hooks object for the OpenCode plugin loader.
  */
-export default async function MkDeepLoopGuardPlugin(ctx) {
+async function MkDeepLoopGuardPlugin(ctx) {
   const projectDir = ctx?.directory || process.cwd();
   const { stateDir: loopStateDir } = guardCore.resolveGuardPaths(projectDir);
   const runtimeState = { lastLoopGuardSweepAtMs: 0 };
@@ -98,3 +99,5 @@ export default async function MkDeepLoopGuardPlugin(ctx) {
     },
   };
 }
+
+export default dualPlugin('system-deep-loop-guard', MkDeepLoopGuardPlugin);

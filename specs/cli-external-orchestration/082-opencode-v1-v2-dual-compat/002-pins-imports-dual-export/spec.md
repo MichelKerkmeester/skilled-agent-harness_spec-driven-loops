@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-18 |
 | **Branch** | `worktrees/143-opencode-dual-compat-build` |
 | **Parent Spec** | ../spec.md |
@@ -120,6 +120,17 @@ Each of the 11 plugins loads and runs on v2 as well as v1. The v1 hook bodies st
 | `.opencode/plugins/tests/classifier-injection-screen.test.cjs`, `sk-code-post-edit-quality.test.cjs`, `system-deep-loop-guard.test.cjs`, `system-dist-freshness-guard.test.cjs`, `system-speckit-completion.test.cjs`, `mcp-route-guard.test.cjs`, `sk-git-message-gate.test.cjs`, `session-cleanup.test.cjs`, `source-root-consumers.test.cjs` | Modify | Call `.server` where a test calls the default export. Replace the `typeof default === 'function'` checks with the object shape. Read the two moved seams from their core modules. |
 | `.opencode/plugins/tests/v2-registration.test.cjs` | Create | One v2 registration case per ported plugin. The file name is a proposal. |
 | `.opencode/plugins/system-skill-advisor.js`, `opencode-goal.js`, `tests/system-skill-advisor.test.cjs` | Not changed here | These hold the other two `@opencode-ai/plugin/tool` import sites and one test stub. Phase 3 owns them unless the orchestrator amends the split. |
+
+### Recorded Deviations
+
+Four deviations were recorded during the phase and are reflected in the file list above where they widen it.
+
+- Decision 8: one shared bridge, `.opencode/plugins/lib/v2-bridge.js`, builds every v2 `setup` leg from the unchanged v1 `server`, instead of 11 hand-written setup bodies.
+- Decision 10: the scope adds `.skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs`, the import-time `argv[1]` fix for the Bun-compiled v2.
+- Decision 9: tool results convert to the v2 `{ content, metadata }` shape. A live v2 `execute` of a bridged tool is not yet observed, and the call is owed before phase 3 closes.
+- Decision 13: v2 session event delivery is unit-tested and type-checked, not observed live.
+
+**Status note:** All ten acceptance rows are Met, so the status above is Complete.
 <!-- /ANCHOR:scope -->
 
 ---

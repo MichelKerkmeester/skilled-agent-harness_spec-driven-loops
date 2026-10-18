@@ -1,0 +1,23 @@
+{
+ "version": "v1",
+ "tool_ids": [
+  "invalid",
+  "question",
+  "bash",
+  "read",
+  "glob",
+  "grep",
+  "edit",
+  "write",
+  "task",
+  "webfetch",
+  "todowrite",
+  "websearch",
+  "skill",
+  "apply_patch",
+  "system_speckit_completion",
+  "spec_kit_skill_advisor_status",
+  "opencode_goal",
+  "opencode_goal_status"
+ ]
+}

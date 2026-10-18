@@ -64,7 +64,7 @@ async function runTrapped(callback) {
 test('OpenCode plugin exports only the default plugin factory', async () => {
   const pluginModule = await loadPlugin();
   assert.deepEqual(Object.keys(pluginModule), ['default']);
-  assert.equal(typeof pluginModule.default, 'function');
+  assert.equal(typeof pluginModule.default.server, 'function');
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -74,7 +74,7 @@ test('OpenCode plugin exports only the default plugin factory', async () => {
 test('OpenCode plugin: a webfetch advisory is buffered and drained once by the next transform', async () => {
   const pluginModule = await loadPlugin();
   const screened = [];
-  const hooks = await pluginModule.default({ directory: process.cwd() }, {
+  const hooks = await pluginModule.default.server({ directory: process.cwd() }, {
     screenAdvisory: async (text) => {
       screened.push(text);
       return ADVISORY;
@@ -100,7 +100,7 @@ test('OpenCode plugin: a webfetch advisory is buffered and drained once by the n
 test('OpenCode plugin: non-webfetch tools are never screened', async () => {
   const pluginModule = await loadPlugin();
   let screenCalls = 0;
-  const hooks = await pluginModule.default({ directory: process.cwd() }, {
+  const hooks = await pluginModule.default.server({ directory: process.cwd() }, {
     screenAdvisory: async () => {
       screenCalls += 1;
       return ADVISORY;
@@ -116,7 +116,7 @@ test('OpenCode plugin: non-webfetch tools are never screened', async () => {
 
 test('OpenCode plugin: buffered advisories stay with their session and never leak', async () => {
   const pluginModule = await loadPlugin();
-  const hooks = await pluginModule.default({ directory: process.cwd() }, {
+  const hooks = await pluginModule.default.server({ directory: process.cwd() }, {
     screenAdvisory: async (text) => `advisory:${text}`,
   });
 
@@ -134,7 +134,7 @@ test('OpenCode plugin: buffered advisories stay with their session and never lea
 
 test('OpenCode plugin: a transform without a sessionID drains the only pending session', async () => {
   const pluginModule = await loadPlugin();
-  const hooks = await pluginModule.default({ directory: process.cwd() }, {
+  const hooks = await pluginModule.default.server({ directory: process.cwd() }, {
     screenAdvisory: async () => ADVISORY,
   });
 
@@ -155,7 +155,7 @@ test('OpenCode plugin: a transform without a sessionID drains the only pending s
 
 test('OpenCode plugin: a sessionless transform drains nothing while several sessions wait', async () => {
   const pluginModule = await loadPlugin();
-  const hooks = await pluginModule.default({ directory: process.cwd() }, {
+  const hooks = await pluginModule.default.server({ directory: process.cwd() }, {
     screenAdvisory: async (text) => `advisory:${text}`,
   });
 
@@ -173,9 +173,10 @@ test('OpenCode plugin: a sessionless transform drains nothing while several sess
 
 test('OpenCode plugin: the per-session buffer stays bounded and keeps the newest advisories', async () => {
   const pluginModule = await loadPlugin();
-  const max = pluginModule.default.__test.MAX_PENDING_ADVISORIES;
+  const { MAX_PENDING_ADVISORIES } = await import('../lib/classifier-injection-screen-core.js');
+  const max = MAX_PENDING_ADVISORIES;
   let count = 0;
-  const hooks = await pluginModule.default({ directory: process.cwd() }, {
+  const hooks = await pluginModule.default.server({ directory: process.cwd() }, {
     screenAdvisory: async () => `advisory-${count++}`,
   });
 
@@ -196,7 +197,7 @@ test('OpenCode plugin: the per-session buffer stays bounded and keeps the newest
 
 test('OpenCode plugin: a null screen verdict buffers nothing', async () => {
   const pluginModule = await loadPlugin();
-  const hooks = await pluginModule.default({ directory: process.cwd() }, {
+  const hooks = await pluginModule.default.server({ directory: process.cwd() }, {
     screenAdvisory: async () => null,
   });
 
@@ -208,7 +209,7 @@ test('OpenCode plugin: a null screen verdict buffers nothing', async () => {
 
 test('OpenCode plugin: a failing screen is silent and fails open', async () => {
   const pluginModule = await loadPlugin();
-  const hooks = await pluginModule.default({ directory: process.cwd() }, {
+  const hooks = await pluginModule.default.server({ directory: process.cwd() }, {
     screenAdvisory: async () => {
       throw new Error('screen exploded');
     },
@@ -227,7 +228,7 @@ test('OpenCode plugin: a failing screen is silent and fails open', async () => {
 test('OpenCode plugin: the kill switch makes both hooks full no-ops', async () => {
   const pluginModule = await loadPlugin();
   let screenCalls = 0;
-  const hooks = await pluginModule.default({ directory: process.cwd() }, {
+  const hooks = await pluginModule.default.server({ directory: process.cwd() }, {
     screenAdvisory: async () => {
       screenCalls += 1;
       return ADVISORY;

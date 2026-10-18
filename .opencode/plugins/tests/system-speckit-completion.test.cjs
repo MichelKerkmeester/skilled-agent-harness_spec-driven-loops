@@ -29,7 +29,7 @@ async function main() {
     // key at all, not just a tool that answers `{status:'disabled'}`.
     process.env[DISABLED_ENV] = '1';
     const pluginModule = await loadPlugin();
-    const disabledHooks = await pluginModule.default({ directory: __dirname });
+    const disabledHooks = await pluginModule.default.server({ directory: __dirname });
     assert.deepEqual(
       disabledHooks,
       {},
@@ -38,7 +38,7 @@ async function main() {
 
     // Kill-switch OFF: normal registration must be untouched by the new guard.
     delete process.env[DISABLED_ENV];
-    const enabledHooks = await pluginModule.default({ directory: __dirname });
+    const enabledHooks = await pluginModule.default.server({ directory: __dirname });
     assert.ok(enabledHooks.tool, 'tool namespace must be present when the kill-switch is unset');
     assert.equal(
       typeof enabledHooks.tool.system_speckit_completion.execute,
@@ -48,7 +48,7 @@ async function main() {
 
     // Kill-switch explicitly not '1' (e.g. '0') must also behave as enabled.
     process.env[DISABLED_ENV] = '0';
-    const zeroValueHooks = await pluginModule.default({ directory: __dirname });
+    const zeroValueHooks = await pluginModule.default.server({ directory: __dirname });
     assert.ok(zeroValueHooks.tool, 'a non-"1" kill-switch value must not disable registration');
 
     console.log('system-speckit-completion.test.cjs: all assertions passed');

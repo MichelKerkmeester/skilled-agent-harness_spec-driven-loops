@@ -58,7 +58,7 @@ function consumer(sourceName, files = {}) {
 
 async function load(pluginFile, directory) {
   const plugin = await import(pathToFileURL(path.join(PLUGIN_DIR, pluginFile)).href);
-  return plugin.default({ directory });
+  return plugin.default.server({ directory });
 }
 
 for (const sourceName of SOURCE_NAMES) {

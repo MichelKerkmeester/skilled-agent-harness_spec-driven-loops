@@ -113,7 +113,8 @@ and findings belong here.
 | Phase tree scaffolded | Done | 11 children created under this packet |
 | 001 unknowns and baseline | Done | findings.md Q1 to Q11, baseline.json: v1 16 of 16 loaded, v2 0 of 16 active |
 | 005 version-aware guards | Done | `opencode2 run` classified and evaluated by version; v1 verdicts unchanged on 23 commands; validate strict PASSED (005/scratch/evidence.md) |
-| 002 pins, imports, dual export | In progress | 11 of 11 ported plugins active on v2 and 16 of 16 loading on v1; review fixes in flight |
+| 002 pins, imports, dual export | Done | 11 of 11 ported plugins active on v2, 16 of 16 load on v1, plugin suite 331 of 331, validate strict PASSED (002/scratch/evidence.md) |
+| 003 hard plugins | In progress | Live re-probe: v2 sends `session.execution.succeeded`, not `session.idle`, and `session.compaction.ended`, not `session.compacted` (003/scratch/phase1-answers.txt) |
 
 ### Deviations and findings
 

@@ -20,6 +20,7 @@ import {
 import { createGitContext } from '../skills/sk-git/scripts/lib/git-context.mjs';
 import { GIT_CHECKS, GIT_SHAPE } from '../skills/sk-git/scripts/lib/git-rule-checks.mjs';
 import { findRepoRoot, findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
+import { dualPlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
@@ -75,7 +76,7 @@ function formatAdvisory(command, violations) {
  * @param {{ directory?: string } | undefined} ctx - OpenCode plugin context.
  * @returns {Promise<object>} Fail-open hooks for evaluation and context delivery.
  */
-export default async function MkGitPreflightAdvisoryPlugin(ctx) {
+async function MkGitPreflightAdvisoryPlugin(ctx) {
   const startDir = typeof ctx?.directory === 'string' && ctx.directory.trim()
     ? ctx.directory
     : process.cwd();
@@ -138,3 +139,5 @@ export default async function MkGitPreflightAdvisoryPlugin(ctx) {
     },
   };
 }
+
+export default dualPlugin('sk-git-preflight-advisory', MkGitPreflightAdvisoryPlugin);

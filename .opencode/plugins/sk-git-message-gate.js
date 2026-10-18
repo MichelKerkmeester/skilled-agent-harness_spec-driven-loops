@@ -16,6 +16,7 @@
 
 import { evaluateCommand } from '../skills/sk-git/scripts/hooks/git-message-gate.mjs';
 import { ContractError } from '../skills/sk-git/scripts/lib/message-contract.mjs';
+import { dualPlugin } from './lib/v2-bridge.js';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -34,7 +35,7 @@ const REFUSAL_PREFIX = 'sk-git-message-gate:';
  * @param {{ directory?: string } | undefined} ctx - OpenCode plugin context.
  * @returns {Promise<object>} Hooks object for the OpenCode plugin loader.
  */
-export default async function SkGitMessageGatePlugin(ctx) {
+async function SkGitMessageGatePlugin(ctx) {
   const projectDir = typeof ctx?.directory === 'string' && ctx.directory.trim()
     ? ctx.directory
     : process.cwd();
@@ -66,3 +67,5 @@ export default async function SkGitMessageGatePlugin(ctx) {
     },
   };
 }
+
+export default dualPlugin('sk-git-message-gate', SkGitMessageGatePlugin);

@@ -34,7 +34,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -46,11 +46,16 @@
       ".skilled/package.json",
       ".opencode/package-lock.json",
       ".skilled/package-lock.json",
-      ".opencode/plugins/system-speckit-completion.js",
-      ".opencode/plugins/classifier-injection-screen.js",
-      ".opencode/plugins/tests/classifier-injection-screen.test.cjs",
+      ".opencode/plugins/lib/v2-bridge.js",
+      ".opencode/plugins/lib/tool-identity.js",
+      ".opencode/plugins/lib/classifier-injection-screen-core.js",
+      ".opencode/plugins/lib/sk-code-post-edit-quality-core.js",
+      ".opencode/plugins/opencode-goal.js",
       ".opencode/plugins/system-skill-advisor.js",
-      ".opencode/plugins/README.md"
+      ".opencode/plugins/tests/v2-registration.test.cjs",
+      ".opencode/plugins/tests/v2-bridge.test.cjs",
+      ".skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs",
+      "scratch/review-1-bridge.log"
     ],
     "entities": [
       {
@@ -102,21 +107,33 @@
         "source": "derived"
       },
       {
-        "name": "system-speckit-completion.js",
+        "name": "v2-bridge.js",
         "kind": "code",
-        "path": ".opencode/plugins/system-speckit-completion.js",
+        "path": ".opencode/plugins/lib/v2-bridge.js",
         "source": "derived"
       },
       {
-        "name": "classifier-injection-screen.js",
+        "name": "tool-identity.js",
         "kind": "code",
-        "path": ".opencode/plugins/classifier-injection-screen.js",
+        "path": ".opencode/plugins/lib/tool-identity.js",
         "source": "derived"
       },
       {
-        "name": "classifier-injection-screen.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/classifier-injection-screen.test.cjs",
+        "name": "classifier-injection-screen-core.js",
+        "kind": "code",
+        "path": ".opencode/plugins/lib/classifier-injection-screen-core.js",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-post-edit-quality-core.js",
+        "kind": "code",
+        "path": ".opencode/plugins/lib/sk-code-post-edit-quality-core.js",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/opencode-goal.js",
         "source": "derived"
       },
       {
@@ -126,9 +143,27 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/plugins/README.md",
+        "name": "v2-registration.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/v2-registration.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "v2-bridge.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/v2-bridge.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-injection-screen.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "review-1-bridge.log",
+        "kind": "file",
+        "path": "scratch/review-1-bridge.log",
         "source": "derived"
       },
       {
@@ -166,41 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Phase",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Port",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 11 mechanical plugins export one default function, which is the v1 `server` entry",
     "created_at": "2026-10-18T12:45:01Z",
-    "last_save_at": "2026-10-18T13:20:00.936Z",
+    "last_save_at": "2026-10-18T15:54:30.759Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:827b548443448e77a3afa9c8c3c694b196965c7e2f2af6f02028d7f8d61532cb",
+    "source_fingerprint": "sha256:650de805b82d4391e8a2fcefea5210930a3a7e060d27dc5469b4845aa5a33f57",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7998761ec2e218cb510495bb4fab9d1fa580ef95fe097fd3e587bcae61271201",
-      "plan.md": "3b6b4ff8aa6289e0dc1cc8cae78e181c259f8fd598466610ce02fda3a30f800a",
-      "tasks.md": "71786df4f4358e26b06250a3e3d64094f033eb24c64efc3049e40f31c7626056",
-      "implementation-summary.md": "56fd1111572ccda3009ced7b84bc2e7865681b3bef2a431ace102e2340bcb04d"
+      "spec.md": "9ff58d51e9865bd4e2f9741f834bf1d90fd9736da81c24d17bc9d20cd20567a6",
+      "plan.md": "20416a80b617b0fb324351055753b0e5e86557e5df45e3c485877ed5c1b2c0ef",
+      "tasks.md": "1942288de49755ecfdc2b545c34d681266a14abac76802d22a84e6b992bbac49",
+      "implementation-summary.md": "79edb19048c58c10202cda84c975e77e3d0277e06c6596b702d7bb83420ec471"
     },
     "last_active_at": null
   }

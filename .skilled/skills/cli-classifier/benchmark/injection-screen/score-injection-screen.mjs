@@ -1766,5 +1766,14 @@ export async function main(argv, deps = {}) {
   return 0;
 }
 
-const isEntry = process.argv[1] !== undefined && fs.realpathSync(process.argv[1]) === fs.realpathSync(fileURLToPath(import.meta.url));
-if (isEntry) process.exitCode = await main(process.argv.slice(2));
+function isEntryScript() {
+  if (process.argv[1] === undefined) return false;
+  try {
+    return fs.realpathSync(process.argv[1]) === fs.realpathSync(fileURLToPath(import.meta.url));
+  } catch {
+    // An importing host can report an argv[1] that is not a real file.
+    return false;
+  }
+}
+
+if (isEntryScript()) process.exitCode = await main(process.argv.slice(2));

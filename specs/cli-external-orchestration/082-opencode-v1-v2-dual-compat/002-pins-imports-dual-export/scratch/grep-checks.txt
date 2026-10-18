@@ -1,0 +1,56 @@
+## pins
+1.19.3 true 4.1.8 {}
+1.19.3 true 2.0.32
+## @opencode/plugin in .opencode/package.json (expect none)
+0
+## plugin/tool imports (expect none)
+## __test on the 11 entry modules (expect none)
+## export lines on the 11 entry modules
+.opencode/plugins/codex-hooks-watchdog.js:102:export default dualPlugin('codex-hooks-watchdog', MkCodexHooksWatchdogPlugin);
+.opencode/plugins/mcp-route-guard.js:104:export default dualPlugin('mcp-route-guard', MkMcpRouteGuardPlugin);
+.opencode/plugins/cli-dispatch-audit.js:131:export default dualPlugin('cli-dispatch-audit', MkCliDispatchAuditPlugin);
+.opencode/plugins/classifier-injection-screen.js:98:export default dualPlugin('classifier-injection-screen', injectionScreenPlugin);
+.opencode/plugins/sk-git-message-gate.js:71:export default dualPlugin('sk-git-message-gate', SkGitMessageGatePlugin);
+.opencode/plugins/sk-git-preflight-advisory.js:143:export default dualPlugin('sk-git-preflight-advisory', MkGitPreflightAdvisoryPlugin);
+.opencode/plugins/sk-code-post-edit-quality.js:160:export default dualPlugin('sk-code-post-edit-quality', MkPostEditQualityPlugin);
+.opencode/plugins/session-cleanup.js:274:export default dualPlugin('session-cleanup', sessionCleanupPlugin);
+.opencode/plugins/system-speckit-completion.js:85:export default dualPlugin('system-speckit-completion', MkSpeckitCompletionPlugin);
+.opencode/plugins/system-dist-freshness-guard.js:249:export default dualPlugin('system-dist-freshness-guard', MkDistFreshnessGuardPlugin);
+.opencode/plugins/system-deep-loop-guard.js:103:export default dualPlugin('system-deep-loop-guard', MkDeepLoopGuardPlugin);
+## phase-2 changed paths vs 867b83b671 (005 paths are committed in d0a4be2080)
+ M .opencode/package-lock.json
+ M .opencode/package.json
+ M .opencode/plugins/classifier-injection-screen.js
+ M .opencode/plugins/cli-dispatch-audit.js
+ M .opencode/plugins/codex-hooks-watchdog.js
+ M .opencode/plugins/mcp-route-guard.js
+ M .opencode/plugins/opencode-goal.js
+ M .opencode/plugins/session-cleanup.js
+ M .opencode/plugins/sk-code-post-edit-quality.js
+ M .opencode/plugins/sk-git-message-gate.js
+ M .opencode/plugins/sk-git-preflight-advisory.js
+ M .opencode/plugins/system-deep-loop-guard.js
+ M .opencode/plugins/system-dist-freshness-guard.js
+ M .opencode/plugins/system-skill-advisor.js
+ M .opencode/plugins/system-speckit-completion.js
+ M .opencode/plugins/tests/classifier-injection-screen.test.cjs
+ M .opencode/plugins/tests/mcp-route-guard.test.cjs
+ M .opencode/plugins/tests/session-cleanup.test.cjs
+ M .opencode/plugins/tests/sk-code-post-edit-quality.test.cjs
+ M .opencode/plugins/tests/sk-git-message-gate.test.cjs
+ M .opencode/plugins/tests/source-root-consumers.test.cjs
+ M .opencode/plugins/tests/system-deep-loop-guard.test.cjs
+ M .opencode/plugins/tests/system-dist-freshness-guard.test.cjs
+ M .opencode/plugins/tests/system-skill-advisor.test.cjs
+ M .opencode/plugins/tests/system-speckit-completion.test.cjs
+ M .skilled/package-lock.json
+ M .skilled/package.json
+ M .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs
+?? .opencode/plugins/lib/classifier-injection-screen-core.js
+?? .opencode/plugins/lib/sk-code-post-edit-quality-core.js
+?? .opencode/plugins/lib/tool-identity.js
+?? .opencode/plugins/lib/v2-bridge.js
+?? .opencode/plugins/lib/xcrun_db
+?? .opencode/plugins/tests/v2-bridge.test.cjs
+?? .opencode/plugins/tests/v2-registration.test.cjs
+?? .skilled/skills/sk-vision/hooks/opencode/sk-vision.js

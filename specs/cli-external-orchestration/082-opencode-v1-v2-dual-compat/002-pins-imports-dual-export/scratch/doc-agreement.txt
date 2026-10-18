@@ -1,0 +1,22 @@
+## open task lines in tasks.md at the phase-plan commit 2676c846c3, before any tick
+31
+## task ids in tasks.md now
+T001 T002 T003 T004 T005 T006 T007 T008 T009 T010 T011 T012 T013 T014 T015 T016 T017 T018 T019 T020 T021 T022 T023 T024 T025 T026 T027 T028 T029 T030 T031 
+## task ids named in plan.md
+T001 T002 T003 T004 T005 T006 T007 T008 T009 T010 T021 T022 T023 T024 T026 T027 T028 T029 T030 T031 
+## spec.md section 3 files also named in tasks.md
+NOT IN TASKS .opencode/package-lock.json
+yes .opencode/package.json
+yes .opencode/plugins/classifier-injection-screen.js
+yes .opencode/plugins/lib/
+yes .opencode/plugins/lib/classifier-injection-screen-core.js
+yes .opencode/plugins/lib/sk-code-post-edit-quality-core.js
+yes .opencode/plugins/lib/tool-identity.js
+NOT IN TASKS .opencode/plugins/lib/v2-bridge.js
+yes .opencode/plugins/system-skill-advisor.js
+yes .opencode/plugins/system-speckit-completion.js
+yes .opencode/plugins/tests/classifier-injection-screen.test.cjs
+yes .opencode/plugins/tests/v2-registration.test.cjs
+NOT IN TASKS .skilled/package-lock.json
+yes .skilled/package.json
+NOT IN TASKS .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs

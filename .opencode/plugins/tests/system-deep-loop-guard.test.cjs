@@ -74,11 +74,11 @@ async function loadPlugin() {
 async function main() {
   const pluginModule = await loadPlugin();
   assert.deepEqual(Object.keys(pluginModule), ['default']);
-  assert.equal(typeof pluginModule.default, 'function');
+  assert.equal(typeof pluginModule.default.server, 'function');
 
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'system-deep-loop-guard-'));
   writeFixtureRegistry(tmpDir);
-  const hooks = await pluginModule.default({ directory: tmpDir });
+  const hooks = await pluginModule.default.server({ directory: tmpDir });
   const beforeHook = hooks['tool.execute.before'];
   assert.equal(typeof beforeHook, 'function');
 
@@ -366,7 +366,7 @@ async function main() {
   fs.utimesSync(unrelatedTempPath, threeDaysAgo, threeDaysAgo);
 
   process.env['SYSTEM_DEEP_LOOP_GUARD_ACTIVE_RETENTION_DAYS'] = '1';
-  const retentionHooks1 = await pluginModule.default({ directory: tmpDir });
+  const retentionHooks1 = await pluginModule.default.server({ directory: tmpDir });
   assert.equal(typeof retentionHooks1.event, 'function');
   await retentionHooks1.event({ event: { type: 'session.created' } });
 
@@ -384,7 +384,7 @@ async function main() {
   fs.utimesSync(lockedStatePath, threeDaysAgo, threeDaysAgo);
   const sweepLockPath = path.join(retentionStateDir, '.sweep.lock');
   fs.mkdirSync(sweepLockPath);
-  const lockedHooks = await pluginModule.default({ directory: tmpDir });
+  const lockedHooks = await pluginModule.default.server({ directory: tmpDir });
   await lockedHooks.event({ event: { type: 'session.created' } });
   assert.equal(fs.existsSync(lockedStatePath), true, 'a second process must not sweep while the lock is live');
   fs.rmdirSync(sweepLockPath);
@@ -405,7 +405,7 @@ async function main() {
   const archivedStalePath = path.join(retentionArchiveDir, `${staleKey}.json`);
   const veryOld = new Date(Date.now() - 3 * 24 * 60 * 60 * 1000);
   fs.utimesSync(archivedStalePath, veryOld, veryOld);
-  const retentionHooks2 = await pluginModule.default({ directory: tmpDir });
+  const retentionHooks2 = await pluginModule.default.server({ directory: tmpDir });
   await retentionHooks2.event({ event: { type: 'session.created' } });
   assert.equal(fs.existsSync(archivedStalePath), false, 'an archived file past the archive-retention window should be pruned by the next sweep pass');
 
@@ -414,7 +414,7 @@ async function main() {
   const untouchedStatePath = path.join(retentionStateDir, `${untouchedKey}.json`);
   fs.writeFileSync(untouchedStatePath, JSON.stringify({ sessionId: 'session-retention-untouched-event', dispatches: {} }));
   fs.utimesSync(untouchedStatePath, veryOld, veryOld);
-  const retentionHooks3 = await pluginModule.default({ directory: tmpDir });
+  const retentionHooks3 = await pluginModule.default.server({ directory: tmpDir });
   await retentionHooks3.event({ event: { type: 'session.idle' } });
   assert.equal(fs.existsSync(untouchedStatePath), true, 'a non-session.created event must never trigger the sweep');
 
@@ -433,7 +433,7 @@ async function main() {
   clearGuardLog(tmpDir);
   fs.mkdirSync(path.dirname(guardLogPath(tmpDir)), { recursive: true });
   fs.writeFileSync(guardLogPath(tmpDir), 'x'.repeat(1024));
-  const warningMaintenanceHooks = await pluginModule.default({ directory: tmpDir });
+  const warningMaintenanceHooks = await pluginModule.default.server({ directory: tmpDir });
   await warningMaintenanceHooks.event({ event: { type: 'session.created' } });
   assert.equal(fs.existsSync(guardLogPath(tmpDir)), false, 'startup maintenance should rotate an oversized active log');
   assert.equal(fs.existsSync(`${guardLogPath(tmpDir)}.1`), true, 'startup maintenance should preserve the rotated generation');

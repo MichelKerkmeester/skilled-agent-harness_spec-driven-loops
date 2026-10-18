@@ -1,9 +1,11 @@
 {
   "type": "module",
   "dependencies": {
-    "@opencode-ai/plugin": "1.18.34"
+    "@opencode-ai/plugin": "1.19.3",
+    "zod": "4.1.8"
   },
   "devDependencies": {
+    "@opencode/plugin": "2.0.32",
     "@types/node": "^26.6.4",
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",

@@ -17,6 +17,7 @@ import { appendFileSync, copyFileSync, mkdirSync, statSync, truncateSync } from 
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { findRepoRoot, findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
+import { dualPlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
@@ -138,7 +139,7 @@ function buildBrief(diagnostics) {
 // 4. PLUGIN FACTORY
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default async function MkDistFreshnessGuardPlugin(ctx) {
+async function MkDistFreshnessGuardPlugin(ctx) {
   if (!isHookEnabled('dist-freshness')) return {};
   const projectDir = ctx?.directory || join(PLUGIN_DIR, '..', '..');
   const sessionWarned = new Set();
@@ -244,3 +245,5 @@ export default async function MkDistFreshnessGuardPlugin(ctx) {
     },
   };
 }
+
+export default dualPlugin('system-dist-freshness-guard', MkDistFreshnessGuardPlugin);

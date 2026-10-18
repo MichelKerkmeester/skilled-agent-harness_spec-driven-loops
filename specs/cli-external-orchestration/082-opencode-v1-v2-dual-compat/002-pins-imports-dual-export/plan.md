@@ -40,11 +40,11 @@ Phase 2 changes the export shape of the 11 mechanical plugins from a bare functi
 - [x] Dependencies identified in `spec.md` section 6
 
 ### Definition of Done
-- [ ] All acceptance criteria met (`acceptance-criteria.md`)
-- [ ] The registration file shows 11 failures before the port and 11 passes after it
-- [ ] The plugin suite is at or above the phase 1 floor, with zero failures
-- [ ] `validate.sh --strict` prints `RESULT: PASSED`
-- [ ] Docs updated (spec, plan and tasks agree)
+- [ ] All acceptance criteria met (`acceptance-criteria.md`) (open: AC-005 and AC-009 stay Unmet)
+- [x] The registration file shows 11 failures before the port and 11 passes after it
+- [x] The plugin suite is at or above the phase 1 floor, with zero failures
+- [ ] `validate.sh --strict` prints `RESULT: PASSED` (open: the closeout run reports the expected GENERATED_METADATA errors, repaired by the orchestrator)
+- [x] Docs updated (spec, plan and tasks agree)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -72,6 +72,15 @@ export default {
 ```
 
 The sketch shows the shape. Each plugin supplies its own `id` and its own `setup` body.
+
+### Recorded Deviations
+
+The delivered tree deviates from the plan above in four recorded ways.
+
+- Decision 8: one shared bridge, `.opencode/plugins/lib/v2-bridge.js`, builds every v2 `setup` leg from the unchanged v1 `server`, instead of 11 hand-written setup bodies. The 11 plugins use the same five hook keys, so 11 bodies would repeat one mapping 11 times and drift.
+- Decision 10: the scope adds `.skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs`, the import-time `argv[1]` fix for the Bun-compiled v2.
+- Decision 9: tool results convert to the v2 `{ content, metadata }` shape. A live v2 `execute` of a bridged tool is not yet observed, and the call is owed before phase 3 closes.
+- Decision 13: v2 session event delivery is unit-tested and type-checked, not observed live.
 
 ### Data Flow
 v1 loads the module, reads `server` and calls it with the v1 input. v2 loads the module, reads `setup` and calls it with the v2 context. The two paths share the module's helpers and nothing else. The registration file exercises the v2 path, and the v1 suite exercises the `server` path.

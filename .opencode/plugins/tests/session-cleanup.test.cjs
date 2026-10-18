@@ -28,7 +28,7 @@ const LIVE_FOLLOW_PATH = join(REPO_ROOT, '.skilled/bin/git-live-follow.sh');
 
 async function loadPlugin() {
   const moduleUrl = `${pathToFileURL(PLUGIN_PATH).href}?test=${Date.now()}-${Math.random()}`;
-  return (await import(moduleUrl)).default;
+  return (await import(moduleUrl)).default.server;
 }
 
 function successfulResult(overrides = {}) {

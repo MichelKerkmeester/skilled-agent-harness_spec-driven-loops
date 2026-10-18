@@ -20,6 +20,8 @@ import { appendFileSync, copyFileSync, mkdirSync, statSync, truncateSync } from 
 import { dirname, join } from 'node:path';
 import { findRepoRoot, findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
 
+import { dualPlugin } from './lib/v2-bridge.js';
+
 const require = createRequire(import.meta.url);
 // A .cjs core is imported here as the ESM default export so this file can stay
 // a thin, default-export-only OpenCode plugin while the Claude hook consumes
@@ -74,7 +76,7 @@ function appendGuardLog(projectDir, detail) {
 // 4. PLUGIN FACTORY
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default async function MkMcpRouteGuardPlugin(ctx) {
+async function MkMcpRouteGuardPlugin(ctx) {
   const projectDir = ctx?.directory || process.cwd();
 
   return {
@@ -98,3 +100,5 @@ export default async function MkMcpRouteGuardPlugin(ctx) {
     },
   };
 }
+
+export default dualPlugin('mcp-route-guard', MkMcpRouteGuardPlugin);

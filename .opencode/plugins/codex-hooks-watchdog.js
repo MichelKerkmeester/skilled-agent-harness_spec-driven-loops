@@ -17,6 +17,7 @@ import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 
 import { findRepoRoot, findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
+import { dualPlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
@@ -62,7 +63,7 @@ function appendWatchdogLog(projectDir, detail) {
   } catch (_) { /* fail-open */ }
 }
 
-export default async function MkCodexHooksWatchdogPlugin(ctx) {
+async function MkCodexHooksWatchdogPlugin(ctx) {
   const projectDir = ctx?.directory || join(PLUGIN_DIR, '..', '..');
   // The installer lives under whichever source root the checkout carries. A checkout with
   // neither has no Codex hooks of ours to check, which is not drift.
@@ -97,3 +98,5 @@ export default async function MkCodexHooksWatchdogPlugin(ctx) {
     },
   };
 }
+
+export default dualPlugin('codex-hooks-watchdog', MkCodexHooksWatchdogPlugin);

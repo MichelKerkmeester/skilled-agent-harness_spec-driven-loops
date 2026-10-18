@@ -33,7 +33,7 @@ async function callExternalMcpTool(t, projectDir) {
     else process.env[BROAD_MODE_ENV] = previous;
   });
   const pluginUrl = pathToFileURL(path.join(__dirname, '..', 'mcp-route-guard.js')).href;
-  const hooks = await (await import(pluginUrl)).default({ directory: projectDir });
+  const hooks = await (await import(pluginUrl)).default.server({ directory: projectDir });
   await hooks['tool.execute.before']({ tool: 'mcp__external-example__lookup' }, {});
 }
 

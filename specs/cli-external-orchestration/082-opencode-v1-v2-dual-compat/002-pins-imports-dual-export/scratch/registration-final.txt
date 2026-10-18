@@ -1,0 +1,19 @@
+✔ classifier-injection-screen registers v2 hooks (37.772667ms)
+✔ cli-dispatch-audit registers v2 hooks (3.7085ms)
+✔ codex-hooks-watchdog registers v2 hooks (1.633791ms)
+✔ mcp-route-guard registers v2 hooks (1.264541ms)
+✔ session-cleanup registers v2 hooks (1.027417ms)
+✔ sk-code-post-edit-quality registers v2 hooks (1.978625ms)
+✔ sk-git-message-gate registers v2 hooks (2.531583ms)
+✔ sk-git-preflight-advisory registers v2 hooks (1.307584ms)
+✔ system-deep-loop-guard registers v2 hooks (2.879333ms)
+✔ system-dist-freshness-guard registers v2 hooks (2.533167ms)
+✔ system-speckit-completion registers v2 hooks (4.336709ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 101.22125

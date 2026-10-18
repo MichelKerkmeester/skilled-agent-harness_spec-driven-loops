@@ -55,7 +55,7 @@ const SKIPPED_FALLBACK_CONTEXT = `Advisor: prompt skipped.${FALLBACK_DIRECTIVES_
 const OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT = 'Advisor: outage (fail_open); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json \'{"prompt":"<request>"}\' --format json' + FALLBACK_DIRECTIVES_BLOCK;
 
 const MODULE_STUBS = new Map([
-  ['@opencode-ai/plugin/tool', 'export const tool = (definition) => definition;'],
+  ['./lib/tool-identity.js', 'export const tool = (definition) => definition;'],
   ['@modelcontextprotocol/sdk/client/index.js', 'export class Client {}'],
   ['@modelcontextprotocol/sdk/client/stdio.js', 'export class StdioClientTransport {}'],
 ]);

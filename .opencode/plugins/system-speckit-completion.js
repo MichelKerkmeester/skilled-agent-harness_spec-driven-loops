@@ -25,7 +25,8 @@
 // shim consumes the identical core. A .cjs core is imported here as the ESM
 // default export, exactly like system-deep-loop-guard.js.
 import core from '../skills/system-spec-kit/runtime/cli/lib/completion-state.cjs';
-import { tool } from '@opencode-ai/plugin/tool';
+import { tool } from './lib/tool-identity.js';
+import { dualPlugin } from './lib/v2-bridge.js';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. PLUGIN FACTORY
@@ -42,7 +43,7 @@ import { tool } from '@opencode-ai/plugin/tool';
  * @param {{ directory?: string } | undefined} ctx - OpenCode plugin context.
  * @returns {Promise<object>} Hooks object for the OpenCode plugin loader.
  */
-export default async function MkSpeckitCompletionPlugin(ctx) {
+async function MkSpeckitCompletionPlugin(ctx) {
   // Kill-switch: return an empty plugin object so the tool is never
   // registered at all -- the same env var the core checks per-call, read
   // here too so setting it makes the surface a full no-op (no registration),
@@ -81,10 +82,4 @@ export default async function MkSpeckitCompletionPlugin(ctx) {
   };
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 3. TEST SURFACE
-// ─────────────────────────────────────────────────────────────────────────────
-
-// Hang test-only access off the default export so no named export is ever
-// added to this file (a stray named export drops the whole plugin).
-MkSpeckitCompletionPlugin.__test = Object.freeze({ core });
+export default dualPlugin('system-speckit-completion', MkSpeckitCompletionPlugin);

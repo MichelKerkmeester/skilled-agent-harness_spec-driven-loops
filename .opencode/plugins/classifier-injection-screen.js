@@ -14,35 +14,20 @@
 
 import { createRequire } from 'node:module';
 import { fetchedText, screenAdvisory } from '../hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs';
+import {
+  MAX_PENDING_ADVISORIES,
+  MAX_SESSIONS,
+  SCREEN_TOOL,
+  sessionIdOf,
+  UNKNOWN_SESSION,
+} from './lib/classifier-injection-screen-core.js';
+import { dualPlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 2. CONSTANTS
-// ─────────────────────────────────────────────────────────────────────────────
-
-const SCREEN_TOOL = 'webfetch';
-const MAX_PENDING_ADVISORIES = 20;
-const MAX_SESSIONS = 1_000;
-// tool.execute.after always carries a sessionID; the transform's is optional, so a
-// missing id lands in one shared bucket instead of dropping the buffered advisory.
-const UNKNOWN_SESSION = '__unknown-session__';
-
-// ─────────────────────────────────────────────────────────────────────────────
-// 3. HELPERS
-// ─────────────────────────────────────────────────────────────────────────────
-
-// The transform's typed input makes the id optional and names it differently
-// across OpenCode versions (sessionID, sessionId, session.id,
-// properties.sessionID), so all four spellings resolve to one key.
-function sessionIdOf(input) {
-  const value = input?.sessionID ?? input?.sessionId ?? input?.session?.id ?? input?.properties?.sessionID;
-  return typeof value === 'string' && value ? value : UNKNOWN_SESSION;
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// 4. PLUGIN FACTORY
+// 2. PLUGIN FACTORY
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -52,7 +37,7 @@ function sessionIdOf(input) {
  * @param {{ screenAdvisory?: Function } | undefined} [options] - Optional screen seam.
  * @returns {Promise<object>} Hooks object for the OpenCode plugin loader.
  */
-export default async function injectionScreenPlugin(_ctx, options = {}) {
+async function injectionScreenPlugin(_ctx, options = {}) {
   const screen = typeof options?.screenAdvisory === 'function' ? options.screenAdvisory : screenAdvisory;
   const pendingBySession = new Map();
 
@@ -110,13 +95,4 @@ export default async function injectionScreenPlugin(_ctx, options = {}) {
   };
 }
 
-// Test surface hung off the default export (never a separate named export --
-// OpenCode loads every export as its own plugin and a stray one silently
-// drops this entire file).
-injectionScreenPlugin.__test = {
-  SCREEN_TOOL,
-  MAX_PENDING_ADVISORIES,
-  MAX_SESSIONS,
-  UNKNOWN_SESSION,
-  sessionIdOf,
-};
+export default dualPlugin('classifier-injection-screen', injectionScreenPlugin);

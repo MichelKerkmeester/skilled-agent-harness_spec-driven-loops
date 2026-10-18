@@ -18,8 +18,15 @@
 import { createRequire } from 'node:module';
 import { appendFileSync, copyFileSync, existsSync, mkdirSync, statSync, truncateSync } from 'node:fs';
 import { dirname, isAbsolute, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { findRepoRoot, findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
+import {
+  MAX_PENDING_FINDINGS,
+  MUTATING_TOOLS,
+  createCorrelationMap,
+  filePathFromArgs,
+  formatFinding,
+} from './lib/sk-code-post-edit-quality-core.js';
+import { dualPlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);
 const router = require('../hooks/post-edit-quality/lib/post-edit-router.cjs');
@@ -29,7 +36,6 @@ const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 // 1. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const PLUGIN_DIR = dirname(fileURLToPath(import.meta.url));
 const DISABLED_ENV = 'SK_CODE_POST_EDIT_QUALITY_DISABLED';
 const LOG_NAME = 'post-edit-quality.log';
 
@@ -42,55 +48,6 @@ function logPathFor(projectDir, name) {
   return join(findSourceRoot(repoRoot) ?? join(repoRoot, '.opencode'), 'logs', name);
 }
 const MAX_LOG_BYTES = 256 * 1024;
-const MAX_CALL_IDS = 1_000;
-const MAX_PENDING_FINDINGS = 20;
-const MAX_FINDING_LINE_CHARS = 500;
-// Same mutating-tool set system-dist-freshness-guard.js watches, reused here
-// because both plugins need the identical "did this tool just write a file"
-// signal from tool.execute.before's args shape.
-const MUTATING_TOOLS = new Set(['write', 'edit', 'patch', 'multiedit', 'apply_patch', 'apply-patch']);
-
-// ─────────────────────────────────────────────────────────────────────────────
-// 2. HELPERS -- pure (exposed for testing via the default export property)
-// ─────────────────────────────────────────────────────────────────────────────
-
-function filePathFromArgs(args) {
-  if (!args || typeof args !== 'object') return null;
-  const value = args.filePath || args.file_path || args.path;
-  return typeof value === 'string' && value ? value : null;
-}
-
-/**
- * Bounded callID -> filePath correlation map. tool.execute.after only carries
- * a callID, not the file path, so tool.execute.before must stash it here and
- * after must retrieve-and-evict it. Exposed standalone (not only as a plugin
- * closure) so the stash/retrieve/evict/unmatched-no-op contract is directly
- * unit-testable without booting the full plugin.
- */
-function createCorrelationMap(maxEntries = MAX_CALL_IDS) {
-  const map = new Map();
-  return {
-    stash(callID, filePath) {
-      if (!callID || !filePath) return;
-      if (map.size >= maxEntries) map.delete(map.keys().next().value);
-      map.set(callID, filePath);
-    },
-    take(callID) {
-      if (!callID || !map.has(callID)) return null;
-      const filePath = map.get(callID);
-      map.delete(callID);
-      return filePath;
-    },
-    size() {
-      return map.size;
-    },
-  };
-}
-
-function formatFinding(filePath, finding) {
-  const firstLine = String(finding.stdout || '').split('\n').find((line) => line.trim()) || '(no detail)';
-  return `[${finding.label}] ${filePath}: ${firstLine}`.slice(0, MAX_FINDING_LINE_CHARS);
-}
 
 // Findings must never reach stdout/stderr: OpenCode's TUI paints plugin
 // console output onto the prompt input line, where it sticks until a redraw
@@ -116,7 +73,7 @@ function appendQualityLog(projectDir, line) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 3. PLUGIN FACTORY
+// 2. PLUGIN FACTORY
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -125,7 +82,7 @@ function appendQualityLog(projectDir, line) {
  * @param {{ directory?: string } | undefined} ctx - OpenCode plugin context.
  * @returns {Promise<object>} Hooks object for the OpenCode plugin loader.
  */
-export default async function MkPostEditQualityPlugin(ctx) {
+async function MkPostEditQualityPlugin(ctx) {
   const projectDir = ctx?.directory || process.cwd();
   const callPaths = createCorrelationMap();
   const pendingFindings = [];
@@ -200,15 +157,4 @@ export default async function MkPostEditQualityPlugin(ctx) {
   };
 }
 
-// Test surface hung off the default export (never a separate named export --
-// OpenCode loads every export as its own plugin and a stray one silently
-// drops this entire file).
-MkPostEditQualityPlugin.__test = {
-  PLUGIN_DIR,
-  MUTATING_TOOLS,
-  MAX_CALL_IDS,
-  MAX_PENDING_FINDINGS,
-  filePathFromArgs,
-  createCorrelationMap,
-  formatFinding,
-};
+export default dualPlugin('sk-code-post-edit-quality', MkPostEditQualityPlugin);

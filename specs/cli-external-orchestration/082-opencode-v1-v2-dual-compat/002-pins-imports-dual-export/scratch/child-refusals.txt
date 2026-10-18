@@ -1,0 +1,45 @@
+# Non-zero command exits in the phase 2 implementer logs
+
+38 non-zero exits across the codex runs. 0 show a sandbox or permission denial in the output that follows.
+
+- p002-1 exit 1 [exit only] /bin/zsh -lc 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only 
+- p002-1 exit 2 [exit only] /bin/zsh -lc "rg -n -C 5 'export type Result|type Result|interface Result|type Error|interface Error' .skilled/node_modu
+- p002-1 exit 1 [exit only] /bin/zsh -lc 'cat .opencode/plugins/lib/tmp.6TUypLJ7sS' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Pu
+- p002-2 exit 1 [exit only] /bin/zsh -lc 'cat .skilled/skills/sk-code/sk-code-opencode/ROUTER.md' in /Users/michelkerkmeester/MEGA/Development/Code_
+- p002-3a exit 1 [exit only] ?
+- p002-3a exit 1 [exit only] ?
+- p002-3b exit 1 [exit only] /bin/zsh -lc "cat '.skilled/skills/sk-code/sk-code-quality/shared/references/universal/code-style-guide.md'" in /Users/m
+- p002-3b exit 1 [exit only] /bin/zsh -lc "cat '.skilled/skills/sk-code/sk-code-quality/shared/references/universal/code-quality-standards.md'" in /U
+- p002-3b exit 1 [exit only] /bin/zsh -lc "rg --files --hidden --no-ignore -g 'tmp.*' -g '"'!**/node_modules/**'"' -g '"'!**/.git/**'"' ." in /Users/
+- p002-3b exit 1 [exit only] /bin/zsh -lc "rg -n '\\.default\\(' .opencode/plugins/tests/session-cleanup.test.cjs .opencode/plugins/tests/mcp-route-g
+- p002-3b exit 1 [exit only] ?
+- p002-3b exit 1 [exit only] ?
+- p002-3c exit 2 [exit only] /bin/zsh -lc 'rg -n "IMPLEMENTATION|JAVASCRIPT|workflow-implement|javascript/|javascript-checklist|workflow-verify" .ski
+- p002-3c exit 1 [exit only] /bin/zsh -lc "rg -n \"dualPlugin|export default\" .opencode/plugins/cli-dispatch-audit.js .opencode/plugins/codex-hooks-
+- p002-3c exit 1 [exit only] /bin/zsh -lc "rg -n --glob '*.{js,cjs,mjs,ts}' --glob '"'!**/node_modules/**'"' '@opencode-ai/plugin/tool' .opencode/plu
+- p002-3c exit 1 [exit only] ?
+- p002-3c exit 1 [exit only] /bin/zsh -lc "rg -n --glob '*.{js,cjs,mjs,ts}' --glob '"'!**/node_modules/**'"' \"(from|require\\(|import\\()["'^'"\\n]*
+- p002-entry exit 1 [exit only] /bin/zsh -lc 'cat specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md specs/cli-external-orchestrati
+- p002-entry exit 1 [exit only] /bin/zsh -lc "rg --files .skilled/skills/system-spec-kit | rg 'goal\\.cjs"'$'"'" in /Users/michelkerkmeester/MEGA/Develo
+- p002-entry exit 1 [exit only] /bin/zsh -lc "rg --files .skilled/skills/system-spec-kit | rg 'goal\\.cjs"'$'"'" in /Users/michelkerkmeester/MEGA/Develo
+- p002-entry exit 1 [exit only] /bin/zsh -lc "sed -n '200,255p' .skilled/skills/sk-code/ROUTER.md; rg -n 'route_code_resources' .skilled/skills/sk-code"
+- p002-entry exit 1 [exit only] /bin/zsh -lc "node --input-type=module -e 'process.argv[1] = \"/"'$bunfs/root/opencode"; await import(new URL("file:///U
+- p002-fix exit 1 [exit only] /bin/zsh -lc 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only 
+- p002-fix exit 1 [exit only] ?
+- p002-fix exit 1 [exit only] /bin/zsh -lc "rg -n -i \"specs/|phase[[:space:]_-]*[0-9]|task[[:space:]_-]*id|finding[[:space:]_-]*id|\\bT[0-9]{3}\\b|\\
+- p002-fix2 exit 1 [exit only] /bin/zsh -lc "rg -n '__test|KILL_SWITCH_ENV|DEFAULT_LOG_RELATIVE_PATH' .opencode/plugins/tests/source-root-consumers.tes
+- p002-fix2 exit 1 [exit only] /bin/zsh -lc "rg -n '__test|KILL_SWITCH_ENV|DEFAULT_LOG_RELATIVE_PATH' .opencode/plugins/tests/source-root-consumers.tes
+- p002-fix2 exit 2 [exit only] /bin/zsh -lc "bash .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh '.opencode/plugins/classifie
+- p002-fix2 exit 2 [exit only] /bin/zsh -lc "bash .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh '.opencode/plugins/tests/cla
+- p002-fix2 exit 2 [exit only] ?
+- p002-fix2 exit 2 [exit only] ?
+- p002-fix2 exit 2 [exit only] ?
+- p002-fix2 exit 2 [exit only] /bin/zsh -lc "bash .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh '.opencode/plugins/lib/sk-co
+- p002-fix2 exit 2 [exit only] /bin/zsh -lc "bash .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh '.opencode/plugins/tests/v2-
+- p002-fix2 exit 2 [exit only] /bin/zsh -lc "bash .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh '.opencode/plugins/sk-code-p
+- p002-fix2 exit 2 [exit only] /bin/zsh -lc "bash .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh '.opencode/plugins/tests/sk-
+- p002-fix2 exit 2 [exit only] ?
+- p002-fix2 exit 1 [exit only] /bin/zsh -lc "rg -n '__test' .opencode/plugins/tests/source-root-consumers.test.cjs .opencode/plugins/tests/system-speck
+
+A non-zero exit with no denial text is a search with no match (rg and grep exit 1) or a probe the agent ran on purpose.
+Every implementer was told not to run the test suites, because the codex sandbox blocks local IPC. The orchestrator ran every check itself outside the sandbox: suite-final.txt, registration-final.txt, bridge-final.txt, classifier-tests.txt, v1-harness-final.jsonl, v1-tool-ids-final.json, v2-plugin-final.json.

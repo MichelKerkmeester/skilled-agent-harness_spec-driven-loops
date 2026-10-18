@@ -1,0 +1,26 @@
+exit 0
+ai
+plugin
+protocol
+schema
+util
+@ai-sdk
+@aws
+@aws-crypto
+@aws-sdk
+@gar
+agents
+bin
+commands
+hooks
+manual-testing-playbook
+node_modules
+package-lock.json
+package.json
+plugins
+README.md
+repo-rules
+scripts
+skills
+SYNC.md
+v1 installed the devDependency: @opencode/plugin plus its @opencode siblings appear in .opencode/node_modules after opencode debug config

@@ -1,0 +1,14 @@
+## v2 background service process
+46220 Sun Oct 18 12:18:22 2026     /Users/michelkerkmeester/.local/opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe serve --service
+The service process started at 12:18:22 on 2026-10-18, before phase 2 began (below), and it is still the same PID, so no step stopped, started or restarted it.
+
+## phase 2 start: worktree commit 867b83b671 at 2026-10-18T16:16:59+02:00
+
+## every distinct line in the phase 2 run logs naming opencode2 service stop, start or restart
+  10 - [ ] No step calls `opencode2 service stop`, `opencode2 service start` or `opencode2 service restart`
+   8 You work in the git worktree /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build. Never write outside it
+   3 - [ ] `git status --porcelain` adds or changes no path outside `spec.md` section 3, and no step runs `opencode2 service stop`, `opencode2 service start` or `ope
+All three are quoted text the agents read (the dispatch preamble rule and two goal criteria lines). None is a command an agent ran.
+
+## service commands in the oracle script
+0

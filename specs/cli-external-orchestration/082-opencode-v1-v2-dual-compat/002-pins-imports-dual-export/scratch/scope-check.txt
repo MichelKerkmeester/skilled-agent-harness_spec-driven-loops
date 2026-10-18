@@ -1,0 +1,86 @@
+## scope rerun after the xcrun_db removal
+ M .opencode/package-lock.json
+ M .opencode/package.json
+ M .opencode/plugins/classifier-injection-screen.js
+ M .opencode/plugins/cli-dispatch-audit.js
+ M .opencode/plugins/codex-hooks-watchdog.js
+ M .opencode/plugins/mcp-route-guard.js
+ M .opencode/plugins/opencode-goal.js
+ M .opencode/plugins/session-cleanup.js
+ M .opencode/plugins/sk-code-post-edit-quality.js
+ M .opencode/plugins/sk-git-message-gate.js
+ M .opencode/plugins/sk-git-preflight-advisory.js
+ M .opencode/plugins/system-deep-loop-guard.js
+ M .opencode/plugins/system-dist-freshness-guard.js
+ M .opencode/plugins/system-skill-advisor.js
+ M .opencode/plugins/system-speckit-completion.js
+ M .opencode/plugins/tests/classifier-injection-screen.test.cjs
+ M .opencode/plugins/tests/mcp-route-guard.test.cjs
+ M .opencode/plugins/tests/session-cleanup.test.cjs
+ M .opencode/plugins/tests/sk-code-post-edit-quality.test.cjs
+ M .opencode/plugins/tests/sk-git-message-gate.test.cjs
+ M .opencode/plugins/tests/source-root-consumers.test.cjs
+ M .opencode/plugins/tests/system-deep-loop-guard.test.cjs
+ M .opencode/plugins/tests/system-dist-freshness-guard.test.cjs
+ M .opencode/plugins/tests/system-skill-advisor.test.cjs
+ M .opencode/plugins/tests/system-speckit-completion.test.cjs
+ M .skilled/package-lock.json
+ M .skilled/package.json
+ M .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs
+ M specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/acceptance-criteria.md
+ M specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/goal.md
+ M specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/implementation-summary.md
+ M specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/plan.md
+ M specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/spec.md
+ M specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/tasks.md
+?? .opencode/plugins/lib/classifier-injection-screen-core.js
+?? .opencode/plugins/lib/sk-code-post-edit-quality-core.js
+?? .opencode/plugins/lib/tool-identity.js
+?? .opencode/plugins/lib/v2-bridge.js
+?? .opencode/plugins/tests/v2-bridge.test.cjs
+?? .opencode/plugins/tests/v2-registration.test.cjs
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/baseline-floor.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/batch-c-tests.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/bridge-final.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/bridge-test-2.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/bridge-test.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/classifier-tests.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/evidence.md
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/grep-checks.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/install.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/mechanical-11.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/negative-control-registration.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/oracle-v1.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/oracle-v2.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/registration-after-port.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/registration-final.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/registry.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/replay-session-event.mjs
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/replay-session-event.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/scope-check.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/service-state.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/status-after.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/suite-after-pins.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/suite-after-port-2.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/suite-after-port.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/suite-final.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/v1-harness-after.err
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/v1-harness-after.jsonl
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/v1-harness-final.err
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/v1-harness-final.jsonl
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/v1-tool-ids-after.json
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/v1-tool-ids-final.json
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/v2-plugin-after-2.json
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/v2-plugin-after.json
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch/v2-plugin-final.json
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/phase1-answers.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/v2-types.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/scratch/oracle.py
+
+## attribution
+- .opencode/** and .skilled/package*.json, .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs: this phase (spec.md section 3, decision 10 for the classifier file)
+- specs/.../082-opencode-v1-v2-dual-compat/scratch/oracle.py: this phase, decision 11
+- specs/.../003-hard-plugins/scratch/*: phase 3 preparation, written while phase 2 closed
+- specs/.../002-pins-imports-dual-export/**: this phase's own docs and captures
+- phase 5 paths: committed in d0a4be2080, so they no longer appear
+- xcrun_db: removed with operator approval (an xcrun cache the codex sandbox wrote into the working directory)

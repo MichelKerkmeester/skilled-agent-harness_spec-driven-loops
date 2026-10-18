@@ -22,6 +22,8 @@ import {
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { dualPlugin } from './lib/v2-bridge.js';
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -109,7 +111,7 @@ function appendPluginLog(logPath, maxBytes, detail) {
  * @param {{ spawn?: Function, spawnSync?: Function, writeDiagnostic?: Function }} [overrides] - Test seams.
  * @returns {Promise<Object>} Hooks object for the OpenCode plugin loader.
  */
-export default async function sessionCleanupPlugin(input = {}, overrides = {}) {
+async function sessionCleanupPlugin(input = {}, overrides = {}) {
   if (!isHookEnabled('session-cleanup')) {
     return {
       async event() {},
@@ -268,3 +270,5 @@ export default async function sessionCleanupPlugin(input = {}, overrides = {}) {
     },
   };
 }
+
+export default dualPlugin('session-cleanup', sessionCleanupPlugin);

@@ -1,0 +1,9 @@
+npm warn install-scripts
+npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+opencode install exit 0
+npm warn install-scripts
+npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+skilled install exit 0
+.opencode plugin=1.19.3 zod=4.1.8
+.skilled plugin=1.19.3 zod=4.1.8
+skilled @opencode/plugin=2.0.32

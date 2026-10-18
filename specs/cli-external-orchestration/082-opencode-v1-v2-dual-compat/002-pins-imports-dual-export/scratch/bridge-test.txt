@@ -1,0 +1,11 @@
+✔ setup bridges mapped hooks, counts skipped keys, and cleans up registrations and events (155.237375ms)
+✔ a thrown v1 execute-before hook denies the v2 tool call (0.357542ms)
+✔ tool identity preserves the v1 helper contract (1.02825ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 208.968875
