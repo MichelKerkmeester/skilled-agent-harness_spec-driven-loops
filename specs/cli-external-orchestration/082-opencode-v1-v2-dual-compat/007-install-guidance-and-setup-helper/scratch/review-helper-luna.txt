@@ -1,0 +1,22 @@
+P1, `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:182`, The launcher redirect follows symlinks, and the install prefixes can also resolve through symlinked directories. If `~/.local/bin/opencode2` points to a writable file outside `HOME`, `both` can overwrite it after both installs succeed.
+
+P1, `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:88`, The v2 pattern accepts any major version and has no end boundary. If an existing v1 shim reports `opencode 1.19.3 malformed`, the script classifies it as v2, skips the v1 refusal, then installs v2 into the same prefix.
+
+P1, `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:323`, Install modes rerun `npm install` unconditionally. The recorded second `both` run reports “changed 2 packages” for each install, conflicting with REQ-002’s no-file-change idempotence requirement. The saved hashes do not cover the full install trees.
+
+P1, `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:255`, `check` falls back to `PATH` when a HOME binary is absent or not executable, contrary to REQ-003. With an empty throwaway `HOME` and a system `opencode` on `PATH`, it classifies the system binary. This follows iteration-015’s `command -v` design, so the sources conflict. When the local and PATH binaries differ, line 280 also causes a third version probe.
+
+P1, `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:17`, The shell standards require `set -euo pipefail`, but the script uses `set -eu`. If a pipeline producer fails while its final command succeeds, the pipeline can appear successful and the script can continue.
+
+Checked:
+
+- Iteration-015 lines 143–197, spec sections 3 and 4 plus edge cases, and plan section 3’s adversarial table.
+- The `sk-code` OpenCode shell references, shell checklist, review baseline, and security checklist.
+- All eight requested proof files. The refusal logs show no files written; the launcher trace shows the `OPENCODE_DB` export and v2 exec path.
+- `bash -n` passed with exit 0. I did not run the helper or npm. The static audit found rollback text for `npm uninstall`, but no executed uninstall, upgrade, service, or sudo command. The v2-only mode uses `$V1_PREFIX` (`$HOME/.local`), the configured standard prefix. Paths are quoted, the launcher follows both successful installs, and refusal paths precede install writes. No code comment names a spec folder, phase, task, or finding ID.
+
+At close, `git status --short` exited 0 and showed untracked helper and packet artifacts plus an unrelated hook. It emitted an fsmonitor IPC warning. This review made no file changes. The branch is `worktrees/143-opencode-dual-compat-build`.
+
+Not checked: ShellCheck and runtime symlink or malformed-version cases were not run. The install modes and npm were not invoked.
+
+Review status: REQUESTED_CHANGES

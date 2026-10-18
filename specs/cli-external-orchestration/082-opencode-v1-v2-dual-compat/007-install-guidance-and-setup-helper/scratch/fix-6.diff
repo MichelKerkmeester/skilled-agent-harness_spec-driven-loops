@@ -1,0 +1,72 @@
+--- specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/scratch/backup/fix-6/opencode-setup.sh	2026-10-18 23:10:50
++++ .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh	2026-10-18 23:16:41
+@@ -94,13 +94,15 @@
+     printf 'unknown\n'
+ }
+ 
+-# Create one temporary data folder for the probes and remove it on exit
++# Create one temporary data folder for the probes and remove it on exit, interrupt included
+ ensure_probe_dir() {
+     if [[ -n "${PROBE_DATA_DIR:-}" ]]; then
+         return 0
+     fi
+     PROBE_DATA_DIR="$(mktemp -d)"
+     trap 'if [[ -n "${PROBE_DATA_DIR:-}" ]]; then rm -rf -- "$PROBE_DATA_DIR"; fi' EXIT
++    trap 'exit 130' INT
++    trap 'exit 143' TERM
+ }
+ 
+ # The v2 binary logs every launch, so probes point its data directory at a temporary folder and leave HOME untouched
+@@ -226,19 +228,19 @@
+     log_info "launcher: $state ($LAUNCHER)"
+ }
+ 
+-# Print one version probe line and stash the shape it classified
++# Print one version probe line; succeed only when the shape matches the wanted major
+ probe_shape() {
+-    local path="$1" output
++    local path="$1" want="$2" output shape
+     output="$(probe_version "$path")"
+-    PROBED_SHAPE="$(printf '%s\n' "$output" | classify_version)"
+-    printf 'verify: %s -> %s [%s]\n' "$path" "$output" "$PROBED_SHAPE"
++    shape="$(printf '%s\n' "$output" | classify_version)"
++    printf 'verify: %s -> %s [%s]\n' "$path" "$output" "$shape"
++    [[ "$shape" == "$want" ]]
+ }
+ 
+ # Verify one installed name reports the expected version shape
+ verify_one() {
+     local path="$1" want="$2"
+-    probe_shape "$path"
+-    if [[ "$PROBED_SHAPE" != "$want" ]]; then
++    if ! probe_shape "$path" "$want"; then
+         log_error "$path did not report a $want version"
+         exit 1
+     fi
+@@ -246,20 +248,16 @@
+ 
+ # Verify both names after the launcher lands; both lines print before any failure exit
+ verify_pair() {
+-    local v1_shape v2_shape failed=0
+-    probe_shape "$BIN/opencode"
+-    v1_shape="$PROBED_SHAPE"
+-    probe_shape "$BIN/opencode2"
+-    v2_shape="$PROBED_SHAPE"
+-    if [[ "$v1_shape" != "v1" ]]; then
++    local v1_failed=0 v2_failed=0
++    probe_shape "$BIN/opencode" v1 || v1_failed=1
++    probe_shape "$BIN/opencode2" v2 || v2_failed=1
++    if [[ "$v1_failed" -ne 0 ]]; then
+         log_error "$BIN/opencode did not report a v1 version"
+-        failed=1
+     fi
+-    if [[ "$v2_shape" != "v2" ]]; then
++    if [[ "$v2_failed" -ne 0 ]]; then
+         log_error "$BIN/opencode2 did not report a v2 version"
+-        failed=1
+     fi
+-    if [[ "$failed" -ne 0 ]]; then
++    if [[ "$v1_failed" -ne 0 ]] || [[ "$v2_failed" -ne 0 ]]; then
+         exit 1
+     fi
+ }

@@ -1,0 +1,5 @@
+# third both run: every file newer than a marker taken just before it
+./.local/share/opencode/log
+./.local/share/opencode/log/opencode.log
+# tree hash excluding share/opencode/log: before de733601822e263f, after de733601822e263f
+exit=0

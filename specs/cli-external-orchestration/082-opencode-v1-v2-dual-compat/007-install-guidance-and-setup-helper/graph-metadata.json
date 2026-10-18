@@ -34,14 +34,28 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md",
+      "scratch/bracket/before-after.diff",
+      "scratch/final/both-1.txt",
+      "scratch/final/launcher-trace.txt",
+      "scratch/final/idempotence.txt",
+      "scratch/final/check.txt",
+      "scratch/final/adversarial.txt",
+      "scratch/final/validator.txt",
+      "scratch/final/static-checks.txt",
+      "scratch/interrupt-probe-dir.txt",
+      "scratch/review-verify7-luna.txt",
+      "scratch/decisions.txt",
+      "scratch/snapshot-before.txt"
     ],
     "entities": [
       {
@@ -81,6 +95,90 @@
         "source": "derived"
       },
       {
+        "name": "opencode-setup.sh",
+        "kind": "script",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "install-and-versions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md",
+        "source": "derived"
+      },
+      {
+        "name": "before-after.diff",
+        "kind": "file",
+        "path": "scratch/bracket/before-after.diff",
+        "source": "derived"
+      },
+      {
+        "name": "both-1.txt",
+        "kind": "file",
+        "path": "scratch/final/both-1.txt",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-trace.txt",
+        "kind": "file",
+        "path": "scratch/final/launcher-trace.txt",
+        "source": "derived"
+      },
+      {
+        "name": "idempotence.txt",
+        "kind": "file",
+        "path": "scratch/final/idempotence.txt",
+        "source": "derived"
+      },
+      {
+        "name": "check.txt",
+        "kind": "file",
+        "path": "scratch/final/check.txt",
+        "source": "derived"
+      },
+      {
+        "name": "adversarial.txt",
+        "kind": "file",
+        "path": "scratch/final/adversarial.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validator.txt",
+        "kind": "file",
+        "path": "scratch/final/validator.txt",
+        "source": "derived"
+      },
+      {
+        "name": "static-checks.txt",
+        "kind": "file",
+        "path": "scratch/final/static-checks.txt",
+        "source": "derived"
+      },
+      {
+        "name": "interrupt-probe-dir.txt",
+        "kind": "file",
+        "path": "scratch/interrupt-probe-dir.txt",
+        "source": "derived"
+      },
+      {
+        "name": "review-verify7-luna.txt",
+        "kind": "file",
+        "path": "scratch/review-verify7-luna.txt",
+        "source": "derived"
+      },
+      {
+        "name": "decisions.txt",
+        "kind": "file",
+        "path": "scratch/decisions.txt",
+        "source": "derived"
+      },
+      {
+        "name": "snapshot-before.txt",
+        "kind": "file",
+        "path": "scratch/snapshot-before.txt",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -103,95 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The cli-opencode skill has no install guidance",
     "created_at": "2026-10-18T12:45:06Z",
-    "last_save_at": "2026-10-18T13:13:06.334Z",
+    "last_save_at": "2026-10-18T21:42:36.993Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a4efe864920f89779dc628bab595349382dfd2782d1e00fa33123af3332a5e9a",
+    "source_fingerprint": "sha256:e00ca62bd3a961bcf08016559ec4a968069f7a3c756da6fb23262a08451efe2d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dd5f26a8c70dd6afc1e83608db787a340da72adc1147db01b6a9cd81973214bf",
+      "spec.md": "0993a5f85bfc2e22e2ac86f297152542444007b2100dc9d6750fc496c1214974",
       "plan.md": "9267d204a0655b00996835785f082cca918c708bdf5e9b5fa8a1d3285373ac24",
-      "tasks.md": "5595255d7e6229e4ccb479cc5f0e77ba882d364b0980588ce2f8dd0afb92d74e",
-      "implementation-summary.md": "24b0ca6fe80419a96c245da4d33ba0cde6bb087afcf8c458068ca963fb944756"
+      "tasks.md": "b583fb9aac7a3eef65926350dfb9a134927ece5ad808c22148d4dada63cb8980",
+      "implementation-summary.md": "f07ac2308a5b4b9800d246ba471479f16a1a1df8bda21477a461d40a056f629f"
     },
     "last_active_at": null
   }

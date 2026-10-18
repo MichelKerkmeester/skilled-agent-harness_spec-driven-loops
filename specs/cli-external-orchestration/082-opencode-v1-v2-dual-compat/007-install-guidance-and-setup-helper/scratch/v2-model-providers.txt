@@ -1,0 +1,7 @@
+# opencode2 models --standalone, provider counts (2026-10-18, v2 2.0.32, throwaway OPENCODE_DB)
+ 433 llmgateway-providers
+ 211 llmgateway
+  18 cline-pass
+  12 opencode
+opencode-go entries: 0
+llmgateway/deepseek-v4.1-flash: 1

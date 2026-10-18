@@ -118,6 +118,7 @@ and findings belong here.
 | Live bridged-tool execute on v2 | Done | Operator-approved run: v2 2.0.32 executed the bridged `opencode_goal_status` tool and returned the plugin's output (scratch/live-tool-execute/notes.txt) |
 | 004 agents, commands, config | Done | Ten browser keys, 23 delegation wording edits, mirrors synced, 12 non-command files moved out of the command tree (v1 51 to 39 commands), opencode.json unchanged and guarded by a shape test, deep-loop suite 2718 passed, validate strict PASSED (004/scratch/evidence.md) |
 | 006 cli-opencode dual dispatch | Done | The runtime reads the major from `--version`: v1 argv unchanged, v2 `run --standalone -m model#variant`, native refuses on v2; builder smoke dispatch exit 0 on 1.19.3 and 2.0.32, v2 child saw AI_SESSION_CHILD=1, deep-loop suite 2741 passed 0 failed, validate strict PASSED (006/scratch/evidence.md) |
+| 007 install guidance and setup helper | Done | `opencode-setup.sh` builds both, v1 or v2 under HOME; in a throwaway HOME `both` exits 0 with 1.19.3 and v2.0.32, a second run and `check` leave one tree hash, probes point XDG_DATA_HOME at a temp folder so the v2 log stays out of HOME, operator snapshot bracket clean apart from the live service's shm files, reference validates 0 issues (007/scratch/decisions.txt 16 to 19) |
 
 ### Deviations and findings
 
@@ -128,4 +129,6 @@ and findings belong here.
 | 005 policy amendment | On `unknown`, version-specific rules warn instead of dropping (005 Q5), and the probe targets the binary the command runs (005 NFR-S01) |
 | 006 binary order | PATH order first, `opencode2` before `opencode` only inside one directory, so test stubs keep winning over a real binary (006 decision 10). With both installed side by side, cli-opencode lineages go to v2 and native lineages refuse until `OPENCODE_BIN=opencode` |
 | 006 v2 default model | v2 lists no opencode-go model on this machine, so a v2 lineage with no pinned model fails here until that credential is added to v2; carried to 007 (006 decision 12) |
+| 007 executors | The operator asked for DeepSeek V4.1 Flash wherever possible: DeepSeek writes code and docs from 007 on, Luna cross-reviews (007 decision 0) |
+| 007 v2 opencode-go | The install reference states that the skill's default model names the `opencode-go` provider, which v2 does not list here, so the default cannot be assumed to work on v2 (reference line 250). Adding that credential to v2 is the operator's |
 <!-- /ANCHOR:log -->

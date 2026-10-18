@@ -1,0 +1,6 @@
+bin/opencode -> .local/lib/node_modules/opencode-ai/bin/opencode.exe | 6d3e6458fce4b649
+bin/opencode2 -> .local/bin/opencode2 | ca0c7336eda7a89f
+opencode-v2/bin/opencode -> .local/opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe | e43ec2df6f36842f
+opencode-v2/bin/opencode2 -> .local/opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe | e43ec2df6f36842f
+launcher mtime 1792354499
+files in home: 13

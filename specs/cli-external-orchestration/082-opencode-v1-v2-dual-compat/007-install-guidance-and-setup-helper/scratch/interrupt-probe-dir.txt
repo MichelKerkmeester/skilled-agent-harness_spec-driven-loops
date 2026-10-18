@@ -1,0 +1,4 @@
+# SIGTERM sent to the helper's PID while its v2 probe runs; TMPDIR pinned inside the throwaway HOME so a leftover is visible; /bin/bash 3.2.57(1)-release
+final helper, SIGTERM: exit=143, probe folder was <T>/tmp/opencode-setup-probe.aJjOYq, left in TMPDIR: 0
+# A SIGINT row is not included: a background job in a non-interactive shell starts with SIGINT ignored, so it would not test the trap.
+# The instant inside the folder's creation is not exercised by a timed signal; the code ignores INT and TERM there (fix-8.diff).

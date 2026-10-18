@@ -1,0 +1,8 @@
+# v1 1.19.3 opencode models, provider counts (2026-10-18)
+ 433 llmgateway-providers
+ 212 llmgateway
+  29 opencode-go
+  24 openai
+  18 cline-pass
+  10 opencode
+   7 minimax

@@ -1,0 +1,27 @@
+## fake v1 on PATH, mode v2
+resolved paths:
+  V1_PREFIX: <scratch>/fakes/home/.local
+  V2_PREFIX: <scratch>/fakes/home/.local/opencode-v2
+  BIN:       <scratch>/fakes/home/.local/bin
+  DB_DIR:    <scratch>/fakes/home/.local/share/opencode
+ERROR: an OpenCode v1 is on PATH as 'opencode' (<scratch>/fakes/v1/opencode)
+ERROR: Installing v2 into the default prefix would overwrite that name and orphan the v1 install
+ERROR: Hint: run this script with "both" to build the side-by-side layout
+exit=1
+
+## fake v2 on PATH, mode v1
+resolved paths:
+  V1_PREFIX: <scratch>/fakes/home/.local
+  V2_PREFIX: <scratch>/fakes/home/.local/opencode-v2
+  BIN:       <scratch>/fakes/home/.local/bin
+  DB_DIR:    <scratch>/fakes/home/.local/share/opencode
+ERROR: an OpenCode v2 is on PATH as 'opencode' (<scratch>/fakes/v2/opencode); installing v1 here would collide with it
+ERROR: Hint: run this script with "both" to build the side-by-side layout
+exit=1
+
+## files written in the fakes home
+       0
+
+## usage errors
+no mode exit=2
+unknown mode exit=2

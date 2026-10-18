@@ -1,0 +1,5 @@
+
+✅ VALID: .skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md
+Document type: install_guide
+Total issues: 0
+exit=0

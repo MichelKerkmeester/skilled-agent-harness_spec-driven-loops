@@ -1,0 +1,36 @@
+resolved paths:
+  V1_PREFIX: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/scratch/home/.local
+  V2_PREFIX: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/scratch/home/.local/opencode-v2
+  BIN:       /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/scratch/home/.local/bin
+  DB_DIR:    /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/scratch/home/.local/share/opencode
+
+[step] npm install -g --prefix "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/scratch/home/.local" "opencode-ai@1.19.3"
+[rollback, never run] npm uninstall -g --prefix "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/scratch/home/.local" opencode-ai
+
+added 2 packages in 4s
+npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:
+npm warn install-scripts   opencode-ai@1.19.3 (postinstall: node ./postinstall.mjs)
+npm warn install-scripts
+npm warn install-scripts Run `npm install -g --allow-scripts=opencode-ai` to allow these scripts once, or `npm config set allow-scripts=opencode-ai --location=user` to allow them for all global installs.
+npm notice
+npm notice New major version of npm available! 11.19.1 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+[step] npm install -g --prefix "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/scratch/home/.local/opencode-v2" "@opencode/cli@2.0.32"
+[rollback, never run] npm uninstall -g --prefix "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/scratch/home/.local/opencode-v2" @opencode/cli
+
+added 2 packages in 3s
+npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:
+npm warn install-scripts   @opencode/cli@2.0.32 (postinstall: node ./postinstall.mjs)
+npm warn install-scripts
+npm warn install-scripts Run `npm install -g --allow-scripts=@opencode/cli` to allow these scripts once, or `npm config set allow-scripts=@opencode/cli --location=user` to allow them for all global installs.
+
+[step] write launcher "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/scratch/home/.local/bin/opencode2"
+[rollback, never run] rm "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/scratch/home/.local/bin/opencode2"
+INFO: launcher: wrote (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/scratch/home/.local/bin/opencode2)
+verify: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/scratch/home/.local/bin/opencode -> 1.19.3 [v1]
+verify: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/scratch/home/.local/bin/opencode2 -> opencode v2.0.32 [v2]
+PASS: v1 and v2 are installed side by side
+exit=0

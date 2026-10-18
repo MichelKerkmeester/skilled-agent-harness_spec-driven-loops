@@ -1,0 +1,49 @@
+# CHK-010 bash -n
+exit=0
+# shellcheck
+exit=0
+# CHK-011 head
+#!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: OPENCODE SETUP HELPER
+# ───────────────────────────────────────────────────────────────
+# Builds the v1-only, v2-only or side-by-side OpenCode layout under
+# HOME, and reports which version each command name resolves to.
+#
+# Usage: opencode-setup.sh <both|v1|v2|check>
+#
+# Exit Codes:
+#   0 - Success
+#   1 - Refusal or failure
+#   2 - Usage error
+
+set -euo pipefail
+
+# CHK-012 uninstall|upgrade|service
+361:        printf '[rollback, never run] %s\n' "npm uninstall -g --prefix \"$V1_PREFIX\" opencode-ai"
+364:            "npm uninstall -g --prefix \"$V1_PREFIX\" opencode-ai"
+374:        printf '[rollback, never run] %s\n' "npm uninstall -g --prefix \"$V2_PREFIX\" @opencode/cli"
+377:            "npm uninstall -g --prefix \"$V2_PREFIX\" @opencode/cli"
+409:        printf '[rollback, never run] %s\n' "npm uninstall -g --prefix \"$V1_PREFIX\" opencode-ai"
+412:            "npm uninstall -g --prefix \"$V1_PREFIX\" opencode-ai"
+443:        printf '[rollback, never run] %s\n' "npm uninstall -g --prefix \"$V1_PREFIX\" @opencode/cli"
+446:            "npm uninstall -g --prefix \"$V1_PREFIX\" @opencode/cli"
+exit=0
+# CHK-030 token|secret|password
+exit=1
+# CHK-031 sudo or curl pipe
+exit=1
+# CHK-041 comments naming a phase, task, packet or spec path
+exit=1
+# global result variable removed
+exit=1
+# AC-003 Homebrew|irreducible, and the gaps heading
+47:- Deciding whether Homebrew, mise or a second npm prefix is the right channel
+67:- macOS or Linux. The npm path is cross-platform. The Homebrew channels are not.
+95:| v2 only | Homebrew | `brew install opencode` | v2 | `opencode.db` |
+168:### Homebrew Is v2-Only and Exclusive
+172:There is no `opencode@1` formula and no versioned formula at all [confirmed: `versioned_formulae` is an empty list]. Homebrew therefore cannot supply the v1 leg of a side-by-side layout, and a Homebrew v2 collides with an npm v1 on the `opencode` name. One of the two becomes invisible depending on `PATH` order. Treat Homebrew as a v2-only, exclusive channel. Use it when you want only v2, and use the two-prefix npm layout when you want both.
+381:| `opencode --version` prints `opencode v2.0.32` when you expected `1.19.3` | A v2 `opencode` shadows v1, from Homebrew or a standard-prefix npm install | Remove the v2 `opencode` name, or rebuild with the two-prefix layout |
+386:| `npm` aborts with a dyld `Library not loaded` error | The node that npm runs cannot start [confirmed: Homebrew node 26.11.1 on this machine] | Put a working node earlier on `PATH` |
+388:### Gaps That No Recipe Closes
+392:1. **Homebrew cannot coexist with a v1 install.** The formula is v2-only, no versioned formula exists, and both binaries are named `opencode`.

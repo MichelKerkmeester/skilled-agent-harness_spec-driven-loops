@@ -1,0 +1,16 @@
+27c27
+< /Users/michelkerkmeester/.local/share/opencode/log | 1792354041
+---
+> /Users/michelkerkmeester/.local/share/opencode/log | 1792355728
+29c29
+< /Users/michelkerkmeester/.local/share/opencode/opencode-next.db-shm | 1792354039
+---
+> /Users/michelkerkmeester/.local/share/opencode/opencode-next.db-shm | 1792355717
+34,36c34,36
+< /Users/michelkerkmeester/.local/share/opencode/opencode.db | 1792330983
+< /Users/michelkerkmeester/.local/share/opencode/opencode.db-shm | 1792354039
+< /Users/michelkerkmeester/.local/share/opencode/opencode.db-wal | 1792330983
+---
+> /Users/michelkerkmeester/.local/share/opencode/opencode.db | 1792355065
+> /Users/michelkerkmeester/.local/share/opencode/opencode.db-shm | 1792355717
+> /Users/michelkerkmeester/.local/share/opencode/opencode.db-wal | 1792355066

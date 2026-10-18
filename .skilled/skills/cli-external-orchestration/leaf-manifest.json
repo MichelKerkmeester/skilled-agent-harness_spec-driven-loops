@@ -83,6 +83,7 @@
         "references/cli-reference.md",
         "references/context-budget.md",
         "references/destructive-scope-violations.md",
+        "references/install-and-versions.md",
         "references/integration-patterns.md",
         "references/opencode-tools.md",
         "references/permissions-matrix.md",

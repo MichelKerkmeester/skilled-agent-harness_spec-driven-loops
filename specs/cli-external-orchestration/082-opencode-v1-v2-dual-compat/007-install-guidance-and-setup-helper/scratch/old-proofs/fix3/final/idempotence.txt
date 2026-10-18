@@ -1,0 +1,11 @@
+# tree hash after the check run, excluding .local/share/opencode/log (the v2 binary appends one line per launch)
+de733601822e263f
+12
+# files under .local/share/opencode/log
+780 opencode.log
+# 'cli starting' lines in the v2 log (the binary writes one per launch)
+5
+# files or folders written after the run-1 marker (so by the second both run or by check), other than the log
+0
+# files newer than the run-2 marker (so by check), other than the log
+0

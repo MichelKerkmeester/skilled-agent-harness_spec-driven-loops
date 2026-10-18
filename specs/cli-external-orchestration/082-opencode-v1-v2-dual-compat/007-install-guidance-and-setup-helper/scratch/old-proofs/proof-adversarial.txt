@@ -1,0 +1,29 @@
+## HOME with spaces, mode both
+INFO: launcher: wrote (<scratch>/fakes/home with spaces/.local/bin/opencode2)
+verify: <scratch>/fakes/home with spaces/.local/bin/opencode -> 1.19.3 [v1]
+verify: <scratch>/fakes/home with spaces/.local/bin/opencode2 -> opencode v2.0.32 [v2]
+PASS: v1 and v2 are installed side by side
+exit=
+
+## V2_PREFIX/bin on PATH, mode both
+ERROR: "<scratch>/fakes/home2/.local/opencode-v2/bin" is on PATH; that recreates the name collision the side-by-side layout exists to avoid
+ERROR: Remove it from PATH and rerun this mode
+exit=
+files written: 0
+
+## npm missing, mode both
+ERROR: npm was not found on PATH; nothing was written
+exit=
+files written: 0
+
+## exit codes, rerun without a pipe
+HOME with spaces, both (second run): exit=0
+HOME with spaces, check: exit=0
+V2_PREFIX/bin on PATH: exit=1
+npm missing: exit=1
+files written: 0
+
+## shape rows via check (HOME holding only a fake)
+cr: exit=0   shape: v1   shape: (not installed) 
+joined: exit=0   shape: (not installed)   shape: v2 
+empty: exit=0   shape: unknown   shape: (not installed) 

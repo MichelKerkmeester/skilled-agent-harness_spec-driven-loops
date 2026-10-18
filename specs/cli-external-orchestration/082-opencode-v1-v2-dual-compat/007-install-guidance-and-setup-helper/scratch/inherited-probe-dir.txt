@@ -1,0 +1,2 @@
+before fix-5 (negative control): exit=0 files=./.local/bin/opencode2 ./inherited/opencode/log/opencode.log 
+after fix-5: exit=0 files=./.local/bin/opencode2 

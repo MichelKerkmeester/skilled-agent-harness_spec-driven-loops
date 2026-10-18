@@ -1,0 +1,26 @@
+resolved paths:
+  V1_PREFIX: <scratch>/home/.local
+  V2_PREFIX: <scratch>/home/.local/opencode-v2
+  BIN:       <scratch>/home/.local/bin
+  DB_DIR:    <scratch>/home/.local/share/opencode
+
+name: opencode
+  command -v: <scratch>/home/.local/bin/opencode
+  $BIN/opencode: <scratch>/home/.local/bin/opencode
+  realpath: <scratch>/home/.local/lib/node_modules/opencode-ai/bin/opencode.exe
+  shape: v1
+
+name: opencode2
+  command -v: <scratch>/home/.local/bin/opencode2
+  $BIN/opencode2: <scratch>/home/.local/bin/opencode2
+  realpath: <scratch>/home/.local/bin/opencode2
+  shape: v2
+
+bare name 'opencode' resolves to: v1 (<scratch>/home/.local/bin/opencode)
+
+database files in <scratch>/home/.local/share/opencode:
+  none exists
+
+"<scratch>/home/.local/opencode-v2/bin" on PATH: no
+PASS: check complete; this helper wrote nothing (a v2 --version call appends one line to the v2 log)
+exit=0

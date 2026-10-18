@@ -1,0 +1,11 @@
+# identical tree hash after run 1, run 2 and check (all files, log included)
+5f23f98a506715db
+13
+5f23f98a506715db
+13
+5f23f98a506715db
+13
+# 'cli starting' lines in the throwaway v2 log, all written before the run-1 hash: one by the proof harness's own launcher trace (sh -x opencode2 --version), the other's source not established (inferred: the v2 package install in run 1). The unchanged hash shows run 2 and check added none
+2
+# files changed by check
+0

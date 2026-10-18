@@ -1,0 +1,41 @@
+# names and link targets
+/Users/michelkerkmeester/.local/bin/opencode -> ../lib/node_modules/opencode-ai/bin/opencode.exe | sha256 6d3e6458fce4b649edf974c19959d5dbfe1e7f255a503dcfc01215b24ad3ea5b | mtime 1792310814
+/Users/michelkerkmeester/.local/bin/opencode2 -> (file) | sha256 ca0c7336eda7a89f2023354862f6b9ecf06a098457c264be9151aeb02ac5cca1 | mtime 1792310848
+/Users/michelkerkmeester/.local/opencode-v2/bin/opencode -> ../lib/node_modules/@opencode/cli/bin/opencode.exe | sha256 e43ec2df6f36842fd17d1a71a866acb9a84884b489988376c19bf9a7250dabbf | mtime 1792310818
+/Users/michelkerkmeester/.local/opencode-v2/bin/opencode2 -> ../lib/node_modules/@opencode/cli/bin/opencode.exe | sha256 e43ec2df6f36842fd17d1a71a866acb9a84884b489988376c19bf9a7250dabbf | mtime 1792310818
+# realpath targets
+/Users/michelkerkmeester/.local/lib/node_modules/opencode-ai/bin/opencode.exe | size 144634848 | mtime 1792310814
+/Users/michelkerkmeester/.local/opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe | size 186957968 | mtime 1792310818
+# opencode service and server processes (pid, start, command head)
+46220 Sun Oct 18 12:18:22 2026     /Users/michelkerkmeester/.local/opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe serve --servi
+# top-level entries of ~/.config/opencode and ~/.local/share/opencode (name, mtime)
+/Users/michelkerkmeester/.config/opencode/node_modules | 1788593182
+/Users/michelkerkmeester/.config/opencode/opencode.jsonc | 1788593178
+/Users/michelkerkmeester/.config/opencode/package-lock.json | 1788593182
+/Users/michelkerkmeester/.config/opencode/package.json | 1788593182
+/Users/michelkerkmeester/.config/opencode/plugins | 1791268364
+/Users/michelkerkmeester/.config/opencode/service.json | 1792311509
+/Users/michelkerkmeester/.config/opencode/tui.json | 1791268364
+/Users/michelkerkmeester/.config/opencode/.gitignore | 1788593178
+/Users/michelkerkmeester/.local/share/opencode/account.json | 1781250849
+/Users/michelkerkmeester/.local/share/opencode/auth.json | 1792236285
+/Users/michelkerkmeester/.local/share/opencode/auth.json.bak-20260923 | 1790152852
+/Users/michelkerkmeester/.local/share/opencode/bin | 1767967140
+/Users/michelkerkmeester/.local/share/opencode/log | 1792358302
+/Users/michelkerkmeester/.local/share/opencode/opencode-next.db | 1785262584
+/Users/michelkerkmeester/.local/share/opencode/opencode-next.db-shm | 1792359333
+/Users/michelkerkmeester/.local/share/opencode/opencode-next.db-wal | 1785262584
+/Users/michelkerkmeester/.local/share/opencode/opencode-v2.db | 1792333677
+/Users/michelkerkmeester/.local/share/opencode/opencode-v2.db-shm | 1792337938
+/Users/michelkerkmeester/.local/share/opencode/opencode-v2.db-wal | 1792333677
+/Users/michelkerkmeester/.local/share/opencode/opencode.db | 1792355065
+/Users/michelkerkmeester/.local/share/opencode/opencode.db-shm | 1792359333
+/Users/michelkerkmeester/.local/share/opencode/opencode.db-wal | 1792355066
+/Users/michelkerkmeester/.local/share/opencode/repos | 1778391063
+/Users/michelkerkmeester/.local/share/opencode/shell | 1792338560
+/Users/michelkerkmeester/.local/share/opencode/snapshot | 1791190880
+/Users/michelkerkmeester/.local/share/opencode/storage | 1766224971
+/Users/michelkerkmeester/.local/share/opencode/tool-output | 1792311509
+# prefix package versions
+/Users/michelkerkmeester/.local/lib/node_modules/opencode-ai/package.json | 1.19.3
+/Users/michelkerkmeester/.local/opencode-v2/lib/node_modules/@opencode/cli/package.json | 2.0.32

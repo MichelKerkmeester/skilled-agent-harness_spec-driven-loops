@@ -1,0 +1,4 @@
+export HOME="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/scratch/home"
+export PATH="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/scratch/home/.local/bin:/Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin:/opt/homebrew/bin:/usr/bin:/bin"
+export npm_config_cache="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/scratch/npm-cache"
+unset OPENCODE_BIN OPENCODE_DB

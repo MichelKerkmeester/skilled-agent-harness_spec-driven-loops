@@ -1,0 +1,14 @@
+resolved paths:
+  V1_PREFIX: <scratch>/home/.local
+  V2_PREFIX: <scratch>/home/.local/opencode-v2
+  BIN:       <scratch>/home/.local/bin
+  DB_DIR:    <scratch>/home/.local/share/opencode
+INFO: already installed: opencode-ai@1.19.3, skipped
+[rollback, never run] npm uninstall -g --prefix "<scratch>/home/.local" opencode-ai
+INFO: already installed: @opencode/cli@2.0.32, skipped
+[rollback, never run] npm uninstall -g --prefix "<scratch>/home/.local/opencode-v2" @opencode/cli
+INFO: launcher: left unchanged (<scratch>/home/.local/bin/opencode2)
+verify: <scratch>/home/.local/bin/opencode -> 1.19.3 [v1]
+verify: <scratch>/home/.local/bin/opencode2 -> opencode v2.0.32 [v2]
+PASS: v1 and v2 are installed side by side
+exit=0

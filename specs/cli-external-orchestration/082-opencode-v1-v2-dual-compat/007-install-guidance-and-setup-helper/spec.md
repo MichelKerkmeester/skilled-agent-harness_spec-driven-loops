@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-18 |
 | **Branch** | `scaffold/007-install-guidance-and-setup-helper` |
 | **Parent Spec** | ../spec.md |
@@ -163,7 +163,7 @@ A user can build the v1-only, v2-only or side-by-side layout with one script, se
 - **NFR-P01**: `check` makes at most two `--version` calls and reads the file system once for each prefix.
 
 ### Security
-- **NFR-S01**: The script uses no `sudo`. Its only network call is the npm install in `both` and `v1`, `v2`, and it writes only under the resolved prefixes and the launcher path.
+- **NFR-S01**: The script uses no `sudo`. Its only network call is the npm install in `both` and `v1`, `v2`, and it writes only under the resolved prefixes and the launcher path, plus one temporary probe folder in the system temp area that it removes on exit, and on INT or TERM; signals are ignored for the instant the folder is created. The folder exists because the v2 binary logs every launch under its data directory (amended at build time, `scratch/decisions.txt` 18 and 22).
 
 ### Reliability
 - **NFR-R01**: The launcher is written last, and only after both npm installs succeed. A failed install leaves no launcher behind.

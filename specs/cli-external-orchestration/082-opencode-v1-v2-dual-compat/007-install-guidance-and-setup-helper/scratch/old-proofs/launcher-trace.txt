@@ -1,0 +1,4 @@
++ : opencode-v2.db
++ export OPENCODE_DB
++ exec <scratch>/home/.local/opencode-v2/bin/opencode2 --version
+opencode v2.0.32

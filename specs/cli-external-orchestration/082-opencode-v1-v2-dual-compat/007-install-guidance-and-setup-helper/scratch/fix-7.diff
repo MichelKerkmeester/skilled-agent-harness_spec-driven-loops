@@ -1,0 +1,20 @@
+--- before/opencode-setup.sh	2026-10-18 23:25:59
++++ .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh	2026-10-18 23:26:08
+@@ -94,15 +94,15 @@
+     printf 'unknown\n'
+ }
+ 
+-# Create one temporary data folder for the probes and remove it on exit, interrupt included
++# Create one temporary probe folder in the system temp area; the traps are set first so an interrupt never leaves it
+ ensure_probe_dir() {
+     if [[ -n "${PROBE_DATA_DIR:-}" ]]; then
+         return 0
+     fi
+-    PROBE_DATA_DIR="$(mktemp -d)"
+     trap 'if [[ -n "${PROBE_DATA_DIR:-}" ]]; then rm -rf -- "$PROBE_DATA_DIR"; fi' EXIT
+     trap 'exit 130' INT
+     trap 'exit 143' TERM
++    PROBE_DATA_DIR="$(mktemp -d "${TMPDIR:-/tmp}/opencode-setup-probe.XXXXXX")"
+ }
+ 
+ # The v2 binary logs every launch, so probes point its data directory at a temporary folder and leave HOME untouched

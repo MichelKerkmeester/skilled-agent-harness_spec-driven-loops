@@ -1,0 +1,26 @@
+fake v1 on PATH, mode v2: exit=1, files written=0
+ERROR: an OpenCode v1 is on PATH as 'opencode' (<scratch>/fakes/v1/opencode)
+ERROR: Installing v2 into the default prefix would overwrite that name and orphan the v1 install
+ERROR: Hint: run this script with "both" to build the side-by-side layout
+fake v2 on PATH, mode v1: exit=1, files written=0
+ERROR: an OpenCode v2 is on PATH as 'opencode' (<scratch>/fakes/v2/opencode); installing v1 here would collide with it
+ERROR: Hint: run this script with "both" to build the side-by-side layout
+malformed 'opencode 1.19.3 malformed' on PATH, check: exit=0
+bare name 'opencode' resolves to: (outside HOME, not probed) (<scratch>/fakes/bad/opencode)
+malformed line in HOME bin, check: exit=0
+  shape: unknown
+shape row cr: exit=0   shape: v1   shape: (not installed) 
+shape row joined: exit=0   shape: (not installed)   shape: v2 
+shape row empty: exit=0   shape: unknown   shape: (not installed) 
+V2_PREFIX/bin on PATH, both: exit=1, files written=0
+npm missing, both: exit=1, files written=0
+no mode: exit=2
+unknown mode: exit=2
+HOME with spaces, both: exit=0
+verify: <scratch>/fakes/home with spaces/.local/bin/opencode -> 1.19.3 [v1]
+verify: <scratch>/fakes/home with spaces/.local/bin/opencode2 -> opencode v2.0.32 [v2]
+HOME with spaces, both again: exit=0
+HOME with spaces, check: exit=0
+launcher is a symlink, both: exit=1, link target now: outside
+ERROR: <scratch>/fakes/h-link/.local/bin/opencode2 is a symlink; writing the launcher would write through the link
+ERROR: Nothing was written through the link; remove the link and rerun this mode

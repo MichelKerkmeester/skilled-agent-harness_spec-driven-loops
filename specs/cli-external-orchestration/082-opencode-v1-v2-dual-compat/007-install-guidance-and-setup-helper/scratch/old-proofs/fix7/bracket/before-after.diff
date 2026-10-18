@@ -1,0 +1,8 @@
+26c26
+< /Users/michelkerkmeester/.local/share/opencode/opencode-next.db-shm | 1792358804
+---
+> /Users/michelkerkmeester/.local/share/opencode/opencode-next.db-shm | 1792358824
+32c32
+< /Users/michelkerkmeester/.local/share/opencode/opencode.db-shm | 1792358814
+---
+> /Users/michelkerkmeester/.local/share/opencode/opencode.db-shm | 1792358824

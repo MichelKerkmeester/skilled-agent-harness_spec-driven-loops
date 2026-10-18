@@ -1,0 +1,9 @@
+# T002: proof PATH resolution before any proof
+opencode: none
+opencode2: none
+npm: /opt/homebrew/bin/npm
+node: /opt/homebrew/bin/node
+# T003: registry
+opencode-ai@1.19.3: 1.19.3
+@opencode/cli@2.0.32: 2.0.32
+npm 11.19.1, node v26.8.2

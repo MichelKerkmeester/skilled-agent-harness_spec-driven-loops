@@ -1,0 +1,14 @@
+resolved paths:
+  V1_PREFIX: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/scratch/home/.local
+  V2_PREFIX: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/scratch/home/.local/opencode-v2
+  BIN:       /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/scratch/home/.local/bin
+  DB_DIR:    /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/scratch/home/.local/share/opencode
+
+[step] npm install -g --prefix "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/scratch/home/.local" "opencode-ai@1.19.3"
+[rollback, never run] npm uninstall -g --prefix "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/scratch/home/.local" opencode-ai
+dyld[83646]: Library not loaded: /opt/homebrew/opt/simdutf/lib/libsimdutf.36.dylib
+  Referenced from: <9463AF0D-31CB-3EDB-89B9-A7EADC586FAA> /opt/homebrew/Cellar/node/26.11.1/bin/node
+  Reason: tried: '/opt/homebrew/opt/simdutf/lib/libsimdutf.36.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/opt/simdutf/lib/libsimdutf.36.dylib' (no such file), '/opt/homebrew/opt/simdutf/lib/libsimdutf.36.dylib' (no such file), '/opt/homebrew/Cellar/simdutf/9.3.2/lib/libsimdutf.36.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/Cellar/simdutf/9.3.2/lib/libsimdutf.36.dylib' (no such file), '/opt/homebrew/Cellar/simdutf/9.3.2/lib/libsimdutf.36.dylib' (no such file)
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh: line 311: 83646 Abort trap: 6           npm install -g --prefix "$V1_PREFIX" "$V1_PKG"
+ERROR: npm install failed for opencode-ai@1.19.3; nothing further was written
+exit=1

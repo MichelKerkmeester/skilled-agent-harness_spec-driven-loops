@@ -1,0 +1,1 @@
+46220 Sun Oct 18 12:18:22 2026     /Users/michelkerkmeester/.local/opencode-v2/lib/node_modules/@opencode/cli/bin/openco
