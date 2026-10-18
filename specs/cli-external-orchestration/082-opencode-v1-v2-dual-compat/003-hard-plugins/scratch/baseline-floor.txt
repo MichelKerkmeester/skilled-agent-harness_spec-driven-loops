@@ -1,0 +1,4 @@
+002 closed: RESULT: PASSED (002-pins-imports-dual-export/scratch/validate.txt:52), commit f7b54c52db
+ℹ tests 331
+ℹ pass 331
+ℹ fail 0

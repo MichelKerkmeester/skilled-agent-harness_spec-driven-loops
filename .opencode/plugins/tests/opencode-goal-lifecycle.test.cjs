@@ -20,6 +20,12 @@ async function loadPluginModule() {
   return import(pluginUrl);
 }
 
+async function loadGoalCore(pluginModule) {
+  const coreUrl = pathToFileURL(join(testDir, '..', 'lib', 'opencode-goal-core.js')).href;
+  const coreModule = await import(coreUrl);
+  return coreModule.getGoalCore(pluginModule.default.server);
+}
+
 async function importFreshPlugin(label) {
   return import(`${pluginUrl}?${label}-${Date.now()}-${Math.random()}`);
 }
@@ -60,7 +66,7 @@ function nativeTextPartUpdated(sessionID, messageID, text, role) {
 
 async function withState(fn) {
   const pluginModule = await loadPluginModule();
-  const helpers = pluginModule.default.__test;
+  const helpers = await loadGoalCore(pluginModule);
   const stateDir = await mkdtemp(join(tmpdir(), 'opencode-goal-lifecycle-'));
   const originalAutonomy = process.env.OPENCODE_GOAL_AUTONOMY;
   const originalDebug = process.env.OPENCODE_GOAL_DEBUG;
@@ -116,7 +122,7 @@ async function createLifecycleGoal(helpers, stateDir) {
 }
 
 test('session.created keeps an active goal intact', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, {
+  const plugin = await pluginModule.default.server({}, {
     stateDir,
     nowMs: 1000,
   });
@@ -131,7 +137,7 @@ test('session.created keeps an active goal intact', async () => withState(async 
 }));
 
 test('native message headers charge tokens while only explicit assistant text parts become evidence', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, { stateDir, nowMs: 1000 });
+  const plugin = await pluginModule.default.server({}, { stateDir, nowMs: 1000 });
   await createLifecycleGoal(helpers, stateDir);
   const header = nativeAssistantMessageUpdated('session-life', 'native-msg-1', {
     input: 40,
@@ -169,7 +175,7 @@ test('native message headers charge tokens while only explicit assistant text pa
 }));
 
 test('usage ledger retains old message totals beyond 64 message ids', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, { stateDir, nowMs: 1000 });
+  const plugin = await pluginModule.default.server({}, { stateDir, nowMs: 1000 });
   await helpers.setGoal('session-long-ledger', 'Deduplicate old cumulative usage', {
     stateDir,
     nowMs: 1000,
@@ -195,7 +201,7 @@ test('usage ledger retains old message totals beyond 64 message ids', async () =
 }));
 
 test('message.updated accounts assistant usage once per message id', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, {
+  const plugin = await pluginModule.default.server({}, {
     stateDir,
     nowMs: 1000,
   });
@@ -235,9 +241,9 @@ test('message.updated performs one write cycle for one event', async () => {
   const writeCycleStateDir = await mkdtemp(join(tmpdir(), 'opencode-goal-write-cycle-spy-'));
   try {
     const writeCycleModule = await importFreshPlugin('message-updated-write-cycle');
-    const writeCycleHelpers = writeCycleModule.default.__test;
+    const writeCycleHelpers = await loadGoalCore(writeCycleModule);
     const writeCycleMetrics = {};
-    const writeCyclePlugin = await writeCycleModule.default({}, { stateDir: writeCycleStateDir, metrics: writeCycleMetrics });
+    const writeCyclePlugin = await writeCycleModule.default.server({}, { stateDir: writeCycleStateDir, metrics: writeCycleMetrics });
     await writeCycleHelpers.setGoal('session-write-cycle', 'Merge message updates into one write', {
       stateDir: writeCycleStateDir,
       goalIdFactory: () => 'write-cycle-goal',
@@ -261,7 +267,7 @@ test('message.updated performs one write cycle for one event', async () => {
 });
 
 test('message.updated crosses the token budget and suppresses continuation', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, {
+  const plugin = await pluginModule.default.server({}, {
     stateDir,
     nowMs: 1000,
   });
@@ -310,7 +316,7 @@ test('message.updated crosses the token budget and suppresses continuation', asy
 }));
 
 test('interleaved message totals are charged by delta', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, {
+  const plugin = await pluginModule.default.server({}, {
     stateDir,
     nowMs: 1000,
   });
@@ -354,7 +360,7 @@ test('interleaved message totals are charged by delta', async () => withState(as
 }));
 
 test('budget-limited goals do not charge later usage updates', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, {
+  const plugin = await pluginModule.default.server({}, {
     stateDir,
     nowMs: 1000,
   });
@@ -443,7 +449,7 @@ test('budget-limited goals resume only after the budget is raised', async () => 
 }));
 
 test('same objective after a terminal state creates a reset goal', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, {
+  const plugin = await pluginModule.default.server({}, {
     stateDir,
     nowMs: 1000,
   });
@@ -482,7 +488,7 @@ test('same objective after a terminal state creates a reset goal', async () => w
 }));
 
 test('missing usage payload leaves tokens unchanged and records unavailable source', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, {
+  const plugin = await pluginModule.default.server({}, {
     stateDir,
     nowMs: 1000,
   });
@@ -516,7 +522,7 @@ test('missing usage payload leaves tokens unchanged and records unavailable sour
 }));
 
 test('retryable provider usage errors mark the goal usage-limited', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, {
+  const plugin = await pluginModule.default.server({}, {
     stateDir,
     nowMs: 1000,
   });
@@ -551,7 +557,7 @@ test('retryable provider usage errors mark the goal usage-limited', async () => 
 }));
 
 test('retry-after parsing honors explicit units before epoch heuristics', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, {
+  const plugin = await pluginModule.default.server({}, {
     stateDir,
     nowMs: 5000,
   });
@@ -603,7 +609,7 @@ test('retry-after parsing honors explicit units before epoch heuristics', async 
 }));
 
 test('non-usage provider errors do not suppress an active goal', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, {
+  const plugin = await pluginModule.default.server({}, {
     stateDir,
     nowMs: 1000,
   });
@@ -636,7 +642,7 @@ test('non-usage provider errors do not suppress an active goal', async () => wit
 }));
 
 test('permission.asked marks the goal blocked by prompt', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, { stateDir, nowMs: 1000 });
+  const plugin = await pluginModule.default.server({}, { stateDir, nowMs: 1000 });
   await helpers.setGoal('session-unavailable', 'Handle missing usage data', { stateDir, nowMs: 1000, goalIdFactory: () => 'usage-goal' });
   await plugin.event({
     event: {
@@ -650,7 +656,7 @@ test('permission.asked marks the goal blocked by prompt', async () => withState(
 }));
 
 test('permission.replied clears blocked-by-prompt state', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, { stateDir, nowMs: 1000 });
+  const plugin = await pluginModule.default.server({}, { stateDir, nowMs: 1000 });
   await helpers.setGoal('session-unavailable', 'Handle missing usage data', { stateDir, nowMs: 1000, goalIdFactory: () => 'usage-goal' });
   await plugin.event({ event: { type: 'permission.asked', properties: { sessionID: 'session-unavailable' } } });
   await plugin.event({
@@ -665,7 +671,7 @@ test('permission.replied clears blocked-by-prompt state', async () => withState(
 }));
 
 test('question.asked marks the goal blocked by prompt', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, { stateDir, nowMs: 1000 });
+  const plugin = await pluginModule.default.server({}, { stateDir, nowMs: 1000 });
   await helpers.setGoal('session-unavailable', 'Handle missing usage data', { stateDir, nowMs: 1000, goalIdFactory: () => 'usage-goal' });
   await plugin.event({
     event: {
@@ -679,7 +685,7 @@ test('question.asked marks the goal blocked by prompt', async () => withState(as
 }));
 
 test('question.rejected clears blocked-by-prompt state', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, { stateDir, nowMs: 1000 });
+  const plugin = await pluginModule.default.server({}, { stateDir, nowMs: 1000 });
   await helpers.setGoal('session-unavailable', 'Handle missing usage data', { stateDir, nowMs: 1000, goalIdFactory: () => 'usage-goal' });
   await plugin.event({ event: { type: 'question.asked', properties: { sessionID: 'session-unavailable' } } });
   await plugin.event({
@@ -694,7 +700,7 @@ test('question.rejected clears blocked-by-prompt state', async () => withState(a
 }));
 
 test('session.deleted flushes volatile session status before later idle handling', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, { stateDir, nowMs: 1000 });
+  const plugin = await pluginModule.default.server({}, { stateDir, nowMs: 1000 });
   process.env.OPENCODE_GOAL_AUTONOMY = 'smoke';
   process.env.OPENCODE_GOAL_DEBUG = '1';
   await helpers.setGoal('session-status-flush', 'Flush volatile session status on delete', {
@@ -744,7 +750,7 @@ test('malformed session deletion preserves another session verifier lock', async
     releaseVerifier = resolve;
   });
   let verifierCalls = 0;
-  const plugin = await pluginModule.default({}, {
+  const plugin = await pluginModule.default.server({}, {
     stateDir,
     nowMs: 1000,
     verifierTimeoutMs: 500,
@@ -777,7 +783,7 @@ test('malformed session deletion preserves another session verifier lock', async
 
 test('verifier timeout releases the session lock for a later idle event', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
   let verifierCalls = 0;
-  const plugin = await pluginModule.default({}, {
+  const plugin = await pluginModule.default.server({}, {
     stateDir,
     verifierTimeoutMs: 20,
     supervisorVerifier: async () => {
@@ -805,7 +811,7 @@ test('verifier timeout releases the session lock for a later idle event', async 
 }));
 
 test('app.disposed flushes volatile state before later idle handling', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, { stateDir, nowMs: 1000 });
+  const plugin = await pluginModule.default.server({}, { stateDir, nowMs: 1000 });
   process.env.OPENCODE_GOAL_AUTONOMY = 'smoke';
   process.env.OPENCODE_GOAL_DEBUG = '1';
   await helpers.setGoal('session-disposed-flush', 'Flush all volatile state on disposal', {
@@ -839,7 +845,7 @@ test('app.disposed flushes volatile state before later idle handling', async () 
 }));
 
 test('event errors are written to the goal events log without debug enabled', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, { stateDir, nowMs: 1000 });
+  const plugin = await pluginModule.default.server({}, { stateDir, nowMs: 1000 });
   delete process.env.OPENCODE_GOAL_DEBUG;
   await helpers.ensureGoalStateDir({ stateDir });
   await writeFile(
@@ -870,7 +876,7 @@ test('event errors are written to the goal events log without debug enabled', as
 }));
 
 test('session.deleted archives an existing goal file exactly', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
-  const archivePlugin = await pluginModule.default({}, { stateDir });
+  const archivePlugin = await pluginModule.default.server({}, { stateDir });
   await helpers.setGoal('session-archive-existing', 'Archive this goal state', {
     stateDir,
     goalIdFactory: () => 'archive-existing-goal',
@@ -893,7 +899,7 @@ test('session.deleted archives an existing goal file exactly', async () => withS
 
 test('session.deleted archives a long session id without probing an impossible legacy filename', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
   const sessionID = `session-${'d'.repeat(140)}`;
-  const archivePlugin = await pluginModule.default({}, { stateDir });
+  const archivePlugin = await pluginModule.default.server({}, { stateDir });
   await helpers.setGoal(sessionID, 'Archive a long native session id', {
     stateDir,
     goalIdFactory: () => 'long-archive-goal',
@@ -908,7 +914,7 @@ test('session.deleted archives a long session id without probing an impossible l
 
 test('history migrates a legacy archive and reports an occupied duplicate exactly once', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
   const sessionID = 'session-legacy-archive';
-  const archivePlugin = await pluginModule.default({}, { stateDir });
+  const archivePlugin = await pluginModule.default.server({}, { stateDir });
   await helpers.setGoal(sessionID, 'Keep legacy archive history available', {
     stateDir,
     nowMs: 1200,
@@ -936,7 +942,7 @@ test('history migrates a legacy archive and reports an occupied duplicate exactl
 }));
 
 test('session deletion archive failures preserve active state and write an event error', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, { stateDir, nowMs: 1000 });
+  const plugin = await pluginModule.default.server({}, { stateDir, nowMs: 1000 });
   await helpers.setGoal('session-archive-failure', 'Preserve state when archive fails', {
     stateDir,
     nowMs: 1000,
@@ -956,7 +962,7 @@ test('session deletion archive failures preserve active state and write an event
 }));
 
 test('session.deleted does not reject when the active goal file is missing', async () => withState(async ({ pluginModule, stateDir }) => {
-  const archivePlugin = await pluginModule.default({}, { stateDir });
+  const archivePlugin = await pluginModule.default.server({}, { stateDir });
   await assert.doesNotReject(() => archivePlugin.event({
     event: {
       type: 'session.deleted',
@@ -969,7 +975,7 @@ test('disabled plugin events leave the state directory unchanged', async () => w
   const disabledStateDir = join(stateDir, 'disabled-inert');
   process.env.OPENCODE_GOAL_PLUGIN_DISABLED = '1';
   process.env.OPENCODE_GOAL_DEBUG = '1';
-  const disabledPlugin = await pluginModule.default({}, { stateDir: disabledStateDir });
+  const disabledPlugin = await pluginModule.default.server({}, { stateDir: disabledStateDir });
   const beforeDisabled = await directorySnapshot(disabledStateDir);
   await disabledPlugin.event({
     event: { type: 'session.created', properties: { sessionID: 'session-disabled-inert' } },
@@ -994,7 +1000,7 @@ test('disabled plugin events leave the state directory unchanged', async () => w
 
 test('disabled env flips apply per call to transform and tools', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
   const envFlipStateDir = join(stateDir, 'env-flip');
-  const envFlipPlugin = await pluginModule.default({}, { stateDir: envFlipStateDir });
+  const envFlipPlugin = await pluginModule.default.server({}, { stateDir: envFlipStateDir });
   await helpers.setGoal('session-env-flip', 'Env flips must apply per call', {
     stateDir: envFlipStateDir,
     goalIdFactory: () => 'env-flip-goal',
@@ -1018,7 +1024,7 @@ test('disabled env flips apply per call to transform and tools', async () => wit
 }));
 
 test('archive operations serialize with queued usage updates', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
-  const archivePlugin = await pluginModule.default({}, { stateDir });
+  const archivePlugin = await pluginModule.default.server({}, { stateDir });
   for (let index = 0; index < 20; index += 1) {
     const raceSessionID = `session-archive-race-${index}`;
     const raceGoalID = `archive-race-goal-${index}`;
@@ -1061,7 +1067,7 @@ test('archive pruning removes old archived files and keeps recent files', async 
     goalIdFactory: () => 'archive-prune-trigger-goal',
   });
   const pruneTriggerModule = await importFreshPlugin('archive-prune-existing');
-  const pruneTriggerPlugin = await pruneTriggerModule.default({}, { stateDir });
+  const pruneTriggerPlugin = await pruneTriggerModule.default.server({}, { stateDir });
   await pruneTriggerPlugin.event({
     event: {
       type: 'session.deleted',
@@ -1076,9 +1082,9 @@ test('archive prune throttling runs pruning once in a throttle window', async ()
   const pruneStateDir = await mkdtemp(join(tmpdir(), 'opencode-goal-prune-spy-'));
   try {
     const pruneModule = await importFreshPlugin('archive-prune-throttle');
-    const pruneHelpers = pruneModule.default.__test;
+    const pruneHelpers = await loadGoalCore(pruneModule);
     const pruneMetrics = {};
-    const prunePlugin = await pruneModule.default({}, { stateDir: pruneStateDir, metrics: pruneMetrics });
+    const prunePlugin = await pruneModule.default.server({}, { stateDir: pruneStateDir, metrics: pruneMetrics });
     await pruneHelpers.setGoal('session-prune-one', 'First archive prune', { stateDir: pruneStateDir, metrics: pruneMetrics });
     await pruneHelpers.setGoal('session-prune-two', 'Second archive skips prune', { stateDir: pruneStateDir, metrics: pruneMetrics });
     pruneMetrics.pruneArchive = 0;
@@ -1120,7 +1126,7 @@ test('orphan sweep archives stale active files and keeps recent files', async ()
     createdAtMs: recentUpdatedAtMs,
     updatedAtMs: recentUpdatedAtMs,
   }), 'utf8');
-  const sweepPlugin = await pluginModule.default({}, { stateDir });
+  const sweepPlugin = await pluginModule.default.server({}, { stateDir });
   await sweepPlugin.event({
     event: {
       type: 'session.created',
@@ -1171,7 +1177,7 @@ test('orphan sweep does not archive a goal refreshed after the stale read', asyn
   const staleActiveDate = new Date(staleUpdatedAtMs);
   await utimes(activePath, staleActiveDate, staleActiveDate);
 
-  const sweepPlugin = await pluginModule.default({}, {
+  const sweepPlugin = await pluginModule.default.server({}, {
     stateDir,
     nowMs: freshUpdatedAtMs,
     metrics,
@@ -1195,9 +1201,9 @@ test('orphan sweep prefilter avoids parsing fresh active files', async () => {
   const freshPrefilterStateDir = await mkdtemp(join(tmpdir(), 'opencode-goal-sweep-prefilter-spy-'));
   try {
     const freshPrefilterModule = await importFreshPlugin('sweep-prefilter');
-    const freshPrefilterHelpers = freshPrefilterModule.default.__test;
+    const freshPrefilterHelpers = await loadGoalCore(freshPrefilterModule);
     const freshPrefilterMetrics = {};
-    const freshPrefilterPlugin = await freshPrefilterModule.default({}, { stateDir: freshPrefilterStateDir, metrics: freshPrefilterMetrics });
+    const freshPrefilterPlugin = await freshPrefilterModule.default.server({}, { stateDir: freshPrefilterStateDir, metrics: freshPrefilterMetrics });
     const freshPrefilterPath = freshPrefilterHelpers.goalPathForSession('session-fresh-prefilter', { stateDir: freshPrefilterStateDir });
     await mkdir(freshPrefilterStateDir, { recursive: true, mode: 0o700 });
     await writeFile(freshPrefilterPath, JSON.stringify({
@@ -1222,7 +1228,7 @@ test('orphan sweep throttle leaves later stale active files in place', async () 
   await mkdir(archiveDir, { recursive: true, mode: 0o700 });
   const staleUpdatedAtMs = Date.now() - (40 * 24 * 60 * 60 * 1000);
   const staleActiveDate = new Date(staleUpdatedAtMs);
-  const throttlePlugin = await pluginModule.default({}, { stateDir });
+  const throttlePlugin = await pluginModule.default.server({}, { stateDir });
   const throttleFirstSessionID = 'session-throttle-first';
   const throttleSecondSessionID = 'session-throttle-second';
   const throttleFirstActivePath = helpers.goalPathForSession(throttleFirstSessionID, { stateDir });

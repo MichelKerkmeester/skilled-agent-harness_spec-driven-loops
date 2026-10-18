@@ -34,7 +34,7 @@
       "need"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -43,14 +43,19 @@
       "goal.md",
       "implementation-summary.md",
       ".opencode/plugins/system-completion-sentinel.js",
+      ".opencode/plugins/lib/v2-bridge.js",
+      ".opencode/plugins/lib/completion-sentinel-core.js",
+      ".opencode/plugins/lib/opencode-goal-core.js",
+      ".opencode/plugins/tests/v2-hard-plugins.test.cjs",
       ".skilled/skills/sk-vision/vision-runtime/src/plugin.ts",
+      ".skilled/skills/sk-vision/vision-runtime/src/plugin.test.ts",
+      ".skilled/skills/sk-vision/vision-runtime/dist/plugin.js",
+      "scratch/drift-after-fix.txt",
+      ".opencode/plugins/lib/tool-identity.js",
       ".opencode/plugins/system-spec-gate.js",
       ".opencode/plugins/system-skill-advisor.js",
       ".opencode/plugins/opencode-goal.js",
-      ".opencode/plugins/tests/system-completion-sentinel.test.cjs",
-      ".opencode/plugins/tests/system-skill-advisor.test.cjs",
-      ".opencode/plugins/tests/opencode-goal-capabilities.test.cjs",
-      ".opencode/plugins/tests/opencode-goal-export-contract.test.cjs"
+      ".opencode/plugins/tests/system-completion-sentinel.test.cjs"
     ],
     "entities": [
       {
@@ -96,9 +101,57 @@
         "source": "derived"
       },
       {
+        "name": "v2-bridge.js",
+        "kind": "code",
+        "path": ".opencode/plugins/lib/v2-bridge.js",
+        "source": "derived"
+      },
+      {
+        "name": "completion-sentinel-core.js",
+        "kind": "code",
+        "path": ".opencode/plugins/lib/completion-sentinel-core.js",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal-core.js",
+        "kind": "code",
+        "path": ".opencode/plugins/lib/opencode-goal-core.js",
+        "source": "derived"
+      },
+      {
+        "name": "v2-hard-plugins.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/v2-hard-plugins.test.cjs",
+        "source": "derived"
+      },
+      {
         "name": "plugin.ts",
         "kind": "code",
         "path": ".skilled/skills/sk-vision/vision-runtime/src/plugin.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plugin.test.ts",
+        "kind": "test",
+        "path": ".skilled/skills/sk-vision/vision-runtime/src/plugin.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plugin.js",
+        "kind": "code",
+        "path": ".skilled/skills/sk-vision/vision-runtime/dist/plugin.js",
+        "source": "derived"
+      },
+      {
+        "name": "drift-after-fix.txt",
+        "kind": "file",
+        "path": "scratch/drift-after-fix.txt",
+        "source": "derived"
+      },
+      {
+        "name": "tool-identity.js",
+        "kind": "code",
+        "path": ".opencode/plugins/lib/tool-identity.js",
         "source": "derived"
       },
       {
@@ -126,24 +179,6 @@
         "source": "derived"
       },
       {
-        "name": "system-skill-advisor.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/system-skill-advisor.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "opencode-goal-capabilities.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/opencode-goal-capabilities.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "opencode-goal-export-contract.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/opencode-goal-export-contract.test.cjs",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -166,41 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Open Questions",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Phase",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Five plugins need more than a wrapper to run on v2",
     "created_at": "2026-10-18T12:45:02Z",
-    "last_save_at": "2026-10-18T13:27:16.463Z",
+    "last_save_at": "2026-10-18T17:17:15.011Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fd319a21f3111010275891b806a372daad5ebed7716e9787b82141022d5f1e55",
+    "source_fingerprint": "sha256:86b068582a7b3b62d3e9b166479f7936bd43f7a6032670db0a57be2859eb7cab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2e64245424d28774a1b1fd6ba42a4bc0f6cd48f53654cb3ba80c1f23673b98a0",
-      "plan.md": "7a920f3c5e2402de33d65758d95c4c9a63c8f14f6df9a90cba2c4e4b9820a99e",
-      "tasks.md": "9c13663eb90522ee6c8d2623fa739cbf2289a3e94cda1815f8d6a418827c7d40",
-      "implementation-summary.md": "61762594455000d7b6a7c6ea52202c310868dfddef12f8334996b6ef020c7e4f"
+      "spec.md": "4278263ed77beed94815e431bacafff6a3716cef8f59e627c32a9a4647799369",
+      "plan.md": "b11f5e6530d0ad35b589573ad8cda8bcc6c1333d6ffe491af90826c236e8905a",
+      "tasks.md": "94e67ac2036fdb68d1ac1ee439dddcdc1d7e6125d6567bb9927b33fc082f2257",
+      "implementation-summary.md": "6c5f1070b1b32d824729b41fe3d9dc4b28b4470e4e461f75ddccd4857bdb52e2"
     },
     "last_active_at": null
   }

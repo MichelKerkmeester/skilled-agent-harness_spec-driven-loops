@@ -14,6 +14,8 @@ import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 
 import { tool } from './lib/tool-identity.js';
+import { dualPlugin } from './lib/v2-bridge.js';
+import { registerGoalCore } from './lib/opencode-goal-core.js';
 
 const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
@@ -3184,7 +3186,7 @@ async function executeGoalStatus(context, rawOptions = {}) {
  * @param {number} [rawOptions.maxInjectionChars] - Maximum injected block characters
  * @returns {Promise<Object>} Hooks with `experimental.chat.system.transform` and goal tools
  */
-export default async function MkGoalPlugin(ctx, rawOptions = {}) {
+async function MkGoalPlugin(ctx, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
   const runtimeState = {
     inFlightVerifications: new Set(),
@@ -3352,16 +3354,7 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
   };
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 9. TEST SURFACE
-// ─────────────────────────────────────────────────────────────────────────────
-
-/**
- * Expose pure helpers to unit tests without adding sibling plugin files.
- *
- * @type {Object}
- */
-const __test = Object.freeze({
+registerGoalCore(MkGoalPlugin, {
   GoalError,
   appendGoalBrief,
   goalBriefCacheKey,
@@ -3387,4 +3380,4 @@ const __test = Object.freeze({
   writeGoalAtomic,
 });
 
-MkGoalPlugin.__test = __test;
+export default dualPlugin('opencode-goal', MkGoalPlugin);

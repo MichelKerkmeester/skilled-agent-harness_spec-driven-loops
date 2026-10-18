@@ -1,0 +1,41 @@
+✔ session.created adds v1 session info while preserving v2 event data (28.77175ms)
+✔ session events keep an existing info payload unchanged (0.112083ms)
+✔ message events do not gain session info (0.086166ms)
+✔ session.messages adapts v2 context entries to the v1 data envelope (0.17175ms)
+✔ session.promptAsync queues v1 text through v2 session.prompt (0.114167ms)
+✔ session create, prompt, and delete map to v2 session methods (0.159125ms)
+✔ session client methods reject when their v2 session member is missing (0.258208ms)
+✔ execution and compaction events emit their v1 aliases once (0.153959ms)
+✔ setup bridges mapped hooks, counts skipped keys, and cleans up registrations and events (1.797334ms)
+✔ the v2 handler rejects when the v1 hook throws so the host denies the tool call (0.128125ms)
+✔ execute.after maps a v2 error result to v1 output (0.087208ms)
+✔ execute.after maps title, output, and metadata from a v2 result (0.076ms)
+✔ execute.after defaults output fields when the v2 result is absent (0.048708ms)
+✔ v1 tool string results convert to v2 content results (0.124625ms)
+✔ v1 tool object results convert output and title metadata to v2 results (0.14525ms)
+✔ v1 tool execute receives adapted context fields and preserved v2 fields (0.157833ms)
+✔ system transform receives the model when the v2 context event includes one (0.065209ms)
+✔ cleanup returns the same promise when called more than once (0.038084ms)
+✔ cleanup rejects when a registered dispose rejects (0.070083ms)
+✔ setup failure cleans registered hooks and rethrows the original error (0.061958ms)
+✔ execute.before leaves the original args untouched when the v1 hook does not change them (0.290958ms)
+✔ tool identity preserves the v1 helper contract (0.448958ms)
+✔ classifier-injection-screen registers v2 hooks (33.124958ms)
+✔ cli-dispatch-audit registers v2 hooks (2.084083ms)
+✔ codex-hooks-watchdog registers v2 hooks (0.529958ms)
+✔ mcp-route-guard registers v2 hooks (1.471292ms)
+✔ session-cleanup registers v2 hooks (0.79525ms)
+✔ sk-code-post-edit-quality registers v2 hooks (1.743833ms)
+✔ sk-git-message-gate registers v2 hooks (1.703042ms)
+✔ sk-git-preflight-advisory registers v2 hooks (2.095333ms)
+✔ system-deep-loop-guard registers v2 hooks (3.978375ms)
+✔ system-dist-freshness-guard registers v2 hooks (1.611208ms)
+✔ system-speckit-completion registers v2 hooks (2.496667ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 86.443667

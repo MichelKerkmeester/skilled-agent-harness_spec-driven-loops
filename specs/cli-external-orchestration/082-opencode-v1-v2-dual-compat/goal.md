@@ -114,7 +114,7 @@ and findings belong here.
 | 001 unknowns and baseline | Done | findings.md Q1 to Q11, baseline.json: v1 16 of 16 loaded, v2 0 of 16 active |
 | 005 version-aware guards | Done | `opencode2 run` classified and evaluated by version; v1 verdicts unchanged on 23 commands; validate strict PASSED (005/scratch/evidence.md) |
 | 002 pins, imports, dual export | Done | 11 of 11 ported plugins active on v2, 16 of 16 load on v1, plugin suite 331 of 331, validate strict PASSED (002/scratch/evidence.md) |
-| 003 hard plugins | In progress | Live re-probe: v2 sends `session.execution.succeeded`, not `session.idle`, and `session.compaction.ended`, not `session.compacted` (003/scratch/phase1-answers.txt) |
+| 003 hard plugins | Done | 16 of 16 plugins active on v2 and 16 of 16 load on v1 (18 tool ids), plugin suite 353 of 353 with and without AI_SESSION_CHILD, sk-vision bun test 29 of 29, review P1s closed by verification, validate strict PASSED (003/scratch/evidence.md) |
 
 ### Deviations and findings
 

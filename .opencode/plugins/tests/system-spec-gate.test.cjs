@@ -63,7 +63,7 @@ test('kill switch is a full no-op: chat.system.transform never reads or mutates 
   const projectDir = makeProjectDir();
   try {
     await withEnv(DISABLED_ENV, '1', async () => {
-      const hooks = await MkSpecGatePlugin({ directory: projectDir });
+      const hooks = await MkSpecGatePlugin.server({ directory: projectDir });
 
       // output.system starts as a non-array sentinel. If the kill switch were
       // checked AFTER the normalize line (the pre-fix ordering), this would
@@ -87,7 +87,7 @@ test('kill switch is a full no-op even when output is missing/malformed', async 
   const projectDir = makeProjectDir();
   try {
     await withEnv(DISABLED_ENV, '1', async () => {
-      const hooks = await MkSpecGatePlugin({ directory: projectDir });
+      const hooks = await MkSpecGatePlugin.server({ directory: projectDir });
       // Must not throw even though `output` is undefined -- the disabled
       // check returns before the `!output` guard ever runs.
       await assert.doesNotReject(
@@ -103,8 +103,8 @@ test('kill switch off: chat.system.transform still normalizes output.system and 
   const { default: MkSpecGatePlugin } = await loadPlugin();
   const projectDir = makeProjectDir();
   try {
-    await withEnv(DISABLED_ENV, undefined, async () => {
-      const hooks = await MkSpecGatePlugin({ directory: projectDir });
+    await withEnv(DISABLED_ENV, undefined, () => withEnv('AI_SESSION_CHILD', undefined, async () => {
+      const hooks = await MkSpecGatePlugin.server({ directory: projectDir });
 
       const output = {};
       await hooks['experimental.chat.system.transform']({ prompt: 'fix the login bug' }, output);
@@ -116,7 +116,7 @@ test('kill switch off: chat.system.transform still normalizes output.system and 
         [guardCore.GATE_3_DEFERRED_INSTRUCTION],
         'the turn-time menu is gone; the one-shot deferral instruction is what reaches system context',
       );
-    });
+    }));
   } finally {
     fs.rmSync(projectDir, { recursive: true, force: true });
   }
@@ -150,21 +150,23 @@ test('P1 fix: a ctx.client stub returning a Gate-3-triggering user message opens
         },
       },
     };
-    const hooks = await MkSpecGatePlugin(ctx);
+    await withEnv('AI_SESSION_CHILD', undefined, async () => {
+      const hooks = await MkSpecGatePlugin.server(ctx);
 
-    // No `prompt` field anywhere on input -- matches the real typed shape
-    // `{ sessionID?, model }`. If extractPrompt(input) were the only prompt
-    // source (the pre-fix bug), output.system would stay empty.
-    const output = {};
-    await hooks['experimental.chat.system.transform']({ sessionID, model: { id: 'stub' } }, output);
+      // No `prompt` field anywhere on input -- matches the real typed shape
+      // `{ sessionID?, model }`. If extractPrompt(input) were the only prompt
+      // source (the pre-fix bug), output.system would stay empty.
+      const output = {};
+      await hooks['experimental.chat.system.transform']({ sessionID, model: { id: 'stub' } }, output);
 
-    const guardCore = await loadCore();
-    assert.ok(Array.isArray(output.system));
-    assert.deepEqual(
-      output.system,
-      [guardCore.GATE_3_DEFERRED_INSTRUCTION],
-      'the ctx.client fallback must surface the last user message and open the gate, relaying the deferral',
-    );
+      const guardCore = await loadCore();
+      assert.ok(Array.isArray(output.system));
+      assert.deepEqual(
+        output.system,
+        [guardCore.GATE_3_DEFERRED_INSTRUCTION],
+        'the ctx.client fallback must surface the last user message and open the gate, relaying the deferral',
+      );
+    });
   } finally {
     fs.rmSync(projectDir, { recursive: true, force: true });
   }
@@ -182,7 +184,7 @@ test('P1 fix: a ctx.client throw fails OPEN -- no question injected, no throw pr
         },
       },
     };
-    const hooks = await MkSpecGatePlugin(ctx);
+    const hooks = await MkSpecGatePlugin.server(ctx);
 
     const output = {};
     await assert.doesNotReject(
@@ -208,7 +210,7 @@ test('P1 fix: no real session (no sessionID on input) never attempts the ctx.cli
       directory: projectDir,
       client: { session: { messages: async () => { called = true; return { data: [] }; } } },
     };
-    const hooks = await MkSpecGatePlugin(ctx);
+    const hooks = await MkSpecGatePlugin.server(ctx);
 
     const output = {};
     await hooks['experimental.chat.system.transform']({}, output);
@@ -229,35 +231,37 @@ test('P2 fix: classify and enforce key an absent sessionID under the same fallba
   const { default: MkSpecGatePlugin } = await loadPlugin();
   const projectDir = makeProjectDir();
   try {
-    await withEnv('SYSTEM_SPEC_GATE_ENFORCE', '1', async () => {
-      const hooks = await MkSpecGatePlugin({ directory: projectDir });
+    await withEnv('AI_SESSION_CHILD', undefined, async () => {
+      await withEnv('SYSTEM_SPEC_GATE_ENFORCE', '1', async () => {
+        const hooks = await MkSpecGatePlugin.server({ directory: projectDir });
 
-      // No sessionID anywhere on this input -- exercises the no-session
-      // fallback on the classify surface. Uses the `prompt` field directly
-      // (not the ctx.client fallback) since a no-session turn correctly never
-      // attempts a ctx.client fetch (see the "never attempts the ctx.client
-      // fetch" test above) -- this test isolates the session-key fallback
-      // itself, independent of the P1 ctx.client fix.
-      const output = {};
-      await hooks['experimental.chat.system.transform']({ prompt: 'fix the login bug' }, output);
-      const guardCore = await loadCore();
-      assert.deepEqual(
-        output.system,
-        [guardCore.GATE_3_DEFERRED_INSTRUCTION],
-        'classify must open the gate for the no-session turn, relaying the deferral',
-      );
+        // No sessionID anywhere on this input -- exercises the no-session
+        // fallback on the classify surface. Uses the `prompt` field directly
+        // (not the ctx.client fallback) since a no-session turn correctly never
+        // attempts a ctx.client fetch (see the "never attempts the ctx.client
+        // fetch" test above) -- this test isolates the session-key fallback
+        // itself, independent of the P1 ctx.client fix.
+        const output = {};
+        await hooks['experimental.chat.system.transform']({ prompt: 'fix the login bug' }, output);
+        const guardCore = await loadCore();
+        assert.deepEqual(
+          output.system,
+          [guardCore.GATE_3_DEFERRED_INSTRUCTION],
+          'classify must open the gate for the no-session turn, relaying the deferral',
+        );
 
-      fs.mkdirSync(path.join(projectDir, 'src'), { recursive: true });
-      fs.writeFileSync(path.join(projectDir, 'src', 'login.ts'), '// placeholder\n');
+        fs.mkdirSync(path.join(projectDir, 'src'), { recursive: true });
+        fs.writeFileSync(path.join(projectDir, 'src', 'login.ts'), '// placeholder\n');
 
-      // No sessionID on this input either. If classify and enforce resolved
-      // the missing session to two different fallback strings, enforce would
-      // read a never-opened state here and allow instead of deny.
-      await assert.rejects(
-        hooks['tool.execute.before']({ tool: 'write' }, { args: { filePath: 'src/login.ts' } }),
-        /system-spec-gate:/,
-        'enforce must see the same no-session gate state classify opened, and deny',
-      );
+        // No sessionID on this input either. If classify and enforce resolved
+        // the missing session to two different fallback strings, enforce would
+        // read a never-opened state here and allow instead of deny.
+        await assert.rejects(
+          hooks['tool.execute.before']({ tool: 'write' }, { args: { filePath: 'src/login.ts' } }),
+          /system-spec-gate:/,
+          'enforce must see the same no-session gate state classify opened, and deny',
+        );
+      });
     });
   } finally {
     fs.rmSync(projectDir, { recursive: true, force: true });
@@ -288,7 +292,7 @@ test('SYSTEM_SPEC_GATE_ENFORCE unset: no Write/Edit is ever denied through the O
           },
         },
       };
-      const hooks = await MkSpecGatePlugin(ctx);
+      const hooks = await MkSpecGatePlugin.server(ctx);
 
       await hooks['experimental.chat.system.transform']({ sessionID }, {});
 
@@ -320,33 +324,37 @@ test('WS1 telemetry: a source-file Write with an open gate writes exactly one pa
   const { default: MkSpecGatePlugin } = await loadPlugin();
   const projectDir = makeProjectDir();
   try {
-    await withEnv('SYSTEM_SPEC_GATE_ENFORCE', undefined, async () => {
-      const sessionID = 'telemetry-session';
-      const hooks = await MkSpecGatePlugin({ directory: projectDir });
+    await withEnv('AI_SESSION_CHILD', undefined, () => withEnv(
+      'SYSTEM_SPEC_GATE_ENFORCE',
+      undefined,
+      async () => {
+        const sessionID = 'telemetry-session';
+        const hooks = await MkSpecGatePlugin.server({ directory: projectDir });
 
-      await hooks['experimental.chat.system.transform']({ prompt: 'implement the export pipeline', sessionID }, {});
+        await hooks['experimental.chat.system.transform']({ prompt: 'implement the export pipeline', sessionID }, {});
 
-      fs.mkdirSync(path.join(projectDir, 'src'), { recursive: true });
-      fs.writeFileSync(path.join(projectDir, 'src', 'login.ts'), '// placeholder\n');
+        fs.mkdirSync(path.join(projectDir, 'src'), { recursive: true });
+        fs.writeFileSync(path.join(projectDir, 'src', 'login.ts'), '// placeholder\n');
 
-      await hooks['tool.execute.before']({ tool: 'write', sessionID }, { args: { filePath: 'src/login.ts' } });
+        await hooks['tool.execute.before']({ tool: 'write', sessionID }, { args: { filePath: 'src/login.ts' } });
 
-      const logPath = warningLogPath(projectDir);
-      assert.ok(fs.existsSync(logPath), 'a structured telemetry line must be written for an open-gate mutation event');
-      const lines = fs.readFileSync(logPath, 'utf8').split('\n').filter(Boolean);
-      assert.equal(lines.length, 1, 'exactly one line per mutation event');
-      assert.ok(lines[0].includes('[system-spec-gate]'));
-      const [, payload] = lines[0].split('[system-spec-gate] ');
-      const fields = payload.split(' | ');
-      assert.equal(fields.length, 5);
-      assert.equal(fields[0], 'opencode');
-      assert.equal(fields[1], sessionID);
-      assert.equal(fields[2], 'write');
-      assert.equal(fields[3], 'src/login.ts');
-      // enforce is unset, so the decision resolves to advise, but wouldDeny is
-      // true underneath -- the telemetry line surfaces the would-deny signal.
-      assert.equal(fields[4], 'would-deny');
-    });
+        const logPath = warningLogPath(projectDir);
+        assert.ok(fs.existsSync(logPath), 'a structured telemetry line must be written for an open-gate mutation event');
+        const lines = fs.readFileSync(logPath, 'utf8').split('\n').filter(Boolean);
+        assert.equal(lines.length, 1, 'exactly one line per mutation event');
+        assert.ok(lines[0].includes('[system-spec-gate]'));
+        const [, payload] = lines[0].split('[system-spec-gate] ');
+        const fields = payload.split(' | ');
+        assert.equal(fields.length, 5);
+        assert.equal(fields[0], 'opencode');
+        assert.equal(fields[1], sessionID);
+        assert.equal(fields[2], 'write');
+        assert.equal(fields[3], 'src/login.ts');
+        // enforce is unset, so the decision resolves to advise, but wouldDeny is
+        // true underneath -- the telemetry line surfaces the would-deny signal.
+        assert.equal(fields[4], 'would-deny');
+      },
+    ));
   } finally {
     fs.rmSync(projectDir, { recursive: true, force: true });
   }
@@ -358,7 +366,7 @@ test('WS1 telemetry: SYSTEM_SPEC_GATE_DISABLED=1 writes no telemetry line at all
   try {
     await withEnv(DISABLED_ENV, '1', async () => {
       const sessionID = 'telemetry-disabled-session';
-      const hooks = await MkSpecGatePlugin({ directory: projectDir });
+      const hooks = await MkSpecGatePlugin.server({ directory: projectDir });
 
       await hooks['experimental.chat.system.transform']({ prompt: 'implement the export pipeline', sessionID }, {});
 
@@ -398,7 +406,7 @@ test('WS4: AI_SESSION_CHILD=1 never opens, advises, logs, or denies through the 
     await withEnv('SYSTEM_SPEC_GATE_ENFORCE', '1', async () => {
       await withEnv('AI_SESSION_CHILD', '1', async () => {
         const sessionID = 'child-session';
-        const hooks = await MkSpecGatePlugin({ directory: projectDir });
+        const hooks = await MkSpecGatePlugin.server({ directory: projectDir });
         const { stateDir } = guardCore.resolveGuardPaths(projectDir);
         const statePath = path.join(stateDir, `${guardCore.sessionStateKey(sessionID)}.json`);
         const warningLogPath = path.join(stateDir, 'spec-gate-warnings.log');

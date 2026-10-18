@@ -1,0 +1,43 @@
+ M .opencode/plugins/lib/v2-bridge.js
+ M .opencode/plugins/opencode-goal.js
+ M .opencode/plugins/system-completion-sentinel.js
+ M .opencode/plugins/system-skill-advisor.js
+ M .opencode/plugins/system-spec-gate.js
+ M .opencode/plugins/tests/opencode-goal-capabilities.test.cjs
+ M .opencode/plugins/tests/opencode-goal-continuation.test.cjs
+ M .opencode/plugins/tests/opencode-goal-export-contract.test.cjs
+ M .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs
+ M .opencode/plugins/tests/opencode-goal-render-parity.test.cjs
+ M .opencode/plugins/tests/opencode-goal-state.test.cjs
+ M .opencode/plugins/tests/opencode-goal-supervisor.test.cjs
+ M .opencode/plugins/tests/opencode-goal-tool-path.test.cjs
+ M .opencode/plugins/tests/system-completion-sentinel.test.cjs
+ M .opencode/plugins/tests/system-skill-advisor.test.cjs
+ M .opencode/plugins/tests/system-spec-gate.test.cjs
+ M .opencode/plugins/tests/v2-bridge.test.cjs
+ M .skilled/skills/sk-vision/vision-runtime/src/opencode/command.ts
+ M .skilled/skills/sk-vision/vision-runtime/src/plugin.ts
+?? .opencode/plugins/lib/completion-sentinel-core.js
+?? .opencode/plugins/lib/opencode-goal-core.js
+?? .opencode/plugins/tests/v2-hard-plugins.test.cjs
+?? .skilled/skills/sk-vision/vision-runtime/src/plugin.test.ts
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/bridge-ext-tests.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/drift-after-fix.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/fix-v2-tests.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/grep-checks-003.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/hard-5.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/hard-after.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/hard-before.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/port-a-tests.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/port-b-tests.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/sk-vision-build-after-fix.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/sk-vision-build-after.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/status-after-003.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/suite-after-fix-child.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/suite-after.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/v1-harness-after-003.err
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/v1-harness-after-003.jsonl
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/v1-tool-ids-after-003.json
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/v2-active-003.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/v2-after-003.json
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/scratch/v2-official-release.md

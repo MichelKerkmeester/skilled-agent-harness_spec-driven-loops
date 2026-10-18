@@ -1,0 +1,16 @@
+## typecheck
+typecheck exit 0
+## build
+$ bun run scripts/build.ts
+built dist/plugin.js + dist/prompt-evidence.js + dist/vision-cli.js + dist/python/runtime.py + hooks/opencode/sk-vision.js
+build exit 0
+-rw-r--r--@ 1 michelkerkmeester  staff  506104 Oct 18 18:22 .skilled/skills/sk-vision/vision-runtime/dist/plugin.js
+47d2a99deb0c244497b30022bb962efb8079c92d41f94dd5335ecff4258f3fe8  .skilled/skills/sk-vision/vision-runtime/dist/plugin.js
+## bun test
+bun test v1.3.9 (cf6cdbbb)
+
+ 27 pass
+ 0 fail
+ 57 expect() calls
+Ran 27 tests across 5 files. [1100.00ms]
+test exit 0

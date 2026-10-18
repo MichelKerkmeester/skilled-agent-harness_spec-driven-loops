@@ -22,6 +22,7 @@ import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 
 import { tool } from './lib/tool-identity.js';
+import { dualPlugin } from './lib/v2-bridge.js';
 
 import * as messageIdentity from './lib/opencode-message-identity.js';
 import {
@@ -932,7 +933,7 @@ function deliverTransformContribution(decision, deliver) {
  * @param {string} [rawOptions.sourceSignatureOverride] - Test override for advisor source signature
  * @returns {Promise<Object>} Hooks with `event`, `experimental.chat.system.transform`, and `tool`
  */
-export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
+async function MkSkillAdvisorPlugin(ctx, rawOptions) {
   const fileConfig = await configPromise;
   const merged = { ...fileConfig.values, ...rawOptions };
   const options = normalizeOptions(merged);
@@ -1486,3 +1487,5 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
     },
   };
 }
+
+export default dualPlugin('system-skill-advisor', MkSkillAdvisorPlugin);

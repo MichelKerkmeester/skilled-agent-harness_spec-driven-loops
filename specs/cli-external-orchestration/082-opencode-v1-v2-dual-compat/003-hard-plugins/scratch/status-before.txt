@@ -1,0 +1,8 @@
+?? .skilled/skills/sk-vision/hooks/opencode/sk-vision.js
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/baseline-floor.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/decisions.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/live-probe/
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/phase1-answers.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/sk-vision-build-before.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/status-before.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch/v2-types.txt

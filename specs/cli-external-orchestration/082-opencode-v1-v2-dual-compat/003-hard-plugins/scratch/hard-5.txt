@@ -1,0 +1,5 @@
+opencode-goal
+sk-vision
+system-completion-sentinel
+system-skill-advisor
+system-spec-gate

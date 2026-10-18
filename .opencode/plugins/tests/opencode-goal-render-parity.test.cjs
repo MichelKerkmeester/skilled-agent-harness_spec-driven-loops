@@ -20,6 +20,12 @@ const { pathToFileURL } = require('node:url');
 const core = require('../../hooks/goal/lib/goal-core.cjs');
 const pluginUrl = pathToFileURL(join(__dirname, '..', 'opencode-goal.js')).href;
 
+async function loadGoalCore(pluginModule) {
+  const coreUrl = pathToFileURL(join(__dirname, '..', 'lib', 'opencode-goal-core.js')).href;
+  const coreModule = await import(coreUrl);
+  return coreModule.getGoalCore(pluginModule.default.server);
+}
+
 const OBJECTIVE = 'Ship the parity fixture and verify it';
 
 function labelsOf(block) {
@@ -36,14 +42,14 @@ function labelsOf(block) {
 
 test('both renderers emit the same ordered label set, and only the usage line differs', async () => {
   const pluginModule = await import(pluginUrl);
-  const { __test } = pluginModule.default;
+  const helpers = await loadGoalCore(pluginModule);
   const stateDir = await mkdtemp(join(tmpdir(), 'goal-parity-'));
   const coreStateDir = await mkdtemp(join(tmpdir(), 'goal-parity-core-'));
   try {
     const pluginOptions = { stateDir };
-    await __test.setGoal('parity-session', OBJECTIVE, pluginOptions);
-    const pluginGoal = await __test.readGoal('parity-session', pluginOptions);
-    const pluginBlock = __test.renderGoalInjection(pluginGoal, pluginOptions);
+    await helpers.setGoal('parity-session', OBJECTIVE, pluginOptions);
+    const pluginGoal = await helpers.readGoal('parity-session', pluginOptions);
+    const pluginBlock = helpers.renderGoalInjection(pluginGoal, pluginOptions);
 
     const coreOptions = { stateDir: coreStateDir, scope: { runtime: 'pi', sessionId: 'parity-session', workspace: coreStateDir } };
     const { record } = core.setGoal({ objective: OBJECTIVE }, coreOptions);
@@ -75,21 +81,21 @@ test('both renderers emit the same ordered label set, and only the usage line di
 
 test('the brief cache key changes when a same-length write lands in the same millisecond', async () => {
   const pluginModule = await import(pluginUrl);
-  const { __test } = pluginModule.default;
+  const helpers = await loadGoalCore(pluginModule);
   const stateDir = await mkdtemp(join(tmpdir(), 'goal-cachekey-'));
   try {
     const options = { stateDir };
-    await __test.setGoal('cache-session', OBJECTIVE, options);
-    const path = __test.goalPathForSession('cache-session', options);
+    await helpers.setGoal('cache-session', OBJECTIVE, options);
+    const path = helpers.goalPathForSession('cache-session', options);
     const { stat } = require('node:fs/promises');
     const before = await stat(path, { bigint: true });
-    const keyBefore = __test.goalBriefCacheKey(before);
+    const keyBefore = helpers.goalBriefCacheKey(before);
     // A verdict flip is the same byte length, so a millisecond-resolution key
     // would collide; the key must still change.
-    const goal = await __test.readGoal('cache-session', options);
-    await __test.writeGoalAtomic({ ...goal, lastVerifierVerdict: 'met' }, options);
+    const goal = await helpers.readGoal('cache-session', options);
+    await helpers.writeGoalAtomic({ ...goal, lastVerifierVerdict: 'met' }, options);
     const after = await stat(path, { bigint: true });
-    assert.notEqual(__test.goalBriefCacheKey(after), keyBefore, 'the key must track any write');
+    assert.notEqual(helpers.goalBriefCacheKey(after), keyBefore, 'the key must track any write');
   } finally {
     await rm(stateDir, { recursive: true, force: true });
   }
@@ -102,7 +108,7 @@ test('the brief cache key changes when a same-length write lands in the same mil
 test('both renderers emit the same criteria field for a bound packet', async () => {
   const { mkdir, writeFile } = require('node:fs/promises');
   const pluginModule = await import(pluginUrl);
-  const { __test } = pluginModule.default;
+  const helpers = await loadGoalCore(pluginModule);
   const workspace = await mkdtemp(join(tmpdir(), 'goal-parity-packet-'));
   const stateDir = await mkdtemp(join(tmpdir(), 'goal-parity-pstate-'));
   try {
@@ -117,9 +123,9 @@ test('both renderers emit the same criteria field for a bound packet', async () 
 
     const pluginOptions = { stateDir, directory: workspace };
     const ctx = { sessionID: 'parity-packet' };
-    await __test.executeGoalAction({ action: 'bind', packetPath: 'specs/t/001-fixture' }, ctx, pluginOptions);
-    const pluginGoal = await __test.readGoal(ctx.sessionID, pluginOptions);
-    const pluginBlock = __test.renderGoalInjection(pluginGoal, pluginOptions);
+    await helpers.executeGoalAction({ action: 'bind', packetPath: 'specs/t/001-fixture' }, ctx, pluginOptions);
+    const pluginGoal = await helpers.readGoal(ctx.sessionID, pluginOptions);
+    const pluginBlock = helpers.renderGoalInjection(pluginGoal, pluginOptions);
 
     const coreOptions = { stateDir, scope: { runtime: 'pi', sessionId: 'parity-packet-core', workspace } };
     const { record } = core.bindGoal({ packetPath: 'specs/t/001-fixture' }, coreOptions);

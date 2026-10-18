@@ -55,11 +55,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `opencode2 api GET /api/plugin` lists all five names from `scratch/hard-5.txt` as active, and `scratch/v1-load-after-003.txt` lists all five with no `failed to load plugin` line.
-- [ ] `scratch/hard-before.txt` fails all registration cases, and `scratch/hard-after.txt` passes them.
-- [ ] Both behaviour cases named `sentinel` and `spec gate` fail in `scratch/hard-before.txt`, and both pass in `scratch/hard-after.txt`.
-- [ ] `sk-vision` loads on v1 and v2 from a rebuilt `dist/plugin.js`, or `scratch/sk-vision-blocked.txt` names the phase 1 blocker.
-- [ ] `scratch/suite-after.txt` reports zero failures and a pass count at or above `scratch/baseline-floor.txt`, and no step runs `opencode2 service stop`, `opencode2 service start` or `opencode2 service restart`.
+- [x] `opencode2 api GET /api/plugin` lists all five names from `scratch/hard-5.txt` as active, and `scratch/v1-load-after-003.txt` lists all five with no `failed to load plugin` line. Evidence: `scratch/v2-active-003.txt:5,11,12,14,15` carries all five names, `scratch/v2-after-003.json` reports 16 entries and 16 active, and the five v1 plugin lines sit at `scratch/v1-load-after-003.txt:7,9,10,15,21` with 0 `failed to load plugin` lines.
+- [x] `scratch/hard-before.txt` fails all registration cases, and `scratch/hard-after.txt` passes them. Evidence: `scratch/hard-before.txt:1-5` fails all five registration cases (9 tests, 0 pass, 9 fail at `:10-13`), and `scratch/hard-after.txt:1-5` passes them (10 tests, 10 pass, 0 fail at `:11-14`).
+- [x] Both behaviour cases named `sentinel` and `spec gate` fail in `scratch/hard-before.txt`, and both pass in `scratch/hard-after.txt`. Evidence: `scratch/hard-before.txt:6-7` and `scratch/hard-after.txt:6-7`.
+- [x] `sk-vision` loads on v1 and v2 from a rebuilt `dist/plugin.js`, or `scratch/sk-vision-blocked.txt` names the phase 1 blocker. Evidence: `scratch/sk-vision-build-after-fix.txt:1-8` (typecheck exit 0, build exit 0, `dist/plugin.js` 506257 bytes), `scratch/v1-harness-after-003.jsonl:10` (loaded on v1 on `command.execute.before`), and `scratch/v2-active-003.txt:10` (active on v2).
+- [x] `scratch/suite-after.txt` reports zero failures and a pass count at or above `scratch/baseline-floor.txt`, and no step runs `opencode2 service stop`, `opencode2 service start` or `opencode2 service restart`. Evidence: `scratch/suite-after.txt:363-366` reports 353 pass and 0 fail against the floor of 331 (`scratch/baseline-floor.txt:2-4`), and `scratch/service-state.txt:2` shows the same service PID and start time as phase 2, so it was not restarted.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -76,14 +76,24 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Planning documents filled | Done | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `goal.md` and `implementation-summary.md` in this folder |
-| Tests, ports, sk-vision, verification and review | Pending | Tasks T001 to T025 in `tasks.md` |
+| Tests before ports | Done | `scratch/hard-before.txt:10-13` (9 tests, 0 pass, 9 fail against the unported tree) |
+| Four JavaScript ports | Done | `scratch/hard-after.txt:1-4` (registration cases pass), `scratch/port-a-tests.txt:51-54` (50 of 50) and `scratch/port-b-tests.txt:139-142` (138 of 138) |
+| Seam moves | Done | `scratch/scope-check-003.txt:20-21` (the two core modules), `scratch/grep-checks-003.txt:13-14` (no `__test` line in the entry modules) |
+| Shared bridge extension | Done | `.opencode/plugins/lib/v2-bridge.js:148` (the queue call), `:351` (the context hook) and `:367` (the tool transform), `scratch/fix-v2-tests.txt:51-54` (50 of 50) |
+| sk-vision port and rebuild | Done | `scratch/sk-vision-build-after-fix.txt:1-15` (typecheck and build exit 0, 29 pass), `scratch/v1-harness-after-003.jsonl:10` and `scratch/v2-active-003.txt:10` |
+| Live v2 proof of the event names | Done | `scratch/live-probe/run1-output.txt:3` and `scratch/live-probe/run2-events.jsonl:1` (two approved runs), `scratch/phase1-answers.txt:81-84` (the verdicts) |
+| Review and its fixes | Done | `scratch/review-003.txt:7-11` (no P0, four P1), `scratch/fix-003-report.txt:3-15` (the four fixes), `scratch/review-003-verify.txt:2` (all four closed, no new P0 or P1, PASS) |
+| Verification captures | Done | `scratch/hard-after.txt:11-14`, `scratch/suite-after.txt:363-366`, `scratch/v1-load-after-003.txt:7`, `scratch/v2-active-003.txt:5`, `scratch/grep-checks-003.txt:1`, `scratch/scope-check-003.txt:1` |
+| Closure docs | Done | The completion criteria above, `acceptance-criteria.md` and `tasks.md` in this folder |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| Class of `system-skill-advisor` | Research marks it mechanical. The brief marks it hard. This goal follows the brief, and task T003 records the orchestrator's decision. |
-| Seam homes | The brief names no core modules. Each seam moves to its own core module under `.opencode/plugins/lib/`, and task T003 confirms the names. |
-| Goal port size | `opencode-goal.js` is about 143 KB. The port runs in three dispatches (T012a to T012c). |
-| `sk-vision` named export | `src/plugin.ts` exports `SkVisionPlugin` beside its default. Task T003 decides whether it stays. |
+| Class of `system-skill-advisor` | Research marks it mechanical. The brief marks it hard. Decision 1 records the hard class: it reads session messages through the v1 client and reacts to `session.compacted`, which v2 does not deliver (`scratch/decisions.txt:3`). |
+| Seam homes | Decision 2 moves the sentinel and goal seams to `lib/completion-sentinel-core.js` and `lib/opencode-goal-core.js`, and removes the spec-gate seam because no test read it (`scratch/decisions.txt:4-8`). |
+| Goal port size | `opencode-goal.js` is about 143 KB. The port ran in three dispatches (T012a to T012c), and one orchestrator test edit cleared 13 ReferenceError failures (decision 6, `scratch/decisions.txt:17`). |
+| `sk-vision` named export | Decision 3 removes `SkVisionPlugin`, and decision 12 keeps the named helper `toV1FileUrl` beside the default export for the plugin test (`scratch/decisions.txt:9`, `:28`). |
+| Shared bridge carries the v2 legs | Decision 5 amends the per-plugin v2 legs: the phase 2 bridge carries them for the four JavaScript plugins (`scratch/decisions.txt:12-16`). |
+| Two approved live model runs | The operator approved two short v2 runs on `llmgateway/deepseek-v4.1-flash`, the one deviation from CHK-031's model-free rule. The operator approved those two runs only (`scratch/evidence.md:24`). |
 <!-- /ANCHOR:log -->

@@ -1,0 +1,74 @@
+## export lines (one export default per entry module)
+# .opencode/plugins/system-completion-sentinel.js
+161:export default dualPlugin('system-completion-sentinel', MkCompletionSentinelPlugin);
+# .opencode/plugins/system-spec-gate.js
+300:export default dualPlugin('system-spec-gate', MkSpecGatePlugin);
+# .opencode/plugins/system-skill-advisor.js
+1491:export default dualPlugin('system-skill-advisor', MkSkillAdvisorPlugin);
+# .opencode/plugins/opencode-goal.js
+3383:export default dualPlugin('opencode-goal', MkGoalPlugin);
+# .skilled/skills/sk-vision/vision-runtime/src/plugin.ts
+57:export function toV1FileUrl(file: Pick<V2ContextFile, 'data' | 'mime'>): string {
+248:export default { id: 'sk-vision', server, setup };
+## __test in entry modules (expect none)
+(none)
+## @opencode-ai/plugin/tool under .opencode/plugins (expect none)
+(none)
+## default( calls in goal and advisor tests (expect none)
+(none)
+## return null in the four .js entry modules
+.opencode/plugins/system-completion-sentinel.js:74:  if (!client || !client.session || typeof client.session.messages !== 'function') return null;
+.opencode/plugins/system-completion-sentinel.js:81:    if (!Array.isArray(messages)) return null;
+.opencode/plugins/system-completion-sentinel.js:89:    return null;
+.opencode/plugins/system-completion-sentinel.js:91:    return null;
+.opencode/plugins/system-spec-gate.js:42:  if (!input || typeof input !== 'object') return null;
+.opencode/plugins/system-spec-gate.js:58:  return null;
+.opencode/plugins/system-spec-gate.js:114:    return null;
+.opencode/plugins/system-spec-gate.js:117:    return null;
+.opencode/plugins/system-spec-gate.js:142:  if (!args || typeof args !== 'object') return null;
+.opencode/plugins/system-skill-advisor.js:216:  if (index <= 0) return null;
+.opencode/plugins/system-skill-advisor.js:268:  return null;
+.opencode/plugins/system-skill-advisor.js:494:    return null;
+.opencode/plugins/system-skill-advisor.js:521:  return null;
+.opencode/plugins/system-skill-advisor.js:552:  if (!Array.isArray(data?.recommendations)) return null;
+.opencode/plugins/system-skill-advisor.js:563:  return null;
+.opencode/plugins/system-skill-advisor.js:699:  if (typeof projectDir !== 'string' || projectDir.length === 0) return null;
+.opencode/plugins/opencode-goal.js:345:  if (value === null || value === undefined) return null;
+.opencode/plugins/opencode-goal.js:360:  if (!input || typeof input !== 'object') return null;
+.opencode/plugins/opencode-goal.js:372:  if (!context || typeof context !== 'object') return null;
+.opencode/plugins/opencode-goal.js:661:  if (value === null) return null;
+.opencode/plugins/opencode-goal.js:773:  if (!Number.isFinite(value)) return null;
+.opencode/plugins/opencode-goal.js:902:  if (!source || typeof source !== 'object') return null;
+.opencode/plugins/opencode-goal.js:907:  return null;
+.opencode/plugins/opencode-goal.js:1008:  return null;
+.opencode/plugins/opencode-goal.js:1028:  if (value === null || value === undefined || value === '') return null;
+.opencode/plugins/opencode-goal.js:1064:  return null;
+.opencode/plugins/opencode-goal.js:1077:  if (!value || typeof value !== 'object') return null;
+.opencode/plugins/opencode-goal.js:1107:  if (role && role !== 'assistant') return null;
+.opencode/plugins/opencode-goal.js:1117:  if (!part || part.type !== 'text') return null;
+.opencode/plugins/opencode-goal.js:1119:  if (role !== 'assistant') return null;
+.opencode/plugins/opencode-goal.js:1313:  if (legacyPath === targetPath) return null;
+.opencode/plugins/opencode-goal.js:1320:    if (error?.code === 'ENOENT' || error?.code === 'ENAMETOOLONG') return null;
+.opencode/plugins/opencode-goal.js:1371:        if (!migration) return null;
+.opencode/plugins/opencode-goal.js:1454:  return null;
+.opencode/plugins/opencode-goal.js:1500:    if (!currentGoal) return null;
+.opencode/plugins/opencode-goal.js:1505:      return null;
+.opencode/plugins/opencode-goal.js:1512:      if (error?.code === 'ENOENT') return null;
+.opencode/plugins/opencode-goal.js:1519:      return null;
+.opencode/plugins/opencode-goal.js:1538:    return null;
+.opencode/plugins/opencode-goal.js:1978:  if (!normalizedSessionID) return null;
+.opencode/plugins/opencode-goal.js:1991:  if (!normalizedGoalID) return null;
+.opencode/plugins/opencode-goal.js:2027:    if (!current) return null;
+.opencode/plugins/opencode-goal.js:2071:    if (!current) return null;
+.opencode/plugins/opencode-goal.js:2091:    if (!current) return null;
+.opencode/plugins/opencode-goal.js:2114:    if (!current) return null;
+.opencode/plugins/opencode-goal.js:2175:    if (!current) return null;
+.opencode/plugins/opencode-goal.js:2495:  return null;
+.opencode/plugins/opencode-goal.js:2502:  return null;
+.opencode/plugins/opencode-goal.js:2743:  if (!goal || typeof goal.packetPath !== 'string' || !goal.packetPath) return null;
+.opencode/plugins/opencode-goal.js:2871:      if (!migratedGoal) return null;
+.opencode/plugins/opencode-goal.js:2880:        return null;
+.opencode/plugins/opencode-goal.js:2883:      return null;
+.opencode/plugins/opencode-goal.js:2899:      return null;
+## return null lines changed by this phase (diff against HEAD)
+(none)

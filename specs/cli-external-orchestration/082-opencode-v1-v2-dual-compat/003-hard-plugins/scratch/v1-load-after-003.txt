@@ -1,0 +1,39 @@
+# v1 `opencode debug config --print-logs </dev/null` (OPENCODE_DB on a throwaway path), trimmed to the plugin fields.
+# The full dump also held every agent and command prompt; those are omitted here.
+# exit status 0. "failed to load plugin" lines in the full output: 0
+## plugin
+01 file:///Users/michelkerkmeester/.config/opencode/plugins/orca-opencode-status.js
+02 file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/system-speckit-completion.js
+03 file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/system-completion-sentinel.js
+04 file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/cli-dispatch-audit.js
+05 file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/system-spec-gate.js
+06 file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/system-skill-advisor.js
+07 file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/sk-git-message-gate.js
+08 file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/session-cleanup.js
+09 file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/system-dist-freshness-guard.js
+10 file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/sk-git-preflight-advisory.js
+11 file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/opencode-goal.js
+12 file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/system-deep-loop-guard.js
+13 file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/mcp-route-guard.js
+14 file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/sk-code-post-edit-quality.js
+15 file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/classifier-injection-screen.js
+16 file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/codex-hooks-watchdog.js
+17 file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/sk-vision.js
+## plugin_origins (spec, scope)
+- file:///Users/michelkerkmeester/.config/opencode/plugins/orca-opencode-status.js | global
+- file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/system-speckit-completion.js | local
+- file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/system-completion-sentinel.js | local
+- file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/cli-dispatch-audit.js | local
+- file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/system-spec-gate.js | local
+- file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/system-skill-advisor.js | local
+- file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/sk-git-message-gate.js | local
+- file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/session-cleanup.js | local
+- file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/system-dist-freshness-guard.js | local
+- file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/sk-git-preflight-advisory.js | local
+- file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/opencode-goal.js | local
+- file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/system-deep-loop-guard.js | local
+- file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/mcp-route-guard.js | local
+- file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/sk-code-post-edit-quality.js | local
+- file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/classifier-injection-screen.js | local
+- file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/codex-hooks-watchdog.js | local
+- file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/sk-vision.js | local

@@ -1,0 +1,33 @@
+# Non-zero command exits in the phase 3 implementer logs
+
+27 non-zero exits across the codex runs (p003-bridge, p003-port-a, p003-port-b, p003-port-c, p003-tests, p003-fix). 0 show a sandbox or permission word in the output that follows.
+
+Every test suite and live probe for this phase was run by the orchestrator, not by a child: the briefs told the children not to run them, because the codex sandbox blocks local IPC. The orchestrator reruns are in evidence.md (hard-after.txt, suite-after.txt, suite-after-fix-child.txt, fix-v2-tests.txt, sk-vision-build-after-fix.txt, the v1 and v2 load captures and drift-after-fix.txt).
+
+- p003-bridge exit 1 [exit only] /bin/zsh -lc 'cat .skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-implement.md .skilled/skills/sk-code/sk-code-opencode/
+- p003-bridge exit 2 [exit only] /bin/zsh -lc 'bash .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh .opencode/plugins/lib/v2-bridge.js' in /Users/mi
+- p003-bridge exit 2 [exit only] /bin/zsh -lc 'bash .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh .opencode/plugins/tests/v2-bridge.test.cjs' in /
+- p003-port-a exit 1 [exit only] /bin/zsh -lc 'cat .skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-implement.md' in /Users/michelkerkmeester/MEGA/Develop
+- p003-port-a exit 1 [exit only] /bin/zsh -lc 'cat .skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-verify.md' in /Users/michelkerkmeester/MEGA/Developmen
+- p003-port-a exit 1 [exit only] /bin/zsh -lc "rg -n 'MkSpecGatePlugin\\.__test|__test\\.(extractPrompt|sessionIdFrom|fetchLastUserPromptViaClient|eventTypeFrom|sessionIdFro
+- p003-port-b exit 1 [exit only] /bin/zsh -lc 'realpath -e . .skilled .opencode/plugins/opencode-goal.js' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Publi
+- p003-port-b exit 1 [exit only] /bin/zsh -lc 'cat .skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-implement.md .skilled/skills/sk-code/sk-code-opencode/
+- p003-port-b exit 1 [exit only] ?
+- p003-port-b exit 1 [exit only] /bin/zsh -lc "rg -n -F '.default(' .opencode/plugins/tests/opencode-goal-capabilities.test.cjs" in /Users/michelkerkmeester/MEGA/Development
+- p003-port-b exit 1 [exit only] /bin/zsh -lc "rg -n '__test|\\.default\\(' .opencode/plugins/opencode-goal.js .opencode/plugins/tests/opencode-goal-*.test.cjs" in /Users/mi
+- p003-port-b exit 1 [exit only] ?
+- p003-port-c exit 1 [exit only] /bin/zsh -lc "cat .skilled/repo-rules/prevent-overengineering.md .skilled/repo-rules/communication.md .skilled/repo-rules/communication-pros
+- p003-port-c exit 1 [exit only] /bin/zsh -lc 'cat .skilled/node_modules/@opencode/plugin/dist/promise/command.d.ts .skilled/node_modules/@opencode/plugin/dist/promise/regis
+- p003-port-c exit 134 [exit only] /bin/zsh -lc 'bunx tsc --noEmit' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-bu
+- p003-tests exit 1 [exit only] ?
+- p003-tests exit 2 [exit only] /bin/zsh -lc "sed -n '32,62p;119,180p' .opencode/plugins/system-completion-sentinel.js && rg -n -C 4 \"appendAdvisoryLog|resolveSentinelPath
+- p003-tests exit 2 [exit only] /bin/zsh -lc "sed -n '14,50p' .opencode/plugins/system-skill-advisor.js && sed -n '400,440p' .opencode/plugins/system-skill-advisor.js && rg
+- p003-tests exit 1 [exit only] /bin/zsh -lc "rg --files .skilled/skills/system-spec-kit | rg \"goal\\.cjs"'$"' in /Users/michelkerkmeester/MEGA/Development/Code_Environmen
+- p003-tests exit 1 [exit only] /bin/zsh -lc 'cat .skilled/skills/sk-code/sk-code-opencode/shared/workflow-implement.md' in /Users/michelkerkmeester/MEGA/Development/Code_E
+- p003-tests exit 1 [exit only] /bin/zsh -lc 'cat .skilled/skills/sk-code/sk-code-opencode/shared/workflow-implement.md' in /Users/michelkerkmeester/MEGA/Development/Code_E
+- p003-tests exit 1 [exit only] /bin/zsh -lc 'cat .opencode/hooks/hook-flags.env' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-openco
+- p003-fix exit 1 [exit only] /bin/zsh -lc 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "Implement phase 
+- p003-fix exit 1 [exit only] /bin/zsh -lc 'cat .skilled/skills/sk-code/sk-code-opencode/SKILL.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.w
+- p003-fix exit 134 [exit only] /bin/zsh -lc 'bun run typecheck' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-bu
+- p003-fix exit 1 [exit only] /bin/zsh -lc 'node --version' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build
+- p003-fix exit 134 [exit only] ?

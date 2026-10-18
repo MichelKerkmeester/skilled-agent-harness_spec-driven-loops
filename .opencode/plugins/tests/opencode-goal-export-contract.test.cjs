@@ -15,19 +15,29 @@ async function loadPluginModule() {
   return import(pluginUrl);
 }
 
+async function loadGoalCore(pluginModule) {
+  const coreUrl = pathToFileURL(join(__dirname, '..', 'lib', 'opencode-goal-core.js')).href;
+  const coreModule = await import(coreUrl);
+  return coreModule.getGoalCore(pluginModule.default.server);
+}
+
 test('module exports only the default plugin entrypoint', async () => {
   const pluginModule = await loadPluginModule();
   assert.deepEqual(Object.keys(pluginModule), ['default']);
 });
 
-test('default export is a plugin factory function', async () => {
+test('default export is a dual-version plugin object', async () => {
   const pluginModule = await loadPluginModule();
-  assert.equal(typeof pluginModule.default, 'function');
+  assert.equal(typeof pluginModule.default, 'object');
+  assert.deepEqual(Object.keys(pluginModule.default).sort(), ['id', 'server', 'setup']);
+  assert.equal(pluginModule.default.id, 'opencode-goal');
+  assert.equal(typeof pluginModule.default.server, 'function');
+  assert.equal(typeof pluginModule.default.setup, 'function');
 });
 
-test('default export exposes the complete pinned __test seam list', async () => {
+test('core exposes the complete pinned helper list', async () => {
   const pluginModule = await loadPluginModule();
-  assert.deepEqual(Object.keys(pluginModule.default.__test).sort(), [
+  assert.deepEqual(Object.keys(await loadGoalCore(pluginModule)).sort(), [
     'GoalError',
     'accountUsage',
     'appendGoalBrief',

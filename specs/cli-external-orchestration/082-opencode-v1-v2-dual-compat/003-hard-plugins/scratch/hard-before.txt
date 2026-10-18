@@ -1,0 +1,162 @@
+✖ system-completion-sentinel exports and registers v2 hooks (7.032542ms)
+✖ system-spec-gate exports and registers v2 hooks (6.216834ms)
+✖ system-skill-advisor exports and registers v2 hooks (66.46925ms)
+✖ opencode-goal exports and registers v2 hooks (7.594167ms)
+✖ sk-vision exports and registers v2 hooks (22.215708ms)
+✖ system-completion-sentinel records an advisory after a completed session event (0.851625ms)
+✖ system-spec-gate rejects a denied write through execute.before (0.8615ms)
+✖ opencode-goal queues its continuation through session.prompt (0.41625ms)
+✖ system-skill-advisor clears session transform dedup after compaction (0.826ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 0
+ℹ fail 9
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 148.63125
+
+✖ failing tests:
+
+test at .opencode/plugins/tests/v2-hard-plugins.test.cjs:316:3
+✖ system-completion-sentinel exports and registers v2 hooks (7.032542ms)
+  AssertionError [ERR_ASSERTION]: system-completion-sentinel default export must be a non-function object
+      at assertPluginDefinition (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:90:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:323:7)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/v2-hard-plugins.test.cjs:316:3
+✖ system-spec-gate exports and registers v2 hooks (6.216834ms)
+  AssertionError [ERR_ASSERTION]: system-spec-gate default export must be a non-function object
+      at assertPluginDefinition (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:90:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:323:7)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/v2-hard-plugins.test.cjs:316:3
+✖ system-skill-advisor exports and registers v2 hooks (66.46925ms)
+  AssertionError [ERR_ASSERTION]: system-skill-advisor default export must be a non-function object
+      at assertPluginDefinition (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:90:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:323:7)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/v2-hard-plugins.test.cjs:316:3
+✖ opencode-goal exports and registers v2 hooks (7.594167ms)
+  AssertionError [ERR_ASSERTION]: opencode-goal default export must be a non-function object
+      at assertPluginDefinition (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:90:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:323:7)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/v2-hard-plugins.test.cjs:316:3
+✖ sk-vision exports and registers v2 hooks (22.215708ms)
+  AssertionError [ERR_ASSERTION]: sk-vision default export must be a non-function object
+      at assertPluginDefinition (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:90:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:323:7)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/v2-hard-plugins.test.cjs:349:1
+✖ system-completion-sentinel records an advisory after a completed session event (0.851625ms)
+  AssertionError [ERR_ASSERTION]: system-completion-sentinel default export must be a non-function object
+      at assertPluginDefinition (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:90:10)
+      at /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:377:7
+      at async withEnvironment (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:293:12)
+      at async TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:367:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/v2-hard-plugins.test.cjs:408:1
+✖ system-spec-gate rejects a denied write through execute.before (0.8615ms)
+  AssertionError [ERR_ASSERTION]: system-spec-gate default export must be a non-function object
+      at assertPluginDefinition (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:90:10)
+      at /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:438:7
+      at async withEnvironment (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:293:12)
+      at async TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:429:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/v2-hard-plugins.test.cjs:484:1
+✖ opencode-goal queues its continuation through session.prompt (0.41625ms)
+  AssertionError [ERR_ASSERTION]: opencode-goal default export must be a non-function object
+      at assertPluginDefinition (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:90:10)
+      at /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:501:7
+      at async withEnvironment (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:293:12)
+      at async TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:491:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/v2-hard-plugins.test.cjs:535:1
+✖ system-skill-advisor clears session transform dedup after compaction (0.826ms)
+  AssertionError [ERR_ASSERTION]: system-skill-advisor default export must be a non-function object
+      at assertPluginDefinition (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:90:10)
+      at /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:575:7
+      at async withEnvironment (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:293:12)
+      at async TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:546:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

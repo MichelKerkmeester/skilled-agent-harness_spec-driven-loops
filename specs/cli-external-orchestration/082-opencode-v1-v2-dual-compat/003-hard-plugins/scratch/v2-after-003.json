@@ -1,0 +1,85 @@
+{
+ "version": "v2",
+ "plugins": [
+  {
+   "name": "classifier-injection-screen",
+   "status": "active",
+   "error": null
+  },
+  {
+   "name": "cli-dispatch-audit",
+   "status": "active",
+   "error": null
+  },
+  {
+   "name": "codex-hooks-watchdog",
+   "status": "active",
+   "error": null
+  },
+  {
+   "name": "mcp-route-guard",
+   "status": "active",
+   "error": null
+  },
+  {
+   "name": "opencode-goal",
+   "status": "active",
+   "error": null
+  },
+  {
+   "name": "session-cleanup",
+   "status": "active",
+   "error": null
+  },
+  {
+   "name": "sk-code-post-edit-quality",
+   "status": "active",
+   "error": null
+  },
+  {
+   "name": "sk-git-message-gate",
+   "status": "active",
+   "error": null
+  },
+  {
+   "name": "sk-git-preflight-advisory",
+   "status": "active",
+   "error": null
+  },
+  {
+   "name": "sk-vision",
+   "status": "active",
+   "error": null
+  },
+  {
+   "name": "system-completion-sentinel",
+   "status": "active",
+   "error": null
+  },
+  {
+   "name": "system-deep-loop-guard",
+   "status": "active",
+   "error": null
+  },
+  {
+   "name": "system-dist-freshness-guard",
+   "status": "active",
+   "error": null
+  },
+  {
+   "name": "system-skill-advisor",
+   "status": "active",
+   "error": null
+  },
+  {
+   "name": "system-spec-gate",
+   "status": "active",
+   "error": null
+  },
+  {
+   "name": "system-speckit-completion",
+   "status": "active",
+   "error": null
+  }
+ ]
+}

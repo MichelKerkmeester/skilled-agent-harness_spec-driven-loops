@@ -2,7 +2,6 @@
 // MODULE: OpenCode Vision Command
 // ───────────────────────────────────────────────────────────────────
 
-import type { PluginInput } from "@opencode-ai/plugin";
 import type { FilePart, Part } from "@opencode-ai/sdk";
 import type { ImageSource } from "../providers/types.js";
 import contextBuilder from "../core/context-builder.js";
@@ -20,8 +19,19 @@ interface VisionCommandOutput {
   parts: Part[];
 }
 
-interface SessionMessage {
-  parts?: Part[];
+export interface VisionCommandSessionMessage {
+  readonly parts?: readonly Part[];
+}
+
+export interface VisionCommandPluginInput {
+  readonly directory: string;
+  readonly client: {
+    readonly session: {
+      messages(input: { readonly path: { readonly id: string } }): Promise<{
+        readonly data?: readonly VisionCommandSessionMessage[];
+      }>;
+    };
+  };
 }
 
 function appendText(output: VisionCommandOutput, text: string): void {
@@ -32,7 +42,7 @@ function errorMessage(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
 }
 
-function latestImage(messages: readonly SessionMessage[]): FilePart | undefined {
+function latestImage(messages: readonly VisionCommandSessionMessage[]): FilePart | undefined {
   for (let messageIndex = messages.length - 1; messageIndex >= 0; messageIndex -= 1) {
     const parts = messages[messageIndex]?.parts ?? [];
     for (let partIndex = parts.length - 1; partIndex >= 0; partIndex -= 1) {
@@ -76,7 +86,7 @@ async function teardown(
 
 /** Handle the user-invoked `/vision` command without affecting other commands. */
 export async function handleVisionCommand(
-  pluginInput: PluginInput,
+  pluginInput: VisionCommandPluginInput,
   input: VisionCommandInput,
   output: VisionCommandOutput,
 ): Promise<void> {

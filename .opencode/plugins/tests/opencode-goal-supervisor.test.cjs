@@ -19,6 +19,12 @@ async function loadPluginModule() {
   return import(pluginUrl);
 }
 
+async function loadGoalCore(pluginModule) {
+  const coreUrl = pathToFileURL(join(testDir, '..', 'lib', 'opencode-goal-core.js')).href;
+  const coreModule = await import(coreUrl);
+  return coreModule.getGoalCore(pluginModule.default.server);
+}
+
 async function writeGoalWithEvidence(helpers, sessionID, stateDir, evidence) {
   const goal = await helpers.setGoal(sessionID, `Verify ${sessionID}`, {
     stateDir,
@@ -57,12 +63,12 @@ async function withVerifierEnv(value, fn) {
 
 async function withSupervisor(fn) {
   const pluginModule = await loadPluginModule();
-  const helpers = pluginModule.default.__test;
+  const helpers = await loadGoalCore(pluginModule);
   const stateDir = await mkdtemp(join(tmpdir(), 'opencode-goal-supervisor-'));
   let verifierCalls = 0;
 
   try {
-    const plugin = await pluginModule.default({}, {
+    const plugin = await pluginModule.default.server({}, {
       stateDir,
       nowMs: 2000,
       supervisorVerifier: async ({ sessionID }) => {
@@ -252,10 +258,10 @@ test('absent evidence defaults to not_met without calling the verifier', async (
 
 test('default heuristic verifier completes only explicit objective-specific evidence', async () => withVerifierEnv(null, async () => {
   const pluginModule = await loadPluginModule();
-  const helpers = pluginModule.default.__test;
+  const helpers = await loadGoalCore(pluginModule);
   const stateDir = await mkdtemp(join(tmpdir(), 'opencode-goal-default-heuristic-'));
   try {
-    const plugin = await pluginModule.default({}, { stateDir, nowMs: 2000 });
+    const plugin = await pluginModule.default.server({}, { stateDir, nowMs: 2000 });
     await writeGoalWithObjectiveAndEvidence(
       helpers,
       'session-default-met',
@@ -278,7 +284,7 @@ test('default heuristic verifier completes only explicit objective-specific evid
 
 test('default heuristic verifier rejects adversarial weak and mixed evidence', async () => withVerifierEnv(null, async () => {
   const pluginModule = await loadPluginModule();
-  const helpers = pluginModule.default.__test;
+  const helpers = await loadGoalCore(pluginModule);
   const stateDir = await mkdtemp(join(tmpdir(), 'opencode-goal-default-negative-'));
   const cases = [
     {
@@ -349,7 +355,7 @@ test('default heuristic verifier rejects adversarial weak and mixed evidence', a
 
 test('llm verifier mode blocks when isolated session APIs are unavailable', async () => withVerifierEnv('llm', async () => {
   const pluginModule = await loadPluginModule();
-  const helpers = pluginModule.default.__test;
+  const helpers = await loadGoalCore(pluginModule);
   const stateDir = await mkdtemp(join(tmpdir(), 'opencode-goal-llm-missing-'));
   try {
     await writeGoalWithObjectiveAndEvidence(
@@ -374,7 +380,7 @@ test('llm verifier mode blocks when isolated session APIs are unavailable', asyn
 
 test('llm verifier uses a response-returning isolated session and deletes it', async () => withVerifierEnv('llm', async () => {
   const pluginModule = await loadPluginModule();
-  const helpers = pluginModule.default.__test;
+  const helpers = await loadGoalCore(pluginModule);
   const stateDir = await mkdtemp(join(tmpdir(), 'opencode-goal-llm-success-'));
   const calls = [];
   const client = {

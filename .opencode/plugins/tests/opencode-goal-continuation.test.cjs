@@ -20,9 +20,15 @@ async function loadPluginModule() {
   return import(pluginUrl);
 }
 
+async function loadGoalCore(pluginModule) {
+  const coreUrl = pathToFileURL(join(testDir, '..', 'lib', 'opencode-goal-core.js')).href;
+  const coreModule = await import(coreUrl);
+  return coreModule.getGoalCore(pluginModule.default.server);
+}
+
 async function withState(fn) {
   const pluginModule = await loadPluginModule();
-  const helpers = pluginModule.default.__test;
+  const helpers = await loadGoalCore(pluginModule);
   const stateDir = await mkdtemp(join(tmpdir(), 'opencode-goal-continuation-'));
   const originalAutonomy = process.env.OPENCODE_GOAL_AUTONOMY;
   const originalDebug = process.env.OPENCODE_GOAL_DEBUG;
@@ -158,7 +164,7 @@ test('smoke mode logs would-fire continuations and event metadata', async () => 
   assert.equal(result.reason, 'smoke_mode');
   assert.equal(promptCalls, 0);
 
-  const smokePlugin = await pluginModule.default({ client: noFireClient }, {
+  const smokePlugin = await pluginModule.default.server({ client: noFireClient }, {
     stateDir,
     nowMs: pruneTestNowMs + 100,
     autonomy: 'smoke',
@@ -438,7 +444,7 @@ test('stale verifier results suppress the old continuation without prompting', a
       evidence: 'Old evidence only',
     };
   };
-  const stalePlugin = await pluginModule.default({
+  const stalePlugin = await pluginModule.default.server({
     client: {
       session: {
         async promptAsync() {
@@ -851,7 +857,7 @@ test('debug mode surfaces swallowed append and orphan sweep errors without throw
   delete process.env.OPENCODE_GOAL_DEBUG;
   const silentOutput = await captureStderr(async () => {
     await helpers.maybeContinueGoal(null, { stateDir: blockedStatePath, nowMs: 1000 });
-    const plugin = await pluginModule.default({}, { stateDir, nowMs: 3000000000 });
+    const plugin = await pluginModule.default.server({}, { stateDir, nowMs: 3000000000 });
     await plugin.event({ event: { type: 'session.created', properties: {} } });
   });
   assert.equal(silentOutput, '');
@@ -860,7 +866,7 @@ test('debug mode surfaces swallowed append and orphan sweep errors without throw
   process.env.OPENCODE_GOAL_DEBUG = '1';
   const debugOutput = await captureStderr(async () => {
     await helpers.maybeContinueGoal(null, { stateDir: blockedStatePath, nowMs: 3000 });
-    const plugin = await pluginModule.default({}, { stateDir, nowMs: 3000000000 });
+    const plugin = await pluginModule.default.server({}, { stateDir, nowMs: 3000000000 });
     await plugin.event({ event: { type: 'session.created', properties: {} } });
   });
   assert.match(debugOutput, /appendGoalJsonl/);

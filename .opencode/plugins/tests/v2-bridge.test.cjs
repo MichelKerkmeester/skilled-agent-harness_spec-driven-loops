@@ -54,28 +54,38 @@ function createV2Context() {
   return { context, registrations, toolHooks, sessionHooks };
 }
 
-async function forwardEventToV1(event) {
+async function forwardEventsToV1(events) {
   const { dualPlugin } = await import('../lib/v2-bridge.js');
   const { context } = createV2Context();
-  let resolveReceived;
-  const received = new Promise((resolve) => {
-    resolveReceived = resolve;
+  const receivedEvents = [];
+  let finishStream;
+  const streamFinished = new Promise((resolve) => {
+    finishStream = resolve;
   });
 
   context.event.subscribe = () => (async function* () {
-    yield event;
+    try {
+      yield* events;
+    } finally {
+      finishStream();
+    }
   })();
 
   const plugin = dualPlugin('event-payload-test', async () => ({
-    event: async ({ event: v1Event }) => resolveReceived(v1Event),
+    event: async ({ event: v1Event }) => receivedEvents.push(v1Event),
   }));
   const cleanup = await plugin.setup(context);
 
   try {
-    return await received;
+    await streamFinished;
+    return receivedEvents;
   } finally {
     await cleanup();
   }
+}
+
+async function forwardEventToV1(event) {
+  return (await forwardEventsToV1([event]))[0];
 }
 
 test('session.created adds v1 session info while preserving v2 event data', async () => {
@@ -104,6 +114,373 @@ test('message events do not gain session info', async () => {
 
   assert.strictEqual(v1Event.properties, data);
   assert.equal(Object.hasOwn(v1Event.properties, 'info'), false);
+});
+
+test('session.messages adapts v2 context entries to the v1 data envelope', async () => {
+  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { context } = createV2Context();
+  const v2Messages = [
+    { type: 'assistant', id: 'message_old', content: [{ type: 'text', text: 'Old answer' }] },
+    { type: 'user', id: 'message_user', text: 'Use the current file' },
+    {
+      type: 'assistant',
+      id: 'message_assistant',
+      content: [
+        { type: 'reasoning', text: 'Private reasoning' },
+        { type: 'text', text: 'First answer' },
+        { type: 'text', text: 'Second answer' },
+      ],
+    },
+    { type: 'idle', id: 'message_idle' },
+  ];
+  let receivedInput;
+  let client;
+  context.session.context = async (input) => {
+    receivedInput = input;
+    return v2Messages;
+  };
+  const plugin = dualPlugin('messages-client-test', async (input) => {
+    client = input.client;
+    return {};
+  });
+  const cleanup = await plugin.setup(context);
+
+  const response = await client.session.messages({
+    path: { id: 'session_1' },
+    query: { directory: '/workspace/project', limit: 3 },
+  });
+
+  assert.deepEqual(receivedInput, { sessionID: 'session_1' });
+  assert.deepEqual(response, {
+    data: [
+      {
+        info: { id: 'message_user', role: 'user', sessionID: 'session_1' },
+        parts: [{ type: 'text', text: 'Use the current file' }],
+      },
+      {
+        info: { id: 'message_assistant', role: 'assistant', sessionID: 'session_1' },
+        parts: [
+          { type: 'text', text: 'First answer' },
+          { type: 'text', text: 'Second answer' },
+        ],
+      },
+      {
+        info: { id: 'message_idle', sessionID: 'session_1' },
+        parts: [],
+      },
+    ],
+  });
+  await cleanup();
+});
+
+test('session.promptAsync queues v1 text through v2 session.prompt', async () => {
+  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { context } = createV2Context();
+  let receivedInput;
+  let client;
+  context.session.prompt = async (input) => {
+    receivedInput = input;
+    return { id: 'inbox_1' };
+  };
+  const plugin = dualPlugin('prompt-async-client-test', async (input) => {
+    client = input.client;
+    return {};
+  });
+  const cleanup = await plugin.setup(context);
+
+  const response = await client.session.promptAsync({
+    path: { id: 'session_1' },
+    query: { directory: '/workspace/project' },
+    body: {
+      messageID: 'message_1',
+      parts: [
+        { type: 'text', text: 'First line' },
+        { type: 'text', text: 'Second line' },
+      ],
+    },
+  });
+
+  assert.equal(response, undefined);
+  assert.deepEqual(receivedInput, {
+    sessionID: 'session_1',
+    id: 'message_1',
+    text: 'First line\nSecond line',
+    delivery: 'queue',
+  });
+  await cleanup();
+});
+
+test('session create, prompt, and delete map to v2 session methods', async () => {
+  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { context } = createV2Context();
+  let createInput;
+  let generateInput;
+  let removeInput;
+  let client;
+  context.session.create = async (input) => {
+    createInput = input;
+    return { id: 'session_verifier' };
+  };
+  context.session.generate = async (input) => {
+    generateInput = input;
+    return { text: '{"verdict":"met"}' };
+  };
+  context.session.remove = async (input) => {
+    removeInput = input;
+  };
+  const plugin = dualPlugin('session-methods-client-test', async (input) => {
+    client = input.client;
+    return {};
+  });
+  const cleanup = await plugin.setup(context);
+
+  const created = await client.session.create({
+    query: { directory: '/workspace/project' },
+    body: {},
+  });
+  const prompted = await client.session.prompt({
+    path: { id: 'session_verifier' },
+    query: { directory: '/workspace/project' },
+    body: { parts: [{ type: 'text', text: 'Return a JSON verdict.' }], tools: {} },
+  });
+  await client.session.delete({
+    path: { id: 'session_verifier' },
+    query: { directory: '/workspace/project' },
+  });
+
+  assert.deepEqual(createInput, { location: { directory: '/workspace/project' } });
+  assert.deepEqual(created, { data: { id: 'session_verifier' } });
+  assert.deepEqual(generateInput, {
+    sessionID: 'session_verifier',
+    prompt: 'Return a JSON verdict.',
+  });
+  assert.deepEqual(prompted, {
+    data: {
+      info: { role: 'assistant' },
+      parts: [{ type: 'text', text: '{"verdict":"met"}' }],
+    },
+  });
+  assert.deepEqual(removeInput, { sessionID: 'session_verifier' });
+  await cleanup();
+});
+
+test('session client methods reject when their v2 session member is missing', async () => {
+  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { context } = createV2Context();
+  let client;
+  const plugin = dualPlugin('missing-session-method-test', async (input) => {
+    client = input.client;
+    return {};
+  });
+  const cleanup = await plugin.setup(context);
+  const missingMethods = [
+    ['messages', 'context', { path: { id: 'session_1' } }],
+    [
+      'promptAsync',
+      'prompt',
+      { path: { id: 'session_1' }, body: { parts: [{ type: 'text', text: 'Queue' }] } },
+    ],
+    ['create', 'create', { body: {} }],
+    [
+      'prompt',
+      'generate',
+      { path: { id: 'session_1' }, body: { parts: [{ type: 'text', text: 'Generate' }] } },
+    ],
+    ['delete', 'remove', { path: { id: 'session_1' } }],
+  ];
+
+  for (const [clientMethod, v2Method, input] of missingMethods) {
+    await assert.rejects(
+      client.session[clientMethod](input),
+      new RegExp(`session\\.${v2Method} is not available on OpenCode 2`),
+    );
+  }
+  await cleanup();
+});
+
+test('execution and compaction events emit their v1 aliases once', async () => {
+  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { context } = createV2Context();
+  const receivedEvents = [];
+  const events = [
+    { type: 'session.execution.succeeded', data: { sessionID: 'session_execution' } },
+    {
+      type: 'session.compaction.ended',
+      data: { sessionID: 'session_compaction', reason: 'manual' },
+    },
+    { type: 'session.updated', data: { sessionID: 'session_unrelated' } },
+    { type: 'message.updated', data: { sessionID: 'session_message', messageID: 'message_1' } },
+  ];
+  let finishStream;
+  const streamFinished = new Promise((resolve) => {
+    finishStream = resolve;
+  });
+  context.event.subscribe = () => (async function* () {
+    try {
+      yield* events;
+    } finally {
+      finishStream();
+    }
+  })();
+  const plugin = dualPlugin('event-alias-test', async () => ({
+    event: async ({ event }) => {
+      receivedEvents.push(event);
+    },
+  }));
+  const cleanup = await plugin.setup(context);
+  await streamFinished;
+  await cleanup();
+
+  assert.deepEqual(receivedEvents, [
+    {
+      type: 'session.execution.succeeded',
+      properties: { sessionID: 'session_execution', info: { id: 'session_execution' } },
+    },
+    {
+      type: 'session.idle',
+      properties: { sessionID: 'session_execution', info: { id: 'session_execution' } },
+    },
+    {
+      type: 'session.compaction.ended',
+      properties: {
+        sessionID: 'session_compaction',
+        reason: 'manual',
+        info: { id: 'session_compaction' },
+      },
+    },
+    {
+      type: 'session.compacted',
+      properties: { sessionID: 'session_compaction', info: { id: 'session_compaction' } },
+    },
+    {
+      type: 'session.updated',
+      properties: { sessionID: 'session_unrelated', info: { id: 'session_unrelated' } },
+    },
+    {
+      type: 'message.updated',
+      properties: { sessionID: 'session_message', messageID: 'message_1' },
+    },
+  ]);
+  assert.equal(receivedEvents.filter((event) => event.type === 'session.idle').length, 1);
+  assert.equal(receivedEvents.filter((event) => event.type === 'session.compacted').length, 1);
+});
+
+test('session.idle alias then native event delivers one idle event', async () => {
+  const receivedEvents = await forwardEventsToV1([
+    { type: 'session.execution.succeeded', data: { sessionID: 'session_alias_first' } },
+    { type: 'session.idle', data: { sessionID: 'session_alias_first' } },
+  ]);
+
+  assert.equal(receivedEvents.filter((event) => event.type === 'session.idle').length, 1);
+});
+
+test('native session.idle then alias delivers one idle event', async () => {
+  const receivedEvents = await forwardEventsToV1([
+    { type: 'session.idle', data: { sessionID: 'session_native_first' } },
+    { type: 'session.execution.succeeded', data: { sessionID: 'session_native_first' } },
+  ]);
+
+  assert.equal(receivedEvents.filter((event) => event.type === 'session.idle').length, 1);
+});
+
+test('session.idle alias state resets for each execution turn and remains session-scoped', async () => {
+  const receivedEvents = await forwardEventsToV1([
+    { type: 'session.execution.succeeded', data: { sessionID: 'session_two_turns' } },
+    { type: 'session.execution.succeeded', data: { sessionID: 'session_other' } },
+    { type: 'session.execution.started', data: { sessionID: 'session_two_turns' } },
+    { type: 'session.execution.succeeded', data: { sessionID: 'session_two_turns' } },
+  ]);
+  const idleSessionIDs = receivedEvents
+    .filter((event) => event.type === 'session.idle')
+    .map((event) => event.properties.sessionID);
+
+  assert.deepEqual(idleSessionIDs, ['session_two_turns', 'session_other', 'session_two_turns']);
+});
+
+test('session.compacted aliases deduplicate and reset for each compaction', async () => {
+  const receivedEvents = await forwardEventsToV1([
+    { type: 'session.compaction.ended', data: { sessionID: 'session_compactions' } },
+    { type: 'session.compacted', data: { sessionID: 'session_compactions' } },
+    { type: 'session.compaction.started', data: { sessionID: 'session_compactions' } },
+    { type: 'session.compaction.ended', data: { sessionID: 'session_compactions' } },
+  ]);
+
+  assert.equal(receivedEvents.filter((event) => event.type === 'session.compacted').length, 2);
+});
+
+test('session.deleted clears the session event alias state', async () => {
+  const receivedEvents = await forwardEventsToV1([
+    { type: 'session.execution.succeeded', data: { sessionID: 'session_deleted' } },
+    { type: 'session.deleted', data: { sessionID: 'session_deleted' } },
+    { type: 'session.execution.succeeded', data: { sessionID: 'session_deleted' } },
+  ]);
+
+  assert.equal(receivedEvents.filter((event) => event.type === 'session.idle').length, 2);
+});
+
+test('session.text.ended maps to a v1 assistant text-part event', async () => {
+  const receivedEvents = await forwardEventsToV1([{
+    type: 'session.text.ended',
+    data: {
+      sessionID: 'session_text',
+      assistantMessageID: 'assistant_text',
+      ordinal: 1,
+      text: 'The assistant completed the goal.',
+    },
+  }]);
+
+  assert.deepEqual(
+    receivedEvents.map((event) => event.type),
+    ['session.text.ended', 'message.part.updated'],
+  );
+  assert.deepEqual(receivedEvents[1], {
+    type: 'message.part.updated',
+    properties: {
+      part: {
+        type: 'text',
+        text: 'The assistant completed the goal.',
+        sessionID: 'session_text',
+        messageID: 'assistant_text',
+        role: 'assistant',
+      },
+    },
+  });
+});
+
+test('session.step.ended maps to a v1 message update with token usage fields', async () => {
+  const tokens = {
+    input: 12,
+    output: 5,
+    reasoning: 2,
+    cache: { read: 3, write: 1 },
+  };
+  const receivedEvents = await forwardEventsToV1([{
+    type: 'session.step.ended',
+    data: {
+      sessionID: 'session_step',
+      assistantMessageID: 'assistant_step',
+      finish: 'stop',
+      cost: 0.25,
+      tokens,
+    },
+  }]);
+
+  assert.deepEqual(
+    receivedEvents.map((event) => event.type),
+    ['session.step.ended', 'message.updated'],
+  );
+  assert.deepEqual(receivedEvents[1], {
+    type: 'message.updated',
+    properties: {
+      info: {
+        id: 'assistant_step',
+        sessionID: 'session_step',
+        role: 'assistant',
+        cost: 0.25,
+        tokens,
+      },
+    },
+  });
 });
 
 test('setup bridges mapped hooks, counts skipped keys, and cleans up registrations and events', async () => {
@@ -142,8 +519,8 @@ test('setup bridges mapped hooks, counts skipped keys, and cleans up registratio
   };
 
   const plugin = dualPlugin('bridge-test', async (input) => {
-    assert.deepEqual(input, {
-      client: undefined,
+    const { client, ...legacyInput } = input;
+    assert.deepEqual(legacyInput, {
       project: undefined,
       worktree: '/workspace/project',
       directory: '/workspace/project',
@@ -151,6 +528,13 @@ test('setup bridges mapped hooks, counts skipped keys, and cleans up registratio
       serverUrl: undefined,
       $: undefined,
     });
+    assert.deepEqual(Object.keys(client.session), [
+      'messages',
+      'promptAsync',
+      'create',
+      'prompt',
+      'delete',
+    ]);
     return {
       event: async ({ event: v1Event }) => {
         receivedEvents.push(v1Event);

@@ -1,0 +1,84 @@
+# Phase 1 verdicts that phase 3 depends on, copied from 001-unknowns-and-baseline/findings.md
+
+## Q5 (findings.md lines 92 to 112)
+
+Verdict: unknown
+
+Command:
+- `cd .../scratch/q5-q6-probe-b && AI_SESSION_CHILD=1 OPENCODE_DB=.../scratch/q5-q6-b.db opencode2 run --standalone -m nosuchprovider/nosuchmodel "probe" </dev/null`
+
+Excerpt: events delivered live to `ctx.event.subscribe` (q5-q6-events-b.log): `mcp.status.changed`,
+`integration.updated`, `model.updated`, `provider.updated`, `vcs.branch.updated`, `plugin.updated`,
+`session.inbox.enqueued`, `session.execution.started`, `session.instructions.updated`,
+`session.inbox.delivered`, then `session.execution.failed`
+`{"type":"provider.no-route","message":"Model unavailable: nosuchprovider/nosuchmodel"}`, and no
+`session.idle`. The run itself: `Error: Model unavailable: nosuchprovider/nosuchmodel` EXIT:1
+(q5-q6-run-3.txt; the same result twice on the first probe design, q5-q6-run-1/2.txt).
+
+Meaning for the build: the channel works, but a model that never resolves ends the turn in
+`session.execution.failed` and never reaches idle, so `session.idle` delivery stays unknown; a real
+model run (operator approval) is what would settle it. Port-critical and now proven live:
+`ctx.event.subscribe()` returns an async iterable consumed with `for await`; passing a callback is
+silently ignored and delivers nothing (first probe, q5-q6-events.log).
+
+
+## Q6 (findings.md lines 113 to 129)
+
+Verdict: unknown
+
+Command:
+- same run command as Q5, plus a direct SSE read of the private server: `curl -sN -u "opencode:$OPENCODE_PASSWORD" http://127.0.0.1:4198/api/event` (private `opencode2 serve --port 4198`, `OPENCODE_DB` under `scratch/`, killed by PID afterwards)
+
+Excerpt: neither capture contains `session.compacted`, the run log (q5-q6-events-b.log) ends at
+`session.execution.failed`, and the SSE stream (q5-q6-sse.txt) for an API-driven turn shows
+`session.created`, `session.inbox.enqueued`, `session.execution.started`, `session.instructions.updated`,
+`session.inbox.delivered`, `session.execution.failed`, no compaction event. Compaction itself needs
+a model, so none could occur.
+
+Meaning for the build: the event name exists in the v2 binary, as the orchestrator's binary grep confirmed during research (research/steering-log.md:184), and the delivery channel is proven (Q5), but
+live `session.compacted` delivery is unproven; the port can keep the name and must verify it with a
+real model run.
+
+
+## Q7 (findings.md lines 130 to 148)
+
+Verdict: confirmed (a `z.toJSONSchema` output is accepted as the tool `input`)
+
+Command:
+- `opencode2 api GET "/api/plugin?location%5Bdirectory%5D=<percent-encoded q7-probe>"` (repeated until two reads matched)
+- `opencode2 api POST "/api/plugin/check?location%5Bdirectory%5D=<percent-encoded q7-probe>" -d '{}'`
+- the negative controls q7-probe-neg and q7-probe-neg2, read with the same GET
+
+Excerpt: the orchestrator generated the real zod 4.1.8 output of `z.toJSONSchema(z.object({text: z.string()}), {io:"input"})` (q7-zod-output.json), which is byte for byte the schema the first probe hand-wrote, and a probe tool built from that literal output registered, with `{"evt":"tool-list","hasQ7z":true,"count":21}` (q7z-marker.log) and the plugin `active` (q7z-plugin.json). The first probe also shows it , 
+`{"evt":"tool-list-ok","count":21,"names":[... "q7_echo"],"hasQ7":true}` (q7-marker.log); the plugin
+is `"status":"active"` (q7-check.json). The negative control with `input: 42` is silently dropped , 
+`{"evt":"after-add","addError":null,"afterCount":20,"hasNeg2":false}` (q7-neg2-marker.log), so
+acceptance is meaningful, not an accepts-anything pipeline.
+
+Meaning for the build: one JSON Schema object (a `z.toJSONSchema` output) can serve the v2 tool
+`input`; the registry drops an invalid input silently (no error surfaces), so a missing tool is the
+failure symptom to watch for. Argument decoding at call time is not covered model-free.
+
+
+## Q11 (findings.md lines 202 to 211)
+
+Verdict: confirmed (the source lives in `vision-runtime/src`, the bundle builds, it loads on v1 and fails on v2)
+
+Command: `cd .skilled/skills/sk-vision/vision-runtime && bun install && bun run build`, then `node scratch/v1-harness.mjs .` and the v2 `/api/plugin` read.
+
+Excerpt: `built dist/plugin.js + dist/prompt-evidence.js + dist/vision-cli.js + dist/python/runtime.py + hooks/opencode/sk-vision.js`, `exit 0` (scratch/sk-vision-build.txt). v1: `sk-vision loaded command.execute.before` (scratch/v1-harness.jsonl). v2: `Plugin must export a default definition with an id and an effect or setup function.` (scratch/v2-plugin-3.json).
+
+Meaning for the build: phase 3 ports sk-vision in `.skilled/skills/sk-vision/vision-runtime/src/` and rebuilds the bundle with `bun run build`. The build also rewrites `.skilled/skills/sk-vision/hooks/opencode/sk-vision.js`, an untracked artifact that is untracked on main too, so no commit may include it.
+
+
+## v2 reload
+No phase 1 question covers whether v2 picks up an edited plugin without a restart. Verdict: unknown. The 002 oracle sidesteps it: each check starts a private opencode2 serve on a throwaway database, so it always loads the current files, and the shared service is never restarted (D4).
+
+## Live re-probe with a real model (2026-10-18, operator-approved, phase 3)
+Model llmgateway/deepseek-v4.1-flash, OpenCode 2.0.32, private throwaway databases, the shared service untouched. The probe plugin is live-probe/event-probe.js. It logs every ctx.event.subscribe event type and its data keys, and every firing of session.hook("prompt"), session.hook("context") and tool.hook("execute.before").
+- Run 1, `opencode2 run --standalone -m llmgateway/deepseek-v4.1-flash "Reply with the single word ok."` (live-probe/run1-output.txt, exit 0, reply "ok"). Its event log was not kept, so the event claims below rest on run 2, which also runs one full turn.
+- Run 2, live-probe/run2.py: a private opencode2 serve, one short turn, then POST /api/session/{id}/compact. Events (live-probe/run2-events.jsonl, 129 lines): the turn ends with session.step.ended then session.execution.succeeded { sessionID }. The compaction gives session.compaction.started, 91 session.compaction.delta, session.compaction.ended { sessionID, reason, model, text, recent, cost, tokens }, then a second session.execution.succeeded. The log holds 0 session.idle and 0 session.compacted events. session.hook("prompt") and session.hook("context") each fired once.
+Verdicts, now confirmed live:
+- Q5: v2 does not deliver session.idle. The end of a turn is session.execution.succeeded, whose data carries sessionID.
+- Q6: v2 does not deliver session.compacted. Compaction is session.compaction.started, .delta and .ended, whose data carries sessionID (schema: event-manifest.d.ts:3829).
+- session.hook("prompt") and session.hook("context") fire on a real turn.

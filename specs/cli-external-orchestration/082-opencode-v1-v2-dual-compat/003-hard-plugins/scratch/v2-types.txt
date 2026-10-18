@@ -1,0 +1,689 @@
+v2 PLUGIN TYPES — T004 inventory + v1→v2 port design notes
+================================================================================
+Worktree : /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build
+Scope    : read-only inventory of declarations. No source file was modified to produce this.
+Evidence : every claim below is tagged CONFIRMED (read directly in a .d.ts / .js declaration)
+           or INFERRED (with what would confirm it). Nothing else is asserted.
+
+PATH PREFIXES USED BELOW
+------------------------
+  PL   = .skilled/node_modules/@opencode/plugin/dist/promise/
+  CL   = .skilled/node_modules/@opencode/plugin/node_modules/@opencode/client/dist/promise/
+  CLG  = .skilled/node_modules/@opencode/plugin/node_modules/@opencode/client/dist/promise/generated/
+  SC   = .skilled/node_modules/@opencode/schema/dist/
+  V1S  = .opencode/node_modules/@opencode-ai/sdk/dist/gen/            (v1 SDK, v1.19.3)
+  V1P  = .opencode/node_modules/@opencode-ai/plugin/dist/             (v1 plugin API, v1.19.3)
+  P1   = .opencode/plugins/
+
+INSTALL-PATH NOTE (CONFIRMED)
+-----------------------------
+The task text says .opencode/node_modules. @opencode/plugin is installed ONLY under
+.skilled/node_modules (there is no .opencode/node_modules/@opencode/plugin).
+CONFIRMED: `ls .skilled/node_modules/@opencode/` -> ai, plugin, protocol, schema, util.
+           `ls .opencode/node_modules/` -> @opencode-ai/{sdk,plugin} only.
+@opencode/client is NOT a top-level dependency either: it is nested one level deeper, at
+  .skilled/node_modules/@opencode/plugin/node_modules/@opencode/client
+CONFIRMED: `find . -type d -name client -path "*opencode*"` -> the nested path above plus
+           the v1/v2 gen/client dirs of @opencode-ai/sdk. PL/*.d.ts import
+           "@opencode/client/promise/api" (e.g. PL/session.d.ts:1), which resolves to that
+           nested copy. All CL citations below are that nested package.
+v1 and v2 are therefore co-installed and version-tagged independently:
+  v1 SDK = 1.19.3, v1 plugin API = 1.19.3 (CONFIRMED: package.json "version" in both).
+
+
+================================================================================
+PART 1 — T004: v2 plugin type inventory
+================================================================================
+
+The plugin entry point is `Plugin.setup(context)` and `Context` is the single object a v2
+plugin receives (PL/plugin.d.ts:25-59). CONFIRMED: PL/plugin.d.ts:25-54 enumerates the
+whole Context: app, location, options, agent, aisdk, command, credential, event,
+experimental, integration, mcp, model, generate, permission, plugin, provider, reference,
+rpc, session, shell, skill, storage, tool, vcs, websearch, worktree.
+There is NO `client` member on Context — that is the central v1→v2 break for Part 2.
+There is also NO top-level `message` member, even though the underlying client has
+`message.list` (CL/client.d.ts:92-94). CONFIRMED by the enumeration above.
+
+
+--------------------------------------------------------------------------------
+1.1  ctx.event — exact members
+--------------------------------------------------------------------------------
+CONFIRMED  PL/event.d.ts:2
+  export interface EventDomain extends Pick<EventApi, "subscribe"> {}
+
+  member:  subscribe
+  CONFIRMED signature, CL/client.d.ts:11
+    subscribe(options?: SharedEvents.SubscribeOptions): AsyncIterable<V2Event>
+  CONFIRMED options shape, CL/shared-events.d.ts:2-6
+    { readonly signal?: AbortSignal; readonly onActivity?: () => void }
+  CONFIRMED stream item type, CLG/types.d.ts:8333
+    export type EventSubscribeOutput = V2Event;
+    (re-exported to plugins as `OpenCodeEvent`, CL/index.d.ts:5)
+  CONFIRMED wiring, PL/plugin.d.ts:33
+    readonly event: EventDomain;
+
+  ctx.event has exactly one member and NO hook member. There is no ctx.event.on / .emit
+  on the plugin surface. (The `events: { emit }` seen in PL/adapter.js:97 belongs to the
+  return of ctx.rpc.register, not to ctx.event.)
+
+
+--------------------------------------------------------------------------------
+1.2  ctx.tool — exact members
+--------------------------------------------------------------------------------
+CONFIRMED  PL/tool.d.ts:53-61
+  export interface ToolDomain {
+      readonly transform: Transform<ToolEditor>;
+      readonly reload: () => Promise<void>;
+      readonly list: () => Promise<readonly (Info & { readonly id: string })[]>;
+      readonly hook: Hooks<ToolHooks>;
+  }
+
+  members:  transform, reload, list, hook
+
+  CONFIRMED transform input editor, PL/tool.d.ts:16-28 (ToolEditor):
+    list() : readonly (Info & { id })[]
+    get(id: string) : (Info & { id }) | undefined
+    namespace(namespace: Tool.Namespace) : void
+    add<Input, Output>(tool: Info<Input, Output>) : void
+    update(id: string, update: (tool: Types.Mutable<Info>) => void) : void
+    remove(id: string) : void
+
+  CONFIRMED hook names, PL/tool.d.ts:29-52 (ToolHooks):
+    "execute.before"  -> { tool: string; readonly sessionID; readonly agent;
+                           readonly messageID; readonly id: Tool.CallID; input: unknown }
+    "execute.after"   -> same readonly five fields, plus a status-discriminated union:
+                           { status: "completed"; result: Tool.Result }
+                         | { status: "error"; error: Tool.Error }
+
+  CONFIRMED ToolContext (the per-execution context handed to a tool's execute), PL/tool.d.ts:9-12
+    ToolContext extends Omit<Tool.Context, "progress">
+      readonly signal: AbortSignal
+      readonly progress: (update: Tool.Metadata) => Promise<void>
+
+
+--------------------------------------------------------------------------------
+1.3  ctx.session — exact members
+--------------------------------------------------------------------------------
+CONFIRMED  PL/session.d.ts:143-145
+  export type SessionDomain =
+      Pick<SessionApi,
+           "create" | "get" | "remove" | "switchAgent" | "switchModel" | "prompt" |
+           "generate" | "command" | "compact" | "synthetic" | "interrupt" | "update" |
+           "move" | "wait" | "context">
+      & { readonly hook: ModelHooks<SessionHooks>; };
+
+  members (16, exact):  create, get, remove, switchAgent, switchModel, prompt, generate,
+                        command, compact, synthetic, interrupt, update, move, wait,
+                        context, hook
+
+  CONFIRMED each of those exists on SessionApi with these signatures, CL/client.d.ts:34-59
+    create      (input?: SessionCreateInput)        -> SessionInfo
+    get         (input:  SessionGetInput)           -> SessionInfo
+    remove      (input:  SessionRemoveInput)        -> void
+    switchAgent (input:  SessionSwitchAgentInput)   -> void
+    switchModel (input:  SessionSwitchModelInput)   -> void
+    prompt      (input:  SessionPromptInput)        -> SessionInboxUser
+    generate    (input:  SessionGenerateInput)      -> { text: string }
+    command     (input:  SessionCommandInput)       -> void
+    compact     (input:  SessionCompactInput)       -> SessionInboxCompaction
+    synthetic   (input:  SessionSyntheticInput)     -> SessionInboxSynthetic
+    interrupt   (input:  SessionInterruptInput)     -> SessionInterruptResponse
+    update      (input:  SessionUpdateInput)        -> void
+    move        (input:  SessionMoveInput)          -> void
+    wait        (input:  SessionWaitInput)          -> void
+    context     (input:  SessionContextInput)       -> SessionMessageInfo[]
+
+  PRESENT ON SessionApi BUT ABSENT FROM ctx.session (the Pick drops them). CONFIRMED by
+  the Pick list above vs the full SessionApi at CL/client.d.ts:32-90:
+    list, stats, import, export, active, fork, revert.{stage,clear,commit}, diff,
+    inbox.{list,cancel,update}, instructions.entry.{list,put,remove}, form.{list,create,
+    get,reply,cancel}, log, background, shell, skill, environment, view,
+    message.get
+  and the sibling top-level namespaces message.list (CL/client.d.ts:92-94),
+  file.*, pty.*, permission.*, config.*, etc. — none of them are on Context.
+
+  CONFIRMED hook spec, PL/session.d.ts:129-142 (SessionHooks) — see 1.6 below.
+
+
+--------------------------------------------------------------------------------
+1.4  ctx.command — exact members
+--------------------------------------------------------------------------------
+CONFIRMED  PL/command.d.ts:19-22
+  export interface CommandDomain extends Pick<CommandApi, "list"> {
+      readonly transform: Transform<CommandEditor>;
+      readonly reload: () => Promise<void>;
+  }
+
+  members (3):  list, transform, reload
+  CONFIRMED list, CL/client.d.ts:182
+    list: (input?: CommandListInput, requestOptions?) -> CommandListOutput
+  CONFIRMED editor, PL/command.d.ts:16-18
+    CommandEditor { add(definition: CommandDefinition): void }
+  CONFIRMED definition + invocation, PL/command.d.ts:6-15
+    CommandInvocation { readonly sessionID: Session.ID;
+                        readonly prompt: PromptInput.Prompt;
+                        readonly delivery: SessionInbox.Delivery }
+    CommandDefinition { readonly name: string;
+                        readonly description?: string;
+                        readonly execute: (input: CommandInvocation) => Promise<void> }
+  CONFIRMED Delivery = "steer" | "queue", SC/session-inbox.d.ts:3-4
+
+  ctx.command has NO hook member. This is the answer to the last design question — see
+  PART 2.5.
+
+
+--------------------------------------------------------------------------------
+1.5  Event payloads
+--------------------------------------------------------------------------------
+What a v2 plugin actually receives: ctx.event.subscribe() yields V2Event.
+  CONFIRMED CL/client.d.ts:11 and CLG/types.d.ts:8333.
+  CONFIRMED V2Event is a flat union of ~95 members, CLG/types.d.ts:3454
+    ("export type V2Event = LocationShutdown | ... | SessionStatusUpdated | SessionIdle |
+      TuiPromptAppend | ... | V2EventServerConnected").
+
+v2 ENVELOPE (applies to every event above) — CONFIRMED SC/event.d.ts:41-53
+  { id, type, created, data, location?, metadata?, durable? }
+  `durable` is present only for durable definitions and carries
+  { aggregateID, seq, version } (SC/event.d.ts:18-23).
+  The v1 envelope was { type, properties } — the payload key was RENAMED properties -> data.
+  CONFIRMED v1 side, V1S/types.gen.d.ts (e.g. :406-412).
+
+REQUESTED EVENTS — v2 side
+--------------------------
+(a) session.created
+    CONFIRMED CLG/types.d.ts:2920-2947 SessionCreated — type "session.created", durable.version 1
+      data: sessionID, projectID, location, subpath?, parentID?, slug, title?, agent?,
+            model?, metadata?, permissions?, version
+    CONFIRMED SC/session-event.d.ts:11-128 (schema twin; same field set, plus the
+      `location`/`metadata` envelope fields spelled out at :23-41 and :16).
+
+(b) session.deleted
+    CONFIRMED CLG/types.d.ts:1396-1412 SessionDeleted — type "session.deleted", durable.version 2
+      data: sessionID                                   (that is the entire payload)
+    CONFIRMED SC/session-event.d.ts:1147-1191
+
+(c) session.status
+    CONFIRMED CLG/types.d.ts:2463-2475 SessionStatusUpdated — type "session.status", ephemeral
+      data: sessionID, status: SessionStatus
+    CONFIRMED SessionStatus, CLG/types.d.ts:
+      { type: "idle" }
+    | { type: "retry"; attempt: number; message: string;
+        action?: { reason, provider, title, message, label, link? }; next: number }
+    | { type: "busy" }
+    CONFIRMED SC/session-status-event.d.ts:29-121 (ephemeral, durability "ephemeral",
+      durable: undefined at :88-89).
+
+(d) session.idle
+    CONFIRMED CLG/types.d.ts:2476-2487 SessionIdle — type "session.idle", ephemeral
+      data: sessionID                                   (that is the entire payload)
+    CONFIRMED SC/session-status-event.d.ts:122-164 (:148-153 data struct).
+
+(e) session.compacted  ->  NOT PRESENT IN V2's PLUGIN STREAM
+    CONFIRMED: `grep -c '"session.compacted"'` over CLG/types.d.ts = 0. The string does not
+    occur anywhere in the client package's generated types.
+    The schema DOES declare a `session.compacted` ephemeral event with data { sessionID }
+      CONFIRMED SC/session-compaction-event.d.ts:2-44 (type literal at :8, data at :28-33).
+    But it is NOT in ServerDefinitions and NOT in V2Event:
+      CONFIRMED by position: ServerDefinitions spans SC/event-manifest.d.ts:5-6337;
+      the `session.compacted` literal sits at :12801, inside the later `Definitions` array
+      (:6343-13127). `isServer()` (:6340-6342) tests only against ServerDefinitions.
+    v2 REPLACEMENT for session.compacted: session.compaction.ended
+      CONFIRMED CLG/types.d.ts:2825-2849 SessionCompactionEnded — durable.version 1
+        data: sessionID, reason ("auto" | "manual"), model?, providerState?,
+              providerContext?, text, recent, cost?, tokens?
+      CONFIRMED SC/event-manifest.d.ts:3829 (present in ServerDefinitions) and :10167.
+    The other compaction events in V2Event: session.compaction.started, .delta, .failed
+      CONFIRMED CLG/types.d.ts:1934 / :2208 / :1954.
+
+(f) message.updated       ->  NONE IN V2
+(g) message.part.updated  ->  NONE IN V2
+    CONFIRMED: those two literals exist ONLY in the v1 tree.
+      `grep -rln '"message.updated"'` over SC/dist -> SC/v1/session.d.ts, SC/v1/session.js
+      `grep -rln '"message.part.updated"'` over SC/dist -> SC/v1/session.d.ts, SC/v1/session.js
+      `grep -rln` over the plugin package dist -> no hits at all.
+    CONFIRMED v1 side (what the current plugins subscribe to):
+      V1S/types.gen.d.ts:129-135  message.updated      -> { info: Message }
+      V1S/types.gen.d.ts:354-361  message.part.updated -> { part: Part; delta?: string }
+      both are members of the v1 Event union, V1S/types.gen.d.ts:602
+      (`... | EventMessageUpdated | ... | EventMessagePartUpdated | ...`).
+    v2 message-content substitutes (all in V2Event, CONFIRMED CLG/types.d.ts):
+      session.text.started / .delta / .ended
+      session.reasoning.started / .delta / .ended
+      session.tool.input.started / .delta / .ended, session.tool.called, session.tool.progress,
+      session.tool.success, session.tool.failed
+      session.message.content.updated (durable v1)
+        data: { sessionID, messageID, content: Array<SessionMessageAssistantContentEncoded> }
+        CONFIRMED CLG/types.d.ts:3401-3419.
+    So a port from `message.part.updated` must be re-expressed as one of the
+    session.text.* / session.tool.* events, not as a renamed part event.
+
+v1 PAYLOAD FIELDS (for reference while porting) — all CONFIRMED, V1S/types.gen.d.ts
+  session.status      :406-412  { sessionID, status: SessionStatus }
+  session.idle        :413-418  { sessionID }
+  session.compacted   :419-424  { sessionID }
+  session.created     :493-499  { info: Session }        <-- whole Session object, not a
+                                                            field set
+  session.deleted     :505-511  { info: Session }
+  message.updated     :129-135  { info: Message }
+  message.part.updated:354-361  { part: Part; delta? }
+  Note the v1 vs v2 shape inversion: v1 session.created/deleted carry a full object under
+  `info`; v2 session.created carries a spread field set under `data`, and v2
+  session.deleted carries only `sessionID`.
+
+
+--------------------------------------------------------------------------------
+1.6  session.hook names and payloads
+--------------------------------------------------------------------------------
+CONFIRMED  PL/session.d.ts:129-142 — the complete SessionHooks spec, in declaration order:
+
+  prompt                        -> SessionPrompt
+  context                       -> SessionContext
+  compaction                    -> SessionCompaction
+  generate                      -> SessionGenerate
+  title                         -> SessionTitle
+  "model.request"               -> SessionModelRequest
+  "http.request"                -> SessionHttpRequest
+  "http.response"               -> SessionHttpResponse
+  "experimental.ws.handshake"   -> SessionWebSocketHandshake
+  "experimental.ws.send"        -> SessionWebSocketSend
+  "experimental.ws.receive"     -> SessionWebSocketReceive
+  retry                         -> SessionRetry
+
+  ("prompt" and "context" are exactly the two the task names; the other ten are above.)
+
+  CONFIRMED payload fields:
+  prompt (SessionPrompt, PL/session.d.ts:13-19)
+    readonly sessionID: Session.ID
+    readonly messageID: SessionMessage.ID
+    prompt: Types.DeepMutable<PromptInput.Prompt>      <-- MUTABLE, this is the rewrite slot
+    metadata?: Record<string, unknown>
+    delivery: SessionInbox.Delivery                    ("steer" | "queue")
+  context (SessionContext, PL/session.d.ts:29-35) extends SessionRequest (:22-28)
+    readonly sessionID: Session.ID
+    readonly agent: Agent.ID
+    model: Model.Ref
+    system: Array<SystemPart>
+    messages: Array<Message>
+    options: SessionRequestOptions   (typed generation settings + arbitrary provider keys, :20-21)
+    tools: Record<string, { description: string; input: JsonSchema.JsonSchema }>
+  compaction (SessionCompaction, :42-45) = SessionContext + `result?: SessionCompactionResult`
+    (:36-41: summary, providerState?, metadata?, tokens?)
+  generate (SessionGenerate, :46-47) = SessionContext, nothing added
+  title (SessionTitle, :48-51) = SessionRequest + `result?: string`
+  model.request (SessionModelRequest, :57-64): sessionID, agent, model, kind
+    ("primary"|"compaction"|"title"|"generate", :56), baseURL?, headers
+  http.request  (SessionHttpRequest,  :65-71): sessionID, agent, model, kind, request: Request
+  http.response (SessionHttpResponse, :72-79): + response: Response
+  experimental.ws.handshake (:84-91): sessionID, agent, model, kind, url, headers
+  experimental.ws.send      (:97-103): sessionID, agent, model, kind, frame
+  experimental.ws.receive   (:108-114): sessionID, agent, model, kind, frame
+  retry (SessionRetry, :121-128): sessionID, agent, model, error: SessionError.Error,
+    attempt: number, decision: SessionRetryDecision (:115-120:
+    { retry: false } | { retry: true; delay: number })
+
+  CONFIRMED registration shape, PL/registration.d.ts:9-11
+    ModelHooks<Spec> = <Name extends keyof Spec>(
+        name, callback: (input: Spec[Name]) => Promise<void> | void,
+        options?: Spec[Name] extends { readonly model: unknown } ? ModelHookOptions : never
+      ) => Promise<Registration>
+    Registration = { readonly dispose: () => Promise<void> }   (:1-3)
+    ModelHookOptions = { readonly providerID?: string }        (:4-7)
+    Hooks<Spec> (the non-model variant, used by tool/permission/shell) = same minus options
+      (:8)
+
+  Other domains that expose a hook (CONFIRMED by grep for `hook:` over PL/*.d.ts):
+    ctx.tool       (PL/tool.d.ts:60)        Hooks<ToolHooks>
+    ctx.permission (PL/permission.d.ts:21)  Hooks<PermissionHooks>   (spec at :17-20)
+    ctx.shell      (PL/shell.d.ts:13)       Hooks<ShellHooks>        (spec at :9-12)
+    ctx.aisdk      (PL/aisdk.d.ts:19)       ModelHooks<AISDKHooks>   (spec at :4-18)
+  ctx.event and ctx.command expose NO hook. CONFIRMED: no `hook` member in PL/event.d.ts
+  or PL/command.d.ts.
+
+
+================================================================================
+PART 2 — the design question: v1 SDK client calls -> v2 ctx
+================================================================================
+
+2.0  THE v1 CALL SITES, AS WRITTEN (all CONFIRMED by reading the files)
+----------------------------------------------------------------------
+Every one of the four plugins reaches the v1 SDK client through a property named `client`
+on its own ctx/input object. In v2, Context has no `client` member (PL/plugin.d.ts:25-54).
+
+(1) P1/system-completion-sentinel.js
+    guard  :77   if (!client || !client.session || typeof client.session.messages !== 'function') return null;
+    call   :79   await client.session.messages({
+    :80            path: { id: sessionID },
+    :81            query: { limit: MESSAGE_FETCH_LIMIT },   // MESSAGE_FETCH_LIMIT = 20, :36
+    :82          });
+    fields its caller reads:
+      :82  response.data must be an Array                       (else null)
+      :85  iterates from the end
+      :86  entry.info.role === 'assistant'                      (role filter)
+      :88  textFromAssistantEntry(entry)  -> defined :47-54:
+             entry.parts array; keep parts where
+               part.type === 'text' && !part.ignored && typeof part.text === 'string'
+             then .map(part => part.text).join('\n').trim()
+    so the consumed v1 surface is exactly: { data: [ { info: { role }, parts: [ { type, text, ignored } ] } ] }
+
+(2) P1/system-spec-gate.js
+    call   :90   await ctx?.client?.session?.messages?.({
+    :91            path: { id: sessionID },
+    :92            query: { directory: projectDir, limit: 20 },
+    :93          });
+    fields its caller reads:
+      :93-95  result.data Array, else result itself if Array, else []
+      :98     entry.info ?? entry.message ?? entry   -> `info`
+      :99     info.role !== 'user' -> skip
+      :101-103 entry.parts ?? info.parts ; take the LAST part with
+                 part.type === 'text' && typeof part.text === 'string' && part.text.trim()
+      :104    fall back to extractPrompt(info)
+
+(3) P1/system-skill-advisor.js
+    call   :1231  await ctx?.client?.session?.messages?.({
+    :1232           path: { id: sessionID },
+    :1233           query: { directory: projectDir, limit: 20 },
+    :1234         });
+    fields its caller reads: :1235-1256 — byte-for-byte the same shape as (2):
+      result.data Array or result Array; info = entry.info ?? entry.message ?? entry;
+      info.role === 'user'; entry.parts ?? info.parts; last type==='text' with non-empty
+      part.text; else extractPrompt(info).
+
+(4) P1/opencode-goal.js
+    :2270  const sessionClient = rawOptions.client?.session;
+    :2271-2274 requires typeof create/prompt/delete === 'function'
+    :2280  sessionClient.create.call(sessionClient, { query, body: {} }, { signal })
+             reads :2282 createdResponse?.data || createdResponse
+             reads :2283 created?.id || created?.info?.id
+    :2288  sessionClient.prompt.call(sessionClient, {
+    :2289           path: { id: verifierSessionID },
+    :2290           query,
+    :2291           body: { parts: [{ type: 'text', text: buildLlmVerifierPrompt(...) }], tools: {} },
+    :2296         }, { signal })
+             reads :2297 response?.data || response, then parseLlmVerifierResponse(...) to
+             pull a JSON verdict out of the assistant TEXT
+    :2305  sessionClient.delete.call(sessionClient, { path: { id: verifierSessionID }, query })
+    :2685  const promptAsync = rawOptions.client?.session?.promptAsync;
+    :2698  promptAsync.call(rawOptions.client.session,
+    :2699    await buildPromptAsyncOptions(normalizedSessionID, reserved.goal, reserved.messageID, rawOptions),
+    :2700    { signal })
+    :2573-2592 buildPromptAsyncOptions returns
+             { path: { id: sessionID },
+               query: directory ? { directory } : undefined,
+               body: { messageID, parts: [{ type: 'text', text: renderContinuationPrompt(...) }] } }
+
+    So the total v1 client surface these four plugins touch is FIVE methods:
+      client.session.messages      (3 plugins)
+      client.session.promptAsync   (opencode-goal)
+      client.session.create        (opencode-goal verifier)
+      client.session.prompt        (opencode-goal verifier)
+      client.session.delete        (opencode-goal verifier)
+    CONFIRMED by grep: `grep -rn "client" P1/*.js` yields only these call sites; the other
+    eight plugins in P1 never touch a client object.
+
+    v1 REQUEST/RESPONSE SHAPES (CONFIRMED, V1S/types.gen.d.ts):
+      SessionMessagesData      :2209-2221  { body?: never; path: { id: string };
+                                             query?: { directory?: string; limit?: number };
+                                             url: "/session/{id}/message" }
+      SessionMessagesResponses :2234-2241  200: Array<{ info: Message; parts: Array<Part> }>
+      SessionPromptAsyncData   :2329-2346  { body?: { messageID?, model?{providerID,modelID},
+                                             agent?, noReply?, system?, tools?{...},
+                                             parts: Array<TextPartInput|FilePartInput|
+                                                          AgentPartInput|SubtaskPartInput> };
+                                             path: { id: string }; query?: { directory? };
+                                             url: "/session/{id}/prompt_async" }
+      SessionPromptAsyncResponses         204: void      (fire-and-forget)
+      SessionCreateResponses               200: Session
+      SessionPromptResponses   :2281-2287  200: { info: AssistantMessage; parts: Array<Part> }
+      SessionDeleteData                    { path: { id: string }; query?: { directory? } }
+
+
+2.1  client.session.messages  ->  ctx.session.context        [PARTIAL]
+----------------------------------------------------------------------
+v2 PROVIDER
+  member : ctx.session.context
+  CONFIRMED on the Pick list, PL/session.d.ts:143; implementation CL/client.d.ts:59
+  request: SessionContextInput — CONFIRMED CLG/types.d.ts:6259-6263
+             { readonly sessionID: string }
+           i.e. sessionID only. No directory, no limit, no cursor, no order, no type filter.
+  response: SessionContextOutput = Array<SessionMessageInfo> — CONFIRMED CLG/types.d.ts:6263-6265
+  SessionMessageInfo union — CONFIRMED CLG/types.d.ts:3400
+    SessionMessageAgentSelected | SessionMessageModelSelected | SessionMessageLocationSwitched
+    | SessionMessageUser | SessionMessageSynthetic | SessionMessageSystem | SessionMessageSkill
+    | SessionMessageShell | SessionMessageAssistant | SessionMessageCompaction
+    | SessionMessageIdle
+  Field shapes the port needs (all CONFIRMED CLG/types.d.ts):
+    SessionMessageUser      :1231-1244  { id, metadata?, time:{created}, text, files?,
+                                          agents?, skills?, type: "user" }
+    SessionMessageAssistant :3307-3333  { id, metadata?, time:{created, streamed?, completed?},
+                                          type: "assistant", agent, model,
+                                          content: Array<SessionMessageAssistantText |
+                                                         SessionMessageAssistantReasoning |
+                                                         SessionMessageAssistantTool>,
+                                          snapshot?, finish?, rawFinish?, providerState?,
+                                          cost?, tokens?, error?, retry? }
+    SessionMessageAssistantText :720-724  { type: "text"; text: string; state? }
+    SessionMessageSynthetic :566-577, SessionMessageSystem :578-589,
+    SessionMessageSkill :642-654, SessionMessageShell :663-683,
+    SessionMessageIdle :755-766  { id, time, type:"idle", outcome:"succeeded"|"failed"|
+                                   "interrupted", error? }
+
+THIN SHIM: `client.session.messages({path:{id}, query:{limit, directory}})` — CAN BE BUILT
+from ctx.session.context, and the shape can be faked to `{ data: [...] }`.
+Fields that would be MISSING or DEGRADED:
+  - `parts` array. v2 has no parts array at all: the discriminator is `type` on the message
+    itself, user text is `message.text`, assistant text is an element of `message.content`
+    with `type === "text"`. A shim must synthesise a parts array.
+  - `part.ignored`. CONFIRMED ABSENT: `grep -c "ignored"` over CLG/types.d.ts = 0. The
+    sentinel's `!part.ignored` filter (:50) cannot be reproduced; the shim must either drop
+    the filter or hardcode ignored=false.
+  - `part.synthetic`. Also not present on SessionMessageAssistantText. v1 TextPart had both
+    `synthetic?` and `ignored?` (V1S/types.gen.d.ts:142-156). v2 models "synthetic" as a
+    separate MESSAGE type (SessionMessageSynthetic, CLG/types.d.ts:566-577), not a part flag.
+  - per-part ids / part.messageID / part.sessionID. v2 flattens content to
+    { type, text, state? } with no id.
+  - `info.role`. v1 used `role: "user" | "assistant"`; v2 uses `type: "user" | "assistant"`.
+    Both call-site filters (`info.role === 'assistant'` at sentinel:86, `info.role !== 'user'`
+    at spec-gate:99 / advisor:1247) need rewriting, or the shim must map type -> role.
+  - `query.limit` / `query.directory`. Not accepted. v2 `context` returns the whole context
+    for the session and ignores directory; the shim must slice to the last N client-side,
+    and must apply the directory scoping itself (or drop it).
+  - `time.completed` is optional on assistant; v1 callers did not read it, so no loss there.
+  - response envelope: v2 returns a bare array, not `{ data, cursor }`. Only relevant if a
+    shim wants to be byte-compatible with `response.data` — cheap to fake.
+NET: the DATA needed by all three readers (last assistant text; last user text) is fully
+available. The shim is viable; the only real semantic losses are the `ignored`/`synthetic`
+part flags and server-side pagination/filtering.
+
+2.2  client.session.promptAsync  ->  ctx.session.prompt        [PARTIAL]
+----------------------------------------------------------------------
+v2 PROVIDER
+  member : ctx.session.prompt
+  CONFIRMED on the Pick list, PL/session.d.ts:143; implementation CL/client.d.ts:47
+  request: SessionPromptInput — CONFIRMED CLG/types.d.ts:5633-5917, field set:
+             readonly sessionID: string
+             readonly id?: string | null            (v1 `messageID`)
+             readonly text: string                  (the prompt body; v1 used parts[])
+             readonly files?: ReadonlyArray<{ uri; name?; description?; mention? }>
+             readonly agents?: ReadonlyArray<{ name; mention? }>
+             readonly skills?: ReadonlyArray<{ id; mention? }>
+             readonly metadata?: { [x: string]: JsonValue }
+             readonly delivery?: ("steer" | "queue") | null
+             readonly resume?: boolean | null
+  response: SessionInboxUser — CONFIRMED CL/client.d.ts:47 and CLG/types.d.ts:3240-3249
+             { id, sessionID, time:{created}, type:"user", payload: SessionInboxUserPayload,
+               delivery: SessionInboxDelivery }
+           i.e. an ACCEPTED/ENQUEUED inbox item, not a completed assistant turn. This is the
+           v2 analogue of v1 promptAsync's 204 fire-and-forget contract (CONFIRMED
+           SessionPromptAsyncResponses = 204: void, V1S/types.gen.d.ts).
+  request/response file:line: CL/client.d.ts:47; CLG/types.d.ts:5633 (input),
+    :3240 (response), :3-4 SC/session-inbox.d.ts (Delivery literal).
+
+THIN SHIM: `client.session.promptAsync({path:{id}, query, body:{messageID, parts:[{type:'text',text}]}})`
+— CAN BE BUILT on ctx.session.prompt. Fields that would be MISSING from the v1 body
+(CONFIRMED against SessionPromptAsyncData, V1S/types.gen.d.ts:2329-2346):
+  - body.model { providerID, modelID }   -> no per-call model on v2 prompt. Nearest:
+    ctx.session.switchModel (CL/client.d.ts:44, SessionSwitchModelInput), which is a
+    session-state change, not a per-call override.
+  - body.agent                         -> nearest: ctx.session.switchAgent (CL/client.d.ts:43)
+  - body.system (system prompt override) -> NONE on v2 prompt
+  - body.tools ({ [k]: boolean } enable/disable map) -> NONE on v2 prompt
+  - body.noReply                       -> NONE
+  - body.parts as a heterogeneous array -> replaced by `text` + typed files/agents/skills
+    arrays. A `FilePartInput` (V1S/types.gen.d.ts:1245) becomes `{ uri, name?, description?,
+    mention? }` (see PromptFileAttachment, CLG/types.d.ts:624-631) — v1 FilePartInput carried
+    inline base64 `data` + `mime`; v2's prompt-input file attachment is URI-referenced
+    (SC/prompt-input.d.ts:5-29), so inline-bytes parts have no direct v2 prompt equivalent.
+  - promptAsync returned nothing (204); ctx.session.prompt returns an inbox object — a shim
+    can simply discard it.
+  - `resume` and `delivery` are v2-only additions with no v1 counterpart.
+  For opencode-goal's actual use (buildPromptAsyncOptions :2573-2592 sends only
+  messageID + one text part, no model/agent/system/tools), the port is a clean 1:1:
+    { sessionID, id: messageID, text: renderContinuationPrompt(...) }
+  and the `query: { directory }` becomes unnecessary (v2 prompt takes no directory).
+
+2.3  client.session.create  ->  ctx.session.create              [YES]
+----------------------------------------------------------------------
+  member : ctx.session.create — CONFIRMED on the Pick list PL/session.d.ts:143; CL/client.d.ts:34
+  request: SessionCreateInput (input is OPTIONAL) — CONFIRMED CLG/types.d.ts:3864-4041
+             { id?: string|null, parentID?: string|null, title?: string|null,
+               agent?: string|null, model?: { id, providerID, variant? }|null,
+               location?: { directory: string }|null,
+               metadata?: { [x: string]: JsonValue }|null,
+               permissions?: ReadonlyArray<{ action, resource, effect }>|null }
+  response: SessionInfo — CONFIRMED CLG/types.d.ts:2893-2919; `id` is the first field, so the
+    goal plugin's `created?.id || created?.info?.id` (:2283) resolves on `created.id`.
+  The goal plugin's v1 call passed `body: {}` and read `.data`/`.id`; both map cleanly.
+  Only difference: v1 returned `{ data: Session }` (wrapped), v2 returns SessionInfo bare.
+
+2.4  client.session.prompt (the verifier's blocking call)  ->  ctx.session.generate [PARTIAL]
+----------------------------------------------------------------------
+  The goal verifier (:2288) uses v1 `session.prompt`, whose 200 response is
+  { info: AssistantMessage; parts: Array<Part> } (CONFIRMED V1S/types.gen.d.ts:2281-2287) and
+  then parses a JSON verdict out of the returned text (:2297, parseLlmVerifierResponse :2258).
+  v2 ctx.session.prompt does NOT return that — it returns SessionInboxUser (2.2 above).
+  The v2 member that returns model text is:
+    member : ctx.session.generate — CONFIRMED PL/session.d.ts:143; CL/client.d.ts:73-75
+    request: SessionGenerateInput — CONFIRMED CLG/types.d.ts:6356-6363
+               { readonly sessionID: string; readonly prompt: string }
+    response: { text: string }
+  MISSING vs the v1 verifier call: per-call `tools: {}` (the v1 call disables tools),
+  per-call model/agent, and the structured `{ info, parts }` envelope. A shim would return
+  `{ data: { info: { role: 'assistant' }, parts: [{ type: 'text', text }] } }`-ish from
+  `{ text }`, which is enough for parseLlmVerifierResponse but cannot enforce `tools: {}`.
+
+2.5  client.session.delete  ->  ctx.session.remove              [YES — rename]
+----------------------------------------------------------------------
+  member : ctx.session.remove — CONFIRMED on the Pick list PL/session.d.ts:143; CL/client.d.ts:41
+  request: SessionRemoveInput — CONFIRMED CLG/types.d.ts:5541-5545
+             { readonly sessionID: string }
+  response: void
+  v1 SessionDeleteData was { path: { id }, query?: { directory? } } (V1S/types.gen.d.ts).
+  Field rename path.id -> sessionID; `query.directory` has no v2 equivalent (drop it).
+
+2.6  SHIM VERDICT
+----------------------------------------------------------------------
+Could a thin v1-shaped shim (`client.session.messages`, `client.session.promptAsync`, and
+the other three methods) be built from the v2 ctx?
+  YES for all five, from ctx members that already exist on the v2 plugin Context:
+    messages    <- ctx.session.context     (PARTIAL: no parts[], no ignored/synthetic,
+                                            no limit/directory)
+    promptAsync <- ctx.session.prompt      (PARTIAL: no model/agent/system/tools/noReply,
+                                            parts[] -> text + typed attachments)
+    create      <- ctx.session.create      (FULL)
+    prompt      <- ctx.session.generate    (PARTIAL: text only; no tools:{} control)
+    delete      <- ctx.session.remove      (FULL, rename only)
+  The shim must be a per-plugin adapter that closes over the v2 `context` object; there is
+  no `context.client` to monkey-patch (CONFIRMED: Context has no `client` member,
+  PL/plugin.d.ts:25-54).
+  Nothing needed by the three `messages` readers is unavailable: last-assistant-text and
+  last-user-text are both derivable. The losses are flags (ignored, synthetic), server-side
+  paging/filtering, and the per-call generation overrides (model, agent, system, tools,
+  noReply).
+
+2.7  WHAT V2 OFFERS IN PLACE OF v1 `command.execute.before`
+----------------------------------------------------------------------
+CONSUMED BY sk-vision: .skilled/skills/sk-vision/vision-runtime/src/plugin.ts
+  :29-35  defines commandExecuteBefore(commandInput {command, sessionID, arguments},
+          commandOutput {parts: Part[]})
+  :38     returns { "command.execute.before": commandExecuteBefore } when autoInspect is off
+  :63     same key returned in the full hook map
+  :64-78  additionally uses the v1 `event` hook with `event.type === "message.part.updated"`
+          (:69) reading `event.properties.part` (:71)
+  :79-82  and the v1 "chat.message" hook
+  :45-48  and `input.client.tui.showToast`
+  (The v1 hook contract it relies on: V1P/index.d.ts:228-234 — `command.execute.before`
+  receives (input {command, sessionID, arguments}, output {parts: Part[]}), i.e. it MUTATES
+  the invoking command's parts before the model sees them.)
+
+v2 ANSWER: there is NO command hook. ctx.command is exactly { list, transform, reload }
+(PL/command.d.ts:19-22, CONFIRMED), and `grep -rn "command.execute"` over
+.skilled/node_modules/@opencode/plugin/dist/ returns ZERO hits. The v2 replacement is a
+registration, not an interception:
+
+    ctx.command.transform(editor => editor.add({
+      name, description?, execute: async ({ sessionID, prompt, delivery }) => { ... }
+    }))
+  CONFIRMED PL/command.d.ts:16-18 (CommandEditor.add), :11-15 (CommandDefinition),
+  :6-10 (CommandInvocation: readonly sessionID, readonly prompt: PromptInput.Prompt,
+  readonly delivery).
+  Note the ergonomic differences:
+    - `execute` returns Promise<void> (v2) vs a mutating output object (v1);
+    - it is invoked for the plugin's OWN registered command, not for an arbitrary
+      pre-existing command;
+    - it receives `prompt` (PromptInput.Prompt, SC/prompt-input.d.ts:46-143 — {text, files?,
+      agents?, skills?}) and CANNOT mutate the invoking command's `parts` array, because v2
+      has no parts array on this path.
+  For sk-vision's purpose (get the analysed image in front of the model before the command
+  turn is sent), the nearest v2 slot is:
+    ctx.session.hook("prompt", async (input) => { /* input.prompt is DeepMutable */ })
+  CONFIRMED PL/session.d.ts:16 (`prompt: Types.DeepMutable<PromptInput.Prompt>`) — this is
+  the only declared pre-request mutation point, and PromptInput.Prompt.files accepts
+  { uri, name?, description?, mention? } (SC/prompt-input.d.ts:5-29, :48-96).
+  INFERRED (and what would confirm it): that this "prompt" hook fires for a
+  command-initiated turn as well as a plain chat turn. Nothing in the declarations says
+  either way. What would confirm: the OpenCode 2 server source that emits the hook, or an
+  integration test that registers a "prompt" hook and then runs a slash command.
+  Also INFERRED: whether a v2 `session.prompt` issued from inside a CommandDefinition.execute
+  can inject a file attachment that the model receives as an image part. What would confirm:
+  the same runtime source plus a live run.
+
+  sk-vision's OTHER v1 surfaces, for completeness (each also needs a v2 re-expression):
+    "event" + "message.part.updated" (plugin.ts:64-78) -> ctx.event.subscribe, but the v1
+      event name does not exist in V2Event (1.5(f)/(g)); use session.text.*/session.tool.*
+      or session.message.content.updated.
+    "chat.message" (plugin.ts:79-82) -> v2 has NO chat.message hook; SessionHooks has
+      `prompt` and `context` (PL/session.d.ts:130-131). The `prompt` hook is the nearer
+      match for "before the user message is submitted".
+    input.client.tui.showToast (plugin.ts:45-48) -> ctx has no tui member; the plugin
+      Context list (PL/plugin.d.ts:25-54) contains no toast surface. NONE in the declared
+      v2 promise/plugin API. The `tui.*` events exist on the wire
+      (tui.toast.show, CLG/types.d.ts TuiToastShow) but no ctx member sends them.
+
+
+================================================================================
+CONFIRMED / INFERRED SUMMARY
+================================================================================
+CONFIRMED (read in a declaration):
+  - every ctx member name and signature in Part 1 (PL/*.d.ts, CL/client.d.ts).
+  - every event payload field in 1.5, on both the v2 (CLG/types.d.ts) and v1
+    (V1S/types.gen.d.ts) sides.
+  - the absence of `session.compacted`, `message.updated`, `message.part.updated` from
+    V2Event, and the absence of any `command.execute*` hook in the v2 plugin dist.
+  - the absence of `ignored` from the v2 client types.
+  - every v1 call site and every field its caller reads (P1/*.js).
+  - the install-path correction (@opencode/plugin under .skilled/node_modules only;
+    @opencode/client nested inside it).
+
+INFERRED (not stated by any declaration I read):
+  - I1: that ctx.session.hook("prompt", ...) fires for command-initiated turns and can
+        carry a file attachment through to the model. Confirm by: reading the OpenCode 2
+        server hook-emission source, or an integration test that registers a "prompt" hook
+        and then runs a slash command with an image part.
+  - I2: that ctx.session.prompt's SessionInboxUser return means "accepted, turn not yet
+        complete" in the same fire-and-forget sense as v1 promptAsync's 204. The response
+        shape (inbox item + delivery) strongly implies it and the v1 promptAsync precedent
+        supports it, but no declaration states the completion semantics. Confirm by: the
+        server's prompt handler, or timing a live call.
+  - I3: that the shim's synthesised parts array would satisfy the three `messages` readers
+        without behavioural change. The readers are pure functions of the fields listed in
+        2.0, so this is mechanical, but it is not verified by running them.

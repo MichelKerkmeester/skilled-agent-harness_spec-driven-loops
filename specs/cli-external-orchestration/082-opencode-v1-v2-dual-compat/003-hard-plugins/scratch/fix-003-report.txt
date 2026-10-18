@@ -1,0 +1,26 @@
+The requested changes are on disk in the six authorized files.
+
+### Changes
+
+1. Added per-session deduplication for `session.idle` and `session.compacted`, with resets on execution start, compaction start, and session deletion. Added v2-to-v1 mappings for assistant text and usage events in [v2-bridge.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/lib/v2-bridge.js:22).
+
+2. Cleared inherited `AI_SESSION_CHILD` in the denying spec-gate case at line 436 of [v2-hard-plugins.test.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:436), and in the deny and would-deny cases at lines 232 and 325 of [system-spec-gate.test.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/system-spec-gate.test.cjs:232).
+
+3. Added MIME data URL conversion for bare base64 attachments while preserving existing `data:` values in [plugin.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:57). The default export still contains only `id`, `setup`, and `server`.
+
+4. Added v2 event coverage for goal evidence and token usage in [v2-hard-plugins.test.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/tests/v2-hard-plugins.test.cjs:536).
+
+### New test names
+
+- Bridge deduplication: `session.idle alias then native event delivers one idle event`; `native session.idle then alias delivers one idle event`; `session.idle alias state resets for each execution turn and remains session-scoped`; `session.compacted aliases deduplicate and reset for each compaction`; `session.deleted clears the session event alias state`.
+- Bridge event mappings: `session.text.ended maps to a v1 assistant text-part event`; `session.step.ended maps to a v1 message update with token usage fields`.
+- Goal integration: `opencode-goal records v2 assistant evidence and token usage from session events`.
+- Vision: `wraps bare base64 data in a MIME data URL`; `preserves an attachment value that is already a data URL`.
+
+### Verification and handoff
+
+All four required `node --check` commands passed with exit code 0. Scoped `git diff --check` passed. The OpenCode drift guards passed all four guard legs, with nine nonblocking warnings in other files. The vision runtime typecheck passed with `bun run --bun typecheck`; its default launcher stopped before TypeScript started due to a local `libsimdutf.36.dylib` load error.
+
+I did not run Node or Bun test suites, as instructed. The runtime bundle was not rebuilt because its output is outside the authorized file list; the orchestrator should rebuild it and run the deferred suites. The phase packet validator was not run, so this report covers the code changes rather than packet closure.
+
+The current branch is `worktrees/143-opencode-dual-compat-build`. The worktree remains dirty with existing phase edits and these changes; no commit or push was made.

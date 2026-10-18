@@ -21,13 +21,19 @@ async function loadPluginModule() {
   return import(pluginUrl);
 }
 
+async function loadGoalCore(pluginModule) {
+  const coreUrl = pathToFileURL(join(testDir, '..', 'lib', 'opencode-goal-core.js')).href;
+  const coreModule = await import(coreUrl);
+  return coreModule.getGoalCore(pluginModule.default.server);
+}
+
 async function importFreshPlugin(label) {
   return import(`${pluginUrl}?${label}-${Date.now()}-${Math.random()}`);
 }
 
 async function withState(fn) {
   const pluginModule = await loadPluginModule();
-  const helpers = pluginModule.default.__test;
+  const helpers = await loadGoalCore(pluginModule);
   const stateDir = await mkdtemp(join(tmpdir(), 'opencode-goal-state-'));
   const originalDebug = process.env.OPENCODE_GOAL_DEBUG;
 
@@ -319,7 +325,7 @@ test('fsyncDirectory failure logs to the state root', async () => withState(asyn
 test('tool calls without session id fail closed without writing new goals', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
   await helpers.setGoal('session-a', 'Ship the passive goal plugin', { stateDir, nowMs: 1000, goalIdFactory: () => 'goal-a' });
   await helpers.setGoal('session-b', 'Keep sessions isolated', { stateDir, nowMs: 3000, goalIdFactory: () => 'goal-b' });
-  const plugin = await pluginModule.default({}, {
+  const plugin = await pluginModule.default.server({}, {
     stateDir,
     goalIdFactory: () => 'tool-goal',
     nowMs: 4000,
@@ -345,7 +351,7 @@ test('tool calls without session id fail closed without writing new goals', asyn
 }));
 
 test('tool set, status, and transform expose the active goal injection', async () => withState(async ({ pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, {
+  const plugin = await pluginModule.default.server({}, {
     stateDir,
     goalIdFactory: () => 'tool-goal',
     nowMs: 4000,
@@ -366,7 +372,7 @@ test('tool set, status, and transform expose the active goal injection', async (
 }));
 
 test('appendGoalBrief caches present and missing goal lookups', async () => withState(async ({ pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, {
+  const plugin = await pluginModule.default.server({}, {
     stateDir,
     goalIdFactory: () => 'tool-goal',
     nowMs: 4000,
@@ -375,7 +381,7 @@ test('appendGoalBrief caches present and missing goal lookups', async () => with
 
   const cacheMetrics = {};
   const cachedModule = await importFreshPlugin('append-cache');
-  const cachedPlugin = await cachedModule.default({}, { stateDir, metrics: cacheMetrics });
+  const cachedPlugin = await cachedModule.default.server({}, { stateDir, metrics: cacheMetrics });
   const cachedOutput = { system: [] };
   await cachedPlugin['experimental.chat.system.transform']({ sessionID: 'tool-session' }, cachedOutput);
   cacheMetrics.briefReadFile = 0;
@@ -401,7 +407,7 @@ test('system transform adopts legacy active state before caching the goal brief'
   const legacyPath = legacySessionPath(stateDir, sessionID);
   await rename(digestPath, legacyPath);
 
-  const plugin = await pluginModule.default({}, { stateDir });
+  const plugin = await pluginModule.default.server({}, { stateDir });
   const output = { system: [] };
   await plugin['experimental.chat.system.transform']({ sessionID }, output);
   assert.equal(output.system.length, 1);
@@ -415,7 +421,7 @@ test('goal brief cache bounds missing sessions and clears on disposal', async ()
   try {
     const cacheModule = await importFreshPlugin('cache-bound');
     const metrics = {};
-    const plugin = await cacheModule.default({}, { stateDir: cacheStateDir, metrics });
+    const plugin = await cacheModule.default.server({}, { stateDir: cacheStateDir, metrics });
     for (let index = 0; index < 520; index += 1) {
       await plugin['experimental.chat.system.transform'](
         { sessionID: `missing-cache-${index}` },
@@ -436,7 +442,7 @@ test('goal brief cache bounds missing sessions and clears on disposal', async ()
 });
 
 test('system transform failures remain fail-open and write a durable diagnostic', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, { stateDir, nowMs: 4000 });
+  const plugin = await pluginModule.default.server({}, { stateDir, nowMs: 4000 });
   await writeFile(helpers.goalPathForSession('session-corrupt-transform', { stateDir }), '{ invalid json', 'utf8');
   const output = { system: ['existing context'] };
 
@@ -455,7 +461,7 @@ test('ensureGoalStateDir is memoized per state directory', async () => {
   const mkdirStateDir = await mkdtemp(join(tmpdir(), 'opencode-goal-mkdir-spy-'));
   try {
     const mkdirModule = await importFreshPlugin('mkdir-memo');
-    const mkdirHelpers = mkdirModule.default.__test;
+    const mkdirHelpers = await loadGoalCore(mkdirModule);
     const mkdirMetrics = {};
     await mkdirHelpers.setGoal('session-mkdir-one', 'Create the directory once', { stateDir: mkdirStateDir, metrics: mkdirMetrics });
     await mkdirHelpers.setGoal('session-mkdir-two', 'Reuse the known directory', { stateDir: mkdirStateDir, metrics: mkdirMetrics });
@@ -469,7 +475,7 @@ test('setGoal normalizes options once per call chain', async () => {
   const normalizeStateDir = await mkdtemp(join(tmpdir(), 'opencode-goal-normalize-spy-'));
   try {
     const normalizeModule = await importFreshPlugin('normalize-once');
-    const normalizeHelpers = normalizeModule.default.__test;
+    const normalizeHelpers = await loadGoalCore(normalizeModule);
     const normalizeMetrics = {};
     await normalizeHelpers.setGoal('session-normalize-once', 'Normalize options once per setGoal chain', {
       stateDir: normalizeStateDir,
@@ -565,7 +571,7 @@ test('same-objective refresh resumes paused timing without charging the pause', 
 }));
 
 test('transform appends active goal injection after existing system context', async () => withState(async ({ pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, {
+  const plugin = await pluginModule.default.server({}, {
     stateDir,
     goalIdFactory: () => 'tool-goal',
     nowMs: 4000,
@@ -750,7 +756,7 @@ test('verifier exception details are redacted from results, state, and status', 
   );
   assert.doesNotMatch(rawVerifierState, /sk-secret123456|token=plain|AKIA123456789012|Bearer eyJ|eyJhbGci/);
   assert.match(rawVerifierState, /\[secret-redacted\]/);
-  const verifierPlugin = await pluginModule.default({}, verifierOptions);
+  const verifierPlugin = await pluginModule.default.server({}, verifierOptions);
   const verifierStatus = await verifierPlugin.tool.opencode_goal_status.execute(
     {},
     { sessionID: 'session-verifier-exception' },
@@ -770,7 +776,7 @@ test('long enhanced goal prompt respects the configured cap', async () => withSt
 }));
 
 test('tool clear removes an active tool-managed goal', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, {
+  const plugin = await pluginModule.default.server({}, {
     stateDir,
     goalIdFactory: () => 'tool-goal',
     nowMs: 4000,

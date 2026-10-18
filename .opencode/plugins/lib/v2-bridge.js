@@ -1,6 +1,7 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: OpenCode v2 Compatibility Bridge
 // ───────────────────────────────────────────────────────────────────
+'use strict';
 
 import { z } from 'zod';
 
@@ -11,6 +12,46 @@ const MAPPED_HOOKS = new Set([
   'experimental.chat.system.transform',
   'tool',
   'dispose',
+]);
+
+const EVENT_ALIASES = Object.freeze({
+  'session.execution.succeeded': 'session.idle',
+  'session.compaction.ended': 'session.compacted',
+});
+
+const EVENT_MAPPINGS = Object.freeze({
+  'session.text.ended': {
+    type: 'message.part.updated',
+    properties: (data) => ({
+      part: {
+        type: 'text',
+        text: data.text,
+        sessionID: data.sessionID,
+        messageID: data.assistantMessageID,
+        role: 'assistant',
+      },
+    }),
+  },
+  'session.step.ended': {
+    type: 'message.updated',
+    properties: (data) => {
+      const info = {
+        id: data.assistantMessageID,
+        sessionID: data.sessionID,
+        role: 'assistant',
+      };
+      if (data.cost !== undefined) info.cost = data.cost;
+      if (data.tokens !== undefined) info.tokens = toV1Tokens(data.tokens);
+      return { info };
+    },
+  },
+});
+
+const DEDUPED_SESSION_EVENTS = new Set(['session.idle', 'session.compacted']);
+const SESSION_EVENT_RESET_TYPES = new Set([
+  'session.execution.started',
+  'session.compaction.started',
+  'session.deleted',
 ]);
 
 /**
@@ -33,6 +74,113 @@ function toV1ToolOutput(event) {
     title: result.title ?? '',
     output: result.output ?? result.content ?? '',
     metadata: result.metadata ?? {},
+  };
+}
+
+function toV1Tokens(tokens) {
+  const usage = {};
+  for (const field of ['input', 'output', 'reasoning']) {
+    if (tokens[field] !== undefined) usage[field] = tokens[field];
+  }
+
+  const cache = {};
+  if (tokens.cache?.read !== undefined) cache.read = tokens.cache.read;
+  if (tokens.cache?.write !== undefined) cache.write = tokens.cache.write;
+  if (Object.keys(cache).length > 0) usage.cache = cache;
+
+  return usage;
+}
+
+function requireV2SessionMethod(ctx, method) {
+  const sessionMethod = ctx.session?.[method];
+  if (typeof sessionMethod !== 'function') {
+    throw new Error(`session.${method} is not available on OpenCode 2`);
+  }
+  return sessionMethod;
+}
+
+function toV1Message(message, sessionID) {
+  const info = {};
+  if (message.id !== undefined) info.id = message.id;
+  if (message.type === 'user' || message.type === 'assistant') info.role = message.type;
+  if (sessionID !== undefined) info.sessionID = sessionID;
+
+  const parts = [];
+  if (message.type === 'user' && typeof message.text === 'string') {
+    parts.push({ type: 'text', text: message.text });
+  }
+  if (message.type === 'assistant' && Array.isArray(message.content)) {
+    for (const part of message.content) {
+      if (part?.type === 'text' && typeof part.text === 'string') {
+        parts.push({ type: 'text', text: part.text });
+      }
+    }
+  }
+
+  return { info, parts };
+}
+
+function createV1Client(ctx) {
+  return {
+    session: {
+      messages: async ({ path, query } = {}) => {
+        const getContext = requireV2SessionMethod(ctx, 'context');
+        const messages = await getContext.call(ctx.session, { sessionID: path.id });
+        const recentMessages = Number.isInteger(query?.limit)
+          ? (query.limit > 0 ? messages.slice(-query.limit) : [])
+          : messages;
+        return {
+          data: recentMessages.map((message) => toV1Message(message, path.id)),
+        };
+      },
+      promptAsync: async ({ path, body } = {}) => {
+        const prompt = requireV2SessionMethod(ctx, 'prompt');
+        const textParts = Array.isArray(body?.parts)
+          ? body.parts.filter((part) => part?.type === 'text' && typeof part.text === 'string')
+          : [];
+        if (textParts.length === 0) {
+          throw new Error('session.promptAsync requires a text part supported by OpenCode 2');
+        }
+
+        const input = {
+          sessionID: path.id,
+          text: textParts.map((part) => part.text).join('\n'),
+          delivery: 'queue',
+        };
+        if (body.messageID !== undefined) input.id = body.messageID;
+        await prompt.call(ctx.session, input);
+      },
+      create: async ({ query, body } = {}) => {
+        const create = requireV2SessionMethod(ctx, 'create');
+        const input = { ...(body ?? {}) };
+        if (query?.directory !== undefined) {
+          input.location = { ...(input.location ?? {}), directory: query.directory };
+        }
+        return { data: await create.call(ctx.session, input) };
+      },
+      prompt: async ({ path, body } = {}) => {
+        const generate = requireV2SessionMethod(ctx, 'generate');
+        const textParts = Array.isArray(body?.parts)
+          ? body.parts.filter((part) => part?.type === 'text' && typeof part.text === 'string')
+          : [];
+        if (textParts.length === 0) {
+          throw new Error('session.prompt requires a text part supported by OpenCode 2');
+        }
+
+        const prompt = textParts.map((part) => part.text).join('\n');
+        const response = await generate.call(ctx.session, { sessionID: path.id, prompt });
+        return {
+          data: {
+            info: { role: 'assistant' },
+            parts: [{ type: 'text', text: response.text }],
+          },
+        };
+      },
+      delete: async ({ path } = {}) => {
+        const remove = requireV2SessionMethod(ctx, 'remove');
+        await remove.call(ctx.session, { sessionID: path.id });
+      },
+    },
   };
 }
 
@@ -60,7 +208,7 @@ export function dualPlugin(id, server) {
   async function setup(ctx) {
     const directory = ctx.location.directory;
     const input = {
-      client: undefined,
+      client: createV1Client(ctx),
       project: undefined,
       worktree: directory,
       directory,
@@ -75,6 +223,22 @@ export function dualPlugin(id, server) {
     let eventTask;
     let eventFailure;
     let cleanupPromise;
+    const sessionEventState = new Map();
+
+    const deliverEvent = async (type, properties) => {
+      const sessionID = properties?.sessionID
+        ?? properties?.info?.sessionID
+        ?? properties?.info?.id
+        ?? properties?.part?.sessionID;
+      if (DEDUPED_SESSION_EVENTS.has(type) && sessionID !== undefined) {
+        const deliveredTypes = sessionEventState.get(sessionID) ?? new Set();
+        if (deliveredTypes.has(type)) return;
+        deliveredTypes.add(type);
+        sessionEventState.set(sessionID, deliveredTypes);
+      }
+
+      await hooks.event({ event: { type, properties } });
+    };
 
     const cleanup = () => {
       if (cleanupPromise) return cleanupPromise;
@@ -129,12 +293,24 @@ export function dualPlugin(id, server) {
                 && data.info === undefined
                   ? { ...data, info: { id: data.sessionID } }
                   : data;
-              await hooks.event({
-                event: {
-                  type: event.type,
-                  properties,
-                },
-              });
+              if (SESSION_EVENT_RESET_TYPES.has(event.type)) {
+                const sessionID = data?.sessionID ?? data?.info?.id;
+                if (sessionID !== undefined) sessionEventState.delete(sessionID);
+              }
+
+              await deliverEvent(event.type, properties);
+              const aliasType = EVENT_ALIASES[event.type];
+              if (aliasType && data?.sessionID !== undefined) {
+                await deliverEvent(aliasType, {
+                  sessionID: data.sessionID,
+                  info: { id: data.sessionID },
+                });
+              }
+
+              const mapping = EVENT_MAPPINGS[event.type];
+              if (mapping) {
+                await deliverEvent(mapping.type, mapping.properties(data));
+              }
             }
           } catch (error) {
             if (!eventController.signal.aborted || error?.name !== 'AbortError') {

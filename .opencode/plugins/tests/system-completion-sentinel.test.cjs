@@ -19,9 +19,19 @@ const { pathToFileURL } = require('node:url');
 
 const KILL_SWITCH_ENV = 'SYSTEM_COMPLETION_SENTINEL_DISABLED';
 const pluginUrl = pathToFileURL(path.join(__dirname, '..', 'system-completion-sentinel.js')).href;
+const coreUrl = pathToFileURL(path.join(
+  __dirname,
+  '..',
+  'lib',
+  'completion-sentinel-core.js',
+)).href;
 
 function loadPlugin() {
   return import(pluginUrl);
+}
+
+function loadCore() {
+  return import(coreUrl);
 }
 
 function makeProjectDir() {
@@ -57,7 +67,7 @@ test('session.created invokes the throttled state sweep, pruning a stale dedup e
   const { default: MkCompletionSentinelPlugin } = await loadPlugin();
   const projectDir = makeProjectDir();
   try {
-    const sentinelCore = MkCompletionSentinelPlugin.__test.core;
+    const { default: sentinelCore } = await loadCore();
     const { stateDir } = sentinelCore.resolveSentinelPaths(projectDir);
     const freshAdvisedAt = isoDaysAgo(1);
     writeDedupStore(stateDir, {
@@ -65,7 +75,7 @@ test('session.created invokes the throttled state sweep, pruning a stale dedup e
       fresh: { fingerprint: 'sha256:fresh', advisedAt: freshAdvisedAt },
     });
 
-    const hooks = await MkCompletionSentinelPlugin({ directory: projectDir });
+    const hooks = await MkCompletionSentinelPlugin.server({ directory: projectDir });
     await hooks.event({ event: { type: 'session.created' } });
 
     assert.deepEqual(
@@ -83,12 +93,12 @@ test('kill switch (SYSTEM_COMPLETION_SENTINEL_DISABLED=1) makes session.created 
   const projectDir = makeProjectDir();
   try {
     await withEnv(KILL_SWITCH_ENV, '1', async () => {
-      const sentinelCore = MkCompletionSentinelPlugin.__test.core;
+      const { default: sentinelCore } = await loadCore();
       const { stateDir } = sentinelCore.resolveSentinelPaths(projectDir);
       const originalStore = { stale: { fingerprint: 'sha256:stale', advisedAt: isoDaysAgo(400) } };
       writeDedupStore(stateDir, originalStore);
 
-      const hooks = await MkCompletionSentinelPlugin({ directory: projectDir });
+      const hooks = await MkCompletionSentinelPlugin.server({ directory: projectDir });
       await hooks.event({ event: { type: 'session.created' } });
 
       assert.deepEqual(readDedupStore(stateDir), originalStore, 'kill switch must prevent the sweep entirely');
@@ -102,11 +112,11 @@ test('a second session.created on the same plugin instance within the sweep inte
   const { default: MkCompletionSentinelPlugin } = await loadPlugin();
   const projectDir = makeProjectDir();
   try {
-    const sentinelCore = MkCompletionSentinelPlugin.__test.core;
+    const { default: sentinelCore } = await loadCore();
     const { stateDir } = sentinelCore.resolveSentinelPaths(projectDir);
     writeDedupStore(stateDir, { stale: { fingerprint: 'sha256:stale', advisedAt: isoDaysAgo(40) } });
 
-    const hooks = await MkCompletionSentinelPlugin({ directory: projectDir });
+    const hooks = await MkCompletionSentinelPlugin.server({ directory: projectDir });
     await hooks.event({ event: { type: 'session.created' } });
     assert.deepEqual(readDedupStore(stateDir), {}, 'the first sweep must prune the stale entry');
 
@@ -127,12 +137,12 @@ test('an unrelated event type never triggers the sweep', async () => {
   const { default: MkCompletionSentinelPlugin } = await loadPlugin();
   const projectDir = makeProjectDir();
   try {
-    const sentinelCore = MkCompletionSentinelPlugin.__test.core;
+    const { default: sentinelCore } = await loadCore();
     const { stateDir } = sentinelCore.resolveSentinelPaths(projectDir);
     const originalStore = { stale: { fingerprint: 'sha256:stale', advisedAt: isoDaysAgo(40) } };
     writeDedupStore(stateDir, originalStore);
 
-    const hooks = await MkCompletionSentinelPlugin({ directory: projectDir });
+    const hooks = await MkCompletionSentinelPlugin.server({ directory: projectDir });
     await hooks.event({ event: { type: 'tool.execute.after' } });
 
     assert.deepEqual(readDedupStore(stateDir), originalStore, 'an unrelated event type must never trigger a sweep');

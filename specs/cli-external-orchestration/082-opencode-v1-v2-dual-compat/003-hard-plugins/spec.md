@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-18 |
 | **Branch** | `worktrees/143-opencode-dual-compat-build` |
 | **Parent Spec** | ../spec.md |
@@ -124,6 +124,19 @@ Each of the five plugins loads and behaves on v2 as well as v1. Each port keeps 
 | `.skilled/skills/sk-vision/vision-runtime/src/plugin.ts` | Modify | Register the command through `ctx.command.transform` on v2, and keep `command.execute.before` for v1. The named export at line 13 follows the T003 decision. |
 | `.skilled/skills/sk-vision/vision-runtime/src/opencode/` | Modify | The command module that `plugin.ts` imports as `./opencode/command.js`. Changed only as the port needs. |
 | `.skilled/skills/sk-vision/vision-runtime/dist/plugin.js` | Build output | Rebuilt by `bun run build`. The folder `dist/` is gitignored. |
+
+### Recorded Deviations
+
+Six deviations were recorded during the phase and are reflected in the file list above where they widen it.
+
+- Decision 5: the shared bridge from phase 2, `.opencode/plugins/lib/v2-bridge.js`, carries the v2 leg for the four JavaScript hard plugins, so each v1 hook body stays unchanged and the v2 mapping lives in one place. The bridge gains a v1-shaped client built from the v2 context, the event aliases from the live re-probe (`session.execution.succeeded` is also delivered as `session.idle` and `session.compaction.ended` as `session.compacted`, each with per-session dedupe), and the goal evidence and usage mappings the fix run added.
+- Decision 9: the v1 event names with no v2 equivalent are recorded as gaps with their evidence, not claimed. The six gaps are the goal blocked-by-prompt guard, plugin options, the advisor resume and disposal signals, automatic `sk-vision` image evidence, the ignored `{signal}`, and the idle alias after a failed or interrupted turn (`scratch/decisions.txt:20-25`, `:34`).
+- Decision 11: unconfirmed limitation. The bridge maps v2 step tokens to v1 message tokens. If v2 step tokens count one step rather than the whole message, a multi-step assistant message is undercounted.
+- Decision 12: the `sk-vision` fix exports a named helper, `toV1FileUrl`, beside the default export, so the plugin test can reach it. REQ-012 constrains only the default export, which keeps `id`, `setup` and `server`, and the helper is not loaded as a plugin on either version.
+- Decision 13: four changed paths fall outside the file list above, and each is ruled in scope: `.opencode/plugins/lib/v2-bridge.js` and its test (decision 5 moved the v2 legs there), `.opencode/plugins/tests/system-spec-gate.test.cjs` (the seam removal and the child-environment fix), and `.skilled/skills/sk-vision/vision-runtime/src/plugin.test.ts` (the test for the base64 fix). The untracked build output `hooks/opencode/sk-vision.js` was present before the phase and is not committed.
+- The two approved live model runs against CHK-031. `scratch/live-probe/run1-output.txt` and `scratch/live-probe/run2-events.jsonl` are real v2 runs on `llmgateway/deepseek-v4.1-flash` with a probe plugin, and they proved the event names in `scratch/phase1-answers.txt`. This is the one deviation from CHK-031 (no paid model call). The operator approved those two runs only.
+
+**Status note:** All 14 acceptance rows are Met, so the status above is Complete.
 <!-- /ANCHOR:scope -->
 
 ---

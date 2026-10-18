@@ -1,0 +1,16 @@
+{"name":"classifier-injection-screen","v1":"loaded","detail":"experimental.chat.system.transform,tool.execute.after"}
+{"name":"cli-dispatch-audit","v1":"loaded","detail":"tool.execute.after,tool.execute.before"}
+{"name":"codex-hooks-watchdog","v1":"loaded","detail":"event"}
+{"name":"mcp-route-guard","v1":"loaded","detail":"tool.execute.before"}
+{"name":"opencode-goal","v1":"loaded","detail":"event,experimental.chat.system.transform,tool"}
+{"name":"session-cleanup","v1":"loaded","detail":"dispose,event,experimental.chat.system.transform"}
+{"name":"sk-code-post-edit-quality","v1":"loaded","detail":"experimental.chat.system.transform,tool.execute.after,tool.execute.before"}
+{"name":"sk-git-message-gate","v1":"loaded","detail":"tool.execute.before"}
+{"name":"sk-git-preflight-advisory","v1":"loaded","detail":"experimental.chat.system.transform,tool.execute.before"}
+{"name":"sk-vision","v1":"loaded","detail":"command.execute.before"}
+{"name":"system-completion-sentinel","v1":"loaded","detail":"event"}
+{"name":"system-deep-loop-guard","v1":"loaded","detail":"event,tool.execute.before"}
+{"name":"system-dist-freshness-guard","v1":"loaded","detail":"event,experimental.chat.system.transform,tool.execute.before"}
+{"name":"system-skill-advisor","v1":"loaded","detail":"event,experimental.chat.system.transform,tool"}
+{"name":"system-spec-gate","v1":"loaded","detail":"event,experimental.chat.system.transform,tool.execute.before"}
+{"name":"system-speckit-completion","v1":"loaded","detail":"tool"}

@@ -187,8 +187,8 @@
         "source": "derived"
       },
       {
-        "name": "1. DURABLE DIRECTIVE",
-        "kind": "heading",
+        "name": "and",
+        "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
       },
@@ -219,7 +219,7 @@
     ],
     "causal_summary": "OpenCode now ships two lines that load plugins, read config and parse the `run` command differently",
     "created_at": "2026-10-18T09:21:48Z",
-    "last_save_at": "2026-10-18T15:54:46.618Z",
+    "last_save_at": "2026-10-18T17:16:00.832Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -227,10 +227,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:f82a09e259f74b66ff6fcbfb93dfe93c5e24173d8b02820da1b5f799d4414535",
+    "source_fingerprint": "sha256:12ec3c94f3b44a8d47b3239f8f3ec1a24fc6a83a4390db4f2a268fa9ca056596",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "118bdf54fc9b0b15a067e29a1a45e04f2bd8cb299a15b525e61c4d38ec2587e7",
+      "spec.md": "bdf1f4a42549167970094f92f26d1d111b27a3346e4415d581e3cd1fcbc42b81",
       "research/research.md": "d98a79b9f7b739b2ec1048e9bd48e083a8164b43ab63c6c54ca78b48202962a9"
     },
     "last_active_at": null

@@ -20,13 +20,10 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-// The sentinel core lives outside .skilled/plugins/ so this file can remain a
-// thin, default-export-only OpenCode plugin while the Claude Stop hook
-// consumes the identical core. A .cjs core is imported here as the ESM
-// default export, exactly like system-deep-loop-guard.js.
-import sentinelCore from '../skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs';
-
 import { createRequire } from 'node:module';
+
+import sentinelCore from './lib/completion-sentinel-core.js';
+import { dualPlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
@@ -116,7 +113,7 @@ async function resolveLastAssistantText(client, sessionID) {
  * @param {{ directory?: string, client?: object } | undefined} ctx - OpenCode plugin context.
  * @returns {Promise<object>} Hooks object for the OpenCode plugin loader.
  */
-export default async function MkCompletionSentinelPlugin(ctx) {
+async function MkCompletionSentinelPlugin(ctx) {
   const projectDir = ctx?.directory || process.cwd();
   const runtimeState = { lastSentinelSweepAtMs: 0 };
 
@@ -161,14 +158,4 @@ export default async function MkCompletionSentinelPlugin(ctx) {
   };
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 5. TEST SURFACE
-// ─────────────────────────────────────────────────────────────────────────────
-
-// Hang test-only access off the default export so no named export is ever
-// added to this file (a stray named export drops the whole plugin).
-MkCompletionSentinelPlugin.__test = Object.freeze({
-  core: sentinelCore,
-  sessionIdFromEvent,
-  resolveLastAssistantText,
-});
+export default dualPlugin('system-completion-sentinel', MkCompletionSentinelPlugin);

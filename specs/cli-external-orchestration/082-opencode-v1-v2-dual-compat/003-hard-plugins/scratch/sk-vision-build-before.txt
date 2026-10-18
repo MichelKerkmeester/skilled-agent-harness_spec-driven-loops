@@ -1,0 +1,6 @@
+## sk-vision bundle before the port
+-rw-r--r--@ 1 michelkerkmeester  staff  504601 Oct 18 15:42 .skilled/skills/sk-vision/vision-runtime/dist/plugin.js
+38ee9a66a5676dcbd32b9f3b0c4c680347119bf5dfd0558f350fb526bb440b47  .skilled/skills/sk-vision/vision-runtime/dist/plugin.js
+built in phase 1 (001-unknowns-and-baseline/scratch/sk-vision-build.txt); dist/ is gitignored: yes
+## package test script
+{"build":"bun run scripts/build.ts","test":"bun test","typecheck":"bunx tsc --noEmit","prepublishOnly":"bun run typecheck && bun run build"}

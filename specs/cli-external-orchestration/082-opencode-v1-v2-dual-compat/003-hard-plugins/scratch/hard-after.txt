@@ -1,0 +1,18 @@
+✔ system-completion-sentinel exports and registers v2 hooks (61.5245ms)
+✔ system-spec-gate exports and registers v2 hooks (13.969084ms)
+✔ system-skill-advisor exports and registers v2 hooks (7.533042ms)
+✔ opencode-goal exports and registers v2 hooks (11.60075ms)
+✔ sk-vision exports and registers v2 hooks (15.997875ms)
+✔ system-completion-sentinel records an advisory after a completed session event (4.991541ms)
+✔ system-spec-gate rejects a denied write through execute.before (4.918625ms)
+✔ opencode-goal queues its continuation through session.prompt (34.249334ms)
+✔ opencode-goal records v2 assistant evidence and token usage from session events (28.546125ms)
+✔ system-skill-advisor clears session transform dedup after compaction (1.424375ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 223.524375

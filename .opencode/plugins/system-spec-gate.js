@@ -28,6 +28,7 @@
 import * as guardCore from '../skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs';
 
 import { createRequire } from 'node:module';
+import { dualPlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
@@ -165,7 +166,7 @@ function filePathFromArgs(args) {
  * @param {{ directory?: string } | undefined} ctx - OpenCode plugin context.
  * @returns {Promise<object>} Hooks object for the OpenCode plugin loader.
  */
-export default async function MkSpecGatePlugin(ctx) {
+async function MkSpecGatePlugin(ctx) {
   const projectDir = ctx?.directory || process.cwd();
   const { stateDir } = guardCore.resolveGuardPaths(projectDir);
   const runtimeState = { lastGateSweepAtMs: 0 };
@@ -296,13 +297,4 @@ export default async function MkSpecGatePlugin(ctx) {
   };
 }
 
-// Test surface hangs off the default export so no stray named export is
-// mistaken for a second plugin (see .skilled/plugins/README.md).
-MkSpecGatePlugin.__test = {
-  extractPrompt,
-  sessionIdFrom,
-  fetchLastUserPromptViaClient,
-  eventTypeFrom,
-  sessionIdFromEvent,
-  filePathFromArgs,
-};
+export default dualPlugin('system-spec-gate', MkSpecGatePlugin);

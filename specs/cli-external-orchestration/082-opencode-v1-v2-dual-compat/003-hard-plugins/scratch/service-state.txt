@@ -1,0 +1,3 @@
+v2 background service, captured 2026-10-18 19:00 CEST at phase 003 close:
+46220 Sun Oct 18 12:18:22 2026    
+Phase 002 capture (../../002-pins-imports-dual-export/scratch/service-state.txt line 2) shows the same PID and start time, so the service was not restarted during phases 002 or 003.

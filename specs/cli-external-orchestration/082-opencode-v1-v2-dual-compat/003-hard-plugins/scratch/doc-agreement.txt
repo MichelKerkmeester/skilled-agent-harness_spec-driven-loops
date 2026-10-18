@@ -1,0 +1,22 @@
+# Document agreement (CHK-040)
+
+## Task lines before ticking (committed tasks.md at HEAD f7b54c52db)
+grep -c '^- \[ \] T0' => 27
+
+## Task ids in tasks.md, plan.md and spec.md
+tasks.md: T001 T002 T003 T004 T005 T006 T007 T008 T009 T010 T011 T012a T012b T012c T013 T014 T015 T016 T017 T018 T019 T020 T021 T022 T023 T024 T025 T031 
+plan.md: T001 T002 T003 T004 T005 T006 T007 T008 T009 T012a T012c T013 T014 T015 T016 T017 T018 T021 T022 T023 T024 T025 
+spec.md: T001 T002 T003 T004 T009 T012a T012c T016 
+
+## Files named in spec.md section 3 that are absent from tasks.md
+./opencode/command.js
+.opencode/plugins/lib/system-spec-gate-core.js
+.opencode/plugins/tests/system-spec-gate.test.cjs
+.skilled/skills/sk-vision/vision-runtime/src/plugin.test.ts
+hooks/opencode/sk-vision.js
+sk-vision.js
+(end)
+
+## Reading
+- The 27 task lines match CHK-040. Task ids agree: plan.md and spec.md name subsets of the tasks.md ids, and no id appears in plan.md or spec.md that tasks.md lacks. T031 in tasks.md is a cross-reference to phase 2's T031 in the CHK-051 evidence, not a phase 3 task.
+- The absent files are explained: `./opencode/command.js` is the import path of src/opencode/command.ts, which T014 names as "the module under src/opencode/". lib/system-spec-gate-core.js was not created (decision 2). The sk-vision.js symlink and the hooks/opencode/sk-vision.js build output are out of scope by section 3. tests/system-spec-gate.test.cjs and src/plugin.test.ts appear in section 3 through the closeout deviation note and are ruled in scope by decision 13.

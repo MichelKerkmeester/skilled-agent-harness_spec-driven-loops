@@ -21,9 +21,15 @@ async function loadPluginModule() {
   return import(pluginUrl);
 }
 
+async function loadGoalCore(pluginModule) {
+  const coreUrl = pathToFileURL(join(testDir, '..', 'lib', 'opencode-goal-core.js')).href;
+  const coreModule = await import(coreUrl);
+  return coreModule.getGoalCore(pluginModule.default.server);
+}
+
 async function withState(fn) {
   const pluginModule = await loadPluginModule();
-  const helpers = pluginModule.default.__test;
+  const helpers = await loadGoalCore(pluginModule);
   const stateDir = await mkdtemp(join(tmpdir(), 'opencode-goal-capabilities-'));
   const originalAutonomy = process.env.OPENCODE_GOAL_AUTONOMY;
   const originalMaxAutoTurns = process.env.OPENCODE_GOAL_MAX_AUTO_TURNS;
@@ -48,7 +54,7 @@ function activeRuntimeState(sessionID) {
 }
 
 test('history lists archived goals and leaves active state untouched', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
-  const plugin = await pluginModule.default({}, { stateDir, nowMs: 1000 });
+  const plugin = await pluginModule.default.server({}, { stateDir, nowMs: 1000 });
   const emptyHistory = await plugin.tool.opencode_goal.execute({ action: 'history' }, {});
   assert.match(emptyHistory, /STATUS=OK ACTION=history/);
   assert.match(emptyHistory, /archive_count=0/);
@@ -196,7 +202,7 @@ test('provider-limit detection accepts 429 variants and quota patterns only', as
 
   for (const testCase of cases) {
     const sessionID = `session-provider-${testCase.name}`;
-    const plugin = await pluginModule.default({}, { stateDir, nowMs: 1000 });
+    const plugin = await pluginModule.default.server({}, { stateDir, nowMs: 1000 });
     await helpers.setGoal(sessionID, `Provider matrix ${testCase.name}`, {
       stateDir,
       nowMs: 1000,
@@ -219,7 +225,7 @@ test('provider-limit detection accepts 429 variants and quota patterns only', as
 
 test('retry-after deadline recovers lazily and malformed payloads stay suppressed', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
   process.env.OPENCODE_GOAL_AUTONOMY = 'active';
-  const retryPlugin = await pluginModule.default({}, { stateDir, nowMs: 1000 });
+  const retryPlugin = await pluginModule.default.server({}, { stateDir, nowMs: 1000 });
   await helpers.setGoal('session-retry-after', 'Recover after retry-after', {
     stateDir,
     nowMs: 1000,
@@ -251,7 +257,7 @@ test('retry-after deadline recovers lazily and malformed payloads stay suppresse
   assert.equal(goal.continuationSuppressed, false);
   assert.equal(goal.providerRetryAfterMs, null);
 
-  const malformedPlugin = await pluginModule.default({}, { stateDir, nowMs: 3000 });
+  const malformedPlugin = await pluginModule.default.server({}, { stateDir, nowMs: 3000 });
   await helpers.setGoal('session-retry-malformed', 'Stay suppressed after malformed retry-after', {
     stateDir,
     nowMs: 3000,

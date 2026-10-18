@@ -40,11 +40,11 @@ Phase 3 gives each hard plugin a v2 leg that uses only the hooks that the 2.0.32
 - [x] Dependencies identified in `spec.md` section 6
 
 ### Definition of Done
-- [ ] All acceptance criteria met (`acceptance-criteria.md`)
-- [ ] Each v2 case fails in `scratch/hard-before.txt` and passes in `scratch/hard-after.txt`
-- [ ] The plugin suite is at or above the phase 2 floor, with zero failures
-- [ ] `sk-vision` has a rebuilt `dist/plugin.js` and a load capture, or a blocker naming phase 1
-- [ ] `validate.sh --strict` prints `RESULT: PASSED`
+- [x] All acceptance criteria met (`acceptance-criteria.md`). Evidence: all 14 rows read `Met`, each with a file:line citation in its Verification cell.
+- [x] Each v2 case fails in `scratch/hard-before.txt` and passes in `scratch/hard-after.txt`. Evidence: `scratch/hard-before.txt:10-13` (9 tests, 0 pass, 9 fail) and `scratch/hard-after.txt:11-14` (10 tests, 10 pass, 0 fail).
+- [x] The plugin suite is at or above the phase 2 floor, with zero failures. Evidence: `scratch/suite-after.txt:363-366` (353 pass, 0 fail) against the floor of 331 in `scratch/baseline-floor.txt:3`.
+- [x] `sk-vision` has a rebuilt `dist/plugin.js` and a load capture, or a blocker naming phase 1. Evidence: `scratch/sk-vision-build-after-fix.txt:1-15`, `scratch/v1-harness-after-003.jsonl:10`, `scratch/v2-active-003.txt:10`.
+- [x] `validate.sh --strict` prints `RESULT: PASSED` (`scratch/validate.txt:51`)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -74,6 +74,17 @@ export default {
 ```
 
 The sketch shows the shape. Each plugin supplies its own `id` and its own `setup` body.
+
+### Recorded Deviations
+
+The delivered tree deviates from the plan above in six recorded ways.
+
+- Decision 5: one shared bridge, `.opencode/plugins/lib/v2-bridge.js`, carries the v2 leg for the four JavaScript plugins, so each v1 hook body stays unchanged and the v2 mapping lives in one place. The bridge gains a v1-shaped client built from the v2 context, the event aliases from the live re-probe (`session.execution.succeeded` is also delivered as `session.idle` and `session.compaction.ended` as `session.compacted`, each with per-session dedupe), and the goal evidence and usage mappings the fix run added. The per-plugin `setup` bodies the sketch shows are not written.
+- Decision 9: the v1 event names with no v2 equivalent are recorded as gaps with their evidence, not claimed. The six gaps are the goal blocked-by-prompt guard, plugin options, the advisor resume and disposal signals, automatic `sk-vision` image evidence, the ignored `{signal}`, and the idle alias after a failed or interrupted turn (`scratch/decisions.txt:20-25`, `:34`).
+- Decision 11: unconfirmed limitation. The bridge maps v2 step tokens to v1 message tokens. If v2 step tokens count one step rather than the whole message, a multi-step assistant message is undercounted.
+- Decision 12: the `sk-vision` fix exports a named helper, `toV1FileUrl`, beside the default export, so the plugin test can reach it. REQ-012 constrains only the default export, and the helper is not loaded as a plugin on either version.
+- Decision 13: four changed paths fall outside the file list in `spec.md` section 3, and each is ruled in scope: `.opencode/plugins/lib/v2-bridge.js` and its test (decision 5 moved the v2 legs there), `.opencode/plugins/tests/system-spec-gate.test.cjs` (the seam removal and the child-environment fix), and `.skilled/skills/sk-vision/vision-runtime/src/plugin.test.ts` (the test for the base64 fix).
+- The two approved live model runs against CHK-031. `scratch/live-probe/run1-output.txt` and `scratch/live-probe/run2-events.jsonl` are real v2 runs on `llmgateway/deepseek-v4.1-flash` with a probe plugin, and they proved the event names in `scratch/phase1-answers.txt`. This is the one deviation from CHK-031 (no paid model call). The operator approved those two runs only.
 
 ### Data Flow
 On v1, the loader reads `server` and calls it with the v1 input, as in phase 2. On v2, the loader reads `setup` and calls it with the v2 context. The sentinel stores assistant text when the idle event arrives, and it reads that text when its own check runs. The `sk-vision` source builds into `dist/plugin.js`, and the `sk-vision.js` symlink in `.opencode/plugins/` points at that bundle.
@@ -211,10 +222,10 @@ Setup (S1) comes first, and the tests (S2) follow it. The ports (S3) follow the 
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] `scratch/status-before.txt` holds the sorted `git status --porcelain` output from before any change
-- [ ] `scratch/baseline-floor.txt` holds the phase 2 suite floor
-- [ ] `scratch/hard-5.txt` holds the five plugin names, sorted
-- [ ] No step calls `opencode2 service stop`, `opencode2 service start` or `opencode2 service restart`
+- [x] `scratch/status-before.txt` holds the sorted `git status --porcelain` output from before any change
+- [x] `scratch/baseline-floor.txt` holds the phase 2 suite floor (331, line 3)
+- [x] `scratch/hard-5.txt` holds the five plugin names, sorted
+- [x] No step calls `opencode2 service stop`, `opencode2 service start` or `opencode2 service restart` (`scratch/service-state.txt:2`)
 
 ### Rollback Procedure
 1. Stop the dispatch that caused the problem.
