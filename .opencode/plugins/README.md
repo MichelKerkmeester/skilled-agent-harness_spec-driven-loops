@@ -9,6 +9,8 @@ trigger_phrases:
 
 # OpenCode Plugin Entrypoints
 
+> JavaScript plugin entrypoints for context injection, lifecycle handling, policy guards, runtime tools and post-action checks.
+
 ---
 
 ## 1. OVERVIEW
@@ -31,6 +33,7 @@ Every plugin except `sk-git-message-gate.js` honors a per-concern kill-switch vi
 | `mcp-route-guard.js` | `mcp-route-guard` | `tool.execute.before` | Advises when native MCP calls should use Code Mode. Persists to a bounded, rotated workspace log. |
 | `opencode-goal.js` | `goal` | `event` (`session.created`/`status`/`idle`/`deleted`), `experimental.chat.system.transform`, `tool` (goal tools) | Binds a session to a packet `goal.md` and injects the objective slice built from it (via `../hooks/goal/lib/goal-slice.cjs`), or holds a text goal. Largest plugin; owns goal state machine, supervisor, continuation, capabilities, and the goal tool surface including `bind`, `resent` and `packet`. |
 | `session-cleanup.js` | `session-cleanup` | `event` (`session.created`/`deleted`), `experimental.chat.system.transform` | Performs bounded session and host cleanup. Startup guards + teardown cleanup; reaps MCP helper processes via `session-cleanup.sh`. |
+| `session-relaunch.js` | `session-relaunch` | `event` (`message.updated`/`message.part.updated`/`session.idle`), `experimental.chat.system.transform` | Tracks usage and seed text. While this session has no matching relaunch record, it pushes the active nudge on every request. Outside `skilled-loop`, it keeps nudging until the handoff note exists. It injects a matching seed once and arms the record on `session.idle`. The plugin runs the detached killer with `node` because OpenCode hosts plugins on Bun. |
 | `sk-code-post-edit-quality.js` | `post-edit-quality` | `tool.execute.before`, `tool.execute.after`, `experimental.chat.system.transform` | Runs bounded post-edit quality checks. `tool.execute.before` stashes the edited path keyed by callID (after has no file path); `tool.execute.after` runs the router core; findings drained on the next transform and recorded to a workspace log. |
 | `sk-git-message-gate.js` | `git-message-gate` (no kill switch) | `tool.execute.before` for `bash` | Refuses a `git commit` message, `gh pr` description or new branch name that breaks the repository's own sk-git templates by throwing; allows what the shared gate cannot read. The one plugin with no kill switch, because the commit and push rules carry no bypass on any surface. |
 | `sk-git-preflight-advisory.js` | `git-preflight` | `tool.execute.before` for `bash`, `experimental.chat.system.transform` | Advises on Git command scope before execution. Buffers at most 20 advisory events and drains them on the next transform; never prints. |
@@ -57,6 +60,7 @@ plugins/
 +-- mcp-route-guard.js
 +-- opencode-goal.js
 +-- session-cleanup.js
++-- session-relaunch.js
 +-- sk-code-post-edit-quality.js
 +-- sk-git-message-gate.js
 +-- sk-git-preflight-advisory.js

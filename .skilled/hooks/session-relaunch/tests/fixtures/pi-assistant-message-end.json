@@ -1,0 +1,32 @@
+{
+  "ev": "message_end",
+  "pid": 11489,
+  "ppid": 11486,
+  "cwd": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/spike-142-gMPw/pi",
+  "mode": "print",
+  "hasUI": false,
+  "sessionId": "01a14869-0b90-74a9-8231-4d14477ec215",
+  "sessionName": null,
+  "contextUsage": {
+    "tokens": 1463,
+    "contextWindow": 1050000,
+    "percent": 0.1393333333333333
+  },
+  "role": "assistant",
+  "stopReason": "stop",
+  "usage": {
+    "input": 1499,
+    "output": 154,
+    "cacheRead": 128,
+    "cacheWrite": 0,
+    "reasoning": 152,
+    "totalTokens": 1781,
+    "cost": {
+      "input": 0.00022485,
+      "output": 0.0000924,
+      "cacheRead": 3.84e-7,
+      "cacheWrite": 0,
+      "total": 0.00031763399999999996
+    }
+  }
+}

@@ -82,7 +82,7 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
   - **D) Skip** - Explicitly skip documentation after the required warning or when an existing exemption applies. Never make this the default.
 - **Which to choose:** `system-spec-kit/references/workflows/quick-reference.md` §8 and §9 for the priority, `system-spec-kit/references/structure/phase-definitions.md` §2 for the two phase thresholds and the series parent.
 - **Router commands:** evaluate Gate 3 per selected route, not once for the router. A route that only reads needs no write path; one that writes anything is bound like any mutation.
-- **The answer holds for the ENTIRE session.** Re-ask only when the user says "new task" or "different feature", names a different spec folder, or asks you to.
+- **The answer holds for the ENTIRE session.** A relaunch hop is the same session. Re-ask only when the user says "new task" or "different feature", names a different spec folder, or asks you to.
 - **Autonomous child-dispatch exemption.** `AI_SESSION_CHILD=1` marks a non-interactive worker bound to a lineage directory. Gate 3 is PRE-RESOLVED; in that directory Law 4, Halt Conditions, Logic-Sync, Escalation and stop-for-yes are record-and-continue; acting outside it is barred. Interactive sessions always ask.
 
 #### GATE 4: SKILL-OWNED WORKFLOW TIEBREAKERS

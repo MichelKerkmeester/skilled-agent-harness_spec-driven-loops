@@ -1,0 +1,149 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Claude Session Context Nudge
+// ───────────────────────────────────────────────────────────────────
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+import path from 'node:path';
+
+import { readStdin, parseJsonFailOpen } from '../../shared/hook-adapter-shared.cjs';
+import { isHookEnabled, loadConfigFile, configPath } from '../../shared/hook-flags.mjs';
+import { appendLog } from '../lib/relaunch-core.cjs';
+import { readClaudeFill, resolveWindow, fillRatio } from '../lib/context-usage.cjs';
+import nudge from '../lib/nudge.cjs';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+const CONCERN = 'session-relaunch';
+const CLI_COMMAND = 'node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs';
+const DEFAULT_THRESHOLD = 0.8;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+function done() {
+  process.exit(0);
+}
+
+// The envelope flushes before exit so a piped stdout cannot truncate it.
+function emit(eventName, text) {
+  const envelope = { hookSpecificOutput: { hookEventName: eventName, additionalContext: text } };
+  process.stdout.write(JSON.stringify(envelope), done);
+}
+
+// Logging is best-effort: a state-dir failure must never break the hook.
+function logEvent(event, fields) {
+  try {
+    appendLog(event, fields, process.env);
+  } catch {}
+}
+
+function eventNameOf(payload) {
+  if (typeof payload?.hook_event_name === 'string' && payload.hook_event_name) {
+    return payload.hook_event_name;
+  }
+  return typeof payload?.prompt === 'string' ? 'UserPromptSubmit' : 'PostToolUse';
+}
+
+function relaunchThreshold(config) {
+  const switches = { ...config, ...process.env };
+  const parsed = Number(switches.SESSION_RELAUNCH_THRESHOLD);
+  return Number.isFinite(parsed) && parsed > 0 && parsed <= 1 ? parsed : DEFAULT_THRESHOLD;
+}
+
+function plannedNotePath(payload, sessionId) {
+  const repoRoot = process.env.REPO_ROOT || payload?.cwd || process.cwd();
+  const stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z');
+  return path.join(
+    repoRoot,
+    '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs',
+    `${stamp}-${sessionId.slice(0, 8)}.md`,
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+async function main() {
+  // The flags file is read once per run and shared by the enable check and the
+  // threshold, so a hook that fires on every tool call does not re-read it.
+  const config = loadConfigFile(configPath());
+  let enabled = false;
+  try {
+    enabled = isHookEnabled(CONCERN, process.env, config);
+  } catch {}
+  if (!enabled) return done();
+
+  const payload = parseJsonFailOpen(await readStdin());
+  if (payload === null || typeof payload !== 'object') return done();
+
+  const eventName = eventNameOf(payload);
+  const sessionId = payload.session_id;
+  if (!nudge.validSessionId(sessionId)) return done();
+
+  if (nudge.isSeedPrompt(payload.prompt)) {
+    return emit(eventName, nudge.seedText({
+      notePath: '<handoff-path>',
+      specFolder: nudge.specFolderFromSeed(payload.prompt),
+      sessionId,
+      cliPath: CLI_COMMAND,
+    }));
+  }
+
+  if (typeof payload.transcript_path !== 'string' || !payload.transcript_path) return done();
+
+  let ratio;
+  try {
+    const fill = readClaudeFill(payload.transcript_path);
+    if (fill === null) return done();
+    const windowTokens = resolveWindow({
+      env: process.env,
+      cwd: payload.cwd || process.cwd(),
+      model: fill.model ?? '',
+    });
+    ratio = fillRatio(fill.fillTokens, windowTokens);
+  } catch (error) {
+    logEvent('context-nudge-error', { stage: 'usage', message: error.message });
+    return done();
+  }
+
+  // The boundary can only rise from the base threshold, so the state file is
+  // read only once the ratio reaches it; below it the read would be wasted IO.
+  const threshold = relaunchThreshold(config);
+  if (ratio < threshold) return done();
+
+  const decision = nudge.nextLevel({
+    ratio,
+    threshold,
+    state: nudge.readState(sessionId),
+  });
+  if (!decision.nudge) return done();
+
+  const notePath = plannedNotePath(payload, sessionId);
+  try {
+    nudge.writeState(sessionId, decision.level);
+  } catch (error) {
+    logEvent('context-nudge-error', { stage: 'state', message: error.message });
+  }
+  return emit(eventName, nudge.handoffText({
+    notePath,
+    sessionId,
+    specFolder: payload.spec_folder,
+    runtime: 'claude',
+    cliPath: CLI_COMMAND,
+    cwd: payload.cwd || process.cwd(),
+    ratio,
+  }));
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
+
+main().catch(done);

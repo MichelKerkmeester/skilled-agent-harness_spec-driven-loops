@@ -1,0 +1,15 @@
+{
+  "hook_event_name": "pre_verify",
+  "tool_name": null,
+  "tool_input": null,
+  "session_id": "session-redacted",
+  "cwd": "<repo>",
+  "extra": {
+    "platform": "cli",
+    "model": "gpt-4",
+    "coding": true,
+    "attempt": 0,
+    "final_response": "All done — the change is applied.",
+    "changed_paths": ["src/app.tsx"]
+  }
+}

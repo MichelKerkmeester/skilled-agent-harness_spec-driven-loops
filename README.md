@@ -36,6 +36,7 @@ Every file change gets a spec folder that records what changed, why and how. Lik
 - Mandatory gates run before file changes and after execution, so "done" needs fresh evidence, not the agent's say-so
 - Reviews rank findings P0/P1/P2 and re-challenge critical findings before they stick, and an open blocker forces another pass
 - Every packet is plain markdown in your repo, so the history is yours to read, diff and keep
+- `skilled-loop` in `.skilled/bin/` runs a CLI runtime so a session near its context limit writes a handoff note and continues in a fresh session in the same terminal, automatically on Claude Code, Pi, OpenCode, Codex and Hermes and through `/speckit:handoff` on Cursor and Devin, with auto-compaction kept as the fallback ([session-relaunch](.skilled/hooks/session-relaunch/README.md))
 
 ### 🧠 Spec Memory & Search
 

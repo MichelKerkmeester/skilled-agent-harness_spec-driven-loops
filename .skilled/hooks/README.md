@@ -15,6 +15,8 @@ trigger_phrases:
 
 # Hooks: Fully-Portable Guard Cores + Git Commit Hooks
 
+> AI runtime lifecycle guard cores and the git commit hooks installer share this directory.
+
 ---
 
 ## 1. OVERVIEW
@@ -24,6 +26,8 @@ trigger_phrases:
 A further AI-runtime concern, [`goal/`](./goal/README.md), is a cross-runtime sibling of the OpenCode `opencode-goal` plugin. It binds a session to a spec packet whose `goal.md` is the directive, renders that file's durable slice with the frontmatter stripped, on every turn where that runtime injects at all (OpenCode, Pi and Devin per turn, Cursor at session start), and keeps only the pointer, liveness and telemetry per session. Pi, Cursor and Devin reach it through native session identity. OpenCode keeps using `opencode-goal` directly, which imports the same slice module.
 
 A sixth folder, [`git/`](./git/README.md), holds the git commit-hooks installer (the pre-commit gate): an unrelated concept from the AI-runtime concerns above, nested here only because both are "hooks" in the everyday sense and the operator wanted one unified tree rather than two similarly-named sibling directories (`hooks/` and `runtime-hooks/`). **`git/pre-commit` is not standalone**: the repo's real, installed `.git/hooks/pre-commit` is `.skilled/scripts/git-hooks/pre-commit`, which chain-calls `git/pre-commit` by path as its comment-hygiene sub-gate. See [`git/README.md`](./git/README.md) for that installer's own contract, and [`injection-contract.md`](./injection-contract.md) for what each AI-runtime hook here actually injects and its visibility to the human operator.
+
+A session-relaunch concern, documented in [session-relaunch/](./session-relaunch/README.md), adds context nudges and runtime-specific arming for Claude, Pi, OpenCode, Codex and Hermes sessions started through skilled-loop. Cursor and Devin join the same loop on the `/speckit:handoff` command trigger only.
 
 ### Full index
 
@@ -61,6 +65,7 @@ This table is the single source of truth for repo-authored hook kill-switch name
 | `hook-install` | `SYSTEM_HOOK_INSTALL_DISABLED` | none | enabled | cleanup / check | wired |
 | `git-commit-hooks` | `SYSTEM_GIT_COMMIT_HOOKS_DISABLED` | none | enabled | deny | wired |
 | `injection-screen` | `SYSTEM_INJECTION_SCREEN_DISABLED` | `JEV_FEATURE_INJECTION_SCREEN=0` and `JEV_FEATURES=0` (Jev feature switches, read the other way round) | enabled when a Jev credential is stored | inject (advisory) | wired |
+| `session-relaunch` | `SYSTEM_SESSION_RELAUNCH_DISABLED` | none | enabled | inject / arm | wired |
 
 `SYSTEM_SPEC_GATE_ENFORCE` is a separate opt-in control for spec-gate denial, not a kill-switch. `SPECKIT_DIST_AUTO_REBUILD` controls whether a stale dist is rebuilt. It does not disable the freshness check. The `git-commit-hooks` switch is an emergency off switch for the pre-commit chain. With the switch unset, mass-deletion and comment-hygiene checks remain active.
 
@@ -145,6 +150,15 @@ hooks/
 |   +-- cursor/   task-dispatch-guard.mjs
 |   +-- pi/       task-dispatch-guard.ts (real file; `.pi/extensions/` symlinks to it)
 |   `-- opencode/ system-deep-loop-guard.js (browsability symlink -> ../../../plugins/)
++-- session-relaunch/              # Claude, Pi, OpenCode, Codex and Hermes context nudge and relaunch adapters
+|   +-- bin/session-relaunch.cjs
+|   +-- claude/context-nudge.mjs, stop-arm.mjs
+|   +-- codex/context-nudge.mjs, prompt-seed.mjs, shared.mjs, stop-arm.mjs
+|   +-- hermes/context-nudge.mjs, session-end-arm.mjs
+|   +-- pi/session-relaunch.ts, session-relaunch.test.ts
+|   +-- opencode/session-relaunch.js (browsability symlink -> ../../../plugins/session-relaunch.js)
+|   +-- lib/context-usage.cjs, nudge.cjs, relaunch-core.cjs, killer.cjs
+|   `-- tests/ nine Node test files plus payload fixtures
 `-- goal/                            # cross-runtime passive session-goal tracking (sibling of opencode-goal)
     +-- lib/goal-core.cjs, goal-core.test.cjs
     +-- lib/goal-slice.cjs, goal-slice.test.cjs   # packet goal.md projections shared with the OpenCode plugin
@@ -157,7 +171,7 @@ hooks/
 
 **Skill-owned concerns are indexed here too**: the tree above shows only the concerns whose *real code* lives in this hub. Every skill-owned concern is additionally present as per-runtime symlinks under `<concern>/<runtime>/` (real code stays in the owning skill, as "Full index + kill-switches" above describes): `skill-advisor/`, `spec-gate/`, `session-lifecycle/`, `completion/`, `directive-lifecycle/`, `git-preflight/`, `git-message-gate/`, `dist-freshness/`, `codex-watchdog/`, and `permission-policy/`. The same pattern covers the bin-backed concerns: `git-live-follow/` and `git-primary-reconcile/` hold one symlink per runtime into `.skilled/bin/` and are indexed in the additional-hooks table below.
 
-Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch/pi/`, `mcp-route-guard/pi/`, `post-edit-quality/pi/`, `task-dispatch/pi/`, `goal/pi/`), Pi auto-discovers `.pi/extensions/`, but its loader follows symlinks and resolves each extension's relative imports against the *symlink* path (probe-verified against the installed loader), so `.pi/extensions/` holds relative symlinks back to the real files and every import stays written for the `.pi/extensions/` base. OpenCode (`.opencode/plugins/*.js`) remains the one runtime whose adapter files genuinely cannot live here: its plugins are real modules in a fixed folder OpenCode's loader scans by a flat glob, so only their `require()`/`import` path to these cores changed. For browsability, each concern's `opencode/` subfolder holds a *relative symlink back into* `.skilled/plugins/`, the reverse of Pi's direction: nothing loads through the OpenCode symlink (verified: the loader globs only `.opencode/plugins/`, not the tree), it is a documentation mirror so the tree shows OpenCode beside the other runtimes. Cursor's multiplexed `post-tool-use.mjs` proxy is indexed under both `dispatch/cursor/` and `post-edit-quality/cursor/` because one live adapter serves both concerns.
+Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch/pi/`, `mcp-route-guard/pi/`, `post-edit-quality/pi/`, `task-dispatch/pi/`, `goal/pi/`, `session-relaunch/pi/`), Pi auto-discovers `.pi/extensions/`, but its loader follows symlinks and resolves each extension's relative imports against the *symlink* path (probe-verified against the installed loader), so `.pi/extensions/` holds relative symlinks back to the real files and every import stays written for the `.pi/extensions/` base. OpenCode (`.opencode/plugins/*.js`) remains the one runtime whose adapter files genuinely cannot live here: its plugins are real modules in a fixed folder OpenCode's loader scans by a flat glob, so only their `require()`/`import` path to these cores changed. For browsability, each concern's `opencode/` subfolder holds a *relative symlink back into* `.skilled/plugins/`, the reverse of Pi's direction: nothing loads through the OpenCode symlink (verified: the loader globs only `.opencode/plugins/`, not the tree), it is a documentation mirror so the tree shows OpenCode beside the other runtimes. Cursor's multiplexed `post-tool-use.mjs` proxy is indexed under both `dispatch/cursor/` and `post-edit-quality/cursor/` because one live adapter serves both concerns.
 
 ---
 
@@ -171,6 +185,7 @@ Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch
 | `injection-screen` | claude, devin, pi (symlinked from `.pi/extensions/`) | `classifier-injection-screen.js` |
 | `task-dispatch` | claude, cursor, devin, pi (symlinked) | `system-deep-loop-guard.js` |
 | `goal` | cursor, devin, pi (symlinked), plus `lib/` core and slice module + `bin/` manage CLI | `opencode-goal.js` |
+| session-relaunch | Claude: context-nudge on PostToolUse / UserPromptSubmit and stop-arm on Stop. Pi: `message_end` / `before_agent_start` / `agent_end`. Codex: `prompt-seed.mjs` on UserPromptSubmit, `context-nudge.mjs` on PostToolUse, `stop-arm.mjs` on Stop. Hermes: `context-nudge.mjs` and `session-end-arm.mjs`, bridged by the repo-guards plugin on `pre_llm_call`, `post_api_request` and `on_session_end`. Cursor and Devin run the `/speckit:handoff` command trigger only | `session-relaunch.js` (real OpenCode adapter) |
 
 `sk-git-preflight-advisory.js` and `cli-dispatch-audit.js` (OpenCode plugins owned by `sk-git`/`cli-opencode` respectively) both also import `dispatch/lib/dispatch-rule-checks.mjs` and `dispatch/lib/dispatch-audit.mjs` from here.
 
@@ -237,7 +252,9 @@ Expected result: `HYGIENE_HOOK="${REPO_ROOT}/.skilled/hooks/git/pre-commit"`: co
 - [`../plugins/README.md`](../plugins/README.md): the OpenCode plugins that import these cores directly.
 - [`../../.pi/extensions/README.md`](../../.pi/extensions/README.md): the Pi extensions that import these cores directly.
 
-## Coverage matrix
+---
+
+## 7. COVERAGE MATRIX
 
 This matrix is the coverage authority for the intentionally uneven runtime surface. A checkmark means a runtime adapter or plugin covers the concern. `by-design` means the behavior is inherent in another named owner rather than a separately indexed adapter. `n/a` means the runtime exposes no event capable of implementing that concern. `~ partial` means covered for the common case with a known, documented gap. `unverified` means an event may exist but its feasibility for this concern has not been confirmed live, and no adapter is wired.
 
@@ -258,6 +275,7 @@ For the *why* behind each absence, why a runtime has no adapter for a concern, s
 | `permission-policy` |, by-design: permission via `PreToolUse` decision, no dedicated permission-request adapter | n/a: fires no permission event at all, so no approval hook exists |, by-design: no dedicated permission-request adapter | ✓ covered |, by-design: no dedicated permission-request adapter |, by-design: no separate approval event beyond `tool_call` |
 | `post-edit-quality` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `session-lifecycle` | ✓ covered | ✓ covered | ✓ covered | ✓ covered |, by-design: session events run inside the concern plugins (`system-skill-advisor`, `opencode-goal`, `session-cleanup`) | ✓ covered |
+| `session-relaunch` | ✓ covered | ✓ covered |, by-design: `/speckit:handoff` command trigger, no automatic hop because no usage signal is verified |, by-design: `/speckit:handoff` command trigger, no automatic hop because no usage signal is verified | ✓ covered | ✓ covered |
 | `skill-advisor` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `spec-gate` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `task-dispatch` | ✓ covered | n/a: codex-cli 0.160 fires `PreToolUse` on `spawn_agent` (as `collaborationspawn_agent`), but a captured payload carries the spawn message encrypted, so no prompt or target reaches a hook | ✓ covered | ✓ covered | ✓ covered | ~ partial: intercepts direct `subagent` calls, but not yet workflow-nested (`runs.run`) dispatches |

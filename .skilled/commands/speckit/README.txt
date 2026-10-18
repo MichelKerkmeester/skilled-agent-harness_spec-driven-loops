@@ -75,6 +75,7 @@ Writing goes through one script: `node .skilled/skills/system-spec-kit/runtime/c
 | **complete** | `/speckit:complete <description> [:auto\|:confirm] [:with-research] [:with-phases]` | 14+ | Full end-to-end workflow combining all phases. `:with-phases` adds phase decomposition pre-workflow |
 | **search** | `/speckit:search <query> [--packet <specFolder>] [--triggers] [--paths] [--count]` | direct-dispatch | Lexical retrieval: trigger-index lookup and the ripgrep recipes over spec docs and skill docs |
 | **save** | `/speckit:save <spec-folder>` | direct-dispatch | Write session context into the packet's continuity surfaces |
+| **handoff** | `/speckit:handoff` | 5 | Manual session-relaunch trigger: write the handoff note and arm the loop |
 
 ### Search Lanes
 
@@ -101,6 +102,7 @@ Scope by positional path, not by pattern: `--packet specs/<track>/<NNN-name>` re
 | `complete` | Nothing (runs full lifecycle) |
 | `search` | Nothing (read-only lexical retrieval) |
 | `save` | Nothing (creates or refreshes packet continuity surfaces) |
+| `handoff` | Nothing (writes the handoff note and arms the relaunch loop) |
 
 <!-- /ANCHOR:commands -->
 
@@ -111,8 +113,9 @@ Scope by positional path, not by pattern: `--packet specs/<track>/<NNN-name>` re
 
 ```text
 speckit/
-├── README.txt        # This file, 8-command index and workflow guide
+├── README.txt        # This file, 9-command index and workflow guide
 ├── complete.md       # /speckit:complete - Full end-to-end workflow
+├── handoff.md        # /speckit:handoff - Manual session-relaunch trigger
 ├── implement.md      # /speckit:implement - Execute planned work
 ├── plan.md           # /speckit:plan - Planning only (+ `--intake-only` standalone intake)
 ├── resume.md         # /speckit:resume - Resume existing work
@@ -190,6 +193,7 @@ The `complete` command combines research, plan, and implement into a single invo
 | complete | /deep:research and @general as needed, with the shared intake contract (`../../skills/system-spec-kit/references/workflows/intake-contract.md`) when packet state requires repair |
 | save | No delegation — routes directly to `generate-context.js` |
 | search | No delegation — routes directly to the trigger-index lookup or a ripgrep recipe |
+| handoff | No delegation — writes the note and calls `session-relaunch.cjs prepare` |
 
 <!-- /ANCHOR:workflow-progression -->
 

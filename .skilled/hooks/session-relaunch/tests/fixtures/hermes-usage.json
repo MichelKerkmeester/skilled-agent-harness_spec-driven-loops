@@ -1,0 +1,18 @@
+{
+  "estimated_cost_usd": 0.0014508,
+  "cost_status": "estimated",
+  "cost_source": "provider_models_api",
+  "input_tokens": 3,
+  "output_tokens": 5,
+  "cache_read_tokens": 0,
+  "cache_write_tokens": 11584,
+  "reasoning_tokens": 0,
+  "total_tokens": 11592,
+  "api_calls": 1,
+  "model": "gpt-6-luna",
+  "provider": "custom",
+  "session_id": "session-redacted",
+  "completed": true,
+  "failed": false,
+  "service_tier": null
+}

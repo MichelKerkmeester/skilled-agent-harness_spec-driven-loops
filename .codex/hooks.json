@@ -58,6 +58,15 @@
             "timeout": 3
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-relaunch/codex/prompt-seed.mjs'",
+            "timeout": 5
+          }
+        ]
       }
     ],
     "PreToolUse": [
@@ -122,6 +131,15 @@
             "timeout": 5
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-relaunch/codex/context-nudge.mjs'",
+            "timeout": 5
+          }
+        ]
       }
     ],
     "Stop": [
@@ -134,6 +152,11 @@
           {
             "type": "command",
             "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .skilled/skills/system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs || { printf \"%s\\n\" \"mk-hook-drift host=codex event=Stop adapter=completion-evidence-stop.cjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"Stop\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; build the spec-kit runtime (npm --prefix .skilled/skills/system-spec-kit run build) or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-relaunch/codex/stop-arm.mjs'",
             "timeout": 10
           }
         ]

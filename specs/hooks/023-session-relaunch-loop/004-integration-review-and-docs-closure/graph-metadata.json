@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/023-session-relaunch-loop/004-integration-review-and-docs-closure",
+  "spec_folder": "hooks/023-session-relaunch-loop/004-integration-review-and-docs-closure",
+  "parent_id": "hooks/023-session-relaunch-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "integration review and docs closure",
+      "phase 4 integration review and docs closure",
+      "integration review and docs closure plan",
+      "session relaunch closure plan",
+      "integration review and docs closure tasks",
+      "session relaunch closure checklist",
+      "integration review and docs closure acceptance criteria",
+      "integration review and docs closure goal",
+      "integration review and docs closure implementation summary"
+    ],
+    "key_topics": [
+      "integration",
+      "review",
+      "docs",
+      "closure",
+      "phase",
+      "plan",
+      "session",
+      "relaunch",
+      "tasks",
+      "checklist",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "specs/hooks/023-session-relaunch-loop/scratch/closure-evidence.md",
+      "specs/hooks/023-session-relaunch-loop/scratch/run-ledger.md",
+      ".codex/hooks/README.md",
+      ".codex/hooks.json",
+      ".skilled/skills/system-spec-kit/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "closure-evidence.md",
+        "kind": "doc",
+        "path": "specs/hooks/023-session-relaunch-loop/scratch/closure-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-ledger.md",
+        "kind": "doc",
+        "path": "specs/hooks/023-session-relaunch-loop/scratch/run-ledger.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".codex/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 001 to 003 each reviewed their own lane outputs, but no single pass covers the union of files the packet changed",
+    "created_at": "2026-10-16T20:16:22Z",
+    "last_save_at": "2026-10-18T11:55:58.882Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:65045763e7a3de9970a6cc3887c13646fa5363ed8390949cb32b5828e5e4900e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3f2f31fdbfbab4a710f6063bb65f4b1412670da2b8d380432a4df18b4e2dfc47",
+      "plan.md": "89aa79f604ae19e2a1fd1c21c855a21bcb13e6f55e62917afb9ed66c92edce92",
+      "tasks.md": "10df104e714515736507c3984c6bd67dd27d4959388eb106ace17a1ffff9b834",
+      "implementation-summary.md": "c29dcf28a533687b2634b63cffa4c862eed667134d6781b60e3c5f92e6bcfd2c"
+    },
+    "last_active_at": null
+  }
+}

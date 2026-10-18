@@ -1,0 +1,17 @@
+{
+  "hook_event_name": "on_session_end",
+  "tool_name": null,
+  "tool_input": null,
+  "session_id": "session-redacted",
+  "cwd": "<repo>",
+  "extra": {
+    "task_id": "task-redacted",
+    "turn_id": "turn-redacted",
+    "completed": true,
+    "failed": false,
+    "interrupted": false,
+    "turn_exit_reason": "text_response(stop)",
+    "model": "gpt-4",
+    "platform": "cli"
+  }
+}

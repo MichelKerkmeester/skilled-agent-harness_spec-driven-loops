@@ -1,0 +1,3 @@
+{"type":"assistant","isSidechain":false,"message":{"model":"claude-haiku-5-5","usage":{"input_tokens":120,"cache_read_input_tokens":3000,"cache_creation_input_tokens":800,"output_tokens":40}}}
+{"type":"assistant","isSidechain":false,"message":{"model":"claude-haiku-5-5","usage":{"input_tokens":2,"cache_read_input_tokens":400000,"cache_creation_input_tokens":841,"output_tokens":172}}}
+{"type":"assistant","isSidechain":true,"message":{"model":"claude-opus-sidechain","usage":{"input_tokens":100,"cache_read_input_tokens":899900,"cache_creation_input_tokens":2,"output_tokens":900}}}

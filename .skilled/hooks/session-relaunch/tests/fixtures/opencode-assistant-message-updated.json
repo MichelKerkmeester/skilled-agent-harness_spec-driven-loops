@@ -1,0 +1,37 @@
+{
+  "type": "message.updated",
+  "id": "evt_1486c9c48001E9lbf858zq66e5",
+  "properties": {
+    "sessionID": "ses_eb7937bc3ffeKQrJWCjyWiOfRn",
+    "info": {
+      "id": "msg_1486c84fe001kRGFlFv7Q1K8HQ",
+      "parentID": "msg_1486c8454001hBOoSgnbFdURbv",
+      "role": "assistant",
+      "mode": "build",
+      "agent": "build",
+      "path": {
+        "cwd": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/spike-142-gMPw/oc",
+        "root": "/"
+      },
+      "cost": 0,
+      "tokens": {
+        "total": 17457,
+        "input": 17380,
+        "output": 3,
+        "reasoning": 10,
+        "cache": {
+          "write": 0,
+          "read": 64
+        }
+      },
+      "modelID": "big-pickle",
+      "providerID": "opencode",
+      "time": {
+        "created": 1792216433918,
+        "completed": 1792216439881
+      },
+      "sessionID": "ses_eb7937bc3ffeKQrJWCjyWiOfRn",
+      "finish": "stop"
+    }
+  }
+}

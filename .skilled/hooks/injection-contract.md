@@ -138,6 +138,18 @@ directive: Continue toward this objective. Before ending, run the goal verifier 
 
 ---
 
+### Session Relaunch Context Nudge
+
+| Concern | Events | Payload | Frequency |
+|---|---|---|---|
+| Session relaunch | Claude Code: PostToolUse and UserPromptSubmit | hookSpecificOutput.additionalContext | Once per reached threshold level in a session |
+| Session relaunch | Codex: PostToolUse and UserPromptSubmit | hookSpecificOutput.additionalContext | Once per reached threshold level in a session |
+| Session relaunch | Hermes: `pre_llm_call` through the `repo-guards` plugin, fed by `post_api_request` usage | `context` appended to the turn's user message | Once per reached threshold level in a session |
+
+The Codex nudge reads its fill from the transcript rollout's latest `token_count` record and emits the same `[SYS]` envelope the Claude adapter uses, so it is model-context-only by default. The Hermes nudge rides the plugin's user-message channel, which is `[SYS]`-equivalent: the text reaches the model with the turn it precedes and is not rendered as a separate chat bubble. Hermes fires `on_session_end` after every message, so the arm side runs there while `on_session_finalize` and `on_session_reset` drop the session's recorded usage. Neither the arming nor the usage records inject content: both are `[NONE]` side effects. Cursor and Devin carry no adapter, so `/speckit:handoff` is the only trigger on those runtimes and this table adds no row for them.
+
+---
+
 ## 3. TOOL-TIME INJECTIONS
 
 Fire around a specific tool call, not the whole turn.

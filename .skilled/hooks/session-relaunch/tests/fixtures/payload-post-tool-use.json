@@ -1,0 +1,23 @@
+{
+  "session_id": "session-fixture-00000001",
+  "transcript_path": "/tmp/session-relaunch/transcript.jsonl",
+  "cwd": "/tmp/session-relaunch",
+  "prompt_id": "prompt-fixture-00000001",
+  "permission_mode": "bypassPermissions",
+  "effort": { "level": "medium" },
+  "hook_event_name": "PostToolUse",
+  "tool_name": "Bash",
+  "tool_input": {
+    "command": "echo hook-fixture",
+    "description": "Emit a hook fixture marker"
+  },
+  "tool_response": {
+    "stdout": "hook-fixture",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "tool_use_id": "tool-fixture-00000001",
+  "duration_ms": 86
+}

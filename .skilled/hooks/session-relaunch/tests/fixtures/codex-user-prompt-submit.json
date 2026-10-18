@@ -1,0 +1,10 @@
+{
+  "session_id": "codex-session-00000001",
+  "turn_id": "codex-turn-00000001",
+  "transcript_path": "REDACTED_ROLLOUT_PATH",
+  "cwd": "REDACTED_CWD",
+  "hook_event_name": "UserPromptSubmit",
+  "model": "gpt-6-luna",
+  "permission_mode": "default",
+  "prompt": "Reply with exactly one word: ok"
+}
