@@ -1,0 +1,57 @@
+DESK CHECK T004 — Q8 (VS Code extension) and Q9 (LSP). Read-only. Date 2026-10-18.
+Sources: repo tree, research record, the two host binaries (string-level evidence, offsets into the Mach-O images).
+
+========================================================================
+Q8 — how the VS Code extension loads OpenCode config and plugins
+========================================================================
+
+Searches run:
+- find .skilled .opencode specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat -name "*.vsix" -not -path "*/node_modules/*"   -> no match
+- grep -rln '"vscode"' .skilled .opencode --include="package.json" (minus node_modules)                                       -> no match
+- grep -rn -i "vscode|vs code" .skilled/skills/cli-external-orchestration/cli-opencode/                                       -> no match
+- research record: iteration-020.md:36 "`VS Code extension`, `LSP` and `CLAUDE.md` appear nowhere in iterations 1-19";
+  iteration-020.md:139 row 45: "VS Code extension | ? | zero mentions in iterations 1-19 | read the v2 docs' extension surface
+  and test one attach | none — absent from this run"
+- ~/.vscode/extensions and ~/.cursor/extensions: no opencode entry installed on this machine.
+
+Host-binary evidence (the only `vscode` literals are three unrelated classes):
+- v1 /Users/michelkerkmeester/.local/bin/opencode: 198 hits.
+  (a) terminal detection, offset ~65319906: `...C.env.TERM_PROGRAM==="vscode"...`
+  (b) the npm native-module package list, offset ~59842406+: `@vscode/ripgrep@vscode/sqlite3`
+  (c) TUI localization strings, offset ~103904664+: `"session.header.open.app.vscode":"VS Code"` — an
+      "open this file in VS Code" action, not an extension host.
+- v2 .../@opencode/cli/bin/opencode.exe: 7 hits, same classes (native list ~57017580+, terminal detection ~74454260).
+
+Draft verdict Q8: refuted — no VS Code extension artifact exists in this repo, and neither host binary ships
+an extension loader. The only VS Code touchpoints are terminal detection and a TUI "open in external editor"
+action, neither of which loads OpenCode config or plugins. There is no extension surface to port.
+Citations: iteration-020.md:36, iteration-020.md:139; binary excerpts above.
+Evidence that would settle it further: the official extension's own manifest (not present on this machine).
+
+========================================================================
+Q9 — how LSP loads OpenCode config and plugins
+========================================================================
+
+Evidence:
+- v1 `opencode debug lsp --help` (run in the worktree root):
+    Commands:
+      opencode debug lsp diagnostics <file>      get diagnostics for a file
+      opencode debug lsp symbols <query>         search workspace symbols
+      opencode debug lsp document-symbols <uri>  get symbols from a document
+  i.e. opencode acts as an LSP *client* (it consumes language servers for code intelligence).
+- v1 binary: the built-in config sample carries `"lsp": false` (offset ~73824478); `lsp` is a known
+  permission key (offset ~73833736: "Known permission keys: read, edit, glob, grep, list, bash, task,
+  external_directory, todowrite, question, webfetch, websearch, lsp, doom_loop, skill"); the `W0`
+  config normalizer filters per-server `disabled`/`extensions` entries (offset ~73863847+).
+- v2 binary: `Config.LSP.Server` = {command, extensions, disabled, env, initialization} (offset ~113814852);
+  config key `lsp` (boolean | server map) described as "Enable built-in language servers or configure
+  server overrides" (offset ~113818044); `lsp` is one of the built-in tools alongside read/glob/grep/list
+  (offset ~114012475). `opencode2 debug` has no `lsp` subcommand (agents/config/paths only).
+- Repo: `opencode.json` (worktree root, 24 lines) has no `lsp` key; grep for LSP config under .skilled and
+  .opencode (excluding node_modules) returns nothing.
+
+Draft verdict Q9: refuted — on both versions LSP is a client-side code-intelligence feature (language
+servers the host consumes, plus an `lsp` tool and an `lsp` config key). No LSP surface loads OpenCode
+config or plugins, and this repo configures none.
+Citations: v1 `debug lsp` help output above; binary excerpts above; opencode.json:1-24.
+Evidence that would settle it further: none needed for this repo — there is no LSP integration to port.

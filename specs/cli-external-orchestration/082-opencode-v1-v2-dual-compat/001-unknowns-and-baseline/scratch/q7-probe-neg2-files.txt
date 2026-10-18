@@ -1,0 +1,51 @@
+$ find /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/scratch/q7-probe-neg2 -type f | sort && cat each file
+
+===== q7-probe-neg2/.opencode/plugins/q7-neg2-tool.js =====
+import { appendFileSync } from "node:fs";
+
+const LOG = "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/scratch/q7-neg2-marker.log";
+
+function write(obj) {
+  try {
+    appendFileSync(LOG, JSON.stringify(obj) + "\n");
+  } catch {}
+}
+
+export default {
+  id: "q7-neg2-tool",
+  async setup(ctx) {
+    write({ t: Date.now(), evt: "setup-fired", pid: process.pid });
+    ctx.tool.transform((editor) => {
+      const before = editor.list().map((t) => t.name);
+      write({ t: Date.now(), evt: "transform-callback-ran", beforeCount: before.length });
+      let addError = null;
+      try {
+        editor.add({
+          name: "q7_neg2",
+          description: "Negative control with in-callback tracing: input is a number.",
+          input: 42,
+          execute: async () => ({ ok: false }),
+        });
+      } catch (e) {
+        addError = String(e?.message ?? e);
+      }
+      const after = editor.list().map((t) => t.name);
+      write({
+        t: Date.now(),
+        evt: "after-add",
+        addError,
+        afterCount: after.length,
+        hasNeg2: after.includes("q7_neg2"),
+      });
+      return editor;
+    });
+    try {
+      const tools = await ctx.tool.list();
+      write({ t: Date.now(), evt: "tool-list-ok", count: tools.length, hasNeg2: tools.some((t) => t?.name === "q7_neg2") });
+    } catch (e) {
+      write({ t: Date.now(), evt: "tool-list-threw", message: String(e?.message ?? e) });
+    }
+    return () => {};
+  },
+};
+

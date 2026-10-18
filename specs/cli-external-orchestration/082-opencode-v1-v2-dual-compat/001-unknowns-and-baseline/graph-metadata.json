@@ -34,14 +34,18 @@
       "record"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scratch/v1-harness.mjs",
+      "scratch/status-before.txt",
+      ".opencode/plugins/sk-vision.js",
+      ".skilled/skills/sk-vision/hooks/opencode/sk-vision.js"
     ],
     "entities": [
       {
@@ -78,6 +82,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1-harness.mjs",
+        "kind": "file",
+        "path": "scratch/v1-harness.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "status-before.txt",
+        "kind": "file",
+        "path": "scratch/status-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "sk-vision.js",
+        "kind": "code",
+        "path": ".opencode/plugins/sk-vision.js",
         "source": "derived"
       },
       {
@@ -169,29 +191,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The research record leaves eleven questions open, and phases 2 to 4 cannot start on a guess about them",
     "created_at": "2026-10-18T12:45:00Z",
-    "last_save_at": "2026-10-18T13:20:33.738Z",
+    "last_save_at": "2026-10-18T14:15:17.207Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +206,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:db7c094f050dcb63f74d602bacc02f83f2efc910ee4c4256424c5b40396a5c21",
+    "source_fingerprint": "sha256:e9af3b2b87c21e8deb8f0706c6f7a331fcd4e14819e91c63b0530ddf4352058f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "26a3f24f9495fcbba99914c66a14cc7944b7cc3770ada4dd4dad3e14b335afce",
+      "spec.md": "d20bd1388ec8daa4a898b69042dad7a42dcc7aa131012cf4d7b844f0e9ae51e4",
       "plan.md": "9d7aab0aed010d18d77a44392b6217aa5985884b885e9d65a9ad22816e98e526",
-      "tasks.md": "219316529f2c50326e912fd93319acd59ce32ac355a3481581c3e53ec0ac3589",
-      "implementation-summary.md": "0d4bb711a85f7c54e8e4ffaf6eb37ab377a8cb90c186cb2094ff5fa15eac6ceb"
+      "tasks.md": "29fbb1e5c610ca19977ba0c2cca12105e49d38e747bab96cd4e55f3991d2479d",
+      "implementation-summary.md": "6ec782a6e2e1ff0875361647e624845b542c8c0084bfdcff6e2ceadb00c55736"
     },
     "last_active_at": null
   }

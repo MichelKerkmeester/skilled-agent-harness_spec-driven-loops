@@ -1,0 +1,7 @@
+$ grep -a -c 'allowed-tools' /Users/michelkerkmeester/.local/bin/opencode ; grep -a -c 'allowedTools' /Users/michelkerkmeester/.local/bin/opencode
+0
+11
+$ grep -a -c 'allowed-tools' /Users/michelkerkmeester/.local/opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe ; grep -a -c 'allowedTools' /Users/michelkerkmeester/.local/opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe
+0
+3
+# allowedTools hits in v1 are all provider-SDK fields (toolConfiguration/tool_configuration/Anthropic MCP), none skill-related

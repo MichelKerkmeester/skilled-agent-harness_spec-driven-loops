@@ -1,0 +1,121 @@
+{
+  "captured_at": "2026-10-18",
+  "v1_version": "1.19.3",
+  "v2_version": "2.0.32",
+  "v1_oracle": "node harness calling each v1 entry, plus debug config discovery and private serve tool ids (scratch/v1-trigger-orchestrator.txt)",
+  "v2_oracle": "/api/plugin filtered to the worktree path, because a worktree inside a checkout also loads the parent checkout plugins",
+  "plugins": {
+    "classifier-injection-screen": {
+      "v1": "loaded",
+      "v1_evidence": "harness: experimental.chat.system.transform,tool.execute.after; host: discovered (scratch/v1-harness.jsonl, scratch/v1-debug-config.json, scratch/v1-tool-ids.json)",
+      "v2": "failed",
+      "v2_evidence": "/api/plugin worktree entry, error Plugin failed to load (scratch/v2-plugin-3.json)"
+    },
+    "cli-dispatch-audit": {
+      "v1": "loaded",
+      "v1_evidence": "harness: tool.execute.after,tool.execute.before; host: discovered (scratch/v1-harness.jsonl, scratch/v1-debug-config.json, scratch/v1-tool-ids.json)",
+      "v2": "failed",
+      "v2_evidence": "/api/plugin worktree entry, error Plugin must export a default definition with an id and an effect or setup function. (scratch/v2-plugin-3.json)"
+    },
+    "codex-hooks-watchdog": {
+      "v1": "loaded",
+      "v1_evidence": "harness: event; host: discovered (scratch/v1-harness.jsonl, scratch/v1-debug-config.json, scratch/v1-tool-ids.json)",
+      "v2": "failed",
+      "v2_evidence": "/api/plugin worktree entry, error Plugin must export a default definition with an id and an effect or setup function. (scratch/v2-plugin-3.json)"
+    },
+    "mcp-route-guard": {
+      "v1": "loaded",
+      "v1_evidence": "harness: tool.execute.before; host: discovered (scratch/v1-harness.jsonl, scratch/v1-debug-config.json, scratch/v1-tool-ids.json)",
+      "v2": "failed",
+      "v2_evidence": "/api/plugin worktree entry, error Plugin must export a default definition with an id and an effect or setup function. (scratch/v2-plugin-3.json)"
+    },
+    "opencode-goal": {
+      "v1": "loaded",
+      "v1_evidence": "harness: event,experimental.chat.system.transform,tool; host: tool listed (scratch/v1-harness.jsonl, scratch/v1-debug-config.json, scratch/v1-tool-ids.json)",
+      "v2": "failed",
+      "v2_evidence": "/api/plugin worktree entry, error Plugin must export a default definition with an id and an effect or setup function. (scratch/v2-plugin-3.json)"
+    },
+    "session-cleanup": {
+      "v1": "loaded",
+      "v1_evidence": "harness: dispose,event,experimental.chat.system.transform; host: discovered (scratch/v1-harness.jsonl, scratch/v1-debug-config.json, scratch/v1-tool-ids.json)",
+      "v2": "failed",
+      "v2_evidence": "/api/plugin worktree entry, error Plugin must export a default definition with an id and an effect or setup function. (scratch/v2-plugin-3.json)"
+    },
+    "sk-code-post-edit-quality": {
+      "v1": "loaded",
+      "v1_evidence": "harness: experimental.chat.system.transform,tool.execute.after,tool.execute.before; host: discovered (scratch/v1-harness.jsonl, scratch/v1-debug-config.json, scratch/v1-tool-ids.json)",
+      "v2": "failed",
+      "v2_evidence": "/api/plugin worktree entry, error Plugin must export a default definition with an id and an effect or setup function. (scratch/v2-plugin-3.json)"
+    },
+    "sk-git-message-gate": {
+      "v1": "loaded",
+      "v1_evidence": "harness: tool.execute.before; host: discovered (scratch/v1-harness.jsonl, scratch/v1-debug-config.json, scratch/v1-tool-ids.json)",
+      "v2": "failed",
+      "v2_evidence": "/api/plugin worktree entry, error Plugin must export a default definition with an id and an effect or setup function. (scratch/v2-plugin-3.json)"
+    },
+    "sk-git-preflight-advisory": {
+      "v1": "loaded",
+      "v1_evidence": "harness: experimental.chat.system.transform,tool.execute.before; host: discovered (scratch/v1-harness.jsonl, scratch/v1-debug-config.json, scratch/v1-tool-ids.json)",
+      "v2": "failed",
+      "v2_evidence": "/api/plugin worktree entry, error Plugin must export a default definition with an id and an effect or setup function. (scratch/v2-plugin-3.json)"
+    },
+    "sk-vision": {
+      "v1": "loaded",
+      "v1_evidence": "harness: command.execute.before; host: discovered (scratch/v1-harness.jsonl, scratch/v1-debug-config.json, scratch/v1-tool-ids.json)",
+      "v2": "failed",
+      "v2_evidence": "/api/plugin worktree entry, error Plugin must export a default definition with an id and an effect or setup function. (scratch/v2-plugin-3.json)"
+    },
+    "system-completion-sentinel": {
+      "v1": "loaded",
+      "v1_evidence": "harness: event; host: discovered (scratch/v1-harness.jsonl, scratch/v1-debug-config.json, scratch/v1-tool-ids.json)",
+      "v2": "failed",
+      "v2_evidence": "/api/plugin worktree entry, error Plugin must export a default definition with an id and an effect or setup function. (scratch/v2-plugin-3.json)"
+    },
+    "system-deep-loop-guard": {
+      "v1": "loaded",
+      "v1_evidence": "harness: event,tool.execute.before; host: discovered (scratch/v1-harness.jsonl, scratch/v1-debug-config.json, scratch/v1-tool-ids.json)",
+      "v2": "failed",
+      "v2_evidence": "/api/plugin worktree entry, error Plugin must export a default definition with an id and an effect or setup function. (scratch/v2-plugin-3.json)"
+    },
+    "system-dist-freshness-guard": {
+      "v1": "loaded",
+      "v1_evidence": "harness: event,experimental.chat.system.transform,tool.execute.before; host: discovered (scratch/v1-harness.jsonl, scratch/v1-debug-config.json, scratch/v1-tool-ids.json)",
+      "v2": "failed",
+      "v2_evidence": "/api/plugin worktree entry, error Plugin must export a default definition with an id and an effect or setup function. (scratch/v2-plugin-3.json)"
+    },
+    "system-skill-advisor": {
+      "v1": "loaded",
+      "v1_evidence": "harness: event,experimental.chat.system.transform,tool; host: tool listed (scratch/v1-harness.jsonl, scratch/v1-debug-config.json, scratch/v1-tool-ids.json)",
+      "v2": "failed",
+      "v2_evidence": "/api/plugin worktree entry, error Plugin must export a default definition with an id and an effect or setup function. (scratch/v2-plugin-3.json)"
+    },
+    "system-spec-gate": {
+      "v1": "loaded",
+      "v1_evidence": "harness: event,experimental.chat.system.transform,tool.execute.before; host: discovered (scratch/v1-harness.jsonl, scratch/v1-debug-config.json, scratch/v1-tool-ids.json)",
+      "v2": "failed",
+      "v2_evidence": "/api/plugin worktree entry, error Plugin must export a default definition with an id and an effect or setup function. (scratch/v2-plugin-3.json)"
+    },
+    "system-speckit-completion": {
+      "v1": "loaded",
+      "v1_evidence": "harness: tool; host: tool listed (scratch/v1-harness.jsonl, scratch/v1-debug-config.json, scratch/v1-tool-ids.json)",
+      "v2": "failed",
+      "v2_evidence": "/api/plugin worktree entry, error Plugin must export a default definition with an id and an effect or setup function. (scratch/v2-plugin-3.json)"
+    }
+  },
+  "suites": {
+    "plugin": {
+      "pass": 303,
+      "fail": 0
+    },
+    "guard": {
+      "node": {
+        "pass": 21,
+        "fail": 0
+      },
+      "vitest_dispatch_audit": {
+        "pass": 86,
+        "fail": 0
+      }
+    }
+  }
+}

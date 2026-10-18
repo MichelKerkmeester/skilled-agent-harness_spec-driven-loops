@@ -111,6 +111,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase tree scaffolded | Done | 11 children created under this packet |
+| 001 unknowns and baseline | Done | findings.md Q1 to Q11, baseline.json: v1 16 of 16 loaded, v2 0 of 16 active |
 
 ### Deviations and findings
 

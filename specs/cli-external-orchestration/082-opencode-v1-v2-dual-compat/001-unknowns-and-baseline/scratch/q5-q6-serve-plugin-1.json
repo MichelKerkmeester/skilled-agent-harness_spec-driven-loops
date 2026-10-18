@@ -1,0 +1,10 @@
+Error: Server at http://127.0.0.1:4198 requires a password; set OPENCODE_PASSWORD
+    at cli.server-connection.resolve (/$bunfs/root/chunk-4kd18wp8.js:2:1149)
+    at cli.server-connection.resolve (definition) (/$bunfs/root/chunk-4yp3z0hm.js:2:402)
+    at cli.api (/$bunfs/root/chunk-rhq1p77r.js:7:21275)
+    at cli.api (definition) (/$bunfs/root/chunk-4kd18wp8.js:2:1109) {
+  [cause]: UnauthorizedError: Authentication required
+      at q (/$bunfs/root/chunk-fyq0vjp8.js:13:27379)
+      at <anonymous> (/$bunfs/root/chunk-fyq0vjp8.js:2:1106)
+      at processTicksAndRejections (native:7:39)
+}

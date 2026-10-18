@@ -1,0 +1,27 @@
+$ find /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/scratch/q1q2-probe -name 'SKILL.md' -type f | sort
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/scratch/q1q2-probe/.opencode/skills/q1-allowed-tools/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/scratch/q1q2-probe/.opencode/skills/q2-disable-invocation/SKILL.md
+
+===== q1q2-probe/.opencode/skills/q1-allowed-tools/SKILL.md =====
+---
+name: q1-allowed-tools
+description: Probe skill whose allowed-tools excludes Write and Bash. Use when the q1 probe asks for a tool that is not on this list.
+allowed-tools: [Read]
+---
+
+# Q1 probe skill
+
+This skill declares `allowed-tools: [Read]`, a list that excludes `Write` and `Bash`.
+The probe attempts `Write` while this skill is the only skill in the project.
+
+===== q1q2-probe/.opencode/skills/q2-disable-invocation/SKILL.md =====
+---
+name: q2-disable-invocation
+description: Probe skill carrying disable-model-invocation true. Use when the q2 probe reads the skill catalog.
+disable-model-invocation: true
+---
+
+# Q2 probe skill
+
+This skill declares `disable-model-invocation: true`.
+

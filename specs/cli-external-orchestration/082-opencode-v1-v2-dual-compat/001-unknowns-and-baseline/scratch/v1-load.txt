@@ -1,0 +1,16 @@
+v1 loaded / failed plugin lines — from the step-2 captures
+
+Searched phrases (exact, case-sensitive): "loading plugin", "failed to load plugin".
+
+scratch/v1-debug-config.txt
+  "loading plugin" lines: 0
+  "failed to load plugin" lines: 0
+  (38 case-insensitive "plugin" hits are resolved config keys: "plugin": [ ... ] and "plugin_origins": [ ... ] — no load/status log lines)
+
+scratch/v1-run-bogus.txt
+  "loading plugin" lines: 0
+  "failed to load plugin" lines: 0
+  (no plugin-related lines at all; run aborted at model resolution: ProviderModelNotFoundError)
+
+Loaded plugin lines: none observed
+Failed plugin lines: none observed

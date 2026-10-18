@@ -1,0 +1,1 @@
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/scratch/status-before.txt

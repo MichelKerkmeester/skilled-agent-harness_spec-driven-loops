@@ -1,0 +1,7 @@
+launch: OPENCODE_DB=<scratchpad>/v2-private.db opencode2 serve --port 4197 (pid 78213)
+server listening on http://127.0.0.1:4197
+password: read from the serve log line 'server password', passed as OPENCODE_PASSWORD, value never written
+read 1: OPENCODE_PASSWORD=<redacted> opencode2 api --server http://127.0.0.1:4197 GET /api/plugin?location[directory]=<worktree> -> 0 entries
+read 2: OPENCODE_PASSWORD=<redacted> opencode2 api --server http://127.0.0.1:4197 GET /api/plugin?location[directory]=<worktree> -> 121 entries
+read 3: OPENCODE_PASSWORD=<redacted> opencode2 api --server http://127.0.0.1:4197 GET /api/plugin?location[directory]=<worktree> -> 121 entries
+stopped: kill 78213

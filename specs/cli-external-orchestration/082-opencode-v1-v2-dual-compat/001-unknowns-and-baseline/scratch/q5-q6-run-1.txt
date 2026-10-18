@@ -1,0 +1,3 @@
+$ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/scratch/q5-q6-probe && AI_SESSION_CHILD=1 OPENCODE_DB=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/scratch/q5-q6.db opencode2 run --standalone -m nosuchprovider/nosuchmodel "probe" </dev/null
+[91m[1mError: [0mModel unavailable: nosuchprovider/nosuchmodel
+EXIT:1

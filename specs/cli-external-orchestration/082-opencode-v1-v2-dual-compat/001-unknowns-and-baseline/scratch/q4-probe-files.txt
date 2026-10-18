@@ -1,0 +1,16 @@
+$ find /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/scratch/q4-probe -type f | sort && cat each file
+
+===== q4-probe/.opencode/plugins/q4-extra-key.js =====
+import { appendFileSync } from "node:fs";
+
+const MARKER = "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/scratch/q4-marker.log";
+
+export default {
+  id: "q4-extra-key",
+  setup() {
+    appendFileSync(MARKER, JSON.stringify({ ts: Date.now(), pid: process.pid, key: "__test accepted" }) + "\n");
+    return () => {};
+  },
+  __test: Object.freeze({ purpose: "probe for extra top-level key tolerance" }),
+};
+

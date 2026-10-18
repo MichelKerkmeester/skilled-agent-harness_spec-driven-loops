@@ -1,0 +1,4 @@
+$ opencode2 api POST "/api/plugin/check?location%5Bdirectory%5D=%2FUsers%2Fmichelkerkmeester%2FMEGA%2FDevelopment%2FCode_Environment%2FPublic%2F.worktrees%2F143-opencode-dual-compat-build%2Fspecs%2Fcli-external-orchestration%2F082-opencode-v1-v2-dual-compat%2F001-unknowns-and-baseline%2Fscratch%2Fq4-probe" -d '{"target":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/scratch/q4-probe/.opencode/plugins/q4-extra-key.js"}'
+{"_tag":"InvalidRequestError","message":"Plugin package is not in the current server inventory: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/scratch/q4-probe/.opencode/plugins/q4-extra-key.js","field":"target"}
+HTTP 400 Bad Request
+EXIT:1

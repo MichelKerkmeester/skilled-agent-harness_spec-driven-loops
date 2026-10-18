@@ -1,0 +1,9 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled
+
+
+ Test Files  1 passed (1)
+      Tests  86 passed (86)
+   Start at  15:40:59
+   Duration  157ms (tests 46%, transform 29%, import 20%, worker 4%)
+

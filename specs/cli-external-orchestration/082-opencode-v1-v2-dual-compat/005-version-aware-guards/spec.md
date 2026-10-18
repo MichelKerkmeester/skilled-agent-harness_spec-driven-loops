@@ -212,9 +212,9 @@ The guards classify an `opencode2` run, evaluate only the rules that apply to th
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- **Q1.** Does `opencode2 run` expand a `/family:name args` message? The 001 brief does not list this probe. AC-002 holds under either answer, but the definition of a "correct" v2 slash run depends on it.
-- **Q2.** The cache key. Research section 6 and the 006 brief use realpath, size and mtime. The 005 brief says realpath and mtime. Default: realpath, size and mtime. The orchestrator confirms.
-- **Q3.** The resolver's file location. The brief names no file. Default: `.skilled/hooks/dispatch/lib/opencode-version.mjs`.
-- **Q4.** Whether path-qualified binaries in command text get a probe. Default: no probe, so they resolve to `unknown`.
-- **Q5.** Coverage on `unknown`. Iteration-010 says the widening "can only add lint coverage". The `unknown` intersection drops v1-only rules when a probe fails, which narrows coverage. Default: follow the brief, drop them, and report the trade-off.
+- **Q1.** Does `opencode2 run` expand a `/family:name args` message? The 001 brief does not list this probe. AC-002 holds under either answer, but the definition of a "correct" v2 slash run depends on it. Resolved by the orchestrator: treat v2 `run` as not expanding a slash message. The v2 rule warns and names the `session.command` operation.
+- **Q2.** The cache key. Research section 6 and the 006 brief use realpath, size and mtime. The 005 brief says realpath and mtime. Default: realpath, size and mtime. The orchestrator confirms. Resolved: realpath, size and mtime.
+- **Q3.** The resolver's file location. The brief names no file. Default: `.skilled/hooks/dispatch/lib/opencode-version.mjs`. Resolved: the default location.
+- **Q4.** Whether path-qualified binaries in command text get a probe. Default: no probe, so they resolve to `unknown`. Resolved: the default, no probe.
+- **Q5.** Coverage on `unknown`. Iteration-010 says the widening "can only add lint coverage". The `unknown` intersection drops v1-only rules when a probe fails, which narrows coverage. Default: follow the brief, drop them, and report the trade-off. Resolved by the orchestrator: on `unknown`, both-version rules run at their own severity and version-specific rules run at `warn`, so a failed probe narrows nothing to silence and blocks nothing it cannot prove.
 <!-- /ANCHOR:questions -->

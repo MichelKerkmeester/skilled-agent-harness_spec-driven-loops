@@ -1,0 +1,6 @@
+Orchestrator check, after the dispatched T012 found no log trigger.
+- v1 1.19.3 logs no plugin line at INFO or DEBUG: not in `opencode debug config --print-logs`, not in `opencode run` with a bogus model, not in `opencode serve` after a session create (scratch/v1-serve-probe.log, scratch/v1-serve-debug.log, 0 matches for "plugin").
+- Research iteration-002.md:119 showed with marker files that `opencode debug config` does load plugins, with no model call.
+- Discovery oracle: `opencode debug config </dev/null` prints `plugin` with all 16 worktree plugins (scratch/v1-debug-config.json). v1 does not walk up into the parent checkout.
+- Load oracle for tool-registering plugins: a private `opencode serve --port 4196`, then GET /experimental/tool/ids, lists system_speckit_completion, spec_kit_skill_advisor_status, opencode_goal and opencode_goal_status (scratch/v1-tool-ids.json). So system-speckit-completion, system-skill-advisor and opencode-goal load on v1.
+- Hook-only plugins (13) have no host-level v1 oracle in 1.19.3. Their v1 load check is a node harness that imports each plugin and calls its v1 entry with a v1-shaped stub input.

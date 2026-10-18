@@ -45,6 +45,7 @@
       ".skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json",
       ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
       ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".skilled/hooks/dispatch/lib/opencode-version.mjs",
       ".skilled/hooks/dispatch/lib/dispatch-audit.test.mjs",
       ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
       ".opencode/plugins/cli-dispatch-audit.js",
@@ -103,6 +104,12 @@
         "name": "dispatch-audit.mjs",
         "kind": "file",
         "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/opencode-version.mjs",
         "source": "derived"
       },
       {
@@ -188,17 +195,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The dispatch classifier admits only the exact binary name `opencode`, and every evidence regex matches `opencode run` with a word boundary",
     "created_at": "2026-10-18T12:45:04Z",
-    "last_save_at": "2026-10-18T13:12:59.763Z",
+    "last_save_at": "2026-10-18T14:15:47.485Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +210,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6c70ca64905ab9e7a6fd8ab735f52b7a7b81f2c019a52c7b1b7d9e30d193ff99",
+    "source_fingerprint": "sha256:2a4095c83861ea2bbe4be8bb12e9dd13d8a5f09d929ce0ab30e033846a89bbca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4ec66e2dceaa0deabdf44a80dc204bb3e95d7dbccf33bf5c5e5fd150fb03585e",
+      "spec.md": "597b607d3ea3625a3ae137807a0c6f22244f8eeda46a4efe7ec5f658fd514fa8",
       "plan.md": "7e0ad7e65abfd42b10564e12ba4b21e77c0b1296e68c782125934dcd790ded2e",
       "tasks.md": "6bf981dd54dd11fb3a84cd9528a8a8b2ae64b8e14e1bc5fe6aeea1245bd40351",
       "implementation-summary.md": "64424bb9e8e05709bf1c43c5dd9ff9a92d6f5049e40582bd41d11e2dd79d14d8"

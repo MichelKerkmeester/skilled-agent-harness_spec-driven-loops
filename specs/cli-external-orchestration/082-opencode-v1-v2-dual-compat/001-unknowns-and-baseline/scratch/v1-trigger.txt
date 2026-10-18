@@ -1,0 +1,13 @@
+v1 trigger probe — model-free plugin load detection (opencode 1.19.3)
+
+Command 1: OPENCODE_DB=$PWD/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/scratch/v1-probe.db opencode debug config --print-logs --log-level INFO </dev/null
+  capture: scratch/v1-debug-config.txt
+  exit: 0
+  grep -c "loading plugin" = 0
+
+Command 2 (fallback): OPENCODE_DB=$PWD/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/scratch/v1-probe.db opencode run -m nosuchprovider/nosuchmodel --print-logs --log-level INFO "probe" </dev/null
+  capture: scratch/v1-run-bogus.txt
+  exit: 1 (ProviderModelNotFoundError: Model not found: nosuchprovider/nosuchmodel.)
+  grep -c "loading plugin" = 0
+
+Result: none — neither command produced "loading plugin" lines. Count: 0

@@ -1,0 +1,62 @@
+DESK CHECK T005 — Q10 (CLAUDE.md loading) and Q11 (sk-vision source). Read-only. Date 2026-10-18.
+Sources: repo tree, both host binaries (string-level evidence with offsets).
+
+========================================================================
+Q10 — how CLAUDE.md loads on each version
+========================================================================
+
+v1 1.19.3 (binary /Users/michelkerkmeester/.local/bin/opencode, Instruction service, offset ~65971143):
+  n=[join(config,"AGENTS.md"), ...!disableClaudeCodePrompt?[join(home,".claude","CLAUDE.md")]:[]],
+  y=["AGENTS.md", ...!disableClaudeCodePrompt?["CLAUDE.md"]:[], "CONTEXT.md"],
+  ... globUp(targets, directory, worktree) ...
+  Reading: global instructions = <config>/AGENTS.md plus ~/.claude/CLAUDE.md; project instructions =
+  AGENTS.md, CLAUDE.md and CONTEXT.md found by walking up from cwd to the worktree root. CLAUDE.md is
+  skipped when `disableClaudeCodePrompt` is set (offset ~74216887: env OPENCODE_DISABLE_CLAUDE_CODE or
+  OPENCODE_DISABLE_CLAUDE_CODE_PROMPT; skills have a parallel OPENCODE_DISABLE_CLAUDE_CODE_SKILLS).
+  v1 also reads skills from ~/.claude/skills and ~/.agents/skills (offsets ~68296334: bA=".claude",
+  xA=".agents", GA="skills/**/SKILL.md").
+
+v2 2.0.32 (binary .../@opencode/cli/bin/opencode.exe, instruction plugin, offset ~120992264):
+  te=[...a.global?[U]:[], ...L?Vx(q,V).map((Ee)=>Ux(Ee,"AGENTS.md")).filter(...):[]]   // U = config AGENTS.md
+  ... up({targets:["AGENTS.md"],start:q,stop:V,type:"file"}) ...                      // walk-up, AGENTS.md only
+  ... ConfigInstructionPlugin.match handles configured `instructions` entries (~120993056)
+  Reading: global instructions = <config>/AGENTS.md; project instructions = AGENTS.md found by walking up
+  the tree, plus any paths listed in the `instructions` config array. The string `CLAUDE.md` has 0
+  occurrences anywhere in the v2 executable except three unrelated places: bun's create templates
+  (~56429984, ~56430012), bun create output (~59182258) and the text of the built-in `customize-opencode`
+  skill (~185757685). `CONTEXT.md` has 0 occurrences.
+
+Repo: `find . -name CLAUDE.md -not -path "*/node_modules/*" -not -path "./.git/*"` -> no file. The repo
+relies on AGENTS.md (worktree root AGENTS.md exists).
+
+Draft verdict Q10: confirmed — v1 1.19.3 loads CLAUDE.md (project walk-up plus ~/.claude/CLAUDE.md, unless
+the disable flag is set); v2 2.0.32 does not read CLAUDE.md at all (AGENTS.md plus configured
+`instructions` only). A repo that wants identical instruction loading on both hosts must keep its guidance
+in AGENTS.md; anything CLAUDE.md-only reaches v1 and never reaches v2.
+Citations: binary offsets above; repo find result above.
+
+========================================================================
+Q11 — sk-vision source, build script, symlink target
+========================================================================
+
+1. Source location: `.skilled/skills/sk-vision/vision-runtime/src/` exists and holds plugin.ts, cli/,
+   core/, evidence/, opencode/, providers/, runtime/, model-modality.ts (+ its .test.ts).
+   `src/plugin.ts:1-20` is the plugin entry (`export const SkVisionPlugin: Plugin = async (input, options) => {`).
+2. Build script: `.skilled/skills/sk-vision/vision-runtime/package.json:11` = `"build": "bun run scripts/build.ts"`;
+   `scripts/build.ts` bundles `src/plugin.ts` to `dist/` with Bun (target "bun", esm) and also emits the
+   node-targeted prompt-evidence.js and vision-cli.js bundles.
+3. Symlink: `.opencode/plugins/sk-vision.js -> ../skills/sk-vision/vision-runtime/dist/plugin.js`.
+   It resolves through the `.opencode/skills -> ../.skilled/skills` symlink; `realpath` prints
+   `<worktree>/.skilled/skills/sk-vision/vision-runtime/dist/plugin.js`.
+   So the chain is: .opencode/plugins/sk-vision.js -> .opencode/skills/sk-vision/vision-runtime/dist/plugin.js
+   -> .skilled/skills/sk-vision/vision-runtime/dist/plugin.js.
+4. Recorded for D5/phase 3: `package.json:17` pins `"@opencode-ai/plugin": "1.17.15"` (and
+   `"@opencode-ai/sdk": "1.17.15"`, `"zod": "^4.1.8"`).
+5. Current dist state at desk-check time: `vision-runtime/dist/` exists (built 2026-10-18 15:42 by the
+   orchestrator's T018: plugin.js 504601 bytes, prompt-evidence.js, vision-cli.js, python/). The symlink
+   therefore resolves. Build/load verdicts on each version are T018/T019 (orchestrator).
+
+Draft verdict Q11: confirmed — the source is at `vision-runtime/src`, the build script is
+`bun run scripts/build.ts` (package.json:11), and `.opencode/plugins/sk-vision.js` is a symlink whose
+target resolves to `.skilled/skills/sk-vision/vision-runtime/dist/plugin.js`.
+Citations: package.json:11, package.json:17; `ls vision-runtime/src/`; `readlink`/`realpath` output above.

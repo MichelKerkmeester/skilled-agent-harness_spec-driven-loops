@@ -1,0 +1,56 @@
+$ find /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/scratch/q5-q6-probe-b -type f | sort && cat each file
+
+===== q5-q6-probe-b/.opencode/plugins/q5-q6-event-logger.js =====
+import { appendFileSync } from "node:fs";
+
+const LOG = "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/scratch/q5-q6-events-b.log";
+
+function write(obj) {
+  try {
+    appendFileSync(LOG, JSON.stringify(obj) + "\n");
+  } catch {}
+}
+
+export default {
+  id: "q5-q6-event-logger",
+  setup(ctx) {
+    write({ t: Date.now(), evt: "setup-fired", pid: process.pid });
+    let stream;
+    try {
+      stream = ctx.event.subscribe();
+      write({
+        t: Date.now(),
+        evt: "subscribe-returned",
+        kind: typeof stream,
+        asyncIterator: stream !== null && typeof stream === "object" ? typeof stream[Symbol.asyncIterator] : null,
+      });
+    } catch (e) {
+      write({ t: Date.now(), evt: "subscribe-threw", message: String(e?.message ?? e) });
+      return () => {};
+    }
+    (async () => {
+      try {
+        for await (const event of stream) {
+          let raw = "";
+          try {
+            raw = JSON.stringify(event);
+          } catch {
+            raw = "<unserializable>";
+          }
+          write({
+            t: Date.now(),
+            evt: event?.type ?? "no-type-field",
+            keys: event && typeof event === "object" ? Object.keys(event) : typeof event,
+            dataKeys: event?.data && typeof event.data === "object" ? Object.keys(event.data) : null,
+            raw: raw.slice(0, 400),
+          });
+        }
+        write({ t: Date.now(), evt: "stream-ended" });
+      } catch (e) {
+        write({ t: Date.now(), evt: "stream-error", message: String(e?.message ?? e) });
+      }
+    })();
+    return () => {};
+  },
+};
+

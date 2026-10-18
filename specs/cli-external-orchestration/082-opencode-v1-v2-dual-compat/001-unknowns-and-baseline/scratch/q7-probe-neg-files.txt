@@ -1,0 +1,41 @@
+$ find /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/scratch/q7-probe-neg -type f | sort && cat each file
+
+===== q7-probe-neg/.opencode/plugins/q7-neg-tool.js =====
+import { appendFileSync } from "node:fs";
+
+const LOG = "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/scratch/q7-neg-marker.log";
+
+function write(obj) {
+  try {
+    appendFileSync(LOG, JSON.stringify(obj) + "\n");
+  } catch {}
+}
+
+export default {
+  id: "q7-neg-tool",
+  async setup(ctx) {
+    write({ t: Date.now(), evt: "setup-fired", pid: process.pid });
+    try {
+      ctx.tool.transform((editor) => {
+        editor.add({
+          name: "q7_neg",
+          description: "Negative control: input is a number, not any schema.",
+          input: 42,
+          execute: async () => ({ ok: false }),
+        });
+        return editor;
+      });
+      write({ t: Date.now(), evt: "transform-registered" });
+    } catch (e) {
+      write({ t: Date.now(), evt: "transform-register-threw", message: String(e?.message ?? e) });
+    }
+    try {
+      const tools = await ctx.tool.list();
+      write({ t: Date.now(), evt: "tool-list-ok", count: tools.length, hasNeg: tools.some((t) => t?.name === "q7_neg") });
+    } catch (e) {
+      write({ t: Date.now(), evt: "tool-list-threw", message: String(e?.message ?? e) });
+    }
+    return () => {};
+  },
+};
+

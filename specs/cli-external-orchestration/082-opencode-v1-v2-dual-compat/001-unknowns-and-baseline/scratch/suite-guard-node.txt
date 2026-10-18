@@ -1,0 +1,30 @@
+✔ reads the real hard rules from the sidecar beside each SKILL.md (2.44375ms)
+✔ CI GUARD: every declared check id maps to a known check (a typo fails loudly) (4.186417ms)
+✔ stdin-redirect-required covers every headless CLI shape, not just opencode run (1.024958ms)
+✔ availability checks pass for a resolvable binary and never refuse without PATH (0.301ms)
+✔ AC-1: opencode run without </dev/null is flagged; with it, clean (mutation-proof) (0.758459ms)
+✔ other checks discriminate correctly (0.312458ms)
+✔ every runtime with a preflight adapter has it registered (2.518084ms)
+✔ pi dispatches need --offline and a provider-qualified model (0.398916ms)
+✔ predicate bypasses: equals-form flags and unquoted slash prompts are caught (0.180542ms)
+✔ hermes headless shapes need stdin handled: --query-file counts, a bare -q does not (0.099667ms)
+✔ hermes rules discriminate on the flags the packet contract pins (0.655958ms)
+✔ fail-open: a check that throws never produces a violation (0.064042ms)
+✔ readHardRules reads the sibling sidecar and fails open on malformed input (10.119167ms)
+✔ severity maps error and block to a blocking violation; anything else advises (0.128791ms)
+✔ every runtime dispatch shape resolves to its skill (mutation-proof) (0.834291ms)
+✔ a dispatch is resolved from the command, not from text that merely contains one (1.364708ms)
+✔ ENFORCEMENT GUARD: every check names a command it accepts and one it refuses (0.845458ms)
+✔ a jev dispatch is governed from the command, and mentions of it are not (0.188417ms)
+✔ ENFORCEMENT GUARD: every cli packet declares at least one rule (1.076958ms)
+✔ ENFORCEMENT GUARD: declared checks and implemented checks are a bijection (0.95475ms)
+[mcp-route-guard] 16/16 assertions passed
+✔ .skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs (137.711834ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 144.15925

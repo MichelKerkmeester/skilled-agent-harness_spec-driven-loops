@@ -1,0 +1,4 @@
+opencode 1.19.3
+opencode2 opencode v2.0.32
+bun 1.3.9
+node v26.8.2

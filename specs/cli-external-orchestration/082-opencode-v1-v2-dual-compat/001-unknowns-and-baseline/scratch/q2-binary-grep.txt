@@ -1,0 +1,7 @@
+$ grep -a -c 'disable-model-invocation' /Users/michelkerkmeester/.local/bin/opencode ; grep -a -c 'autoinvoke' /Users/michelkerkmeester/.local/bin/opencode
+0
+0
+$ grep -a -c 'disable-model-invocation' /Users/michelkerkmeester/.local/opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe ; grep -a -c 'autoinvoke' /Users/michelkerkmeester/.local/opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe
+2
+5
+# v2 bundle: frontmatter schema includes disable-model-invocation; autoinvoke = metadata['opencode/autoinvoke'] ?? (disable-model-invocation ? false : undefined); skills with autoinvoke===false are excluded from the skill-guidance list

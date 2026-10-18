@@ -1,0 +1,3 @@
+$ opencode2 api --server http://127.0.0.1:4198 POST "/api/session/ses_eb0b8ac0affeUstCp8Gxq2h8QM/prompt" -d '{"text":"probe"}'
+{"data":{"id":"msg_14f476923001YlDb03AD2wFLp2","sessionID":"ses_eb0b8ac0affeUstCp8Gxq2h8QM","time":{"created":1792331442467},"type":"user","payload":{"text":"probe"},"delivery":"steer"}}
+EXIT:0
