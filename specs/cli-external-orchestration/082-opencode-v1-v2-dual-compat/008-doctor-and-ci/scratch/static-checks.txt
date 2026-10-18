@@ -1,0 +1,44 @@
+# CHK-010 node --check
+battery exit=0
+test exit=0
+# CHK-012 require( calls
+27:const { spawn, spawnSync } = require('node:child_process');
+28:const { once } = require('node:events');
+29:const fs = require('node:fs');
+30:const net = require('node:net');
+31:const os = require('node:os');
+32:const path = require('node:path');
+33:const { setTimeout: sleep } = require('node:timers/promises');
+34:const { pathToFileURL } = require('node:url');
+# CHK-013 shell strings
+159:        const match = VERSION_PATTERN.exec(candidate);
+192:    const joined = /^--(family|root|out)=(.*)$/.exec(arg);
+197:      const spaced = /^--(family|root|out)$/.exec(arg);
+725:      const password = /server password (\S+)/.exec(buffer);
+exit=0
+# CHK-014 run|service|serve
+792:    child = spawn(bin, ['serve', '--port', String(port)], {
+# CHK-030 token|secret|password
+.skilled/commands/doctor/scripts/opencode-version-battery.cjs:13:// never started, stopped or contacted. The password that private server prints
+.skilled/commands/doctor/scripts/opencode-version-battery.cjs:48:// The version token rule is a local copy of the shared resolver's, so the
+.skilled/commands/doctor/scripts/opencode-version-battery.cjs:144:// Reads the first version token that parses and lets it decide the family, so a
+.skilled/commands/doctor/scripts/opencode-version-battery.cjs:152:    const tokens = line.trim().split(/\s+/).filter(Boolean);
+.skilled/commands/doctor/scripts/opencode-version-battery.cjs:154:    for (let index = 0; index < tokens.length; index += 1) {
+.skilled/commands/doctor/scripts/opencode-version-battery.cjs:155:      const candidates = [tokens[index]];
+.skilled/commands/doctor/scripts/opencode-version-battery.cjs:156:      if (index + 1 < tokens.length) candidates.push(`${tokens[index]} ${tokens[index + 1]}`);
+.skilled/commands/doctor/scripts/opencode-version-battery.cjs:705:// Waits for both startup lines on stdout and returns the password alone; null
+.skilled/commands/doctor/scripts/opencode-version-battery.cjs:706:// means the child died or the deadline passed, and the password never travels
+.skilled/commands/doctor/scripts/opencode-version-battery.cjs:725:      const password = /server password (\S+)/.exec(buffer);
+.skilled/commands/doctor/scripts/opencode-version-battery.cjs:726:      if (listening && password) finish(password[1]);
+.skilled/commands/doctor/scripts/opencode-version-battery.cjs:801:    const password = await waitForBanner(child, port, SERVER_WAIT_MS);
+.skilled/commands/doctor/scripts/opencode-version-battery.cjs:802:    if (password === null) {
+.skilled/commands/doctor/scripts/opencode-version-battery.cjs:803:      return { started: false, reason: `no listening line or password within ${SERVER_WAIT_MS / 1000} s` };
+.skilled/commands/doctor/scripts/opencode-version-battery.cjs:806:    const apiEnv = { ...childEnv, OPENCODE_PASSWORD: password };
+exit=0
+# CHK-041 labels in comments
+exit=1
+# CHK-032 workflow git state
+?? .github/workflows/opencode-dual-version.yml
+tracked-count 0
+# actionlint
+actionlint exit=0

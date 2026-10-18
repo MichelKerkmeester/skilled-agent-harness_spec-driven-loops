@@ -1,0 +1,23 @@
+## P0
+
+None.
+
+## P1
+
+1. **A signal can bypass private server cleanup.** Case: the battery process receives `SIGTERM` while waiting on or reading from the v2 server. The only cleanup is in `readV2()`’s `finally`; there is no process-level signal handler to reach it, so the server can remain alive and its temporary folder can remain on disk. That breaks the private-server lifecycle guarantee. **Finding class:** instance-only. **Scope proof:** the signal search found the child’s `SIGTERM` call but no handler for signals sent to the battery process. **Recommendation:** handle termination signals by stopping the child and removing its folder before exiting. Evidence: [opencode-version-battery.cjs:812](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/commands/doctor/scripts/opencode-version-battery.cjs:812).
+
+2. **The workflow skips CI when sk-vision source changes.** Case: a change under `.skilled/skills/sk-vision/` leaves the plugin symlink unchanged, so neither the pull request nor push path filter starts this workflow, even though both jobs build from that source. A compatibility regression in that plugin can therefore go untested. **Finding class:** matrix/evidence. **Scope proof:** the filters start at [workflow:13](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.github/workflows/opencode-dual-version.yml:13) and [workflow:24](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.github/workflows/opencode-dual-version.yml:24), while the build reads the vision runtime at [workflow:74](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.github/workflows/opencode-dual-version.yml:74). **Recommendation:** add the sk-vision source paths to both filters.
+
+## P2
+
+3. **The password test does not exercise the password-handling collector.** Its injected `readV2` returns fixture data, and the assertion checks for the literal phrase `server password`; it never creates a password or runs the code that captures one. A leak from that collector could pass this test. **Finding class:** test-isolation. **Scope proof:** the test stubs `readV2` at [opencode-version-battery.test.cjs:539](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:539) and checks only the phrase at [line 549](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:549). **Recommendation:** test the collector with a local fake child process, without launching OpenCode or making network calls.
+
+The other requested checks look sound by inspection: spawns use argument arrays; stdout collectors remove their files and temporary directories in `finally`; exit folding keeps `SKIP` distinct from `FAIL`; v2 stability requires a repeated nonzero count; and the root filter includes a trailing path separator. The workflow’s sk-vision symlink target matches the build output. The v2 package exposes both `opencode` and `opencode2`, the workflow uses separate prefixes, and the spaced `--out <file>` form is accepted and tested.
+
+Verification: `actionlint` passed with exit 0. The permitted `node --test` command failed with exit 1: 90 passed and 1 failed. The failure was the fixture-tree check at [git-setup-check.test.cjs:331](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:331), which found an `xcrun_db` file in the temporary `.git` tree; the new dual-plugin regression test passed. Recorded live summaries show normal runs passing, broken-plugin runs failing as expected, no password markers in the saved outputs, and identical before/after process lists.
+
+No files were changed by this read-only review. The worktree was already dirty, and the workflow remains untracked.
+
+Operator action: address the P1 findings and investigate the failing fixture check before relying on a green test gate.
+
+FAIL

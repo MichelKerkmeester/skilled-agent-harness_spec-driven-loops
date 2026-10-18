@@ -1,0 +1,3 @@
+46220 Sun Oct 18 12:18:22 2026     /Users/michelkerkmeester/.local/opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe serve --servi
+71932 Sun Oct 18 14:50:37 2026     /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment
+71995 Sun Oct 18 14:50:37 2026     /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment

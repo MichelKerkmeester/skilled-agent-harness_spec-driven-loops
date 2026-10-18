@@ -1288,7 +1288,14 @@ function adapterExportsBinding(tool, source) {
     });
   }
 
-  const bindingExport = code.match(/\bexport\s+default\s+([A-Za-z_$][\w$]*)[ \t]*(?=;|\r?$)/m);
+  // The dual-version bridge wraps the v1 entry, so the wrapped function is the
+  // one that registers the handler. The scanner blanks the id literal, leaving
+  // its opening quote as the \u0001 marker.
+  const wrappedExport = tool === 'opencode'
+    ? code.match(/\bexport\s+default\s+dualPlugin\s*\(\s*(?:\u0001|['"])[^,]*,\s*([A-Za-z_$][\w$]*)\s*\)[ \t]*(?=;|\r?$)/m)
+    : null;
+  const bindingExport = wrappedExport
+    || code.match(/\bexport\s+default\s+([A-Za-z_$][\w$]*)[ \t]*(?=;|\r?$)/m);
   if (!bindingExport) return false;
   const declaration = findTopLevelBindingDeclaration(code, bindingExport[1]);
   return declaration !== null && adapterBodyRegistersHandler(tool, code, {

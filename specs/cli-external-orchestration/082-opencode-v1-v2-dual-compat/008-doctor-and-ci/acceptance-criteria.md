@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-008-doctor-and-ci"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** 082-opencode-v1-v2-dual-compat/008-doctor-and-ci
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-10-18
 <!-- /ANCHOR:metadata -->
 
@@ -51,9 +51,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001, REQ-002, REQ-003, REQ-004, REQ-005 | Given OpenCode 1.19.3 installed and the 2.0.32 service running, When the battery runs with family v1 and then with family v2, Then each run exits 0, and its JSON summary has no FAIL, DEGRADED or SKIP leg. | `node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v1 --json` and `node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v2 --json`, each with exit 0. The outputs and exit statuses from T015 and T016 are recorded in the log. | Unmet | - |
-| AC-002 | REQ-006 | Given one repo plugin broken on purpose in a throwaway copy, When the battery runs against that copy, Then it exits 1 and names the broken plugin. | `node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v1 --root scratch/broken-root --json`, with exit 1 and the plugin named in the output. The T017 record is saved in the log. | Unmet | - |
-| AC-003 | REQ-007 | Given the CI workflow, When actionlint runs on it, Then the run exits 0 with no output. | `/opt/homebrew/bin/actionlint .github/workflows/opencode-dual-version.yml`, exit 0 with no output. The T018 record is saved in the log. | Unmet | - |
+| AC-001 | REQ-001, REQ-002, REQ-003, REQ-004, REQ-005 | Given OpenCode 1.19.3 and 2.0.32 installed (the v2 leg starts its own private server, `scratch/decisions.txt` 3), When the battery runs with family v1 and then with family v2, Then each run exits 0, and its JSON summary has no FAIL, DEGRADED or SKIP leg. | Observed: `scratch/live/battery-v1.json:8`, `scratch/live/battery-v1.json:17` and `scratch/live/battery-v1.json:41`, every v1 leg PASS, with exit 0 at `scratch/live/battery-v1.json:63`; `scratch/live/battery-v2.json:49`, exit 0 with every v2 leg PASS; on the final code `scratch/live/battery-both-fix3.json:106`, exit 0 with all six legs PASS. The v2 legs used the battery's own private server, and the process lists before and after match (decisions 16, 19 and 21). | Met | - |
+| AC-002 | REQ-006 | Given one repo plugin broken on purpose in a throwaway copy, When the battery runs against that copy, Then it exits 1 and names the broken plugin. | Observed: `scratch/live/broken-v1.json:44` names `sk-git-message-gate.js` with the thrown error and `scratch/live/broken-v1.json:48` is exit 1; `scratch/live/broken-v2.json:20` names it with `status failed` and `scratch/live/broken-v2.json:34` is exit 1. The broken copy sat in the session scratchpad, outside the repository (decision 16). | Met | - |
+| AC-003 | REQ-007 | Given the CI workflow, When actionlint runs on it, Then the run exits 0 with no output. | Observed: `scratch/static-checks.txt:44`, actionlint exit 0 with no output on its line. | Met | - |
 
 ### Status values
 
@@ -78,8 +78,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Not closeable yet. No criterion has run, and the phase has not started. Write this
-paragraph when the packet is closed, not before.
+All three criteria are Met with observed evidence. The battery passes every leg on OpenCode 1.19.3 and 2.0.32, starting and stopping its own private v2 server, and fails with exit 1 naming the plugin when one is broken in a copy. The CI workflow passes actionlint and stays untracked. The probes replaced the planned v1 log window and the shared-service read, as `scratch/decisions.txt` 2 and 3 record, and the route entry waits for Q1.
 <!-- /ANCHOR:closure -->

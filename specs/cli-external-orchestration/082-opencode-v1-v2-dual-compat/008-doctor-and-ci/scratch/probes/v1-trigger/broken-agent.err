@@ -1,0 +1,16 @@
+timestamp=2026-10-18T21:46:53.469Z level=INFO run=1c7bae8c message="creating instance" directory=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/broken-root
+timestamp=2026-10-18T21:46:53.469Z level=INFO run=1c7bae8c message=fromDirectory directory=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/broken-root
+timestamp=2026-10-18T21:46:53.474Z level=INFO run=1c7bae8c message=bootstrapping directory=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/broken-root
+timestamp=2026-10-18T21:46:53.477Z level=INFO run=1c7bae8c message=loading path=/Users/michelkerkmeester/.config/opencode/config.json
+timestamp=2026-10-18T21:46:53.477Z level=INFO run=1c7bae8c message=loading path=/Users/michelkerkmeester/.config/opencode/opencode.json
+timestamp=2026-10-18T21:46:53.477Z level=INFO run=1c7bae8c message=loading path=/Users/michelkerkmeester/.config/opencode/opencode.jsonc
+timestamp=2026-10-18T21:46:53.480Z level=INFO run=1c7bae8c message=loading path=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/broken-root/opencode.json
+timestamp=2026-10-18T21:46:53.490Z level=DEBUG run=1c7bae8c message="loading config from /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/broken-root/.opencode/opencode.json"
+timestamp=2026-10-18T21:46:53.490Z level=INFO run=1c7bae8c message=loading path=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/broken-root/.opencode/opencode.json
+timestamp=2026-10-18T21:46:53.490Z level=DEBUG run=1c7bae8c message="loading config from /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/broken-root/.opencode/opencode.jsonc"
+timestamp=2026-10-18T21:46:53.490Z level=INFO run=1c7bae8c message=loading path=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/broken-root/.opencode/opencode.jsonc
+timestamp=2026-10-18T21:46:55.017Z level=INFO run=1c7bae8c message="all LSPs are disabled"
+timestamp=2026-10-18T21:46:55.017Z level=INFO run=1c7bae8c message="all formatters are disabled"
+timestamp=2026-10-18T21:46:55.017Z level=INFO run=1c7bae8c message=init
+timestamp=2026-10-18T21:46:55.267Z level=INFO run=1c7bae8c message="shell tool using shell" shell=/bin/zsh
+timestamp=2026-10-18T21:46:55.269Z level=INFO run=1c7bae8c message="disposing instance" directory=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/broken-root

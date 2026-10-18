@@ -1,0 +1,3 @@
+Signal check, 2026-10-18T22:40:42Z, node v26.8.2, driver: scratch/live/sigdrive.cjs (spawns the battery with default signal handling)
+SIGTERM: battery exit=143 signal=null serve_pid=53898 serve_alive_2s_later=false new_battery_folders=0
+SIGINT: battery exit=130 signal=null serve_pid=54106 serve_alive_2s_later=false new_battery_folders=0

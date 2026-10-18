@@ -1,0 +1,35 @@
+{
+  "root": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/broken-root",
+  "family": "v2",
+  "results": [
+    {
+      "leg": "family-present",
+      "family": "v2",
+      "status": "PASS",
+      "reason": "a v2 binary is installed",
+      "details": [
+        "/Users/michelkerkmeester/.local/bin/opencode2"
+      ]
+    },
+    {
+      "leg": "plugin-active",
+      "family": "v2",
+      "status": "FAIL",
+      "reason": "the stable read shows missing or inactive plugins",
+      "details": [
+        "sk-git-message-gate.js: status failed"
+      ]
+    },
+    {
+      "leg": "skill-visible",
+      "family": "v2",
+      "status": "PASS",
+      "reason": "57 skill entries visible",
+      "details": [
+        "entries: 71",
+        "visible: 57"
+      ]
+    }
+  ],
+  "exit": 1
+}

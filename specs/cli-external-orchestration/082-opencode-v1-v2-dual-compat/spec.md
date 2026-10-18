@@ -118,7 +118,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 5 | 005-version-aware-guards/ | Make the dispatch guards version-aware so they see `opencode2` | Complete |
 | 6 | 006-cli-opencode-dual-dispatch/ | Version detection and two dispatch shapes in cli-opencode and the deep-loop runtime | Complete |
 | 7 | 007-install-guidance-and-setup-helper/ | Install reference and `opencode-setup.sh` for side by side, v1 only and v2 only | Complete |
-| 8 | 008-doctor-and-ci/ | `/doctor:opencode` battery and a two-prefix CI workflow | Pending |
+| 8 | 008-doctor-and-ci/ | `/doctor:opencode` battery and a two-prefix CI workflow | Complete |
 | 9 | 009-sk-code-opencode-alignment/ | Align every new and changed code file with the sk-code OPENCODE surface | Pending |
 | 10 | 010-documentation-sweep/ | Bring every touched doc up to its sk-doc mode | Pending |
 | 11 | 011-two-version-proof-and-closeout/ | Prove the tree on both versions and close the packet | Pending |

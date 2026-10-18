@@ -34,7 +34,7 @@
       "proves"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,8 +42,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/commands/doctor/scripts/tests/run-all.sh",
-      ".skilled/commands/doctor/_routes.yaml"
+      ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
+      ".skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs",
+      ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+      ".skilled/command-support/doctor/scripts/README.md",
+      ".github/workflows/opencode-dual-version.yml",
+      "scratch/live/battery-v1.json",
+      "scratch/live/battery-v2.json",
+      "scratch/live/broken-v1.json",
+      "scratch/live/signals.txt",
+      "scratch/run-all-after.txt",
+      "scratch/static-checks.txt",
+      "scratch/review-verify2-luna.txt",
+      ".skilled/commands/doctor/scripts/tests/run-all.sh"
     ],
     "entities": [
       {
@@ -83,15 +95,87 @@
         "source": "derived"
       },
       {
-        "name": "run-all.sh",
-        "kind": "script",
-        "path": ".skilled/commands/doctor/scripts/tests/run-all.sh",
+        "name": "opencode-version-battery.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
         "source": "derived"
       },
       {
-        "name": "_routes.yaml",
+        "name": "opencode-version-battery.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/command-support/doctor/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-dual-version.yml",
         "kind": "config",
-        "path": ".skilled/commands/doctor/_routes.yaml",
+        "path": ".github/workflows/opencode-dual-version.yml",
+        "source": "derived"
+      },
+      {
+        "name": "battery-v1.json",
+        "kind": "config",
+        "path": "scratch/live/battery-v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "battery-v2.json",
+        "kind": "config",
+        "path": "scratch/live/battery-v2.json",
+        "source": "derived"
+      },
+      {
+        "name": "broken-v1.json",
+        "kind": "config",
+        "path": "scratch/live/broken-v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "signals.txt",
+        "kind": "file",
+        "path": "scratch/live/signals.txt",
+        "source": "derived"
+      },
+      {
+        "name": "run-all-after.txt",
+        "kind": "file",
+        "path": "scratch/run-all-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "static-checks.txt",
+        "kind": "file",
+        "path": "scratch/static-checks.txt",
+        "source": "derived"
+      },
+      {
+        "name": "review-verify2-luna.txt",
+        "kind": "file",
+        "path": "scratch/review-verify2-luna.txt",
+        "source": "derived"
+      },
+      {
+        "name": "run-all.sh",
+        "kind": "script",
+        "path": ".skilled/commands/doctor/scripts/tests/run-all.sh",
         "source": "derived"
       },
       {
@@ -117,83 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement No",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Arguments",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Test Type",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "No repeatable check proves that the repo's plugins load on the pinned versions",
     "created_at": "2026-10-18T12:45:07Z",
-    "last_save_at": "2026-10-18T13:13:09.361Z",
+    "last_save_at": "2026-10-18T22:42:24.731Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d988baee596aa17015c1688399c5caca70cc6dfc70680e417be147d02a64f654",
+    "source_fingerprint": "sha256:b9c10fdff5ad9c9fa4a9199be2d55876025323779e8d26d1be765c082b4986e6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "452378fc5ad9ba5dc7ceacbbc019a1af7afccaa47d6e822a7cef761af8ae5265",
-      "plan.md": "0fe46578bbcbd4e27a9098cb2d0be1fbd427f33bf7840ab0a01c1fe88b3067f2",
-      "tasks.md": "84e5b49c0f59b546368120e1b851adcb982a2be0a90c67e449d9b39eab2565b4",
-      "implementation-summary.md": "152613c1615ec102a715833feb6f93a9a66927c41256db0d3ace37fbbf8f8917"
+      "spec.md": "254e761681f0108acd58e0649cc4c1d7fbeb8c7349bf9a0f5d54728f6a49a0fe",
+      "plan.md": "0345e99a3787af38b57e2f3739e506a59fcae3110753d70e8330b0c82e356fd9",
+      "tasks.md": "2cf81ccbea08b961fdaabbbfb6d2391738e9812ae228ae8cb34ddd39a688663e",
+      "implementation-summary.md": "ca1143a505d634386dd26e0f30ab62c87d83285cc1e80dcf45f0cb087b5d9c2c"
     },
     "last_active_at": null
   }

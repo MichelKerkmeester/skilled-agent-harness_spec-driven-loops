@@ -1,0 +1,71 @@
+--- specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/008-doctor-and-ci/scratch/backup/fix-3/opencode-version-battery.cjs	2026-10-19 00:29:36
++++ .skilled/commands/doctor/scripts/opencode-version-battery.cjs	2026-10-19 00:33:30
+@@ -765,7 +765,7 @@
+ 
+ // Starts a private v2 server on a free loopback port, reads the plugin endpoint
+ // until its count stabilises, then reads the skill endpoint; the server is killed
+-// and the private folder removed on every path, including a thrown error.
++// and the private folder removed on every path, including a thrown error or a signal.
+ async function readV2(bin, root, env = process.env) {
+   const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'opencode-battery-v2-'));
+   const childEnv = {
+@@ -774,15 +774,32 @@
+     XDG_DATA_HOME: path.join(temp, 'data'),
+   };
+   let child = null;
++  let cleaning = null;
+ 
+-  // A signal mid-read must still stop the private server and remove its folder.
++  // Stops the private server and removes its folder once. Both paths await the
++  // same promise, so a signal that lands while the finally path is cleaning up
++  // waits for that cleanup instead of exiting through it.
++  const cleanup = () => {
++    cleaning ??= (async () => {
++      try {
++        await stopChild(child);
++      } finally {
++        fs.rmSync(temp, { recursive: true, force: true });
++      }
++    })();
++    return cleaning;
++  };
++
++  // A signal mid-read must still stop the private server and remove its folder,
++  // so the handlers go up before the first await that follows the folder's creation.
+   const onSignal = (code) => async () => {
+-    await stopChild(child).catch(() => {});
+-    fs.rmSync(temp, { recursive: true, force: true });
++    await cleanup().catch(() => {});
+     process.exit(code);
+   };
+   const onSigint = onSignal(130);
+   const onSigterm = onSignal(143);
++  process.once('SIGINT', onSigint);
++  process.once('SIGTERM', onSigterm);
+ 
+   try {
+     fs.mkdirSync(childEnv.XDG_DATA_HOME, { recursive: true });
+@@ -795,8 +812,6 @@
+       stdio: ['ignore', 'pipe', 'pipe'],
+     });
+     child.stderr.on('data', () => {}); // Drain stderr so a full pipe cannot stall the server.
+-    process.once('SIGINT', onSigint);
+-    process.once('SIGTERM', onSigterm);
+ 
+     const password = await waitForBanner(child, port, SERVER_WAIT_MS);
+     if (password === null) {
+@@ -821,13 +836,9 @@
+     const skills = readApiJson(bin, serverUrl, skillPath, apiEnv, root);
+     return { started: true, reason: 'the private v2 server answered', reads, skills };
+   } finally {
++    await cleanup();
+     process.removeListener('SIGINT', onSigint);
+     process.removeListener('SIGTERM', onSigterm);
+-    try {
+-      await stopChild(child);
+-    } finally {
+-      fs.rmSync(temp, { recursive: true, force: true });
+-    }
+   }
+ }
+ 

@@ -1374,6 +1374,28 @@ test('OpenCode resolves an exported top-level object literal', (t) => {
   );
 });
 
+test('OpenCode judges a dualPlugin-wrapped export by the function it wraps', (t) => {
+  const importLine = "import { GIT_CHECKS } from '../lib/git-rule-checks.mjs';\n";
+  assertAdapterBindingResult(
+    t,
+    'opencode',
+    '.opencode/plugins/sk-git-preflight-advisory.js',
+    importLine
+      + 'async function Fn(ctx) { return {}; }\n'
+      + "export default dualPlugin('x', Fn);\n",
+    'FAIL',
+  );
+  assertAdapterBindingResult(
+    t,
+    'opencode',
+    '.opencode/plugins/sk-git-preflight-advisory.js',
+    importLine
+      + "async function Fn(ctx) { return { async 'tool.execute.before'(input) {} }; }\n"
+      + "export default dualPlugin('x', Fn);\n",
+    'PASS',
+  );
+});
+
 test('OpenCode and Pi reject default bindings without a supported top-level handler', (t) => {
   const importLine = "import { GIT_CHECKS } from '../lib/git-rule-checks.mjs';\n";
   const cases = [

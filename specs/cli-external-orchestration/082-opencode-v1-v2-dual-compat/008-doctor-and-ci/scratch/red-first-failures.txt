@@ -1,0 +1,25 @@
+# Red run against a throwaway stub module (every export present, every answer wrong); the stub was removed after the run. 24 of 24 fail.
+✖ R1: v1 every plugin file discovered and loaded passes both legs  ->  TypeError: Cannot read properties of undefined (reading 'status')
+✖ R2: v1 a file missing from the debug config fails plugin-discovered naming it  ->  TypeError: Cannot read properties of undefined (reading 'status')
+✖ R3: v1 a harness failure fails plugin-load naming the plugin and its detail  ->  TypeError: Cannot read properties of undefined (reading 'status')
+✖ R4: v1 a non-zero debug config or unparseable stdout fails plugin-discovered  ->  TypeError: Cannot read properties of undefined (reading 'status')
+✖ R5: v1 a plugin with no harness line degrades plugin-load naming it  ->  TypeError: Cannot read properties of undefined (reading 'status')
+✖ R6: v2 every plugin active on a stable read passes plugin-active  ->  TypeError: Cannot read properties of undefined (reading 'status')
+✖ R7: v2 an entry with a failed status fails plugin-active naming plugin and status  ->  TypeError: Cannot read properties of undefined (reading 'status')
+✖ R8: v2 counts that never stabilise degrade plugin-active with the counts  ->  TypeError: Cannot read properties of undefined (reading 'status')
+✖ R9: v2 a server that never started degrades plugin-active and skill-visible  ->  TypeError: Cannot read properties of undefined (reading 'status')
+✖ R10: family v2 requested with only a v1 candidate skips and exits 3  ->  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+✖ R11: family both with only v1 installed skips v2 and exits 3 while the v1 legs pass  ->  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+✖ R12: zero plugin files fails  ->  TypeError: Cannot read properties of undefined (reading 'status')
+✖ R13: --out to an unwritable path exits 2  ->  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+✖ R14: an unknown argument exits 2 with usage on stderr  ->  AssertionError [ERR_ASSERTION]: Missing expected exception.
+✖ R15: v2 a plugin file with no entry under the root fails naming the file  ->  TypeError: Cannot read properties of undefined (reading 'status')
+✖ parity: the battery parser and the deep-loop resolver agree on one shared list  ->  AssertionError [ERR_ASSERTION]: "1.19.3"
+✖ adversarial: CRLF and joined version output read as v1, empty and garbage as unknown  ->  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+✖ adversarial: empty version output is skipped and the family reports SKIP  ->  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+✖ adversarial: a probe error skips the candidate instead of assuming it  ->  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+✖ adversarial: a root without .opencode/plugins fails naming the root  ->  AssertionError [ERR_ASSERTION]: Missing expected exception.
+✖ adversarial: a root with spaces and $(id) reaches the collectors as one string  ->  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+✖ probe count: three candidates sharing one path probe each distinct path once  ->  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+✖ a broken symlink in the plugin folder fails plugin-discovered naming it  ->  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+✖ the password never reaches a result, stdout or stderr  ->  SyntaxError: Unexpected end of JSON input

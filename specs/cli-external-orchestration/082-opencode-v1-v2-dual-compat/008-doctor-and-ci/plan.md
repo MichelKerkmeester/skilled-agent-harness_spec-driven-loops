@@ -57,8 +57,8 @@ A collector reads the world, and pure leg functions judge the record. The fixtur
 
 ### Key Components
 - **Family selector**: runs `--version` on the candidates `$OPENCODE_BIN`, `opencode`, `opencode2`, and keeps the one whose parsed major matches the requested family. It refuses when two candidates report the same major and the family is not decided.
-- **v1 collector**: runs `opencode debug config` with stdin closed, writes the output to a file, and reads the plugin specs. It records the log size, runs the load trigger from Q4, and reads the appended bytes.
-- **v2 collector**: checks that a service is running, using a read-only process listing. It then reads `/api/plugin` and `/api/skill` with the raw query, and it repeats each read until two counts match, within the bound.
+- **v1 collector**: runs `opencode debug config` with stdin closed and XDG_DATA_HOME in a temporary folder, writes the output to a file, and reads the plugin specs. It then runs the import harness in a child node process, which loads each top-level plugin file through its v1 entry and prints one JSON line per file (amended at build time, `scratch/decisions.txt` 2).
+- **v2 collector**: starts a private `opencode2 serve --port <free>` with OPENCODE_DB and XDG_DATA_HOME in a temporary folder, reads the listening line and the password from its stdout, reads `/api/plugin` and `/api/skill` through `opencode2 api --server` with the password in OPENCODE_PASSWORD, repeats the plugin read until two consecutive non-zero counts match within the bound, and stops the server on every exit path (amended at build time, `scratch/decisions.txt` 3 and 6).
 - **Legs**: `plugin-load` (v1), `plugin-active` (v2), `skill-visible` (v2), and `family-present` (both). Each returns PASS, FAIL, DEGRADED or SKIP with a reason.
 - **Reporter**: prints one line per leg, or the JSON summary with `--json`. The exit code is the worst result: crash 2, then fail 1, then degraded or skipped 3, then pass 0.
 
@@ -71,13 +71,14 @@ Arguments reach the family selector. The selector returns a binary and its major
 |-----|-------|--------|
 | R1 | family v1, all plugin files listed and each loaded | PASS |
 | R2 | family v1, one plugin file missing from the list | FAIL, naming the file |
-| R3 | family v1, no load line in the window | DEGRADED |
-| R4 | family v1, a `failed to load plugin` line that names a repo path | FAIL |
-| R5 | family v1, the log shrank after the offset | DEGRADED |
+| R3 | family v1, the harness reports one plugin failed (import throws, no v1 entry, or the entry returns no object) | FAIL, naming the plugin and the reason |
+| R4 | family v1, `debug config` exits non-zero or prints no parseable JSON | FAIL |
+| R5 | family v1, the harness prints no parseable line for a plugin | DEGRADED |
 | R6 | family v2, every plugin `active` | PASS |
 | R7 | family v2, one plugin with another status | FAIL, naming the plugin and status |
 | R8 | family v2, counts never equal across the bounded reads | DEGRADED |
-| R9 | family v2, no running service | SKIP, exit 3 |
+| R9 | family v2, the private server prints no listening line or no password in time | DEGRADED, and the server is stopped |
+| R15 | family v2, a top-level plugin file with no `/api/plugin` entry under the root | FAIL, naming the file |
 | R10 | family v2 requested, only a v1 binary found | SKIP for v2, never FAIL |
 | R11 | family both, one family installed | SKIP for the missing family |
 | R12 | zero plugin files | FAIL |
@@ -126,15 +127,15 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 4. **Red tests (Luna).** Write the fixture suite for rows R1 to R14, the adversarial table, and the probe-count case. Rollback: delete the test file.
 5. **Red run (Orchestrator).** Run the suite and record the first failing assertion for each row. Rollback: none, because this step only reads.
 6. **Battery (Luna).** Write `opencode-version-battery.cjs` with the collector, the legs and the reporter. Rollback: delete the file.
-7. **Route doc (DeepSeek).** Write `opencode.md` in the sk-doc command mode, from the leg list and the exit taxonomy in the battery. Rollback: delete the file.
-8. **Doc review (Luna).** Check the route doc against the battery's flags, legs and exit codes. Make no edits. Rollback: none.
+7. **Battery doc (DeepSeek).** Document the battery in `.skilled/command-support/doctor/scripts/README.md`, from the leg list and the exit taxonomy in the battery, in place of the route doc, which waits for Q1 (`scratch/decisions.txt` 15). Rollback: restore the README from its copy.
+8. **Doc review (Luna).** Check the README section against the battery's flags, legs and exit codes. Make no edits. Rollback: none.
 9. **Workflow (Luna).** Write `.github/workflows/opencode-dual-version.yml` with a matrix over `opencode-ai@1.19.3` and `@opencode/cli@2.0.32`, each in its own npm prefix, and a `both` job for isolation. Upload the JSON summary as an artifact. Rollback: delete the file.
 10. **Code review (DeepSeek).** Review the battery, its tests and the workflow against `sk-code/sk-code-opencode`, findings first. Make no edits. Rollback: none.
 11. **Fixes (Luna).** Fix each confirmed P0 and P1 finding. Copy each file to `scratch/backup/fix-<n>/` first. Rollback: restore from that copy.
 12. **Route entry (Luna, only after Q1).** Add the `/doctor:opencode` entry to `_routes.yaml`, or leave the task `[B]`. Copy the file first. Rollback: restore `_routes.yaml` from that copy.
 13. **Green run (Orchestrator).** Run the fixture suite through `run-all.sh`. Record the output. Rollback: none.
 14. **Live battery, v1 (Orchestrator).** Run the battery with `--family=v1 --json` against the installed 1.19.3 binary, and save the output. Rollback: delete the output under `scratch/`.
-15. **Live battery, v2 (Orchestrator).** Run the battery with `--family=v2 --json` against the running 2.0.32 service, and save the output. Rollback: delete the output under `scratch/`.
+15. **Live battery, v2 (Orchestrator).** Run the battery with `--family=v2 --json` against the installed 2.0.32 binary, which starts and stops its own private server, and save the output. Rollback: delete the output under `scratch/`.
 16. **Broken copy (Orchestrator).** Copy the plugin folder and `opencode.json` into `scratch/broken-root/`, break one plugin in the copy, and run the battery with the copy as its root. Expect exit 1 and the plugin named. Rollback: delete `scratch/broken-root/`.
 17. **Lint (Orchestrator).** Run actionlint on the workflow. Rollback: none.
 18. **Process check (Orchestrator).** Compare the process list before and after steps 14 to 16. Expect no change. Rollback: none.
@@ -151,7 +152,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 - Each live run uses a read-only process listing before and after, and records both.
 - The v2 read uses `GET` only.
-- The v1 log window starts at the byte offset recorded before the trigger.
+- The v1 legs read `debug config` and the import harness; 1.19.3 has no plugin log line to window (`scratch/decisions.txt` 2).
 - The battery never runs inside a Pi session. The orchestrator runs it from a shell.
 <!-- /ANCHOR:phases -->
 

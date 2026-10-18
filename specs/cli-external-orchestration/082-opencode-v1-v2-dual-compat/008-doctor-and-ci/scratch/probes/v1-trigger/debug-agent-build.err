@@ -1,0 +1,14 @@
+timestamp=2026-10-18T21:45:44.273Z level=INFO run=36b03fcc message="creating instance" directory=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build
+timestamp=2026-10-18T21:45:44.274Z level=INFO run=36b03fcc message=fromDirectory directory=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build
+timestamp=2026-10-18T21:45:44.340Z level=INFO run=36b03fcc message=bootstrapping directory=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build
+timestamp=2026-10-18T21:45:44.343Z level=INFO run=36b03fcc message=loading path=/Users/michelkerkmeester/.config/opencode/config.json
+timestamp=2026-10-18T21:45:44.343Z level=INFO run=36b03fcc message=loading path=/Users/michelkerkmeester/.config/opencode/opencode.json
+timestamp=2026-10-18T21:45:44.345Z level=INFO run=36b03fcc message=loading path=/Users/michelkerkmeester/.config/opencode/opencode.jsonc
+timestamp=2026-10-18T21:45:44.350Z level=INFO run=36b03fcc message=loading path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/opencode.json
+timestamp=2026-10-18T21:45:44.357Z level=INFO run=36b03fcc message=loading path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/opencode.json
+timestamp=2026-10-18T21:45:44.359Z level=INFO run=36b03fcc message=loading path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/opencode.jsonc
+timestamp=2026-10-18T21:45:44.556Z level=INFO run=36b03fcc message="all LSPs are disabled"
+timestamp=2026-10-18T21:45:44.556Z level=INFO run=36b03fcc message="all formatters are disabled"
+timestamp=2026-10-18T21:45:44.556Z level=INFO run=36b03fcc message=init
+timestamp=2026-10-18T21:45:44.931Z level=INFO run=36b03fcc message="shell tool using shell" shell=/bin/zsh
+timestamp=2026-10-18T21:45:44.933Z level=INFO run=36b03fcc message="disposing instance" directory=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build

@@ -119,6 +119,7 @@ and findings belong here.
 | 004 agents, commands, config | Done | Ten browser keys, 23 delegation wording edits, mirrors synced, 12 non-command files moved out of the command tree (v1 51 to 39 commands), opencode.json unchanged and guarded by a shape test, deep-loop suite 2718 passed, validate strict PASSED (004/scratch/evidence.md) |
 | 006 cli-opencode dual dispatch | Done | The runtime reads the major from `--version`: v1 argv unchanged, v2 `run --standalone -m model#variant`, native refuses on v2; builder smoke dispatch exit 0 on 1.19.3 and 2.0.32, v2 child saw AI_SESSION_CHILD=1, deep-loop suite 2741 passed 0 failed, validate strict PASSED (006/scratch/evidence.md) |
 | 007 install guidance and setup helper | Done | `opencode-setup.sh` builds both, v1 or v2 under HOME; in a throwaway HOME `both` exits 0 with 1.19.3 and v2.0.32, a second run and `check` leave one tree hash, probes point XDG_DATA_HOME at a temp folder so the v2 log stays out of HOME, operator snapshot bracket clean apart from the live service's shm files, reference validates 0 issues (007/scratch/decisions.txt 16 to 19) |
+| 008 doctor and CI | Done | `opencode-version-battery.cjs` passes every leg on 1.19.3 and 2.0.32 (16 of 16 plugins loaded on v1, 16 of 16 active in a private v2 server), a broken copy exits 1 naming the plugin, SIGTERM 143 and SIGINT 130 leave nothing behind, the shared service is never touched, the doctor suite goes from 350 of 353 to 380 of 380; the CI workflow passes actionlint and stays untracked (008/scratch/decisions.txt 14 to 23) |
 
 ### Deviations and findings
 
@@ -131,4 +132,7 @@ and findings belong here.
 | 006 v2 default model | v2 lists no opencode-go model on this machine, so a v2 lineage with no pinned model fails here until that credential is added to v2; carried to 007 (006 decision 12) |
 | 007 executors | The operator asked for DeepSeek V4.1 Flash wherever possible: DeepSeek writes code and docs from 007 on, Luna cross-reviews (007 decision 0) |
 | 007 v2 opencode-go | The install reference states that the skill's default model names the `opencode-go` provider, which v2 does not list here, so the default cannot be assumed to work on v2 (reference line 250). Adding that credential to v2 is the operator's |
+| 008 v1 oracle | OpenCode 1.19.3 logs no plugin line and reports no broken plugin, so the v1 load check is an import harness, not a log window (008 decision 2) |
+| 008 git-setup-check | Phase 002's `dualPlugin(...)` wrapper hid the git adapter from `/doctor:git`; fixed in 008 (decision 12) |
+| 008 Q1 held | `/doctor:opencode` stays a script: a command file needs its route entry and catalog rows, which wait for the operator (008 decisions 4 and 15) |
 <!-- /ANCHOR:log -->

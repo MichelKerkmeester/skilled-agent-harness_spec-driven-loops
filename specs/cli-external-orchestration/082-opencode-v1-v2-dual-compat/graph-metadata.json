@@ -67,9 +67,9 @@
       "011-two-version-proof-and-closeout/goal.md",
       "research/steering-log.md",
       ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
       ".opencode/package.json",
-      ".skilled/package.json",
-      "research/iterations/iteration-001.md"
+      ".skilled/package.json"
     ],
     "entities": [
       {
@@ -109,15 +109,15 @@
         "source": "derived"
       },
       {
-        "name": "package.json",
-        "kind": "config",
-        "path": ".opencode/package.json",
+        "name": "opencode-version-battery.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
         "source": "derived"
       },
       {
-        "name": "iteration-001.md",
-        "kind": "doc",
-        "path": "research/iterations/iteration-001.md",
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/package.json",
         "source": "derived"
       },
       {
@@ -219,7 +219,7 @@
     ],
     "causal_summary": "OpenCode now ships two lines that load plugins, read config and parse the `run` command differently",
     "created_at": "2026-10-18T09:21:48Z",
-    "last_save_at": "2026-10-18T21:42:39.943Z",
+    "last_save_at": "2026-10-18T22:42:27.727Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -227,10 +227,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:5d784b1e950a73f9b4813f47cc57fcb238891c755fcf860a42c11e44d32df29c",
+    "source_fingerprint": "sha256:0d2e5c9749c5734a78fb19c18c5fed52c963ad421891bafa314117d47dced478",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "951d966348735a9ae8a25f4ecca79cc98c7f42d548b93fcf93e1bc45b8735713",
+      "spec.md": "d3603de606bb154e3181307f2ccfc5589e8665b68ef5507a352c0ee1a6eb37b9",
       "research/research.md": "d98a79b9f7b739b2ec1048e9bd48e083a8164b43ab63c6c54ca78b48202962a9"
     },
     "last_active_at": null

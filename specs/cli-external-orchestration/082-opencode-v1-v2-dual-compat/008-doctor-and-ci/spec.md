@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-18 |
 | **Branch** | `scaffold/008-doctor-and-ci` |
 | **Parent Spec** | ../spec.md |
@@ -48,7 +48,7 @@ This is **Phase 8** of the OpenCode v1 and v2 dual compatibility build specifica
 **Deliverables**:
 - `opencode-version-battery.cjs`, with one leg per check and an exit taxonomy that matches the doctor battery convention.
 - Its tests, in the doctor tests folder, so `run-all.sh` picks them up.
-- The route doc `opencode.md` in the doctor folder, in the sk-doc command mode.
+- The battery's documentation in the doctor scripts README, in place of the route doc `opencode.md`, which waits for Q1 (amended at build time, `scratch/decisions.txt` 15).
 - The CI workflow `opencode-dual-version.yml`, kept local and unpushed.
 - The route entry in `_routes.yaml`, held until Q1 is settled.
 
@@ -83,10 +83,10 @@ A repeatable two-version battery shows, for each pinned version, that every repo
 ## 3. SCOPE
 
 ### In Scope
-- The battery with a v1 leg (the resolved plugin list, and the log window after a load trigger) and a v2 leg (the plugin and skill lists from the running service).
+- The battery with a v1 leg (the resolved plugin list, and an import harness that loads each plugin through its v1 entry) and a v2 leg (the plugin and skill lists from a private server the battery starts and stops). (amended at build time, `scratch/decisions.txt` 2 and 3)
 - Family selection from the parsed `--version` output, and a SKIP for any family that is not installed.
 - The battery's tests, with fixtures, so the battery runs without a real OpenCode binary.
-- The route doc in the doctor folder.
+- The battery's documentation in the doctor scripts README (the route doc waits for Q1, `scratch/decisions.txt` 15).
 - The CI workflow with a matrix of the two pinned packages and a both-version isolation job, linted with actionlint.
 - A broken-copy proof in `scratch/`, deleted afterwards.
 
@@ -103,9 +103,11 @@ A repeatable two-version battery shows, for each pinned version, that every repo
 |-----------|-------------|-------------|
 | `.skilled/commands/doctor/scripts/opencode-version-battery.cjs` | Create | The battery. |
 | `.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs` | Create | Fixture tests for each leg and the exit taxonomy. Proposed, see Q9. |
-| `.skilled/commands/doctor/opencode.md` | Create | The route doc, in the sk-doc command mode. |
+| `.skilled/command-support/doctor/scripts/README.md` | Modify | The battery's documentation: flags, legs, exit codes and mutation boundary. It replaces the route doc `.skilled/commands/doctor/opencode.md`, which would register a live command and waits for Q1 (amended at build time, `scratch/decisions.txt` 15). |
 | `.github/workflows/opencode-dual-version.yml` | Create | The CI workflow. It stays local and unpushed. |
 | `.skilled/commands/doctor/_routes.yaml` | Modify, held | The `/doctor:opencode` route. Only after Q1. |
+| `.skilled/commands/doctor/scripts/git-setup-check.cjs` | Modify | Resolve the adapter inside `dualPlugin(...)`, a regression from phase 002 that fails three doctor tests (added at build time, `scratch/decisions.txt` 12). |
+| `.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs` | Modify | One test for the `dualPlugin(...)` export form (added at build time, decision 12). |
 | `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/008-doctor-and-ci/scratch/` | Create, then delete | The broken copy of the plugins and the live battery output. |
 
 <!-- /ANCHOR:scope -->
@@ -120,10 +122,10 @@ A repeatable two-version battery shows, for each pinned version, that every repo
 | ID | Requirement |
 |----|-------------|
 | REQ-001 | The battery exits 0 on OpenCode 1.19.3 with family v1 and on 2.0.32 with family v2. The exit codes are 0 for pass, 1 for fail, 2 for usage or crash, and 3 for degraded or skipped. |
-| REQ-002 | The v1 leg lists every top-level plugin file in `.opencode/plugins`. It reads the log bytes that appear after a load trigger, and it finds a `loading plugin` line for each file and no `failed to load plugin` line that names a repo path. |
-| REQ-003 | The v2 leg reads `/api/plugin` and `/api/skill` with a raw, percent-encoded query, writes each response to a file, and repeats the read until two counts match, within a fixed bound. Each plugin must report the status `active`. |
+| REQ-002 | The v1 leg lists every top-level plugin file in `.opencode/plugins`. It requires each file among the `plugin_origins` of `opencode debug config`, and it loads each file in a child node process through its v1 entry with a v1-shaped input, naming every file that fails. OpenCode 1.19.3 logs no plugin line, so there is no log window to read (amended at build time, `scratch/decisions.txt` 2). |
+| REQ-003 | The v2 leg starts a private `opencode2 serve` on a free port with its own database and data folder, reads `/api/plugin` and `/api/skill` with a raw, percent-encoded query, writes each response to a file, and repeats the plugin read until two consecutive non-zero counts match, at most 15 reads 2 s apart. Every top-level plugin file must have an entry under the root with the status `active` (amended at build time, `scratch/decisions.txt` 3 and 6). |
 | REQ-004 | The battery matches the requested family to the parsed major of each candidate binary. It does not infer the family from a binary name. |
-| REQ-005 | The battery never runs `opencode run` from a Pi session, and it never starts, stops or restarts the v2 service. |
+| REQ-005 | The battery never runs `opencode run`, and it never starts, stops or restarts the shared v2 service. It stops the private server it starts, on every exit path, and it never prints that server's password (amended at build time, `scratch/decisions.txt` 3). |
 | REQ-006 | A repo plugin broken on purpose in a throwaway copy makes the battery exit 1 and name that plugin. |
 | REQ-007 | The CI workflow passes actionlint, installs each pinned package in its own npm prefix, and runs the battery with `--json`. |
 
@@ -131,8 +133,8 @@ A repeatable two-version battery shows, for each pinned version, that every repo
 
 | ID | Requirement |
 |----|-------------|
-| REQ-008 | When a family is not installed, its leg reports SKIP and the exit is 3. The battery never reports that family as FAIL. |
-| REQ-009 | The route doc `opencode.md` exists, and it passes the sk-doc command-mode check. |
+| REQ-008 | When a family is not installed, its leg reports SKIP and the exit is 3. The battery never reports that family as FAIL. A private server that cannot start is DEGRADED, not SKIP (amended at build time, `scratch/decisions.txt` 3). |
+| REQ-009 | The battery is documented in `.skilled/command-support/doctor/scripts/README.md`, and that README passes the sk-doc readme check. The `/doctor:opencode` command file waits for Q1 with its route entry (amended at build time, `scratch/decisions.txt` 15). |
 | REQ-010 | The battery's tests run under `run-all.sh` with no change to that runner. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
@@ -174,7 +176,7 @@ A repeatable two-version battery shows, for each pinned version, that every repo
 - **NFR-P01**: The battery reads `debug config` once, into a file. It reads the log once per leg. The v2 read repeats no more than the fixed bound.
 
 ### Security
-- **NFR-S01**: The battery spawns each binary with an argv array, never a shell string. Its only writes go to the output path and to the JSON summary when `--json` is set.
+- **NFR-S01**: The battery spawns each binary with an argv array, never a shell string. Its only writes go to the output path, the JSON summary when `--json` is set, and one temporary folder for the private server's database and data, removed on exit (amended at build time, `scratch/decisions.txt` 3).
 
 ### Reliability
 - **NFR-R01**: Each leg reports PASS, FAIL, DEGRADED or SKIP with a reason. No leg reports PASS from a config read alone.
@@ -193,7 +195,7 @@ A repeatable two-version battery shows, for each pinned version, that every repo
 
 ### Error Scenarios
 - The v2 counts never match across the bounded reads: DEGRADED, with the counts printed.
-- The v1 log shrinks between the offset and the read: DEGRADED, because the window is not reliable.
+- The private v2 server prints no listening line or no password within its start timeout: DEGRADED, and the battery stops it.
 - The output path is not writable: exit 2.
 - An unknown argument: usage text and exit 2.
 

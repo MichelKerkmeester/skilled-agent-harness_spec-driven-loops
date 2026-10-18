@@ -1,0 +1,49 @@
+{
+  "root": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/broken-root",
+  "family": "v1",
+  "results": [
+    {
+      "leg": "family-present",
+      "family": "v1",
+      "status": "PASS",
+      "reason": "a v1 binary is installed",
+      "details": [
+        "/Users/michelkerkmeester/.local/bin/opencode"
+      ]
+    },
+    {
+      "leg": "plugin-discovered",
+      "family": "v1",
+      "status": "PASS",
+      "reason": "all 16 plugin files discovered",
+      "details": [
+        "classifier-injection-screen.js",
+        "cli-dispatch-audit.js",
+        "codex-hooks-watchdog.js",
+        "mcp-route-guard.js",
+        "opencode-goal.js",
+        "session-cleanup.js",
+        "sk-code-post-edit-quality.js",
+        "sk-git-message-gate.js",
+        "sk-git-preflight-advisory.js",
+        "sk-vision.js",
+        "system-completion-sentinel.js",
+        "system-deep-loop-guard.js",
+        "system-dist-freshness-guard.js",
+        "system-skill-advisor.js",
+        "system-spec-gate.js",
+        "system-speckit-completion.js"
+      ]
+    },
+    {
+      "leg": "plugin-load",
+      "family": "v1",
+      "status": "FAIL",
+      "reason": "the import harness could not load every plugin",
+      "details": [
+        "sk-git-message-gate.js: deliberately broken for the battery proof"
+      ]
+    }
+  ],
+  "exit": 1
+}

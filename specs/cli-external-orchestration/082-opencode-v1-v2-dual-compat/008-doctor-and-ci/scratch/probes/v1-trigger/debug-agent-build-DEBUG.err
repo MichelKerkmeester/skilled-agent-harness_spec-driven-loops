@@ -1,0 +1,16 @@
+timestamp=2026-10-18T21:45:58.265Z level=INFO run=ae3c18a2 message="creating instance" directory=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build
+timestamp=2026-10-18T21:45:58.266Z level=INFO run=ae3c18a2 message=fromDirectory directory=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build
+timestamp=2026-10-18T21:45:58.338Z level=INFO run=ae3c18a2 message=bootstrapping directory=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build
+timestamp=2026-10-18T21:45:58.341Z level=INFO run=ae3c18a2 message=loading path=/Users/michelkerkmeester/.config/opencode/config.json
+timestamp=2026-10-18T21:45:58.341Z level=INFO run=ae3c18a2 message=loading path=/Users/michelkerkmeester/.config/opencode/opencode.json
+timestamp=2026-10-18T21:45:58.341Z level=INFO run=ae3c18a2 message=loading path=/Users/michelkerkmeester/.config/opencode/opencode.jsonc
+timestamp=2026-10-18T21:45:58.344Z level=INFO run=ae3c18a2 message=loading path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/opencode.json
+timestamp=2026-10-18T21:45:58.350Z level=DEBUG run=ae3c18a2 message="loading config from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/opencode.json"
+timestamp=2026-10-18T21:45:58.350Z level=INFO run=ae3c18a2 message=loading path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/opencode.json
+timestamp=2026-10-18T21:45:58.351Z level=DEBUG run=ae3c18a2 message="loading config from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/opencode.jsonc"
+timestamp=2026-10-18T21:45:58.351Z level=INFO run=ae3c18a2 message=loading path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/opencode.jsonc
+timestamp=2026-10-18T21:45:58.453Z level=INFO run=ae3c18a2 message="all LSPs are disabled"
+timestamp=2026-10-18T21:45:58.454Z level=INFO run=ae3c18a2 message="all formatters are disabled"
+timestamp=2026-10-18T21:45:58.454Z level=INFO run=ae3c18a2 message=init
+timestamp=2026-10-18T21:45:58.819Z level=INFO run=ae3c18a2 message="shell tool using shell" shell=/bin/zsh
+timestamp=2026-10-18T21:45:58.821Z level=INFO run=ae3c18a2 message="disposing instance" directory=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build
