@@ -476,6 +476,31 @@ describe('deep-research reduce-state recovery gate', () => {
     expect(result.dashboard).toContain('- [ ] How should provenance travel? [angle-bank]');
   });
 
+  it('writes question text holding replacement patterns verbatim into the strategy', () => {
+    // String.replace reads `$\``, `$&` and `$'` in a string replacement as
+    // match-relative text, so a question quoting one of them would splice a
+    // copy of the surrounding file into the rewritten section.
+    const specFolder = makeTempSpec();
+    const questionText = "Does `PluginInput.$` survive, and do $& and $' stay literal?";
+    writeState(specFolder, `${JSON.stringify({ type: 'iteration', run: 1, status: 'complete' })}\n`);
+    writeInbox(specFolder, [
+      {
+        id: 'inbox-dollar-1',
+        text: questionText,
+        source: 'analyst.followup',
+        origin: 'analyst-strategy',
+        injectedAtIteration: 1,
+        promotedQuestionId: 'question-dollar-1',
+      },
+    ]);
+
+    const result = reduceResearchState(specFolder, { write: false });
+
+    expect(result.strategy).toContain(`- [ ] ${questionText}`);
+    expect(result.strategy.match(/## 11\. NEXT FOCUS/g)?.length).toBe(1);
+    expect(result.strategy.match(/<!-- ANCHOR:next-focus -->/g)?.length).toBe(1);
+  });
+
   it('keeps registry-owned question text and emits one conflict event for disagreeing inbox input', () => {
     const specFolder = makeTempSpec();
     writeState(specFolder, `${JSON.stringify({
