@@ -1,0 +1,3 @@
+?? .skilled/skills/sk-vision/hooks/opencode/sk-vision.js
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/006-cli-opencode-dual-dispatch/scratch/deep-loop-suite-before.txt
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/006-cli-opencode-dual-dispatch/scratch/status-before.txt

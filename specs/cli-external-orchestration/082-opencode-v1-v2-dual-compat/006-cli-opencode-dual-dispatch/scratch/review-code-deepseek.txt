@@ -1,0 +1,31 @@
+
+
+Now the comment-hygiene check on both files under review.
+
+Let me check whether other test files also build native commands without a stubbed env (to gauge the failure's blast radius).
+
+Let me clean up my temporary artifact and confirm the repo is untouched by the review.
+
+Review complete. All evidence gathered; no files were edited (git status unchanged from the start), and no test suites were run.
+
+## Findings
+
+**P1** | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2264` (probe), `2268-2272` (refusal) | `buildNativeLineageCommand` now probes the host binary on every build, so native command construction refuses whenever `opencode2` resolves ahead of `opencode` — including on this machine, where `~/.local/bin/opencode` is v1.19.3 but `opencode2` (v2.0.32) in the same directory wins per the decision-10 rule. The change therefore leaves the suite red: REQ-007 and the DoD require the deep-loop suite to exit 0 at or above the 2718-passed baseline, and `scratch/deep-loop-suite-after.txt` records 4 failures. | Verified: a direct `buildLineageCommand({kind:'native'}, '', 'workspace-write', 'default', {loopType:'review', specFolder, lineageDir})` (no `env`) throws "Native lineages cannot start on OpenCode v2…". The 4 recorded failures — `fanout-run.vitest.ts:1069`, `:1075`, `:1263` (native part, 1338-1350), `:2505` — all build native commands with no stubbed env, and their durations (1167 ms, 1 ms, 66 ms, 10 ms) match one real probe followed by cache hits. The refusal itself follows L4/Q2, so the fix is the missing stub: those cases need a v1 `opencode` in their env (decision 11's own stub rule), and native dispatch on side-by-side installs needs `OPENCODE_BIN=opencode`.
+
+**P2** | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2353` | The FATAL WARN is emitted for both renderers but names `--dangerously-skip-permissions`, while the v2 argv carries `--auto` (decision 5). | Verified on this machine: a v2 `cli-opencode` build printed `FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions…` while `args` was `["run","--standalone","-m","x/y","--format","json","--auto","PROMPT"]`. An operator auditing bypass usage greps a flag that was never in the executed argv, and the real flag (`--auto`) is never named.
+
+**P2** | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2302`, `:2380`, `:2408` (via `resolveExecutableVersion`, `:2095`) | A path-qualified `OPENCODE_BIN` — the form `command -v opencode2` returns, i.e. the idiom the cli-opencode `SKILL.md` guard itself uses — dispatches that binary but records `executableVersion: 'unknown'`, because `resolveExecutableVersion` only joins PATH entries with the command and never accepts a path-qualified one. | Verified: `OPENCODE_BIN=/Users/…/.local/bin/opencode2` → `effectiveConfig.executableVersion: 'unknown'`; bare `OPENCODE_BIN=opencode2` → `sha256:ca0c…`. `invocation-metadata.json` loses the binary-swap identity (NFR-R02) for every override-configured dispatch.
+
+## What I checked (no finding)
+
+1. **v1 argv unchanged** — compared the new v1 branches against HEAD's builders (`git show`): identical order/values for both the opencode builder (`run --model … --format json --dir … [--dangerously-skip-permissions] [--variant] prompt`) and the native builder (`run [--dangerously-skip-permissions] --format json --dir … --command …`). D1/D3 pin exactly that and pass in `scratch/green-run.txt`.
+2. **v2 argv** — live build on this machine plus the recorded `probes/v2-run-help.txt`: `run --standalone -m model[#variant] --format json [--auto] <message>`; no `--command/--dir/--variant/--pure/--share/--port`; `cwd` set from `options.directoryRoot || process.cwd()` (production passes no `directoryRoot`). Matches REQ-003/004, decisions 2 and 5.
+3. **Binary order** — PATH walked in order, `opencode2` before `opencode` inside each directory (decision 10), `$OPENCODE_BIN` first with no fallback; the new suite's adversarial cases assert PATH order, same-directory preference, and the no-fallback rule.
+4. **Shell string from untrusted input** — none: the resolver uses argv arrays only (`spawnSync(executablePath, ['--version'])`); the old `sh -c 'command -v opencode'` check is removed; the remaining `command -v` checks (codex/claude/cursor) are fixed literals, untouched.
+5. **Refusal vs guess** — empty, garbage, CRLF, timeout/throw, non-zero exit, missing-path and neither-name cases all refuse with `E_OPENCODE_UNRESOLVED` naming both binaries and carrying probe output; no name-based fallback (D3/Q5); major ≠ 1/2 refuses; first version token wins (`1.19.3 2.0.32` → v1).
+6. **Cache** — key is `JSON([realpath, size, mtimeMs])` per spec; only successful parses are cached; `clearOpencodeVersionCache` exported; rewrite re-probes. Only staleness window is a same-size + same-mtime replacement, which is inherent to the spec'd key.
+7. **Probed vs dispatched binary** — the dispatch env preserves the same PATH string (`PATH` in `EXECUTOR_COMMON_ENV_ALLOWLIST`; `OPENCODE_` prefix passes `OPENCODE_BIN` through), and the v2 spawn cwd equals the probe cwd in production. Residual: the build→spawn TOCTOU window (spawn is by name, not by the resolved realpath), plus the identity gap in finding 3.
+8. **Comment hygiene** — grep of the new file and all added lines for spec paths, phase/task/finding ids, `REQ-/CHK-/ADR-`: no hits; comments state durable WHY.
+9. **Notes, not findings** — `isOpencodeBinaryAvailable` now returns false for a binary that resolves but does not parse (semantic change, consistent with D3, no in-repo consumer beyond the new test); `buildLineageCommand`'s JSDoc return type doesn't list the new `cwd` field; `deep-loop-suite-after.txt` is truncated mid-run, so later files' results are not in it.
+
+Method: claims 1-3 of the findings come from read-only module invocations and the recorded scratch artifacts; no files were edited and no test suites were run.

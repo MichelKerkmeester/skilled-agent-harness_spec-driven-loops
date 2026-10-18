@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-18 |
 | **Branch** | `scaffold/006-cli-opencode-dual-dispatch` |
 | **Parent Spec** | ../spec.md |

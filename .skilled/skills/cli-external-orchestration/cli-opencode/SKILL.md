@@ -130,8 +130,11 @@ The `route_opencode_resources(task)` function body lives in [`shared-smart-route
 ### Prerequisites
 
 ```bash
-# Verify installation (cli-opencode v1.0.0 is pinned to opencode v1.3.17)
-opencode --version | grep -q '^1\.' || echo "Not installed or version drift. See references/cli-reference.md §9."
+# Verify installation. v1 prints `1.19.3` and v2 prints `opencode v2.0.32`; either major passes.
+# Same pick as the runtime: $OPENCODE_BIN, else PATH order with opencode2 before opencode in each directory.
+OC=${OPENCODE_BIN:-}
+if [ -z "$OC" ]; then IFS=:; for d in $PATH; do for n in opencode2 opencode; do if [ -x "$d/$n" ]; then OC=$d/$n; break 2; fi; done; done; unset IFS; fi
+[ -n "$OC" ] && "$OC" --version | grep -Eq '^[[:space:]]*([[:alpha:]][[:alnum:]._-]*[[:space:]]+)?[vV]?[12]\.[0-9]+\.[0-9]+([-+][[:alnum:]._-]+)?[[:space:]]*$' || echo "Not installed or version drift. See references/cli-reference.md §9."
 
 # Self-invocation guard
 env | grep -q '^OPENCODE_' && echo "ERROR: Already inside OpenCode session"
@@ -150,11 +153,11 @@ The one-shot pre-flight bash, the per-provider decision trees, the user-facing p
 
 ### Default Invocation (Skill Default)
 
-**Default model + variant + format + dir**: `opencode-go/deepseek-v4.1-flash` · `--variant max` · `--format json` · `--dir <repo-root>` (pinned to avoid CWD ambiguity). The Go gateway fronts the flash model at its max thinking tier — subsidized 2x-usage reasoning for routine dispatches (the direct DeepSeek API provider was retired).
+**Default model, variant and format**: `opencode-go/deepseek-v4.1-flash` at the `max` variant, with `--format json`. On v1 the variant is `--variant max` and `--dir <repo-root>` pins the directory. On v2 the variant rides on the model id (`-m opencode-go/deepseek-v4.1-flash#max`), `run` has no `--dir`, so the dispatch starts in the repo root, and every child dispatch adds `--standalone`. The two versions do not always list the same providers, so confirm the provider appears in `opencode2 models` before you rely on this default on v2. The Go gateway fronts the flash model at its max thinking tier — subsidized 2x-usage reasoning for routine dispatches (the direct DeepSeek API provider was retired).
 
 > **Fan-out fallback:** a deep-loop lineage that pins no model runs **DeepSeek V4.1 Flash**. The family is named here on purpose, without a version or an effort tier, so this line does not go stale when the family ships a point release; the runner resolves the current id. A drift test keeps the two in the same family.
 
-Use `opencode run --model opencode-go/deepseek-v4.1-flash --variant max --format json --dir <repo-root> "<prompt>"`.
+On v1, use `opencode run --model opencode-go/deepseek-v4.1-flash --variant max --format json --dir <repo-root> "<prompt>"`. On v2, use `cd <repo-root> && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>"`.
 
 > **The `--agent` flag (read this):** Do NOT pass `--agent` on a top-level `opencode run` — current opencode treats named agents like `general` as **subagents** and rejects them at the top level, so `--agent general` fails outright. The default agent runs when `--agent` is omitted, which is correct for almost every dispatch. **To target a specific agent profile, describe the role in the prompt body instead** (e.g. open with "Act as a code-review agent: …"); only pass `--agent <name>` after confirming acceptance via `opencode run --help` on the installed version.
 

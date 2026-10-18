@@ -1,0 +1,25 @@
+{
+  "command": "opencode2",
+  "args": [
+    "run",
+    "--standalone",
+    "-m",
+    "llmgateway/deepseek-v4.1-flash#max",
+    "--format",
+    "json",
+    "--auto",
+    "<prompt>"
+  ],
+  "cwd": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/probe-006/ws",
+  "effectiveConfig": {
+    "kind": "cli-opencode",
+    "executable": "opencode2",
+    "executableVersion": "sha256:ca0c7336eda7a89f2023354862f6b9ecf06a098457c264be9151aeb02ac5cca1",
+    "model": "llmgateway/deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "danger-full-access",
+    "permissionMode": "bypassPermissions",
+    "webSearch": "inherit"
+  }
+}

@@ -1,0 +1,28 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/system-deep-loop/runtime
+
+ ❯ tests/unit/opencode-dual-dispatch.vitest.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/opencode-dual-dispatch.vitest.ts [ tests/unit/opencode-dual-dispatch.vitest.ts ]
+Error: Cannot find module '../../scripts/opencode-version.cjs'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts
+ ❯ tests/unit/opencode-dual-dispatch.vitest.ts:94:18
+     92| const requireCjs = createRequire(import.meta.url);
+     93| const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '…
+     94| const resolver = requireCjs('../../scripts/opencode-version.cjs') as O…
+       |                  ^
+     95| const fanoutRun = requireCjs('../../scripts/fanout-run.cjs') as Fanout…
+     96|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  20:50:57
+   Duration  105ms (transform 27ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+
+exit=1

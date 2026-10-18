@@ -1,0 +1,324 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/system-deep-loop/runtime
+
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+ ❯ tests/unit/opencode-dual-dispatch.vitest.ts (23 tests | 21 failed) 102ms
+     × P1 resolves 1.19.3 as v1 8ms
+     × P2 resolves opencode v2.0.32 as v2 1ms
+     × P3 resolves 1.19.3-rc.1 as v1 4ms
+     × P4 refuses empty probe output 1ms
+     × P5 refuses unparseable probe output 4ms
+     × A1 finds only opencode2 and reports its parsed version 4ms
+     × A2 finds only opencode and reports its parsed version 7ms
+     × A3 refuses when neither name resolves and names both candidates 5ms
+     × D2 uses the cli-opencode v2 argv, cwd, safe flags, and optional effort 8ms
+     × D4 refuses native v2 dispatch and names v2 and session.command 4ms
+     × accepts CRLF and trailing whitespace around a version 0ms
+     × uses the first version token in joined output 0ms
+     × resolves a bare OPENCODE_BIN name through env.PATH 4ms
+     × does not fall back when OPENCODE_BIN names a missing path 4ms
+     × refuses when the version probe throws ETIMEDOUT 4ms
+     × refuses garbage from opencode2 without falling back to opencode 4ms
+     × runs a hostile OPENCODE_BIN path without shell interpretation 7ms
+     × keeps PATH directory order ahead of executable-name order 4ms
+     × prefers opencode2 when both names share one PATH directory 4ms
+     × caches by executable metadata and probes again after a rewrite 1ms
+     × keeps CJS parsing in parity with the ESM parser for every fixture 10ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 21 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/opencode-dual-dispatch.vitest.ts > OpenCode version resolution > P1 resolves 1.19.3 as v1
+TypeError: resolver.parseOpencodeVersion is not a function
+ ❯ tests/unit/opencode-dual-dispatch.vitest.ts:202:21
+    200|     const executablePath = writeVersionStub(binDir, 'opencode', VERSIO…
+    201|
+    202|     expect(resolver.parseOpencodeVersion(VERSION_1_OUTPUT)).toBe('v1');
+       |                     ^
+    203|     expect(resolver.resolveOpencodeBinary(envWithPath(binDir))).toEqua…
+    204|       command: 'opencode',
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/21]⎯
+
+ FAIL  tests/unit/opencode-dual-dispatch.vitest.ts > OpenCode version resolution > P2 resolves opencode v2.0.32 as v2
+TypeError: resolver.parseOpencodeVersion is not a function
+ ❯ tests/unit/opencode-dual-dispatch.vitest.ts:214:21
+    212|     const executablePath = writeVersionStub(binDir, 'opencode2', VERSI…
+    213|
+    214|     expect(resolver.parseOpencodeVersion(VERSION_2_OUTPUT)).toBe('v2');
+       |                     ^
+    215|     expect(resolver.resolveOpencodeBinary(envWithPath(binDir))).toEqua…
+    216|       command: 'opencode2',
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/21]⎯
+
+ FAIL  tests/unit/opencode-dual-dispatch.vitest.ts > OpenCode version resolution > P3 resolves 1.19.3-rc.1 as v1
+TypeError: resolver.parseOpencodeVersion is not a function
+ ❯ tests/unit/opencode-dual-dispatch.vitest.ts:226:21
+    224|     const executablePath = writeVersionStub(binDir, 'opencode', VERSIO…
+    225|
+    226|     expect(resolver.parseOpencodeVersion(VERSION_1_PRERELEASE_OUTPUT))…
+       |                     ^
+    227|     expect(resolver.resolveOpencodeBinary(envWithPath(binDir))).toEqua…
+    228|       command: 'opencode',
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/21]⎯
+
+ FAIL  tests/unit/opencode-dual-dispatch.vitest.ts > OpenCode version resolution > P4 refuses empty probe output
+TypeError: resolver.parseOpencodeVersion is not a function
+ ❯ tests/unit/opencode-dual-dispatch.vitest.ts:238:21
+    236|     writeVersionStub(binDir, 'opencode', EMPTY_OUTPUT);
+    237|
+    238|     expect(resolver.parseOpencodeVersion(EMPTY_OUTPUT)).toBe('unknown'…
+       |                     ^
+    239|     expectUnresolved(() => resolver.resolveOpencodeBinary(envWithPath(…
+    240|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/21]⎯
+
+ FAIL  tests/unit/opencode-dual-dispatch.vitest.ts > OpenCode version resolution > P5 refuses unparseable probe output
+TypeError: resolver.parseOpencodeVersion is not a function
+ ❯ tests/unit/opencode-dual-dispatch.vitest.ts:246:21
+    244|     writeVersionStub(binDir, 'opencode', UNPARSEABLE_OUTPUT);
+    245|
+    246|     expect(resolver.parseOpencodeVersion(UNPARSEABLE_OUTPUT)).toBe('un…
+       |                     ^
+    247|     expectUnresolved(
+    248|       () => resolver.resolveOpencodeBinary(envWithPath(binDir)),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/21]⎯
+
+ FAIL  tests/unit/opencode-dual-dispatch.vitest.ts > OpenCode version resolution > A1 finds only opencode2 and reports its parsed version
+TypeError: resolver.resolveOpencodeBinary is not a function
+ ❯ tests/unit/opencode-dual-dispatch.vitest.ts:258:21
+    256|     const env = envWithPath(binDir);
+    257|
+    258|     expect(resolver.resolveOpencodeBinary(env)).toEqual({
+       |                     ^
+    259|       command: 'opencode2',
+    260|       executablePath: realpathSync(executablePath),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/21]⎯
+
+ FAIL  tests/unit/opencode-dual-dispatch.vitest.ts > OpenCode version resolution > A2 finds only opencode and reports its parsed version
+TypeError: resolver.resolveOpencodeBinary is not a function
+ ❯ tests/unit/opencode-dual-dispatch.vitest.ts:270:21
+    268|     const executablePath = writeVersionStub(binDir, 'opencode', VERSIO…
+    269|
+    270|     expect(resolver.resolveOpencodeBinary(envWithPath(binDir))).toEqua…
+       |                     ^
+    271|       command: 'opencode',
+    272|       executablePath: realpathSync(executablePath),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/21]⎯
+
+ FAIL  tests/unit/opencode-dual-dispatch.vitest.ts > OpenCode version resolution > A3 refuses when neither name resolves and names both candidates
+AssertionError: expected undefined to be 'E_OPENCODE_UNRESOLVED' // Object.is equality
+
+- Expected:
+"E_OPENCODE_UNRESOLVED"
+
++ Received:
+undefined
+
+ ❯ expectUnresolved tests/unit/opencode-dual-dispatch.vitest.ts:170:22
+    168| function expectUnresolved(action: () => unknown, probeOutput?: string)…
+    169|   const error = thrownError(action) as ResolverError;
+    170|   expect(error.code).toBe('E_OPENCODE_UNRESOLVED');
+       |                      ^
+    171|   expect(error.message).toMatch(/\bopencode2\b/);
+    172|   expect(error.message).toMatch(/\bopencode\b/);
+ ❯ tests/unit/opencode-dual-dispatch.vitest.ts:281:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/21]⎯
+
+ FAIL  tests/unit/opencode-dual-dispatch.vitest.ts > OpenCode lineage builders > D2 uses the cli-opencode v2 argv, cwd, safe flags, and optional effort
+Error: cli-opencode executor unavailable: command -v opencode failed
+ ❯ inputError scripts/fanout-run.cjs:113:15
+ ❯ buildOpencodeLineageCommand scripts/fanout-run.cjs:2326:11
+ ❯ Object.buildLineageCommand scripts/fanout-run.cjs:2940:10
+ ❯ tests/unit/opencode-dual-dispatch.vitest.ts:319:30
+    317|     writeVersionStub(binDir, 'opencode2', VERSION_2_OUTPUT);
+    318|     const env = envWithPath(binDir);
+    319|     const result = fanoutRun.buildLineageCommand(
+       |                              ^
+    320|       { kind: 'cli-opencode', model: MODEL, reasoningEffort: EFFORT },
+    321|       PROMPT,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/21]⎯
+
+ FAIL  tests/unit/opencode-dual-dispatch.vitest.ts > OpenCode lineage builders > D4 refuses native v2 dispatch and names v2 and session.command
+Error: Expected the operation to throw.
+ ❯ thrownError tests/unit/opencode-dual-dispatch.vitest.ts:165:9
+    163|     throw new Error('Expected the operation to throw an Error.');
+    164|   }
+    165|   throw new Error('Expected the operation to throw.');
+       |         ^
+    166| }
+    167|
+ ❯ tests/unit/opencode-dual-dispatch.vitest.ts:424:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/21]⎯
+
+ FAIL  tests/unit/opencode-dual-dispatch.vitest.ts > OpenCode resolver adversarial cases > accepts CRLF and trailing whitespace around a version
+TypeError: resolver.parseOpencodeVersion is not a function
+ ❯ tests/unit/opencode-dual-dispatch.vitest.ts:444:21
+    442| describe('OpenCode resolver adversarial cases', () => {
+    443|   it('accepts CRLF and trailing whitespace around a version', () => {
+    444|     expect(resolver.parseOpencodeVersion(CRLF_VERSION_OUTPUT)).toBe('v…
+       |                     ^
+    445|     expect(resolver.parseOpencodeVersion(TRAILING_SPACE_VERSION_OUTPUT…
+    446|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/21]⎯
+
+ FAIL  tests/unit/opencode-dual-dispatch.vitest.ts > OpenCode resolver adversarial cases > uses the first version token in joined output
+TypeError: resolver.parseOpencodeVersion is not a function
+ ❯ tests/unit/opencode-dual-dispatch.vitest.ts:449:21
+    447|
+    448|   it('uses the first version token in joined output', () => {
+    449|     expect(resolver.parseOpencodeVersion(JOINED_VERSION_OUTPUT)).toBe(…
+       |                     ^
+    450|   });
+    451|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/21]⎯
+
+ FAIL  tests/unit/opencode-dual-dispatch.vitest.ts > OpenCode resolver adversarial cases > resolves a bare OPENCODE_BIN name through env.PATH
+TypeError: resolver.resolveOpencodeBinary is not a function
+ ❯ tests/unit/opencode-dual-dispatch.vitest.ts:457:21
+    455|     const env = { ...envWithPath(binDir), OPENCODE_BIN: 'opencode2' };
+    456|
+    457|     expect(resolver.resolveOpencodeBinary(env)).toEqual({
+       |                     ^
+    458|       command: 'opencode2',
+    459|       executablePath: realpathSync(executablePath),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/21]⎯
+
+ FAIL  tests/unit/opencode-dual-dispatch.vitest.ts > OpenCode resolver adversarial cases > does not fall back when OPENCODE_BIN names a missing path
+AssertionError: expected undefined to be 'E_OPENCODE_UNRESOLVED' // Object.is equality
+
+- Expected:
+"E_OPENCODE_UNRESOLVED"
+
++ Received:
+undefined
+
+ ❯ expectUnresolved tests/unit/opencode-dual-dispatch.vitest.ts:170:22
+    168| function expectUnresolved(action: () => unknown, probeOutput?: string)…
+    169|   const error = thrownError(action) as ResolverError;
+    170|   expect(error.code).toBe('E_OPENCODE_UNRESOLVED');
+       |                      ^
+    171|   expect(error.message).toMatch(/\bopencode2\b/);
+    172|   expect(error.message).toMatch(/\bopencode\b/);
+ ❯ tests/unit/opencode-dual-dispatch.vitest.ts:470:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/21]⎯
+
+ FAIL  tests/unit/opencode-dual-dispatch.vitest.ts > OpenCode resolver adversarial cases > refuses when the version probe throws ETIMEDOUT
+AssertionError: expected undefined to be 'E_OPENCODE_UNRESOLVED' // Object.is equality
+
+- Expected:
+"E_OPENCODE_UNRESOLVED"
+
++ Received:
+undefined
+
+ ❯ expectUnresolved tests/unit/opencode-dual-dispatch.vitest.ts:170:22
+    168| function expectUnresolved(action: () => unknown, probeOutput?: string)…
+    169|   const error = thrownError(action) as ResolverError;
+    170|   expect(error.code).toBe('E_OPENCODE_UNRESOLVED');
+       |                      ^
+    171|   expect(error.message).toMatch(/\bopencode2\b/);
+    172|   expect(error.message).toMatch(/\bopencode\b/);
+ ❯ tests/unit/opencode-dual-dispatch.vitest.ts:478:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/21]⎯
+
+ FAIL  tests/unit/opencode-dual-dispatch.vitest.ts > OpenCode resolver adversarial cases > refuses garbage from opencode2 without falling back to opencode
+AssertionError: expected undefined to be 'E_OPENCODE_UNRESOLVED' // Object.is equality
+
+- Expected:
+"E_OPENCODE_UNRESOLVED"
+
++ Received:
+undefined
+
+ ❯ expectUnresolved tests/unit/opencode-dual-dispatch.vitest.ts:170:22
+    168| function expectUnresolved(action: () => unknown, probeOutput?: string)…
+    169|   const error = thrownError(action) as ResolverError;
+    170|   expect(error.code).toBe('E_OPENCODE_UNRESOLVED');
+       |                      ^
+    171|   expect(error.message).toMatch(/\bopencode2\b/);
+    172|   expect(error.message).toMatch(/\bopencode\b/);
+ ❯ tests/unit/opencode-dual-dispatch.vitest.ts:492:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/21]⎯
+
+ FAIL  tests/unit/opencode-dual-dispatch.vitest.ts > OpenCode resolver adversarial cases > runs a hostile OPENCODE_BIN path without shell interpretation
+TypeError: resolver.resolveOpencodeBinary is not a function
+ ❯ tests/unit/opencode-dual-dispatch.vitest.ts:507:31
+    505|     try {
+    506|       process.chdir(workingDirectory);
+    507|       const result = resolver.resolveOpencodeBinary(env);
+       |                               ^
+    508|       expect(result.executablePath).toBe(executablePath);
+    509|       expect(result.version).toBe('v1');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/21]⎯
+
+ FAIL  tests/unit/opencode-dual-dispatch.vitest.ts > OpenCode resolver adversarial cases > keeps PATH directory order ahead of executable-name order
+TypeError: resolver.resolveOpencodeBinary is not a function
+ ❯ tests/unit/opencode-dual-dispatch.vitest.ts:523:21
+    521|     writeVersionStub(secondDir, 'opencode2', VERSION_2_OUTPUT);
+    522|
+    523|     expect(resolver.resolveOpencodeBinary(envWithPath(firstDir, second…
+       |                     ^
+    524|       command: 'opencode',
+    525|       executablePath: realpathSync(firstExecutable),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/21]⎯
+
+ FAIL  tests/unit/opencode-dual-dispatch.vitest.ts > OpenCode resolver adversarial cases > prefers opencode2 when both names share one PATH directory
+TypeError: resolver.resolveOpencodeBinary is not a function
+ ❯ tests/unit/opencode-dual-dispatch.vitest.ts:535:21
+    533|     writeVersionStub(binDir, 'opencode', VERSION_1_OUTPUT);
+    534|
+    535|     expect(resolver.resolveOpencodeBinary(envWithPath(binDir))).toEqua…
+       |                     ^
+    536|       command: 'opencode2',
+    537|       executablePath: realpathSync(opencode2Path),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/21]⎯
+
+ FAIL  tests/unit/opencode-dual-dispatch.vitest.ts > OpenCode resolver adversarial cases > caches by executable metadata and probes again after a rewrite
+TypeError: resolver.resolveOpencodeBinary is not a function
+ ❯ tests/unit/opencode-dual-dispatch.vitest.ts:554:21
+    552|     const deps = { probe };
+    553|
+    554|     expect(resolver.resolveOpencodeBinary(env, deps).version).toBe('v1…
+       |                     ^
+    555|     expect(resolver.resolveOpencodeBinary(env, deps).version).toBe('v1…
+    556|     expect(probeCount).toBe(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/21]⎯
+
+ FAIL  tests/unit/opencode-dual-dispatch.vitest.ts > OpenCode resolver adversarial cases > keeps CJS parsing in parity with the ESM parser for every fixture
+TypeError: resolver.parseOpencodeVersion is not a function
+ ❯ tests/unit/opencode-dual-dispatch.vitest.ts:570:23
+    568|
+    569|     for (const output of VERSION_OUTPUTS) {
+    570|       expect(resolver.parseOpencodeVersion(output)).toBe(esmParser.par…
+       |                       ^
+    571|     }
+    572|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/21]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  21 failed | 2 passed (23)
+   Start at  20:51:30
+   Duration  243ms (transform 23ms, setup 0ms, import 52ms, tests 102ms, environment 0ms)
+
+exit=1

@@ -16,6 +16,8 @@ const path = require('node:path');
 const { spawn, spawnSync } = require('node:child_process');
 const { createHash } = require('node:crypto');
 
+const { resolveOpencodeBinary } = require('./opencode-version.cjs');
+
 const {
   classifyExitCode,
   detectPendingQuestion,
@@ -2113,6 +2115,19 @@ function resolveExecutableVersion(command, options = {}) {
   return 'unknown';
 }
 
+function resolveOpencodeExecutableVersion(executablePath, options = {}) {
+  if (executablePath.includes(path.sep)) {
+    return resolveExecutableVersion(path.basename(executablePath), {
+      ...options,
+      env: {
+        ...(options.env || process.env),
+        PATH: path.dirname(executablePath),
+      },
+    });
+  }
+  return resolveExecutableVersion(executablePath, options);
+}
+
 function effectiveWebSearchPolicy(lineage) {
   return lineage.liveTools?.webSearch || 'inherit';
 }
@@ -2176,6 +2191,7 @@ function finalizeLineageCommand(input) {
     command: input.command,
     args: input.args,
     ...(Object.prototype.hasOwnProperty.call(input, 'input') ? { input: input.input } : {}),
+    ...(input.cwd ? { cwd: input.cwd } : {}),
     effectiveConfig,
     invocationFingerprint,
   };
@@ -2256,6 +2272,19 @@ function buildClaudeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
 }
 
 function buildNativeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
+  let opencode;
+  try {
+    opencode = resolveOpencodeBinary(options.env || process.env);
+  } catch (error) {
+    throw inputError(`native executor unavailable: ${error.message}`);
+  }
+  if (opencode.version === 'v2') {
+    throw inputError(
+      'Native lineages cannot start on OpenCode v2 because v2 run has no --command and does not expand a slash message; '
+        + 'a registered command needs the session.command route.',
+    );
+  }
+
   const args = [
     'run',
     '--format',
@@ -2278,12 +2307,12 @@ function buildNativeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
   args.push(commandInput);
   return finalizeLineageCommand({
     kind: lineage.kind,
-    command: 'opencode',
+    command: opencode.command,
     args,
     input: '',
     prompt: commandInput,
     promptArgIndexes: [args.length - 1],
-    executableVersion: resolveExecutableVersion('opencode', options),
+    executableVersion: resolveOpencodeExecutableVersion(opencode.command, options),
     model: null,
     reasoningEffort: null,
     serviceTier: null,
@@ -2322,47 +2351,84 @@ function pinReasoningEffortForModel(model, reasoningEffort) {
 }
 
 function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
-  if (!isOpencodeBinaryAvailable(options.env || process.env)) {
-    throw inputError('cli-opencode executor unavailable: command -v opencode failed');
+  let opencode;
+  try {
+    opencode = resolveOpencodeBinary(options.env || process.env);
+  } catch (error) {
+    throw inputError(`cli-opencode executor unavailable: ${error.message}`);
   }
+
   const model = lineage.model || OPENCODE_DEFAULT_MODEL;
-  const args = [
-    'run',
-    '--model',
-    model,
-    '--format',
-    'json',
-    // The full runtime is required because the workflow writes isolated lineage state.
-    '--dir',
-    options.directoryRoot || process.cwd(),
-  ];
+  const opencodeEffort = pinReasoningEffortForModel(model, lineage.reasoningEffort);
   const useDangerousBypass = resolvedSandbox === 'danger-full-access';
+  const dangerousBypassFlag = opencode.version === 'v1'
+    ? '--dangerously-skip-permissions'
+    : '--auto';
   if (useDangerousBypass) {
-    args.push('--dangerously-skip-permissions');
     process.stderr.write(
-      `FATAL WARN: lineage ${lineage.label || '(cli-opencode)'} runs with --dangerously-skip-permissions. `
+      `FATAL WARN: lineage ${lineage.label || '(cli-opencode)'} runs with ${dangerousBypassFlag}. `
         + `The lineageDir write boundary is prompt-only, not sandbox-enforced.\n`,
     );
   }
-  const opencodeEffort = pinReasoningEffortForModel(model, lineage.reasoningEffort);
-  if (opencodeEffort) {
-    args.push('--variant', opencodeEffort);
+
+  if (opencode.version === 'v1') {
+    const args = [
+      'run',
+      '--model',
+      model,
+      '--format',
+      'json',
+      // The full runtime is required because the workflow writes isolated lineage state.
+      '--dir',
+      options.directoryRoot || process.cwd(),
+    ];
+    if (useDangerousBypass) args.push('--dangerously-skip-permissions');
+    if (opencodeEffort) args.push('--variant', opencodeEffort);
+    args.push(prompt);
+
+    return finalizeLineageCommand({
+      kind: lineage.kind,
+      command: opencode.command,
+      args,
+      input: '',
+      prompt,
+      promptArgIndexes: [args.length - 1],
+      executableVersion: resolveOpencodeExecutableVersion(opencode.command, options),
+      model,
+      reasoningEffort: opencodeEffort || null,
+      serviceTier: null,
+      resolvedSandbox,
+      resolvedPermission,
+      webSearch: effectiveWebSearchPolicy(lineage),
+    });
   }
+
+  const args = [
+    'run',
+    '--standalone',
+    '-m',
+    opencodeEffort ? `${model}#${opencodeEffort}` : model,
+    '--format',
+    'json',
+  ];
+  if (useDangerousBypass) args.push('--auto');
   args.push(prompt);
+
   return finalizeLineageCommand({
     kind: lineage.kind,
-    command: 'opencode',
+    command: opencode.command,
     args,
     input: '',
     prompt,
     promptArgIndexes: [args.length - 1],
-    executableVersion: resolveExecutableVersion('opencode', options),
+    executableVersion: resolveOpencodeExecutableVersion(opencode.command, options),
     model,
     reasoningEffort: opencodeEffort || null,
     serviceTier: null,
     resolvedSandbox,
     resolvedPermission,
     webSearch: effectiveWebSearchPolicy(lineage),
+    cwd: options.directoryRoot || process.cwd(),
   });
 }
 
@@ -2930,7 +2996,7 @@ const LINEAGE_COMMAND_ADAPTERS = Object.freeze({
 /**
  * Build the subprocess command and deterministic invocation identity for a lineage.
  *
- * @returns {{command:string,args:string[],input?:string,effectiveConfig:Object,invocationFingerprint:string}}
+ * @returns {{command:string,args:string[],input?:string,cwd?:string,effectiveConfig:Object,invocationFingerprint:string}}
  */
 function buildLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options = {}) {
   const adapter = LINEAGE_COMMAND_ADAPTERS[lineage.kind];
@@ -2959,11 +3025,12 @@ function isClaudeBinaryAvailable(env = process.env) {
 }
 
 function isOpencodeBinaryAvailable(env = process.env) {
-  const result = spawnSync('/bin/sh', ['-c', 'command -v opencode >/dev/null 2>&1'], {
-    env,
-    stdio: 'ignore',
-  });
-  return result.status === 0;
+  try {
+    resolveOpencodeBinary(env);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 // `cursor-agent -p` exits 0 even on an auth failure, so this PATH preflight is
@@ -3435,7 +3502,14 @@ async function main() {
       const effectiveSandbox = resolvedSandbox;
       const effectivePermission = resolvedPermission;
 
-      const { command, args: cmdArgs, input, effectiveConfig, invocationFingerprint } = buildLineageCommand(
+      const {
+        command,
+        args: cmdArgs,
+        input,
+        cwd: commandCwd,
+        effectiveConfig,
+        invocationFingerprint,
+      } = buildLineageCommand(
         lineage,
         prompt,
         effectiveSandbox,
@@ -3690,7 +3764,7 @@ async function main() {
         // spawn. The canonical mode name (not the raw loopType) keys the effect
         // ledger so the enablement consumer can read it back.
         const dispatchOpts = {
-          cwd: process.cwd(),
+          cwd: commandCwd ?? process.cwd(),
           timeoutMs,
           env: dispatchEnv,
           maxBuffer: 20 * 1024 * 1024,
@@ -4057,6 +4131,7 @@ module.exports = {
   buildLineageCommand,
   buildInvocationFingerprintPayload,
   isCodexBinaryAvailable,
+  isOpencodeBinaryAvailable,
   isCursorBinaryAvailable,
   isDevinBinaryAvailable,
   isPiBinaryAvailable,

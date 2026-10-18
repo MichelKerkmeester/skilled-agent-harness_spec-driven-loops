@@ -34,7 +34,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,8 +42,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md"
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      "scratch/deep-loop-suite-before.txt",
+      "scratch/red-first-failures.txt",
+      "scratch/green-run.txt",
+      "scratch/deep-loop-suite-after.txt",
+      "scratch/smoke/v2/smoke-v2-plugin.jsonl",
+      "scratch/real-binary-watch.txt",
+      "scratch/static-checks.txt",
+      "scratch/decisions.txt",
+      "scratch/green-run-after-fix.txt",
+      "scratch/smoke/v1/summary.json"
     ],
     "entities": [
       {
@@ -83,15 +95,87 @@
         "source": "derived"
       },
       {
+        "name": "opencode-version.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs",
+        "source": "derived"
+      },
+      {
         "name": "fanout-run.cjs",
         "kind": "file",
         "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
         "source": "derived"
       },
       {
+        "name": "opencode-dual-dispatch.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-suite-before.txt",
+        "kind": "file",
+        "path": "scratch/deep-loop-suite-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red-first-failures.txt",
+        "kind": "file",
+        "path": "scratch/red-first-failures.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green-run.txt",
+        "kind": "file",
+        "path": "scratch/green-run.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-suite-after.txt",
+        "kind": "file",
+        "path": "scratch/deep-loop-suite-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "smoke-v2-plugin.jsonl",
+        "kind": "file",
+        "path": "scratch/smoke/v2/smoke-v2-plugin.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "real-binary-watch.txt",
+        "kind": "file",
+        "path": "scratch/real-binary-watch.txt",
+        "source": "derived"
+      },
+      {
+        "name": "static-checks.txt",
+        "kind": "file",
+        "path": "scratch/static-checks.txt",
+        "source": "derived"
+      },
+      {
+        "name": "decisions.txt",
+        "kind": "file",
+        "path": "scratch/decisions.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green-run-after-fix.txt",
+        "kind": "file",
+        "path": "scratch/green-run-after-fix.txt",
+        "source": "derived"
+      },
+      {
+        "name": "summary.json",
+        "kind": "config",
+        "path": "scratch/smoke/v1/summary.json",
         "source": "derived"
       },
       {
@@ -117,83 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Test Type",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The cli-opencode guard in `SKILL.md` line 134 runs `opencode --version | grep -q '^1\\.'`",
     "created_at": "2026-10-18T12:45:05Z",
-    "last_save_at": "2026-10-18T13:13:03.195Z",
+    "last_save_at": "2026-10-18T20:01:59.617Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:734a1bdd3564562d3303471b5fb48f38a5475fa1d319f12e21900444ae46a6f1",
+    "source_fingerprint": "sha256:dae01c9a5ec8b2a6e912598dd529ca7a08a52648c6a5ce88312d0d1343d292f5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "52fbc4b82fe6369622d2e7502767ad567bc668749f77e391f71cff9534e829d9",
-      "plan.md": "8299906198c394e003feac0065a867c8ee8032ba5dfc674042025a35b44f30ca",
-      "tasks.md": "5ac453434aa4576a5372c8784b022743a3c11522169e636362805993193b9cb7",
-      "implementation-summary.md": "1a50f090ee898a53e73f11f8343813bbf8670955f1e4199e1d3ffa314660d61b"
+      "spec.md": "5c04558a5abf4b90f713e08d75c633433c76f78a7a5cc02503c9614a100b1e73",
+      "plan.md": "b7a44557b222658356d00a19e802fb83dafd67e1ae1d59acdc1c69dea62c0a6f",
+      "tasks.md": "4c427aba950b8d16c6136c6815ab6e038c5ca32c375c65bac937b76d57cd2c7d",
+      "implementation-summary.md": "0f817e008a724723b5299bae41462a73209d75709718f6bea567a5c7d02e52c1"
     },
     "last_active_at": null
   }

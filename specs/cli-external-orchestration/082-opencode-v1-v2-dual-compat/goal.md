@@ -117,6 +117,7 @@ and findings belong here.
 | 003 hard plugins | Done | 16 of 16 plugins active on v2 and 16 of 16 load on v1 (18 tool ids), plugin suite 353 of 353 with and without AI_SESSION_CHILD, sk-vision bun test 29 of 29, review P1s closed by verification, validate strict PASSED (003/scratch/evidence.md) |
 | Live bridged-tool execute on v2 | Done | Operator-approved run: v2 2.0.32 executed the bridged `opencode_goal_status` tool and returned the plugin's output (scratch/live-tool-execute/notes.txt) |
 | 004 agents, commands, config | Done | Ten browser keys, 23 delegation wording edits, mirrors synced, 12 non-command files moved out of the command tree (v1 51 to 39 commands), opencode.json unchanged and guarded by a shape test, deep-loop suite 2718 passed, validate strict PASSED (004/scratch/evidence.md) |
+| 006 cli-opencode dual dispatch | Done | The runtime reads the major from `--version`: v1 argv unchanged, v2 `run --standalone -m model#variant`, native refuses on v2; builder smoke dispatch exit 0 on 1.19.3 and 2.0.32, v2 child saw AI_SESSION_CHILD=1, deep-loop suite 2741 passed 0 failed, validate strict PASSED (006/scratch/evidence.md) |
 
 ### Deviations and findings
 
@@ -125,4 +126,6 @@ and findings belong here.
 | sk-vision bundle | `vision-runtime/dist/` is a build output missing from a fresh worktree, so 001 builds it before the baseline |
 | Bun-compiled v2 | OpenCode 2 is Bun-compiled, so `process.argv[1]` is a virtual path. An import-time `realpathSync(process.argv[1])` in a plugin import chain kills the plugin on v2 (002 decision 10) |
 | 005 policy amendment | On `unknown`, version-specific rules warn instead of dropping (005 Q5), and the probe targets the binary the command runs (005 NFR-S01) |
+| 006 binary order | PATH order first, `opencode2` before `opencode` only inside one directory, so test stubs keep winning over a real binary (006 decision 10). With both installed side by side, cli-opencode lineages go to v2 and native lineages refuse until `OPENCODE_BIN=opencode` |
+| 006 v2 default model | v2 lists no opencode-go model on this machine, so a v2 lineage with no pinned model fails here until that credential is added to v2; carried to 007 (006 decision 12) |
 <!-- /ANCHOR:log -->

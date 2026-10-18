@@ -1,0 +1,16 @@
+2093:function resolveExecutableVersion(command, options = {}) {
+2151:  // workspace-write are indistinguishable at the command level (buildOpencodeLineageCommand
+2213:    executableVersion: resolveExecutableVersion('codex', options),
+2248:    executableVersion: resolveExecutableVersion('claude', options),
+2258:function buildNativeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
+2286:    executableVersion: resolveExecutableVersion('opencode', options),
+2324:function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
+2325:  if (!isOpencodeBinaryAvailable(options.env || process.env)) {
+2359:    executableVersion: resolveExecutableVersion('opencode', options),
+2537:    executableVersion: resolveExecutableVersion('cursor-agent', options),
+2647:    executableVersion: resolveExecutableVersion('devin', options),
+2760:    executableVersion: resolveExecutableVersion('pi', options),
+2909:    executableVersion: resolveExecutableVersion('hermes', options),
+2920:  native: buildNativeLineageCommand,
+2923:  'cli-opencode': buildOpencodeLineageCommand,
+2961:function isOpencodeBinaryAvailable(env = process.env) {

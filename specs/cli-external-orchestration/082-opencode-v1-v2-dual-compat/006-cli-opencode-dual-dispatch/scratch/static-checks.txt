@@ -1,0 +1,32 @@
+## CHK-004: rg -n "grep -q '\^1" cli-opencode/SKILL.md
+rg exit=1
+## CHK-005: v1-only flags in fanout-run.cjs
+2292:    '--dir',
+2294:    '--command',
+2382:      '--dir',
+2386:    if (opencodeEffort) args.push('--variant', opencodeEffort);
+## CHK-006: --standalone
+2408:    '--standalone',
+## CHK-030
+rg exit=1
+## CHK-031
+156:        const match = VERSION_PATTERN.exec(candidate);
+rg exit=0
+## CHK-041 comment hygiene over added lines
+200:+      { loopType, specFolder: 'specs/test-native-defaults', lineageDir: '/tmp/native-defaults', env },
+hygiene grep done
+
+## Reading (orchestrator)
+- CHK-004: no output, rg exit 1. Met.
+- CHK-005: 2292 and 2294 are the native builder's argv, which is built only after the v2 refusal returns, so they are v1-only. 2382 and 2386 sit in the `opencode.version === 'v1'` branch of buildOpencodeLineageCommand. The v2 argv (from 2406) carries none of them. Met.
+- CHK-006: `--standalone` is in the v2 argv at 2408; the D2 test asserts it, and D4 asserts the native v2 refusal. Met.
+- CHK-030: no output. Met.
+- CHK-031: the single hit is RegExp.prototype.exec on VERSION_PATTERN, not child_process exec; the only spawn is spawnSync(executablePath, ['--version'], ...) with an argv array and no shell option. Met.
+- CHK-041: the one hit is pre-existing test data (`specs/test-native-defaults` as a specFolder value on a changed line), not a comment. No added comment carries a phase, task, packet or finding label. Met.
+
+## CHK-011: require() in opencode-version.cjs
+10:const { spawnSync } = require('node:child_process');
+16:} = require('node:fs');
+17:const path = require('node:path');
+## CHK-010
+node --check exit=0

@@ -55,9 +55,9 @@ The resolver reads the binary order `$OPENCODE_BIN`, `opencode2`, `opencode`, ru
 A resolver feeds two renderers. The dispatch table chooses the renderer from the resolved major, at the builder seam. No renderer reads the binary name.
 
 ### Key Components
-- **Resolver** (`opencode-version.cjs`): picks the first binary in the order `$OPENCODE_BIN`, `opencode2`, `opencode`. It runs `--version`, parses the output with the regex from research section 6, and returns `v1`, `v2` or a refusal. It caches by realpath, size and mtime.
+- **Resolver** (`opencode-version.cjs`): uses `$OPENCODE_BIN` when it is set. Otherwise it walks PATH in order and, inside each directory, takes `opencode2` before `opencode` (amended after T004, decision 10 in `scratch/decisions.txt`). It runs `--version`, parses the output with the regex from research section 6, and returns `v1`, `v2` or a refusal. It caches by realpath, size and mtime.
 - **v1 renderer**: today's argv, unchanged.
-- **v2 renderer**: `run --standalone`, `-m <provider>/<model>#<variant>`, the message, and no `--command`, `--dir`, `--variant`, `--pure`, `--share` or `--port`. The working directory comes from the spawn options (decision L1).
+- **v2 renderer**: `run --standalone`, `-m <provider>/<model>#<variant>`, `--auto` for danger-full-access (decision 5), the message, and no `--command`, `--dir`, `--variant`, `--pure`, `--share`, `--port` or `--dangerously-skip-permissions`. The working directory comes from the spawn options (decision L1).
 - **Dispatch seam**: the `cli-opencode` entry at line 2923 and the availability check at line 2961. Both call the resolver.
 
 ### Data Flow

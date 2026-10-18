@@ -1,0 +1,23 @@
+# T007 red run: first failing assertion per case (resolver replaced by an empty throwaway module, deleted after the run)
+- P1 resolves 1.19.3 as v1: TypeError: resolver.parseOpencodeVersion is not a function
+- P2 resolves opencode v2.0.32 as v2: TypeError: resolver.parseOpencodeVersion is not a function
+- P3 resolves 1.19.3-rc.1 as v1: TypeError: resolver.parseOpencodeVersion is not a function
+- P4 refuses empty probe output: TypeError: resolver.parseOpencodeVersion is not a function
+- P5 refuses unparseable probe output: TypeError: resolver.parseOpencodeVersion is not a function
+- A1 finds only opencode2 and reports its parsed version: TypeError: resolver.resolveOpencodeBinary is not a function
+- A2 finds only opencode and reports its parsed version: TypeError: resolver.resolveOpencodeBinary is not a function
+- A3 refuses when neither name resolves and names both candidates: AssertionError: expected undefined to be 'E_OPENCODE_UNRESOLVED' // Object.is equality
+- D2 uses the cli-opencode v2 argv, cwd, safe flags, and optional effort: Error: cli-opencode executor unavailable: command -v opencode failed
+- D4 refuses native v2 dispatch and names v2 and session.command: Error: Expected the operation to throw.
+- accepts CRLF and trailing whitespace around a version: TypeError: resolver.parseOpencodeVersion is not a function
+- uses the first version token in joined output: TypeError: resolver.parseOpencodeVersion is not a function
+- resolves a bare OPENCODE_BIN name through env.PATH: TypeError: resolver.resolveOpencodeBinary is not a function
+- does not fall back when OPENCODE_BIN names a missing path: AssertionError: expected undefined to be 'E_OPENCODE_UNRESOLVED' // Object.is equality
+- refuses when the version probe throws ETIMEDOUT: AssertionError: expected undefined to be 'E_OPENCODE_UNRESOLVED' // Object.is equality
+- refuses garbage from opencode2 without falling back to opencode: AssertionError: expected undefined to be 'E_OPENCODE_UNRESOLVED' // Object.is equality
+- runs a hostile OPENCODE_BIN path without shell interpretation: TypeError: resolver.resolveOpencodeBinary is not a function
+- keeps PATH directory order ahead of executable-name order: TypeError: resolver.resolveOpencodeBinary is not a function
+- prefers opencode2 when both names share one PATH directory: TypeError: resolver.resolveOpencodeBinary is not a function
+- caches by executable metadata and probes again after a rewrite: TypeError: resolver.resolveOpencodeBinary is not a function
+- keeps CJS parsing in parity with the ESM parser for every fixture: TypeError: resolver.parseOpencodeVersion is not a function
+- D1 and D3 pass before the change: they pin today's v1 argv (REQ-002 regression guards).

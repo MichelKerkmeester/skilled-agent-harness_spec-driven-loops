@@ -1,0 +1,13 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/system-deep-loop/runtime
+
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+
+ Test Files  1 passed (1)
+      Tests  23 passed (23)
+   Start at  21:09:01
+   Duration  1.42s (transform 20ms, setup 0ms, import 61ms, tests 1.25s, environment 0ms)
+
+exit=0

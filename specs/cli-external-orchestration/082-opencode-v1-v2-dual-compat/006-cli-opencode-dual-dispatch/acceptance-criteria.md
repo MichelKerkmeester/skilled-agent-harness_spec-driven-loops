@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** 082-opencode-v1-v2-dual-compat/006-cli-opencode-dual-dispatch
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-10-18
 <!-- /ANCHOR:metadata -->
 
@@ -51,10 +51,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001, REQ-002, REQ-003, REQ-004, REQ-008 | Given the version parser, both argv renderers and the availability check, When the new unit suite runs, Then every case passes, and the same cases fail on the pre-change code. | `cd .skilled/skills/system-deep-loop/runtime && npx vitest run --no-coverage tests/unit/opencode-dual-dispatch.vitest.ts` exits 0. The red output from T007 is recorded in the log. | Unmet | - |
-| AC-002 | REQ-005 | Given one pinned version each, When a smoke dispatch runs through the builder, Then the exit status is 0, the expected token is in the output, and the lineage file exists. | The smoke command confirmed in T004, run once on 1.19.3 and once on 2.0.32 with `--standalone`. The exit status, token and lineage path are recorded in the log. | Unmet | - |
-| AC-003 | REQ-006, REQ-004 | Given a v2 child dispatched through `run --standalone`, When a fixture plugin logs its environment, Then the log contains `AI_SESSION_CHILD=1`. | The T017 log line, recorded in the log. | Unmet | - |
-| AC-004 | REQ-007 | Given the deep-loop runtime package, When its full suite runs, Then the failure count is 0, and the pass count is at or above the T001 record. | `cd .skilled/skills/system-deep-loop/runtime && npx vitest run --no-coverage`, reading the `Tests` line and comparing it with T001. | Unmet | - |
+| AC-001 | REQ-001, REQ-002, REQ-003, REQ-004, REQ-008 | Given the version parser, both argv renderers and the availability check, When the new unit suite runs, Then every case passes, and the same cases fail on the pre-change code. | Observed: `scratch/green-run.txt`, 23 of 23, exit 0, and `scratch/green-run-after-fix.txt` after the fixes, 42 passed with the stress fanout suite. Red: `scratch/red-first-failures.txt`, 21 of 23 failed before the change; D1 and D3 pass on both sides because they pin today's v1 argv. | Met | - |
+| AC-002 | REQ-005 | Given one pinned version each, When a smoke dispatch runs through the builder, Then the exit status is 0, the expected token is in the output, and the lineage file exists. | Observed: `scratch/smoke/v1/summary.json`, 1.19.3 through the builder, exit 0, token in the reply, lineage file `smoke/v1/lineage-smoke.txt` holds the token. `scratch/smoke/v2/summary.json`, 2.0.32 with `run --standalone -m llmgateway/deepseek-v4.1-flash#max`, exit 0, token in the reply, lineage file holds the token. | Met | - |
+| AC-003 | REQ-006, REQ-004 | Given a v2 child dispatched through `run --standalone`, When a fixture plugin logs its environment, Then the log contains `AI_SESSION_CHILD=1`. | Observed: `scratch/smoke/v2/smoke-v2-plugin.jsonl`, the fixture plugin logged `AI_SESSION_CHILD` = `1` in `setup()` and in its `session.prompt` hook. | Met | - |
+| AC-004 | REQ-007 | Given the deep-loop runtime package, When its full suite runs, Then the failure count is 0, and the pass count is at or above the T001 record. | Observed: `scratch/deep-loop-suite-after.txt`, 167 of 167 files, 2741 passed, 0 failed, 8 skipped, exit 0. T001 recorded 2718 passed in 166 files; the delta is the new file's 23 cases. | Met | - |
 
 ### Status values
 
@@ -79,8 +79,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Not closeable yet. No criterion has run, and the phase has not started. Write this
-paragraph when the packet is closed, not before.
+All four criteria are Met with observed evidence. The new unit suite passes and failed before the change, a builder smoke dispatch passed on each version, a v2 child saw `AI_SESSION_CHILD=1`, and the full deep-loop suite has zero failures and 23 more passes than its baseline. The design amendments made on the way are recorded in `scratch/decisions.txt` 5 and 10.
 <!-- /ANCHOR:closure -->

@@ -142,6 +142,10 @@ function spawnFanout(
   }).then((result) => ({ hermetic, result }));
 }
 
+const OPENCODE_VERSION_PROBE = 'if [ "$1" = "--version" ]; then echo 1.19.3; exit 0; fi';
+const OPENCODE_NODE_VERSION_PROBE = "if (process.argv[2] === '--version') { "
+  + "console.log('1.19.3'); process.exit(0); }";
+
 /**
  * Write a stub binary at `binDir/{name}` that exits 0.
  * Used to simulate headless CLI executors without real API keys.
@@ -150,7 +154,14 @@ function writeStubBinary(binDir: string, name: string): string {
   const stubPath = join(binDir, name);
   writeFileSync(
     stubPath,
-    ['#!/bin/sh', 'write_fanout_artifacts', 'echo "stub-done"', 'exit 0', ''].join('\n')
+    [
+      '#!/bin/sh',
+      ...(name === 'opencode' ? [OPENCODE_VERSION_PROBE] : []),
+      'write_fanout_artifacts',
+      'echo "stub-done"',
+      'exit 0',
+      '',
+    ].join('\n')
       .replace('write_fanout_artifacts', writeFanoutArtifactsShell()),
     { mode: 0o755 },
   );
@@ -163,6 +174,7 @@ function writeNativeOpencodeStubBinary(binDir: string, captureCommand = false): 
     stubPath,
     [
       '#!/bin/sh',
+      OPENCODE_VERSION_PROBE,
       'payload="$*"',
       'lineage_dir=$(printf "%s\\n" "$payload" | sed -n "s/.*--fanout-lineage-artifact-dir=//p" | sed "s/[[:space:]].*//" | head -n 1)',
       'if [ -n "$lineage_dir" ]; then',
@@ -182,7 +194,17 @@ function writeNativeOpencodeStubBinary(binDir: string, captureCommand = false): 
 
 function writeNoArtifactStubBinary(binDir: string, name: string): string {
   const stubPath = join(binDir, name);
-  writeFileSync(stubPath, '#!/bin/sh\necho "stub-done-without-artifact"\nexit 0\n', { mode: 0o755 });
+  writeFileSync(
+    stubPath,
+    [
+      '#!/bin/sh',
+      ...(name === 'opencode' ? [OPENCODE_VERSION_PROBE] : []),
+      'echo "stub-done-without-artifact"',
+      'exit 0',
+      '',
+    ].join('\n'),
+    { mode: 0o755 },
+  );
   return stubPath;
 }
 
@@ -190,7 +212,13 @@ function writePendingQuestionStubBinary(binDir: string, name: string): string {
   const stubPath = join(binDir, name);
   writeFileSync(
     stubPath,
-    '#!/bin/sh\necho "LOGIC-SYNC REQUIRED: the spec contradicts the implementation"\nexit 0\n',
+    [
+      '#!/bin/sh',
+      ...(name === 'opencode' ? [OPENCODE_VERSION_PROBE] : []),
+      'echo "LOGIC-SYNC REQUIRED: the spec contradicts the implementation"',
+      'exit 0',
+      '',
+    ].join('\n'),
     { mode: 0o755 },
   );
   return stubPath;
@@ -202,6 +230,7 @@ function writeProjectionRefusalStubBinary(binDir: string, name: string): string 
     stubPath,
     [
       '#!/bin/sh',
+      ...(name === 'opencode' ? [OPENCODE_VERSION_PROBE] : []),
       'lineage_dir=$(dirname "$SPECKIT_OPENCODE_STATE_DIR")',
       'printf "attempt\\n" >> "$lineage_dir/projection-attempts.log"',
       'node - "$lineage_dir" <<\'NODE\'',
@@ -225,7 +254,17 @@ function writeProjectionRefusalStubBinary(binDir: string, name: string): string 
  */
 function writeFailingStubBinary(binDir: string, name: string, code: number): string {
   const stubPath = join(binDir, name);
-  writeFileSync(stubPath, `#!/bin/sh\necho "stub-fail"\nexit ${code}\n`, { mode: 0o755 });
+  writeFileSync(
+    stubPath,
+    [
+      '#!/bin/sh',
+      ...(name === 'opencode' ? [OPENCODE_VERSION_PROBE] : []),
+      'echo "stub-fail"',
+      `exit ${code}`,
+      '',
+    ].join('\n'),
+    { mode: 0o755 },
+  );
   return stubPath;
 }
 
@@ -235,6 +274,7 @@ function writeFlakySalvageMissStubBinary(binDir: string, name: string, counterPa
     stubPath,
     [
       '#!/bin/sh',
+      ...(name === 'opencode' ? [OPENCODE_VERSION_PROBE] : []),
       `counter=${shellQuote(counterPath)}`,
       'lineage_dir=$(dirname "$SPECKIT_OPENCODE_STATE_DIR")',
       'if [ ! -f "$counter" ]; then',
@@ -262,7 +302,15 @@ function writeSleepingStubBinary(binDir: string, name: string, seconds: number):
   const stubPath = join(binDir, name);
   writeFileSync(
     stubPath,
-    ['#!/bin/sh', `sleep ${seconds}`, writeFanoutArtifactsShell(), 'echo "slept"', 'exit 0', ''].join('\n'),
+    [
+      '#!/bin/sh',
+      ...(name === 'opencode' ? [OPENCODE_VERSION_PROBE] : []),
+      `sleep ${seconds}`,
+      writeFanoutArtifactsShell(),
+      'echo "slept"',
+      'exit 0',
+      '',
+    ].join('\n'),
     { mode: 0o755 },
   );
   return stubPath;
@@ -279,6 +327,7 @@ function writeIntervalRecordingStubBinary(
     stubPath,
     [
       '#!/usr/bin/env node',
+      ...(name === 'opencode' ? [OPENCODE_NODE_VERSION_PROBE] : []),
       'const fs = require("node:fs");',
       'const path = require("node:path");',
       'const startedAt = Date.now();',
@@ -319,6 +368,7 @@ function writeDelayedNodeStubBinary(binDir: string, name: string, delayMs: numbe
     stubPath,
     [
       '#!/usr/bin/env node',
+      ...(name === 'opencode' ? [OPENCODE_NODE_VERSION_PROBE] : []),
       'const fs = require("node:fs");',
       'const path = require("node:path");',
       'function lineageDir() {',
@@ -362,9 +412,10 @@ function writeFanoutArtifactsShell(): string {
 
 function writeMarkerSleepingStubBinary(binDir: string, name: string, seconds: number, markerPath: string): string {
   const stubPath = join(binDir, name);
+  const versionProbe = name === 'opencode' ? `${OPENCODE_VERSION_PROBE}\n` : '';
   writeFileSync(
     stubPath,
-    `#!/bin/sh\n: > ${shellQuote(markerPath)}\nsleep ${seconds}\n${writeFanoutArtifactsShell()}\necho "slept"\nexit 0\n`,
+    `#!/bin/sh\n${versionProbe}: > ${shellQuote(markerPath)}\nsleep ${seconds}\n${writeFanoutArtifactsShell()}\necho "slept"\nexit 0\n`,
     { mode: 0o755 },
   );
   return stubPath;
@@ -423,9 +474,10 @@ function waitForChild(
  */
 function writeEchoStubBinary(binDir: string, name: string): string {
   const stubPath = join(binDir, name);
+  const versionProbe = name === 'opencode' ? `${OPENCODE_VERSION_PROBE}\n` : '';
   writeFileSync(
     stubPath,
-    `#!/bin/sh\necho "ARGV: $@"\necho "STDIN_START"\ncat\necho "STDIN_END"\n${writeFanoutArtifactsShell()}\nexit 0\n`,
+    `#!/bin/sh\n${versionProbe}echo "ARGV: $@"\necho "STDIN_START"\ncat\necho "STDIN_END"\n${writeFanoutArtifactsShell()}\nexit 0\n`,
     { mode: 0o755 },
   );
   return stubPath;
@@ -999,17 +1051,30 @@ describe('fanout-run.cjs — native convergence threshold defaults', () => {
       prompt: string,
       resolvedSandbox: string,
       resolvedPermission: string,
-      options: { loopType: 'research' | 'review'; specFolder: string; lineageDir: string; convergenceThreshold?: number },
+      options: {
+        loopType: 'research' | 'review';
+        specFolder: string;
+        lineageDir: string;
+        convergenceThreshold?: number;
+        env: NodeJS.ProcessEnv;
+      },
     ) => { command: string; args: string[]; input: string };
   };
 
   function nativeCommandInput(loopType: 'research' | 'review'): string {
+    const binDir = makeTempDir('fanout-run-native-defaults-');
+    writeStubBinary(binDir, 'opencode');
+    const env: NodeJS.ProcessEnv = {
+      ...process.env,
+      PATH: `${binDir}:${process.env.PATH ?? ''}`,
+      OPENCODE_BIN: undefined,
+    };
     const command = buildLineageCommand(
       { kind: 'native' },
       '',
       'workspace-write',
       'default',
-      { loopType, specFolder: 'specs/test-native-defaults', lineageDir: '/tmp/native-defaults' },
+      { loopType, specFolder: 'specs/test-native-defaults', lineageDir: '/tmp/native-defaults', env },
     );
     return command.args.at(-1) ?? '';
   }
@@ -1294,6 +1359,7 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
         specFolder: 'specs/sensitive-native-input',
         lineageDir: '/tmp/sensitive-native-lineage',
         sessionId: 'sensitive-native-session',
+        env: { ...process.env, PATH: pathValue, OPENCODE_BIN: undefined },
       } as never,
     );
     const nativePromptIndex = native.args.length - 1;
@@ -2230,7 +2296,7 @@ describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatc
     const markerPath = join(baseDir, 'spawned.marker');
     writeFileSync(
       join(binDir, 'opencode'),
-      `#!/bin/sh\n: > ${shellQuote(markerPath)}\nexit 0\n`,
+      '#!/bin/sh\n' + OPENCODE_VERSION_PROBE + '\n: > ' + shellQuote(markerPath) + '\nexit 0\n',
       { mode: 0o755 },
     );
     const fanoutConfig = JSON.stringify({
@@ -2446,12 +2512,20 @@ describe('fanout-run.cjs — review session id propagation templates', () => {
         specFolder: string;
         lineageDir: string;
         sessionId?: string;
+        env: NodeJS.ProcessEnv;
       },
     ) => { command: string; args: string[]; input: string };
   };
 
   it('uses a supplied session_id for review init artifacts and preserves the timestamp fallback', () => {
     const suppliedSessionId = 'fanout-lineage-a-run-123';
+    const binDir = makeTempDir('fanout-run-session-id-');
+    writeStubBinary(binDir, 'opencode');
+    const env: NodeJS.ProcessEnv = {
+      ...process.env,
+      PATH: `${binDir}:${process.env.PATH ?? ''}`,
+      OPENCODE_BIN: undefined,
+    };
 
     for (const workflowPath of reviewWorkflowPaths) {
       expect(renderReviewInitSessionIds(workflowPath, suppliedSessionId)).toEqual({
@@ -2476,6 +2550,7 @@ describe('fanout-run.cjs — review session id propagation templates', () => {
         specFolder: 'specs/test-session-id',
         lineageDir: '/tmp/fanout-lineage-a',
         sessionId: suppliedSessionId,
+        env,
       },
     );
     const withoutSession = buildLineageCommand(
@@ -2487,6 +2562,7 @@ describe('fanout-run.cjs — review session id propagation templates', () => {
         loopType: 'review',
         specFolder: 'specs/test-session-id',
         lineageDir: '/tmp/fanout-lineage-a',
+        env,
       },
     );
 
@@ -2886,7 +2962,9 @@ describe('fanout-run.cjs — pool integration with stub binaries', () => {
     const stubPath = join(binDir, 'opencode');
     writeFileSync(
       stubPath,
-      `#!/bin/sh\necho "STATE_DIR=$SPECKIT_OPENCODE_STATE_DIR LINEAGE_ID=$SPECKIT_FANOUT_LINEAGE_ID"\n${writeFanoutArtifactsShell()}\nexit 0\n`,
+      '#!/bin/sh\n' + OPENCODE_VERSION_PROBE
+        + '\necho "STATE_DIR=$SPECKIT_OPENCODE_STATE_DIR LINEAGE_ID=$SPECKIT_FANOUT_LINEAGE_ID"\n'
+        + writeFanoutArtifactsShell() + '\nexit 0\n',
       { mode: 0o755 },
     );
 
@@ -2935,7 +3013,9 @@ describe('fanout-run.cjs — pool integration with stub binaries', () => {
     // distinctness from captured stdout, not just dir existence.
     writeFileSync(
       stubPath,
-      `#!/bin/sh\necho "STATE_DIR=$SPECKIT_OPENCODE_STATE_DIR LINEAGE_ID=$SPECKIT_FANOUT_LINEAGE_ID"\n${writeFanoutArtifactsShell()}\nexit 0\n`,
+      '#!/bin/sh\n' + OPENCODE_VERSION_PROBE
+        + '\necho "STATE_DIR=$SPECKIT_OPENCODE_STATE_DIR LINEAGE_ID=$SPECKIT_FANOUT_LINEAGE_ID"\n'
+        + writeFanoutArtifactsShell() + '\nexit 0\n',
       { mode: 0o755 },
     );
 
@@ -3349,6 +3429,7 @@ describe('fanout-run.cjs — a containment finding does not fail a lineage that 
       join(binDir, 'opencode'),
       [
         '#!/bin/sh',
+        OPENCODE_VERSION_PROBE,
         `mkdir -p ${shellQuote(join(repoRoot, 'stray-out-of-scope'))}`,
         `echo escaped > ${shellQuote(strayPath)}`,
         writeFanoutArtifactsShell(),
@@ -3440,6 +3521,7 @@ describe('fanout-run.cjs — an out-of-packet untracked write settles as an advi
       join(binDir, 'opencode'),
       [
         '#!/bin/sh',
+        OPENCODE_VERSION_PROBE,
         `mkdir -p ${shellQuote(join(repoRoot, 'stray-out-of-scope'))}`,
         `echo escaped > ${shellQuote(strayPath)}`,
         writeFanoutArtifactsShell(),
@@ -3530,6 +3612,7 @@ describe('fanout-run.cjs — containment mode is an explicit opt-in', () => {
         join(binDir, 'opencode'),
         [
           '#!/bin/sh',
+          OPENCODE_VERSION_PROBE,
           `echo escaped > ${shellQuote(trackedPath)}`,
           writeFanoutArtifactsShell(),
           'echo "stub-done"',
@@ -3627,6 +3710,7 @@ describe('fanout-run.cjs — containment runs for failed lanes', () => {
       join(binDir, 'opencode'),
       [
         '#!/bin/sh',
+        OPENCODE_VERSION_PROBE,
         `mkdir -p ${shellQuote(join(repoRoot, 'stray-out-of-scope'))}`,
         `echo escaped > ${shellQuote(strayPath)}`,
         ...stubLines,
@@ -3779,6 +3863,7 @@ describe('fanout-run.cjs — shared-checkout churn forces preserve', () => {
       join(binDir, 'opencode'),
       [
         '#!/bin/sh',
+        OPENCODE_VERSION_PROBE,
         ...churnLines,
         'sleep 2',
         writeFanoutArtifactsShell(),
@@ -4750,9 +4835,10 @@ describe('fanout-run.cjs — recursion-guard dispatch stack (SPECKIT_CLI_DISPATC
    */
   function writeStackEchoStub(binDir: string, name: string): string {
     const stubPath = join(binDir, name);
+    const versionProbe = name === 'opencode' ? OPENCODE_VERSION_PROBE + '\n' : '';
     writeFileSync(
       stubPath,
-      '#!/bin/sh\necho "DISPATCH_STACK=$SPECKIT_CLI_DISPATCH_STACK"\n'
+      '#!/bin/sh\n' + versionProbe + 'echo "DISPATCH_STACK=$SPECKIT_CLI_DISPATCH_STACK"\n'
         + 'echo "STATE_DIR=$SPECKIT_OPENCODE_STATE_DIR"\n'
         + `echo "LINEAGE_ID=$SPECKIT_FANOUT_LINEAGE_ID"\n${writeFanoutArtifactsShell()}\nexit 0\n`,
       { mode: 0o755 },
@@ -5053,6 +5139,7 @@ describe('fanout-run.cjs — a containment snapshot that loses to index.lock is 
       join(binDir, 'opencode'),
       [
         '#!/bin/sh',
+        OPENCODE_VERSION_PROBE,
         `touch ${shellQuote(lockPath)}`,
         writeFanoutArtifactsShell(),
         'echo "stub-done"',
@@ -5119,6 +5206,7 @@ describe('fanout-run.cjs — a fulfilled lane whose deltas carry findings but wh
       join(binDir, 'opencode'),
       [
         '#!/bin/sh',
+        OPENCODE_VERSION_PROBE,
         writeFanoutArtifactsShell(),
         'if [ -n "$lineage_dir" ]; then',
         '  mkdir -p "$lineage_dir/deltas"',
@@ -5191,6 +5279,7 @@ describe('fanout-run.cjs — the empty-registry advisory reads the registry shap
       join(binDir, 'opencode'),
       [
         '#!/bin/sh',
+        OPENCODE_VERSION_PROBE,
         writeFanoutArtifactsShell(),
         'if [ -n "$lineage_dir" ]; then',
         '  mkdir -p "$lineage_dir/deltas"',
@@ -5255,6 +5344,7 @@ describe('fanout-run.cjs — the empty-registry advisory reads the registry shap
       join(binDir, 'opencode'),
       [
         '#!/bin/sh',
+        OPENCODE_VERSION_PROBE,
         writeFanoutArtifactsShell(),
         'if [ -n "$lineage_dir" ]; then',
         '  mkdir -p "$lineage_dir/deltas"',

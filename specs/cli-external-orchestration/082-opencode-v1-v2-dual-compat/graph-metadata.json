@@ -219,7 +219,7 @@
     ],
     "causal_summary": "OpenCode now ships two lines that load plugins, read config and parse the `run` command differently",
     "created_at": "2026-10-18T09:21:48Z",
-    "last_save_at": "2026-10-18T18:30:47.313Z",
+    "last_save_at": "2026-10-18T20:03:20.822Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -227,10 +227,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:c62e54d98db988a4b6a39527c4c050b223b09c6e12fe7274e4b6ca899336f1bc",
+    "source_fingerprint": "sha256:8c5421109e522c9f2c6d4d2a8b5660e0bdab8b24796dc98c0173521bd8927cd7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1785b966e6296701eac5cde6cfe5f75f9fbbb0a71ec1236c51b722a9c7d20041",
+      "spec.md": "7f9ad4b52e8f2512da0d0cf395cf827cea816afdefc419d036ed3b21583776d5",
       "research/research.md": "d98a79b9f7b739b2ec1048e9bd48e083a8164b43ab63c6c54ca78b48202962a9"
     },
     "last_active_at": null

@@ -1,0 +1,8 @@
+MANIFEST derived=780 frozen=780 baseline=501 gaps=20 exclusions=2 reproduced=True
+DISCOVERY readmes=753 pi_extensions=True github_workflows=True
+EXCLUSIONS classes=21 fixture_readmes_scored=False
+SUMMARY: discovery=pass exclusions=21/21 manifest=reproducible
+test_readme_manifest.py exit=0
+PARITY baseline_files=978 post_files=978 diff_entries=0
+PARITY PASS: verdict diff is empty
+test_readme_verdict_parity.py exit=0

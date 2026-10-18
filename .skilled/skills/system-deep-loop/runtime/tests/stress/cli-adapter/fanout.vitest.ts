@@ -268,6 +268,7 @@ function installDestructiveShim(fixture: AdapterShimFixture, targetPath: string)
   writeFileSync(join(fixture.binDir, 'opencode'), [
     '#!/usr/bin/env node',
     "'use strict';",
+    "if (process.argv[2] === '--version') { console.log('1.19.3'); process.exit(0); }",
     "const { appendFileSync, mkdirSync, readFileSync, writeFileSync } = require('node:fs');",
     "const { dirname, join } = require('node:path');",
     'const control = JSON.parse(readFileSync(',

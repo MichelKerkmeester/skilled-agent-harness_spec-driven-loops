@@ -57,6 +57,7 @@ function writeTimestampStubBinary(binDir: string, records: Array<Record<string, 
     stubPath,
     [
       '#!/usr/bin/env node',
+      'if (process.argv[2] === "--version") { console.log("1.19.3"); process.exit(0); }',
       'const fs = require("node:fs");',
       'const path = require("node:path");',
       'const stateDir = process.env.SPECKIT_OPENCODE_STATE_DIR;',

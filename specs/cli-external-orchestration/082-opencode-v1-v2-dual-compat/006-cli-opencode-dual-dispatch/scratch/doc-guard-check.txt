@@ -1,0 +1,15 @@
+# SKILL.md guard: the three committed lines plus one harness-only echo of the picked binary, run under sh. Silence from the guard itself means pass.
+machine PATH:
+  (harness only) picked: /Users/michelkerkmeester/.local/bin/opencode2
+OPENCODE_BIN=opencode:
+  (harness only) picked: opencode
+PATH d1(opencode v1):d2(opencode2):
+  (harness only) picked: <fixture>/d1/opencode
+PATH both-in-one-dir:
+  (harness only) picked: <fixture>/both/opencode2
+no binary:
+Not installed or version drift. See references/cli-reference.md §9.
+  (harness only) picked: none
+OPENCODE_BIN printing 1.19.3garbage:
+Not installed or version drift. See references/cli-reference.md §9.
+  (harness only) picked: <fixture>/d1/opencode-bad

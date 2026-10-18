@@ -1,0 +1,154 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/system-deep-loop/runtime
+
+FATAL WARN: lineage opencode runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+ ❯ tests/unit/fanout-run.vitest.ts (167 tests | 4 failed) 196938ms
+     × uses the research-specific 0.05 default for native dispatch when no threshold is explicit 1167ms
+     × keeps the 0.1 default for review native dispatch when no threshold is explicit 1ms
+     × fingerprints only the effective allowlist and prompt digest 66ms
+     × uses a supplied session_id for review init artifacts and preserves the timestamp fallback 10ms
+ ❯ tests/stress/cli-adapter/fanout.vitest.ts (20 tests | 1 failed | 1 skipped) 23413ms
+     × fails before fan-out execution when the executor transport is unavailable 277ms
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+{"type":"schema_mismatch","severity":"warn","lineage":"glm","message":"Registry uses non-canonical key \"findings\" instead of \"keyFindings\"; coerced 1 entries.","aliasKey":"findings","canonicalKey":"keyFindings","coercedCount":1}
+{"type":"schema_mismatch","severity":"warn","lineage":"glm","message":"Registry uses non-canonical key \"findings\" instead of \"keyFindings\"; coerced 2 entries.","aliasKey":"findings","canonicalKey":"keyFindings","coercedCount":2}
+{"type":"schema_mismatch","severity":"warn","lineage":"glm","message":"Registry uses non-canonical key \"findings\" instead of \"keyFindings\"; coerced 1 entries.","aliasKey":"findings","canonicalKey":"keyFindings","coercedCount":1}
+{"type":"schema_mismatch","severity":"warn","lineage":"a","findingId":"F1","unknownSeverity":"P3","message":"Finding \"F1\" from lineage \"a\" carries severity \"P3\", which is outside the review severity scale (P0|P1|P2). It is unranked, sorts below every P2, and cannot raise the merged verdict; collapse it to P2 where the finding is rated."}
+{"type":"schema_mismatch","severity":"warn","lineage":"glm","message":"Registry uses non-canonical key \"findings\" instead of \"openFindings\"; coerced 1 entries.","aliasKey":"findings","canonicalKey":"openFindings","coercedCount":1}
+{"type":"lineage_reducer_provenance_unverified","severity":"warn","lineage":"lina","message":"lineage lina merged with unverified provenance: no deep-research-dashboard.md confirms the reducer wrote its registry"}
+{"type":"lineage_reducer_provenance_unverified","severity":"warn","lineage":"linb","message":"lineage linb merged with unverified provenance: no deep-research-dashboard.md confirms the reducer wrote its registry"}
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+GREEN: {"rowCount":3,"hasComplete":true}
+RED: {"rowCount":2,"hasComplete":false}
+RESTORE: {"rowCount":3,"hasComplete":true}
+GREEN: {"artifactCount":2,"paths":["research/deltas/iter-001.jsonl","research/deltas/iter-002.jsonl"],"iter1RowCount":1}
+RED: {"artifactCount":1,"paths":["research/deltas/iter-001.jsonl"],"iter1RowCount":2}
+RESTORE: {"artifactCount":2,"paths":["research/deltas/iter-001.jsonl","research/deltas/iter-002.jsonl"],"iter1RowCount":1}
+GREEN: {"findingsCount":1,"evidenceCount":1}
+RED: {"findingsCount":0,"evidenceCount":1}
+RESTORE: {"findingsCount":1,"evidenceCount":1}
+GREEN: {"claimsCount":2,"sourcesCount":1}
+RED: {"claimsCount":0,"sourcesCount":1}
+RESTORE: {"claimsCount":2,"sourcesCount":1}
+{"type":"step_start","part":{"type":"step-start","modelID":"deepseek-v4-pro"}}
+{"type":"step_start","part":{"type":"step-start","modelID":"deepseek-v4-pro"}}
+{"type":"step_start","part":{"type":"step-start","modelID":"  DeepSeek-V4-Pro  "}}
+{"type":"step_start","part":{"type":"step-start","modelID":"some-other-model"}}
+{"type":"step_start","part":{"type":"step-start","modelID":"gpt-9-substituted"}}
+{"type":"step_start","part":{"type":"step-start","modelID":"deepseek-v4-pro"}}
+nested cli-claude-code dispatch refused [recursion-guard-stack]: cli-claude-code already appears in SPECKIT_CLI_DISPATCH_STACK — run the iteration in-process instead of dispatching cli-claude-code again
+nested cli-codex dispatch refused [recursion-guard-env]: CODEX_SESSION_ID is set for cli-codex — run the iteration in-process instead of dispatching cli-codex again
+nested cli-codex dispatch refused [recursion-guard-stack]: cli-codex already appears in SPECKIT_CLI_DISPATCH_STACK — run the iteration in-process instead of dispatching cli-codex again
+nested cli-codex dispatch refused [recursion-guard-lineage]: SPECKIT_FANOUT_LINEAGE_ID is set, so this process is already a fan-out CLI lineage — run the iteration in-process instead of dispatching cli-codex again
+nested cli-codex dispatch refused [recursion-guard-ancestry]: cli-codex executor binary appears in process ancestry — run the iteration in-process instead of dispatching cli-codex again
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/fanout-run.vitest.ts > fanout-run.cjs — native convergence threshold defaults > uses the research-specific 0.05 default for native dispatch when no threshold is explicit
+Error: Native lineages cannot start on OpenCode v2 because v2 run has no --command and does not expand a slash message; a registered command needs the session.command route.
+ ❯ inputError scripts/fanout-run.cjs:115:15
+ ❯ buildNativeLineageCommand scripts/fanout-run.cjs:2269:11
+ ❯ buildLineageCommand scripts/fanout-run.cjs:2990:10
+ ❯ nativeCommandInput tests/unit/fanout-run.vitest.ts:1059:21
+    1057|
+    1058|   function nativeCommandInput(loopType: 'research' | 'review'): string…
+    1059|     const command = buildLineageCommand(
+       |                     ^
+    1060|       { kind: 'native' },
+    1061|       '',
+ ❯ tests/unit/fanout-run.vitest.ts:1070:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/unit/fanout-run.vitest.ts > fanout-run.cjs — native convergence threshold defaults > keeps the 0.1 default for review native dispatch when no threshold is explicit
+Error: Native lineages cannot start on OpenCode v2 because v2 run has no --command and does not expand a slash message; a registered command needs the session.command route.
+ ❯ inputError scripts/fanout-run.cjs:115:15
+ ❯ buildNativeLineageCommand scripts/fanout-run.cjs:2269:11
+ ❯ buildLineageCommand scripts/fanout-run.cjs:2990:10
+ ❯ nativeCommandInput tests/unit/fanout-run.vitest.ts:1059:21
+    1057|
+    1058|   function nativeCommandInput(loopType: 'research' | 'review'): string…
+    1059|     const command = buildLineageCommand(
+       |                     ^
+    1060|       { kind: 'native' },
+    1061|       '',
+ ❯ tests/unit/fanout-run.vitest.ts:1076:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/unit/fanout-run.vitest.ts > fanout-run.cjs — cli-codex adapter > fingerprints only the effective allowlist and prompt digest
+Error: Native lineages cannot start on OpenCode v2 because v2 run has no --command and does not expand a slash message; a registered command needs the session.command route.
+ ❯ inputError scripts/fanout-run.cjs:115:15
+ ❯ buildNativeLineageCommand scripts/fanout-run.cjs:2269:11
+ ❯ buildLineageCommand scripts/fanout-run.cjs:2990:10
+ ❯ tests/unit/fanout-run.vitest.ts:1338:20
+    1336|     expect(payload).toMatchObject({ promptDigest: expect.stringMatchin…
+    1337|
+    1338|     const native = buildLineageCommand(
+       |                    ^
+    1339|       { kind: 'native', label: 'native-fingerprint', iterations: 1 },
+    1340|       'generic loop prompt',
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/unit/fanout-run.vitest.ts > fanout-run.cjs — review session id propagation templates > uses a supplied session_id for review init artifacts and preserves the timestamp fallback
+Error: Native lineages cannot start on OpenCode v2 because v2 run has no --command and does not expand a slash message; a registered command needs the session.command route.
+ ❯ inputError scripts/fanout-run.cjs:115:15
+ ❯ buildNativeLineageCommand scripts/fanout-run.cjs:2269:11
+ ❯ buildLineageCommand scripts/fanout-run.cjs:2990:10
+ ❯ tests/unit/fanout-run.vitest.ts:2521:25
+    2519|     }
+    2520|
+    2521|     const withSession = buildLineageCommand(
+       |                         ^
+    2522|       { kind: 'native', iterations: 2 },
+    2523|       '',
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  tests/stress/cli-adapter/fanout.vitest.ts > fan-out scheduler contracts > fails before fan-out execution when the executor transport is unavailable
+AssertionError: expected { event: 'failed', …(8) } to match object { error: { …(2) } }
+(18 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "error": {
+      "exit_code": null,
+-     "message": StringContaining "executor unavailable",
++     "message": "Unable to resolve OpenCode binary (opencode2 or opencode). No executable regular file was found on PATH. Probe output: <none>",
+    },
+  }
+
+ ❯ expectTransportMissingFailure tests/stress/cli-adapter/fanout.vitest.ts:209:19
+    207| function expectTransportMissingFailure(events: readonly Record<string,…
+    208|   const failure = events.find((event) => event.event === 'failed' && e…
+    209|   expect(failure).toMatchObject({
+       |                   ^
+    210|     error: {
+    211|       message: expect.stringContaining('executor unavailable'),
+ ❯ tests/stress/cli-adapter/fanout.vitest.ts:527:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  2 failed | 165 passed (167)
+      Tests  5 failed | 2736 passed | 8 skipped (2749)
+   Start at  21:09:15
+   Duration  1200.81s (transform 2.24s, setup 0ms, import 7.11s, tests 1181.64s, environment 6ms)
+
+exit=1

@@ -54,12 +54,12 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run --no-coverage tests/unit/opencode-dual-dispatch.vitest.ts` exits 0, and the same cases failed before the change.
-- [ ] A smoke dispatch on 1.19.3 through the builder exits 0, prints the expected token and writes the lineage file.
-- [ ] A smoke dispatch on 2.0.32 through the builder with `--standalone` exits 0, prints the expected token and writes the lineage file.
-- [ ] A v2 child dispatched through `run --standalone` logs `AI_SESSION_CHILD=1` from a fixture plugin.
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run --no-coverage` reports zero failures and a pass count at or above the baseline recorded in the log below.
-- [ ] `rg -n "grep -q '\^1" .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` prints nothing.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run --no-coverage tests/unit/opencode-dual-dispatch.vitest.ts` exits 0, and the same cases failed before the change.
+- [x] A smoke dispatch on 1.19.3 through the builder exits 0, prints the expected token and writes the lineage file.
+- [x] A smoke dispatch on 2.0.32 through the builder with `--standalone` exits 0, prints the expected token and writes the lineage file.
+- [x] A v2 child dispatched through `run --standalone` logs `AI_SESSION_CHILD=1` from a fixture plugin.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run --no-coverage` reports zero failures and a pass count at or above the baseline recorded in the log below.
+- [x] `rg -n "grep -q '\^1" .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` prints nothing.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -76,20 +76,27 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Planning documents filled | Done | `validate.sh --strict` output in the orchestrator report |
-| Deep-loop baseline recorded (T001) | Pending | Not yet run |
-| Live probes recorded (T004) | Pending | Not yet run |
-| Red run recorded (T007) | Pending | Not yet run |
-| Smoke dispatch on 1.19.3 (T015) | Pending | Not yet run |
-| Smoke dispatch on 2.0.32 (T016) | Pending | Not yet run |
-| Child environment check (T017) | Pending | Not yet run |
+| Deep-loop baseline recorded (T001) | Done | `scratch/deep-loop-suite-before.txt`: 166 files, 2718 passed, 8 skipped |
+| Live probes recorded (T004) | Done | `scratch/probes/`, decisions 2 to 6 in `scratch/decisions.txt`; 0.000919 USD |
+| Red run recorded (T007) | Done | `scratch/red-first-failures.txt`: 21 of 23 failed first; D1 and D3 pin today's argv |
+| Smoke dispatch on 1.19.3 (T015) | Done | `scratch/smoke/v1`: exit 0, token, lineage file; 0.002699 USD |
+| Smoke dispatch on 2.0.32 (T016) | Done | `scratch/smoke/v2`: exit 0, token, lineage file; 0.001162 USD |
+| Child environment check (T017) | Done | `scratch/smoke/v2/smoke-v2-plugin.jsonl`: AI_SESSION_CHILD=1 in setup() and session.prompt |
+| Full deep-loop suite (T014) | Done | `scratch/deep-loop-suite-after.txt`: 167 files, 2741 passed, 0 failed, 8 skipped |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| Name fallback rejected | Iteration-013 F8 proposes a v2 fallback when the name ends in `2` and the output does not parse. D3 and research section 6 reject it. Default: refuse. Open question Q5 in spec.md. |
+| Name fallback rejected | Iteration-013 F8 proposes a v2 fallback when the name ends in `2` and the output does not parse. D3 and research section 6 reject it. Settled: refuse (decision 9), and a test covers it. |
 | Pi guard | The repo's Pi guard denies a nested `opencode run` (research section 2, iteration-017 F4). The orchestrator runs the smoke dispatches. |
 | Line numbers | Research section 9 cites lines 2258, 2324, 2923 and 2961. Research section 6 cites 2093 for `resolveExecutableVersion`. A planning-time check found each at those lines. T003 repeats the check. |
 | Unplaced by the brief | The brief names no file for the resolver, and it names no test file. Both are proposed in spec.md section 3 (open question Q1). |
 | Working directory | The brief says the v2 branch omits `--dir`, but it does not say how the child gets its directory. Decision L1 sets the spawn cwd. The T004 probe confirms it. |
+| Binary order amended | Read literally, the order would make the existing tests skip their `opencode` stub and spawn this machine's real `opencode2`. Amended: PATH order first, `opencode2` before `opencode` only inside one directory (decision 10, plan.md section 3). |
+| v2 permission flag | v2 `run` lists `--auto` and no `--dangerously-skip-permissions`, so the v2 renderer maps danger-full-access to `--auto` (decision 5). |
+| Native v2 stays closed | A bare slash message was not expanded on v2 (decision 3). With both binaries installed side by side, native lineages refuse until `OPENCODE_BIN=opencode`. |
+| Test stubs answer `--version` | L3 makes a silent stub refuse, so five test files outside spec.md section 3 changed (decision 11). |
+| v2 default model | v2 lists no opencode-go model on this machine; carried to 007 (decision 12). |
+| probes/ kept | T020 deletes it, but decisions cite it and the scratch folder is committed (decision 20). |
 <!-- /ANCHOR:log -->

@@ -24,6 +24,10 @@ const STATE_ENV_BY_KIND = Object.freeze({
 
 function runAdapterShim(kind) {
   const args = process.argv.slice(2);
+  if (kind === 'cli-opencode' && args[0] === '--version') {
+    process.stdout.write('1.19.3\n', () => process.exit(0));
+    return;
+  }
   const controlPath = join(process.env.HOME || process.cwd(), '.cli-adapter-control.json');
   let control = {};
   try {

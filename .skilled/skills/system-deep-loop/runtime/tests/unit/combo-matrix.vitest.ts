@@ -94,7 +94,10 @@ function makeTempDir(prefix: string): string {
 
 function writeStubBinary(binDir: string, name: string): string {
   const stubPath = join(binDir, name);
-  writeFileSync(stubPath, '#!/bin/sh\nexit 0\n', { mode: 0o755 });
+  const script = name === 'opencode'
+    ? '#!/bin/sh\nif [ "$1" = "--version" ]; then echo 1.19.3; exit 0; fi\nexit 0\n'
+    : '#!/bin/sh\nexit 0\n';
+  writeFileSync(stubPath, script, { mode: 0o755 });
   return stubPath;
 }
 
