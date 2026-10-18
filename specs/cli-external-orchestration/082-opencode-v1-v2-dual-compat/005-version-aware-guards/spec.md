@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-18 |
 | **Branch** | `scaffold/005-version-aware-guards` |
 | **Parent Spec** | ../spec.md |
@@ -152,7 +152,7 @@ The guards classify an `opencode2` run, evaluate only the rules that apply to th
 | Dependency | Guard suite baseline counts from 001 | With no before number, "no regressions" cannot be shown. | T002 records the counts before the first edit. |
 | Dependency | Whether v2 `run` expands a slash message (Q1) | Decides what "correct" means for a v2 slash run. | AC-002 uses a fixture that asserts no block, which holds under either answer. |
 | Risk | The resolver runs a binary named in command text | A path-qualified binary would run before the command is checked. | Q4 default: path-qualified binaries resolve to `unknown` without a probe. |
-| Risk | On `unknown`, v1-only rules drop out | A v1 slash-prompt violation goes unreported on a host whose probe fails. | Accepted per the brief. The trade-off is recorded in goal.md and open question Q5. |
+| Risk | On `unknown`, a version-specific rule could block a dispatch it cannot prove wrong | A failed probe would block a valid v2 dispatch. | Version-specific rules run at `warn` on `unknown` (Q5), so coverage stays and nothing unproven blocks. |
 | Risk | Evaluate's signature changes under three preflight callers | A caller that passes no version could lose v1 coverage. | `evaluate` resolves the version itself when the caller passes none, so the callers stay unchanged. REQ-007 tests their verdicts. |
 <!-- /ANCHOR:risks -->
 
@@ -166,7 +166,7 @@ The guards classify an `opencode2` run, evaluate only the rules that apply to th
 - **NFR-P02**: The probe runs under a fixed timeout, set as a named constant. A test with a hanging probe returns `unknown` within that timeout.
 
 ### Security
-- **NFR-S01**: The resolver probes only bare command names that resolve through PATH or `$OPENCODE_BIN`, pending Q4. A path-qualified binary resolves to `unknown` with no probe.
+- **NFR-S01**: The resolver probes the bare command name the dispatch runs, resolved through PATH. `$OPENCODE_BIN` is the probe target only when the command runs `$OPENCODE_BIN` itself, so the guard never probes a different binary than the one the dispatch invokes. A path-qualified binary resolves to `unknown` with no probe (Q4).
 - **NFR-S02**: The guard writes no files. The resolver keeps its cache in memory for one process.
 
 ### Reliability
@@ -217,4 +217,5 @@ The guards classify an `opencode2` run, evaluate only the rules that apply to th
 - **Q3.** The resolver's file location. The brief names no file. Default: `.skilled/hooks/dispatch/lib/opencode-version.mjs`. Resolved: the default location.
 - **Q4.** Whether path-qualified binaries in command text get a probe. Default: no probe, so they resolve to `unknown`. Resolved: the default, no probe.
 - **Q5.** Coverage on `unknown`. Iteration-010 says the widening "can only add lint coverage". The `unknown` intersection drops v1-only rules when a probe fails, which narrows coverage. Default: follow the brief, drop them, and report the trade-off. Resolved by the orchestrator: on `unknown`, both-version rules run at their own severity and version-specific rules run at `warn`, so a failed probe narrows nothing to silence and blocks nothing it cannot prove.
+- **Q6.** Sync callers against an async resolver. `resolveOpencodeVersion` is async, but `evaluate` and every caller of it are synchronous, and plan.md keeps the callers unchanged. Raised by the implementer as a logic-sync. Resolved by the orchestrator: the async export stays for its timeout tests, a synchronous `resolveOpencodeVersionSync` shares its cache and probes through the bounded `spawnSync`, and `evaluate` calls it only for an OpenCode `run` command whose rule list declares `appliesTo`. Other dispatches never probe.
 <!-- /ANCHOR:questions -->

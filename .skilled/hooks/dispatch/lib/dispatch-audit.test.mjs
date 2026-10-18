@@ -1,8 +1,8 @@
 // Tests for the CLI dispatch audit trail core. Run: npx vitest run <this file>
-import { describe, it, expect } from 'vitest';
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { describe, it, expect, vi } from 'vitest';
+import { chmodSync, existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { dirname, join } from 'node:path';
+import { delimiter, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -18,10 +18,289 @@ import {
   matchDispatchShape,
   recordDispatch,
 } from './dispatch-audit.mjs';
+import { evaluate } from './dispatch-rule-checks.mjs';
+import {
+  clearOpencodeVersionCache,
+  parseOpencodeVersion,
+  resolveOpencodeVersion,
+  resolveOpencodeVersionSync,
+  PROBE_TIMEOUT_MS,
+} from './opencode-version.mjs';
+
+// Resolver API: export function parseOpencodeVersion(text) and export function
+// resolveOpencodeVersion(binary, { probe, stat, realpath }).
+// Both return 'v1' | 'v2' | 'unknown'; resolution memoizes by realpath, size, and mtime.
+// PROBE_TIMEOUT_MS is exported.
 
 function makeScratchDir() {
   return mkdtempSync(join(tmpdir(), 'dispatch-audit-test-'));
 }
+
+function versionResolverOptions(key, probe) {
+  return {
+    probe,
+    stat: () => ({ size: 42, mtimeMs: 1 }),
+    realpath: () => `/virtual/opencode/${key}`,
+  };
+}
+
+describe('OpenCode version resolution', () => {
+  it('R1 — opencode resolves v1 from 1.x probe output', async () => {
+    const probe = vi.fn(async () => '1.19.3');
+
+    await expect(resolveOpencodeVersion('opencode', versionResolverOptions('r1', probe))).resolves.toBe('v1');
+    expect(probe).toHaveBeenCalledTimes(1);
+  });
+
+  it('R2 — opencode2 resolves v2 from v2 probe output', async () => {
+    const probe = vi.fn(async () => 'opencode v2.0.32');
+
+    await expect(resolveOpencodeVersion('opencode2', versionResolverOptions('r2', probe))).resolves.toBe('v2');
+    expect(probe).toHaveBeenCalledTimes(1);
+  });
+
+  it('R3 — opencode2 resolves v1 when the probe reports a v1 version', async () => {
+    const probe = vi.fn(async () => '1.19.3');
+
+    await expect(resolveOpencodeVersion('opencode2', versionResolverOptions('r3', probe))).resolves.toBe('v1');
+    expect(probe).toHaveBeenCalledTimes(1);
+  });
+
+  it('R4 — opencode resolves v2 when the probe reports a v2 version', async () => {
+    const probe = vi.fn(async () => 'opencode v2.0.32');
+
+    await expect(resolveOpencodeVersion('opencode', versionResolverOptions('r4', probe))).resolves.toBe('v2');
+    expect(probe).toHaveBeenCalledTimes(1);
+  });
+
+  it('R5 — empty or unparsable probe output resolves to unknown', async () => {
+    const empty = await resolveOpencodeVersion(
+      'opencode2',
+      versionResolverOptions('r5-empty', async () => ''),
+    );
+    const unparsable = await resolveOpencodeVersion(
+      'opencode2',
+      versionResolverOptions('r5-unparsable', async () => 'version unavailable'),
+    );
+
+    expect(empty).toBe('unknown');
+    expect(unparsable).toBe('unknown');
+  });
+
+  it('R6 — a timed-out probe resolves to unknown', async () => {
+    const probe = vi.fn()
+      .mockImplementationOnce(() => new Promise(() => {}))
+      .mockResolvedValueOnce('opencode v2.0.32');
+    const options = versionResolverOptions('r6', probe);
+    clearOpencodeVersionCache();
+    vi.useFakeTimers();
+    try {
+      const pending = resolveOpencodeVersion('opencode', options);
+      await vi.advanceTimersByTimeAsync(0);
+      await vi.advanceTimersByTimeAsync(PROBE_TIMEOUT_MS + 1);
+
+      expect(PROBE_TIMEOUT_MS).toBeGreaterThan(0);
+      await expect(pending).resolves.toBe('unknown');
+      await expect(resolveOpencodeVersion('opencode', options)).resolves.toBe('v2');
+      expect(probe).toHaveBeenCalledTimes(2);
+    } finally {
+      vi.useRealTimers();
+      clearOpencodeVersionCache();
+    }
+  });
+
+  it('R7 — a path-qualified binary resolves to unknown without probing', async () => {
+    const probe = vi.fn(async () => 'opencode v2.0.32');
+
+    await expect(
+      resolveOpencodeVersion('/abs/path/opencode', versionResolverOptions('r7', probe)),
+    ).resolves.toBe('unknown');
+    expect(probe).not.toHaveBeenCalled();
+  });
+
+  it('R8 — a probe that fails to spawn resolves to unknown', async () => {
+    const probe = vi.fn(async () => { throw new Error('spawn failed'); });
+
+    await expect(resolveOpencodeVersion('opencode2', versionResolverOptions('r8', probe))).resolves.toBe('unknown');
+    expect(probe).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not cache a failed probe when a later attempt succeeds', async () => {
+    const probe = vi.fn()
+      .mockRejectedValueOnce(new Error('spawn failed'))
+      .mockResolvedValueOnce('opencode v2.0.32');
+    const options = versionResolverOptions('retry-after-failure', probe);
+    clearOpencodeVersionCache();
+
+    try {
+      await expect(resolveOpencodeVersion('opencode2', options)).resolves.toBe('unknown');
+      await expect(resolveOpencodeVersion('opencode2', options)).resolves.toBe('v2');
+      expect(probe).toHaveBeenCalledTimes(2);
+    } finally {
+      clearOpencodeVersionCache();
+    }
+  });
+
+  it('does not cache a successful probe with empty output', async () => {
+    const probe = vi.fn()
+      .mockResolvedValueOnce('')
+      .mockResolvedValueOnce('opencode v2.0.32');
+    const options = versionResolverOptions('retry-after-empty-output', probe);
+    clearOpencodeVersionCache();
+
+    try {
+      await expect(resolveOpencodeVersion('opencode2', options)).resolves.toBe('unknown');
+      await expect(resolveOpencodeVersion('opencode2', options)).resolves.toBe('v2');
+      expect(probe).toHaveBeenCalledTimes(2);
+    } finally {
+      clearOpencodeVersionCache();
+    }
+  });
+
+  it('resolveOpencodeVersionSync retries a non-zero probe result', () => {
+    const directory = makeScratchDir();
+    const binaryPath = join(directory, 'opencode2');
+    const counterPath = join(directory, 'probe-count');
+    const previousPath = process.env.PATH;
+    const previousBinary = process.env.OPENCODE_BIN;
+    const previousCounter = process.env.OPENCODE_PROBE_COUNTER;
+    const script = [
+      '#!/bin/sh',
+      "printf '%s\\n' probe >> \"$OPENCODE_PROBE_COUNTER\"",
+      'if [ ! -f "$OPENCODE_PROBE_COUNTER.success" ]; then',
+      '  : > "$OPENCODE_PROBE_COUNTER.success"',
+      '  exit 1',
+      'fi',
+      "printf '%s\\n' 'opencode v2.0.32'",
+    ].join('\n');
+    clearOpencodeVersionCache();
+
+    try {
+      writeFileSync(binaryPath, script);
+      chmodSync(binaryPath, 0o755);
+      process.env.PATH = [directory, previousPath].filter(Boolean).join(delimiter);
+      delete process.env.OPENCODE_BIN;
+      process.env.OPENCODE_PROBE_COUNTER = counterPath;
+
+      expect(resolveOpencodeVersionSync('opencode2')).toBe('unknown');
+      expect(resolveOpencodeVersionSync('opencode2')).toBe('v2');
+      expect(readFileSync(counterPath, 'utf8').trim().split(/\r?\n/)).toHaveLength(2);
+    } finally {
+      if (previousPath === undefined) delete process.env.PATH;
+      else process.env.PATH = previousPath;
+      if (previousBinary === undefined) delete process.env.OPENCODE_BIN;
+      else process.env.OPENCODE_BIN = previousBinary;
+      if (previousCounter === undefined) delete process.env.OPENCODE_PROBE_COUNTER;
+      else process.env.OPENCODE_PROBE_COUNTER = previousCounter;
+      clearOpencodeVersionCache();
+      rmSync(directory, { recursive: true, force: true });
+    }
+  });
+
+  it('adversarial — CRLF and trailing whitespace still parse a v1 version', () => {
+    expect(parseOpencodeVersion('1.19.3\r\n ')).toBe('v1');
+  });
+
+  it('adversarial — joined version tokens choose the first version', () => {
+    expect(parseOpencodeVersion('opencode v2.0.32 1.19.3')).toBe('v2');
+  });
+
+  it('adversarial — a binary outside the root is unknown without a probe', async () => {
+    const probe = vi.fn(async () => '1.19.3');
+
+    await expect(
+      resolveOpencodeVersion('/tmp/x/opencode', versionResolverOptions('outside-root', probe)),
+    ).resolves.toBe('unknown');
+    expect(probe).not.toHaveBeenCalled();
+  });
+
+  it('adversarial — empty output is a no-op version result', () => {
+    expect(parseOpencodeVersion('')).toBe('unknown');
+  });
+
+  it('adversarial — probe failure keeps shared rules and warns version-specific rules', async () => {
+    const version = await resolveOpencodeVersion(
+      'opencode2',
+      versionResolverOptions('fallback-rules', async () => { throw new Error('probe failed'); }),
+    );
+    const rules = [
+      { id: 'shared-rule', check: 'always-fail', message: 'shared', severity: 'error', appliesTo: ['v1', 'v2'] },
+      { id: 'v1-rule', check: 'always-fail', message: 'v1 only', severity: 'error', appliesTo: ['v1'] },
+    ];
+    const violations = evaluate('opencode run "task"', rules, {
+      version,
+      checks: { 'always-fail': () => false },
+    });
+
+    expect(version).toBe('unknown');
+    expect(violations.map(({ id, severity }) => ({ id, severity }))).toEqual([
+      { id: 'shared-rule', severity: 'block' },
+      { id: 'v1-rule', severity: 'warn' },
+    ]);
+  });
+
+  it('adversarial — OPENCODE_BIN reaches the injected probe as one argument', async () => {
+    const previousBinary = process.env.OPENCODE_BIN;
+    const configuredBinary = 'opencode candidate; echo unsafe';
+    process.env.OPENCODE_BIN = configuredBinary;
+    const probe = vi.fn(async (executable) => {
+      expect(executable).toBe(configuredBinary);
+      return 'opencode v2.0.32';
+    });
+
+    try {
+      const version = await resolveOpencodeVersion(
+        '$OPENCODE_BIN',
+        versionResolverOptions('hostile-env', probe),
+      );
+
+      expect(version).toBe('v2');
+      expect(probe).toHaveBeenCalledTimes(1);
+      expect(probe.mock.calls[0][0]).toBe(configuredBinary);
+    } finally {
+      if (previousBinary === undefined) delete process.env.OPENCODE_BIN;
+      else process.env.OPENCODE_BIN = previousBinary;
+    }
+  });
+
+  it('uses the command-named binary instead of OPENCODE_BIN', async () => {
+    const previousBinary = process.env.OPENCODE_BIN;
+    process.env.OPENCODE_BIN = 'opencode';
+    const probe = vi.fn(async (executable) => {
+      expect(executable).toBe('opencode2');
+      return 'opencode v2.0.32';
+    });
+
+    try {
+      await expect(
+        resolveOpencodeVersion('opencode2', versionResolverOptions('named-binary-wins', probe)),
+      ).resolves.toBe('v2');
+      expect(probe).toHaveBeenCalledTimes(1);
+    } finally {
+      if (previousBinary === undefined) delete process.env.OPENCODE_BIN;
+      else process.env.OPENCODE_BIN = previousBinary;
+    }
+  });
+
+  it('does not probe a path-qualified OPENCODE_BIN value', async () => {
+    const previousBinary = process.env.OPENCODE_BIN;
+    process.env.OPENCODE_BIN = '/abs/path/opencode';
+    const probe = vi.fn(async () => 'opencode v2.0.32');
+
+    try {
+      await expect(
+        resolveOpencodeVersion('$OPENCODE_BIN', versionResolverOptions('path-variable-binary', probe)),
+      ).resolves.toBe('unknown');
+      await expect(
+        resolveOpencodeVersion('${OPENCODE_BIN}', versionResolverOptions('path-braced-variable-binary', probe)),
+      ).resolves.toBe('unknown');
+      expect(probe).not.toHaveBeenCalled();
+    } finally {
+      if (previousBinary === undefined) delete process.env.OPENCODE_BIN;
+      else process.env.OPENCODE_BIN = previousBinary;
+    }
+  });
+});
 
 // ── matchDispatchShape ───────────────────────────────────────────────────────────────────────
 
@@ -336,9 +615,7 @@ describe('buildAuditLine', () => {
     expect(parsed.target).toBe('orchestrate');
   });
 
-  // Regression (Fable-5 P2): the env-assignment scrub was not quote-aware, so a quoted
-  // multi-word secret leaked its tail after the first space (e.g. `="abc def ghi"` only
-  // redacted `abc`, leaving `def ghi"` in the audit line).
+  // Quoted env values must be redacted fully so their whitespace-delimited tails cannot leak.
   it('scrubs a quoted multi-word env-assignment secret value in full', () => {
     const command = 'OPENAI_API_KEY="abc def ghi" opencode run';
     const parsed = JSON.parse(buildAuditLine({ command }));
@@ -347,8 +624,7 @@ describe('buildAuditLine', () => {
     expect(parsed.command).toContain('OPENAI_API_KEY=[REDACTED]');
   });
 
-  // Regression (Fable-5 P2): header-style credentials fully leaked — neither the colon form
-  // (`x-api-key: <value>`) nor `Authorization: Basic <b64>` matched any prior pattern.
+  // Header credentials need full-value scrubbing to prevent colon-form values from leaking.
   it('scrubs a colon-form header credential (x-api-key: <value>)', () => {
     const command = 'x-api-key: mySecretHeaderValue123 opencode run';
     const parsed = JSON.parse(buildAuditLine({ command }));

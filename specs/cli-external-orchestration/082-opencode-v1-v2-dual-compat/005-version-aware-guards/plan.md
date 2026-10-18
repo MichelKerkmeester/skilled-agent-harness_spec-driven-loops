@@ -71,10 +71,10 @@ A command reaches the classifier. The classifier returns the executor token. The
 | R2 | `opencode2` | `opencode v2.0.32` | v2 | v2 and both-version rules |
 | R3 | `opencode2` | `1.19.3` | v1 | The name is ignored. v1 rules run. |
 | R4 | `opencode` | `opencode v2.0.32` | v2 | The name is ignored. v2 rules run. |
-| R5 | `opencode2` | empty or unparsable | unknown | Both-version rules only |
-| R6 | `opencode` | probe times out | unknown | Both-version rules only |
-| R7 | `/abs/path/opencode` | not probed | unknown | Both-version rules only (Q4) |
-| R8 | `opencode2` | probe fails to spawn | unknown | Both-version rules only |
+| R5 | `opencode2` | empty or unparsable | unknown | Both-version rules at their own severity, version-specific rules at warn |
+| R6 | `opencode` | probe times out | unknown | Both-version rules at their own severity, version-specific rules at warn |
+| R7 | `/abs/path/opencode` | not probed | unknown | Both-version rules at their own severity, version-specific rules at warn (Q4) |
+| R8 | `opencode2` | probe fails to spawn | unknown | Both-version rules at their own severity, version-specific rules at warn |
 
 Each row maps to one test name in the dispatch test files.
 <!-- /ANCHOR:architecture -->

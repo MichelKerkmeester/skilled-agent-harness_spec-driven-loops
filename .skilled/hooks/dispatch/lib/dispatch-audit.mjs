@@ -25,7 +25,11 @@ export function isAuditDisabled(env = process.env) {
 // ── Dispatch-shape registry (kept for adapter compatibility) ───────────────────────────────
 
 export const DISPATCH_SHAPES = [
-  { test: /\bopencode\s+run\b/, skill: 'cli-opencode', packetPath: 'cli-external-orchestration/cli-opencode' },
+  {
+    test: /\bopencode\d*\s+run\b/,
+    skill: 'cli-opencode',
+    packetPath: 'cli-external-orchestration/cli-opencode',
+  },
   { test: /\bclaude\s+(-p|--print)\b/, skill: 'cli-claude-code', packetPath: 'cli-external-orchestration/cli-claude-code' },
   // Intervening flags (e.g. pi's required `--offline`, devin's `--model`) may sit
   // between the binary and the print flag, so allow any chars EXCEPT a shell
@@ -48,7 +52,17 @@ export const DISPATCH_SHAPES = [
 
 const MAX_INSPECTED_COMMAND_CHARS = 32_768;
 const ASSIGNMENT_TOKEN = /^[A-Za-z_][A-Za-z0-9_]*=(.*)$/s;
-const EXECUTOR_BASENAMES = new Set(['opencode', 'claude', 'codex', 'devin', 'cursor-agent', 'pi', 'hermes', 'jev', 'jev-mcp']);
+const EXECUTOR_BASENAMES = new Set([
+  'claude',
+  'codex',
+  'devin',
+  'cursor-agent',
+  'pi',
+  'hermes',
+  'jev',
+  'jev-mcp',
+]);
+const OPENCODE_EXECUTOR_RE = /^opencode\d*$/;
 const PRINT_FLAGS = new Set(['-p', '--print']);
 // Hermes's equivalents of a print flag, scoped to the hermes branch so `-q` on any other
 // command (grep, curl) never reads as dispatch evidence.
@@ -58,6 +72,10 @@ const SEPARATORS = new Set(['&&', '||', ';', '|', '&']);
 function basename(value) {
   const slash = value.lastIndexOf('/');
   return slash === -1 ? value : value.slice(slash + 1);
+}
+
+function isExecutorBasename(value) {
+  return OPENCODE_EXECUTOR_RE.test(value) || EXECUTOR_BASENAMES.has(value);
 }
 
 function isAssignmentToken(token) {
@@ -203,13 +221,15 @@ function directExecutor(tokens) {
   const executable = tokens[start.index];
   // A quoted command-position token still names the binary the shell will run, so
   // `"devin" -p x` invokes devin exactly as the bare form does. Set membership below only
-  // admits an exact executor basename, so a multi-word quoted payload (e.g. "devin -p task")
+  // admits a recognized executor basename, so a multi-word quoted payload (e.g. "devin -p task")
   // stays out on its own — dropping quoted executors here instead let them evade both the
   // authorization gate and the audit trail.
   const binary = basename(executable.value);
-  if (!EXECUTOR_BASENAMES.has(binary)) return null;
+  if (!isExecutorBasename(binary)) return null;
 
-  if (binary === 'opencode' && tokens[start.index + 1]?.value === 'run') return 'cli-opencode';
+  if (OPENCODE_EXECUTOR_RE.test(binary) && tokens[start.index + 1]?.value === 'run') {
+    return 'cli-opencode';
+  }
   // `exec` is Codex's headless subcommand and takes no print flag, so its presence alone
   // is the dispatch evidence; demanding a print flag here recorded no codex run at all.
   if (binary === 'codex' && tokens[start.index + 1]?.value === 'exec') return 'cli-codex';
@@ -241,11 +261,18 @@ function directExecutor(tokens) {
 }
 
 function hasKnownExecutorToken(tokens) {
-  return tokens.some((token) => !token.quoted && EXECUTOR_BASENAMES.has(basename(token.value)));
+  return tokens.some((token) => !token.quoted && isExecutorBasename(basename(token.value)));
 }
 
 function hasDispatchText(value) {
-  return /\bopencode\s+run\b|\b(?:claude|devin|cursor-agent|pi)\b[^\n;&|]*\s(?:-p|--print)\b|\bcodex\s+exec\b[^\n;&|]*\s(?:-p|--print)\b|\bhermes\s+chat\b[^\n;&|]*\s(?:-q|--query|--query-file|--oneshot)\b|\bhermes\b[^\n;&|]*\s-z\b|\bjev\s+(?:noul|choice|score|run)\b/.test(value);
+  return (
+    /\bopencode\d*\s+run\b/.test(value)
+    || /\b(?:claude|devin|cursor-agent|pi)\b[^\n;&|]*\s(?:-p|--print)\b/.test(value)
+    || /\bcodex\s+exec\b[^\n;&|]*\s(?:-p|--print)\b/.test(value)
+    || /\bhermes\s+chat\b[^\n;&|]*\s(?:-q|--query|--query-file|--oneshot)\b/.test(value)
+    || /\bhermes\b[^\n;&|]*\s-z\b/.test(value)
+    || /\bjev\s+(?:noul|choice|score|run)\b/.test(value)
+  );
 }
 
 function hasDispatchEvidence(tokens, commandHasPrintFlag) {
@@ -256,7 +283,10 @@ function hasDispatchEvidence(tokens, commandHasPrintFlag) {
   // `devin auth status` is a plain CLI subcommand, not a dispatch. The flag is read
   // command-wide because the embedded signal can sit in a different segment than the flag
   // it belongs to (e.g. `alias d=devin; d -p task`).
-  const embeddedExecutor = commandHasPrintFlag && tokens.some((token) => !token.quoted && /(?:=|\/)(?:opencode|claude|codex|devin|cursor-agent|pi)$/.test(token.value));
+  const embeddedExecutor = commandHasPrintFlag && tokens.some((token) => (
+    !token.quoted
+    && /(?:=|\/)(?:opencode\d*|claude|codex|devin|cursor-agent|pi)$/.test(token.value)
+  ));
   // An expanded token stands in for the executor only in command position: `mkdir -p "$DIR"`
   // carries a print-shaped flag and a variable but runs mkdir, not a dispatch.
   const start = commandStart(tokens);

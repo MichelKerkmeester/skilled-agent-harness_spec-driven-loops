@@ -1,0 +1,15 @@
+✔ dispatch guard blocks by the packet's rules when the project carries only .skilled (101.70425ms)
+✔ git preflight reads sk-git's rules when the project carries only .skilled (129.418791ms)
+✔ Codex watchdog runs the installer when the project carries only .skilled (54.506292ms)
+✔ dispatch guard blocks by the packet's rules when the project carries only .opencode (29.585ms)
+✔ git preflight reads sk-git's rules when the project carries only .opencode (137.24175ms)
+✔ Codex watchdog runs the installer when the project carries only .opencode (52.379125ms)
+✔ without a source root the guard stays open and the watchdog reports no drift (24.950833ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 569.507291

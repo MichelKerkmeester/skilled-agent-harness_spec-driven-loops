@@ -1,0 +1,353 @@
+TAP version 13
+# Subtest: every ESM hook exits 0 at the stdin deadline when its host never closes stdin
+    # Subtest: classifier-injection-screen/claude
+    ok 1 - classifier-injection-screen/claude
+      ---
+      duration_ms: 0.403125
+      type: 'test'
+      ...
+    # Subtest: classifier-injection-screen/devin
+    ok 2 - classifier-injection-screen/devin
+      ---
+      duration_ms: 0.047833
+      type: 'test'
+      ...
+    # Subtest: dispatch/claude preflight
+    ok 3 - dispatch/claude preflight
+      ---
+      duration_ms: 0.035916
+      type: 'test'
+      ...
+    # Subtest: dispatch/codex preflight
+    ok 4 - dispatch/codex preflight
+      ---
+      duration_ms: 0.03875
+      type: 'test'
+      ...
+    # Subtest: dispatch/cursor preflight
+    ok 5 - dispatch/cursor preflight
+      ---
+      duration_ms: 0.046792
+      type: 'test'
+      ...
+    # Subtest: dispatch/devin preflight
+    ok 6 - dispatch/devin preflight
+      ---
+      duration_ms: 0.032042
+      type: 'test'
+      ...
+    # Subtest: dispatch/claude audit
+    ok 7 - dispatch/claude audit
+      ---
+      duration_ms: 0.025625
+      type: 'test'
+      ...
+    # Subtest: dispatch/codex audit
+    ok 8 - dispatch/codex audit
+      ---
+      duration_ms: 0.027791
+      type: 'test'
+      ...
+    # Subtest: dispatch/devin audit
+    ok 9 - dispatch/devin audit
+      ---
+      duration_ms: 0.042041
+      type: 'test'
+      ...
+    # Subtest: goal/cursor
+    ok 10 - goal/cursor
+      ---
+      duration_ms: 0.0465
+      type: 'test'
+      ...
+    # Subtest: goal/devin
+    ok 11 - goal/devin
+      ---
+      duration_ms: 0.026083
+      type: 'test'
+      ...
+    # Subtest: mcp-route-guard/cursor
+    ok 12 - mcp-route-guard/cursor
+      ---
+      duration_ms: 0.01975
+      type: 'test'
+      ...
+    # Subtest: task-dispatch/cursor
+    ok 13 - task-dispatch/cursor
+      ---
+      duration_ms: 0.022834
+      type: 'test'
+      ...
+    # Subtest: task-dispatch/claude fable
+    ok 14 - task-dispatch/claude fable
+      ---
+      duration_ms: 0.029666
+      type: 'test'
+      ...
+    # Subtest: git-preflight/shared
+    ok 15 - git-preflight/shared
+      ---
+      duration_ms: 0.01425
+      type: 'test'
+      ...
+    # Subtest: git-message-gate/shared
+    ok 16 - git-message-gate/shared
+      ---
+      duration_ms: 0.034208
+      type: 'test'
+      ...
+    # Subtest: sk-vision/devin
+    ok 17 - sk-vision/devin
+      ---
+      duration_ms: 0.02225
+      type: 'test'
+      ...
+    1..17
+ok 1 - every ESM hook exits 0 at the stdin deadline when its host never closes stdin
+  ---
+  duration_ms: 3065.669125
+  type: 'test'
+  ...
+# Subtest: the Claude and Devin preflight lints still flag a dispatch sent on a normal payload
+ok 2 - the Claude and Devin preflight lints still flag a dispatch sent on a normal payload
+  ---
+  duration_ms: 586.634833
+  type: 'test'
+  ...
+# Subtest: the Claude and Devin dispatch audits still record a dispatch sent on a normal payload
+ok 3 - the Claude and Devin dispatch audits still record a dispatch sent on a normal payload
+  ---
+  duration_ms: 81.167166
+  type: 'test'
+  ...
+# Subtest: the Cursor preflight, MCP route and Task guards still answer a normal payload
+ok 4 - the Cursor preflight, MCP route and Task guards still answer a normal payload
+  ---
+  duration_ms: 518.917292
+  type: 'test'
+  ...
+# Subtest: a Cursor Shell payload with workspace_roots reaches the advisory
+ok 5 - a Cursor Shell payload with workspace_roots reaches the advisory
+  ---
+  duration_ms: 270.878458
+  type: 'test'
+  ...
+# Subtest: a whitespace-only Cursor workspace root falls through instead of resolving a bogus dir
+ok 6 - a whitespace-only Cursor workspace root falls through instead of resolving a bogus dir
+  ---
+  duration_ms: 243.710292
+  type: 'test'
+  ...
+# Subtest: a Claude Bash payload still reaches the advisory
+ok 7 - a Claude Bash payload still reaches the advisory
+  ---
+  duration_ms: 248.054209
+  type: 'test'
+  ...
+# Subtest: a Codex exec payload still reaches the advisory
+ok 8 - a Codex exec payload still reaches the advisory
+  ---
+  duration_ms: 237.667042
+  type: 'test'
+  ...
+# Subtest: a Cursor Shell non-git command stays silent
+ok 9 - a Cursor Shell non-git command stays silent
+  ---
+  duration_ms: 163.957833
+  type: 'test'
+  ...
+# Subtest: an unrecognised tool_name stays silent
+ok 10 - an unrecognised tool_name stays silent
+  ---
+  duration_ms: 152.55825
+  type: 'test'
+  ...
+# Subtest: a Cursor Shell git command outside a repository stays silent
+ok 11 - a Cursor Shell git command outside a repository stays silent
+  ---
+  duration_ms: 33.827667
+  type: 'test'
+  ...
+# Subtest: a directory-scoped commit silently drops untracked files inside that scope
+ok 12 - a directory-scoped commit silently drops untracked files inside that scope
+  ---
+  duration_ms: 295.026875
+  type: 'test'
+  ...
+# Subtest: a bundled -am commit still counts as a whole-tree commit when untracked files exist
+ok 13 - a bundled -am commit still counts as a whole-tree commit when untracked files exist
+  ---
+  duration_ms: 143.419542
+  type: 'test'
+  ...
+# Subtest: naming an untracked file directly needs no advisory because git refuses it
+ok 14 - naming an untracked file directly needs no advisory because git refuses it
+  ---
+  duration_ms: 165.133333
+  type: 'test'
+  ...
+# Subtest: a scoped commit with no untracked files in scope stays silent
+ok 15 - a scoped commit with no untracked files in scope stays silent
+  ---
+  duration_ms: 154.613792
+  type: 'test'
+  ...
+# Subtest: commit --only flags a named path with nothing to contribute
+ok 16 - commit --only flags a named path with nothing to contribute
+  ---
+  duration_ms: 188.670542
+  type: 'test'
+  ...
+# Subtest: add flags a pathspec matching nothing
+ok 17 - add flags a pathspec matching nothing
+  ---
+  duration_ms: 171.851375
+  type: 'test'
+  ...
+# Subtest: add flags a pathspec resolving only to ignored files
+ok 18 - add flags a pathspec resolving only to ignored files
+  ---
+  duration_ms: 153.335083
+  type: 'test'
+  ...
+# Subtest: add -u flags the untracked files it will leave behind
+ok 19 - add -u flags the untracked files it will leave behind
+  ---
+  duration_ms: 166.081125
+  type: 'test'
+  ...
+# Subtest: restore flags a path whose staged copy will survive the revert
+ok 20 - restore flags a path whose staged copy will survive the revert
+  ---
+  duration_ms: 175.391
+  type: 'test'
+  ...
+# Subtest: restore stays silent when nothing is staged for the path
+ok 21 - restore stays silent when nothing is staged for the path
+  ---
+  duration_ms: 129.231875
+  type: 'test'
+  ...
+# Subtest: restoring from a ref is flagged because it stages without an add
+ok 22 - restoring from a ref is flagged because it stages without an add
+  ---
+  duration_ms: 115.359916
+  type: 'test'
+  ...
+# Subtest: one-sided merge strategies are flagged; ordinary merges are not
+ok 23 - one-sided merge strategies are flagged; ordinary merges are not
+  ---
+  duration_ms: 119.033041
+  type: 'test'
+  ...
+# Subtest: case-only pathspec is flagged only where the filesystem folds case
+ok 24 - case-only pathspec is flagged only where the filesystem folds case
+  ---
+  duration_ms: 223.451083
+  type: 'test'
+  ...
+# Subtest: a clean filter on a staged path is flagged
+ok 25 - a clean filter on a staged path is flagged
+  ---
+  duration_ms: 147.1685
+  type: 'test'
+  ...
+# Subtest: reset --hard fires only when the tree holds modifications
+ok 26 - reset --hard fires only when the tree holds modifications
+  ---
+  duration_ms: 150.970292
+  type: 'test'
+  ...
+# Subtest: clean -x fires on any real deletion; the plain form gets headroom
+ok 27 - clean -x fires on any real deletion; the plain form gets headroom
+  ---
+  duration_ms: 191.757042
+  type: 'test'
+  ...
+# Subtest: branch -D fires only for a branch with unmerged commits
+ok 28 - branch -D fires only for a branch with unmerged commits
+  ---
+  duration_ms: 275.648083
+  type: 'test'
+  ...
+# Subtest: stash clear fires only when entries exist
+ok 29 - stash clear fires only when entries exist
+  ---
+  duration_ms: 204.224375
+  type: 'test'
+  ...
+# Subtest: shape-only destructive tokens fire regardless of state
+ok 30 - shape-only destructive tokens fire regardless of state
+  ---
+  duration_ms: 131.002166
+  type: 'test'
+  ...
+# Subtest: a command that changes directory is evaluated against that directory
+ok 31 - a command that changes directory is evaluated against that directory
+  ---
+  duration_ms: 265.083792
+  type: 'test'
+  ...
+# Subtest: parser separates flags from pathspec across invocation shapes
+ok 32 - parser separates flags from pathspec across invocation shapes
+  ---
+  duration_ms: 0.130542
+  type: 'test'
+  ...
+# Subtest: bundled commit flags split into their flags and never leave a message in the pathspec
+ok 33 - bundled commit flags split into their flags and never leave a message in the pathspec
+  ---
+  duration_ms: 0.066
+  type: 'test'
+  ...
+# Subtest: short-flag clusters outside commit keep their shape
+ok 34 - short-flag clusters outside commit keep their shape
+  ---
+  duration_ms: 0.162834
+  type: 'test'
+  ...
+# Subtest: a pathspec behind a shell expansion never reads as matching nothing
+ok 35 - a pathspec behind a shell expansion never reads as matching nothing
+  ---
+  duration_ms: 207.420541
+  type: 'test'
+  ...
+# Subtest: non-git and unparseable commands never fire a rule
+ok 36 - non-git and unparseable commands never fire a rule
+  ---
+  duration_ms: 206.35025
+  type: 'test'
+  ...
+# Subtest: every declared rule resolves to an implementation and never blocks
+ok 37 - every declared rule resolves to an implementation and never blocks
+  ---
+  duration_ms: 0.366584
+  type: 'test'
+  ...
+# Subtest: a check that throws is swallowed, so a broken rule cannot stop work
+ok 38 - a check that throws is swallowed, so a broken rule cannot stop work
+  ---
+  duration_ms: 0.301125
+  type: 'test'
+  ...
+# Subtest: the shared engine still evaluates command-only rules unchanged
+ok 39 - the shared engine still evaluates command-only rules unchanged
+  ---
+  duration_ms: 0.199667
+  type: 'test'
+  ...
+# Subtest: a poisoned GIT_DIR/GIT_WORK_TREE cannot redirect a throwaway repo write onto another repo
+ok 40 - a poisoned GIT_DIR/GIT_WORK_TREE cannot redirect a throwaway repo write onto another repo
+  ---
+  duration_ms: 316.206459
+  type: 'test'
+  ...
+1..40
+# tests 57
+# suites 0
+# pass 57
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4484.429875

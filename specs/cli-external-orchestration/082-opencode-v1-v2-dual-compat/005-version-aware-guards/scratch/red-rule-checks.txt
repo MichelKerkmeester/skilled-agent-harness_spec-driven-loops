@@ -1,0 +1,292 @@
+TAP version 13
+# Subtest: reads the real hard rules from the sidecar beside each SKILL.md
+ok 1 - reads the real hard rules from the sidecar beside each SKILL.md
+  ---
+  duration_ms: 3.167916
+  type: 'test'
+  ...
+# Subtest: CI GUARD: every declared check id maps to a known check (a typo fails loudly)
+ok 2 - CI GUARD: every declared check id maps to a known check (a typo fails loudly)
+  ---
+  duration_ms: 4.630917
+  type: 'test'
+  ...
+# Subtest: stdin-redirect-required covers every headless CLI shape, not just opencode run
+ok 3 - stdin-redirect-required covers every headless CLI shape, not just opencode run
+  ---
+  duration_ms: 0.834208
+  type: 'test'
+  ...
+# Subtest: availability checks pass for a resolvable binary and never refuse without PATH
+ok 4 - availability checks pass for a resolvable binary and never refuse without PATH
+  ---
+  duration_ms: 0.243125
+  type: 'test'
+  ...
+# Subtest: AC-1: opencode run without </dev/null is flagged; with it, clean (mutation-proof)
+ok 5 - AC-1: opencode run without </dev/null is flagged; with it, clean (mutation-proof)
+  ---
+  duration_ms: 0.739125
+  type: 'test'
+  ...
+# Subtest: other checks discriminate correctly
+ok 6 - other checks discriminate correctly
+  ---
+  duration_ms: 0.55525
+  type: 'test'
+  ...
+# Subtest: appliesTo evaluates only rules for the resolved version
+not ok 7 - appliesTo evaluates only rules for the resolved version
+  ---
+  duration_ms: 0.85575
+  type: 'test'
+  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:117:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        'v1-only',
+    +   'v2-only',
+        'both-versions'
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: 'v1-only'
+    1: 'both-versions'
+  actual:
+    0: 'v1-only'
+    1: 'v2-only'
+    2: 'both-versions'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:126:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: rules without appliesTo apply to both versions
+ok 8 - rules without appliesTo apply to both versions
+  ---
+  duration_ms: 0.129167
+  type: 'test'
+  ...
+# Subtest: unknown evaluation preserves shared severity and warns version-specific rules
+not ok 9 - unknown evaluation preserves shared severity and warns version-specific rules
+  ---
+  duration_ms: 0.293084
+  type: 'test'
+  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:140:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    ... Skipped lines
+    
+      [
+        {
+          id: 'shared-error',
+          severity: 'block'
+        },
+    ...
+          id: 'v1-only',
+    +     severity: 'block'
+    -     severity: 'warn'
+        },
+        {
+          id: 'v2-only',
+    +     severity: 'block'
+    -     severity: 'warn'
+        }
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0:
+      id: 'shared-error'
+      severity: 'block'
+    1:
+      id: 'shared-warn'
+      severity: 'warn'
+    2:
+      id: 'v1-only'
+      severity: 'warn'
+    3:
+      id: 'v2-only'
+      severity: 'warn'
+  actual:
+    0:
+      id: 'shared-error'
+      severity: 'block'
+    1:
+      id: 'shared-warn'
+      severity: 'warn'
+    2:
+      id: 'v1-only'
+      severity: 'block'
+    3:
+      id: 'v2-only'
+      severity: 'block'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:152:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: v2 slash-command fixture warns with session.command and never blocks
+not ok 10 - v2 slash-command fixture warns with session.command and never blocks
+  ---
+  duration_ms: 0.381791
+  type: 'test'
+  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:160:1'
+  failureType: 'testCodeFailure'
+  error: 'the fixture produced a blocking verdict'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:165:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: opencode2 run is evaluated by the hard-rule engine
+not ok 11 - opencode2 run is evaluated by the hard-rule engine
+  ---
+  duration_ms: 0.143584
+  type: 'test'
+  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:170:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+    + []
+    - [
+    -   'stdin-redirect-required'
+    - ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: 'stdin-redirect-required'
+  actual:
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:179:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: every runtime with a preflight adapter has it registered
+ok 12 - every runtime with a preflight adapter has it registered
+  ---
+  duration_ms: 1.955542
+  type: 'test'
+  ...
+# Subtest: pi dispatches need --offline and a provider-qualified model
+ok 13 - pi dispatches need --offline and a provider-qualified model
+  ---
+  duration_ms: 0.429625
+  type: 'test'
+  ...
+# Subtest: predicate bypasses: equals-form flags and unquoted slash prompts are caught
+ok 14 - predicate bypasses: equals-form flags and unquoted slash prompts are caught
+  ---
+  duration_ms: 0.340167
+  type: 'test'
+  ...
+# Subtest: hermes headless shapes need stdin handled: --query-file counts, a bare -q does not
+ok 15 - hermes headless shapes need stdin handled: --query-file counts, a bare -q does not
+  ---
+  duration_ms: 0.166667
+  type: 'test'
+  ...
+# Subtest: hermes rules discriminate on the flags the packet contract pins
+ok 16 - hermes rules discriminate on the flags the packet contract pins
+  ---
+  duration_ms: 0.860042
+  type: 'test'
+  ...
+# Subtest: fail-open: a check that throws never produces a violation
+ok 17 - fail-open: a check that throws never produces a violation
+  ---
+  duration_ms: 0.095292
+  type: 'test'
+  ...
+# Subtest: readHardRules reads the sibling sidecar and fails open on malformed input
+ok 18 - readHardRules reads the sibling sidecar and fails open on malformed input
+  ---
+  duration_ms: 10.857
+  type: 'test'
+  ...
+# Subtest: severity maps error and block to a blocking violation; anything else advises
+ok 19 - severity maps error and block to a blocking violation; anything else advises
+  ---
+  duration_ms: 0.169791
+  type: 'test'
+  ...
+# Subtest: every runtime dispatch shape resolves to its skill (mutation-proof)
+ok 20 - every runtime dispatch shape resolves to its skill (mutation-proof)
+  ---
+  duration_ms: 0.965542
+  type: 'test'
+  ...
+# Subtest: a dispatch is resolved from the command, not from text that merely contains one
+ok 21 - a dispatch is resolved from the command, not from text that merely contains one
+  ---
+  duration_ms: 2.245584
+  type: 'test'
+  ...
+# Subtest: ENFORCEMENT GUARD: every check names a command it accepts and one it refuses
+ok 22 - ENFORCEMENT GUARD: every check names a command it accepts and one it refuses
+  ---
+  duration_ms: 1.748542
+  type: 'test'
+  ...
+# Subtest: a jev dispatch is governed from the command, and mentions of it are not
+ok 23 - a jev dispatch is governed from the command, and mentions of it are not
+  ---
+  duration_ms: 0.309792
+  type: 'test'
+  ...
+# Subtest: ENFORCEMENT GUARD: every cli packet declares at least one rule
+ok 24 - ENFORCEMENT GUARD: every cli packet declares at least one rule
+  ---
+  duration_ms: 1.559042
+  type: 'test'
+  ...
+# Subtest: ENFORCEMENT GUARD: declared checks and implemented checks are a bijection
+ok 25 - ENFORCEMENT GUARD: declared checks and implemented checks are a bijection
+  ---
+  duration_ms: 1.465333
+  type: 'test'
+  ...
+1..25
+# tests 25
+# suites 0
+# pass 21
+# fail 4
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 89.279959

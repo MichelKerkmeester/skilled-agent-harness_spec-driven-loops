@@ -1,0 +1,36 @@
+✔ reads the real hard rules from the sidecar beside each SKILL.md (1.655208ms)
+✔ CI GUARD: every declared check id maps to a known check (a typo fails loudly) (3.622542ms)
+✔ stdin-redirect-required covers every headless CLI shape, not just opencode run (0.525583ms)
+✔ availability checks pass for a resolvable binary and never refuse without PATH (0.134375ms)
+✔ AC-1: opencode run without </dev/null is flagged; with it, clean (mutation-proof) (0.72675ms)
+✔ other checks discriminate correctly (0.307458ms)
+✔ appliesTo evaluates only rules for the resolved version (0.079583ms)
+✔ rules without appliesTo apply to both versions (0.059042ms)
+✔ unknown evaluation preserves shared severity and warns version-specific rules (0.089416ms)
+✔ v2 slash-command fixture warns with session.command and never blocks (0.186458ms)
+✔ evaluate resolves quoted, wrapped, and path-qualified OpenCode executors (240.770375ms)
+✔ evaluate probes one fake binary once across two evaluations (118.939375ms)
+✔ opencode2 run is evaluated by the hard-rule engine (0.088417ms)
+✔ every runtime with a preflight adapter has it registered (2.225958ms)
+✔ pi dispatches need --offline and a provider-qualified model (0.512083ms)
+✔ predicate bypasses: equals-form flags and unquoted slash prompts are caught (0.259833ms)
+✔ hermes headless shapes need stdin handled: --query-file counts, a bare -q does not (0.084084ms)
+✔ hermes rules discriminate on the flags the packet contract pins (0.714917ms)
+✔ fail-open: a check that throws never produces a violation (0.068208ms)
+✔ readHardRules reads the sibling sidecar and fails open on malformed input (7.491583ms)
+✔ severity maps error and block to a blocking violation; anything else advises (0.125709ms)
+✔ every runtime dispatch shape resolves to its skill (mutation-proof) (0.771542ms)
+✔ a dispatch is resolved from the command, not from text that merely contains one (1.525625ms)
+✔ ENFORCEMENT GUARD: every check names a command it accepts and one it refuses (0.867125ms)
+✔ a jev dispatch is governed from the command, and mentions of it are not (0.176ms)
+✔ ENFORCEMENT GUARD: every cli packet declares at least one rule (1.121833ms)
+✔ ENFORCEMENT GUARD: every appliesTo is a non-empty supported-version list (0.780959ms)
+✔ ENFORCEMENT GUARD: declared checks and implemented checks are a bijection (0.860958ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 428.696583

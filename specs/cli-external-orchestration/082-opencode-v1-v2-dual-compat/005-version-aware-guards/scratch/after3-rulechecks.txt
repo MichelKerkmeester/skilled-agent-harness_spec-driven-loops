@@ -1,0 +1,60 @@
+✔ reads the real hard rules from the sidecar beside each SKILL.md (2.652334ms)
+✔ CI GUARD: every declared check id maps to a known check (a typo fails loudly) (5.673583ms)
+✔ stdin-redirect-required covers every headless CLI shape, not just opencode run (0.933417ms)
+✔ availability checks pass for a resolvable binary and never refuse without PATH (0.380583ms)
+✔ AC-1: opencode run without </dev/null is flagged; with it, clean (mutation-proof) (0.872125ms)
+✔ other checks discriminate correctly (0.44125ms)
+✔ appliesTo evaluates only rules for the resolved version (0.155459ms)
+✔ rules without appliesTo apply to both versions (0.109166ms)
+✔ unknown evaluation preserves shared severity and warns version-specific rules (0.190167ms)
+✔ v2 slash-command fixture warns with session.command and never blocks (0.333583ms)
+✔ opencode2 run is evaluated by the hard-rule engine (0.102375ms)
+✔ every runtime with a preflight adapter has it registered (2.495209ms)
+✔ pi dispatches need --offline and a provider-qualified model (0.445375ms)
+✔ predicate bypasses: equals-form flags and unquoted slash prompts are caught (0.204459ms)
+✔ hermes headless shapes need stdin handled: --query-file counts, a bare -q does not (0.086209ms)
+✔ hermes rules discriminate on the flags the packet contract pins (1.286542ms)
+✔ fail-open: a check that throws never produces a violation (0.138917ms)
+✔ readHardRules reads the sibling sidecar and fails open on malformed input (13.003375ms)
+✔ severity maps error and block to a blocking violation; anything else advises (0.1525ms)
+✔ every runtime dispatch shape resolves to its skill (mutation-proof) (1.464ms)
+✔ a dispatch is resolved from the command, not from text that merely contains one (2.036334ms)
+✖ ENFORCEMENT GUARD: every check names a command it accepts and one it refuses (0.917833ms)
+✔ a jev dispatch is governed from the command, and mentions of it are not (0.275542ms)
+✔ ENFORCEMENT GUARD: every cli packet declares at least one rule (1.766042ms)
+✔ ENFORCEMENT GUARD: declared checks and implemented checks are a bijection (2.289875ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 24
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 162.672042
+
+✖ failing tests:
+
+test at hooks/dispatch/lib/dispatch-rule-checks.test.mjs:528:1
+✖ ENFORCEMENT GUARD: every check names a command it accepts and one it refuses (0.917833ms)
+  AssertionError [ERR_ASSERTION]: checks with no fixture pair: v2-slash-prompt-route
+  + actual - expected
+  
+  + [
+  +   'v2-slash-prompt-route'
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:530:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ 'v2-slash-prompt-route' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

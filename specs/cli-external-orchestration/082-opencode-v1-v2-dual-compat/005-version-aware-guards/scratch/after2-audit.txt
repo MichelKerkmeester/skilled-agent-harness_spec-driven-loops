@@ -1,0 +1,42 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled
+
+ ❯ hooks/dispatch/lib/dispatch-audit.test.mjs (100 tests | 1 failed) 52ms
+   ❯ OpenCode version resolution (14)
+     × adversarial — probe failure keeps shared rules and warns version-specific rules 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  hooks/dispatch/lib/dispatch-audit.test.mjs > OpenCode version resolution > adversarial — probe failure keeps shared rules and warns version-specific rules
+AssertionError: expected [ { id: 'shared-rule', …(1) }, …(1) ] to deeply equal [ { id: 'shared-rule', …(1) }, …(1) ]
+
+- Expected
++ Received
+
+@@ -3,8 +3,8 @@
+      "id": "shared-rule",
+      "severity": "block",
+    },
+    {
+      "id": "v1-rule",
+-     "severity": "warn",
++     "severity": "block",
+    },
+  ]
+
+ ❯ hooks/dispatch/lib/dispatch-audit.test.mjs:151:70
+    149|
+    150|     expect(version).toBe('unknown');
+    151|     expect(violations.map(({ id, severity }) => ({ id, severity }))).t…
+       |                                                                      ^
+    152|       { id: 'shared-rule', severity: 'block' },
+    153|       { id: 'v1-rule', severity: 'warn' },
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 99 passed (100)
+   Start at  16:22:12
+   Duration  216ms (tests 48%, transform 28%, import 20%, worker 3%)
+

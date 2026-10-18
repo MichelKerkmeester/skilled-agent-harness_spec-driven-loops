@@ -1,0 +1,2 @@
+corpus 23 v1 commands, 0 verdict differences
+non-vacuous: 5 of 5 sample commands fire, rule ids hit: command-flag-for-slash-prompt,explicit-model-required,no-bare-agent-general,share-requires-confirmation,stdin-redirect-required

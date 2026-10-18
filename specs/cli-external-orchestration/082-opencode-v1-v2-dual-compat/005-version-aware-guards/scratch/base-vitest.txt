@@ -1,0 +1,26 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled
+
+ ❯ hooks/dispatch/pi/dispatch-preflight-lint.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  hooks/dispatch/pi/dispatch-preflight-lint.test.ts [ hooks/dispatch/pi/dispatch-preflight-lint.test.ts ]
+Error: Cannot find module '../../.skilled/hooks/shared/hook-flags.mjs' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts
+ ❯ hooks/dispatch/pi/dispatch-preflight-lint.ts:7:1
+      5| import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+      6| import { join } from "node:path";
+      7| import { isHookEnabled } from "../../.skilled/hooks/shared/hook-flags.…
+       | ^
+      8|
+      9| const PI_RUNTIME = "pi";
+ ❯ hooks/dispatch/pi/dispatch-preflight-lint.test.ts:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  91 passed (91)
+   Start at  15:44:06
+   Duration  413ms (tests 71%, transform 17%, import 8%, worker 4%)
+

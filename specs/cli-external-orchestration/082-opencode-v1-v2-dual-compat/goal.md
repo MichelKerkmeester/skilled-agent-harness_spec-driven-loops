@@ -112,10 +112,14 @@ and findings belong here.
 |------|-------|----------|
 | Phase tree scaffolded | Done | 11 children created under this packet |
 | 001 unknowns and baseline | Done | findings.md Q1 to Q11, baseline.json: v1 16 of 16 loaded, v2 0 of 16 active |
+| 005 version-aware guards | Done | `opencode2 run` classified and evaluated by version; v1 verdicts unchanged on 23 commands; validate strict PASSED (005/scratch/evidence.md) |
+| 002 pins, imports, dual export | In progress | 11 of 11 ported plugins active on v2 and 16 of 16 loading on v1; review fixes in flight |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | sk-vision bundle | `vision-runtime/dist/` is a build output missing from a fresh worktree, so 001 builds it before the baseline |
+| Bun-compiled v2 | OpenCode 2 is Bun-compiled, so `process.argv[1]` is a virtual path. An import-time `realpathSync(process.argv[1])` in a plugin import chain kills the plugin on v2 (002 decision 10) |
+| 005 policy amendment | On `unknown`, version-specific rules warn instead of dropping (005 Q5), and the probe targets the binary the command runs (005 NFR-S01) |
 <!-- /ANCHOR:log -->

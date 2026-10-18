@@ -1,0 +1,130 @@
+TAP version 13
+# Subtest: reads the real hard rules from the sidecar beside each SKILL.md
+ok 1 - reads the real hard rules from the sidecar beside each SKILL.md
+  ---
+  duration_ms: 2.24275
+  type: 'test'
+  ...
+# Subtest: CI GUARD: every declared check id maps to a known check (a typo fails loudly)
+ok 2 - CI GUARD: every declared check id maps to a known check (a typo fails loudly)
+  ---
+  duration_ms: 4.299875
+  type: 'test'
+  ...
+# Subtest: stdin-redirect-required covers every headless CLI shape, not just opencode run
+ok 3 - stdin-redirect-required covers every headless CLI shape, not just opencode run
+  ---
+  duration_ms: 0.729667
+  type: 'test'
+  ...
+# Subtest: availability checks pass for a resolvable binary and never refuse without PATH
+ok 4 - availability checks pass for a resolvable binary and never refuse without PATH
+  ---
+  duration_ms: 0.207083
+  type: 'test'
+  ...
+# Subtest: AC-1: opencode run without </dev/null is flagged; with it, clean (mutation-proof)
+ok 5 - AC-1: opencode run without </dev/null is flagged; with it, clean (mutation-proof)
+  ---
+  duration_ms: 0.677792
+  type: 'test'
+  ...
+# Subtest: other checks discriminate correctly
+ok 6 - other checks discriminate correctly
+  ---
+  duration_ms: 0.414792
+  type: 'test'
+  ...
+# Subtest: every runtime with a preflight adapter has it registered
+ok 7 - every runtime with a preflight adapter has it registered
+  ---
+  duration_ms: 2.765833
+  type: 'test'
+  ...
+# Subtest: pi dispatches need --offline and a provider-qualified model
+ok 8 - pi dispatches need --offline and a provider-qualified model
+  ---
+  duration_ms: 0.420708
+  type: 'test'
+  ...
+# Subtest: predicate bypasses: equals-form flags and unquoted slash prompts are caught
+ok 9 - predicate bypasses: equals-form flags and unquoted slash prompts are caught
+  ---
+  duration_ms: 0.277917
+  type: 'test'
+  ...
+# Subtest: hermes headless shapes need stdin handled: --query-file counts, a bare -q does not
+ok 10 - hermes headless shapes need stdin handled: --query-file counts, a bare -q does not
+  ---
+  duration_ms: 0.126833
+  type: 'test'
+  ...
+# Subtest: hermes rules discriminate on the flags the packet contract pins
+ok 11 - hermes rules discriminate on the flags the packet contract pins
+  ---
+  duration_ms: 0.725542
+  type: 'test'
+  ...
+# Subtest: fail-open: a check that throws never produces a violation
+ok 12 - fail-open: a check that throws never produces a violation
+  ---
+  duration_ms: 0.071833
+  type: 'test'
+  ...
+# Subtest: readHardRules reads the sibling sidecar and fails open on malformed input
+ok 13 - readHardRules reads the sibling sidecar and fails open on malformed input
+  ---
+  duration_ms: 10.154125
+  type: 'test'
+  ...
+# Subtest: severity maps error and block to a blocking violation; anything else advises
+ok 14 - severity maps error and block to a blocking violation; anything else advises
+  ---
+  duration_ms: 0.130667
+  type: 'test'
+  ...
+# Subtest: every runtime dispatch shape resolves to its skill (mutation-proof)
+ok 15 - every runtime dispatch shape resolves to its skill (mutation-proof)
+  ---
+  duration_ms: 1.045709
+  type: 'test'
+  ...
+# Subtest: a dispatch is resolved from the command, not from text that merely contains one
+ok 16 - a dispatch is resolved from the command, not from text that merely contains one
+  ---
+  duration_ms: 1.594417
+  type: 'test'
+  ...
+# Subtest: ENFORCEMENT GUARD: every check names a command it accepts and one it refuses
+ok 17 - ENFORCEMENT GUARD: every check names a command it accepts and one it refuses
+  ---
+  duration_ms: 0.959291
+  type: 'test'
+  ...
+# Subtest: a jev dispatch is governed from the command, and mentions of it are not
+ok 18 - a jev dispatch is governed from the command, and mentions of it are not
+  ---
+  duration_ms: 0.247916
+  type: 'test'
+  ...
+# Subtest: ENFORCEMENT GUARD: every cli packet declares at least one rule
+ok 19 - ENFORCEMENT GUARD: every cli packet declares at least one rule
+  ---
+  duration_ms: 1.12175
+  type: 'test'
+  ...
+# Subtest: ENFORCEMENT GUARD: declared checks and implemented checks are a bijection
+ok 20 - ENFORCEMENT GUARD: declared checks and implemented checks are a bijection
+  ---
+  duration_ms: 1.165209
+  type: 'test'
+  ...
+1..20
+# tests 20
+# suites 0
+# pass 20
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 83.025917

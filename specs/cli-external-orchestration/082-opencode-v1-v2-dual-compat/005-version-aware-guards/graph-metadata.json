@@ -34,7 +34,7 @@
       "dispatch"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,14 +42,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json",
-      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
-      ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
       ".skilled/hooks/dispatch/lib/opencode-version.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json",
       ".skilled/hooks/dispatch/lib/dispatch-audit.test.mjs",
       ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+      "scratch/inventories.txt",
       ".opencode/plugins/cli-dispatch-audit.js",
-      ".opencode/plugins/tests/source-root-consumers.test.cjs"
+      ".opencode/plugins/tests/source-root-consumers.test.cjs",
+      "scratch/base-vitest.txt",
+      "scratch/base-rule-checks.txt",
+      "scratch/base-shared.txt",
+      "scratch/base-source-root.txt",
+      "scratch/red-audit.txt"
     ],
     "entities": [
       {
@@ -89,15 +95,9 @@
         "source": "derived"
       },
       {
-        "name": "hard-rules.json",
-        "kind": "config",
-        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json",
-        "source": "derived"
-      },
-      {
-        "name": "dispatch-rule-checks.mjs",
+        "name": "opencode-version.mjs",
         "kind": "file",
-        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "path": ".skilled/hooks/dispatch/lib/opencode-version.mjs",
         "source": "derived"
       },
       {
@@ -107,9 +107,15 @@
         "source": "derived"
       },
       {
-        "name": "opencode-version.mjs",
+        "name": "dispatch-rule-checks.mjs",
         "kind": "file",
-        "path": ".skilled/hooks/dispatch/lib/opencode-version.mjs",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hard-rules.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json",
         "source": "derived"
       },
       {
@@ -125,6 +131,12 @@
         "source": "derived"
       },
       {
+        "name": "inventories.txt",
+        "kind": "file",
+        "path": "scratch/inventories.txt",
+        "source": "derived"
+      },
+      {
         "name": "cli-dispatch-audit.js",
         "kind": "code",
         "path": ".opencode/plugins/cli-dispatch-audit.js",
@@ -134,6 +146,36 @@
         "name": "source-root-consumers.test.cjs",
         "kind": "file",
         "path": ".opencode/plugins/tests/source-root-consumers.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "base-vitest.txt",
+        "kind": "file",
+        "path": "scratch/base-vitest.txt",
+        "source": "derived"
+      },
+      {
+        "name": "base-rule-checks.txt",
+        "kind": "file",
+        "path": "scratch/base-rule-checks.txt",
+        "source": "derived"
+      },
+      {
+        "name": "base-shared.txt",
+        "kind": "file",
+        "path": "scratch/base-shared.txt",
+        "source": "derived"
+      },
+      {
+        "name": "base-source-root.txt",
+        "kind": "file",
+        "path": "scratch/base-source-root.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red-audit.txt",
+        "kind": "file",
+        "path": "scratch/red-audit.txt",
         "source": "derived"
       },
       {
@@ -159,47 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The dispatch classifier admits only the exact binary name `opencode`, and every evidence regex matches `opencode run` with a word boundary",
     "created_at": "2026-10-18T12:45:04Z",
-    "last_save_at": "2026-10-18T14:15:47.485Z",
+    "last_save_at": "2026-10-18T15:24:37.935Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a4095c83861ea2bbe4be8bb12e9dd13d8a5f09d929ce0ab30e033846a89bbca",
+    "source_fingerprint": "sha256:aa5447f517f9528acda37f0ea9a367b5de04eccf8270a3e3eb78f9c36ddc7376",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "597b607d3ea3625a3ae137807a0c6f22244f8eeda46a4efe7ec5f658fd514fa8",
-      "plan.md": "7e0ad7e65abfd42b10564e12ba4b21e77c0b1296e68c782125934dcd790ded2e",
-      "tasks.md": "6bf981dd54dd11fb3a84cd9528a8a8b2ae64b8e14e1bc5fe6aeea1245bd40351",
-      "implementation-summary.md": "64424bb9e8e05709bf1c43c5dd9ff9a92d6f5049e40582bd41d11e2dd79d14d8"
+      "spec.md": "a664d49444e6235350d4be0da8ae8cf998fdee932bad1c3be8c69207349d23a8",
+      "plan.md": "6fd0b92b4597a172b7f96317b3b0c8cc8f0bcf40861dcda9953402a746e23d32",
+      "tasks.md": "cdf5c75064a50ed46e86c894c6dba934ce217c70cc0bad7c7ab8876b168439b8",
+      "implementation-summary.md": "1897f13d474fbabed4233072e5fdd85057efffc2e01eb0014360552dfc985870"
     },
     "last_active_at": null
   }

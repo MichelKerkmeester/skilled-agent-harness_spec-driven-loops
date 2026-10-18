@@ -9,7 +9,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+import { resolveOpencodeVersionSync } from './opencode-version.mjs';
+
 const HARD_RULES_FILENAME = 'hard-rules.json';
+const QUOTED_OPENCODE_RUN_BINARY = /(?:^|[\s;&|])["']((?:[^"']*[\\/])?opencode\d*)["']\s+run\b/;
+const OPENCODE_RUN_BINARY = /(?:^|[\s;&|'" ])((?:[^\s"';&|]*[\\/])?opencode\d*|\$OPENCODE_BIN|\$\{OPENCODE_BIN\})["']?\s+run\b/;
 
 /** Read the sibling sidecar beside a SKILL.md; [] on any read, parse or shape error (fail-open). */
 export function readHardRules(skillMdPath) {
@@ -33,7 +37,7 @@ const STDIN_REDIRECT = /<\s*\/dev\/null|0<\s*\/dev\/null|<<-?\s*['"]?\w|<<</; //
 // Five packets declared the stdin rule while the check only recognised `opencode run`,
 // so their rule never fired; these are the print-mode shapes each one documents.
 const HEADLESS_DISPATCH_SHAPES = [
-  /\bopencode\s+run\b/,
+  /\bopencode\d*\s+run\b/,
   /\bpi\s+(?:[^|;&]*\s)?(?:-p|--print)\b/,
   /\bclaude\s+(?:[^|;&]*\s)?(?:-p|--print)\b/,
   /\bcodex\s+exec\b/,
@@ -125,7 +129,7 @@ export const CHECKS = {
     if (!HEADLESS_DISPATCH_SHAPES.some((shape) => shape.test(cmd))) return true; // not a dispatch shape → n/a
     if (STDIN_REDIRECT.test(cmd)) return true; // stdin handled
     // A pipe feeding the CLI (`... | opencode run`) also closes inherited stdin.
-    if (/\|\s*(?:[A-Z_]+=\S+\s+)*(?:opencode\s+run|pi|claude|codex|devin|cursor-agent|hermes)\b/.test(cmd)) return true;
+    if (/\|\s*(?:[A-Z_]+=\S+\s+)*(?:opencode\d*\s+run|pi|claude|codex|devin|cursor-agent|hermes)\b/.test(cmd)) return true;
     // Hermes reads its prompt through --query-file (a path, or `-` for stdin), never waiting on a terminal.
     if (HERMES_CHAT.test(cmd) && HERMES_STDIN_HANDLED.test(cmd)) return true;
     return false;
@@ -134,7 +138,7 @@ export const CHECKS = {
   // provider is out of quota the 429 retries forever and emits nothing, which looks
   // exactly like a deadlock.
   'explicit-model-required': (cmd) => {
-    if (!/\bopencode\s+run\b/.test(cmd)) return true; // not the dispatch shape → n/a
+    if (!/\bopencode\d*\s+run\b/.test(cmd)) return true; // not the dispatch shape → n/a
     return /(^|\s)(-m|--model)(\s|=)/.test(cmd);
   },
   // A bare top-level `--agent general` is rejected by opencode at runtime. Both spellings
@@ -147,6 +151,7 @@ export const CHECKS = {
     if (!slashPrompt) return true;
     return /--command(\s|=)/.test(cmd);
   },
+  'v2-slash-prompt-route': (cmd) => !/(?:["']|\s)\s*\/[a-z0-9]+:[a-z0-9-]+/i.test(cmd),
   // --share publishes the session; flag for confirmation (advisory — can't verify consent
   // here). `--share=<value>` publishes exactly as the bare flag does.
   'share-requires-confirmation': (cmd) => !/--share(?:\s|=|$)/.test(cmd),
@@ -270,16 +275,36 @@ export const KNOWN_CHECKS = Object.keys(CHECKS);
  *
  * @param {string} command
  * @param {Array<object>} rules
- * @param {{checks?:object, context?:object}} [options]
+ * @param {Object} [options]
+ * @param {object} [options.checks] - Check registry override.
+ * @param {object} [options.context] - State available to checks.
+ * @param {'v1' | 'v2' | 'unknown'} [options.version] - Resolved OpenCode version.
  * @returns {Array<{id,severity,message,check,passed:boolean}>} only the VIOLATED rules.
  */
 export function evaluate(command, rules, options = {}) {
   const registry = options.checks || CHECKS;
   const context = options.context;
+  const hasVersion = ['v1', 'v2', 'unknown'].includes(options.version);
+  const commandText = String(command || '');
+  const opencodeRun = commandText.match(QUOTED_OPENCODE_RUN_BINARY)
+    || commandText.match(OPENCODE_RUN_BINARY);
+  const hasApplicability = rules.some((rule) =>
+    rule && Object.prototype.hasOwnProperty.call(rule, 'appliesTo'));
+  let version = hasVersion ? options.version : undefined;
+  let filterByVersion = hasVersion;
+
+  if (!filterByVersion && opencodeRun && hasApplicability) {
+    version = resolveOpencodeVersionSync(opencodeRun[1]);
+    filterByVersion = true;
+  }
+
   const violations = [];
   for (const rule of rules) {
     const fn = registry[rule.check];
     if (!fn) continue; // unknown check → skip (the CI validator catches typos, not this hot path)
+    const appliesTo = Array.isArray(rule.appliesTo) ? rule.appliesTo : ['v1', 'v2'];
+    const appliesToBoth = appliesTo.includes('v1') && appliesTo.includes('v2');
+    if (filterByVersion && version !== 'unknown' && !appliesTo.includes(version)) continue;
     let passed = true;
     try {
       passed = fn(String(command || ''), context);
@@ -291,7 +316,10 @@ export function evaluate(command, rules, options = {}) {
       // the availability/self-invocation guards use) denies the dispatch;
       // everything else is advisory. A skill's own SKILL.md severity is the
       // source of truth here.
-      const blocking = rule.severity === 'block' || rule.severity === 'error';
+      const severity = filterByVersion && version === 'unknown' && !appliesToBoth
+        ? 'warn'
+        : rule.severity;
+      const blocking = severity === 'block' || severity === 'error';
       violations.push({
         id: rule.id,
         severity: blocking ? 'block' : 'warn',

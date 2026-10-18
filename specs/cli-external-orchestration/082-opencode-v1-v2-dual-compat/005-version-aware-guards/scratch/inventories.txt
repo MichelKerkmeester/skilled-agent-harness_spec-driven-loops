@@ -1,0 +1,78 @@
+## HEAD at phase start
+867b83b671ce971b21931eb40e2e7ffe0ad14eae docs(cli-external-orchestration): record the OpenCode dual-compat baseline and verdicts
+
+## Scoped diff (005 files) vs 867b83b671
+ .skilled/hooks/dispatch/lib/dispatch-audit.mjs     |  46 +++-
+ .../hooks/dispatch/lib/dispatch-audit.test.mjs     | 292 ++++++++++++++++++++-
+ .../hooks/dispatch/lib/dispatch-rule-checks.mjs    |  38 ++-
+ .../dispatch/lib/dispatch-rule-checks.test.mjs     | 208 ++++++++++++++-
+ .../cli-opencode/hard-rules.json                   |  22 +-
+ 5 files changed, 569 insertions(+), 37 deletions(-)
+ M .skilled/hooks/dispatch/lib/dispatch-audit.mjs
+ M .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs
+ M .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs
+ M .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+?? .skilled/hooks/dispatch/lib/opencode-version.mjs
+
+## CHK-013 import inventory
+.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:9:import fs from 'node:fs';
+.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:10:import path from 'node:path';
+.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:12:import { resolveOpencodeVersionSync } from './opencode-version.mjs';
+.skilled/hooks/dispatch/lib/opencode-version.mjs:9:import { spawnSync } from 'node:child_process';
+.skilled/hooks/dispatch/lib/opencode-version.mjs:10:import { accessSync, constants, realpathSync, statSync } from 'node:fs';
+.skilled/hooks/dispatch/lib/opencode-version.mjs:11:import { delimiter, join } from 'node:path';
+
+## CHK-FIX-002 same-class producers: rg -n 'opencode\s+run|EXECUTOR_BASENAMES'
+.skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json:5:    "message": "Ad-hoc `opencode run` MUST close/redirect stdin (`</dev/null`) — omitting it can hang indefinitely at 0% CPU w
+.skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json:12:    "message": "Always pass `-m <provider/model>` to a non-interactive `opencode run`. When the configured default provider i
+.skilled/hooks/dispatch/lib/dispatch-audit.mjs:55:const EXECUTOR_BASENAMES = new Set([
+.skilled/hooks/dispatch/lib/dispatch-audit.mjs:78:  return OPENCODE_EXECUTOR_RE.test(value) || EXECUTOR_BASENAMES.has(value);
+.skilled/hooks/dispatch/lib/dispatch-audit.mjs:473:      // BUILDS a payload containing a dispatch (`P='{"command":"opencode run ..."}'`) reads
+.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:37:// Five packets declared the stdin rule while the check only recognised `opencode run`,
+.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:131:    // A pipe feeding the CLI (`... | opencode run`) also closes inherited stdin.
+.skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/2026-08-08--manual-testing-playbook--cli-invocation/skill-benchmark-report.json:48:      "reason": "opencode run -f re-run: pr
+.skilled/hooks/dispatch/devin/dispatch-audit-posttooluse.mjs:10:// an `opencode run` / `claude -p` / `codex exec -p` dispatch shape, and appends
+.skilled/hooks/dispatch/devin/dispatch-preflight-lint.mjs:10:// `opencode run` / `claude -p` / `codex exec -p` command BEFORE it spawns on the
+.skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/2026-08-08--manual-testing-playbook--cli-invocation/results.csv:2:CO-004,cli-opencode,,cli-invocation,manual,,opencode-go/deep
+.skilled/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs:10:// Bash tool call, recognizes an `opencode run` / `claude -p` dispatch shape, and appends one
+.skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs:9:// `opencode run` / `claude -p` / `codex exec -p` dispatch shape, and appends one
+.skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs:9:// Intercepts a composed `opencode run` / `claude -p` command BEFORE it spawns and evaluates the
+.skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs:9:// `opencode run` / `claude -p` command BEFORE it spawns on the exec surface and
+.skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/2026-07-29--manual-testing-playbook--goal-hook/skill-benchmark-report.json:23:      "reason": "opencode_goal tool is not expos
+.skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/2026-07-29--manual-testing-playbook--goal-hook/skill-benchmark-report.json:37:      "reason": "opencode_goal tool is not expos
+.skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/2026-07-29--manual-testing-playbook--goal-hook/skill-benchmark-report.json:51:      "reason": "experimental.chat.system.transf
+.skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/2026-07-29--manual-testing-playbook--goal-hook/skill-benchmark-report.json:61:    "derivationNote": "Derived after the fact fr
+
+## CHK-FIX-003 consumers: rg -l 'hard-rules|dispatch-rule-checks|dispatch-audit'
+.opencode/plugins/cli-dispatch-audit.js
+.opencode/plugins/README.md
+.opencode/plugins/sk-git-preflight-advisory.js
+.opencode/plugins/tests/README.md
+.opencode/plugins/tests/source-root-consumers.test.cjs
+.opencode/plugins/tests/v2-registration.test.cjs
+.skilled/commands/doctor/assets/doctor-git-setup.yaml
+.skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml
+.skilled/commands/doctor/scripts/git-setup-check.cjs
+.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs
+.skilled/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs
+.skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs
+.skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs
+.skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs
+.skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs
+.skilled/hooks/dispatch/devin/dispatch-audit-posttooluse.mjs
+.skilled/hooks/dispatch/devin/dispatch-preflight-lint.mjs
+.skilled/hooks/dispatch/lib/dispatch-audit.mjs
+.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs
+.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs
+.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+.skilled/hooks/dispatch/pi/dispatch-audit.ts
+.skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts
+.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts
+.skilled/hooks/dispatch/README.md
+.skilled/hooks/injection-contract.md
+.skilled/hooks/permission-policy/README.md
+.skilled/hooks/README.md
+.skilled/hooks/shared/hook-stdin-deadline.test.mjs
+
+## CHK-030 secrets in changed lines
+no new line matches

@@ -1,0 +1,6 @@
+F1 quoted v2                               ["v2-slash-prompt-route:warn"]
+F1 bash -c v2                              ["v2-slash-prompt-route:warn"]
+F1 sh -c v2                                ["v2-slash-prompt-route:warn"]
+F2 OPENCODE_BIN=opencode, runs opencode2   ["v2-slash-prompt-route:warn"]
+v1 slash still blocks                      ["command-flag-for-slash-prompt:block"]
+path-qualified -> unknown                  ["command-flag-for-slash-prompt:warn","v2-slash-prompt-route:warn"]
