@@ -36,4 +36,4 @@ None.
 - stuck_counter: 0
 
 ## Next iteration focus
-Rotate to D4 and inspect whether the Phase-025 maintainability fixes actually bound long-lived advisor surfaces and align with sk-code-opencode expectations.
+Rotate to D4 and inspect whether the Phase-025 maintainability fixes actually bound long-lived advisor surfaces and align with sk-code-skilled expectations.

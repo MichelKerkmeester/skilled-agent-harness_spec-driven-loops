@@ -50,7 +50,7 @@ Two things: a literal template/code-standards adherence audit of the already-shi
 
 ### Audit findings (dispatch 1)
 
-47 files checked against `sk-create-skill`'s templates and `sk-code-opencode`'s standards: SKILL.md, all 37 references, both Python extraction scripts, and the config/YAML/command surfaces. 26 real deviations found and fixed — 21 references had unnumbered H2 sections, `SKILL.md` had `SUCCESS CRITERIA` before `REFERENCES` (template order violation), and both Python scripts were missing Google-style docstrings. 21 files were already clean. Registry/command files carried no deviations.
+47 files checked against `sk-create-skill`'s templates and `sk-code-skilled`'s standards: SKILL.md, all 37 references, both Python extraction scripts, and the config/YAML/command surfaces. 26 real deviations found and fixed — 21 references had unnumbered H2 sections, `SKILL.md` had `SUCCESS CRITERIA` before `REFERENCES` (template order violation), and both Python scripts were missing Google-style docstrings. 21 files were already clean. Registry/command files carried no deviations.
 
 ### manual-testing-playbook/ (dispatch 2)
 

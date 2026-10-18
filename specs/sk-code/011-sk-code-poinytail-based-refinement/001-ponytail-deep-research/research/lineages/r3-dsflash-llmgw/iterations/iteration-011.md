@@ -23,7 +23,7 @@ Part 2's closing slice: how `sk-code-review` integrates with the shared layer an
 
 ## Questions Remaining
 
-- Part 3 opens: `sk-code-quality`, `sk-code-webflow`, `sk-code-opencode`, `sk-code-obsidian`, hub files, `benchmark/` and the playbook.
+- Part 3 opens: `sk-code-quality`, `sk-code-webflow`, `sk-code-skilled`, `sk-code-obsidian`, hub files, `benchmark/` and the playbook.
 
 ## Ruled Out
 

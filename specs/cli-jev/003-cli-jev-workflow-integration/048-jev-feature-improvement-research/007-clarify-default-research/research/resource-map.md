@@ -39,7 +39,7 @@ description: "Auto-generated research resource map from convergence evidence."
 | Path | Action | Status | Note |
 |------|--------|--------|------|
 | .skilled/skills/cli-classifier/mode-registry.json | Cited | OK | Citations=1; Iterations=1 |
-| .skilled/skills/sk-code/sk-code-opencode/SKILL.md | Cited | OK | Citations=1; Iterations=1 |
+| .skilled/skills/sk-code/sk-code-skilled/SKILL.md | Cited | OK | Citations=1; Iterations=1 |
 | .skilled/skills/sk-code/sk-code-quality/SKILL.md | Cited | OK | Citations=1; Iterations=1 |
 | .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs | Cited | OK | Citations=5; Iterations=5 |
 

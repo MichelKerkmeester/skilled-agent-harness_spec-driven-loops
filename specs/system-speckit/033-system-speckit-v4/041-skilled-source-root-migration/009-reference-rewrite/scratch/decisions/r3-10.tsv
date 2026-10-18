@@ -1,21 +1,21 @@
-.skilled/skills/sk-code/sk-code-opencode/references/config/quick-reference.md	157	17	8916047365526a70	rewrite	example database value names the tree; real root is .skilled
-.skilled/skills/sk-code/sk-code-opencode/references/config/quick-reference.md	172	11	d57fb00a365ac0fe	rewrite	example path value names the tree; real root is .skilled
-.skilled/skills/sk-code/sk-code-opencode/references/config/quick-reference.md	304	0	a39027c326b8120d	rewrite	legacy location tree with singular skill/; names the old root
-.skilled/skills/sk-code/sk-code-opencode/references/config/style-guide.md	220	19	d7b5cfa4493a5197	rewrite	example database path names the tree; real root is .skilled
-.skilled/skills/sk-code/sk-code-opencode/references/config/style-guide.md	396	0	a39027c326b8120d	rewrite	location tree lists real config homes; root is .skilled
-.skilled/skills/sk-code/sk-code-opencode/references/javascript/quality-standards/overview-modules-and-docs.md	45	3	a169ef12cbc38bba	keep	opencode-view: states the runtime plugin loader's requirement for its plugins folder
-.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md	82	98	b3ce663f2ff61726	rewrite	scan-root argument names the authored tree; use .skilled
-.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md	88	98	31d2a2939c802216	rewrite	scan-root argument names the authored tree; use .skilled
-.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md	43	27	680a90c7e9d7c3e7	rewrite	hook-helper doc pointer names the tree; real path .skilled/skills
-.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md	47	35	c61e47648479da5a	rewrite	advisor plugin file pointer; real file under .skilled/plugins
-.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md	62	14	2f07a3662f70d9d4	keep	opencode-view: names the runtime's plugin registration source folder
-.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md	83	77	cc98228f5c4c55a8	rewrite	Claude hook command must match live wiring, now .skilled/hooks
-.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md	183	231	a0bea1a058ec50ab	rewrite	advisor plugin path in transport sentence; real .skilled/plugins
-.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md	183	279	a0bea1a058ec50ab	rewrite	goal plugin path in transport sentence; real .skilled/plugins
-.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md	185	205	e73dddfb71c42bac	rewrite	spawned CLI path; the plugin resolves it under .skilled/bin
-.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md	249	28	32e07664065afc79	rewrite	related-resource plugin pointer; real file .skilled/plugins
-.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md	249	75	32e07664065afc79	rewrite	related-resource CLI pointer; real file .skilled/bin
-.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md	260	31	4de9d53659fe164d	keep	opencode-view: names the runtime's plugin folder as a wiring source
+.skilled/skills/sk-code/sk-code-skilled/references/config/quick-reference.md	157	17	8916047365526a70	rewrite	example database value names the tree; real root is .skilled
+.skilled/skills/sk-code/sk-code-skilled/references/config/quick-reference.md	172	11	d57fb00a365ac0fe	rewrite	example path value names the tree; real root is .skilled
+.skilled/skills/sk-code/sk-code-skilled/references/config/quick-reference.md	304	0	a39027c326b8120d	rewrite	legacy location tree with singular skill/; names the old root
+.skilled/skills/sk-code/sk-code-skilled/references/config/style-guide.md	220	19	d7b5cfa4493a5197	rewrite	example database path names the tree; real root is .skilled
+.skilled/skills/sk-code/sk-code-skilled/references/config/style-guide.md	396	0	a39027c326b8120d	rewrite	location tree lists real config homes; root is .skilled
+.skilled/skills/sk-code/sk-code-skilled/references/javascript/quality-standards/overview-modules-and-docs.md	45	3	a169ef12cbc38bba	keep	opencode-view: states the runtime plugin loader's requirement for its plugins folder
+.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md	82	98	b3ce663f2ff61726	rewrite	scan-root argument names the authored tree; use .skilled
+.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md	88	98	31d2a2939c802216	rewrite	scan-root argument names the authored tree; use .skilled
+.skilled/skills/sk-code/sk-code-skilled/references/shared/hooks.md	43	27	680a90c7e9d7c3e7	rewrite	hook-helper doc pointer names the tree; real path .skilled/skills
+.skilled/skills/sk-code/sk-code-skilled/references/shared/hooks.md	47	35	c61e47648479da5a	rewrite	advisor plugin file pointer; real file under .skilled/plugins
+.skilled/skills/sk-code/sk-code-skilled/references/shared/hooks.md	62	14	2f07a3662f70d9d4	keep	opencode-view: names the runtime's plugin registration source folder
+.skilled/skills/sk-code/sk-code-skilled/references/shared/hooks.md	83	77	cc98228f5c4c55a8	rewrite	Claude hook command must match live wiring, now .skilled/hooks
+.skilled/skills/sk-code/sk-code-skilled/references/shared/hooks.md	183	231	a0bea1a058ec50ab	rewrite	advisor plugin path in transport sentence; real .skilled/plugins
+.skilled/skills/sk-code/sk-code-skilled/references/shared/hooks.md	183	279	a0bea1a058ec50ab	rewrite	goal plugin path in transport sentence; real .skilled/plugins
+.skilled/skills/sk-code/sk-code-skilled/references/shared/hooks.md	185	205	e73dddfb71c42bac	rewrite	spawned CLI path; the plugin resolves it under .skilled/bin
+.skilled/skills/sk-code/sk-code-skilled/references/shared/hooks.md	249	28	32e07664065afc79	rewrite	related-resource plugin pointer; real file .skilled/plugins
+.skilled/skills/sk-code/sk-code-skilled/references/shared/hooks.md	249	75	32e07664065afc79	rewrite	related-resource CLI pointer; real file .skilled/bin
+.skilled/skills/sk-code/sk-code-skilled/references/shared/hooks.md	260	31	4de9d53659fe164d	keep	opencode-view: names the runtime's plugin folder as a wiring source
 .skilled/skills/sk-code/sk-code-quality/README.md	59	197	ee508565263b5a5a	rewrite	targets sit in the authored tree; real root is .skilled
 .skilled/skills/sk-code/sk-code-quality/SKILL.md	27	47	6e60eb0f9c162842	rewrite	authoring checklist target; real path .skilled/skills
 .skilled/skills/sk-code/sk-code-quality/SKILL.md	27	68	6e60eb0f9c162842	rewrite	authoring checklist target; real path .skilled/agents

@@ -34,7 +34,7 @@ The bound `spec_folder` names the packet that owns the writes. The review target
 ## 2. Standards to Judge Against
 
 - Each doc artifact against its sk-doc authoring mode contract: `.skilled/skills/sk-doc/sk-create-command/` (router, presentation and YAML split, runtime mirrors), `sk-create-manual-testing-playbook/`, `sk-create-feature-catalog/`, `sk-create-readme/`, `sk-create-skill/`, `sk-create-changelog/`, and the Human Voice Rules in `sk-create-with-human-voice/`.
-- Code against `.skilled/skills/sk-code/sk-code-opencode/`: SKILL.md section 3 including "plugins never write to the TUI", the TypeScript, JavaScript and Python checklists in `assets/checklists/`, and the shared references.
+- Code against `.skilled/skills/sk-code/sk-code-skilled/`: SKILL.md section 3 including "plugins never write to the TUI", the TypeScript, JavaScript and Python checklists in `assets/checklists/`, and the shared references.
 - Check that every place in the repo that lists doctor commands or advisor capabilities names `/doctor:setup` and the doctor routing correctly, that every path and command a doc cites exists and runs as written, and that the root README points to it where a user would look.
 
 ## 3. Dimensions

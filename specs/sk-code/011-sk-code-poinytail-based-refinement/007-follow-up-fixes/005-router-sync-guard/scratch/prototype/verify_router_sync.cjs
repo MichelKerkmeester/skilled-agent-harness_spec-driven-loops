@@ -20,7 +20,7 @@ const ROUTE_GOLD_CANDIDATES = [
 ];
 
 const NON_ROUTED_ALLOWLIST = new Set(['ROUTER.md', 'references/stack-detection.md', 'references/phase-detection.md']);
-const SURFACES = ['sk-code-webflow', 'sk-code-opencode'];
+const SURFACES = ['sk-code-webflow', 'sk-code-skilled'];
 const SURFACE_PACKETS = new Set([...SURFACES, 'sk-code-obsidian']);
 const PARENT_TIER_ALLOWLIST = new Set([
   'shared/references/universal/multi-agent-research.md',
@@ -183,7 +183,7 @@ function legSurfaceMap() {
   return problems;
 }
 
-// Leg 3: compiled destinations, leaf-manifest.json and the code-opencode RESOURCE_MAP agree through qualifiedIdToLeaf.
+// Leg 3: compiled destinations, leaf-manifest.json and the code-skilled RESOURCE_MAP agree through qualifiedIdToLeaf.
 function legBijection() {
   const problems = [];
   const manifest = JSON.parse(fs.readFileSync(path.join(SKCODE, 'leaf-manifest.json'), 'utf8'));
@@ -207,13 +207,13 @@ function legBijection() {
     for (const c of gold.cases || []) for (const id of c.targetQualifiedIds || []) ids.add(id);
     for (const id of ids) if (!LEAF_CONTRACT.qualifiedIdToLeaf(id, { modeIndex }).ok) problems.push(`compiled destination resolves to no leaf-owning mode: ${id}`);
   }
-  const codeOpencode = modeIndex['sk-code-opencode'];
-  if (!codeOpencode) {
-    problems.push('leaf-manifest.json declares no sk-code-opencode mode');
+  const codeSkilled = modeIndex['sk-code-skilled'];
+  if (!codeSkilled) {
+    problems.push('leaf-manifest.json declares no sk-code-skilled mode');
   } else {
-    const router = readSkillRouter(path.join(SKCODE, 'sk-code-opencode'));
+    const router = readSkillRouter(path.join(SKCODE, 'sk-code-skilled'));
     const paths = new Set([...(router.defaultResource || []), ...Object.values(router.resourceMap).flat()].map(norm));
-    for (const p of paths) if (!codeOpencode.leaves.has(p)) problems.push(`code-opencode RESOURCE_MAP entry is not a manifest leaf: ${p}`);
+    for (const p of paths) if (!codeSkilled.leaves.has(p)) problems.push(`code-skilled RESOURCE_MAP entry is not a manifest leaf: ${p}`);
   }
   return problems;
 }
@@ -269,7 +269,7 @@ const LEGS = [
   ['1a', 'machine-router paths exist and the prose maps are routed', legPaths],
   ['1b', 'every routable reference or asset doc is routed', legOrphans],
   ['2', 'surface RESOURCE_MAP equals the children union plus the parent tier', legSurfaceMap],
-  ['3', 'compiled destinations, leaf-manifest and code-opencode RESOURCE_MAP agree', legBijection],
+  ['3', 'compiled destinations, leaf-manifest and code-skilled RESOURCE_MAP agree', legBijection],
   ['4', 'playbook expected_resource is emitted by the router', legScenarios],
 ];
 

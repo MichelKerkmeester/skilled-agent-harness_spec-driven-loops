@@ -29,7 +29,7 @@ trigger_phrases:
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-- [x] T001 — Capture pre-change invariants: code-opencode router (86) + live (84) `aggregateScore`, `unscoredDimensions`, and sk-code router baseline. Evidence: saved JSON snapshots in scratchpad.
+- [x] T001 — Capture pre-change invariants: code-skilled router (86) + live (84) `aggregateScore`, `unscoredDimensions`, and sk-code router baseline. Evidence: saved JSON snapshots in scratchpad.
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
@@ -44,7 +44,7 @@ trigger_phrases:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 - [x] T007 — Tests: advisor-invisible → excluded-by-design; advisor-visible → unchanged; D4-R fail-closed. Update mirrors asserting old `unscoredDimensions`.
-- [x] T008 — Re-run code-opencode router + live; assert `aggregateScore` unchanged, `excludedDimensions:["D1inter"]`.
+- [x] T008 — Re-run code-skilled router + live; assert `aggregateScore` unchanged, `excludedDimensions:["D1inter"]`.
 - [x] T009 — sk-code re-baseline after skillId fix; record any D1-inter delta; land separately if the aggregate moves.
 - [x] T010 — Scope-guard: `git diff --stat` shows zero advisor/sk-code-metadata files. `validate.sh --strict` Errors 0.
 <!-- /ANCHOR:phase-3 -->

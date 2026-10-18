@@ -133,7 +133,7 @@ The only operational constraint: hooks require `[features] codex_hooks = true` i
 | Build | `npm run build` passed in `.opencode/skills/system-spec-kit/mcp_server`. |
 | Focused tests | `npx vitest run tests/codex-session-start-hook.vitest.ts tests/codex-user-prompt-submit-hook.vitest.ts tests/claude-user-prompt-submit-hook.vitest.ts` passed: 3 files, 22 tests. |
 | Direct SessionStart smoke | Emitted `hookSpecificOutput.hookEventName="SessionStart"` with startup context and code graph metrics in 42.22ms. |
-| Direct UserPromptSubmit smoke | Emitted `Advisor: stale; use sk-code-opencode 0.92/0.12 pass.` in 71ms. |
+| Direct UserPromptSubmit smoke | Emitted `Advisor: stale; use sk-code-skilled 0.92/0.12 pass.` in 71ms. |
 | Live feature flag | `codex features list` reports `codex_hooks ... true`. |
 | Real Codex smoke | `codex exec --json --ephemeral` returned `HOOK_SMOKE_OK` with 28,265 input tokens, exercising the actual CLI hook path. |
 

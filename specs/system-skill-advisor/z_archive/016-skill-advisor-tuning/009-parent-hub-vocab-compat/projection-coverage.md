@@ -72,7 +72,7 @@ Per hub: `|I|`=projected `intent_signals`, `|T|`=`derived.trigger_phrases`, `|K|
 | quality | 13 | 4 | `comment hygiene check`, `p0 p1 p2 author check` | `surface checklist` (TOKEN `checklist`) |
 | code-review | 10 | 2 | — | `reviewer` (TOKEN `reviewer`), `pr-state gates` (TOKEN `pr`) |
 | code-webflow | 3 | 0 | — | — (`webflow implementation` anchored by intent `webflow`) |
-| code-opencode | 3 | 0 | — | — (`opencode system code` anchored by intent `opencode`) |
+| code-skilled | 3 | 0 | — | — (`opencode system code` anchored by intent `opencode`) |
 
 **sk-design** — `|I|=17 |T|=48 |K|=18 |kw|=110 |V|=158`
 

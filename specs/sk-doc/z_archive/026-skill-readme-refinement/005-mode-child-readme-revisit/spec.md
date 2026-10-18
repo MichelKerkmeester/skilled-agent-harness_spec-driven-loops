@@ -89,7 +89,7 @@ This parent coordinates one child phase per mode skill across every hub in the r
 | `012-mcp-mobbin` | `.opencode/skills/mcp-tooling/mcp-mobbin/README.md` |
 | `013-mcp-obsidian` | `.opencode/skills/mcp-tooling/mcp-obsidian/README.md` (verify-only, the exemplar) |
 | `014-mcp-refero` | `.opencode/skills/mcp-tooling/mcp-refero/README.md` |
-| `015-sk-code-opencode` | `.opencode/skills/sk-code/sk-code-opencode/README.md` |
+| `015-sk-code-skilled` | `.opencode/skills/sk-code/sk-code-skilled/README.md` |
 | `016-sk-code-quality` | `.opencode/skills/sk-code/sk-code-quality/README.md` |
 | `017-sk-code-review` | `.opencode/skills/sk-code/sk-code-review/README.md` |
 | `018-sk-code-webflow` | `.opencode/skills/sk-code/sk-code-webflow/README.md` |

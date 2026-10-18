@@ -18,7 +18,7 @@ completedAt: 2026-04-12T17:10:29Z
 
 I’m pulling the spec bundle and the referenced workflow docs together first so I can verify the proof chain and phase links end-to-end.
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 ● Read review_core.md
   │ .claude/skills/sk-code-review/references/review_core.md

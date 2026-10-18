@@ -7,7 +7,7 @@ trigger_phrases:
   - memory save quality gate
   - sufficiency enforcement
   - template contract validation
-version: 1.6.0.30
+version: 1.6.1.0
 ---
 
 # Session Capturing Pipeline Quality
@@ -228,7 +228,7 @@ The closure feature consists of these distinct shipped behaviors:
 - `cd .skilled/skills/system-spec-kit/runtime && npm run lint`
 - `cd .skilled/skills/system-spec-kit/runtime && npm run build`
 - `cd .skilled/skills/system-spec-kit/runtime && npm run test`
-- `python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit/runtime/cli`
+- `python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit/runtime/cli`
 
 ### Latest verification snapshot
 

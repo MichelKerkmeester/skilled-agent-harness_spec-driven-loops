@@ -6,7 +6,7 @@ I have the full picture. The persona requires me to route through `sk-code` befo
 
 
 
-The compiled router resolved the `sk-code-opencode` surface packet. Loading it before the edit:
+The compiled router resolved the `sk-code-skilled` surface packet. Loading it before the edit:
 
 
 

@@ -1,4 +1,4 @@
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 I’m mapping the embedding pipeline end to end first, then I’ll answer each question with source-backed findings and concrete numbers. After that I’ll do a quick cross-check for the `sk-doc` memory-save edge case.
 

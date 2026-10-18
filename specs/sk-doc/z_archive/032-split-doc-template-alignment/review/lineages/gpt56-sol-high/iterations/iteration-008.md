@@ -12,7 +12,7 @@ trigger_phrases: []
 ## Files Reviewed
 
 - Packet checklist and implementation summary
-- code-quality, code-opencode, and code-webflow surface `SKILL.md` files through `package_skill.py --check`
+- code-quality, code-skilled, and code-webflow surface `SKILL.md` files through `package_skill.py --check`
 
 ## Findings - New
 
@@ -35,7 +35,7 @@ None.
 
 ## Edge Cases
 
-code-quality passes with two skill-level warnings. code-opencode and code-webflow fail only the required-section names already documented as out of scope.
+code-quality passes with two skill-level warnings. code-skilled and code-webflow fail only the required-section names already documented as out of scope.
 
 ## Confirmed-Clean Surfaces
 

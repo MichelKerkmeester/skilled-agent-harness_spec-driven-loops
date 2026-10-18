@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The hooks are installed machine-wide through `core.hooksPath`, but they choose their source root from a file inside whatever repository they fire in, so a cloned repository can make them run its own code on `pull`, `commit` or `push`",
     "created_at": "2026-10-02T07:45:23Z",
-    "last_save_at": "2026-10-07T12:55:27.957Z",
+    "last_save_at": "2026-10-18T20:45:22.859Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,12 +215,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f3f124c0eeb5539a41da3784e93a47cd866badd781c8151c78ed64b8a811c91a",
+    "source_fingerprint": "sha256:9ba834d0a3ed392e4b18dc077bb76525563325cd81d2fbfb589074433ab1360a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "752795b5e45d531a10a5c8fe86ceac7c069760d4bbfea1271e44ef45aa88b1c3",
       "plan.md": "e3f67c36a9da7e653ebf161ed52490e1d6883333878915c0a760437b412de250",
-      "tasks.md": "44f5f75bc2799125e038ba9e2eee86c74fb1e61f17d8d1cb2213d9f331307254",
+      "tasks.md": "986b49ec38a199fa555e2827909671216f4e90b19369f1ecd0db636571ecab50",
       "implementation-summary.md": "cbdc848ce6cb3f71d27e2b27b469cc0ad9e15ced663a0ab423e70c89daaff5fa"
     },
     "last_active_at": null

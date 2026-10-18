@@ -89,7 +89,7 @@ exec
     "reason": "Matched: !/system-spec-kit(explicit), !spec, !system-spec-kit(explicit), document~, files~"
   },
   {
-    "skill": "sk-code-opencode",
+    "skill": "sk-code-skilled",
     "kind": "skill",
     "confidence": 0.95,
     "uncertainty": 0.15,

@@ -691,7 +691,7 @@ This hub declares no named extensions (no `surface-axis`, `runtime-loop`, `advis
 - Parent-skill pattern: `sk-doc/create-skill/references/parent_skill/parent_skills_nested_packets.md`.
 ---
 name: sk-code
-description: "Unified two-axis code skill: routes to two WORKFLOW modes (quality, code-review) and bundles two read-only SURFACE evidence packets (code-webflow, code-opencode) — each surface carrying the implement/debug/verify workflow doctrine plus its stack knowledge — over shared surface-detection; holds no per-mode logic; dispatches by workflowMode through mode-registry.json."
+description: "Unified two-axis code skill: routes to two WORKFLOW modes (quality, code-review) and bundles two read-only SURFACE evidence packets (code-webflow, code-skilled) — each surface carrying the implement/debug/verify workflow doctrine plus its stack knowledge — over shared surface-detection; holds no per-mode logic; dispatches by workflowMode through mode-registry.json."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 4.1.0.0
 metadata:
@@ -703,7 +703,7 @@ metadata:
 
 # Code Family Hub (sk-code)
 
-One skill, two axes, one shared surface-detection router, and one advisor identity. The **workflow axis** is two code modes that act (quality, code-review); the **surface axis** is two read-only evidence packets the hub bundles alongside a workflow mode (code-webflow, code-opencode). Each surface carries the shared **implement → debug → verify** workflow doctrine (`shared/references/workflow_*.md`, symlinked in) plus its own stack knowledge; code-webflow also carries the folded-in Motion.dev animation overlay. This hub holds NO per-mode logic: it routes by `workflowMode` through `mode-registry.json`, and each mode or surface keeps its own contract in its packet.
+One skill, two axes, one shared surface-detection router, and one advisor identity. The **workflow axis** is two code modes that act (quality, code-review); the **surface axis** is two read-only evidence packets the hub bundles alongside a workflow mode (code-webflow, code-skilled). Each surface carries the shared **implement → debug → verify** workflow doctrine (`shared/references/workflow_*.md`, symlinked in) plus its own stack knowledge; code-webflow also carries the folded-in Motion.dev animation overlay. This hub holds NO per-mode logic: it routes by `workflowMode` through `mode-registry.json`, and each mode or surface keeps its own contract in its packet.
 
 ---
 
@@ -723,7 +723,7 @@ Use this skill for code-family workflows. Invoke it as `sk-code` with an optiona
 | Surface | Carries | Packet |
 |---------|---------|--------|
 | **code-webflow** | Frontend evidence: CSS/HTML/JS standards, implementation and performance patterns, CDN deployment, browser debug/verify — plus the Motion.dev animation overlay. Bundles the implement → debug → verify workflow doctrine (read-only evidence) for the Webflow surface; the acting agent applies it. | `sk-code/code-webflow/` |
-| **code-opencode** | System-code evidence: TypeScript/Python/shell/config standards, hooks, alignment verification, authoring checklists. Bundles the implement → debug → verify workflow doctrine (read-only evidence) for the OpenCode surface; the acting agent applies it. | `sk-code/code-opencode/` |
+| **code-skilled** | System-code evidence: TypeScript/Python/shell/config standards, hooks, alignment verification, authoring checklists. Bundles the implement → debug → verify workflow doctrine (read-only evidence) for the OpenCode surface; the acting agent applies it. | `sk-code/code-skilled/` |
 
 The **implement → debug → verify** phases are not standalone modes. Their surface-agnostic doctrine lives once in `shared/references/workflow_implement.md`, `workflow_debug.md`, and `workflow_verify.md`, and is symlinked into each surface so the active surface carries the full workflow. A request to implement, debug, or verify code detects its surface and loads that surface's bundled doctrine; the acting agent applies it.
 
@@ -741,7 +741,7 @@ The **implement → debug → verify** phases are not standalone modes. Their su
 Routing is **registry-driven**. `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. The advisor routes any code query to the single identity `sk-code`; the hub then picks the mode. This hub is a simple intent-to-packet router, not a root `references/<key>/` resource router: root `references/` and `assets/` directories are intentionally absent here, and resource slicing lives inside the nested packets plus `shared/references/smart_routing.md`.
 
 ### The discriminator
-- **`workflowMode`** - the public mode/packet key: `quality`, `code-review` (workflow) or `code-webflow`, `code-opencode` (surface).
+- **`workflowMode`** - the public mode/packet key: `quality`, `code-review` (workflow) or `code-webflow`, `code-skilled` (surface).
 - **`packetKind`** - the axis: `workflow` (a mode that acts) or `surface` (read-only evidence bundled alongside a mode).
 - **`backendKind`** - which backend runs the packet: `surface-router` or `review-cache` for workflow modes, `evidence-base` for surface packets.
 
@@ -829,14 +829,14 @@ sk-code/
   code-quality/          # quality mode packet     (workflow)
   code-review/           # review mode packet      (workflow)
   code-webflow/          # webflow surface packet  (read-only evidence; carries the workflow doctrine + Motion.dev animation overlay)
-  code-opencode/         # opencode surface packet (read-only evidence; carries the workflow doctrine)
+  code-skilled/         # opencode surface packet (read-only evidence; carries the workflow doctrine)
   shared/                # shared surface-detection router, cross-mode helpers, and the implement/debug/verify workflow doctrine (references/workflow_*.md)
 ```
 
 Each mode or surface packet is self-contained and carries no per-packet `graph-metadata.json`; only this hub carries one, so the advisor discovers exactly one code skill identity. The implement/debug/verify workflow doctrine is a single shared source under `shared/references/`; each surface symlinks it in rather than duplicating it.
 
 ### Backend
-The `surface-router` backend is the shared surface-detection router under `shared/`. It centralizes WEBFLOW, OPENCODE, and MOTION_DEV detection and precedence, and it carries the shared implement → debug → verify workflow doctrine that each surface consumes. The `review-cache` backend supports the code-review mode's non-mutating review output cache. The `evidence-base` backend serves the surface packets: read-only domain evidence (`code-webflow/`, `code-opencode/`) the hub bundles alongside the primary mode — the packet mutates nothing and never carries process; the acting agent applies the doctrine it bundles. Shared backend material provides surface identity, the workflow doctrine, and cross-mode helpers; it must never gain per-mode workflow contracts.
+The `surface-router` backend is the shared surface-detection router under `shared/`. It centralizes WEBFLOW, OPENCODE, and MOTION_DEV detection and precedence, and it carries the shared implement → debug → verify workflow doctrine that each surface consumes. The `review-cache` backend supports the code-review mode's non-mutating review output cache. The `evidence-base` backend serves the surface packets: read-only domain evidence (`code-webflow/`, `code-skilled/`) the hub bundles alongside the primary mode — the packet mutates nothing and never carries process; the acting agent applies the doctrine it bundles. Shared backend material provides surface identity, the workflow doctrine, and cross-mode helpers; it must never gain per-mode workflow contracts.
 
 ---
 
@@ -864,7 +864,7 @@ The `surface-router` backend is the shared surface-detection router under `share
 ## 5. REFERENCES
 
 - Workflow mode packets: `code-quality/SKILL.md`, `code-review/SKILL.md`.
-- Surface evidence packets: `code-webflow/SKILL.md`, `code-opencode/SKILL.md`.
+- Surface evidence packets: `code-webflow/SKILL.md`, `code-skilled/SKILL.md`.
 - Shared workflow doctrine: `shared/references/workflow_implement.md`, `shared/references/workflow_debug.md`, `shared/references/workflow_verify.md` (symlinked into each surface).
 - Registry: `mode-registry.json` (two-axis: `packetKind` discriminates workflow vs surface).
 - Hub router signals + surface bundling: `hub-router.json`.

@@ -12,7 +12,7 @@ _memory:
     recent_action: "13 symlinks created; entrypoint-guard gotcha found and documented"
     next_safe_action: "Run validate.sh --strict, commit"
     blockers: []
-    key_files: [".cursor/hooks/", ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md"]
+    key_files: [".cursor/hooks/", ".opencode/skills/sk-code/code-skilled/references/shared/hooks.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-hooks-discovery-mirror", parent_session_id: null }
     completion_pct: 100
     open_questions: []
@@ -58,7 +58,7 @@ Create `.cursor/hooks/` and symlink every file `.cursor/hooks.json` currently in
 - Functionally re-test every file through its new symlink path with the same synthetic payloads used in earlier phases.
 - Discover, confirm, and document the entrypoint-guard gotcha found during that re-test (4 of 13 files silently no-op through a symlink).
 - Add a `.cursor/hooks/README.md` explaining the mirror's purpose and the gotcha.
-- Extend `code-opencode`'s canonical `hooks.md` with the same explanation under its existing `CURSOR HOOKS` section.
+- Extend `code-skilled`'s canonical `hooks.md` with the same explanation under its existing `CURSOR HOOKS` section.
 - Leave `.cursor/hooks.json`'s `command` paths completely unchanged.
 
 ### Out of Scope
@@ -71,7 +71,7 @@ Create `.cursor/hooks/` and symlink every file `.cursor/hooks.json` currently in
 |---|---|---|
 | `.cursor/hooks/*` (13 symlinks) | Create | Relative symlinks to every file `.cursor/hooks.json` invokes. |
 | `.cursor/hooks/README.md` | Create | Explains the mirror's purpose and the entrypoint-guard gotcha. |
-| `.opencode/skills/sk-code/code-opencode/references/shared/hooks.md` | Modify | New "Discovery Mirror" subsection under `CURSOR HOOKS`; version bump. |
+| `.opencode/skills/sk-code/code-skilled/references/shared/hooks.md` | Modify | New "Discovery Mirror" subsection under `CURSOR HOOKS`; version bump. |
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -136,4 +136,4 @@ None — a direct, fully-executed request with one real technical finding along 
 - `../005-hooks-sk-code-alignment/spec.md` (predecessor)
 - `../../spec.md` (phase-parent packet)
 - `.cursor/hooks/README.md`
-- `.opencode/skills/sk-code/code-opencode/references/shared/hooks.md`
+- `.opencode/skills/sk-code/code-skilled/references/shared/hooks.md`

@@ -110,7 +110,7 @@ The package was added as a dark, dependency-closed runtime surface. It exposes g
 | Independent-process grant CAS | The focused suite starts from a valid mutex owned by a real exited process, then releases two Vitest OS processes on one backing directory from the same barrier | The nonce-scoped recovery claim admits one reclaimer; exactly one token-1 grant and one typed `LOCK_TIMEOUT`; both child processes exit 0 |
 | Stale commit boundary | The old holder pauses during preparation, a successor takes over and commits, then the old holder resumes | Old operation rejects with `STALE_FENCE`; its commit closure records no side effect |
 | TypeScript | `/opt/homebrew/bin/tsc -p .opencode/skills/system-deep-loop/runtime/tsconfig.json --noEmit --ignoreDeprecations 6.0` | Exit 0 |
-| Targeted alignment drift | `python3 .opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing --fail-on-warn` | Exit 0; 11 files, 0 findings |
+| Targeted alignment drift | `python3 .opencode/skills/sk-code/code-skilled/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing --fail-on-warn` | Exit 0; 11 files, 0 findings |
 | Comment hygiene | Shared checker over 11 modules plus the focused test | Exit 0; zero violations |
 | Strict packet validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <leaf> --strict` | Exit 0; Errors 0, Warnings 0 |
 

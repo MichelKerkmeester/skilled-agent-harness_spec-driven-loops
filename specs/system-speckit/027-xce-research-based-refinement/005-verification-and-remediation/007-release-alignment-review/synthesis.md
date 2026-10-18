@@ -8,7 +8,7 @@ trigger_phrases: []
 **Method:** 36 read-only gpt-5.5-fast xhigh seats (18/track), pool of 10 concurrent, staggered spawn, orchestrator-written state. 36/36 completed, 0 empty.
 **Round-2:** adversarial verification of the dominant clusters against the **authoritative source docs** (comment-hygiene.md, sk-code OpenCode standards) plus representative per-finding spot-checks — more reliable than re-dispatching seats that would re-interpret the same docs.
 
-> Raw itemized findings: `001-readmes-vs-027/review/findings-all.json` (Track A) and `002-code-vs-sk-code-opencode/review/findings-all.json` (Track B). Treat those as a **triage queue**, not a confirmed-defect list — the false-positive clusters below are tagged.
+> Raw itemized findings: `001-readmes-vs-027/review/findings-all.json` (Track A) and `002-code-vs-sk-code-skilled/review/findings-all.json` (Track B). Treat those as a **triage queue**, not a confirmed-defect list — the false-positive clusters below are tagged.
 
 ## Raw counts (round-1)
 

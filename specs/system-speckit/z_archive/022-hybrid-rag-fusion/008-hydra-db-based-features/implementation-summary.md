@@ -98,7 +98,7 @@ This pass combined documentation normalization and code correction instead of tr
 | `cd .opencode/skills/system-spec-kit/scripts && npm run check` | PASS |
 | `cd .opencode/skills/system-spec-kit/scripts && npm run build` | PASS |
 | `cd .opencode/skills/system-spec-kit/scripts && npx vitest run --config ../mcp_server/vitest.config.ts --root . tests/runtime-memory-inputs.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/codex-cli-capture.vitest.ts tests/copilot-cli-capture.vitest.ts tests/gemini-cli-capture.vitest.ts tests/claude-code-capture.vitest.ts tests/opencode-capture.vitest.ts` | PASS (`7` files, `54` tests) |
-| `cd .opencode/skills/system-spec-kit && python3 ../sk-code-opencode/scripts/verify_alignment_drift.py --root .` | PASS (`0` findings, `0` warnings, `0` violations) |
+| `cd .opencode/skills/system-spec-kit && python3 ../sk-code-skilled/scripts/verify_alignment_drift.py --root .` | PASS (`0` findings, `0` warnings, `0` violations) |
 | `2026-03-17T20:22:39Z timeout 35 claude -p "Reply with exactly OK."` | PASS (exit `0`, payload `OK`, exact `true`) |
 | `2026-03-17T20:23:25Z timeout 35 opencode run "Reply with exactly OK." --format json` | PASS (exit `0`, payload includes `"text":"OK"`, exact assistant text `true`) |
 | `2026-03-17T20:24:08Z timeout 35 codex exec "Reply with exactly OK." --model gpt-5.3-codex --sandbox read-only` | PASS (exit `0`, assistant payload `OK`, exact assistant text `true`) |

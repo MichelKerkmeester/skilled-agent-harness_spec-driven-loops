@@ -58,10 +58,10 @@ This is **Phase 1** of the external surface priority build. It builds research r
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-`/create:skill-parent update --surfaces` writes `hub-router.json`, and its step_4 activity (`create-skill-parent-confirm.yaml:462`, `create-skill-parent-auto.yaml:423`) only says the `tieBreak` must cover all modes. A new surface is appended after `sk-code-opencode` and loses every keyword tie against it (F47, F52; reproduced with a reorder in verification run V1). The scaffold then stops with the doctor red on 5k-canary only, and its completion report does not say that a canary case and its authored fixture copy are needed, or that a commit with the hooks installed re-mints and copies the activation manifest (F46, F80, F89).
+`/create:skill-parent update --surfaces` writes `hub-router.json`, and its step_4 activity (`create-skill-parent-confirm.yaml:462`, `create-skill-parent-auto.yaml:423`) only says the `tieBreak` must cover all modes. A new surface is appended after `sk-code-skilled` and loses every keyword tie against it (F47, F52; reproduced with a reorder in verification run V1). The scaffold then stops with the doctor red on 5k-canary only, and its completion report does not say that a canary case and its authored fixture copy are needed, or that a commit with the hooks installed re-mints and copies the activation manifest (F46, F80, F89).
 
 ### Purpose
-A surface added by the scaffold leads a tie against `sk-code-opencode`, and the scaffold's report names the two follow-ups that take the doctor, guard and sync to green.
+A surface added by the scaffold leads a tie against `sk-code-skilled`, and the scaffold's report names the two follow-ups that take the doctor, guard and sync to green.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -102,8 +102,8 @@ A surface added by the scaffold leads a tie against `sk-code-opencode`, and the 
 | ID | Requirement |
 |----|-------------|
 | REQ-001 | The phrase `ahead of the existing surface modes` appears in both YAML twins on identical lines and in both references |
-| REQ-002 | In a full-tree copy, the update workflow for a stand-in surface writes `tieBreak` as `[sk-code-quality, sk-code-review, <stand-in>, sk-code-opencode, sk-code-obsidian, sk-code-webflow]`, and the doctor passes 5e and 5i |
-| REQ-003 | In that copy, after the re-mint, a prompt that ties the stand-in with OpenCode routes `[<stand-in>, sk-code-opencode]` |
+| REQ-002 | In a full-tree copy, the update workflow for a stand-in surface writes `tieBreak` as `[sk-code-quality, sk-code-review, <stand-in>, sk-code-skilled, sk-code-obsidian, sk-code-webflow]`, and the doctor passes 5e and 5i |
+| REQ-003 | In that copy, after the re-mint, a prompt that ties the stand-in with OpenCode routes `[<stand-in>, sk-code-skilled]` |
 | REQ-004 | Both twins' completion reports name `canary-cases.v1.json` and `install-git-hooks.sh`; following them clears 5k-canary and leaves the guard and sync `--check` at exit 0 |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -125,7 +125,7 @@ The builder records each row in `implementation-summary.md` as `| P8-<n> | Pass 
 | P8-1 | The insertion-rule phrase is on identical lines in both twins and present in both references |
 | P8-2 | Copy: the update workflow for the stand-in writes the expected `tieBreak` order |
 | P8-3 | Copy: `parent-skill-check.cjs` prints PASS for 5e and 5i |
-| P8-4 | Copy: after refresh and copy-back, the tie prompt routes `[<stand-in>, sk-code-opencode]`; with the stand-in appended after `sk-code-webflow` instead, the same prompt routes `[sk-code-opencode, <stand-in>]` |
+| P8-4 | Copy: after refresh and copy-back, the tie prompt routes `[<stand-in>, sk-code-skilled]`; with the stand-in appended after `sk-code-webflow` instead, the same prompt routes `[sk-code-skilled, <stand-in>]` |
 | P8-5 | Copy: the run's completion report contains both follow-up lines |
 | P8-6 | Copy: after following both lines, the doctor has no 5k-canary failure and exits 0, and the guard and sync `--check` exit 0 |
 
@@ -137,7 +137,7 @@ Review findings go in a `| RV-<n> | P<0-2> | Fixed or Rejected | <proof or reaso
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: A stand-in surface added by the scaffold leads a tied prompt against `sk-code-opencode`.
+- **SC-001**: A stand-in surface added by the scaffold leads a tied prompt against `sk-code-skilled`.
 - **SC-002**: A user who follows the completion report reaches a green doctor, guard and sync without another doc.
 <!-- /ANCHOR:success-criteria -->
 

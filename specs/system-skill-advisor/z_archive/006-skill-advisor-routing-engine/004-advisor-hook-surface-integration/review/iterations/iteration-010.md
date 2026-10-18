@@ -45,4 +45,4 @@ None.
 - stuck_counter: 0
 
 ## Next iteration focus
-Rotate to D4 and re-check the Phase 025 maintainability fixes around cache bounds, deprecated normalizer aliases, and broader sk-code-opencode alignment.
+Rotate to D4 and re-check the Phase 025 maintainability fixes around cache bounds, deprecated normalizer aliases, and broader sk-code-skilled alignment.

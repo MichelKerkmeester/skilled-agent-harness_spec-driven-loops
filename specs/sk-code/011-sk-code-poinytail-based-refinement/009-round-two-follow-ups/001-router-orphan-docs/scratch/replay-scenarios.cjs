@@ -3,7 +3,7 @@
 // Run from the repository root.
 const fs = require('node:fs');
 const path = require('node:path');
-const lib = require(path.resolve('.skilled/skills/sk-code/sk-code-opencode/assets/scripts/router_replay_lib.cjs'));
+const lib = require(path.resolve('.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router_replay_lib.cjs'));
 const root = path.resolve('.skilled/skills/sk-code/sk-code-obsidian');
 const rows = [];
 (function walk(dir) {

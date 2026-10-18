@@ -59,14 +59,14 @@ The load-bearing correction of this packet: **the recon that scoped Wave 2 over-
 |-------------|--------------|---------|
 | 11 broken RESOURCE_MAP paths | `sk-code-router-sync.vitest.ts` passes 7/7; paths resolve via the `shared/` alias | REFUTED |
 | 6 Python syntax defects (missing commas) | `router-replay.cjs` `parseResourceMap` extracts quoted strings by regex `/"([^"]*)"/g` — commas are not load-bearing | REFUTED |
-| BLOCKED-BY-STRUCTURE / null aggregate | A fresh router-mode run returns PASS, aggregate 83, d5 100, 0 unreachable; the committed baseline was stale (its unreachable loci are all pre-`code-webflow/`/`code-opencode/`-reorg path forms) | REFUTED — stale baseline |
+| BLOCKED-BY-STRUCTURE / null aggregate | A fresh router-mode run returns PASS, aggregate 83, d5 100, 0 unreachable; the committed baseline was stale (its unreachable loci are all pre-`code-webflow/`/`code-skilled/`-reorg path forms) | REFUTED — stale baseline |
 
 Skipping these non-fixes was a scope-lock hold: editing a correct map to chase a hypothesized bug would have been a violation.
 
 ### What Was Built
 
 1. **Baseline refresh (REQ-001).** Re-ran the router-mode benchmark into `sk-code/benchmark/reports/baseline/`, replacing the stale BLOCKED-BY-STRUCTURE report. The committed baseline is now accurate.
-2. **Leaf-manifest (typed-pair prerequisite).** Generated `sk-code/leaf-manifest.json` via the existing `generate-leaf-manifest.cjs --write` (4 modes: code-webflow 116 leaves, code-opencode 65, code-review 10, quality 3). `--check` is byte-stable.
+2. **Leaf-manifest (typed-pair prerequisite).** Generated `sk-code/leaf-manifest.json` via the existing `generate-leaf-manifest.cjs --write` (4 modes: code-webflow 116 leaves, code-skilled 65, code-review 10, quality 3). `--check` is byte-stable.
 3. **Manifest-gated typed-gold derivation (the mechanism).** The shared loader `load-playbook-scenarios.cjs` gained `loadManifestModeLeaves` + `deriveTypedGoldFromBodyGold`. For an index-table skill whose hub has a leaf-manifest, it types the existing packet-qualified `**Expected references loaded**` body gold into `(workflowMode, leafResourceId)` pairs, narrowed to the dominant surface mode. It is **dormant** for any skill without a manifest (returns null → byte-identical to before), so it activates only for sk-code today.
 4. **Guard test.** `tests/load-playbook-typed-derivation.vitest.ts` (5/5) pins the derivation: typing packet-qualified gold, dropping preamble/shared paths, dominant-mode narrowing, null on no-resolvable, and manifest-absent → null.
 5. **Typed baseline.** Re-baselined with the typed surface active: **CONDITIONAL, aggregate 83, d5 100**; `typedPairRecall` scored on 14 scenarios, **mean 0.729**.

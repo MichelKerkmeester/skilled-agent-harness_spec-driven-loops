@@ -70,7 +70,7 @@ Eleven code folders this packet created or filled now document themselves, and t
 
 **The sentinel path fix.** Main moved `runtime/lib/hooks/completion-evidence-sentinel.cjs` to `runtime/hooks/lib/` while `score-completion-claims.mjs:41` and its catalog row kept the old path, so `completion-claim-audit.vitest.ts` failed on main itself with `Cannot find module`. A DeepSeek brief repointed both in `f89ebcb2c3`, and the suite passes 23 of 23; a static check of every relative import in the packet's 186 named files then found none unresolved (`scratch/evidence/build-evidence.md:81`).
 
-**The Hermes drift.** `sync-skills-hermes.cjs --check` reports 8 drifted copies (`sk-code`, `sk-code-obsidian`, `sk-code-opencode`, `sk-doc`, `sk-create-readme`, `system-deep-loop`, `system-skill-advisor` and `system-spec-kit`). Main's checkout at `d7c90f663c` reports the same 8 with no change from this branch, so the drift comes from main's runtime-alignment work and is left to its owner (`scratch/evidence/build-evidence.md:82`).
+**The Hermes drift.** `sync-skills-hermes.cjs --check` reports 8 drifted copies (`sk-code`, `sk-code-obsidian`, `sk-code-skilled`, `sk-doc`, `sk-create-readme`, `system-deep-loop`, `system-skill-advisor` and `system-spec-kit`). Main's checkout at `d7c90f663c` reports the same 8 with no change from this branch, so the drift comes from main's runtime-alignment work and is left to its owner (`scratch/evidence/build-evidence.md:82`).
 
 ### Files Changed
 

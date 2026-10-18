@@ -33,7 +33,7 @@ contextType: "implementation"
 ## 2. EXECUTION
 
 1. Insert canonical "Code Standards Loading (codebase-agnostic baseline+overlay contract)" rule as the next ALWAYS item before `### NEVER` (or `### CONCURRENCY LIMIT` for cli-copilot) in each of 5 CLI SKILL.md files.
-2. Replace cli-codex hook_contract.md `additionalContext` example: drop `sk-code-opencode` reference.
+2. Replace cli-codex hook_contract.md `additionalContext` example: drop `sk-code-skilled` reference.
 3. Update cli-codex SKILL.md Skill Integration table: collapse two duplicate `sk-code` rows into one baseline+overlay row.
 4. Update cli-opencode SKILL.md line 397 (validation cross-reference) + line 514 (Skill Integration table) to use baseline+overlay phrasing.
 5. Update cli-opencode references/opencode_tools.md line 37 (skill access list).

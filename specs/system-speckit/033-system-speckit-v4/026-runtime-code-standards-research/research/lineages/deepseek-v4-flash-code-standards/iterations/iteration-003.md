@@ -14,7 +14,7 @@ Angle 3 — assess swallowed exceptions, exit codes off the 0/1/2/3 contract, an
 
 ### F3.2 [P2] Exit codes 20 / 26 / 64 outside the documented shell exit-code contract
 - **Code:** `runtime/cli/doctor.sh:43` (`exit 20`), `:51` (`exit 26`), `:69` (`exit 26`); `runtime/cli/validate-command-tree-parity.sh:34` (`exit 64`).
-- **Standard:** `sk-code-opencode/references/shell/quality-standards/validation-security-and-shellcheck.md` §3 "Exit Code Standards" (0 success, 1 general error, 2 misuse, 126, 127); §3 "P1 Exit Codes Documented".
+- **Standard:** `sk-code-skilled/references/shell/quality-standards/validation-security-and-shellcheck.md` §3 "Exit Code Standards" (0 success, 1 general error, 2 misuse, 126, 127); §3 "P1 Exit Codes Documented".
 - **What is present:** `doctor.sh` returns 20/26 for its own branch conditions and `validate-command-tree-parity.sh` returns 64 (a sysexits `EX_USAGE` value). None of 20/26/64 is in the documented table, and neither script's header documents them. There is no shared `exit` helper, so the codes are ad hoc.
 - **Severity:** P2 (no correctness break; maintainability/debugging cost — a caller cannot infer the error class from the code).
 - **One-line fix:** **mechanical** — either map these onto the documented 0/1/2/7 range or document each non-standard code in the script header's `EXIT CODES:` block.
@@ -29,9 +29,9 @@ Angle 3 — assess swallowed exceptions, exit codes off the 0/1/2/3 contract, an
 - `runtime/hooks/cursor/completion-evidence-response.mjs:65`
 - `runtime/cli/doctor.sh:43,51,69`
 - `runtime/cli/validate-command-tree-parity.sh:34`
-- `sk-code-opencode/references/shell/quality-standards/validation-security-and-shellcheck.md` §3
+- `sk-code-skilled/references/shell/quality-standards/validation-security-and-shellcheck.md` §3
 - `shared/references/universal/code-quality-standards.md` §3 P0#4
-- `sk-code-opencode/references/typescript/quality-standards/tsdoc-errors-and-async.md` §4
+- `sk-code-skilled/references/typescript/quality-standards/tsdoc-errors-and-async.md` §4
 
 ## Assessment
 - **newInfoRatio:** 0.7

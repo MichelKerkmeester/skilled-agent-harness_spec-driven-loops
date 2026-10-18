@@ -64,7 +64,7 @@
 ./.opencode/specs/skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/review/iterations/iteration-025.md
 ./.opencode/specs/skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/review/iterations/iteration-026.md
 ./.opencode/specs/skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/review/iterations/iteration-029.md
-./.opencode/specs/skilled-agent-orchestration/z_archive/066-sk-code-opencode-merger/resource-map.md
+./.opencode/specs/skilled-agent-orchestration/z_archive/066-sk-code-skilled-merger/resource-map.md
 ./.opencode/specs/skilled-agent-orchestration/z_archive/070-sk-deep-rename/001-discovery-impact-map/edge-cases.md
 ./.opencode/specs/skilled-agent-orchestration/z_archive/070-sk-deep-rename/001-discovery-impact-map/inventory.md
 ./.opencode/specs/skilled-agent-orchestration/z_archive/070-sk-deep-rename/001-discovery-impact-map/inventory.tsv

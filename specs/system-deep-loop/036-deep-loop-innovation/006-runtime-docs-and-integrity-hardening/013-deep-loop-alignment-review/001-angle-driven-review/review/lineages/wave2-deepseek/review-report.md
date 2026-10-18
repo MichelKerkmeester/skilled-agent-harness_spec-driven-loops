@@ -156,7 +156,7 @@ Planning Packet
 
 - Dimension: traceability
 - Location: `.opencode/skills/system-deep-loop/hub-router.json:13`
-- Evidence: system-deep-loop `hub-router.json:13` and cli-external-orchestration `hub-router.json:21-24` declare `defaultResource` arrays while their ROUTER.md blocks say no always-loaded preamble with `DEFAULT_RESOURCE = []`; sk-code pairs `hub-router:14` `[shared/README.md]` against `ROUTER.md:319-325`'s three-file preamble and `sk-code-opencode/SKILL.md:60-66`'s five-file one. `compiler.cjs:184-185` admits only a scalar; the bound runtime compiler never reads the field, 004 nulls it, 007 truncates to `[0]`. Live snapshot loads for all three hubs show policy keys with no `defaultResource`, executed decisions carry no preamble.
+- Evidence: system-deep-loop `hub-router.json:13` and cli-external-orchestration `hub-router.json:21-24` declare `defaultResource` arrays while their ROUTER.md blocks say no always-loaded preamble with `DEFAULT_RESOURCE = []`; sk-code pairs `hub-router:14` `[shared/README.md]` against `ROUTER.md:319-325`'s three-file preamble and `sk-code-skilled/SKILL.md:60-66`'s five-file one. `compiler.cjs:184-185` admits only a scalar; the bound runtime compiler never reads the field, 004 nulls it, 007 truncates to `[0]`. Live snapshot loads for all three hubs show policy keys with no `defaultResource`, executed decisions carry no preamble.
 - Impact: A reader cannot tell which preamble policy runs because no code path runs either; the two authored statements contradict at the layer that would have to resolve them.
 - Recommendation: Keep one statement per hub in a form a consumer can read, delete the other, and remove or redefine the hub-router array. No fix was made during this review.
 - Disposition: active

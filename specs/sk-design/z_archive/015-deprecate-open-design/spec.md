@@ -122,7 +122,7 @@ Leave zero live references to the Open Design transport in the main workspace wh
 | `.opencode/skills/system-deep-loop/deep-alignment/**` | Modify | Remove adapter docs/scripts/tests referencing the transport |
 | `.opencode/skills/mcp-code-mode/**`, `.opencode/skills/mcp-tooling/mcp-figma/**` | Modify | Remove comparison/route references |
 | `.opencode/skills/cli-external-orchestration/**` | Modify | Remove open-design dispatch references |
-| `.opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md` | Modify | Remove example reference |
+| `.opencode/skills/sk-code/sk-code-skilled/assets/checklists/mcp-server-authoring.md` | Modify | Remove example reference |
 | `.opencode/skills/sk-prompt/sk-prompt-improve/**`, `references/design-generation-patterns.md` | Modify | Remove start_run/od patterns |
 | `.opencode/skills/sk-doc/**` (fixtures, tests, templates) | Modify | Remove open-design baselines/validation rules |
 | `.opencode/skills/system-spec-kit/manual-testing-playbook/**`, `mcp-server/**/ground-truth.json` | Modify | Remove eval/fixture references |

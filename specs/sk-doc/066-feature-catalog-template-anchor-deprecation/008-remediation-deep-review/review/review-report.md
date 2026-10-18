@@ -129,7 +129,7 @@ The product changes are correct. No bulk edit lost content, no reference to a re
 ## 8. Deferred Items and Findings Not Kept
 
 - **Not kept, R2-P2-001 (scratch scripts glob the working tree rather than tracked files).** The mechanism is real in `remove_packet_history_lines.py`, `normalize_validation_types.py` and `add_changelog_version_keys.py`, but the scripts are one-shot tools that already ran, the worktree had no untracked or symlinked catalog files, and the committed results were re-proved directly. No defect exists in the range, so this is not a finding.
-- **Out of range, pre-existing:** `.skilled/skills/sk-code/sk-code-opencode/changelog/v1.0.0.0.md` carries `version: 1.0.0.4` against its file name; the file is unchanged from `main`.
+- **Out of range, pre-existing:** `.skilled/skills/sk-code/sk-code-skilled/changelog/v1.0.0.0.md` carries `version: 1.0.0.4` against its file name; the file is unchanged from `main`.
 - **Out of range:** 131 more unkeyed changelog entries sit in units the range never touched.
 - **Ruled out:** content loss in bulk edits, broken old-name references (only three historical changelog lines keep them, by design), dangling links, version-carrier drift, duplicate or skipped versions, and overengineering (the scratch scripts add no dependency, abstraction or runtime path).
 

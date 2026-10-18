@@ -15,7 +15,7 @@ trigger_phrases: []
 ## Files Reviewed
 
 - Packet claims and evidence: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `implementation-summary.md`.
-- Scope-wide deterministic sweep: all Markdown under `code-opencode/{references,assets}`, `code-webflow/{references,assets}`, and `code-quality/{references,assets}` (163 files: 65 + 95 + 3).
+- Scope-wide deterministic sweep: all Markdown under `code-skilled/{references,assets}`, `code-webflow/{references,assets}`, and `code-quality/{references,assets}` (163 files: 65 + 95 + 3).
 - Focused candidate reads:
   - `.opencode/skills/sk-code/code-webflow/references/css/patterns/tokens_state_machine_and_triggers.md:1-43`
   - `.opencode/skills/sk-code/code-webflow/references/implementation/observer_patterns/mutation_and_intersection.md:1-40`
@@ -58,7 +58,7 @@ The corpus sweep reproduced the documented 163-file distribution and found no ac
 
 ## Confirmed-Clean Surfaces
 
-- Exact corpus count and distribution: 163 total; code-opencode 65, code-webflow 95, code-quality 3.
+- Exact corpus count and distribution: 163 total; code-skilled 65, code-webflow 95, code-quality 3.
 - Current filenames: no hyphenated Markdown stem in the declared resource/asset scope.
 - Current document shape: required six metadata keys (the five named fields plus version), four-part version values, H1/introduction/first-OVERVIEW ordering, numbered H2 continuity, and terminal RELATED RESOURCES where present.
 - Current overview behavior: zero exact Purpose/introduction duplicates; the two heading-shape candidates were directly adjudicated as semantically conforming.

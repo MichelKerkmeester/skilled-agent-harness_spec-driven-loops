@@ -15,7 +15,7 @@
     "trigger_phrases": [
       "skill advisor standards alignment",
       "opencode plugin exemption tier",
-      "sk-code-opencode esm exemption",
+      "sk-code-skilled esm exemption",
       "skill advisor jsdoc",
       "skill advisor box header",
       "026/009/009",
@@ -35,7 +35,7 @@
       "plugin",
       "exemption",
       "tier",
-      "sk-code-opencode",
+      "sk-code-skilled",
       "esm",
       "jsdoc",
       "box"

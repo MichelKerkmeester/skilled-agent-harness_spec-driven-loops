@@ -10,7 +10,7 @@ const MAX_FILES = 5;
 
 const tracks = [
   { key: 'A', findings: P007 + '/001-readmes-vs-027/review/findings-all.json', tpl: P007 + '/scratch/fix-tpl-a.txt', specdir: P007 + '/003-readme-remediation', out: P007 + '/003-readme-remediation/fixers' },
-  { key: 'B', findings: P007 + '/002-code-vs-sk-code-opencode/review/findings-all.json', tpl: P007 + '/scratch/fix-tpl-b.txt', specdir: P007 + '/004-code-remediation', out: P007 + '/004-code-remediation/fixers' },
+  { key: 'B', findings: P007 + '/002-code-vs-sk-code-skilled/review/findings-all.json', tpl: P007 + '/scratch/fix-tpl-b.txt', specdir: P007 + '/004-code-remediation', out: P007 + '/004-code-remediation/fixers' },
 ];
 
 function isFP(track, f) {

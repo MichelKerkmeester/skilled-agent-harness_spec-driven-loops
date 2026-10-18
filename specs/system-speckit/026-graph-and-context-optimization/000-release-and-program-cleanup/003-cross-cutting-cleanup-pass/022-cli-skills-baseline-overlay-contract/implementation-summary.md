@@ -40,7 +40,7 @@ _memory:
 
 5 CLI orchestrator skills (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) now mirror the `review.md` baseline+overlay standards contract. Each SKILL.md gained an identical numbered ALWAYS rule titled "Code Standards Loading (codebase-agnostic baseline+overlay contract)" instructing dispatched sessions to load `sk-code` baseline first, detect stack/codebase signals, load exactly one matching `sk-code-*` overlay, and apply precedence rules.
 
-7 direct mentions of `sk-code-review` / `sk-code-opencode` were replaced with codebase-agnostic phrasing across cli-codex (hook_contract.md, SKILL.md Skill Integration table) and cli-opencode (SKILL.md, references/opencode_tools.md, manual_testing_playbook root, test scenario CO-025, assets/prompt_templates.md TEMPLATE 5).
+7 direct mentions of `sk-code-review` / `sk-code-skilled` were replaced with codebase-agnostic phrasing across cli-codex (hook_contract.md, SKILL.md Skill Integration table) and cli-opencode (SKILL.md, references/opencode_tools.md, manual_testing_playbook root, test scenario CO-025, assets/prompt_templates.md TEMPLATE 5).
 
 ---
 
@@ -51,7 +51,7 @@ _memory:
 
 10 files, 15 edits. Pure documentation rewrite — no behavior changes, no schema changes, no moves/deletes.
 
-Pattern: lifted the canonical sentence form verbatim from `review.md` line 31 / §1 step 3 / §6 fallback rule, then condensed into a single numbered ALWAYS rule that fits each CLI skill's existing rule list. The "NEVER hardcode a specific overlay" clause inside the rule includes `sk-code-opencode` and `sk-code-review` as literal anti-pattern examples — the only remaining mentions in the 5 SKILL.md files are intentional examples documenting the prohibited pattern.
+Pattern: lifted the canonical sentence form verbatim from `review.md` line 31 / §1 step 3 / §6 fallback rule, then condensed into a single numbered ALWAYS rule that fits each CLI skill's existing rule list. The "NEVER hardcode a specific overlay" clause inside the rule includes `sk-code-skilled` and `sk-code-review` as literal anti-pattern examples — the only remaining mentions in the 5 SKILL.md files are intentional examples documenting the prohibited pattern.
 
 ---
 
@@ -75,7 +75,7 @@ Pattern: lifted the canonical sentence form verbatim from `review.md` line 31 / 
 ## Verification
 
 - 5/5 CLI SKILL.md contain "Code Standards Loading (codebase-agnostic baseline+overlay contract)" canonical rule
-- 0 non-anti-pattern mentions of `sk-code-review` / `sk-code-opencode` in active CLI skill files
+- 0 non-anti-pattern mentions of `sk-code-review` / `sk-code-skilled` in active CLI skill files
 - 9/10 modified files pass `validate_document.py` (cli-codex/references/hook_contract.md fails on pre-existing `missing_required_section: overview` — not introduced by this packet)
 - Cross-skill consistency confirmed: canonical insert text byte-identical across all 5 SKILL.md files
 

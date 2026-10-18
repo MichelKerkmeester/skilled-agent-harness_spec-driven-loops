@@ -54,7 +54,7 @@ _memory:
 
 Update tasks — dispatched in waves of >=5 (fresh LUNA MAX per file):
 
-- [~] T003 [P] LUNA MAX update `sk-code/code-opencode` SKILL.md to contract (`.opencode/skills/sk-code/code-opencode/SKILL.md`) [EVIDENCE: EXEMPT — packetKind: surface]
+- [~] T003 [P] LUNA MAX update `sk-code/code-skilled` SKILL.md to contract (`.opencode/skills/sk-code/code-skilled/SKILL.md`) [EVIDENCE: EXEMPT — packetKind: surface]
 - [x] T004 [P] LUNA MAX update `sk-code/code-quality` SKILL.md to contract (`.opencode/skills/sk-code/code-quality/SKILL.md`) [EVIDENCE: `9b9935dc6c`; gate PASS + Sonnet-5 verify PASS]
 - [x] T005 [P] LUNA MAX update `sk-code/code-review` SKILL.md to contract (`.opencode/skills/sk-code/code-review/SKILL.md`) [EVIDENCE: `9b9935dc6c`; gate PASS + Sonnet-5 verify PASS]
 - [~] T006 [P] LUNA MAX update `sk-code/code-webflow` SKILL.md to contract (`.opencode/skills/sk-code/code-webflow/SKILL.md`) [EVIDENCE: EXEMPT — packetKind: surface]
@@ -75,7 +75,7 @@ Update tasks — dispatched in waves of >=5 (fresh LUNA MAX per file):
 
 Verify + gate tasks — a fresh Sonnet-5 xhigh agent per file, then the validator:
 
-- [~] T015 [P] fresh Sonnet-5 xhigh verify `sk-code/code-opencode` + validator gate (`.opencode/skills/sk-code/code-opencode/`) [EVIDENCE: EXEMPT — packetKind: surface]
+- [~] T015 [P] fresh Sonnet-5 xhigh verify `sk-code/code-skilled` + validator gate (`.opencode/skills/sk-code/code-skilled/`) [EVIDENCE: EXEMPT — packetKind: surface]
 - [x] T016 [P] fresh Sonnet-5 xhigh verify `sk-code/code-quality` + validator gate (`.opencode/skills/sk-code/code-quality/`) [EVIDENCE: `9b9935dc6c`; gate PASS + Sonnet-5 verify PASS]
 - [x] T017 [P] fresh Sonnet-5 xhigh verify `sk-code/code-review` + validator gate (`.opencode/skills/sk-code/code-review/`) [EVIDENCE: `9b9935dc6c`; gate PASS + Sonnet-5 verify PASS]
 - [~] T018 [P] fresh Sonnet-5 xhigh verify `sk-code/code-webflow` + validator gate (`.opencode/skills/sk-code/code-webflow/`) [EVIDENCE: EXEMPT — packetKind: surface]

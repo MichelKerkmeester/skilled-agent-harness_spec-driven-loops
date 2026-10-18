@@ -111,7 +111,7 @@ Define a local-first skill and portable core that automatically preserves a base
 | `005-pdf-cli-and-cross-platform-state/` | Create | 005 | Text-PDF support, portable CLI, and safe cross-platform snapshot lifecycle |
 | `006-opencode-skill-and-accessibility/` | Create | 006 | sk-doc create-diff nested child mode wrapper, automatic edit capture, fallback, and accessibility refinement |
 | `007-optional-ocr-adapter/` | Create conditionally | 007 | Decision-first local OCR adapter with pinned assets and resource bounds |
-| `008-fidelity-safety-a11y-hardening/` | Create | 008 | Post-review remediation: strict decode, allowlist safety gate, legend/scroll accessibility, and code-opencode script alignment |
+| `008-fidelity-safety-a11y-hardening/` | Create | 008 | Post-review remediation: strict decode, allowlist safety gate, legend/scroll accessibility, and code-skilled script alignment |
 | `009-create-diff-command/` | Create | 009 | The `/create:diff` slash command for OpenCode and Codex (full sibling command pattern) |
 | `010-fluid-responsive-report/` | Create | 010 | Container-query fluid type/rhythm layer for the HTML report, tuned for IDE preview-pane widths |
 | `015-multi-file-boundary-dividers/` | Create | 015 | Validated aggregate-file start/end bands that remain visible through collapsed context |
@@ -131,7 +131,7 @@ Define a local-first skill and portable core that automatically preserves a base
 | 5 | `005-pdf-cli-and-cross-platform-state/` | Text PDFs, lifecycle CLI, atomic state, locks, retention, and platform controls | Draft; gated by phases 003 and 004 contracts |
 | 6 | `006-opencode-skill-and-accessibility/` | Thin sk-doc create-diff nested-mode wrapper, automatic capture, explicit fallback, and accessibility refinement | Implemented (v1) — self-contained embedded engine shipped (ADR-003); separate-package gating superseded |
 | 7 | `007-optional-ocr-adapter/` | Offline OCR decision and optional bounded adapter | Conditional; go or no-go after phases 003 and 005 |
-| 8 | `008-fidelity-safety-a11y-hardening/` | Post-review hardening: strict decode, allowlist validator, legend/scroll accessibility, code-opencode alignment | Complete |
+| 8 | `008-fidelity-safety-a11y-hardening/` | Post-review hardening: strict decode, allowlist validator, legend/scroll accessibility, code-skilled alignment | Complete |
 | 9 | `009-create-diff-command/` | `/create:diff` command (router + presentation + auto/confirm YAML) for OpenCode and Codex | Complete |
 | 10 | `010-fluid-responsive-report/` | Container-query fluid type/rhythm layer for the HTML report, tuned for IDE preview-pane widths | Complete |
 | 15 | `015-multi-file-boundary-dividers/` | Semantic file-start and file-end bands for validated aggregate document pairs | Complete |

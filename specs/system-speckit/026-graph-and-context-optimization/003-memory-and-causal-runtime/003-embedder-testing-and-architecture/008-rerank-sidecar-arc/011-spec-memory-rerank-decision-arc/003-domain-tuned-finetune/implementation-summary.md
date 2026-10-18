@@ -85,7 +85,7 @@ Five deterministic random `spec.md` files were sampled from `.opencode/specs/sys
 
 | Sample | Before | After |
 |---|---|---|
-| `000-release-cleanup/.../001-sk-code-opencode-standards-audit/spec.md` | `---`<br>`title: "Feature Specification: 037/001 sk-code-opencode Audit"`<br>`template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core \| v2.2"` | `# Feature Specification: 037/001 sk-code-opencode Audit`<br>`---`<br>`\| Field \| Value \|` |
+| `000-release-cleanup/.../001-sk-code-skilled-standards-audit/spec.md` | `---`<br>`title: "Feature Specification: 037/001 sk-code-skilled Audit"`<br>`template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core \| v2.2"` | `# Feature Specification: 037/001 sk-code-skilled Audit`<br>`---`<br>`\| Field \| Value \|` |
 | `005-cross-cutting-quality/002-deep-review-stack/spec.md` | `---`<br>`title: "Spec: 020 Deep-review of 016-019 stack via cli-devin SWE 1.6"`<br>`trigger_phrases:` | `# Spec: 020 Deep-review of 016-019 stack via cli-devin SWE 1.6`<br>`\| Field \| Value \|`<br>`\|---\|---\|` |
 | `027-xce-research-based-refinement/003-memoization-dependency-dag-foundation/spec.md` | `---`<br>`title: "Memoization dependency DAG foundation"`<br>`description: "Introduce canonical-input memoization...` | `# Memoization dependency DAG foundation`<br>`---`<br>`\| Field \| Value \|` |
 | `008-rerank-sidecar-arc/009-fp16-rerank/spec.md` | `---`<br>`title: "Spec: fp16 cross-encoder weights on MPS [template:level_1/spec.md]"`<br>`trigger_phrases:` | `# Spec: fp16 cross-encoder weights on MPS`<br>`---`<br>`\| Field \| Value \|` |

@@ -35,7 +35,7 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] **T-01** Read `.opencode/skills/sk-code-opencode/references/javascript/quality_standards.md` §9 Test File Exemption Tier and the JavaScript checklist asset to confirm the exemption pattern. [EVIDENCE: §9 structure mirrored: Scope, Exempted Standards table, What Still Applies, and Example/Brief Example; CommonJS P1 item found under `### CommonJS Exports` in the JavaScript checklist.]
+- [x] **T-01** Read `.opencode/skills/sk-code-skilled/references/javascript/quality_standards.md` §9 Test File Exemption Tier and the JavaScript checklist asset to confirm the exemption pattern. [EVIDENCE: §9 structure mirrored: Scope, Exempted Standards table, What Still Applies, and Example/Brief Example; CommonJS P1 item found under `### CommonJS Exports` in the JavaScript checklist.]
 - [x] **T-02** Read `.opencode/plugins/spec-kit-compact-code-graph.js` lines 1-50 to confirm the section-divider pattern that will be mirrored in the skill-advisor file. [EVIDENCE: divider format mirrored as separator / `// N. ALL-CAPS TITLE` / separator.]
 <!-- /ANCHOR:phase-1 -->
 

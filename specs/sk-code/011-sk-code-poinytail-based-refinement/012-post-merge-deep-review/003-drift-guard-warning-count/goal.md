@@ -43,7 +43,7 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | Warnings are counted and shown, never turned into failures, and a run with zero warnings prints its old lines unchanged. |
 | D2 | Only stdout is counted, and each guard's stderr keeps going to stderr. |
-| D3 | `sk-code-opencode` moves to 1.2.2.0 in `SKILL.md` with `changelog/v1.2.2.0.md`. |
+| D3 | `sk-code-skilled` moves to 1.2.2.0 in `SKILL.md` with `changelog/v1.2.2.0.md`. |
 
 <!-- /ANCHOR:directive -->
 
@@ -53,10 +53,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` exits 0, prints four lines starting `PASS: `, and its last line reads `run-all-drift-guards: all 4 guards PASSED, N non-blocking warning(s)` with N equal to the alignment-drift warning count.
+- [ ] `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` exits 0, prints four lines starting `PASS: `, and its last line reads `run-all-drift-guards: all 4 guards PASSED, N non-blocking warning(s)` with N equal to the alignment-drift warning count.
 - [ ] The same run prints a `PASS: alignment-drift  (verify_alignment_drift.py --check-router) (N warnings)` line.
-- [ ] `rg -n 'non-blocking' .skilled/skills/sk-code/sk-code-opencode/scripts/README.md` prints at least one line.
-- [ ] `rg -n '^version: 1\.2\.2\.0$' .skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.2.0.md` prints one line, and `python3 -I .skilled/skills/sk-doc/scripts/package_skill.py .skilled/skills/sk-code/sk-code-opencode --check --strict` prints `Result: PASS`.
+- [ ] `rg -n 'non-blocking' .skilled/skills/sk-code/sk-code-skilled/scripts/README.md` prints at least one line.
+- [ ] `rg -n '^version: 1\.2\.2\.0$' .skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.2.0.md` prints one line, and `python3 -I .skilled/skills/sk-doc/scripts/package_skill.py .skilled/skills/sk-code/sk-code-skilled --check --strict` prints `Result: PASS`.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/003-drift-guard-warning-count --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
@@ -86,5 +86,5 @@ and findings belong here.
 | Stderr merge removed | The builder piped `"$@" 2>&1` into `tee`. Every `[WARN]` line is on stdout, so the orchestrator dropped `2>&1` to keep stderr separate |
 | Criterion 1 amended 2026-10-11 | Later phases added five alignment-drift warnings, so the fixed count of 272 went stale. The property the phase added, a summary that shows the warning count, is what the criterion now checks |
 | Criterion 2 amended 2026-10-11 | Later phases added five alignment-drift warnings, so the fixed count of 272 went stale |
-| Criterion 4 amended 2026-10-11 | sk-code-opencode moved to 1.2.3.0 in the kebab-case rename phase, so the SKILL.md half went stale. The release entry still exists, and the strict package check proves the SKILL.md version matches the newest entry |
+| Criterion 4 amended 2026-10-11 | sk-code-skilled moved to 1.2.3.0 in the kebab-case rename phase, so the SKILL.md half went stale. The release entry still exists, and the strict package check proves the SKILL.md version matches the newest entry |
 <!-- /ANCHOR:log -->

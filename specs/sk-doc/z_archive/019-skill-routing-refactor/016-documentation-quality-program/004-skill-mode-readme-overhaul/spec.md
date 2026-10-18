@@ -48,7 +48,7 @@ _memory:
 
 ### Problem Statement
 
-sk-doc owns the skill-readme-template, a nine-section narrative model in the same human voice the repo root README uses. Its own mode READMEs never migrated to it. The eleven `create-*` mode READMEs read as bare reference cards: most carry no frontmatter, no one-line pitch, no AT A GLANCE table, and a `WHAT'S INSIDE` inventory instead of a problem-first overview. The two sk-code surface READMEs (`code-opencode`, `code-webflow`) have frontmatter and an AT A GLANCE table but no pitch and no OVERVIEW. `sk-git/README.md` is otherwise rich and conformant but has no AT A GLANCE section as its opening. A reader opening any of these files gets a file inventory, not an orientation. The README audit confirmed the template is sound and the gap is an authoring backlog, not a template defect.
+sk-doc owns the skill-readme-template, a nine-section narrative model in the same human voice the repo root README uses. Its own mode READMEs never migrated to it. The eleven `create-*` mode READMEs read as bare reference cards: most carry no frontmatter, no one-line pitch, no AT A GLANCE table, and a `WHAT'S INSIDE` inventory instead of a problem-first overview. The two sk-code surface READMEs (`code-skilled`, `code-webflow`) have frontmatter and an AT A GLANCE table but no pitch and no OVERVIEW. `sk-git/README.md` is otherwise rich and conformant but has no AT A GLANCE section as its opening. A reader opening any of these files gets a file inventory, not an orientation. The README audit confirmed the template is sound and the gap is an authoring backlog, not a template defect.
 
 ### Purpose
 
@@ -63,7 +63,7 @@ Rewrite the fourteen target READMEs to the current template so each one leads wi
 ### In Scope
 
 - Full rewrite of the eleven sk-doc mode READMEs (`create-agent`, `create-benchmark`, `create-changelog`, `create-command`, `create-diff`, `create-feature-catalog`, `create-flowchart`, `create-manual-testing-playbook`, `create-quality-control`, `create-readme`, `create-skill`) to the nine-section template, sourced from each mode's `SKILL.md` and real bundled files.
-- Terse additions to the two sk-code surface READMEs (`code-opencode`, `code-webflow`): a blockquote pitch and a problem-first OVERVIEW, keeping them read-only surface docs, not workflow docs.
+- Terse additions to the two sk-code surface READMEs (`code-skilled`, `code-webflow`): a blockquote pitch and a problem-first OVERVIEW, keeping them read-only surface docs, not workflow docs.
 - A new AT A GLANCE section and a renumber for `sk-git/README.md`, keeping its existing content.
 - The floor validator (`validate_document.py --type readme`) reports zero issues on every rewritten file.
 
@@ -84,7 +84,7 @@ Rewrite the fourteen target READMEs to the current template so each one leads wi
 |----|-----|-------------|
 | REQ-001 | P2 | Each of the eleven sk-doc mode READMEs carries five-field frontmatter, a one-line blockquote pitch, an AT A GLANCE table as section 1, and a problem-first numbered ALL-CAPS OVERVIEW. |
 | REQ-002 | P2 | Each rewritten README sources its content from the mode's own `SKILL.md` and real bundled files, with every linked path resolving, and no spec-packet history pasted in. |
-| REQ-003 | P2 | `code-opencode` and `code-webflow` gain a pitch and a problem-first OVERVIEW while staying terse surface docs (no QUICK START or FAQ inflation). |
+| REQ-003 | P2 | `code-skilled` and `code-webflow` gain a pitch and a problem-first OVERVIEW while staying terse surface docs (no QUICK START or FAQ inflation). |
 | REQ-004 | P2 | `sk-git/README.md` gains an AT A GLANCE section as its first section with the rest renumbered, and its existing body is unchanged. |
 | REQ-005 | P2 | `python3 .opencode/skills/sk-doc/scripts/validate_document.py <readme> --type readme` reports zero issues for every file in scope. |
 

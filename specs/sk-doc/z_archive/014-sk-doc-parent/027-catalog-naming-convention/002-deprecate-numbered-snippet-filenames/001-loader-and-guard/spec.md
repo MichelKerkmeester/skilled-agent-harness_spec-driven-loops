@@ -1,6 +1,6 @@
 ---
 title: "Spec: Make the Lane C playbook loader number-agnostic + add a no-new-numbered-snippet guard"
-description: "Phase 001 of the numbered-snippet-filename deprecation program (026). Re-base the deep-improvement Lane C benchmark loader's sk-doc-shape scenario gate in load-playbook-scenarios.cjs from the number-anchored `^\\d{3}-.*\\.md$` filename test to a content gate — any markdown file that sits in a category subfolder (not the root index) and carries scenario YAML frontmatter — so both the numbered and de-numbered snippet filenames load during the transition, the loader learns to read an optional `stage:` field, the code-opencode-playbook-ids.vitest.ts oracle is updated in lockstep, and a no-new-numbered-snippet guard blocks the anti-pattern's return. No snippet files are renamed here."
+description: "Phase 001 of the numbered-snippet-filename deprecation program (026). Re-base the deep-improvement Lane C benchmark loader's sk-doc-shape scenario gate in load-playbook-scenarios.cjs from the number-anchored `^\\d{3}-.*\\.md$` filename test to a content gate — any markdown file that sits in a category subfolder (not the root index) and carries scenario YAML frontmatter — so both the numbered and de-numbered snippet filenames load during the transition, the loader learns to read an optional `stage:` field, the code-skilled-playbook-ids.vitest.ts oracle is updated in lockstep, and a no-new-numbered-snippet guard blocks the anti-pattern's return. No snippet files are renamed here."
 trigger_phrases:
   - "number-agnostic playbook loader"
   - "no-new-numbered-snippet guard"
@@ -48,7 +48,7 @@ the ordinal prefix carried by the 111 in-scope snippet files (research.md, B): s
 changing the loader first would silently drop every one of them from the Lane C corpus (empirically
 reproduced this session). The gate is also already miscounting today — it zeroes 10+ live playbooks whose
 files are single-digit-prefixed or generator-output, a latent pre-existing bug the same fix corrects.
-`code-opencode-playbook-ids.vitest.ts:28` re-implements the identical `^\d{3}-.*\.md$` regex as an integrity
+`code-skilled-playbook-ids.vitest.ts:28` re-implements the identical `^\d{3}-.*\.md$` regex as an integrity
 oracle (`countFeatureFiles()`), so it must change in lockstep or it will assert against a count the loader no
 longer produces. sk-code-shape playbooks (root-index-table format, read via `parseRootIndex()`) are
 unaffected — they resolve `featureFile` from the table, not from a filename pattern.
@@ -76,7 +76,7 @@ authored against the tolerant loader this phase ships.
   `---` YAML block parses) as the real scenario-membership signal. Add optional `stage:` field parsing
   alongside the existing `id:` / `expected_intent:` / `expected_resources:` extraction and thread it onto the
   returned scenario object.
-- `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/code-opencode-playbook-ids.vitest.ts`
+- `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/code-skilled-playbook-ids.vitest.ts`
   — `countFeatureFiles()` (`:24-31`, the `^\d{3}-.*\.md$` test at `:28`): change to the same content gate so
   the oracle counts what the loader now loads, not what it used to load.
 - The new **no-new-numbered-snippet guard**: a check that FAILS on a freshly created
@@ -101,7 +101,7 @@ change.
   scenario loading (its containing directory is the playbook root itself, not a category subfolder).
 - **REQ-003:** The loader parses an optional `stage: routing|holdout|negative` frontmatter field and attaches it
   to the scenario object; a scenario file with no `stage:` field defaults to `routing` (ADR-004).
-- **REQ-004:** `code-opencode-playbook-ids.vitest.ts`'s `countFeatureFiles()` oracle is updated to the same content
+- **REQ-004:** `code-skilled-playbook-ids.vitest.ts`'s `countFeatureFiles()` oracle is updated to the same content
   gate as the loader, and the existing skill-benchmark test suite passes with no regression.
 - **REQ-005:** The no-new-numbered-snippet guard FAILS on a freshly created numbered snippet file under
   `feature_catalog/<category>/` or `manual_testing_playbook/<category>/` and PASSES on a de-numbered one
@@ -120,7 +120,7 @@ change.
 4. A scenario fixture carrying `stage: holdout` (or `negative`) surfaces that value on the returned scenario
    object; a fixture with no `stage:` field surfaces `routing`.
 5. `countFeatureFiles()` in the vitest oracle agrees with the loader's parsed scenario count on the live
-   `code-opencode` playbook tree (no drift between the two).
+   `code-skilled` playbook tree (no drift between the two).
 6. A newly created numbered snippet file trips the guard (non-zero / FAIL); a de-numbered one does not.
 7. The existing skill-benchmark vitest suite passes with no regression.
 8. `validate.sh --strict` on this phase folder is Errors 0.

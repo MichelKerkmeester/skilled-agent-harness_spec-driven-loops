@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Make the Lane-C scenario loader parse code-<surface>/ packet paths"
-description: "The Lane-C scenario loader and live-result parser recognized only references/, assets/, and ../shared/ path prefixes, so post-rename gold naming code-webflow/code-opencode/code-animation packet resources was silently stripped to references/… — breaking gold↔router matching for every surface scenario. This packet teaches the four path extractors the code-<surface>/ prefix and adds a regression guard. Companion to the router-replay surface-slice sync; together they unblock the sk-code gold refresh + Lane-C re-baseline."
+description: "The Lane-C scenario loader and live-result parser recognized only references/, assets/, and ../shared/ path prefixes, so post-rename gold naming code-webflow/code-skilled/code-animation packet resources was silently stripped to references/… — breaking gold↔router matching for every surface scenario. This packet teaches the four path extractors the code-<surface>/ prefix and adds a regression guard. Companion to the router-replay surface-slice sync; together they unblock the sk-code gold refresh + Lane-C re-baseline."
 trigger_phrases:
   - "scenario loader code surface paths"
   - "load-playbook extractPaths code prefix"
@@ -42,7 +42,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The Lane-C benchmark parses each playbook scenario's expected-resource gold (and, in live mode, the model's observed resource reads) with path-extraction regexes that recognized only the `references/`, `assets/`, and `../shared/` prefixes. After the two-axis split, sk-code's per-surface resources live under `code-webflow/`, `code-opencode/`, and `code-animation/` packet folders. A gold entry such as `code-animation/references/decision_matrix.md` was therefore silently truncated by the extractor to `references/decision_matrix.md` — a path that neither exists nor matches what the corrected router emits. The mismatch depressed discovery/recall for every surface scenario without any loud failure, so the benchmark could not measure post-rename routing even once the router-replay slicing was fixed and the gold paths were made current.
+The Lane-C benchmark parses each playbook scenario's expected-resource gold (and, in live mode, the model's observed resource reads) with path-extraction regexes that recognized only the `references/`, `assets/`, and `../shared/` prefixes. After the two-axis split, sk-code's per-surface resources live under `code-webflow/`, `code-skilled/`, and `code-animation/` packet folders. A gold entry such as `code-animation/references/decision_matrix.md` was therefore silently truncated by the extractor to `references/decision_matrix.md` — a path that neither exists nor matches what the corrected router emits. The mismatch depressed discovery/recall for every surface scenario without any loud failure, so the benchmark could not measure post-rename routing even once the router-replay slicing was fixed and the gold paths were made current.
 
 ### Purpose
 Teach the four code-*-blind path extractors the `code-<surface>/` packet prefix so packet paths parse whole, and add a regression guard so a future packet-folder rename cannot silently reintroduce the truncation. This is the companion harness fix to the router-replay surface-slice sync; together they let the sk-code playbook gold be refreshed and the Lane-C benchmark honestly re-baselined (a separate follow-up packet owns that gold work).
@@ -82,7 +82,7 @@ Teach the four code-*-blind path extractors the `code-<surface>/` packet prefix 
 
 | ID | Requirement | Acceptance Criteria | Trace |
 |----|-------------|---------------------|-------|
-| REQ-001 | The gold extractors recognize code-<surface>/ paths | `extractPaths` / `extractForbiddenPrefixes` return `code-webflow|code-opencode|code-animation` paths whole, never truncated to `references/` | problem |
+| REQ-001 | The gold extractors recognize code-<surface>/ paths | `extractPaths` / `extractForbiddenPrefixes` return `code-webflow|code-skilled|code-animation` paths whole, never truncated to `references/` | problem |
 | REQ-002 | End-to-end unblock verified | With the extractors fixed and the gold translated, gold↔router recall rises from ~0 to a real non-trivial value | purpose |
 
 ### P1 - Required (complete OR user-approved deferral)

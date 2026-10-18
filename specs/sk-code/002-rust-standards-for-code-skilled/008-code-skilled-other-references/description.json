@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/002-rust-standards-for-code-skilled/008-code-skilled-other-references",
+  "description": "Nine `code-skilled` docs exceed 500 lines: the typescript trio (865/714/562), the shell trio (625/538/501), javascript qualitystandards (605), and",
+  "keywords": [
+    "nine",
+    "code-skilled",
+    "docs",
+    "exceed",
+    "lines",
+    "typescript",
+    "trio",
+    "shell",
+    "javascript",
+    "qualitystandards"
+  ],
+  "lastUpdated": "2026-08-29T15:04:31.389Z",
+  "specId": "008",
+  "folderSlug": "code-skilled-other-references",
+  "parentChain": [
+    "sk-code",
+    "002-rust-standards-for-code-skilled"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

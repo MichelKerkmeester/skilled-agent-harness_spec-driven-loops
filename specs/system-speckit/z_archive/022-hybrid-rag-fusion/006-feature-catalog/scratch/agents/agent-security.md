@@ -11,7 +11,7 @@
 
 I’m mapping the catalog entries to the server code now so I can check for security-only issues rather than general alignment. Next I’ll scan the requested sections in parallel and spot-check any security claims against `mcp_server/`.
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 ● Read review_core.md
   │ .agents/skills/sk-code-review/references/review_core.md

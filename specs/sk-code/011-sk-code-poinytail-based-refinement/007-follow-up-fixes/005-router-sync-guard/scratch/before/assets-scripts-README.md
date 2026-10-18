@@ -1,6 +1,6 @@
 ---
 title: "sk code assets scripts: Code README"
-description: "Code-facing README for .skilled/skills/sk-code/sk-code-opencode/assets/scripts."
+description: "Code-facing README for .skilled/skills/sk-code/sk-code-skilled/assets/scripts."
 trigger_phrases:
   - "sk-code assets/scripts"
   - "code readme"
@@ -20,7 +20,7 @@ Operator and maintenance scripts for this skill.
 
 ### Purpose
 
-This README documents the code-bearing folder `.skilled/skills/sk-code/sk-code-opencode/assets/scripts` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
+This README documents the code-bearing folder `.skilled/skills/sk-code/sk-code-skilled/assets/scripts` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
 
 ### Usage
 
@@ -45,7 +45,7 @@ Start with `.skilled/skills/sk-code/SKILL.md` for runtime routing and workflow b
 **Step 2: Inspect the local code.**
 
 ```bash
-rg --files .skilled/skills/sk-code/sk-code-opencode/assets/scripts
+rg --files .skilled/skills/sk-code/sk-code-skilled/assets/scripts
 ```
 
 Expected result: the command lists the source files summarized below.
@@ -73,7 +73,7 @@ Run individual scripts from the repository root with the documented arguments.
 | `test_verify_alignment_drift.py` | Unit-style coverage for alignment drift file discovery, language checks, severity behavior, and CLI exit codes. |
 | `test_verify_stack_folders.py` | Builds a temporary references tree and proves `verify_stack_folders.py` exits 1 on an orphan folder and 0 on a clean tree. |
 | `verify_alignment_drift.py` | Recurring read-only alignment verifier for TypeScript, JavaScript, Python, shell, JSON, and JSONC files. |
-| `verify_stack_folders.py` | Verifies code-opencode language reference folders match the known language set and flags missing or orphan folders. |
+| `verify_stack_folders.py` | Verifies code-skilled language reference folders match the known language set and flags missing or orphan folders. |
 
 ---
 
@@ -91,7 +91,7 @@ Run individual scripts from the repository root with the documented arguments.
 **Audit this folder**
 
 ```text
-User request: Check .skilled/skills/sk-code/sk-code-opencode/assets/scripts for sk-code and README coverage.
+User request: Check .skilled/skills/sk-code/sk-code-skilled/assets/scripts for sk-code and README coverage.
 Skill routing: sk-code plus sk-doc.
 Expected output: Findings recorded in the current refinement and release-alignment review.
 ```
@@ -111,6 +111,6 @@ Expected output: Findings recorded in the current refinement and release-alignme
 
 | Document | Purpose |
 |---|---|
-| [`sk-code-opencode/SKILL.md`](../../SKILL.md) | Runtime instructions for the owning skill. |
-| [`sk-code-opencode/SKILL.md`](../../SKILL.md) | OpenCode coding standards and verification routing. |
+| [`sk-code-skilled/SKILL.md`](../../SKILL.md) | Runtime instructions for the owning skill. |
+| [`sk-code-skilled/SKILL.md`](../../SKILL.md) | OpenCode coding standards and verification routing. |
 | [`sk-doc skill-readme-template.md`](../../../../sk-doc/sk-create-skill/assets/skill/skill-readme-template.md) | README structure used for this code README. |

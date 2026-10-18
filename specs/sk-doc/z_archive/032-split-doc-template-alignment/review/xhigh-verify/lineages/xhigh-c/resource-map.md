@@ -26,8 +26,8 @@ trigger_phrases: []
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
-| .opencode/skills/sk-code/code-opencode/references/workflow_debug.md | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
+| .opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
+| .opencode/skills/sk-code/code-skilled/references/workflow_debug.md | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
 | .opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
 | .opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/best_practices_and_summary.md | Analyzed | OK | Findings P0=0 P1=0 P2=2; Iterations=2 |
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "performance audit agents"
 importance_tier: normal
 contextType: research
-version: 1.5.0.5
+version: 1.5.1.0
 ---
 
 # Multi-Agent Research Patterns
@@ -47,7 +47,7 @@ Comprehensive coverage through specialization + parallel execution + synthesis p
 ### Key Sources
 
 - Phase 0 (Research) entry point in the sk-code lifecycle: [`../phase-detection.md`](../phase-detection.md).
-- Surface performance refs under `.skilled/skills/sk-code/sk-code-webflow/references/performance/`. OPENCODE performance work uses targeted language and runtime evidence from `.skilled/skills/sk-code/sk-code-opencode/references/`.
+- Surface performance refs under `.skilled/skills/sk-code/sk-code-webflow/references/performance/`. SKILLED performance work uses targeted language and runtime evidence from `.skilled/skills/sk-code/sk-code-skilled/references/`.
 
 ---
 

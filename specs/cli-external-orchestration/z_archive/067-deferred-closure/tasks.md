@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "None; the packet is complete"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py"
+      - ".opencode/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py"
       - ".opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -70,7 +70,7 @@ _memory:
 - [x] T011 Filter `iter_code_files` through the tracked set
 - [x] T012 Filter `check_router_paths` through it too [the 3 ROUTER-DEAD-PATH errors survived T011 because that walk is separate]
 - [x] T013 Add `is_jsonl()` and consult it before reporting a parse failure; a single unparsable line is still an error
-- [x] T014 Replace the interim-backlog carve-out with the real contract (`sk-code-opencode/SKILL.md`)
+- [x] T014 Replace the interim-backlog carve-out with the real contract (`sk-code-skilled/SKILL.md`)
 
 ### WS2 — Hard-rule engine
 

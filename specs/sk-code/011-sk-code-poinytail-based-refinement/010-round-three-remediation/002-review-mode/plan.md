@@ -98,7 +98,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-- **Detector**: `scratch/detect-probe.py` extracts the python block under `### Smart Router Pseudocode` from SKILL.md and runs `detect_surface_evidence` on the three research inputs (generic Node `src/api/client.ts`, a `package.json` bump, the `code review my obsidian plugin` prompt) and three controls. Before: `sk-code:code-webflow`, `sk-code:code-webflow`, `sk-code:unknown`, `sk-code:code-opencode`, `sk-code:code-webflow`, `sk-code:code-webflow`. After: `UNKNOWN`, `UNKNOWN`, `OBSIDIAN`, `OPENCODE`, `WEBFLOW`, `OBSIDIAN`.
+- **Detector**: `scratch/detect-probe.py` extracts the python block under `### Smart Router Pseudocode` from SKILL.md and runs `detect_surface_evidence` on the three research inputs (generic Node `src/api/client.ts`, a `package.json` bump, the `code review my obsidian plugin` prompt) and three controls. Before: `sk-code:code-webflow`, `sk-code:code-webflow`, `sk-code:unknown`, `sk-code:code-skilled`, `sk-code:code-webflow`, `sk-code:code-webflow`. After: `UNKNOWN`, `UNKNOWN`, `OBSIDIAN`, `OPENCODE`, `WEBFLOW`, `OBSIDIAN`.
 - **Checkers**: direct runs on the four fixture files, a two-space `Not checked:` sample, and the harness (68 PASS lines).
 - **Canary**: the clean run prints `6 exact-string file(s)`; the harness tamper case proves the new UX pin can fail.
 - **Docs**: `validate_document.py --blocking-only` on every edited doc must give the baseline result (all `Total issues: 0`, except `pr-state-dedup.md`, which already fails with one `missing_required_section: overview` error and keeps it); the playbook under `--type playbook` and the changelog must give `Total issues: 0`.

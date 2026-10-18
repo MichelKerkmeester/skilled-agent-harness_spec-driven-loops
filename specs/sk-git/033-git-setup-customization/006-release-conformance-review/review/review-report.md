@@ -121,7 +121,7 @@ No divergent pivots ran (`convergence_mode=default`, `stop_policy=max-iterations
 - **Convergence:** both lineages ran to `maxIterationsReached` at 5 iterations. Per-iteration findings, deepseek: 1, 3, 6, 2, 0. Luna (cumulative counts): 2, 6, 13, 18, 18. Luna found nothing new in iteration 5, and deepseek's last iteration was clean.
 - **Route proof:** all 10 iteration records carry `target_agent: "deep-review"`, `resolved_route`, `agent_definition_loaded: true` and `mode: "review"`.
 - **Adversarial self-check:** F-01 was re-run in synthesis. `package_skill.py --check` printed `Result: FAIL` with 5,038 words against a 5,000 maximum. The finding holds at P1: it is the documented release check, and it fails as written. Not a P0, because nothing breaks at runtime.
-- **Sources reviewed:** the 27 manifest files, the sk-doc mode contracts named in `../spec.md`, and `sk-code/sk-code-opencode` with its JavaScript and shell checklists.
+- **Sources reviewed:** the 27 manifest files, the sk-doc mode contracts named in `../spec.md`, and `sk-code/sk-code-skilled` with its JavaScript and shell checklists.
 
 **Core Protocols:** spec_code (pass), checklist_evidence (n/a).
 **Overlay Protocols:** skill_agent (pass), agent_cross_runtime (pass), feature_catalog_code (drift), playbook_capability (drift).

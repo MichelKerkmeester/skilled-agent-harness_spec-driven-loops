@@ -58,7 +58,7 @@ Pure filesystem/documentation change: one new directory (`.cursor/hooks/`) of re
 - [x] Confirmed the same empty-output behavior for `session-end.js`, `user-prompt-submit.js`, `precompact.js` (the other 3 files compiled from a `runCursorHook`-using `.ts` source); confirmed the 9 plain-script files (no such guard) work identically through either path.
 - [x] Ran a control test — the same file via its real path returns the correct output — confirming this is specifically a symlink-invocation artifact, not a regression.
 - [x] Wrote `.cursor/hooks/README.md` explaining the mirror's purpose and the gotcha in full technical detail.
-- [x] Extended `code-opencode/references/shared/hooks.md`'s `CURSOR HOOKS` section with a matching "Discovery Mirror" subsection; bumped version to `1.0.0.16`.
+- [x] Extended `code-skilled/references/shared/hooks.md`'s `CURSOR HOOKS` section with a matching "Discovery Mirror" subsection; bumped version to `1.0.0.16`.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->

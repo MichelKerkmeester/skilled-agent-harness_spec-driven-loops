@@ -23,7 +23,7 @@ contextType: "implementation"
 | **Language/Stack** | Node.js CommonJS |
 | **Framework** | None |
 | **Storage** | None |
-| **Testing** | `node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/`; `run-all-drift-guards.sh` |
+| **Testing** | `node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/`; `run-all-drift-guards.sh` |
 
 ### Overview
 Four in-place edits to two guard scripts. Each reads data the tree already has: the packet directories on disk, the leaf manifest's declared modes, the ROUTER.md headings and the registry's surface modes. Nothing new is minted or stored.
@@ -73,10 +73,10 @@ Derive the checked set from the tree instead of a fixed list
 | `verify-router-sync.cjs` | Router drift guard | Update | T1 to T3, P10-1 to P10-3, P10-5 |
 | `verify-doc-claims.cjs` | Doc-claims guard | Update | T4, P10-4 |
 | `run-all-drift-guards.sh` | Completion gate wrapper | Unchanged | P10-1 |
-| sk-code-opencode `SKILL.md` and changelog | Packet edition | Release | sk-code doctor 13d |
+| sk-code-skilled `SKILL.md` and changelog | Packet edition | Release | sk-code doctor 13d |
 
 Required inventories:
-- Same-class producers: `grep -nE "sk-code-(webflow|obsidian)|WEBFLOW|three surfaces" .skilled/skills/sk-code/sk-code-opencode/assets/scripts/*.cjs` lists every hard-coded example reference; each is changed or shown not to block a removal.
+- Same-class producers: `grep -nE "sk-code-(webflow|obsidian)|WEBFLOW|three surfaces" .skilled/skills/sk-code/sk-code-skilled/assets/scripts/*.cjs` lists every hard-coded example reference; each is changed or shown not to block a removal.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---

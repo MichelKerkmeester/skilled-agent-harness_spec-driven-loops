@@ -54,7 +54,7 @@ _memory:
 
 - [x] T001 Confirm phase 005 adapter contract signature is available. Read `sk_doc_adapter.md`/`sk-doc.cjs` in full; matched file shape in `sk-code.cjs`.
 - [x] T002 Re-read `.opencode/skills/sk-code/shared/references/smart_routing.md` and `stack_detection.md` for currency. Both read in full 2026-07-11; ported into `classifySurface()`.
-- [x] T003 [P] Re-read `.opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py` CLI contract and Finding shape for currency. Read in full; `--root` confirmed directory-only, no `--json` flag, print format at lines 534-537.
+- [x] T003 [P] Re-read `.opencode/skills/sk-code/code-skilled/assets/scripts/verify_alignment_drift.py` CLI contract and Finding shape for currency. Read in full; `--root` confirmed directory-only, no `--json` flag, print format at lines 534-537.
 <!-- /ANCHOR:phase-1 -->
 
 ---

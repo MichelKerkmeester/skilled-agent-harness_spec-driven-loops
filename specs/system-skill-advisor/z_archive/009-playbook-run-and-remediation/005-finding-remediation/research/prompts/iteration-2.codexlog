@@ -648,7 +648,7 @@ exec
  M .opencode/specs/skilled-agent-orchestration/z_archive/015-cmd-create-changelog/graph-metadata.json
  M .opencode/specs/skilled-agent-orchestration/z_archive/016-sk-code-review-creation/graph-metadata.json
  M .opencode/specs/skilled-agent-orchestration/z_archive/017-cmd-create-prompt/graph-metadata.json
- M .opencode/specs/skilled-agent-orchestration/z_archive/018-sk-code-opencode-refinement/graph-metadata.json
+ M .opencode/specs/skilled-agent-orchestration/z_archive/018-sk-code-skilled-refinement/graph-metadata.json
  M .opencode/specs/skilled-agent-orchestration/z_archive/019-cmd-create-skill-merger/graph-metadata.json
  M .opencode/specs/skilled-agent-orchestration/z_archive/020-cmd-create-readme-install-merger/graph-metadata.json
  M .opencode/specs/skilled-agent-orchestration/z_archive/021-sk-doc-feature-catalog-testing-playbook/graph-metadata.json
@@ -743,7 +743,7 @@ exec
  M .opencode/specs/skilled-agent-orchestration/z_archive/065-skill-advisor-reindex-and-stress-test/004-skill-router-alias-canonicalization/graph-metadata.json
  M .opencode/specs/skilled-agent-orchestration/z_archive/065-skill-advisor-reindex-and-stress-test/005-ambiguous-debug-review-routing/graph-metadata.json
  M .opencode/specs/skilled-agent-orchestration/z_archive/065-skill-advisor-reindex-and-stress-test/graph-metadata.json
- M .opencode/specs/skilled-agent-orchestration/z_archive/066-sk-code-opencode-merger/graph-metadata.json
+ M .opencode/specs/skilled-agent-orchestration/z_archive/066-sk-code-skilled-merger/graph-metadata.json
  M .opencode/specs/skilled-agent-orchestration/z_archive/067-mcp-figma-transfer/001-barter-figma-agent/graph-metadata.json
  M .opencode/specs/skilled-agent-orchestration/z_archive/067-mcp-figma-transfer/002-public-figma-agent/graph-metadata.json
  M .opencode/specs/skilled-agent-orchestration/z_archive/067-mcp-figma-transfer/003-mcp-figma-skill-removal/graph-metadata.json
@@ -906,7 +906,7 @@ exec
  M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/graph-metadata.json
  M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/001-post-program-doc-and-state-cleanup/graph-metadata.json
  M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/002-vitest-baseline-recovery-followup/graph-metadata.json
- M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/graph-metadata.json
+ M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/graph-metadata.json
  M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/002-feature-catalog-trio-alignment/graph-metadata.json
  M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/003-testing-playbook-trio-alignment/graph-metadata.json
  M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/004-sk-doc-template-alignment/graph-metadata.json

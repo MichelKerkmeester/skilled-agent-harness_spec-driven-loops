@@ -63,4 +63,4 @@ Two new process gaps in the review mode (reproducing case, connected-code read),
 - What I would do differently: check recommendation closure first for every surface before comparing doctrine; it front-loads the scope corrections the parent packet actually needs.
 
 ## Recommended Next Focus
-Per-surface packets: `sk-code-webflow`, `sk-code-opencode` and `sk-code-obsidian`, including closure checks on round one's D1 and D3 findings and its precedence recommendation.
+Per-surface packets: `sk-code-webflow`, `sk-code-skilled` and `sk-code-obsidian`, including closure checks on round one's D1 and D3 findings and its precedence recommendation.

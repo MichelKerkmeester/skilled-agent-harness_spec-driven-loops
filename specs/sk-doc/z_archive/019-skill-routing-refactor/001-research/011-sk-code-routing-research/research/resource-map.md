@@ -42,7 +42,7 @@ trigger_phrases: []
 | .opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json | Cited | OK | Citations=2; Iterations=2 |
 | .opencode/skills/sk-code/benchmark/fixtures/sk_code/sk-code-loadspeed-001.private.json | Cited | OK | Citations=1; Iterations=1 |
 | .opencode/skills/sk-code/benchmark/live_final/skill-benchmark-report.json | Cited | OK | Citations=1; Iterations=1 |
-| .opencode/skills/sk-code/code-opencode/SKILL.md | Cited | OK | Citations=1; Iterations=1 |
+| .opencode/skills/sk-code/code-skilled/SKILL.md | Cited | OK | Citations=1; Iterations=1 |
 | .opencode/skills/sk-code/code-webflow/SKILL.md | Cited | OK | Citations=1; Iterations=1 |
 | .opencode/skills/sk-code/manual_testing_playbook/cross_stack_routing/webflow_plus_motion_dev.md | Cited | OK | Citations=1; Iterations=1 |
 | .opencode/skills/sk-code/manual_testing_playbook/surface_detection/webflow_detection.md | Cited | OK | Citations=1; Iterations=1 |

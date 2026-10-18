@@ -5,7 +5,7 @@ trigger_phrases:
   - "sk-code-obsidian"
   - "note database plugin evidence"
   - "obsidian plugin conventions"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # sk-code-obsidian: Note Database Plugin Evidence (sk-code surface)
@@ -99,12 +99,12 @@ A workflow bundling this surface should, in order:
 
 `sk-code` declares a `surface-axis` extension: `packetKind: "surface"` entries are read-only evidence
 bases bundled alongside a workflow mode, never advisor identities of their own. This packet is the
-third surface, beside `sk-code-webflow` and `sk-code-opencode`.
+third surface, beside `sk-code-webflow` and `sk-code-skilled`.
 
 ### Detection and Bundling
 
 Surface detection (in `../shared/references/stack-detection.md`) resolves OBSIDIAN from the CWD and
-changed/target files, at precedence **OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN**, OPENCODE
+changed/target files, at precedence **SKILLED > OBSIDIAN > WEBFLOW > UNKNOWN**, SKILLED
 still wins a genuinely resolved `.opencode/` target; OBSIDIAN catches the plugin repository's own
 paths, which would otherwise fall to UNKNOWN as generic Node.js. The hub then bundles this surface
 behind the chosen workflow mode via `routerPolicy.outcomes.surfaceBundle` (workflow ordered first,
@@ -122,7 +122,7 @@ returns `[sk-code-quality, sk-code-obsidian]`.
 
 ### Related Skills
 
-- `../sk-code-webflow`, `../sk-code-opencode`: sibling read-only surfaces on
+- `../sk-code-webflow`, `../sk-code-skilled`: sibling read-only surfaces on
   the same axis.
 - `../sk-code-quality`, `../sk-code-review`: workflow modes that bundle this surface.
 - `../shared/`: the implement → debug → verify doctrine this surface folds in via symlink.

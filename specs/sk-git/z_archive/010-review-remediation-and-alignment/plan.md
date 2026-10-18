@@ -1,6 +1,6 @@
 ---
 title: "Plan: sk-git Review Remediation and sk-code Alignment"
-description: "Phased plan to fix the confirmed SOL-review defects across the worktree session/reaper/allocator/pre-push surface, add adversarial regression coverage, align the sourceable shell with sk-code code-opencode, reconcile the over-claimed 002 closeout docs, and refresh affected READMEs."
+description: "Phased plan to fix the confirmed SOL-review defects across the worktree session/reaper/allocator/pre-push surface, add adversarial regression coverage, align the sourceable shell with sk-code code-skilled, reconcile the over-claimed 002 closeout docs, and refresh affected READMEs."
 trigger_phrases:
   - "sk-git remediation plan"
   - "worktree tooling hardening plan"
@@ -50,7 +50,7 @@ _memory:
 
 ### Overview
 
-The owner-first tooling passed its own harnesses but never faced adversarial inputs; the SOL review reproduced real correctness/safety defects. This plan fixes each confirmed finding with a RED-first regression test, aligns the sourceable shell to the sk-code code-opencode surface, and reconciles the 002 closeout docs so no row claims a contract the code does not honor. The one P0 that is a *doc* overclaim (Phase-5 "0-ahead each" / "lossless") is corrected in prose — the underlying cleanup is verified lossless (disputed OIDs reachable via preserved branches / `main`).
+The owner-first tooling passed its own harnesses but never faced adversarial inputs; the SOL review reproduced real correctness/safety defects. This plan fixes each confirmed finding with a RED-first regression test, aligns the sourceable shell to the sk-code code-skilled surface, and reconciles the 002 closeout docs so no row claims a contract the code does not honor. The one P0 that is a *doc* overclaim (Phase-5 "0-ahead each" / "lossless") is corrected in prose — the underlying cleanup is verified lossless (disputed OIDs reachable via preserved branches / `main`).
 <!-- /ANCHOR:summary -->
 
 ---
@@ -141,7 +141,7 @@ Re-run all three harnesses + `bash -n`; sk-code OPENCODE/SHELL verification; re-
 |------------|------|--------|-------------------|
 | `worktree-session.sh` / `worktree-reaper.sh` | Internal | Required | Governs every launched session; edits must be additive + revertable |
 | cli-codex `gpt-5.6-luna` availability | External | Required | Executor for the fixes; falls back to orchestrator hand-fix if unavailable |
-| sk-code code-opencode surface | Internal | Required | Alignment gate for the sourceable shell |
+| sk-code code-skilled surface | Internal | Required | Alignment gate for the sourceable shell |
 | 002 packet docs | Internal | Required | Reconciliation target |
 <!-- /ANCHOR:dependencies -->
 

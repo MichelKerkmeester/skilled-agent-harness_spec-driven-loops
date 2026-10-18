@@ -20,7 +20,7 @@ Re-open every ORDER, PRESENCE, BREAK and DOC finding and every recommendation re
 ## Findings
 | class | claim | evidence | priority |
 |---|---|---|---|
-| OK | `hub-router.json:7` tieBreak re-read exactly as carried: `["sk-code-quality","sk-code-review","sk-code-opencode","sk-code-obsidian","sk-code-webflow"]` — opencode at index 2 of 5, ahead of both examples; `routerSignals` keys at :31 (webflow), :36 (opencode), :42 (obsidian), each weight 4 | cmd: awk scan hub-router.json 1-50, exit 0; lines 7, 31, 36, 42 | P1 |
+| OK | `hub-router.json:7` tieBreak re-read exactly as carried: `["sk-code-quality","sk-code-review","sk-code-skilled","sk-code-obsidian","sk-code-webflow"]` — opencode at index 2 of 5, ahead of both examples; `routerSignals` keys at :31 (webflow), :36 (opencode), :42 (obsidian), each weight 4 | cmd: awk scan hub-router.json 1-50, exit 0; lines 7, 31, 36, 42 | P1 |
 | OK | `ROUTER.md` encodes no order anywhere: order-phrase grep returns 0 matches (exit 1); surfaces appear only as scoring class `:346 OBSIDIAN_PLUGIN` and resource lists :554-558, Motion overlay :607 | cmd: `grep -nE 'tieBreak|One Surface Order|then Obsidian|opencode, then' ROUTER.md` → EXIT:1 | P1 |
 | OK | The compiler still copies tieBreak verbatim, no ranking code: `buildCompositionRules` :187 (call :338), `buildBundleRules` :227 (call :261), copy :265 | cmd: `grep -n tieBreak registry-compiler.cjs` → EXIT:0 | P1 |
 | OK | `mode-registry.json:19` `surfaces` is a declaration list (webflow, opencode, obsidian — not a ranking); webflow mode entry opens at :61; `SKILL.md:40` "exactly three surfaces"; table :34-38, axis paragraph :15 | awk scans mode-registry 15-120 and SKILL.md 10-45, exit 0 | P1 |

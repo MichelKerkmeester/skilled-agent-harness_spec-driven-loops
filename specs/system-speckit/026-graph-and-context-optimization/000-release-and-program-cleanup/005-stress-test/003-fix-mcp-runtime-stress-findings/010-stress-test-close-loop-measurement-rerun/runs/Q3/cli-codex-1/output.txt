@@ -21,7 +21,7 @@ hook: UserPromptSubmit
 hook: UserPromptSubmit Completed
 hook: UserPromptSubmit Completed
 codex
-I’ll treat this as read-only code archaeology. The advisor points at `system-spec-kit`/`sk-code-opencode`, so I’m going to use the local instructions lightly, then trace exact token-budget references with `rg` and read the relevant files for line-accurate paths.
+I’ll treat this as read-only code archaeology. The advisor points at `system-spec-kit`/`sk-code-skilled`, so I’m going to use the local instructions lightly, then trace exact token-budget references with `rg` and read the relevant files for line-accurate paths.
 exec
 /bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:

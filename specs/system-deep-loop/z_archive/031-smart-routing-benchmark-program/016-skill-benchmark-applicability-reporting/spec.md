@@ -1,6 +1,6 @@
 ---
 title: "Spec: Lane C skill-benchmark applicability reporting (excluded-by-design vs unscored)"
-description: "The Lane C skill-benchmark silently normalizes D1-inter (advisor rank) and D4 out of the weighted aggregate for skills that cannot support them, so an advisor-invisible surface like code-opencode reports two 'unscored' dimensions that read as gaps rather than structural N/A. This packet makes the harness distinguish excluded-by-design from runnable-but-unscored: D1-inter is excluded for advisor-invisible skills (no graph-metadata.json) with the owning advisor identity recorded as the delegated measure; the report gains an excludedDimensions channel; the D4-R ablation fails closed instead of silently borrowing another skill's scenarios; and the hub-D1 skillId propagation bug is fixed so advisor-visible hubs score D1-inter correctly. Scoring weights and aggregates are unchanged — this is reporting honesty plus two correctness fixes, no advisor changes."
+description: "The Lane C skill-benchmark silently normalizes D1-inter (advisor rank) and D4 out of the weighted aggregate for skills that cannot support them, so an advisor-invisible surface like code-skilled reports two 'unscored' dimensions that read as gaps rather than structural N/A. This packet makes the harness distinguish excluded-by-design from runnable-but-unscored: D1-inter is excluded for advisor-invisible skills (no graph-metadata.json) with the owning advisor identity recorded as the delegated measure; the report gains an excludedDimensions channel; the D4-R ablation fails closed instead of silently borrowing another skill's scenarios; and the hub-D1 skillId propagation bug is fixed so advisor-visible hubs score D1-inter correctly. Scoring weights and aggregates are unchanged — this is reporting honesty plus two correctness fixes, no advisor changes."
 trigger_phrases:
   - "skill benchmark excluded by design"
   - "D1-inter advisor-invisible reporting"
@@ -34,16 +34,16 @@ _memory:
 | **Packet** | 060-skill-benchmark-applicability-reporting |
 | **Level** | 2 |
 | **Status** | Complete |
-| **Origin** | Operator: make D1-inter/D4 "work" for code-opencode; scope chosen = harness reporting fix + hub-D1 skillId bug |
+| **Origin** | Operator: make D1-inter/D4 "work" for code-skilled; scope chosen = harness reporting fix + hub-D1 skillId bug |
 <!-- /ANCHOR:metadata -->
 
 ## 2. PROBLEM & PURPOSE
 <!-- ANCHOR:problem -->
-The Lane C skill-benchmark scores five weighted dimensions (D1-inter 12, D1-intra 13, D2 20, D3 15, D4 25, D5 15). Two are reported as `unscored-mode-a` for skills that cannot support them, and the aggregate is normalized over only the measured dimensions. For `code-opencode` — a read-only, advisor-invisible surface packet bundled by the `sk-code` identity — this produces a live report with D1-inter and D4 both "unscored," which reads as a measurement gap rather than a structural fact.
+The Lane C skill-benchmark scores five weighted dimensions (D1-inter 12, D1-intra 13, D2 20, D3 15, D4 25, D5 15). Two are reported as `unscored-mode-a` for skills that cannot support them, and the aggregate is normalized over only the measured dimensions. For `code-skilled` — a read-only, advisor-invisible surface packet bundled by the `sk-code` identity — this produces a live report with D1-inter and D4 both "unscored," which reads as a measurement gap rather than a structural fact.
 
 Two of those reports are not just cosmetic:
 
-- **D1-inter is a category error for an advisor-invisible surface.** The advisor's filesystem projection only creates a candidate for a directory that carries `graph-metadata.json` (`system-skill-advisor/.../scorer/projection.ts`); `code-opencode` deliberately has none, so the advisor ranks the `sk-code` hub, never the surface. Reporting "unscored" implies it *could* be scored.
+- **D1-inter is a category error for an advisor-invisible surface.** The advisor's filesystem projection only creates a candidate for a directory that carries `graph-metadata.json` (`system-skill-advisor/.../scorer/projection.ts`); `code-skilled` deliberately has none, so the advisor ranks the `sk-code` hub, never the surface. Reporting "unscored" implies it *could* be scored.
 - **The D4-R task-outcome ablation silently borrows another skill's scenarios.** `DEFAULT_D4R_SCENARIOS` holds `LS-*/SD-*` ids and intersects them with the target playbook, so an `OC-*` run scores nothing (or, on an id collision, a foreign scenario) with no signal that nothing ran.
 
 Separately, a real bug blocks D1-inter for advisor-*visible* hubs: `runPlaybook()` never passes `skillId` into `scoreScenario()`, so the `expectedFromScenario()` fallback `arg.skillId` is always undefined and a scenario that relies on it scores against an undefined expected identity.
@@ -67,7 +67,7 @@ Out of scope (FROZEN): any change to `advisor-probe.cjs` scoring, the advisor sc
 <!-- ANCHOR:requirements -->
 - R1: For an advisor-invisible skill (no `graph-metadata.json` at its root), D1-inter is reported `excluded-by-design` with a reason and `delegatedMeasure.targetSkill`, and appears in `excludedDimensions`, not `unscoredDimensions`.
 - R2: For an advisor-visible skill, D1-inter behavior is unchanged (scored when an advisor probe produced a score, else `unscored-mode-a`).
-- R3: The weighted `aggregateScore` and per-scenario `modeAScore` for `code-opencode` are byte-identical before and after (D1-inter/D4 were already normalized out).
+- R3: The weighted `aggregateScore` and per-scenario `modeAScore` for `code-skilled` are byte-identical before and after (D1-inter/D4 were already normalized out).
 - R4: `runPlaybook()` passes `skillId` to `scoreScenario()`.
 - R5: D4-R with no target-owned scenarios emits `not-run-no-target-scenarios` and never mutates `aggregateScore`.
 - R6: No file under `system-skill-advisor/` or `sk-code/{SKILL.md,graph-metadata.json,mode-registry.json,hub-router.json}` is modified.
@@ -75,7 +75,7 @@ Out of scope (FROZEN): any change to `advisor-probe.cjs` scoring, the advisor sc
 
 ## 5. SUCCESS CRITERIA
 <!-- ANCHOR:success-criteria -->
-- code-opencode live report: `excludedDimensions:["D1inter"]`, `unscoredDimensions:["D4"]`, `aggregateScore` unchanged (84), verdict PASS.
+- code-skilled live report: `excludedDimensions:["D1inter"]`, `unscoredDimensions:["D4"]`, `aggregateScore` unchanged (84), verdict PASS.
 - New/updated Lane C tests green; full `skill-benchmark/tests/` suite green.
 - sk-code router benchmark re-run after the skillId fix; any D1-inter delta baselined and reported (landed separately from the report-only change if it moves the aggregate).
 - `git diff --stat` shows zero files under `system-skill-advisor/` or `sk-code/` metadata/vocab.

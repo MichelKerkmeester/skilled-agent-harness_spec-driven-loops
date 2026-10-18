@@ -12,7 +12,7 @@
   "derived": {
     "trigger_phrases": [
       "sk-code split doc template alignment",
-      "conform code-opencode references to create-skill template",
+      "conform code-skilled references to create-skill template",
       "sk-code reference asset snake_case frontmatter",
       "019 plan sk-code split doc alignment",
       "019 tasks sk-code split doc alignment",
@@ -25,7 +25,7 @@
       "template",
       "alignment",
       "conform",
-      "code-opencode",
+      "code-skilled",
       "references",
       "create-skill",
       "reference",
@@ -186,7 +186,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Conform the ~104 hyphenated + ~160 total mechanically-sliced reference/asset .md files under sk-code/{code-opencode,code-webflow,code-quality} to the canonical create-skill asset/reference templates: 5-field frontmatter + 4-part version, snake_case filenames, H1 + intro + `## 1. OVERVIEW` before content, optional RELATED RESOURCES last. Every rename updates all in-hub references. Extends 027's underscore convention to the reference/asset split files 027 did not cover.",
+    "causal_summary": "Conform the ~104 hyphenated + ~160 total mechanically-sliced reference/asset .md files under sk-code/{code-skilled,code-webflow,code-quality} to the canonical create-skill asset/reference templates: 5-field frontmatter + 4-part version, snake_case filenames, H1 + intro + `## 1. OVERVIEW` before content, optional RELATED RESOURCES last. Every rename updates all in-hub references. Extends 027's underscore convention to the reference/asset split files 027 did not cover.",
     "created_at": "2026-07-12T14:23:01.630Z",
     "last_save_at": "2026-10-07T18:14:18.637Z",
     "save_lineage": "graph_only",

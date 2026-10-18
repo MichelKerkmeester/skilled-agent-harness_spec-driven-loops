@@ -1,10 +1,10 @@
 ---
 title: "Feature Specification: Runtime code standards research"
-description: "Ten-iteration deep-research lane that audits the system-spec-kit shared package and runtime against the sk-code-opencode and sk-code-quality standards, and records every deviation with evidence and a mechanical-or-judgment label."
+description: "Ten-iteration deep-research lane that audits the system-spec-kit shared package and runtime against the sk-code-skilled and sk-code-quality standards, and records every deviation with evidence and a mechanical-or-judgment label."
 trigger_phrases:
   - "runtime code standards research"
   - "spec kit code standards audit"
-  - "sk code opencode conformance spec kit"
+  - "sk code skilled conformance spec kit"
   - "shared package duplicate helpers"
   - "runtime cli shell script standards"
   - "deepseek research lane spec kit code"
@@ -77,7 +77,7 @@ This is **Phase 26** of the system-speckit v4 program: a research lane whose onl
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The system-spec-kit runtime and shared package were built across many packets and two directory moves, while the sk-code-opencode and sk-code-quality standards kept evolving. Nobody has measured the code against those standards since the memory-database decommission, so residue, duplicate helpers, boundary violations and banner drift can persist unnoticed.
+The system-spec-kit runtime and shared package were built across many packets and two directory moves, while the sk-code-skilled and sk-code-quality standards kept evolving. Nobody has measured the code against those standards since the memory-database decommission, so residue, duplicate helpers, boundary violations and banner drift can persist unnoticed.
 
 ### Purpose
 Every source file under `shared/` and `runtime/` (excluding `node_modules/` and `dist/`) is checked against the two sk-code standards, and each deviation is recorded with the code citation, the standard clause it violates, a severity and whether the fix is mechanical or needs judgment.
@@ -89,7 +89,7 @@ Every source file under `shared/` and `runtime/` (excluding `node_modules/` and 
 ## 3. SCOPE
 
 ### In Scope
-- Ten research iterations over `.opencode/skills/system-spec-kit/shared/**` and `.opencode/skills/system-spec-kit/runtime/**` with `sk-code/sk-code-opencode`, `sk-code/sk-code-quality` and the universal code-quality standards as ground truth
+- Ten research iterations over `.opencode/skills/system-spec-kit/shared/**` and `.opencode/skills/system-spec-kit/runtime/**` with `sk-code/sk-code-skilled`, `sk-code/sk-code-quality` and the universal code-quality standards as ground truth
 - A ranked `research/research.md` whose findings each cite the code `path:line` and the standard `path:line`
 - A reproduction pass in this session that confirms or drops every finding and splits the confirmed ones into mechanical and judgment lanes for remediation
 
@@ -104,7 +104,7 @@ Every source file under `shared/` and `runtime/` (excluding `node_modules/` and 
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/shared/**` | Read | The @spec-kit/shared package under audit |
 | `.opencode/skills/system-spec-kit/runtime/**` | Read | lib, api, cli, hooks and tests under audit; node_modules and dist excluded |
-| `.opencode/skills/sk-code/sk-code-opencode/**` | Read | Surface standard: banners, naming, script and hook contracts |
+| `.opencode/skills/sk-code/sk-code-skilled/**` | Read | Surface standard: banners, naming, script and hook contracts |
 | `.opencode/skills/sk-code/sk-code-quality/**` | Read | Universal quality tiers, error handling, boundaries, coverage floor |
 | `research/**` | Create | Loop state, iteration files and the synthesized research.md |
 <!-- /ANCHOR:scope -->

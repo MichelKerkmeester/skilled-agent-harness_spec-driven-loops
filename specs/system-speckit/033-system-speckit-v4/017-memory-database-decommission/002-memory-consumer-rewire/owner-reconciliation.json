@@ -834,32 +834,32 @@
       "reason": "Released changelog entries are a record of what shipped and are never rewritten to hide a retired tool name."
     },
     {
-      "path": ".opencode/skills/sk-code/sk-code-opencode/references/javascript/quality-standards/overview-modules-and-docs.md",
+      "path": ".opencode/skills/sk-code/sk-code-skilled/references/javascript/quality-standards/overview-modules-and-docs.md",
       "state": "rewired",
       "reason": null
     },
     {
-      "path": ".opencode/skills/sk-code/sk-code-opencode/references/rust/style-guide/naming-conventions.md",
+      "path": ".opencode/skills/sk-code/sk-code-skilled/references/rust/style-guide/naming-conventions.md",
       "state": "rewired",
       "reason": null
     },
     {
-      "path": ".opencode/skills/sk-code/sk-code-opencode/references/shared/code-organization/imports-and-exports.md",
+      "path": ".opencode/skills/sk-code/sk-code-skilled/references/shared/code-organization/imports-and-exports.md",
       "state": "rewired",
       "reason": null
     },
     {
-      "path": ".opencode/skills/sk-code/sk-code-opencode/references/shared/hooks.md",
+      "path": ".opencode/skills/sk-code/sk-code-skilled/references/shared/hooks.md",
       "state": "rewired",
       "reason": null
     },
     {
-      "path": ".opencode/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md",
+      "path": ".opencode/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md",
       "state": "rewired",
       "reason": null
     },
     {
-      "path": ".opencode/skills/sk-code/sk-code-opencode/references/typescript/style-guide/formatting-imports-and-coexistence.md",
+      "path": ".opencode/skills/sk-code/sk-code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md",
       "state": "rewired",
       "reason": null
     },

@@ -28,7 +28,7 @@ Audit whether the packet's Codex verification evidence proves the behavior it cl
 expect(output).toEqual({
   hookSpecificOutput: {
     hookEventName: 'UserPromptSubmit',
-    additionalContext: 'Advisor: live; use sk-code-opencode 0.91/0.23 pass.',
+    additionalContext: 'Advisor: live; use sk-code-skilled 0.91/0.23 pass.',
   },
 });
 ```

@@ -53,7 +53,7 @@ parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code
 - [ ] T004 Rename shared reference files from snake_case to kebab-case in shared/references/.
 - [ ] T005 Rename shared universal references and assets/patterns files in the same dependency-closed batch.
 - [ ] T006 Update SKILL.md, README.md, shared/README.md, registry path values, and internal links.
-- [ ] T007 Repair and verify the code-opencode and code-webflow workflow symlink closure.
+- [ ] T007 Repair and verify the code-skilled and code-webflow workflow symlink closure.
 - [ ] T008 Record the final source-to-target and reference disposition evidence.
 <!-- /ANCHOR:phase-2 -->
 

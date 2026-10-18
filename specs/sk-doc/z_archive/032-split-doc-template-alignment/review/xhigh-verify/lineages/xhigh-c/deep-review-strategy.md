@@ -251,8 +251,8 @@ Review `.opencode/specs/sk-doc/032-split-doc-template-alignment` against the Mar
 
 | Root | Files | Dimensions Reviewed | Status |
 |------|------:|---------------------|--------|
-| `.opencode/skills/sk-code/code-opencode/references/**/*.md` | 50 | correctness, security, traceability, maintainability | reviewed-with-findings |
-| `.opencode/skills/sk-code/code-opencode/assets/**/*.md` | 15 | correctness, security, traceability, maintainability | reviewed-clean |
+| `.opencode/skills/sk-code/code-skilled/references/**/*.md` | 50 | correctness, security, traceability, maintainability | reviewed-with-findings |
+| `.opencode/skills/sk-code/code-skilled/assets/**/*.md` | 15 | correctness, security, traceability, maintainability | reviewed-clean |
 | `.opencode/skills/sk-code/code-webflow/references/**/*.md` | 86 | correctness, security, traceability, maintainability | reviewed-with-findings |
 | `.opencode/skills/sk-code/code-webflow/assets/**/*.md` | 9 | correctness, security, traceability, maintainability | reviewed-clean |
 | `.opencode/skills/sk-code/code-quality/references/**/*.md` | 0 | - | notApplicable |

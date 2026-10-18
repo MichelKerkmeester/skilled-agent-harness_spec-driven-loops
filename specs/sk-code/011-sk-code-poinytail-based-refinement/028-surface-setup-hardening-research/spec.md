@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 28: surface-setup-hardening-research"
-description: "Two-lineage deep research into what still breaks the rule that every sk-code surface except sk-code-opencode and sk-code-review is irrelevant to an external user and that a new surface outranks sk-code-opencode, the external user's journey from clone to a green battery, and whether the setup belongs in a doctor command or a hub mode. Research only."
+description: "Two-lineage deep research into what still breaks the rule that every sk-code surface except sk-code-skilled and sk-code-review is irrelevant to an external user and that a new surface outranks sk-code-skilled, the external user's journey from clone to a green battery, and whether the setup belongs in a doctor command or a hub mode. Research only."
 trigger_phrases:
   - "surface setup hardening research"
   - "phase 28 surface setup hardening research"
@@ -61,7 +61,7 @@ This is **Phase 28** of the sk-code Ponytail refinement epic. It follows 025 (th
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Skilled assumes that every sk-code surface except sk-code-opencode and sk-code-review means nothing to an external user, and that any surface the user adds outranks sk-code-opencode. Phases 025 to 027 made the scaffold place a new surface ahead of opencode, made the drift guards tolerate removed examples, pointed the doctor, guard and sync messages at the fix, wrote the README adaptation block and added doctor check 5l. The assumption can still break through paths those phases did not cover, and the setup an external user performs is still a manual sequence spread across a README block, two registries, a scaffold command and a doctor battery.
+Skilled assumes that every sk-code surface except sk-code-skilled and sk-code-review means nothing to an external user, and that any surface the user adds outranks sk-code-skilled. Phases 025 to 027 made the scaffold place a new surface ahead of opencode, made the drift guards tolerate removed examples, pointed the doctor, guard and sync messages at the fix, wrote the README adaptation block and added doctor check 5l. The assumption can still break through paths those phases did not cover, and the setup an external user performs is still a manual sequence spread across a README block, two registries, a scaffold command and a doctor battery.
 
 ### Purpose
 Find what still breaks the assumption, walk the external user's journey from clone to a green battery, decide whether the setup belongs in a new doctor command or a new sk-code mode and what to call it, and recommend the smallest changes, each with the failure it prevents.
@@ -88,7 +88,7 @@ Find what still breaks the assumption, walk the external user's journey from clo
 
 ### Out of Scope
 - Changing any skill, command, script, README or release note. The operator decides the build later.
-- Changing sk-code-opencode's generic language keywords. Operator ruling R5 stands; its UX cost may be reported.
+- Changing sk-code-skilled's generic language keywords. Operator ruling R5 stands; its UX cost may be reported.
 
 ### Files to Change
 

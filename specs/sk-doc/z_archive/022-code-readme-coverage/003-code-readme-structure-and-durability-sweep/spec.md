@@ -165,8 +165,8 @@ Plus the durability grep gate, wired into CI so the class cannot re-enter.
 | ID | File | Defect shape |
 |----|------|--------------|
 | `RA-002-02` | `sk-code/shared/assets/patterns/README.md` | Structural |
-| `RA-002-03` | `sk-code/sk-code-opencode/assets/scripts/README.md` | Structural |
-| `RA-002-04` | `sk-code/sk-code-opencode/scripts/README.md` | Structural |
+| `RA-002-03` | `sk-code/sk-code-skilled/assets/scripts/README.md` | Structural |
+| `RA-002-04` | `sk-code/sk-code-skilled/scripts/README.md` | Structural |
 | `RA-002-05` | `sk-code/sk-code-quality/scripts/README.md` | Structural |
 | `RA-002-06` | `sk-code/sk-code-review/scripts/README.md` | Structural |
 | `RA-002-07` | `sk-code/sk-code-webflow/assets/animation/snippets/README.md` | Structural |

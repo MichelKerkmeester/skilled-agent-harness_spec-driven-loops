@@ -700,7 +700,7 @@ describe('system-skill-advisor OpenCode plugin', () => {
     ['an Obsidian plugin', (dir: string) => writeFileSync(join(dir, 'manifest.json'), '{"id":"x","minAppVersion":"1.4.0"}'), 'OBSIDIAN'],
     ['a Webflow project', (dir: string) => mkdirSync(join(dir, 'src', '2_javascript'), { recursive: true }), 'WEBFLOW'],
     ['a Cloudflare-deployed Webflow project', (dir: string) => writeFileSync(join(dir, 'wrangler.toml'), 'name = "x"\n'), 'WEBFLOW'],
-    ['a folder inside the hub', (_dir: string) => undefined, 'OPENCODE'],
+    ['a folder inside the hub', (_dir: string) => undefined, 'SKILLED'],
     ['a .skilled folder outside the hub', (dir: string) => mkdirSync(join(dir, '.skilled', 'skills'), { recursive: true }), undefined],
     ['a workspace with no surface markers', (_dir: string) => undefined, undefined],
   ])('passes the surface hint for %s', async (_name, seed, expected) => {
@@ -708,7 +708,7 @@ describe('system-skill-advisor OpenCode plugin', () => {
     try {
       seed(workspace);
       const outsideHub = join(workspace, '.skilled', 'skills');
-      const directory = expected === 'OPENCODE'
+      const directory = expected === 'SKILLED'
         ? HUB_SKILLS_DIR
         : _name.includes('.skilled') ? outsideHub : workspace;
       const hooks = await makePlugin({ cacheTTLMs: 5000 }, directory);

@@ -2,7 +2,7 @@
 // Replays one prompt per newly routed Obsidian reference and prints OK or MISS for the doc it
 // should reach, with the intents the router chose. Run from the repository root.
 const path = require('node:path');
-const lib = require(path.resolve('.skilled/skills/sk-code/sk-code-opencode/assets/scripts/router_replay_lib.cjs'));
+const lib = require(path.resolve('.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router_replay_lib.cjs'));
 const root = path.resolve('.skilled/skills/sk-code/sk-code-obsidian');
 const probes = [
   ['What does the accessibility reference say about the focus ring on the table view?', 'references/accessibility.md'],

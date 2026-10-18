@@ -1,7 +1,7 @@
 DRIFT cli-pi
 DRIFT sk-code
 DRIFT sk-code-obsidian
-DRIFT sk-code-opencode
+DRIFT sk-code-skilled
 DRIFT sk-code-quality
 DRIFT sk-code-review
 DRIFT sk-code-webflow

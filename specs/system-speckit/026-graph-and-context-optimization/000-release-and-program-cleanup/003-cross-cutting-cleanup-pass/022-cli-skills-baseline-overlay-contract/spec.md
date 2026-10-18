@@ -1,6 +1,6 @@
 ---
 title: "Spec: CLI Skills Codebase-Agnostic Standards Contract"
-description: "Update 5 CLI orchestrator skills to mirror review.md's baseline+overlay code-standards contract instead of hardcoded sk-code-review / sk-code-opencode references."
+description: "Update 5 CLI orchestrator skills to mirror review.md's baseline+overlay code-standards contract instead of hardcoded sk-code-review / sk-code-skilled references."
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 trigger_phrases:
   - "022-cli-skills-baseline-overlay-contract spec"
@@ -18,7 +18,7 @@ contextType: "implementation"
 <!-- ANCHOR:problem -->
 ## 1. PROBLEM AND PURPOSE
 
-The 5 CLI orchestrator skills (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) currently mention specific overlay skills (`sk-code-review`, `sk-code-opencode`) by name when describing how dispatched sessions should load code-quality standards. This is brittle: the moment a different stack is in play (Webflow, React/Next.js, Go) the dispatch prompt instructs the dispatched session to load the wrong overlay.
+The 5 CLI orchestrator skills (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) currently mention specific overlay skills (`sk-code-review`, `sk-code-skilled`) by name when describing how dispatched sessions should load code-quality standards. This is brittle: the moment a different stack is in play (Webflow, React/Next.js, Go) the dispatch prompt instructs the dispatched session to load the wrong overlay.
 
 The `review` agent already solved this with a baseline+overlay standards contract: load `sk-code` baseline first, then load exactly one overlay skill matching `sk-code-*` based on stack/codebase signals. The same contract belongs in the CLI skills.
 
@@ -46,10 +46,10 @@ The `review` agent already solved this with a baseline+overlay standards contrac
 | ID | Priority | Requirement | Acceptance |
 |---|---|---|---|
 | REQ-001 | P0 | All 5 CLI SKILL.md files contain identical "Code Standards Loading (codebase-agnostic baseline+overlay contract)" canonical rule | `grep -l "Code Standards Loading (codebase-agnostic" .opencode/skills/cli-*/SKILL.md \| wc -l` returns 5 |
-| REQ-002 | P0 | Zero non-anti-pattern mentions of `sk-code-review` / `sk-code-opencode` in active CLI skill files | manual inspection confirms remaining mentions are only inside the canonical NEVER-clause as anti-pattern examples |
+| REQ-002 | P0 | Zero non-anti-pattern mentions of `sk-code-review` / `sk-code-skilled` in active CLI skill files | manual inspection confirms remaining mentions are only inside the canonical NEVER-clause as anti-pattern examples |
 | REQ-003 | P0 | All modified `.md` files pass `validate_document.py` (excluding pre-existing quirks not introduced by this packet) | 9/10 modified files VALID; 1 (hook_contract.md) INVALID with pre-existing `missing_required_section: overview` |
 | REQ-004 | P1 | cli-codex Skill Integration table de-duplicates the two `sk-code` rows into one baseline+overlay row | visual inspection of SKILL.md §7 |
-| REQ-005 | P1 | cli-opencode TEMPLATE 5 (Code Review) prompt template uses codebase-agnostic phrasing | `prompt_templates.md` TEMPLATE 5 has no `sk-code-review` / `sk-code-opencode` mentions |
+| REQ-005 | P1 | cli-opencode TEMPLATE 5 (Code Review) prompt template uses codebase-agnostic phrasing | `prompt_templates.md` TEMPLATE 5 has no `sk-code-review` / `sk-code-skilled` mentions |
 
 ---
 

@@ -82,7 +82,7 @@ string, not these files.
 - [ ] In the worktree, `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes --recursive --strict` prints `RESULT: PASSED` 6 times and `RESULT: FAILED` 0 times
 - [ ] In the worktree, `grep -l 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/00[1-5]-*/implementation-summary.md | wc -l` prints 5
 - [ ] `git log --format='%(trailers:key=Spec,valueonly)' HEAD | grep -c '/007-follow-up-fixes/'` prints 5 or more, one per child, and `git status --short` prints nothing
-- [ ] In the worktree, `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` exits 0, and `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs` prints `failed=0`
+- [ ] In the worktree, `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` exits 0, and `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs` prints `failed=0`
 <!-- /ANCHOR:completion -->
 
 ---

@@ -132,7 +132,7 @@ Synthesis complete at `maxIterationsReached`. Follow `review-report.md`: four ac
 
 ### Bounded Context Snapshot
 
-- Target pointers: packet docs plus sk-code reference/asset Markdown under code-opencode, code-webflow, and code-quality.
+- Target pointers: packet docs plus sk-code reference/asset Markdown under code-skilled, code-webflow, and code-quality.
 - Behavior claims: five routing frontmatter fields plus four-part version, snake_case basenames, H1/intro/OVERVIEW structure, mode-specific OVERVIEW subsection, contiguous numbering, RELATED RESOURCES last, and in-scope links intact.
 - Reuse and conventions: create-skill `skill_reference_template.md`, `skill_asset_template.md`, and `validate_document.py`.
 - Review risks and gaps: semantic intro/Purpose duplication is not enforced by the structural validator; packet completion wording must match the exact link-scan scope.
@@ -151,7 +151,7 @@ Synthesis complete at `maxIterationsReached`. Follow `review-report.md`: four ac
 | File or scope | Dimensions Reviewed | Last Iteration | Findings | Status |
 |---|---|---:|---|---|
 | Packet canonical docs | correctness, security, traceability, maintainability | 4 | 2 P1 | complete |
-| code-opencode references/assets | correctness, security, traceability, maintainability | 4 | 1 P1, 1 P2 | complete |
+| code-skilled references/assets | correctness, security, traceability, maintainability | 4 | 1 P1, 1 P2 | complete |
 | code-webflow references/assets | correctness, security, traceability, maintainability | 4 | 1 P1 | complete |
 | code-quality references/assets | correctness, security, traceability, maintainability | 4 | 0 | complete |
 

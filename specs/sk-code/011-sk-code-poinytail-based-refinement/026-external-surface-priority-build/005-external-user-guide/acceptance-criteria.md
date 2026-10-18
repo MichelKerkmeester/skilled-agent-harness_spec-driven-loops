@@ -53,7 +53,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 |-------|-----|---------------------|--------------|--------|--------|
 | AC-001 | REQ-001 | Given the R4 lines, When they are read, Then each marks OpenCode native and the two examples optional, and no line tells the user to replace OpenCode | `goal.md` criterion 1; ledger row P11-5 | Met | - |
 | AC-002 | REQ-002 | Given a fresh full-tree copy and an agent that reads only the adaptation block, When it removes both examples and adds a stand-in surface, Then the doctor, CI metadata check, guard, sync `--check` and drift wrapper exit 0 | Ledger rows P11-1, P11-2 and P11-4 | Met | - |
-| AC-003 | REQ-003 | Given that copy, When the tie prompt routes, Then the result is `[sk-code-acme, sk-code-opencode]` | Ledger row P11-3 | Met | - |
+| AC-003 | REQ-003 | Given that copy, When the tie prompt routes, Then the result is `[sk-code-acme, sk-code-skilled]` | Ledger row P11-3 | Met | - |
 | AC-004 | REQ-004 | Given the adaptation block, When it is searched, Then it names the nested path, the hooks, the keep-rule, the add command, the two ROUTER.md maps and the drift wrapper | `goal.md` criterion 2 | Met | - |
 | AC-005 | REQ-005 | Given `.skilled/changelog/skilled/`, When the newest note is read, Then it is newer than v4.0.0.4, states the rule and passes `validate_document.py`, and v4.0.0.4 is unchanged | `goal.md` criterion 3 | Met | - |
 | AC-006 | REQ-006 | Given the phase's base on origin/main, When the live gates run, Then each exits 0 and the history carries all four earlier phases | `goal.md` criterion 5; ledger row P11-6 | Met | - |
@@ -83,5 +83,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-Every row is Met. AC-001: `goal.md` criterion 1 prints ok and ledger row P11-5 quotes each R4 line. AC-002: ledger rows P11-1, P11-2 and P11-4, the fresh agent's copy with all five checks at exit 0. AC-003: ledger row P11-3, `[sk-code-acme, sk-code-opencode]`. AC-004: `goal.md` criterion 2 prints 8. AC-005: `goal.md` criterion 3 prints ok. AC-006: `goal.md` criterion 5 prints ok and ledger row P11-6.
+Every row is Met. AC-001: `goal.md` criterion 1 prints ok and ledger row P11-5 quotes each R4 line. AC-002: ledger rows P11-1, P11-2 and P11-4, the fresh agent's copy with all five checks at exit 0. AC-003: ledger row P11-3, `[sk-code-acme, sk-code-skilled]`. AC-004: `goal.md` criterion 2 prints 8. AC-005: `goal.md` criterion 3 prints ok. AC-006: `goal.md` criterion 5 prints ok and ledger row P11-6.
 <!-- /ANCHOR:closure -->

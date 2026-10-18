@@ -277,7 +277,7 @@ Create a safe adaptive-retrieval layer that can learn from feedback in shadow mo
 - [x] Promotion and rollback procedures documented
 
 ### Code and Process
-- [x] `sk-code-opencode` alignment verified during implementation
+- [x] `sk-code-skilled` alignment verified during implementation
 - [x] Regression and signal-threshold plan approved
 - [x] Manual adaptive-validation steps added to the playbook
 

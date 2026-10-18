@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The canary router keeps every mode within the ambiguity delta and sorts the kept set by `routerPolicy.tieBreak` (`.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs:264`)",
     "created_at": "2026-10-10T14:44:43Z",
-    "last_save_at": "2026-10-11T05:17:08.846Z",
+    "last_save_at": "2026-10-18T20:45:15.342Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b2cf8c28f5ad14a5cfcd95bc9c45d92904670ba9a5e53c5901f2a0a48dd4bbc",
+    "source_fingerprint": "sha256:89739a5f0430275e459eadb731cf012d6d41012109a073d6e7aee5df873e7325",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8f9fb819ec3e0c90073bd36ad079fba253b9ffc1079f33431e08762f64cc7072",
-      "plan.md": "1279135eb994ef6c4c14a5ec8896c1afc38acead9836650fd4e653ff07cf217b",
-      "tasks.md": "ea03b4bbc7e400764a4b535e27b445571ab84449c0714852b471354b56c3229c",
-      "implementation-summary.md": "1244e39d1ee603bf5e56d2e4712f386fccd83d62222a7ebeb3eed9b0e54e59c3"
+      "plan.md": "80ba658ccd58b857bdc567c5f5cde91d0aed16e0b9ce83a09f71815684b0ed76",
+      "tasks.md": "59469c06a0c46019f684b8f350edb8b1e4b7e8b812daff5a2cca85635f7bdcc1",
+      "implementation-summary.md": "e18879546898506e3d6fb6b819b012b428a6e12c2ef33392160eb6b98aa1595a"
     },
     "last_active_at": null
   }

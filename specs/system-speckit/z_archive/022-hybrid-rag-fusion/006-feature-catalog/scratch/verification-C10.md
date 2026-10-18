@@ -83,7 +83,7 @@ exec
     "reason": "Matched: !code(multi), !intent:implementation, code(name), file~, specification~"
   },
   {
-    "skill": "sk-code-opencode",
+    "skill": "sk-code-skilled",
     "kind": "skill",
 codex
 Skill routing selected `system-spec-kit` for this verification because the request is about spec/feature catalog accuracy. I’m loading just the relevant guidance now, then I’ll continue the code-to-doc cross-check.

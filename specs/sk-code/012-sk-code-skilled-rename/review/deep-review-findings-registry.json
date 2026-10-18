@@ -1,0 +1,811 @@
+{
+  "sessionId": "2026-10-18T20:00:06Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "Retrieval fixture retains one pre-rename phrase variant",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+      "line": 90907,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "Three historical records outside the literal machine-record extensions carry the old identity",
+      "file": "specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/dispatch-units-extra.json",
+      "line": 98,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "Pre-rename surface token survives as identifier naming inside the hub (confirm intent)",
+      "file": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs",
+      "line": 518,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Post-change runtime-name measurement not stored with the packet's gate evidence",
+      "file": "specs/sk-code/012-sk-code-skilled-rename/002-skill-and-routing-rename/implementation-summary.md",
+      "line": 107,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 4
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0.683,
+  "graphDecision": "STOP_BLOCKED",
+  "graphBlockers": [
+    {
+      "count": 8,
+      "description": "Dimension coverage (33%) is below threshold (80%). 8 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
+      "severity": "blocking",
+      "type": "uncovered_dimensions"
+    }
+  ],
+  "graphSignals": {
+    "dimensionCoverage": 0.3333333333333333,
+    "evidenceDensity": 0,
+    "findingStability": 1,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 0.683
+  },
+  "candidateCoverage": {
+    "covered": [
+      "broken_relative_link",
+      "claim_evidence_gap",
+      "metadata_identity_mismatch",
+      "mirror_or_symlink_drift",
+      "registry_inconsistency",
+      "runtime_name_rewrite",
+      "stale_identity_reference",
+      "stale_identity_residual",
+      "symlink_mirror_drift"
+    ],
+    "ruledOut": [
+      "broken_relative_link",
+      "dangling_or_wrong_symlink",
+      "metadata_identity_mismatch",
+      "mirror_drift",
+      "mirror_or_symlink_drift",
+      "registry_inconsistency",
+      "runtime_name_rewrite",
+      "stale_identity_reference",
+      "stale_identity_residual",
+      "symlink_mirror_drift"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "stale_identity_reference": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          3
+        ]
+      },
+      "runtime_name_rewrite": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "registry_inconsistency": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "broken_relative_link": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          3
+        ]
+      },
+      "mirror_or_symlink_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "stale_identity_residual": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "dangling_or_wrong_symlink": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "mirror_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "metadata_identity_mismatch": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "claim_evidence_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "symlink_mirror_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/plugins/system-skill-advisor.js",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+        ".hermes/skills/sk-code/SKILL.md"
+      ],
+      "bugClass": "runtime_name_rewrite",
+      "disposition": "ruled_out",
+      "rationale": "runtime name preserved in every sampled hunk; surface-id change limited to sk-code surface references",
+      "evidenceRefs": [
+        ".opencode/plugins/system-skill-advisor.js:705"
+      ],
+      "reason": "targeted diff scans returned no runtime-name rewrites"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-code/mode-registry.json",
+        ".skilled/skills/sk-code/hub-router.json",
+        ".skilled/skills/sk-code/graph-metadata.json",
+        ".skilled/skills/sk-code/leaf-manifest.json",
+        ".skilled/skills/sk-code/shared/references/stack-detection.md",
+        ".skilled/commands/doctor/scripts"
+      ],
+      "bugClass": "registry_inconsistency",
+      "disposition": "ruled_out",
+      "rationale": "all checked surfaces carry the same new identity; the pre-rename plugin guard root was already .skilled at HEAD, so the id swap is the only change",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/hub-router.json:7"
+      ],
+      "reason": "cross-surface consistency verified by direct reads"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-code/manual-testing-playbook",
+        ".skilled/skills/sk-code/sk-code-skilled",
+        ".skilled/skills/sk-code/shared/references"
+      ],
+      "bugClass": "broken_relative_link",
+      "disposition": "ruled_out",
+      "rationale": "no stale links to renamed targets found",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/skilled-detection.md:1"
+      ],
+      "reason": "old-basename and old-name sweeps clean outside exclusions"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/changelog/sk-code/code-skilled",
+        ".hermes/skills/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled"
+      ],
+      "bugClass": "mirror_or_symlink_drift",
+      "disposition": "ruled_out",
+      "rationale": "symlink target exists and mirror content is renamed consistently",
+      "evidenceRefs": [
+        ".skilled/changelog/sk-code/code-skilled",
+        ".hermes/skills/sk-code/SKILL.md:45"
+      ],
+      "reason": "symlink and mirror verified by direct reads"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-201",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/plugins/system-skill-advisor.js",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh"
+      ],
+      "bugClass": "runtime_name_rewrite",
+      "disposition": "ruled_out",
+      "rationale": "no runtime path or executor rewrite found; OPENCODE retained only in runtime contexts",
+      "evidenceRefs": [
+        ".opencode/plugins/system-skill-advisor.js:363"
+      ],
+      "reason": "staged-diff and existence checks show runtime names preserved"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-202",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-code"
+      ],
+      "bugClass": "stale_identity_residual",
+      "disposition": "ruled_out",
+      "rationale": "only documented exclusions plus the already-registered fixture carry the old kebab identity",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json:90907"
+      ],
+      "reason": "live sweep clean outside exclusions"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-204",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/changelog/sk-code/code-skilled"
+      ],
+      "bugClass": "dangling_or_wrong_symlink",
+      "disposition": "ruled_out",
+      "rationale": "symlink target resolves inside the repo",
+      "evidenceRefs": [
+        ".skilled/changelog/sk-code/code-skilled"
+      ],
+      "reason": "verified by readlink and existence check"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-205",
+      "dimension": "security",
+      "targetRefs": [
+        "specs/sk-code/002-rust-standards-for-code-skilled"
+      ],
+      "bugClass": "broken_relative_link",
+      "disposition": "ruled_out",
+      "rationale": "metadata identity and links consistent",
+      "evidenceRefs": [
+        "specs/sk-code/002-rust-standards-for-code-skilled/graph-metadata.json"
+      ],
+      "reason": "JSON.parse and link existence checks passed"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-206",
+      "dimension": "security",
+      "targetRefs": [
+        ".hermes/skills/sk-code-skilled/SKILL.md"
+      ],
+      "bugClass": "mirror_drift",
+      "disposition": "ruled_out",
+      "rationale": "mirror regenerated with the new identity",
+      "evidenceRefs": [
+        ".hermes/skills/sk-code-skilled/SKILL.md:3"
+      ],
+      "reason": "generated banner explains the diff"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-207",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-code/mode-registry.json",
+        ".skilled/skills/sk-code/hub-router.json",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "registry_inconsistency",
+      "disposition": "ruled_out",
+      "rationale": "all named surfaces carry the new identity",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/hub-router.json:7"
+      ],
+      "reason": "token scan across routing/plugin/doctor/tests/fixtures"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/description.json",
+        "specs/sk-code/002-rust-standards-for-code-skilled/001-research/description.json"
+      ],
+      "bugClass": "metadata_identity_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/015-sk-code-skilled-alignment/description.json:1",
+        "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/description.json:1"
+      ],
+      "reason": "identity fields consistent with renamed folders"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/012-sk-code-skilled-rename/review/scope-files.txt"
+      ],
+      "bugClass": "stale_identity_reference",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json:90907",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/dispatch-units-extra.json:98"
+      ],
+      "reason": "every residual falls in a documented exclusion class or an existing finding"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/changelog/sk-code/code-skilled",
+        ".hermes/skills/sk-code-skilled/SKILL.md"
+      ],
+      "bugClass": "symlink_mirror_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".hermes/skills/sk-code-skilled/SKILL.md:1"
+      ],
+      "reason": "symlink resolves and mirror carries the new identity"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/012-sk-code-skilled-rename/001-rename-impact-research"
+      ],
+      "bugClass": "broken_relative_link",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "specs/sk-code/012-sk-code-skilled-rename/001-rename-impact-research/research/iterations/iteration-001.md:25"
+      ],
+      "reason": "zero unresolved candidates outside the packet-docs exclusion"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/plugins/system-skill-advisor.js",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+        ".hermes/skills/sk-code/SKILL.md"
+      ],
+      "bugClass": "runtime_name_rewrite",
+      "disposition": "ruled_out",
+      "rationale": "runtime name preserved in every sampled hunk; surface-id change limited to sk-code surface references",
+      "evidenceRefs": [
+        ".opencode/plugins/system-skill-advisor.js:705"
+      ],
+      "proof": "targeted diff scans returned no runtime-name rewrites"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-code/mode-registry.json",
+        ".skilled/skills/sk-code/hub-router.json",
+        ".skilled/skills/sk-code/graph-metadata.json",
+        ".skilled/skills/sk-code/leaf-manifest.json",
+        ".skilled/skills/sk-code/shared/references/stack-detection.md",
+        ".skilled/commands/doctor/scripts"
+      ],
+      "bugClass": "registry_inconsistency",
+      "disposition": "ruled_out",
+      "rationale": "all checked surfaces carry the same new identity; the pre-rename plugin guard root was already .skilled at HEAD, so the id swap is the only change",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/hub-router.json:7"
+      ],
+      "proof": "cross-surface consistency verified by direct reads"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-code/manual-testing-playbook",
+        ".skilled/skills/sk-code/sk-code-skilled",
+        ".skilled/skills/sk-code/shared/references"
+      ],
+      "bugClass": "broken_relative_link",
+      "disposition": "ruled_out",
+      "rationale": "no stale links to renamed targets found",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/skilled-detection.md:1"
+      ],
+      "proof": "old-basename and old-name sweeps clean outside exclusions"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/changelog/sk-code/code-skilled",
+        ".hermes/skills/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled"
+      ],
+      "bugClass": "mirror_or_symlink_drift",
+      "disposition": "ruled_out",
+      "rationale": "symlink target exists and mirror content is renamed consistently",
+      "evidenceRefs": [
+        ".skilled/changelog/sk-code/code-skilled",
+        ".hermes/skills/sk-code/SKILL.md:45"
+      ],
+      "proof": "symlink and mirror verified by direct reads"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-201",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/plugins/system-skill-advisor.js",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh"
+      ],
+      "bugClass": "runtime_name_rewrite",
+      "disposition": "ruled_out",
+      "rationale": "no runtime path or executor rewrite found; OPENCODE retained only in runtime contexts",
+      "evidenceRefs": [
+        ".opencode/plugins/system-skill-advisor.js:363"
+      ],
+      "proof": "staged-diff and existence checks show runtime names preserved"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-202",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-code"
+      ],
+      "bugClass": "stale_identity_residual",
+      "disposition": "ruled_out",
+      "rationale": "only documented exclusions plus the already-registered fixture carry the old kebab identity",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json:90907"
+      ],
+      "proof": "live sweep clean outside exclusions"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-204",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/changelog/sk-code/code-skilled"
+      ],
+      "bugClass": "dangling_or_wrong_symlink",
+      "disposition": "ruled_out",
+      "rationale": "symlink target resolves inside the repo",
+      "evidenceRefs": [
+        ".skilled/changelog/sk-code/code-skilled"
+      ],
+      "proof": "verified by readlink and existence check"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-205",
+      "dimension": "security",
+      "targetRefs": [
+        "specs/sk-code/002-rust-standards-for-code-skilled"
+      ],
+      "bugClass": "broken_relative_link",
+      "disposition": "ruled_out",
+      "rationale": "metadata identity and links consistent",
+      "evidenceRefs": [
+        "specs/sk-code/002-rust-standards-for-code-skilled/graph-metadata.json"
+      ],
+      "proof": "JSON.parse and link existence checks passed"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-206",
+      "dimension": "security",
+      "targetRefs": [
+        ".hermes/skills/sk-code-skilled/SKILL.md"
+      ],
+      "bugClass": "mirror_drift",
+      "disposition": "ruled_out",
+      "rationale": "mirror regenerated with the new identity",
+      "evidenceRefs": [
+        ".hermes/skills/sk-code-skilled/SKILL.md:3"
+      ],
+      "proof": "generated banner explains the diff"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-207",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-code/mode-registry.json",
+        ".skilled/skills/sk-code/hub-router.json",
+        ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      ],
+      "bugClass": "registry_inconsistency",
+      "disposition": "ruled_out",
+      "rationale": "all named surfaces carry the new identity",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/hub-router.json:7"
+      ],
+      "proof": "token scan across routing/plugin/doctor/tests/fixtures"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/description.json",
+        "specs/sk-code/002-rust-standards-for-code-skilled/001-research/description.json"
+      ],
+      "bugClass": "metadata_identity_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/015-sk-code-skilled-alignment/description.json:1",
+        "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/description.json:1"
+      ],
+      "proof": "identity fields consistent with renamed folders"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/012-sk-code-skilled-rename/review/scope-files.txt"
+      ],
+      "bugClass": "stale_identity_reference",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json:90907",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/dispatch-units-extra.json:98"
+      ],
+      "proof": "every residual falls in a documented exclusion class or an existing finding"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/changelog/sk-code/code-skilled",
+        ".hermes/skills/sk-code-skilled/SKILL.md"
+      ],
+      "bugClass": "symlink_mirror_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".hermes/skills/sk-code-skilled/SKILL.md:1"
+      ],
+      "proof": "symlink resolves and mirror carries the new identity"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/012-sk-code-skilled-rename/001-rename-impact-research"
+      ],
+      "bugClass": "broken_relative_link",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "specs/sk-code/012-sk-code-skilled-rename/001-rename-impact-research/research/iterations/iteration-001.md:25"
+      ],
+      "proof": "zero unresolved candidates outside the packet-docs exclusion"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "stale_identity_reference",
+      "broken_relative_link",
+      "metadata_identity_mismatch",
+      "claim_evidence_gap",
+      "symlink_mirror_drift"
+    ],
+    "covered": [
+      "stale_identity_reference",
+      "broken_relative_link",
+      "metadata_identity_mismatch",
+      "claim_evidence_gap",
+      "symlink_mirror_drift"
+    ],
+    "ruledOut": [
+      "stale_identity_reference",
+      "broken_relative_link",
+      "metadata_identity_mismatch",
+      "symlink_mirror_drift"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

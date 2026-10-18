@@ -163,13 +163,13 @@
    "cls": "run"
   },
   {
-   "root": ".opencode/skills/sk-code/code-opencode/benchmark",
+   "root": ".opencode/skills/sk-code/code-skilled/benchmark",
    "from": "2026-07-10--live-mode-b--live",
    "to": "reports/2026-07-10--live-mode-b--live",
    "cls": "run"
   },
   {
-   "root": ".opencode/skills/sk-code/code-opencode/benchmark",
+   "root": ".opencode/skills/sk-code/code-skilled/benchmark",
    "from": "2026-07-10--router-mode-a--router",
    "to": "reports/2026-07-10--router-mode-a--router",
    "cls": "run"

@@ -23,7 +23,7 @@ _memory:
       - ".opencode/skills/sk-code/manual-testing-playbook"
       - ".opencode/skills/sk-code/sk-code-review/manual-testing-playbook"
       - ".opencode/skills/sk-code/sk-code-webflow/manual-testing-playbook"
-      - ".opencode/skills/sk-code/sk-code-opencode/manual-testing-playbook"
+      - ".opencode/skills/sk-code/sk-code-skilled/manual-testing-playbook"
       - ".opencode/skills/sk-code/sk-code-quality/manual-testing-playbook"
     session_dedup:
       fingerprint: "sha256:d524e378211af1091bdfc64f3ae55e6a2ee0b41891fa80f58b1c0aad49da1e5d"
@@ -61,7 +61,7 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The sk-code family is seven playbook roots: the hub itself and six mode packets. Five of them were dirty, carrying 586 operator-scenario contract violations between them — the hub at 181, `sk-code-review` at 129, `sk-code-webflow` at 156, `sk-code-opencode` at 108, and `sk-code-quality` at 12. The remaining two, `sk-code-mobile-cli` and `sk-code-obsidian`, were already at zero and are not this phase's subject; they were expanded for coverage breadth instead, which is the work recorded in `034-surface-playbook-expansion`.
+The sk-code family is seven playbook roots: the hub itself and six mode packets. Five of them were dirty, carrying 586 operator-scenario contract violations between them — the hub at 181, `sk-code-review` at 129, `sk-code-webflow` at 156, `sk-code-skilled` at 108, and `sk-code-quality` at 12. The remaining two, `sk-code-mobile-cli` and `sk-code-obsidian`, were already at zero and are not this phase's subject; they were expanded for coverage breadth instead, which is the work recorded in `034-surface-playbook-expansion`.
 
 The interesting number is `sk-code-review`'s. Its largest single violation class was 24 instances of `FORBIDDEN_VERDICT`, and those were not authoring slips. A prior effort had aligned that package literally to sk-doc's playbook, and sk-doc grades on a four-way `PASS`/`PARTIAL`/`FAIL`/`SKIP` scheme. sk-doc is allowed that scheme because it is registered in the corpus manifest's `routingGoldRoots` list, which exempts all of its scenarios from the operator-scenario contract and runs them at tier WARN. `sk-code-review` is not a member of that list. Copying the grading vocabulary without copying the registration that makes it legal is how a package ends up using verdicts its own tier forbids — the defect was imported by an alignment that read the surface of a sibling and not the manifest entry underneath it.
 
@@ -74,7 +74,7 @@ The purpose of this phase is to take all five dirty roots to zero under their ow
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
-In scope: the five dirty sk-code playbook roots — the `sk-code` hub, `sk-code-review`, `sk-code-webflow`, `sk-code-opencode`, and `sk-code-quality` — remediated to zero violations each, verified by a per-root `--package <root> --strict` run rather than by a fleet roll-up.
+In scope: the five dirty sk-code playbook roots — the `sk-code` hub, `sk-code-review`, `sk-code-webflow`, `sk-code-skilled`, and `sk-code-quality` — remediated to zero violations each, verified by a per-root `--package <root> --strict` run rather than by a fleet roll-up.
 
 Out of scope: `sk-code-mobile-cli` and `sk-code-obsidian`, both already at zero when this phase began and both handled as a coverage expansion in `034-surface-playbook-expansion`; the hub's `compiled-routing/` subfolder, which is a registered routing-gold exclusion and stays excluded; adding any root to `routingGoldRoots` or to the manifest's `warnPackages` list, since lowering the bar is not remediation; and the validator's own defects, which belong to `038-authoring-hardening`.
 
@@ -98,7 +98,7 @@ Out of scope: `sk-code-mobile-cli` and `sk-code-obsidian`, both already at zero 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001** All seven sk-code family roots report `PASS`, `tier=FAIL_CLOSED`, `violations=0` in the fleet census: hub at 32 scenarios across 11 categories, `sk-code-review` at 31 across 9, `sk-code-webflow` at 13 across 4, `sk-code-opencode` at 9 across 3, `sk-code-quality` at 1 across 1, `sk-code-mobile-cli` at 26 across 7, and `sk-code-obsidian` at 27 across 7.
+- **SC-001** All seven sk-code family roots report `PASS`, `tier=FAIL_CLOSED`, `violations=0` in the fleet census: hub at 32 scenarios across 11 categories, `sk-code-review` at 31 across 9, `sk-code-webflow` at 13 across 4, `sk-code-skilled` at 9 across 3, `sk-code-quality` at 1 across 1, `sk-code-mobile-cli` at 26 across 7, and `sk-code-obsidian` at 27 across 7.
 - **SC-002** The hub census still reports exactly one routing-gold-excluded file, `routing_gold_excluded=1`, against 31 operator scenarios — the `compiled-routing/` exclusion is intact and was not used to hide any of the hub's 181 violations.
 - **SC-003** No sk-code root appears in the manifest's `warnPackages` list, so every one of them is graded at blocking tier.
 

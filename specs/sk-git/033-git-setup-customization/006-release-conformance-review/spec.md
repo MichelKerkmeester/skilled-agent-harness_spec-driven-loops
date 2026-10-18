@@ -35,7 +35,7 @@ contextType: "general"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 6** of the Deep review of the v4.0.0.11 work (/doctor:git setup and its hardening) for conformance with the sk-doc authoring modes, sk-code-opencode and cross-repo references specification.
+This is **Phase 6** of the Deep review of the v4.0.0.11 work (/doctor:git setup and its hardening) for conformance with the sk-doc authoring modes, sk-code-skilled and cross-repo references specification.
 
 **Scope Boundary**: Read-only review of the files in `goal-file-manifest.txt`; writes stay inside this phase folder.
 
@@ -55,7 +55,7 @@ This is **Phase 6** of the Deep review of the v4.0.0.11 work (/doctor:git setup 
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The v4.0.0.11 release shipped the `/doctor:git setup` command and its hardening across code, a command router, skill docs, playbooks, catalogs, changelogs and cross-repo indexes. Nobody has yet checked each of those artifacts against its own sk-doc authoring mode or the sk-code-opencode standards, or confirmed that every repo surface listing doctor commands and `/doctor:git` targets names `setup` correctly.
+The v4.0.0.11 release shipped the `/doctor:git setup` command and its hardening across code, a command router, skill docs, playbooks, catalogs, changelogs and cross-repo indexes. Nobody has yet checked each of those artifacts against its own sk-doc authoring mode or the sk-code-skilled standards, or confirmed that every repo surface listing doctor commands and `/doctor:git` targets names `setup` correctly.
 
 ### Purpose
 A two-lineage deep review (cli-codex gpt-6-luna and cli-pi deepseek-v4.1-flash, five iterations each) produces a review report with path:line findings on standards conformance, correctness, traceability and maintainability for every file listed in `goal-file-manifest.txt`.
@@ -68,7 +68,7 @@ A two-lineage deep review (cli-codex gpt-6-luna and cli-pi deepseek-v4.1-flash, 
 
 ### In Scope
 - Review, read-only, every file in `goal-file-manifest.txt`: the setup-check script and its test, the gate-inputs workflow and script with its test, the `/doctor:git` router, YAML, presentation and routes, the sk-git SKILL.md, README, commit template, playbook scenario and index, catalog leaf and index, hooks README, the cross-repo indexes (root README, commands README, spec-kit doctor catalog and playbook README, Hermes sk-git mirror) and both changelogs.
-- Judge each artifact against its sk-doc authoring mode contract (`sk-create-command`, `sk-create-manual-testing-playbook`, `sk-create-feature-catalog`, `sk-create-readme`, `sk-create-skill`, `sk-create-changelog`, the Human Voice Rules in `sk-create-with-human-voice`) and code against `sk-code/sk-code-opencode` (SKILL.md section 3, `assets/checklists/javascript-checklist.md` and `shell-checklist.md`, the shared references).
+- Judge each artifact against its sk-doc authoring mode contract (`sk-create-command`, `sk-create-manual-testing-playbook`, `sk-create-feature-catalog`, `sk-create-readme`, `sk-create-skill`, `sk-create-changelog`, the Human Voice Rules in `sk-create-with-human-voice`) and code against `sk-code/sk-code-skilled` (SKILL.md section 3, `assets/checklists/javascript-checklist.md` and `shell-checklist.md`, the shared references).
 - Check that every repo surface listing doctor commands, sk-git surfaces or `/doctor:git` targets names `setup` correctly, that every cited path and command exists and runs as written, and that the root README points to it where a user would look.
 - Run the repo's own validators where they exist: `.skilled/skills/sk-doc/scripts/validate_document.py`, `.skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py`, the playbook and catalog validators, `.skilled/commands/doctor/scripts/route-validate.sh` and the sk-code drift guards.
 - Dimensions: correctness, traceability, maintainability, standards conformance. Every finding cites path:line with a concrete failure case.

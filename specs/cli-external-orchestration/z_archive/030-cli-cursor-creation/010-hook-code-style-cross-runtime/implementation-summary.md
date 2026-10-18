@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Cross-runtime hook code style alignment"
-description: "32 hook entrypoints across Claude, Codex, Cursor and Devin brought to their language's code-opencode P0 header standard plus numbered section bands, with the sweep proven comment-only by an exhaustive non-comment diff assertion."
+description: "32 hook entrypoints across Claude, Codex, Cursor and Devin brought to their language's code-skilled P0 header standard plus numbered section bands, with the sweep proven comment-only by an exhaustive non-comment diff assertion."
 trigger_phrases: ["cross-runtime hook style summary", "hook style alignment results"]
 importance_tier: "normal"
 contextType: "general"
@@ -86,4 +86,4 @@ Bands are emitted only for constructs a file actually contains, so numbering sta
 ## RELATED DOCUMENTS
 - `spec.md`, `plan.md`, `tasks.md`, `checklist.md`
 - `../009-cursor-hooks-lifecycle/005-hooks-sk-code-alignment/implementation-summary.md` (the Cursor-only predecessor this generalizes)
-- `.opencode/skills/sk-code/code-opencode/assets/checklists/javascript-checklist.md` (the P0 box-header standard)
+- `.opencode/skills/sk-code/code-skilled/assets/checklists/javascript-checklist.md` (the P0 box-header standard)

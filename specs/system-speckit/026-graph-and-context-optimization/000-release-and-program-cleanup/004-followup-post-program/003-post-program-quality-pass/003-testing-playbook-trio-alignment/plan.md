@@ -127,7 +127,7 @@ Operator opens root playbook, follows a linked scenario file, executes commands,
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `001-sk-code-opencode-standards-audit` | Packet dependency | Complete enough for this follow-up | User-specified dependency for graph metadata |
+| `001-sk-code-skilled-standards-audit` | Packet dependency | Complete enough for this follow-up | User-specified dependency for graph metadata |
 | sk-doc playbook template | Documentation standard | Available | Needed for structure validation |
 | Packet 035 evidence files | Evidence anchor | Available | Needed for F5-F8 coverage entry |
 <!-- /ANCHOR:dependencies -->

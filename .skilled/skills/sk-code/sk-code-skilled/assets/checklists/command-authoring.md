@@ -1,0 +1,79 @@
+---
+title: Command Authoring Checklist
+description: Checklist for authoring slash commands with contract-renderer or YAML-router architecture, symlink-aware runtime parity, and verification gates.
+trigger_phrases:
+  - "command authoring checklist"
+  - "slash command authoring"
+  - "execution path yaml"
+  - "command runtime mirrors"
+importance_tier: normal
+contextType: implementation
+version: 1.0.1.0
+---
+
+# Command Authoring Checklist
+
+Checklist for authoring or modifying slash commands with the correct command architecture, real frontmatter fields, symlink-aware runtime parity, and verification gates.
+
+## 1. OVERVIEW
+
+### Purpose
+
+This checklist keeps user-invoked commands consistent with the two live command architectures: contract-renderer commands and YAML-router commands. It is for commands that dispatch agents, write spec folders, route through create/spec-kit workflows, or render deep-loop contracts.
+
+### Usage
+
+- Use this when authoring a new slash command under `.skilled/commands/`.
+- Use this when modifying command frontmatter, execution paths, or command-owned assets.
+- Use this when adding `:auto` or `:confirm` behavior through YAML execution files.
+- Use this when changing command availability across OpenCode and Claude runtime paths.
+
+---
+
+## 2. PRE-CHECKS
+
+- [ ] Read a YAML-router command such as `.skilled/commands/create/skill.md` or `.skilled/commands/speckit/complete.md`.
+- [ ] Read a contract-renderer command such as `.skilled/commands/deep/research.md`, which delegates to `.skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs`.
+- [ ] Confirm command frontmatter uses the live fields `argument-hint` and `allowed-tools` when the command needs arguments or tool permissions.
+- [ ] Confirm whether `:auto` needs PRE-BOUND SETUP ANSWERS support in `argument-hint` and the presentation or compiled contract.
+- [ ] For YAML-router commands, verify real assets such as `.skilled/commands/create/assets/create-skill-auto.yaml`, `.skilled/commands/create/assets/create-skill-confirm.yaml`, and `.skilled/commands/create/assets/create-skill-presentation.txt`.
+- [ ] For contract-renderer commands, verify the rendered contract source such as `.skilled/commands/deep/assets/compiled/deep-research.contract.md` and workflow assets such as `.skilled/commands/deep/assets/deep-research-auto.yaml`.
+- [ ] Confirm command scope, required user inputs, dispatch targets, and file-write authority.
+- [ ] Classify the command's runtime scope, then run the mirror generator. `.claude/commands` is a real filtered tree of per-command symlinks, so OpenCode-only commands must be excluded deliberately.
+- [ ] Do not mirror commands into `.skilled/prompts/`; that path is not present in this workspace.
+- [ ] Confirm the command does not bypass skill-owned workflows for deep research, deep review, memory save, or spec folder writes.
+
+---
+
+## 3. STEPS
+
+1. Define the command trigger, supported suffixes, and expected arguments.
+2. Choose the architecture.
+   - Contract-renderer: the command markdown is a small wrapper that invokes `render-command-contract.cjs` and lets the compiled contract own setup, routing, and workflow text.
+   - YAML-router: the command markdown owns mode selection and presentation-contract loading, then executes one workflow YAML asset.
+3. Author command frontmatter with `description`, `argument-hint`, and `allowed-tools` when the command needs them.
+4. For YAML-router commands, add or update presentation and workflow assets under the command asset directory.
+5. For contract-renderer commands, keep the wrapper minimal and update the rendered contract source or deep-loop runtime assets instead of duplicating behavior in the wrapper.
+6. Reference the owning skill and any agent dispatch contracts by exact path or command name.
+7. Run `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs` for Claude parity; do not add manual command mirrors or `.skilled/prompts` entries.
+8. Validate links, command examples, contract-renderer references, and YAML workflow references.
+
+---
+
+## 4. POST-CHECKS
+
+- [ ] Run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` against the owning spec folder when the command change is part of a spec folder.
+- [ ] grep verification for command frontmatter: `rg -n "^(description|argument-hint|allowed-tools):" .skilled/commands/create/skill.md .skilled/commands/speckit/complete.md .skilled/commands/deep/research.md`.
+- [ ] grep verification for YAML-router assets: `rg -n "create_skill_(auto|confirm)\\.yaml|speckit_complete_(auto|confirm)\\.yaml|presentation" .skilled/commands/create/skill.md .skilled/commands/speckit/complete.md`.
+- [ ] grep verification for contract-renderer commands: `rg -n "render-command-contract\\.cjs|deep/research" .skilled/commands/deep/research.md .skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs`.
+- [ ] Filtered parity check: `.claude/commands` is a real directory, each shared command is a symlink, excluded commands are absent, and `sync-runtime-mirrors.cjs --check` exits 0. `.skilled/prompts` should remain absent.
+
+---
+
+## 5. RELATED RESOURCES
+
+- YAML-router examples: `.skilled/commands/create/skill.md`, `.skilled/commands/speckit/complete.md`
+- Contract-renderer example: `.skilled/commands/deep/research.md`
+- Renderer: `.skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs`
+- Command parity path: generated per-command symlinks under `.claude/commands`
+- Verification recipes: `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md`

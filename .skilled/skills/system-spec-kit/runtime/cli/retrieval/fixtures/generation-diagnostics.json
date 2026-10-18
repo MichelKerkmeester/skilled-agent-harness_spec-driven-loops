@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 7024,
-    "ok": 14383,
+    "missing-frontmatter": 7088,
+    "ok": 14403,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 24954,
+  "documentsScanned": 25038,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "e24b214fbb1bf7c7f8b534ef26371d0f09e330996dde0f605b1375e1fb6911ae",
+  "manifestHash": "7df7ca78e3cf0e6a67fcb94406bc8b7c0e8101a07c0030b999b2c33396d601b9",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36659,
+      "ok": 36689,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -10601,13 +10601,13 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/opencode-plus-motion-dev.md",
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/prefers-reduced-motion.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/prefers-reduced-motion.md",
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/skilled-plus-motion-dev.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -10667,25 +10667,25 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/opencode-config.md",
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-config.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/opencode-python.md",
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-python.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/opencode-shell.md",
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-shell.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/opencode-typescript.md",
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-typescript.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -10745,7 +10745,7 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md",
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/skilled-detection.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -10950,138 +10950,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/unknown-fallback/zero-keyword-prompt.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-opencode/benchmark/reports/2026-07-10--live-mode-b--live/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-opencode/benchmark/reports/2026-07-10--live-mode-b--live/failed-runs.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-opencode/benchmark/reports/2026-07-10--live-mode-b--live/findings-and-recommendations.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-opencode/benchmark/reports/2026-07-10--live-mode-b--live/skill-benchmark-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-opencode/benchmark/reports/2026-07-10--live-mode-b--live/source.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-opencode/benchmark/reports/2026-07-10--router-mode-a--router/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-opencode/benchmark/reports/2026-07-10--router-mode-a--router/failed-runs.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-opencode/benchmark/reports/2026-07-10--router-mode-a--router/findings-and-recommendations.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-opencode/benchmark/reports/2026-07-10--router-mode-a--router/skill-benchmark-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-opencode/benchmark/reports/2026-07-10--router-mode-a--router/source.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/code-quality-gate.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/implementation-authoring.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/verification-alignment.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/config-hooks/config-schema.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/config-hooks/hooks-wiring.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/python-standards.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/rust-standards.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/shell-standards.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/typescript-standards.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/manual-testing-playbook.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -11462,6 +11330,138 @@
       "line": 1,
       "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/list-shape-valid.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-skilled/benchmark/reports/2026-07-10--live-mode-b--live/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-skilled/benchmark/reports/2026-07-10--live-mode-b--live/failed-runs.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-skilled/benchmark/reports/2026-07-10--live-mode-b--live/findings-and-recommendations.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-skilled/benchmark/reports/2026-07-10--live-mode-b--live/skill-benchmark-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-skilled/benchmark/reports/2026-07-10--live-mode-b--live/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-skilled/benchmark/reports/2026-07-10--router-mode-a--router/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-skilled/benchmark/reports/2026-07-10--router-mode-a--router/failed-runs.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-skilled/benchmark/reports/2026-07-10--router-mode-a--router/findings-and-recommendations.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-skilled/benchmark/reports/2026-07-10--router-mode-a--router/skill-benchmark-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-skilled/benchmark/reports/2026-07-10--router-mode-a--router/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/code-quality-gate.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/implementation-authoring.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/config-hooks/config-schema.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/config-hooks/hooks-wiring.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/language-standards/python-standards.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/language-standards/rust-standards.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/language-standards/shell-standards.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/language-standards/typescript-standards.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/manual-testing-playbook.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md",
+      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
@@ -34908,6 +34908,264 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/iterations/iteration-006.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/iterations/iteration-007.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/iterations/iteration-008.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/iterations/iteration-009.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/iterations/iteration-010.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/iterations/iteration-011.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/iterations/iteration-012.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/iterations/iteration-013.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/iterations/iteration-014.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/iterations/iteration-015.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/iterations/iteration-016.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/iterations/iteration-017.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/iterations/iteration-018.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/iterations/iteration-019.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/iterations/iteration-020.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/prompts/iteration-10.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/prompts/iteration-11.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/prompts/iteration-12.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/prompts/iteration-13.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/prompts/iteration-14.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/prompts/iteration-15.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/prompts/iteration-16.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/prompts/iteration-17.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/prompts/iteration-18.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/prompts/iteration-19.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/prompts/iteration-20.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/prompts/iteration-6.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/prompts/iteration-7.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/prompts/iteration-8.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/prompts/iteration-9.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/steering-log.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/ai-council-strategy.md",
       "reason": "no opening frontmatter delimiter"
@@ -36376,147 +36634,147 @@
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/final-synthesis.md",
+      "path": "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/final-synthesis.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-001.md",
+      "path": "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-001.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-002.md",
+      "path": "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-002.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-003.md",
+      "path": "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-003.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-004.md",
+      "path": "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-004.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-005.md",
+      "path": "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-005.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-006.md",
+      "path": "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-006.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-007.md",
+      "path": "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-007.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-008.md",
+      "path": "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-008.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-009.md",
+      "path": "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-009.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/deep-research-strategy.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/deep-research-strategy.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-001.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-001.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-002.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-002.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-003.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-003.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-004.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-004.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-005.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-005.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-006.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-006.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-007.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-007.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-008.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-008.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-009.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-009.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/research.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/research.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -39006,6 +39264,132 @@
       "line": 1,
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/032-epic-follow-up-review/review/review-report.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-code/012-sk-code-skilled-rename/001-rename-impact-research/research/deep-research-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/012-sk-code-skilled-rename/001-rename-impact-research/research/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/012-sk-code-skilled-rename/001-rename-impact-research/research/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/012-sk-code-skilled-rename/001-rename-impact-research/research/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/012-sk-code-skilled-rename/001-rename-impact-research/research/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/012-sk-code-skilled-rename/001-rename-impact-research/research/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/012-sk-code-skilled-rename/001-rename-impact-research/research/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/012-sk-code-skilled-rename/001-rename-impact-research/research/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/012-sk-code-skilled-rename/001-rename-impact-research/research/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/012-sk-code-skilled-rename/001-rename-impact-research/research/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/012-sk-code-skilled-rename/001-rename-impact-research/research/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-code/012-sk-code-skilled-rename/001-rename-impact-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-code/012-sk-code-skilled-rename/review/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/012-sk-code-skilled-rename/review/deep-review-strategy.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/012-sk-code-skilled-rename/review/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/012-sk-code-skilled-rename/review/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/012-sk-code-skilled-rename/review/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/012-sk-code-skilled-rename/review/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/012-sk-code-skilled-rename/review/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/012-sk-code-skilled-rename/review/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-code/012-sk-code-skilled-rename/review/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
@@ -44622,14 +45006,14 @@
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/audit-findings.md",
+      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/audit-findings.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/research/prompts/iteration-001.md",
+      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/research/prompts/iteration-001.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -67501,15 +67885,15 @@
       "reason": "duplicate of an already-indexed document"
     },
     {
-      "path": ".skilled/skills/sk-code/sk-code-opencode/references/workflow-debug.md",
+      "path": ".skilled/skills/sk-code/sk-code-skilled/references/workflow-debug.md",
       "reason": "duplicate of an already-indexed document"
     },
     {
-      "path": ".skilled/skills/sk-code/sk-code-opencode/references/workflow-implement.md",
+      "path": ".skilled/skills/sk-code/sk-code-skilled/references/workflow-implement.md",
       "reason": "duplicate of an already-indexed document"
     },
     {
-      "path": ".skilled/skills/sk-code/sk-code-opencode/references/workflow-verify.md",
+      "path": ".skilled/skills/sk-code/sk-code-skilled/references/workflow-verify.md",
       "reason": "duplicate of an already-indexed document"
     },
     {
@@ -67970,6 +68354,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/081-claude-5-5-roster-and-effort-levels/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/scratch",
       "reason": "excluded directory"
     },
     {
@@ -68721,7 +69109,7 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/review/lineages",
       "reason": "excluded directory"
     },
     {
@@ -69258,6 +69646,18 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/033-follow-up-review-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/012-sk-code-skilled-rename/001-rename-impact-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/012-sk-code-skilled-rename/002-skill-and-routing-rename/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/012-sk-code-skilled-rename/003-markdown-reference-sweep/scratch",
       "reason": "excluded directory"
     },
     {
@@ -70601,7 +71001,7 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-opencode/scratch",
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-skilled/scratch",
       "reason": "excluded directory"
     },
     {
@@ -70945,7 +71345,7 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-skill-advisor/031-align-runtime-code-with-sk-code-opencode/scratch",
+      "path": "specs/system-skill-advisor/031-align-runtime-code-with-sk-code-skilled/scratch",
       "reason": "excluded directory"
     },
     {
@@ -73245,7 +73645,7 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/046-align-runtime-code-with-sk-code-opencode/scratch",
+      "path": "specs/system-speckit/046-align-runtime-code-with-sk-code-skilled/scratch",
       "reason": "excluded directory"
     },
     {

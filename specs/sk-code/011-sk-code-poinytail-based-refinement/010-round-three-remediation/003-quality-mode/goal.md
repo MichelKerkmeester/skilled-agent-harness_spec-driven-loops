@@ -45,7 +45,7 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | The bump is patch, 1.1.0.0 to 1.1.1.0, because every change repairs wrong prose. The SKILL.md `version:`, the README `version:` and the new changelog file name all read 1.1.1.0. |
-| D2 | Pre-rename names are renamed only: `code-webflow`, `code-opencode`, `code-review` and the prose mode name `code-quality` gain the `sk-` prefix, in SKILL.md and in the README title and H1. Obsidian is not added to the two-surface lists, and `schema_version: code-quality/v1` and the keyword comment stay. |
+| D2 | Pre-rename names are renamed only: `code-webflow`, `code-skilled`, `code-review` and the prose mode name `code-quality` gain the `sk-` prefix, in SKILL.md and in the README title and H1. Obsidian is not added to the two-surface lists, and `schema_version: code-quality/v1` and the keyword comment stay. |
 | D3 | The legacy `.skilled/hooks/git/pre-commit` and `scripts/hooks/claude-posttooluse.sh` stay listed, marked as helpers kept for direct tests, and the gate table names `.skilled/scripts/git-hooks/pre-commit` and `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`. |
 | D4 | Every edit is one exact text replacement from `plan.md` section 3. Scripts, assets and the Hermes copy are not edited, and the builder runs Hermes only with `--check`. |
 
@@ -88,7 +88,7 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
-| The finding's count is 39, the stale lines are 13 | `rg -c "code-webflow\|code-opencode\|code-review"` also matches 28 current `sk-code-opencode/assets/...` paths. Eleven lines carry a stale surface or review name, and lines 142 and 145 carry `code-quality` as a mode name. |
+| The finding's count is 39, the stale lines are 13 | `rg -c "code-webflow\|code-skilled\|code-review"` also matches 28 current `sk-code-skilled/assets/...` paths. Eleven lines carry a stale surface or review name, and lines 142 and 145 carry `code-quality` as a mode name. |
 | README dist command proved nothing | The old `bash check-dist-staleness.sh` failed under bash, and the script with no argument exits 0 without checking anything. The README now runs it directly with `--all`. |
 | Hermes copy drift | `sync-skills-hermes.cjs --check` exits 1 with DRIFT sk-code-quality until the orchestrator runs the write form. PENDING-ORCHESTRATOR, no criterion depends on it. |
 | Before baselines | Not captured by the builder. Pre-edit files were taken from git HEAD and baselines from plan.md section 5. |

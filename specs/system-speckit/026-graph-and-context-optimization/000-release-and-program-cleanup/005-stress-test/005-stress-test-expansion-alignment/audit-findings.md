@@ -6,7 +6,7 @@ trigger_phrases:
   - "005-stress-test-expansion-alignment"
   - "stress test alignment"
   - "stress test coverage"
-  - "sk-code-opencode stress test"
+  - "sk-code-skilled stress test"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
@@ -85,7 +85,7 @@ Final inventory after coverage additions: 32 TypeScript files, 28 vitest files, 
 | session | 4 |
 | skill-advisor | 3 |
 
-## Section 2: sk-code-opencode Alignment Findings
+## Section 2: sk-code-skilled Alignment Findings
 
 | File:line | Severity | Finding | Proposed fix | Status |
 |---|---|---|---|---|

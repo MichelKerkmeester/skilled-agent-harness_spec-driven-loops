@@ -2,13 +2,13 @@ Router-sync ignored-file verification evidence
 Created from the requested live tree and regression test runs.
 
 ==== Live cache presence before implementation ====
-COMMAND: ls -ld .skilled/skills/sk-code/sk-code-opencode/assets/scripts/.pytest_cache
+COMMAND: ls -ld .skilled/skills/sk-code/sk-code-skilled/assets/scripts/.pytest_cache
 OUTPUT:
-drwxr-xr-x@ 6 michelkerkmeester  staff  192 Oct  8 06:16 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/.pytest_cache
+drwxr-xr-x@ 6 michelkerkmeester  staff  192 Oct  8 06:16 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/.pytest_cache
 EXIT CODE: 0
 
 ==== Regression test before implementation (expected red) ====
-COMMAND: node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs
+COMMAND: node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs
 OUTPUT:
 ✔ a canonical workflow doc reached through a surface symlink is not reported (39.13125ms)
 ✔ an unrouted doc is still reported, in the shared tier and in a packet (38.125792ms)
@@ -27,7 +27,7 @@ OUTPUT:
 
 ✖ failing tests:
 
-test at .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs:77:1
+test at .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs:77:1
 ✖ leg 1b skips ignored markdown but still reports untracked unrouted docs (68.372666ms)
   AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /\.pytest_cache\/README\.md/. Input:
   
@@ -36,7 +36,7 @@ test at .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-syn
     '  - orphan (routable doc no router names): sk-code-demo/references/untracked-stray.md\n' +
     'router-sync: 0/1 checks passed\n'
   
-      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs:88:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs:88:10)
       at Test.runInAsyncScope (node:async_hooks:226:14)
       at Test.run (node:internal/test_runner/test:1402:25)
       at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
@@ -54,7 +54,7 @@ test at .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-syn
 EXIT CODE: 1
 
 ==== Live drift-guard wrapper before implementation ====
-COMMAND: bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
+COMMAND: bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
 OUTPUT:
 ── alignment-drift  (verify_alignment_drift.py --check-router)
 Warning: truncated output (original token count: 18132)
@@ -229,9 +229,9 @@ PASS: stack-folders    (verify_stack_folders.py)
 ── router-sync      (verify-router-sync.cjs --checks 1a,1b,2,3,4)
 PASS check 1a: machine-router paths exist and the prose maps are routed
 FAIL check 1b: every routable reference or asset doc is routed (1 problem(s))
-  - orphan (routable doc no router names): sk-code-opencode/assets/scripts/.pytest_cache/README.md
+  - orphan (routable doc no router names): sk-code-skilled/assets/scripts/.pytest_cache/README.md
 PASS check 2: surface RESOURCE_MAP equals the children union plus the parent tier
-PASS check 3: compiled destinations, leaf-manifest and code-opencode RESOURCE_MAP agree
+PASS check 3: compiled destinations, leaf-manifest and code-skilled RESOURCE_MAP agree
 PASS check 4: playbook expected_resource is emitted by the router
 router-sync: 4/5 checks passed
 FAIL: router-sync      (verify-router-sync.cjs --checks 1a,1b,2,3,4)
@@ -249,7 +249,7 @@ run-all-drift-guards: 1 guard(s) FAILED
 EXIT CODE: 1
 
 ==== Regression test after implementation ====
-COMMAND: node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs
+COMMAND: node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs
 OUTPUT:
 ✔ a canonical workflow doc reached through a surface symlink is not reported (56.65825ms)
 ✔ an unrouted doc is still reported, in the shared tier and in a packet (56.899584ms)
@@ -269,7 +269,7 @@ OUTPUT:
 EXIT CODE: 0
 
 ==== Live drift-guard wrapper after implementation ====
-COMMAND: bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
+COMMAND: bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
 OUTPUT:
 Warning: truncated output (original token count: 18128)
 Total output lines: 311
@@ -445,7 +445,7 @@ PASS: stack-folders    (verify_stack_folders.py)
 PASS check 1a: machine-router paths exist and the prose maps are routed
 PASS check 1b: every routable reference or asset doc is routed
 PASS check 2: surface RESOURCE_MAP equals the children union plus the parent tier
-PASS check 3: compiled destinations, leaf-manifest and code-opencode RESOURCE_MAP agree
+PASS check 3: compiled destinations, leaf-manifest and code-skilled RESOURCE_MAP agree
 PASS check 4: playbook expected_resource is emitted by the router
 router-sync: 5/5 checks passed
 PASS: router-sync      (verify-router-sync.cjs --checks 1a,1b,2,3,4)
@@ -463,7 +463,7 @@ run-all-drift-guards: all 4 guards PASSED, 277 non-blocking warning(s)
 EXIT CODE: 0
 
 ==== Comment hygiene checker, initial Bash invocation ====
-COMMAND: bash .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs
+COMMAND: bash .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs
 OUTPUT:
 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh: line 15: 
 Comment hygiene checker — detects ephemeral-artifact pointers in code comment lines.
@@ -488,7 +488,7 @@ See: .skilled/skills/sk-code/shared/references/universal/code-style-guide.md §4
 EXIT CODE: 2
 
 ==== Comment hygiene checker, initial Bash invocation for test file ====
-COMMAND: bash .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs
+COMMAND: bash .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs
 OUTPUT:
 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh: line 15: 
 Comment hygiene checker — detects ephemeral-artifact pointers in code comment lines.
@@ -513,21 +513,21 @@ See: .skilled/skills/sk-code/shared/references/universal/code-style-guide.md §4
 EXIT CODE: 2
 
 ==== Comment hygiene checker, Python invocation ====
-COMMAND: python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs
+COMMAND: python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs
 OUTPUT:
 [no output]
 EXIT CODE: 0
 
 
 ==== Final-state cache presence ====
-COMMAND: ls -ld .skilled/skills/sk-code/sk-code-opencode/assets/scripts/.pytest_cache
+COMMAND: ls -ld .skilled/skills/sk-code/sk-code-skilled/assets/scripts/.pytest_cache
 OUTPUT:
-drwxr-xr-x@ 6 michelkerkmeester  staff  192 Oct  8 06:16 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/.pytest_cache
+drwxr-xr-x@ 6 michelkerkmeester  staff  192 Oct  8 06:16 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/.pytest_cache
 
 EXIT CODE: 0
 
 ==== Final-state focused test rerun ====
-COMMAND: node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs
+COMMAND: node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs
 OUTPUT:
 ✔ a canonical workflow doc reached through a surface symlink is not reported (55.8555ms)
 ✔ an unrouted doc is still reported, in the shared tier and in a packet (54.242042ms)
@@ -547,7 +547,7 @@ OUTPUT:
 EXIT CODE: 0
 
 ==== Final-state live drift-guard wrapper rerun ====
-COMMAND: bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
+COMMAND: bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
 OUTPUT:
 Warning: truncated output (original token count: 18128)
 Total output lines: 311
@@ -723,7 +723,7 @@ PASS: stack-folders    (verify_stack_folders.py)
 PASS check 1a: machine-router paths exist and the prose maps are routed
 PASS check 1b: every routable reference or asset doc is routed
 PASS check 2: surface RESOURCE_MAP equals the children union plus the parent tier
-PASS check 3: compiled destinations, leaf-manifest and code-opencode RESOURCE_MAP agree
+PASS check 3: compiled destinations, leaf-manifest and code-skilled RESOURCE_MAP agree
 PASS check 4: playbook expected_resource is emitted by the router
 router-sync: 5/5 checks passed
 PASS: router-sync      (verify-router-sync.cjs --checks 1a,1b,2,3,4)

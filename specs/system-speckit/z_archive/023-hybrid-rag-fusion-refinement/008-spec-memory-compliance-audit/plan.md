@@ -283,7 +283,7 @@ Fix each folder's spec documents for: YAML frontmatter, SPECKIT_LEVEL comment, S
 - `015-cmd-create-changelog`
 - `016-sk-code-review-creation`
 - `017-cmd-create-prompt`
-- `018-sk-code-opencode-refinement`
+- `018-sk-code-skilled-refinement`
 - `019-cmd-create-skill-merger`
 - `020-cmd-create-readme-install-merger`
 - `021-sk-doc-feature-catalog-testing-playbook`

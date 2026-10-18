@@ -71,7 +71,7 @@ Smoke tests then confirm runtime envelopes are unchanged in practice: a real dis
 | Dependency | Status | Note |
 |---|---|---|
 | Phase 013's box-header format and `.mjs` `'use strict'` rule | Green - Complete | Reused verbatim rather than re-derived |
-| `code-opencode` checklists | Green - present | The standard being conformed to |
+| `code-skilled` checklists | Green - present | The standard being conformed to |
 | `verify_alignment_drift.py` | Green - present | Independent automated confirmation |
 <!-- /ANCHOR:dependencies -->
 

@@ -32,7 +32,7 @@ Serves as the "persistent brain" for a deep review session. Records which dimens
 ---
 
 ## 2. TOPIC
-commit a682c06d3d on branch worktrees/131-tieorder-warning (diff c62d7d1399..a682c06d3d): doctor check 5l in parent-skill-check.cjs reports, on the sk-code hub only and as a softFail, any surface mode listed after sk-code-opencode in routerPolicy.tieBreak other than sk-code-obsidian and sk-code-webflow, naming the two fixes; three invariant tests and an addNamedSurfaces fixture helper pin it; the section heading range reads 5a-5l; the root README sk-code guide gains one sentence for a hand edit of tieBreak.
+commit a682c06d3d on branch worktrees/131-tieorder-warning (diff c62d7d1399..a682c06d3d): doctor check 5l in parent-skill-check.cjs reports, on the sk-code hub only and as a softFail, any surface mode listed after sk-code-skilled in routerPolicy.tieBreak other than sk-code-obsidian and sk-code-webflow, naming the two fixes; three invariant tests and an addNamedSurfaces fixture helper pin it; the section heading range reads 5a-5l; the root README sk-code guide gains one sentence for a hand edit of tieBreak.
 
 Dimensions, risk-ordered: correctness, security, traceability, maintainability. Max iterations 5, convergence threshold 0.1, stop policy max-iterations. The full diff is specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/scratch/review-diff.patch. The phase's decisions are in specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/decision-record.md (ADR-001 source of truth for native and example names, ADR-002 softFail severity).
 

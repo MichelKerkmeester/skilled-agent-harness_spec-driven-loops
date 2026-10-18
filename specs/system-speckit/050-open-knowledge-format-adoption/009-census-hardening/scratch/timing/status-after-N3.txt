@@ -66,7 +66,7 @@
  M specs/hooks/009-goal-isolation/005-verification-and-validation/plan.md
  M specs/hooks/009-goal-isolation/005-verification-and-validation/spec.md
  M specs/hooks/009-goal-isolation/005-verification-and-validation/tasks.md
- M specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation/code-bug-handoffs.md
+ M specs/sk-code/001-sk-code-parent/028-code-skilled-refinement-implementation/code-bug-handoffs.md
  M specs/sk-communication/001-sk-communication-creation/002-contracts-and-fixtures/graph-metadata.json
  M specs/sk-communication/001-sk-communication-creation/002-contracts-and-fixtures/handover.md
  M specs/sk-prompt/007-sk-prompt-parent/007-routing-benchmark-and-review/graph-metadata.json
@@ -483,8 +483,8 @@
 ?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_hooks_008-pi-caching-like-reasonix_007-research-fork-improvements.txt
 ?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_sk-code_001-sk-code-parent_025-code-quality-and-shared-research.err
 ?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_sk-code_001-sk-code-parent_025-code-quality-and-shared-research.txt
-?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_sk-code_002-rust-standards-for-code-opencode_001-research.err
-?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_sk-code_002-rust-standards-for-code-opencode_001-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_sk-code_002-rust-standards-for-code-skilled_001-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_sk-code_002-rust-standards-for-code-skilled_001-research.txt
 ?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_sk-communication_001-sk-communication-creation_001-research-strategy.err
 ?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_sk-communication_001-sk-communication-creation_001-research-strategy.txt
 ?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_sk-communication_006-sk-communication-clarity_001-research-communication-context.err
@@ -524,8 +524,8 @@
 ?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_hooks_008-pi-caching-like-reasonix_007-research-fork-improvements.txt
 ?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_sk-code_001-sk-code-parent_025-code-quality-and-shared-research.err
 ?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_sk-code_001-sk-code-parent_025-code-quality-and-shared-research.txt
-?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_sk-code_002-rust-standards-for-code-opencode_001-research.err
-?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_sk-code_002-rust-standards-for-code-opencode_001-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_sk-code_002-rust-standards-for-code-skilled_001-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_sk-code_002-rust-standards-for-code-skilled_001-research.txt
 ?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_sk-communication_001-sk-communication-creation_001-research-strategy.err
 ?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_sk-communication_001-sk-communication-creation_001-research-strategy.txt
 ?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_sk-communication_006-sk-communication-clarity_001-research-communication-context.err
@@ -565,8 +565,8 @@
 ?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_hooks_008-pi-caching-like-reasonix_007-research-fork-improvements.txt
 ?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_sk-code_001-sk-code-parent_025-code-quality-and-shared-research.err
 ?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_sk-code_001-sk-code-parent_025-code-quality-and-shared-research.txt
-?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_sk-code_002-rust-standards-for-code-opencode_001-research.err
-?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_sk-code_002-rust-standards-for-code-opencode_001-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_sk-code_002-rust-standards-for-code-skilled_001-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_sk-code_002-rust-standards-for-code-skilled_001-research.txt
 ?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_sk-communication_001-sk-communication-creation_001-research-strategy.err
 ?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_sk-communication_001-sk-communication-creation_001-research-strategy.txt
 ?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_sk-communication_006-sk-communication-clarity_001-research-communication-context.err

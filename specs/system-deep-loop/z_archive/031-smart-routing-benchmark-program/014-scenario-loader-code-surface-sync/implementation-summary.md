@@ -61,7 +61,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Packet 038 restored Lane-C scenario-loader and live-result parser compatibility with sk-code's post-split `code-<surface>/` packet layout. The loader and live parsers now preserve `code-webflow/`, `code-opencode/`, and `code-animation/` paths whole alongside the universal `references/`, `assets/`, and `../shared/` tiers. `extractForbiddenPrefixes` is exported for direct unit coverage. A new two-test Vitest guard locks whole-path parsing and forbidden-prefix parsing, while the sk-code gold translation and Lane-C re-baseline remain owned by the separate follow-up packet.
+Packet 038 restored Lane-C scenario-loader and live-result parser compatibility with sk-code's post-split `code-<surface>/` packet layout. The loader and live parsers now preserve `code-webflow/`, `code-skilled/`, and `code-animation/` paths whole alongside the universal `references/`, `assets/`, and `../shared/` tiers. `extractForbiddenPrefixes` is exported for direct unit coverage. A new two-test Vitest guard locks whole-path parsing and forbidden-prefix parsing, while the sk-code gold translation and Lane-C re-baseline remain owned by the separate follow-up packet.
 
 ### Files Changed
 
@@ -70,7 +70,7 @@ Packet 038 restored Lane-C scenario-loader and live-result parser compatibility 
 | `.opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/spec.md` | Updated | Define the loader/live-parser regression, in-scope four-site fix, success criteria, risks, and follow-up boundaries | not committed at authoring time |
 | `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs` | Updated | Teach `extractPaths` and `extractForbiddenPrefixes` the `code-<surface>/` prefix and export forbidden-prefix parsing | not committed at authoring time |
 | `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/live-executor.cjs` | Updated | Teach prose-fallback and observed-reads parsers the `code-<surface>/` prefix | not committed at authoring time |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/code-surface-path-parse.vitest.ts` | Added | Lock whole-path parsing for `code-webflow`, `code-opencode`, `code-animation`, and `code-<surface>/` forbidden globs | not committed at authoring time |
+| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/code-surface-path-parse.vitest.ts` | Added | Lock whole-path parsing for `code-webflow`, `code-skilled`, `code-animation`, and `code-<surface>/` forbidden globs | not committed at authoring time |
 | `.opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/plan.md` | Added | Record implementation approach, quality gates, verification strategy, dependencies, and rollback | not committed at authoring time |
 | `.opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/tasks.md` | Added | Record completed task sequence and evidence notes | not committed at authoring time |
 | `.opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/checklist.md` | Added | Record Level 2 verification checklist with evidence and deferrals | not committed at authoring time |
@@ -120,7 +120,7 @@ None. The harness parser fix, export, regression guard, direct parser proof, and
 | Test Type | Status | Coverage | Evidence |
 |-----------|--------|----------|----------|
 | Whole-path parser proof | Pass | `extractPaths` code-surface path extraction | After the fix, `extractPaths("- code-animation/references/decision_matrix.md ...")` returns `code-animation/references/decision_matrix.md` whole and does not emit `references/decision_matrix.md` |
-| Code-surface parse regression guard | Pass | Two new guard tests | `tests/code-surface-path-parse.vitest.ts` asserts `extractPaths` keeps `code-webflow`, `code-opencode`, and `code-animation` paths whole and `extractForbiddenPrefixes` captures a `code-<surface>/` forbidden glob prefix |
+| Code-surface parse regression guard | Pass | Two new guard tests | `tests/code-surface-path-parse.vitest.ts` asserts `extractPaths` keeps `code-webflow`, `code-skilled`, and `code-animation` paths whole and `extractForbiddenPrefixes` captures a `code-<surface>/` forbidden glob prefix |
 | Harness Vitest suite | Pass with known pre-existing failure | skill-benchmark tests | Baseline 1 failed / 104 passed across 105 tests in 7 files; post-fix 1 failed / 106 passed across 107 tests in 8 files; the single failure is the same out-of-scope `res.intents` assertion |
 | End-to-end unblock proof | Pass, then reverted | Temporary translated gold against corrected loader/router | Recall rose from ~0 to 66% (65 of 99 gold paths) and sk-code router-mode verdict recovered from 47 FAIL to 71 CONDITIONAL with D1-intra 87, D2 79, D3 47, D5 100; temporary gold translation was reverted |
 | Spec validation | Run at close-out | Packet docs | `validate.sh --strict` run at close-out; push pending |

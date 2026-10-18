@@ -4,7 +4,7 @@
   "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass",
   "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program",
   "children_ids": [
-    "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit",
+    "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit",
     "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/002-feature-catalog-trio-alignment",
     "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/003-testing-playbook-trio-alignment",
     "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/004-sk-doc-template-alignment",
@@ -114,7 +114,7 @@
         "source": "derived"
       },
       {
-        "name": "sk-code-opencode",
+        "name": "sk-code-skilled",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -158,18 +158,18 @@
     ],
     "causal_summary": "Packets 031-036 shipped a wave of remediation work (5 packets implementing 013's research findings + 035's CONDITIONAL verdict + 036's CLI matrix adapters)",
     "created_at": "2026-04-29T16:30:00.000Z",
-    "last_save_at": "2026-10-04T09:19:57.195Z",
+    "last_save_at": "2026-10-18T20:45:30.076Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:e0ab5a54055b2c244125357d6cd9ccdc776ce21c1269e367a36b8d8855b30dc0",
+    "source_fingerprint": "sha256:e5a59e832c8d70394072242dec62cec2a42cb3e04199e6fc6d48ae20866c2c76",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c5d6e25c021bbe8be040d2ec9591bc564747f427ea5b0cdaff459e4dd63cbde3",
-      "resource-map.md": "f69e9ed9d9655bd1de38f167ab72c5f5720ca2058ce2c10ce94266aec645627a"
+      "spec.md": "24b6bd3efc190275cd2789f0e51633e04bc5e74e0447268d1ac94c66bd77c34c",
+      "resource-map.md": "7c74ff3c0763c659ca86a3ca8217ab7637980be336f2b2f722f698d427ef876a"
     },
     "last_active_child_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/006-readme-cascade-refresh",
     "last_active_at": null

@@ -1,1 +1,1 @@
-code-opencode language reference folder validator.
+code-skilled language reference folder validator.

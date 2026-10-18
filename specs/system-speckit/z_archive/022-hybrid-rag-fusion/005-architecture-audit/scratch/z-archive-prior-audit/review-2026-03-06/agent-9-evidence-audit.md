@@ -142,7 +142,7 @@ Every script and test file referenced in evidence across all phases was verified
 | `shared/utils/token-estimate.ts` | EXISTS |
 | `shared/parsing/quality-extractors.test.ts` | EXISTS |
 | `scripts/spec/validate.sh` | EXISTS |
-| `sk-code-opencode/scripts/verify_alignment_drift.py` | EXISTS |
+| `sk-code-skilled/scripts/verify_alignment_drift.py` | EXISTS |
 | `ARCHITECTURE_BOUNDARIES.md` | EXISTS |
 | `.github/workflows/system-spec-kit-boundary-enforcement.yml` | EXISTS |
 

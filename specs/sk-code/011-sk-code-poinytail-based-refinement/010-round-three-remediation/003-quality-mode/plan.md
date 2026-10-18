@@ -54,14 +54,14 @@ Four findings land in two files. The comment-hygiene gate table in `SKILL.md` na
 In-place documentation edit of one skill package: 30 single-text replacements, one new changelog file, then freshness checks of the derived routing artifacts
 
 ### Key Components
-- **The live hooks (unchanged, verified at planning time).** The pre-commit gate is `.skilled/scripts/git-hooks/pre-commit`. It calls `skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` (line 90) and also runs the agent-mirror-sync gate (lines 161 to 185) and six more gates listed in `.skilled/scripts/git-hooks/README.md` line 24. `.skilled/scripts/install-git-hooks.sh` installs it through `core.hooksPath` (lines 98 to 114). The write-time warning is `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`, wired as the Claude `PostToolUse` hook with matcher `Write|Edit` at `.claude/settings.json` lines 202 and 206. `.skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md` lines 241 to 246 already state this and call `.skilled/hooks/git/pre-commit` and `sk-code-quality/scripts/hooks/claude-posttooluse.sh` compatibility helpers for direct tests. `.skilled/hooks/git/README.md` section 1 and `scripts/hooks/README.md` section 1 say the same. The legacy files stay on disk because their tests still use them, so `SKILL.md` keeps listing them as helpers.
-- **The rename map.** `mode-registry.json` keys are `sk-code-quality`, `sk-code-review`, `sk-code-webflow`, `sk-code-opencode` and `sk-code-obsidian`. The stale names are `code-webflow` to `sk-code-webflow`, `code-opencode` to `sk-code-opencode`, `code-review` to `sk-code-review`, and `code-quality` (as a mode name in prose) to `sk-code-quality`. The finding's count `rg -c "code-webflow|code-opencode|code-review"` prints 39 because it also matches 28 current `../sk-code-opencode/assets/...` paths. The pattern `(^|[^-])code-(webflow|opencode|review)` matches only the 11 stale lines (15, 36, 39, 47, 50, 182, 188, 202, 248, 280, 281), and lines 142 and 145 carry `code-quality` as a mode name.
-- **The checklist family.** `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/` holds `agent-authoring.md`, `command-authoring.md`, `config-checklist.md`, `javascript-checklist.md`, `mcp-server-authoring.md`, `python-checklist.md`, `rust-checklist/`, `shell-checklist.md`, `skill-authoring.md`, `typescript-checklist.md` and `universal-checklist.md`, and no spec-folder checklist. The spec-folder checklist is `.skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md`, reached from the README as `../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md`, the same relative link `SKILL.md` line 303 uses.
+- **The live hooks (unchanged, verified at planning time).** The pre-commit gate is `.skilled/scripts/git-hooks/pre-commit`. It calls `skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` (line 90) and also runs the agent-mirror-sync gate (lines 161 to 185) and six more gates listed in `.skilled/scripts/git-hooks/README.md` line 24. `.skilled/scripts/install-git-hooks.sh` installs it through `core.hooksPath` (lines 98 to 114). The write-time warning is `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`, wired as the Claude `PostToolUse` hook with matcher `Write|Edit` at `.claude/settings.json` lines 202 and 206. `.skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md` lines 241 to 246 already state this and call `.skilled/hooks/git/pre-commit` and `sk-code-quality/scripts/hooks/claude-posttooluse.sh` compatibility helpers for direct tests. `.skilled/hooks/git/README.md` section 1 and `scripts/hooks/README.md` section 1 say the same. The legacy files stay on disk because their tests still use them, so `SKILL.md` keeps listing them as helpers.
+- **The rename map.** `mode-registry.json` keys are `sk-code-quality`, `sk-code-review`, `sk-code-webflow`, `sk-code-skilled` and `sk-code-obsidian`. The stale names are `code-webflow` to `sk-code-webflow`, `code-skilled` to `sk-code-skilled`, `code-review` to `sk-code-review`, and `code-quality` (as a mode name in prose) to `sk-code-quality`. The finding's count `rg -c "code-webflow|code-skilled|code-review"` prints 39 because it also matches 28 current `../sk-code-skilled/assets/...` paths. The pattern `(^|[^-])code-(webflow|opencode|review)` matches only the 11 stale lines (15, 36, 39, 47, 50, 182, 188, 202, 248, 280, 281), and lines 142 and 145 carry `code-quality` as a mode name.
+- **The checklist family.** `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/` holds `agent-authoring.md`, `command-authoring.md`, `config-checklist.md`, `javascript-checklist.md`, `mcp-server-authoring.md`, `python-checklist.md`, `rust-checklist/`, `shell-checklist.md`, `skill-authoring.md`, `typescript-checklist.md` and `universal-checklist.md`, and no spec-folder checklist. The spec-folder checklist is `.skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md`, reached from the README as `../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md`, the same relative link `SKILL.md` line 303 uses.
 - **The two checkers.** Both start `#!/usr/bin/env python3` and have mode `-rwxr-xr-x`. `check-comment-hygiene.sh <file>` exits 0 clean, 1 on violations, 2 when every file was skipped (its docstring, lines 2 to 14). `check-dist-staleness.sh` takes `<file>` or `--all` and always exits 0, printing a banner only for a stale or unverifiable package (lines 2 to 20 and 175 to 206). With no argument it exits 0 without checking anything (line 178), so the README's old no-argument form proved nothing even under the right interpreter. The README now gives `--all`.
 
 ### Decisions
 - **D1, patch bump to 1.1.1.0.** `sk-create-changelog/SKILL.md` section 4 gives patch for "bug fix, refactor, docs, cleanup", and `examples-and-maintenance.md` section 3 gives patch for "bug fixes". Every change here repairs wrong prose and adds no resource. The README `version:` moves with it because the README is edited and its gate wants a matching changelog entry.
-- **D2, rename only, two surfaces kept.** The lists that read `code-webflow` / `code-opencode` become `sk-code-webflow` / `sk-code-opencode`. Obsidian is not added: no finding asks for it, the quality target-path map has no Obsidian row, and adding it would claim coverage the mode does not define. Reported for the operator.
+- **D2, rename only, two surfaces kept.** The lists that read `code-webflow` / `code-skilled` become `sk-code-webflow` / `sk-code-skilled`. Obsidian is not added: no finding asks for it, the quality target-path map has no Obsidian row, and adding it would claim coverage the mode does not define. Reported for the operator.
 - **D3, legacy files named as helpers, not removed.** `SKILL.md` lines 94, 112 and 322 keep listing `scripts/hooks/claude-posttooluse.sh` because the file and its test exist in this packet, but they now say it is registered in no runtime. Line 136 names both legacy files as compatibility helpers kept for direct tests, which is the wording `naming-and-commenting.md` uses.
 - **D4, line 142 is edited in two pieces.** The line holds an existing em dash. Two substring replacements (`code-quality routes primarily by TARGET PATH` and `could score code-quality's one routable checklist`) rename the mode name without quoting or touching that character, and each substring occurs once in the file.
 - **D5, `schema_version: code-quality/v1` and the keyword comment stay.** The first is a contract identifier that a consumer of the envelope parses. The second is a search-keyword list. Neither is prose naming a mode.
@@ -72,7 +72,7 @@ An operator or agent reads `SKILL.md` section 2, sees the gate table and the res
 
 ### Handoffs
 - **Child 001** owns `.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md` section 7, the other half of f-iter012-001. Its lines 138 and 139 name the same legacy hooks and need the same live-hook wording.
-- **Child 005** builds the documentation claim checker. If it lints two-surface phrasing, `SKILL.md` lines 15, 36, 47, 182, 188 and 280 and README lines 57 and 106 list `sk-code-webflow` / `sk-code-opencode` without `sk-code-obsidian` (decision D2).
+- **Child 005** builds the documentation claim checker. If it lints two-surface phrasing, `SKILL.md` lines 15, 36, 47, 182, 188 and 280 and README lines 57 and 106 list `sk-code-webflow` / `sk-code-skilled` without `sk-code-obsidian` (decision D2).
 - **Orchestrator** runs `sync-skills-hermes.cjs` in write mode to regenerate `.hermes/skills/sk-code-quality/SKILL.md`.
 
 ### Exact Text of the Edits
@@ -93,25 +93,25 @@ version: 1.1.1.0
 **E2 (T013), `SKILL.md` line 15, rename.** Find:
 
 ````text
-`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`code-webflow` / `code-opencode`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `code-review`.
+`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`code-webflow` / `code-skilled`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `code-review`.
 ````
 
 Replace with:
 
 ````text
-`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`sk-code-webflow` / `sk-code-opencode`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `sk-code-review`.
+`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`sk-code-webflow` / `sk-code-skilled`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `sk-code-review`.
 ````
 
 **E3 (T014), `SKILL.md` line 36, rename.** Find:
 
 ````text
-- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`code-webflow` / `code-opencode`) and its implementation workflow.
+- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`code-webflow` / `code-skilled`) and its implementation workflow.
 ````
 
 Replace with:
 
 ````text
-- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`sk-code-webflow` / `sk-code-opencode`) and its implementation workflow.
+- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`sk-code-webflow` / `sk-code-skilled`) and its implementation workflow.
 ````
 
 **E4 (T015), `SKILL.md` line 39, rename.** Find:
@@ -129,13 +129,13 @@ Replace with:
 **E5 (T016), `SKILL.md` line 47, rename.** Find:
 
 ````text
-- The surface skill (`code-webflow` / `code-opencode`) immediately before this gate, because implementation writes the files this mode checks.
+- The surface skill (`code-webflow` / `code-skilled`) immediately before this gate, because implementation writes the files this mode checks.
 ````
 
 Replace with:
 
 ````text
-- The surface skill (`sk-code-webflow` / `sk-code-opencode`) immediately before this gate, because implementation writes the files this mode checks.
+- The surface skill (`sk-code-webflow` / `sk-code-skilled`) immediately before this gate, because implementation writes the files this mode checks.
 ````
 
 **E6 (T017), `SKILL.md` line 50, rename.** Find:
@@ -249,25 +249,25 @@ Replace with:
 **E15 (T026), `SKILL.md` line 182, rename.** Find:
 
 ````text
-1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`code-webflow` / `code-opencode`) unless the user explicitly asked for a standalone quality audit.
+1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`code-webflow` / `code-skilled`) unless the user explicitly asked for a standalone quality audit.
 ````
 
 Replace with:
 
 ````text
-1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`sk-code-webflow` / `sk-code-opencode`) unless the user explicitly asked for a standalone quality audit.
+1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`sk-code-webflow` / `sk-code-skilled`) unless the user explicitly asked for a standalone quality audit.
 ````
 
 **E16 (T027), `SKILL.md` line 188, rename.** Find:
 
 ````text
-7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`code-webflow` / `code-opencode`).
+7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`code-webflow` / `code-skilled`).
 ````
 
 Replace with:
 
 ````text
-7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`sk-code-webflow` / `sk-code-opencode`).
+7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`sk-code-webflow` / `sk-code-skilled`).
 ````
 
 **E17 (T028), `SKILL.md` line 202, rename.** Find:
@@ -297,13 +297,13 @@ Replace with:
 **E19 (T030), `SKILL.md` line 280, rename.** Find:
 
 ````text
-- `code-webflow` / `code-opencode` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.
+- `code-webflow` / `code-skilled` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.
 ````
 
 Replace with:
 
 ````text
-- `sk-code-webflow` / `sk-code-opencode` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.
+- `sk-code-webflow` / `sk-code-skilled` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.
 ````
 
 **E20 (T031), `SKILL.md` line 281, rename.** Find:
@@ -380,7 +380,7 @@ OpenCode authoring targets route to specific checklists: skills, agents, command
 Replace with:
 
 ````text
-OpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-opencode`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. Webflow frontend work uses the code quality checklist and the shared universal standards.
+OpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-skilled`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. Webflow frontend work uses the code quality checklist and the shared universal standards.
 ````
 
 **E26 (T038), `README.md` line 115, direct run in the Verification table.** Find:
@@ -410,13 +410,13 @@ Replace with:
 **E28 (T040), `README.md` line 129, spec-folder routing, Related Documents row.** Find:
 
 ````text
-| [`assets/checklists/`](../sk-code-opencode/assets/checklists/) | Target-path OpenCode authoring checklists |
+| [`assets/checklists/`](../sk-code-skilled/assets/checklists/) | Target-path OpenCode authoring checklists |
 ````
 
 Replace with:
 
 ````text
-| [`assets/checklists/`](../sk-code-opencode/assets/checklists/) | Target-path OpenCode authoring checklists for skills, agents, commands, MCP servers, language files and config |
+| [`assets/checklists/`](../sk-code-skilled/assets/checklists/) | Target-path OpenCode authoring checklists for skills, agents, commands, MCP servers, language files and config |
 | [`spec-folder-authoring-checklist.md`](../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md) | Spec-folder authoring checklist, owned by `system-spec-kit` |
 ````
 
@@ -471,7 +471,7 @@ The quality mode told readers that two legacy files were its pre-commit and writ
 ## What's New at a Glance
 
 - **The live hooks are named.** The pre-commit block is `.skilled/scripts/git-hooks/pre-commit`, installed through `core.hooksPath`. The write-time warning is `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`, wired in `.claude/settings.json`. The older `.skilled/hooks/git/pre-commit` and `scripts/hooks/claude-posttooluse.sh` are marked as helpers kept for direct tests.
-- **Current names throughout.** `SKILL.md` now says `sk-code-webflow`, `sk-code-opencode`, `sk-code-review` and `sk-code-quality` where it still used the names from before the rename.
+- **Current names throughout.** `SKILL.md` now says `sk-code-webflow`, `sk-code-skilled`, `sk-code-review` and `sk-code-quality` where it still used the names from before the rename.
 - **Spec folders route to system-spec-kit.** The README no longer sends spec folders to the OpenCode checklist folder, which has no spec-folder checklist.
 - **The checker commands run.** The README runs `check-comment-hygiene.sh` and `check-dist-staleness.sh` directly. Both are Python programs, so the old `bash` form failed.
 

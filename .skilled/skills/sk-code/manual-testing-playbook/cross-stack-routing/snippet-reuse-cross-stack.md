@@ -1,7 +1,7 @@
 ---
 title: "CS-005: Snippet Reuse Across Stacks"
 description: "Verify cross-stack Motion.dev snippet reuse surfaces the reusable snippet and flags the snake_case Webflow convention caveat."
-version: 1.5.0.4
+version: 1.5.1.0
 ---
 
 # CS-005: Snippet Reuse Across Stacks
@@ -21,7 +21,7 @@ Can I reuse the sk-code Motion in-view reveal snippet in a non-Webflow vanilla J
 
 **Expected detection markers** (verbatim from `shared/references/stack-detection.md`):
 ```text
-`motion_dev/` is a peer resource category rather than a surface. Surface detection still chooses OPENCODE, OBSIDIAN, WEBFLOW, or UNKNOWN first; Motion.dev API, performance, and decision guidance is loaded afterward when the intent requires cross-stack animation context.
+`motion_dev/` is a peer resource category rather than a surface. Surface detection still chooses SKILLED, OBSIDIAN, WEBFLOW, or UNKNOWN first; Motion.dev API, performance, and decision guidance is loaded afterward when the intent requires cross-stack animation context.
 ```
 
 **Expected surface**: `UNKNOWN` or `N/A`

@@ -30,7 +30,7 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Source review** | `../002-code-vs-sk-code-opencode/review/findings-all.json` (154: 66 P0 / 47 P1 / 41 P2) + `../synthesis.md` |
+| **Source review** | `../002-code-vs-sk-code-skilled/review/findings-all.json` (154: 66 P0 / 47 P1 / 41 P2) + `../synthesis.md` |
 | **Executor** | `cli-opencode` → `openai/gpt-5.5-fast` `--variant high`, dispatched as a general code-implementation agent (role + `sk-code` load in the prompt body) |
 | **Surface** | OpenCode (sk-code skill standards) |
 

@@ -1,6 +1,6 @@
 ---
 title: "Doc-Template and Code-README Alignment"
-description: "Rewrite both CHANGES-FROM-UPSTREAM.md files in the sk-doc general-README shape, add a sk-doc code-folder README to every folder of code added by this packet's work, and align that code against sk-code-opencode's TypeScript standards."
+description: "Rewrite both CHANGES-FROM-UPSTREAM.md files in the sk-doc general-README shape, add a sk-doc code-folder README to every folder of code added by this packet's work, and align that code against sk-code-skilled's TypeScript standards."
 trigger_phrases:
   - "changes from upstream readme shape"
   - "code folder readme deep-pi"
@@ -63,7 +63,7 @@ Both `CHANGES-FROM-UPSTREAM.md` files were authored as free-form prose sections 
 
 ### Purpose
 
-Bring both changes documents onto the `sk-doc` general-README template shape (Section 5 of `sk-create-readme`), author a code-folder README (Section 6 shape) for every folder enumerated above from real file evidence, and align the touched TypeScript/JavaScript source against `sk-code-opencode`'s TypeScript standards (style guide, quality standards, universal patterns) — fixing real deviations, not cosmetic churn.
+Bring both changes documents onto the `sk-doc` general-README template shape (Section 5 of `sk-create-readme`), author a code-folder README (Section 6 shape) for every folder enumerated above from real file evidence, and align the touched TypeScript/JavaScript source against `sk-code-skilled`'s TypeScript standards (style guide, quality standards, universal patterns) — fixing real deviations, not cosmetic churn.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -84,7 +84,7 @@ Bring both changes documents onto the `sk-doc` general-README template shape (Se
   - `.pi/extensions/pi-cache-optimizer/types/`
   - `.pi/extensions/shared/`
   - `.pi/extensions/shared/composition/`
-- Audit the TypeScript/JavaScript files this packet's own work added or modified against `sk-code-opencode`'s TypeScript standards (naming, formatting, type system, TSDoc, async/error handling, universal code-organization patterns) and fix real, confirmed deviations.
+- Audit the TypeScript/JavaScript files this packet's own work added or modified against `sk-code-skilled`'s TypeScript standards (naming, formatting, type system, TSDoc, async/error handling, universal code-organization patterns) and fix real, confirmed deviations.
 
 ### Out of Scope
 
@@ -157,4 +157,4 @@ None.
 
 - **Parent Spec**: `../spec.md`
 - **Predecessor**: `../009-fork-attribution-and-changelog/spec.md` (the content this phase re-shapes)
-- **Depends on**: `.opencode/skills/sk-doc/sk-create-readme/SKILL.md` (general-README and code-folder README shapes), `.opencode/skills/sk-code/sk-code-opencode/SKILL.md` (TypeScript standards)
+- **Depends on**: `.opencode/skills/sk-doc/sk-create-readme/SKILL.md` (general-README and code-folder README shapes), `.opencode/skills/sk-code/sk-code-skilled/SKILL.md` (TypeScript standards)

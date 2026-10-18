@@ -60,7 +60,7 @@ This is **Phase 3** of the Round-three remediation child specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The quality mode owns the comment-hygiene gate, yet its `SKILL.md` names `scripts/hooks/claude-posttooluse.sh` as the write-time warning and `.skilled/hooks/git/pre-commit` as the pre-commit block (lines 132, 133 and 136, plus lines 94, 112 and 322). Neither is installed: the live pre-commit gate is `.skilled/scripts/git-hooks/pre-commit`, installed through `core.hooksPath` by `.skilled/scripts/install-git-hooks.sh`, and the live write-time warning is `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`, wired for `Write|Edit` at `.claude/settings.json:202-206`. The same file uses the pre-rename names `code-webflow`, `code-opencode`, `code-review` and `code-quality` on 13 lines. Its README routes spec folders to the OpenCode checklist folder, which holds no spec-folder checklist (lines 50, 87 and 129), and runs `check-comment-hygiene.sh` and `check-dist-staleness.sh` through `bash` (lines 64, 115 and 116), which fails because both are Python programs.
+The quality mode owns the comment-hygiene gate, yet its `SKILL.md` names `scripts/hooks/claude-posttooluse.sh` as the write-time warning and `.skilled/hooks/git/pre-commit` as the pre-commit block (lines 132, 133 and 136, plus lines 94, 112 and 322). Neither is installed: the live pre-commit gate is `.skilled/scripts/git-hooks/pre-commit`, installed through `core.hooksPath` by `.skilled/scripts/install-git-hooks.sh`, and the live write-time warning is `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`, wired for `Write|Edit` at `.claude/settings.json:202-206`. The same file uses the pre-rename names `code-webflow`, `code-skilled`, `code-review` and `code-quality` on 13 lines. Its README routes spec folders to the OpenCode checklist folder, which holds no spec-folder checklist (lines 50, 87 and 129), and runs `check-comment-hygiene.sh` and `check-dist-staleness.sh` through `bash` (lines 64, 115 and 116), which fails because both are Python programs.
 
 ### Purpose
 An operator reading the quality mode is told the hooks that actually run, sees current mode names, finds the spec-folder checklist where `SKILL.md` already routes it, and can paste every checker command and have it run.
@@ -82,7 +82,7 @@ An operator reading the quality mode is told the hooks that actually run, sees c
 ### Out of Scope
 - `.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md` - the shared standard's half of f-iter012-001 belongs to child 001
 - The `<!-- Keywords: code-quality, ... -->` line 11 and `schema_version: code-quality/v1` line 214 in `SKILL.md` - the first is a search keyword list and the second is a contract identifier that consumers parse, not prose naming a mode
-- The `assets/code-quality-checklist/` folder name and every `sk-code-opencode/assets/...` path - these are current paths, and they are why the finding's raw count is 39 while only 13 lines are stale
+- The `assets/code-quality-checklist/` folder name and every `sk-code-skilled/assets/...` path - these are current paths, and they are why the finding's raw count is 39 while only 13 lines are stale
 - The two-surface lists at README lines 57 and 106 and their `SKILL.md` counterparts - no round-three finding names them, so they are reported, not changed
 - Every script, test and `scripts/README.md`, every `.hermes/` file, the `INTENT_SIGNALS` and `RESOURCE_MAP` blocks
 - Running `sync-skills-hermes.cjs` in write mode - the orchestrator runs it once after every child is built
@@ -149,8 +149,8 @@ An operator reading the quality mode is told the hooks that actually run, sees c
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Risk | `check-comment-hygiene.sh`, `check-dist-staleness.sh` and `ceiling-report.sh` are Python programs with a `.sh` name, so `bash <file>` runs Python lines as shell | High | No task runs any of them through `bash`. Only the three `*.test.sh` files run through `bash` |
-| Risk | The finding's reproducing count is 39, but 28 of those matches are current `sk-code-opencode/assets/...` paths | Med | The plan edits only the 13 stale lines and the check uses a pattern that excludes a preceding hyphen. The count is recorded in the goal log |
-| Risk | Child 005 adds a documentation claim checker that may lint the two-surface phrasing `sk-code-webflow` / `sk-code-opencode` this fix keeps | Med | Recorded as a handoff in `plan.md`. This child renames only and does not add Obsidian, because no finding asks it to and the target-path map has no Obsidian row |
+| Risk | The finding's reproducing count is 39, but 28 of those matches are current `sk-code-skilled/assets/...` paths | Med | The plan edits only the 13 stale lines and the check uses a pattern that excludes a preceding hyphen. The count is recorded in the goal log |
+| Risk | Child 005 adds a documentation claim checker that may lint the two-surface phrasing `sk-code-webflow` / `sk-code-skilled` this fix keeps | Med | Recorded as a handoff in `plan.md`. This child renames only and does not add Obsidian, because no finding asks it to and the target-path map has no Obsidian row |
 | Risk | The Hermes copy of `SKILL.md` drifts after the edit | Med | The orchestrator runs the write form once after every child. The builder runs only `--check` |
 | Dependency | Sibling children build in parallel | Low | No sibling owns a file under `sk-code-quality/`. A stale hub or leaf manifest caused by a sibling is recorded, not repaired |
 <!-- /ANCHOR:risks -->

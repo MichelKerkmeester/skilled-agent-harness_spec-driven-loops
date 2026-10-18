@@ -1,7 +1,7 @@
 # Iteration 003 — Traceability
 
 **Run:** review-i1-g1 · **Session:** 2026-10-13T05:58:44.591Z · **Generation:** 1 · **Scope class:** standard
-**Target:** commit `b6eef4ebbb` — "fix(sk-code-opencode): let the drift guards pass after an example surface is removed"
+**Target:** commit `b6eef4ebbb` — "fix(sk-code-skilled): let the drift guards pass after an example surface is removed"
 **Dimension under review:** D3 traceability (core: `spec_code`, `checklist_evidence`; overlay: `skill_agent`, `agent_cross_runtime`, `feature_catalog_code`, `playbook_capability`)
 
 ## Dimension
@@ -11,14 +11,14 @@ Traceability of the commit and the phase packet: do the frozen decisions (D1-D6)
 ## Files Reviewed
 
 - Commit `b6eef4ebbb` — full diff (8 files, +134/-17), commit body and trailers.
-- `.skilled/skills/sk-code/sk-code-opencode/SKILL.md` — `:175` (doc-claims description), version frontmatter.
-- `.hermes/skills/sk-code-opencode/SKILL.md` — `:180` (generated copy of the same sentence), version frontmatter; whole-file diff against canonical.
-- `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md` — `:77` (rewritten by the commit), version frontmatter.
-- `.skilled/skills/sk-code/sk-code-opencode/scripts/README.md` — `:13` (guard summary), `:21`, `:23`.
-- `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs` — `:45-46` (wording patterns), `:324-332` (registry-derived count).
-- `.skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.4.0.md` — claims vs the diff hunks.
+- `.skilled/skills/sk-code/sk-code-skilled/SKILL.md` — `:175` (doc-claims description), version frontmatter.
+- `.hermes/skills/sk-code-skilled/SKILL.md` — `:180` (generated copy of the same sentence), version frontmatter; whole-file diff against canonical.
+- `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md` — `:77` (rewritten by the commit), version frontmatter.
+- `.skilled/skills/sk-code/sk-code-skilled/scripts/README.md` — `:13` (guard summary), `:21`, `:23`.
+- `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs` — `:45-46` (wording patterns), `:324-332` (registry-derived count).
+- `.skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.4.0.md` — claims vs the diff hunks.
 - Phase docs: `spec.md` (`:86-95`, `:116`), `plan.md` (`:76`), `tasks.md`, `acceptance-criteria.md` (`:59`), `goal.md`.
-- Cross-references: `.skilled/skills/sk-code/SKILL.md:40`, `.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md:144`, `.skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/verification-alignment.md` (OC-008), agent-directory reference sweep.
+- Cross-references: `.skilled/skills/sk-code/SKILL.md:40`, `.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md:144`, `.skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md` (OC-008), agent-directory reference sweep.
 
 ## Findings by Severity
 
@@ -34,22 +34,22 @@ None.
 
 #### R3-P2-001 [P2] spec.md's Files to Change omits the README and the Hermes copy the commit updates
 
-- **Case:** the commit changes `assets/scripts/README.md` (version `1.0.0.8` → `1.0.1.0` plus the `verify-doc-claims.cjs` row rewrite) and `.hermes/skills/sk-code-opencode/SKILL.md` (version line), but the frozen change list in [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/003-example-tolerant-drift-guards/spec.md:86] names five rows and neither path; [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/003-example-tolerant-drift-guards/plan.md:76] likewise names only "SKILL.md and changelog".
+- **Case:** the commit changes `assets/scripts/README.md` (version `1.0.0.8` → `1.0.1.0` plus the `verify-doc-claims.cjs` row rewrite) and `.hermes/skills/sk-code-skilled/SKILL.md` (version line), but the frozen change list in [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/003-example-tolerant-drift-guards/spec.md:86] names five rows and neither path; [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/003-example-tolerant-drift-guards/plan.md:76] likewise names only "SKILL.md and changelog".
 - **Evidence:** `git show --stat b6eef4ebbb` lists eight files; the only ones outside the spec table are the assets README and the generated Hermes mirror. The commit body already records both as intentional ("the scripts README row, and ... the regenerated Hermes copy"), so the implementation knew about them while the planning docs do not.
 - **Counterevidence sought:** could the spec's release row cover them? Row 5 ([SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/003-example-tolerant-drift-guards/spec.md:94]) names `.skilled/.../SKILL.md` and `changelog/` only.
 - **Alternative explanation:** folder READMEs and generated mirrors are routine release collateral; a Files to Change table need not enumerate generated output. The README is not generated, though, and it is the one file the guard-row rewrite made stale-able.
 - **User impact:** an implementer following the frozen list literally ships the D4 change without the README row that explains it; the packet's own CHK-040 sync will be the last net. No runtime impact.
 - **Finding class:** class-of-bug (spec.md and plan.md carry the same incomplete surface list).
 - **Scope proof:** the eight-file stat minus the five listed change targets leaves exactly these two paths; no other unlisted file exists.
-- **Recommendation:** during T012/CHK-040, add a row for `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md` and note the generated Hermes mirror on the release row.
+- **Recommendation:** during T012/CHK-040, add a row for `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md` and note the generated Hermes mirror on the release row.
 - **Confidence:** high.
 - **Downgrade trigger:** a decision record declaring generated mirrors and folder READMEs outside the Files to Change contract.
 
 #### R3-P2-002 [P2] Two live docs still describe the surfaces rule as a fixed three-surface check
 
-- **Case:** after D4 the doc-claims `surfaces` rule derives its count from `mode-registry.json` [SOURCE: .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:324], yet [SOURCE: .skilled/skills/sk-code/sk-code-opencode/SKILL.md:175] says "every surface count matches the three-surface hub" and [SOURCE: .skilled/skills/sk-code/sk-code-opencode/scripts/README.md:13] repeats it. The commit rewrote the same sentence to the registry phrasing in exactly one of its three live sites: [SOURCE: .skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md:77].
-- **Evidence:** the assets README diff shows the old text "matches the three-surface hub" replaced by "matches the surface modes in `mode-registry.json`"; the other two sites are untouched by the diff. The generated Hermes copy carries the stale sentence at [SOURCE: .hermes/skills/sk-code-opencode/SKILL.md:180].
-- **Counterevidence sought:** can the guard catch its own stale description? No: the wording pattern requires `N surfaces` unhyphenated [SOURCE: .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:46], and "three-surface hub" does not match, so the sentence is invisible to the guard it describes.
+- **Case:** after D4 the doc-claims `surfaces` rule derives its count from `mode-registry.json` [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:324], yet [SOURCE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md:175] says "every surface count matches the three-surface hub" and [SOURCE: .skilled/skills/sk-code/sk-code-skilled/scripts/README.md:13] repeats it. The commit rewrote the same sentence to the registry phrasing in exactly one of its three live sites: [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md:77].
+- **Evidence:** the assets README diff shows the old text "matches the three-surface hub" replaced by "matches the surface modes in `mode-registry.json`"; the other two sites are untouched by the diff. The generated Hermes copy carries the stale sentence at [SOURCE: .hermes/skills/sk-code-skilled/SKILL.md:180].
+- **Counterevidence sought:** can the guard catch its own stale description? No: the wording pattern requires `N surfaces` unhyphenated [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:46], and "three-surface hub" does not match, so the sentence is invisible to the guard it describes.
 - **Alternative explanation:** "three-surface hub" may describe the operator's actual hub (which is three), not the rule. But the sentence's subject is what the guard checks, and the adopter who removes a surface is the audience this release exists for.
 - **User impact:** an adopter reads SKILL.md or the scripts README and concludes the completion gate still requires three surfaces — the exact misconception D4 removes. Documentation-only; guard behavior is correct.
 - **Finding class:** class-of-bug (one sentence, two live sites, plus a generated mirror).

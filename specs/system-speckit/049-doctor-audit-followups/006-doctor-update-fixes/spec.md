@@ -44,7 +44,7 @@ This is **Phase 6** of the doctor audit follow-ups packet (`../spec.md`). Phase 
 **Dependencies**:
 - `../005-doctor-update-research/research/research.md`, Sections 5, 11 and 12, read as claims and re-verified in `plan.md` Section 3.
 - `../002-release-update-customization-signals/scratch/generated-inventory.md`, which records why each generated-file candidate was kept or left out.
-- The sk-create-command contract (`.skilled/skills/sk-doc/sk-create-command/SKILL.md:217-219`, `:354`, `:378-379`) and the sk-code-opencode JavaScript checklist (`.skilled/skills/sk-code/sk-code-opencode/assets/checklists/javascript-checklist.md`).
+- The sk-create-command contract (`.skilled/skills/sk-doc/sk-create-command/SKILL.md:217-219`, `:354`, `:378-379`) and the sk-code-skilled JavaScript checklist (`.skilled/skills/sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md`).
 
 **Deliverables**:
 - Phase A, engine integrity: DU-01, DU-15 and the engine half of DU-02.

@@ -2531,7 +2531,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research/research/opus/state-parts/iter-004.jsonl
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research/research/opus/deep-research-state.jsonl
 .opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/unknown-fallback.md
-.opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/opencode-detection.md
+.opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/skilled-detection.md
 .opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/webflow-detection.md
 .opencode/specs/skilled-agent-orchestration/z_archive/092-cli-devin-prompt-quality/007-cross-model-validation/state/dispatch/kimi-k2_6/v-004-rcaf-medium/output-fix-007-baseline-pure-function.md
 .opencode/specs/skilled-agent-orchestration/z_archive/092-cli-devin-prompt-quality/007-cross-model-validation/state/dispatch/kimi-k2_6/v-004-rcaf-medium/prompt-fix-001-hallucinated-cli-flag.md
@@ -8379,7 +8379,7 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/015-deep-research-drift-and-simplification/research/findings-registry.json
 .opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/findings-registry.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar/review/deep-review-findings-registry.json
-.opencode/specs/skilled-agent-orchestration/z_archive/052-sk-code-opencode-merger/review/deep-review-findings-registry.json
+.opencode/specs/skilled-agent-orchestration/z_archive/052-sk-code-skilled-merger/review/deep-review-findings-registry.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit/research/findings-registry.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/review/deep-review-findings-registry.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research/research/findings-registry.json

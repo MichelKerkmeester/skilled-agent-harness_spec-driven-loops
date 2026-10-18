@@ -12,4 +12,4 @@
 - No spec-folder docs were edited; only `scratch/agent-11-retrieval.md` was added under the existing spec folder as requested.
 - Validation run:
   - `npx vitest run tests/handler-memory-context.vitest.ts`
-  - `python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/mcp_server`
+  - `python3 .opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/mcp_server`

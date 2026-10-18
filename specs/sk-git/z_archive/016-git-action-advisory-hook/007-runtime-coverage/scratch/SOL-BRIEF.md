@@ -22,8 +22,8 @@ then STOP. Do not commit, do not push, do not touch git state.
 
 ## Style authority
 
-`.opencode/skills/sk-code/code-opencode/references/javascript/style-guide.md` and
-`.opencode/skills/sk-code/code-opencode/references/javascript/quality-standards/` (both files).
+`.opencode/skills/sk-code/code-skilled/references/javascript/style-guide.md` and
+`.opencode/skills/sk-code/code-skilled/references/javascript/quality-standards/` (both files).
 Read them before writing a line. Note the OPENCODE PLUGIN EXEMPTION TIER: plugins must never
 write to process stdout/stderr.
 

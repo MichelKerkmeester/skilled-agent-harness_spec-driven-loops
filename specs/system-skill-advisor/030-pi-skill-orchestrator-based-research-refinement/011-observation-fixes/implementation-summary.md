@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh"
       - ".skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts"
-      - ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md"
+      - ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md"
       - ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -60,7 +60,7 @@ A phase appended to a parent that already has phases is now named by its own num
 
 The labels the bug had already written were rebuilt too. Phases 5 and 7 to 11 of this packet got descriptions built from their `spec.md`. So did 18 folders in other packets: the thirteen `Phase 1:` labels the operator approved and five more that the final-state check found, where a run that appended three or four phases had numbered them 2, 3 or 4. Seven of the 18 have a `spec.md` that was never written, so they got the numbered label the fixed script writes, such as `Phase 22: source-capabilities-and-structured-preference`. Every rebuilt file kept its `specFolder`, `parentChain` and `specId`.
 
-**The drift-guard docs count two guards (O1).** The sk-code-opencode wrapper runs two drift guards and prints `all 2 guards PASSED`. Its header, `SKILL.md`, both READMEs, the verification playbook scenario and the alignment reference still described three, or named the deleted router-sync suite as live. Each now names the two live guards. The alignment reference also records that the router-sync suite went with the skill-benchmark lane, and it names what tests the bijection module now. The Hermes mirror of `SKILL.md` was rebuilt into a scratch folder and only that file was copied back, so another session's pending `sk-create-changelog` change stayed out of the mirror.
+**The drift-guard docs count two guards (O1).** The sk-code-skilled wrapper runs two drift guards and prints `all 2 guards PASSED`. Its header, `SKILL.md`, both READMEs, the verification playbook scenario and the alignment reference still described three, or named the deleted router-sync suite as live. Each now names the two live guards. The alignment reference also records that the router-sync suite went with the skill-benchmark lane, and it names what tests the bijection module now. The Hermes mirror of `SKILL.md` was rebuilt into a scratch folder and only that file was copied back, so another session's pending `sk-create-changelog` change stayed out of the mirror.
 
 **Advisor hygiene (O2, O3).** The CLI fallback no longer imports the unused `AdvisorHookStatus` type. Two comments, one in the fallback and one at `metrics.ts:238`, lost their em dash. Three doc passages, in the `advisor-recommend` and `opencode-plugin-bridge` feature entries and in `skill-advisor-hook.md`, now hold no em dash, semicolon or serial comma. The advisor dist was rebuilt right after the TypeScript edits, so its CLI never refused a stale build.
 
@@ -76,9 +76,9 @@ The labels the bug had already written were rebuilt too. Phases 5 and 7 to 11 of
 |------|--------|---------|
 | `system-spec-kit/runtime/cli/spec/create.sh` | Modified | Names an appended child by its phase number |
 | `system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts` | Modified | The appended-phase test |
-| `sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` | Modified | The header names the two live guards |
-| `SKILL.md`, `README.md`, `scripts/README.md`, `manual-testing-playbook/authoring-verification/verification-alignment.md` and `references/shared/alignment-verification-automation.md` under `sk-code/sk-code-opencode/` | Modified | Describe the two guards and the deleted suite |
-| `.hermes/skills/sk-code-opencode/SKILL.md` | Modified | The rebuilt mirror |
+| `sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` | Modified | The header names the two live guards |
+| `SKILL.md`, `README.md`, `scripts/README.md`, `manual-testing-playbook/authoring-verification/verification-alignment.md` and `references/shared/alignment-verification-automation.md` under `sk-code/sk-code-skilled/` | Modified | Describe the two guards and the deleted suite |
+| `.hermes/skills/sk-code-skilled/SKILL.md` | Modified | The rebuilt mirror |
 | `system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | Modified | Drops the unused import and a comment's em dash |
 | `system-skill-advisor/runtime/lib/metrics.ts` | Modified | One comment loses its em dash |
 | `feature-catalog/cli-surface/advisor-recommend.md`, `feature-catalog/hooks-and-plugin/opencode-plugin-bridge.md` and `hooks/skill-advisor-hook.md` under `system-skill-advisor/` | Modified | Follow the voice rules |
@@ -148,7 +148,7 @@ After the amendment the operator set the parent goal again, so the orchestrator 
 | Drift-guard wrapper | PASS, exit 0 and `all 2 guards PASSED` |
 | Residue grep for three-guard claims | PASS, every router-sync mention left is a retirement note |
 | sk-doc validator on the eight edited docs | PASS, 0 issues on each |
-| Hermes mirror `--check` | PASS for `sk-code-opencode`. The one drift left is the other session's `sk-create-changelog` |
+| Hermes mirror `--check` | PASS for `sk-code-skilled`. The one drift left is the other session's `sk-create-changelog` |
 | Word diff of the edited docs and comments | PASS, no em dash added |
 | Phase labels, final state | PASS. None of the 4,429 descriptions outside the containment copies names a number other than its folder's |
 | Strict validation of the 13 approved folders | Matches the baseline: 10 PASSED, and 3 scratch folders FAILED before and after. The two quarantine folders each lost one warning (`evidence/validate-other-folders.txt`) |

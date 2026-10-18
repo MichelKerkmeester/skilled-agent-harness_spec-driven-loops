@@ -191,7 +191,7 @@
 ## Methodology
 
 - **Model**: GPT-5.4 via Codex CLI (`codex exec -m gpt-5.4 -s read-only -c model_reasoning_effort="high"`)
-- **Agent 1**: Code quality, bugs, sk-code-opencode P0/P1 standards — governance + collaboration layer (173K tokens)
+- **Agent 1**: Code quality, bugs, sk-code-skilled P0/P1 standards — governance + collaboration layer (173K tokens)
 - **Agent 2**: Architecture, feature catalog, type system, SOLID — lineage + flags + types
 - **Agent 3**: Testing, playbook alignment, handler review — memory-context + all test files
 - **All 3 agents ran in parallel** with non-overlapping file scopes

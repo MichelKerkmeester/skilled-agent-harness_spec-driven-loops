@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e24b214fbb1bf7c7f8b534ef26371d0f09e330996dde0f605b1375e1fb6911ae",
+  "manifestHash": "7df7ca78e3cf0e6a67fcb94406bc8b7c0e8101a07c0030b999b2c33396d601b9",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -4045,8 +4045,8 @@
     "018 phase 007 split rust references": [
       "018 phase 007 split rust references"
     ],
-    "018 phase 008 split code opencode references": [
-      "018 phase 008 split code-opencode references"
+    "018 phase 008 split code skilled references": [
+      "018 phase 008 split code-skilled references"
     ],
     "018 phase 009 split code webflow implementation": [
       "018 phase 009 split code-webflow implementation"
@@ -4108,8 +4108,8 @@
     "018 rust parent union summary": [
       "018 rust parent union summary"
     ],
-    "018 rust research code opencode": [
-      "018 rust research code-opencode"
+    "018 rust research code skilled": [
+      "018 rust research code-skilled"
     ],
     "018 rust research plan": [
       "018 rust research plan"
@@ -4123,8 +4123,8 @@
     "018 rust standard docs summary": [
       "018 rust standard docs summary"
     ],
-    "018 rust standards code opencode": [
-      "018 rust standards code-opencode"
+    "018 rust standards code skilled": [
+      "018 rust standards code-skilled"
     ],
     "018 rust surface routing summary": [
       "018 rust surface routing summary"
@@ -5926,8 +5926,8 @@
     "028 cli workstream complete": [
       "028 cli workstream complete"
     ],
-    "028 code opencode refinement shipped": [
-      "028 code-opencode refinement shipped"
+    "028 code skilled refinement shipped": [
+      "028 code-skilled refinement shipped"
     ],
     "028 commit order": [
       "028 commit order"
@@ -6698,11 +6698,11 @@
     "036 tasks": [
       "036 tasks"
     ],
-    "037 001 sk code opencode standards audit": [
-      "037-001-sk-code-opencode-standards-audit"
+    "037 001 sk code skilled standards audit": [
+      "037-001-sk-code-skilled-standards-audit"
     ],
-    "037 001 sk code opencode standards audit resource map": [
-      "037/001-sk-code-opencode-standards-audit resource map"
+    "037 001 sk code skilled standards audit resource map": [
+      "037/001-sk-code-skilled-standards-audit resource map"
     ],
     "037 002 feature catalog trio alignment": [
       "037-002-feature-catalog-trio-alignment"
@@ -10362,14 +10362,14 @@
     "align rerank sidecar cjs and sidecar worker with sk changelog": [
       "align rerank sidecar cjs and sidecar worker with sk changelog"
     ],
-    "align runtime code with sk code opencode acceptance criteria": [
-      "align runtime code with sk code opencode acceptance criteria"
+    "align runtime code with sk code skilled acceptance criteria": [
+      "align runtime code with sk code skilled acceptance criteria"
     ],
-    "align runtime code with sk code opencode implementation summary": [
-      "align runtime code with sk code opencode implementation summary"
+    "align runtime code with sk code skilled implementation summary": [
+      "align runtime code with sk code skilled implementation summary"
     ],
-    "align runtime code with sk code opencode tasks": [
-      "align runtime code with sk code opencode tasks"
+    "align runtime code with sk code skilled tasks": [
+      "align runtime code with sk code skilled tasks"
     ],
     "align skill advisor graph id": [
       "align skill_advisor graph id"
@@ -12285,8 +12285,8 @@
     "author playbooks for every mode": [
       "author playbooks for every mode"
     ],
-    "author rust trio code opencode": [
-      "author rust trio code-opencode"
+    "author rust trio code skilled": [
+      "author rust trio code-skilled"
     ],
     "authored case digest guarantee": [
       "authored case digest guarantee"
@@ -14469,8 +14469,8 @@
     "c2 a gating axis adr": [
       "c2-a gating axis adr"
     ],
-    "c2 c4 c5 c6 c7 c8 code opencode owners": [
-      "C2 C4 C5 C6 C7 C8 code-opencode owners"
+    "c2 c4 c5 c6 c7 c8 code skilled owners": [
+      "C2 C4 C5 C6 C7 C8 code-skilled owners"
     ],
     "c2 isolated correctness fixes re validation": [
       "C2 isolated correctness fixes re-validation"
@@ -20478,6 +20478,9 @@
     "cli opencode v1 4 9 0": [
       "cli-opencode v1.4.9.0"
     ],
+    "cli opencode version detection": [
+      "cli-opencode version detection"
+    ],
     "cli orca 0 1 0 0": [
       "cli-orca 0.1.0.0"
     ],
@@ -23176,24 +23179,6 @@
     "code mode workflow examples": [
       "code mode workflow examples"
     ],
-    "code opencode benchmark index": [
-      "code-opencode benchmark index"
-    ],
-    "code opencode benchmark reports": [
-      "code-opencode benchmark reports"
-    ],
-    "code opencode code bug hand offs": [
-      "code-opencode code-bug hand-offs"
-    ],
-    "code opencode implementation phases": [
-      "code-opencode implementation phases"
-    ],
-    "code opencode implementation summary": [
-      "code-opencode implementation summary"
-    ],
-    "code opencode implementation task ledger": [
-      "code-opencode implementation task ledger"
-    ],
     "code opencode other references implementation summary": [
       "code opencode other references implementation summary"
     ],
@@ -23203,42 +23188,6 @@
     "code opencode other references tasks": [
       "code opencode other references tasks"
     ],
-    "code opencode refinement deferred code bugs": [
-      "code-opencode refinement deferred code bugs"
-    ],
-    "code opencode refinement implementation": [
-      "code-opencode refinement implementation"
-    ],
-    "code opencode refinement implementation plan": [
-      "code-opencode refinement implementation plan"
-    ],
-    "code opencode refinement implementation tasks": [
-      "code-opencode refinement implementation tasks"
-    ],
-    "code opencode refinement outcome": [
-      "code-opencode refinement outcome"
-    ],
-    "code opencode refinement research": [
-      "code-opencode refinement research"
-    ],
-    "code opencode routing plan rust": [
-      "code-opencode routing plan rust"
-    ],
-    "code opencode routing tasks rust": [
-      "code-opencode routing tasks rust"
-    ],
-    "code opencode runtime alignment": [
-      "code-opencode runtime alignment"
-    ],
-    "code opencode runtime alignment complete": [
-      "code-opencode runtime alignment complete"
-    ],
-    "code opencode runtime verification": [
-      "code-opencode runtime verification"
-    ],
-    "code opencode rust reference hygiene": [
-      "code-opencode rust reference hygiene"
-    ],
     "code opencode rust references implementation summary": [
       "code opencode rust references implementation summary"
     ],
@@ -23247,24 +23196,6 @@
     ],
     "code opencode rust references tasks": [
       "code opencode rust references tasks"
-    ],
-    "code opencode rust standards": [
-      "code-opencode rust standards"
-    ],
-    "code opencode shared tier split": [
-      "code-opencode shared tier split"
-    ],
-    "code opencode skill md rust detection": [
-      "code-opencode skill.md rust detection"
-    ],
-    "code opencode skill md rust routing outcome": [
-      "code-opencode skill.md rust routing outcome"
-    ],
-    "code opencode surface alignment runtime": [
-      "code-opencode surface alignment runtime"
-    ],
-    "code opencode vs opencode reality": [
-      "code-opencode vs .opencode reality"
     ],
     "code prefix rename": [
       "code- prefix rename"
@@ -23485,6 +23416,78 @@
     ],
     "code skill family": [
       "code skill family"
+    ],
+    "code skilled benchmark index": [
+      "code-skilled benchmark index"
+    ],
+    "code skilled benchmark reports": [
+      "code-skilled benchmark reports"
+    ],
+    "code skilled code bug hand offs": [
+      "code-skilled code-bug hand-offs"
+    ],
+    "code skilled implementation phases": [
+      "code-skilled implementation phases"
+    ],
+    "code skilled implementation summary": [
+      "code-skilled implementation summary"
+    ],
+    "code skilled implementation task ledger": [
+      "code-skilled implementation task ledger"
+    ],
+    "code skilled refinement deferred code bugs": [
+      "code-skilled refinement deferred code bugs"
+    ],
+    "code skilled refinement implementation": [
+      "code-skilled refinement implementation"
+    ],
+    "code skilled refinement implementation plan": [
+      "code-skilled refinement implementation plan"
+    ],
+    "code skilled refinement implementation tasks": [
+      "code-skilled refinement implementation tasks"
+    ],
+    "code skilled refinement outcome": [
+      "code-skilled refinement outcome"
+    ],
+    "code skilled refinement research": [
+      "code-skilled refinement research"
+    ],
+    "code skilled routing plan rust": [
+      "code-skilled routing plan rust"
+    ],
+    "code skilled routing tasks rust": [
+      "code-skilled routing tasks rust"
+    ],
+    "code skilled runtime alignment": [
+      "code-skilled runtime alignment"
+    ],
+    "code skilled runtime alignment complete": [
+      "code-skilled runtime alignment complete"
+    ],
+    "code skilled runtime verification": [
+      "code-skilled runtime verification"
+    ],
+    "code skilled rust reference hygiene": [
+      "code-skilled rust reference hygiene"
+    ],
+    "code skilled rust standards": [
+      "code-skilled rust standards"
+    ],
+    "code skilled shared tier split": [
+      "code-skilled shared tier split"
+    ],
+    "code skilled skill md rust detection": [
+      "code-skilled skill.md rust detection"
+    ],
+    "code skilled skill md rust routing outcome": [
+      "code-skilled skill.md rust routing outcome"
+    ],
+    "code skilled surface alignment runtime": [
+      "code-skilled surface alignment runtime"
+    ],
+    "code skilled vs opencode reality": [
+      "code-skilled vs .opencode reality"
     ],
     "code specific embedder comparison": [
       "code-specific embedder comparison"
@@ -44563,8 +44566,8 @@
     "fix broad staging in examples tasks": [
       "fix broad staging in examples tasks"
     ],
-    "fix code opencode findings": [
-      "fix code-opencode findings"
+    "fix code skilled findings": [
+      "fix code-skilled findings"
     ],
     "fix completeness checklist": [
       "fix completeness checklist"
@@ -49856,8 +49859,8 @@
     "hallucination grader tasks": [
       "hallucination grader tasks"
     ],
-    "hand added surface after sk code opencode": [
-      "hand-added surface after sk-code-opencode"
+    "hand added surface after sk code skilled": [
+      "hand-added surface after sk-code-skilled"
     ],
     "hand drawn diagram variant": [
       "hand drawn diagram variant"
@@ -52378,14 +52381,14 @@
     "implement 033 research recommendations": [
       "implement 033 research recommendations"
     ],
-    "implement code opencode backlog plan": [
-      "implement code-opencode backlog plan"
+    "implement code skilled backlog plan": [
+      "implement code-skilled backlog plan"
     ],
-    "implement code opencode backlog tasks": [
-      "implement code-opencode backlog tasks"
+    "implement code skilled backlog tasks": [
+      "implement code-skilled backlog tasks"
     ],
-    "implement code opencode refinement backlog": [
-      "implement code-opencode refinement backlog"
+    "implement code skilled refinement backlog": [
+      "implement code-skilled refinement backlog"
     ],
     "implement fail closed gateway phase": [
       "implement fail-closed gateway phase"
@@ -58447,6 +58450,18 @@
     ],
     "markdown prompt output mode": [
       "markdown prompt output mode"
+    ],
+    "markdown reference sweep": [
+      "markdown reference sweep"
+    ],
+    "markdown reference sweep implementation summary": [
+      "markdown reference sweep implementation summary"
+    ],
+    "markdown reference sweep plan": [
+      "markdown reference sweep plan"
+    ],
+    "markdown reference sweep tasks": [
+      "markdown reference sweep tasks"
     ],
     "marker deletion validation failure": [
       "marker deletion validation failure"
@@ -67736,6 +67751,9 @@
     "opencode shell style guide": [
       "opencode shell style guide"
     ],
+    "opencode side by side install": [
+      "opencode side by side install"
+    ],
     "opencode skill metadata": [
       "opencode skill metadata"
     ],
@@ -67813,6 +67831,15 @@
     ],
     "opencode universal patterns": [
       "opencode universal patterns"
+    ],
+    "opencode v1 v2 dual compat research": [
+      "opencode v1 v2 dual compat research"
+    ],
+    "opencode v1 v2 dual compat research spec": [
+      "opencode v1 v2 dual compat research spec"
+    ],
+    "opencode v2 plugin migration": [
+      "opencode v2 plugin migration"
     ],
     "opencode variant reasoning effort": [
       "opencode variant reasoning effort"
@@ -71047,6 +71074,9 @@
     "phase 1 removal research": [
       "phase 1 removal research"
     ],
+    "phase 1 rename impact research": [
+      "phase 1 rename impact research"
+    ],
     "phase 1 restraint routing": [
       "phase 1 restraint routing"
     ],
@@ -71347,6 +71377,9 @@
     "phase 2 review mode": [
       "phase 2 review mode"
     ],
+    "phase 2 skill and routing rename": [
+      "phase 2 skill and routing rename"
+    ],
     "phase 2 surface contract alignment": [
       "phase 2 surface contract alignment"
     ],
@@ -71475,6 +71508,9 @@
     ],
     "phase 3 improvement research": [
       "phase 3 improvement research"
+    ],
+    "phase 3 markdown reference sweep": [
+      "phase 3 markdown reference sweep"
     ],
     "phase 3 playbook catalog truth": [
       "phase 3 playbook catalog truth"
@@ -78379,8 +78415,8 @@
     "referrer sweep results": [
       "referrer sweep results"
     ],
-    "refine code opencode surface subskill": [
-      "refine code-opencode surface subskill"
+    "refine code skilled surface subskill": [
+      "refine code-skilled surface subskill"
     ],
     "refine sk code sub skills": [
       "refine sk-code sub-skills"
@@ -79277,8 +79313,8 @@
     "release and program cleanup search scenario execution changelog": [
       "release and program cleanup search scenario execution changelog"
     ],
-    "release and program cleanup sk code opencode standards audit changelog": [
-      "release and program cleanup sk code opencode standards audit changelog"
+    "release and program cleanup sk code skilled standards audit changelog": [
+      "release and program cleanup sk code skilled standards audit changelog"
     ],
     "release and program cleanup sk doc conformance template sweep changelog": [
       "release and program cleanup sk doc conformance template sweep changelog"
@@ -80253,6 +80289,9 @@
     "rename council agent": [
       "rename council agent"
     ],
+    "rename double check review report": [
+      "rename double-check review report"
+    ],
     "rename folder": [
       "rename folder"
     ],
@@ -80261,6 +80300,18 @@
     ],
     "rename heavy merge verification": [
       "rename-heavy merge verification"
+    ],
+    "rename impact research": [
+      "rename impact research"
+    ],
+    "rename impact research implementation summary": [
+      "rename impact research implementation summary"
+    ],
+    "rename impact research plan": [
+      "rename impact research plan"
+    ],
+    "rename impact research tasks": [
+      "rename impact research tasks"
     ],
     "rename invariants": [
       "rename invariants"
@@ -85447,8 +85498,8 @@
     "runtime docs and integrity hardening runtime code readmes changelog": [
       "runtime docs and integrity hardening runtime code readmes changelog"
     ],
-    "runtime docs and integrity hardening sk code opencode alignment changelog": [
-      "runtime docs and integrity hardening sk code opencode alignment changelog"
+    "runtime docs and integrity hardening sk code skilled alignment changelog": [
+      "runtime docs and integrity hardening sk code skilled alignment changelog"
     ],
     "runtime docs and integrity identity and lock ownership hardening changelog": [
       "runtime docs and integrity identity and lock ownership hardening changelog"
@@ -90470,9 +90521,6 @@
     "sk code close out tasks": [
       "sk-code close-out tasks"
     ],
-    "sk code code opencode standard conformance": [
-      "sk-code code-opencode standard conformance"
-    ],
     "sk code code quality implementation plan": [
       "sk-code code-quality implementation plan"
     ],
@@ -90502,6 +90550,9 @@
     ],
     "sk code code quality upgrade implementation": [
       "sk-code code-quality upgrade implementation"
+    ],
+    "sk code code skilled standard conformance": [
+      "sk-code code-skilled standard conformance"
     ],
     "sk code collapse to four sub skills": [
       "sk-code collapse to four sub-skills"
@@ -90852,119 +90903,14 @@
     "sk code onboard implement tasks": [
       "sk-code onboard implement tasks"
     ],
-    "sk code opencode 1 0 0 0": [
-      "sk-code-opencode 1.0.0.0"
-    ],
-    "sk code opencode 1 0 0 5": [
-      "sk-code-opencode 1.0.0.5"
-    ],
-    "sk code opencode 1 0 1 0": [
-      "sk-code-opencode 1.0.1.0"
-    ],
-    "sk code opencode 1 1 0 0": [
-      "sk-code-opencode 1.1.0.0"
-    ],
-    "sk code opencode 1 1 1 0": [
-      "sk-code-opencode 1.1.1.0"
-    ],
-    "sk code opencode 1 2 0 0": [
-      "sk-code-opencode 1.2.0.0"
-    ],
-    "sk code opencode 1 2 1 0": [
-      "sk-code-opencode 1.2.1.0"
-    ],
-    "sk code opencode 1 2 2 0": [
-      "sk-code-opencode 1.2.2.0"
-    ],
-    "sk code opencode 1 2 3 0": [
-      "sk-code-opencode 1.2.3.0"
-    ],
-    "sk code opencode 1 2 4 0": [
-      "sk-code-opencode 1.2.4.0"
-    ],
-    "sk code opencode 1 2 5 0": [
-      "sk-code-opencode 1.2.5.0"
-    ],
-    "sk code opencode 1 2 6 0": [
-      "sk-code-opencode 1.2.6.0"
-    ],
-    "sk code opencode 1 2 7 0": [
-      "sk-code-opencode 1.2.7.0"
-    ],
     "sk code opencode alignment": [
       "sk-code opencode alignment"
     ],
-    "sk code opencode audit": [
-      "sk-code-opencode audit"
+    "sk code opencode rename impact": [
+      "sk-code-opencode rename impact"
     ],
-    "sk code opencode audit file ledger": [
-      "sk-code-opencode audit file ledger"
-    ],
-    "sk code opencode conformance spec kit": [
-      "sk code opencode conformance spec kit"
-    ],
-    "sk code opencode esm exemption": [
-      "sk-code-opencode esm exemption"
-    ],
-    "sk code opencode readme narrative": [
-      "sk-code-opencode readme narrative"
-    ],
-    "sk code opencode section dividers advisor": [
-      "sk-code-opencode section dividers advisor"
-    ],
-    "sk code opencode section dividers deep loop": [
-      "sk-code-opencode section dividers deep loop"
-    ],
-    "sk code opencode section dividers spec kit": [
-      "sk-code-opencode section dividers spec kit"
-    ],
-    "sk code opencode standards audit": [
-      "sk-code-opencode standards audit"
-    ],
-    "sk code opencode stress test": [
-      "sk-code-opencode stress test"
-    ],
-    "sk code opencode stress test alignment": [
-      "sk-code-opencode stress test alignment"
-    ],
-    "sk code opencode v1 0 0 0": [
-      "sk-code-opencode v1.0.0.0"
-    ],
-    "sk code opencode v1 0 0 5": [
-      "sk-code-opencode v1.0.0.5"
-    ],
-    "sk code opencode v1 0 1 0": [
-      "sk-code-opencode v1.0.1.0"
-    ],
-    "sk code opencode v1 1 0 0": [
-      "sk-code-opencode v1.1.0.0"
-    ],
-    "sk code opencode v1 1 1 0": [
-      "sk-code-opencode v1.1.1.0"
-    ],
-    "sk code opencode v1 2 0 0": [
-      "sk-code-opencode v1.2.0.0"
-    ],
-    "sk code opencode v1 2 1 0": [
-      "sk-code-opencode v1.2.1.0"
-    ],
-    "sk code opencode v1 2 2 0": [
-      "sk-code-opencode v1.2.2.0"
-    ],
-    "sk code opencode v1 2 3 0": [
-      "sk-code-opencode v1.2.3.0"
-    ],
-    "sk code opencode v1 2 4 0": [
-      "sk-code-opencode v1.2.4.0"
-    ],
-    "sk code opencode v1 2 5 0": [
-      "sk-code-opencode v1.2.5.0"
-    ],
-    "sk code opencode v1 2 6 0": [
-      "sk-code-opencode v1.2.6.0"
-    ],
-    "sk code opencode v1 2 7 0": [
-      "sk-code-opencode v1.2.7.0"
+    "sk code opencode renamed to sk code skilled": [
+      "sk-code-opencode renamed to sk-code-skilled"
     ],
     "sk code overlay hardcoded replacement": [
       "sk-code overlay hardcoded replacement"
@@ -91274,6 +91220,138 @@
     ],
     "sk code shared assets references research": [
       "sk-code shared assets references research"
+    ],
+    "sk code skilled 1 0 0 0": [
+      "sk-code-skilled 1.0.0.0"
+    ],
+    "sk code skilled 1 0 0 5": [
+      "sk-code-skilled 1.0.0.5"
+    ],
+    "sk code skilled 1 0 1 0": [
+      "sk-code-skilled 1.0.1.0"
+    ],
+    "sk code skilled 1 1 0 0": [
+      "sk-code-skilled 1.1.0.0"
+    ],
+    "sk code skilled 1 1 1 0": [
+      "sk-code-skilled 1.1.1.0"
+    ],
+    "sk code skilled 1 2 0 0": [
+      "sk-code-skilled 1.2.0.0"
+    ],
+    "sk code skilled 1 2 1 0": [
+      "sk-code-skilled 1.2.1.0"
+    ],
+    "sk code skilled 1 2 2 0": [
+      "sk-code-skilled 1.2.2.0"
+    ],
+    "sk code skilled 1 2 3 0": [
+      "sk-code-skilled 1.2.3.0"
+    ],
+    "sk code skilled 1 2 4 0": [
+      "sk-code-skilled 1.2.4.0"
+    ],
+    "sk code skilled 1 2 5 0": [
+      "sk-code-skilled 1.2.5.0"
+    ],
+    "sk code skilled 1 2 6 0": [
+      "sk-code-skilled 1.2.6.0"
+    ],
+    "sk code skilled 1 2 7 0": [
+      "sk-code-skilled 1.2.7.0"
+    ],
+    "sk code skilled 2 0 0 0": [
+      "sk-code-skilled 2.0.0.0"
+    ],
+    "sk code skilled audit": [
+      "sk-code-skilled audit"
+    ],
+    "sk code skilled audit file ledger": [
+      "sk-code-skilled audit file ledger"
+    ],
+    "sk code skilled conformance spec kit": [
+      "sk code skilled conformance spec kit"
+    ],
+    "sk code skilled esm exemption": [
+      "sk-code-skilled esm exemption"
+    ],
+    "sk code skilled readme narrative": [
+      "sk-code-skilled readme narrative"
+    ],
+    "sk code skilled rename phase parent spec": [
+      "sk code skilled rename phase parent spec"
+    ],
+    "sk code skilled rename research": [
+      "sk-code-skilled rename research"
+    ],
+    "sk code skilled rename review": [
+      "sk-code-skilled rename review"
+    ],
+    "sk code skilled section dividers advisor": [
+      "sk-code-skilled section dividers advisor"
+    ],
+    "sk code skilled section dividers deep loop": [
+      "sk-code-skilled section dividers deep loop"
+    ],
+    "sk code skilled section dividers spec kit": [
+      "sk-code-skilled section dividers spec kit"
+    ],
+    "sk code skilled spec folder rename": [
+      "sk-code-skilled spec folder rename"
+    ],
+    "sk code skilled standards audit": [
+      "sk-code-skilled standards audit"
+    ],
+    "sk code skilled stress test": [
+      "sk-code-skilled stress test"
+    ],
+    "sk code skilled stress test alignment": [
+      "sk-code-skilled stress test alignment"
+    ],
+    "sk code skilled surface rename": [
+      "sk-code-skilled surface rename"
+    ],
+    "sk code skilled v1 0 0 0": [
+      "sk-code-skilled v1.0.0.0"
+    ],
+    "sk code skilled v1 0 0 5": [
+      "sk-code-skilled v1.0.0.5"
+    ],
+    "sk code skilled v1 0 1 0": [
+      "sk-code-skilled v1.0.1.0"
+    ],
+    "sk code skilled v1 1 0 0": [
+      "sk-code-skilled v1.1.0.0"
+    ],
+    "sk code skilled v1 1 1 0": [
+      "sk-code-skilled v1.1.1.0"
+    ],
+    "sk code skilled v1 2 0 0": [
+      "sk-code-skilled v1.2.0.0"
+    ],
+    "sk code skilled v1 2 1 0": [
+      "sk-code-skilled v1.2.1.0"
+    ],
+    "sk code skilled v1 2 2 0": [
+      "sk-code-skilled v1.2.2.0"
+    ],
+    "sk code skilled v1 2 3 0": [
+      "sk-code-skilled v1.2.3.0"
+    ],
+    "sk code skilled v1 2 4 0": [
+      "sk-code-skilled v1.2.4.0"
+    ],
+    "sk code skilled v1 2 5 0": [
+      "sk-code-skilled v1.2.5.0"
+    ],
+    "sk code skilled v1 2 6 0": [
+      "sk-code-skilled v1.2.6.0"
+    ],
+    "sk code skilled v1 2 7 0": [
+      "sk-code-skilled v1.2.7.0"
+    ],
+    "sk code skilled v2 0 0 0": [
+      "sk-code-skilled v2.0.0.0"
     ],
     "sk code smart routing": [
       "sk-code smart routing"
@@ -94862,6 +94940,18 @@
     ],
     "skill and repo readmes cleanup tasks": [
       "skill-and-repo-readmes cleanup tasks"
+    ],
+    "skill and routing rename": [
+      "skill and routing rename"
+    ],
+    "skill and routing rename implementation summary": [
+      "skill and routing rename implementation summary"
+    ],
+    "skill and routing rename plan": [
+      "skill and routing rename plan"
+    ],
+    "skill and routing rename tasks": [
+      "skill and routing rename tasks"
     ],
     "skill architecture document": [
       "skill architecture document"
@@ -107018,8 +107108,8 @@
     "user onboarding flowchart": [
       "user onboarding flowchart"
     ],
-    "user surface outranks sk code opencode": [
-      "user surface outranks sk-code-opencode"
+    "user surface outranks sk code skilled": [
+      "user surface outranks sk-code-skilled"
     ],
     "userpaused event": [
       "userPaused event"

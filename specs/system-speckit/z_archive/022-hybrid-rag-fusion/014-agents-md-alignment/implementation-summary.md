@@ -80,7 +80,7 @@ Refinement pass (2026-03-16): Fixed G-01 through G-06 consistency gaps, added sk
 ### Skill Section Overhaul
 
 **Universal AGENTS.md:**
-- sk-code (Barter multi-repo) replaced with sk-code-opencode (OpenCode system code) with language table (JS, TS, Python, Shell, JSON/JSONC) and system-spec-kit + Spec Kit Memory references
+- sk-code (Barter multi-repo) replaced with sk-code-skilled (OpenCode system code) with language table (JS, TS, Python, Shell, JSON/JSONC) and system-spec-kit + Spec Kit Memory references
 - sk-git (read-only analysis) replaced with sk-git (full workflow: Worktree / Commit / Finish)
 
 **FS-Enterprises AGENTS.md:**

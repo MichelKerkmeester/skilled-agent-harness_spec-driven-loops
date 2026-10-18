@@ -1,6 +1,6 @@
 The advisor Jev tie-break goal is set. The `--jev` refusal now runs only after a passing gate that would make billed calls.
 
-SKILL ROUTING: User directed → sk-code. ARTIFACT: sk-code → sk-code-opencode.
+SKILL ROUTING: User directed → sk-code. ARTIFACT: sk-code → sk-code-skilled.
 REPO RULES: evidence-and-proof, communication, communication-handoff.
 
 HANDBACK

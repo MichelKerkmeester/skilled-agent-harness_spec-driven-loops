@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 9 handed two things to the operator or to later work",
     "created_at": "2026-09-27T07:22:33Z",
-    "last_save_at": "2026-09-27T10:24:54.974Z",
+    "last_save_at": "2026-10-18T20:45:28.739Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +220,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a6f54dea2fe2d4285baa611625faaf9b4023a3ec264c1f2259e915e2455e758c",
+    "source_fingerprint": "sha256:cf72e66cf9cb688c04199779642d45f71260fd4588ac086e96d43b524e3cc176",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1a627eefc35be14b9538b429111373469bc40673650f03073467065f0b1ed316",

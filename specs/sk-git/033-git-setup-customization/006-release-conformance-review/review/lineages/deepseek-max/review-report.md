@@ -4,7 +4,7 @@
 - Target: `specs/sk-git/033-git-setup-customization/006-release-conformance-review` (spec-folder)
 - Charter: `review/lineages/deepseek-max/steer.md` — the file list in the packet's
   `goal-file-manifest.txt` (25 paths), judged against the sk-doc authoring contracts, the
-  sk-code-opencode checklists and the repo's own validators
+  sk-code-skilled checklists and the repo's own validators
 - Iterations: 5 of 5; stop reason `maxIterationsReached` (stop policy `max-iterations`)
 - Verdict: **CONDITIONAL** — 0 P0, 1 P1, 11 P2 active
 

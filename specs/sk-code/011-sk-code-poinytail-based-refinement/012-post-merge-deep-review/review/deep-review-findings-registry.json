@@ -359,7 +359,7 @@
       "findingId": "R7-MNT-001",
       "severity": "P2",
       "title": "The single drift-guard entrypoint reports PASS while the alignment-drift leg emits 272 PYEXIT=0 non-blocking warnings because it never passes --fail-on-warn",
-      "file": ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+      "file": ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
       "line": 48,
       "description": "",
       "findingClass": null,
@@ -417,7 +417,7 @@
       "findingId": "R8-TRA-002",
       "severity": "P2",
       "title": "011-005 summary claims 10 tests; the live suite declares 12",
-      "file": ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs",
+      "file": ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_doc_claims.test.cjs",
       "line": 1,
       "description": "",
       "findingClass": null,
@@ -1364,7 +1364,7 @@
       "id": "SL-505",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
         ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs"
       ],
       "bugClass": "shell_injection",
@@ -1373,7 +1373,7 @@
       "evidenceRefs": [
         ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:123",
         ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/minify-webflow.mjs:105",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:49"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:49"
       ],
       "reason": "no shell interpolation of paths exists at any call site; python and node guards resolve roots from their own file location"
     },
@@ -1431,13 +1431,13 @@
       "id": "SL-703",
       "dimension": "maintainability",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs:16"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs:16"
       ],
       "bugClass": "duplicated_constant",
       "disposition": "ruled_out",
       "rationale": "UNKNOWN",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs:16"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs:16"
       ],
       "reason": "single literal; recorded as a watch item, not a finding"
     },
@@ -1501,7 +1501,7 @@
       "disposition": "ruled_out",
       "rationale": "validated via the live suite and the source read",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs:81",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_doc_claims.cjs:81",
         "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/review/iterations/iteration-007.md"
       ],
       "reason": "the four round-three checker limits were implemented or narrowed by 011-005; the remaining one (rare heading forms) is documented by design"
@@ -1883,7 +1883,7 @@
       "id": "SL-505",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
         ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs"
       ],
       "bugClass": "shell_injection",
@@ -1892,7 +1892,7 @@
       "evidenceRefs": [
         ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:123",
         ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/minify-webflow.mjs:105",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:49"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:49"
       ],
       "proof": "no shell interpolation of paths exists at any call site; python and node guards resolve roots from their own file location"
     },
@@ -1965,13 +1965,13 @@
       "id": "SL-703",
       "dimension": "maintainability",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs:16"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs:16"
       ],
       "bugClass": "duplicated_constant",
       "disposition": "ruled_out",
       "rationale": "UNKNOWN",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs:16"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs:16"
       ],
       "proof": "single literal; recorded as a watch item, not a finding"
     },
@@ -2035,7 +2035,7 @@
       "disposition": "ruled_out",
       "rationale": "validated via the live suite and the source read",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs:81",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_doc_claims.cjs:81",
         "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/review/iterations/iteration-007.md"
       ],
       "proof": "the four round-three checker limits were implemented or narrowed by 011-005; the remaining one (rare heading forms) is documented by design"

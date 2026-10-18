@@ -46,7 +46,7 @@ Frozen choices. Changing one is an amendment.
 | D3 | Leg 1a's prose scan starts at the first `## N. <NAME> MAP` heading; the literal `'## 4. WEBFLOW MAP'` anchor is removed. |
 | D4 | Doc-claims `surfaces` takes its count from the `packetKind` `surface` modes in `mode-registry.json`; no text says the hub has three surfaces. |
 | D5 | Each change gets one test in the existing test files, recorded as `\| T<n> \| <name> \| before: exit <n> \| after: exit 0 \|`. Copy runs are ledger rows P10-1 to P10-5, each `\| P10-<n> \| Pass \|` with a backticked command and what it printed. |
-| D6 | Release: exactly one, of the sk-code-opencode mode packet (its `SKILL.md` version and one changelog entry), because its guard tooling changed. |
+| D6 | Release: exactly one, of the sk-code-skilled mode packet (its `SKILL.md` version and one changelog entry), because its guard tooling changed. |
 | C1 | Worktree: `bash .skilled/skills/sk-git/scripts/worktree-naming.sh create drift-guard-tolerance origin/main`. Prefix git with `GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.fsmonitor GIT_CONFIG_VALUE_0=false`. Work only there. |
 | C2 | DeepSeek makes every edit outside this folder: cli-devin `deepseek-v4-1-flash-max`, or cli-pi `llmgateway/deepseek-v4.1-flash` at `--thinking max` once Devin's daily quota is out. Read that cli's `SKILL.md` first; dispatch with `AI_SESSION_CHILD=1`, `</dev/null` and a timeout; diff each dispatch against HEAD and rerun its checks. |
 | C3 | After the build, `/deep:review :auto` runs 5 iterations over this phase's commits on the same executor. Fix every confirmed P0 to P2 and record each finding as `\| RV-<n> \| P<0-2> \| Fixed or Rejected \|` with proof or reason. |
@@ -62,11 +62,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh >/dev/null 2>&1 && node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/ >/dev/null 2>&1 && node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code >/dev/null 2>&1 && echo ok`, run from the repository root, prints ok.
-- [x] `S=.skilled/skills/sk-code/sk-code-opencode/assets/scripts; [ "$(grep -c "'## 4. WEBFLOW MAP'" $S/verify-router-sync.cjs)" = 0 ] && [ "$(grep -ci 'has three surfaces' $S/verify-doc-claims.cjs)" = 0 ] && echo ok`, run from the repository root, prints ok.
+- [x] `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh >/dev/null 2>&1 && node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/ >/dev/null 2>&1 && node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code >/dev/null 2>&1 && echo ok`, run from the repository root, prints ok.
+- [x] `S=.skilled/skills/sk-code/sk-code-skilled/assets/scripts; [ "$(grep -c "'## 4. WEBFLOW MAP'" $S/verify-router-sync.cjs)" = 0 ] && [ "$(grep -ci 'has three surfaces' $S/verify-doc-claims.cjs)" = 0 ] && echo ok`, run from the repository root, prints ok.
 - [x] `F=specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/003-example-tolerant-drift-guards/implementation-summary.md; [ "$(grep -cE '^\| P10-[1-5] \| Pass \|' $F)" = 5 ] && [ "$(grep -E '^\| P10-[1-5] \| Pass \|' $F | grep -vcF "$(printf '\140')")" = 0 ] && [ "$(grep -cE '^\| T[1-4] \| .+ \| before: exit [1-9][0-9]* \| after: exit 0 \|$' $F)" = 4 ] && echo ok`, run from the repository root, prints ok.
 - [x] `C=specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/003-example-tolerant-drift-guards; [ "$(find $C/review/iterations -name 'iteration-*.md' 2>/dev/null | wc -l | tr -d ' ')" = 5 ] && [ "$(grep -E '^\| RV-' $C/implementation-summary.md | grep -vcE '^\| RV-[0-9]+ \| P[0-2] \| (Fixed|Rejected) \|')" = 0 ] && echo ok`, run from the repository root, prints ok.
-- [x] `G='^Spec: sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/003-example-tolerant-drift-guards$'; [ -n "$(git log --no-merges --grep="$G" --format=%h)" ] && [ "$(git log --no-merges --grep="$G" --format=%B | grep -cE '^(Co-Authored-By|Claude-Session):')" = 0 ] && [ "$(git log --no-merges --format= --name-only --diff-filter=A --grep="$G" -- .skilled/skills | grep -c /changelog/)" = 1 ] && [ "$(git log --no-merges --format= --name-only --diff-filter=A --grep="$G" -- .skilled/skills/sk-code/sk-code-opencode/changelog | grep -c .)" = 1 ] && node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs bump --base origin/main --check >/dev/null 2>&1 && echo ok`, run from the repository root, prints ok.
+- [x] `G='^Spec: sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/003-example-tolerant-drift-guards$'; [ -n "$(git log --no-merges --grep="$G" --format=%h)" ] && [ "$(git log --no-merges --grep="$G" --format=%B | grep -cE '^(Co-Authored-By|Claude-Session):')" = 0 ] && [ "$(git log --no-merges --format= --name-only --diff-filter=A --grep="$G" -- .skilled/skills | grep -c /changelog/)" = 1 ] && [ "$(git log --no-merges --format= --name-only --diff-filter=A --grep="$G" -- .skilled/skills/sk-code/sk-code-skilled/changelog | grep -c .)" = 1 ] && node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs bump --base origin/main --check >/dev/null 2>&1 && echo ok`, run from the repository root, prints ok.
 - [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/003-example-tolerant-drift-guards --strict`, run from the repository root, prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
@@ -84,7 +84,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet scaffolded | Done | create.sh phase mode with `--level 2` and `--with-goal`; spec.md lists ledger rows P10-1 to P10-5 and tests T1 to T4 |
-| Build | Done | `b6eef4ebbb` guard changes, tests T1 to T4 and sk-code-opencode 1.2.4.0; every edit by DeepSeek V4.1 Flash on cli-pi (Devin quota exhausted) |
+| Build | Done | `b6eef4ebbb` guard changes, tests T1 to T4 and sk-code-skilled 1.2.4.0; every edit by DeepSeek V4.1 Flash on cli-pi (Devin quota exhausted) |
 | Review | Done | `/deep:review :auto`, 5 iterations on cli-pi: PASS with 9 P2; 4 fixed in `1f0ca7deea`, 5 rejected with reasons (RV-1 to RV-9) |
 | Criteria | Done | All six rerun from the final state on 2026-10-13: five print ok, strict validate prints RESULT: PASSED |
 
@@ -92,7 +92,7 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
-| Baselines at planning | Commit a71f719ae4: `run-all-drift-guards.sh` exit 0, all 4 guards passed with 278 non-blocking warnings; the sk-code-opencode tests 18 of 18 |
+| Baselines at planning | Commit a71f719ae4: `run-all-drift-guards.sh` exit 0, all 4 guards passed with 278 non-blocking warnings; the sk-code-skilled tests 18 of 18 |
 | Pi extension collision in worktrees | The global pi extension links into the main checkout and collides with the worktree copy (`--fast conflicts`); builder dispatches passed `--no-extensions`, and review dispatches ran through a scratchpad `pi` shim that adds it |
 | Allowlist row | The registry count rule flagged a checklist line that counts runtime agent directories, so it got one `ALLOWED` row in `verify-doc-claims.cjs` |
 | Scripts READMEs | Both READMEs described the surfaces rule as a three-surface check, so they changed with D4 (the assets README in the build, the scripts README after review) |

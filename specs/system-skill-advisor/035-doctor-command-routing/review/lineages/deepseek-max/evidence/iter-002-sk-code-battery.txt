@@ -4,7 +4,7 @@ PASS  parent-skill        node .skilled/commands/doctor/scripts/parent-skill-che
 PASS  root-metadata       node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
 PASS  guard               node .skilled/bin/compiled-route-guard.cjs --json
 PASS  sync                node .skilled/bin/compiled-route-sync.cjs --check
-PASS  drift-guards        bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
+PASS  drift-guards        bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
 PASS  derived-freshness   node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs --format json
 PASS  probe               node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "fix a typescript bug in the opencode plugin"
 STATUS=OK legs=8

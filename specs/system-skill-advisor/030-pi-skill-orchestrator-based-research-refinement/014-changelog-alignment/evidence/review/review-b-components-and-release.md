@@ -8,7 +8,7 @@ Paths in the table are short forms:
 - `sdl` = `.skilled/skills/system-deep-loop`
 - `ceo` = `.skilled/skills/cli-external-orchestration`
 - `ssa` = `.skilled/skills/system-skill-advisor`
-- `sco` = `.skilled/skills/sk-code/sk-code-opencode`
+- `sco` = `.skilled/skills/sk-code/sk-code-skilled`
 - `deep/` = `.skilled/commands/deep/assets`
 - `rel` = `.skilled/changelog/skilled/v4.0.0.2.md`
 - `p030` = `specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement`
@@ -118,7 +118,7 @@ Line numbers for `rel` are line numbers in the working-tree file.
 - The installer step checks removal with a dry run, a real run, a re-run with no change and `--check` printing OK: `codex-hook-parity.md:99` onward (f09c000537).
 - Scope: the scenario sits under the hub, outside any member packet, so the hub's parent changelog is the right home (`SKILL.md` §6 rule 7).
 
-### 7. sk-code-opencode v1.0.1.0
+### 7. sk-code-skilled v1.0.1.0
 
 - The name matches its `SKILL.md`. The description is 115 characters, with one topic phrase. v1.0.0.5 to v1.0.1.0 is a patch bump.
 - The docs promised three guards while the wrapper runs two: 8036425eaa diff. `sco/scripts/README.md:32` now expects `all 2 guards PASSED`, and `sco/scripts/run-all-drift-guards.sh:60` prints it.

@@ -2,7 +2,7 @@
 
 I’m loading the review/context guidance, then I’ll inspect the catalog files and trace each claimed feature into both `mcp_server` and `scripts` so the alignment call is evidence-based.
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 ● Read review_core.md
   │ .agents/skills/sk-code-review/references/review_core.md
@@ -36,7 +36,7 @@ I’ve got the review baseline loaded. Next I’m enumerating the 14 catalog ent
   └ 14 files found
 
 ● Read alignment_verification_automation.md
-  │ .agents/skills/sk-code-opencode/references/shared/alignment_verification_automation.md
+  │ .agents/skills/sk-code-skilled/references/shared/alignment_verification_automation.md
   └ 62 lines read
 
 ● Search (glob)

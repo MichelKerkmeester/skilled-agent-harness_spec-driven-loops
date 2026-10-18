@@ -51,7 +51,7 @@ I'll narrow to the 042 bundle and the runtime docs it points at, then cross-chec
   │ (.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2)
   └ 6 lines found
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 I’ve got the candidate files. Next I’m comparing the spec’s promised fixes against the live docs/configs to see whether any stale mode names or stop-schema wording still leaks through.
 

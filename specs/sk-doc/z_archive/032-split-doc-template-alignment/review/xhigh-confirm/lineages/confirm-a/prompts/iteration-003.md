@@ -15,7 +15,7 @@ Review Target: `.opencode/specs/sk-doc/032-split-doc-template-alignment`
 
 Review Scope:
 - `.opencode/specs/sk-doc/032-split-doc-template-alignment/*.md`
-- `.opencode/skills/sk-code/code-opencode/{references,assets}/**/*.md`
+- `.opencode/skills/sk-code/code-skilled/{references,assets}/**/*.md`
 - `.opencode/skills/sk-code/code-webflow/{references,assets}/**/*.md`
 - `.opencode/skills/sk-code/code-quality/{references,assets}/**/*.md`
 

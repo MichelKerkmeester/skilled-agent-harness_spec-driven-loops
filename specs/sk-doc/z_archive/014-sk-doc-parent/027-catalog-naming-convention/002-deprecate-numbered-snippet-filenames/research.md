@@ -63,7 +63,7 @@ and are **not** number-gated, so they are unaffected either way. Two adversarial
 confirmed this gate is the sole hard dependency on the filename number.
 
 Two consumers must change in lockstep with the loader:
-- `code-opencode-playbook-ids.vitest.ts:28` — re-implements the identical `^\d{3}-` regex as a test oracle;
+- `code-skilled-playbook-ids.vitest.ts:28` — re-implements the identical `^\d{3}-` regex as a test oracle;
   left unchanged it would fail (or falsely pass) against renamed files.
 - `playbook-generator.cjs` (around lines 169 and 184) — the one live generator still emitting numbered
   filenames (`AG-NNN.md`); every other generator and convention doc already forbids the pattern (see F).
@@ -86,7 +86,7 @@ Two consumers must change in lockstep with the loader:
 - The loader's directory walk is **unsorted**; scenario identity is carried entirely by the frontmatter `id:`
   field. Removing the filename number therefore affects neither benchmark identity nor benchmark order once
   the loader is number-agnostic (Phase 001).
-- `code-opencode-playbook-ids.vitest.ts:28` re-implements the loader's regex as an independent oracle and must
+- `code-skilled-playbook-ids.vitest.ts:28` re-implements the loader's regex as an independent oracle and must
   be updated in the same commit as the loader, or the two will silently diverge.
 - `playbook-generator.cjs` is the only live code path still emitting the `NNN-` pattern (as `AG-NNN.md`).
 

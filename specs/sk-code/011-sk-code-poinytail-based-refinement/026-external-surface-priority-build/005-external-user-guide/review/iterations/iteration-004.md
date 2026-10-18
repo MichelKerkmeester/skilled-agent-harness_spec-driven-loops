@@ -21,7 +21,7 @@ D4 Maintainability: documentation quality and safe follow-on change cost of the 
 - `.skilled/changelog/skilled/v4.0.0.5.md:1` (release note) [SOURCE: .skilled/changelog/skilled/v4.0.0.5.md:1]
 - `.skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md:1` (compact format reference) [SOURCE: .skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md:1]
 - `.skilled/skills/sk-code/shared/references/phase-detection.md:16` (three-surface wording) [SOURCE: .skilled/skills/sk-code/shared/references/phase-detection.md:16]
-- `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:46` and `:320` (surface-count check) [SOURCE: .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:46]
+- `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:46` and `:320` (surface-count check) [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:46]
 - `specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:1` (SC-002, D2), `goal.md:1` (directive) [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:1]
 - `specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/scratch/review-diff.patch` (all added and removed lines) [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/scratch/review-diff.patch:1]
 
@@ -64,7 +64,7 @@ Maintainability checks executed this iteration:
 
 - `/deep:review` single-iteration dispatch; LEAF-only, no sub-agents.
 - Diff artifact: `scratch/review-diff.patch` (diff `d99ddaff7d..1895122d37`), read as data only.
-- `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs` `checkSurfaces` is the integration surface that closes the stale-count direction: its `SURFACE_COUNT_WORDING` pattern matches "three surfaces" wording and compares it to the count `mode-registry.json` declares, so removal recipe step 7 flags a stale count anywhere in the hub walk [SOURCE: .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:320].
+- `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs` `checkSurfaces` is the integration surface that closes the stale-count direction: its `SURFACE_COUNT_WORDING` pattern matches "three surfaces" wording and compares it to the count `mode-registry.json` declares, so removal recipe step 7 flags a stale count anywhere in the hub walk [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:320].
 - Changelog template is the integration surface for the release-note shape check.
 
 ## Edge Cases

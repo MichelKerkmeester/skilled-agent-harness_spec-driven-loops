@@ -31,9 +31,9 @@
       "resolved": true
     },
     {
-      "id": "question-3-q3-how-should-a-user-added-surface-outrank-sk-code-opencode-registry-priority-fi",
+      "id": "question-3-q3-how-should-a-user-added-surface-outrank-sk-code-skilled-registry-priority-fi",
       "inboxId": null,
-      "text": "Q3: How should a user-added surface outrank sk-code-opencode (registry priority field, native or fallback flag, tieBreak derived at mint time, --surface-hint, other), and which option is cheapest at acceptable risk?",
+      "text": "Q3: How should a user-added surface outrank sk-code-skilled (registry priority field, native or fallback flag, tieBreak derived at mint time, --surface-hint, other), and which option is cheapest at acceptable risk?",
       "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,
@@ -104,9 +104,9 @@
       "resolvedAtIteration": 5
     },
     {
-      "id": "question-3-q3-how-should-a-user-added-surface-outrank-sk-code-opencode-registry-priority-fi",
+      "id": "question-3-q3-how-should-a-user-added-surface-outrank-sk-code-skilled-registry-priority-fi",
       "inboxId": null,
-      "text": "Q3: How should a user-added surface outrank sk-code-opencode (registry priority field, native or fallback flag, tieBreak derived at mint time, --surface-hint, other), and which option is cheapest at acceptable risk?",
+      "text": "Q3: How should a user-added surface outrank sk-code-skilled (registry priority field, native or fallback flag, tieBreak derived at mint time, --surface-hint, other), and which option is cheapest at acceptable risk?",
       "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,
@@ -357,7 +357,7 @@
     },
     {
       "id": "ruled-out-3cd2d480cb46",
-      "text": "Docs-only insertion convention (insert before `sk-code-opencode` in `tieBreak` + `routerSignals`): two lists must agree and have already drifted in a sibling hub; insertion position is unenforced; stale-manifest stub on hand edit (carried).",
+      "text": "Docs-only insertion convention (insert before `sk-code-skilled` in `tieBreak` + `routerSignals`): two lists must agree and have already drifted in a sibling hub; insertion position is unenforced; stale-manifest stub on hand edit (carried).",
       "contentHash": "3cd2d480cb46",
       "addedAtIteration": 6
     },

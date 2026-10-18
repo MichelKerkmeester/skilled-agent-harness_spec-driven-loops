@@ -56,7 +56,7 @@ contextType: "general"
 ## Phase 3: Verification
 
 - [x] T011 Luna review of the wiring diff, findings verified and fixed (no P0, fixes verified by undoing each in a copy)
-- [x] T012 sk-code-opencode alignment verifier over the created code (0 errors on the created and changed code)
+- [x] T012 sk-code-skilled alignment verifier over the created code (0 errors on the created and changed code)
 - [x] T013 Every baseline suite rerun at or above its count (every suite at or above baseline)
 - [x] T014 Deep research, 5 iterations each on Luna (cli-pi) and DeepSeek (cli-devin), merged into `research/research.md` (10 iterations, 58 merged findings)
 - [x] T015 Changelog v4.0.0.3 per sk-create-changelog, validated (`validate_document.py --type changelog`, 0 issues)

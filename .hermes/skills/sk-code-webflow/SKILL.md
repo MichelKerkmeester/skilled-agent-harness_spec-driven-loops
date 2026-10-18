@@ -66,7 +66,7 @@ This block is the deterministic projection of sk-code-webflow's own reference/as
 ```python
 # sk-code-webflow owns its intent -> reference/asset routing. Paths are relative to
 # this skill root. The parent sk-code hub RESOURCE_MAP is the union of this map
-# (re-prefixed with sk-code-webflow/) and the sibling sk-code-opencode map plus the
+# (re-prefixed with sk-code-webflow/) and the sibling sk-code-skilled map plus the
 # parent-owned universal/shared tier; a drift guard enforces that equality.
 DEFAULT_RESOURCE = [
     "references/shared/dev-workflow/overview-nav-and-logging.md",

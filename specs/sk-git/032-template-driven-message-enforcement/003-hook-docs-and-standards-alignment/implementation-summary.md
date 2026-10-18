@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "The git hook docs, code READMEs and env reference now describe what the hooks do, and three gaps against the sk-code-opencode standards are closed."
+description: "The git hook docs, code READMEs and env reference now describe what the hooks do, and three gaps against the sk-code-skilled standards are closed."
 trigger_phrases:
   - "hook docs alignment summary"
 importance_tier: "important"
@@ -51,7 +51,7 @@ _memory:
 
 The docs for the git hooks now say what the hooks do. A read-only audit by GPT-6 Luna found that the root README, the remote-branch policy and both hook READMEs still described behavior the earlier phases had changed: pre-push was said to block stale metadata (it warns), to re-check every pushed commit (it checks the ones the push adds), and to let a bare `SPECKIT_ALLOW_REMOTE_PUSH=1` create a branch (creation needs the allowlist or the branch's own name). The standalone hook README described a per-file, fail-open checker. Fourteen switches the hooks read were missing from ENV-REFERENCE.md; all fourteen are now in its section 5, which is also what the planned `/doctor:env` command will read.
 
-Three code gaps against the sk-code-opencode standards are closed. Both pre-commit hooks used to skip a staged file whose content could not be read; they now block, except for a submodule entry, and remove their temp directory on any exit. A `Spec:` trailer such as `../README.md` used to pass the existence check because the path normalized outside `specs/`. Another session fixed the same gap on main at the same time with a stricter rule, any `..` segment fails, so the merge kept that version and dropped this phase's.
+Three code gaps against the sk-code-skilled standards are closed. Both pre-commit hooks used to skip a staged file whose content could not be read; they now block, except for a submodule entry, and remove their temp directory on any exit. A `Spec:` trailer such as `../README.md` used to pass the existence check because the path normalized outside `specs/`. Another session fixed the same gap on main at the same time with a stricter rule, any `..` segment fails, so the merge kept that version and dropped this phase's.
 
 ### Files Changed
 

@@ -116,7 +116,7 @@ pure Rust core
   owns only the measured transport-neutral kernel
 ```
 
-The core accepts owned immutable inputs and returns owned deterministic outputs. `#![forbid(unsafe_code)]` is the default; JS-controlled input must not reach `unwrap`, `expect`, or panic. The adapter does not own public routing or policy. [SOURCE: .opencode/skills/sk-code/code-opencode/references/rust/style-guide/interop-model.md:33-52]
+The core accepts owned immutable inputs and returns owned deterministic outputs. `#![forbid(unsafe_code)]` is the default; JS-controlled input must not reach `unwrap`, `expect`, or panic. The adapter does not own public routing or policy. [SOURCE: .opencode/skills/sk-code/code-skilled/references/rust/style-guide/interop-model.md:33-52]
 
 Adapter choice follows the workload:
 
@@ -256,7 +256,7 @@ Promotion requires:
 
 ## 15. Determinism And Parity Contract
 
-Exact Rust paths must match a pinned TypeScript oracle byte for byte across DTO shape, error codes/messages, hashes and preimages, numeric spelling, negative zero, ordering, tie-breaks, omitted fields, and serialization. Parity-visible reductions remain sequential unless fixtures prove another order identical. [SOURCE: .opencode/skills/sk-code/code-opencode/references/rust/style-guide/interop-errors-and-parity.md:127-188]
+Exact Rust paths must match a pinned TypeScript oracle byte for byte across DTO shape, error codes/messages, hashes and preimages, numeric spelling, negative zero, ordering, tie-breaks, omitted fields, and serialization. Parity-visible reductions remain sequential unless fixtures prove another order identical. [SOURCE: .opencode/skills/sk-code/code-skilled/references/rust/style-guide/interop-errors-and-parity.md:127-188]
 
 ANN cannot guarantee byte-identical candidate sets by definition. A strict byte-parity requirement therefore blocks ANN unless the product contract explicitly admits approximation. If approximation is approved, byte parity still governs inputs, profile identity, serialization, errors, exact re-scoring, fusion, cursors, and fallback; candidate quality is governed separately by filtered recall@K and relevance acceptance.
 
@@ -267,8 +267,8 @@ ANN cannot guarantee byte-identical candidate sets by definition. A strict byte-
 - `.opencode/skills/sk-design/styles/_db/indexer.mjs`
 - `.opencode/skills/sk-design/styles/_db/schema.mjs`
 - `.opencode/skills/sk-design/design-md-generator/backend/scripts/types.ts`
-- `.opencode/skills/sk-code/code-opencode/references/rust/style-guide/interop-model.md`
-- `.opencode/skills/sk-code/code-opencode/references/rust/style-guide/interop-errors-and-parity.md`
+- `.opencode/skills/sk-code/code-skilled/references/rust/style-guide/interop-model.md`
+- `.opencode/skills/sk-code/code-skilled/references/rust/style-guide/interop-errors-and-parity.md`
 - Iteration narratives `iterations/iteration-001.md` through `iteration-010.md`
 - Primary external documentation cited within the iteration narratives: SQLite limits and extension loading, sqlite-vec, USearch, hnswlib-node, Rayon, fastembed, ONNX Runtime, notify, Chokidar, Playwright, sharp, Transformers.js, Candle, BLAKE3.
 

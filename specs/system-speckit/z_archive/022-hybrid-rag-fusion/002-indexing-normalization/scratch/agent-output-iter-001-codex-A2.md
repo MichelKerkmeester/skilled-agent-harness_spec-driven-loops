@@ -50,10 +50,10 @@ codex
 I’m treating this as a read-only architectural review: I’ll load the relevant review standards, inspect all three files in full, and build a concrete call/dependency map before making any claims.
 exec
 /bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-opencode/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-skilled/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 ---
 name: sk-code-review
-description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-opencode, sk-code-web, and sk-code-full-stack standards."
+description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-skilled, sk-code-web, and sk-code-full-stack standards."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.2.0.0
 ---
@@ -73,7 +73,7 @@ Use this skill when:
 - A user asks for code review, PR review, quality gate, or merge readiness.
  succeeded in 0ms:
 ---
-name: sk-code-opencode
+name: sk-code-skilled
 description: Multi-language code standards for OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC) with language detection routing, universal patterns, and quality checklists.
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 1.2.0.0
@@ -112,10 +112,10 @@ exec
     "reason": "Matched: !intent:review, !review, !review(multi), review(name)"
   },
   {
-    "skill": "sk-code-opencode",
+    "skill": "sk-code-skilled",
     "kind": "skill",
 codex
-SKILL ROUTING: `system-spec-kit`, `sk-code-review`, and `sk-code-opencode` all passed threshold; I’m using the review baseline plus the OpenCode overlay, and I’ll pull only the spec-kit context I need for these session/workflow modules.
+SKILL ROUTING: `system-spec-kit`, `sk-code-review`, and `sk-code-skilled` all passed threshold; I’m using the review baseline plus the OpenCode overlay, and I’ll pull only the spec-kit context I need for these session/workflow modules.
 exec
 /bin/zsh -lc 'wc -l .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/scripts/types/session-types.ts .opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
     1217 .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts

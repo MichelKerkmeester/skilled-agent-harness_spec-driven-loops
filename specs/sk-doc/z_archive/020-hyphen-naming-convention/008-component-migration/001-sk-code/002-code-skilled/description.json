@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-skilled",
+  "description": "The code-skilled packet is a large evidence tree with snakecase names across assets/checklists, manual-testing-playbook categories,",
+  "keywords": [
+    "code-skilled",
+    "packet",
+    "large",
+    "evidence",
+    "tree",
+    "snakecase",
+    "names",
+    "across",
+    "assets",
+    "checklists",
+    "manual-testing-playbook",
+    "categories"
+  ],
+  "lastUpdated": "2026-08-30T07:16:18.648Z",
+  "specId": "002",
+  "folderSlug": "code-skilled",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "001-sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

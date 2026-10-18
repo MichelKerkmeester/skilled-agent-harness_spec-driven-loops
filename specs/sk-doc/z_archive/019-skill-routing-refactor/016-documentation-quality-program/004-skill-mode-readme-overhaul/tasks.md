@@ -56,7 +56,7 @@ trigger_phrases:
 - [x] T005 [P] Author `sk-doc/create-agent/README.md`, `sk-doc/create-command/README.md`, `sk-doc/create-changelog/README.md` (stale `assets/command/` path corrected to `assets/command-template.md`).
 - [x] T006 [P] Author `sk-doc/create-diff/README.md`, `sk-doc/create-feature-catalog/README.md`, `sk-doc/create-flowchart/README.md`.
 - [x] T007 [P] Author `sk-doc/create-manual-testing-playbook/README.md`, `sk-doc/create-quality-control/README.md`, `sk-doc/create-benchmark/README.md` (benchmark restructured from its prior 147-line README).
-- [x] T008 [P] Add pitch and OVERVIEW to `sk-code/code-opencode/README.md` and `sk-code/code-webflow/README.md` (terse), and insert `AT A GLANCE` as section 1 in `sk-git/README.md` with a renumber.
+- [x] T008 [P] Add pitch and OVERVIEW to `sk-code/code-skilled/README.md` and `sk-code/code-webflow/README.md` (terse), and insert `AT A GLANCE` as section 1 in `sk-git/README.md` with a renumber.
 
 <!-- /ANCHOR:phase-2 -->
 ---
@@ -64,7 +64,7 @@ trigger_phrases:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T009 Finish the HVR pass on the two surface READMEs (`sk-code/code-opencode/README.md`, `sk-code/code-webflow/README.md`): remove the pre-existing em dashes, semicolons and Oxford commas the light touch had kept.
+- [x] T009 Finish the HVR pass on the two surface READMEs (`sk-code/code-skilled/README.md`, `sk-code/code-webflow/README.md`): remove the pre-existing em dashes, semicolons and Oxford commas the light touch had kept.
 - [x] T010 Run the floor validator (`validate_document.py --type readme`) and a full em-dash and semicolon sweep across all fourteen files; confirm zero.
 
 <!-- /ANCHOR:phase-3 -->

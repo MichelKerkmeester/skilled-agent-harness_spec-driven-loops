@@ -56,7 +56,7 @@ Source of truth: `research/research.md`. Ten iterations across two lineages prod
 
 ### In Scope
 - Research over `.skilled/skills/cli-classifier/` (hub, `cli-jev` packet, `shared/`, `benchmark/`, catalog, playbook, changelogs) and every live caller of its shared transport.
-- Seven axes: sk-doc compliance, sk-code-opencode compliance, system-skill-advisor integration, UX for external repository users and for the operator, documentation quality, bugs, drift, and visibility of the measured results.
+- Seven axes: sk-doc compliance, sk-code-skilled compliance, system-skill-advisor integration, UX for external repository users and for the operator, documentation quality, bugs, drift, and visibility of the measured results.
 - A fan-out run of two lineages: DeepSeek V4.1 Flash max on cli-devin and GPT-6 Luna at max reasoning on the fast tier through cli-codex, five iterations each.
 - A merged `research/research.md` with ranked findings, each citing `file:line`.
 

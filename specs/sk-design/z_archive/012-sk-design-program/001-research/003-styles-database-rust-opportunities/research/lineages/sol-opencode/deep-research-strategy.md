@@ -123,7 +123,7 @@ What are the measured stage p50/p95, eligibility/selectivity, QPS, model load/RS
 - The current lexical lane runs as FTS5 SQL through `node:sqlite`; vector rows are loaded from SQLite and only cosine scoring/sorting occurs in JS. [SOURCE: .opencode/skills/sk-design/styles/_db/retrieval.mjs:200-249]
 - Weighted RRF is a deterministic map-and-sort over already-ranked candidate lists. [SOURCE: .opencode/skills/sk-design/styles/_db/retrieval.mjs:252-283]
 - Vector embedding work already has an incremental queue, retrieval-hash cache, bounded retries, and lexical fallback semantics. [SOURCE: .opencode/skills/sk-design/styles/_db/vectors.mjs:78-313]
-- Rust must remain a pure core behind thin adapters; TypeScript owns transport, feature flags, fallback selection, and public routing. [SOURCE: .opencode/skills/sk-code/code-opencode/references/rust/style-guide/interop-model.md:33-52]
+- Rust must remain a pure core behind thin adapters; TypeScript owns transport, feature flags, fallback selection, and public routing. [SOURCE: .opencode/skills/sk-code/code-skilled/references/rust/style-guide/interop-model.md:33-52]
 - The active charter fixes the current corpus at about 1,290 bundles and forbids a straight rewrite. [SOURCE: .opencode/specs/sk-design/013-styles-database-rust-opportunities/spec.md:48-76]
 - `resource-map.md` was not present at init; skipping the coverage-map preload.
 

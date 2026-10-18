@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Example-tolerant drift guards"
-description: "The sk-code router-sync and doc-claims drift guards now pass after an example surface is removed, with unchanged results on the full hub, four tests, one sk-code-opencode release and a five-iteration review."
+description: "The sk-code router-sync and doc-claims drift guards now pass after an example surface is removed, with unchanged results on the full hub, four tests, one sk-code-skilled release and a five-iteration review."
 trigger_phrases:
   - "example-tolerant drift guards implementation summary"
 importance_tier: "normal"
@@ -14,8 +14,8 @@ _memory:
     next_safe_action: "Operator review and merge of worktrees/126-drift-guard-tolerance into main"
     blockers: []
     key_files:
-      - ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs"
-      - ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs"
+      - ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs"
+      - ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "build-026-003"
@@ -55,13 +55,13 @@ One checklist line, "mirror it across all three surfaces", counts runtime agent 
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs` | Modified | Existence filter, archived-gold skip, first-map anchor |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs` | Modified | Registry-derived surface count, one allowlist row, contained registry read |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs` | Modified | T1 to T3; the fixture root now sits where the guard looks for the repository root |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs` | Modified | T4, a registry in the fixture hub, the unreadable-registry case |
-| `.skilled/skills/sk-code/sk-code-opencode/SKILL.md`, `changelog/v1.2.4.0.md` | Modified, Created | sk-code-opencode 1.2.4.0 and the surfaces sentence |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md`, `scripts/README.md` | Modified | The surfaces rule described by the registry |
-| `.hermes/skills/sk-code-opencode/SKILL.md` | Regenerated | Hermes copy in sync |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` | Modified | Existence filter, archived-gold skip, first-map anchor |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs` | Modified | Registry-derived surface count, one allowlist row, contained registry read |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs` | Modified | T1 to T3; the fixture root now sits where the guard looks for the repository root |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-doc-claims.test.cjs` | Modified | T4, a registry in the fixture hub, the unreadable-registry case |
+| `.skilled/skills/sk-code/sk-code-skilled/SKILL.md`, `changelog/v1.2.4.0.md` | Modified, Created | sk-code-skilled 1.2.4.0 and the surfaces sentence |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md`, `scripts/README.md` | Modified | The surfaces rule described by the registry |
+| `.hermes/skills/sk-code-skilled/SKILL.md` | Regenerated | Hermes copy in sync |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -79,11 +79,11 @@ Copy runs used a base copy under the session scratchpad: `.skilled` without `nod
 
 | ID | Outcome | Proof |
 |----|---------|-------|
-| P10-1 | Pass | `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` in the worktree exits 0 and prints `run-all-drift-guards: all 4 guards PASSED, 278 non-blocking warning(s)`. Every per-check line is PASS, as in the baseline; the one text change is the surfaces title, now `surface counts match mode-registry.json` |
-| P10-2 | Pass | `node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs` in the removal copy exits 0 and prints `router-sync: 5/5 checks passed`. The prior guard in the same copy exits 1 with `3/5`: check 2 `threw: ENOENT ... sk-code-webflow/SKILL.md`, check 3 the webflow and obsidian gold ids |
-| P10-3 | Pass | `node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs` in that copy with `## 4. WEBFLOW MAP` and its section removed exits 0 and prints `router-sync: 5/5 checks passed`; the prior guard prints `ROUTER.md section anchors not found (start=-1, end=15120)` for check 1a |
+| P10-1 | Pass | `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` in the worktree exits 0 and prints `run-all-drift-guards: all 4 guards PASSED, 278 non-blocking warning(s)`. Every per-check line is PASS, as in the baseline; the one text change is the surfaces title, now `surface counts match mode-registry.json` |
+| P10-2 | Pass | `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` in the removal copy exits 0 and prints `router-sync: 5/5 checks passed`. The prior guard in the same copy exits 1 with `3/5`: check 2 `threw: ENOENT ... sk-code-webflow/SKILL.md`, check 3 the webflow and obsidian gold ids |
+| P10-3 | Pass | `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` in that copy with `## 4. WEBFLOW MAP` and its section removed exits 0 and prints `router-sync: 5/5 checks passed`; the prior guard prints `ROUTER.md section anchors not found (start=-1, end=15120)` for check 1a |
 | P10-4 | Pass | `node verify-doc-claims.cjs --root <copy>/.skilled/skills/sk-code --checks surfaces` in a copy whose registry has two surface modes and whose docs say "two surfaces" exits 0 and prints `PASS check surfaces: surface counts match mode-registry.json`; the prior guard exits 1 with three `two-surface wording` problems |
-| P10-5 | Pass | `node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs --checks 2` prints the same two lines in the pristine copy and in the worktree (`diff` reports them identical): `PASS check 2: surface RESOURCE_MAP equals the children union plus the parent tier` |
+| P10-5 | Pass | `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs --checks 2` prints the same two lines in the pristine copy and in the worktree (`diff` reports them identical): `PASS check 2: surface RESOURCE_MAP equals the children union plus the parent tier` |
 
 Each test was run alone with `node --test --test-name-pattern`, first against the script as it stood before its change, then after.
 
@@ -131,7 +131,7 @@ A five-iteration `/deep:review :auto` ran over `b6eef4ebbb` on cli-pi DeepSeek V
 
 | Check | Result |
 |-------|--------|
-| `node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/` | 23 pass, 0 fail |
+| `node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/` | 23 pass, 0 fail |
 | `run-all-drift-guards.sh` | Exit 0, all 4 guards PASSED, 278 non-blocking warnings (baseline 278) |
 | `parent-skill-check.cjs .skilled/skills/sk-code` | Exit 0, `13d-packet-version: 5 mode packet(s) match their newest changelog entry` |
 | `sync-skills-hermes.cjs --check` | 68 copies in sync |

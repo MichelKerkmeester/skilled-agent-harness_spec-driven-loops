@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "system-speckit/033-system-speckit-v4/026-runtime-code-standards-research",
-  "description": "The system-spec-kit runtime and shared package were built across many packets and two directory moves, while the sk-code-opencode and sk-code-quality",
+  "description": "The system-spec-kit runtime and shared package were built across many packets and two directory moves, while the sk-code-skilled and sk-code-quality",
   "keywords": [
     "system-spec-kit",
     "runtime",
@@ -14,7 +14,7 @@
     "directory",
     "moves",
     "while",
-    "sk-code-opencode",
+    "sk-code-skilled",
     "sk-code-quality"
   ],
   "lastUpdated": "2026-09-08T18:23:18.771Z",

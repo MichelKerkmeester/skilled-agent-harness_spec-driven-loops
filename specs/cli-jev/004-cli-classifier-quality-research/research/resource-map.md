@@ -56,8 +56,8 @@ description: "Auto-generated research resource map from convergence evidence."
 | .skilled/skills/cli-classifier/shared/scripts/tests/scorer-report.test.mjs | Cited | OK | Citations=1; Iterations=1 |
 | .skilled/skills/cli-classifier/SKILL.md | Cited | OK | Citations=1; Iterations=1 |
 | .skilled/skills/cli-orca/references/orca-cli-reference.md | Cited | OK | Citations=1; Iterations=1 |
-| .skilled/skills/sk-code/sk-code-opencode/assets/checklists/javascript-checklist.md | Cited | OK | Citations=1; Iterations=1 |
-| .skilled/skills/sk-code/sk-code-opencode/references/javascript/style-guide.md | Cited | OK | Citations=1; Iterations=1 |
+| .skilled/skills/sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md | Cited | OK | Citations=1; Iterations=1 |
+| .skilled/skills/sk-code/sk-code-skilled/references/javascript/style-guide.md | Cited | OK | Citations=1; Iterations=1 |
 | .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs | Cited | OK | Citations=2; Iterations=2 |
 | .skilled/skills/sk-doc/shared/scripts/validate_document.py | Cited | OK | Citations=1; Iterations=1 |
 | .skilled/skills/sk-doc/sk-create-readme/assets/readme-code-template.md | Cited | OK | Citations=1; Iterations=1 |

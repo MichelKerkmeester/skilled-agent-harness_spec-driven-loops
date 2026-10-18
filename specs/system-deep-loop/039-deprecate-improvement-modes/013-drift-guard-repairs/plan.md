@@ -106,9 +106,9 @@ The decision ledger records the starting measurements above. Re-run the workflow
 **Router-sync proof**
 
 ```bash
-node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs
-node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs --checks 1b
-bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
+node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs
+node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs --checks 1b
+bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
 ```
 
 **Corpus proof**

@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Cross-runtime hook code style alignment"
-description: "Extend phase 013's Cursor-only sk-code/code-opencode style alignment to every hook entrypoint in the repo (Claude, Codex, Cursor, Devin): the JavaScript P0 box header on 27 files that lacked it, numbered ALL-CAPS section bands on all 32, and removal of the forbidden 'use strict' from 9 .mjs files -- proven comment-only by diff."
+description: "Extend phase 013's Cursor-only sk-code/code-skilled style alignment to every hook entrypoint in the repo (Claude, Codex, Cursor, Devin): the JavaScript P0 box header on 27 files that lacked it, numbered ALL-CAPS section bands on all 32, and removal of the forbidden 'use strict' from 9 .mjs files -- proven comment-only by diff."
 trigger_phrases: ["cross-runtime hook style alignment", "hook box header all runtimes", "hook numbered sections"]
 importance_tier: "normal"
 contextType: "general"
@@ -12,7 +12,7 @@ _memory:
     recent_action: "32 hook files aligned across 4 runtimes; comment-only diff proven"
     next_safe_action: "Run validate.sh --strict, then commit"
     blockers: []
-    key_files: [".opencode/skills/sk-code/code-opencode/assets/checklists/javascript-checklist.md", "../009-cursor-hooks-lifecycle/005-hooks-sk-code-alignment/spec.md"]
+    key_files: [".opencode/skills/sk-code/code-skilled/assets/checklists/javascript-checklist.md", "../009-cursor-hooks-lifecycle/005-hooks-sk-code-alignment/spec.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cross-runtime-hook-style", parent_session_id: null }
     completion_pct: 100
     open_questions: []
@@ -42,12 +42,12 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Phase 013 aligned the five Cursor `.mjs` hook files to `sk-code`/`code-opencode`'s JavaScript P0 standards (COMPONENT/PURPOSE box header, no `'use strict'` in `.mjs`). That fix was correct but Cursor-only: the operator, reviewing a Devin `.ts` adapter, asked for the same treatment across every hook in the repo. An audit against the same checklists found the gap was far wider than one runtime -- 27 of 32 hook entrypoints across Claude, Codex, and Devin carried no header block at all, and 9 `.mjs` files (spanning all four runtimes) still declared the forbidden `'use strict'`. Separately, none of the 32 had the numbered ALL-CAPS section bands that `universal-checklist.md` treats as a P0 invariant and that the shared runtime-neutral cores (e.g. `post-edit-router.cjs`) already model.
+Phase 013 aligned the five Cursor `.mjs` hook files to `sk-code`/`code-skilled`'s JavaScript P0 standards (COMPONENT/PURPOSE box header, no `'use strict'` in `.mjs`). That fix was correct but Cursor-only: the operator, reviewing a Devin `.ts` adapter, asked for the same treatment across every hook in the repo. An audit against the same checklists found the gap was far wider than one runtime -- 27 of 32 hook entrypoints across Claude, Codex, and Devin carried no header block at all, and 9 `.mjs` files (spanning all four runtimes) still declared the forbidden `'use strict'`. Separately, none of the 32 had the numbered ALL-CAPS section bands that `universal-checklist.md` treats as a P0 invariant and that the shared runtime-neutral cores (e.g. `post-edit-router.cjs`) already model.
 
 A second, subtler problem surfaced mid-request. The operator's initial instruction was to give every hook the thin `// ─── MODULE: ───` header seen in a Devin TypeScript adapter. The standards deliberately prescribe **different headers per language** -- `javascript-checklist.md` §2 P0 requires the COMPONENT/PURPOSE box for `.js`/`.cjs`/`.mjs`, `typescript-checklist.md` §2 P0 requires the thin MODULE block for `.ts`, and `universal-checklist.md` states both explicitly in one line. Applying the thin header everywhere would have put 32 JavaScript files into documented P0 violation, contradicting the operator's own instruction to conform to those standards.
 
 ### Purpose
-Bring every hook entrypoint in the repo -- not just Cursor's -- to full P0 conformance with the language-appropriate `code-opencode` standard, add the numbered section bands uniformly, and prove via the diff itself that the sweep changed no behavior. Resolve the header-style contradiction through escalation rather than by silently picking one reading.
+Bring every hook entrypoint in the repo -- not just Cursor's -- to full P0 conformance with the language-appropriate `code-skilled` standard, add the numbered section bands uniformly, and prove via the diff itself that the sweep changed no behavior. Resolve the header-style contradiction through escalation rather than by silently picking one reading.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -146,7 +146,7 @@ Low logic complexity, high blast radius. The transformation itself is mechanical
 
 ## 11. USER STORIES
 - As a maintainer opening any hook adapter in any runtime, I want the same header and section shape so I can find the entrypoint without reading the whole file.
-- As the next person auditing this repo against `code-opencode`, I want zero P0 header findings across the hook tree so the audit signal is real rather than noise.
+- As the next person auditing this repo against `code-skilled`, I want zero P0 header findings across the hook tree so the audit signal is real rather than noise.
 
 <!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
@@ -161,4 +161,4 @@ Low logic complexity, high blast radius. The transformation itself is mechanical
 - `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` (this phase)
 - `../009-cursor-hooks-lifecycle/005-hooks-sk-code-alignment/spec.md` (Cursor-only predecessor this phase generalizes)
 - `../009-cursor-hooks-lifecycle/006-cursor-hooks-discovery-mirror/spec.md` (sequential-numbering neighbor; no dependency)
-- `.opencode/skills/sk-code/code-opencode/assets/checklists/javascript-checklist.md`, `typescript-checklist.md`, `universal-checklist.md` (the standards audited against)
+- `.opencode/skills/sk-code/code-skilled/assets/checklists/javascript-checklist.md`, `typescript-checklist.md`, `universal-checklist.md` (the standards audited against)

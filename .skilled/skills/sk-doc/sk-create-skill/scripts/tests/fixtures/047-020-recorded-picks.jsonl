@@ -19,9 +19,9 @@
 {"row_id":"f020-007","order":0,"pick":"sk-code-review","status":"measured"}
 {"row_id":"f020-007","order":1,"pick":"sk-code-review","status":"measured"}
 {"row_id":"f020-007","order":2,"pick":"sk-code-review","status":"measured"}
-{"row_id":"f020-008","order":0,"pick":"sk-code-opencode","status":"measured"}
-{"row_id":"f020-008","order":1,"pick":"sk-code-opencode","status":"measured"}
-{"row_id":"f020-008","order":2,"pick":"sk-code-opencode","status":"measured"}
+{"row_id":"f020-008","order":0,"pick":"sk-code-skilled","status":"measured"}
+{"row_id":"f020-008","order":1,"pick":"sk-code-skilled","status":"measured"}
+{"row_id":"f020-008","order":2,"pick":"sk-code-skilled","status":"measured"}
 {"row_id":"f020-009","order":0,"pick":"sk-code-quality","status":"measured"}
 {"row_id":"f020-009","order":1,"pick":"sk-code-quality","status":"measured"}
 {"row_id":"f020-009","order":2,"pick":"sk-code-quality","status":"measured"}
@@ -82,9 +82,9 @@
 {"row_id":"f020-028","order":0,"pick":"sk-code-quality","status":"measured"}
 {"row_id":"f020-028","order":1,"pick":"sk-code-quality","status":"measured"}
 {"row_id":"f020-028","order":2,"pick":"sk-code-quality","status":"measured"}
-{"row_id":"f020-029","order":0,"pick":"sk-code-opencode","status":"measured"}
+{"row_id":"f020-029","order":0,"pick":"sk-code-skilled","status":"measured"}
 {"row_id":"f020-029","order":1,"pick":"sk-code-quality","status":"measured"}
-{"row_id":"f020-029","order":2,"pick":"sk-code-opencode","status":"measured"}
+{"row_id":"f020-029","order":2,"pick":"sk-code-skilled","status":"measured"}
 {"row_id":"f020-030","order":0,"pick":"sk-design-diagram","status":"measured"}
 {"row_id":"f020-030","order":1,"pick":"sk-design-diagram","status":"measured"}
 {"row_id":"f020-030","order":2,"pick":"sk-design-diagram","status":"measured"}

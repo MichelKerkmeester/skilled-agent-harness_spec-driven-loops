@@ -18,13 +18,13 @@ Baseline confirmed: Node 26.8.2 parses both files (exit 0), T has 30 `it('` line
 
 The hub's documented default is the compiled router. Let me resolve the route for this TypeScript surface before writing code.
 
-Route resolved: `sk-code-opencode` (surface, evidence-base). Loading that packet.
+Route resolved: `sk-code-skilled` (surface, evidence-base). Loading that packet.
 
 The packet says a TypeScript task loads the TS reference slice plus the shared tier. Let me size that slice before loading it.
 
 Loading the TypeScript slice plus the two shared-tier files most relevant to this edit (naming/commenting and imports/exports).
 
-Route loaded (`sk-code-opencode`, TS slice). Key takeaways applied: type-only imports last, trailing commas in multiline literals, WHY-only capitalized comments, explicit return types on exports. Now making the S edits.
+Route loaded (`sk-code-skilled`, TS slice). Key takeaways applied: type-only imports last, trailing commas in multiline literals, WHY-only capitalized comments, explicit return types on exports. Now making the S edits.
 
 Now the main insert: section 10 MODEL ARMS between section 9 and section 11.
 

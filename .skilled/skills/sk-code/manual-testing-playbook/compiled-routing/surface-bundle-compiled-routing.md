@@ -23,14 +23,14 @@ evidence_manifest_digest: 1a42e542b2e3d2c544b456b7026de69af8f79b57c92b22945e92ae
 evidence_model: router-replay
 evidence_reasoning_effort: n/a
 created: 2026-07-21
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # sk-code surface-bundle route serves compiled and matches legacy
 
 ## 1. OVERVIEW
 
-Serving-authority focus: sk-code is the one hub whose primary decision is a **surface bundle** — the router first resolves a code surface (`sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian`, bundled behind `sk-code-review` or `sk-code-quality`) and only then assembles that surface's leaves. This scenario proves the compiled engine serves that surface-bundle decision (`servingAuthority: compiled`) and that the compiled decision is byte-equivalent to the legacy one for the same prompt. The distinct rationale versus every other hub: only sk-code varies on a **surface axis**, so it is the sole coverage of a surface-bundle serving decision.
+Serving-authority focus: sk-code is the one hub whose primary decision is a **surface bundle** — the router first resolves a code surface (`sk-code-webflow` / `sk-code-skilled` / `sk-code-obsidian`, bundled behind `sk-code-review` or `sk-code-quality`) and only then assembles that surface's leaves. This scenario proves the compiled engine serves that surface-bundle decision (`servingAuthority: compiled`) and that the compiled decision is byte-equivalent to the legacy one for the same prompt. The distinct rationale versus every other hub: only sk-code varies on a **surface axis**, so it is the sole coverage of a surface-bundle serving decision.
 
 ---
 

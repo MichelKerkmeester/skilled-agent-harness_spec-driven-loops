@@ -76,7 +76,7 @@ The migration is regression-safe. The real exposure is **coverage**, not correct
 
 ### 2.4 New PHRASE candidates (iteration 3)
 
-Current PHRASE_INTENT_BOOSTERS: **167** entries. Post-migration: **173**. Proposed additions: **15** phrases across six skills (system-spec-kit, sk-code-opencode, sk-code-full-stack, sk-code-web, mcp-code-mode, sk-code-review). Post full-adoption target: **188** entries.
+Current PHRASE_INTENT_BOOSTERS: **167** entries. Post-migration: **173**. Proposed additions: **15** phrases across six skills (system-spec-kit, sk-code-skilled, sk-code-full-stack, sk-code-web, mcp-code-mode, sk-code-review). Post full-adoption target: **188** entries.
 
 Selection criteria: ≥3-word phrases (short phrases risk false-positives), distinct enough to uniquely route, sourced from each skill's `graph-metadata.json` trigger_phrases + SKILL.md Keywords.
 

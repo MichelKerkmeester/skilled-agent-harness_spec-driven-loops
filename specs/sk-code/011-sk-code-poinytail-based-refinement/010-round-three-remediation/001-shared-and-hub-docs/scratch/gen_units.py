@@ -95,8 +95,8 @@ edit(SR, "universal-standards references (plus pattern assets) consumed by every
 edit(SR, "shared workflow doctrine, universal standards, and pattern assets that every sk-code mode consumes.",
      "shared workflow doctrine and universal standards that every sk-code mode consumes.",
      "Drop the pattern-assets clause from the shared README summary line")
-edit(SR, "every sk-code surface packet (`code-webflow`, `code-opencode`) and workflow mode (`code-quality`, `code-review`). Surface detection resolves here first; the surface and workflow modes then load the specific references they need. For example, `code-quality` loads",
-     "every sk-code surface packet (`sk-code-webflow`, `sk-code-opencode`, `sk-code-obsidian`) and workflow mode (`sk-code-quality`, `sk-code-review`). Surface detection resolves here first; the surface and workflow modes then load the specific references they need. For example, `sk-code-quality` loads",
+edit(SR, "every sk-code surface packet (`code-webflow`, `code-skilled`) and workflow mode (`code-quality`, `code-review`). Surface detection resolves here first; the surface and workflow modes then load the specific references they need. For example, `code-quality` loads",
+     "every sk-code surface packet (`sk-code-webflow`, `sk-code-skilled`, `sk-code-obsidian`) and workflow mode (`sk-code-quality`, `sk-code-review`). Surface detection resolves here first; the surface and workflow modes then load the specific references they need. For example, `sk-code-quality` loads",
      "Use the live packet keys and add Obsidian in the shared README overview")
 edit(SR, "- `assets/patterns/`: executable pattern templates shipped with the skill.\n", "",
      "Delete the assets/patterns layout bullet from the shared README")
@@ -116,10 +116,10 @@ edit(PD, "`references/webflow/implementation/*`, Webflow patterns/assets; add `r
      "`.skilled/skills/sk-code/sk-code-webflow/references/implementation/`, Webflow patterns/assets; add `.skilled/skills/sk-code/sk-code-webflow/references/animation/` when",
      "Repoint the WEBFLOW implementation row of phase-detection.md")
 edit(PD, "| Implementation | `references/opencode/shared/*` plus detected language references |",
-     "| Implementation | `.skilled/skills/sk-code/sk-code-opencode/references/shared/` plus detected language references |",
+     "| Implementation | `.skilled/skills/sk-code/sk-code-skilled/references/shared/` plus detected language references |",
      "Repoint the OPENCODE implementation row of phase-detection.md")
 edit(PD, "| Verification | `verify_alignment_drift.py --root <changed-scope>` plus targeted tests/spec validation |",
-     "| Verification | `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh`, the three-guard umbrella, plus targeted tests/spec validation |",
+     "| Verification | `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh`, the three-guard umbrella, plus targeted tests/spec validation |",
      "Name the three-guard umbrella in the OPENCODE verification row")
 edit(PD, "`motion_dev/` can be loaded during research",
      "The Motion.dev overlay (`.skilled/skills/sk-code/sk-code-webflow/references/animation/`) can be loaded during research",
@@ -188,7 +188,7 @@ edit(UV, "- `references/webflow/verification/verification_workflows.md`",
      "- `.skilled/skills/sk-code/sk-code-webflow/references/verification/verification-workflows/gate-and-automated-options.md`",
      "Repoint the WEBFLOW deep-dive pointer of the verification checklist")
 edit(UV, "- `references/opencode/shared/alignment-verification-automation.md`",
-     "- `.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md`",
+     "- `.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md`",
      "Repoint the OPENCODE alignment pointer of the verification checklist")
 
 # --- Universal debugging checklist: one link form.
@@ -201,13 +201,13 @@ edit(UD, "- `.skilled/skills/sk-code/shared/references/universal-verification-ch
 
 # --- Universal quality standard: real checklists, live hooks, one link form.
 edit(CQ, "- Surface checklists: `assets/webflow/checklists/code-quality-checklist.md` and `assets/opencode/checklists/`.",
-     "- Surface checklists: `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` (Webflow JavaScript and CSS) and `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/`.",
+     "- Surface checklists: `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` (Webflow JavaScript and CSS) and `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/`.",
      "Repoint the Key Sources checklist line of code-quality-standards.md")
 edit(CQ, "| WEBFLOW  | `assets/webflow/checklists/code-quality-checklist.md` |",
      "| WEBFLOW  | `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` |",
      "Repoint the WEBFLOW row of the surface checklist table")
 edit(CQ, "| OPENCODE | `assets/opencode/checklists/`                     |",
-     "| OPENCODE | `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/` |",
+     "| OPENCODE | `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/` |",
      "Repoint the OPENCODE row of the surface checklist table")
 edit(CQ, lines(CQ, 138, 139),
      "   - **Write-time** (Claude Code only): `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`, wired as the `Write|Edit` `PostToolUse` hook in `.claude/settings.json`, fires on every Write/Edit tool call and warns inline before the next AI turn\n"
@@ -224,36 +224,36 @@ edit(CQ, "- `assets/universal/checklists/verification_checklist.md`", "- [`../un
 edit(CQ, "- `references/phase-detection.md`", "- [`../phase-detection.md`](../phase-detection.md)",
      "Use the relative link form for phase-detection.md in code-quality-standards.md")
 edit(CQ, "- Surface quality checklists under `assets/webflow/checklists/` and `assets/opencode/checklists/`.",
-     "- Surface quality checklists under `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` (Webflow) and `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/` (OpenCode).",
+     "- Surface quality checklists under `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` (Webflow) and `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/` (OpenCode).",
      "Repoint the surface checklist pointer of code-quality-standards.md")
 
 # --- Universal style guide: real paths, the comment-density owner, one link form.
 edit(CS, "lives under `references/webflow/standards/` and `references/opencode/`.",
-     "lives in each surface packet: `.skilled/skills/sk-code/sk-code-webflow/references/javascript/style-guide/` and `.skilled/skills/sk-code/sk-code-opencode/references/`.",
+     "lives in each surface packet: `.skilled/skills/sk-code/sk-code-webflow/references/javascript/style-guide/` and `.skilled/skills/sk-code/sk-code-skilled/references/`.",
      "Repoint the surface convention sentence of code-style-guide.md")
 edit(CS, "- Surface style guides: `references/webflow/javascript/style-guide.md` and `references/opencode/{javascript,typescript,python,shell,config}/`.",
-     "- Surface style guides: `.skilled/skills/sk-code/sk-code-webflow/references/javascript/style-guide/` and the language folders under `.skilled/skills/sk-code/sk-code-opencode/references/`.",
+     "- Surface style guides: `.skilled/skills/sk-code/sk-code-webflow/references/javascript/style-guide/` and the language folders under `.skilled/skills/sk-code/sk-code-skilled/references/`.",
      "Repoint the Key Sources style guide line of code-style-guide.md")
 edit(CS, "### Never comment what the code does",
      "### Comment density\n\n"
-     "This guide owns the comment-density rule. A comment earns its place by naming a hidden constraint, an invariant, a workaround's cause or a surprise, never by filling a quota, so no universal count applies. Each surface may set its own numeric budget as that surface's setting, and a surface budget never removes a comment this section requires. The Webflow surface sets five comments per ten lines in `.skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md`, and the OpenCode surface sets three per ten lines in `.skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md`.\n\n"
+     "This guide owns the comment-density rule. A comment earns its place by naming a hidden constraint, an invariant, a workaround's cause or a surprise, never by filling a quota, so no universal count applies. Each surface may set its own numeric budget as that surface's setting, and a surface budget never removes a comment this section requires. The Webflow surface sets five comments per ten lines in `.skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md`, and the OpenCode surface sets three per ten lines in `.skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md`.\n\n"
      "### Never comment what the code does",
      "Add the comment-density owner subsection to code-style-guide.md section 4")
 edit(CS, "`references/webflow/javascript/style-guide.md` (snake_case",
      "`.skilled/skills/sk-code/sk-code-webflow/references/javascript/style-guide/` (snake_case",
      "Repoint the WEBFLOW row of the surface pointer table")
 edit(CS, "`references/opencode/` language standards and `assets/opencode/checklists/`",
-     "`.skilled/skills/sk-code/sk-code-opencode/references/` language standards and `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/`",
+     "`.skilled/skills/sk-code/sk-code-skilled/references/` language standards and `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/`",
      "Repoint the OPENCODE row of the surface pointer table")
 edit(CS, "- `references/universal/code-quality-standards.md`", "- [`./code-quality-standards.md`](./code-quality-standards.md)",
      "Use the relative link form for code-quality-standards.md in code-style-guide.md")
 edit(CS, "- `references/universal/error-recovery.md`", "- [`./error-recovery.md`](./error-recovery.md)",
      "Use the relative link form for error-recovery.md in code-style-guide.md")
 edit(CS, "- Surface standards under `references/webflow/standards/` and `references/opencode/`.",
-     "- Surface standards under `.skilled/skills/sk-code/sk-code-webflow/references/` and `.skilled/skills/sk-code/sk-code-opencode/references/`.",
+     "- Surface standards under `.skilled/skills/sk-code/sk-code-webflow/references/` and `.skilled/skills/sk-code/sk-code-skilled/references/`.",
      "Repoint the surface standards pointer of code-style-guide.md")
 edit(CS, "- `assets/webflow/checklists/` and `assets/opencode/checklists/` - the surface",
-     "- `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` and `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/` - the surface",
+     "- `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` and `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/` - the surface",
      "Repoint the surface checklist pointer of code-style-guide.md")
 
 # --- Error recovery: one link form, real debugging folders.
@@ -269,14 +269,14 @@ edit(ER, "- `.skilled/skills/sk-code/shared/references/universal/code-quality-st
 edit(ER, "- `.skilled/skills/sk-code/shared/references/phase-detection.md`", "- [`../phase-detection.md`](../phase-detection.md)",
      "Use the relative link form for phase-detection.md in error-recovery.md")
 edit(ER, "- Surface-specific debugging refs under `references/webflow/` and `references/opencode/`.",
-     "- Surface-specific debugging refs under `.skilled/skills/sk-code/sk-code-webflow/references/debugging/` and `.skilled/skills/sk-code/sk-code-opencode/references/shared/`.",
+     "- Surface-specific debugging refs under `.skilled/skills/sk-code/sk-code-webflow/references/debugging/` and `.skilled/skills/sk-code/sk-code-skilled/references/shared/`.",
      "Repoint the surface debugging pointer of error-recovery.md")
 
 # --- Multi-agent research.
 edit(MA, "`references/phase-detection.md`.", "[`../phase-detection.md`](../phase-detection.md).",
      "Use the relative link form in the multi-agent-research.md key sources")
 edit(MA, "- Surface performance refs under `references/webflow/performance/` (when available); OPENCODE performance work uses targeted language/runtime evidence from `references/opencode/`.",
-     "- Surface performance refs under `.skilled/skills/sk-code/sk-code-webflow/references/performance/`. OPENCODE performance work uses targeted language and runtime evidence from `.skilled/skills/sk-code/sk-code-opencode/references/`.",
+     "- Surface performance refs under `.skilled/skills/sk-code/sk-code-webflow/references/performance/`. OPENCODE performance work uses targeted language and runtime evidence from `.skilled/skills/sk-code/sk-code-skilled/references/`.",
      "Repoint the surface performance pointer of multi-agent-research.md")
 edit(MA, "- `references/phase-detection.md`", "- [`../phase-detection.md`](../phase-detection.md)",
      "Use the relative link form for phase-detection.md in the multi-agent-research.md related list")
@@ -298,8 +298,8 @@ edit(R, "Beyond the two code surfaces this router maps by detection, the hub can
 edit(R, "| ALWAYS | Every invocation | Universal code quality + error recovery from `.skilled/skills/sk-code/shared/references/universal/` and `.skilled/skills/sk-code/shared/references/phase-detection.md` |",
      "| ALWAYS | Every invocation | The §11 `DEFAULT_RESOURCE` preamble only: `shared/references/stack-detection.md`, `shared/references/phase-detection.md` and `shared/references/universal/code-quality-standards.md`. The other universal files load with their intent: `code-style-guide.md` with CODE_QUALITY, `error-recovery.md` with DEBUGGING and `multi-agent-research.md` with IMPLEMENTATION |",
      "Make the ALWAYS load tier match DEFAULT_RESOURCE")
-edit(R, "| SURFACE | After WEBFLOW/OPENCODE detection | Surface-specific shared resources (`sk-code-webflow/references/shared/*` or `sk-code-opencode/references/shared/*`) |",
-     "| SURFACE | After WEBFLOW, OPENCODE or OBSIDIAN detection | Surface-specific resources (`sk-code-webflow/references/shared/*`, `sk-code-opencode/references/shared/*`, or the `sk-code-obsidian/references/*` leaves its packet router maps) |",
+edit(R, "| SURFACE | After WEBFLOW/OPENCODE detection | Surface-specific shared resources (`sk-code-webflow/references/shared/*` or `sk-code-skilled/references/shared/*`) |",
+     "| SURFACE | After WEBFLOW, OPENCODE or OBSIDIAN detection | Surface-specific resources (`sk-code-webflow/references/shared/*`, `sk-code-skilled/references/shared/*`, or the `sk-code-obsidian/references/*` leaves its packet router maps) |",
      "Name all three surfaces in the SURFACE load tier")
 edit(R, "- the surface-agnostic `shared/references/universal/*` tier, plus",
      "- the `shared/` entries the matched intents map (for example `code-style-guide.md` under CODE_QUALITY, `error-recovery.md` under DEBUGGING and `multi-agent-research.md` under IMPLEMENTATION), never the whole `shared/references/universal/` folder, plus",
@@ -324,7 +324,7 @@ edit(S, "`description.json`, `mode-registry.json`, `hub-router.json`, and `ROUTE
      "Add README.md to the hub version authority sentence")
 edit(S, "| **sk-code-obsidian** | Obsidian-plugin design-system and source-convention evidence for the Note Database plugin. Read-only. | `sk-code/sk-code-obsidian/` |\n",
      "| **sk-code-obsidian** | Obsidian-plugin design-system and source-convention evidence for the Note Database plugin. Read-only. | `sk-code/sk-code-obsidian/` |\n\n"
-     "**Surface list.** The hub has exactly three surfaces, WEBFLOW (`sk-code-webflow`), OPENCODE (`sk-code-opencode`) and OBSIDIAN (`sk-code-obsidian`), and two workflow modes, quality (`sk-code-quality`) and review (`sk-code-review`). Any other sk-code doc that counts surfaces points to this sentence.\n",
+     "**Surface list.** The hub has exactly three surfaces, WEBFLOW (`sk-code-webflow`), OPENCODE (`sk-code-skilled`) and OBSIDIAN (`sk-code-obsidian`), and two workflow modes, quality (`sk-code-quality`) and review (`sk-code-review`). Any other sk-code doc that counts surfaces points to this sentence.\n",
      "Add the canonical surface-list sentence to the hub SKILL.md")
 edit(S, "Packet-owned resources remain typed through `leaf-manifest.json`; the eight declared `SHARED_CONTROL_RESOURCES` are contained hub-level inputs that resolve on disk but never project as leaves.",
      "Packet-owned resources remain typed through `leaf-manifest.json`. The hub-level shared controls are declared once, in `ROUTER.md` §11: the `SHARED_CONTROL_RESOURCES` list plus the always-loaded `DEFAULT_RESOURCE` preamble. They resolve on disk but never project as leaves.",
@@ -346,7 +346,7 @@ edit(S, lines(S, 145, 157),
      "  sk-code-quality/       # quality mode packet     (workflow)\n"
      "  sk-code-review/        # review mode packet      (workflow)\n"
      "  sk-code-webflow/       # webflow surface packet  (read-only evidence; carries the workflow doctrine + Motion.dev animation overlay)\n"
-     "  sk-code-opencode/      # opencode surface packet (read-only evidence; carries the workflow doctrine)\n"
+     "  sk-code-skilled/      # opencode surface packet (read-only evidence; carries the workflow doctrine)\n"
      "  sk-code-obsidian/      # obsidian surface packet (read-only evidence)\n"
      "  shared/                # shared surface-detection router, cross-mode helpers, and the implement/debug/verify workflow doctrine (references/workflow-*.md)\n",
      "Add the six missing hub-root artifacts to the hub SKILL.md layout tree")
@@ -359,8 +359,8 @@ edit(DJ, "guidance, and OpenCode system code (JavaScript, TypeScript, Python, Sh
 edit(DJ, '"version": "2.2.4.0"', '"version": "2.2.5.0"', "Bump the description.json version to 2.2.5.0")
 edit(DJ, '"lastUpdated": "2026-09-19T00:00:00Z"', '"lastUpdated": "2026-10-10T00:00:00Z"', "Refresh the description.json lastUpdated stamp")
 edit(HR, '"version": "2.2.4.0"', '"version": "2.2.5.0"', "Bump the hub-router.json version to 2.2.5.0")
-edit(MR, "the SURFACE axis (sk-code-webflow/sk-code-opencode) is read-only domain evidence. Implement/debug/verify phase doctrine is consolidated in shared/references/workflow_*.md",
-     "the SURFACE axis (sk-code-webflow/sk-code-opencode/sk-code-obsidian) is read-only domain evidence. Implement/debug/verify phase doctrine is consolidated in shared/references/workflow-*.md",
+edit(MR, "the SURFACE axis (sk-code-webflow/sk-code-skilled) is read-only domain evidence. Implement/debug/verify phase doctrine is consolidated in shared/references/workflow_*.md",
+     "the SURFACE axis (sk-code-webflow/sk-code-skilled/sk-code-obsidian) is read-only domain evidence. Implement/debug/verify phase doctrine is consolidated in shared/references/workflow-*.md",
      "Name all three surfaces and fix the doctrine glob in the mode-registry.json description")
 edit(MR, "jsonl); code-review never writes tracked project files",
      "jsonl); sk-code-review never writes tracked project files",
@@ -372,28 +372,28 @@ edit(RM, "version: 2.2.1.0", "version: 2.2.5.0", "Bring the hub README version i
 edit(RM, "| **Works on** | The shared surface-detection router for WEBFLOW and OPENCODE context, plus the Motion.dev animation overlay |",
      "| **Works on** | The shared surface-detection router for the three surfaces the hub `SKILL.md` lists (WEBFLOW, OPENCODE and OBSIDIAN), plus the Motion.dev animation overlay |",
      "Name all three surfaces in the hub README At a Glance row")
-edit(RM, "| `sk-code-opencode` | System-code evidence: TypeScript, Python, shell and config standards, hooks, alignment verification, authoring checklists |\n",
-     "| `sk-code-opencode` | System-code evidence: TypeScript, Python, shell and config standards, hooks, alignment verification, authoring checklists |\n"
+edit(RM, "| `sk-code-skilled` | System-code evidence: TypeScript, Python, shell and config standards, hooks, alignment verification, authoring checklists |\n",
+     "| `sk-code-skilled` | System-code evidence: TypeScript, Python, shell and config standards, hooks, alignment verification, authoring checklists |\n"
      "| `sk-code-obsidian` | Obsidian-plugin design-system and source-convention evidence for the Note Database plugin |\n",
      "Add the Obsidian row to the hub README surface table")
 edit(RM, "for WEBFLOW and OPENCODE work, plus the Motion.dev animation overlay.",
      "for WEBFLOW, OPENCODE and OBSIDIAN work, plus the Motion.dev animation overlay.",
      "Name all three surfaces in the hub README When To Use paragraph")
-edit(RM, "| [`sk-code-opencode/SKILL.md`](./sk-code-opencode/SKILL.md) | OpenCode surface packet |",
-     "| [`sk-code-opencode/SKILL.md`](./sk-code-opencode/SKILL.md) | OpenCode surface packet |\n"
+edit(RM, "| [`sk-code-skilled/SKILL.md`](./sk-code-skilled/SKILL.md) | OpenCode surface packet |",
+     "| [`sk-code-skilled/SKILL.md`](./sk-code-skilled/SKILL.md) | OpenCode surface packet |\n"
      "| [`sk-code-obsidian/SKILL.md`](./sk-code-obsidian/SKILL.md) | Obsidian surface packet |",
      "Add the Obsidian packet to the hub README related documents")
 
 # --- Feature catalog.
-edit(FC, "the hub resolves a WORKFLOW mode (`quality`, `code-review`) and bundles zero-or-more read-only SURFACE evidence packets (`code-webflow`, `code-opencode`) declaratively",
-     "the hub resolves a WORKFLOW mode (`sk-code-quality`, `sk-code-review`) and bundles zero-or-more read-only SURFACE evidence packets (`sk-code-webflow`, `sk-code-opencode`, `sk-code-obsidian`) declaratively",
+edit(FC, "the hub resolves a WORKFLOW mode (`quality`, `code-review`) and bundles zero-or-more read-only SURFACE evidence packets (`code-webflow`, `code-skilled`) declaratively",
+     "the hub resolves a WORKFLOW mode (`sk-code-quality`, `sk-code-review`) and bundles zero-or-more read-only SURFACE evidence packets (`sk-code-webflow`, `sk-code-skilled`, `sk-code-obsidian`) declaratively",
      "Use the live keys and three surfaces in the feature catalog intro")
-edit(FC, "`quality` and `code-review` are WORKFLOW modes that act; `code-webflow` and `code-opencode` are advisor-invisible SURFACE packets",
-     "`sk-code-quality` and `sk-code-review` are WORKFLOW modes that act; `sk-code-webflow`, `sk-code-opencode` and `sk-code-obsidian` are advisor-invisible SURFACE packets",
+edit(FC, "`quality` and `code-review` are WORKFLOW modes that act; `code-webflow` and `code-skilled` are advisor-invisible SURFACE packets",
+     "`sk-code-quality` and `sk-code-review` are WORKFLOW modes that act; `sk-code-webflow`, `sk-code-skilled` and `sk-code-obsidian` are advisor-invisible SURFACE packets",
      "Use the live keys and three surfaces in the feature catalog Current Reality")
 edit(FC, 'last_updated: "2026-07-21"', 'last_updated: "2026-10-10"', "Refresh the feature catalog last_updated date")
-edit(TA, "The WORKFLOW axis is process: `quality` (`backendKind: surface-router`) and `code-review` (`backendKind: review-cache`) are modes that act. The SURFACE axis is read-only domain evidence: `code-webflow` and `code-opencode` (both `backendKind: evidence-base`) never act",
-     "The WORKFLOW axis is process: `sk-code-quality` (`backendKind: surface-router`) and `sk-code-review` (`backendKind: review-cache`) are modes that act. The SURFACE axis is read-only domain evidence: `sk-code-webflow`, `sk-code-opencode` and `sk-code-obsidian` (each `backendKind: evidence-base`) never act",
+edit(TA, "The WORKFLOW axis is process: `quality` (`backendKind: surface-router`) and `code-review` (`backendKind: review-cache`) are modes that act. The SURFACE axis is read-only domain evidence: `code-webflow` and `code-skilled` (both `backendKind: evidence-base`) never act",
+     "The WORKFLOW axis is process: `sk-code-quality` (`backendKind: surface-router`) and `sk-code-review` (`backendKind: review-cache`) are modes that act. The SURFACE axis is read-only domain evidence: `sk-code-webflow`, `sk-code-skilled` and `sk-code-obsidian` (each `backendKind: evidence-base`) never act",
      "Use the live keys and three surfaces in the two-axis entry")
 edit(TA, "`[code-review, code-webflow]`", "`[sk-code-review, sk-code-webflow]`", "Use the live keys in the two-axis bundle example")
 

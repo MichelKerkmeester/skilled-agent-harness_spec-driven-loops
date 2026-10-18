@@ -552,11 +552,11 @@
 .skilled/skills/sk-code/changelog/v3.4.0.0.md	F1
 .skilled/skills/sk-code/changelog/v3.5.0.0.md	F1
 .skilled/skills/sk-code/sk-code-obsidian/changelog/v0.1.0.0.md	F1
-.skilled/skills/sk-code/sk-code-opencode/benchmark/reports/2026-07-10--live-mode-b--live/skill-benchmark-report.json	F2
-.skilled/skills/sk-code/sk-code-opencode/benchmark/reports/2026-07-10--live-mode-b--live/source.md	F2
-.skilled/skills/sk-code/sk-code-opencode/benchmark/reports/2026-07-10--router-mode-a--router/skill-benchmark-report.json	F2
-.skilled/skills/sk-code/sk-code-opencode/benchmark/reports/2026-07-10--router-mode-a--router/source.md	F2
-.skilled/skills/sk-code/sk-code-opencode/changelog/v1.0.0.5.md	F1
+.skilled/skills/sk-code/sk-code-skilled/benchmark/reports/2026-07-10--live-mode-b--live/skill-benchmark-report.json	F2
+.skilled/skills/sk-code/sk-code-skilled/benchmark/reports/2026-07-10--live-mode-b--live/source.md	F2
+.skilled/skills/sk-code/sk-code-skilled/benchmark/reports/2026-07-10--router-mode-a--router/skill-benchmark-report.json	F2
+.skilled/skills/sk-code/sk-code-skilled/benchmark/reports/2026-07-10--router-mode-a--router/source.md	F2
+.skilled/skills/sk-code/sk-code-skilled/changelog/v1.0.0.5.md	F1
 .skilled/skills/sk-code/sk-code-quality/benchmark/reports/2026-07-10--live-mode-b--live/skill-benchmark-report.json	F2
 .skilled/skills/sk-code/sk-code-quality/benchmark/reports/2026-07-10--live-mode-b--live/source.md	F2
 .skilled/skills/sk-code/sk-code-quality/benchmark/reports/2026-07-10--router-mode-a--router/skill-benchmark-report.json	F2

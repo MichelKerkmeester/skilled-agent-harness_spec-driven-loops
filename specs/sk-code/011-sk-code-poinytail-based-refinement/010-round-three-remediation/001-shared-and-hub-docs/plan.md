@@ -463,7 +463,7 @@ NEW:
 ~~~~text
 ### Comment density
 
-This guide owns the comment-density rule. A comment earns its place by naming a hidden constraint, an invariant, a workaround's cause or a surprise, never by filling a quota, so no universal count applies. Each surface may set its own numeric budget as that surface's setting, and a surface budget never removes a comment this section requires. The Webflow surface sets five comments per ten lines in `.skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md`, and the OpenCode surface sets three per ten lines in `.skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md`.
+This guide owns the comment-density rule. A comment earns its place by naming a hidden constraint, an invariant, a workaround's cause or a surprise, never by filling a quota, so no universal count applies. Each surface may set its own numeric budget as that surface's setting, and a surface budget never removes a comment this section requires. The Webflow surface sets five comments per ten lines in `.skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md`, and the OpenCode surface sets three per ten lines in `.skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md`.
 
 ### Never comment what the code does
 ~~~~
@@ -651,7 +651,7 @@ NEW:
 ~~~~text
 | **sk-code-obsidian** | Obsidian-plugin design-system and source-convention evidence for the Note Database plugin. Read-only. | `sk-code/sk-code-obsidian/` |
 
-**Surface list.** The hub has exactly three surfaces, WEBFLOW (`sk-code-webflow`), OPENCODE (`sk-code-opencode`) and OBSIDIAN (`sk-code-obsidian`), and two workflow modes, quality (`sk-code-quality`) and review (`sk-code-review`). Any other sk-code doc that counts surfaces points to this sentence.
+**Surface list.** The hub has exactly three surfaces, WEBFLOW (`sk-code-webflow`), OPENCODE (`sk-code-skilled`) and OBSIDIAN (`sk-code-obsidian`), and two workflow modes, quality (`sk-code-quality`) and review (`sk-code-review`). Any other sk-code doc that counts surfaces points to this sentence.
 ~~~~
 
 #### Proposed text T096: Add the six missing hub-root artifacts to the hub SKILL.md layout tree (`.skilled/skills/sk-code/SKILL.md`)
@@ -669,7 +669,7 @@ sk-code/
   sk-code-quality/       # quality mode packet     (workflow)
   sk-code-review/        # review mode packet      (workflow)
   sk-code-webflow/       # webflow surface packet  (read-only evidence; carries the workflow doctrine + Motion.dev animation overlay)
-  sk-code-opencode/      # opencode surface packet (read-only evidence; carries the workflow doctrine)
+  sk-code-skilled/      # opencode surface packet (read-only evidence; carries the workflow doctrine)
   sk-code-obsidian/      # obsidian surface packet (read-only evidence)
   shared/                # shared surface-detection router, cross-mode helpers, and the implement/debug/verify workflow doctrine (references/workflow_*.md)
 ~~~~
@@ -693,7 +693,7 @@ sk-code/
   sk-code-quality/       # quality mode packet     (workflow)
   sk-code-review/        # review mode packet      (workflow)
   sk-code-webflow/       # webflow surface packet  (read-only evidence; carries the workflow doctrine + Motion.dev animation overlay)
-  sk-code-opencode/      # opencode surface packet (read-only evidence; carries the workflow doctrine)
+  sk-code-skilled/      # opencode surface packet (read-only evidence; carries the workflow doctrine)
   sk-code-obsidian/      # obsidian surface packet (read-only evidence)
   shared/                # shared surface-detection router, cross-mode helpers, and the implement/debug/verify workflow doctrine (references/workflow-*.md)
 ~~~~
@@ -703,13 +703,13 @@ sk-code/
 OLD:
 
 ~~~~text
-| `sk-code-opencode` | System-code evidence: TypeScript, Python, shell and config standards, hooks, alignment verification, authoring checklists |
+| `sk-code-skilled` | System-code evidence: TypeScript, Python, shell and config standards, hooks, alignment verification, authoring checklists |
 ~~~~
 
 NEW:
 
 ~~~~text
-| `sk-code-opencode` | System-code evidence: TypeScript, Python, shell and config standards, hooks, alignment verification, authoring checklists |
+| `sk-code-skilled` | System-code evidence: TypeScript, Python, shell and config standards, hooks, alignment verification, authoring checklists |
 | `sk-code-obsidian` | Obsidian-plugin design-system and source-convention evidence for the Note Database plugin |
 ~~~~
 
@@ -718,13 +718,13 @@ NEW:
 OLD:
 
 ~~~~text
-| [`sk-code-opencode/SKILL.md`](./sk-code-opencode/SKILL.md) | OpenCode surface packet |
+| [`sk-code-skilled/SKILL.md`](./sk-code-skilled/SKILL.md) | OpenCode surface packet |
 ~~~~
 
 NEW:
 
 ~~~~text
-| [`sk-code-opencode/SKILL.md`](./sk-code-opencode/SKILL.md) | OpenCode surface packet |
+| [`sk-code-skilled/SKILL.md`](./sk-code-skilled/SKILL.md) | OpenCode surface packet |
 | [`sk-code-obsidian/SKILL.md`](./sk-code-obsidian/SKILL.md) | Obsidian surface packet |
 ~~~~
 
@@ -793,7 +793,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## 6. DEPENDENCIES
 
 - Node.js and Python 3 as used by the guards. `rg` for the searches.
-- `.skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs` (the shared-control rule behind D2) and `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/router_replay_lib.cjs` (the load behavior the new prose describes). Neither changes.
+- `.skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs` (the shared-control rule behind D2) and `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router_replay_lib.cjs` (the load behavior the new prose describes). Neither changes.
 - `.skilled/skills/system-spec-kit/references/validation/validation-rules.md` sections 1 and 14 own the `validate.sh` contract T039 points to.
 - `.claude/settings.json` wires `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs` as the `Write|Edit` `PostToolUse` hook, and `.skilled/scripts/install-git-hooks.sh` installs `.skilled/scripts/git-hooks/pre-commit` through `core.hooksPath`, both read on 2026-10-10.
 - Baseline state: the spec-kit trigger index `--check` already exits 1 at plan time from unrelated stale spec docs, so T120 is a full rebuild, not a repair of this child alone.

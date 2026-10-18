@@ -64,6 +64,6 @@
 sk-code/code-webflow/references/workflow_debug.md -> ../../shared/references/workflow_debug.md
 sk-code/code-webflow/references/workflow_implement.md -> ../../shared/references/workflow_implement.md
 sk-code/code-webflow/references/workflow_verify.md -> ../../shared/references/workflow_verify.md
-sk-code/code-opencode/references/workflow_debug.md -> ../../shared/references/workflow_debug.md
-sk-code/code-opencode/references/workflow_implement.md -> ../../shared/references/workflow_implement.md
-sk-code/code-opencode/references/workflow_verify.md -> ../../shared/references/workflow_verify.md
+sk-code/code-skilled/references/workflow_debug.md -> ../../shared/references/workflow_debug.md
+sk-code/code-skilled/references/workflow_implement.md -> ../../shared/references/workflow_implement.md
+sk-code/code-skilled/references/workflow_verify.md -> ../../shared/references/workflow_verify.md

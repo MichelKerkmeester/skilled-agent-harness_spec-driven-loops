@@ -59,7 +59,7 @@ contextType: "general"
 - [x] T012 Regenerate hook files, mirrors, Hermes copies, README baselines and the sk-doc manifest
 - [x] T013 Rerun every suite and the alignment verifier
 - [x] T014 Replay the captured Devin payload through real Jev, flagged and clean
-- [x] T015 Luna read-only review against the sk-code-opencode checklists
+- [x] T015 Luna read-only review against the sk-code-skilled checklists
 - [x] T016 Fill the implementation summary and the acceptance evidence
 <!-- /ANCHOR:phase-3 -->
 

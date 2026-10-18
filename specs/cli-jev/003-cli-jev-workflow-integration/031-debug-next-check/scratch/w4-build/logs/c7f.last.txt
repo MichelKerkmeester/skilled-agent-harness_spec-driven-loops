@@ -1,4 +1,4 @@
-SKILL ROUTING: advisor live; compiled router → sk-code-opencode (evidence-base surface; implement→verify doctrine applied). ARTIFACT: sk-code → sk-code-opencode contract loaded.
+SKILL ROUTING: advisor live; compiled router → sk-code-skilled (evidence-base surface; implement→verify doctrine applied). ARTIFACT: sk-code → sk-code-skilled contract loaded.
 REPO RULES: evidence-and-proof.md, root-cause-and-debugging.md, communication-handoff.md.
 
 Work ran as briefed: three hash-anchored edits to T only (`edit_lines` reported "5 lines replaced, 10 lines added"), both edited regions re-read and matching the brief byte-for-byte, comment carries no spec/REQ identifiers. The old expectation was arithmetically impossible (A−B must equal W−L), and the kill branch is now driven by a schedule wrong on every row; the corrected counts match S's `summarizeColumn`/`decideVerdict` semantics (binomial tail of 12/12 at p=0.5 → 0.0002441).

@@ -10,7 +10,7 @@
       "status": "active",
       "dimension": "correctness",
       "title": "Seven lexical paths exceed the one-to-two-sentence intro contract",
-      "file": ".opencode/skills/sk-code/code-opencode/references/workflow_debug.md",
+      "file": ".opencode/skills/sk-code/code-skilled/references/workflow_debug.md",
       "line": 16,
       "lineRange": "14-20",
       "content_hash": "003db46a37b7dd81062a1b2f422a54851bb33b0fccb7f92325a16f45b0853280",
@@ -26,7 +26,7 @@
       "evidenceRefs": [
         ".opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md:67-71",
         ".opencode/skills/sk-doc/create-skill/assets/skill/skill_reference_template.md:56-87",
-        ".opencode/skills/sk-code/code-opencode/references/workflow_debug.md:14-20",
+        ".opencode/skills/sk-code/code-skilled/references/workflow_debug.md:14-20",
         ".opencode/skills/sk-code/code-webflow/references/css/quality_standards/patterns_and_naming_enforcement.md:17-23"
       ],
       "transitions": [

@@ -62,14 +62,14 @@ test('without a hint the tie-break order decides the lead surface', () => {
   const route = resolveRoute('sk-code', WEBFLOW_TESTING);
   assert.equal(route.action, 'route');
   assert.equal(route.selectionKind, 'orderedBundle');
-  assert.deepEqual(modes(route), ['sk-code-opencode', 'sk-code-webflow']);
+  assert.deepEqual(modes(route), ['sk-code-skilled', 'sk-code-webflow']);
 });
 
 test('a hinted surface the prompt matched leads the bundle', () => {
   for (const prompt of [WEBFLOW_TESTING, WEBFLOW_LANGUAGE]) {
     const route = resolveRoute('sk-code', prompt, { surfaceHint: 'WEBFLOW' });
     assert.equal(route.selectionKind, 'orderedBundle');
-    assert.deepEqual(modes(route), ['sk-code-webflow', 'sk-code-opencode']);
+    assert.deepEqual(modes(route), ['sk-code-webflow', 'sk-code-skilled']);
   }
   const collision = resolveRoute('sk-code', OBSIDIAN_WEBFLOW, { surfaceHint: 'sk-code-webflow' });
   assert.equal(collision.selectionKind, 'orderedBundle');
@@ -86,7 +86,7 @@ test('a hint the prompt did not match, UNKNOWN or an unknown name changes nothin
 test('a workflow mode keeps first place and only the surfaces reorder', () => {
   const route = resolveRoute('sk-code', REVIEW_TWO_SURFACES, { surfaceHint: 'WEBFLOW' });
   assert.equal(route.selectionKind, 'surfaceBundle');
-  assert.deepEqual(modes(route), ['sk-code-review', 'sk-code-webflow', 'sk-code-opencode']);
+  assert.deepEqual(modes(route), ['sk-code-review', 'sk-code-webflow', 'sk-code-skilled']);
 });
 
 test('a hub without surface packets ignores the hint', () => {
@@ -109,6 +109,6 @@ test('the front door passes --surface-hint through and keeps stdout to one route
     assert.equal(run.status, 0);
     assert.equal(run.stderr, '');
   }
-  assert.deepEqual(modes(JSON.parse(hinted.stdout)), ['sk-code-webflow', 'sk-code-opencode']);
+  assert.deepEqual(modes(JSON.parse(hinted.stdout)), ['sk-code-webflow', 'sk-code-skilled']);
   assert.equal(invalid.stdout, plain.stdout);
 });

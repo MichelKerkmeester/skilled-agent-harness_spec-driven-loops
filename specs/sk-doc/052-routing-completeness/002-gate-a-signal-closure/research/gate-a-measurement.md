@@ -112,12 +112,12 @@ Full list, one row per non-resolved signal, grouped by owning hub then bucket. `
 | verification commands | DEFERRED | sk-code | 0.54687 |  |
 | vitest covering | DEFERRED | sk-code | 0.7 |  |
 | workflow doctrine | DEFERRED | sk-code | 0.69287 |  |
-| code surface detection | MULTI | sk-code | 0.855671 | sk-code-quality,sk-code-review,sk-code-webflow,sk-code-opencode,sk-code-mobile-cli,sk-code-obsidian |
+| code surface detection | MULTI | sk-code | 0.855671 | sk-code-quality,sk-code-review,sk-code-webflow,sk-code-skilled,sk-code-mobile-cli,sk-code-obsidian |
 | p0 p1 p2 review | MULTI | sk-code | 0.760531 | sk-code-quality,sk-code-review |
-| sk-code | MULTI | sk-code | 0.642787 | sk-code-quality,sk-code-review,sk-code-webflow,sk-code-opencode,sk-code-mobile-cli,sk-code-obsidian |
-| sk-code hub | MULTI | sk-code | 0.666837 | sk-code-quality,sk-code-review,sk-code-webflow,sk-code-opencode,sk-code-mobile-cli,sk-code-obsidian |
-| stable jsonl keys | MULTI | sk-code | 0.732125 | sk-code-quality,sk-code-opencode |
-| surface-aware code implementation | MULTI | sk-code | 0.807637 | sk-code-quality,sk-code-review,sk-code-webflow,sk-code-opencode,sk-code-mobile-cli,sk-code-obsidian |
+| sk-code | MULTI | sk-code | 0.642787 | sk-code-quality,sk-code-review,sk-code-webflow,sk-code-skilled,sk-code-mobile-cli,sk-code-obsidian |
+| sk-code hub | MULTI | sk-code | 0.666837 | sk-code-quality,sk-code-review,sk-code-webflow,sk-code-skilled,sk-code-mobile-cli,sk-code-obsidian |
+| stable jsonl keys | MULTI | sk-code | 0.732125 | sk-code-quality,sk-code-skilled |
+| surface-aware code implementation | MULTI | sk-code | 0.807637 | sk-code-quality,sk-code-review,sk-code-webflow,sk-code-skilled,sk-code-mobile-cli,sk-code-obsidian |
 
 ### mcp-tooling
 

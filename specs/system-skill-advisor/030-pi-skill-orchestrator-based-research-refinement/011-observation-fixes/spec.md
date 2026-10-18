@@ -58,7 +58,7 @@ This is **Phase 11** of the Pi skill orchestrator research for skill advisor ref
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Phase 10's close-out listed seven small problems it had seen outside its own scope. Two are wrong text. The sk-code-opencode docs describe three drift guards where the wrapper runs two, and five phase descriptions in this packet read `Phase 1:` whatever their number. The rest are loose ends: an unused import, three doc paragraphs and two comments that break the voice rules, 46 metrics logs still at mode 0644 and six Dependabot alerts on vendored snapshots.
+Phase 10's close-out listed seven small problems it had seen outside its own scope. Two are wrong text. The sk-code-skilled docs describe three drift guards where the wrapper runs two, and five phase descriptions in this packet read `Phase 1:` whatever their number. The rest are loose ends: an unused import, three doc paragraphs and two comments that break the voice rules, 46 metrics logs still at mode 0644 and six Dependabot alerts on vendored snapshots.
 
 ### Purpose
 Every observation is fixed, shown not to be a defect or decided by the operator, so nothing from phase 10's list stays open.
@@ -70,7 +70,7 @@ Every observation is fixed, shown not to be a defect or decided by the operator,
 ## 3. SCOPE
 
 ### In Scope
-- **O1, drift-guard count.** The sk-code-opencode wrapper runs two guards and prints `all 2 guards PASSED`. Its own header, `SKILL.md` lines 173 and 185, both READMEs, the verification playbook scenario and the alignment reference still describe three, or name the deleted router-sync suite as live. The Hermes mirror of `SKILL.md` repeats the two `SKILL.md` lines.
+- **O1, drift-guard count.** The sk-code-skilled wrapper runs two guards and prints `all 2 guards PASSED`. Its own header, `SKILL.md` lines 173 and 185, both READMEs, the verification playbook scenario and the alignment reference still describe three, or name the deleted router-sync suite as live. The Hermes mirror of `SKILL.md` repeats the two `SKILL.md` lines.
 - **O2, unused import.** `hooks/lib/skill-advisor-cli-fallback.ts:13` imports `AdvisorHookStatus` and never uses it.
 - **O3, punctuation.** `runtime/lib/metrics.ts:238` and the fallback's comment at line 246 each hold an em dash. `feature-catalog/cli-surface/advisor-recommend.md:33` holds an em dash, a semicolon and a serial comma. The plugin bridge catalog line holds two semicolons, and `hooks/skill-advisor-hook.md:123` holds two semicolons and a serial comma.
 - **O4, placeholder descriptions.** Phases 005 and 007 to 010 carry the scaffold description `Phase 1: <slug>`. `create.sh` builds that text from the child's position in one invocation, so every phase appended to an existing parent is named Phase 1. This phase came out as `Phase 1: observation-fixes`, which reproduced it. Thirteen more folders in other packets carry the same label, and the operator approved regenerating them on 2026-09-27. Three of the thirteen have a `spec.md` that was never written, so they get the numbered label the fixed `create.sh` would write instead of generated text. A final-state check then found five more labels from the same bug, each a number other than 1. Four are quarantine folders beside two of the thirteen, labeled `Phase 2:` or `Phase 3:` where their own `spec.md` says 22, 23, 25 and 26. The fifth is `071-cli-hermes-creation/016-dispatch-enforcement-ci-guard`, labeled `Phase 4:` where its `spec.md` says 16. They came after the operator's answer and are fixed the same way under this phase's scope rule.
@@ -88,12 +88,12 @@ Every observation is fixed, shown not to be a defect or decided by the operator,
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` | Modify | The header comment names the two live guards |
-| `.skilled/skills/sk-code/sk-code-opencode/SKILL.md` | Modify | Lines 173 and 185 describe two guards |
-| `.hermes/skills/sk-code-opencode/SKILL.md` | Modify | The regenerated mirror of the edited `SKILL.md` |
-| `.skilled/skills/sk-code/sk-code-opencode/README.md` and `scripts/README.md` | Modify | The clean exit and the expected output name two guards |
-| `.skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/verification-alignment.md` | Modify | Names the two guards |
-| `.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md` | Modify | Records the deleted suite and what tests the bijection module now |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` | Modify | The header comment names the two live guards |
+| `.skilled/skills/sk-code/sk-code-skilled/SKILL.md` | Modify | Lines 173 and 185 describe two guards |
+| `.hermes/skills/sk-code-skilled/SKILL.md` | Modify | The regenerated mirror of the edited `SKILL.md` |
+| `.skilled/skills/sk-code/sk-code-skilled/README.md` and `scripts/README.md` | Modify | The clean exit and the expected output name two guards |
+| `.skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md` | Modify | Names the two guards |
+| `.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md` | Modify | Records the deleted suite and what tests the bijection module now |
 | `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | Modify | Drops the unused import and the comment's em dash |
 | `.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts` | Modify | The comment loses its em dash |
 | `advisor-recommend.md`, `opencode-plugin-bridge.md` and `hooks/skill-advisor-hook.md` under `.skilled/skills/system-skill-advisor/` | Modify | The paragraphs lose their em dash, semicolons and serial commas |
@@ -120,7 +120,7 @@ Every observation is fixed, shown not to be a defect or decided by the operator,
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-003 | The sk-code-opencode docs describe the two live guards | A tracked-file grep for three-guard claims returns only retirement notes, the wrapper exits 0 with `all 2 guards PASSED` and the Hermes `--check` no longer lists `sk-code-opencode` |
+| REQ-003 | The sk-code-skilled docs describe the two live guards | A tracked-file grep for three-guard claims returns only retirement notes, the wrapper exits 0 with `all 2 guards PASSED` and the Hermes `--check` no longer lists `sk-code-skilled` |
 | REQ-004 | The advisor fallback drops its unused import, and the two flagged comments lose their em dash | The advisor typecheck exits 0 and the advisor suite matches its `eaa02a56f5` counts |
 | REQ-005 | The three flagged doc paragraphs follow the voice rules | Each paragraph holds no em dash, semicolon or serial comma, and the sk-doc validator reports 0 issues for each file |
 | REQ-006 | Every advisor metrics log is private | All 53 logs report mode 600, and the old modes are kept for rollback |
@@ -145,7 +145,7 @@ Every observation is fixed, shown not to be a defect or decided by the operator,
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Risk | `create.sh` scaffolds every session's phases | Med | The change touches only the naming text, and the nine create test files pass |
-| Risk | Rebuilding the whole Hermes mirror would also write the other session's pending `sk-create-changelog` change | Med | Generate into a scratch folder and copy back only the sk-code-opencode file |
+| Risk | Rebuilding the whole Hermes mirror would also write the other session's pending `sk-create-changelog` change | Med | Generate into a scratch folder and copy back only the sk-code-skilled file |
 | Risk | The advisor TypeScript edits leave the dist older than its source, and the CLI then refuses to run, which turns every session's brief into an outage line | High | Rebuild right after the edit and probe `advisor_status` |
 | Risk | Another session is editing the system-spec-kit retrieval files that the trigger index build reads | Med | Stage only this phase's paths and build the index from a clean export of the pushed commit |
 | Dependency | The operator's yes for the Dependabot dismissals | O5 waits | Every other fix lands first |

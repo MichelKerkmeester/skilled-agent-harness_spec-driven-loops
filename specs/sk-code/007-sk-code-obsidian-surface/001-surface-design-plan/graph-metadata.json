@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`sk-code-obsidian` cannot be authored correctly on the first attempt without first grounding every",
     "created_at": "2026-08-28T18:17:35Z",
-    "last_save_at": "2026-10-03T16:45:22.387Z",
+    "last_save_at": "2026-10-18T20:45:10.568Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:21255826df7f8f7487b0400150aa15f317ccc3f94f637222dab8f3ef97523dd5",
+    "source_fingerprint": "sha256:643632c13eceae42ba00665261240567b6d90add94a1636e5b1d5ffd7b69b062",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dcfd4dca5c01b8f3f19b483cf8f72815dff6cf39ec54b8d6058d545616753d8e",
+      "spec.md": "52c3630b45793722ee03c45c65768c9bce3e82579b1ff377241d30327724633b",
       "plan.md": "481b7c3fabb4aed476a1504bb6b4fd94e82ab9c34012a973cee2c5f94dadade7",
       "tasks.md": "6ae3405ceeabc107e2fc3117ae348f9b180839ba048c92df0ed714ff773cdaa3",
       "implementation-summary.md": "2e743f8c31d09af53f2e36b49033fe587a6573f3395f7a94923d3281370357ea"

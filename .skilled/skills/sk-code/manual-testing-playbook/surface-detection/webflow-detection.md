@@ -1,7 +1,7 @@
 ---
 title: "SD-001: WEBFLOW Surface Detection"
 description: "Verify sk-code routes vanilla-JS / animation-library prompts to the WEBFLOW surface and loads the webflow/* reference and asset trees."
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # SD-001: WEBFLOW Surface Detection
@@ -10,7 +10,7 @@ version: 1.5.2.0
 
 This scenario verifies that sk-code's smart router correctly identifies WEBFLOW as the active code surface when the prompt references vanilla-JS animation libraries (motion.dev, GSAP, Lenis, HLS, Swiper, FilePond) or marker file paths (`src/2_javascript/`, `*.webflow.js`, `wrangler.toml`).
 
-WEBFLOW is the frontend HTML/CSS/JS surface for Webflow / vanilla-animation projects. When detected, sk-code MUST load `sk-code-webflow/references/*` and `sk-code-webflow/assets/*` and SHOULD NOT load any `sk-code-opencode/references/*` resources.
+WEBFLOW is the frontend HTML/CSS/JS surface for Webflow / vanilla-animation projects. When detected, sk-code MUST load `sk-code-webflow/references/*` and `sk-code-webflow/assets/*` and SHOULD NOT load any `sk-code-skilled/references/*` resources.
 
 Detection markers are defined verbatim in `shared/references/stack-detection.md:30-37`.
 
@@ -45,7 +45,7 @@ Prompt: `Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by Interse
 - `sk-code-webflow/assets/webflow-verification-checklist.md`
 - `sk-code-webflow/assets/patterns/interaction-gate-patterns.js` (when intent is implementation gating)
 
-**Expected NOT loaded**: any `sk-code-opencode/references/*` or `sk-code-opencode/assets/*` (would indicate misrouting).
+**Expected NOT loaded**: any `sk-code-skilled/references/*` or `sk-code-skilled/assets/*` (would indicate misrouting).
 
 **Expected agent dispatch**: `@code` (LEAF) for the actual edit, dispatched ONLY by `@orchestrate`. If the user prompt is invoked directly without orchestration, the AI may apply the change inline using sk-code guidance without dispatching @code.
 
@@ -80,7 +80,7 @@ Prompt: `Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by Interse
 | 1 | Advisor returns JSON with `top_skill: "sk-code"`, `score: ≥ 0.80`. |
 | 2 | Pass — proceed. |
 | 3 | sk-code SKILL.md is loaded; the AI runs the smart router pseudocode and emits `SURFACE: WEBFLOW`. |
-| 4 | The AI lists `sk-code-webflow/references/implementation/*` as loaded; lists `sk-code-webflow/assets/webflow-verification-checklist.md` as loaded; does NOT list any `sk-code-opencode/references/*`. |
+| 4 | The AI lists `sk-code-webflow/references/implementation/*` as loaded; lists `sk-code-webflow/assets/webflow-verification-checklist.md` as loaded; does NOT list any `sk-code-skilled/references/*`. |
 | 5 | Evidence file contains all of the above. |
 
 ### Pass/Fail Criteria
@@ -89,10 +89,10 @@ Prompt: `Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by Interse
   - Advisor wins sk-code at score ≥ 0.80.
   - sk-code reports surface == WEBFLOW.
   - Loaded references include at least 3 paths under `sk-code-webflow/references/implementation/`.
-  - Loaded references DO NOT include any `sk-code-opencode/references/`.
+  - Loaded references DO NOT include any `sk-code-skilled/references/`.
   - Extra `universal/` resource loads beyond the listed expectations are acceptable drift and do not affect the verdict.
 - **FAIL** iff:
-  - Advisor loses sk-code, OR surface != WEBFLOW, OR any `sk-code-opencode/references/*` is loaded.
+  - Advisor loses sk-code, OR surface != WEBFLOW, OR any `sk-code-skilled/references/*` is loaded.
 
 Evidence: `/tmp/skc-SD001-loaded-refs.txt` (AI response, surface-detection log line, loaded-refs list).
 
@@ -100,7 +100,7 @@ Evidence: `/tmp/skc-SD001-loaded-refs.txt` (AI response, surface-detection log l
 
 1. If advisor doesn't win sk-code: check `skill-graph.json` `sk-code.signals` array — ensure "webflow", "frontend", "animation" are present.
 2. If surface != WEBFLOW: re-read `shared/references/stack-detection.md:30-37` and verify the markers in the prompt actually match the regex/grep patterns.
-3. If `sk-code-opencode/references/*` is loaded: the router is mis-classifying. Check whether the CWD shell variable (`PWD`) accidentally contains `/.opencode/` (would trigger OPENCODE) — the marker priority is documented in SKILL.md smart router pseudocode.
+3. If `sk-code-skilled/references/*` is loaded: the router is mis-classifying. Check whether the CWD shell variable (`PWD`) accidentally contains `/.opencode/` (would trigger SKILLED) — the marker priority is documented in SKILL.md smart router pseudocode.
 
 ---
 

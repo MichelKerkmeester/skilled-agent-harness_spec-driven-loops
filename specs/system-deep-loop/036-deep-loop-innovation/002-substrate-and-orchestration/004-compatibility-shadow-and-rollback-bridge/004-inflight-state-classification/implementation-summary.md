@@ -126,7 +126,7 @@ Primary commands:
 ```text
 (cd .opencode/skills/system-spec-kit/mcp-server && node_modules/.bin/vitest run --no-coverage /absolute/worktree/.opencode/skills/system-deep-loop/runtime/tests/unit/inflight-state-classification.vitest.ts)
 .opencode/skills/system-spec-kit/node_modules/.bin/tsc --noEmit -p .opencode/skills/system-deep-loop/runtime/tsconfig.json
-python3 .opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-deep-loop/runtime/lib/inflight-state-classification
+python3 .opencode/skills/sk-code/code-skilled/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-deep-loop/runtime/lib/inflight-state-classification
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-deep-loop/036-deep-loop-innovation/004-compatibility-shadow-and-rollback-bridge/004-inflight-state-classification --strict
 ```
 

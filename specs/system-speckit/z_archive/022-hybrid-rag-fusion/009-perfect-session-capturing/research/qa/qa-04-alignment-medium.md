@@ -13,7 +13,7 @@
 - **Category:** ALIGNMENT
 - **Current Behavior:** Header is `// MODULE: Config` (with colon), not the required format example `// MODULE SessionExtractor`.
 - **Expected Behavior:** Top-of-file module header should use strict PascalCase module token and expected style (no colon), e.g. `// MODULE Config`.
-- **Root Cause:** Header convention drift from sk-code-opencode P0 naming/format requirement.
+- **Root Cause:** Header convention drift from sk-code-skilled P0 naming/format requirement.
 - **Suggested Fix:** Replace line 2 with `// MODULE Config` and keep this exact style consistently.
 - **Effort:** TRIVIAL (<5 min)
 
@@ -83,7 +83,7 @@
 - **Category:** ALIGNMENT
 - **Current Behavior:** Sections are labeled using block separators and custom names.
 - **Expected Behavior:** Use strict numbered ALL-CAPS line-comment headers (including `IMPORTS`).
-- **Root Cause:** Existing file template differs from sk-code-opencode P0 convention.
+- **Root Cause:** Existing file template differs from sk-code-skilled P0 convention.
 - **Suggested Fix:** Convert all section labels to required `// N. SECTION` syntax.
 - **Effort:** SMALL (<30 min)
 

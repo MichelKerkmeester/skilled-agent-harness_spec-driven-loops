@@ -1,10 +1,10 @@
 # Iteration 011 — Dimension(s): D4
 
 ## Scope this iteration
-Reviewed D4 Maintainability + sk-code-opencode alignment because the default rotation for iteration 11 lands on D4. I focused on fresh renderer-authority and test-contract evidence across the skill-advisor producer and renderer surfaces to determine whether a new maintainability defect exists beyond the earlier split-renderer concern.
+Reviewed D4 Maintainability + sk-code-skilled alignment because the default rotation for iteration 11 lands on D4. I focused on fresh renderer-authority and test-contract evidence across the skill-advisor producer and renderer surfaces to determine whether a new maintainability defect exists beyond the earlier split-renderer concern.
 
 ## Evidence read
-- .opencode/skills/sk-code-opencode/references/shared/universal_patterns.md:92 → the standard requires the same concept to keep the same name across the codebase.
+- .opencode/skills/sk-code-skilled/references/shared/universal_patterns.md:92 → the standard requires the same concept to keep the same name across the codebase.
 - .opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/skill-advisor-brief.ts:141 → the producer still carries a private `renderBrief` helper.
 - .opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/skill-advisor-brief.ts:189 → the shared payload envelope serializes `args.brief`, so the producer-local rendering path feeds downstream metadata.
 - .opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/skill-advisor-brief.ts:401 → `buildSkillAdvisorBrief` still computes `brief` with the producer-local renderer before returning the result object.

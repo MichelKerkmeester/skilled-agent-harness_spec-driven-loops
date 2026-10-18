@@ -1,0 +1,90 @@
+---
+title: "LS-003: SKILLED Shell Sub-Detection"
+description: "Verify that within SKILLED surface, shell-script extensions trigger loading of shell/* references (not typescript, python, or config)."
+version: 1.5.1.0
+---
+
+# LS-003: SKILLED Shell Sub-Detection
+
+## 1. OVERVIEW
+
+Verify language sub-detection for `.sh` / `.bash` files within SKILLED. Shell ref set loads; TypeScript/Python/Config sets do not.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+**Realistic user request**: Harden a validation script with strict mode and a cleanup trap.
+
+**Exact prompt**:
+```
+Add set -euo pipefail and a trap to .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh to clean up the temp dir on exit.
+```
+
+Prompt: `Add set -euo pipefail and a trap to .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh to clean up the temp dir on exit.`
+
+**Expected detection**:
+- Surface: `SKILLED`
+- Sub-language: `SHELL` (target `.sh`, signals: `set -euo pipefail`, `trap`)
+
+**Expected references loaded**:
+- `sk-code-skilled/references/shell/style-guide/overview-structure-and-naming.md`
+- `sk-code-skilled/references/shell/quality-standards/overview-and-priority-blockers.md`
+- `sk-code-skilled/references/shell/quick-reference/template-variables-and-loops.md`
+
+**Expected assets loaded**:
+- `sk-code-skilled/assets/checklists/shell-checklist.md`
+- `sk-code-skilled/assets/checklists/universal-checklist.md`
+
+**Expected NOT loaded**: any `sk-code-skilled/references/{typescript,python,config}/*`.
+
+---
+
+## 3. TEST EXECUTION
+
+### Preconditions
+
+1. Target file exists: `bash: test -f .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`
+2. Shell sub-language reference set intact: 3 files under `sk-code-skilled/references/shell/`.
+
+### Exact Command Sequence
+
+1. Invoke sk-code with the prompt.
+2. Capture loaded refs to `/tmp/skc-LS003-loaded-refs.txt`.
+3. Verify: 3 shell/* + 2 shared/* refs loaded; 0 typescript/python/config refs.
+
+### Expected Signals
+
+Expected signals: exactly 3 `shell/*` refs plus 2 `shared/*` refs load, and 0 typescript/python/config refs load.
+
+### Pass/Fail Criteria
+
+- **PASS** iff: 3 shell/* refs + 2 shared/* refs loaded AND 0 other-sub-language refs.
+- **FAIL** iff: any typescript/python/config ref leaks.
+
+Evidence: `/tmp/skc-LS003-loaded-refs.txt` (loaded-refs transcript).
+
+### Failure Triage
+
+1. Verify `.sh` and shebang signals (`#!/bin/bash`, `#!/usr/bin/env bash`) in SKILL.md sub-detection table.
+2. Verify `pipefail` is in the SHELL signal keywords list.
+
+---
+
+## 4. SOURCE FILES
+
+- `../manual-testing-playbook.md` — Root directory page and scenario summary.
+- `.skilled/skills/sk-code/SKILL.md` (sub-detection table).
+- `.skilled/skills/sk-code/sk-code-skilled/references/shell/{style_guide,quality_standards,quick_reference}.md`.
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Language Sub-Detection
+- Playbook ID: LS-003
+- **Created**: 2026-05-04
+- **Critical path**: No
+- **Destructive**: No
+- **Concurrent-safe**: Yes
+- **Last validated**: pending first manual run

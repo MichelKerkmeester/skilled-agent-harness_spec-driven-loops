@@ -42,7 +42,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Confirm phase-022 scope and out-of-scope boundaries [small] — spec.md defines the four-sub-skill collapse, zero-loss requirement, routing reconciliation, external reference updates, benchmark re-baseline, live-mode deferral, and pre-existing harness `intents` boundary
-- [x] T002 Confirm target sk-code shape [small] — only `code-opencode`, `code-webflow`, `code-review`, and `code-quality` remain as routable sub-skills
+- [x] T002 Confirm target sk-code shape [small] — only `code-skilled`, `code-webflow`, `code-review`, and `code-quality` remain as routable sub-skills
 - [x] T003 Inventory dissolved workflow-mode content [medium] — implement/debug/verify doctrine, verify scripts, and debugging/verification checklists were identified for preservation
 - [x] T004 Inventory animation content [medium] — `code-animation/{references,assets}/*` was identified for folding into `code-webflow/{references,assets}/animation/*`
 - [x] T005 Confirm deterministic benchmark gate [small] — router mode is the Lane-C CI gate; live-mode benchmark re-baseline remains out of scope
@@ -55,10 +55,10 @@ _memory:
 
 ### sk-code Baseline
 - [x] T006 Consolidate workflow doctrine [large] — generic implement, debug, and verify doctrine moved into `shared/references/workflow_{implement,debug,verify}.md`
-- [x] T007 Add surface-local workflow symlinks [medium] — both `code-opencode/references/` and `code-webflow/references/` symlink the shared workflow doctrine
+- [x] T007 Add surface-local workflow symlinks [medium] — both `code-skilled/references/` and `code-webflow/references/` symlink the shared workflow doctrine
 
 ### sk-design Baseline
-- [x] T008 Preserve verify scripts [medium] — `verify_alignment_drift.py` and `verify_stack_folders.py` are preserved under `code-opencode/assets/scripts/`
+- [x] T008 Preserve verify scripts [medium] — `verify_alignment_drift.py` and `verify_stack_folders.py` are preserved under `code-skilled/assets/scripts/`
 - [x] T009 Preserve debugging and verification checklists [medium] — `code-webflow/assets/webflow-{debugging,verification}_checklist.md` and `shared/references/universal-{debugging,verification}_checklist.md` remain available
 
 ### deep-loop Baseline
@@ -76,7 +76,7 @@ _memory:
 
 ### Pre-Promotion Gate
 - [x] T013 Repoint external references [medium] — agents and specs/docs no longer route to dissolved sub-skills; code-review wiring in agents/review.md remains intact
-- [x] T014 Restore verify Iron Law references [small] — shared verify doctrine carries the Iron Law and check-rule-copies plus external verify-script refs point to `code-opencode`
+- [x] T014 Restore verify Iron Law references [small] — shared verify doctrine carries the Iron Law and check-rule-copies plus external verify-script refs point to `code-skilled`
 - [x] T015 Verify parent hub strict invariants [small] — parent-skill-check STRICT on sk-code exited 0 with all hard invariants passed and 0 warnings
 
 ### Severity Promotion
@@ -91,7 +91,7 @@ _memory:
 ## Phase 4: Parent Rollup and Optional Catalogs
 
 ### Parent Rollup
-- [x] T019 Re-translate manual testing playbook gold [large] — 17 files updated from `code-animation/{references,assets}/*` to `code-webflow/{references,assets}/animation/*`, dissolved verify-mode scripts to `code-opencode/assets/scripts/*`, and one performance checklist reference to `shared/references/`
+- [x] T019 Re-translate manual testing playbook gold [large] — 17 files updated from `code-animation/{references,assets}/*` to `code-webflow/{references,assets}/animation/*`, dissolved verify-mode scripts to `code-skilled/assets/scripts/*`, and one performance checklist reference to `shared/references/`
 - [x] T020 Update benchmark harness expectations [medium] — surface-slice sync, code-surface path parse, and skill-benchmark routing vitests were repointed off dissolved modes and onto the two-axis model
 - [x] T021 Regenerate router-final [medium] — deterministic router-final report regenerated with verdict CONDITIONAL and aggregate 71, holding the prior CONDITIONAL 71 requirement
 
@@ -117,7 +117,7 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] sk-code exposes exactly four routable sub-skills: `code-opencode`, `code-webflow`, `code-review`, and `code-quality`.
+- [x] sk-code exposes exactly four routable sub-skills: `code-skilled`, `code-webflow`, `code-review`, and `code-quality`.
 - [x] Dissolved-mode doctrine, verify scripts, checklists, and animation resources are preserved with no known content loss.
 - [x] Routing metadata, external references, playbook gold, and benchmark harness expectations are reconciled to the two-axis model.
 - [x] Deterministic router-final remains CONDITIONAL with aggregate 71, meeting the prior CONDITIONAL 71 requirement.

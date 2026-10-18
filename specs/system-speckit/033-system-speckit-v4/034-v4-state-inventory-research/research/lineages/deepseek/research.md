@@ -21,7 +21,7 @@
 |---|---|---|
 | cli-external-orchestration | cli-opencode, cli-claude-code, cli-codex, cli-cursor, cli-devin, cli-pi (all metadata) | 6 |
 | mcp-tooling | mcp-chrome-devtools, mcp-click-up, mcp-aside-devtools, mcp-figma, mcp-refero, mcp-mobbin, mcp-obsidian, mcp-notion, mcp-magicpath (all metadata) | 9 |
-| sk-code | sk-code-quality, sk-code-review, sk-code-webflow, sk-code-opencode, sk-code-mobile-cli, sk-code-obsidian (all metadata) | 6 |
+| sk-code | sk-code-quality, sk-code-review, sk-code-webflow, sk-code-skilled, sk-code-mobile-cli, sk-code-obsidian (all metadata) | 6 |
 | sk-design | sk-design-fundamentals, sk-design-md-generator, sk-design-diagram, sk-design-chart (all metadata) | 4 |
 | sk-doc | sk-create-skill, sk-create-skill-parent, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-changelog, sk-create-diff, sk-create-frontmatter, sk-create-quality-control, sk-create-repo-rule, sk-create-with-human-voice (all metadata) | 14 |
 | system-deep-loop | research (lexical), review (lexical), ai-council (lexical), agent-improvement (alias-fold), model-benchmark (command-bridge), skill-benchmark (command-bridge) | 6 |

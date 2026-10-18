@@ -21,7 +21,7 @@ This makes causal depth deterministic for rooted cycles while keeping the existi
 
 ## Tests and checks
 
-- `python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root ".opencode/skills/system-spec-kit/mcp_server"` -> PASS
+- `python3 .opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py --root ".opencode/skills/system-spec-kit/mcp_server"` -> PASS
 - `npx vitest run tests/graph-signals.vitest.ts` -> PASS (38 tests)
 
 ## Notes

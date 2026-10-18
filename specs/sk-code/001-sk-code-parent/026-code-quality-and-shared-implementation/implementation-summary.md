@@ -76,7 +76,7 @@ The work followed the plan's safe sequencing A → B → C → D → E. Document
 
 | Decision | Rationale |
 |----------|-----------|
-| Fix the checklist display label only, not the hrefs | The `../code-opencode/assets/checklists/` hrefs already resolved; only the display text `opencode-checklists` was wrong, and the system-spec-kit checklist handoff had to stay intact |
+| Fix the checklist display label only, not the hrefs | The `../code-skilled/assets/checklists/` hrefs already resolved; only the display text `opencode-checklists` was wrong, and the system-spec-kit checklist handoff had to stay intact |
 | Make the evidence envelope advisory, never authoritative | Mirrors `code.md`'s `AGENT_IO_RESULT v1`; `status` is fixed to `advisory` so `code-quality` cannot claim final success or replace the verification handoff |
 | Add the mirror-sync gate as a note, not a table restructure | The `code-quality/SKILL.md` comment-hygiene table is deliberately comment-scoped and not wrong, only incomplete; a one-sentence note is the minimal honest fix |
 | Keep quality-mode vocabulary additive with one advisor identity | Avoids a packet-local `code-quality` advisor target; the parent `sk-code` already carries the quality-gate signals, and the drift-guards gate the additions |

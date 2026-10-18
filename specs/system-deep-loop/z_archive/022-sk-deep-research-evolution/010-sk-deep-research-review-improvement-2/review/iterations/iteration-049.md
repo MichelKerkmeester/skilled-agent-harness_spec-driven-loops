@@ -16,7 +16,7 @@ completedAt: 2026-04-12T18:49:53Z
 
 ● skill(sk-code-review)
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 ● memory_match_triggers (MCP: spec_kit_memory) · prompt: "Deep review iteration 49: traceability re…
   └ {"summary":"Matched 3 memories via trigger phrases","data":{"matchType":"trig...

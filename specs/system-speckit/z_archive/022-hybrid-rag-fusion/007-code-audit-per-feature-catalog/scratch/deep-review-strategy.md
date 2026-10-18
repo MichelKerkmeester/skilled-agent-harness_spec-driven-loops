@@ -15,7 +15,7 @@ Persistent brain for the deep review of 007-code-audit-per-feature-catalog. Trac
 - **Target**: 22 child spec folders auditing 220+ features of the Spec Kit Memory MCP server
 - **Source Code**: 251 code files, 317 test files in `.opencode/skills/system-spec-kit/mcp_server/`
 - **Feature Catalog**: 19 categories in `.opencode/skills/system-spec-kit/feature_catalog/`
-- **Standards**: sk-code-opencode (JS/TS/Python/Shell), system-spec-kit architecture
+- **Standards**: sk-code-skilled (JS/TS/Python/Shell), system-spec-kit architecture
 - **Prior Work**: Original audit (2026-03-22) found 178 MATCH, 39 PARTIAL, 0 MISMATCH. Re-audit (2026-03-23) found 133 MATCH, 84 PARTIAL, 5 MISMATCH including 4 P0 deprecated-as-active findings.
 
 ---
@@ -27,7 +27,7 @@ Full deep review of the 007-code-audit-per-feature-catalog spec folder and all 2
 1. **Correctness**: Are audit findings accurate? Do MATCH/PARTIAL/MISMATCH classifications hold against current source code?
 2. **Security**: Are there security concerns in the audited code? Are audit outputs safe (no secrets, no injection vectors)?
 3. **Traceability**: Do spec artifacts align with implementation? Are checklist items backed by evidence? Do feature catalog entries match code?
-4. **Maintainability**: Do patterns follow sk-code-opencode standards? Is the audit methodology sustainable? Are findings actionable?
+4. **Maintainability**: Do patterns follow sk-code-skilled standards? Is the audit methodology sustainable? Are findings actionable?
 
 Additional focus: Pipeline workflow connections, bug verification, feature testing completeness.
 
@@ -39,7 +39,7 @@ Additional focus: Pipeline workflow connections, bug verification, feature testi
 - [ ] D1 Correctness — Audit finding accuracy, MATCH/PARTIAL/MISMATCH classification validity, source code behavior vs documented behavior, re-audit delta verification
 - [ ] D2 Security — Input validation in MCP handlers, auth/scope enforcement, secrets exposure, unsafe deserialization, SQL injection in SQLite queries
 - [ ] D3 Traceability — Spec/code alignment across 22 phases, checklist evidence verification, feature catalog vs implementation cross-reference, pipeline connection integrity
-- [ ] D4 Maintainability — sk-code-opencode compliance, system-spec-kit architecture alignment, pattern consistency, documentation quality, safe follow-on change cost
+- [ ] D4 Maintainability — sk-code-skilled compliance, system-spec-kit architecture alignment, pattern consistency, documentation quality, safe follow-on change cost
 
 ---
 

@@ -91,7 +91,7 @@ python3: error: couldn't create cache file '/tmp/xcrun_db-UzrG25tx' (errno=Opera
     "reason": "Matched: !/system-spec-kit(explicit), !spec, !system-spec-kit(explicit), document~, folder"
   },
   {
-    "skill": "sk-code-opencode",
+    "skill": "sk-code-skilled",
     "kind": "skill",
     "confidence": 0.95,
     "uncertainty": 0.15,
@@ -141,15 +141,15 @@ python3: error: couldn't create cache file '/tmp/xcrun_db-UzrG25tx' (errno=Opera
 ]
 
 codex
-Skill routing points strongly to `sk-code-review`, with `sk-code-opencode` as the repo-specific overlay. I’m loading just the relevant review guidance now, then I’ll walk the target test files line by line and map findings to the documented contract.
+Skill routing points strongly to `sk-code-review`, with `sk-code-skilled` as the repo-specific overlay. I’m loading just the relevant review guidance now, then I’ll walk the target test files line by line and map findings to the documented contract.
 exec
 /bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-opencode/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-skilled/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-code-review
-description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-opencode, sk-code-web, and sk-code-full-stack standards."
+description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-skilled, sk-code-web, and sk-code-full-stack standards."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.2.0.0
 ---
@@ -199,7 +199,7 @@ Review behavior follows a baseline+overlay model:
 
 - Baseline (always): `sk-code` (implemented by this skill: `sk-code-review`)
 - Overlay (exactly one `sk-code-*`):
-  - OpenCode system context -> `sk-code-opencode`
+  - OpenCode system context -> `sk-code-skilled`
   - Frontend/web context -> `sk-code-web`
   - Default/other stacks -> `sk-code-full-stack`
 
@@ -356,7 +356,7 @@ def detect_overlay_skill(task, workspace_files=None, changed_files=None) -> str:
     files = " ".join((workspace_files or []) + (changed_files or [])).lower()
 
     if "opencode" in text or ".opencode/" in files or "jsonc" in text or "mcp" in text:
-        return "sk-code-opencode"
+        return "sk-code-skilled"
     if any(term in text for term in ["frontend", "web", "css", "dom", "browser", "webflow"]) or any(
         marker in files for marker in ["next.config", "vite.config", "package.json", "src/"]
     ):
@@ -370,7 +370,7 @@ def route_review_resources(task, workspace_files=None, changed_files=None):
 
  succeeded in 0ms:
 ---
-name: sk-code-opencode
+name: sk-code-skilled
 description: Multi-language code standards for OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC) with language detection routing, universal patterns, and quality checklists.
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 1.2.0.0
@@ -852,7 +852,7 @@ Severity guidance:
 - [security_checklist.md](./security_checklist.md) - Security, authz, abuse, and privacy risk checks.
 - [solid_checklist.md](./solid_checklist.md) - SOLID (SRP/OCP/LSP/ISP/DIP) and architecture risk prompts.
 
-Overlay portability: pair this baseline with stack-specific test guidance from `sk-code-opencode`, `sk-code-web`, or `sk-code-full-stack`.
+Overlay portability: pair this baseline with stack-specific test guidance from `sk-code-skilled`, `sk-code-web`, or `sk-code-full-stack`.
 <!-- /ANCHOR:related-resources -->
 
 exec

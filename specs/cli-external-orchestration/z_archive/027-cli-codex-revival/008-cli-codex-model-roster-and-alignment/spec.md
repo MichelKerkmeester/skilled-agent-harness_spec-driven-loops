@@ -42,7 +42,7 @@ Expand the cli-codex skill's documented GPT model roster from a single `gpt-5.5`
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 ### Problem Statement
-The cli-codex skill documented a single-model contract — "the skill dispatches `gpt-5.5` for every task" — even though the `fast` service tier exposes three additional GPT-5.6 models (`luna`, `terra`, `sol`) that reach reasoning-effort levels (`max`, `ultra`) the docs never named. A caller who needed reasoning past `xhigh` had no documented, verified path. Separately, a `sk-code/code-opencode` authoring checklist still claimed "`.codex/` is not present", a stale assertion left over from before the codex surface became a live runtime mirror (`hooks.json`, `config.toml`, `.codex/agents/*.toml`).
+The cli-codex skill documented a single-model contract — "the skill dispatches `gpt-5.5` for every task" — even though the `fast` service tier exposes three additional GPT-5.6 models (`luna`, `terra`, `sol`) that reach reasoning-effort levels (`max`, `ultra`) the docs never named. A caller who needed reasoning past `xhigh` had no documented, verified path. Separately, a `sk-code/code-skilled` authoring checklist still claimed "`.codex/` is not present", a stale assertion left over from before the codex surface became a live runtime mirror (`hooks.json`, `config.toml`, `.codex/agents/*.toml`).
 ### Purpose
 Give cli-codex an accurate, verified model roster: document all four fast-tier models with per-model effort ceilings, prove each documented model×level callable live so no phantom ID ships, keep the default dispatch backward-compatible, and correct the stale codex-surface doc claim so the authoring checklist matches the live filesystem.
 <!-- /ANCHOR:problem -->
@@ -53,7 +53,7 @@ Give cli-codex an accurate, verified model roster: document all four fast-tier m
 - Extend the documented effort scale to add `max` and `ultra` above `xhigh`.
 - Reframe the CX-002 manual-testing scenario from "model lock" to "default + roster verification" in place.
 - Live-verify all twenty model×effort cells through `codex exec` before writing the roster docs.
-- Fix the stale "`.codex/` is not present" claim in the `code-opencode` agent-authoring checklist.
+- Fix the stale "`.codex/` is not present" claim in the `code-skilled` agent-authoring checklist.
 ### Out of Scope
 - Changing the default dispatch (`gpt-5.5 medium fast` stays the default).
 - Renaming the `gpt_5_5_model_lock.md` playbook file or the `CX-002` id.
@@ -69,7 +69,7 @@ Give cli-codex an accurate, verified model roster: document all four fast-tier m
 | `cli-codex/manual_testing_playbook/cli_invocation/gpt_5_5_model_lock.md` | Modify | CX-002 reframed to default + roster verification (filename + id kept). |
 | `cli-codex/manual_testing_playbook/manual_testing_playbook.md` | Modify | CX-002 index entry + global precondition #6. |
 | `cli-codex/changelog/v1.6.0.0.md` | Create | Release note for the roster expansion. |
-| `sk-code/code-opencode/assets/checklists/agent_authoring.md` | Modify | Fix the stale "`.codex/` is not present" claim. |
+| `sk-code/code-skilled/assets/checklists/agent_authoring.md` | Modify | Fix the stale "`.codex/` is not present" claim. |
 <!-- /ANCHOR:scope -->
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS

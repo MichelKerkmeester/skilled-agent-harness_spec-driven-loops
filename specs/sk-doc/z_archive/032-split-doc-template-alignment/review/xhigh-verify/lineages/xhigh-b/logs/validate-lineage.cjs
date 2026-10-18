@@ -99,7 +99,7 @@ const targetStatus = execFileSync('git', [
   'status',
   '--short',
   '--',
-  '.opencode/skills/sk-code/code-opencode',
+  '.opencode/skills/sk-code/code-skilled',
   '.opencode/skills/sk-code/code-webflow',
   '.opencode/skills/sk-code/code-quality',
   '.opencode/specs/sk-code/019-split-doc-template-alignment/spec.md',

@@ -55,8 +55,8 @@ The verifier skips recorded spec evidence and experiment fixture trees, so the w
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py` | Modify | Add the skip rule to the file walk |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py` | Modify | Add the skip test |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py` | Modify | Add the skip rule to the file walk |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py` | Modify | Add the skip test |
 <!-- /ANCHOR:scope -->
 
 ---

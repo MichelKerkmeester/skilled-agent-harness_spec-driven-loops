@@ -1,1 +1,1 @@
-sk-code-opencode language reference folder validator.
+sk-code-skilled language reference folder validator.

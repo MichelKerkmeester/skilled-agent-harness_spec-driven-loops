@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 7: sk-code-script-kebab-names"
-description: "The strict skill package check failed sk-code-opencode on three snake_case script names under assets/scripts. This phase renames them and their two tests to kebab-case and updates every live reference first."
+description: "The strict skill package check failed sk-code-skilled on three snake_case script names under assets/scripts. This phase renames them and their two tests to kebab-case and updates every live reference first."
 trigger_phrases:
   - "sk code script kebab names"
   - "phase 7 sk code script kebab names"
@@ -27,7 +27,7 @@ contextType: "general"
 | **Phase** | 7 of 7 |
 | **Predecessor** | 006-skill-package-doc-findings |
 | **Successor** | 003-feature-catalog-findings |
-| **Handoff Criteria** | sk-code-opencode passes `package_skill.py --check --strict` with its tests and drift guards green |
+| **Handoff Criteria** | sk-code-skilled passes `package_skill.py --check --strict` with its tests and drift guards green |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -37,7 +37,7 @@ contextType: "general"
 
 This is **Phase 7** of the feature catalog template-anchor deprecation. It remediates pre-existing findings that phases 1 and 2 surfaced.
 
-**Scope Boundary**: the three drift-guard scripts and two tests in sk-code-opencode, the docs, wrapper and leaf manifest that cite them, one changelog entry missing its version key, and the version carriers and new entries of sk-code-opencode and sk-code-obsidian.
+**Scope Boundary**: the three drift-guard scripts and two tests in sk-code-skilled, the docs, wrapper and leaf manifest that cite them, one changelog entry missing its version key, and the version carriers and new entries of sk-code-skilled and sk-code-obsidian.
 
 **Dependencies**:
 - None. The scripts are loaded by relative path from the wrapper and the tests.
@@ -54,7 +54,7 @@ This is **Phase 7** of the feature catalog template-anchor deprecation. It remed
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-`package_skill.py --check --strict` failed sk-code-opencode because `router_replay_lib.cjs`, `verify_doc_claims.cjs` and `verify_router_sync.cjs` break the kebab-case rule for package files. A rename without updating the callers would break the drift-guard wrapper, a `require()` and two tests.
+`package_skill.py --check --strict` failed sk-code-skilled because `router_replay_lib.cjs`, `verify_doc_claims.cjs` and `verify_router_sync.cjs` break the kebab-case rule for package files. A rename without updating the callers would break the drift-guard wrapper, a `require()` and two tests.
 
 ### Purpose
 The scripts carry kebab-case names and every caller still finds them.
@@ -70,7 +70,7 @@ The scripts carry kebab-case names and every caller still finds them.
 - Replace the old names in every live doc, script and manifest that cites them
 - Regenerate the sk-code leaf manifest with its generator
 - Add the missing version key to `changelog/v1.0.1.0.md`
-- Patch-bump sk-code-opencode and sk-code-obsidian
+- Patch-bump sk-code-skilled and sk-code-obsidian
 
 ### Out of Scope
 - Historical changelog entries and spec folders - they record what was true then
@@ -81,7 +81,7 @@ The scripts carry kebab-case names and every caller still finds them.
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| Five sk-code-opencode scripts and tests | Rename | Kebab-case names |
+| Five sk-code-skilled scripts and tests | Rename | Kebab-case names |
 | Ten docs, the wrapper and `leaf-manifest.json` | Modify | Updated references |
 | `changelog/v1.0.1.0.md` | Modify | Version key |
 | Two unit version carriers and entries | Modify and create | Patch bump |
@@ -114,7 +114,7 @@ The scripts carry kebab-case names and every caller still finds them.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `package_skill.py --check --strict` prints Result: PASS for sk-code-opencode.
+- **SC-001**: `package_skill.py --check --strict` prints Result: PASS for sk-code-skilled.
 - **SC-002**: Both tests and all four drift guards pass, as before.
 <!-- /ANCHOR:success-criteria -->
 

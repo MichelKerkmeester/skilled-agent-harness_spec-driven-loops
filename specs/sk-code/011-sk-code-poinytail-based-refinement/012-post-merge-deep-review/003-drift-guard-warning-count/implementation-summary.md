@@ -14,11 +14,11 @@ _memory:
     next_safe_action: "Commit the child"
     blockers: []
     key_files:
-      - ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh"
-      - ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md"
-      - ".skilled/skills/sk-code/sk-code-opencode/SKILL.md"
-      - ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.2.0.md"
-      - ".hermes/skills/sk-code-opencode/SKILL.md"
+      - ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh"
+      - ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md"
+      - ".skilled/skills/sk-code/sk-code-skilled/SKILL.md"
+      - ".skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.2.0.md"
+      - ".hermes/skills/sk-code-skilled/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-003-drift-guard-warning-count"
@@ -60,11 +60,11 @@ A run that used to end on a clean "all 4 guards PASSED" over 272 alignment warni
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` | Modified | Warning counts on PASS lines and the summary |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/README.md` | Modified | Expected output and table row |
-| `.skilled/skills/sk-code/sk-code-opencode/SKILL.md` | Modified | Version 1.2.2.0 |
-| `.skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.2.0.md` | Created | Changelog entry |
-| `.hermes/skills/sk-code-opencode/SKILL.md` | Modified | Regenerated Hermes copy |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` | Modified | Warning counts on PASS lines and the summary |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/README.md` | Modified | Expected output and table row |
+| `.skilled/skills/sk-code/sk-code-skilled/SKILL.md` | Modified | Version 1.2.2.0 |
+| `.skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.2.0.md` | Created | Changelog entry |
+| `.hermes/skills/sk-code-skilled/SKILL.md` | Modified | Regenerated Hermes copy |
 <!-- /ANCHOR:what-built -->
 
 ---

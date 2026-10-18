@@ -32,7 +32,7 @@ Serves as the "persistent brain" for a deep review session. Records which dimens
 ---
 
 ## 2. TOPIC
-commit b6eef4ebbb on branch worktrees/126-drift-guard-tolerance: the router-sync existence filter, archived-gold skip and first-map anchor, the registry-derived doc-claims surface count with its allowlist row, their four tests, the scripts README row, the sk-code-opencode 1.2.4.0 release with its Hermes copy, and the phase spec docs.
+commit b6eef4ebbb on branch worktrees/126-drift-guard-tolerance: the router-sync existence filter, archived-gold skip and first-map anchor, the registry-derived doc-claims surface count with its allowlist row, their four tests, the scripts README row, the sk-code-skilled 1.2.4.0 release with its Hermes copy, and the phase spec docs.
 
 Dimensions, risk-ordered: correctness, security, traceability, maintainability. Max iterations 5, convergence threshold 0.1, stop policy max-iterations.
 
@@ -105,9 +105,9 @@ Dimensions, risk-ordered: correctness, security, traceability, maintainability. 
 - Leg 2 on-disk filter false pass: a parent map citing a dropped packet falls to ownedLeaf and fails when the regenerated manifest lacks the mode (iteration 1, evidence: verify-router-sync.cjs:224)
 - Leg 3 skip breadth: ORPHAN_WORKFLOW_MODE covers every undeclared mode; accepted residual risk per goal D2/spec.md risk row, declared-mode PACKET_MISMATCH still fails (iteration 1, evidence: leaf-resource-contract.cjs:457)
 - Doc-claims allowlist inertness: the live line contains the lowercase allowlist substring, so the row matches (iteration 1, evidence: agent-authoring.md:43)
-- Cross-runtime divergence: the .hermes copy differs from canonical only by its generated banner; both carry version 1.2.4.0 (iteration 3, evidence: .hermes/skills/sk-code-opencode/SKILL.md)
+- Cross-runtime divergence: the .hermes copy differs from canonical only by its generated banner; both carry version 1.2.4.0 (iteration 3, evidence: .hermes/skills/sk-code-skilled/SKILL.md)
 - Playbook capability drift: OC-008's expected_resources both exist and its guard list matches the shipped wrapper (iteration 3, evidence: manual-testing-playbook/authoring-verification/verification-alignment.md)
-- Stale version references: 1.2.3.0 appears only inside its own changelog file (iteration 3, evidence: .skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.3.0.md)
+- Stale version references: 1.2.3.0 appears only inside its own changelog file (iteration 3, evidence: .skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.3.0.md)
 - Commit-metadata traceability: the commit carries the required Spec: trailer, no Co-Authored-By line, and exactly one new changelog file (iteration 3, evidence: git show -s --format=%B b6eef4ebbb)
 - Comment-hygiene violation in the changed guards and tests: sweep found no spec paths, REQ/AC/CHK ids or finding ids; each new comment states why (iteration 4, evidence: verify-doc-claims.cjs:42-44, verify-router-sync.cjs:31)
 - ORPHAN_WORKFLOW_MODE magic-string coupling: the contract string is a bare literal at leaf-resource-contract.cjs:457, but the leg 3 test at verify-router-sync.test.cjs:146 exercises the skip and fails closed on a rename (iteration 4)
@@ -157,14 +157,14 @@ Do not inline full source bodies. Do not dispatch the retired standalone context
 
 | File | Dimensions Reviewed | Last Iteration | Findings | Status |
 |------|-------------------|----------------|----------|--------|
-| .hermes/skills/sk-code-opencode/SKILL.md | D1+D3 | 3 | 0 P0, 0 P1, 1 P2 (mirrored R3-P2-002) | reviewed |
-| .skilled/skills/sk-code/sk-code-opencode/SKILL.md | D1+D3 | 3 | 0 P0, 0 P1, 1 P2 (R3-P2-002) | reviewed |
-| .skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md | D1+D3 | 3 | 0 P0, 0 P1, 0 P2 (updated row verified) | reviewed |
-| .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs | D1 | 1 | 0 P0, 0 P1, 2 P2 | reviewed |
-| .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs | D1 | 1 | 0 P0, 0 P1, 0 P2 | reviewed |
-| .skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.4.0.md | D1 | 1 | 0 P0, 0 P1, 0 P2 | reviewed |
-| .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs | D1 | 1 | 0 P0, 0 P1, 0 P2 | reviewed |
-| .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs | D1 | 1 | 0 P0, 0 P1, 0 P2 | reviewed |
+| .hermes/skills/sk-code-skilled/SKILL.md | D1+D3 | 3 | 0 P0, 0 P1, 1 P2 (mirrored R3-P2-002) | reviewed |
+| .skilled/skills/sk-code/sk-code-skilled/SKILL.md | D1+D3 | 3 | 0 P0, 0 P1, 1 P2 (R3-P2-002) | reviewed |
+| .skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md | D1+D3 | 3 | 0 P0, 0 P1, 0 P2 (updated row verified) | reviewed |
+| .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs | D1 | 1 | 0 P0, 0 P1, 2 P2 | reviewed |
+| .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs | D1 | 1 | 0 P0, 0 P1, 0 P2 | reviewed |
+| .skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.4.0.md | D1 | 1 | 0 P0, 0 P1, 0 P2 | reviewed |
+| .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-doc-claims.test.cjs | D1 | 1 | 0 P0, 0 P1, 0 P2 | reviewed |
+| .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs | D1 | 1 | 0 P0, 0 P1, 0 P2 | reviewed |
 | specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/003-example-tolerant-drift-guards/acceptance-criteria.md | D1+D3 | 3 | 0 P0, 0 P1, 1 P2 (R3-P2-003) | reviewed |
 | specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/003-example-tolerant-drift-guards/goal.md | D1+D3 | 3 | 0 P0, 0 P1, 0 P2 | reviewed |
 | specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/003-example-tolerant-drift-guards/plan.md | D1+D3 | 3 | 0 P0, 0 P1, 1 P2 (R3-P2-001) | reviewed |

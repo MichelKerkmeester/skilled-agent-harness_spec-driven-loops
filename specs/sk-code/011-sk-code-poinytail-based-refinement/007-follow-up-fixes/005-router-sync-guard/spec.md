@@ -48,7 +48,7 @@ This is **Phase 5** of the Follow-up fixes for the sk-code Ponytail refinement s
 - `assets/scripts/verify_router_sync.cjs` (guard) and `assets/scripts/router_replay_lib.cjs` (replay functions it needs)
 - Third guard in `scripts/run-all-drift-guards.sh`, gated as described in Open Questions
 - Retirement notes in the five files the last phase wrote, updated to name the restored guard and the one gap that remains
-- Regenerated `leaf-manifest.json` and Hermes copy of `sk-code-opencode/SKILL.md`
+- Regenerated `leaf-manifest.json` and Hermes copy of `sk-code-skilled/SKILL.md`
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -60,7 +60,7 @@ This is **Phase 5** of the Follow-up fixes for the sk-code Ponytail refinement s
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Commit `b45ea54cea3` deleted the sk-code router-sync suite with the skill-benchmark lane. Its four checks cover router paths (they resolve, and every routable doc and prose path is routed), the surface map (it equals the union of the surface children plus the parent tier), agreement between compiled destinations, `leaf-manifest.json` and the code-opencode map, and playbook expectations (every `expected_resource` is emitted). Only partial coverage survives: `verify_alignment_drift.py --check-router` checks dead routes, and the CI workflow `routing-registry-drift.yml` covers the compiled side of checks 3 and 4 in warn-only mode. The retirement notes in five files say so. A verbatim port would look restored and still check nothing in three places: its orphan walk reads `references/` and `assets/` at the sk-code root, which no longer exist, so the walk finds zero docs; its route-gold path points at `specs/sk-doc/019-*`, but the gold now sits under `specs/sk-doc/z_archive/`, so the suite would return early; and its surface list still names `sk-code-mobile-cli`, which is gone, so that check throws.
+Commit `b45ea54cea3` deleted the sk-code router-sync suite with the skill-benchmark lane. Its four checks cover router paths (they resolve, and every routable doc and prose path is routed), the surface map (it equals the union of the surface children plus the parent tier), agreement between compiled destinations, `leaf-manifest.json` and the code-skilled map, and playbook expectations (every `expected_resource` is emitted). Only partial coverage survives: `verify_alignment_drift.py --check-router` checks dead routes, and the CI workflow `routing-registry-drift.yml` covers the compiled side of checks 3 and 4 in warn-only mode. The retirement notes in five files say so. A verbatim port would look restored and still check nothing in three places: its orphan walk reads `references/` and `assets/` at the sk-code root, which no longer exist, so the walk finds zero docs; its route-gold path points at `specs/sk-doc/019-*`, but the gold now sits under `specs/sk-doc/z_archive/`, so the suite would return early; and its surface list still names `sk-code-mobile-cli`, which is gone, so that check throws.
 
 ### Purpose
 A standalone guard runs the four checks against the live sk-code tree, names each drifted router entry, fails when any leg fails, and joins the drift-guard umbrella for the legs that pass on the current tree.
@@ -76,7 +76,7 @@ A standalone guard runs the four checks against the live sk-code tree, names eac
 - Checks 1 to 4 restored, with check 1 split into leg 1a (paths and prose maps) and leg 1b (orphan docs) so the passing leg can be wired without the failing one
 - Seeded-defect controls that prove every leg can fail
 - Umbrella wiring for legs 1a, 2, 3 and 4, held behind the operator's go (see Open Questions)
-- Retirement notes and the sk-code-opencode router notes updated to name the restored guard and the remaining gap
+- Retirement notes and the sk-code-skilled router notes updated to name the restored guard and the remaining gap
 - Regenerated `leaf-manifest.json` and Hermes SKILL copy
 
 ### Out of Scope
@@ -90,15 +90,15 @@ A standalone guard runs the four checks against the live sk-code tree, names eac
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs` | Create | The guard: legs 1a, 1b, 2, 3, 4; `--checks` flag; PASS/FAIL output; exit status |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/router_replay_lib.cjs` | Create | Replay functions from the recovered `router-replay.cjs` with the CLI block removed; exports the four functions the guard uses |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` | Modify | Header comment, third `run_guard` line (gated), retired-guard note replaced, final count |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/README.md` | Modify | Guard count, run-all row, expected output, retirement paragraph |
-| `.skilled/skills/sk-code/sk-code-opencode/SKILL.md` | Modify | Router comment block (lines 55 to 61), SMART ROUTING drift bullet (line 175), verifier assets line (line 187) |
-| `.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md` | Modify | Retired-suite section, coverage table, entry-point and doc-pointer lines |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs` | Create | The guard: legs 1a, 1b, 2, 3, 4; `--checks` flag; PASS/FAIL output; exit status |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router_replay_lib.cjs` | Create | Replay functions from the recovered `router-replay.cjs` with the CLI block removed; exports the four functions the guard uses |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` | Modify | Header comment, third `run_guard` line (gated), retired-guard note replaced, final count |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/README.md` | Modify | Guard count, run-all row, expected output, retirement paragraph |
+| `.skilled/skills/sk-code/sk-code-skilled/SKILL.md` | Modify | Router comment block (lines 55 to 61), SMART ROUTING drift bullet (line 175), verifier assets line (line 187) |
+| `.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md` | Modify | Retired-suite section, coverage table, entry-point and doc-pointer lines |
 | `.skilled/skills/sk-code/benchmark/README.md` | Modify | Successor paragraph (line 16) names the restored guard |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md` | Modify | Code-file count and structure rows for the two new files. Not named in the brief; see Open Questions |
-| `.hermes/skills/sk-code-opencode/SKILL.md` | Modify (generated) | Regenerated by `sync-skills-hermes.cjs` after the SKILL.md edit |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md` | Modify | Code-file count and structure rows for the two new files. Not named in the brief; see Open Questions |
+| `.hermes/skills/sk-code-skilled/SKILL.md` | Modify (generated) | Regenerated by `sync-skills-hermes.cjs` after the SKILL.md edit |
 | `.skilled/skills/sk-code/leaf-manifest.json` | Modify (generated) | Regenerated by `generate-leaf-manifest.cjs --write`; gains the two new files as leaves |
 | `specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/005-router-sync-guard/implementation-summary.md` | Modify at close | The scaffold is replaced with the build record after the checks pass |
 <!-- /ANCHOR:scope -->
@@ -151,8 +151,8 @@ A standalone guard runs the four checks against the live sk-code tree, names eac
 | Dependency | Parent 007 goal decision D3: stop and report before wiring the guard into the umbrella when it fails on the current tree | High | Umbrella tasks are marked blocked and wait for the operator's go |
 | Dependency | Route-gold at `specs/sk-doc/z_archive/019-*/001-sk-code/compiled/route-gold.typed.json` | Medium | Leg 3 fails loudly if the archived file moves; the archive is historical evidence |
 | Risk | New files are untracked, and the alignment-drift scan reads git-tracked files only, so header and style checks cannot see them until they are staged | Medium | The build records this; the umbrella's first guard does not vouch for the new files |
-| Risk | Regenerating the manifest adds two leaves to the sk-code-opencode mode (69 to 71) | Low | REQ-009 diff; CI's manifest freshness step reads the committed file, so the regenerated file must be committed with the change |
-| Risk | Editing `sk-code-opencode/SKILL.md` changes the sk-code hub's policy hash, so CI's `compiled-route-guard.cjs` (the authoritative freshness blocker) can report sk-code stale until its compiled routing is re-minted. The pre-commit gate re-mints when the inputs are staged together | Medium | Task T027 runs the guard after the edits and refreshes sk-code if it reports stale; the refreshed manifests go in the same commit as the SKILL.md change |
+| Risk | Regenerating the manifest adds two leaves to the sk-code-skilled mode (69 to 71) | Low | REQ-009 diff; CI's manifest freshness step reads the committed file, so the regenerated file must be committed with the change |
+| Risk | Editing `sk-code-skilled/SKILL.md` changes the sk-code hub's policy hash, so CI's `compiled-route-guard.cjs` (the authoritative freshness blocker) can report sk-code stale until its compiled routing is re-minted. The pre-commit gate re-mints when the inputs are staged together | Medium | Task T027 runs the guard after the edits and refreshes sk-code if it reports stale; the refreshed manifests go in the same commit as the SKILL.md change |
 | Dependency | `leaf-resource-contract.cjs` supplies `qualifiedIdToLeaf` | Low | Read-only dependency; the path arithmetic is checked in plan.md |
 
 <!-- /ANCHOR:risks -->
@@ -163,7 +163,7 @@ A standalone guard runs the four checks against the live sk-code tree, names eac
 ## 7. OPEN QUESTIONS
 
 - **Leg 1b handling (operator decision before any umbrella wiring).** Option A, recommended: leg 1b keeps failing and stays out of the umbrella; a later phase routes or retires the nine docs, then adds `1b` to the umbrella. Option B: the guard prints leg 1b as `WARN check 1b` through a `--warn 1b` flag that keeps it out of the exit status, and the umbrella runs `--checks 1a,1b,2,3,4 --warn 1b`. B changes the PASS/FAIL output contract for that leg and keeps nine unresolved docs visible in every gate run.
-- **Parent scope row.** The parent 007 spec lists `.skilled/skills/sk-code/sk-code-opencode/scripts/` as the only location for this phase. The guard and library live in `assets/scripts/`, as the brief sets. An amendment to the parent row is proposed, not made here.
+- **Parent scope row.** The parent 007 spec lists `.skilled/skills/sk-code/sk-code-skilled/scripts/` as the only location for this phase. The guard and library live in `assets/scripts/`, as the brief sets. An amendment to the parent row is proposed, not made here.
 - **One addition beyond the brief's list.** `assets/scripts/README.md` counts code files and lists each one, so two new files make it stale. It is included. Remove its row from Files to Change if the operator does not want it touched.
 <!-- /ANCHOR:questions -->
 

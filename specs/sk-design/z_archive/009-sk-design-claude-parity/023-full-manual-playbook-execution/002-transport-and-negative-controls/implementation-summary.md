@@ -102,7 +102,7 @@ Grading then proceeded scenario-by-scenario against each file's own Pass/Fail Cr
 | Dispatch | Advisor Top-1 (probe) | sk-design in Result | Real-Dispatch Routing | Mutation | Verdict |
 |----------|------------------------|----------------------|------------------------|----------|---------|
 | `MR-007` | `sk-code` 0.95 (tied w/ 3 others) | 6th, 0.90 | Self-corrected to `design-mcp-open-design` after loading `sk-code`/`customize-opencode` first; internal advisor call also ranked `sk-code` top-1 (0.9184) | `apply_patch` on `~/.config/opencode/opencode.json` (mutating tool beyond `Bash`) | **FAIL** |
-| `AI-002` | `sk-code` 0.9126 | Absent | `sk-code` -> `code-opencode`, no design packet | Real code edit (reverted) | **PASS** |
+| `AI-002` | `sk-code` 0.9126 | Absent | `sk-code` -> `code-skilled`, no design packet | Real code edit (reverted) | **PASS** |
 | `AI-003` | `sk-doc` 0.9185 | 2nd, 0.9062 | `sk-doc` -> `create-readme`, no design packet | None | **PASS** |
 | `AI-004` | `sk-code` 0.8985 | 2nd, 0.82 | `code-review` only, no `design-audit` | None | **PASS** |
 | `SR-001` | `sk-design` 0.82 | Win (only result >= threshold) | `interface + foundations`; register stated before colors | None; but 2 `ALWAYS`/mandatory resources never loaded | **FAIL** |

@@ -85,7 +85,7 @@ Two ten-iteration lineages, GPT-6 Luna on cli-codex and DeepSeek V4.1 Flash on c
 
 ### In Scope
 - Every file under `../context/` that carries behavior or teaching: skills, hooks, commands, rules, scripts, benchmarks and docs.
-- The sk-code hub, `sk-code-quality`, `sk-code-review`, `sk-code-webflow`, `sk-code-opencode`, `sk-code-obsidian` and the shared workflow doctrine.
+- The sk-code hub, `sk-code-quality`, `sk-code-review`, `sk-code-webflow`, `sk-code-skilled`, `sk-code-obsidian` and the shared workflow doctrine.
 - Related tooling: the skill advisor, deep-loop benchmarks, hooks and rule-copy checks.
 - A check of whether each earlier adoption still exists after the hub restructure.
 

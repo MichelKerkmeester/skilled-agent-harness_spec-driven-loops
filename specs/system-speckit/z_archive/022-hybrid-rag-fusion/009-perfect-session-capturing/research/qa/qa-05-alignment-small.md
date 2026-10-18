@@ -6,7 +6,7 @@
 ● Read .opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts
   └ 90 lines read
 
-● Glob ".opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py" in
+● Glob ".opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py" in
 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public
   └ 1 file found
 
@@ -14,7 +14,7 @@
 
 ● Run alignment drift verifier
   $ cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && python3
-  .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py
+  .opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py
   └ 12 lines...
 
 ● Todo completed: read-files
@@ -50,7 +50,7 @@
 
 ● Check verifier help
   $ cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && python3
-  .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --help | head -n 80
+  .opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py --help | head -n 80
   └ 10 lines...
 
 ● Todo completed: run-verifier, report-findings
@@ -61,7 +61,7 @@
 - **Category:** ALIGNMENT
 - **Current Behavior:** Header uses `// MODULE: File Writer` (with colon and spaced words).
 - **Expected Behavior:** Header should be PascalCase style like `// MODULE FileWriter`.
-- **Root Cause:** File uses legacy header style instead of sk-code-opencode P0 format.
+- **Root Cause:** File uses legacy header style instead of sk-code-skilled P0 format.
 - **Suggested Fix:** Replace top header with a PascalCase module marker, e.g. `// MODULE FileWriter`.
 - **Effort:** TRIVIAL (<5 min)
 
@@ -101,7 +101,7 @@
 - **Category:** ALIGNMENT
 - **Current Behavior:** No numbered section headers are present.
 - **Expected Behavior:** Add numbered ALL-CAPS sections (e.g., IMPORTS/TYPES/CONSTANTS/IMPLEMENTATION/EXPORTS).
-- **Root Cause:** File layout predates/enforces a different local style than sk-code-opencode P0.
+- **Root Cause:** File layout predates/enforces a different local style than sk-code-skilled P0.
 - **Suggested Fix:** Insert numbered section headers and organize declarations accordingly.
 - **Effort:** SMALL (<30 min)
 
@@ -126,7 +126,7 @@
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-08: Alignment verifier fails globally (not specific to these two files)
-- **File:** `.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py` run output (summary lines 1-8)
+- **File:** `.opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py` run output (summary lines 1-8)
 - **Severity:** LOW
 - **Category:** ALIGNMENT
 - **Current Behavior:** Verifier returned `FAIL` with 341 findings across scanned roots.

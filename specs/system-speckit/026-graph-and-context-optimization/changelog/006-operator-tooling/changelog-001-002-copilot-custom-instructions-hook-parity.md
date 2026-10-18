@@ -62,7 +62,7 @@ The implementation added a custom-instructions writer (`hooks/copilot/custom-ins
 | Focused Vitest: `tests/copilot-user-prompt-submit-hook.vitest.ts`, `tests/copilot-hook-wiring.vitest.ts`, `skill-advisor/tests/legacy/advisor-runtime-parity.vitest.ts`, `tests/claude-user-prompt-submit-hook.vitest.ts` | PASS, 4 files / 28 tests |
 | Focused ESLint on touched TypeScript files | PASS |
 | Shell syntax: `bash -n .github/hooks/scripts/session-start.sh .github/hooks/scripts/superset-notify.sh .github/hooks/scripts/user-prompt-submitted.sh` | PASS |
-| Real Copilot smoke: `copilot -p` returned `Advisor: stale; use sk-code-opencode 0.92/0.00 pass.` from custom instructions | PASS |
+| Real Copilot smoke: `copilot -p` returned `Advisor: stale; use sk-code-skilled 0.92/0.00 pass.` from custom instructions | PASS |
 | Copilot temp-file smoke: `SPECKIT_COPILOT_INSTRUCTIONS_PATH` run returned `{}` and wrote `SPEC-KIT-COPILOT-CONTEXT` with advisor line | PASS |
 | Operator doc sweep: hook reference, runtime hook matrix, feature catalog, manual testing playbook, README, architecture docs | PASS |
 | `npm run check` | FAIL: package-wide lint reports 15 unused-variable errors in files outside this packet's write scope. No touched file is in the failure list. |

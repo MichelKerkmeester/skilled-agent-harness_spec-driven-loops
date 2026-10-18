@@ -339,8 +339,8 @@
         "assetRecall": {
           "score": 0,
           "expectedAssets": [
-            "code-opencode/assets/checklists/typescript_checklist.md",
-            "code-opencode/assets/checklists/universal_checklist.md"
+            "code-skilled/assets/checklists/typescript_checklist.md",
+            "code-skilled/assets/checklists/universal_checklist.md"
           ],
           "observedAssets": [],
           "note": "live stated-asset recall (advisory, not weighted)"
@@ -402,7 +402,7 @@
         ],
         "observedReads": [],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"TypeScript\",\"resources\":[\"code-opencode/SKILL.md\"],\"assets\":[],\"agent\":\"none\",\"disambiguation\":false}\n```"
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"TypeScript\",\"resources\":[\"code-skilled/SKILL.md\"],\"assets\":[],\"agent\":\"none\",\"disambiguation\":false}\n```"
       },
       "routeTelemetry": null
     },
@@ -534,12 +534,12 @@
         "assetRecall": {
           "score": 1,
           "expectedAssets": [
-            "code-opencode/assets/checklists/typescript_checklist.md",
-            "code-opencode/assets/checklists/universal_checklist.md"
+            "code-skilled/assets/checklists/typescript_checklist.md",
+            "code-skilled/assets/checklists/universal_checklist.md"
           ],
           "observedAssets": [
-            "code-opencode/assets/checklists/typescript_checklist.md",
-            "code-opencode/assets/checklists/universal_checklist.md"
+            "code-skilled/assets/checklists/typescript_checklist.md",
+            "code-skilled/assets/checklists/universal_checklist.md"
           ],
           "note": "live stated-asset recall (advisory, not weighted)"
         },
@@ -610,11 +610,11 @@
           "read"
         ],
         "observedReads": [
-          "code-opencode/SKILL.md",
+          "code-skilled/SKILL.md",
           "references/smart_routing.md"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"TYPESCRIPT\",\"resources\":[\"code-opencode/references/typescript/style_guide/overview_strict_and_naming.md\",\"code-opencode/references/typescript/quality_standards/overview_and_type_system.md\",\"code-opencode/references/typescript/quick_reference/template_nami"
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"TYPESCRIPT\",\"resources\":[\"code-skilled/references/typescript/style_guide/overview_strict_and_naming.md\",\"code-skilled/references/typescript/quality_standards/overview_and_type_system.md\",\"code-skilled/references/typescript/quick_reference/template_nami"
       },
       "routeTelemetry": null
     },
@@ -652,8 +652,8 @@
         "assetRecall": {
           "score": 0,
           "expectedAssets": [
-            "code-opencode/assets/checklists/python_checklist.md",
-            "code-opencode/assets/checklists/universal_checklist.md"
+            "code-skilled/assets/checklists/python_checklist.md",
+            "code-skilled/assets/checklists/universal_checklist.md"
           ],
           "observedAssets": [],
           "note": "live stated-asset recall (advisory, not weighted)"
@@ -713,7 +713,7 @@
         ],
         "observedReads": [],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"Python\",\"resources\":[\"code-opencode/SKILL.md\",\"shared/references/workflow_implement.md\"],\"assets\":[],\"agent\":\"none\",\"disambiguation\":false}\n```"
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"Python\",\"resources\":[\"code-skilled/SKILL.md\",\"shared/references/workflow_implement.md\"],\"assets\":[],\"agent\":\"none\",\"disambiguation\":false}\n```"
       },
       "routeTelemetry": null
     },
@@ -751,12 +751,12 @@
         "assetRecall": {
           "score": 1,
           "expectedAssets": [
-            "code-opencode/assets/checklists/shell_checklist.md",
-            "code-opencode/assets/checklists/universal_checklist.md"
+            "code-skilled/assets/checklists/shell_checklist.md",
+            "code-skilled/assets/checklists/universal_checklist.md"
           ],
           "observedAssets": [
-            "code-opencode/assets/checklists/shell_checklist.md",
-            "code-opencode/assets/checklists/universal_checklist.md"
+            "code-skilled/assets/checklists/shell_checklist.md",
+            "code-skilled/assets/checklists/universal_checklist.md"
           ],
           "note": "live stated-asset recall (advisory, not weighted)"
         },
@@ -827,14 +827,14 @@
           "read"
         ],
         "observedReads": [
-          "code-opencode/SKILL.md",
+          "code-skilled/SKILL.md",
           "references/smart_routing.md",
           "references/stack_detection.md",
           "references/phase_detection.md",
           "code-quality/SKILL.md"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"SHELL\",\"resources\":[\"code-opencode/references/shell/style_guide/overview_structure_and_naming.md\",\"code-opencode/references/shell/quality_standards/overview_and_priority_blockers.md\",\"code-opencode/references/shell/quick_reference/template_variables_and_l"
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"SHELL\",\"resources\":[\"code-skilled/references/shell/style_guide/overview_structure_and_naming.md\",\"code-skilled/references/shell/quality_standards/overview_and_priority_blockers.md\",\"code-skilled/references/shell/quick_reference/template_variables_and_l"
       },
       "routeTelemetry": null
     },
@@ -872,8 +872,8 @@
         "assetRecall": {
           "score": 0,
           "expectedAssets": [
-            "code-opencode/assets/checklists/config_checklist.md",
-            "code-opencode/assets/checklists/universal_checklist.md"
+            "code-skilled/assets/checklists/config_checklist.md",
+            "code-skilled/assets/checklists/universal_checklist.md"
           ],
           "observedAssets": [],
           "note": "live stated-asset recall (advisory, not weighted)"
@@ -1026,7 +1026,7 @@
         ],
         "observedReads": [],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"JavaScript\",\"resources\":[\"code-opencode/SKILL.md\",\"shared/references/workflow_implement.md\",\"shared/references/workflow_debug.md\",\"shared/references/workflow_verify.md\"],\"assets\":[],\"agent\":\"none\",\"disambiguation\":false}\n```"
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"JavaScript\",\"resources\":[\"code-skilled/SKILL.md\",\"shared/references/workflow_implement.md\",\"shared/references/workflow_debug.md\",\"shared/references/workflow_verify.md\"],\"assets\":[],\"agent\":\"none\",\"disambiguation\":false}\n```"
       },
       "routeTelemetry": null
     },
@@ -1761,8 +1761,8 @@
         "assetRecall": {
           "score": 0,
           "expectedAssets": [
-            "code-opencode/assets/checklists/universal_checklist.md",
-            "code-opencode/assets/checklists/typescript_checklist.md",
+            "code-skilled/assets/checklists/universal_checklist.md",
+            "code-skilled/assets/checklists/typescript_checklist.md",
             "code-webflow/assets/animation/snippets/es_module_bootstrap.js"
           ],
           "observedAssets": [],
@@ -1822,7 +1822,7 @@
         ],
         "observedReads": [],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"typescript\",\"resources\":[\"code-opencode/SKILL.md\"],\"assets\":[],\"agent\":\"none\",\"disambiguation\":false}\n```"
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"typescript\",\"resources\":[\"code-skilled/SKILL.md\"],\"assets\":[],\"agent\":\"none\",\"disambiguation\":false}\n```"
       },
       "routeTelemetry": null
     },
@@ -2413,7 +2413,7 @@
         ],
         "observedReads": [],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"TypeScript\",\"resources\":[\"code-opencode/SKILL.md\"],\"assets\":[],\"agent\":\"none\",\"disambiguation\":false}\n```"
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"TypeScript\",\"resources\":[\"code-skilled/SKILL.md\"],\"assets\":[],\"agent\":\"none\",\"disambiguation\":false}\n```"
       },
       "routeTelemetry": null
     },
@@ -2617,7 +2617,7 @@
           "read"
         ],
         "observedReads": [
-          "code-opencode/SKILL.md",
+          "code-skilled/SKILL.md",
           "references/smart_routing.md",
           "references/stack_detection.md",
           "references/phase_detection.md"
@@ -2847,20 +2847,20 @@
           "glob"
         ],
         "observedReads": [
-          "code-opencode/SKILL.md",
+          "code-skilled/SKILL.md",
           "references/smart_routing.md",
-          "code-opencode/references/shared/hooks.md",
-          "code-opencode/references/shared/alignment_verification_automation.md",
+          "code-skilled/references/shared/hooks.md",
+          "code-skilled/references/shared/alignment_verification_automation.md",
           "references/stack_detection.md",
           "references/workflow_implement.md",
           "references/workflow_verify.md",
-          "code-opencode/references/shared/**/*.md",
-          "code-opencode/references/typescript/**/*.md",
-          "code-opencode/references/shell/**/*.md",
-          "code-opencode/assets/checklists/**/*.md",
-          "code-opencode/assets/scripts/*",
-          "code-opencode/references/workflow_*.md",
-          "code-opencode/**/workflow_*.md"
+          "code-skilled/references/shared/**/*.md",
+          "code-skilled/references/typescript/**/*.md",
+          "code-skilled/references/shell/**/*.md",
+          "code-skilled/assets/checklists/**/*.md",
+          "code-skilled/assets/scripts/*",
+          "code-skilled/references/workflow_*.md",
+          "code-skilled/**/workflow_*.md"
         ],
         "statedRoutingParsed": true,
         "responseHead": "SKILL ROUTING: User directed -> `sk-code`; the request is OpenCode-surface code work. I’m checking only `sk-code`’s registry/router and OpenCode packet to resolve its load paths and dispatch contract.```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"typescript\",\"resources\":[\"references/shared/universal_p"
@@ -2982,18 +2982,18 @@
         ],
         "observedReads": [
           "code-quality/**",
-          "code-opencode/**",
+          "code-skilled/**",
           "code-quality/SKILL.md",
-          "code-opencode/SKILL.md",
+          "code-skilled/SKILL.md",
           "references/smart_routing.md",
           "references/stack_detection.md",
           "code-quality/benchmark/router_mode_a/skill-benchmark-report.md",
-          "code-opencode/benchmark/router_mode_a/skill-benchmark-report.md",
+          "code-skilled/benchmark/router_mode_a/skill-benchmark-report.md",
           "code-quality/benchmark/live_mode_b/skill-benchmark-report.json",
           "code-quality/benchmark/**/*"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"SHELL\",\"resources\":[\"shared/references/stack_detection.md\",\"shared/references/phase_detection.md\",\"shared/references/smart_routing.md\",\"shared/references/universal/code_quality_standards.md\",\"shared/references/universal/code_style_guide.md\",\"code-opencode"
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"SHELL\",\"resources\":[\"shared/references/stack_detection.md\",\"shared/references/phase_detection.md\",\"shared/references/smart_routing.md\",\"shared/references/universal/code_quality_standards.md\",\"shared/references/universal/code_style_guide.md\",\"code-skilled"
       },
       "routeTelemetry": null
     }

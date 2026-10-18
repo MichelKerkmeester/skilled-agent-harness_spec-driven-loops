@@ -39,7 +39,7 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown (references/assets reorg, 6 new subfolder READMEs), Python (2 extraction scripts), file moves via `git mv` |
-| **Framework** | `sk-code-opencode` Python standards, `skill-reference-template.md`/`skill-asset-template.md` folder-organization principle |
+| **Framework** | `sk-code-skilled` Python standards, `skill-reference-template.md`/`skill-asset-template.md` folder-organization principle |
 | **Storage** | `sk-create-diagram` packet files; no new top-level directories, only subfolders within `references/`/`assets/` |
 | **Testing** | AST-based Python audit, packet-wide link-resolution check, `validate_skill_package.py`, `validate.sh --recursive --strict` |
 

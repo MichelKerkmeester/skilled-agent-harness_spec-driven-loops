@@ -86,7 +86,7 @@ None.
   [SOURCE: .skilled/commands/doctor/assets/doctor-router-reach.yaml:95-99,109,123-124].
 - **No TUI writes in the plugin surface.** `rg "console\.|process\.stdout|process\.stderr"
   .opencode/plugins/system-skill-advisor.js .opencode/plugins/lib/skill-advisor-render.js` returns
-  nothing, satisfying sk-code-opencode §3 "Plugins never write to the TUI".
+  nothing, satisfying sk-code-skilled §3 "Plugins never write to the TUI".
 - **The sk-code setup battery the umbrella leg runs passes end to end.**
   `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs` exits 0 with
   `STATUS=OK legs=8`, including the sk-code drift guards

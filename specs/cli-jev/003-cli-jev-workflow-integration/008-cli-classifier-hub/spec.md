@@ -90,7 +90,7 @@ Give every Deem arm one transport: a dependency-free client that posts Deem's ow
 - Three references in the packet: the wire, the lifecycle over `deem-ctl` and the model pin.
 - A test file against an in-test fake server, then the orchestrator's one live `cli-deem health`.
 - Regenerating the advisor graph and the trigger index so a Deem prompt routes to the hub and then to `cli-deem`.
-- The hub's docs through sk-doc (D6 of the parent goal): `SKILL.md` through `sk-create-skill`, the README through `sk-create-readme`, the changelog through `sk-create-changelog`, the feature catalog through `sk-create-feature-catalog` and the manual testing playbook through `sk-create-manual-testing-playbook`. The client and its tests follow sk-code's OpenCode route, `sk-code-opencode`.
+- The hub's docs through sk-doc (D6 of the parent goal): `SKILL.md` through `sk-create-skill`, the README through `sk-create-readme`, the changelog through `sk-create-changelog`, the feature catalog through `sk-create-feature-catalog` and the manual testing playbook through `sk-create-manual-testing-playbook`. The client and its tests follow sk-code's OpenCode route, `sk-code-skilled`.
 - The files the repository's own generators write for a new hub: the two Hermes skill copies and, only if the build admits the hub to compiled routing, its activation manifest and that manifest's mirror (Files to Change names each with its source).
 
 ### Out of Scope
@@ -109,7 +109,7 @@ Give every Deem arm one transport: a dependency-free client that posts Deem's ow
 
 ### Files to Change
 
-All names come from the synthesis (swe-07's list, lineage-reported), except where the Description says otherwise. They were proposed at planning time, and every Create row now exists, committed in `ee3a1b057c`. Docs go through sk-doc and code follows `sk-code-opencode` (D6 of the parent goal). The Regenerate rows are written by the repository's own tools, never by hand.
+All names come from the synthesis (swe-07's list, lineage-reported), except where the Description says otherwise. They were proposed at planning time, and every Create row now exists, committed in `ee3a1b057c`. Docs go through sk-doc and code follows `sk-code-skilled` (D6 of the parent goal). The Regenerate rows are written by the repository's own tools, never by hand.
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|

@@ -51,8 +51,8 @@ const PACKET_SCOPES = [
     trees: ['sk-code/code-review/manual_testing_playbook'],
   },
   {
-    label: 'sk-code/code-opencode',
-    trees: ['sk-code/code-opencode/manual_testing_playbook'],
+    label: 'sk-code/code-skilled',
+    trees: ['sk-code/code-skilled/manual_testing_playbook'],
   },
   {
     label: 'sk-code/code-webflow',

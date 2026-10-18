@@ -7,7 +7,7 @@ expected_surface: OBSIDIAN
 expected_intent: N/A
 expected_resources:
   - references/obsidian-plugin-api.md
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # OB-020: OBSIDIAN surface resolution (positive control)
@@ -21,7 +21,7 @@ This document captures the routing-recall contract, execution process, source an
 This scenario validates the hub's `OBSIDIAN` surface-detection markers for `OB-020`. It focuses on
 confirming the three documented markers — `manifest.json` carrying `minAppVersion`,
 `esbuild.config.mjs`, and `from "obsidian"` imports — resolve `OBSIDIAN` at the hub's documented
-precedence (`OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN`), independently of which intent a
+precedence (`SKILLED > OBSIDIAN > WEBFLOW > UNKNOWN`), independently of which intent a
 prompt later classifies as. Surface resolution and intent classification are two separate steps in
 this packet's own account (`SKILL.md` §1 versus §2b); this scenario isolates the first step alone.
 
@@ -79,7 +79,7 @@ I'm working in the Obsidian Note Database plugin repo — manifest.json declares
 
 Step 1 shows `expected_surface: OBSIDIAN`. Step 2's output names all three markers (`manifest.json`
 carrying `minAppVersion`, `esbuild.config.mjs`, `from "obsidian"` imports) and the precedence line
-`OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN`. Step 3 prints `OK`.
+`SKILLED > OBSIDIAN > WEBFLOW > UNKNOWN`. Step 3 prints `OK`.
 
 ### Evidence
 

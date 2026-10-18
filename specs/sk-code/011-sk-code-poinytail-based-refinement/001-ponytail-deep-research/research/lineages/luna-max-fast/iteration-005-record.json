@@ -49,7 +49,7 @@
     ".skilled/skills/sk-code/sk-code-review/SKILL.md",
     ".skilled/skills/sk-code/shared/references/workflow-implement.md",
     ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
-    ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py",
+    ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_stack_folders.py",
     ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
     ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs",
     ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/sweep-reporter.cjs",

@@ -32,7 +32,7 @@ trigger_phrases: []
 - Mirrors: `.claude/agents`, `.opencode/agents`, `.codex/agents`, `.cursor/agents`, `.devin/agents`, `.pi/agents`, `.hermes/agents`; sync and check tooling under `.skilled/skills/system-spec-kit/runtime/cli/` and `.skilled/skills/system-deep-loop/deep-improvement/scripts/`.
 - Rules: `.skilled/repo-rules/*.md` (13 files), `REPO RULES.md`, `AGENTS.md`.
 - Hub: `.skilled/skills/sk-code/SKILL.md`, `ROUTER.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `shared/references/*`.
-- Modes and surfaces: `sk-code-quality`, `sk-code-review`, `sk-code-webflow`, `sk-code-opencode`, `sk-code-obsidian`; canary fixture `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json`.
+- Modes and surfaces: `sk-code-quality`, `sk-code-review`, `sk-code-webflow`, `sk-code-skilled`, `sk-code-obsidian`; canary fixture `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json`.
 - Verification surfaces read: `.skilled/commands/doctor/scripts/parent-skill-check.cjs`, `.skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml`, `.skilled/scripts/git-hooks/pre-commit`, `.github/workflows/command-tree-parity.yml`.
 
 ## Highest-value transfers

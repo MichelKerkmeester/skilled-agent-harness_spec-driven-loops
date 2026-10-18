@@ -16,13 +16,13 @@ trigger_phrases: []
 ## Files Reviewed
 
 - Packet requirements and evidence: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `implementation-summary.md`.
-- Current corpus inventory: `code-opencode/references`, `code-opencode/assets`, `code-webflow/references`, `code-webflow/assets`, and `code-quality/assets`; the declared `code-quality/references` root contains no review files.
+- Current corpus inventory: `code-skilled/references`, `code-skilled/assets`, `code-webflow/references`, `code-webflow/assets`, and `code-quality/assets`; the declared `code-quality/references` root contains no review files.
 - Focused current-state reads:
   - `.opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:89-100,237-262`
   - `.opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/best_practices_and_summary.md:34-65`
-  - `.opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:1-31`
+  - `.opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md:1-31`
   - `.opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/overview_hls_and_lenis.md:13-29`
-  - `.opencode/skills/sk-code/code-opencode/assets/scripts/README.md:1-10`
+  - `.opencode/skills/sk-code/code-skilled/assets/scripts/README.md:1-10`
 
 ## Findings - New
 
@@ -66,9 +66,9 @@ None.
 
 ## Confirmed-Clean Surfaces
 
-- The live inventory still reconciles to 163 Markdown files: code-opencode 65, code-webflow 95, and code-quality assets 3.
+- The live inventory still reconciles to 163 Markdown files: code-skilled 65, code-webflow 95, and code-quality assets 3.
 - R1-R3/R5 current-state claims remain consistent with the prior deterministic corpus sweep and current completion tables; no contrary live file was found in the reduced-scope pass.
-- The rust overview ordering, third-party Purpose de-duplication, narrowed renamed-link wording, and lowercase asset trigger phrase named by the summary are present in the current files [SOURCE: `.opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:1-31`; `.opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/overview_hls_and_lenis.md:13-29`; `.opencode/specs/sk-doc/032-split-doc-template-alignment/implementation-summary.md:71-78`; `.opencode/skills/sk-code/code-opencode/assets/scripts/README.md:1-10`].
+- The rust overview ordering, third-party Purpose de-duplication, narrowed renamed-link wording, and lowercase asset trigger phrase named by the summary are present in the current files [SOURCE: `.opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md:1-31`; `.opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/overview_hls_and_lenis.md:13-29`; `.opencode/specs/sk-doc/032-split-doc-template-alignment/implementation-summary.md:71-78`; `.opencode/skills/sk-code/code-skilled/assets/scripts/README.md:1-10`].
 
 ## Ruled Out
 

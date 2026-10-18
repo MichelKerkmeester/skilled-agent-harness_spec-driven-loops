@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Runtime code standards research"
-description: "A ten-iteration DeepSeek V4 Flash lane audited the spec-kit shared package and runtime against the sk-code-opencode and sk-code-quality standards and reported eighteen deviations across eight angles."
+description: "A ten-iteration DeepSeek V4 Flash lane audited the spec-kit shared package and runtime against the sk-code-skilled and sk-code-quality standards and reported eighteen deviations across eight angles."
 trigger_phrases:
   - "code standards research outcome"
   - "eighteen code deviations found"
@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-A ten-iteration DeepSeek V4 Flash lane audited the spec-kit shared package and runtime against the sk-code-opencode and sk-code-quality standards and reported eighteen deviations; twelve reproduced. A second, two-iteration Gemini 3.8 Flash pass over the surfaces the first lane never opened reported sixteen more, all reproduced, including a shared config bug that sent the telemetry store under the shared package so phase parents lost their active-child pointer. A third, five-iteration DeepSeek pass reported eleven more, all reproduced: a name collision between two scorers, three more private root walk-ups, two hook adapters that skipped the shared helpers, dead modules and hooks, and two untested surfaces.
+A ten-iteration DeepSeek V4 Flash lane audited the spec-kit shared package and runtime against the sk-code-skilled and sk-code-quality standards and reported eighteen deviations; twelve reproduced. A second, two-iteration Gemini 3.8 Flash pass over the surfaces the first lane never opened reported sixteen more, all reproduced, including a shared config bug that sent the telemetry store under the shared package so phase parents lost their active-child pointer. A third, five-iteration DeepSeek pass reported eleven more, all reproduced: a name collision between two scorers, three more private root walk-ups, two hook adapters that skipped the shared helpers, dead modules and hooks, and two untested surfaces.
 
 ### The research lane
 

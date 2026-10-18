@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 56: codex-dispatch-and-checklist"
-description: "Phase 55 left Codex task dispatch unverified and the sk-code-opencode JavaScript checklist at odds with its style guide. Probing Codex 0.160 for the first also showed that its shell tool is now named Bash, so every repo Codex hook keyed to exec had stopped firing."
+description: "Phase 55 left Codex task dispatch unverified and the sk-code-skilled JavaScript checklist at odds with its style guide. Probing Codex 0.160 for the first also showed that its shell tool is now named Bash, so every repo Codex hook keyed to exec had stopped firing."
 trigger_phrases:
   - "codex task dispatch payload"
   - "codex bash tool rename"
@@ -37,9 +37,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 56** of the cli-jev workflow integration packet. Phase 55 closed with two follow-ups: capture the Codex `spawn_agent` hook payload before deciding on a task-dispatch adapter, and amend the sk-code-opencode JavaScript checklist so its header rule matches the style guide.
+This is **Phase 56** of the cli-jev workflow integration packet. Phase 55 closed with two follow-ups: capture the Codex `spawn_agent` hook payload before deciding on a task-dispatch adapter, and amend the sk-code-skilled JavaScript checklist so its header rule matches the style guide.
 
-**Scope Boundary**: The Codex hook adapters and their registry matchers, the coverage docs for Codex, and the two sk-code-opencode checklists. No guard changes what it checks.
+**Scope Boundary**: The Codex hook adapters and their registry matchers, the coverage docs for Codex, and the two sk-code-skilled checklists. No guard changes what it checks.
 
 **Dependencies**:
 - Phase 55, which wrote the coverage matrix and rationale this phase corrects
@@ -92,7 +92,7 @@ Codex runs every repo shell hook again, its task-dispatch cell states what a pro
 | `sk-git/scripts/hooks/git-{preflight-advisory,message-gate}.mjs` | Modify | Comments name the new tool |
 | `runtime-mirrors/hook-registry.json`, `.codex/hooks.json` | Modify and regenerate | Codex shell matchers |
 | Hook coverage docs and the cli-codex hook contract | Modify | Codex verdict, rename and hook trust |
-| `sk-code-opencode/assets/checklists/{javascript,universal}-checklist.md` | Modify | Header rule |
+| `sk-code-skilled/assets/checklists/{javascript,universal}-checklist.md` | Modify | Header rule |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -114,7 +114,7 @@ Codex runs every repo shell hook again, its task-dispatch cell states what a pro
 |----|-------------|
 | REQ-004 | The JavaScript checklist requires the style guide's `MODULE:` header and makes no false claim about shipped files |
 | REQ-005 | The Codex docs record the `Bash` rename and the hook-trust step an operator needs after a matcher change |
-| REQ-006 | Changed code passes the sk-code-opencode alignment verifier |
+| REQ-006 | Changed code passes the sk-code-skilled alignment verifier |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

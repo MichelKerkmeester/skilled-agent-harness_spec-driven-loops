@@ -40,12 +40,12 @@ I’m mapping the security review surface first so I can inspect the exact harde
   │ .claude/skills/sk-code-review/references/review_ux_single_pass.md
   └ L1:220 (82 lines read)
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 I’ve got the review baseline loaded. Next I’m tracing the exact implementation files and the spec references that define the intended hardening so I can compare contract vs code.
 
 ● Read quality_standards.md
-  │ .claude/skills/sk-code-opencode/references/javascript/quality_standards.md
+  │ .claude/skills/sk-code-skilled/references/javascript/quality_standards.md
   └ L1:220 (220 lines read)
 
 ● Search (glob)
@@ -68,7 +68,7 @@ I’ve got the review baseline loaded. Next I’m tracing the exact implementati
   └ L1:260 (129 lines read)
 
 ● Read universal_patterns.md
-  │ .claude/skills/sk-code-opencode/references/shared/universal_patterns.md
+  │ .claude/skills/sk-code-skilled/references/shared/universal_patterns.md
   └ L1:220 (220 lines read)
 
 I’ve found the optimizer surface. Now I’m reading the Phase 4 contract and the three scripts end-to-end so I can test each containment guarantee against the spec, not just the filenames.

@@ -7,7 +7,7 @@ Angle 5 — find unimported exports, unreachable branches, and retired memory-da
 
 ### F5.1 [P1] `shared/ipc/socket-server.ts` is an unimported module within the audited package
 - **Code:** `shared/ipc/socket-server.ts` exports `startIpcSocketServer` (line 525), `IpcSocketServerHandle`, `IpcSocketServerOptions` (lines 530-531). The only reference to `socket-server` anywhere in `system-spec-kit` (excluding `node_modules/` and `dist/`) is a prose comment at `shared/review-research-paths.cjs:262` (`* shared/ipc/socket-server.ts's allowedSocketRoots().`).
-- **Standard:** `shared/references/universal/code-quality-standards.md` §3 P0 "No dead/duplicated code" is not literally in the P0 list, but §4 P1 "Documentation completeness" and the restraint ladder §7 rung 1 ("Does this need to exist at all? / YAGNI") cover it; `sk-code-opencode` universal-checklist also flags unimported exports.
+- **Standard:** `shared/references/universal/code-quality-standards.md` §3 P0 "No dead/duplicated code" is not literally in the P0 list, but §4 P1 "Documentation completeness" and the restraint ladder §7 rung 1 ("Does this need to exist at all? / YAGNI") cover it; `sk-code-skilled` universal-checklist also flags unimported exports.
 - **What is present:** A whole IPC socket-server module with a public API is not imported by anything in the package — no handler, no lib, no test, no CLI. It is exposing sockets and `allowedSocketRoots()` for a consumer that does not exist within the audited surface.
 - **Severity:** P1 — maintenance cost (an unexercised network-facing module that would need security review if ever wired) and reader confusion.
 - **One-line fix:** **judgment-required** — either confirm it is consumed by `system-skill-advisor`'s MCP server (outside the audited package) and document that cross-package consumer in the module map, or remove it. Do not delete on assertion alone.
@@ -31,7 +31,7 @@ Angle 5 — find unimported exports, unreachable branches, and retired memory-da
 - `runtime/cli/lib/embeddings.ts:9`
 - `shared/embeddings.ts:3`
 - `shared/references/universal/code-quality-standards.md` §7 (restraint ladder), §3 P0#7
-- `sk-code-opencode/references/shared/code-organization/imports-and-exports.md` §3
+- `sk-code-skilled/references/shared/code-organization/imports-and-exports.md` §3
 
 ## Assessment
 - **newInfoRatio:** 0.75

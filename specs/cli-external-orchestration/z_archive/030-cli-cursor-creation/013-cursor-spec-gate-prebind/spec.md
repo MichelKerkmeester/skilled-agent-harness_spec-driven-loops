@@ -223,4 +223,4 @@ Wire a fail-open `sessionStart` prebind that activates opt-in enforcement only f
 ## Related Documents
 - `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`
 - `../handover.md`
-- `.opencode/skills/sk-code/code-opencode/references/shared/hooks.md`
+- `.opencode/skills/sk-code/code-skilled/references/shared/hooks.md`

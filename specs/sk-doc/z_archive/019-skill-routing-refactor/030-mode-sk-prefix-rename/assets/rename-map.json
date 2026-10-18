@@ -26,10 +26,10 @@
   },
   {
    "hub": "sk-code",
-   "workflowMode": "code-opencode",
-   "packet": "code-opencode",
-   "newWorkflowMode": "sk-code-opencode",
-   "newPacket": "sk-code-opencode",
+   "workflowMode": "code-skilled",
+   "packet": "code-skilled",
+   "newWorkflowMode": "sk-code-skilled",
+   "newPacket": "sk-code-skilled",
    "sharedPacket": false
   },
   {

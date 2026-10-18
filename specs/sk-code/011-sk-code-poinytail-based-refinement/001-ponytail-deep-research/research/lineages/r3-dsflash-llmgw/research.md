@@ -42,7 +42,7 @@ Three parts, as dispatched:
 
 - **Part 1 — the shared layer.** Every file under `.skilled/skills/sk-code/shared/`, its loaders (`SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`), its use by the modes and surfaces, its consistency, and its relationship to `.skilled/repo-rules/*.md`, `REPO RULES.md` and `AGENTS.md`.
 - **Part 2 — sk-code-review.** The mode's agnosticism, its internal agreement, its scripts' behaviour on crafted inputs, its playbook, and `.skilled/agents/review.md` against the mode.
-- **Part 3 — the rest.** `sk-code-quality`, `sk-code-webflow`, `sk-code-opencode`, `sk-code-obsidian`, the six hub files, `benchmark/`, `feature-catalog/` and the playbooks.
+- **Part 3 — the rest.** `sk-code-quality`, `sk-code-webflow`, `sk-code-skilled`, `sk-code-obsidian`, the six hub files, `benchmark/`, `feature-catalog/` and the playbooks.
 
 Method: read rounds one and two first (packet `research/research.md` sections 1–17 and its Round 2 section; the r2 lineage report), treat every phase-009 item as out of scope, then widen each iteration to a focus no earlier iteration covered. Every claim cites `path:line` as the file read at that moment. Every defect carries a reproducing case: a command, an executed pseudocode run, or crafted input with observed output. Defects were reproduced by running the repo's read-only checkers and by re-implementing the documented pseudocode; no repo tooling was invoked that writes, and every artifact this run produced is inside this lineage directory.
 
@@ -85,7 +85,7 @@ Method: read rounds one and two first (packet `research/research.md` sections 1�
 
 - **sk-code-quality:** names the legacy hooks as the live comment-hygiene gates, and the shared standard repeats them (f-iter012-001); 39 pre-rename rows (f-iter012-002); its README misroutes spec folders to a checklist family that lacks one (f-iter020-001). The ceiling report listed by phase 009 mid-run; all its other resource paths resolve.
 - **sk-code-webflow:** shipped templates carry nine legacy-path rows (f-iter013-001); two broken section pointers in the HTML guide (f-iter013-002, f-iter013-003); the D1 fixtures run to their documented verdicts, closing round one's residual.
-- **sk-code-opencode:** its SKILL credits the wired leg 1a with the unwired leg 1b's orphan coverage (f-iter014-001); two rename-miss rows (f-iter014-002); the guard, hook paths and version pairing all check out.
+- **sk-code-skilled:** its SKILL credits the wired leg 1a with the unwired leg 1b's orphan coverage (f-iter014-001); two rename-miss rows (f-iter014-002); the guard, hook paths and version pairing all check out.
 - **sk-code-obsidian:** three phantom on-demand assets the packet's own playbook already flags (f-iter015-001); the playbook ID space is exact (27/27) and the version pairing holds.
 - **Hub files:** `description.json`'s prose omits Obsidian (f-iter016-001); `ROUTER.md`'s universal-tier load claim overstates what the machine map emits (f-iter016-002); the feature catalog repeats the two-surface prose with old mode names (f-iter017-001); the layout tree omits six existing hub-root artifacts (f-iter017-002); the hub README repeats the two-surface prose against its own five-packet count and lags three versions (f-iter018-001, f-iter018-002). Version parity across the five hub artifacts, check-5k's legs, the canary coverage and the graph's Obsidian entries all hold.
 - **Tooling:** `benchmark/README.md` and the CI successor match the restored guard; the root playbook ID space is exact (31/31); the review README's folder convention contradicts its own SKILL (f-iter019-001) and its example uses a third status-token variant (f-iter019-002).
@@ -175,8 +175,8 @@ Priority order within each part; classification per the dispatched vocabulary. `
 | 2 | 39 pre-rename rows in the quality SKILL | `sk-code-quality/SKILL.md` | N | P2 | Largest rename-miss surface; one sweep fixes all four packets (f-iter012-002) |
 | 3 | Nine legacy-path rows in shipped Webflow templates | `sk-code-webflow/assets/templates/` | N | P2 | Dead pointers travel into adopter projects (f-iter013-001) |
 | 4 | Two broken section pointers in the HTML style guide | `references/html/style-guide.md:78,103` | N | P2 | Cross-file and renumbered targets after the reference split (f-iter013-002/003) |
-| 5 | OpenCode SKILL credits leg 1a with leg 1b's orphan coverage | `sk-code-opencode/SKILL.md:173` | N | P2 | An audit of orphan coverage reads as covered when it is not (f-iter014-001) |
-| 6 | Two rename-miss rows in the OpenCode SKILL | `sk-code-opencode/SKILL.md:24,54` | N | P2 | Third packet in the family (f-iter014-002) |
+| 5 | OpenCode SKILL credits leg 1a with leg 1b's orphan coverage | `sk-code-skilled/SKILL.md:173` | N | P2 | An audit of orphan coverage reads as covered when it is not (f-iter014-001) |
+| 6 | Two rename-miss rows in the OpenCode SKILL | `sk-code-skilled/SKILL.md:24,54` | N | P2 | Third packet in the family (f-iter014-002) |
 | 7 | Obsidian SKILL lists three phantom assets its own playbook flags | `sk-code-obsidian/SKILL.md:232-235` | N | P2 | On-demand offer that resolves to nothing; manifest already omits them (f-iter015-001) |
 | 8 | `description.json` prose omits Obsidian while keywords include it | `description.json:3` | N | P2 | The advisor-visible line is two surfaces behind (f-iter016-001) |
 | 9 | `ROUTER.md` universal-tier load claim overstates the machine map | `ROUTER.md:604,111` | N | P2 | Prose tier claims vs emitted entries; a performance route gets one file, not four (f-iter016-002) |

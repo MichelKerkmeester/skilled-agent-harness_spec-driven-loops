@@ -47,7 +47,7 @@ This child closes two defects found after the residual reference sweep. The rout
 
 **Decisions**:
 - D6: Both push and pull request path filters follow the baseline repoint. See [decision-ledger.txt, line 20](scratch/evidence/decision-ledger.txt#L20).
-- D7: Include the two sk-code-opencode documents in scope so their check 1b guidance matches the implementation. See [decision-ledger.txt, line 23](scratch/evidence/decision-ledger.txt#L23).
+- D7: Include the two sk-code-skilled documents in scope so their check 1b guidance matches the implementation. See [decision-ledger.txt, line 23](scratch/evidence/decision-ledger.txt#L23).
 
 **Deliverables**:
 - A check 1b fix with regression coverage for ignored and non-ignored files.
@@ -81,7 +81,7 @@ Make both drift checks pass with a fresh baseline in this child and the current 
 - Keep all corpus gate thresholds unchanged.
 - Filter check 1b's filesystem walk through Git ignore rules.
 - Test that ignored cache docs are skipped and non-ignored untracked docs are still reported.
-- Update the two sk-code-opencode docs to describe ignored-path filtering and the shared workflow allowlist.
+- Update the two sk-code-skilled docs to describe ignored-path filtering and the shared workflow allowlist.
 
 ### Out of Scope
 - Raising or lowering CI floors.
@@ -93,10 +93,10 @@ Make both drift checks pass with a fresh baseline in this child and the current 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs` | Modify | Apply Git ignore rules to check 1b. |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs` | Modify | Cover ignored files and non-ignored untracked docs. |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/README.md` | Modify | Describe check 1b ignore behavior and its regression test. |
-| `.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md` | Modify | Describe check 1b filtering and its allowlist. |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` | Modify | Apply Git ignore rules to check 1b. |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs` | Modify | Cover ignored files and non-ignored untracked docs. |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/README.md` | Modify | Describe check 1b ignore behavior and its regression test. |
+| `.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md` | Modify | Describe check 1b filtering and its allowlist. |
 | `.github/workflows/routing-registry-drift.yml` | Modify | Read the child baseline and keep the current floors. |
 | `specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/scripts/capture-top3.mjs` | Create | Capture the phase-local top-3 baseline evidence. |
 | `specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/` | Create | Hold the six recaptured baseline files. |

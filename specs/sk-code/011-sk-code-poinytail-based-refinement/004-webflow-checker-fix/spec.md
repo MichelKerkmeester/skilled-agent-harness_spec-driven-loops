@@ -84,9 +84,9 @@ The checker fails a script whose invoked callbacks throw, and still passes real 
 |-----------|-------------|-------------|
 | `.skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs` | Modify | Callback error capture |
 | `.skilled/skills/sk-code/sk-code-webflow/assets/scripts/` | Create | Known-bad and known-good fixtures |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/` | Create | Validator known-bad fixture |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/` | Create | Validator known-bad fixture |
 | `.skilled/skills/sk-code/sk-code-webflow/assets/scripts/README.md` | Modify | Checker and fixture table |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md` | Modify | Validator and fixture table |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md` | Modify | Validator and fixture table |
 <!-- /ANCHOR:scope -->
 
 ---

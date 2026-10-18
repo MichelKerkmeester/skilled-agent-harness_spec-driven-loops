@@ -1,7 +1,7 @@
 ---
 title: "DR-003: Intentional-simplification ceiling comment"
 description: "Verify that when sk-code takes a deliberate shortcut it emits a neutral ceiling: comment naming the shortcut, its ceiling, and the upgrade trigger as a durable WHY, and that comment-hygiene passes it without allow-listing."
-version: 1.5.0.1
+version: 1.5.1.0
 ---
 
 # DR-003: Intentional-simplification ceiling comment
@@ -26,7 +26,7 @@ Add a small in-memory rate limiter to the sk-doc local preview server at .skille
 Prompt: `Add a small in-memory rate limiter to the sk-doc local preview server at .skilled/skills/sk-doc/scripts/preview-server.ts. A fixed in-memory window is fine for local use, so mark the deliberate ceiling.`
 
 **Expected detection**:
-- Surface: `OPENCODE` (target path contains `/.skilled/`)
+- Surface: `SKILLED` (target path contains `/.skilled/`)
 - Intent: implementation (write work)
 - Sub-language: `TYPESCRIPT` (target file extension `.ts`)
 

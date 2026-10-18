@@ -88,7 +88,7 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
-| Contracts read | Verifier read `.skilled/skills/sk-code/SKILL.md`, `sk-code-opencode/SKILL.md`, `sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md`, `.skilled/skills/sk-doc/SKILL.md` and `sk-doc/sk-create-changelog/SKILL.md` before judging the diff |
+| Contracts read | Verifier read `.skilled/skills/sk-code/SKILL.md`, `sk-code-skilled/SKILL.md`, `sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md`, `.skilled/skills/sk-doc/SKILL.md` and `sk-doc/sk-create-changelog/SKILL.md` before judging the diff |
 | Hermes mirror | `sync-skills-hermes.cjs --check` prints `DRIFT system-spec-kit` plus five sibling sk-code lines. Orchestrator runs the generator once after every build |
 | Review | No defects found, so `scratch/fix-units.json` is `[]`. `run-all-drift-guards.sh` printed `all 4 guards PASSED` |
 | Not covered by any test | The shim's 1 MB overflow path is exercised by no suite, before or after this phase. A manual 2.2 MB probe of `dist/hooks/claude/user-prompt-submit.js` printed `INPUT_OVERFLOW` and `{}` with exit 0 |

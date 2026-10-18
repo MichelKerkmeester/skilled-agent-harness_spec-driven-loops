@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/sk-design/styles/_db/retrieval.mjs"
-      - ".opencode/skills/sk-code/code-opencode/references/rust/style-guide/interop-model.md"
+      - ".opencode/skills/sk-code/code-skilled/references/rust/style-guide/interop-model.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-author-session"
@@ -40,7 +40,7 @@ _memory:
 - **Packet:** 013-styles-database-rust-opportunities
 - **Level:** 2 (research charter; deep-research loop populates `research/`)
 - **Status:** In progress (research running)
-- **Sibling precedent:** the Rust-backend-rewrite charters `system-speckit/029` + `030`, `system-code-graph/035`, `system-skill-advisor/017`, and the shipped standard `sk-code/002-rust-standards-for-code-opencode`.
+- **Sibling precedent:** the Rust-backend-rewrite charters `system-speckit/029` + `030`, `system-code-graph/035`, `system-skill-advisor/017`, and the shipped standard `sk-code/002-rust-standards-for-code-skilled`.
 
 <!-- /ANCHOR:metadata -->
 

@@ -49,19 +49,19 @@ The router-sync suite was deleted with the skill-benchmark lane, and the docs on
 
 ### Phase 6: guard-retirement-notes
 
-`run-all-drift-guards.sh` carries a comment block listing the retired suite's four checks, its partial successor (the alignment-drift guard's `--check-router` for dead paths, and `.github/workflows/routing-registry-drift.yml` in CI for the compiled side), the uncovered gap and its owner, sk-code. The benchmark README's retired Lane C note gains a Successor line naming the same workflow and owner. The sk-code-opencode `SKILL.md`, its scripts README and the alignment-verification reference replace "no replacement yet" wording with pointers to the successor and the owner of every gap, and all four router-sync files describe the four checks the same way. The script's behavior is unchanged: its edits are comment-only, and its exit code and guard verdicts match the baseline.
+`run-all-drift-guards.sh` carries a comment block listing the retired suite's four checks, its partial successor (the alignment-drift guard's `--check-router` for dead paths, and `.github/workflows/routing-registry-drift.yml` in CI for the compiled side), the uncovered gap and its owner, sk-code. The benchmark README's retired Lane C note gains a Successor line naming the same workflow and owner. The sk-code-skilled `SKILL.md`, its scripts README and the alignment-verification reference replace "no replacement yet" wording with pointers to the successor and the owner of every gap, and all four router-sync files describe the four checks the same way. The script's behavior is unchanged: its edits are comment-only, and its exit code and guard verdicts match the baseline.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` | Modified | Retirement comment: checks, successor, gap, owner |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` | Modified | Retirement comment: checks, successor, gap, owner |
 | `.skilled/skills/sk-code/benchmark/README.md` | Modified | Lane C successor note |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/README.md` | Modified | Successor note |
-| `.skilled/skills/sk-code/sk-code-opencode/SKILL.md` | Modified | Successor note in the router block comment and verification bullet |
-| `.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md` | Modified | Retired router-sync subsection, successor pointer |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/README.md` | Modified | Successor note |
+| `.skilled/skills/sk-code/sk-code-skilled/SKILL.md` | Modified | Successor note in the router block comment and verification bullet |
+| `.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md` | Modified | Retired router-sync subsection, successor pointer |
 | `.skilled/skills/sk-code/leaf-manifest.json` | Regenerated | Seven entries the webflow-checker phase added without regenerating |
-| `.hermes/skills/sk-code-opencode/SKILL.md` | Regenerated | Generated copy of the edited SKILL.md |
+| `.hermes/skills/sk-code-skilled/SKILL.md` | Regenerated | Generated copy of the edited SKILL.md |
 <!-- /ANCHOR:what-built -->
 
 ---

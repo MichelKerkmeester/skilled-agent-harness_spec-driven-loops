@@ -97,22 +97,22 @@ doc quality	sk-doc	WRONG_HUB	sk-code	0.82	0.419264
 validate markdown	sk-doc	RESOLVED	sk-doc	0.8476	0.609562	sk-create-quality-control
 dqi score	sk-doc	NO_RECOMMENDATION				
 code work	sk-code	DEFERRED	sk-code	0.9268	0.756834	
-code surface detection	sk-code	MULTI	sk-code	0.95	0.855671	sk-code-quality,sk-code-review,sk-code-webflow,sk-code-opencode,sk-code-mobile-cli,sk-code-obsidian
+code surface detection	sk-code	MULTI	sk-code	0.95	0.855671	sk-code-quality,sk-code-review,sk-code-webflow,sk-code-skilled,sk-code-mobile-cli,sk-code-obsidian
 webflow	sk-code	RESOLVED	sk-code	0.8363	0.588557	sk-code-webflow
 frontend	sk-code	RESOLVED	sk-code	0.8626	0.637364	sk-code-webflow
 animation	sk-code	DEFERRED	sk-code	0.82	0.545264	
 cdn	sk-code	RESOLVED	sk-code	0.8531	0.619733	sk-code-webflow
 browser test	sk-code	RESOLVED	sk-code	0.9074	0.720749	sk-code-webflow
-opencode	sk-code	RESOLVED	sk-code	0.9015	0.709691	sk-code-opencode
-system code	sk-code	RESOLVED	sk-code	0.931	0.764705	sk-code-opencode
-mcp	sk-code	RESOLVED	sk-code	0.82	0.541933	sk-code-opencode
+opencode	sk-code	RESOLVED	sk-code	0.9015	0.709691	sk-code-skilled
+system code	sk-code	RESOLVED	sk-code	0.931	0.764705	sk-code-skilled
+mcp	sk-code	RESOLVED	sk-code	0.82	0.541933	sk-code-skilled
 skill script	sk-code	DEFERRED	sk-code	0.9088	0.723346	
 agent file	sk-code	DEFERRED	sk-code	0.82	0.482	
 command script	sk-code	DEFERRED	sk-code	0.8777	0.665467	
-typescript	sk-code	RESOLVED	sk-code	0.8626	0.637364	sk-code-opencode
-python	sk-code	RESOLVED	sk-code	0.8531	0.619733	sk-code-opencode
-shell	sk-code	RESOLVED	sk-code	0.82	0.513333	sk-code-opencode
-jsonc	sk-code	RESOLVED	sk-code	0.82	0.521267	sk-code-opencode
+typescript	sk-code	RESOLVED	sk-code	0.8626	0.637364	sk-code-skilled
+python	sk-code	RESOLVED	sk-code	0.8531	0.619733	sk-code-skilled
+shell	sk-code	RESOLVED	sk-code	0.82	0.513333	sk-code-skilled
+jsonc	sk-code	RESOLVED	sk-code	0.82	0.521267	sk-code-skilled
 alignment verifier	sk-code	RESOLVED	sk-code	0.8379	0.591528	sk-code-quality
 motion.dev integration	sk-code	DEFERRED	sk-code	0.9358	0.773627	
 motion-dev integration	sk-code	DEFERRED	sk-code	0.9358	0.773627	
@@ -138,7 +138,7 @@ add set -euo pipefail	sk-code	RESOLVED	sk-code	0.9011	0.708937	sk-code-quality
 console.error fallback	sk-code	DEFERRED	sk-code	0.9003	0.707583	
 argparse block	sk-code	DEFERRED	sk-code	0.82	0.556267	
 vitest covering	sk-code	DEFERRED	sk-code	0.8962	0.7	
-stable jsonl keys	sk-code	MULTI	sk-code	0.9135	0.732125	sk-code-quality,sk-code-opencode
+stable jsonl keys	sk-code	MULTI	sk-code	0.9135	0.732125	sk-code-quality,sk-code-skilled
 lenis smooth-scroll	sk-code	RESOLVED	sk-code	0.9057	0.717631	sk-code-webflow
 gsap timeline	sk-code	RESOLVED	sk-code	0.8233	0.5642	sk-code-webflow
 hls.js video	sk-code	RESOLVED	sk-code	0.8461	0.606667	sk-code-webflow
@@ -169,20 +169,20 @@ obsidian plugin source	sk-code	RESOLVED	sk-code	0.95	0.860437	sk-code-obsidian
 note database plugin	sk-code	RESOLVED	sk-code	0.95	0.860437	sk-code-obsidian
 obsidian plugin design system	sk-code	RESOLVED	sk-code	0.95	0.929828	sk-code-obsidian
 mobile cli source conventions	sk-code	DEFERRED	sk-code	0.95	0.865671	
-sk-code	sk-code	MULTI	sk-code	0.8655	0.642787	sk-code-quality,sk-code-review,sk-code-webflow,sk-code-opencode,sk-code-mobile-cli,sk-code-obsidian
-surface-aware code implementation	sk-code	MULTI	sk-code	0.95	0.807637	sk-code-quality,sk-code-review,sk-code-webflow,sk-code-opencode,sk-code-mobile-cli,sk-code-obsidian
+sk-code	sk-code	MULTI	sk-code	0.8655	0.642787	sk-code-quality,sk-code-review,sk-code-webflow,sk-code-skilled,sk-code-mobile-cli,sk-code-obsidian
+surface-aware code implementation	sk-code	MULTI	sk-code	0.95	0.807637	sk-code-quality,sk-code-review,sk-code-webflow,sk-code-skilled,sk-code-mobile-cli,sk-code-obsidian
 frontend implementation standards	sk-code	RESOLVED	sk-code	0.9389	0.77927	sk-code-webflow
-opencode typescript verification	sk-code	RESOLVED	sk-code	0.95	0.83227	sk-code-opencode
+opencode typescript verification	sk-code	RESOLVED	sk-code	0.95	0.83227	sk-code-skilled
 motion animation integration	sk-code	DEFERRED	sk-code	0.95	0.852572	
 stack-specific code quality gate	sk-code	RESOLVED	sk-code	0.9458	0.79221	sk-code-quality
 language-specific verification commands	sk-code	DEFERRED	sk-code	0.82	0.513037	
 surface detection routing	sk-code	DEFERRED	sk-code	0.82	0.366604	
 webflow frontend workflow	sk-code	RESOLVED	sk-code	0.95	0.848791	sk-code-webflow
-opencode system code workflow	sk-code	RESOLVED	sk-code	0.95	0.914566	sk-code-opencode
+opencode system code workflow	sk-code	RESOLVED	sk-code	0.95	0.914566	sk-code-skilled
 alignment verifier workflow	sk-code	RESOLVED	sk-code	0.9426	0.786203	sk-code-quality
 code quality gate	sk-code	RESOLVED	sk-code	0.95	0.865929	sk-code-quality
 verification commands	sk-code	DEFERRED	sk-code	0.82	0.54687	
-sk-code hub	sk-code	MULTI	sk-code	0.8784	0.666837	sk-code-quality,sk-code-review,sk-code-webflow,sk-code-opencode,sk-code-mobile-cli,sk-code-obsidian
+sk-code hub	sk-code	MULTI	sk-code	0.8784	0.666837	sk-code-quality,sk-code-review,sk-code-webflow,sk-code-skilled,sk-code-mobile-cli,sk-code-obsidian
 code mode router	sk-code	WRONG_HUB	mcp-code-mode	0.8948	0.697325	
 workflow doctrine	sk-code	DEFERRED	sk-code	0.8924	0.69287	
 review mode	sk-code	RESOLVED	sk-code	0.95	0.872353	sk-code-review

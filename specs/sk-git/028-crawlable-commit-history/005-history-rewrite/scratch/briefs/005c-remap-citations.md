@@ -32,7 +32,7 @@ timestamps and digests, and must stay byte-identical. Ten-hex prefix collisions 
 zero, measured.
 
 Read before writing:
-- `.opencode/skills/sk-code/sk-code-opencode/references/python/style-guide.md` sections on
+- `.opencode/skills/sk-code/sk-code-skilled/references/python/style-guide.md` sections on
   structure and naming
 
 # ACTION

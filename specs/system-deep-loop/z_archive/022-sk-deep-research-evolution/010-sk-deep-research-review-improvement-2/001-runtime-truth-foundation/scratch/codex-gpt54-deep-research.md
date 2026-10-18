@@ -183,7 +183,7 @@ exec
     37	
     38	- Simple single-pass code review (use `sk-code-review` instead)
     39	- Known issues that just need fixing (go directly to implementation)
-    40	- Implementation tasks (use `sk-code-opencode` or `/speckit:implement`)
+    40	- Implementation tasks (use `sk-code-skilled` or `/speckit:implement`)
     41	- Quick one-file checks (use direct Grep/Read)
     42	- Fewer than 2 review dimensions needed (single-pass suffices)
     43	
@@ -7698,7 +7698,7 @@ exec
    290	| Skill | Purpose |
    291	|-------|---------|
    292	| `sk-code-review` | Shared review doctrine via `references/review_core.md` |
-   293	| `sk-code-opencode` / `sk-code-web` / `sk-code-full-stack` | Stack-specific overlay |
+   293	| `sk-code-skilled` / `sk-code-web` / `sk-code-full-stack` | Stack-specific overlay |
    294	
    295	---
    296	

@@ -14,7 +14,7 @@ _memory:
     next_safe_action: "Review the diff and commit it, then decide whether doctor/git.md moves its gate"
     blockers: []
     key_files:
-      - ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py"
+      - ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py"
       - ".skilled/commands/doctor/scripts/tests/doctor-phrase-reach.test.cjs"
       - ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs"
       - ".skilled/skills/sk-doc/sk-create-command/SKILL.md"
@@ -65,8 +65,8 @@ For the gate, the proposed fix was to say "immediately after the frontmatter" ev
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py` | Modified | Router walk skips spec evidence, marker pattern follows the new header |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py` | Modified | Evidence-skip test, marker fixture |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py` | Modified | Router walk skips spec evidence, marker pattern follows the new header |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py` | Modified | Evidence-skip test, marker fixture |
 | `.skilled/commands/doctor/scripts/tests/doctor-phrase-reach.test.cjs` | Created | Passing run and stale-build exit 2 |
 | `.skilled/commands/doctor/scripts/README.md`, `tests/README.md` | Modified | Coverage claim and suite row |
 | `.skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs` | Modified | Header without semicolons |

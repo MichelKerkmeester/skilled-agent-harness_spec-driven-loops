@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/002-rust-standards-for-code-skilled",
+  "description": "WS1: `sk-code`'s `code-skilled` surface encodes per-language standards as a `references/<lang>/{styleguide,qualitystandards,quickreference}.md` trio",
+  "keywords": [
+    "ws1",
+    "sk-code",
+    "code-skilled",
+    "surface",
+    "encodes",
+    "per-language",
+    "standards",
+    "references",
+    "lang",
+    "styleguide",
+    "qualitystandards",
+    "quickreference",
+    "trio"
+  ],
+  "lastUpdated": "2026-08-29T15:04:31.362Z",
+  "specId": "002",
+  "folderSlug": "rust-standards-for-code-skilled",
+  "parentChain": [
+    "sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

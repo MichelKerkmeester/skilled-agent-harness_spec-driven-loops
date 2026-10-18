@@ -42,7 +42,7 @@ The most impactful findings cluster around: (1) the search pipeline's "V2 wraps 
 - **10 iterations**, 3 agents per iteration (**30 total agent runs**)
 - **Agent types:**
   - **copilot-C1** (GPT-5.4): Primary investigator -- deep code analysis, architecture review, logic bugs
-  - **copilot-C2** (GPT-5.4): Standards auditor -- sk-code-opencode compliance, contract consistency, documentation alignment
+  - **copilot-C2** (GPT-5.4): Standards auditor -- sk-code-skilled compliance, contract consistency, documentation alignment
   - **codex-A1** (GPT-5.4): Bug hunter -- edge cases, security, data integrity, dead code
 - **Convergence:** newInfoRatio declined from 1.00 to 0.22 over 10 iterations (3-iteration rolling average reached 0.29)
 - **Validation:** Targeted Vitest suites were run during iterations 6-10 to confirm findings against live tests
@@ -786,7 +786,7 @@ The most impactful findings cluster around: (1) the search pipeline's "V2 wraps 
 #### F8.16 -- Compliance scorecard summary
 - **Severity:** (informational)
 - **File(s):** Full codebase
-- **Description:** sk-code-opencode compliance grades from iteration 10: File naming **A**, Module structure **A**, TypeScript strict **A**, Import organization **A-**, Documentation quality **B**, Test naming **B**, JSDoc coverage **B-**, Error class usage **C+**, Logger usage **C+**.
+- **Description:** sk-code-skilled compliance grades from iteration 10: File naming **A**, Module structure **A**, TypeScript strict **A**, Import organization **A-**, Documentation quality **B**, Test naming **B**, JSDoc coverage **B-**, Error class usage **C+**, Logger usage **C+**.
 - **Impact:** Main compliance gaps are mixed error/logging strategy across workspaces, uneven JSDoc coverage, and legacy test naming.
 - **Recommendation:** Prioritize error class and logger consistency.
 

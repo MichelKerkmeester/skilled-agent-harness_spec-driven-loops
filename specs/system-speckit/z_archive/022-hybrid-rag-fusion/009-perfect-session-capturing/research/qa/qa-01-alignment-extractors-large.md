@@ -14,10 +14,10 @@
   └ 243 lines read
 
 ● Grep "P0|P1|P2|rules|RULES" (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skills/sk-code-opencode/SKILL.md)
+Env/Public/.opencode/skills/sk-code-skilled/SKILL.md)
   └ 26 lines found
 
-● Read .opencode/skills/sk-code-opencode/SKILL.md lines 336-455
+● Read .opencode/skills/sk-code-skilled/SKILL.md lines 336-455
   └ 119 lines read
 
 ● Todo started: read-target-files

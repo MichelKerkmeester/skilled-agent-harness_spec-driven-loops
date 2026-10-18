@@ -22,15 +22,15 @@
 .skilled/skills/sk-code/ROUTER.md	265	125	2d038c75c1f97bcb	keep	external: the Barter fork's own tree, not this repository
 .skilled/skills/sk-code/ROUTER.md	650	578	5539a352c8337281	rewrite	mixed-marker mention names the tree; real directory .skilled
 .skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/non-webflow-plus-motion-dev.md	24	322	8194baebccd6608e	rewrite	marker prose names the tree; canonical text now .skilled
-.skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/opencode-plus-motion-dev.md	11	51	bce0fc2c69a46257	rewrite	scenario names a tree tool; real directory .skilled
-.skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/opencode-plus-motion-dev.md	25	12	3ade22315fea924f	rewrite	marker comment names the tree; canonical text now .skilled
-.skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/opencode-plus-motion-dev.md	25	56	3ade22315fea924f	rewrite	second marker mention names the tree; now .skilled
-.skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/opencode-plus-motion-dev.md	100	3	39ecb602970f1fe7	rewrite	expected reference path resolves under .skilled/skills
-.skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/opencode-plus-motion-dev.md	101	3	c4916a26bf5db612	rewrite	expected reference path resolves under .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/skilled-plus-motion-dev.md	11	51	bce0fc2c69a46257	rewrite	scenario names a tree tool; real directory .skilled
+.skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/skilled-plus-motion-dev.md	25	12	3ade22315fea924f	rewrite	marker comment names the tree; canonical text now .skilled
+.skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/skilled-plus-motion-dev.md	25	56	3ade22315fea924f	rewrite	second marker mention names the tree; now .skilled
+.skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/skilled-plus-motion-dev.md	100	3	39ecb602970f1fe7	rewrite	expected reference path resolves under .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/skilled-plus-motion-dev.md	101	3	c4916a26bf5db612	rewrite	expected reference path resolves under .skilled/skills
 .skilled/skills/sk-code/manual-testing-playbook/design-restraint/ceiling-comment-convention.md	29	46	a205080fe89ab24e	rewrite	detection line names the tree; marker text now .skilled
 .skilled/skills/sk-code/manual-testing-playbook/design-restraint/design-restraint-ladder.md	31	46	a205080fe89ab24e	rewrite	detection line names the tree; marker text now .skilled
 .skilled/skills/sk-code/manual-testing-playbook/design-restraint/implementer-anti-stall.md	31	46	a205080fe89ab24e	rewrite	detection line names the tree; marker text now .skilled
-.skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/opencode-config.md	47	78	8abc83cb069cbc06	rewrite	precondition names the tree; equivalent configs live under .skilled
+.skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-config.md	47	78	8abc83cb069cbc06	rewrite	precondition names the tree; equivalent configs live under .skilled
 .skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md	43	56	193821bcd10070f1	rewrite	detection summary names the tree; marker text now .skilled
 .skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md	78	36	beb443279a038b53	rewrite	skill presence path resolves under .skilled/skills
 .skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md	194	130	feeba51139a84ea2	rewrite	probe prompt path names the tree; now .skilled/skills
@@ -57,14 +57,14 @@
 .skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md	27	77	f8d8e1a22557c055	rewrite	probe prompt path names the tree; now .skilled/skills
 .skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md	37	64	9742f9cd36473f11	rewrite	probe prompt path names the tree; now .skilled/skills
 .skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md	104	61	eb81d6633cd6fdd6	rewrite	marker note names the tree; marker text now .skilled
-.skilled/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md	3	69	8d6c48fa1fd59c17	rewrite	description names tree paths; real directory .skilled
-.skilled/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md	11	151	c2f802091d129069	rewrite	detection rule names the tree; marker text now .skilled
-.skilled/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md	11	185	c2f802091d129069	rewrite	surface scope names the tree's code; real dir .skilled
-.skilled/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md	31	46	a205080fe89ab24e	rewrite	detection line names the tree; marker text now .skilled
-.skilled/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md	51	62	4e2c977a7b4b7b54	rewrite	outcome path names the tree; now .skilled/skills
-.skilled/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md	95	115	ce457ee463bccdd5	rewrite	example path fragment names the tree; now .skilled
-.skilled/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md	105	3	92e45600643f8ffa	rewrite	reference path resolves under .skilled/skills
-.skilled/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md	107	3	40954c9fffec74f5	rewrite	reference asset path resolves under .skilled/skills
-.skilled/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md	108	3	3df37d64d81634a9	rewrite	verifier script path resolves under .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/surface-detection/skilled-detection.md	3	69	8d6c48fa1fd59c17	rewrite	description names tree paths; real directory .skilled
+.skilled/skills/sk-code/manual-testing-playbook/surface-detection/skilled-detection.md	11	151	c2f802091d129069	rewrite	detection rule names the tree; marker text now .skilled
+.skilled/skills/sk-code/manual-testing-playbook/surface-detection/skilled-detection.md	11	185	c2f802091d129069	rewrite	surface scope names the tree's code; real dir .skilled
+.skilled/skills/sk-code/manual-testing-playbook/surface-detection/skilled-detection.md	31	46	a205080fe89ab24e	rewrite	detection line names the tree; marker text now .skilled
+.skilled/skills/sk-code/manual-testing-playbook/surface-detection/skilled-detection.md	51	62	4e2c977a7b4b7b54	rewrite	outcome path names the tree; now .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/surface-detection/skilled-detection.md	95	115	ce457ee463bccdd5	rewrite	example path fragment names the tree; now .skilled
+.skilled/skills/sk-code/manual-testing-playbook/surface-detection/skilled-detection.md	105	3	92e45600643f8ffa	rewrite	reference path resolves under .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/surface-detection/skilled-detection.md	107	3	40954c9fffec74f5	rewrite	reference asset path resolves under .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/surface-detection/skilled-detection.md	108	3	3df37d64d81634a9	rewrite	verifier script path resolves under .skilled/skills
 .skilled/skills/sk-code/manual-testing-playbook/surface-detection/unknown-fallback.md	11	227	f8faa26357170420	rewrite	supported-stack rows name the tree; real directory .skilled
 .skilled/skills/sk-code/manual-testing-playbook/surface-detection/unknown-fallback.md	88	89	51a222afc7a84b21	rewrite	detection triage names the tree; real directory .skilled

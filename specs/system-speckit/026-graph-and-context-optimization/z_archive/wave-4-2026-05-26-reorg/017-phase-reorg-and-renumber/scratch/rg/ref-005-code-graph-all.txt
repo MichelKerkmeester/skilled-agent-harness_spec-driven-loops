@@ -591,10 +591,10 @@
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/009-fix-iteration-quality-meta-research/research/deep-research-config.json
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/009-fix-iteration-quality-meta-research/review/iterations/iteration-006.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/009-fix-iteration-quality-meta-research/research/iterations/iteration-005.md
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/007-code-graph-backend-resilience-implementation/scratch/sk-code-opencode-audit-report.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/007-code-graph-backend-resilience-implementation/scratch/sk-code-skilled-audit-report.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/009-fix-iteration-quality-meta-research/research/deep-research-state.jsonl
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/002-fix-stale-highlights-and-scan-scope/spec.md
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/007-code-graph-backend-resilience-implementation/scratch/sk-code-opencode-audit-prompt.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/007-code-graph-backend-resilience-implementation/scratch/sk-code-skilled-audit-prompt.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/002-fix-stale-highlights-and-scan-scope/graph-metadata.json
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/009-fix-iteration-quality-meta-research/review/iterations/iteration-002.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/002-fix-stale-highlights-and-scan-scope/plan.md

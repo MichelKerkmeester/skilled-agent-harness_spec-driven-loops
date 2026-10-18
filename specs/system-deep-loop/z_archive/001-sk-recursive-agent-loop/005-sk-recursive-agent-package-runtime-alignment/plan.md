@@ -31,7 +31,7 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown docs, JSON/JSONC config, YAML workflows, JavaScript CommonJS scripts, TOML wrappers |
-| **Framework** | `sk-doc`, `sk-code-opencode`, and system-spec-kit |
+| **Framework** | `sk-doc`, `sk-code-skilled`, and system-spec-kit |
 | **Storage** | Recursive-agent package surfaces plus packet docs and registry metadata |
 | **Testing** | `package_skill.py --check`, `validate_document.py`, `node --check`, `validate.sh --strict`, `python3` JSON parse |
 
@@ -124,7 +124,7 @@ The source package is corrected first, runtime agent and command surfaces are al
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | `sk-doc` templates | Internal | Green | Package shape cannot be corrected precisely |
-| `sk-code-opencode` standards | Internal | Green | Script-layer alignment cannot be justified |
+| `sk-code-skilled` standards | Internal | Green | Script-layer alignment cannot be justified |
 | Runtime agent mirrors | Internal | Green | Rename cannot stay cross-runtime consistent |
 | system-spec-kit strict validator | Internal | Green | Packet closeout cannot be proven |
 <!-- /ANCHOR:dependencies -->

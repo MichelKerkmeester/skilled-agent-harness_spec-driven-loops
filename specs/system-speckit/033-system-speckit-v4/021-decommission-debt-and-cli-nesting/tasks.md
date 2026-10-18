@@ -52,7 +52,7 @@ contextType: "general"
 - [x] T006 Review leaf: contract rule to resolve review paths against the dispatched artifact directory, all agent mirrors in sync (`fe7f59e652`)
 - [x] T007 Delete the rollback runbook with its README, alias and manifest entries; drop the unused MCP response type; rename the stale test (`184ccd38d9`, `fe7f59e652`)
 - [x] T008 Move the trigger index to `runtime/data/`, remove the retired search-decisions file, rewrite every reference and the architecture topology (`184ccd38d9`, `fe7f59e652`)
-- [x] T009 Align `runtime/` and `scripts/` with `sk-code-opencode` and write or refresh every code README: five Sonnet agents on disjoint folder sets (`f248d161d1`, `f8d961670f`, `f29790ad34`, `3a45311c1f`); 87 code READMEs, 0 validator issues, no code folder without one
+- [x] T009 Align `runtime/` and `scripts/` with `sk-code-skilled` and write or refresh every code README: five Sonnet agents on disjoint folder sets (`f248d161d1`, `f8d961670f`, `f29790ad34`, `3a45311c1f`); 87 code READMEs, 0 validator issues, no code folder without one
 - [x] T009a Restore the eleven session-lifecycle hook registrations and mirror links the memory sweep dropped (`9bca36ef52`); repair the two stale session-stop tests and the stdout scan exclusions (`9b583a048f`)
 <!-- /ANCHOR:phase-2 -->
 

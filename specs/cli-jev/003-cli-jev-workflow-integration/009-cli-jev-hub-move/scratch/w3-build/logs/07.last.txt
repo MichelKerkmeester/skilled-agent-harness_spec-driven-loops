@@ -4,7 +4,7 @@ Both files are read; line 35 matches the brief exactly, and "cli-jev" appears on
 
 The hub routes a bare implement edit on a `.cjs` system file to the OpenCode surface packet. Loading that resolved packet before the first write.
 
-Route resolved: sk-code hub → OpenCode surface (`sk-code-opencode`), JavaScript slice for `.cjs`. Loading the JavaScript evidence slice (bounded read) before the edit.
+Route resolved: sk-code hub → OpenCode surface (`sk-code-skilled`), JavaScript slice for `.cjs`. Loading the JavaScript evidence slice (bounded read) before the edit.
 
 JavaScript slice loaded — no conflicts with the frozen literal edit (no header, comment, or reformat changes are being made). Making the exact one-line replacement in both byte-identical twins.
 

@@ -283,7 +283,7 @@ Create a trustworthy Phase 1 foundation so later Hydra phases can build on repro
 - [x] Baseline docs reviewed for false shipping claims
 
 ### Code and Process
-- [x] `sk-code-opencode` alignment confirmed during implementation review
+- [x] `sk-code-skilled` alignment confirmed during implementation review
 - [x] Automated verification commands recorded in `implementation-summary.md`
 - [x] Manual smoke procedures recorded in the playbook
 

@@ -67,7 +67,7 @@ This document records the current verified state for this scope. Use [spec.md](s
 ## 4. PHASE 3: VERIFICATION
 
 - [x] T010 Record current targeted Vitest evidence: `npx vitest run --config ../mcp_server/vitest.config.ts --root . tests/runtime-memory-inputs.vitest.ts tests/outsourced-agent-handback-docs.vitest.ts` passed with `2` files and `32` tests
-- [x] T011 Record current alignment-drift evidence: `python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts` passed with `246` scanned files, `0` findings, and `0` warnings
+- [x] T011 Record current alignment-drift evidence: `python3 .opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts` passed with `246` scanned files, `0` findings, and `0` warnings
 - [x] T012 Record current TypeScript check evidence: `npm run lint` in `.opencode/skills/system-spec-kit/scripts` passed (`tsc --noEmit`)
 - [x] T013 Retained rich JSON-mode handback evidence: `memory/16-03-26_22-23__updated-the-outsourced-agent-handback-docs-so.md` exists at 556 lines with `generate-context.js` provenance
 - [x] T014 Fresh thin JSON-mode handback verification: `generate-context.js` rejected the payload with `INSUFFICIENT_CONTEXT_ABORT` before file write

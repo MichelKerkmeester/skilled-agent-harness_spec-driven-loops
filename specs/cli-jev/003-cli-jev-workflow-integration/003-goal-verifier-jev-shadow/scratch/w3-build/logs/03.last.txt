@@ -5,7 +5,7 @@ All verification done. Status summary before the handback:
 - **Not run (by brief):** the test suites; the orchestrator runs them. Files are edited on disk and uncommitted (both are untracked in git, existing files on disk).
 - **Scope:** only the two named files changed; the modified spec files in `git status` belong to other workers.
 
-SKILL ROUTING: persona directed -> sk-code; compiled router deferred (bare implement), surface resolved sk-code-opencode (JavaScript slice); ARTIFACT: sk-code -> sk-code-opencode
+SKILL ROUTING: persona directed -> sk-code; compiled router deferred (bare implement), surface resolved sk-code-skilled (JavaScript slice); ARTIFACT: sk-code -> sk-code-skilled
 REPO RULES: prevent-overengineering.md, evidence-and-proof.md loaded
 
 HANDBACK

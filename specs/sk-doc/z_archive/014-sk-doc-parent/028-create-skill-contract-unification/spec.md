@@ -132,7 +132,7 @@ independently verified by a fresh Sonnet-5 xhigh agent, then must pass its valid
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- Execution complete: every file was updated by a fresh GPT-5.6 LUNA MAX agent and verified by a fresh Sonnet-5 xhigh agent, then passed its validator. Follow-ups (out of scope): teach `package_skill.py` to branch on `packetKind: surface` (code-opencode + code-webflow were exempted manually); run an advisor re-baseline for the ~17 trimmed descriptions.
+- Execution complete: every file was updated by a fresh GPT-5.6 LUNA MAX agent and verified by a fresh Sonnet-5 xhigh agent, then passed its validator. Follow-ups (out of scope): teach `package_skill.py` to branch on `packetKind: surface` (code-skilled + code-webflow were exempted manually); run an advisor re-baseline for the ~17 trimmed descriptions.
 <!-- /ANCHOR:questions -->
 
 ---

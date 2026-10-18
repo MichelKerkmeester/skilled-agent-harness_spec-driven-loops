@@ -4,11 +4,11 @@ Evidence-derived resource map from the converged research deltas. `resource-map.
 
 ## Standards (read/inventoried)
 
-- `.opencode/skills/sk-code/sk-code-opencode/references/shell/style-guide/overview-structure-and-naming.md`
-- `.opencode/skills/sk-code/sk-code-opencode/references/shell/quality-standards/validation-security-and-shellcheck.md`
-- `.opencode/skills/sk-code/sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md`
-- `.opencode/skills/sk-code/sk-code-opencode/references/shared/code-organization/imports-and-exports.md`
-- `.opencode/skills/sk-code/sk-code-opencode/references/shared/code-organization/directory-and-test-conventions.md`
+- `.opencode/skills/sk-code/sk-code-skilled/references/shell/style-guide/overview-structure-and-naming.md`
+- `.opencode/skills/sk-code/sk-code-skilled/references/shell/quality-standards/validation-security-and-shellcheck.md`
+- `.opencode/skills/sk-code/sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md`
+- `.opencode/skills/sk-code/sk-code-skilled/references/shared/code-organization/imports-and-exports.md`
+- `.opencode/skills/sk-code/sk-code-skilled/references/shared/code-organization/directory-and-test-conventions.md`
 - `.opencode/skills/sk-code/shared/references/universal/code-quality-standards.md`
 
 ## Code sources cited (by finding)

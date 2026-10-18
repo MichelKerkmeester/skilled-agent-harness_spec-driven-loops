@@ -4,9 +4,9 @@ node:fs:1954
 
 Error: ENOENT: no such file or directory, scandir '/nonexistent-dir'
     at Object.readdirSync (node:fs:1954:26)
-    at collectDocs (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs:95:28)
-    at main (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs:273:16)
-    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs:290:20)
+    at collectDocs (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_doc_claims.cjs:95:28)
+    at main (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_doc_claims.cjs:273:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_doc_claims.cjs:290:20)
     at Module._compile (node:internal/modules/cjs/loader:1934:14)
     at Object..js (node:internal/modules/cjs/loader:2074:10)
     at Module.load (node:internal/modules/cjs/loader:1656:32)

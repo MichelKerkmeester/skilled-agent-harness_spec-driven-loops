@@ -54,4 +54,4 @@ The code disagrees for exactly that file: it writes `backend: 'jev'` as a litera
 
 ## Next focus
 
-Iteration 3 — sk-code-opencode compliance and bugs across the hub's scripts and tests: `shared/scripts/*.mjs`, `benchmark/*.mjs`, the shared tests, and the six live callers; syntax checks, error-path reads, and test-quality review.
+Iteration 3 — sk-code-skilled compliance and bugs across the hub's scripts and tests: `shared/scripts/*.mjs`, `benchmark/*.mjs`, the shared tests, and the six live callers; syntax checks, error-path reads, and test-quality review.

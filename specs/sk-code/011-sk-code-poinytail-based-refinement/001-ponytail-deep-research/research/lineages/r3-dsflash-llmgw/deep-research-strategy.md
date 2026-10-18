@@ -6,7 +6,7 @@ Round three over the sk-code hub. Rounds one and two are settled and are read as
 
 ## 2. TOPIC
 
-Part 1: the `.skilled/skills/sk-code/shared/` layer - how the hub `SKILL.md`, `ROUTER.md`, `hub-router.json` and `mode-registry.json` load it; how each mode and surface packet uses, overrides or duplicates it; where its logic is weak, inconsistent, stale, unreachable or duplicated; and its overlap with `.skilled/repo-rules/*.md`, the root `REPO RULES.md` and `AGENTS.md`. Part 2: `sk-code-review` and `.skilled/agents/review.md` - how codebase-agnostic the mode really is, internal agreement, script behavior, and what would strengthen its logic. Part 3: `sk-code-quality`, `sk-code-webflow`, `sk-code-opencode`, `sk-code-obsidian`, the hub files, `benchmark/` and `manual-testing-playbook/` for bugs, alignment issues and improvements. Classification vocabulary: NEW, ALREADY-COVERED, ALREADY-ADOPTED, IN-FLIGHT. Priorities P0, P1, P2, with reproducing cases for defects.
+Part 1: the `.skilled/skills/sk-code/shared/` layer - how the hub `SKILL.md`, `ROUTER.md`, `hub-router.json` and `mode-registry.json` load it; how each mode and surface packet uses, overrides or duplicates it; where its logic is weak, inconsistent, stale, unreachable or duplicated; and its overlap with `.skilled/repo-rules/*.md`, the root `REPO RULES.md` and `AGENTS.md`. Part 2: `sk-code-review` and `.skilled/agents/review.md` - how codebase-agnostic the mode really is, internal agreement, script behavior, and what would strengthen its logic. Part 3: `sk-code-quality`, `sk-code-webflow`, `sk-code-skilled`, `sk-code-obsidian`, the hub files, `benchmark/` and `manual-testing-playbook/` for bugs, alignment issues and improvements. Classification vocabulary: NEW, ALREADY-COVERED, ALREADY-ADOPTED, IN-FLIGHT. Priorities P0, P1, P2, with reproducing cases for defects.
 
 ## 3. KEY QUESTIONS (remaining)
 
@@ -18,7 +18,7 @@ Part 1: the `.skilled/skills/sk-code/shared/` layer - how the hub `SKILL.md`, `R
 - [x] How agnostic is `sk-code-review` as a mode meant for any codebase, and which repository-specific assumptions leak into its SKILL.md, references, assets, scripts and playbook? (iterations 6-11)
 - [ ] Do the review mode's contract, checklists, scripts and playbook agree with one another and with `.skilled/agents/review.md`, and where do the canonical, Claude and generated copies drift? (addressed in substance, iterations 7-9)
 - [x] What do the review scripts do on foreign-repository inputs, and what would make the review logic stronger? (iterations 10-11)
-- [ ] What defects, drift and improvements exist in `sk-code-quality`, `sk-code-webflow`, `sk-code-opencode` and `sk-code-obsidian` beyond rounds one and two? (addressed in substance, iterations 12-15)
+- [ ] What defects, drift and improvements exist in `sk-code-quality`, `sk-code-webflow`, `sk-code-skilled` and `sk-code-obsidian` beyond rounds one and two? (addressed in substance, iterations 12-15)
 - [ ] What defects, alignment gaps and improvements exist in the hub `SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `benchmark/` and `manual-testing-playbook/`? (addressed in substance, iterations 16-19)
 - [x] Which original ideas does round three produce, which should be rejected with reasons, and what ranked findings table and implementation phases close the round? (iteration 20)
 <!-- /ANCHOR:key-questions -->

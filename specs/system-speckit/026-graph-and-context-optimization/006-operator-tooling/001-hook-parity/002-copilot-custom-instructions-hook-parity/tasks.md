@@ -65,7 +65,7 @@ _memory:
 ## Phase 3: Verification
 
 - [x] **T011** Run focused Copilot and Claude hook tests. Evidence: implementation-summary.md verification table records 4 files / 28 tests passing.
-- [x] **T012** Run real Copilot smoke. Evidence: implementation-summary.md records `Advisor: stale; use sk-code-opencode 0.92/0.00 pass.`
+- [x] **T012** Run real Copilot smoke. Evidence: implementation-summary.md records `Advisor: stale; use sk-code-skilled 0.92/0.00 pass.`
 - [x] **T013** Update cli-copilot SKILL.md, README, hook docs, feature catalog, and manual playbook. Evidence: implementation-summary.md lists documentation sweep.
 - [x] **T014** Update parent summary and packet implementation summary. Evidence: implementation-summary.md final outcome B.
 - [x] **T015** Run strict validator after template closure. Evidence: temporary hygiene summary records the final strict-validator command and exit code.

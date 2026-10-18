@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "`packageskill.py --check --strict` failed sk-code-opencode because `routerreplaylib.cjs`, `verifydocclaims.cjs` and `verifyroutersync.cjs` break the kebab-case rule for package files",
+    "causal_summary": "`packageskill.py --check --strict` failed sk-code-skilled because `routerreplaylib.cjs`, `verifydocclaims.cjs` and `verifyroutersync.cjs` break the kebab-case rule for package files",
     "created_at": "2026-10-10T19:23:39Z",
-    "last_save_at": "2026-10-10T20:06:45.261Z",
+    "last_save_at": "2026-10-18T20:45:22.486Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1cc29bca000882e8cefa3d7b616376e39a8019c7fbedb1a563aba92258bfc61d",
+    "source_fingerprint": "sha256:f6a708fbf68ad532d0153a18f900b1068871b8a7adc203415e55012fe80516a7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "75d74e2b4667418400e65432a0c8382dda081061bc4dac099f7483daf5007291",
+      "spec.md": "9b4eae18360be4bf5da54f193ed57d60d57acc6308360332c25aaefdd2cf88f9",
       "plan.md": "b0169abcecfadf8875c9d90bddf6aa97b271eb06cf8f679ebf2b3fd280b29ed7",
-      "tasks.md": "e0ddae301e41122ae187d065768f62112f6c8c3747878e7a4203e580f74128a4",
-      "implementation-summary.md": "1f527f3adf77dd87a53ae619d0e57ba64aada54f485ee4f5fb440fd01554daf4"
+      "tasks.md": "64a9975db86c158fd7c66f908838cbb20552ac71e5a3bf88f4718bf93b45aaad",
+      "implementation-summary.md": "2df32dc1a35b0c8a63055a9d531fa73d5761243c86a699c03bc057bf4cc015b8"
     },
     "last_active_at": null
   }

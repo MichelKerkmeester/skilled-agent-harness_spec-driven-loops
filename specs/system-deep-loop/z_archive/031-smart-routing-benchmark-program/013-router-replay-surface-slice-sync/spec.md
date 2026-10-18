@@ -4,7 +4,7 @@ description: "The Lane-C router-replay harness sliced sk-code resources by pre-r
 trigger_phrases:
   - "router-replay surface slice sync"
   - "skill-benchmark surface slicing"
-  - "code-webflow code-opencode surface prefix"
+  - "code-webflow code-skilled surface prefix"
 importance_tier: "high"
 contextType: "general"
 parent: "system-deep-loop"
@@ -42,7 +42,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The Lane-C deterministic router-replay (`deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs`) slices a single-surface sk-code task down to only its detected surface's resources, so the benchmark can measure route-time loading discipline (the D3 efficiency dimension). That slicing keys on the surface's on-disk path prefix. sk-code's surfaces were renamed to sibling packet folders — `code-webflow/`, `code-opencode/`, `code-animation/` — and the smart router's `RESOURCE_MAP` was updated to match, but the harness's slicing constants stayed on the pre-rename bare prefixes (`webflow/`, `opencode/`, `animation/`). As a result `hasSurfaceLayout` (which requires both `code-webflow/references/` and `code-opencode/references/` prefixes in the map) permanently evaluated false, surface-slicing went dead, and single-surface tasks over-routed the entire cross-surface union. The benchmark was measuring a broken, over-routing router — directly contradicting the route-time slicing rule the smart router documents ("The deterministic router-replay enforces the same rule, so the benchmark measures it").
+The Lane-C deterministic router-replay (`deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs`) slices a single-surface sk-code task down to only its detected surface's resources, so the benchmark can measure route-time loading discipline (the D3 efficiency dimension). That slicing keys on the surface's on-disk path prefix. sk-code's surfaces were renamed to sibling packet folders — `code-webflow/`, `code-skilled/`, `code-animation/` — and the smart router's `RESOURCE_MAP` was updated to match, but the harness's slicing constants stayed on the pre-rename bare prefixes (`webflow/`, `opencode/`, `animation/`). As a result `hasSurfaceLayout` (which requires both `code-webflow/references/` and `code-skilled/references/` prefixes in the map) permanently evaluated false, surface-slicing went dead, and single-surface tasks over-routed the entire cross-surface union. The benchmark was measuring a broken, over-routing router — directly contradicting the route-time slicing rule the smart router documents ("The deterministic router-replay enforces the same rule, so the benchmark measures it").
 
 ### Purpose
 Re-sync the three prefix sites in `router-replay.cjs` to the `code-<surface>/` packet layout so surface-slicing is restored, and add a regression guard so a future folder rename cannot silently break it again. This is a targeted harness-correctness fix; aligning the sk-code playbook gold to the now-correctly-sliced router and re-baselining Lane-C is a separate follow-up packet.
@@ -54,7 +54,7 @@ Re-sync the three prefix sites in `router-replay.cjs` to the `code-<surface>/` p
 ## 3. SCOPE
 
 ### In Scope
-- Update the three resource-path prefix sites in `router-replay.cjs`: `SURFACE_PREFIXES`, the `hasSurfaceLayout` detection, and the OpenCode language sub-slice regex — from bare prefixes to `code-webflow/`, `code-opencode/`, `code-animation/`.
+- Update the three resource-path prefix sites in `router-replay.cjs`: `SURFACE_PREFIXES`, the `hasSurfaceLayout` detection, and the OpenCode language sub-slice regex — from bare prefixes to `code-webflow/`, `code-skilled/`, `code-animation/`.
 - Add a regression guard test (`tests/surface-slice-sync.vitest.ts`) locking the no-cross-surface-leak invariant and the code-<surface>/ slicing behavior.
 - Verify no regression to the existing harness vitest suite and that surface-slicing is restored (over-routing eliminated).
 
@@ -62,7 +62,7 @@ Re-sync the three prefix sites in `router-replay.cjs` to the `code-<surface>/` p
 - Aligning the sk-code `manual_testing_playbook` gold to the corrected router and regenerating `benchmark/2026-06-01--router-final--router/` (the sk-code re-baseline is the separate follow-up packet).
 - The pre-existing, unrelated harness test failure asserting `res.intents` contains `implement` (an intent/mode-projection expectation now stale because `hub-router.json` scores the `code-webflow` packet signal over the `implement` mode for a Webflow task) — a different subsystem, not surface-slicing.
 - The task-text surface/language detectors (`detectSurface`, `detectOpencodeLanguage`), which key on prompt tokens, not resource-folder names, and are correct as-is.
-- Any change to other benchmarked skills (`hasSurfaceLayout` requires both `code-webflow/` and `code-opencode/` prefixes, which only sk-code's map carries).
+- Any change to other benchmarked skills (`hasSurfaceLayout` requires both `code-webflow/` and `code-skilled/` prefixes, which only sk-code's map carries).
 
 ### Files to Change During Execution
 
@@ -81,8 +81,8 @@ Re-sync the three prefix sites in `router-replay.cjs` to the `code-<surface>/` p
 
 | ID | Requirement | Acceptance Criteria | Trace |
 |----|-------------|---------------------|-------|
-| REQ-001 | Slicing keys on the code-<surface>/ layout | `SURFACE_PREFIXES`, `hasSurfaceLayout`, and the OpenCode language regex reference `code-webflow/`, `code-opencode/`, `code-animation/`; `hasSurfaceLayout` evaluates true against the current RESOURCE_MAP | problem |
-| REQ-002 | Surface-slicing restored (no over-routing) | No scored, non-browser playbook scenario routes both `code-webflow/` and `code-opencode/` resources at once | purpose |
+| REQ-001 | Slicing keys on the code-<surface>/ layout | `SURFACE_PREFIXES`, `hasSurfaceLayout`, and the OpenCode language regex reference `code-webflow/`, `code-skilled/`, `code-animation/`; `hasSurfaceLayout` evaluates true against the current RESOURCE_MAP | problem |
+| REQ-002 | Surface-slicing restored (no over-routing) | No scored, non-browser playbook scenario routes both `code-webflow/` and `code-skilled/` resources at once | purpose |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -103,13 +103,13 @@ Re-sync the three prefix sites in `router-replay.cjs` to the `code-<surface>/` p
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: The three prefix sites reference the code-<surface>/ layout and `hasSurfaceLayout` is active. [EVIDENCE: router-replay.cjs SURFACE_PREFIXES/hasSurfaceLayout/OpenCode-regex updated to code-webflow|code-opencode|code-animation]
+- **SC-001**: The three prefix sites reference the code-<surface>/ layout and `hasSurfaceLayout` is active. [EVIDENCE: router-replay.cjs SURFACE_PREFIXES/hasSurfaceLayout/OpenCode-regex updated to code-webflow|code-skilled|code-animation]
 - **SC-002**: Over-routing is eliminated across the sk-code corpus. [EVIDENCE: per-scenario leak diagnostic 13/21 → 0/21 after the fix]
 - **SC-003**: The regression guard passes and the harness suite shows no new failure. [EVIDENCE: baseline 1 failed / 100 passed → post-fix 1 failed / 104 passed; the single failure is the same pre-existing, out-of-scope intents assertion]
 
 ### Acceptance Scenarios
 
-- **Scenario 1**: **Given** a WEBFLOW-surface task, **when** router-replay routes it, **then** the result contains `code-webflow/` resources and no `code-opencode/` resources.
+- **Scenario 1**: **Given** a WEBFLOW-surface task, **when** router-replay routes it, **then** the result contains `code-webflow/` resources and no `code-skilled/` resources.
 - **Scenario 2**: **Given** an UNKNOWN-surface Motion.dev decision task, **when** router-replay routes it, **then** it keeps the `code-animation/` overlay and drops both surface slices.
 
 <!-- /ANCHOR:success-criteria -->
@@ -120,7 +120,7 @@ Re-sync the three prefix sites in `router-replay.cjs` to the `code-<surface>/` p
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | Prefix change alters other skills' benchmark scoring | Unintended cross-skill regression | `hasSurfaceLayout` gate requires both `code-webflow/` + `code-opencode/` prefixes, which only sk-code's map carries; full suite re-run confirms no new failures |
+| Risk | Prefix change alters other skills' benchmark scoring | Unintended cross-skill regression | `hasSurfaceLayout` gate requires both `code-webflow/` + `code-skilled/` prefixes, which only sk-code's map carries; full suite re-run confirms no new failures |
 | Risk | Stale gold masks the fix in the aggregate score | Fix looks ineffective | Prove the fix by the direct leak diagnostic + guard test, not the gold-limited aggregate |
 | Dependency | Downstream sk-code gold alignment + re-baseline | Blocked until this lands | Sequenced as the follow-up packet against the corrected router |
 

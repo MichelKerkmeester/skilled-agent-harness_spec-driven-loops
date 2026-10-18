@@ -77,7 +77,7 @@ Plugin edits were constrained to comments and documentation: box-header lines, d
 
 - Kept the exemption narrow: it applies only to OpenCode plugin entrypoints/helpers and only to the CommonJS export requirement.
 - Kept existing plugin function order unchanged; dividers were inserted above the current import, constant, utility, size-cap, event-helper, and plugin-factory regions.
-- Used the existing sk-code-opencode JSDoc style from §5: summary sentence, typed `@param` entries, and typed `@returns`.
+- Used the existing sk-code-skilled JSDoc style from §5: summary sentence, typed `@param` entries, and typed `@returns`.
 <!-- /ANCHOR:decisions -->
 
 ---

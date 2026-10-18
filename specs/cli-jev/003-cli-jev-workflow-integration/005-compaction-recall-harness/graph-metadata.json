@@ -46,21 +46,16 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      "changelog/v4.3.0.0.md",
-      ".skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs",
-      ".skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/scripts/README.md",
       ".skilled/skills/system-spec-kit/SKILL.md",
       ".skilled/skills/system-spec-kit/README.md",
-      ".skilled/skills/system-spec-kit/changelog/v4.3.0.0.md",
-      ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/compaction-recall-census.md",
       "feature-catalog/feature-catalog.md",
-      ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/compaction-recall-census.md",
       "manual-testing-playbook/manual-testing-playbook.md",
       ".hermes/skills/system-spec-kit/SKILL.md",
       ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts",
       "dist/hooks/claude/compact-inject.js",
-      "runtime/tests/compaction-recall.vitest.ts"
+      "runtime/dist/hooks/claude/compact-inject.js",
+      "runtime/scripts/README.md"
     ],
     "entities": [
       {
@@ -94,24 +89,6 @@
         "source": "derived"
       },
       {
-        "name": "v4.3.0.0.md",
-        "kind": "doc",
-        "path": "changelog/v4.3.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "score-compaction-recall.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "compaction-recall.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/runtime/scripts/README.md",
@@ -121,12 +98,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "compaction-recall-census.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/compaction-recall-census.md",
         "source": "derived"
       },
       {
@@ -206,11 +177,35 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Session Source",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Nobody has measured what a host compaction in this project keeps, so there is no baseline a deletion pass on either backend could be judged against",
     "created_at": "2026-09-27T04:39:31Z",
-    "last_save_at": "2026-09-29T06:11:46.683Z",
+    "last_save_at": "2026-10-18T20:45:03.344Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,11 +215,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:32dae4e48bd481a5e310efc56311e3def9701de50c949a2b591328fd096c3167",
+    "source_fingerprint": "sha256:c0155b99ce6afa5b4db79634bded6b31283b1d7bbb2bf097177739d25da9f01c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f33743158236dbb9373fb9ab26cf918408f3b34c64808d818ead2be2acd1ba08",
-      "plan.md": "2bad841e84a2e7a4bedb91d5393a4399a0b982fe89d8efaa0566f5b0b906e87d",
+      "spec.md": "c81ebd94b614d8298d86fe20c5c4c0557b75cdbcafbd2aab53b25f599f627a9a",
+      "plan.md": "9292700c75df5e75ce6ece75a32fb7866e50a39c438a8e868e9eed59b369ef45",
       "tasks.md": "ced97f81fe477a1d19101f93ff0319f435c198bcc52504f80d2090292e965534",
       "implementation-summary.md": "1578a9956003359e73f827e03aa83b4df61b8f32e0f413b584c9b519367897ca"
     },

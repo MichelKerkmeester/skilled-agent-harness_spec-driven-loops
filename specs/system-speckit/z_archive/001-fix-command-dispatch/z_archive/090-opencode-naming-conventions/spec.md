@@ -22,7 +22,7 @@ contextType: "planning"
 <!-- ANCHOR:metadata -->
 ## EXECUTIVE SUMMARY
 
-Align JavaScript naming conventions in the OpenCode framework with ecosystem standards (camelCase) instead of the current non-standard snake_case enforcement. Migrate all ~206 JS files in `.opencode/skills/system-spec-kit/` and update the `sk-code-opencode` skill documentation.
+Align JavaScript naming conventions in the OpenCode framework with ecosystem standards (camelCase) instead of the current non-standard snake_case enforcement. Migrate all ~206 JS files in `.opencode/skills/system-spec-kit/` and update the `sk-code-skilled` skill documentation.
 
 **Key Decisions**: Use camelCase for JS functions/params/exports (industry standard), maintain backward-compatible aliases for MCP handlers
 
@@ -46,7 +46,7 @@ Align JavaScript naming conventions in the OpenCode framework with ecosystem sta
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The `sk-code-opencode` skill enforces `snake_case` for JavaScript functions, parameters, and exports. This contradicts JS ecosystem standards (MDN, Airbnb, Node.js all use camelCase). All ~206 JS files in `.opencode/skills/system-spec-kit/` follow snake_case, creating friction and inconsistency.
+The `sk-code-skilled` skill enforces `snake_case` for JavaScript functions, parameters, and exports. This contradicts JS ecosystem standards (MDN, Airbnb, Node.js all use camelCase). All ~206 JS files in `.opencode/skills/system-spec-kit/` follow snake_case, creating friction and inconsistency.
 
 ### Purpose
 Each language in the OpenCode framework uses its ecosystem's most common convention: JS uses camelCase, Python uses snake_case (PEP 8), Shell uses snake_case (Google style).
@@ -58,7 +58,7 @@ Each language in the OpenCode framework uses its ecosystem's most common convent
 ## 3. SCOPE
 
 ### In Scope
-- Part A: Update 9 skill documentation files in `sk-code-opencode/`
+- Part A: Update 9 skill documentation files in `sk-code-skilled/`
 - Part B: Migrate ~206 JS files in `.opencode/skills/system-spec-kit/` from snake_case to camelCase
 - Backward-compatible export aliases for MCP handlers
 
@@ -74,7 +74,7 @@ Each language in the OpenCode framework uses its ecosystem's most common convent
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/sk-code-opencode/` (9 files) | Modify | Update naming convention docs |
+| `.opencode/skills/sk-code-skilled/` (9 files) | Modify | Update naming convention docs |
 | `.opencode/skills/system-spec-kit/**/*.js` (~206 files) | Modify | Rename snake_case to camelCase |
 
 <!-- /ANCHOR:scope -->

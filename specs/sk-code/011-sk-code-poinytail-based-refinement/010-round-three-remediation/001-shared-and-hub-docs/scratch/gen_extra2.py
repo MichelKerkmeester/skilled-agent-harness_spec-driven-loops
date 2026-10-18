@@ -19,7 +19,7 @@ FIRST_TASK = 163
 WI = ".skilled/skills/sk-code/shared/references/workflow-implement.md"
 WV = ".skilled/skills/sk-code/shared/references/workflow-verify.md"
 MR = ".skilled/skills/sk-code/mode-registry.json"
-TARGET = "../../sk-code-opencode/references/shared/workflow-guardrails.md"
+TARGET = "../../sk-code-skilled/references/shared/workflow-guardrails.md"
 
 def post_chain(path):
     text = (ROOT / path).read_text(encoding="utf-8")
@@ -92,8 +92,8 @@ for i, (path, old, new, title) in enumerate(units + [REGISTRY_UNIT]):
 lines.append(
     f"- [ ] T{FIRST_TASK + len(units)} Verify batch 2, after the OpenCode guardrails file exists. Run "
     "`rg -c 'OpenCode Surface Only' .skilled/skills/sk-code/shared/references; echo \"rg=$?\"; "
-    "test -f .skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md; echo \"target=$?\"; "
-    "grep -c -x -e '## 2. IMPLEMENTATION GUARDRAILS' -e '## 3. VERIFICATION REALITY' -e '## 4. RUNTIME BUILD TRAPS' .skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md; "
+    "test -f .skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md; echo \"target=$?\"; "
+    "grep -c -x -e '## 2. IMPLEMENTATION GUARDRAILS' -e '## 3. VERIFICATION REALITY' -e '## 4. RUNTIME BUILD TRAPS' .skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md; "
     f"node {FOLDER}/scratch/check-links.cjs; {REGISTRY_CHECK}`. Expected: only `rg=1`, `target=0`, `3`, `checked=127 missing=0` (three pointers removed, three added) and `T{REGISTRY_TASK} OK`. "
     "(`.skilled/skills/sk-code/shared/references/workflow-verify.md`)")
 lines.insert(len(units), registry_line)

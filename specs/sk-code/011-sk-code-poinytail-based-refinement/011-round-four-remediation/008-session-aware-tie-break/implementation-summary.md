@@ -111,7 +111,7 @@ DeepSeek V4.1 Flash built the 28 planned units one at a time, each checked again
 | Check | Result |
 |-------|--------|
 | Goal 1: `node --test --test-reporter=tap .skilled/bin/tests/compiled-route-surface-hint.test.cjs` | PASS: exit 0, `# pass 6`, `# fail 0` (`# fail 3` before the code change) |
-| Goal 2: `scratch/canary-assert.cjs` and `cmp` of the two fixture copies | PASS: exit 0, `OK surface-hint-webflow-testing route orderedBundle sk-code-webflow,sk-code-opencode`, `cases 18 failures 0`, `cmp=0` |
+| Goal 2: `scratch/canary-assert.cjs` and `cmp` of the two fixture copies | PASS: exit 0, `OK surface-hint-webflow-testing route orderedBundle sk-code-webflow,sk-code-skilled`, `cases 18 failures 0`, `cmp=0` |
 | Goal 3: `scratch/all-canaries.cjs`, filtered | PASS: no FAIL line outside the baseline `jev-transport-single`, filter exit 1, `001-sk-code cases 18 failures 0`. The only diff against baseline is `cases 13` to `cases 18` |
 | Goal 4: `cmp` of the four authored closure files against their runtime copies | PASS: no output, exit 0 |
 | Goal 5: `grep -c -F -- '--surface-hint'` on `SKILL.md` and `ROUTER.md` | PASS: `SKILL.md:1` and `ROUTER.md:1` |
@@ -120,7 +120,7 @@ DeepSeek V4.1 Flash built the 28 planned units one at a time, each checked again
 | Hub guards (T052) | PASS: router-sync 5/5, doc-claims 4/4, parent-skill-check OK with 5e, 5i and 13c PASS, leaf manifest `OK (59ea33fd...)` |
 | Advisor battery (T053) | PASS: `positives 13/17 negatives-false-positive 2/5`, no diff |
 | Release and hub docs (T051, T054) | PASS: six carriers at 2.2.7.0, changelog VALID with 0 issues and 0 hard blockers, `SKILL.md` 0 issues and 36 hard blockers, `ROUTER.md` 1 issue and 32 hard blockers (all equal to baseline), lockstep output unchanged |
-| Compiled routing serves the hint (T055) | PASS after the orchestrator's re-mint and archive copy: guard `sk-code fresh` and `All hubs fresh or excused`, the front door with `--surface-hint WEBFLOW` prints `"workflowMode":"sk-code-webflow"` then `"workflowMode":"sk-code-opencode"`, `move-simulation OK`, `verify=0`, `cmp=0` |
+| Compiled routing serves the hint (T055) | PASS after the orchestrator's re-mint and archive copy: guard `sk-code fresh` and `All hubs fresh or excused`, the front door with `--surface-hint WEBFLOW` prints `"workflowMode":"sk-code-webflow"` then `"workflowMode":"sk-code-skilled"`, `move-simulation OK`, `verify=0`, `cmp=0` |
 | Hermes copies (T056) | PASS after the orchestrator's generator run: `PASS: 70 Hermes skill copies in sync`, exit 0 |
 | Review | No defects. The diff matches the plan, the new prose has no em dashes or semicolons, no code comment names a spec path or id, and fix-units.json is empty |
 

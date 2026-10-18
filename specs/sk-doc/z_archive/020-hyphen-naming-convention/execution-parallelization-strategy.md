@@ -249,7 +249,7 @@ shared root. Ownership is complete — no gap, no double-ownership:
 - **Add** the bounded dual-name tolerance in **002** (root-name-consumer-migration) — the shared consumers (classifier, Lane C
   loader/generator, routers, guard) accept both roots, dissolving the cross-skill coupling.
 - **Rename** the physical catalog/playbook directories **per-skill in 008** (e.g. `008/001-sk-code/006-manual-testing-playbook`
-  owns `sk-code/manual_testing_playbook/**`; `.../002-code-opencode` owns the nested code-opencode playbook). Because 002 already
+  owns `sk-code/manual_testing_playbook/**`; `.../002-code-skilled` owns the nested code-skilled playbook). Because 002 already
   made consumers tolerate both names, each skill's directory rename is a local, skill-contained closure — correctly in 008, not 007.
 - **007 owns only the cross-skill catalog edges**: the symlink façade `.opencode/skills/sk-doc/scripts/` (`007/002`) and the
   catalog command asset `create_feature_catalog_auto.yaml` (`007/001`) — never the per-skill catalog/playbook directories.

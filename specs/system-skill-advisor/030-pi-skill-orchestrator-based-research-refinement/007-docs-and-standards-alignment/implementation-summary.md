@@ -108,7 +108,7 @@ The orchestrator made one edit itself: it wrapped a 122-character comment that t
 | Check | Result |
 |-------|--------|
 | `python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` over the 35 changed code files | 31 clean, 0 violations, 4 workflow YAML files skipped by the checker and scanned by hand |
-| `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` | Exit 0, both guards PASS |
+| `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` | Exit 0, both guards PASS |
 | Pi hook test, `npx vitest run tests/hooks/prompt-advisor.vitest.ts` | 11 of 11 pass. With the fix reverted the new test fails and the other 10 pass, so the test catches the defect |
 | Advisor runtime suite, `npx vitest run` in `runtime/` | 949 passed, 1 failed, 6 skipped. The baseline was 947 passed and 2 failed. The failure is the routing-divergence ratchet, `rr-iter3-093`, which failed before this phase and involves no file it changed. The timing-sensitive freshness bench passed this run |
 | sk-doc validators, baseline against final | `validate_document.py` 0 issues on all 26 edited documents. Catalog packages: system-skill-advisor 9 to 8 warnings, system-spec-kit 84 to 84, 0 failures. Playbook packages 0 violations |

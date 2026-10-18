@@ -41,16 +41,15 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs",
-      ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs",
       ".github/workflows/routing-registry-drift.yml",
       "scripts/capture-top3.mjs",
-      ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
-      ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md",
       "scratch/evidence/lane-01-router-sync-ignored.txt",
       "scratch/evidence/lane-02-baseline-recapture.txt",
       "scratch/evidence/decision-ledger.txt",
-      ".pytest_cache/README.md",
       "specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/scripts/capture-top3.mjs",
       "scratch/files.txt"
     ],
@@ -82,13 +81,13 @@
       {
         "name": "verify-router-sync.cjs",
         "kind": "file",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
         "source": "derived"
       },
       {
         "name": "verify-router-sync.test.cjs",
         "kind": "file",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs",
         "source": "derived"
       },
       {
@@ -106,13 +105,13 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md",
         "source": "derived"
       },
       {
         "name": "alignment-verification-automation.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md",
         "source": "derived"
       },
       {
@@ -202,7 +201,7 @@
     ],
     "causal_summary": "The drift workflow still checks a corpus hash from before four retired-mode rows were removed, so its pin check stops before scoring",
     "created_at": "2026-10-11T13:05:52Z",
-    "last_save_at": "2026-10-11T15:33:16.378Z",
+    "last_save_at": "2026-10-18T20:45:27.549Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:34c3f4b10341fceb6be27b95dea003b9009d1cd99c0601f38d3d45c0492d6405",
+    "source_fingerprint": "sha256:cefce78594afedfeb381a6f414296c4a8cfd532e10f95669070fe231a2c7ba45",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e2df041fac9f4e01698db6e6492e222d95d294c600140d4b0654dd133c897b3b",
-      "plan.md": "1ca3e2838287aac5035720f23548e56a02cb6278ed88426f0495def5b2d8b870",
-      "tasks.md": "035c0585055a9d0eaa5bd5d26a9566d85920e4d46b42f8cba82a489924e42884",
-      "implementation-summary.md": "57113a1953d4a5d4851977658763a4500d46b419a80b2a8914d76e098696bfe6"
+      "spec.md": "86b3e27f31ab2c5286d76684e7784064d1ffe99cceefb33bc7ff637c91cebda2",
+      "plan.md": "0537de61baab12ebbc5176c868c1ff1f19357df8287023d935fb4e3f8f0d4fa8",
+      "tasks.md": "b4c2e2050430a320c06196c208eb2c81b061dcc228d39482b7d5f23cbe0604f1",
+      "implementation-summary.md": "66039b4101612fe10b34a47353bbac75797b957f97f39f2fa6f9391c3d2b09cb"
     },
     "last_active_at": null
   }

@@ -40,14 +40,13 @@
       "implementation-summary.md",
       ".skilled/commands/doctor/scripts/git-setup-check.cjs",
       ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
-      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py",
-      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py",
       ".skilled/skills/mcp-code-mode/mcp-server/scripts/check-node.cjs",
       ".skilled/skills/sk-design/shared/scripts/render-screenshots.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs",
       ".skilled/skills/sk-doc/scripts/validate-doc-model-refs.js",
       ".skilled/skills/sk-doc/scripts/tests/test_template_version_seed.py",
-      ".skilled/skills/sk-vision/hooks/opencode/sk-vision.js",
       ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
       ".skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/single-writer-lease-stress.vitest.ts",
       "specs/sk-git/033-git-setup-customization/spec.md"
@@ -92,13 +91,13 @@
       {
         "name": "verify_alignment_drift.py",
         "kind": "file",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py",
         "source": "derived"
       },
       {
         "name": "test_verify_alignment_drift.py",
         "kind": "file",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py",
         "source": "derived"
       },
       {
@@ -129,12 +128,6 @@
         "name": "test_template_version_seed.py",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/scripts/tests/test_template_version_seed.py",
-        "source": "derived"
-      },
-      {
-        "name": "sk-vision.js",
-        "kind": "code",
-        "path": ".skilled/skills/sk-vision/hooks/opencode/sk-vision.js",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `/doctor:git setup` battery reads only an inline default export, so an OpenCode or Pi adapter written as `export default plugin;` reads as unregistered even when `plugin` registers the advisory",
     "created_at": "2026-10-17T11:59:09Z",
-    "last_save_at": "2026-10-17T16:41:26.985Z",
+    "last_save_at": "2026-10-18T20:45:23.628Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:16d91c62e260fcb69218fe7f475c7b3d3f77a5c099d8f23a2fdab63bcf3d8208",
+    "source_fingerprint": "sha256:a515709a216a5238b1819c3fc1a66a351849ac014d71f71a2ae3b1208602986b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3ec68d3b8fa00d08e3c00a3accec987b599688bf4f5cdce4f4a458fb6856571d",
+      "spec.md": "119d575d475676206060b845fc8df0552b3959d9913284600b6f34392ecf0ce0",
       "plan.md": "f6eb4f0d11dafa7e5b29e9575f3abc69f8e7e703dd5def5994b92e94dfabe3a5",
       "tasks.md": "c0d57c9ee5308f10288d226bbf19513d55e8bed069ab350ba97e39ef9a02655c",
-      "implementation-summary.md": "937776cea84f710707af8a24d2b911efff859ac5bb47ee50f2b9e9c532f1ec43"
+      "implementation-summary.md": "8f0fe63a087442dfff36c9f6ab0be363e0e733c96533ce5924eb127951a8149c"
     },
     "last_active_at": null
   }

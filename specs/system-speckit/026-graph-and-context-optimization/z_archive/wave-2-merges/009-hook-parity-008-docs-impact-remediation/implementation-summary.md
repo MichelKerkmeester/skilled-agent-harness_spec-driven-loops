@@ -58,7 +58,7 @@ Each row links to its detailed applied report in `applied/`. Evidence base: merg
 - **Flagged by:** 009/01, 05, 09
 - **Applied report:** `applied/10-AGENTS_md.md`
 - **Diff:** +6 / −changes
-- **Change:** Gate 2 anchored on hook brief primary with `skill_advisor.py` as fallback; Codex post-05 native `SessionStart` parity note; OpenCode plugin ESM exemption in `sk-code-opencode` language table.
+- **Change:** Gate 2 anchored on hook brief primary with `skill_advisor.py` as fallback; Codex post-05 native `SessionStart` parity note; OpenCode plugin ESM exemption in `sk-code-skilled` language table.
 - **Done by:** cli-codex slot 10 (PID 6932)
 
 ### T-003 — `.opencode/skills/system-spec-kit/SKILL.md` (Skill, HIGH)

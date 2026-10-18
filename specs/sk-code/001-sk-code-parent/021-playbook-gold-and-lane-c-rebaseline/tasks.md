@@ -43,7 +43,7 @@ _memory:
 - [x] T001 Confirm phase-021 scope and out-of-scope boundaries [small] — spec.md defines deterministic playbook gold path translation, router-final regeneration, README statistic refresh, frozen-baseline exclusion, live-mode deferral, residual-recall follow-up, and unrelated `intents` test exclusion
 - [x] T002 Confirm harness dependency 037 landed [small] — router-replay surface-slicing sync landed first so scored scenarios no longer mix surface slices incorrectly
 - [x] T003 Confirm harness dependency 038 landed [small] — scenario-loader `code-<surface>/` parse support landed first so refreshed gold paths are measurable
-- [x] T004 Establish deterministic translation map [medium] — `references/motion_dev/` and `assets/motion_dev/` to `code-animation/`, `references/webflow/` and `assets/webflow/` to `code-webflow/`, `references/opencode/` and `assets/opencode/` to `code-opencode/`
+- [x] T004 Establish deterministic translation map [medium] — `references/motion_dev/` and `assets/motion_dev/` to `code-animation/`, `references/webflow/` and `assets/webflow/` to `code-webflow/`, `references/opencode/` and `assets/opencode/` to `code-skilled/`
 - [x] T005 Confirm frozen baseline remains out of scope [small] — `benchmark/baseline/` is the before-picture snapshot and was not regenerated
 
 <!-- /ANCHOR:phase-1 -->
@@ -79,7 +79,7 @@ _memory:
 - [x] T015 Verify router-final verdict and dimension scores [medium] — regenerated verdict CONDITIONAL, aggregate 71/100, D1-intra 87, D2 discovery 79, D3 efficiency 47, D5 connectivity 100/100 hard-gate pass; D1-inter and D4 need live mode
 
 ### Severity Promotion
-- [x] T016 Verify no cross-surface leak [small] — 0 scored scenarios route both `code-webflow/` and `code-opencode/` at once
+- [x] T016 Verify no cross-surface leak [small] — 0 scored scenarios route both `code-webflow/` and `code-skilled/` at once
 - [x] T017 Verify honest recall signal [medium] — gold-vs-router recall is 65 of 99 gold paths = 66%, deliberately not forced to 100%
 - [x] T018 Verify regression recovery [small] — router-final recovers the pre-regression historical baseline after the three broken components had dropped the benchmark to 47 FAIL
 

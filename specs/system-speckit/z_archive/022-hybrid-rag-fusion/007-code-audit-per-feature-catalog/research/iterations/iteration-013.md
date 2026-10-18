@@ -1,6 +1,6 @@
 ● skill(sk-code-review)
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 I’m loading the audit scope and security-relevant server surfaces first, then I’ll verify the claimed mismatches against the actual code paths and input-validation boundaries.
 
@@ -358,7 +358,7 @@ I’ve got enough structure to start validating the claimed mismatches directly.
   └ L1:80 (79 lines read)
 
 ● Read verify_alignment_drift.py
-  │ .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py
+  │ .opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py
   └ L1:120 (120 lines read)
 
 ● Search (grep)

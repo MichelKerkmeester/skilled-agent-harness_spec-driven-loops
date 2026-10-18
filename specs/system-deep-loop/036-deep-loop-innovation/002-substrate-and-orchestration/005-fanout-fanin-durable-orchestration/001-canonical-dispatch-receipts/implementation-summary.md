@@ -172,7 +172,7 @@ Result: `Test Files 2 passed (2); Tests 37 passed (37)`.
 Result: exit 0.
 
 ```bash
-python3 .opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py --fail-on-warn --root .opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts --root .opencode/skills/system-deep-loop/runtime/tests/unit/dispatch-receipts.vitest.ts
+python3 .opencode/skills/sk-code/code-skilled/assets/scripts/verify_alignment_drift.py --fail-on-warn --root .opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts --root .opencode/skills/system-deep-loop/runtime/tests/unit/dispatch-receipts.vitest.ts
 ```
 
 Result: exit 0; 10 files scanned; 0 errors, warnings, or findings.

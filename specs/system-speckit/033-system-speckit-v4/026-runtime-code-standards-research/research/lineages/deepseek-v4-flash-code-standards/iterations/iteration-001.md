@@ -7,7 +7,7 @@ Angle 1 — verify module-header and numbered-section-banner conformance across 
 
 ### F1.1 [P1] Shell file-header tag diverges from the documented template in 27 scripts
 - **Code:** `runtime/cli/rules/*.sh` (e.g., `runtime/cli/rules/check-files.sh:3`, `runtime/cli/rules/check-links.sh:3`, `runtime/cli/rules/check-comment-hygiene.sh:3`)
-- **Standard:** `sk-code-opencode/references/shell/style-guide/overview-structure-and-naming.md` §2 "File Header" — the header is `# COMPONENT: [COMPONENT NAME]` (or the `# SPECKIT: ...` alternative). No `RULE:` tag is documented.
+- **Standard:** `sk-code-skilled/references/shell/style-guide/overview-structure-and-naming.md` §2 "File Header" — the header is `# COMPONENT: [COMPONENT NAME]` (or the `# SPECKIT: ...` alternative). No `RULE:` tag is documented.
 - **What is present:** The `runtime/cli/rules/` family uses `# RULE: CHECK-FILES` instead of `# COMPONENT:`. Across scope, header tags are split: 33 `COMPONENT`, 27 `RULE`, 6 `SPECKIT`, 3 `SPEC-KIT`, 2 `TEST`, 1 `SCRIPT`, and 6 with no tag at all. Only 39/78 scripts use a documented template tag.
 - **Severity:** P1 — systematic authoring-contract divergence with a maintenance cost (a reader cannot assume the standard header tag; header parsing/logging that keys on `COMPONENT:`/`SPECKIT:` will miss the `RULE:` family). Mechanical fix would be a mechanical rename; a small conformance decision is needed on whether `RULE:` is an accepted extension.
 - **One-line fix:** **judgment-required** — either adopt `# COMPONENT:` uniformly (mechanical) or document `RULE:` as a sanctioned rule-family tag and extend the style guide.
@@ -21,7 +21,7 @@ Angle 1 — verify module-header and numbered-section-banner conformance across 
 
 ### F1.3 [Conforming] TypeScript module-header coverage is clean
 - **Code:** sampled `shared/frontmatter/parse-frontmatter.ts:1-3`, `runtime/lib/utils/index-scope.ts:1-3`, `runtime/lib/validation/orchestrator.ts` (all open with `// MODULE:`), and a full scan of `shared/`, `runtime/lib/`, `runtime/cli/` `.ts` files excluding dist/tests/fixtures.
-- **Standard:** `sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md` §2 "FILE HEADER FORMAT".
+- **Standard:** `sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md` §2 "FILE HEADER FORMAT".
 - **What is present:** Every source `.ts` file scanned carries the `// MODULE:` header; the only exception is `shared/js-yaml.d.ts`, which is an ambient type declaration shim (not a source module). Section dividers are numbered from the first divider present (`parse-frontmatter.ts` uses `1. TYPES`, `2. PARSING`, `3. SERIALIZATION`), and the first numbered divider scan found zero files starting at a number other than `1`.
 - **Severity:** Reported as a baseline (no finding).
 
@@ -30,8 +30,8 @@ Angle 1 — verify module-header and numbered-section-banner conformance across 
 - `runtime/cli/spec/recommend-level.sh:3`
 - `shared/frontmatter/parse-frontmatter.ts`
 - `runtime/lib/validation/orchestrator.ts`
-- `sk-code-opencode/references/shell/style-guide/overview-structure-and-naming.md` §2
-- `sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md` §2
+- `sk-code-skilled/references/shell/style-guide/overview-structure-and-naming.md` §2
+- `sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md` §2
 
 ## Assessment
 - **newInfoRatio:** 1.0

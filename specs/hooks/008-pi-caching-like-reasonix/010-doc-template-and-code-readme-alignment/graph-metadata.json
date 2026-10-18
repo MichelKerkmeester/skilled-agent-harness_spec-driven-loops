@@ -45,7 +45,7 @@
       ".pi/extensions/pi-cache-optimizer/index.ts",
       ".opencode/skills/sk-code/SKILL.md",
       ".opencode/skills/sk-doc/sk-create-readme/SKILL.md",
-      ".opencode/skills/sk-code/sk-code-opencode/SKILL.md"
+      ".opencode/skills/sk-code/sk-code-skilled/SKILL.md"
     ],
     "entities": [
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Both `CHANGES-FROM-UPSTREAM.md` files were authored as free-form prose sections (Upstream / What Changed / Why / Verification) without following any `sk-doc` document template, so they read differently from every other authored doc in this repo",
     "created_at": "2026-08-08T12:24:19.875Z",
-    "last_save_at": "2026-09-11T16:41:50.119Z",
+    "last_save_at": "2026-10-18T20:45:03.342Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:10779eae44fee4c6a3bbc0b5c6867baacf6eb561b86d4baa3c31e4c0698543ae",
+    "source_fingerprint": "sha256:d955fe6491ff9062c9fc3af1a96dcca8e186636d2d4a2087eb1304532b897fca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "20b12ac18a6de6ad13ba4a1672bdb91391ec9355aeaa715be97f21006442bf6c",
-      "plan.md": "d773c597ac6ecc539adea8cbef5000a5ac647ed16b997f7b4c2021aa6e9e024c",
-      "tasks.md": "35f4c79929cb03d564397b751a97f4a2db60fab16e1db7780ca2f47e30df427c",
-      "implementation-summary.md": "6508bccd8c172d4b8d4565cb572bc252013bd0cdff9082b1f4ebf4d28dda3eb5"
+      "spec.md": "190e495c40fb18f41d90596bb0bbbec5611afb41c879a749dc9c4623e50f51cb",
+      "plan.md": "32186c020f3d43165c2d0672a18a3c5cf2b158900f60b503632b81ce6d3db7b5",
+      "tasks.md": "72a4a21beaece7f6e9eb41c5c571abf48d6d21ff1e976081f8052a8aa1feda76",
+      "implementation-summary.md": "edb5effef4c5016a9f7379e150148eab1b51c149f1e83bd202a4ab3d0bb548c4"
     },
     "last_active_child_id": null,
     "last_active_at": null

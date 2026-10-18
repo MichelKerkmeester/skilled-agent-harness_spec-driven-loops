@@ -59,7 +59,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `validate_skill_package.py` against `sk-code-obsidian` returns rc 0 and PASS, with `Detected kind: standalone` recorded as a validator finding
 - [x] `validate-playbook-package.cjs --package` against `sk-code-obsidian/manual-testing-playbook/` returns rc 0 and PASS with strict on, `tier=FAIL_CLOSED`, 7 scenarios, 0 violations and 0 warnings
 - [x] `validate_document.py` across every non-symlinked packet markdown file reports 34 PASS and 3 `missing_required_section` failures, each named with its missing sections
-- [x] The same `validate_document.py` run against `sk-code-mobile-cli`, `sk-code-webflow` and `sk-code-opencode` reports 3, 4 and 4 missing sections, leaving `sk-code-obsidian` joint-best of the four
+- [x] The same `validate_document.py` run against `sk-code-mobile-cli`, `sk-code-webflow` and `sk-code-skilled` reports 3, 4 and 4 missing sections, leaving `sk-code-obsidian` joint-best of the four
 - [x] The withheld header rename is recorded with its reasoning and its reversal condition in both `spec.md` and `implementation-summary.md`
 <!-- /ANCHOR:completion -->
 

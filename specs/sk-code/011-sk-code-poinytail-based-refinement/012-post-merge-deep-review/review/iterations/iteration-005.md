@@ -24,8 +24,8 @@ security — path containment and untrusted input across the epic: generate-leaf
 | .skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs | callback error capture, depth cap, PASS/FAIL decision | Depth cap silently absorbs callbacks; finding R5-SEC-003 |
 | .skilled/skills/sk-code/sk-code-webflow/assets/scripts/runtime-fixture/** | known-bad and known-good fixtures executed read-only | known-bad 4/4 FAIL, known-good 2/2 PASS as printed |
 | .skilled/skills/sk-code/sk-code-webflow/assets/scripts/minify-webflow.mjs | execFileSync call | argv array, no shell |
-| .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh | guard invocation, quoting, root resolution | set -euo pipefail, all expansions quoted, roots from BASH_SOURCE |
-| .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py | root resolution | Path(__file__).resolve().parents[2]; cwd-independent |
+| .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh | guard invocation, quoting, root resolution | set -euo pipefail, all expansions quoted, roots from BASH_SOURCE |
+| .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_stack_folders.py | root resolution | Path(__file__).resolve().parents[2]; cwd-independent |
 | .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs | git check-ignore invocation | argv array (:73), no shell |
 | .skilled/hooks/task-dispatch/cursor/task-dispatch-guard.mjs | spawnSync call | argv array (:84), no shell |
 
@@ -66,7 +66,7 @@ None.
 ## Ruled Out
 
 - Deadline-truncated stdin reaching a security gate as a valid payload: ruled out (again) — the reader resolves partial bytes and consumers fail open via parseJsonFailOpen returning null; probe1 reconfirmed bytes=6 json=null. This direction was already ruled out in iteration 2 and is not re-reported [SOURCE: .skilled/hooks/shared/hook-adapter-shared.cjs:54].
-- Shell injection via interpolated paths in checker or drift-guard scripts: all child_process call sites use argv arrays with no shell — generate-leaf-manifest.cjs:105 and :123, regenerate-skill-derived.cjs:73, minify-webflow.mjs:105, task-dispatch-guard.mjs:84 — and run-all-drift-guards.sh runs under set -euo pipefail with every expansion quoted [SOURCE: .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:20] [SOURCE: .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:49]. verify_stack_folders.py resolves its tree from its own file location, not from cwd or argv [SOURCE: .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py:13].
+- Shell injection via interpolated paths in checker or drift-guard scripts: all child_process call sites use argv arrays with no shell — generate-leaf-manifest.cjs:105 and :123, regenerate-skill-derived.cjs:73, minify-webflow.mjs:105, task-dispatch-guard.mjs:84 — and run-all-drift-guards.sh runs under set -euo pipefail with every expansion quoted [SOURCE: .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:20] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:49]. verify_stack_folders.py resolves its tree from its own file location, not from cwd or argv [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_stack_folders.py:13].
 - Manifest write-through-symlink: refused before writing [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:518]; the write is an O_EXCL temp file plus rename over the destination [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:478]; walk symlinks are resolved and refused when they escape the skill root or target a non-file [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:188].
 - git-ignore mapping drift: check-ignore output is matched back by index against the exact repo-relative paths sent on stdin, and any other git failure falls back to name rules [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:129].
 
@@ -86,7 +86,7 @@ None.
 
 - Alias leafResourceId containment is separately enforced by assertContainment [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs:104].
 - The manifest writer never follows a symlink and restores the destination's mode from an lstat without following it [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:486].
-- run-all-drift-guards.sh resolves all four guard paths from its own location and fails the gate on any guard failure [SOURCE: .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:33].
+- run-all-drift-guards.sh resolves all four guard paths from its own location and fails the gate on any guard failure [SOURCE: .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:33].
 - The Webflow checker's callback-error path works for the shipped known-bad family: four files each fail with the named source of the first error [SOURCE: .skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs:366].
 
 ## Traceability Checks

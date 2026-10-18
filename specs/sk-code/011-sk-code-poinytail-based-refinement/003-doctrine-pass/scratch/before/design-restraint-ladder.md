@@ -37,7 +37,7 @@ Prompt: `Add a helper to .skilled/skills/system-spec-kit/runtime/lib/util/unique
 - `ROUTER.md`
 - `shared/references/universal/code-quality-standards.md`
 - `shared/references/phase-detection.md`
-- `sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md`
+- `sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md`
 
 **Expected ladder behavior**:
 - The ladder runs AFTER surface and intent routing, not before.

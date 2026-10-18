@@ -269,7 +269,7 @@ Bring the entire spec and memory ecosystem to 100% template compliance, remove b
 15. `015-cmd-create-changelog`
 16. `016-sk-code-review-creation`
 17. `017-cmd-create-prompt`
-18. `018-sk-code-opencode-refinement`
+18. `018-sk-code-skilled-refinement`
 19. `019-cmd-create-skill-merger`
 20. `020-cmd-create-readme-install-merger`
 21. `021-sk-doc-feature-catalog-testing-playbook`
