@@ -1,0 +1,10 @@
+## test_readme_manifest
+EXCLUSIONS classes=21 fixture_readmes_scored=False
+FAILURES:
+- frozen durable-directory manifest is not reproducible (added: .skilled/hooks/dispatch/lib; removed: none). If those directories changed on purpose, refresh it with `python3 .skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py --write`.
+- manifest reproduction assertion failed
+exit=1
+## test_readme_verdict_parity
+PARITY baseline_files=978 post_files=978 diff_entries=0
+PARITY PASS: verdict diff is empty
+exit=0

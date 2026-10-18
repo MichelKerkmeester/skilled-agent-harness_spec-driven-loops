@@ -1,0 +1,26 @@
+Read-only task complete. No files changed. Three answers:
+---
+## 1. Devin's delegation tool: `run_subagent`
+`.skilled/skills/cli-external-orchestration/cli-devin/references/devin-tools.md:48`
+> **Native subagent spawning for parallel work.** Devin's `run_subagent` tool lets the parent agent spawn independent workers that share tools and codebase context but operate in their own conversation chain.
+`.skilled/skills/cli-external-orchestration/cli-devin/references/devin-tools.md:378`
+> | **Subagent delegation** | Not native | `run_subagent` tool | Devin-exclusive native subagents |
+Other cli-devin files naming the tool: `references/agent-delegation.md:26` ("Devin's `run_subagent` tool spawns independent workers that share tools and codebase context with the parent but operate in their own conversation chain — they do not inherit the parent's conversation history."), plus `references/agent-delegation.md:56,70,130,261,457`; `references/providers-and-models.md:82`; `references/integration-patterns.md:460`; `SKILL.md:18,102,249,257,265,292,333`; `manual-testing-playbook/subagents/builtin-profile.md:17`; `changelog/v1.0.0.0.md:17`; `assets/prompt-templates.md:436`.
+Corroboration outside cli-devin: `.skilled/hooks/task-dispatch/README.md:60` — "`PreToolUse` on `run_subagent` (`.devin/hooks.v1.json`)" / "`tool_name: 'run_subagent'`".
+## 2. Cursor and Hermes delegation tool names
+**Cursor — `Task`** (stated, not inferred):
+- `.skilled/hooks/task-dispatch/README.md:61` — "| **Cursor** | `cursor/task-dispatch-guard.mjs` | `preToolUse` (matcher `Task`) | `tool_name: 'Task'`; forwards the payload unchanged (the Claude core already reads the shape Cursor emits) | ... |"
+- `.skilled/hooks/task-dispatch/cursor/task-dispatch-guard.mjs:15` — "// prompt): a Task tool call emits `tool_name: \"Task\"`," (context: "dispatched with a subagent-delegation prompt")
+- Corroborating wiring: `.cursor/hooks.json:72` — `"matcher": "Task",`; `.skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/task-dispatch-guard-live-fire.md:15` — "...for the SAME `Task` tool call, under a real `cursor-agent -p` dispatch requesting explicit subagent delegation."
+- Caveat: the cli-cursor *reference* docs describe Cursor's subagent/skill system but never name the tool; the name is stated in the hooks wiring and its live-fire playbook.
+**Hermes — `delegate_task`** (stated, not inferred):
+- `.hermes/plugins/repo-guards/__init__.py:174` — `DELEGATE_TOOL = "delegate_task"` (comment at 172–173: "Hermes hands work out through one dispatch tool...")
+- `.hermes/skills/cli-hermes/SKILL.md:22` — "> delegation of its own (`delegate_task`), so a Hermes session hands work out through that, never by"
+- `.skilled/skills/cli-external-orchestration/cli-hermes/references/hermes-tools.md:42` — "| `delegation` | `delegate_task` sub-agents | **Never** for a leaf: it spawns agents outside the runner's boundary |"
+- `.skilled/skills/cli-external-orchestration/cli-hermes/references/agent-delegation.md:60` — "Hermes's own sub-agents are spawned by the `delegation` toolset."
+Where I looked: `.skilled` (agents/, hooks/task-dispatch/, cli-cursor/, cli-hermes/), `.cursor` (hooks.json, SYNC.md), `.hermes` (skills/cli-hermes/, plugins/repo-guards/), `.claude` (settings.json, agents/, SYNC.md, hooks/README.md), root `AGENTS.md` (no delegation-tool matches). `.claude` names neither Cursor's nor Hermes's tool (its `"matcher": "Task"` at `.claude/settings.json:70` is Claude's own wiring).
+## 3. Runtime table near `.skilled/agents/orchestrate.md:35`
+Current line 35 (in this file it is a prose sentence, not a markdown grid — these are its rows):
+> **Delegation Tool Per Runtime**: The delegation tool is named differently in each runtime — `task` in OpenCode, `Agent` in Claude Code, `spawn_agent` in Codex, `subagent` in Pi — and each runtime mirror declares the name that applies to it. Delegate through the active runtime's name, and treat a mirror that declares no delegation tool as unable to dispatch.
+Rows: OpenCode → `task`; Claude Code → `Agent`; Codex → `spawn_agent`; Pi → `subagent`. The same sentence is byte-identical in the mirrors (e.g. `.claude/agents/orchestrate.md:23`, `.hermes/skills/agent-orchestrate/SKILL.md:26`). Adjacent line 33 (`.skilled/agents/orchestrate.md:33`): "OpenCode profile reads `.opencode/agents/`; Claude profile reads `.claude/agents/`."
+Notes for your save: (a) line 35 names four runtimes and **omits Devin, Cursor, and Hermes** — their names are stated in `.skilled/hooks/task-dispatch/README.md:56-64`, whose per-runtime rows are: Claude `Task`, Devin `run_subagent`, Cursor `Task`, OpenCode `task`, Codex `spawn_agent` (encrypted payload, `n/a` adapter), Pi `subagent`. (b) Cross-file discrepancy to be aware of: orchestrate.md:35 says `Agent` in Claude Code, while the hook layer matches `Task` (`.skilled/hooks/task-dispatch/README.md:58`) and the Fable guard matches `Task|Agent` (`.skilled/hooks/task-dispatch/claude/fable-subagent-guard.mjs:2,81`).

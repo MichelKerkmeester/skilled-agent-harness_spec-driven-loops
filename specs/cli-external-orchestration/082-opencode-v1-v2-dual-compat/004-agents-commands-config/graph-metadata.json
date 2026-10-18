@@ -34,7 +34,7 @@
       "carry"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,20 +42,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/bin/tests/opencode-config-shape.test.cjs",
       ".skilled/agents/debug.md",
+      ".skilled/agents/ai-council.md",
       ".skilled/agents/orchestrate.md",
+      ".claude/agents/ai-council.md",
+      ".skilled/bin/agent-mirror-crosswalk.md",
+      ".opencode/bin/tests/opencode-config-shape.test.cjs",
       ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts",
       ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/README.md",
       "runtime/scripts/README.md",
       ".skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs",
-      ".skilled/skills/sk-code/sk-code-opencode/assets/checklists/command-authoring.md",
-      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
-      ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
-      ".codex/SYNC.md",
-      ".skilled/skills/cli-external-orchestration/cli-devin/references/devin-tools.md",
-      ".opencode/bin/check-agent-mirror-sync.cjs"
+      ".skilled/skills/sk-code/sk-code-opencode/assets/checklists/command-authoring.md"
     ],
     "entities": [
       {
@@ -95,15 +95,33 @@
         "source": "derived"
       },
       {
+        "name": "opencode-config-shape.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/opencode-config-shape.test.cjs",
+        "source": "derived"
+      },
+      {
         "name": "debug.md",
         "kind": "doc",
         "path": ".skilled/agents/debug.md",
         "source": "derived"
       },
       {
+        "name": "ai-council.md",
+        "kind": "doc",
+        "path": ".skilled/agents/ai-council.md",
+        "source": "derived"
+      },
+      {
         "name": "orchestrate.md",
         "kind": "doc",
         "path": ".skilled/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-mirror-crosswalk.md",
+        "kind": "doc",
+        "path": ".skilled/bin/agent-mirror-crosswalk.md",
         "source": "derived"
       },
       {
@@ -143,36 +161,6 @@
         "source": "derived"
       },
       {
-        "name": "command-contract.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
-        "source": "derived"
-      },
-      {
-        "name": "durable-directory-manifest.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "SYNC.md",
-        "kind": "doc",
-        "path": ".codex/SYNC.md",
-        "source": "derived"
-      },
-      {
-        "name": "devin-tools.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-external-orchestration/cli-devin/references/devin-tools.md",
-        "source": "derived"
-      },
-      {
-        "name": "check-agent-mirror-sync.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/check-agent-mirror-sync.cjs",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -201,11 +189,23 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The agents and commands carry wording and file layout that only one host understands",
     "created_at": "2026-10-18T12:45:03Z",
-    "last_save_at": "2026-10-18T13:35:09.387Z",
+    "last_save_at": "2026-10-18T18:30:28.419Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e91a5984965bb13b619b00d21d6ee2d0bcba43d7a50c4f32c5299ca307ca38cb",
+    "source_fingerprint": "sha256:1eb616446250f8293b9130ae8390d77ca8ee39b237c7cb893f0d855faa866648",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0239c8023ef58f9981823f726d7dc52c4afcb7c633483e971f2b5305978fd05b",
-      "plan.md": "7f827360863cd462edf5184cf536a67a9807dcb06c32e41d6f0f37415c602c72",
-      "tasks.md": "d29cf275860c70f8a64837aead0d3fa2c394f8175adae62ac5168eafcbca5249",
-      "implementation-summary.md": "ca93306e8b8aea1349bde923f456ead35b324e0d5ae5b059798798b2f0b7b23c"
+      "spec.md": "f113c90f71c7208b07ebc2789d4450f8a50c315fe9f5c79ce43acc707305663e",
+      "plan.md": "d572a5df0caf8aa0e4157b52420c21a04471261415b7bc5e30104e4c0820e1a4",
+      "tasks.md": "8ef9e49b2619aeb29d13bad10fd5f0df383c2cd873e15a13bb78e50f4652084b",
+      "implementation-summary.md": "5b60bfd60248a48b43e12292b3939ce3c49652dd740e0fe532fcf8bb63757bd0"
     },
     "last_active_at": null
   }

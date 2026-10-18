@@ -10,6 +10,9 @@ importance_tier: "important"
 
 # Doctor Command Scripts
 
+> Documents `.skilled/commands/doctor/scripts/`. This README was moved out of `.skilled/commands/`
+> to `.skilled/command-support/doctor/scripts/` so OpenCode does not register it as a command.
+>
 > Diagnostic and validation entrypoints used by the doctor command family.
 
 ---
@@ -169,8 +172,8 @@ Each script can be pointed at a fixture tree, which is how the tests run without
 
 ## 8. RELATED
 
-- [Doctor route manifest](../_routes.yaml)
-- [Doctor command routers](../)
-- [Doctor assets](../assets/)
+- [Doctor route manifest](../../../commands/doctor/_routes.yaml)
+- [Doctor command routers](../../../commands/doctor/)
+- [Doctor assets](../../../commands/doctor/assets/)
 - [Doctor script tests](./tests/README.md)
-- [Commands directory](../../)
+- [Commands directory](../../../commands/)

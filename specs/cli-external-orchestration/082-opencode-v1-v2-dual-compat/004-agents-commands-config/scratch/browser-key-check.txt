@@ -1,0 +1,14 @@
+## grep -l 'browser: deny' .skilled/agents/*.md
+.skilled/agents/ai-council.md
+.skilled/agents/context.md
+.skilled/agents/code.md
+.skilled/agents/deep-research.md
+.skilled/agents/deep-review.md
+.skilled/agents/prompt-improver.md
+.skilled/agents/design.md
+.skilled/agents/review.md
+.skilled/agents/debug.md
+.skilled/agents/markdown.md
+count=10
+## grep -L 'chrome_devtools: deny' .skilled/agents/*.md
+.skilled/agents/orchestrate.md

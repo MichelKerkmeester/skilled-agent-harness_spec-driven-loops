@@ -1,0 +1,9 @@
+## test_readme_manifest
+DISCOVERY readmes=753 pi_extensions=True github_workflows=True
+EXCLUSIONS classes=21 fixture_readmes_scored=False
+SUMMARY: discovery=pass exclusions=21/21 manifest=reproducible
+exit=0
+## test_readme_verdict_parity
+PARITY baseline_files=978 post_files=978 diff_entries=0
+PARITY PASS: verdict diff is empty
+exit=0

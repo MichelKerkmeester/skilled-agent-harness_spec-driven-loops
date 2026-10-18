@@ -1,0 +1,6 @@
+# v1 1.19.3 opencode debug config </dev/null from the worktree root, OPENCODE_DB on a throwaway path
+exit=0
+stderr lines:        0
+error-word matches in stdout: 29, all inside embedded agent and command prompt text; stderr is empty, so v1 reported no config error
+parsed keys: ['$schema', 'agent', 'command', 'experimental', 'mcp', 'mode', 'permission', 'plugin', 'plugin_origins', 'username']
+mcp: ['code_mode']

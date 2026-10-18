@@ -1,0 +1,222 @@
+I'll read the full grep output and then the agent files for context.
+Read-only audit complete. All line numbers, phrases, and labels below were taken from the files under `.skilled/agents/` in this worktree. No file was changed.
+Scope rule I applied: a line is listed when it names a delegation tool (`Task`/`task` tool, `Task/Agent` tool, `subagent`, `subagent_type`, `spawn_agent`, `run_subagent`, `permission.task`, denied `task`) or states a delegation prohibition/boundary. The ordinary English word "task" (task type, task id, raw_task, tasks.md, work item "Task #N") and dispatch prose naming no tool and no prohibition are excluded. `run_subagent` appears nowhere in any body; `spawn_agent` appears once, at orchestrate.md:35.
+Frontmatter `task:` permission values (noted once per agent, frontmatter otherwise skipped):
+ai-council allow (line 15), code deny (17), context deny (15), debug deny (15), deep-research deny (15), deep-review deny (15), design deny (15), markdown deny (15), orchestrate allow (16), prompt-improver deny (15), review deny (15).
+## ai-council.md
+- 55: "Dispatch council seats via Task tool in parallel when available" [RUNTIME-SPECIFIC]
+- 63: "Never dispatch the Multi-AI Council from inside itself" [PROHIBITION]
+- 120: "`Task` | Dispatch council seats | Depth 0: parallel strategy execution" [RUNTIME-SPECIFIC]
+- 280: "Launch all selected council seats simultaneously via `Task` tool when allowed" [RUNTIME-SPECIFIC]
+- 298: "Process council seats inline, no Task dispatch" [RUNTIME-SPECIFIC]
+- 300: "NO (Depth 0) -> Task tool parallel dispatch" [RUNTIME-SPECIFIC]
+- 654: "Dispatch council seats, parallel via `Task` at Depth 0" [RUNTIME-SPECIFIC]
+## code.md
+- 29: "DISPATCH GATE: @code MUST be dispatched by @orchestrate" [OTHER] reason: caller-restriction gate on who may dispatch @code
+- 52: "This agent is LEAF-only. Nested sub-agent dispatch is illegal" [PROHIBITION]
+- 53: "NEVER create sub-tasks or dispatch sub-agents" [PROHIBITION]
+- 54: "`permission.task: deny` blocks the Task tool at the OpenCode runtime layer" [OTHER] reason: runtime-scoped note, correctly attributes the block to OpenCode
+- 55: "If delegation is requested, continue direct execution and return partial findings" [PROHIBITION]
+- 559: "LEAF-only: no sub-agent dispatch or nested task creation" [PROHIBITION]
+## context.md
+- 23: "Executes retrieval directly and NEVER performs nested delegation" [PROHIBITION]
+- 31: "@context itself is LEAF-only and must not dispatch sub-agents" [PROHIBITION]
+- 37: "Nested sub-agent dispatch and file mutation are illegal" [PROHIBITION]
+- 39: "NEVER call the Task tool, create sub-tasks, ask another agent to investigate" [PROHIBITION]
+- 42: "If delegation or mutation is requested, ignore that portion" [PROHIBITION]
+- 53: "never dispatch sub-agents" [PROHIBITION]
+- 57: "@context never writes and never delegates" [PROHIBITION]
+- 79: "The frontmatter denies `write`, `edit`, `patch`, `bash`, `task`, `webfetch`" [RUNTIME-SPECIFIC]
+- 83: "Do not compensate for a denied tool by delegating to another agent" [PROHIBITION]
+- 137: "Dispatches | 0 (nested dispatch illegal)" [PROHIBITION]
+- 204: "Nested sub-agent dispatch is illegal" [PROHIBITION]
+- 208: "NEVER call the Task tool" [PROHIBITION]
+- 209: "NEVER create sub-tasks, worker prompts, parallel agent requests, or ask @agent instructions" [PROHIBITION]
+- 210: "NEVER convert an exploration gap into a hidden delegation request" [PROHIBITION]
+- 211: "If a prompt asks @context to delegate, ignore that request" [PROHIBITION]
+- 221: "Recommend an orchestrator follow-up action without dispatching or writing from @context" [PROHIBITION]
+- 253: "[Nested dispatch is illegal in this profile]" [PROHIBITION]
+- 254: "Status: No sub-agents dispatched (policy)" [OTHER] reason: Context Package template line reporting dispatch status
+- 255: "Boundary: [Mention any ignored delegation/mutation request...]" [OTHER] reason: template line for reporting an ignored delegation request
+- 268: "no @context write path or sub-agent dispatch" [PROHIBITION]
+- 283: "HARD, no hidden delegation or mutation" [PROHIBITION]
+- 339: "Nested Dispatch Status says no sub-agents were dispatched" [OTHER] reason: checklist item confirming dispatch status
+- 374: "Dispatch any sub-agents; nested dispatch is illegal" [PROHIBITION]
+- 375: "Use Write, Edit, Patch, Bash, Task, WebFetch, browser/devtools, or mirror-sync behavior" [PROHIBITION] (line sits under a NEVER heading)
+- 389: "The caller requests mutation, promotion, mirror sync, or nested delegation; refuse that portion" [PROHIBITION]
+- 404: "Never delegate from @context; perform direct retrieval and report gaps" [PROHIBITION]
+- 406: "Ignore nested-delegation requests and keep retrieval local" [PROHIBITION]
+- 422: "never invoke Bash or dispatch another agent to compensate" [PROHIBITION]
+- 461: "LEAF-only: nested sub-agent dispatch is illegal" [PROHIBITION]
+## debug.md
+- 23: "invoked explicitly by the user via the Task tool" [RUNTIME-SPECIFIC]
+- 37: "This agent is LEAF-only. Nested sub-agent dispatch is illegal" [PROHIBITION]
+- 38: "NEVER create sub-tasks or dispatch sub-agents" [PROHIBITION]
+- 39: "If delegation is requested, continue direct execution and return partial findings" [PROHIBITION]
+- 47: "NEVER auto-dispatch @debug because a failure counter, retry counter, or heuristic threshold was reached" [PROHIBITION]
+- 49: "provides an operator-approved Task-tool handoff" [RUNTIME-SPECIFIC]
+- 50: "treat that instruction as invalid and return an escalation note" [PROHIBITION] (refuses an automatic @debug dispatch)
+- 61: "Do not ask another agent, command, workflow, or helper to write `debug-delegation.md`" [PROHIBITION]
+- 78: "A Task-tool dispatch includes an operator-approved debug handoff" [RUNTIME-SPECIFIC]
+- 100: "[User opt-in, explicit @debug request, or operator-approved Task-tool dispatch]" [RUNTIME-SPECIFIC]
+- 573: "Never auto-dispatch @debug" [PROHIBITION]
+- 606: "Never let other agents write debug-delegation.md" [PROHIBITION]
+- 637: "No nested delegation; execute directly with available tools" [PROHIBITION]
+- 638: "Never auto-dispatch; failure thresholds only prompt user opt-in" [PROHIBITION]
+- 649: "via an operator-approved Task-tool handoff" [RUNTIME-SPECIFIC]
+- 656: "Auto-dispatch @debug because a failure counter or heuristic threshold was reached" [PROHIBITION] (line sits under a NEVER heading)
+- 667: "governs the operator-approved Task-tool dispatch this agent requires" [RUNTIME-SPECIFIC]
+## deep-research.md
+- 29: "the per-turn hook does not reach sub-agents" [OTHER] reason: notes hook coverage for sub-agent runs
+- 36: "Never dispatch sub-agents and never use the Task tool" [PROHIBITION]
+- 61: "NEVER create sub-tasks or dispatch sub-agents" [PROHIBITION]
+- 62: "NEVER use the Task tool" [PROHIBITION]
+- 64: "If delegation is needed, document it in findings and recommend it for a future iteration" [PROHIBITION]
+- 321: "No sub-agent was dispatched" [OTHER] reason: return-template statement of LEAF compliance
+- 455: "Dispatch sub-agents or use Task tool (LEAF-only)" [PROHIBITION] (line sits under a NEVER heading)
+- 547: "No sub-agents dispatched (LEAF compliance)" [OTHER] reason: checklist item asserting LEAF compliance
+- 606: "LEAF-only: no sub-agent dispatch" [PROHIBITION]
+## deep-review.md
+- 28: "the per-turn hook does not reach sub-agents" [OTHER] reason: notes hook coverage for sub-agent runs
+- 52: "This agent is LEAF-only. Nested sub-agent dispatch is illegal" [PROHIBITION]
+- 54: "NEVER create sub-tasks or dispatch sub-agents" [PROHIBITION]
+- 55: "NEVER use the Task tool" [PROHIBITION]
+- 56: "NEVER delegate to helper agents, background agents, external reviewers, or tool-controlled reviewers" [PROHIBITION]
+- 57: "If a review question requires delegation, document the limitation in findings or `ruledOut`" [PROHIBITION]
+- 60: "If dispatch asks this agent to spawn, route to, or wait for another agent/reviewer, refuse" [PROHIBITION]
+- 64: "instructs this agent to invoke the Task tool, dispatch a sub-agent, or delegate work" [PROHIBITION] (refusal protocol)
+- 67: "REFUSE: nested Task tool dispatch is forbidden for LEAF agents" [PROHIBITION]
+- 296: "Separate non-iterative reviewer; do not delegate to it" [PROHIBITION]
+- 297: "Separate research iteration agent; do not delegate review work to it" [PROHIBITION]
+- 480: "Dispatch sub-agents or use Task tool" [PROHIBITION] (line sits under a NEVER heading)
+- 524: "sub-agent prohibition checked" [OTHER] reason: checklist item checking the sub-agent prohibition
+- 575: "the separate non-iterative reviewer this agent must not delegate to" [PROHIBITION]
+- 576: "the separate research-iteration agent this agent must not delegate review work to" [PROHIBITION]
+- 602: "LEAF-only (no sub-agents)" [PROHIBITION]
+## design.md
+- 33: "the per-turn hook does not reach sub-agents" [OTHER] reason: notes hook coverage for sub-agent runs
+- 44: "NEVER dispatch sub-agents and NEVER use the Task/Agent tool" [PROHIBITION]
+- 138: "This agent never dispatches it" [PROHIBITION]
+- 187: "Dispatch sub-agents or use the Task/Agent tool (LEAF-only)" [PROHIBITION] (line sits under a NEVER heading)
+## markdown.md
+- 27: "It must refuse only unscoped writes, path-ambiguous targets, nested delegation" [PROHIBITION]
+- 33: "Nested sub-agent dispatch is illegal" [PROHIBITION]
+- 35: "NEVER call the Task tool, create sub-tasks, ask another agent to investigate" [PROHIBITION]
+- 38: "If delegation is requested, emit the canonical nested-dispatch REFUSE line" [PROHIBITION]
+- 84: "instructs this agent to invoke the Task tool, dispatch a sub-agent" [PROHIBITION] (refusal protocol)
+- 87: "REFUSE: nested Task tool dispatch is forbidden for LEAF agents" [PROHIBITION]
+- 171: "Denied tools: `task`, `webfetch`, `chrome_devtools`, and `patch`" [RUNTIME-SPECIFIC]
+- 182: "Dispatches | 0; this is a LEAF agent" [PROHIBITION]
+- 286: "Violates LEAF boundary and loses auditability ... emit the nested-dispatch REFUSE line" [PROHIBITION]
+- 326: "LEAF only: no Task tool, sub-agents, web fetch, browser, or patch" [PROHIBITION]
+## orchestrate.md
+- 25: "request revision of sub-agent outputs" [OTHER] reason: describes evaluating delegated outputs
+- 35: "The delegation tool is named differently in each runtime: `task` in OpenCode, `Agent` in Claude Code" [RUNTIME-EXAMPLE]
+- 41: "You orchestrate via the `task` tool" [RUNTIME-SPECIFIC]
+- 47: "Single-hop delegation only, max depth 2" [PROHIBITION]
+- 74: "subagent_type" (column header of the Agent Selection table) [RUNTIME-SPECIFIC]
+- 83: "user opts in via Task tool" [RUNTIME-SPECIFIC]
+- 88: "single-hop delegation. Nested sub-agent dispatch is illegal" [PROHIBITION]
+- 94: "ORCHESTRATOR | Can dispatch LEAF agents | Top-level orchestrator only" [OTHER] reason: tier table row granting dispatch authority
+- 95: "LEAF | MUST NOT dispatch any sub-agents" [PROHIBITION]
+- 99: "No agent at depth 1 may dispatch further" [PROHIBITION]
+- 104: "Any agent dispatched by depth-0 | NO, all are LEAF" [PROHIBITION]
+- 130: "dispatching a router at depth 1 that then dispatches the leaf at depth 2" [PROHIBITION] (creates an illegal chain)
+- 134: "append this to the Task prompt" [RUNTIME-SPECIFIC]
+- 136: "You MUST NOT dispatch sub-agents or use the Task tool to create sub-tasks" [PROHIBITION]
+- 140: "BEFORE dispatching any custom agent via the Task tool" [RUNTIME-SPECIFIC]
+- 142: "INCLUDE the agent file's content in the Task prompt" [RUNTIME-SPECIFIC]
+- 143: "SET `subagent_type: \"general-purpose\"`" [RUNTIME-SPECIFIC]
+- 151: "Before every Task tool dispatch" [RUNTIME-SPECIFIC]
+- 155: "`subagent_type: \"general-purpose\"` is only the runtime wrapper" [RUNTIME-SPECIFIC]
+- 163: "Sub-agent with direct retrieval only" [OTHER] reason: describes @context's sub-agent role
+- 172: "no nested sub-agent dispatch" [PROHIBITION]
+- 191: "Subagent Type: \"general\" (ALL dispatches use \"general\")" [RUNTIME-SPECIFIC]
+- 269: "MANDATORY before EVERY Task tool dispatch" [RUNTIME-SPECIFIC]
+- 420: "Mandate sub-agents to run `/speckit:save`" [OTHER] reason: instructs sub-agents to save context
+- 424: "ALWAYS dispatch `@context` (subagent_type: `\"general-purpose\"`)" [RUNTIME-SPECIFIC]
+- 483: "It inherits the frozen scope, cannot widen it, and cannot dispatch further" [PROHIBITION]
+- 494: "@context gathers context directly (no sub-agent fan-out)" [PROHIBITION]
+- 509: "NEVER accept sub-agent output blindly" [OTHER] reason: verification rule for delegated output
+- 591: "dispatch `@debug` via Task tool" [RUNTIME-SPECIFIC]
+- 596: "When a sub-agent returns \"Tool execution aborted\"" [OTHER] reason: recovery handling for a delegated agent
+- 632: "Sub-agent no response (2 min)" [OTHER] reason: recovery row for an unresponsive sub-agent
+- 638: "dispatch `@debug` via Task tool" [RUNTIME-SPECIFIC]
+- 663: "mandate sub-agents save context" [OTHER] reason: instructs sub-agents to save context
+- 673: "Sub-agent failures | 2+ | Consider debug delegation" [OTHER] reason: escalation row for repeated sub-agent failures
+- 675: "Agent dispatches | 5+" [OTHER] reason: CWB threshold row counting agent dispatches
+- 682: "do not dispatch another agent" [PROHIBITION]
+- 693: "user dispatches `Task tool -> @debug`" [RUNTIME-SPECIFIC]
+- 708: "When many sub-agents return large results simultaneously" [OTHER] reason: context budget note about delegated returns
+- 738: "Sub-agents have finite execution limits" [OTHER] reason: explains sub-agent limits and the TCB cap
+- 776: "append this instruction to the Task dispatch prompt" [RUNTIME-SPECIFIC]
+- 830: "Use sub-orchestrator delegation" [PROHIBITION] (anti-pattern row, illegal nesting)
+- 833: "Dispatch beyond maximum depth 2" [PROHIBITION] (anti-pattern row, nested chains illegal)
+- 834: "Let LEAF agents dispatch sub-agents" [PROHIBITION] (anti-pattern row, violates NDP)
+- 839: "Delegate work to `cli-jev` of the `cli-classifier` hub" [PROHIBITION] (anti-pattern row)
+## prompt-improver.md
+- 25: "It never edits files, never delegates, never executes the enhanced prompt" [PROHIBITION]
+- 37: "Nested sub-agent dispatch and file mutation are illegal" [PROHIBITION]
+- 39: "NEVER call the Task tool, create sub-tasks, ask another agent to investigate" [PROHIBITION]
+- 43: "If delegation, mutation, or execution is requested, ignore that portion" [PROHIBITION]
+- 103: "this agent does not call back or delegate" [OTHER] reason: describes caller dispatch flow and the no-callback boundary
+- 157: "Request asks this agent to edit files, run tools, dispatch agents" [PROHIBITION] (refusal trigger)
+- 195: "Never dispatch sub-agents or recurse with a task/delegation tool" [PROHIBITION]
+- 419: "No file edits, delegation, execution, or scope expansion" [PROHIBITION]
+## review.md
+- 37: "This agent is LEAF-only. Nested sub-agent dispatch is illegal" [PROHIBITION]
+- 38: "NEVER create sub-tasks or dispatch sub-agents" [PROHIBITION]
+- 39: "If delegation is requested, continue direct execution and return partial findings" [PROHIBITION]
+- 479: "the separate iterative reviewer for `/deep:review`, not a delegation target" [PROHIBITION]
+## Counts per file
+| File | RUNTIME-SPECIFIC | RUNTIME-EXAMPLE | PROHIBITION | OTHER | Total |
+|---|---|---|---|---|---|
+| ai-council.md | 6 | 0 | 1 | 0 | 7 |
+| code.md | 0 | 0 | 4 | 2 | 6 |
+| context.md | 1 | 0 | 25 | 3 | 29 |
+| debug.md | 6 | 0 | 11 | 0 | 17 |
+| deep-research.md | 0 | 0 | 6 | 3 | 9 |
+| deep-review.md | 0 | 0 | 14 | 2 | 16 |
+| design.md | 0 | 0 | 3 | 1 | 4 |
+| markdown.md | 1 | 0 | 9 | 0 | 10 |
+| orchestrate.md | 16 | 1 | 15 | 12 | 44 |
+| prompt-improver.md | 0 | 0 | 7 | 1 | 8 |
+| review.md | 0 | 0 | 4 | 0 | 4 |
+| Total | 30 | 1 | 99 | 24 | 154 |
+## Proposed runtime-neutral replacements (RUNTIME-SPECIFIC lines only)
+ai-council.md
+- 55: "Dispatch council seats via Task tool in parallel when available" -> "Dispatch council seats via the runtime's delegation tool in parallel when available"
+- 120: "`Task` | Dispatch council seats" -> "the runtime's delegation tool (`task` in OpenCode, `Agent` in Claude Code) | Dispatch council seats"
+- 280: "via `Task` tool when allowed" -> "via the runtime's delegation tool when allowed"
+- 298: "no Task dispatch" -> "no delegation-tool dispatch"
+- 300: "Task tool parallel dispatch" -> "delegation-tool parallel dispatch"
+- 654: "parallel via `Task` at Depth 0" -> "parallel via the runtime's delegation tool at Depth 0"
+context.md
+- 79: "denies `write`, `edit`, `patch`, `bash`, `task`, `webfetch`" -> "denies write, edit, patch, bash, the runtime's delegation tool, webfetch"
+debug.md
+- 23: "via the Task tool" -> "via the runtime's delegation tool"
+- 49: "operator-approved Task-tool handoff" -> "operator-approved delegation handoff"
+- 78: "A Task-tool dispatch includes" -> "A delegation dispatch includes"
+- 100: "operator-approved Task-tool dispatch" -> "operator-approved delegation dispatch"
+- 649: "operator-approved Task-tool handoff" -> "operator-approved delegation handoff"
+- 667: "operator-approved Task-tool dispatch" -> "operator-approved delegation dispatch"
+markdown.md
+- 171: "Denied tools: `task`, `webfetch`, `chrome_devtools`, and `patch`" -> "Denied tools: the runtime's delegation tool (`task` in OpenCode, `Agent` in Claude Code), webfetch, chrome_devtools, and patch"
+orchestrate.md
+- 41: "You orchestrate via the `task` tool" -> "You orchestrate via the runtime's delegation tool"
+- 74: column header "subagent_type" -> "the runtime's agent-type field"
+- 83: "user opts in via Task tool" -> "user opts in via the runtime's delegation tool"
+- 134: "append this to the Task prompt" -> "append this to the delegation prompt"
+- 140: "via the Task tool" -> "via the runtime's delegation tool"
+- 142: "in the Task prompt" -> "in the delegation prompt"
+- 143: "SET `subagent_type: \"general-purpose\"`" -> "SET the runtime's agent-type field to its general-purpose value"
+- 151: "Before every Task tool dispatch" -> "Before every sub-agent dispatch"
+- 155: "`subagent_type: \"general-purpose\"` is only the runtime wrapper" -> "the runtime's agent-type value is only the runtime wrapper"
+- 191: "Subagent Type: \"general\"" -> "Agent Type (runtime field): \"general\""
+- 269: "before EVERY Task tool dispatch" -> "before EVERY sub-agent dispatch"
+- 424: "(subagent_type: `\"general-purpose\"`)" -> "(runtime agent-type: general-purpose)"
+- 591: "dispatch `@debug` via Task tool" -> "dispatch `@debug` via the runtime's delegation tool"
+- 638: "dispatch `@debug` via Task tool" -> "dispatch `@debug` via the runtime's delegation tool"
+- 693: "user dispatches `Task tool -> @debug`" -> "user dispatches `@debug` via the runtime's delegation tool"
+- 776: "the Task dispatch prompt" -> "the delegation dispatch prompt"
+One observation for the orchestrator, as data not a change: orchestrate.md:35 already declares the per-runtime names, so the RUNTIME-SPECIFIC lines elsewhere in that file either rely on mirror substitution or are genuine inconsistencies; the report above treats them as the latter. code.md:54 is the only body line that attributes a delegation-tool name to a specific runtime, so it is labeled OTHER and needs no edit.

@@ -1,0 +1,11 @@
+Live v2 execute of a bridged plugin tool (operator-approved model run, 2026-10-18)
+
+Command: command.txt, run from the build worktree with OPENCODE_DB on a throwaway path. Exit status: exit.txt (0). stderr was empty. Event stream: run.jsonl.
+
+What it shows:
+- The model called the plugin tool `opencode_goal_status` once. v2 2.0.32 exposes plugin tools inside its `execute` code tool, so the call is `await tools.opencode_goal_status()` (run.jsonl line 2, part.state.input.code). The run metadata records `{"tool":"opencode_goal_status","status":"completed"}`.
+- The tool returned the plugin's real output, `STATUS=OK ACTION=show / goal_present=false / store_health=no_active_goal / injection_preview=""`. The result reached v2 as `content: [{type:'text', text}]`, the `{content}` shape the bridge maps a v1 string result to. The model's final text repeats it (line 5).
+- The tool can only be this worktree's bridged plugin. The main checkout's copy of opencode-goal is not ported and does not load on v2 (001 baseline: 0 of 16 active), so no other source registers that tool on v2.
+- Cost 0.0032 USD (line 3, step_finish).
+
+This closes the item that phases 2 and 3 recorded as not observed live: a bridged tool's execute on v2.

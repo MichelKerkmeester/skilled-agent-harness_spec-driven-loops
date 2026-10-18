@@ -67,7 +67,7 @@ What fails when a mirror drifts:
 
 `.skilled` is the only tree that carries a permission map, and the only one where it is enforced
 by the runtime. Each agent declares its own vocabulary of `read`, `write`, `edit`, `bash`, `grep`,
-`glob`, `webfetch`, `chrome_devtools`, `task`, `list`, `patch` and `external_directory`, each
+`glob`, `webfetch`, `chrome_devtools`, `browser`, `task`, `list`, `patch` and `external_directory`, each
 `allow` or `deny`.
 
 | Tree | The allow half lands as | The deny half stands in as |
@@ -82,8 +82,8 @@ by the runtime. Each agent declares its own vocabulary of `read`, `write`, `edit
 Three permission keys have no counterpart in the Claude dialect — `list`, `patch` and
 `external_directory` — and four have none in Pi's toolset — `webfetch`, `task`, `patch` and
 `external_directory` — which is exactly the set the Pi comment records. `list` maps only in Pi,
-to `ls`; `chrome_devtools` is denied in every map that carries it; and `.codex` declares no tools
-at all.
+to `ls`. `chrome_devtools` and `browser` are denied in every map that carries them,
+and `browser` is the name OpenCode 2 enforces. `.codex` declares no tools at all.
 
 **The `.pi` unmapped rule, stated as the contract it is.** The Pi generator maps `read`, `write`,
 `edit`, `bash` and `grep` by name, `glob` to `find`, and `list` to `ls`. Every other key that is

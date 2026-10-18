@@ -47,7 +47,7 @@ describe('compile-command-contracts', () => {
     ['deep/research', 'deep-research.contract.md'],
   ])('writes %s to its tracked renderer path', (command, fileName) => {
     expect(compiler.outputPathFor(command)).toBe(
-      join(compiler.WORKSPACE_ROOT, '.skilled/commands/deep/assets/compiled', fileName),
+      join(compiler.WORKSPACE_ROOT, '.skilled/command-support/deep/assets/compiled', fileName),
     );
   });
 
@@ -98,7 +98,7 @@ describe('compile-command-contracts', () => {
       const copied = require(join(scripts, 'compile-command-contracts.cjs')) as typeof compiler;
 
       expect(copied.outputPathFor('deep/review')).toBe(
-        join(root, '.opencode', 'commands', 'deep', 'assets', 'compiled', 'deep-review.contract.md'),
+        join(root, '.opencode', 'command-support', 'deep', 'assets', 'compiled', 'deep-review.contract.md'),
       );
     } finally {
       rmSync(root, { recursive: true, force: true });

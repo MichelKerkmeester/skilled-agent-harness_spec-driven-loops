@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Planned changes for phase 4: one set of agents, commands and config for both OpenCode versions, with a browser deny key, runtime-neutral delegation wording, moved non-command files and a shape test for opencode.json."
+description: "Both OpenCode versions read one set of agents, commands and config: the browser keys, the runtime-neutral wording, the twelve-file move with its consumers, the synced mirrors, the refreshed README manifests and the config shape test."
 trigger_phrases:
   - "agents commands config implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,21 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/004-agents-commands-config"
-    last_updated_at: "2026-10-18T12:45:04Z"
-    last_updated_by: "scaffold"
-    recent_action: "Wrote the planned entries"
-    next_safe_action: "Run phase 4 and replace the planned entries with observed results"
+    last_updated_at: "2026-10-18T18:25:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Closed the phase docs from the scratch evidence ledger"
+    next_safe_action: "Phase complete. Start phase 006, cli-opencode dual dispatch"
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/agents/orchestrate.md"
+      - ".skilled/bin/agent-mirror-crosswalk.md"
+      - ".skilled/bin/tests/opencode-config-shape.test.cjs"
+      - ".skilled/command-support"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-004-agents-commands-config"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -36,8 +40,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 004-agents-commands-config |
-| **Status** | Planned |
-| **Completed** | Not started |
+| **Status** | Complete |
+| **Completed** | 2026-10-18 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -46,24 +50,28 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Not started. This phase has not run, so it has changed no tracked file and recorded no verdict. Once it runs, both OpenCode versions read one set of agents, commands and config. Each agent that carried `chrome_devtools: deny` also carries `browser: deny`, and no non-command markdown file is registered as a command on either version.
+Both OpenCode versions now read one set of agents, commands and config. Ten agents gained a `browser: deny` key beside `chrome_devtools: deny`, and the keys are defensive on v2 2.0.32: every agent, the built-ins included, already ends with a trailing `browser: deny` rule on that version, so the keys keep the denial if a later v2 drops that default, and they add the name v2 enforces beside the inert `chrome_devtools` name, which stays (`scratch/v2-agent-permissions-before.txt:3-19`, `scratch/v2-agent-permissions-after.txt:10-20`). The wording pass made 23 lines runtime-neutral in `ai-council.md`, `debug.md` and `orchestrate.md`, kept the five `subagent_type` lines and the 99 prohibition lines as they were, and named Devin `run_subagent`, Cursor `Task` and Hermes `delegate_task` in the `orchestrate.md` runtime sentence. The twelve non-command markdown files moved to `.skilled/command-support/` with the subfolders kept, every consumer that needed a change was pointed at the new paths, the three compiled contracts were recompiled, and the README manifests were refreshed, including the phase 5 regression that was already failing at the phase start. The mirror copies were synced per tree, and the new `.skilled/bin/tests/opencode-config-shape.test.cjs`, reached as `.opencode/bin/tests/` through the bin link, guards `opencode.json` against v2-only keys. The v1 command listing fell from 51 to 39 with none of the twelve, and an isolated v2 copy lists 41 with none of them.
 
 ### Phase 4: agents-commands-config
 
-Not started. The phase adds the `browser: deny` key to ten agents, makes the delegation wording runtime-neutral, adds a Devin entry and UNKNOWN entries to the runtime table in `orchestrate.md`, moves the twelve non-command markdown files out of `.skilled/commands/` with every consumer pointed at the new paths, syncs the mirror copies and adds a shape test for `opencode.json`. Its file list is in `spec.md` section 3.
+The phase added the `browser: deny` key to ten agents, made the delegation wording runtime-neutral, extended the runtime sentence, moved the twelve files with their consumers, synced the mirrors, refreshed the README manifests and added the config shape test. Its file list is in `spec.md` section 3, and the recorded deviations sit in the scope note of `spec.md` and the architecture note of `plan.md`.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.skilled/agents/debug.md`, `context.md`, `design.md`, `markdown.md`, `ai-council.md`, `review.md`, `deep-research.md`, `code.md`, `deep-review.md` and `prompt-improver.md` | Not started | Each gains a `browser: deny` key beside `chrome_devtools: deny`. |
-| `.skilled/agents/*.md` (11 agents) | Not started | Runtime-neutral delegation wording. No permission changes. |
-| `.skilled/agents/orchestrate.md` | Not started | Devin row with `run_subagent`, and UNKNOWN rows for runtimes with no evidence. |
-| `.claude/agents/*.md`, `.codex/agents/*.toml` and `.pi/agents/*` | Not started | Mirror copies synced by the repo's own sync command. |
-| The 12 non-command markdown files under `.skilled/commands/` | Not started | Moved to the destination that the orchestrator confirms in T003. |
-| Deep-loop consumers, documents and manifests listed in `spec.md` section 3 | Not started | Point at the new paths. |
-| `.opencode/bin/tests/opencode-config-shape.test.cjs` | Not started | Positive case and negative case for the shape of `opencode.json`. |
-| `opencode.json` | Not started | Not edited unless the D2 conflict is settled. |
+| `.skilled/agents/debug.md`, `context.md`, `design.md`, `markdown.md`, `ai-council.md`, `review.md`, `deep-research.md`, `code.md`, `deep-review.md` and `prompt-improver.md` | Modified | Each gained a `browser: deny` key beside `chrome_devtools: deny`, and no other frontmatter key changed (`scratch/frontmatter-diff.txt:2-12`). |
+| `.skilled/agents/ai-council.md`, `debug.md` and `orchestrate.md` | Modified | 23 wording lines made runtime-neutral per the rulings in decision 8 (`scratch/decisions.txt:19-22`). |
+| `.skilled/agents/orchestrate.md` | Modified | The runtime sentence names Devin `run_subagent`, Cursor `Task` and Hermes `delegate_task` beside the four existing names (decision 9, `scratch/decisions.txt:23`). |
+| `.claude/agents/ai-council.md`, `debug.md` and `orchestrate.md` | Modified | Synced by patch, each source file's body diff applied to the matching `.claude` file (decision 11, `scratch/claude-sync.txt:11-13`). |
+| `.codex/agents/*.toml`, `.pi/agents/*.md` and `.hermes/skills/agent-*/SKILL.md` | Modified | Regenerated by their generators, including the one-cell fix after the review (decision 4, `scratch/regenerate.txt:1-9`, `:22-31`). |
+| The 12 non-command markdown files under `.skilled/commands/` | Moved | Moved to `.skilled/command-support/` with the subfolders kept (decision 1, `scratch/move-map.txt:1-12`). |
+| `compile-command-contracts.cjs`, `render-command-contract.cjs`, `compile-command-contracts.vitest.ts` and `gate-3-menu-parity.test.mjs` | Modified | Pointed at the new paths, with the one output-path expectation segment changed per decision 12 (`scratch/scope-check.txt:29-32`). |
+| `command-authoring.md`, `command-contract.json`, `durable-directory-manifest.json` and `baseline-readme-verdicts.json` | Modified | Pointed at the new paths and refreshed for the move, including the phase 5 manifest regression (decision 0, `scratch/skdoc-manifest-after.txt:4`). |
+| `.skilled/bin/agent-mirror-crosswalk.md` | Modified | Names `browser` beside `chrome_devtools` in the two permission-vocabulary sentences (decision 10, `scratch/decisions.txt:24`). |
+| `.skilled/bin/tests/opencode-config-shape.test.cjs` | Created | Positive case on `opencode.json` and negative case on a copy with a `plugins` key (`scratch/config-shape.txt:1-6`). |
+| The three compiled contracts under `.skilled/command-support/deep/assets/compiled/` | Recompiled | Each records the sha256 of its agent sources, and the wording edits changed those digests (decision 12, `scratch/regenerate.txt:10-21`). |
+| `opencode.json` | Not edited | It keeps the v1 shape. v2 2.0.32 reads it and converts it on load, so one file serves both hosts (decision 2, `scratch/v2-config-view.txt:6-8`). |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -71,7 +79,7 @@ Not started. The phase adds the `browser: deny` key to ten agents, makes the del
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not started. The plan is in `tasks.md`, and the closure gate is `acceptance-criteria.md`. DeepSeek writes the agent wording through cli-devin, and Luna writes the file moves, the consumer edits and the config test through cli-codex. The orchestrator runs the mirror sync, the contract tests, the command listings and the config load itself. A DeepSeek review checks the wording before closure.
+The orchestrator ran the baselines, the decisions, the mirror sync, the moves, the contract tests, the command listings and the config load itself. DeepSeek through cli-devin produced the mention audit and the runtime names, and reviewed the diff findings first. Luna through cli-codex made the file moves, the consumer edits and the config test. The review returned PASS with no P0 or P1 and two P2s (`scratch/review-004.txt:2`, `:12-13`), and both P2s were fixed per decision 14: the `ai-council.md` Tools cell was restored to its backticked sibling shape, with its mirrors and contract regenerated, and the v2 after capture was re-derived from one retained raw dump with one extractor (`scratch/decisions.txt:29-31`). The orchestrator then reran the mirror checks and the contract tests from the final state (`scratch/contract-tests-after.txt:5-6`, `scratch/mirror-check-after.txt:2-3`). The strict validator runs at closeout, and its only errors are the expected GENERATED_METADATA items that the orchestrator repairs.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -81,7 +89,19 @@ Not started. The plan is in `tasks.md`, and the closure gate is `acceptance-crit
 
 | Decision | Why |
 |----------|-----|
-| Not started | The decisions sit in `goal.md` and in the open questions of `spec.md`. The four orchestrator decisions are recorded in task T003. |
+| Manifest refresh (decision 0) | The README manifest was already failing at the phase start, a regression from phase 5 that main does not have, so its refresh joined this phase's consumer edits (`scratch/skdoc-manifest-before.txt:3-6`). |
+| Destination of the moved files (decision 1) | `.skilled/command-support/` with the subfolders kept, because both hosts registered all twelve as commands from `.skilled/commands/` (`scratch/decisions.txt:5`). |
+| `opencode.json` keeps its shape (decision 2) | v2 2.0.32 reads the v1-shaped file and converts it on load, so no edit was needed and the shape test guards it (`scratch/decisions.txt:6`). |
+| The ten `browser: deny` keys (decision 3) | They are defensive on 2.0.32, where the browser is already denied by default, and they add the enforced name beside the inert `chrome_devtools` name (`scratch/decisions.txt:7-8`). |
+| Mirror sync per tree (decision 4) | Each tree has its own generator, and the `.claude` copies follow the crosswalk's hand-sync rule (`scratch/decisions.txt:9-15`). |
+| Consumers beyond the section 3 list (decision 5) | Seven more files name the moved paths, and each skips the moved names by pattern, so none needed a change (`scratch/decisions.txt:16`). |
+| The manifest path stays (decision 7) | The render step's `manifest.jsonl` is a generated file and not a command candidate, so only the twelve `.md` paths change in the consumers (`scratch/decisions.txt:18`). |
+| Wording rulings (decision 8) | 23 lines changed, and the five `subagent_type` lines and the 99 prohibitions stayed to avoid a behaviour change (`scratch/decisions.txt:19-22`). |
+| Runtime names (decision 9) | Every runtime has a stated name, so the three names joined the prose sentence and no UNKNOWN entry was needed (`scratch/decisions.txt:23`). |
+| `.claude` patch sync (decision 11) | The crosswalk names no generator for `.claude`, so each source body diff was applied as a patch (`scratch/decisions.txt:25`). |
+| Contract recompiles (decision 12) | Five digest failures were expected drift from this phase's own edits, and one test expectation built its output path from segments (`scratch/decisions.txt:26`). |
+| Command listings (decision 13) | v1 stops at the worktree root while v2 merges the ancestor main checkout, so the worktree's v2 listing is this environment's artifact (`scratch/decisions.txt:27-28`). |
+| Review fixes (decision 14) | Both P2s were fixed: the table cell shape and the re-derived after capture (`scratch/decisions.txt:29-31`). |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -91,12 +111,18 @@ Not started. The plan is in `tasks.md`, and the closure gate is `acceptance-crit
 
 | Check | Result |
 |-------|--------|
-| Strict validation of this folder with `validate.sh --strict` | Not started |
-| Mirror checker exits 0 with 11 agents checked (T013, AC-001) | Not started |
-| Contract tests match their baseline pass count (T015, AC-007) | Not started |
-| Command listings register no moved file (T016, AC-006) | Not started |
-| `opencode.json` loads on v1, and the config shape test passes both cases (T017, T018, AC-008, AC-009) | Not started |
-| Stale-path grep, with each exception recorded here (T019, AC-010) | Not started |
+| Strict validation of this folder with `validate.sh --strict` | `RESULT: PASSED`, 0 errors and 0 warnings, after `repair-derived.cjs --apply` repaired the GENERATED_METADATA items (`scratch/validate.txt:51`). |
+| Mirror checks exit 0, 11 agents in sync (T013, AC-001) | All five checks exit 0, with the 11-agent line at `scratch/mirror-check-after.txt:2-3` and the Hermes skill check at `:13-14` (68 in sync). |
+| Contract tests match their baseline pass count (T015, AC-007) | 55 of 55 at `scratch/contract-tests-after.txt:5-6`, matching `scratch/contract-tests-before.txt:5-6`. |
+| Gate-3 menu parity from the new paths | 17 of 17 at `scratch/gate3-after.txt:18-21`, with the moved contracts read at their new paths at `:10-12`. |
+| Command listings (T016, AC-006) | v1 lists 39 with none of the twelve (`scratch/command-listing-after.txt:1`), and the isolated v2 copy lists 41 with none moved (`scratch/v2-command-isolated.txt:2-3`). The worktree's own v2 listing still shows the twelve, per decision 13. |
+| `opencode.json` loads on v1 (T017, AC-008) | `exit=0` with 0 stderr lines at `scratch/config-load-after.txt:2-3`. |
+| Config shape test, both cases (T018, AC-009) | `pass 2` and `fail 0` at `scratch/config-shape.txt:5-6`. |
+| Stale-path grep (T019, AC-010) | 0 moved-file paths, 13 live-folder or script matches that did not move, and 3 unchanged manifest path matches at `scratch/stale-paths.txt:24-26`. |
+| README manifests (decision 0) | The manifest FAILED before at `scratch/skdoc-manifest-before.txt:3-6` and is reproducible after at `scratch/skdoc-manifest-after.txt:4`, with verdict parity PASS at both ends. |
+| Full system-deep-loop suite | 166 of 166 files, 2718 passed and 8 skipped at `scratch/deep-loop-suite-after.txt:48-49`, from the final state before the P2 fixes (decision 15). |
+| Drift guards | `run-all-drift-guards.sh` exit 0, all 4 guards passed at `scratch/drift-after.txt:44`. |
+| Review and its fixes (T021, T022, AC-012) | PASS with no P0 or P1 and two P2s at `scratch/review-004.txt:2`, `:12-13` and `:43`, and both P2s fixed per decision 14. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -104,7 +130,9 @@ Not started. The plan is in `tasks.md`, and the closure gate is `acceptance-crit
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not started.** No change has run, so every file and check stays open until the tasks in `tasks.md` run.
-2. **Open decisions.** The destination of the moved files, the D2 conflict, the `browser` key for `orchestrate.md` and the sync of the `.pi`, `.cursor` and `.devin` copies await the orchestrator's decisions in T003. T003 settles them before T010 and T012 run.
-3. **Benchmark reports.** The reports under `benchmark/reports/` cite old paths. They stay as they are, and they appear as recorded exceptions in the T019 grep. Any other stale path that T019 finds is recorded here before closure.
+1. **The nested-worktree behavior carries to phases 7 and 10.** In a git worktree nested inside the main checkout, a v2 session also loads the parent checkout's `.opencode` plugins and commands, while v1 stops at the worktree root (`scratch/decisions.txt:27-28`).
+2. **A v2 probe must boot the location before it reads /api/agent.** A first request can return an empty list while the agent and provider services start, so the probe now boots the location and polls until the list fills. This carries to phase 8 (`scratch/decisions.txt:32`).
+3. **The ten `browser: deny` keys are not a live fix on 2.0.32.** Every agent, the built-ins included, already ends with a trailing `browser: deny` rule on that version, so the keys are defensive for a later v2 (`scratch/v2-agent-permissions-before.txt:3-19`, `scratch/decisions.txt:8`).
+4. **The worktree's own v2 command listing still shows the twelve moved files.** The cause is the worktree's location, not the move, and the isolated copy proves the move (`scratch/command-listing-after.txt:41-94`, `scratch/decisions.txt:27`).
+5. **The remaining stale-path matches stay as recorded exceptions.** The 13 live-folder or script matches and the 3 unchanged manifest path matches at `scratch/stale-paths.txt:24-26` stay as they are, because those folders and scripts did not move and the manifest path is kept by decision 7.
 <!-- /ANCHOR:limitations -->

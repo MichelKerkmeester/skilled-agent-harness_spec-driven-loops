@@ -1,0 +1,11 @@
+document ~/.config/opencode/opencode.jsonc keys: ['$schema']
+directory ~/.config/opencode keys: None
+document ~/MEGA/Development/Code_Environment/Public/opencode.json keys: ['$schema', 'mcp', 'permissions']
+   mcp: {"servers": {"code_mode": {"type": "local", "command": ["node", ".skilled/bin/mcp-code-mode-launcher.cjs"], "environment": {"UTCP_CONFIG_FILE": ".utcp_config.json"}}}}
+   permissions: [{"action": "edit", "resource": "*", "effect": "allow"}, {"action": "shell", "resource": "*", "effect": "allow"}, {"action": "webfetch", "resource": "*", "effect": "allow"}, {"action": "doom_loop", "r
+document ~/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/opencode.json keys: ['$schema', 'mcp', 'permissions']
+   mcp: {"servers": {"code_mode": {"type": "local", "command": ["node", ".skilled/bin/mcp-code-mode-launcher.cjs"], "environment": {"UTCP_CONFIG_FILE": ".utcp_config.json"}}}}
+   permissions: [{"action": "edit", "resource": "*", "effect": "allow"}, {"action": "shell", "resource": "*", "effect": "allow"}, {"action": "webfetch", "resource": "*", "effect": "allow"}, {"action": "doom_loop", "r
+directory ~/MEGA/Development/Code_Environment/Public/.opencode keys: None
+directory ~/MEGA/Development/Code_Environment/Public/.worktrees/.opencode keys: None
+directory ~/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode keys: None

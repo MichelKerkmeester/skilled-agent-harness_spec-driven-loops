@@ -1,0 +1,12 @@
+.skilled/commands/deep/assets/compiled/deep-ai-council.contract.md -> .skilled/command-support/deep/assets/compiled/deep-ai-council.contract.md
+.skilled/commands/deep/assets/compiled/deep-research.contract.md -> .skilled/command-support/deep/assets/compiled/deep-research.contract.md
+.skilled/commands/deep/assets/compiled/deep-review.contract.md -> .skilled/command-support/deep/assets/compiled/deep-review.contract.md
+.skilled/commands/deep/assets/compiled/README.md -> .skilled/command-support/deep/assets/compiled/README.md
+.skilled/commands/deep/assets/legacy/deep-ai-council.body.md -> .skilled/command-support/deep/assets/legacy/deep-ai-council.body.md
+.skilled/commands/deep/assets/legacy/deep-research.body.md -> .skilled/command-support/deep/assets/legacy/deep-research.body.md
+.skilled/commands/deep/assets/legacy/deep-review.body.md -> .skilled/command-support/deep/assets/legacy/deep-review.body.md
+.skilled/commands/deep/assets/legacy/README.md -> .skilled/command-support/deep/assets/legacy/README.md
+.skilled/commands/doctor/scripts/README.md -> .skilled/command-support/doctor/scripts/README.md
+.skilled/commands/doctor/scripts/tests/README.md -> .skilled/command-support/doctor/scripts/tests/README.md
+.skilled/commands/scripts/fixtures/README.md -> .skilled/command-support/scripts/fixtures/README.md
+.skilled/commands/scripts/README.md -> .skilled/command-support/scripts/README.md

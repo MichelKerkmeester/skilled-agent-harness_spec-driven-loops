@@ -1,0 +1,43 @@
+## Review: Phase 4 diff — `004-agents-commands-config` (read-only; no file changed)
+**Summary.** Reviewed the tracked change set (45 files: 11 source agents, 12 mirror agents, the crosswalk, 1 new test, 12 renames, 8 consumer edits) plus the phase's scratch evidence, and re-ran every read-only gate from the final state. The wording edits, the mirror sync, the move and the contracts all hold. Two P2s, no P0/P1.
+| Check | Result | Anchor evidence |
+|---|---|---|
+| 1 Agent wording / frontmatter | PASS (1 P2) | 34 changed lines = 23 ruled wording lines + 11 `browser: deny`; independent frontmatter re-derivation |
+| 2 `orchestrate.md` runtime names | PASS | each added name read at its cited source line |
+| 3 Mirrors + regeneration | PASS | 4 checkers re-run green; `.claude` body deltas 14/6/0 = committed baselines |
+| 4 The move | PASS | 0 stale moved-file paths; all 18 moved-README links resolve |
+| 5 Contracts + config test | PASS | digest-only diffs, digests recomputed, test re-run 2/2 |
+| 6 Comment hygiene | PASS | only added comment is the test banner |
+| 7 Decisions 2 / 3 / 13 vs probes | 2 and 13 follow; 3 follows except one clause (P2-2) | see below |
+### P0 — none
+### P1 — none
+### P2
+**1. `ai-council.md:121` — the table cell lost the tool-name shape its siblings keep.**
+[ai-council.md:118-127](file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/agents/ai-council.md)
+Failing input: an agent loading `ai-council.md` standalone (the Agent Loading Protocol ships the file body, not `orchestrate.md`) reads a *Tool* column whose row is `the runtime's delegation tool` — no monospace, no mapping — while every sibling row is a backticked name. Meaning is preserved, so REQ-003 holds; this is cosmetic.
+Fix: restore the audit's proposed form, `` | the runtime's delegation tool (`task` in OpenCode, `Agent` in Claude Code) | … `` (or at minimum wrap the phrase in backticks).
+**2. `scratch/v2-agent-permissions-after.txt` omits the `chrome_devtools` column the before capture carries, so one clause of decision 3 is not verifiable.**
+Before (line 10) reads `browser=[(38,'deny')] subagent=[…] chrome_devtools=[(21,'deny'),(33,'deny')]`; after (line 9) reads `rules=40 browser=[(34,'deny'),(39,'deny')] subagent=[(22,'allow'),(35,'allow')]` and no `chrome_devtools` field at all. The raw `agents.json` the probe dumps (`v2-agent-probe.py:28`) was not retained, and the `/tmp/a7-*` dumps are from another phase (11:57). So "+1 browser rule, nothing else changed" and "browser denied by default on 2.0.32" are supported, but "they replace the inert `chrome_devtools` name on v2" is not.
+Fix: re-derive both columns from one raw dump (or record the extractor command beside the two files) so the before/after pair is comparable.
+### Leads checked and refuted
+- **Untracked `sk-vision.js` outside section 3 (REQ-011).** Pre-existing: it is line 1 of `status-before.txt` (19:18) with mtime 18:54; not a phase change.
+- **Spec path `.opencode/bin/tests/…` vs `.skilled/bin/tests/…` in git status.** Same file — `.opencode/bin -> ../.skilled/bin`; `realpath` confirms, and the spec's path resolves.
+- **Section 3 lists seven files that did not change.** None names a moved path (only live scripts or the kept `manifest.jsonl` at `legacy-projection-manifest.ts:200`); the list was a prediction, and T019 records 0 stale moved-file paths.
+- **`browser: deny` could break v1 agent loading.** Refuted: `opencode debug config` on v1 1.19.3 → exit 0, empty stderr, each agent map parsed as `"chrome_devtools": "deny", "browser": "deny"` side by side.
+- **The manifest refresh might be a test-passing edit.** Refuted: re-ran `test_readme_manifest.py` → `derived=780 frozen=780 … reproduced=True`, `manifest=reproducible`, exit 0; verdict parity also `diff_entries=0`. `.skilled/commands/scripts` left the durable set because its README moved out and one script is below the 5-file bar — the directory itself still exists, and `fixtures`/`tests` were never listed (21 exclusion classes).
+- **The new test is inert (no runner globs `.skilled/bin/tests/*.test.cjs`).** True but consistent with its siblings, which are run ad hoc via `node --test`; the spec requires only that it exist and pass.
+- **Cursor `Task` vs Claude `Agent`.** Recorded as data in decision 9 (`.skilled/hooks/task-dispatch/README.md:58` matches `Task`; the Fable guard matches `Task|Agent`); the added names are unaffected.
+- **`OpenCode 2` wording in the crosswalk.** The parent spec's description uses the numeric form ("OpenCode 1.19.x and 2.0.x"); dropped.
+- **Mixed index (renames staged, edits not).** Cosmetic; `git diff HEAD` covers both and no commit was requested.
+### Decision-by-decision (check 7)
+- **Decision 2 — follows.** `v2-config-view.txt` shows the worktree file read as `keys: ['$schema','mcp','permissions']` with `mcp.servers.code_mode` while the file itself carries `permission` + `mcp.code_mode`; `v2-mcp-probe.txt` fails on a `dist/index.js` that is absent on disk and ignored by `.gitignore:60`. The `~` prefix is v2's home-dir display convention (same form in the config view), not a literal-tilde bug.
+- **Decision 3 — follows except the `chrome_devtools` clause (P2-2).** Before capture: every agent, built-ins included, ends in a trailing `browser: deny`; leaf agents show `subagent: deny` where the frontmatter says `task: deny`. After capture: +1 rule for each of the ten agents, `orchestrate` unchanged at 35 rules.
+- **Decision 13 — follows.** v1 lists 39 with none of the twelve; the worktree's v2 lists 53; the isolated copy lists 41 = 39 + `init` + `review`, none moved (`v2-command-isolated.py:19` scopes by `location[directory]`). Checkable cause: the main checkout still holds the twelve and `Public/.opencode/commands -> ../.skilled/commands`, so a nested v2 run merges them.
+### Verification I ran from the final state
+`check-agent-mirror-sync.cjs --all` (11 in sync) · codex/pi/hermes `--check` (11/11/68) · `node --test opencode-config-shape.test.cjs` (2/2, negative case throws on `plugins` — in-memory control confirms the right reason) · `test_readme_manifest.py` (reproducible) · `test_readme_verdict_parity.py` (PASS) · `check-contract-drift.cjs` (`OK commands=3`) · v1 `opencode debug config` (exit 0, empty stderr) · digest recomputation for all three contracts (match) · `git grep` stale-path sweeps · link-target resolution for the six moved READMEs.
+### Next steps
+1. Apply P2-1 (one-line table cell) and P2-2 (re-derive the after capture) — neither blocks closure.
+2. Before the phase claims completion: `implementation-summary.md`, `tasks.md` and `acceptance-criteria.md` still carry the scaffold state (`Status: Planned`, `completion_pct: 0`, "Not started"); they need the observed results and the strict `validate.sh` pass.
+3. Note: the workspace moved during this review — the parent `goal.md` (+1 row) and `specs/…/082-…/scratch/live-tool-execute/` appeared at 20:01, outside phase D. The phase-D file set was unchanged across the review.
+Not checked: the vitest suites (contract 55/55 and the deep-loop suite) were not re-run — their recorded runs are in scratch and I verified their preconditions (fresh digests, new-path expectations, drift OK) instead, to keep this review read-only. The v2 live endpoints were not re-probed (no v2 serve started), and the parent packet and other phases were out of scope.
+Review status: PASS (no open P0 or P1)

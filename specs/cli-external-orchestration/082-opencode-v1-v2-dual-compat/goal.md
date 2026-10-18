@@ -115,6 +115,8 @@ and findings belong here.
 | 005 version-aware guards | Done | `opencode2 run` classified and evaluated by version; v1 verdicts unchanged on 23 commands; validate strict PASSED (005/scratch/evidence.md) |
 | 002 pins, imports, dual export | Done | 11 of 11 ported plugins active on v2, 16 of 16 load on v1, plugin suite 331 of 331, validate strict PASSED (002/scratch/evidence.md) |
 | 003 hard plugins | Done | 16 of 16 plugins active on v2 and 16 of 16 load on v1 (18 tool ids), plugin suite 353 of 353 with and without AI_SESSION_CHILD, sk-vision bun test 29 of 29, review P1s closed by verification, validate strict PASSED (003/scratch/evidence.md) |
+| Live bridged-tool execute on v2 | Done | Operator-approved run: v2 2.0.32 executed the bridged `opencode_goal_status` tool and returned the plugin's output (scratch/live-tool-execute/notes.txt) |
+| 004 agents, commands, config | Done | Ten browser keys, 23 delegation wording edits, mirrors synced, 12 non-command files moved out of the command tree (v1 51 to 39 commands), opencode.json unchanged and guarded by a shape test, deep-loop suite 2718 passed, validate strict PASSED (004/scratch/evidence.md) |
 
 ### Deviations and findings
 

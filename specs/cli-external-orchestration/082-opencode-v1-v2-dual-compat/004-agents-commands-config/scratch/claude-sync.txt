@@ -1,0 +1,13 @@
+## ai-council: 4 body lines changed in .skilled
+patching file '.claude/agents/ai-council.md'
+dry-run exit=0
+## debug: 2 body lines changed in .skilled
+patching file '.claude/agents/debug.md'
+1 out of 6 hunks failed while patching '.claude/agents/debug.md'
+dry-run exit=1
+## orchestrate: 12 body lines changed in .skilled
+patching file '.claude/agents/orchestrate.md'
+dry-run exit=0
+ai-council remaining body diff lines vs .skilled: 14 (committed: 14)
+debug remaining body diff lines vs .skilled: 6 (committed: 6)
+orchestrate remaining body diff lines vs .skilled: 0 (committed: 0)

@@ -10,6 +10,9 @@ importance_tier: "normal"
 
 # Command Validation Fixtures
 
+> Documents `.skilled/commands/scripts/fixtures/`. This README was moved out of `.skilled/commands/`
+> to `.skilled/command-support/scripts/fixtures/` so OpenCode does not register it as a command.
+>
 > Deliberately invalid command references that prove the validator rejects broken assets.
 
 ---
@@ -97,5 +100,5 @@ Expected result:
 
 ## 8. RELATED
 
-- [Command validation script](../validate-command-references.cjs)
-- [Commands directory](../../)
+- [Command validation script](../../../commands/scripts/validate-command-references.cjs)
+- [Commands directory](../../../commands/)

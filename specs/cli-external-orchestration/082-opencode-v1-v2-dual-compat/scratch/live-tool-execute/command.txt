@@ -1,0 +1,1 @@
+opencode2 run --standalone --auto --format json -m llmgateway/deepseek-v4.1-flash "Call the opencode_goal_status tool exactly once with no arguments. Then reply with only the exact text that tool returned."

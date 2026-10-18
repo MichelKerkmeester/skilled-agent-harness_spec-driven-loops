@@ -12,6 +12,7 @@ permission:
   glob: allow
   webfetch: allow
   chrome_devtools: deny
+  browser: deny
   task: deny
   list: allow
   patch: deny

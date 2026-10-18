@@ -8,6 +8,9 @@ trigger_phrases:
 
 # Doctor Script Tests: Coverage For Every Doctor Script
 
+> Documents `.skilled/commands/doctor/scripts/tests/`. This README was moved out of `.skilled/commands/`
+> to `.skilled/command-support/doctor/scripts/tests/` so OpenCode does not register it as a command.
+
 ---
 
 ## 1. OVERVIEW AND PURPOSE
@@ -79,4 +82,4 @@ python3 -m unittest discover -s .skilled/commands/doctor/scripts/tests -p 'test_
 ## 4. RELATED
 
 - [Doctor command scripts](../README.md)
-- [Doctor route manifest](../../_routes.yaml)
+- [Doctor route manifest](../../../../commands/doctor/_routes.yaml)

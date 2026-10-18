@@ -10,13 +10,17 @@ importance_tier: "important"
 
 # Legacy Deep Command Bodies
 
+> Documents the fallback bodies in `.skilled/command-support/deep/assets/legacy/` for the command
+> family under `.skilled/commands/deep/`. This README was moved out of `.skilled/commands/` so
+> OpenCode does not register it as a command.
+>
 > Router bodies retained as the base payload for the three compiler-managed deep commands.
 
 ---
 
 ## 1. OVERVIEW
 
-`.skilled/commands/deep/assets/legacy/` stores three fallback command bodies: `deep/ai-council`, `deep/research` and `deep/review`.
+`.skilled/command-support/deep/assets/legacy/` stores three fallback command bodies: `deep/ai-council`, `deep/research` and `deep/review`.
 
 Each body acts as a thin router. It resolves command setup and selects workflow YAML while leaving iteration dispatch, artifact writes and convergence handling to the selected workflow.
 
@@ -95,9 +99,9 @@ Compiled contracts live in the sibling `compiled/` folder. Their maintained sour
 Confirm the expected files exist from the repository root:
 
 ```bash
-test -f .skilled/commands/deep/assets/legacy/deep-ai-council.body.md
-test -f .skilled/commands/deep/assets/legacy/deep-research.body.md
-test -f .skilled/commands/deep/assets/legacy/deep-review.body.md
+test -f .skilled/command-support/deep/assets/legacy/deep-ai-council.body.md
+test -f .skilled/command-support/deep/assets/legacy/deep-research.body.md
+test -f .skilled/command-support/deep/assets/legacy/deep-review.body.md
 ```
 
 Expected result: every command exits with status `0`.
@@ -115,6 +119,6 @@ Expected result: the checker reports the repository-wide resolution state of com
 ## 8. RELATED
 
 - [Compiled deep command contracts](../compiled/)
-- [Deep command assets](../)
-- [Deep command router files](../../)
+- [Deep command assets](../../../../commands/deep/assets/)
+- [Deep command router files](../../../../commands/deep/)
 - [Deep-loop skill](../../../../skills/system-deep-loop/SKILL.md)

@@ -137,7 +137,7 @@
     },
     {
       "path": ".skilled/agents/ai-council.md",
-      "sha256": "012fe48a22510f3636635411ddd24e5ffb34530330d0152a78317630c39779ff",
+      "sha256": "d63992d97636e006756de9620fca3c861fc330908ab2e92b046e23f9088b6b15",
       "section": "full"
     },
     {

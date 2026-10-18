@@ -114,7 +114,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 1 | 001-unknowns-and-baseline/ | Settle the open questions and record the per-plugin, per-version baseline | Complete |
 | 2 | 002-pins-imports-dual-export/ | Pin plugin dependencies and give the 11 mechanical plugins the dual export | Complete |
 | 3 | 003-hard-plugins/ | Port the five hard plugins: sentinel, spec gate, skill advisor, goal and sk-vision | Complete |
-| 4 | 004-agents-commands-config/ | One agent, command and config set that both versions read the same way | Pending |
+| 4 | 004-agents-commands-config/ | One agent, command and config set that both versions read the same way | Complete |
 | 5 | 005-version-aware-guards/ | Make the dispatch guards version-aware so they see `opencode2` | Complete |
 | 6 | 006-cli-opencode-dual-dispatch/ | Version detection and two dispatch shapes in cli-opencode and the deep-loop runtime | Pending |
 | 7 | 007-install-guidance-and-setup-helper/ | Install reference and `opencode-setup.sh` for side by side, v1 only and v2 only | Pending |

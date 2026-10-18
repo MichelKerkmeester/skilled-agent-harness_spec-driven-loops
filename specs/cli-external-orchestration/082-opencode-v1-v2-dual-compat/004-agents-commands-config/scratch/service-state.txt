@@ -1,0 +1,3 @@
+v2 background service, captured 2026-10-18 20:30 CEST at phase 004 close:
+46220 Sun Oct 18 12:18:22 2026    
+Phase 002 and 003 captures show the same PID and start time, so the service was not restarted. Every v2 probe in this phase used a private opencode2 serve on a throwaway OPENCODE_DB.

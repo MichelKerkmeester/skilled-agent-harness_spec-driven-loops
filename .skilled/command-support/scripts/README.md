@@ -10,6 +10,9 @@ importance_tier: "normal"
 
 # Command Validation Scripts
 
+> Documents `.skilled/commands/scripts/`. This README was moved out of `.skilled/commands/`
+> to `.skilled/command-support/scripts/` so OpenCode does not register it as a command.
+>
 > Validation tooling that detects unresolved agent, skill asset and runtime-directory references in command assets.
 
 ---
@@ -123,7 +126,7 @@ The command exits with status `0` only when the fixture produces violations and 
 
 ## 8. RELATED
 
-- [Commands directory](../)
-- [Create command assets](../create/assets/)
-- [Deep command assets](../deep/assets/)
-- [Design command assets](../design/assets/)
+- [Commands directory](../../commands/)
+- [Create command assets](../../commands/create/assets/)
+- [Deep command assets](../../commands/deep/assets/)
+- [Design command assets](../../commands/design/assets/)

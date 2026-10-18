@@ -14,6 +14,7 @@ permission:
   list: allow
   webfetch: deny
   chrome_devtools: deny
+  browser: deny
   task: deny
   external_directory: deny
 ---

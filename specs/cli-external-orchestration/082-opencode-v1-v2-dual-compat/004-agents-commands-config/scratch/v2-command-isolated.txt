@@ -1,0 +1,44 @@
+# v2 2.0.32 GET /api/command on an isolated copy: a fresh git repo outside the main checkout holding a copy of this worktree's .skilled/commands and the .opencode/commands -> ../.skilled/commands link.
+commands: 41
+moved-file entries: []
+agent-router
+create/agent
+create/benchmark
+create/changelog
+create/command
+create/diff
+create/feature-catalog
+create/goal
+create/manual-testing-playbook
+create/readme
+create/repo-rule
+create/skill
+create/skill-parent
+create/with-human-voice
+deep/ai-council
+deep/research
+deep/review
+design/chart
+design/diagram
+design/extract
+doctor/deep-loop
+doctor/env
+doctor/git
+doctor/mcp
+doctor/runtime-mirrors
+doctor/setup
+doctor/sk-code
+doctor/skill-advisor
+doctor/speckit
+doctor/update
+goal-opencode
+init
+prompt/improve
+review
+speckit/complete
+speckit/implement
+speckit/plan
+speckit/resume
+speckit/save
+speckit/search
+vision

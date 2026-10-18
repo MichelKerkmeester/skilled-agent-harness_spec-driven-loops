@@ -40,11 +40,11 @@ Phase 4 changes wording and file locations, and it changes no permission and no 
 - [x] Dependencies identified in `spec.md` section 6
 
 ### Definition of Done
-- [ ] All acceptance criteria met (`acceptance-criteria.md`)
-- [ ] `check-agent-mirror-sync.cjs` exits 0 with 11 agents checked
-- [ ] The contract tests match their baseline pass count from the new paths
-- [ ] `validate.sh --strict` prints `RESULT: PASSED`
-- [ ] Docs updated (spec, plan and tasks agree)
+- [x] All acceptance criteria met (`acceptance-criteria.md`). Evidence: all 12 rows read `Met`, each with a file:line citation in its Verification cell.
+- [x] `check-agent-mirror-sync.cjs` exits 0 with 11 agents checked. Evidence: `scratch/mirror-check-after.txt:2-3`.
+- [x] The contract tests match their baseline pass count from the new paths. Evidence: 55 of 55 at `scratch/contract-tests-after.txt:5-6`, matching `scratch/contract-tests-before.txt:5-6`.
+- [x] `validate.sh --strict` prints `RESULT: PASSED` (`scratch/validate.txt:51`)
+- [x] Docs updated (spec, plan and tasks agree). Evidence: the closeout edits in this folder, with the committed task list at 27 lines and the section 3 file list unchanged.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -62,6 +62,16 @@ Decide, then edit, then sync, then move, then verify. The agent edits come befor
 - **Mirror copies**: `.claude/agents/*.md`, `.codex/agents/*.toml` and `.pi/agents/*`, synced by the repo's command. `.cursor/agents` and `.devin/agents` link to `.claude/agents`.
 - **Moved files**: twelve markdown files that move from `.skilled/commands/` to the destination in T003.
 - **Config shape test**: `.opencode/bin/tests/opencode-config-shape.test.cjs`, with a positive case on `opencode.json` and a negative case on a copy.
+
+### Recorded Deviations
+
+Five deviations were recorded during the phase and are reflected in the file list in `spec.md` section 3 where they widen it.
+
+- Decision 0: the README manifest was already failing at the phase start, a regression from phase 5 that main does not have. The frozen durable-directory manifest lacked `.skilled/hooks/dispatch/lib`, which phase 5 turned into a durable directory by adding `opencode-version.mjs`. The manifest is in this phase's file list, so its refresh joined the consumer edits here (`scratch/skdoc-manifest-before.txt:3-6`). It is reproducible again (`scratch/skdoc-manifest-after.txt:4`).
+- Decisions 4 and 10: the generated Hermes skill copies `.hermes/skills/agent-<name>/SKILL.md` are a mirror tree like `.codex` and `.pi`, so they join the mirror row of the file list, and the mirror crosswalk `.skilled/bin/agent-mirror-crosswalk.md` joins it for the one change that names `browser` beside `chrome_devtools` (`scratch/decisions.txt:14`, `:24`).
+- Decision 7: the render step's manifest `.skilled/commands/deep/assets/compiled/manifest.jsonl` keeps its path. It is a generated `.jsonl` file and not a command candidate, and `.gitignore` ignores it at that path, so only the twelve `.md` paths change in the consumers (`scratch/decisions.txt:18`).
+- Decision 11: the `.claude` copies were synced by patch, each source file's body diff applied to the matching `.claude` file, because the crosswalk names no generator for `.claude`. This amends the no-hand-edit rule for mirror copies, and `check-agent-mirror-sync.cjs --all` confirms the result (`scratch/claude-sync.txt:11-13`).
+- Decision 13: the v2 listing of this worktree still shows the twelve moved files, because v2 walks up past the git worktree root and merges every ancestor `.opencode` folder, and this worktree sits inside the main checkout. An isolated copy lists 41 commands on v2 with none moved (`scratch/v2-command-isolated.txt:2-3`), and the nested-worktree behavior is carried forward to phases 7 and 10 (`scratch/decisions.txt:27-28`).
 
 ### Data Flow
 The agent source in `.skilled/agents/` feeds the mirror copies. The command folder `.skilled/commands/` is read by both hosts through the `.opencode/commands` symlink, so a markdown file in that folder is a command candidate. Moving a file out of the folder removes it from both listings, and the consumers keep working when they point at the new path.
@@ -193,10 +203,10 @@ Setup (S1) and the desk checks (S2) come first. The agent edits (S3) follow the 
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] `scratch/status-before.txt` holds the sorted `git status --porcelain` output from before any change
-- [ ] `scratch/command-listing-before.txt` holds the v1 and v2 command listings from before the move
-- [ ] `scratch/contract-tests-before.txt` holds the contract test pass count
-- [ ] No step calls `opencode2 service stop`, `opencode2 service start` or `opencode2 service restart`
+- [x] `scratch/status-before.txt` holds the sorted `git status --porcelain` output from before any change
+- [x] `scratch/command-listing-before.txt` holds the v1 and v2 command listings from before the move (v1 51, v2 53)
+- [x] `scratch/contract-tests-before.txt` holds the contract test pass count (55 of 55, line 6)
+- [x] No step calls `opencode2 service stop`, `opencode2 service start` or `opencode2 service restart` (`scratch/service-state.txt:2`)
 
 ### Rollback Procedure
 1. Stop the dispatch that caused the problem.

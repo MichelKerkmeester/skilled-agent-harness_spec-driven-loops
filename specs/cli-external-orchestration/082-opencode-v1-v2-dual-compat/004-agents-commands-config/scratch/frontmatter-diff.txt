@@ -1,0 +1,12 @@
+# Frontmatter lines changed under .skilled/agents (git diff HEAD), per file. Only `browser: deny` may appear.
+.skilled/agents/ai-council.md: added=['  browser: deny'] removed=[]
+.skilled/agents/code.md: added=['  browser: deny'] removed=[]
+.skilled/agents/context.md: added=['  browser: deny'] removed=[]
+.skilled/agents/debug.md: added=['  browser: deny'] removed=[]
+.skilled/agents/deep-research.md: added=['  browser: deny'] removed=[]
+.skilled/agents/deep-review.md: added=['  browser: deny'] removed=[]
+.skilled/agents/design.md: added=['  browser: deny'] removed=[]
+.skilled/agents/markdown.md: added=['  browser: deny'] removed=[]
+.skilled/agents/orchestrate.md: added=[] removed=[]
+.skilled/agents/prompt-improver.md: added=['  browser: deny'] removed=[]
+.skilled/agents/review.md: added=['  browser: deny'] removed=[]

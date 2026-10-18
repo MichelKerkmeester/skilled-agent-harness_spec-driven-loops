@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-18 |
 | **Branch** | `worktrees/143-opencode-dual-compat-build` |
 | **Parent Spec** | ../spec.md |
@@ -122,6 +122,18 @@ Both versions read one set of agents, commands and config, and each version read
 | `.codex/SYNC.md` | Modify | Point at the new paths. |
 | `.opencode/bin/tests/opencode-config-shape.test.cjs` | Create | Asserts that `opencode.json` carries no `permissions`, `plugins` or `disabled` key, and that the singular `permission` key remains. A negative case adds a v2-only key to a copy and expects a failure. |
 | `opencode.json` | Not edited unless D2 is settled | The file uses `mcp.code_mode` at lines 10 and 11, and the singular `permission` key at line 3. |
+
+### Recorded Deviations
+
+Five deviations were recorded during the phase and are reflected in the file list above where they widen it.
+
+- Decision 0: the README manifest was already failing at the phase start, a regression from phase 5 that main does not have. The frozen durable-directory manifest lacked `.skilled/hooks/dispatch/lib`, which phase 5 turned into a durable directory by adding `opencode-version.mjs`. The manifest is in this phase's file list, so its refresh joined the consumer edits here (`scratch/skdoc-manifest-before.txt:3-6`). It is reproducible again (`scratch/skdoc-manifest-after.txt:4`).
+- Decisions 4 and 10: the generated Hermes skill copies `.hermes/skills/agent-<name>/SKILL.md` are a mirror tree like `.codex` and `.pi`, so they join the mirror row of the file list, and the mirror crosswalk `.skilled/bin/agent-mirror-crosswalk.md` joins it for the one change that names `browser` beside `chrome_devtools` (`scratch/decisions.txt:14`, `:24`).
+- Decision 7: the render step's manifest `.skilled/commands/deep/assets/compiled/manifest.jsonl` keeps its path. It is a generated `.jsonl` file and not a command candidate, and `.gitignore` ignores it at that path, so only the twelve `.md` paths change in the consumers (`scratch/decisions.txt:18`).
+- Decision 11: the `.claude` copies were synced by patch, each source file's body diff applied to the matching `.claude` file, because the crosswalk names no generator for `.claude`. This amends the spec's no-hand-edit rule for mirror copies, and `check-agent-mirror-sync.cjs --all` confirms the result (`scratch/claude-sync.txt:11-13`).
+- Decision 13: the v2 listing of this worktree still shows the twelve moved files, because v2 walks up past the git worktree root and merges every ancestor `.opencode` folder, and this worktree sits inside the main checkout. An isolated copy lists 41 commands on v2 with none moved (`scratch/v2-command-isolated.txt:2-3`), and the nested-worktree behavior is carried forward to phases 7 and 10 (`scratch/decisions.txt:27-28`).
+
+**Status note:** All 12 acceptance rows are Met, so the status above is Complete.
 <!-- /ANCHOR:scope -->
 
 ---

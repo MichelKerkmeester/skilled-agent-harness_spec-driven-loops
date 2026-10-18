@@ -26,18 +26,18 @@ const MANIFEST_PATH = '.skilled/commands/deep/assets/compiled/manifest.jsonl';
 const COMMANDS = {
   'deep/ai-council': {
     slug: 'deep_ai-council',
-    legacyBodyPath: '.skilled/commands/deep/assets/legacy/deep-ai-council.body.md',
-    compiledContractPath: '.skilled/commands/deep/assets/compiled/deep-ai-council.contract.md',
+    legacyBodyPath: '.skilled/command-support/deep/assets/legacy/deep-ai-council.body.md',
+    compiledContractPath: '.skilled/command-support/deep/assets/compiled/deep-ai-council.contract.md',
   },
   'deep/review': {
     slug: 'deep_review',
-    legacyBodyPath: '.skilled/commands/deep/assets/legacy/deep-review.body.md',
-    compiledContractPath: '.skilled/commands/deep/assets/compiled/deep-review.contract.md',
+    legacyBodyPath: '.skilled/command-support/deep/assets/legacy/deep-review.body.md',
+    compiledContractPath: '.skilled/command-support/deep/assets/compiled/deep-review.contract.md',
   },
   'deep/research': {
     slug: 'deep_research',
-    legacyBodyPath: '.skilled/commands/deep/assets/legacy/deep-research.body.md',
-    compiledContractPath: '.skilled/commands/deep/assets/compiled/deep-research.contract.md',
+    legacyBodyPath: '.skilled/command-support/deep/assets/legacy/deep-research.body.md',
+    compiledContractPath: '.skilled/command-support/deep/assets/compiled/deep-research.contract.md',
   },
 };
 

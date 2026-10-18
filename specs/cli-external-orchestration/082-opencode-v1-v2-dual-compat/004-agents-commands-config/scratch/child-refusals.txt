@@ -1,0 +1,18 @@
+# Non-zero command exits in the phase 4 implementer logs
+
+12 non-zero exits across the codex runs (p004-browser, p004-code2, p004-docs2, p004-code, p004-docs-a). 0 show a sandbox or permission word in the output that follows.
+
+p004-code and p004-docs-a are the two runs the orchestrator stopped because their briefs were mangled by shell expansion. They changed no file. Every test suite and live probe for this phase was run by the orchestrator, and the reruns are listed in evidence.md.
+
+- p004-browser exit 1 [exit only] /bin/zsh -lc 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "Add browser deny
+- p004-code2 exit 1 [exit only] /bin/zsh -lc 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "Update eight Ope
+- p004-code2 exit 1 [exit only] /bin/zsh -lc "status=0; for file in .skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs .skilled/skills/system-de
+- p004-code2 exit 1 [exit only] /bin/zsh -lc "sed -n '1,220p' .skilled/skills/sk-code/scripts/run-all-drift-guards.sh" in /Users/michelkerkmeester/MEGA/Development/Code_Env
+- p004-code2 exit 1 [exit only] /bin/zsh -lc "rg -n -C 3 'outputPathFor|readContract|COMMANDS' .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs .sk
+- p004-docs2 exit 1 [exit only] /bin/zsh -lc 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "Update moved Ope
+- p004-docs2 exit 1 [exit only] ?
+- p004-docs2 exit 1 [exit only] /bin/zsh -lc "awk 'length("'$0) > 100 { print NR ":" length($0) ":" $0; failed=1 } END { exit failed }'"' .skilled/bin/tests/opencode-config
+- p004-docs2 exit 1 [exit only] /bin/zsh -lc 'ls -ld .skilled/commands/deep/assets .skilled/commands/deep/assets/compiled .skilled/commands/deep/assets/legacy .skilled/comm
+- p004-docs2 exit 1 [exit only] ?
+- p004-code exit 1 [exit only] /bin/zsh -lc 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "Update moved dee
+- p004-docs-a exit 1 [exit only] /bin/zsh -lc 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "Update OpenCode-

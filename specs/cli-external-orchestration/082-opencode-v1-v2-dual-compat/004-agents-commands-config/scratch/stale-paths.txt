@@ -1,0 +1,26 @@
+# Stale-path grep (T019), spec pattern plus a widened pass over yaml, yml, js, py, sh, toml and the .pi, .hermes and .github trees.
+# The pattern `commands/scripts` also matches the folder .skilled/commands/scripts/ and the scripts inside it, which did not move. So each match is classified.
+
+## T019 grep (spec form)
+[unchanged manifest path (decision 7)] .skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts:200:    pathTemplate: '.skilled/commands/deep/assets/compiled/manifest.jsonl',
+[unchanged manifest path (decision 7)] .skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs:24:const MANIFEST_PATH = '.skilled/commands/deep/assets/compiled/manifest.jsonl';
+[live folder or script that did not move] .skilled/command-support/scripts/README.md:13:> Documents `.skilled/commands/scripts/`. This README was moved out of `.skilled/commands/`
+[live folder or script that did not move] .skilled/command-support/scripts/README.md:22:`.skilled/commands/scripts/` owns repository-level checks shared by command families.
+[live folder or script that did not move] .skilled/command-support/scripts/README.md:31:.skilled/commands/scripts/
+[live folder or script that did not move] .skilled/command-support/scripts/README.md:91:node .skilled/commands/scripts/validate-command-references.cjs
+[live folder or script that did not move] .skilled/command-support/scripts/README.md:97:node .skilled/commands/scripts/validate-command-references.cjs <path>
+[live folder or script that did not move] .skilled/command-support/scripts/README.md:103:node .skilled/commands/scripts/validate-command-references.cjs --json
+[live folder or script that did not move] .skilled/command-support/scripts/README.md:113:node .skilled/commands/scripts/validate-command-references.cjs --self-test
+[live folder or script that did not move] .skilled/command-support/deep/assets/legacy/README.md:112:node .skilled/commands/scripts/validate-command-references.cjs
+[live folder or script that did not move] .skilled/command-support/scripts/fixtures/README.md:13:> Documents `.skilled/commands/scripts/fixtures/`. This README was moved out of `.skilled/commands/`
+[live folder or script that did not move] .skilled/command-support/scripts/fixtures/README.md:22:`.skilled/commands/scripts/fixtures/` contains negative test data for `validate-command-references.cjs`.
+[live folder or script that did not move] .skilled/command-support/scripts/fixtures/README.md:89:node .skilled/commands/scripts/validate-command-references.cjs --self-test
+[live folder or script that did not move] .skilled/command-support/scripts/fixtures/README.md:103:- [Command validation script](../../../commands/scripts/validate-command-references.cjs)
+[unchanged manifest path (decision 7)] .skilled/command-support/deep/assets/compiled/README.md:112:const lines = fs.readFileSync(".skilled/commands/deep/assets/compiled/manifest.jsonl", "utf8").trim().split("\n");
+[live folder or script that did not move] .codex/SYNC.md:112:| Prompt mirror identity | `node .skilled/commands/scripts/validate-command-references.cjs` | 0 ok / 1 violation |
+## widened: yaml, yml, js, py, sh, toml and the .pi, .hermes, .github trees
+
+
+moved-file path (stale): 0
+live folder or script that did not move: 13
+unchanged manifest path (decision 7): 3

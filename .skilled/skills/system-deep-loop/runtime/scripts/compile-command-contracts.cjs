@@ -696,7 +696,7 @@ function buildContract(command) {
 
 function outputPathFor(command) {
   const definition = getCommandDefinition(command);
-  return path.join(absolutePath('.skilled/commands/deep/assets/compiled'), `${definition.slug}.contract.md`);
+  return path.join(absolutePath('.skilled/command-support/deep/assets/compiled'), `${definition.slug}.contract.md`);
 }
 
 function parseArgs(argv) {

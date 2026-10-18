@@ -10,13 +10,17 @@ importance_tier: "important"
 
 # Compiled Deep Command Contracts
 
+> Documents the contracts in `.skilled/command-support/deep/assets/compiled/` for the command family
+> under `.skilled/commands/deep/`. This README was moved out of `.skilled/commands/` so OpenCode
+> does not register it as a command.
+>
 > Generated executor contracts and rollout metadata derived from maintained deep-command authorities.
 
 ---
 
 ## 1. OVERVIEW
 
-`.skilled/commands/deep/assets/compiled/` stores the three flattened command contracts used by deep-command injection tooling.
+`.skilled/command-support/deep/assets/compiled/` stores the three flattened command contracts used by deep-command injection tooling.
 
 The generated contracts combine maintained command, workflow, skill, reference and agent sources into grep-checkable executor instructions. Maintained source files remain authoritative.
 
@@ -120,6 +124,6 @@ Use the deep-loop compiler's validation path when verifying contract freshness. 
 ## 8. RELATED
 
 - [Legacy deep command bodies](../legacy/)
-- [Deep command assets](../)
-- [Deep command router files](../../)
+- [Deep command assets](../../../../commands/deep/assets/)
+- [Deep command router files](../../../../commands/deep/)
 - [Deep-loop skill](../../../../skills/system-deep-loop/SKILL.md)

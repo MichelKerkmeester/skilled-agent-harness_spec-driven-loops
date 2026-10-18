@@ -1,0 +1,101 @@
+## .devin/agents
+drwxr-xr-x@ 13 michelkerkmeester  staff  416 Oct 18 14:44 .devin/agents
+## .cursor/agents
+drwxr-xr-x@ 13 michelkerkmeester  staff  416 Oct 18 14:44 .cursor/agents
+## .opencode/commands
+lrwxr-xr-x@ 1 michelkerkmeester  staff  20 Oct 18 14:44 .opencode/commands -> ../.skilled/commands
+../.skilled/commands
+## .opencode/agents
+lrwxr-xr-x@ 1 michelkerkmeester  staff  18 Oct 18 14:44 .opencode/agents -> ../.skilled/agents
+../.skilled/agents
+## .pi/agents
+drwxr-xr-x@ 13 michelkerkmeester  staff  416 Oct 18 14:44 .pi/agents
+## .claude/agents
+drwxr-xr-x@ 15 michelkerkmeester  staff  480 Oct 18 14:44 .claude/agents
+## .devin/agents files
+ai-council (regular file)
+code (regular file)
+context (regular file)
+debug (regular file)
+deep-research (regular file)
+deep-review (regular file)
+design (regular file)
+markdown (regular file)
+orchestrate (regular file)
+prompt-improver (regular file)
+review (regular file)
+## .cursor/agents files
+ai-council.md -> ../../.claude/agents/ai-council.md
+code.md -> ../../.claude/agents/code.md
+context.md -> ../../.claude/agents/context.md
+debug.md -> ../../.claude/agents/debug.md
+deep-research.md -> ../../.claude/agents/deep-research.md
+deep-review.md -> ../../.claude/agents/deep-review.md
+design.md -> ../../.claude/agents/design.md
+markdown.md -> ../../.claude/agents/markdown.md
+orchestrate.md -> ../../.claude/agents/orchestrate.md
+prompt-improver.md -> ../../.claude/agents/prompt-improver.md
+review.md -> ../../.claude/agents/review.md
+## .pi/agents files
+ai-council.md (regular file)
+code.md (regular file)
+context.md (regular file)
+debug.md (regular file)
+deep-research.md (regular file)
+deep-review.md (regular file)
+design.md (regular file)
+markdown.md (regular file)
+orchestrate.md (regular file)
+prompt-improver.md (regular file)
+review.md (regular file)
+## .claude/agents files
+ai-council.md (regular file)
+code.md (regular file)
+context.md (regular file)
+debug.md (regular file)
+deep-research.md (regular file)
+deep-review.md (regular file)
+design.md (regular file)
+Explore.md (regular file)
+markdown.md (regular file)
+orchestrate.md (regular file)
+prompt-improver.md (regular file)
+README.txt (regular file)
+review.md (regular file)
+## .codex/agents files
+ai-council.toml (regular file)
+code.toml (regular file)
+context.toml (regular file)
+debug.toml (regular file)
+deep-research.toml (regular file)
+deep-review.toml (regular file)
+design.toml (regular file)
+markdown.toml (regular file)
+orchestrate.toml (regular file)
+prompt-improver.toml (regular file)
+review.toml (regular file)
+## .devin/agents/<name>/AGENT.md links
+ai-council/AGENT.md -> ../../../.claude/agents/ai-council.md
+code/AGENT.md -> ../../../.claude/agents/code.md
+context/AGENT.md -> ../../../.claude/agents/context.md
+debug/AGENT.md -> ../../../.claude/agents/debug.md
+deep-research/AGENT.md -> ../../../.claude/agents/deep-research.md
+deep-review/AGENT.md -> ../../../.claude/agents/deep-review.md
+design/AGENT.md -> ../../../.claude/agents/design.md
+markdown/AGENT.md -> ../../../.claude/agents/markdown.md
+orchestrate/AGENT.md -> ../../../.claude/agents/orchestrate.md
+prompt-improver/AGENT.md -> ../../../.claude/agents/prompt-improver.md
+review/AGENT.md -> ../../../.claude/agents/review.md
+## .hermes/agents
+ai-council.md (regular file)
+code.md (regular file)
+context.md (regular file)
+debug.md (regular file)
+deep-research.md (regular file)
+deep-review.md (regular file)
+design.md (regular file)
+markdown.md (regular file)
+orchestrate.md (regular file)
+prompt-improver.md (regular file)
+README.txt (regular file)
+review.md (regular file)

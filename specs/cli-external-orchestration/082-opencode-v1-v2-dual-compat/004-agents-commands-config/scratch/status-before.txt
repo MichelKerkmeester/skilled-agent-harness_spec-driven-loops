@@ -1,0 +1,2 @@
+?? .skilled/skills/sk-vision/hooks/opencode/sk-vision.js
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/004-agents-commands-config/scratch/status-before.txt

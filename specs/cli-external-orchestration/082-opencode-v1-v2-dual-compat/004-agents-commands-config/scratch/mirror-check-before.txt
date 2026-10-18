@@ -1,0 +1,16 @@
+## node .skilled/bin/check-agent-mirror-sync.cjs --all
+agent-mirror-sync: 11 agent(s) checked — all mirrors in sync — OK
+exit=0
+## node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs --check
+[pi-agent-sync] PASS: 11 agents are in sync.
+exit=0
+## node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs --check
+[codex-agent-sync] PASS: 11 agents are in sync.
+exit=0
+## node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs
+  OK   pi        11/11 present
+STATUS=OK agent-roster-mirror: every runtime covers the canonical roster
+exit=0
+## node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check
+PASS: 68 Hermes skill copies in sync
+exit=0
