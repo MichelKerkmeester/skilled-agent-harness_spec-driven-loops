@@ -1,0 +1,39 @@
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/README.md b/.skilled/skills/cli-external-orchestration/cli-opencode/README.md
+index 3f8fb83ca5..d525f2c9f6 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/README.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/README.md
+@@ -261,7 +261,7 @@ A: When you are inside OpenCode and want a second session with its own state and
+ 
+ **Q: Why no top-level `--agent`?**
+ 
+-A: OpenCode 1 treats named agents like `general` as subagents and rejects them at the top level, so the dispatch fails outright. OpenCode 2.0.32 accepts `--agent general`. The default agent already covers the general case. For a specific profile, describe the role in the prompt body.
++A: OpenCode 1 treats named agents like `general` as subagents and will not run them at the top level: it prints a warning, falls back to the default agent and exits 0, so the flag silently does nothing. OpenCode 2.0.32 accepts `--agent general`. The default agent already covers the general case. For a specific profile, describe the role in the prompt body.
+ 
+ **Q: Why does a non-interactive dispatch hang without `</dev/null`?**
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md b/.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md
+index bd1f9dad2e..4ec5c8c4bc 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md
+@@ -101,7 +101,7 @@ cd /repo && opencode2 run --standalone \
+   "<prompt>"
+ ```
+ 
+-On OpenCode 1, the `--variant max` flash pin is the cli-opencode default for cross-AI dispatches on the flash default, and `--variant high` stays the generic effort for non-pinned models. On OpenCode 2 the effort level rides on `-m` as a `#<level>` suffix, the working directory moves into a `cd`, and a child dispatch needs `--standalone`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm the provider in `opencode2 models` before the first v2 dispatch (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`). The agent's own frontmatter may override the model selection if the agent pins a specific model. When an agent does NOT pin a model, the explicit model flag wins, `--model` on OpenCode 1 or `-m` on OpenCode 2. OpenCode 2.0.32 routes a slug the same way and registers the agent's mode, permissions and temperature from its frontmatter. Whether it applies those permissions and that temperature during a run is unverified on OpenCode 2.0.32. No repo agent pins a model, so whether a pinned model beats `-m` on OpenCode 2.0.32 is untested.
++On OpenCode 1, the `--variant max` flash pin is the cli-opencode default for cross-AI dispatches on the flash default, and `--variant high` stays the generic effort for non-pinned models. On OpenCode 2 the effort level rides on `-m` as a `#<level>` suffix, the working directory moves into a `cd`, and a child dispatch needs `--standalone`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm the provider in `opencode2 models` before the first v2 dispatch (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`). The agent's own frontmatter may override the model selection if the agent pins a specific model. When an agent does NOT pin a model, the explicit model flag wins, `--model` on OpenCode 1 or `-m` on OpenCode 2. OpenCode 2.0.32 routes a slug the same way and registers the agent's mode, permissions and temperature from its frontmatter. It does not send that temperature to the provider, so an agent's `temperature` has no effect on OpenCode 2.0.32 (OpenCode 1 sends it for a primary agent). Whether it applies those permissions during a run is unverified on OpenCode 2.0.32. No repo agent pins a model, so whether a pinned model beats `-m` on OpenCode 2.0.32 is untested.
+ 
+ ### Conductor rules
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md b/.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md
+index 1bd726650e..35be099609 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md
+@@ -168,7 +168,7 @@ cd /repo && opencode2 run --standalone \
+ 
+ ### What it does
+ 
+-The `--agent <slug>` flag loads an agent definition from `.skilled/agents/<slug>.md`. The frontmatter pins the model, tool permissions, and system prompt. Specialized agents (`deep-research`, `deep-review`, `context`, `review`, `ai-council`, etc.) provide domain-specific behavior the calling AI can target. OpenCode 2.0.32 loads the same definitions and registers their mode, permissions and temperature. Whether it applies those permissions and that temperature during a run is unverified on OpenCode 2.0.32. No repo agent pins a model, so a pinned model against `-m` is untested there.
++The `--agent <slug>` flag loads an agent definition from `.skilled/agents/<slug>.md`. The frontmatter pins the model, tool permissions, and system prompt. Specialized agents (`deep-research`, `deep-review`, `context`, `review`, `ai-council`, etc.) provide domain-specific behavior the calling AI can target. OpenCode 2.0.32 loads the same definitions and registers their mode, permissions and temperature. It does not send that temperature to the provider, so an agent's `temperature` has no effect on OpenCode 2.0.32 (OpenCode 1 sends it for a primary agent). Whether it applies those permissions during a run is unverified on OpenCode 2.0.32. No repo agent pins a model, so a pinned model against `-m` is untested there.
+ 
+ ### Why it matters
+ 

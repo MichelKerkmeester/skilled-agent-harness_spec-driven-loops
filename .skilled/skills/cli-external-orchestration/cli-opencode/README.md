@@ -8,7 +8,7 @@ trigger_phrases:
   - "parallel detached"
   - "cross-ai handback"
   - "share url"
-version: 1.4.4.0
+version: 1.4.5.0
 ---
 
 # cli-opencode
@@ -261,7 +261,7 @@ A: When you are inside OpenCode and want a second session with its own state and
 
 **Q: Why no top-level `--agent`?**
 
-A: OpenCode 1 treats named agents like `general` as subagents and rejects them at the top level, so the dispatch fails outright. OpenCode 2.0.32 accepts `--agent general`. The default agent already covers the general case. For a specific profile, describe the role in the prompt body.
+A: OpenCode 1 treats named agents like `general` as subagents and will not run them at the top level: it prints a warning, falls back to the default agent and exits 0, so the flag does not select the requested agent. OpenCode 2.0.32 accepts `--agent general`. The default agent already covers the general case. For a specific profile, describe the role in the prompt body.
 
 **Q: Why does a non-interactive dispatch hang without `</dev/null`?**
 

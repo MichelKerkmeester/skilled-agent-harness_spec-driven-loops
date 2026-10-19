@@ -86,6 +86,21 @@ Run at the operator's request after the closeout (`scratch/agent-routing/`, deci
 
 Total cost about USD 0.0053, and the process list was unchanged. Untested: whether an agent-pinned model beats `-m`, since no repo agent pins one, and how an agent routes subagents onward.
 
+## Agent temperature
+
+Run at the operator's request (`scratch/temperature/`, decision 11). A local capture endpoint stood in for the provider, so no real model was called. The fake model was marked as supporting temperature in each version's own config shape, matching the real `llmgateway/deepseek-v4.1-flash` record.
+
+| Case | 1.19.3 sends | 2.0.32 sends |
+|------|--------------|--------------|
+| `orchestrate` (0.1, primary) | `temperature: 0.1` | not run |
+| `markdown` (0.1, mode all) | `temperature: 0.1` | not run |
+| `review` (0.1) and `debug` (0.2), subagents | nothing, default agent after a warning | nothing |
+| No `--agent` | nothing | nothing |
+| Title request | `temperature: 0.5` | nothing |
+| v2-native agent or model with `request.body.temperature` | not applicable | nothing |
+
+Every run exited 0, and the process list was unchanged. Only the `openai-compatible` provider package was tested.
+
 ## Drift guards
 
 `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` exits 0: all 4 guards PASSED, with 10 non-blocking warnings, the same as phase 009 (`scratch/proof/drift-guards.txt`).

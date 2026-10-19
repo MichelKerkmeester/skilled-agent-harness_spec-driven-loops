@@ -1,0 +1,32 @@
+{
+  "providers": {
+    "capture": {
+      "name": "Capture",
+      "package": "@opencode/ai/providers/openai-compatible",
+      "settings": {
+        "baseURL": "http://127.0.0.1:47631/v1",
+        "apiKey": "capture-dummy"
+      },
+      "models": {
+        "fake": {
+          "name": "Fake",
+          "capabilities": {
+            "tools": true,
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ],
+            "temperature": true
+          },
+          "request": {
+            "body": {
+              "temperature": 0.4
+            }
+          }
+        }
+      }
+    }
+  }
+}

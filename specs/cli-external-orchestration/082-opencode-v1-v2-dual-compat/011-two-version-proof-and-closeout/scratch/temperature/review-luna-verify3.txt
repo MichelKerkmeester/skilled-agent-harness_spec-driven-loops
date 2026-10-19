@@ -1,0 +1,7 @@
+CLOSED — P1 — `.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md:104`, `.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md:171`, and `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout/implementation-summary.md:117` — The temperature claims are scoped to the tested `openai-compatible` provider, including the OpenCode 1 parentheticals.
+
+CLOSED — P2 — `.skilled/skills/cli-external-orchestration/cli-opencode/README.md:264` — It now says the warning is printed, the default agent is used, and the command exits 0, matching the saved evidence.
+
+New P0/P1 introduced by the scoped edits: none.
+
+PASS

@@ -114,9 +114,10 @@ The orchestrator ran every suite, battery, probe and validator itself. DeepSeek 
 ## Known Limitations
 
 1. **The claim covers two versions only.** A later OpenCode release is unsupported until the battery and a smoke run pass on it, and the claim's date moves with that run.
-2. **Two v2 agent questions stay open.** Live runs settled top-level `--agent` routing on 2.0.32 (decision 10). No repo agent pins a model, so whether a pinned model beats `-m` is untested, and so is how an agent routes subagents onward. The docs say both.
-3. **The proof ran on one machine.** OpenCode 2 here lists no `opencode-go` provider, so the live v2 dispatch used `llmgateway/deepseek-v4.1-flash`. A machine with other providers is not covered.
-4. **The CI workflow is untracked.** `.github/workflows/opencode-dual-version.yml` waits for the operator, as phase 008 left it, so no CI run backs this proof.
+2. **Agent temperature has no effect on OpenCode 2.0.32 with the `openai-compatible` provider package.** That package, the only one tested, does not send it to the provider (decision 11). Agents that rely on 0.1 for steadier output get the provider's default there.
+3. **Two v2 agent questions stay open.** Live runs settled top-level `--agent` routing on 2.0.32 (decision 10). No repo agent pins a model, so whether a pinned model beats `-m` is untested, and so is how an agent routes subagents onward. The docs say both.
+4. **The proof ran on one machine.** OpenCode 2 here lists no `opencode-go` provider, so the live v2 dispatch used `llmgateway/deepseek-v4.1-flash`. A machine with other providers is not covered.
+5. **The CI workflow is untracked.** `.github/workflows/opencode-dual-version.yml` waits for the operator, as phase 008 left it, so no CI run backs this proof.
 <!-- /ANCHOR:limitations -->
 
 ---

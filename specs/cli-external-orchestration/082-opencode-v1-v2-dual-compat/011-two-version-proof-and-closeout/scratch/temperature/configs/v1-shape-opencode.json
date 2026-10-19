@@ -1,0 +1,19 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "capture": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Capture",
+      "options": {
+        "baseURL": "http://127.0.0.1:47631/v1",
+        "apiKey": "capture-dummy"
+      },
+      "models": {
+        "fake": {
+          "name": "Fake",
+          "temperature": true
+        }
+      }
+    }
+  }
+}

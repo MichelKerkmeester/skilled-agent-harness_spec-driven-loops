@@ -1,0 +1,7 @@
+P1 | .skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md:104; .skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md:171 | “Has no effect on OpenCode 2.0.32” generalizes beyond the only tested provider package | Scope both claims to the tested `openai-compatible` package.
+
+P2 | .skilled/skills/cli-external-orchestration/cli-opencode/README.md:264 | “Silently does nothing” conflicts with the warning described in the same sentence | Replace with “does not select the requested agent.”
+
+HVR scan: zero hard blockers; all three scans exited 0.
+
+FAIL

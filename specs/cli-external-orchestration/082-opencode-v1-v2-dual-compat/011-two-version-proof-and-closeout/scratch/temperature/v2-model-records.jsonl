@@ -1,0 +1,4 @@
+{"providerID":"llmgateway","id":"deepseek-v4.1-flash","package":"@opencode/ai/providers/openai-compatible","capabilities":{"tools":true,"input":["text","image"],"output":["text"],"temperature":true}}
+{"providerID":"capture","id":"fake","package":"@opencode/ai/providers/openai-compatible","capabilities":{"tools":true,"input":["text","image"],"output":["text"]}}
+{"providerID":"llmgateway","id":"deepseek-v4.1-flash","package":"@opencode/ai/providers/openai-compatible","capabilities":{"tools":true,"input":["text","image"],"output":["text"],"temperature":true}}
+{"providerID":"capture","id":"fake","package":"@opencode/ai/providers/openai-compatible","capabilities":{"tools":true,"input":["text"],"output":["text"],"temperature":true}}

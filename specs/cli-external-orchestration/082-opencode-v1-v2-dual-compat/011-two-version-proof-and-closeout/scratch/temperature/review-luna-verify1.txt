@@ -1,0 +1,11 @@
+OPEN: [agent-delegation.md:104](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md:104), [opencode-tools.md:171](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md:171), and [implementation-summary.md:117](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout/implementation-summary.md:117). The reference paragraphs scope the no-effect result to the only tested package, but their “does not send” statement remains unqualified, and limitation 2 still leads with a provider-independent claim.
+
+CLOSED: [README.md:264](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/cli-external-orchestration/cli-opencode/README.md:264). It now describes the warning, fallback to the default agent, and exit 0, matching the saved run evidence.
+
+New P0/P1: P1 at [implementation-summary.md:117](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout/implementation-summary.md:117), the same unresolved scope issue. No P0 found.
+
+Not checked: the drift guard exited 1 and recursive strict validation exited 2 because the read-only sandbox denied `mktemp`; scoped `git diff --check` passed. No files were changed by this review.
+
+Next: scope the remaining temperature claims to `openai-compatible`, then rerun the blocked gates in an environment that permits temporary files.
+
+Review status: FAIL

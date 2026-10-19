@@ -1,0 +1,9 @@
+CLOSED — P1 — [agent-delegation.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md:104), [opencode-tools.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md:171), [implementation-summary.md](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout/implementation-summary.md:117): the v2 no-send/no-effect claims now scope the behavior to the only tested `openai-compatible` package.
+
+OPEN — new P1 — [agent-delegation.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md:104), [opencode-tools.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md:171): the added claim that OpenCode 1 sends temperature for a primary agent does not explicitly limit that provider-facing result to `openai-compatible`, the only package tested.
+
+CLOSED — P2 — [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/cli-external-orchestration/cli-opencode/README.md:264): it now states that OpenCode 1 prints a warning, falls back to the default agent and exits 0, matching the saved stderr and exit record.
+
+New P0/P1: one P1 above; no P0.
+
+FAIL
