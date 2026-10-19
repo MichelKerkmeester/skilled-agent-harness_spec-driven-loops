@@ -229,6 +229,7 @@ needs-build  dist/index.js
 already-built  dist/index.js
 spec-kit-only
 spec-kit-and-real
+bun-pkg  dist/plugin.js
 EOF
 printf '{"dependencies":{"left-pad":"1.0.0"}}\n' > "$TREE/needs-install/package.json"
 printf '{"dependencies":{"@spec-kit/shared":"file:../shared"}}\n' > "$TREE/spec-kit-only/package.json"
@@ -302,6 +303,71 @@ FAILED_TREE="$PROV/failed-tree"
 mkdir -p "$FAILED_TREE/needs-build"
 cp "$TREE/needs-build/package.json" "$FAILED_TREE/needs-build/package.json"
 NPM_STUB_BUILD_FAIL=1 expect_rc "failed build fails provisioning" 1 run_fixture_provision "$FAILED_TREE"
+
+# ── a bun package installs and builds with bun, from its own tree ─
+# A dependency hoisted into an ancestor node_modules satisfies an npm package,
+# but a bun package's lockfile pins its own versions, so it must not stand in.
+cat > "$PROV/bin/bun" <<'EOF'
+#!/usr/bin/env bash
+printf '%s %s\n' "$(basename "$PWD")" "$*" >> "$BUN_LOG"
+case "${1:-}" in
+  install) mkdir -p node_modules/left-pad ;;
+  run) mkdir -p dist; : > dist/plugin.js ;;
+esac
+EOF
+chmod +x "$PROV/bin/bun"
+BUN_LOG="$PROV/bun.log"
+export BUN_LOG
+BUN_TREE="$PROV/bun-tree"
+mkdir -p "$BUN_TREE/node_modules/left-pad" "$BUN_TREE/bun-pkg"
+BUN_TREE="$(cd "$BUN_TREE" && pwd -P)"
+printf '{"dependencies":{"left-pad":"1.0.0"}}\n' > "$BUN_TREE/bun-pkg/package.json"
+: > "$BUN_TREE/bun-pkg/bun.lock"
+: > "$NPM_LOG"
+expect_rc "bun package provisions and writes its output" 0 run_fixture_provision "$BUN_TREE"
+expect_rc "bun package output exists" 0 test -e "$BUN_TREE/bun-pkg/dist/plugin.js"
+expect_eq "bun package installs from its own tree despite a hoisted dependency" "1" \
+  "$(awk '$1 == "bun-pkg" && $2 == "install" && $3 == "--frozen-lockfile" { c++ } END { print c + 0 }' "$BUN_LOG")"
+expect_eq "bun package builds with its flag before the script name" "1" \
+  "$(awk '$1 == "bun-pkg" && $2 == "run" && $3 == "--silent" && $4 == "build" { c++ } END { print c + 0 }' "$BUN_LOG")"
+expect_eq "bun package never reaches npm" "0" \
+  "$(awk '$1 == "bun-pkg" { c++ } END { print c + 0 }' "$NPM_LOG")"
+
+# A relative worktree path must bound the walk exactly as an absolute one does.
+REL_TREE="$PROV/rel-tree"
+mkdir -p "$REL_TREE/node_modules/left-pad" "$REL_TREE/bun-pkg"
+cp "$BUN_TREE/bun-pkg/package.json" "$BUN_TREE/bun-pkg/bun.lock" "$REL_TREE/bun-pkg/"
+run_relative_provision() {
+  (
+    cd "$PROV" || exit 1
+    source "$PROV/scripts/worktree-naming.sh"
+    PATH="$PROV/bin:$PATH" provision_worktree rel-tree
+  )
+}
+: > "$BUN_LOG"
+expect_rc "bun package provisions from a relative worktree path" 0 run_relative_provision
+expect_eq "relative worktree path still installs the bun package" "1" \
+  "$(awk '$1 == "bun-pkg" && $2 == "install" { c++ } END { print c + 0 }' "$BUN_LOG")"
+
+# Without bun on PATH a bun package fails loudly instead of falling back to npm.
+NOBUN_TREE="$PROV/nobun-tree"
+mkdir -p "$NOBUN_TREE/bun-pkg" "$PROV/nobun-bin"
+cp "$BUN_TREE/bun-pkg/package.json" "$BUN_TREE/bun-pkg/bun.lock" "$NOBUN_TREE/bun-pkg/"
+cp "$PROV/bin/npm" "$PROV/nobun-bin/npm"
+NOBUN_PATH="$PROV/nobun-bin:$(dirname "$(command -v node)"):/usr/bin:/bin"
+run_nobun_provision() {
+  (
+    source "$PROV/scripts/worktree-naming.sh"
+    PATH="$NOBUN_PATH" provision_worktree "$NOBUN_TREE"
+  )
+}
+if PATH="$NOBUN_PATH" command -v bun >/dev/null 2>&1; then
+  echo "SKIP: bun is reachable beside node, so the missing-bun case cannot run here"
+else
+  expect_rc "bun package without bun on PATH fails provisioning" 1 run_nobun_provision
+  expect_eq "bun package without bun never falls back to npm" "0" \
+    "$(awk '$1 == "bun-pkg" { c++ } END { print c + 0 }' "$NPM_LOG")"
+fi
 
 # ── no-argument provision uses the linked worktree ───────────────
 LINKED="$PROV/linked"

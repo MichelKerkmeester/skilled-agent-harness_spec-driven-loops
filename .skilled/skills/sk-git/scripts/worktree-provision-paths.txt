@@ -4,8 +4,9 @@
 #
 # One path per line, relative to the repository root, naming a directory that
 # holds a package.json. A line may add a second whitespace-separated field: a
-# file relative to the package directory that `npm run build` writes. Provision
-# builds the package when that file is missing. Blank lines and # comments are ignored.
+# file relative to the package directory that the package's build writes. Provision
+# builds the package when that file is missing. A package with a bun.lock and no
+# package-lock.json is installed and built with bun. Blank lines and # comments are ignored.
 #
 # Order is install order: a package whose build another package consumes comes
 # first.
@@ -14,14 +15,17 @@
 # packages by walking up from there; without this it finds nothing.
 .
 
-# The shared source tree. Hook and script tests resolve vitest from here, and
-# sk-vision's runtime, which has no install of its own, resolves the plugin SDKs.
+# The shared source tree. Hook and script tests resolve vitest from here.
 .skilled
 
 # The OpenCode plugins, which live where the OpenCode runtime loads them and
 # resolve the plugin SDK and zod from this tree. Without it the plugin tests
 # that import a plugin fail on import.
 .opencode
+
+# sk-vision's runtime. The OpenCode plugin folder links its bundle, which bun
+# builds, so without it the sk-vision plugin test cannot import the plugin.
+.skilled/skills/sk-vision/vision-runtime  dist/plugin.js
 
 # Spec-kit, its shared library, and the two builds that the validation
 # orchestrator and the spec CLI are compiled into. Each build pulls in the

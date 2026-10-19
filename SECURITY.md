@@ -92,7 +92,7 @@ The `cli-*` skills start other AI CLIs without a terminal, and a lane that may w
 
 ### Installs Run Without A Separate Prompt
 
-The skill advisor launcher in `.skilled/bin/system-skill-advisor-launcher.cjs` runs `npm ci` or `npm install` and a build when its runtime has not been built yet. `worktree-naming.sh create` in `sk-git` installs every package tree listed in `worktree-provision-paths.txt`, ten of them today. Neither passes `--ignore-scripts`, so each package's install scripts run. The first AI session in the main checkout also installs the git hooks when they are missing.
+The skill advisor launcher in `.skilled/bin/system-skill-advisor-launcher.cjs` runs `npm ci` or `npm install` and a build when its runtime has not been built yet. `worktree-naming.sh create` in `sk-git` installs every package tree listed in `worktree-provision-paths.txt`, eleven of them today, with npm, or with bun for a package that ships a `bun.lock` and no `package-lock.json`. Neither passes `--ignore-scripts`, so each package's install scripts run. The first AI session in the main checkout also installs the git hooks when they are missing.
 
 ### MCP Servers Come From The Network
 

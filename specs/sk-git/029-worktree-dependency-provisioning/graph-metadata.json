@@ -44,8 +44,14 @@
       "scratch/amendment/provision-first.txt",
       "scratch/amendment/plugins-before.txt",
       "scratch/amendment/naming-before.txt",
+      "scratch/amendment/naming-after-bun.txt",
+      "scratch/amendment/provision-bun.txt",
+      "scratch/amendment/plugins-after-bun.txt",
+      ".skilled/skills/sk-vision/hooks/opencode/sk-vision.js",
       ".opencode/skills/sk-git/SKILL.md",
-      "scratch/amendment/provision-rerun.txt"
+      "scratch/amendment/provision-rerun.txt",
+      "scratch/amendment/naming-old-function.txt",
+      "scratch/amendment/naming-relative-mutation.txt"
     ],
     "entities": [
       {
@@ -103,6 +109,30 @@
         "source": "derived"
       },
       {
+        "name": "naming-after-bun.txt",
+        "kind": "file",
+        "path": "scratch/amendment/naming-after-bun.txt",
+        "source": "derived"
+      },
+      {
+        "name": "provision-bun.txt",
+        "kind": "file",
+        "path": "scratch/amendment/provision-bun.txt",
+        "source": "derived"
+      },
+      {
+        "name": "plugins-after-bun.txt",
+        "kind": "file",
+        "path": "scratch/amendment/plugins-after-bun.txt",
+        "source": "derived"
+      },
+      {
+        "name": "sk-vision.js",
+        "kind": "code",
+        "path": ".skilled/skills/sk-vision/hooks/opencode/sk-vision.js",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-git/SKILL.md",
@@ -112,6 +142,18 @@
         "name": "provision-rerun.txt",
         "kind": "file",
         "path": "scratch/amendment/provision-rerun.txt",
+        "source": "derived"
+      },
+      {
+        "name": "naming-old-function.txt",
+        "kind": "file",
+        "path": "scratch/amendment/naming-old-function.txt",
+        "source": "derived"
+      },
+      {
+        "name": "naming-relative-mutation.txt",
+        "kind": "file",
+        "path": "scratch/amendment/naming-relative-mutation.txt",
         "source": "derived"
       },
       {
@@ -155,47 +197,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "1. SUMMARY",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. QUALITY GATES",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "3. ARCHITECTURE",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Known Limitations",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria Every",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Creating a worktree provisions its dependencies, because an unprovisioned one fails checks in ways that read as broken code.",
     "created_at": "2026-09-11T19:05:02.173Z",
-    "last_save_at": "2026-10-19T12:41:39.299Z",
+    "last_save_at": "2026-10-19T13:47:25.614Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aa26bbaa70804f9002a5180361625834eb1e30680e2d0880a2471ed528122b1e",
+    "source_fingerprint": "sha256:b8395a4886abbf28bf2685fe2f7f744da6f819544d49dc98de76bfa044791629",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "09dfe379319ed9f305d77dfce791d221b6fb5badd56f6f698aabc6dd851a6ed0",
       "plan.md": "36e31e96be6d7d79dd11dedc58438eb2c73c5c83e323907f1a247fa45be4dc1a",
-      "tasks.md": "be60e27a44522fc5f95895f8c1fd61a4754b335daee57c52cc0249310ea1bcad",
-      "implementation-summary.md": "88749f6989c87d46262b346e7685ce11a12d2c4dd2588cfd16f72d3401f3e863"
+      "tasks.md": "b63e62d9021eacbc577df1c9e16bfe17b5bc5d57cb92b1dbe2af1122ec9d7e37",
+      "implementation-summary.md": "32e143658d786bfbdef67a564bd877a72e5ab4975bc3ea2b512b83fb495617e1"
     },
     "last_active_child_id": null,
     "last_active_at": null

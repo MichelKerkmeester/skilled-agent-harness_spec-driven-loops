@@ -1,0 +1,7 @@
+# New worktree-naming.test.sh run against the first bun version of provision_worktree, which left a
+# relative worktree path unresolved. Output:
+FAIL: relative worktree path still installs the bun package (exp='1' got='0')
+FAIL: a buildable package listed without its output is reported (exp='.skilled/skills/system-spec-kit/runtime' got='')
+worktree-naming tests: PASS=95 FAIL=2
+# Reading: the relative-path assertion catches the unresolved path. The second failure is an existing
+# test that fails only because this copy ran outside the repository.

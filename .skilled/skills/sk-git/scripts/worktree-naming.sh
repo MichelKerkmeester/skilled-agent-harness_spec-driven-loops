@@ -512,27 +512,56 @@ _wn_provision_paths_file() {
 ' "$here"
 }
 
+# _wn_have_tool <tool> <pkg> -- report a missing installer as that package's
+# failure, so a bun package never falls back to npm.
+_wn_have_tool() {
+  command -v "$1" >/dev/null 2>&1 && return 0
+  echo "  FAILED: $2 ($1 is not on PATH)" >&2
+  return 1
+}
+
 # provision_worktree [dir] -- install missing dependencies and build listed outputs.
 # Idempotent: existing dependencies and outputs are skipped. Exits non-zero if
 # any install or build failed, so a half-provisioned tree is never reported ready.
 provision_worktree() {
-  local dir="${1:-}" list pkg artifact _ installed=0 built=0 skipped=0 failed=0 mode
+  local dir="${1:-}" list pkg artifact _ installed=0 built=0 skipped=0 failed=0
+  local tool deps_root
+  local -a install_cmd build_cmd
   # Allocation scans the shared clone, but provisioning must use the current worktree.
   [ -n "$dir" ] || dir="$(git rev-parse --show-toplevel 2>/dev/null)" || { echo "not in a git repo" >&2; return 1; }
   [ -d "$dir" ] || { echo "no such worktree: $dir" >&2; return 1; }
+  # The dependency walk stops where it meets this path, so it must be absolute
+  # and resolved like the paths the walk compares it with.
+  dir="$(cd "$dir" && pwd -P)" || { echo "cannot resolve worktree: $dir" >&2; return 1; }
   list="$(_wn_provision_paths_file)" || return 1
   [ -f "$list" ] || { echo "missing provision path list: $list" >&2; return 1; }
 
   while read -r pkg artifact _; do
     case "$pkg" in ''|\#*) continue ;; esac
     [ -f "$dir/$pkg/package.json" ] || continue
-    if _wn_deps_satisfied "$dir/$pkg" "$dir"; then
+    # A bun lockfile with no npm lockfile marks a bun package. That lockfile pins
+    # versions an ancestor's npm tree need not match, so only the package's own
+    # node_modules counts, and an npm install there would write a second lockfile.
+    if [ -f "$dir/$pkg/bun.lock" ] && [ ! -f "$dir/$pkg/package-lock.json" ]; then
+      tool=bun; deps_root="$dir/$pkg"
+    else
+      tool=npm; deps_root="$dir"
+    fi
+
+    if _wn_deps_satisfied "$dir/$pkg" "$deps_root"; then
       skipped=$((skipped + 1))
     else
+      _wn_have_tool "$tool" "$pkg" || { failed=$((failed + 1)); continue; }
       # npm ci needs a lockfile and a failed install cannot be followed by a build.
-      if [ -f "$dir/$pkg/package-lock.json" ]; then mode=ci; else mode=install; fi
-      echo "  provisioning $pkg ($mode)" >&2
-      if ( cd "$dir/$pkg" && npm "$mode" --no-audit --no-fund --silent >/dev/null 2>&1 ); then
+      if [ "$tool" = bun ]; then
+        install_cmd=(bun install --frozen-lockfile --silent)
+      elif [ -f "$dir/$pkg/package-lock.json" ]; then
+        install_cmd=(npm ci --no-audit --no-fund --silent)
+      else
+        install_cmd=(npm install --no-audit --no-fund --silent)
+      fi
+      echo "  provisioning $pkg (${install_cmd[0]} ${install_cmd[1]})" >&2
+      if ( cd "$dir/$pkg" && "${install_cmd[@]}" >/dev/null 2>&1 ); then
         installed=$((installed + 1))
       else
         echo "  FAILED: $pkg" >&2
@@ -542,8 +571,11 @@ provision_worktree() {
     fi
 
     if [ -n "$artifact" ] && [ ! -e "$dir/$pkg/$artifact" ]; then
+      _wn_have_tool "$tool" "$pkg" || { failed=$((failed + 1)); continue; }
+      # bun passes flags after the script name on to the script, so its flag goes first.
+      if [ "$tool" = bun ]; then build_cmd=(bun run --silent build); else build_cmd=(npm run build --silent); fi
       echo "  building $pkg" >&2
-      if ! ( cd "$dir/$pkg" && npm run build --silent >/dev/null 2>&1 ); then
+      if ! ( cd "$dir/$pkg" && "${build_cmd[@]}" >/dev/null 2>&1 ); then
         echo "  FAILED: $pkg build" >&2
         failed=$((failed + 1))
       elif [ ! -e "$dir/$pkg/$artifact" ]; then

@@ -1,0 +1,14 @@
+# New worktree-naming.test.sh run against worktree-naming.sh at HEAD (500e8ad14c), before the bun change.
+FAIL: bun package provisions and writes its output (rc=1 exp=0)
+FAIL: bun package output exists (rc=1 exp=0)
+FAIL: bun package installs from its own tree despite a hoisted dependency (exp='1' got='')
+FAIL: bun package builds with its flag before the script name (exp='1' got='')
+FAIL: bun package never reaches npm (exp='0' got='1')
+FAIL: bun package without bun never falls back to npm (exp='0' got='3')
+FAIL: a buildable package listed without its output is reported (exp='.skilled/skills/system-spec-kit/runtime' got='')
+worktree-naming tests: PASS=88 FAIL=7
+# Reading: six of the seven new bun assertions fail here. The seventh, "bun package without bun on PATH
+# fails provisioning", passes on the old code for another reason (its npm build leaves dist/plugin.js
+# missing), and "never falls back to npm" is the assertion that catches the old behavior there.
+# "a buildable package listed without its output is reported" is an existing test that fails only
+# because this copy ran outside the repository, where its repo-root lookup finds nothing.

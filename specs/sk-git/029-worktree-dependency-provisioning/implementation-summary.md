@@ -10,7 +10,7 @@ _memory:
     packet_pointer: "sk-git/029-worktree-dependency-provisioning"
     last_updated_at: "2026-10-19T12:00:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Added the missing .opencode entry to the provision list"
+    recent_action: "Provisioned the .opencode plugins and sk-vision's bun-built runtime"
     next_safe_action: "None outstanding"
     blockers: []
     key_files:
@@ -63,6 +63,7 @@ exit code concludes the build succeeded.
 |------|--------|---------|
 | `scripts/worktree-provision-paths.txt` | Created | The nine packages a worktree needs, as data rather than code |
 | `scripts/worktree-provision-paths.txt` | Modified (amendment) | Adds `.opencode`, which gained a `package.json` after this packet closed |
+| `scripts/worktree-naming.sh`, `scripts/tests/worktree-naming.test.sh` | Modified (amendment) | Installs and builds a `bun.lock` package with bun, resolves a relative worktree path before the dependency walk, with nine fixture assertions |
 | `scripts/worktree-naming.sh` | Modified | `provision` subcommand; `create` calls it unless `--no-provision` |
 | `SKILL.md` | Modified | Rule 8 already named this problem and now names the fix |
 <!-- /ANCHOR:what-built -->
@@ -113,8 +114,11 @@ Node does, bounded at the worktree root, looking for the directory.
 | CLI in the created worktree | PASS. Nine commands |
 | Throwaway removed | PASS. Worktree and branch deleted |
 | Amendment: `provision` on worktree 147 | PASS. `.opencode` installed with `ci`, 1 installed, 9 already present, 0 failed (`scratch/amendment/provision-first.txt`); re-run reported 10 already present (`provision-rerun.txt`) |
-| Amendment: plugin suite in worktree 147 | 80 of 356 before, 355 of 356 after (`scratch/amendment/plugins-before.txt`, `plugins-after.txt`); the remaining failure is the sk-vision bundle, limitation 4 |
+| Amendment: plugin suite in worktree 147 | 80 of 356 before, 355 of 356 after (`scratch/amendment/plugins-before.txt`, `plugins-after.txt`); the remaining failure was the sk-vision bundle, provisioned by the bun amendment below |
 | Amendment: `worktree-naming.test.sh` | 88 pass, 0 fail, before and after (`scratch/amendment/naming-before.txt`, `naming-after.txt`) |
+| Amendment: bun packages, `worktree-naming.test.sh` | 97 pass, 0 fail (`scratch/amendment/naming-after-bun.txt`); six of the seven bun assertions fail against the previous function, and the seventh is covered by its companion (`naming-old-function.txt`); the relative-path assertion fails against the earlier bun version (`naming-relative-mutation.txt`) |
+| Amendment: bun packages, `provision` on worktree 147 | PASS. 1 installed, 1 built, 0 failed (`scratch/amendment/provision-bun.txt`); re-run 11 already present (`provision-bun-rerun.txt`) |
+| Amendment: bun packages, plugin suite in worktree 147 | 356 of 356 (`scratch/amendment/plugins-after-bun.txt`) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -122,7 +126,7 @@ Node does, bounded at the worktree root, looking for the directory.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **`create` now takes minutes rather than seconds.** Installing ten trees is
+1. **`create` now takes minutes rather than seconds.** Installing eleven trees is
    the cost of handing back something usable. `--no-provision` returns the old
    behaviour for a caller who only wants the branch.
 2. **The list is maintained by hand.** A package added to the repository does
@@ -133,9 +137,12 @@ Node does, bounded at the worktree root, looking for the directory.
 3. **The build script that exits 0 having compiled nothing is untouched.** That
    defect belongs to the package that owns the script. This packet records it;
    the provision step removes the condition that triggered it most often.
-4. **A bun-built bundle is not provisioned.** `.opencode/plugins/sk-vision.js`
-   links to `sk-vision/vision-runtime/dist/plugin.js`, which `bun run build`
-   writes. The list installs with npm only, and `npm install` there, beside its
-   `bun.lock`, would write an untracked lockfile, so a fresh worktree fails one
-   plugin test until the bundle is built by hand.
+4. **A bun package needs bun on PATH.** sk-vision's runtime ships a
+   `bun.lock`, so provisioning installs and builds it with bun. Where bun is
+   missing, provisioning reports that package as failed and `create` returns 3,
+   rather than falling back to an npm install that would write a second lockfile.
+5. **The sk-vision build leaves an untracked file.** `bun run build` also writes
+   `.skilled/skills/sk-vision/hooks/opencode/sk-vision.js`, which no ignore rule
+   covers, so a provisioned worktree shows it as untracked. It must not be
+   committed; a broad `git add -A` would pick it up.
 <!-- /ANCHOR:limitations -->

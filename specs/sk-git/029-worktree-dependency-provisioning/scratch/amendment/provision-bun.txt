@@ -1,0 +1,4 @@
+  provisioning .skilled/skills/sk-vision/vision-runtime (bun install)
+  building .skilled/skills/sk-vision/vision-runtime
+provisioned: 1 installed, 1 built, 10 already present, 0 failed
+exit 0
