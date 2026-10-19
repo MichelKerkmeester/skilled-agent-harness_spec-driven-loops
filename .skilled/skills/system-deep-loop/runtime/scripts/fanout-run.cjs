@@ -1508,11 +1508,19 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
   // from inside its own sandbox, where nested dispatch is denied — the lineage then burns every
   // iteration on dispatch failures and produces zero findings. Native lineages run through the
   // command host and already have their executor bound, so the directive is CLI-only.
+  // A state row written beside the ledger carries keys the projection cannot rebuild,
+  // so the gateway refuses every later projection and the lineage records nothing.
+  const stateLogName = lineageStateLogName(loopType);
   const inProcessDirective = lineage.kind !== 'native'
     ? [
         `EXECUTION MODE (read this first): THIS process is the executor for EVERY iteration.`,
         `Perform each iteration yourself in THIS session — read the sources, then write the iteration`,
-        `file, its delta, the state record, and the synthesis directly into the lineage directory below.`,
+        `file, its delta, and the synthesis into the lineage directory below.`,
+        `State records go through the append gateway instead: hand every one, from the run-opening`,
+        `config row (step_create_state_log) to the terminal synthesis record, to`,
+        `.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs exactly as the workflow YAML runs it.`,
+        `Never create, append to, or rewrite ${stateLogName} yourself: a row written there beside the`,
+        `ledger makes the gateway refuse every later projection, and the lineage fails.`,
         `NEVER spawn a nested CLI, agent, or subprocess to run an iteration: no 'codex exec', no`,
         `'opencode run', no 'cursor-agent', no 'devin', no 'pi', no 'claude', no Task/agent dispatch.`,
         `The workflow YAML's per-iteration executor-dispatch steps are ALREADY SATISFIED by this`,
@@ -1534,7 +1542,7 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
           `- Use only P0, P1, or P2. A positive findingsCount or findingsSummary needs a non-empty findingDetails that lists the findings behind it.`,
           `- The delta contains the iteration row followed by one {"type":"finding","id":"<id>","severity":"P0|P1|P2","title":"<text>","file":"<path:line>","iteration":N} row per finding.`,
           `- End the narrative with exactly one final Review verdict: PASS, CONDITIONAL, or FAIL line.`,
-          `- Read the timestamp from the clock when writing and append the state record immediately after its iteration, never in a batch at the end.`,
+          `- Read the timestamp from the clock when writing and hand the iteration record to the gateway immediately after its iteration, never in a batch at the end.`,
           ``,
         ]
       : [
@@ -1542,8 +1550,8 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
           `Before iteration 1, read ${iterationTemplateFile} and .skilled/agents/${agentName}.md; follow their OUTPUT CONTRACT for each iteration.`,
           `- The iteration narrative has a ## Findings section with one numbered line per finding.`,
           `- The delta contains the iteration row followed by one {"type":"finding","id":"<id>","label":"<text>","iteration":N,"sources":["<path or URL>"]} row per finding.`,
-          `- The canonical state record's findingsCount equals the number of findings enumerated for that iteration.`,
-          `- Read the timestamp from the clock when writing and append the state record immediately after its iteration, never in a batch at the end.`,
+          `- The delta's iteration row and the iteration record handed to the gateway carry findingsCount equal to the number of findings enumerated for that iteration.`,
+          `- Read the timestamp from the clock when writing and hand the iteration record to the gateway immediately after its iteration, never in a batch at the end.`,
           ``,
         ]
     : [];

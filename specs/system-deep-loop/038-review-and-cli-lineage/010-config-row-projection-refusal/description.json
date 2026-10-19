@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-deep-loop/038-review-and-cli-lineage/010-config-row-projection-refusal",
+  "description": "Phase 10: config-row-projection-refusal",
+  "keywords": [
+    "phase",
+    "config-row-projection-refusal"
+  ],
+  "lastUpdated": "2026-10-19T18:42:59.416Z",
+  "specId": "010",
+  "folderSlug": "config-row-projection-refusal",
+  "parentChain": [
+    "system-deep-loop",
+    "038-review-and-cli-lineage"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
