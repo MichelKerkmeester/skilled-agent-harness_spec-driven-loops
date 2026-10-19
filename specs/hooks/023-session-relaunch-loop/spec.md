@@ -102,6 +102,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 5 | 005-deep-review-remediation/ | Fix the twelve P2 advisories from the deep review, align the new code with sk-code-opencode and refresh the docs it touches. | complete |
 | 6 | 006-deep-review-2-remediation/ | Fix what the second deep review finds against the closed phases, align the touched code with the sk-code-opencode checklists and refresh the docs the fixes change. | complete |
 | 7 | 007-handoff-gate-exemptions/ | Runtime-state handoff notes pass the spec gate and stay out of Gate 2 and Gate 3, and the OpenCode default model is pinned. | complete |
+| 12 | 012-ci-red-check-repairs/ | AGENTS.md is back inside the 16 KB delivery prefix, and the session-relaunch example line no longer reads as a switch, so Rule Canary Sync and sk-doc Script Tests pass again locally. | complete |
 
 ### Phase Transition Rules
 
@@ -120,6 +121,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 004-integration-review-and-docs-closure | 005-deep-review-remediation | the deep review of the closed phases has a report with a finding registry | `review-archive/20261018T184826Z/review-report.md` exists with verdict and registry |
 | 005-deep-review-remediation | 006-deep-review-2-remediation | the second deep review has a report with a finding registry | `review/review-report.md` exists with verdict and registry |
 | 006-deep-review-2-remediation | 007-handoff-gate-exemptions | [Criteria TBD] | [Verification TBD] |
+| 007-handoff-gate-exemptions | 012-ci-red-check-repairs | 007's AGENTS.md and hook-flags example changes are on main | The rule canary and the sk-doc script tests pass locally |
 <!-- /ANCHOR:phase-map -->
 
 ---

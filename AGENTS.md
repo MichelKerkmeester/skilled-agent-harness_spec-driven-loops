@@ -63,18 +63,18 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 | **Override** | Blockers/conflicts → ask regardless of score |
 
 #### GATE 2: SKILL ROUTING [REQUIRED for non-trivial tasks]
-1. A) Primary: use the automatic Skill Advisor Hook brief already surfaced by the runtime when present. See `.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md`.
+1. A) Primary: use the Skill Advisor Hook brief the runtime surfaced, when present. See `.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md`.
 2. B) Direct call: run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"[request]"}' --format json` when no hook brief is present or when diagnosing hook behavior.
 3. C) Cite user's explicit direction: "User specified: [exact quote]"
 - Confidence ≥ 0.8 → MUST invoke skill | < 0.8 → general approach | User names skill → cite and proceed
-- **Artifact trigger — binds on what you are about to write, independently of the advisor score.** Before the FIRST code write, route through `sk-code`. Before the FIRST `.md` write, route through `sk-doc`, except spec-folder docs, which are `system-spec-kit`'s, and gitignored runtime state under `.skilled/skills/.state/`, such as a session-relaunch handoff note, which no skill owns. Routing means loading what the router resolves, under the same loading rule as Gate 5. A skill already in context is not re-read. A resolved contract that is wrong for this case is followed and amended, as PLAN-WORKFLOW LOCK step 4 says.
+- **Artifact trigger — binds on what you are about to write, independently of the advisor score.** Before the FIRST code write, route through `sk-code`. Before the FIRST `.md` write, route through `sk-doc`, except spec-folder docs, which are `system-spec-kit`'s, and the gitignored runtime state Gate 3 exempts, which no skill owns. Routing means loading what the router resolves, under the same loading rule as Gate 5. A skill already in context is not re-read. A resolved contract that is wrong for this case is followed and amended, as PLAN-WORKFLOW LOCK step 4 says.
 - Output: `SKILL ROUTING: [result]` or `SKILL ROUTING: User directed → [name]`; when the artifact trigger fires, add `ARTIFACT: [skill] → [what its router resolved]`
 - Skip: trivial queries only (greetings, single-line questions). The artifact trigger skips only the §6 exemption class.
 
 #### GATE 3: SPEC FOLDER QUESTION [HARD] BLOCK — ASKED FIRST
 **Fires when** the turn will write a file — creating, editing, deleting, moving, or generating one — or will write continuity state (a save, a resume, a further iteration). **Does not fire** when the request is purely read-only: review, audit, inspect, analyze, explain, standing alone, or when its only write is gitignored runtime state under `.skilled/skills/.state/`, such as a session-relaunch handoff note. A read-only word next to a write trigger does not disqualify it.
 
-- **Machine contract:** `system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`) owns the exact vocabulary and is authoritative for runtimes that call it; the sentence above is the human-readable form for runtimes that do not.
+- **Machine contract:** `system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`) owns the exact vocabulary for runtimes that call it; the sentence above is its human-readable form for the rest.
 - **Options (stable labels):**
   - **A) Existing** - Continue in the detected/current spec or its current phase child when the requested work fits that scope. **Reply with the folder path.**
   - **B) New** - Create a new top-level packet only when no existing packet suits the work. Decide independently whether it is standard or phased. **Reply with a new folder path.**
@@ -86,22 +86,22 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 - **Autonomous child-dispatch exemption.** `AI_SESSION_CHILD=1` marks a non-interactive worker bound to a lineage directory. Gate 3 is PRE-RESOLVED; in that directory Law 4, Halt Conditions, Logic-Sync, Escalation and stop-for-yes are record-and-continue; acting outside it is barred. Interactive sessions always ask.
 
 #### GATE 4: SKILL-OWNED WORKFLOW TIEBREAKERS
-Trigger-phrase routing and the deep-loop state discipline are Gate 2's and the deep-mode `SKILL.md` invariants' own. Two tiebreakers live here because they fire before the skill that owns them loads:
-- **Executor CLI ≠ skill route.** "Use cli-opencode gpt-5.5 high" is the HOW. It still runs inside the skill's workflow, and the executor name never overrides the skill-owned route.
+Trigger-phrase routing is Gate 2's and deep-loop state discipline is the deep-mode `SKILL.md`'s. These two tiebreakers fire before the owning skill loads:
+- **Executor CLI ≠ skill route.** "Use cli-opencode gpt-5.5 high" is the HOW: it runs inside the skill's workflow and never overrides the skill-owned route.
 - **Skill advisor ambiguity.** When the advisor's `command-spec-kit` bridge, keyed to `/speckit:plan`, `/speckit:resume`, `/deep:research` and `/deep:review`, matches alongside `cli-*` for iteration phrases, `command-spec-kit` wins. The CLI executor is a tool inside the command's workflow, not a replacement for it.
 
 #### GATE 5: REPO RULES LOAD [HARD] BLOCK
-Trigger: the FIRST write of the session, in any repository whose root holds a `REPO RULES.md`. Read-only turns never fire it, and a repository without that file has nothing to load — this document alone governs there.
+Trigger: the FIRST write of the session, in any repository whose root holds a `REPO RULES.md`. Read-only turns never fire it, and where that file is absent this document alone governs.
 1. Open the repository's root `REPO RULES.md`.
 2. Match **the action you are about to take** against its trigger table — the action, never the topic of the request.
 3. LOAD every rule file it names, and follow them.
-- Loading means reading, and it is a Read rather than a Gate Action, so on a file-modification request it queues behind Gate 3 like any other tool call.
+- Loading is a Read, not a Gate Action, so on a file-modification request it queues behind Gate 3 like any other tool call.
 - This gate binds the LOAD, not the loaded content. A rule file never relaxes a hard blocker. Where the two disagree, this document wins, the rule file is wrong and you say so.
 - Output: `REPO RULES: [rule files loaded]`, or `REPO RULES: no trigger matched`, or `REPO RULES: none in this repository`
 - Skip: the §6 exemption class only (a few characters in one file). Any new behavior, API, or control flow loads the rule.
 
 #### GATE 6: REPLY RULES LOAD [HARD] BLOCK
-Trigger: before EVERY substantive reply, read-only turns included. Gate 5 fires on a write and never reaches a reply.
+Trigger: before EVERY substantive reply, read-only turns included, since Gate 5 fires only on a write.
 1. LOAD `communication.md` and `communication-prose.md` from `.skilled/repo-rules/`.
 2. Also LOAD `communication-decisions.md` before a recommendation or a long stretch, `communication-handoff.md` before ending a turn, and `answer-the-actual-request.md` before warning about, narrowing, declining or pricing a request.
 - A file already in context is not re-read.
@@ -118,7 +118,7 @@ Trigger: About to skip Gate 3, or realized it was skipped, on a turn where it fi
 
 ### Verification Standards
 
-These five bind unconditionally, including on a read-only turn where Gate 5 never fires and no rule file loads.
+These five bind unconditionally, even on a read-only turn where no rule file loads.
 
 | Standard | Rule |
 |---|---|
@@ -152,7 +152,7 @@ Trigger: "save context", "save memory", `/speckit:save`
 
 #### GOAL POSTURE RULE [ALWAYS ON]
 Trigger: a session bound to a spec packet, on every turn.
-- The bound packet's `goal.md` is the only source of goal state. Read the file, never a remembered summary, never send its frontmatter anywhere, resend its chat slice unprompted when it changes and never stop work for an unset goal. Send only the `chat_slice` that `goal.cjs packet` prints: no frontmatter, comments, anchors, dividers, section numbers or template instructions. The 4,000-character limit is measured on the durable slice, so send only at `packet_budget=ok` and cut the file first when it is over. The full rule is `sk-create-goal`'s `references/budget-and-handoff.md` §4. Both rules override any resend wording inside a `goal.md`. Once a goal is set, acknowledge it in one line and continue, without restating it or asking whether to proceed. Goal authoring is `sk-create-goal`'s, and the template and validator are `system-spec-kit`'s.
+- The bound packet's `goal.md` is the only source of goal state. Read the file, never a remembered summary, resend its chat slice unprompted when it changes and never stop work for an unset goal. Send only the `chat_slice` that `goal.cjs packet` prints, never the frontmatter anywhere, and no comments, anchors, dividers, section numbers or template instructions. The 4,000-character limit is measured on the durable slice, so send only at `packet_budget=ok` and cut the file first when it is over (full rule: `sk-create-goal`'s `references/budget-and-handoff.md` §4). Both rules override any resend wording inside a `goal.md`. Once a goal is set, acknowledge it in one line and continue, without restating it or asking whether to proceed. Goal authoring is `sk-create-goal`'s, and the template and validator are `system-spec-kit`'s.
 
 #### Self-Check (before ANY tool-using response):
 - [ ] File modification? Asked spec folder question?
