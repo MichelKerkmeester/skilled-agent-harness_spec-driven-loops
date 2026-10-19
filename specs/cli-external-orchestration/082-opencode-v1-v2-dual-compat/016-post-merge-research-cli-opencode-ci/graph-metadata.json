@@ -99,12 +99,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -125,6 +119,12 @@
       {
         "name": "In Scope",
         "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase",
+        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
@@ -167,17 +167,17 @@
     ],
     "causal_summary": "Four branches reached main on 2026-10-19: the OpenCode dual-compat build, the Pi fast-mode copy claim, worktree dependency provisioning and the dispatch adapter suite runner",
     "created_at": "2026-10-19T18:30:35Z",
-    "last_save_at": "2026-10-19T19:48:31.128Z",
+    "last_save_at": "2026-10-19T20:04:47.350Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:2e088a376f17249345e34a3755b10b46272799f1899e0c908486aaf39159aa01",
+    "source_fingerprint": "sha256:0367e9db0e9d97975f48346204fe22db2f9659d1ee85d9ec154be9bad3172780",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9ce351794e4736f03963f3d3d2e0ff8d23283171a1c0e36f1f9a4c4be94a3866",
+      "spec.md": "e68eb9827562b9453c4846a34fd07eff89b1193fe5a1b9758423c44493f56d90",
       "research/research.md": "9c0b538f6e57f0cd9473eae70fbbd25ee60830b315cc203ad717909cf7d0c376"
     },
     "last_active_at": null

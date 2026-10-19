@@ -9,15 +9,16 @@
     "research",
     "merge"
   ],
-  "lastUpdated": "2026-10-19T20:00:52.791Z",
+  "lastUpdated": "2026-10-19T20:04:09.044Z",
   "specId": "018",
   "folderSlug": "post-merge-research-conformance",
   "parentChain": [
     "cli-external-orchestration",
     "082-opencode-v1-v2-dual-compat"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "19-10-26_21-00__deep-research-complete-for-angles-a28-a29.md"
+    "19-10-26_21-00__deep-research-complete-for-angles-a28-a29.md",
+    "19-10-26_21-04__deep-research-complete-research-research-md-holds.md"
   ]
 }
