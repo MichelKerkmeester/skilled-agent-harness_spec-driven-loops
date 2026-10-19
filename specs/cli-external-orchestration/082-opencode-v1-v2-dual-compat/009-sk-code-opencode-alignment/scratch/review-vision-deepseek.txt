@@ -1,0 +1,55 @@
+Review complete. All checks ran read-only against the diff `867b83b671..HEAD` for the three in-scope files; no files were edited, no host binary was executed.
+
+# Findings-first review — sk-vision dual-compat (`plugin.ts`, `opencode/command.ts`, `plugin.test.ts`)
+
+**Scope reviewed:** `git diff 867b83b671 HEAD -- .skilled/skills/sk-vision/vision-runtime/src/` (203 insertions, 15 deletions). Baseline: `universal-checklist.md` + `typescript-checklist.md`; the loaded artifact is `vision-runtime/dist/plugin.js` via the `.opencode/plugins/sk-vision.js` symlink (confirmed to carry `toV1FileUrl`, the `ctx.command.transform` leg, and `{ id: "sk-vision", server, setup }`).
+
+## P0
+None.
+
+## P1
+
+**1. P1 — the v2 command cannot analyze an image attached to the `/vision` submission itself.**
+- **File:line:** `.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:190-206` (the shim feeds `handleVisionCommand` only from `ctx.session.context`); fix site `:218-224`.
+- **Defect:** `createV2CommandInput` synthesizes the v1 message list exclusively from `ctx.session.context` (stored, already-sent messages). The invocation's own attachment lives in `CommandInvocation.prompt.files` and is re-sent to the model (`:235`) but never analyzed, so the v2 leg loses the exact flow v1 supports (in v1 the pasted draft part is already in `session.messages` — the plugin's own preload hook at `:159-173` exists because `message.part.updated` fires at paste time, before submission).
+- **Failing input:** on v2, attach an image in the composer and submit `/vision what is this` in one message → `latestImage()` finds no image → the model receives `sk-vision: no recent image found. Attach an image, then run /vision <question>.` — the instruction the user just followed; for a text-only model the turn carries no evidence. Workaround: run `/vision` a second time (the first run's re-send stores the image).
+- **Class:** instance-only (same site the earlier base64 fix touched).
+- **Confidence note (INFERRED premise):** that the host does not admit the invocation prompt before `execute` — supported by `session.command`'s protocol contract ("Execute a slash command callback immediately", `SessionNotFound/CommandNotFound/CommandExecution` errors, `NoContent`) versus `session.prompt`'s ("Durably admit one session input…"), and by the project's own v2-types.txt §2.7 ("the command turn is sent" by the plugin). Confirmation: one live v2 run (attach + `/vision` in one submission), or the v2 command dispatch source.
+
+**2. P1 — the plugin registers `vision` while the repo's own `.skilled/commands/vision.md` already registers `vision` in the same v2 location; the duplicate-name resolution is unverified and both branches diverge from v1.**
+- **File:line:** `plugin.ts:215-217` (`name: 'vision'`).
+- **Defect:** `.opencode/commands -> ../.skilled/commands` is exposed to both hosts (phase-004 evidence: the isolated v2 `GET /api/command` listing includes `vision`; the worktree v2 listing too), and `ctx.command.transform(editor.add)` adds a second definition with the same name. If the plugin wins, the model no longer receives the `vision.md` template that v1 delivers alongside the evidence (the template is load-bearing: "you must not claim to see anything the block does not contain"); if the markdown command wins, the plugin's `execute` never runs and no `<SK-VISION COMMAND>` block is injected while the template still asserts one was. The project's own research flagged exactly this ("a user-defined command of the same name would collide instead of being observed", `research/iterations/iteration-018.md:125-127`); no capture or decision resolves it.
+- **Failing input:** on v2 in this worktree, run `/vision <q>` with both definitions registered (the phase-3 read shows the plugin `active` for the worktree root, where the markdown `vision` is listed).
+- **Class:** cross-consumer (two registrations compete for one command name).
+- **Confirmation:** `opencode2 api GET "/api/command?location[directory]=<worktree>"` after plugin load (one `vision` entry or two), or one live `/vision` run; both are model-free for the listing.
+
+## P2
+
+**3. P2 — `as Part` fabricates a v1 `FilePart` that is missing its required identity fields.**
+- **File:line:** `plugin.ts:197-202`.
+- **Defect:** the synthesized part is `{ type, mime, filename, url }` cast to `Part`; the real v1 `FilePart` (1.17.15 `types.gen.d.ts:201-210`) requires `id`, `sessionID`, `messageID`. Today's consumers (`isImagePart`, `materializeImagePart`, `latestImage`) read only `type`/`mime`/`url`, so it is inert — the cast hides that from the compiler.
+- **Failing input:** any consumer that reads `part.id` / `part.sessionID` / `part.messageID` (e.g. a future change in `materializeImagePart`'s temp-file policy or the v1 message pipeline) receives `undefined`.
+- **Class:** class-of-bug (unchecked structural cast of a shared type).
+
+**4. P2 — the test pins the helper, not the mapping it protects.**
+- **File:line:** `plugin.test.ts:8-19` (mapping at `plugin.ts:190-206`).
+- **Defect:** the two cases cover `toV1FileUrl`'s wrap/passthrough branches only. Nothing asserts that the constructed part is recognized as an image (`mime` propagation into `isImagePart`) or that the produced `data:` URL reaches `materializeImagePart`'s decode branch — the integration the earlier fix was for.
+- **Failing input:** a mapping regression that drops `mime` (or emits a URL without the `data:` prefix) keeps both tests green while `/vision` returns "no recent image found" or a decode error.
+- **Class:** matrix/evidence.
+
+## Focus-area verdicts (evidence-backed)
+
+- **v1 behaviour unchanged — PASS.** The `server` body is byte-identical to the pre-change `SkVisionPlugin` (diff of extracted bodies: only the declaration line and the removed `export default` differ). The default-export shape change is supported by v1 1.19.3's own `PluginModule = { id?, server, tui?: never }` (`.opencode/node_modules/@opencode-ai/plugin/dist/index.d.ts:52-56`) and the live capture (`v1-harness-after-003.jsonl:10`: loaded on `command.execute.before`). `SkVisionPlugin` has zero remaining consumers outside the legacy `hooks/opencode/sk-vision.ts` source, which the bundle does not import. Residual (pre-existing, not introduced): the v1 call site is type-checked against the 1.17.15 pin, not the 1.19.3 runtime client, and the live capture proves load/registration, not a `session.messages` call.
+- **v2 command registration — registered and reachable, but see P1-2.** The hand-rolled `V2PluginContext` matches the real 2.0.32 declarations member for member (`CommandDomain.transform`/`CommandEditor.add`, `CommandInvocation`, `SessionInbox.Delivery`, `session.context -> SessionMessageInfo[]`, `session.prompt` fields); `setup` returns a `Cleanup`; the adapter discards the callback's return value, so `return editor` is harmless. The two different v2 file shapes are correctly modelled (prompt input `{uri,…}` vs stored `{data, mime, source}`).
+- **Fail-open — PASS.** Every new v2 error path is contained: `ctx.session.context` rejection, `toV1FileUrl`/`isImagePart` type surprises, and provider failures all land inside `handleVisionCommand`'s `try/catch` and surface as `SK_VISION_ERROR`/no-image text; only `ctx.session.prompt` can reject, and the adapter converts that into a single command failure (`Effect.tryPromise`, `adapter.js:217-221`). `setup` has no try/catch, but there is nothing to unwind (one registration) — unlike the bridge, whose catch exists to dispose partial registrations.
+- **Types hiding a runtime mismatch — no new one found.** All v2 shapes were checked against the real declarations; the one divergence is `transform`'s callback typed `(editor) => editor` where the real `Transform<T>` is `(input: T) => void` — stricter, and runtime-neutral because the return is ignored. The `as Part` cast is reported as P2-3.
+- **Test isolation — no defect found.** `plugin.test.ts` imports the full plugin entry graph, which I verified is import-time side-effect-free today (`client.ts` only `promisify(execFile)`; `photon.ts` constants; `tools.ts`/`context-builder`/`model-modality` definitions). The test neither reads nor writes ambient state. Coverage scope is the P2-4 note.
+
+## Verification evidence (observed, read-only)
+
+- `./node_modules/.bin/tsc --noEmit` → exit 0 (no network, local binary).
+- `bun test src/plugin.test.ts` → `2 pass / 0 fail` (37 ms).
+- `diff` of old vs new `server` body → identical; `dist/plugin.js` tail → `{ id: "sk-vision", server, setup }` + `toV1FileUrl` export.
+- Checklist conformance: headers, no commented-out code, no ephemeral artifact labels in the new comments, naming/return types/`import type`/readonly/typed catch all pass; no new line >120 chars.
+
+**Verdict: FAIL** — two open P1s (P1-1 inferred-but-corroborated attachment source; P1-2 unverified duplicate-name interaction with the repo's own `/vision` command), plus two P2s.

@@ -2,10 +2,10 @@
 // MODULE: Render Command Contract Tests
 // ───────────────────────────────────────────────────────────────────
 
-import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
-import { join, resolve } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
 import { afterEach, describe, expect, it } from 'vitest';
@@ -25,6 +25,7 @@ type ManifestRow = {
 
 const renderer = require('../../scripts/render-command-contract.cjs') as {
   COMMANDS: Record<Command, { legacyBodyPath: string; compiledContractPath: string }>;
+  MANIFEST_PATH: string;
   WORKSPACE_ROOT: string;
   buildInvocationPrefix: (argsText: string) => Buffer;
   compareFallback: (command: Command) => { equal: boolean; renderedLength: number; legacyBodyLength: number };
@@ -154,6 +155,18 @@ describe('render-command-contract', () => {
       compiledContractSha256: renderer.sha256(compiledContract(command)),
       renderedSha256: renderer.sha256(result.output),
     });
+  });
+
+  it('keeps the default manifest beside the compiled contracts it indexes', () => {
+    const manifestFolder = dirname(renderer.MANIFEST_PATH);
+    const manifestDirectory = workspacePath(manifestFolder);
+
+    // A default render creates the manifest folder, so a stale path would
+    // recreate the vacated tree instead of indexing the moved contracts.
+    expect(existsSync(manifestDirectory), `${manifestFolder} does not exist`).toBe(true);
+    for (const command of commands) {
+      expect(dirname(renderer.COMMANDS[command].compiledContractPath)).toBe(manifestFolder);
+    }
   });
 
   it('resolves the default rollout mode through the shared resolver', () => {

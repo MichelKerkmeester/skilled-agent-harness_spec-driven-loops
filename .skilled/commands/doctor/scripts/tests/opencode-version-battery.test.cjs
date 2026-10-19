@@ -64,6 +64,11 @@ const VERSION_SAMPLES = [
   'not a version',
   '1.19',
   '3.1.4',
+  'opencode2',
+  'opencode',
+  '/opt/tools/1.19.3/opencode',
+  '2.0.32-rc.1',
+  'opencode v2.0.32\n1.19.3',
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -432,6 +437,31 @@ test('R17: --out as the last argument is a usage error', () => {
   assert.throws(() => parseArgs(['--family']), (error) => error.code === 'USAGE');
 });
 
+test('R18: a spaced value that is itself a flag is a usage error, the = form is kept', () => {
+  const cases = [
+    { args: ['--out', '--json'], error: '--out needs a value' },
+    { args: ['--out=--json'], out: '--json', json: false },
+    { args: ['--root', '--family=v1'], error: '--root needs a value' },
+    { args: ['--out'], error: '--out needs a value' },
+    { args: ['--out', 'report.json', '--json'], out: 'report.json', json: true },
+  ];
+
+  for (const c of cases) {
+    const label = JSON.stringify(c.args);
+    if (c.error) {
+      assert.throws(
+        () => parseArgs(c.args),
+        (error) => error.code === 'USAGE' && error.message === c.error,
+        label,
+      );
+      continue;
+    }
+    const parsed = parseArgs(c.args);
+    assert.equal(parsed.out, c.out, label);
+    assert.equal(parsed.json, c.json, label);
+  }
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. ADVERSARIAL CASES AND CROSS-CHECKS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -439,6 +469,21 @@ test('R17: --out as the last argument is a usage error', () => {
 test('parity: the battery parser and the deep-loop resolver agree on one shared list', () => {
   for (const sample of VERSION_SAMPLES) {
     assert.equal(parseVersion(sample), parseOpencodeVersion(sample), JSON.stringify(sample));
+  }
+});
+
+test('adversarial: path-qualified, prerelease and joined output answer the pinned families', () => {
+  const pinned = [
+    ['', 'unknown'],
+    ['opencode2', 'unknown'],
+    ['opencode', 'unknown'],
+    ['/opt/tools/1.19.3/opencode', 'unknown'],
+    ['2.0.32-rc.1', 'v2'],
+    ['1.19.3 2.0.32', 'v1'],
+    ['opencode v2.0.32\n1.19.3', 'v2'],
+  ];
+  for (const [sample, family] of pinned) {
+    assert.equal(parseVersion(sample), family, JSON.stringify(sample));
   }
 });
 

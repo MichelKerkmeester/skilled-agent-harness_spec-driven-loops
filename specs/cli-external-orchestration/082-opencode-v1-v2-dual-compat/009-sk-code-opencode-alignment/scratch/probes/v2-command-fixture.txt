@@ -1,0 +1,8 @@
+read 1: 0 commands
+read 2: 4 commands
+read 3: 4 commands
+total commands: 4 fixture entries: 4
+{"name": "init", "description": "guided AGENTS.md setup"}
+{"name": "review", "description": "review changes [commit|branch|pr], defaults to uncommitted"}
+{"name": "probe-only", "description": "PLUGIN probe-only"}
+{"name": "dup", "description": "MARKDOWN dup"}

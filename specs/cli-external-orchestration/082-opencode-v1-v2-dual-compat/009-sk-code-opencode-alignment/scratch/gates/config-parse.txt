@@ -1,0 +1,13 @@
+TOML OK .codex/agents/ai-council.toml
+TOML OK .codex/agents/debug.toml
+TOML OK .codex/agents/orchestrate.toml
+JSON OK .opencode/package-lock.json
+JSON OK .opencode/package.json
+JSON OK .skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json
+JSON OK .skilled/package-lock.json
+JSON OK .skilled/package.json
+JSON OK .skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json
+JSON OK .skilled/skills/cli-external-orchestration/leaf-manifest.json
+JSON OK .skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json
+JSON OK .skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json
+JSON OK .skilled/skills/sk-doc/sk-create-command/assets/command-contract.json

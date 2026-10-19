@@ -32,7 +32,7 @@ const {
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const RISKY_BASH_COMMAND_REGEX = /opencode\s+run|\bvalidate\.sh\b/i;
+const RISKY_BASH_COMMAND_REGEX = /\bopencode\d*\s+run\b|\bvalidate\.sh\b/i;
 const PLUGIN_DIR = dirname(fileURLToPath(import.meta.url));
 const WARN_LOG_NAME = 'dist-freshness-guard.log';
 

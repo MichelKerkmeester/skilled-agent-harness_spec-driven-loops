@@ -1,0 +1,33 @@
+**F-05 remains open at P1**, so the verdict is **FAIL**.
+
+## Finding status
+
+- **F-03 — Closed (P1).** The spaced-value parsers reject a following flag in [opencode-version-battery.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/commands/doctor/scripts/opencode-version-battery.cjs:200) and [git-setup-check.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/commands/doctor/scripts/git-setup-check.cjs:1523). The battery’s new R18 parser test passed; the git setup fixture test could not create its temp directory.
+
+- **F-01 — Closed (P1).** The before hook reads `output.args` in [cli-dispatch-audit.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/cli-dispatch-audit.js:71). The v2 bridge supplies those args there at [v2-bridge.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/lib/v2-bridge.js:330); the tests now exercise that shape.
+
+- **F-18 — Closed (P2).** [system-dist-freshness-guard.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/system-dist-freshness-guard.js:35) matches `opencode2 run` and leaves `opencode2 serve` alone.
+
+- **F-02 — Closed (P1).** The renderer, projection manifest, ignore entry, and census row agree on the moved path: [render-command-contract.cjs](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs:24), [legacy-projection-manifest.ts](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts:200), [.gitignore](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.gitignore:196), and [state-backend-census.json](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json:555). The compiled README still has an old path in its snippet at line 112; decision 5 defers that documentation change to phase 010.
+
+- **F-04 — Closed (P1).** [plugin.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:208) anchors the match, back-references repeated argument slots, and escapes literal template text. The project command is read via `.opencode/commands/vision.md`; in this worktree that path resolves through the `.skilled/commands` symlink. When no template exists, setup skips registering the prompt hook, avoiding double injection. The v1 `server` function at line 122 onward is unchanged.
+
+- **F-05 — Not closed (P1).** Without `vision.md`, the hook is skipped at [plugin.ts:342](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:342), and the registered command calls `createV2CommandInput(ctx)` at [plugin.ts:317](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:317) without the command’s `prompt.files`. Those files are forwarded to the later session prompt, after analysis has run. An image attached to `/vision` in this branch therefore is not analyzed.
+
+- **F-22 — Closed (P2).** [plugin.test.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/plugin.test.ts:196) adds coverage for prompt-file mapping, including a data URL and a local image URI.
+
+## New defects
+
+- **P2 — [plugin.ts:243](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:243).** The MIME fallback checks only optional `file.name`, not the URI. Failing input: `prompt.files: [{ uri: "/tmp/shot.png" }]`. It produces an empty MIME, so the image check skips the file.
+
+- **P2 — [plugin.ts:366](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:366).** With `SK_VISION_DEBUG=1`, if the handler rejects with `null`, accessing `.message` inside the catch throws a `TypeError`; the fail-open hook then rejects. The test covers an `Error` rejection, not this input.
+
+The template escaping implementation is correct, though the added tests do not directly exercise regex metacharacters in the template itself.
+
+## Verification
+
+The specified `node --test` command ran and exited **1**: 118 tests, 18 passed, 100 failed. The failures shown were blocked by `EPERM` creating temp fixtures under `/var/folders/...` in this read-only environment. `git diff --check HEAD` exited 0. No files were edited; the worktree remained dirty on the same branch. I did not run the real OpenCode binary, npm install, or network calls.
+
+Next action: pass `prompt.files` through the no-template command path, then rerun the focused tests where temp fixture creation is permitted.
+
+FAIL

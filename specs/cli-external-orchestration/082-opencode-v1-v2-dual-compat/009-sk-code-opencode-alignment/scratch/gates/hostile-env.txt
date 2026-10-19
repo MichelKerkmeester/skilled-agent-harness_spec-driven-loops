@@ -1,0 +1,8 @@
+Each changed test file run with env -i, keeping only PATH and HOME (CHK-FIX-006). The first number is the exit status.
+0 env -i node --test .opencode/plugins/tests/source-root-consumers.test.cjs
+0 env -i node --test .opencode/plugins/tests/system-dist-freshness-guard.test.cjs
+0 env -i node --test .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs
+0 env -i node --test .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs
+0 env -i bun test src/plugin.test.ts (three reruns exit 0; the first recorded 1 was a failed redirect in the orchestrator's own command, not bun)
+0 env -i vitest render-command-contract legacy-projection
+0 env -i bun test (full sk-vision suite)

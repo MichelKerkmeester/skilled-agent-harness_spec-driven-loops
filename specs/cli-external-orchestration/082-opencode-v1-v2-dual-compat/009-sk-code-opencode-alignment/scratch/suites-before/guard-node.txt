@@ -1,0 +1,38 @@
+✔ reads the real hard rules from the sidecar beside each SKILL.md (0.89325ms)
+✔ CI GUARD: every declared check id maps to a known check (a typo fails loudly) (0.969542ms)
+✔ stdin-redirect-required covers every headless CLI shape, not just opencode run (0.470625ms)
+✔ availability checks pass for a resolvable binary and never refuse without PATH (0.335792ms)
+✔ AC-1: opencode run without </dev/null is flagged; with it, clean (mutation-proof) (0.761709ms)
+✔ other checks discriminate correctly (0.347875ms)
+✔ appliesTo evaluates only rules for the resolved version (0.086167ms)
+✔ rules without appliesTo apply to both versions (0.056875ms)
+✔ unknown evaluation preserves shared severity and warns version-specific rules (0.1015ms)
+✔ v2 slash-command fixture warns with session.command and never blocks (0.224417ms)
+✔ evaluate resolves quoted, wrapped, and path-qualified OpenCode executors (61.781459ms)
+✔ evaluate probes one fake binary once across two evaluations (21.715792ms)
+✔ opencode2 run is evaluated by the hard-rule engine (0.08675ms)
+✔ every runtime with a preflight adapter has it registered (0.460583ms)
+✔ pi dispatches need --offline and a provider-qualified model (0.331708ms)
+✔ predicate bypasses: equals-form flags and unquoted slash prompts are caught (0.146666ms)
+✔ hermes headless shapes need stdin handled: --query-file counts, a bare -q does not (0.056209ms)
+✔ hermes rules discriminate on the flags the packet contract pins (0.6955ms)
+✔ fail-open: a check that throws never produces a violation (0.063708ms)
+✔ readHardRules reads the sibling sidecar and fails open on malformed input (10.119042ms)
+✔ severity maps error and block to a blocking violation; anything else advises (0.124792ms)
+✔ every runtime dispatch shape resolves to its skill (mutation-proof) (0.842541ms)
+✔ a dispatch is resolved from the command, not from text that merely contains one (1.481083ms)
+✔ ENFORCEMENT GUARD: every check names a command it accepts and one it refuses (0.765625ms)
+✔ a jev dispatch is governed from the command, and mentions of it are not (0.160209ms)
+✔ ENFORCEMENT GUARD: every cli packet declares at least one rule (0.909583ms)
+✔ ENFORCEMENT GUARD: every appliesTo is a non-empty supported-version list (0.645792ms)
+✔ ENFORCEMENT GUARD: declared checks and implemented checks are a bijection (0.679375ms)
+[mcp-route-guard] 16/16 assertions passed
+✔ .skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs (122.310458ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 146.067667

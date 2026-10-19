@@ -186,6 +186,21 @@ test('injects stale and check-error diagnostics without terminal output', async 
   assert.ok(output.system[0].split('\n').length <= 10, 'system brief must remain bounded');
 });
 
+test('treats an opencode2 run as a risky bash dispatch and opencode2 serve as safe', async (t) => {
+  const tmpDir = temporaryDirectory(t, 'system-dist-freshness-guard-opencode2-');
+  writeCodeModeFixture(tmpDir, true);
+  const pluginModule = await loadPlugin();
+  const hooks = await pluginModule.default.server({ directory: tmpDir });
+  const beforeHook = hooks['tool.execute.before'];
+  const before = guardLogLineCount(tmpDir);
+
+  await beforeHook({ tool: 'bash' }, { args: { command: 'opencode2 serve' } });
+  assert.equal(guardLogLineCount(tmpDir), before, 'opencode2 serve must not refresh');
+
+  await beforeHook({ tool: 'bash' }, { args: { command: 'opencode2 run -m p/m "x"' } });
+  assert.equal(guardLogLineCount(tmpDir), before + 1, 'opencode2 run must refresh like validate.sh');
+});
+
 test('invalidates a warm cache for watched source mutations', async (t) => {
   for (const tool of ['write', 'edit', 'apply_patch']) {
     const tmpDir = temporaryDirectory(t, `system-dist-freshness-guard-${tool}-`);

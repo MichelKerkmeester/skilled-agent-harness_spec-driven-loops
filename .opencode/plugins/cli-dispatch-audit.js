@@ -68,14 +68,14 @@ async function MkCliDispatchAuditPlugin(ctx) {
     // is the only point in an OpenCode session where a wrong dispatch can still be stopped:
     // the audit below runs after the command has already done whatever it was going to do.
     // Scope limit by construction: this sees only commands run inside an OpenCode session.
-    async 'tool.execute.before'(input) {
+    async 'tool.execute.before'(input, output) {
       let blocking;
       try {
         if (!isHookEnabled('dispatch')) return;
         if (dispatchAuditCore.isAuditDisabled(process.env)) return;
         if (!input || String(input.tool).toLowerCase() !== 'bash') return;
 
-        const args = input.args;
+        const args = output?.args;
         const command = args && typeof args === 'object' ? args.command : undefined;
         if (typeof command !== 'string' || command.length === 0) return;
 

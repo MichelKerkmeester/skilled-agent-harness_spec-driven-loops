@@ -1,0 +1,5 @@
+read 1: 0 commands
+read 2: 53 commands
+read 3: 53 commands
+total commands: 53 vision entries: 1
+{"name": "vision", "description": "On-device read of your latest image: scene, caption and exact OCR, or a direct answer. No model switch."}

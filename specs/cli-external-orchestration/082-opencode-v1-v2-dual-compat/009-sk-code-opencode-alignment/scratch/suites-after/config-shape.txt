@@ -1,0 +1,10 @@
+✔ repo opencode.json keeps the v1 config shape (1.094ms)
+✔ rejects a top-level plugins key (2.554584ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 39.123333

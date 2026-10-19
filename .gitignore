@@ -193,8 +193,7 @@ dist/
 # ───────────────────────────────────────────
 # Command-contract render manifest
 # ───────────────────────────────────────────
-.opencode/commands/deep/assets/compiled/manifest.jsonl
-.skilled/commands/deep/assets/compiled/manifest.jsonl
+.skilled/command-support/deep/assets/compiled/manifest.jsonl
 
 # ───────────────────────────────────────────
 # Generated diagnostic reports

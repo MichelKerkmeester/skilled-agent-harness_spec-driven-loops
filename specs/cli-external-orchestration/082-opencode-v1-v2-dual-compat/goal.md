@@ -120,6 +120,7 @@ and findings belong here.
 | 006 cli-opencode dual dispatch | Done | The runtime reads the major from `--version`: v1 argv unchanged, v2 `run --standalone -m model#variant`, native refuses on v2; builder smoke dispatch exit 0 on 1.19.3 and 2.0.32, v2 child saw AI_SESSION_CHILD=1, deep-loop suite 2741 passed 0 failed, validate strict PASSED (006/scratch/evidence.md) |
 | 007 install guidance and setup helper | Done | `opencode-setup.sh` builds both, v1 or v2 under HOME; in a throwaway HOME `both` exits 0 with 1.19.3 and v2.0.32, a second run and `check` leave one tree hash, probes point XDG_DATA_HOME at a temp folder so the v2 log stays out of HOME, operator snapshot bracket clean apart from the live service's shm files, reference validates 0 issues (007/scratch/decisions.txt 16 to 19) |
 | 008 doctor and CI | Done | `opencode-version-battery.cjs` passes every leg on 1.19.3 and 2.0.32 (16 of 16 plugins loaded on v1, 16 of 16 active in a private v2 server), a broken copy exits 1 naming the plugin, SIGTERM 143 and SIGINT 130 leave nothing behind, the shared service is never touched, the doctor suite goes from 350 of 353 to 380 of 380; the CI workflow passes actionlint and stays untracked (008/scratch/decisions.txt 14 to 23) |
+| 009 sk-code-opencode alignment | Done | Four findings-first reviews of 75 changed code files; 5 P1 fixed (the dispatch guard read its args from the wrong argument and never refused on either version, v2 `/vision` was shadowed by `vision.md` and is now filled from the prompt hook, the manifest path, flag values, prompt-file images), 16 P2 deferred with reasons; drift guards exit 0, hygiene clean, every touched suite at or above its baseline, battery 16 of 16 on both versions (009/findings.md, 009/scratch/decisions.txt 4 to 12) |
 
 ### Deviations and findings
 
@@ -135,4 +136,6 @@ and findings belong here.
 | 008 v1 oracle | OpenCode 1.19.3 logs no plugin line and reports no broken plugin, so the v1 load check is an import harness, not a log window (008 decision 2) |
 | 008 git-setup-check | Phase 002's `dualPlugin(...)` wrapper hid the git adapter from `/doctor:git`; fixed in 008 (decision 12) |
 | 008 Q1 held | `/doctor:opencode` stays a script: a command file needs its route entry and catalog rows, which wait for the operator (008 decisions 4 and 15) |
+| 009 model call | The live v2 `/vision` check ran one unapproved llmgateway turn, USD 0.0037, because the private server's config was not isolated; the fixture probes may have run four more (009 decision 9). Later probes isolate XDG_CONFIG_HOME |
+| 009 cross-packet edit | One census row in `specs/system-deep-loop/036-deep-loop-innovation/` changed so a projection test matches the moved manifest path (009 decision 7) |
 <!-- /ANCHOR:log -->

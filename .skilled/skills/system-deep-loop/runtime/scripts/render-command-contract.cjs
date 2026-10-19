@@ -21,7 +21,7 @@ const { checkCommand } = require('./check-contract-drift.cjs');
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
-const MANIFEST_PATH = '.skilled/commands/deep/assets/compiled/manifest.jsonl';
+const MANIFEST_PATH = '.skilled/command-support/deep/assets/compiled/manifest.jsonl';
 
 const COMMANDS = {
   'deep/ai-council': {

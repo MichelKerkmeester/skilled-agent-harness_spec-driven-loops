@@ -1,0 +1,14 @@
+plugin exit=0
+guard-node exit=0
+guard-vitest exit=0
+shared-hooks exit=0
+classifier exit=0
+config-shape exit=0
+gate3 exit=0
+doctor exit=0
+sk-vision exit=0
+deep-loop exit=0
+DONE
+sk-vision exit=0 (rerun after batch 5)
+guard-vitest exit=0 (rerun after batch 6)
+doctor exit=0 (rerun after batch 6)

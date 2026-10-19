@@ -27,6 +27,8 @@ contextType: "general"
 
 ### Overview
 This phase reads the 002 to 008 diffs and reviews each changed code file findings-first against the sk-code-opencode language checklists. Luna writes the fixes for every P0 and P1 finding in short batches. DeepSeek reviews each fix diff, and the orchestrator runs the drift guards, the comment-hygiene check and every suite that phases 002 to 008 touched.
+
+Amended at the start of the build (scratch/decisions.txt 0): the operator asked for DeepSeek wherever possible, so DeepSeek reviewed the 002 to 006 code and wrote every fix, and Luna reviewed the 007 and 008 code and each fix diff. Steps 5, 6, 8, 9 and 10 below name the original executors.
 <!-- /ANCHOR:summary -->
 
 ---

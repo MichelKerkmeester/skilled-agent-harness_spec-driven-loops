@@ -1,0 +1,109 @@
+# Read-only review — OpenCode v1/v2 dual-compat diff
+
+Scope: `git diff 867b83b671 HEAD` over the 13 files named (4 dispatch-lib, 4 deep-loop scripts, 1 benchmark script, hard-rules.json, 2 package.json). HEAD `23756e8776`. Nothing edited, nothing committed.
+
+---
+
+## FINDINGS
+
+### P1-1 — the asset move left the manifest path (and its gitignore) in the retired tree
+
+**Severity:** P1 · **file:line:** `.skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs:24` (write path `:138-141`, default call `:155-157`) · **class:** cross-consumer
+
+The same hunk moved `compiledContractPath`/`legacyBodyPath` for all three commands to `.skilled/command-support/deep/assets/{compiled,legacy}/` (`:29-41`; compiler side `.skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs:699`), but left
+
+```js
+const MANIFEST_PATH = '.skilled/commands/deep/assets/compiled/manifest.jsonl';
+```
+
+pointing at the directory that was just vacated. `appendManifestRow` does `mkdirSync(dirname, {recursive:true})` + `appendFileSync`, and `main()` calls `renderCommandContract` with no `manifestPath`, so the first CLI render **recreates `.skilled/commands/deep/assets/compiled/`** and the moved tree never receives the manifest — while the moved asset's own README documents the manifest *inside* the moved directory (`.skilled/command-support/deep/assets/compiled/README.md:38,51`). `.gitignore:196-197` also still names only the two old paths, which is why the split is invisible in `git status`.
+
+**Failing input:** `node .skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs --command deep/review -- x` → writes `.skilled/commands/deep/assets/compiled/manifest.jsonl` (directory currently absent; `.skilled/command-support/deep/assets/compiled/` exists and holds the contracts). I did not execute it — that would write into the repo; the path is established from the code plus `ls` on both trees.
+
+**Why it survived:** every render test injects `manifestPath: tempManifestPath()` (`.skilled/skills/system-deep-loop/runtime/tests/unit/render-command-contract.vitest.ts:89,106,121,132,141,161`), so the default path has no coverage. Fix is two lines: `MANIFEST_PATH` → `.skilled/command-support/deep/assets/compiled/manifest.jsonl`, and the same move in `.gitignore`.
+
+---
+
+### P2-1 — the guard's PATH lookup accepts a non-file named `opencode2`; the dispatcher's does not
+
+**Severity:** P2 · **file:line:** `.skilled/hooks/dispatch/lib/opencode-version.mjs:37-54` (accept `:46`) vs `.skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs:45-54` (guard `:48`) · **class:** cross-consumer
+
+`resolveOnPath` returns on `accessSync(candidate, X_OK)`, which a *directory* satisfies; the sibling `.cjs` `findExecutable` additionally requires `statSync(...).isFile()`. The guard therefore treats a directory named `opencode2` as the resolved executor, fails its probe, and degrades to `'unknown'` (all version-specific rules → warn) instead of skipping the entry and finding the real `opencode` behind it.
+
+**Failing input:** a directory named `opencode2` earlier on PATH.
+Verified: `.mjs` → `resolveOpencodeVersionSync('opencode2')` = `'unknown'`; `.cjs` → skips it and resolves the sibling `opencode` as `v1` (fixture: temp dir with `opencode2/` dir + executable `opencode` script).
+
+### P2-2 — a present-but-unusable `opencode2` hard-refuses the dispatch, with no fallback to a working `opencode`
+
+**Severity:** P2 (test-pinned intent; live on this machine) · **file:line:** `.skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs:200-206` (throw path `:109-125`), consumers `fanout-run.cjs:2277-2280` (native) and `:2355-2358` (cli-opencode) · **class:** cross-consumer
+
+`resolveOpencodeBinary` returns `resolveCandidate(...)` on the first name that resolves, and `resolveCandidate` **throws** `E_OPENCODE_UNRESOLVED` when the probe exits non-zero, times out, or prints an unparsable version. It never continues to `opencode`. `buildOpencodeLineageCommand`/`buildNativeLineageCommand` convert that into `inputError(...)`, so cli-opencode dispatch is dead on a machine whose `opencode2` is broken even though v1 `opencode` works.
+
+**Failing input (live):** on this machine `~/.local/bin/opencode2` (wrapper exec'ing `~/.local/opencode-v2/bin/opencode2`) exits **126** on `--version` while `~/.local/bin/opencode` (v1, Mach-O) resolves; `resolveOpencodeBinary({PATH: process.env.PATH})` throws `Version probe failed for 'opencode2': probe exited with status 126`. The behaviour is deliberate — pinned by `tests/unit/opencode-dual-dispatch.vitest.ts:487-496` ("refuses garbage from opencode2 without falling back to opencode") — so this needs an owner decision, not a silent patch. The guard side deliberately differs: it returns `'unknown'` and only downgrades to warnings.
+
+### P2-3 — the 3 s probe timeout cannot fire on the default probe
+
+**Severity:** P2 · **file:line:** `.skilled/hooks/dispatch/lib/opencode-version.mjs:71-92`, sync path `:208` · **class:** algorithmic
+
+`probeWithTimeout` races the probe against a timer, but the default probe is `spawnSync`, which blocks the event loop — the timer only runs after the probe has already returned, so `PROBE_TIMEOUT` is unreachable there; the effective bound is `spawnSync`'s own `timeout` (`:57-60`). The sync entry point (`:208`) has no race at all. The race is only meaningful for injected async probes.
+
+### P2-4 — `v2-slash-prompt-route` is a bare regex with no dispatch-shape guard
+
+**Severity:** P2 · **file:line:** `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:154` · **class:** instance-only
+
+`(cmd) => !/(?:["']|\s)\s*\/[a-z0-9]+:[a-z0-9-]+/i.test(cmd)` matches any quoted/space-preceded `/family:name` token anywhere in the command (flags, URLs, prose) and, under `unknown`, fires alongside the v1 rule. Impact is bounded: the PreToolUse adapters and the OpenCode plugin fast-exit on `resolveDispatchPacket` before `evaluate` (`dispatch/claude/dispatch-preflight-lint.mjs:62-63`, `opencode/cli-dispatch-audit.js:82-83`), and the rule is `warn`-only.
+
+### P2-5 — no guard rule covers the v2 `--standalone` requirement
+
+**Severity:** P2 · **file:line:** `.skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json:30-36` · **class:** matrix/evidence
+
+The v2 rule set declares only the slash-prompt advisory. An ad-hoc `opencode2 run` without `--standalone` is neither blocked nor warned, although the packet documents it for v2 (`cli-opencode/SKILL.md:156,160`). The dispatcher itself complies (`fanout-run.cjs:2407-2410`, asserted at `tests/unit/opencode-dual-dispatch.vitest.ts:328-337`). Adding a check requires declaring the rule in the sidecar (the bijection guard at `dispatch-rule-checks.test.mjs` enforces declared == implemented).
+
+### P2-6 — sibling plugin keys off the v1 dispatch shape only
+
+**Severity:** P2 (outside the listed diff scope, same-shape consumer) · **file:line:** `.opencode/plugins/system-dist-freshness-guard.js:35`, use at `:207` · **class:** cross-consumer
+
+`RISKY_BASH_COMMAND_REGEX = /opencode\s+run|\bvalidate\.sh\b/i` misses `opencode2 run`, so the freshness cache is not force-refreshed before a v2 dispatch and the agent can proceed on up-to-120 s-old staleness diagnostics. Advisory signal only; flagging because the v2 shape was added to the shared guard but not to this consumer.
+
+---
+
+## Version-parser matrix (both parsers, run, not inferred)
+
+`parseOpencodeVersion` is **byte-identical** in `opencode-version.mjs:104-130` and `opencode-version.cjs:142-168` (extracted and `diff`ed → identical), and both produced the same result on all 17 probed inputs.
+
+| Input | Result | Disposition |
+|---|---|---|
+| `''` (empty) | `unknown` | refused (guard: unknown → version-specific rules warn; dispatcher: `E_OPENCODE_UNRESOLVED` → dispatch refused) |
+| `'opencode'` / `'opencode2'` (binary name, no version) | `unknown` | refused — the name is never read as a version |
+| `'2.0.32-rc.1'` | **`v2`** | parsed — `(?:[-+][\w.-]+)?` accepts the prerelease suffix by design; takes the v2 flag set (`run --standalone`) |
+| path containing `1.`, e.g. `'/opt/tools/1.19.3/opencode'` | `unknown` | refused — the pattern is anchored and a path token cannot match; resolvers never feed a path to the parser (`.mjs` refuses path-qualified binaries without probing, `:143,146`; `.cjs` probes the file and parses only its output) |
+| two version strings, e.g. `'opencode v2.0.32\n1.19.3'` | `v2` | parsed — first version token wins (line-major, then token-major); same for `'1.19.3 2.0.32'` → `v1` |
+
+Also checked: `'opencode 3.0.0'` → `unknown` (unsupported major, fail-closed); `'opencode v1.19.3'` → `v1`; `'2.0.32+build.7'` → `v2`; `'opencode v2.0.32 (build 5)'` → `v2` (trailing text outside the matched token). **The two parsers agree on every case.** They diverge only in *failure policy*, deliberately: guard = `'unknown'` (fail-open, warn), dispatcher = throw (fail-closed, refuse).
+
+Consequence worth naming: because a path-qualified invocation is never probed, version-specific *blocking* rules degrade to warnings there (`command-flag-for-slash-prompt`, `error` → `warn`, asserted at `dispatch-rule-checks.test.mjs:689-696`) — a tested, intended trade-off that lets a legitimate v2 path-qualified dispatch through, at the cost of an advisory-only verdict for a v1 one.
+
+---
+
+## Frozen-rule checks
+
+- **D3 — version from parsed `--version` output, never the binary name.** Holds at all four decision sites: guard (`dispatch-rule-checks.mjs:296-299` → `resolveOpencodeVersionSync`), dispatcher flag set (`fanout-run.cjs:2360-2431`), native-lineage v2 refusal (`:2277-2281`), and `isOpencodeBinaryAvailable` (`:3025-3033`). The binary name only selects the executable; `resolveExecutableVersion` (`:2113-2137`) records a sha256 *content* identity, not a name-derived version. Path-qualified binaries are never executed by the guard, and the dispatcher probes only files it resolved.
+- **`run --standalone` on every v2 child dispatch.** Present exactly once, at `fanout-run.cjs:2407-2410`, with `--auto` for danger-full-access and `#effort` on the model id; no other v2 dispatch construction exists in the scoped scripts (grep for `'run'` constructions: `:2289` native/v1, `:2376` v1, `:2407` v2). v1 argv is byte-identical to the baseline (asserted at `opencode-dual-dispatch.vitest.ts:298-312`).
+- **D5 — pins.** `.opencode/package.json:7-8` and `.skilled/package.json:4-5`: `@opencode-ai/plugin` exactly `1.19.3`, `zod` `4.1.8`; `.skilled/package.json:8`: `@opencode/plugin` `2.0.32` in `devDependencies`. Both lockfiles carry the same pins, and the installed trees match (`1.19.3`, `2.0.32`, `4.1.8`). `@opencode/plugin` is imported nowhere in the repo (grep over `.opencode/plugins/**`, `.skilled/**`) — declaration-only, as the rule specifies. zod is load-bearing at runtime for the v2 bridge (`.opencode/plugins/lib/v2-bridge.js:6`).
+
+---
+
+## Verification evidence (all commands run)
+
+- `PATH=…/v26.8.2/bin:$PATH node --test .skilled/hooks/dispatch/lib/*.test.mjs` → **exit 1**: `tests 29, pass 28, fail 1`. The single failure is `dispatch-audit.test.mjs` failing to *load* (vitest-internal `TypeError: Cannot read properties of undefined (reading 'config')` at its first `describe`) — the file is a vitest file whose header says `Run: npx vitest run <this file>`. **Baseline reproduced**: the `867b83b671` revision of the same file, copied to a temp dir with `node_modules` symlinked, fails identically → pre-existing harness mismatch, not a regression from this diff.
+- `./.skilled/node_modules/.bin/vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs` → **105/105 pass** (includes the new R1–R8, cache, adversarial and `appliesTo` suites).
+- `cd .skilled/skills/system-deep-loop/runtime && ./node_modules/.bin/vitest run tests/unit/opencode-dual-dispatch.vitest.ts` → **23/23 pass** (the `--auto` / `--standalone` v2 argv is exercised).
+- Parser matrix + resolver probes: 17-case matrix on both parsers, identical; directory-on-PATH probes on both resolvers (P2-1).
+- Tree checks: `.skilled/command-support/deep/assets/{legacy,compiled}/` exist; `.skilled/commands/deep/assets/compiled/` absent; `manifest.jsonl` absent in both; baseline `git ls-tree` shows the pre-change layout under `.skilled/commands/…`; `.gitignore:196-197` names only the old paths.
+- No file was edited; no `npm install`, no network call, no real OpenCode CLI was run to completion. **Disclosure:** while probing the `.cjs` resolver with the ambient PATH (intended to be an isolated fixture), the local `~/.local/bin/opencode2` wrapper was spawned once with `--version`; it exited 126 and did nothing else. I did not repeat it — that exit is the live evidence in P2-2.
+
+**Checklist surfaces applied:** `universal-checklist.md` (file headers, no commented-out code, no ephemeral ids in comments — the diff *removed* two `Regression (Fable-5 P2)` comments and replaced them with durable WHY text, good), `javascript-checklist.md` (headers/`'use strict'` present in the new `.cjs`, camelCase/UPPER_SNAKE, guard clauses, fail-open error handling, JSDoc on exports), `config-checklist.md` (both JSON files parse, double-quoted, camelCase `appliesTo`, consistent key order, no trailing commas).
+
+---
+
+FAIL

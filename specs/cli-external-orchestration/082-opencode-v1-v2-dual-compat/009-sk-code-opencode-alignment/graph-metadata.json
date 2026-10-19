@@ -34,7 +34,7 @@
       "phases"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,12 +42,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
-      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
-      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
-      ".skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json",
-      ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
+      ".opencode/plugins/cli-dispatch-audit.js",
+      ".opencode/plugins/tests/source-root-consumers.test.cjs",
+      ".opencode/plugins/system-dist-freshness-guard.js",
+      ".skilled/skills/sk-vision/vision-runtime/src/plugin.ts",
+      ".skilled/skills/sk-vision/vision-runtime/src/plugin.test.ts",
+      ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.test.mjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
+      ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
+      "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json",
+      "scratch/gates/hygiene-after.txt",
+      "scratch/gates/hostile-env.txt",
+      "scratch/gates/battery-both.json",
+      "scratch/probes/v2-vision-live.txt"
     ],
     "entities": [
       {
@@ -87,39 +95,87 @@
         "source": "derived"
       },
       {
-        "name": "dispatch-audit.mjs",
-        "kind": "file",
-        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+        "name": "cli-dispatch-audit.js",
+        "kind": "code",
+        "path": ".opencode/plugins/cli-dispatch-audit.js",
         "source": "derived"
       },
       {
-        "name": "dispatch-rule-checks.mjs",
+        "name": "source-root-consumers.test.cjs",
         "kind": "file",
-        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "path": ".opencode/plugins/tests/source-root-consumers.test.cjs",
         "source": "derived"
       },
       {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "name": "system-dist-freshness-guard.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-dist-freshness-guard.js",
         "source": "derived"
       },
       {
-        "name": "compile-command-contracts.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+        "name": "plugin.ts",
+        "kind": "code",
+        "path": ".skilled/skills/sk-vision/vision-runtime/src/plugin.ts",
         "source": "derived"
       },
       {
-        "name": "hard-rules.json",
+        "name": "plugin.test.ts",
+        "kind": "test",
+        "path": ".skilled/skills/sk-vision/vision-runtime/src/plugin.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version-battery.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "render-command-contract.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-projection-manifest.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "state-backend-census.json",
         "kind": "config",
-        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json",
+        "path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json",
         "source": "derived"
       },
       {
-        "name": "check-comment-hygiene.sh",
-        "kind": "script",
-        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+        "name": "hygiene-after.txt",
+        "kind": "file",
+        "path": "scratch/gates/hygiene-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "hostile-env.txt",
+        "kind": "file",
+        "path": "scratch/gates/hostile-env.txt",
+        "source": "derived"
+      },
+      {
+        "name": "battery-both.json",
+        "kind": "config",
+        "path": "scratch/gates/battery-both.json",
+        "source": "derived"
+      },
+      {
+        "name": "v2-vision-live.txt",
+        "kind": "file",
+        "path": "scratch/probes/v2-vision-live.txt",
         "source": "derived"
       },
       {
@@ -145,59 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement Phases",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Files",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Review",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phases 002 to 008 add and change plugin, guard, runtime and install code for two OpenCode versions",
     "created_at": "2026-10-18T12:45:08Z",
-    "last_save_at": "2026-10-18T13:38:59.621Z",
+    "last_save_at": "2026-10-19T00:22:05.818Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:454ef742b6bad07ca06e52c85755dac4b3f936ba35160f0aae842aa27762d96f",
+    "source_fingerprint": "sha256:94d6fb9c84122d6622615a2252f9704c611c89faee913a30cae601e6f9e5e4a3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f358e145b47c4fb0994a97d42aba437c920dee66b30d9d5d587337af6fea50ab",
-      "plan.md": "f7668a651dadd4051d9f76e5d50dbfad7191ff64f5ce11b78aead44c39cb6bea",
-      "tasks.md": "36ecbcbc2459566988935118c1b020b7d8fe64a6c1c89b8f5f1cca082626f1a2",
-      "implementation-summary.md": "d1a5527ed07fddf28ba9360772d7b08f0ad35afcf3c5bf600bc626c5a71262db"
+      "spec.md": "748afb5fc71f2bdf449492f7ba6a433065546568aeb85b21cb8824e6f96f66cb",
+      "plan.md": "fe2c6e4936922ad5e095e1cc12500ea22e5d34bc46f9058d39a5295dfc82339e",
+      "tasks.md": "3a491af15277229a1308b5c124e085ea169b0255344256261cab3ce174cc0f3a",
+      "implementation-summary.md": "bcd8203db793f1009b17374f47c0bb74cdf4f1d51c9bb4efc862dbb92d4f5082"
     },
     "last_active_at": null
   }

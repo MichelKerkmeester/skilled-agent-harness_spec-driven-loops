@@ -1,0 +1,5 @@
+render exit=0
+       1
+.gitignore:196:.skilled/command-support/deep/assets/compiled/manifest.jsonl	.skilled/command-support/deep/assets/compiled/manifest.jsonl
+ls: .skilled/commands/deep/assets/compiled: No such file or directory
+!! .skilled/command-support/deep/assets/compiled/manifest.jsonl

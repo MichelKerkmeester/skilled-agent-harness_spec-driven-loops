@@ -197,9 +197,10 @@ function parseArgs(argv) {
       const spaced = /^--(family|root|out)$/.exec(arg);
       if (!spaced) throw usageError(`unknown argument: ${arg}`);
       key = spaced[1];
-      if (index + 1 >= argv.length) throw usageError(`--${key} needs a value`);
+      const next = argv[index + 1];
+      if (next === undefined || next.startsWith('--')) throw usageError(`--${key} needs a value`);
       index += 1;
-      value = argv[index];
+      value = next;
     }
 
     if (key === 'family') {

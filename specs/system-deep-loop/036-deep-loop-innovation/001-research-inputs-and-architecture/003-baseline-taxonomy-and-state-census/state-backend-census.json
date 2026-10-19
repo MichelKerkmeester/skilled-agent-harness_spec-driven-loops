@@ -552,7 +552,7 @@
       "id": "compiled-command-manifest",
       "surface": "JSONL",
       "mutability": "append-only",
-      "resolvedPath": ".opencode/commands/deep/assets/compiled/manifest.jsonl",
+      "resolvedPath": ".skilled/command-support/deep/assets/compiled/manifest.jsonl",
       "owner": "runtime command renderer",
       "lifecycle": "append one deterministic row per rendered command contract",
       "recovery": "regenerate by rendering command contracts and compare digests",

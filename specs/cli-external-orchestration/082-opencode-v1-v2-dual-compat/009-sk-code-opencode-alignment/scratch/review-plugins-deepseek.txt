@@ -1,0 +1,48 @@
+Read-only review complete (no repo file touched; `git status` shows only pre-existing untracked paths). Findings first, then the evidence that grounds them.
+
+## Findings
+
+**P2-1 — `cli-dispatch-audit.js:78` — the pre-execution refusal reads `input.args`, but `tool.execute.before` carries args on `output.args`; the hard-rule block has never fired on the OpenCode surface (v1 or v2). Pre-existing, carried unchanged by this port.**
+- Failing input: the hook pair both hosts actually pass — `({tool:'bash',sessionID,callID}, {args:{command:'opencode run -m p/m --agent general "x"'}})` → `input.args` is `undefined`, the guard returns at `:80` before `evaluate()`, no throw, the call runs.
+- Grounding: v1 1.19.3 contract `@opencode-ai/plugin/dist/index.d.ts:235-241`; the v1 host binary call site `trigger("tool.execute.before",{tool,sessionID,callID},{args:g})`; the other six before-hooks read `output?.args` (`sk-code-post-edit-quality.js:105`, `sk-git-message-gate.js:47`, `sk-git-preflight-advisory.js:104`, `system-deep-loop-guard.js:80`, `system-dist-freshness-guard.js:206`, `system-spec-gate.js:261`); the bridge maps args to `hookOutput` (`v2-bridge.js:330`), so v2 inherits the dead read. Introduced by commit `0e740fb479`, not by this diff.
+- `tests/source-root-consumers.test.cjs:115-116` feeds args on the input object, encoding the same wrong shape, so the suite cannot catch it.
+- Class: `instance-only`.
+
+**P2-2 — `v2-bridge.js:286-320` — the event pump exits on the first throw from a plugin's `event` handler and never resumes, permanently silencing that plugin's event leg (fail-open gap in the shared bridge).**
+- Failing input: any single rejection out of `hooks.event(...)` mid-stream — a `for await` body that throws calls `return()` on the host iterator, closing the subscription; `eventFailure` only resurfaces at cleanup (`:273-275`). Currently latent: every handler body is wrapped or calls only guarded helpers (`session-cleanup.js:239` and `system-skill-advisor.js:1383` are unwrapped but their callees are guarded), so the first bug in any future handler triggers it.
+- Class: `cross-consumer` (all seven event-hook plugins ride this pump).
+
+**P2-3 — `v2-bridge.js:226` (+`233-238`) — `sessionEventState` is never bounded; a session that reaches idle and is never deleted leaves its entry forever.**
+- Failing input: a long-lived v2 server ending N sessions without `session.deleted` → N retained sets; the v1 analogues cap their session maps (`classifier-injection-screen-core.js:20`, MAX_SESSIONS=1000).
+- Class: `instance-only`.
+
+**P2-4 — `sk-code-post-edit-quality-core.js:14` — dead export `PLUGIN_DIR` plus the two imports at `:9-10` that exist only for it; no consumer anywhere.**
+- Failing input: static — only importers of the core are `sk-code-post-edit-quality.js:22-28` (five other names) and `tests/sk-code-post-edit-quality.test.cjs:423` (`createCorrelationMap`); the old file used `PLUGIN_DIR` only in its removed `__test` seam. (`MAX_CALL_IDS` at `:15` is used internally at `:54` — keep.)
+- Class: `instance-only`.
+
+**P2-5 — the two JS-USE-STRICT drift warnings (`opencode-goal-core.js:1`, `tool-identity.js:1`) are not a runtime defect, but they are real verifier findings and inconsistent with their siblings.**
+- Verdict on "real defect": **no runtime defect** — both files are ES modules (`export` at `opencode-goal-core.js:11/21`, `tool-identity.js:10/17`; `.opencode/package.json` is `"type":"module"`), ES modules are always strict, and the JS checklist exempts "OpenCode plugin ESM paths" (`javascript-checklist.md:73-74`). But the verifier implements only the `.mjs` skip (`verify_alignment_drift.py:529-532`), so it emits `[JS-USE-STRICT] [WARN]`; observed first-hand: `--root .opencode/plugins` → PASS, 0 errors, 2 warnings, and `--fail-on-warn` would fail. Meanwhile `v2-bridge.js:4`, `classifier-injection-screen-core.js:4`, `completion-sentinel-core.js:4`, `sk-code-post-edit-quality-core.js:4` all carry the directive — the two files are the odd ones out in the same directory.
+- Fix: one line each (harmless in ESM), or extend the verifier's exemption. Class: `instance-only`.
+
+**P2-6 — `v2-bridge.js:17-20` — only `session.execution.succeeded` aliases to `session.idle`; a v2 turn ending in `session.execution.failed`/`.interrupted` (live-observed v2 events) delivers no idle, so the sentinel and goal continuation skip that turn.**
+- Failing input: a v2 turn ending in `session.execution.failed` → no `session.idle` to the v1 handlers. Recorded: phase-3 `scratch/decisions.txt:34` (gap 9f) and Known Limitations #4; the mapping change waits for a v1 failed-turn capture.
+- Class: `matrix/evidence`.
+
+**P2-7 — `v2-bridge.js:44` + `opencode-goal.js:2143-2144` — token accounting assumes `session.step.ended` tokens are per-message; if per-step, a multi-step message is undercounted (`max(0, stepTokens − previous)`).**
+- Failing input: two `session.step.ended` for one `assistantMessageID` (100 then 50 tokens) → charge 100, not 150 → `budget_limited` crosses late. Recorded: phase-3 decisions `:27` / Known Limitations #3; the only test is single-step.
+- Class: `matrix/evidence`.
+
+**P2-8 (unverified) — `v2-bridge.js:285` — no per-location filter on the v2 subscription, while v1 drops events whose directory differs from the plugin instance's (v1 host: `f.location?.directory !== W.directory`).**
+- Failing input: a v2 server whose stream carries `session.created` from a second directory → if the v2 host does not scope per instance, every event-hook plugin processes foreign sessions (cleanup guards, sentinel sweeps, goal binding). What would confirm: a two-directory v2 capture or the v2 host source; `research/research.md:66` already flags load-time location capture.
+- Class: `cross-consumer`.
+
+## Verified correct (grounding for the above)
+
+- **Suite**: `node --test .opencode/plugins/tests/` → **353 tests, 353 pass, 0 fail**, run twice, including with `AI_SESSION_CHILD=1` (test isolation holds at HEAD).
+- **D1**: all 16 `.opencode/plugins/*.js` default-export `dualPlugin(id, server)` → plain `{id, setup, server}`; no stray named exports on the 15 ported entries.
+- **Hook mapping** matches the real 2.0.32 declarations (`.skilled/node_modules/@opencode/plugin`): `event.subscribe({signal})`→AsyncIterable; `tool.hook(...)`→`{dispose}`; before-input `{tool,sessionID,id,input}`→`callID` + args moved to `output.args` (exactly v1's contract); status-discriminated after-result→`toV1ToolOutput`; `session.hook('context')` push `{type:'text',text}` (valid `SystemPart`); `editor.add({input: z.toJSONSchema(...)})` (Q7 live-confirmed); result `{content, metadata}` (live-confirmed); `setup` returns a `Cleanup`; the five client shims match the surveyed v2 session methods; alias/dedupe matches the live event ordering (`execution.started` → … → `succeeded`; `compaction.started` → … → `ended` → second `succeeded`).
+- **No silently dropped hooks**: probe of all 15 `server()` hook-key sets → every key ∈ `MAPPED_HOOKS`, `skippedKeys` empty for all; all 4 tool definitions convert (`z.toJSONSchema` OK for each).
+- **v1 unchanged**: only export wrappers + 3 import swaps; `lib/tool-identity.js` is behaviour-identical to `@opencode-ai/plugin@1.19.3/dist/tool.js`; moved constants/helpers are value-for-value identical; removed `__test` seams have no remaining readers (tests now read the lib cores).
+- **No secrets** (grep), **no console writes** in the new lib files, **comment hygiene clean** on all 21 files (`check-comment-hygiene.sh` exit 0).
+
+PASS (no open P0 or P1)

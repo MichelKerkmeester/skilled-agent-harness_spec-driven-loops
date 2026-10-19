@@ -1,0 +1,15 @@
+One open P1 makes this review **FAIL**.
+
+## Findings
+
+- **P1** [opencode-version-battery.cjs:200](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/commands/doctor/scripts/opencode-version-battery.cjs:200): The parser accepts a flag as `--out`’s value, so the later write can replace a file named `--json` in the current directory. Failing input: `node opencode-version-battery.cjs --out --json`. Class: `class-of-bug`.
+- **P2** [opencode-version-battery.cjs:760](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/commands/doctor/scripts/opencode-version-battery.cjs:760): `readApiJson` discards subprocess status and stderr, leaving API failures with generic leg messages. Failing input: an API request exits with an authorization error or times out. Class: `cross-consumer`.
+- **P2** [git-setup-check.cjs:1295](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/commands/doctor/scripts/git-setup-check.cjs:1295): The new wrapper check accepts only an identifier as `dualPlugin`’s second argument, so a valid inline function export is reported as unregistered. Failing input: `export default dualPlugin('x', async (ctx) => ({ async 'tool.execute.before'() {} }));`. Class: `algorithmic`.
+
+The setup helper and battery meet their header and strict-mode checks. Their function naming, shell quoting and documented exit codes also pass review. No ephemeral artifact references or commented-out code were found.
+
+`bash -n`, ShellCheck, `node --check`, actionlint and `git diff --check` all exited 0. No OpenCode binary, npm, network calls or tests were run. No files were modified. The workflow remains untracked on branch `worktrees/143-opencode-dual-compat-build`; final status also shows untracked hook and packet scratch artifacts.
+
+Operator action: address the P1 before relying on `--out` in automation.
+
+FAIL

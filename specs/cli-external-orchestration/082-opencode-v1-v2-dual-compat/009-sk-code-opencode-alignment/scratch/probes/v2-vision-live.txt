@@ -1,0 +1,25 @@
+ses_eae9d62c8ffeMQKsEMhJTdTMOi
+exit=0
+
+exit=0
+import json,sys
+d=json.load(open(sys.argv[1])); d=d.get(\"data\",d)
+for m in d:
+    t=json.dumps(m)
+    if \"/vision\" in t or \"SK-VISION\" in t or \"sk-vision\" in t:
+        role=m.get(\"role\") or m.get(\"type\"); s=json.loads(t)
+        texts=[]
+        def walk(o):
+            if isinstance(o,dict):
+                for k,v in o.items():
+                    if k==\"text\" and isinstance(v,str): texts.append(v)
+                    else: walk(v)
+            elif isinstance(o,list):
+                for x in o: walk(x)
+        walk(s)
+        for x in texts: print(\"ROLE\",role,\"| starts:\",repr(x[:40]),\"| question in slot:\",\"what does the dialog say\" in x,\"| tail:\",repr(x[-140:]))
+" $OUT.msgs
+ROLE assistant | starts: 'The command says sk-vision found no imag' | question in slot: False | tail: 'out loading rules — this is a trivial reply. Actually the AGENTS.md says Gate 6 fires before every substantive reply. This is trivial; skip.'
+ROLE assistant | starts: 'sk-vision found no recent image in this ' | question in slot: True | tail: 'ag, or attach the file), then run `/vision <question>` — for example `/vision what does the dialog say` or a bare `/vision` for a full read.'
+ROLE user | starts: "# /vision\n\nRun sk-vision's local vision " | question in slot: True | tail: 'o restore automatic image inspection and the full tool set.\n\nsk-vision: no recent image found. Attach an image, then run /vision <question>.'
+exit=0

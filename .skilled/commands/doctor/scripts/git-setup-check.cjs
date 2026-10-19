@@ -1521,7 +1521,7 @@ function parseArgs(argv) {
     }
     if (arg === '--repo' || arg === '--tool') {
       const value = argv[i + 1];
-      if (value === undefined || value === '') return { error: `missing value for ${arg}` };
+      if (value === undefined || value === '' || value.startsWith('--')) return { error: `missing value for ${arg}` };
       opts[arg.slice(2)] = value;
       i += 1;
       continue;

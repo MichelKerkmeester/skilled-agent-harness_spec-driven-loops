@@ -197,7 +197,7 @@ const manifestSeeds: LegacyProjectionManifestSeed[] = [
   },
   {
     surfaceId: 'compiled-command-manifest', format: 'jsonl',
-    pathTemplate: '.skilled/commands/deep/assets/compiled/manifest.jsonl',
+    pathTemplate: '.skilled/command-support/deep/assets/compiled/manifest.jsonl',
     legacyWriter: 'runtime command renderer',
     readers: ['developer audit only via the compiled README validation snippet; no shipped BASE runtime reader'],
     fixture: EVENT_FIXTURE, disposition: 'project', serializerId: 'legacy-jsonl-row-v1',

@@ -1,0 +1,107 @@
+{
+  "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build",
+  "family": "both",
+  "results": [
+    {
+      "leg": "family-present",
+      "family": "v1",
+      "status": "PASS",
+      "reason": "a v1 binary is installed",
+      "details": [
+        "/Users/michelkerkmeester/.local/bin/opencode"
+      ]
+    },
+    {
+      "leg": "plugin-discovered",
+      "family": "v1",
+      "status": "PASS",
+      "reason": "all 16 plugin files discovered",
+      "details": [
+        "classifier-injection-screen.js",
+        "cli-dispatch-audit.js",
+        "codex-hooks-watchdog.js",
+        "mcp-route-guard.js",
+        "opencode-goal.js",
+        "session-cleanup.js",
+        "sk-code-post-edit-quality.js",
+        "sk-git-message-gate.js",
+        "sk-git-preflight-advisory.js",
+        "sk-vision.js",
+        "system-completion-sentinel.js",
+        "system-deep-loop-guard.js",
+        "system-dist-freshness-guard.js",
+        "system-skill-advisor.js",
+        "system-spec-gate.js",
+        "system-speckit-completion.js"
+      ]
+    },
+    {
+      "leg": "plugin-load",
+      "family": "v1",
+      "status": "PASS",
+      "reason": "all 16 plugin files loaded",
+      "details": [
+        "classifier-injection-screen.js",
+        "cli-dispatch-audit.js",
+        "codex-hooks-watchdog.js",
+        "mcp-route-guard.js",
+        "opencode-goal.js",
+        "session-cleanup.js",
+        "sk-code-post-edit-quality.js",
+        "sk-git-message-gate.js",
+        "sk-git-preflight-advisory.js",
+        "sk-vision.js",
+        "system-completion-sentinel.js",
+        "system-deep-loop-guard.js",
+        "system-dist-freshness-guard.js",
+        "system-skill-advisor.js",
+        "system-spec-gate.js",
+        "system-speckit-completion.js"
+      ]
+    },
+    {
+      "leg": "family-present",
+      "family": "v2",
+      "status": "PASS",
+      "reason": "a v2 binary is installed",
+      "details": [
+        "/Users/michelkerkmeester/.local/bin/opencode2"
+      ]
+    },
+    {
+      "leg": "plugin-active",
+      "family": "v2",
+      "status": "PASS",
+      "reason": "all 16 plugin files active",
+      "details": [
+        "classifier-injection-screen.js",
+        "cli-dispatch-audit.js",
+        "codex-hooks-watchdog.js",
+        "mcp-route-guard.js",
+        "opencode-goal.js",
+        "session-cleanup.js",
+        "sk-code-post-edit-quality.js",
+        "sk-git-message-gate.js",
+        "sk-git-preflight-advisory.js",
+        "sk-vision.js",
+        "system-completion-sentinel.js",
+        "system-deep-loop-guard.js",
+        "system-dist-freshness-guard.js",
+        "system-skill-advisor.js",
+        "system-spec-gate.js",
+        "system-speckit-completion.js"
+      ]
+    },
+    {
+      "leg": "skill-visible",
+      "family": "v2",
+      "status": "PASS",
+      "reason": "57 skill entries visible",
+      "details": [
+        "entries: 75",
+        "visible: 57"
+      ]
+    }
+  ],
+  "exit": 0
+}

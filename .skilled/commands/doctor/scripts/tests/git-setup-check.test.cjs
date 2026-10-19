@@ -328,6 +328,28 @@ test('a non-repository, an unknown flag and an unknown tool are usage errors', (
   assert.match(missingTool.stderr, /^Usage: node /m);
 });
 
+test('a spaced option value that is itself a flag is refused and the = form is kept', (t) => {
+  const f = fixture(t);
+  const cases = [
+    { args: ['--repo', '--json'], error: 'missing value for --repo' },
+    { args: ['--tool', '--json'], error: 'missing value for --tool' },
+    { args: ['--repo=' + f.repo, '--json'], repo: f.repo },
+  ];
+
+  for (const c of cases) {
+    const label = JSON.stringify(c.args);
+    const result = f.run(c.args);
+    if (c.error) {
+      assert.equal(result.status, 2, label);
+      assert.equal(result.stderr.split(/\r?\n/, 1)[0], `git-setup-check: ${c.error}`, label);
+      assert.match(result.stderr, /^Usage: node /m, label);
+      continue;
+    }
+    assert.notEqual(result.status, 2, `${label}: ${result.stderr}`);
+    assert.equal(fs.realpathSync(reportOf(result).repo), fs.realpathSync(c.repo), label);
+  }
+});
+
 test('a run leaves the fixture tree, .git included, and its local config unchanged', (t) => {
   const f = fixture(t);
   const before = snapshotTree(f.repo);

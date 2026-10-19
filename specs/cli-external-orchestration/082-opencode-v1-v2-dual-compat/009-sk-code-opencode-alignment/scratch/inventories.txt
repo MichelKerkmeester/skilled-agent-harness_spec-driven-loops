@@ -1,0 +1,54 @@
+Same-class producer and consumer inventories (T011), run on HEAD 23756e8776 before any fix.
+
+## F-01 before-hooks that read args from input (the v1 and v2 before-input carries no args)
+.opencode/plugins/cli-dispatch-audit.js:78:        const args = input.args;
+.opencode/plugins/cli-dispatch-audit.js:110:        const args = input.args;
+(line 110 is tool.execute.after, whose v1 input does carry args: @opencode-ai/plugin dist/index.d.ts:249-253, v2-bridge.js:343)
+
+## F-01 sibling before-hooks, all reading output.args
+.opencode/plugins/system-deep-loop-guard.js:80:        const args = output && output.args;
+.opencode/plugins/sk-git-preflight-advisory.js:104:        const command = commandFromArgs(output?.args);
+.opencode/plugins/system-dist-freshness-guard.js:181:    const args = output?.args;
+.opencode/plugins/system-dist-freshness-guard.js:206:        const commandText = commandTextFromArgs(output?.args);
+.opencode/plugins/system-spec-gate.js:261:        const args = output && output.args;
+.opencode/plugins/sk-git-message-gate.js:47:        const command = output?.args?.command;
+.opencode/plugins/sk-git-message-gate.js:49:        const cwd = typeof output.args.workdir === 'string' && output.args.workdir.trim()
+.opencode/plugins/sk-git-message-gate.js:50:          ? output.args.workdir
+.opencode/plugins/sk-code-post-edit-quality.js:105:        const filePath = filePathFromArgs(output?.args);
+
+## F-01 test fixtures calling the before-hook with args on input
+.opencode/plugins/tests/source-root-consumers.test.cjs:73:        hooks['tool.execute.before']({ tool: 'bash', args: { command: 'opencode run -m p/m --agent general "x" </dev/null' } }),
+.opencode/plugins/tests/source-root-consumers.test.cjs:116:    await guard['tool.execute.before']({ tool: 'bash', args: { command: 'opencode run -m p/m --agent general "x" </dev/null' } });
+
+## F-02 files naming the moved compiled/ or legacy/ folders under .skilled/commands/deep/assets (outside specs/)
+./.skilled/command-support/deep/assets/compiled/README.md
+./.skilled/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json
+./.skilled/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--acceptance--luna-high/skill-benchmark-report.json
+./.skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs
+./.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts
+
+## F-02 matching lines in code and config (no .md, no .jsonl, no benchmark reports)
+./.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts:200:    pathTemplate: '.skilled/commands/deep/assets/compiled/manifest.jsonl',
+./.skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs:24:const MANIFEST_PATH = '.skilled/commands/deep/assets/compiled/manifest.jsonl';
+
+## F-02 .gitignore
+196:.opencode/commands/deep/assets/compiled/manifest.jsonl
+197:.skilled/commands/deep/assets/compiled/manifest.jsonl
+
+## F-03 spaced flag values in the changed CLIs
+.skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs:200:    const token = argv[index];
+.skilled/commands/doctor/scripts/opencode-version-battery.cjs:184:    const arg = argv[index];
+.skilled/commands/doctor/scripts/opencode-version-battery.cjs:202:      value = argv[index];
+.skilled/commands/doctor/scripts/git-setup-check.cjs:1523:      const value = argv[i + 1];
+
+## F-04 plugins that register a v2 command
+.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:214:  const registration = await ctx.command.transform((editor) => {
+.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:215:    editor.add({
+.opencode/plugins/lib/v2-bridge.js:369:            editor.add({
+
+## F-04 Markdown commands that share a name with a plugin command
+.skilled/commands/vision.md
+
+## F-18 dispatch-shape regexes keyed to the v1 name only
+.opencode/plugins/system-dist-freshness-guard.js:35:const RISKY_BASH_COMMAND_REGEX = /opencode\s+run|\bvalidate\.sh\b/i;
+.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:210:    const pathQualifiedCommand = '/abs/opencode run -m p/m "/memory:search q" </dev/null';

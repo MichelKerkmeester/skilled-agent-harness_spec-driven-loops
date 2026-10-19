@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-18 |
 | **Branch** | `scaffold/009-sk-code-opencode-alignment` |
 | **Parent Spec** | ../spec.md |
@@ -50,7 +50,7 @@ This is **Phase 9** of the OpenCode v1 and v2 dual compatibility build specifica
 - A passing run of `run-all-drift-guards.sh` and of the comment-hygiene check on every changed code file.
 - Suite results against the phase 001 baseline, recorded in `implementation-summary.md`.
 
-**Executor (D6)**: Luna (GPT-6 Luna max fast, through cli-codex) writes the fixes. DeepSeek (DeepSeek V4.1 Flash max, through cli-devin) reviews findings-first and reviews each fix diff. The orchestrator runs every drift guard, hygiene check and suite itself.
+**Executor (D6, amended)**: The operator asked for DeepSeek wherever possible. DeepSeek (DeepSeek V4.1 Flash max, through cli-devin) reviewed the 002 to 006 code, which Luna wrote, and wrote every fix. Luna (GPT-6 Luna max fast, through cli-codex) reviewed the 007 and 008 code, which DeepSeek wrote, and reviewed each fix diff. No model reviewed its own output (scratch/decisions.txt 0). The orchestrator ran every drift guard, hygiene check and suite itself.
 
 **Frozen decisions that bind this phase**:
 - D1: Every plugin default-exports one plain object `{ id, setup, server }`, never a function carrying `.id`.
@@ -98,7 +98,7 @@ Every code file that phases 002 to 008 changed passes the drift guards and the c
 
 ### Files to Change
 
-The paths below are known from the phase plans. The final list comes from the 002 to 008 diffs. Read those diffs first, then reconcile this table before the review starts.
+Reconciled with the 002 to 008 diffs: `findings.md` lists all 75 changed code files, one row each, from `git diff 867b83b671 23756e8776` outside specs/. The table below groups them, and the rows marked Fix name every file this phase edited. Three files joined by amendment, because each holds a stale copy of the path F-02 fixes (scratch/decisions.txt 5 and 7).
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
@@ -116,6 +116,16 @@ The paths below are known from the phase plans. The final list comes from the 00
 | `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh` | Create | Setup helper from phase 007. |
 | `.skilled/commands/doctor/scripts/opencode-version-battery.cjs` | Create | Doctor battery from phase 008. |
 | The CI workflow file from phase 008 | Create | YAML config, reviewed under the config checklist. It stays local and unpushed. |
+| `.codex/agents/ai-council.toml`, `debug.toml`, `orchestrate.toml` | Modify | Agent prose mirrors from phase 004. Parse-checked as TOML. |
+| `.opencode/plugins/cli-dispatch-audit.js` and `tests/source-root-consumers.test.cjs` | Fix | F-01: read the before-hook args from the output. |
+| `.opencode/plugins/system-dist-freshness-guard.js` and its test | Fix | F-18: match `opencode2 run`. |
+| `.skilled/commands/doctor/scripts/opencode-version-battery.cjs`, `git-setup-check.cjs` and their tests | Fix | F-03: refuse a flag as a spaced value. F-26: parser cases in the battery test. |
+| `.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs` | Fix | F-26: the parser's adversarial cases. |
+| `.skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs` and `tests/unit/render-command-contract.vitest.ts` | Fix | F-02: the manifest path. |
+| `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts` | Fix (amendment) | F-02: the same path in the projection manifest. |
+| `.gitignore` | Fix (amendment) | F-02: ignore the manifest at its new path. |
+| `specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json` | Fix (amendment) | F-02: the census row a projection test compares with the manifest. |
+| `.skilled/skills/sk-vision/vision-runtime/src/plugin.ts` and `plugin.test.ts` | Fix | F-04, F-05, F-22, F-24 and F-25: the v2 `/vision` prompt hook. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -226,5 +236,5 @@ The paths below are known from the phase plans. The final list comes from the 00
 ## 10. OPEN QUESTIONS
 
 - Resolved: the formal findings-first review runs through `sk-code/sk-code-review`, with the sk-code-opencode surface bundled as the standard. That is how the sk-code hub pairs a workflow mode with a surface, and the sk-code-opencode surface hands formal review to that mode in its section 1.
-- Is the phase 008 CI workflow in the review scope? This plan treats it as YAML config under the sk-code config checklist.
+- Resolved: the phase 008 CI workflow is in scope as YAML config. Luna reviewed it under the config checklist and actionlint exits 0; it stays untracked.
 <!-- /ANCHOR:questions -->

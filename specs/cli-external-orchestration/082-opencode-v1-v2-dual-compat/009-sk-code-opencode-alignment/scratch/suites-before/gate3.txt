@@ -1,0 +1,25 @@
+✔ option C menu in .skilled/commands/create/assets/create-agent-presentation.txt matches GATE_3_CHOICE_RELATED (4.040875ms)
+✔ option C menu in .skilled/commands/create/assets/create-command-presentation.txt matches GATE_3_CHOICE_RELATED (1.579708ms)
+✔ option C menu in .skilled/commands/create/assets/create-feature-catalog-presentation.txt matches GATE_3_CHOICE_RELATED (0.877166ms)
+✔ option C menu in .skilled/commands/create/assets/create-manual-testing-playbook-presentation.txt matches GATE_3_CHOICE_RELATED (1.170458ms)
+✔ option C menu in .skilled/commands/create/assets/create-skill-parent-presentation.txt matches GATE_3_CHOICE_RELATED (1.290292ms)
+✔ option C menu in .skilled/commands/create/assets/create-skill-presentation.txt matches GATE_3_CHOICE_RELATED (1.013041ms)
+✔ option C menu in .skilled/commands/deep/assets/deep-ai-council-presentation.txt matches GATE_3_CHOICE_RELATED (1.693416ms)
+✔ option C menu in .skilled/commands/deep/assets/deep-research-presentation.txt matches GATE_3_CHOICE_RELATED (2.304375ms)
+✔ option C menu in .skilled/commands/deep/assets/deep-review-presentation.txt matches GATE_3_CHOICE_RELATED (2.408417ms)
+✔ option C menu in .skilled/command-support/deep/assets/compiled/deep-ai-council.contract.md matches GATE_3_CHOICE_RELATED (0.219625ms)
+✔ option C menu in .skilled/command-support/deep/assets/compiled/deep-research.contract.md matches GATE_3_CHOICE_RELATED (1.533458ms)
+✔ option C menu in .skilled/command-support/deep/assets/compiled/deep-review.contract.md matches GATE_3_CHOICE_RELATED (1.53975ms)
+✔ option C menu in .skilled/commands/speckit/assets/speckit-complete-presentation.txt matches GATE_3_CHOICE_RELATED (0.838416ms)
+✔ option C menu in .skilled/commands/speckit/assets/speckit-implement.yaml matches GATE_3_CHOICE_RELATED (2.816875ms)
+✔ option C menu in .skilled/commands/speckit/assets/speckit-plan-presentation.txt matches GATE_3_CHOICE_RELATED (0.657083ms)
+✔ option C menu in .skilled/skills/system-spec-kit/references/memory/trigger-config.md matches GATE_3_CHOICE_RELATED (0.330917ms)
+✔ option C menu in .skilled/skills/system-spec-kit/references/workflows/worked-examples.md matches GATE_3_CHOICE_RELATED (0.826459ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 68.782042

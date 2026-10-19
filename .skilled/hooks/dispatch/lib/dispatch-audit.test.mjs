@@ -218,6 +218,21 @@ describe('OpenCode version resolution', () => {
     expect(parseOpencodeVersion('')).toBe('unknown');
   });
 
+  it('adversarial — path-qualified, prerelease and joined output keep the same seven answers', () => {
+    const pinned = [
+      ['', 'unknown'],
+      ['opencode2', 'unknown'],
+      ['opencode', 'unknown'],
+      ['/opt/tools/1.19.3/opencode', 'unknown'],
+      ['2.0.32-rc.1', 'v2'],
+      ['1.19.3 2.0.32', 'v1'],
+      ['opencode v2.0.32\n1.19.3', 'v2'],
+    ];
+    for (const [sample, answer] of pinned) {
+      expect(parseOpencodeVersion(sample), JSON.stringify(sample)).toBe(answer);
+    }
+  });
+
   it('adversarial — probe failure keeps shared rules and warns version-specific rules', async () => {
     const version = await resolveOpencodeVersion(
       'opencode2',
