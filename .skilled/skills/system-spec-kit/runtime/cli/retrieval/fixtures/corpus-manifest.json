@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6ec377196b814b16eef58904c2c16963bddb324b937c3e8a65b34a8e70e2c34b",
+  "corpusHash": "34e35f9f3f1bd77cb4bd7d5e9b54726442a2fbf51c970e08a5ca4d58283584ec",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25301,
+  "includedPathCount": 25305,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10228,6 +10228,10 @@
     "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/plan.md",
     "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/spec.md",
     "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/012-ci-red-check-repairs/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/012-ci-red-check-repairs/plan.md",
+    "specs/hooks/023-session-relaunch-loop/012-ci-red-check-repairs/spec.md",
+    "specs/hooks/023-session-relaunch-loop/012-ci-red-check-repairs/tasks.md",
     "specs/hooks/023-session-relaunch-loop/goal.md",
     "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-dashboard.md",
     "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-strategy.md",
@@ -25332,7 +25336,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "77767392b48472b5682ab2ae5d7c51ae15cd990a82b58d7fe6ea2d586cf1351d",
+  "manifestHash": "77a80d2e1b0b97d34cc56b6fcbb6456288010e5d1584c163f82350751da2095f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27108,6 +27112,10 @@
     },
     {
       "path": "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/012-ci-red-check-repairs/scratch",
       "reason": "excluded directory"
     },
     {

@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7177,
-    "ok": 14576,
+    "ok": 14580,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25301,
+  "documentsScanned": 25305,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "77767392b48472b5682ab2ae5d7c51ae15cd990a82b58d7fe6ea2d586cf1351d",
+  "manifestHash": "77a80d2e1b0b97d34cc56b6fcbb6456288010e5d1584c163f82350751da2095f",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36935,
+      "ok": 36940,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -69719,6 +69719,10 @@
     },
     {
       "path": "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/012-ci-red-check-repairs/scratch",
       "reason": "excluded directory"
     },
     {

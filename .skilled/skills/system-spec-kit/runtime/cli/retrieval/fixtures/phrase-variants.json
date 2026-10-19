@@ -1,5 +1,5 @@
 {
-  "manifestHash": "77767392b48472b5682ab2ae5d7c51ae15cd990a82b58d7fe6ea2d586cf1351d",
+  "manifestHash": "77a80d2e1b0b97d34cc56b6fcbb6456288010e5d1584c163f82350751da2095f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -17633,6 +17633,18 @@
     ],
     "ci push triggers tasks": [
       "ci push triggers tasks"
+    ],
+    "ci red check repairs": [
+      "ci red check repairs"
+    ],
+    "ci red check repairs implementation summary": [
+      "ci red check repairs implementation summary"
+    ],
+    "ci red check repairs plan": [
+      "ci red check repairs plan"
+    ],
+    "ci red check repairs tasks": [
+      "ci red check repairs tasks"
     ],
     "ci regression gate comparison rule sets": [
       "ci regression gate comparison rule sets"
@@ -72213,6 +72225,9 @@
     ],
     "phase 8 authored classifier fixture": [
       "phase 8 authored classifier fixture"
+    ],
+    "phase 8 ci red check repairs": [
+      "phase 8 ci red check repairs"
     ],
     "phase 8 docs and readmes": [
       "phase 8 docs and readmes"
