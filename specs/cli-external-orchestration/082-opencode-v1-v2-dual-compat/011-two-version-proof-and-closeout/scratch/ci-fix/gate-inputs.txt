@@ -1,0 +1,5 @@
+# Gate Inputs on main: success at 4a15d7e66a, failure on every main commit from fe1f8a9a53 (the merge that added the workflow) to 9f19efaae5
+# CI log, run 39316672579: 16 x FAIL filter-twins in .github/workflows/opencode-dual-version.yml (8 single-root path filters, in both the pull_request and push lists)
+# local, after listing each twin:
+files=40 inputs_resolved=222 dynamic_inputs=9 twin_pairs=279 failures=0
+RESULT: PASSED
